@@ -8,7 +8,7 @@ package jx.compiler;
 
 import jx.zero.Debug;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class CompilerOptionsNative extends CompilerOptions {
@@ -26,15 +26,15 @@ public class CompilerOptionsNative extends CompilerOptions {
 
     public void parseOptionLine(String line) {
 	StringTokenizer tk = new StringTokenizer(line, " ");
-	Vector args = new Vector();
+	ArrayList args = new ArrayList();
 	while (tk.hasMoreTokens()) {
 	    String opt = tk.nextToken();
 	    if ("".equals(opt)) continue;
-	    args.addElement(opt);
+	    args.add(opt);
 	}
 	args.trimToSize();
 	String[] argv = new String[args.size()];
-	for (int i = 0; i < argv.length; i++) argv[i] = (String)args.elementAt(i);
+	for (int i = 0; i < argv.length; i++) argv[i] = (String)args.get(i);
 	for (int i = 0; i < argv.length;) i += parseOption(argv, i);
     }
 
@@ -66,11 +66,11 @@ public class CompilerOptionsNative extends CompilerOptions {
 	} else if (args[i].equals("-new")) {
 	    doNewCode = true;
 	} else if (args[i].startsWith("-new:")) {
-	    newCompiler = new Vector();
+	    newCompiler = new ArrayList();
 	    doNewCode = true;
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) newCompiler.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) newCompiler.add(tk.nextToken());
 	} else if (args[i].equals("-imcode")) {
 	    doPrintIMCode = true;
 	} else if (args[i].equals("-noirq")) {
@@ -94,13 +94,13 @@ public class CompilerOptionsNative extends CompilerOptions {
 	} else if (args[i].equals("-events")) {
 	    doEventLoging = true;
 	} else if (args[i].equals("-log")) {
-	    logMethods = new Vector();
-	    logMethods.addElement("*");
+	    logMethods = new ArrayList();
+	    logMethods.add("*");
 	} else if (args[i].startsWith("-log:")) {
-	    logMethods = new Vector();
+	    logMethods = new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i],":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) logMethods.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) logMethods.add(tk.nextToken());
 	} else if (args[i].equals("-fma")) {
 	    doFastMemoryAccess = true;
 	} else if (args[i].equals("-nofma")) {
@@ -134,23 +134,23 @@ public class CompilerOptionsNative extends CompilerOptions {
 	} else if (args[i].equals("-inline")) {
 	    doInlining = true;
 	} else if (args[i].startsWith("-inline:")) {
-	    inlineMethods = new Vector();
+	    inlineMethods = new ArrayList();
 	    doInlining = true;
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) inlineMethods.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) inlineMethods.add(tk.nextToken());
 	} else if (args[i].startsWith("-forceInline:")) {
-	    forceInline = new Vector();
+	    forceInline = new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) forceInline.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) forceInline.add(tk.nextToken());
 	} else if (args[i].startsWith("-profile:")) {
-	    profileMethods = new Vector();
+	    profileMethods = new ArrayList();
 	    doProfiling = true;
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
 	    while (tk.hasMoreTokens()) {				    
-		profileMethods.addElement(tk.nextToken());
+		profileMethods.add(tk.nextToken());
 	    }
 	} else if (args[i].equals("-debug")) {
 	    debug = true;
@@ -161,30 +161,30 @@ public class CompilerOptionsNative extends CompilerOptions {
 	} else if (args[i].equals("-v")) {
 	    doVerbose = true;
 	} else if (args[i].startsWith("-v:")) {
-	    verboseList = new Vector();
+	    verboseList = new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) verboseList.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) verboseList.add(tk.nextToken());
 	} else if (args[i].startsWith("-x:")) {
-	    if (optionList == null) optionList=new Vector();
+	    if (optionList == null) optionList=new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) optionList.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) optionList.add(tk.nextToken());
 	} else if (args[i].startsWith("-debug:")) {
 	    debug = true;
-	    debugFlags = new Vector();
+	    debugFlags = new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
 	    while (tk.hasMoreTokens()) {				    
-		debugFlags.addElement(tk.nextToken());
+		debugFlags.add(tk.nextToken());
 	    }
 	} else if (args[i].equals("-javadoc")) {
 	    doJavaDoc = true;
 	} else if (args[i].startsWith("-replace:")) {
-	    replaceInterfaceWithClass = new Vector();
+	    replaceInterfaceWithClass = new ArrayList();
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
-	    while (tk.hasMoreTokens()) replaceInterfaceWithClass.addElement(tk.nextToken());
+	    while (tk.hasMoreTokens()) replaceInterfaceWithClass.add(tk.nextToken());
 	} else if (args[i].startsWith("-monitorClass:")) {
 	    StringTokenizer tk = new StringTokenizer(args[i], ":");
 	    tk.nextToken();
@@ -208,8 +208,8 @@ public class CompilerOptionsNative extends CompilerOptions {
 		/* libraries */
 		if (args[i+1].charAt(0)!='-') {
 		    i++;
-		    zipLibFiles = new Vector();
-		    jlnLibFiles = new Vector();
+		    zipLibFiles = new ArrayList();
+		    jlnLibFiles = new ArrayList();
 		    StringTokenizer tk = new StringTokenizer(args[i], ",;:");
 		    
 		    while (tk.hasMoreTokens()) {
@@ -217,8 +217,8 @@ public class CompilerOptionsNative extends CompilerOptions {
 			    int idx;
 			    if ((idx = classFile.indexOf(".zip")) > 0)
 				classFile = classFile.substring(0, idx);
-			    zipLibFiles.addElement(classFile + ".zip");
-			    jlnLibFiles.addElement(classFile + ".jln");
+			    zipLibFiles.add(classFile + ".zip");
+			    jlnLibFiles.add(classFile + ".jln");
 		    }
 		    
 		}
@@ -317,17 +317,17 @@ public class CompilerOptionsNative extends CompilerOptions {
 
 	if (zipLibFiles != null) {
 	    if (libPath != null) {
-		Vector newLib = new Vector(zipLibFiles.size());
-		Vector newInf = new Vector(zipLibFiles.size());
+		ArrayList newLib = new ArrayList(zipLibFiles.size());
+		ArrayList newInf = new ArrayList(zipLibFiles.size());
 		for (int i = 0; i < zipLibFiles.size(); i++) {
-		    String libFile = (String) zipLibFiles.elementAt(i);
-		    String infFile = (String) jlnLibFiles.elementAt(i);
+		    String libFile = (String) zipLibFiles.get(i);
+		    String infFile = (String) jlnLibFiles.get(i);
 		    if ((libFile.charAt(0) != '/') || (libFile.charAt(0) != '\\')) {
-			newLib.addElement(libPath + "/" + libFile);
-			newInf.addElement(libPath + "/" + infFile);
+			newLib.add(libPath + "/" + libFile);
+			newInf.add(libPath + "/" + infFile);
 		    } else {
-			newLib.addElement(libFile);
-			newInf.addElement(infFile);
+			newLib.add(libFile);
+			newInf.add(infFile);
 		    }
 		}
 		zipLibFiles = newLib;
@@ -353,11 +353,11 @@ public class CompilerOptionsNative extends CompilerOptions {
 	System.out.println("  <libs>       : The zipfilenames of the lib classes in the format lib1.zip:lib2.zip:lib3.zip.");
     }
 
-    protected Vector parsePath(String path) {
-	Vector paths = new Vector();
+    protected ArrayList parsePath(String path) {
+	ArrayList paths = new ArrayList();
 	StringTokenizer tk = new StringTokenizer(path, ",:");
 	while (tk.hasMoreTokens())
-	    paths.addElement(tk.nextToken());
+	    paths.add(tk.nextToken());
 	return paths;
     }
 }

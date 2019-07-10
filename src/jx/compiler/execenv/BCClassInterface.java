@@ -3,7 +3,7 @@ package jx.compiler.execenv;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import jx.compiler.CompileException;
 
@@ -21,7 +21,7 @@ public interface BCClassInterface {
     // get all methods of this class
     // returns also abstract methods
     // filters out native methods
-    public BCMethod[] getAllMethodsWithCode(Vector transformIfcallToClass) throws CompileException;
+    public BCMethod[] getAllMethodsWithCode(ArrayList transformIfcallToClass) throws CompileException;
     public ConstantPool getConstantPool();
     public void invalidateMethod(BCMethod method);
 }

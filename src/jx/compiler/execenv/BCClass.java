@@ -4,7 +4,7 @@ import jx.compiler.*;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 // BCClass stimmt nicht unbedingt mit ClassData ueberein -> subclassen etc ! 
 // vorerst: Schnittstellen sind wichtig 
@@ -58,7 +58,7 @@ public class BCClass implements BCClassInterface {
     // get all methods of this class
     // returns also abstract methods
     // NO LONGER filters out native methods
-  public BCMethod[] getAllMethodsWithCode(Vector replaceInterfaceWithClass) throws CompileException {
+  public BCMethod[] getAllMethodsWithCode(ArrayList replaceInterfaceWithClass) throws CompileException {
       //Debug.out.println("getAllMethodsWithCode from " + classSource);
       MethodSource[] m = classSource.getMethods();
       ConstantPool cp = getConstantPool(); 

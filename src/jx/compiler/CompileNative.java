@@ -9,7 +9,7 @@ import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
 
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import jx.compspec.MetaInfo;
 import jx.compspec.MetaReader;
@@ -49,11 +49,11 @@ public class CompileNative {
 	}
     }   
 
-    static Vector parsePath(String path) {
-	Vector paths = new Vector();
+    static ArrayList parsePath(String path) {
+	ArrayList paths = new ArrayList();
 	StringTokenizer tk = new StringTokenizer(path, ":");
 	while (tk.hasMoreTokens()) {
-	    paths.addElement(tk.nextToken());
+	    paths.add(tk.nextToken());
 	}
 	return paths;
     }
@@ -62,24 +62,24 @@ public class CompileNative {
 	//jx.emulation.Init.init();
         String[] a = {"/home/spy/OS/jx/libs/"};
         MetaReader metaReader = new MetaReader(a);
-        Vector metas = new Vector();
+        ArrayList metas = new ArrayList();
         //metaReader.addMeta(metas, "init2");
         metaReader.addMeta(metas, "jdk0");
-        MetaInfo s = (MetaInfo)metas.elementAt(0); // process this component
+        MetaInfo s = (MetaInfo)metas.get(0); // process this component
 	String libdir = "/home/spy/OS/jx/libs/";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + s.getComponentName() + ".zip";
 	String jllname = libdir + s.getComponentName() + ".jll";
 
-	Vector libs = new Vector();
-	Vector jlns = new Vector();
+	ArrayList libs = new ArrayList();
+	ArrayList jlns = new ArrayList();
 
 	//String[] neededLibs = "zero jdk0 zero_misc".split(" ");
         String[] neededLibs = "zero".split(" ");
         for (String neededLib : neededLibs) {
-            libs.addElement(libdir + neededLib + ".zip");
-            jlns.addElement(libdir + neededLib + ".jln");
+            libs.add(libdir + neededLib + ".zip");
+            jlns.add(libdir + neededLib + ".jln");
         }
 
 	String jlnname = libdir + s.getComponentName() + ".jln";
@@ -113,12 +113,12 @@ public class CompileNative {
 	Memory[] libClasses = getZIPs(opts.getLibs());
 
 	ExtendedDataInputStream[] tableIn = null;
-	Vector links = opts.getLibsLinkerInfo();
+	ArrayList links = opts.getLibsLinkerInfo();
 	if (links != null) {
 	   tableIn = new ExtendedDataInputStream[links.size()];
 	   for(int i = 0; i < links.size(); i++) {
-	       if (opts.doDebug()) Debug.out.println("Reading lib linkerinfo from " + (String)links.elementAt(i));
-	       tableIn[i] = new ExtendedDataInputStream(new BufferedInputStream(new FileInputStream((String)links.elementAt(i))));
+	       if (opts.doDebug()) Debug.out.println("Reading lib linkerinfo from " + (String)links.get(i));
+	       tableIn[i] = new ExtendedDataInputStream(new BufferedInputStream(new FileInputStream((String)links.get(i))));
 	   }
 	} else {
 	    tableIn = new ExtendedDataInputStream[0];
@@ -149,13 +149,13 @@ public class CompileNative {
 	
     }
 
-    public static Memory[] getZIPs(Vector libs) {
+    public static Memory[] getZIPs(ArrayList libs) {
 	Memory[] libClasses = null;
 	if (libs != null) {
 	    libClasses = new Memory[libs.size()];
 	    for(int i = 0; i < libs.size(); i++) {
 		//if (opts.doDebug()) Debug.out.println("Reading lib classes from "+(String)libs.elementAt(i));
-		libClasses[i] = getZIP((String)libs.elementAt(i));
+		libClasses[i] = getZIP((String)libs.get(i));
 	    }
 	} else {
 	    libClasses = new Memory[0];

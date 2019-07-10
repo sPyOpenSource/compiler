@@ -8,7 +8,7 @@ package jx.compiler;
 
 import jx.zero.Debug;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import jx.compiler.execenv.CompilerOptionsInterface;
 import jx.compiler.execenv.BCClass;
@@ -19,18 +19,18 @@ public class CompilerOptions implements CompilerOptionsInterface {
     protected String  codeType;
  
     protected boolean debug;
-    protected Vector  debugFlags;
+    protected ArrayList  debugFlags;
     protected boolean makeLib;
     protected String  enviroment;
 
     private boolean useLibsDependence = false;
 
     protected boolean doNewCode            = false;
-    protected Vector  newCompiler;
+    protected ArrayList  newCompiler;
 
     protected boolean doInlining           = false;
-    protected Vector  inlineMethods;
-    protected Vector  forceInline = null;
+    protected ArrayList  inlineMethods;
+    protected ArrayList  forceInline = null;
 
     protected boolean doOptimize           = false;
     protected boolean doAlignCode          = false;
@@ -53,14 +53,14 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     protected boolean doProfiling          = true;
     protected boolean doEventLoging        = false;
-    protected Vector logMethods            = null;
+    protected ArrayList logMethods            = null;
     protected boolean doProfileNoIRQ       = false;
-    protected Vector  profileMethods;
+    protected ArrayList  profileMethods;
     protected boolean doFastMemoryAccess   = false;
     protected boolean doPrintIMCode;
     protected boolean doVerbose            = true;
-    protected Vector  verboseList          = null;
-    protected Vector  optionList           = null;
+    protected ArrayList  verboseList          = null;
+    protected ArrayList  optionList           = null;
     protected boolean doRemoveDebug        = false;
     protected boolean doStackTrace;
     protected boolean doParanoid           = false;
@@ -78,10 +78,10 @@ public class CompilerOptions implements CompilerOptionsInterface {
     protected String jlnFileName  = null;
     protected String zipClassFile = null;
     protected String libPath      = null;
-    protected Vector zipLibFiles  = null;
-    protected Vector jlnLibFiles  = null;
+    protected ArrayList zipLibFiles  = null;
+    protected ArrayList jlnLibFiles  = null;
 
-    protected Vector replaceInterfaceWithClass = null;
+    protected ArrayList replaceInterfaceWithClass = null;
 
     protected String monitorClass = null;
 
@@ -107,7 +107,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	enviroment = env;
     }
 
-    public CompilerOptions(Vector libs,String env) {
+    public CompilerOptions(ArrayList libs,String env) {
 	this();
 	setNeededLibs(libs);
 	enviroment  = env;
@@ -144,7 +144,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
     /**
      *  The zipfilenames of the lib classes or null.
      */
-   public Vector getLibs() {
+   public ArrayList getLibs() {
 	return zipLibFiles;
     }
 
@@ -154,18 +154,18 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     public void setNeededLibs(String[] libs) {
 	if (libs!=null) {
-	    zipLibFiles = new Vector();
+	    zipLibFiles = new ArrayList();
 	    for (int i=0;i<libs.length;i++) {
 		if (libs[i].lastIndexOf('.')>0) {
-		    zipLibFiles.addElement(libs[i]);
+		    zipLibFiles.add(libs[i]);
 		} else {
-		    zipLibFiles.addElement(libs[i]+".zip");
+		    zipLibFiles.add(libs[i]+".zip");
 		}
 	    }
 	}
     }
 
-    public void setNeededLibs(Vector libs) {
+    public void setNeededLibs(ArrayList libs) {
 	zipLibFiles = libs;
     }
 
@@ -183,7 +183,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
 	String[] neededLibs = new String[zipLibFiles.size()];
 	for (int i = 0; i < zipLibFiles.size(); i++) {
-	    String lib = (String)zipLibFiles.elementAt(i);
+	    String lib = (String)zipLibFiles.get(i);
 	    int b = lib.lastIndexOf('/');
 	    int e = lib.lastIndexOf('.');
 	    neededLibs[i] = lib.substring(b + 1, e) + ".jll";
@@ -196,7 +196,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
      * The linker information files for the libraries or null.
      * @return 
      */
-    public Vector getLibsLinkerInfo() {
+    public ArrayList getLibsLinkerInfo() {
 	return jlnLibFiles;
     }
 
@@ -251,7 +251,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (doVerbose) return true;
 	if (verboseList!=null) {
 	    for (int i=0;i<verboseList.size();i++) {
-		if (verboseList.elementAt(i).equals(kind)) return true;
+		if (verboseList.get(i).equals(kind)) return true;
 	    }
 	}
 	return false;
@@ -260,7 +260,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public boolean isOption(String kind) {
 	if (optionList!=null) {
 	    for (int i=0;i<optionList.size();i++) {
-		if (optionList.elementAt(i).equals(kind)) return true;
+		if (optionList.get(i).equals(kind)) return true;
 	    }
 	}
 	return false;
@@ -328,7 +328,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (forceInline!=null) {
 	    String currentMethod = null;
 	    for (int i=0;i<forceInline.size();i++) {
-		String entry = (String)forceInline.elementAt(i);
+		String entry = (String)forceInline.get(i);
 
 		if (entry.startsWith("*.")) currentMethod = "*."+bcMethod.getName();
 		else {currentMethod = bcMethod.getClassName()+"."+bcMethod.getName();}
@@ -350,7 +350,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
         String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
 	if (inlineMethods!=null) {
 	    for (int i=0;i<inlineMethods.size();i++) {
-		String entry = (String)inlineMethods.elementAt(i);
+		String entry = (String)inlineMethods.get(i);
 		//if (currentMethod.equals(entry)) return true;
 		if (entry.substring(entry.length()-1).equals("*")) {
 		    entry = entry.substring(0,entry.length()-1);
@@ -368,7 +368,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (doInlining) {
 	    if (inlineMethods!=null) {
 		for (int i=0;i<inlineMethods.size();i++) {
-		    if (methodName.equals((String)(inlineMethods.elementAt(i)))) return true;
+		    if (methodName.equals((String)(inlineMethods.get(i)))) return true;
 		}
 		return false;
 	    }
@@ -389,7 +389,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
 	if (profileMethods!=null) {
 	    for (int i=0;i<profileMethods.size();i++) {
-		String entry = (String)profileMethods.elementAt(i);
+		String entry = (String)profileMethods.get(i);
 		if (entry.substring(entry.length()-1).equals("*")) {
 		    entry = entry.substring(0,entry.length()-1);
 		    if (currentMethod.startsWith(entry)) return true;
@@ -419,7 +419,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
       if (logMethods!=null) {
 	String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
 	for (int i=0;i<logMethods.size();i++) {
-	  String entry = (String)logMethods.elementAt(i);
+	  String entry = (String)logMethods.get(i);
 	  if (entry.substring(entry.length()-1).equals("*")) {
 	    entry = entry.substring(0,entry.length()-1);
 	  if (currentMethod.startsWith(entry)) return true;
@@ -435,7 +435,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
         String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
 	if (newCompiler!=null) {
 	    for (int i=0;i<newCompiler.size();i++) {
-		String entry = (String)newCompiler.elementAt(i);
+		String entry = (String)newCompiler.get(i);
 		if (entry.substring(entry.length()-1).equals("*")) {
 		    entry = entry.substring(0,entry.length()-1);
 		    if (currentMethod.startsWith(entry)) return true;
@@ -477,7 +477,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (debug) {
 	    if (debugFlags!=null) {
 		for (int i=0;i<debugFlags.size();i++) {
-		    if (flag.equals((String)debugFlags.elementAt(i))) return true;
+		    if (flag.equals((String)debugFlags.get(i))) return true;
 		}
 		return false;
 	    }
@@ -487,15 +487,12 @@ public class CompilerOptions implements CompilerOptionsInterface {
     }
 
     public boolean rejectFloat() {
-	if (enviroment.equals("float")) {
-	    return false;
-	} else {
-	    return true;
-	}
+        return !enviroment.equals("float");
     }
 
     /**
      * returns the processor type
+     * @return 
      */
     public String codeType() {
 	if (doProfiling) {
@@ -505,10 +502,12 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	}
     }
 
+    @Override
     public boolean revocationCheckUsingCLI() {
 	return revocationCheckUsingCLI;
     }
 
+    @Override
     public boolean revocationCheckUsingSpinLock() {
 	return revocationCheckUsingSpinLock;
     }
@@ -517,5 +516,4 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public String monitorClass() {
 	return monitorClass;
     }
-
 }

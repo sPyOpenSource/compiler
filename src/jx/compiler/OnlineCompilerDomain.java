@@ -4,15 +4,11 @@ import jx.zero.*;
 import jx.zero.debug.*;
 import jx.zero.memory.*;
 
-import jx.compiler.CompilerOptions;
-import jx.compiler.StaticCompiler;
 import jx.compiler.persistent.*;
-import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.IOSystem;
 
 import java.io.*;
-import java.util.Vector;
-import java.util.Hashtable;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import jx.zip.*;
@@ -72,7 +68,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
     }
 
     public void translate(String zip, String lib, String info) throws Exception {
-	Vector needed;
+	ArrayList needed;
 
 	Debug.out.println("==== compile "+zip+" ====");
 
@@ -86,7 +82,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	
 	if (needed!=null) {
  	    for (int i=0;i<needed.size();i++) {
-	        String libName = (String)needed.elementAt(i);
+	        String libName = (String)needed.get(i);
 		if (!bootfs.lookup(libName+".jll")) {
 		    if (bootfs.lookup(libName+".zip")) {
 			translate(libName+".zip",libName+".jll",libName+"jln");
@@ -102,7 +98,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	compile(lib,info,zip,needed);
     }
  
-    public void compile(String targetName, String linkOut, String domainClasses,Vector needed) throws Exception {
+    public void compile(String targetName, String linkOut, String domainClasses, ArrayList needed) throws Exception {
 
 	PrintStream gasFile=null;
 	ExtendedDataOutputStream codeFile=null;
@@ -114,14 +110,14 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 
 	ReadOnlyMemory domClasses =  bootfs.getFile(domainClasses);
 
-	Vector libs = new Vector();
-	Vector links = new Vector();
+	ArrayList libs = new ArrayList();
+	ArrayList links = new ArrayList();
 
 	if (needed!=null) {
 	    for (int i=0;i<needed.size();i++) {
-		String libName = (String)needed.elementAt(i);	      
-		libs.addElement(libName+".zip");
-		links.addElement(libName+".jln");
+		String libName = (String)needed.get(i);	      
+		libs.add(libName+".zip");
+		links.add(libName+".jln");
 	    }
 	}
 
@@ -130,12 +126,12 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	    Debug.verbose("libs:");
 	     libClasses = new ReadOnlyMemory[libs.size()];
 	     for(int i=0; i<libs.size(); i++) {
-		 libClasses[i] = bootfs.getFile((String)libs.elementAt(i));
+		 libClasses[i] = bootfs.getFile((String)libs.get(i));
 		 if (libClasses[i] == null) {
-		     Debug.message("Cannot find file "+(String)libs.elementAt(i));
+		     Debug.message("Cannot find file "+(String)libs.get(i));
 		     return;
 		 }
-		 Debug.verbose("+ "+(String)libs.elementAt(i));
+		 Debug.verbose("+ "+(String)libs.get(i));
 	     }
 	} else {
 	     libClasses = new Memory[0];
@@ -146,12 +142,12 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	    Debug.verbose("link: ");
 	    tableIn=new ExtendedDataInputStream[links.size()];
 	    for(int i=0; i<links.size(); i++) {
-		ReadOnlyMemory memIn = bootfs.getFile((String)links.elementAt(i));
+		ReadOnlyMemory memIn = bootfs.getFile((String)links.get(i));
 		if (memIn==null) {
-		     Debug.message("Cannot find file "+(String)links.elementAt(i));
+		     Debug.message("Cannot find file "+(String)links.get(i));
 		     throw new Error("Cannot find file");
 		}
-		 Debug.verbose("+ "+(String)links.elementAt(i));
+		 Debug.verbose("+ "+(String)links.get(i));
 		tableIn[i] = new ExtendedDataInputStream(new MemoryInputStream(memIn));
 	    }
 	} else {
@@ -202,8 +198,8 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
      *
      */
 
-    private Vector findDependences(String zipFileName) {
-	Vector needed = new Vector();
+    private ArrayList findDependences(String zipFileName) {
+	ArrayList needed = new ArrayList();
 	
 	ReadOnlyMemory zipFile = bootfs.getFile(zipFileName);
 	ZipFile zip = new ZipFile(zipFile);
@@ -228,7 +224,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 				    Debug.message("WARN: conflicting dependence name "+dep+" skipped!");
 				} else {
 				    Debug.verbose("need: "+dep);
-				    needed.addElement(dep);
+				    needed.add(dep);
 				}
 			    }
 			}

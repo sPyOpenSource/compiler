@@ -2,7 +2,7 @@ package jx.compspec;
 
 import jx.zero.Debug;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 final public class MetaInfo {
 
@@ -132,10 +132,10 @@ final public class MetaInfo {
 	return ret;
     }
 
-    public void setNeededLibs(Vector v) { 
+    public void setNeededLibs(ArrayList v) { 
 	neededLibs = new String[v.size()];
 	for(int i = 0; i < neededLibs.length; i++)
-	    neededLibs[i] = (String) v.elementAt(i); 
+	    neededLibs[i] = (String) v.get(i); 
     }
 	
     public String[] getNeededLibs() {
@@ -245,7 +245,7 @@ final public class MetaInfo {
 	char[] w = new char[c.length];
 
 	int j;
-	Vector v = new Vector();
+	ArrayList v = new ArrayList();
 	for(int i = 0; i < c.length; i++) {
 	    while (i < c.length && c[i] == ' ') i++; // remove  whitespace
 	    if (i == c.length) break;
@@ -255,11 +255,11 @@ final public class MetaInfo {
 		i++; 
 		j++;
 	    }
-	    v.addElement(new String(w, 0, j));
+	    v.add(new String(w, 0, j));
 	}
 
 	String ret[] = new String[v.size()];
-	v.copyInto(ret);
+	v.toArray(ret);
 
 	return ret;
     }

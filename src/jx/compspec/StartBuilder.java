@@ -5,7 +5,8 @@
 package jx.compspec;
 
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import jx.compiler.CompilerOptions;
 import jx.compiler.CompilerOptionsNative;
@@ -13,7 +14,7 @@ import jx.compiler.CompileNative;
 
 class BuilderOptions extends CompilerOptionsNative {
 	
-    public BuilderOptions(Vector libs, Vector jlns, String src, String jlnFile, String target, String env) {
+    public BuilderOptions(ArrayList libs, ArrayList jlns, String src, String jlnFile, String target, String env) {
 	
 	/* set defaults */
 	doZeroDivChecks      = true; 
@@ -62,7 +63,7 @@ public class StartBuilder {
     private static final boolean doDebug = true;
     private static final boolean silent = true;
 
-    private static Vector metas = new Vector(); // MetaInfo
+    private static ArrayList metas = new ArrayList(); // MetaInfo
 
     static String compdir;
     static String buildDir;
@@ -142,7 +143,7 @@ public class StartBuilder {
 
 	String classPath = "";
 	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.println("COMPONENTS += " + s.getComponentName());	
 	    String filename = componentsDir + "/" + s.getComponentName();
 	    classPath += filename + ":";
@@ -151,7 +152,7 @@ public class StartBuilder {
 	System.out.println("*********** BUILDING COMPONENTS: JAVA -> CLASS");
 	String jxclasspath = "";
 	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 
 	    if (!silent) System.out.print("* " + s.getComponentName());
 	    boolean firstout = true;
@@ -197,7 +198,7 @@ public class StartBuilder {
 		    for(int r = 0; r < comps.length; r++) {
 			MetaInfo compmeta = null;
 			for(int l = 0; l < metas.size(); l++) {
-			    MetaInfo sc = (MetaInfo)metas.elementAt(l); // process this component
+			    MetaInfo sc = (MetaInfo)metas.get(l); // process this component
 			    if (comps[r].equals(sc.getComponentName())) {
 				compmeta = sc;
 				break;
@@ -215,14 +216,14 @@ public class StartBuilder {
 	    String sd = s.getVar("SUBDIRS");
 	    String[] sda = MetaInfo.split(sd);
 
-	    Vector todo = new Vector();
+	    ArrayList todo = new ArrayList();
 	    // todo.addElement("-verbose");
-	    todo.addElement("-O");
-	    todo.addElement("-d");
-	    todo.addElement(filename);
+	    todo.add("-O");
+	    todo.add("-d");
+	    todo.add(filename);
 	    //System.out.println("Generating into dir "+filename);
-	    todo.addElement("-classpath");
-	    todo.addElement(jxclasspath);
+	    todo.add("-classpath");
+	    todo.add(jxclasspath);
 	    /* component zero needs minimal jdk but jdk0 needs zero
 	     * so we use the sun jdk
 	     * jdk0 and jdk1 also depend on unknown types of the jdk */
@@ -236,12 +237,12 @@ public class StartBuilder {
 		&& !s.getComponentName().equals("jdk1")
 		) {
 		
-		todo.addElement("-bootclasspath");
-		todo.addElement(javacpath);
+		todo.add("-bootclasspath");
+		todo.add(javacpath);
 	    }
 
-	    todo.addElement("-sourcepath");
-	    todo.addElement(filename);
+	    todo.add("-sourcepath");
+	    todo.add(filename);
 
 	    boolean worktodo = false;
             for (String sda1 : sda) {
@@ -250,7 +251,7 @@ public class StartBuilder {
                 String subdirname = filename + "/" + dirname + "/";
                 File subdir = new File(subdirname);
                 if (!subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
-                Vector output = new Vector();
+                ArrayList output = new ArrayList();
                 String dirlist[] = subdir.list();
                 for (String dirlist1 : dirlist) {
                     if (hasExtension(new String[] {".java"}, dirlist1)) {
@@ -259,8 +260,8 @@ public class StartBuilder {
                         String classfilename = filename + "/" + dirname + "/" + j2c(dirlist1);
                         File classfile = new File(classfilename);
                         if (opt_f || javafile.lastModified() > classfile.lastModified()) {
-                            todo.addElement(subdirname + "/" + dirlist1);
-                            output.addElement(dirlist1);
+                            todo.add(subdirname + "/" + dirlist1);
+                            output.add(dirlist1);
                             worktodo = true;
                         }
                     }
@@ -272,14 +273,14 @@ public class StartBuilder {
                     }
                     System.out.print(dirname + ": ");
                     for(int o = 0; o < output.size(); o++)
-                        System.out.print(((String)output.elementAt(o)) + " ");
+                        System.out.print(((String)output.get(o)) + " ");
                     System.out.println("");
                 }
             }
 
 	    if (worktodo) { 
 		String jargs[] = new String[todo.size()];
-		todo.copyInto(jargs);
+		todo.toArray(jargs);
 		String mainClass = "com.sun.tools.javac.Main";
 		int ret = exec("", classPath, mainClass, jargs);
 		if (ret != 0) throw new Error("Compiler returned error");
@@ -288,24 +289,23 @@ public class StartBuilder {
 	    }
 
 	    if (compilerOpts.doJavaDoc()) { 
-		Vector output = new Vector();
-		for(int j = 0; j < sda.length; j++){
-		    String dirname = null;
-		    dirname = sda[j];
-		    String subdirname = filename + "/" + dirname + "/";
-		    File subdir = new File(subdirname);
-		    if (! subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
-		    
-		    String dirlist[] = subdir.list();
+		ArrayList output = new ArrayList();
+                for (String sda1 : sda) {
+                    String dirname = null;
+                    dirname = sda1;
+                    String subdirname = filename + "/" + dirname + "/";
+                    File subdir = new File(subdirname);
+                    if (! subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
+                    String dirlist[] = subdir.list();
                     for (String dirlist1 : dirlist) {
                         if (hasExtension(new String[] {".java"}, dirlist1)) {
                             String javafilename = filename + "/" + dirname + "/" + dirlist1;
-                            output.addElement(javafilename);
+                            output.add(javafilename);
                         }
                     }
-		}
+                }
 		String files[] = new String[output.size()];
-		output.copyInto(files);
+		output.toArray(files);
 		int ret = execJavaDoc(s.getComponentName(), componentsDir, files, classPath);
 		if (ret != 0) throw new Error("Javadoc returned error");
 	    }
@@ -313,7 +313,7 @@ public class StartBuilder {
 
 	System.out.println("*********** BUILDING ZIPS: CLASS -> ZIP");
 	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.print("* " + s.getComponentName() + "...  ");
 	    if (build_zip(s)) {
 		if (!silent) System.out.println("Creating.");
@@ -344,14 +344,14 @@ public class StartBuilder {
 	File zipfile = new File(zipname);
 	long ziptime = -1;
 	if (zipfile.exists()) ziptime = zipfile.lastModified();
-	Vector todo = new Vector();
+	ArrayList todo = new ArrayList();
 	
 	boolean worktodo = false;
 	
 	String metafilename = "META";
 	File metafile = new File(filename + "/" + metafilename);
 	if (metafile.exists()) {
-	    todo.addElement(metafilename);
+	    todo.add(metafilename);
 	    if (ziptime == -1 || metafile.lastModified() > ziptime) worktodo = true;
 	}
 	
@@ -366,7 +366,7 @@ public class StartBuilder {
                     String classfilename = filename + "/" + dirname + "/" + dirlist1;
                     File subfile = new File( classfilename);
                     if (subfile.exists()) {
-                        todo.addElement(dirname + "/" + dirlist1);
+                        todo.add(dirname + "/" + dirlist1);
                         if (ziptime == -1 || subfile.lastModified() > ziptime) worktodo = true;
                     }
                 }
@@ -379,7 +379,7 @@ public class StartBuilder {
 		java.util.zip.ZipOutputStream zip = new java.util.zip.ZipOutputStream(out);
 		zip.setMethod(java.util.zip.ZipOutputStream.STORED);
 		for(int m = 0; m < todo.size(); m++) {
-		    String subfile = (String)todo.elementAt(m);
+		    String subfile = (String)todo.get(m);
 		    addZipEntry(zip, filename, subfile);
 		}
 		zip.close();
@@ -414,8 +414,8 @@ public class StartBuilder {
 	zip.closeEntry();
     }
     
-    static public CompilerOptions getCompilerOptions(Vector libs,
-						     Vector jlns,
+    static public CompilerOptions getCompilerOptions(ArrayList libs,
+						     ArrayList jlns,
 						     String zipname, String jlnname, String jllname,
 						     String optionFile) {
 	File config = new File(optionFile);
@@ -449,7 +449,7 @@ public class StartBuilder {
 	return opts;
     }
 
-    static public Vector findlibsNew(String[] componentsDir, String components) throws Exception {
+    static public ArrayList findlibsNew(String[] componentsDir, String components) throws Exception {
 	String[][] com = new NewParser(components).getComponents();
 	return null;
     }
@@ -459,7 +459,7 @@ public class StartBuilder {
      * @param components
      * @return 
      * @throws java.lang.Exception */
-    static public Vector findlibs(String[] compdir, String components) throws Exception {
+    static public ArrayList findlibs(String[] compdir, String components) throws Exception {
 	String[] com = new Parser(components).getComponents();
 	//	String[] allcom = new Parser(componentsAll).getComponents();
 	MetaReader metaReader = new MetaReader(compdir);
@@ -483,7 +483,7 @@ public class StartBuilder {
 	// compute transitive needlibs/ifdependson for all components
 	transloop:
 	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    //Debug.out.println("COMPUTE: "+s.getComponentName());
 	    String v;
 	    if (opt_new) {
@@ -498,7 +498,7 @@ public class StartBuilder {
 	    if (c == null) continue; // example: zero lib
 
 	    //int doneIndex=0;
-	    Vector allLibs = new Vector(); // will contain transitive closure
+	    ArrayList allLibs = new ArrayList(); // will contain transitive closure
 	    if (opt_debug) System.out.println("PROCESS: " + s.getComponentName());
 
 	    // sort COMPONENTS in lexical order and add metas
@@ -511,7 +511,7 @@ public class StartBuilder {
                 // first try to find in components then in allcomponents
                 boolean found = false;
                 for(int k = 0; k < metas.size(); k++) {
-                    if (((MetaInfo)metas.elementAt(k)).getComponentName().equals(lib0)) {
+                    if (((MetaInfo)metas.get(k)).getComponentName().equals(lib0)) {
                         found = true;
                         break;
                     }
@@ -520,14 +520,14 @@ public class StartBuilder {
                     metaReader.addMeta(metas, lib0);
                 found = false;
                 for(int k = 0; k < metas.size(); k++) {
-                    if (((MetaInfo)metas.elementAt(k)).getComponentName().equals(lib0)) {
+                    if (((MetaInfo)metas.get(k)).getComponentName().equals(lib0)) {
                         //Debug.out.println("FOUND: "+lib0);
                         if (k > i) {
                             // backoff from processing this lib and do the other lib first
                             // swap the two libs
-                            MetaInfo needed = (MetaInfo)metas.elementAt(k);
-                            metas.setElementAt(needed, i);
-                            metas.setElementAt(s, k);
+                            MetaInfo needed = (MetaInfo)metas.get(k);
+                            metas.set(i, needed);
+                            metas.set(k, s);
                             //throw new Error(s.getComponentName()+"DEPEND ON UNPROCESSED "+lib0);
                             i--;
                             //Debug.out.println("BACKOFF: "+s.getComponentName());
@@ -536,7 +536,7 @@ public class StartBuilder {
                         
                         
                         // add needed libs if not there
-                        String [] nl = ((MetaInfo)metas.elementAt(k)).getNeededLibs();
+                        String [] nl = ((MetaInfo)metas.get(k)).getNeededLibs();
                         if (nl == null)
                             throw new Error("No NEEDEDLIBS computed for component "+lib0);
                         for (String nl1 : nl) {
@@ -564,11 +564,11 @@ public class StartBuilder {
 	return metas;
     }
     
-    static void add(Vector allLibs, String lib) {
+    static void add(ArrayList allLibs, String lib) {
 	// is this lib already there?
 	for(int k = 0; k < allLibs.size(); k++)
-	    if (lib.equals(allLibs.elementAt(k))) return;
-	allLibs.addElement(lib);
+	    if (lib.equals(allLibs.get(k))) return;
+	allLibs.add(lib);
     }
 
     static void dumpMetas(String filename) {
@@ -578,7 +578,7 @@ public class StartBuilder {
 	    out.println("# AUTOMATICALLY GENERATED FILE.");
 	    out.println("# DO NOT MODIFY!");
 	    for(int i = 0; i < metas.size(); i++) {
-		MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+		MetaInfo s = (MetaInfo)metas.get(i); // process this component
 		out.println(s.getComponentName());
 	    }
 	} catch(IOException e) {throw new Error();}
@@ -587,7 +587,7 @@ public class StartBuilder {
     static public void build_jlls() {
 	boolean compiledAJll = false;
 	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.print("* " + s.getComponentName() + "... ");
 
 	    String libdir = buildDir;
@@ -606,13 +606,13 @@ public class StartBuilder {
 	    if (silent) System.out.print("* " + s.getComponentName() + "... ");
 	    compiledAJll = true;
 
-	    Vector libs = new Vector();
-	    Vector jlns = new Vector();
+	    ArrayList libs = new ArrayList();
+	    ArrayList jlns = new ArrayList();
 
 	    String[] neededLibs = s.getNeededLibs();
             for (String neededLib : neededLibs) {
-                libs.addElement(libdir + neededLib + ".zip");
-                jlns.addElement(libdir + neededLib + ".jln");
+                libs.add(libdir + neededLib + ".zip");
+                jlns.add(libdir + neededLib + ".jln");
             }
 
 	    String jlnname = libdir + s.getComponentName() + ".jln";
@@ -640,7 +640,7 @@ public class StartBuilder {
             zip.setMethod(java.util.zip.ZipOutputStream.STORED);
             
             for(int i = 0; i < metas.size(); i++) {
-                MetaInfo s = (MetaInfo)metas.elementAt(i); // process this component
+                MetaInfo s = (MetaInfo)metas.get(i); // process this component
                 if (!silent) System.out.print("* " + s.getComponentName() + "... ");
                 
                 String zipname = buildDir + "/" + s.getComponentName() + ".jll";
@@ -865,15 +865,12 @@ class Sort {
 	return a.compareTo(b)>0;
     }
 
-    public static void quicksort(Vector a) {
+    public static void quicksort(ArrayList a) {
 	String[] v = new String[a.size()];
-	a.copyInto(v);
+	a.toArray(v);
 	quicksort(v, 0, v.length-1);
-	a.removeAllElements();
-        for (String v1 : v) {
-            //System.out.println("S: "+v[i]);
-            a.addElement(v1);
-        }
+	a.clear();
+        a.addAll(Arrays.asList(v)); //System.out.println("S: "+v[i]);
     }
 
     public static void quicksort(String[] v) {

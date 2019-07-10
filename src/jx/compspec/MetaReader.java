@@ -2,7 +2,7 @@ package jx.compspec;
 
 
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 
 public class MetaReader {
@@ -16,7 +16,7 @@ public class MetaReader {
 	
     }
 
-    public void addMeta(Vector v, String l) throws IOException {
+    public void addMeta(ArrayList v, String l) throws IOException {
         for (String compdir : compdirs) {
             String filename = compdir + "/" + l.trim();
             RandomAccessFile file;
@@ -28,7 +28,7 @@ public class MetaReader {
             byte [] data = new byte[(int)file.length()];
             file.readFully(data);
             MetaInfo s = new MetaInfo(filename, data);
-            v.addElement(s);
+            v.add(s);
             return;
         }
     }

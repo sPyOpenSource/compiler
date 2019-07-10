@@ -5,7 +5,7 @@ import jx.compiler.*;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 /** 
     This class represents a Java method with its associated 
@@ -43,7 +43,7 @@ public class BCMethodWithCode extends BCMethod {
 	@param methodSource 
 	@param cPool the constant pool of the method's class 
     */ 
-    public BCMethodWithCode(MethodSource methodSource, ConstantPool cPool, Vector replaceInterfaceWithClass)  
+    public BCMethodWithCode(MethodSource methodSource, ConstantPool cPool, ArrayList replaceInterfaceWithClass)  
 	throws CompileException {
 	super(methodSource);
 
