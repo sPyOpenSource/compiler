@@ -1518,8 +1518,9 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	} else {
             System.out.println(className);
             if(className.equals("[Ljava/lang/Object;")) className = "java/lang/Object";
+            if(className.equals("[B")) className = "java/lang/Object";
 	    BCClass aClass = classStore.findClass(className);
-	    if (aClass == null) Debug.out.println("Can't find ClassInfo for " + className);
+	    if (aClass == null) System.out.println("Can't find ClassInfo for " + className);
 	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
 	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());
 

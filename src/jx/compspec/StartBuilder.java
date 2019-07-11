@@ -464,18 +464,6 @@ public class StartBuilder {
 	//	String[] allcom = new Parser(componentsAll).getComponents();
 	MetaReader metaReader = new MetaReader(compdir);
 
-        /*
-        // check whether all components in COMPONENTS are also in ALLCOMPONENTS
-        for(int j=0; j<com.length; j++) {
-        int i;
-        for(i=0; i<allcom.length; i++) {
-        if (com[j].equals(allcom[i])) {
-        break;
-        }
-        }
-        if (i==allcom.length) throw new Error("Component "+com[j]+" not in ALLCOMPONENTS");
-        }
-         */
         for (String com1 : com) {
             metaReader.addMeta(metas, com1);
         }

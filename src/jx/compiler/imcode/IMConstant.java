@@ -59,7 +59,7 @@ final public class IMConstant extends IMOperant {
 	this.cpValue = null;
     }
 
-    public IMConstant(CodeContainer container,int bc,int bcpos,ConstantPoolEntry cpEntry) {
+    public IMConstant(CodeContainer container, int bc, int bcpos, ConstantPoolEntry cpEntry) {
 	super(container);
 
 	bytecode     = bc;
@@ -86,15 +86,15 @@ final public class IMConstant extends IMOperant {
 	}
     }
 
+    @Override
     public IMConstant nodeToConstant() {
 	return this;
     }
 
     public int getIntValue() {
-	if (cpEntry==null) return value;
-	if (cpValue instanceof BCInteger) {
+	if (cpEntry == null) return value;
+	if (cpValue instanceof BCInteger)
 	    if (cpValue!=null) return ((BCInteger)cpValue).value();
-	}
 	if (verbose && System.err!=null) System.err.println("fixme: constant long");
 	return 0;
 	//throw new Error("constant is not Int-Value");
@@ -122,28 +122,32 @@ final public class IMConstant extends IMOperant {
 	//throw new Error("wrong constant value - no float \n");
     }	
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	stack.push(this);
 	return null;
     }
 
+    @Override
     public String toReadableString() {
-	if (cpEntry==null) return Integer.toString(value);
-	if (cpEntry instanceof StringCPEntry) {
-	    return "\""+cpEntry.getDescription()+"\"";
-	} else {
+	if (cpEntry == null) return Integer.toString(value);
+	if (cpEntry instanceof StringCPEntry)
+	    return "\"" + cpEntry.getDescription() + "\"";
+	else
 	    return cpEntry.getDescription();
-	}	
     }
 
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    @Override
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
 	init(newContainer);
 	return this;
     }
 
+    @Override
     public int getNrRegs() { return 1; }
 
     // IMConstant
+    @Override
     public void translate(Reg result) throws CompileException {
 	code.startBC(bcPosition);
 	if (cpEntry!=null && cpEntry instanceof StringCPEntry) {
@@ -152,30 +156,31 @@ final public class IMConstant extends IMOperant {
 	} else {
 	    regs.allocIntRegister(result,datatype);
 	    int value = getIntValue();
-	    if (value==0) {
-		code.xorl(result,result);
-            } else if (opts.isOption("small") && value==1) {
-		code.xorl(result,result);
+	    if (value == 0) {
+		code.xorl(result, result);
+            } else if (opts.isOption("small") && value == 1) {
+		code.xorl(result, result);
 		code.incl(result);
 	    } else {
-		code.movl(getIntValue(),result);
+		code.movl(getIntValue(), result);
 	    }
 	}
 	code.endBC();
     }
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
-	if (datatype!=BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
+	if (datatype != BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
 
 	code.startBC(bcPosition);
         long value = getLongValue();
 	regs.allocLongRegister(result);
-	if (value==0) {
-                code.xorl(result.low,result.low);
-		code.xorl(result.high,result.high);
+	if (value == 0) {
+            code.xorl(result.low, result.low);
+            code.xorl(result.high, result.high);
 	} else {
-		code.movl((int)(value & 0xffffffff), result.low);
-                code.movl((int)((value >>> 32) &0xffffffff), result.high);
+            code.movl((int)(value & 0xffffffff), result.low);
+            code.movl((int)((value >>> 32) &0xffffffff), result.high);
 	}
 	code.endBC();
     }

@@ -4,7 +4,7 @@ import jx.classfile.ClassSource;
 import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class ClassInfo {
 	mtable = new MethodTable(className);
     }
 
-    public void addAll(Vector mt) {
+    public void addAll(ArrayList mt) {
 	mtable.addAll(mt);
     }
 

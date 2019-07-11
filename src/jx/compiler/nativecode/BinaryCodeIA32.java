@@ -1,9 +1,10 @@
 package jx.compiler.nativecode; 
 
-import java.util.Vector; 
+import java.util.ArrayList; 
 import java.util.Enumeration; 
 
 import java.io.PrintStream;
+import java.util.Collections;
 
 import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
@@ -31,7 +32,7 @@ public final class BinaryCodeIA32 {
     int numBytesMachinecode;
 
     // mapping from instruction addresses to bytecode
-    Vector instructionTable = new Vector();
+    ArrayList instructionTable = new ArrayList();
     int bcIndex, startIP;
 
     // native code array reallocation 
@@ -48,18 +49,18 @@ public final class BinaryCodeIA32 {
         allow the storing of compiled code between JVM invocations 
 	- actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private Vector symbolTable; 
+    private ArrayList symbolTable; 
   
     /** 
 	contains the native exception handlers
     */ 
-    private Vector exceptionHandlers; 
+    private ArrayList exceptionHandlers; 
 
     public BinaryCodeIA32() {
 	code = new byte[INITSIZE]; 
 	ip = 0;
-	symbolTable = new Vector(); 
-	exceptionHandlers = new Vector(); 
+	symbolTable = new ArrayList(); 
+	exceptionHandlers = new ArrayList(); 
     }
 
     /** 
@@ -71,16 +72,15 @@ public final class BinaryCodeIA32 {
     */ 
     /*    public jx.jit.nativecode.BinaryCode getOldBinaryCode() {*/
     public BinaryCode getOldBinaryCode() {
-
-	Enumeration enume = symbolTable.elements(); 
-	Vector unresolvedEntries = new Vector(); 
+	Enumeration enume = Collections.enumeration(symbolTable); 
+	ArrayList unresolvedEntries = new ArrayList(); 
 	while(enume.hasMoreElements()) {
 	    SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement();
 	    if (entry instanceof IntValueSTEntry) {
 		((IntValueSTEntry)entry).applyValue(code);
 		//entry.apply(code, codeBase);
 	    } else {
-		unresolvedEntries.addElement(entry); 
+		unresolvedEntries.add(entry); 
 	    }
 	}
 	symbolTable = unresolvedEntries;	
@@ -131,7 +131,7 @@ public final class BinaryCodeIA32 {
 	realloc();
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
-	symbolTable.addElement(entry); 
+	symbolTable.add(entry); 
 	ip+=1; 
     }
 
@@ -210,7 +210,7 @@ public final class BinaryCodeIA32 {
 	realloc();
 	insertByte(0xe8); 
 	entry.initNCIndexRelative(ip, 4,ip+4);  // size is always 4 bytes 
-	symbolTable.addElement(entry); 
+	symbolTable.add(entry); 
 	ip+=4; 	    
     }
 
@@ -1558,7 +1558,7 @@ public final class BinaryCodeIA32 {
     public void insertConst4(SymbolTableEntryBase entry) {
 	realloc();
 	entry.initNCIndex(ip, 4);  // size is always 4 bytes 
-	symbolTable.addElement(entry); 
+	symbolTable.add(entry); 
 	ip+=4; 
     }
     
@@ -1574,7 +1574,7 @@ public final class BinaryCodeIA32 {
     */ 
     public void insertConst0(SymbolTableEntryBase entry) {
 	entry.initNCIndex(ip, 0);  // size is always 0 bytes 
-	symbolTable.addElement(entry); 
+	symbolTable.add(entry); 
     }
 
 
@@ -1629,7 +1629,7 @@ public final class BinaryCodeIA32 {
     public void addExceptionTarget(UnresolvedJump handler) {
 	realloc();
 	//entry.initNCIndex(ip, 4);
-	symbolTable.addElement(handler); 
+	symbolTable.add(handler); 
 	handler.setTargetNCIndex(ip);
     }
 
@@ -1671,14 +1671,14 @@ public final class BinaryCodeIA32 {
      * @param codeBase
     */ 
     public void resolve(int codeBase) {
-	Enumeration enume = symbolTable.elements(); 
-	Vector unresolvedEntries = new Vector(); 
+	Enumeration enume = Collections.enumeration(symbolTable); 
+	ArrayList unresolvedEntries = new ArrayList(); 
 	while(enume.hasMoreElements()) {
 	    SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement(); 
 	    if (entry.isReadyForApply()) 
 		entry.apply(code, codeBase);
 	    else 
-		unresolvedEntries.addElement(entry); 
+		unresolvedEntries.add(entry); 
 	}
 	symbolTable = unresolvedEntries; 
     }
@@ -1744,7 +1744,7 @@ public final class BinaryCodeIA32 {
 	NCExceptionHandler[] handlerArray = 
 	new NCExceptionHandler[exceptionHandlers.size()]; 
 	for(int i=0;i<exceptionHandlers.size();i++) {
-	    handlerArray[i] = (NCExceptionHandler)exceptionHandlers.elementAt(i); 
+	    handlerArray[i] = (NCExceptionHandler)exceptionHandlers.get(i); 
 	    //Debug.assert(handlerArray[i].isFinished()); 
 	}
 	return handlerArray; 
@@ -1852,10 +1852,10 @@ public final class BinaryCodeIA32 {
     }
     
     public void endBC() {
-	instructionTable.addElement(new int[] { bcIndex, startIP, ip});	
+	instructionTable.add(new int[] { bcIndex, startIP, ip});	
     }
     
-    public Vector getInstructionTable() {
+    public ArrayList getInstructionTable() {
 	return instructionTable;
     }
 

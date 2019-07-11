@@ -1,8 +1,7 @@
 package jx.compiler.vtable;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Hashtable;
-import java.io.DataOutput;
 import java.io.IOException;
 import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
@@ -26,16 +25,16 @@ public class MethodTable {
 	this.classname = classname;
     }
 
-    public MethodTable(Vector mt, String classname) {
+    public MethodTable(ArrayList mt, String classname) {
 	this.classname = classname;
 	addAll(mt);
     }
 
-    void addAll(Vector mt) {
+    void addAll(ArrayList mt) {
 	mtable = new Method[mt.size()];
 	// copy into methodtable
-	for(int i=0; i<mt.size(); i++) {
-	    mtable[i] = (Method)mt.elementAt(i);
+	for(int i = 0; i < mt.size(); i++) {
+	    mtable[i] = (Method)mt.get(i);
 	    if (mtable[i] == null) continue;
 	    if (mfinder.get(mtable[i].nameAndType) != null) continue; // insert the first index only
 	    mfinder.put(mtable[i].nameAndType, mtable[i]);
@@ -44,10 +43,9 @@ public class MethodTable {
 
     public int getIndex(String nameAndType) {
 	Method m = (Method)mfinder.get(nameAndType);
-	if (m==null) {
-	    Debug.throwError("Method "+nameAndType+" not found in methodtable of class "+classname);
-	}
-	Vector indices = m.indices;
+	if (m == null)
+	    Debug.throwError("Method " + nameAndType + " not found in methodtable of class " + classname);
+	ArrayList indices = m.indices;
 	/*
 	if (indices.size() > 1) {
 	    for(int i=0; i<indices.size(); i++) {
@@ -55,8 +53,8 @@ public class MethodTable {
 	    }
 	}
 	*/
-	Integer ind = (Integer)indices.elementAt(0);
-	int index = ind.intValue();
+	Integer ind = (Integer)indices.get(0);
+	int index = ind;
 	if (index == 0) {
 	    /*System.out.println("  WARNING: Method index=0: "+m.nameAndType);*/
 	}
@@ -69,67 +67,66 @@ public class MethodTable {
     }
 
     public void print() {
-	for(int i=0; i<mtable.length; i++) {
-	    if (mtable[i]==null) {
-		System.out.println("    "+i+":  -");
-	    } else {
-		System.out.println("    "+i+":"+mtable[i].nameAndType + "   :: "+mtable[i].implementedIn.className);
-	    }
+	for(int i = 0; i < mtable.length; i++) {
+	    if (mtable[i] == null)
+		System.out.println("    " + i + ":  -");
+	    else
+		System.out.println("    " + i + ":" + mtable[i].nameAndType + "   :: " + mtable[i].implementedIn.className);
 	}
     }
 
     public void registerStrings(StringTable strTable) {
-	for(int i=0; i<mtable.length; i++) {
-	    if (mtable[i]==null) {
-		strTable.register("");
-	    } else {
-		strTable.register(mtable[i].implementedIn.className);
-		strTable.register(mtable[i].name);
-		strTable.register(mtable[i].type);
-	    }
-	}	
+        for (Method mtable1 : mtable) {
+            if (mtable1 == null) {
+                strTable.register("");
+            } else {
+                strTable.register(mtable1.implementedIn.className);
+                strTable.register(mtable1.name);
+                strTable.register(mtable1.type);
+            }
+        }	
     }
 
     public void serialize(ExtendedDataOutputStream out, StringTable strTable) throws IOException {
 	out.writeInt(TYPE_CLASS);
 	out.writeInt(mtable.length);
-	for(int i=0; i<mtable.length; i++) {
-	    if (mtable[i]==null) {		
-		//out.writeString("");
-		//out.writeString("");
-		//out.writeString("");
-		strTable.writeStringID(out,"");
-		strTable.writeStringID(out,"");
-		strTable.writeStringID(out,"");
-		out.writeInt(0);
-	    } else {
-		//out.writeString(mtable[i].implementedIn.className);
-		//out.writeString(mtable[i].name);
-		//out.writeString(mtable[i].type);
-		strTable.writeStringID(out,mtable[i].implementedIn.className);
-		strTable.writeStringID(out,mtable[i].name);
-		strTable.writeStringID(out,mtable[i].type);
-		out.writeInt(mtable[i].ifMethodIndex);
-	    }
-	}
+        for (Method mtable1 : mtable) {
+            if (mtable1 == null) {
+                //out.writeString("");
+                //out.writeString("");
+                //out.writeString("");
+                strTable.writeStringID(out,"");
+                strTable.writeStringID(out,"");
+                strTable.writeStringID(out,"");
+                out.writeInt(0);
+            } else {
+                //out.writeString(mtable[i].implementedIn.className);
+                //out.writeString(mtable[i].name);
+                //out.writeString(mtable[i].type);
+                strTable.writeStringID(out, mtable1.implementedIn.className);
+                strTable.writeStringID(out, mtable1.name);
+                strTable.writeStringID(out, mtable1.type);
+                out.writeInt(mtable1.ifMethodIndex);
+            }
+        }
     }
 
     public void serialize(ExtendedDataOutputStream out) throws IOException {
 	out.writeInt(TYPE_CLASS);
 	out.writeInt(mtable.length);
-	for(int i=0; i<mtable.length; i++) {
-	    if (mtable[i]==null) {		
-		out.writeString("");
-		out.writeString("");
-		out.writeString("");
-		out.writeInt(0);
-	    } else {
-		out.writeString(mtable[i].implementedIn.className);
-		out.writeString(mtable[i].name);
-		out.writeString(mtable[i].type);
-		out.writeInt(mtable[i].ifMethodIndex);
-	    }
-	}
+        for (Method mtable1 : mtable) {
+            if (mtable1 == null) {
+                out.writeString("");
+                out.writeString("");
+                out.writeString("");
+                out.writeInt(0);
+            } else {
+                out.writeString(mtable1.implementedIn.className);
+                out.writeString(mtable1.name);
+                out.writeString(mtable1.type);
+                out.writeInt(mtable1.ifMethodIndex);
+            }
+        }
     }
 
     public static MethodTable deserialize(ExtendedDataInputStream in, ClassInfo info, Hashtable classPool) throws IOException {
@@ -155,15 +152,13 @@ public class MethodTable {
 	    } else if (className.equals(info.className)) {
 		// a new Method or existing method at new index
 		Method existing = (Method) methodTable.mfinder.get(methodName+typeName);
-		if (existing == null) {
+		if (existing == null)
 		    mtable[i] = new Method(info, methodName, typeName);
-		} else {
+		else
 		    mtable[i] = existing;
-		}
 		mtable[i].ifMethodIndex = ifMethodIndex;
-		if (type == TYPE_INTERFACE) {
-		} else {
-		    mtable[i].indices.addElement(i);
+		if (type != TYPE_INTERFACE) {
+		    mtable[i].indices.add(i);
 		}
 	    } else {
 		ClassInfo cinf = (ClassInfo)classPool.get(className);
@@ -204,9 +199,8 @@ public class MethodTable {
     }
 
 
+    @Override
     public String toString() {
-	return "MethodTable(size="+mtable.length+")";
-
+	return "MethodTable(size=" + mtable.length + ")";
     }
-
 }

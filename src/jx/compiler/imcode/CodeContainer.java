@@ -1,6 +1,6 @@
 package jx.compiler.imcode;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 import jx.zero.Debug;
 
@@ -175,11 +175,13 @@ public class CodeContainer implements NativeCodeContainer {
 	return regs;
     }
 
+    @Override
     public BinaryCode getMachineCode() {
 	return code.getOldBinaryCode();
     }
 
-    public Vector getInstructionTable() {
+    @Override
+    public ArrayList getInstructionTable() {
 	return code.getInstructionTable();
     }
 

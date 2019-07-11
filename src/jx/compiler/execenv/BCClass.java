@@ -29,28 +29,35 @@ public class BCClass implements BCClassInterface {
     this(classSource, classSource.getClassName(), null);
   }
 
+    @Override
     public void setInfo(Object info) {
 	this.info = info;
     }
 
+    @Override
     public Object getInfo() {
 	return info;
     }
 
+    @Override
     public boolean isInterface() {
 	return classSource.isInterface();
     }
 
+    @Override
     public ClassSource getClassSource() { return classSource; }
 
+    @Override
   public BCMethod getMethod(String name, String type) {
     return new BCMethod(classSource.getMethod(name, type)); 
   }
 
+    @Override
     public String getClassName() {
 	return className;
     }
 
+    @Override
     public BCMethodWithCode getMethodWithCode(String name, String type) throws CompileException {
 	return new BCMethodWithCode(classSource.getMethod(name, type), getConstantPool(), null); 
     }
@@ -58,6 +65,7 @@ public class BCClass implements BCClassInterface {
     // get all methods of this class
     // returns also abstract methods
     // NO LONGER filters out native methods
+    @Override
   public BCMethod[] getAllMethodsWithCode(ArrayList replaceInterfaceWithClass) throws CompileException {
       //Debug.out.println("getAllMethodsWithCode from " + classSource);
       MethodSource[] m = classSource.getMethods();
@@ -73,32 +81,35 @@ public class BCClass implements BCClassInterface {
       */
       BCMethod[] bm = new BCMethod[numMethods];
       int j=0;
-      for(int i=0; i<m.length; i++) {
-	  /*
-	  if (m[i].isNative()) {
-	      throw new Error("native method not allowed");
-	  }
-	  */
-	  //Debug.out.println("    "+m[i].getMethodName() + m[i].getMethodType()); 	  
-	  if (m[i].isAbstract() || m[i].isNative() ) {
-	      bm[j] = new BCMethod(m[i]); // cannot get code of abstract method
-	  } else {
-	      bm[j] = new BCMethodWithCode(m[i], cp, replaceInterfaceWithClass);
-	  }
-	  j++;
-      }
+        for (MethodSource m1 : m) {
+            /*
+            if (m[i].isNative()) {
+            throw new Error("native method not allowed");
+            }
+             */
+            //Debug.out.println("    "+m[i].getMethodName() + m[i].getMethodType());
+            if (m1.isAbstract() || m1.isNative()) {
+                bm[j] = new BCMethod(m1); // cannot get code of abstract method
+            } else {
+                bm[j] = new BCMethodWithCode(m1, cp, replaceInterfaceWithClass);
+            }
+            j++;
+        }
       return bm;
   }
 
+    @Override
   public ConstantPool getConstantPool() {
     return classSource.getConstantPool(); 
   }
 
+    @Override
   public void invalidateMethod(BCMethod method) {
     // invalidate method, if cached 
   }
 
+    @Override
     public String toString() {
-	return "BCClass("+className+")";
+	return "BCClass(" + className + ")";
     }
 }

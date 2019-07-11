@@ -7,7 +7,7 @@ import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
 
 import java.util.Hashtable;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.io.IOException;
 
 
@@ -16,7 +16,7 @@ public class MethodTableFactory {
 
     public MethodTableFactory(Iterator classFactory, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables) throws Exception {
 	Hashtable classFinder = new Hashtable();
-	Vector all = new Vector();	
+	ArrayList all = new ArrayList();	
 	while(classFactory.hasNext()) {
 	    ClassSource source = (ClassSource)classFactory.next();
 	    ClassInfo info = new ClassInfo();
@@ -30,7 +30,7 @@ public class MethodTableFactory {
 		info.methods[i] = new Method(info, m[i]);
 	    info.indexInAll = all.size();
 	    classFinder.put(info.className, info);
-	    all.addElement(info);
+	    all.add(info);
 	}
 	main = new Main(classFinder, all, predefinedClasses, oldTables, predefinedClasses[0]);
     }

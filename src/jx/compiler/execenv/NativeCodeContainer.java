@@ -1,9 +1,9 @@
 package jx.compiler.execenv;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 public interface NativeCodeContainer {
     public BinaryCode getMachineCode();
-    public Vector     getInstructionTable();
+    public ArrayList     getInstructionTable();
     public int        getLocalVarSize();
 }

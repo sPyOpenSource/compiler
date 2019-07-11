@@ -1,10 +1,7 @@
 package jx.compiler;
 
 import jx.compiler.execenv.*; 
-
 import jx.zero.Memory;
-
-import java.util.Vector;
 import jx.compiler.vtable.MethodTable;
 
 /**

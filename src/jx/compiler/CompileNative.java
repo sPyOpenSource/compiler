@@ -36,10 +36,11 @@ public class CompileNative {
     public static Memory getZIP(String filename) {
         //if (filename.equals("/home/spy/OS/jx/libs/jdk0.zip")) return null;
 	try {
-	    RandomAccessFile file = new RandomAccessFile(filename, "r");
-	    byte [] data = new byte[(int)file.length()];
-	    file.readFully(data);
-	    file.close();
+            byte[] data;
+            try (RandomAccessFile file = new RandomAccessFile(filename, "r")) {
+                data = new byte[(int)file.length()];
+                file.readFully(data);
+            }
 	    Memory m = memMgr.alloc(data.length);
 	    m.copyFromByteArray(data, 0, 0, data.length);
 	    return m;
@@ -59,12 +60,11 @@ public class CompileNative {
     }
 
     public static void main(String[] args) throws Exception {
-	//jx.emulation.Init.init();
         String[] a = {"/home/spy/OS/jx/libs/"};
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
-        //metaReader.addMeta(metas, "init2");
-        metaReader.addMeta(metas, "jdk0");
+        metaReader.addMeta(metas, "init2");
+        //metaReader.addMeta(metas, "jdk0");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
 	String libdir = "/home/spy/OS/jx/libs/";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
@@ -76,11 +76,11 @@ public class CompileNative {
 	ArrayList jlns = new ArrayList();
 
 	//String[] neededLibs = "zero jdk0 zero_misc".split(" ");
-        String[] neededLibs = "zero".split(" ");
+        /*String[] neededLibs = "zero".split(" ");
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
-        }
+        }*/
 
 	String jlnname = libdir + s.getComponentName() + ".jln";
 	//CompilerOptionsNative opts = new CompilerOptionsNative(args);
@@ -93,9 +93,6 @@ public class CompileNative {
     }
 
     public static void compile(String path, CompilerOptions opts) throws Exception {
-
-	//if (Debug.out == null) jx.emulation.Init.init();
-
 	System.out.println("Native code compiler version 0.7.10-" + StaticCompiler.version());
 
 	ExtendedDataOutputStream codeFile = null;

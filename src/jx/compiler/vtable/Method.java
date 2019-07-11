@@ -1,14 +1,14 @@
 package jx.compiler.vtable;
 
 import jx.classfile.MethodSource;
-import java.util.Vector;
+import java.util.ArrayList;
 import jx.zero.Debug;
 
 public class Method {
     public String name;
     public String type;
     public String nameAndType;
-    public Vector indices=new Vector(); // method can appear more than once in a methodtable
+    public ArrayList indices = new ArrayList(); // method can appear more than once in a methodtable
     public int ifMethodIndex; // index of method in itable, if this method is part of an interface
     public MethodSource data;
     public ClassInfo implementedIn;
@@ -24,6 +24,9 @@ public class Method {
 
     /** 
      * new method
+     * @param implementedIn
+     * @param name
+     * @param type
      */
     public Method(ClassInfo implementedIn, String name, String type) {
 	if (implementedIn == null) Debug.throwError("Each method must be implemented in some class.");

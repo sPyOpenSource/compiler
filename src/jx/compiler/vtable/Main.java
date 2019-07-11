@@ -13,7 +13,7 @@ import jx.compiler.ZipClasses;
 import java.io.IOException;
 
 import java.util.Hashtable;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 /**
@@ -26,10 +26,10 @@ class Main {
 
     Hashtable classPool = new Hashtable();
     Hashtable classFinder = new Hashtable();
-    Vector all = new Vector();
+    ArrayList all = new ArrayList();
     InterfaceMethodsTable itable;
     Hashtable mtables = new Hashtable();
-    Vector classList = new Vector();
+    ArrayList classList = new ArrayList();
     int originalClasses; // number of classes *not* imported from lib
 
     Main(Memory zipfilecontents, String[] args, ClassInfo objectClass) throws Exception {
@@ -46,16 +46,15 @@ class Main {
 	    System.out.println(info.className);
 	    MethodSource [] m =  source.getMethods();
 	    info.methods = new Method[m.length];
-	    for(int i=0; i<m.length; i++) {
+	    for(int i = 0; i < m.length; i++)
 		info.methods[i] = new Method(info, m[i]);
-	    }
 	    info.indexInAll = all.size();
 	    classFinder.put(info.className, info);
-	    all.addElement(info);
+	    all.add(info);
 	}
     }
 
-    Main(Hashtable classFinder, Vector all, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables, ClassInfo objectClass) throws Exception {
+    Main(Hashtable classFinder, ArrayList all, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables, ClassInfo objectClass) throws Exception {
 	this.classFinder = classFinder;
 	this.all = all;
 	itable = new InterfaceMethodsTable(objectClass);    
@@ -80,19 +79,19 @@ class Main {
 	///putIn(info, true, true);
 
 	for(int i = 0; i < all.size(); i++) {
-	    info = (ClassInfo)all.elementAt(i);
+	    info = (ClassInfo)all.get(i);
 	    if (info == null) continue;
 	    putIn(info, true, true, false);
 	}
 
 	for(int i = 0; i < all.size(); i++) {
-	    info = (ClassInfo)all.elementAt(i);
+	    info = (ClassInfo)all.get(i);
 	    if (info == null) continue;
 	    putIn(info, true, false, false);
 	}
 
 	for(int i = 0; i < all.size(); i++) {
-	    info = (ClassInfo)all.elementAt(i);
+	    info = (ClassInfo)all.get(i);
 	    if (info == null) continue;
 	    putIn(info, false, false, false);
 	}
@@ -101,7 +100,7 @@ class Main {
 
 
     boolean putIn(ClassInfo info, boolean rejectInterfaces, boolean rejectImplements, boolean enforcePutin) throws Exception {
-	if (!enforcePutin && all.elementAt(info.indexInAll) == null) return true; // already there
+	if (!enforcePutin && all.get(info.indexInAll) == null) return true; // already there
 	if (rejectInterfaces && info.isInterface()) return false;
 	String[] ifs = info.data.getInterfaceNames();
 	if (rejectImplements && ifs.length > 0) return false;
@@ -127,20 +126,20 @@ class Main {
 	/*Debug.out.println("putin: "+info.className);*/
 	createMTable(info);
 	addMTable(info);
-	all.setElementAt(null, info.indexInAll);
+	all.set(info.indexInAll, null);
 	return true;
     }
 
     void addMTable(ClassInfo info) {
 	mtables.put(info.className, info.mtable);
 
-	classList.addElement(info);
+	classList.add(info);
 	originalClasses++;
 	classPool.put(info.className, info);
     }
 
     void createMTable(ClassInfo info) {
-	if (dumpAll) Debug.out.println("  Creating mtable for "+info.className);
+	if (dumpAll) Debug.out.println("  Creating mtable for " + info.className);
 	if (info.isInterface()) { 
 	    itable.add(info);
 	    info.mtable = new InterfaceMethodTable(info, itable, classPool);
@@ -149,12 +148,12 @@ class Main {
 	    return;
 	}
 
-	Vector mt = new Vector();
+	ArrayList mt = new ArrayList();
 	Hashtable inherited = new Hashtable();
 	// copy superclass mtable
 	if (info.superClass != null) {
-	    for(int i=0; i<info.superClass.mtable.length(); i++) {
-		mt.addElement(info.superClass.mtable.getAt(i));
+	    for(int i = 0; i < info.superClass.mtable.length(); i++) {
+		mt.add(info.superClass.mtable.getAt(i));
 		if (info.superClass.mtable.getAt(i) != null) // mtable may have holes!
 		    inherited.put(info.superClass.mtable.getAt(i).nameAndType, info.superClass.mtable.getAt(i));
 	    }
@@ -168,26 +167,39 @@ class Main {
          */
         // override method or append method
         for (Method method : info.methods) {
-            if (method.data.isStatic() || method.name.equals("<init>")) {
+            if (method.data.isStatic() || method.name.equals("<init>"))
                 continue;
-            }
             Method im = (Method) inherited.get(method.nameAndType);
             inherited.put(method.nameAndType, method); // override/append in method finder
             if (im != null) {
                 //Debug.out.println("Override "+info.methods[i].nameAndType);
-                method.indices = (Vector)im.indices.clone();
-                for (int j = 0; j<im.indices.size(); j++) {
+                method.indices = (ArrayList)im.indices.clone();
+                for (int j = 0; j < im.indices.size(); j++) {
                     // method may appear more than once in mtable
-                    int index = ((Integer)im.indices.elementAt(j));
-                    if (mt.size() <= index) mt.setSize(index+1);
-                    mt.setElementAt(method, index);
+                    int index = ((Integer)im.indices.get(j));
+                    if (mt.size() <= index) {
+                        //mt.setSize(index+1);
+                        if(mt.size() == index){
+                            mt.add(null);
+                        } else {
+                            for(int i = mt.size(); i <= index; i++)
+                                mt.add(null);
+                        }
+                    }
+                    mt.set(index, method);
                 }
             } else {
                 int index = mt.size();
                 for(index = mt.size(); ! itable.isFree(index); index++);
-                method.indices.addElement(index);
-                mt.setSize(index+1);
-                mt.setElementAt(method, index);
+                method.indices.add(index);
+                //mt.setSize(index+1);
+                if(index == mt.size())
+                    mt.add(method);
+                else {
+                    for(int i = mt.size(); i < index; i++)
+                        mt.add(null);
+                    mt.add(method);
+                }
                 itable.markOccupied(index);
             }
         }
@@ -214,11 +226,18 @@ class Main {
                 throw new Error();
                 }
                 */
-                if (mt.size() <= ii.mtable.getAt(j).ifMethodIndex)
-                    mt.setSize(ii.mtable.getAt(j).ifMethodIndex+1);
+                if (mt.size() <= ii.mtable.getAt(j).ifMethodIndex){
+                    //mt.setSize(ii.mtable.getAt(j).ifMethodIndex+1);
+                    if(ii.mtable.getAt(j).ifMethodIndex == mt.size())
+                        mt.add(realM);
+                    else{
+                        for(int i = mt.size(); i <= ii.mtable.getAt(j).ifMethodIndex; i++)
+                            mt.add(null);
+                    }
+                }
                 if (dumpAll) Debug.out.println("  INTERFACEMETHOD " + ii.mtable.getAt(j).nameAndType + " at " + ii.mtable.getAt(j).ifMethodIndex);
-                mt.setElementAt(realM, ii.mtable.getAt(j).ifMethodIndex);
-                realM.indices.addElement(ii.mtable.getAt(j).ifMethodIndex);
+                mt.set(ii.mtable.getAt(j).ifMethodIndex, realM);
+                realM.indices.add(ii.mtable.getAt(j).ifMethodIndex);
             }
             /* } else {
             for(int j=0; j<ii.methods.length; j++) {
@@ -252,7 +271,7 @@ class Main {
 	out.writeInt(MAGIC_NUMBER);
 	out.writeInt(originalClasses);
 	for(int i = 0; i < classList.size(); i++) {
-	    ClassInfo info = (ClassInfo)classList.elementAt(i);
+	    ClassInfo info = (ClassInfo)classList.get(i);
 	    if (info.isOld) continue;
 	    info.serialize(out);
 	}
@@ -270,9 +289,8 @@ class Main {
     
     public void deserialize(ExtendedDataInputStream in) throws Exception {
 	int magic = in.readInt();
-	if (magic != MAGIC_NUMBER) {
+	if (magic != MAGIC_NUMBER)
 	    throw new IOException("This is not a method table  " + magic);
-	}
 	int ntables = in.readInt();
 	for(int i = 0; i < ntables; i++) {
 	    ClassInfo info = new ClassInfo(in, classPool);

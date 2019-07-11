@@ -1,15 +1,11 @@
 package jx.compiler.execenv; 
 
-import jx.compiler.*;
 import jx.compiler.symbols.*;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration; 
-//import jx.jit.debug.DebugConf; 
-import jx.zero.Debug; 
-import java.io.*;  
 
-//import jx.jit.bytecode.execenv.NativeExceptionHandler; 
 
 /** 
     BinaryCode is a class that generates and stores a compiled
@@ -25,7 +21,7 @@ public class BinaryCode {
   private int numCodeBytes; 
 
   // table of unresolved addresses that need the code base 
-  private Vector unresolvedAddresses; 
+  private ArrayList unresolvedAddresses; 
 
   // ***** other vars *****
 
@@ -37,8 +33,11 @@ public class BinaryCode {
       Initialize this class with an already compiled 
       code. This is not a clean design, but it is 
       necessary for using preproc.BinaryCode. 
+     * @param code
+     * @param numBytes
+     * @param unresolvedAddr
   */ 
-  public BinaryCode(byte[] code, int numBytes, Vector unresolvedAddr) {
+  public BinaryCode(byte[] code, int numBytes, ArrayList unresolvedAddr) {
     this.unresolvedAddresses = unresolvedAddr; 
     this.code = code; 
     this.numCodeBytes = numBytes; 
@@ -48,6 +47,9 @@ public class BinaryCode {
 
   /** 
       Install the compiled method in metaXa. 
+     * @param classname
+     * @param methodname
+     * @param signature
   */ 
   public void install(String classname, String methodname, String signature) {
     int handle = allocateNativeCode(numCodeBytes);
@@ -61,7 +63,7 @@ public class BinaryCode {
 
   public byte[] getCode() { return code; }
   public int getNumCodeBytes() { return numCodeBytes; }
-  public Vector getUnresolvedAddresses() { return unresolvedAddresses; }
+  public ArrayList getUnresolvedAddresses() { return unresolvedAddresses; }
 
    
   /** 
@@ -69,7 +71,7 @@ public class BinaryCode {
       @see nativecode.BinaryCode.addInstrCall
   */ 
   private void resolveAddresses(int codeStartAddress) {
-    Enumeration elements = unresolvedAddresses.elements(); 
+    Enumeration elements = Collections.enumeration(unresolvedAddresses); 
     while (elements.hasMoreElements()) {
       SymbolTableEntryBase address =
 	(SymbolTableEntryBase)elements.nextElement(); 
@@ -82,9 +84,9 @@ public class BinaryCode {
 
   private String getBinaryCodeAsHex(int firstByte, int stopByte) {
     String s = ""; 
-    for(int i=firstByte; i<stopByte; i++) {
+    for(int i = firstByte; i < stopByte; i++) {
       String hex = Integer.toHexString(code[i] & 0xff); 
-      if (hex.length()==1) hex = "0" + hex; 
+      if (hex.length() == 1) hex = "0" + hex; 
       s = s + hex  + " "; 
     }
     return s; 
@@ -151,14 +153,15 @@ public class BinaryCode {
    * @param handle Handle to code memory.
    */
   private void replugMethod(String classname, String methodname,
-				   String signature, int handle) {	throw new Error(); }
+                            String signature, int handle) {	throw new Error(); }
 
   /** 
       Deactivate compiled code and use interpreted code for this 
       method. 
+     * @param classname
+     * @param methodname
+     * @param signature
   */ 
   public static void unplugMethod(String classname,
-					 String methodname, String signature) {	throw new Error(); }
-
+			          String methodname, String signature) {	throw new Error(); }
 }  
-

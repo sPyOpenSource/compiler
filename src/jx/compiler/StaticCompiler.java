@@ -39,7 +39,7 @@ import jx.compiler.execenv.NativeCodeContainer;
 import jx.compiler.execenv.BinaryCode;
 import jx.compspec.StartBuilder;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.io.File;
 import java.io.PrintStream;
@@ -94,8 +94,8 @@ public class StaticCompiler implements ClassFinder {
 	this.tableIn = tableIn;
 	this.ioSystem = ioSystem;
 
-	Vector libdata = new Vector();
-	Vector domdata = new Vector();
+	ArrayList libdata = new ArrayList();
+	ArrayList domdata = new ArrayList();
 	libClassStore = new ClassStore();
 	domClassStore = new ClassStore();
 
@@ -106,7 +106,7 @@ public class StaticCompiler implements ClassFinder {
             BCClass objectClass = new BCClass(objectClassSource,"java/lang/Object");
             libClassStore.addClass("java/lang/Object", objectClass);
             predefinedClasses = new ClassInfo[1];
-            Vector objectMtable = new Vector();
+            ArrayList objectMtable = new ArrayList();
             predefinedClasses[0] = new ClassInfo("java/lang/Object", "", false);
 
             String[][] omethods = {{"getClass", "()Ljava/lang/Class;"},
@@ -140,8 +140,8 @@ public class StaticCompiler implements ClassFinder {
 	    ReadOnlyMemory in;
 	    if (i == -1) {
                 in = domainZip;
-                //String base = "/home/spy/Java/OS/";
-                /*String base = "/home/spy/Java/JDK/";
+                /*String base = "/home/spy/Java/OS/";
+                //String base = "/home/spy/Java/JDK/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                     barr = new byte[(int)f.length()];
@@ -186,7 +186,7 @@ public class StaticCompiler implements ClassFinder {
                                 }
                                 Memory m = memMgr.alloc(data.length);
                                 m.copyFromByteArray(data, 0, 0, data.length);
-                                domdata.addElement(m);
+                                domdata.add(m);
                             } catch(IOException e) {
                                 //Debug.throwError("could not read classes.zip file: " + filename);
                             }
@@ -215,8 +215,8 @@ public class StaticCompiler implements ClassFinder {
                     if (!entry.getName().equals("libs.dep") &&
                         !entry.getName().equals("META")) {
                         //Debug.out.println("classfile "+entry.getName());
-                        if (i == -1) domdata.addElement(entry.getData());
-                        else libdata.addElement(entry.getData());
+                        if (i == -1) domdata.add(entry.getData());
+                        else libdata.add(entry.getData());
                     }
                 }
             } catch (NullPointerException e){
@@ -266,7 +266,7 @@ public class StaticCompiler implements ClassFinder {
                                 }
                                 Memory m = memMgr.alloc(data.length);
                                 m.copyFromByteArray(data, 0, 0, data.length);
-                                libdata.addElement(m);
+                                libdata.add(m);
                             } catch(IOException ex) {
                                 //Debug.throwError("could not read classes.zip file: " + filename);
                             }
@@ -282,7 +282,7 @@ public class StaticCompiler implements ClassFinder {
 	try {
 	    if (opt_v) System.out.println("Adding classes from existing lib");
 	    for(int i = 0; i < libdata.size(); i++) {
-		ClassSource classData = new MemoryClassSource((Memory)libdata.elementAt(i)); 
+		ClassSource classData = new MemoryClassSource((Memory)libdata.get(i)); 
 		String className = classData.getClassName();
 
 		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
@@ -298,7 +298,7 @@ public class StaticCompiler implements ClassFinder {
 	    if (opt_v) System.out.println("Adding classes from lib");
 
 	    for(int i = 0; i < domdata.size(); i++) {
-		ClassSource classData = new MemoryClassSource((Memory)domdata.elementAt(i)); 
+		ClassSource classData = new MemoryClassSource((Memory)domdata.get(i)); 
 		String className = classData.getClassName();
 
 		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
@@ -320,11 +320,11 @@ public class StaticCompiler implements ClassFinder {
 	compileStatic();
     }
 
-    private void addMethod(ClassInfo aClass, Vector mtable, String methodName, String signature) {
+    private void addMethod(ClassInfo aClass, ArrayList mtable, String methodName, String signature) {
 	Method method;
 	method = new Method(aClass, methodName, signature);
-	mtable.addElement(method);
-	method.indices.addElement(mtable.size() - 1);
+	mtable.add(method);
+	method.indices.add(mtable.size() - 1);
     }
 
     private void computeClassGraph() {
@@ -353,31 +353,31 @@ public class StaticCompiler implements ClassFinder {
 
 
     private ClassStore sortClasses(ClassStore classStore) {
-	Vector all = new Vector();
+	ArrayList all = new ArrayList();
 	Enumeration classIterator = classStore.elements();
 	while(classIterator.hasMoreElements())
-	    all.addElement(classIterator.nextElement());
+	    all.add(classIterator.nextElement());
 	List sorted = new List();
 	for(int i = 0; i < all.size(); i++) {
-	    BCClass c = (BCClass) all.elementAt(i);
+	    BCClass c = (BCClass) all.get(i);
 	    BCClassInfo info = (BCClassInfo)c.getInfo();
 	    BCClass s = info.superClass;
 	    if (s == null) { // Object class
 		sorted.add(c);
-		all.setElementAt(null, i);
+		all.set(i, null);
 		break;
 	    }
 	}
     outerloop:
 	for(int i = 0; i < all.size(); i++) {
-	    BCClass c = (BCClass) all.elementAt(i);
+	    BCClass c = (BCClass) all.get(i);
 	    if (c == null) continue;
 	    BCClassInfo info = (BCClassInfo)c.getInfo();
 	    BCClass s = info.superClass;
 	    for(int j = 0; j < sorted.size(); j++) {
-		if ((BCClass) all.elementAt(i) == s) {
+		if ((BCClass) all.get(i) == s) {
 		    sorted.add(c);
-		    all.setElementAt(null, i);
+		    all.set(i, null);
 		    continue outerloop; // OK
 		}
 	    }
@@ -385,16 +385,16 @@ public class StaticCompiler implements ClassFinder {
 	    // add all superclasses (starting with Object) to
 	    // the sorted list, provided they are not already
 	    // on the list
-	    Vector classesToAdd = new Vector();
-	    classesToAdd.addElement(c);
-	    all.setElementAt(null, i);
+	    ArrayList classesToAdd = new ArrayList();
+	    classesToAdd.add(c);
+	    all.set(i, null);
 	    c = ((BCClassInfo)c.getInfo()).superClass;
 	searchloop:
 	    while(true) {
 		for(int j = i; j < all.size(); j++) {
-		    if (c == (BCClass) all.elementAt(j)) {
-			classesToAdd.addElement(c);
-			all.setElementAt(null, j);
+		    if (c == (BCClass) all.get(j)) {
+			classesToAdd.add(c);
+			all.set(j, null);
 			c = ((BCClassInfo)c.getInfo()).superClass;
 			continue searchloop;
 		    }
@@ -403,7 +403,7 @@ public class StaticCompiler implements ClassFinder {
 	    }
 	    // add to sorted in reverse order
 	    for(int j = classesToAdd.size() - 1; j >= 0; j--) {
-		sorted.add(classesToAdd.elementAt(j));
+		sorted.add(classesToAdd.get(j));
 	    }
 	}
 			
@@ -457,7 +457,7 @@ public class StaticCompiler implements ClassFinder {
                             @Override
 			    public BinaryCode getMachineCode() {throw new Error("NATIVE");}
                             @Override
-			    public Vector     getInstructionTable() {throw new Error("NATIVE");}
+			    public ArrayList     getInstructionTable() {throw new Error("NATIVE");}
                             @Override
 			    public int        getLocalVarSize() {throw new Error("NATIVE");}
 			};
