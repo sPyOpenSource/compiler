@@ -10,7 +10,7 @@ import jx.compiler.execenv.IOSystem;
 
 
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import jx.zero.debug.*;
 import jx.zero.memory.*;
@@ -50,11 +50,11 @@ public class Main {
 		"int");		
     }
 
-    static Vector parsePath(String path) {
-	Vector paths = new Vector();
+    static ArrayList parsePath(String path) {
+	ArrayList paths = new ArrayList();
 	StringTokenizer tk = new StringTokenizer(path, ":");
 	while (tk.hasMoreTokens()) {
-	    paths.addElement(tk.nextToken());
+	    paths.add(tk.nextToken());
 	}
 	return paths;
     }
@@ -79,13 +79,13 @@ public class Main {
 
 	ReadOnlyMemory[] libClasses = null;
 	if (! zipList.equals("-")) {
-	    Vector libs = parsePath(zipList);
+	    ArrayList libs = parsePath(zipList);
 	     libClasses = new ReadOnlyMemory[libs.size()];
 	     for(int i=0; i<libs.size(); i++) {
-		 Debug.out.println("Reading lib classes from "+(String)libs.elementAt(i));
-		 libClasses[i] = bootFS.getFile((String)libs.elementAt(i));
+		 Debug.out.println("Reading lib classes from "+(String)libs.get(i));
+		 libClasses[i] = bootFS.getFile((String)libs.get(i));
 		 if (libClasses[i] == null) {
-		     Debug.out.println("Cannot find file "+(String)libs.elementAt(i));
+		     Debug.out.println("Cannot find file "+(String)libs.get(i));
 		     return;
 		 }
 	     }
@@ -95,13 +95,13 @@ public class Main {
 
 	ExtendedDataInputStream[] tableIn;
 	if (! jlnList.equals("-")) {
-	    Vector links = parsePath(jlnList);
-	    tableIn=new ExtendedDataInputStream[links.size()];
-	    for(int i=0; i<links.size(); i++) {
-		Debug.out.println("Reading lib linkerinfo from "+(String)links.elementAt(i));
-		ReadOnlyMemory memIn = bootFS.getFile((String)links.elementAt(i));
-		if (memIn==null) {
-		     Debug.out.println("Cannot find file "+(String)links.elementAt(i));
+	    ArrayList links = parsePath(jlnList);
+	    tableIn = new ExtendedDataInputStream[links.size()];
+	    for(int i = 0; i < links.size(); i++) {
+		Debug.out.println("Reading lib linkerinfo from "+(String)links.get(i));
+		ReadOnlyMemory memIn = bootFS.getFile((String)links.get(i));
+		if (memIn == null) {
+		     Debug.out.println("Cannot find file "+(String)links.get(i));
 		     return;
 		}
 		tableIn[i] = new ExtendedDataInputStream(new MemoryInputStream(memIn));

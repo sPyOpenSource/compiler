@@ -19,16 +19,20 @@ public class ClassCPEntry extends ConstantPoolEntry {
     this.classNameCPEntry = classNameCPEntry; 
   }
 
+  @Override
   public int getTag() {return CONSTANT_CLASS;}
 
+  @Override
   void readFromClassFile(DataInput input) throws IOException {
     classNameCPIndex = input.readUnsignedShort(); 
   }  
 
+  @Override
   public void linkCPEntries(ConstantPool cPool) {
     classNameCPEntry = (UTF8CPEntry)cPool.entryAt(classNameCPIndex); 
   }
 
+  @Override
   public String getSimpleDescription() {
     return String.valueOf(classNameCPIndex); 
   }
@@ -37,6 +41,7 @@ public class ClassCPEntry extends ConstantPoolEntry {
     return classNameCPEntry.value(); 
   }
  
+  @Override
   public String getDescription(ConstantPool cPool, boolean withIndex) {
     if (withIndex) 
       return getIndexDescString(cPool, classNameCPIndex); 
@@ -44,6 +49,7 @@ public class ClassCPEntry extends ConstantPoolEntry {
       return classNameCPEntry.getDescription(cPool,true); 
   }
 
+  @Override
   public String getDescription() {
     return getClassName();
   }

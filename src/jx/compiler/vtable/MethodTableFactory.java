@@ -6,7 +6,7 @@ import jx.collections.Iterator;
 import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class MethodTableFactory {
     Main main;
 
     public MethodTableFactory(Iterator classFactory, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables) throws Exception {
-	Hashtable classFinder = new Hashtable();
+	HashMap classFinder = new HashMap();
 	ArrayList all = new ArrayList();	
 	while(classFactory.hasNext()) {
 	    ClassSource source = (ClassSource)classFactory.next();

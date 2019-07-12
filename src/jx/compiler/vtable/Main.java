@@ -12,7 +12,7 @@ import jx.compiler.ZipClasses;
 
 import java.io.IOException;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
@@ -24,11 +24,11 @@ class Main {
     static final boolean dumpAll = false;
     public static final int MAGIC_NUMBER = 0xaddedade;
 
-    Hashtable classPool = new Hashtable();
-    Hashtable classFinder = new Hashtable();
+    HashMap classPool = new HashMap();
+    HashMap classFinder = new HashMap();
     ArrayList all = new ArrayList();
     InterfaceMethodsTable itable;
-    Hashtable mtables = new Hashtable();
+    HashMap mtables = new HashMap();
     ArrayList classList = new ArrayList();
     int originalClasses; // number of classes *not* imported from lib
 
@@ -54,7 +54,7 @@ class Main {
 	}
     }
 
-    Main(Hashtable classFinder, ArrayList all, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables, ClassInfo objectClass) throws Exception {
+    Main(HashMap classFinder, ArrayList all, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables, ClassInfo objectClass) throws Exception {
 	this.classFinder = classFinder;
 	this.all = all;
 	itable = new InterfaceMethodsTable(objectClass);    
@@ -149,7 +149,7 @@ class Main {
 	}
 
 	ArrayList mt = new ArrayList();
-	Hashtable inherited = new Hashtable();
+	HashMap inherited = new HashMap();
 	// copy superclass mtable
 	if (info.superClass != null) {
 	    for(int i = 0; i < info.superClass.mtable.length(); i++) {

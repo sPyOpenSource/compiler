@@ -5,7 +5,7 @@ import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.io.IOException;
 
 public class ClassInfo {
@@ -22,7 +22,7 @@ public class ClassInfo {
 
     ClassInfo() {}
 
-    ClassInfo(ExtendedDataInputStream in, Hashtable classPool) throws IOException {
+    ClassInfo(ExtendedDataInputStream in, HashMap classPool) throws IOException {
 	deserialize(in, classPool);
     }
 
@@ -37,7 +37,7 @@ public class ClassInfo {
 	mtable.addAll(mt);
     }
 
-    void adjustSuperClass(Hashtable classPool) {
+    void adjustSuperClass(HashMap classPool) {
 	if (superClassName.equals("")) superClass = null;
 	else superClass = (ClassInfo)classPool.get(superClassName);
     }
@@ -54,7 +54,7 @@ public class ClassInfo {
 	mtable.serialize(out);
     }
 
-    public void deserialize(ExtendedDataInputStream in, Hashtable classPool) throws IOException {
+    public void deserialize(ExtendedDataInputStream in, HashMap classPool) throws IOException {
 	className = in.readString();
 	/*System.out.println("Deserialize class "+className);*/
 	String superClassName = in.readString();

@@ -1,7 +1,7 @@
 package jx.compiler.vtable;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.io.IOException;
 import jx.compiler.persistent.ExtendedDataOutputStream;
 import jx.compiler.persistent.ExtendedDataInputStream;
@@ -13,7 +13,7 @@ public class MethodTable {
     public static final int TYPE_INTERFACE = 2;
 
     Method [] mtable;
-    Hashtable mfinder = new Hashtable();
+    HashMap mfinder = new HashMap();
     
     String classname;
 
@@ -129,7 +129,7 @@ public class MethodTable {
         }
     }
 
-    public static MethodTable deserialize(ExtendedDataInputStream in, ClassInfo info, Hashtable classPool) throws IOException {
+    public static MethodTable deserialize(ExtendedDataInputStream in, ClassInfo info, HashMap classPool) throws IOException {
 	MethodTable methodTable;
 	int type = in.readInt();
 	if (type == TYPE_INTERFACE) {

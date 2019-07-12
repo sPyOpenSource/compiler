@@ -1,5 +1,6 @@
 v1.2 XW 12-07-2019
 removed: jdk and zero
+removed: vector and hashtable
 
 v1.1 XW 11-07-2019
 removed: vector

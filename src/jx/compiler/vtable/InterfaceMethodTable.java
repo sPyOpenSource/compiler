@@ -1,6 +1,6 @@
 package jx.compiler.vtable;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.ArrayList;
 import jx.zero.Debug;
 
@@ -12,7 +12,7 @@ public class InterfaceMethodTable extends MethodTable {
 	super(className);
 	Debug.out.println("Creating empty InterfaceMethodTable");
     }
-    InterfaceMethodTable(ClassInfo info, InterfaceMethodsTable itable, Hashtable classPool) {	
+    InterfaceMethodTable(ClassInfo info, InterfaceMethodsTable itable, HashMap classPool) {	
 	super(info.className);
 	if (dumpAll) System.out.println("Procesing "+info.className);
 	this.itable = itable;
