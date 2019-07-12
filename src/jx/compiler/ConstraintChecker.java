@@ -1,16 +1,10 @@
 package jx.compiler;
 
 import jx.classfile.ClassSource;
-import jx.classfile.MethodSource;
 import jx.collections.Iterator;
-import jx.compiler.persistent.ExtendedDataOutputStream;
-import jx.compiler.persistent.ExtendedDataInputStream;
 
-import java.util.Hashtable;
-import java.util.Vector;
-import java.io.IOException;
-
-import jx.zero.*;
+import java.util.HashMap;
+import java.util.ArrayList;
 
 class ForbiddenInterfaceImplementedException extends Exception {
     public ForbiddenInterfaceImplementedException() {super();}
@@ -46,8 +40,8 @@ public class ConstraintChecker {
     };
 
     public ConstraintChecker(Iterator classFactory) throws Exception {
-	Hashtable classFinder = new Hashtable();
-	Vector all = new Vector();	
+	HashMap classFinder = new HashMap();
+	ArrayList all = new ArrayList();	
 	while(classFactory.hasNext()) {
 	    ClassSource source = (ClassSource)classFactory.next();
 	    //Debug.out.println(source.getClassName());
@@ -56,12 +50,13 @@ public class ConstraintChecker {
 		return;
 	    }
 	    String[] ifs = source.getInterfaceNames();
-	    for(int i=0; i<ifs.length; i++) {
-		for(int j=0; j<forbiddenInterfaces.length; j++) {
-		    if (ifs[i].equals(forbiddenInterfaces[j]))
-			throw new ForbiddenInterfaceImplementedException("Class "+source.getClassName()+" is not allowed to implement "+ifs[i]);
-		}
-	    }
+            for (String if1 : ifs) {
+                for (String forbiddenInterface : forbiddenInterfaces) {
+                    if (if1.equals(forbiddenInterface)) {
+                        throw new ForbiddenInterfaceImplementedException("Class "+source.getClassName()+" is not allowed to implement " + if1);
+                    }
+                }
+            }
 	}
     }
 }

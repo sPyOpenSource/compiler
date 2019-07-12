@@ -26,8 +26,8 @@ class CompactFieldDescription {
 
 public final class CompactFieldLayout {
     int numBytes;
-    Vector fields = new Vector();
-    Hashtable fieldFinder = new Hashtable();
+    ArrayList fields = new ArrayList();
+    HashMap fieldFinder = new HashMap();
 
     public CompactFieldLayout() {
 	numBytes = 0;
@@ -35,7 +35,7 @@ public final class CompactFieldLayout {
 
     public void addFields(CompactFieldLayout l) {
 	for(int i=0; i<l.fields.size(); i++) {
-	    CompactFieldDescription field = (CompactFieldDescription)l.fields.elementAt(i);
+	    CompactFieldDescription field = (CompactFieldDescription)l.fields.get(i);
 	    addField(new CompactFieldDescription(field.getFieldName(), field.getFieldType(), numBytes, field.getSize()));
 	}
     }
@@ -97,5 +97,4 @@ public final class CompactFieldLayout {
 	numBytes += field.getSize();
 	fieldFinder.put(field.getFieldName(), field);
     }
-
 }

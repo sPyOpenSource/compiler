@@ -32,4 +32,3 @@ public interface HLS_GCThread{
               * <B>! IRQ are disabled during execution of this method</B> <BR>*/
 /* yes */    public void destroyedGCThread (CPUState GCThread);
 }
-

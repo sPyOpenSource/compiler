@@ -25,8 +25,8 @@ class FieldDescription {
 
 public final class FieldLayout {
     int numWords;
-    Vector fields = new Vector();
-    Hashtable fieldFinder = new Hashtable();
+    ArrayList fields = new ArrayList();
+    HashMap fieldFinder = new HashMap();
 
     public FieldLayout() {
 	numWords = 0;
@@ -35,7 +35,7 @@ public final class FieldLayout {
     public void addFields(FieldLayout l) {
 	//Debug.out.println("Adding from superclass:");
 	for(int i=0; i<l.fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)l.fields.elementAt(i);
+	    FieldDescription field = (FieldDescription)l.fields.get(i);
 	    // Debug.out.println("  "+field.getFieldName()+" "+ field.getFieldType());
 	    addField(new FieldDescription(field.getFieldName(), field.getFieldType(), numWords));
 	}
@@ -68,12 +68,12 @@ public final class FieldLayout {
 	    numWords += 1;
 	}
 	fieldFinder.put(field.getFieldName(), field);
-	fields.addElement(field);
+	fields.add(field);
     }
 
     public void  dump() {
 	for(int i = 0; i < fields.size(); i++) {
-	    FieldDescription f = (FieldDescription)fields.elementAt(i);
+	    FieldDescription f = (FieldDescription)fields.get(i);
 	    Debug.out.println("    " + f.getOffset() + " " + f.getFieldName()+" "+f.getFieldType());
 	}
 	
@@ -81,7 +81,7 @@ public final class FieldLayout {
 
     public void writeFieldMap(ExtendedDataOutputStream out)  throws IOException {
 	boolean[] map = new boolean[numWords];
-	Enumeration fl = fields.elements();
+	Enumeration fl = Collections.enumeration(fields);
 	for(int i=0; i<numWords; i++) {
 	    FieldDescription f = (FieldDescription)fl.nextElement();
 	    String t = f.getFieldType();
@@ -112,7 +112,7 @@ public final class FieldLayout {
 
     public void registerStrings(StringTable strTable) {
 	for(int i=0; i<fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)fields.elementAt(i);
+	    FieldDescription field = (FieldDescription)fields.get(i);
 	    strTable.register(field.getFieldName());
 	    strTable.register(field.getFieldType());
 	}
@@ -121,7 +121,7 @@ public final class FieldLayout {
     public void writeFieldList(ExtendedDataOutputStream out, StringTable strTable)  throws IOException {
 	out.writeInt(fields.size());
 	for(int i=0; i<fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)fields.elementAt(i);
+	    FieldDescription field = (FieldDescription)fields.get(i);
 	    //out.writeString(field.getFieldName());
 	    //out.writeString(field.getFieldType());
 	    strTable.writeStringID(out, field.getFieldName());

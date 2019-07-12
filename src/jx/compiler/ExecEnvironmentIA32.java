@@ -1,7 +1,7 @@
 package jx.compiler;
 
-import java.util.Vector;
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
@@ -52,8 +52,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	private ClassFinder      classStore;
 	private BCClass          bcClass;
 	private CompilerOptions  opts;
-	private Vector           exceptionStore;
-	private Hashtable        plugins;
+	private ArrayList           exceptionStore;
+	private HashMap        plugins;
 
 	private int arrayLengthOffset = 8;
 	private int arrayDataStart    = 12;
@@ -86,7 +86,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	public ExecEnvironmentIA32(ClassFinder classFinder, CompilerOptions opts) {
 		this.classStore = classFinder;
 		this.opts = opts;
-		exceptionStore = new Vector();
+		exceptionStore = new ArrayList();
 		initPlugins();
 	}
 
@@ -2219,7 +2219,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	entry.bcPosition = bcPosition;
 	entry.jump = new UnresolvedJump();
 	entry.back_jump = back;
-	exceptionStore.addElement(entry);
+	exceptionStore.add(entry);
 	return entry.jump;
     }
 
@@ -2229,8 +2229,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
     private void codeExceptionCalls() {
 	    container.getStatisticInfo().exception_calls(exceptionStore.size());
-	    for (int s=0;s<exceptionStore.size();s++) {
-		    ExceptionEntry entry = (ExceptionEntry)exceptionStore.elementAt(s);
+	    for (int s = 0; s < exceptionStore.size(); s++) {
+		    ExceptionEntry entry = (ExceptionEntry)exceptionStore.get(s);
 		    code.addJumpTarget(entry.jump);
 		    code.startBC(entry.bcPosition);
                 switch (entry.type) {
@@ -2255,13 +2255,17 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 }
 		    code.endBC();
 	    }
-	    exceptionStore.setSize(0);
+	    exceptionStore.clear();
     }
 
     /**
        helper
+     * @param node
+     * @param InstructionPointer
+     * @throws jx.compiler.CompileException
     */
 
+        @Override
     public void codeStackMap(IMNode node, int InstructionPointer) throws CompileException {
 	StackMapSTEntry entry = new StackMapSTEntry(node,InstructionPointer,frame);
 	code.insertConst0(entry);
@@ -2278,7 +2282,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     private void initPlugins() {
-	plugins = new Hashtable();
+	plugins = new HashMap();
 
 	/* interfaces */
 	plugins.put("jx/zero/Memory", new jx.compiler.plugins.Memory(this));

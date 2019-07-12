@@ -14,7 +14,7 @@ import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import java.util.Enumeration;
+import java.util.Set;
 
 /**
  * Experimental VTable generator
@@ -36,8 +36,23 @@ class Main {
 	itable = new InterfaceMethodsTable(objectClass);    
 	ZipClasses zip = new ZipClasses(zipfilecontents, true);
 
-	Enumeration elements = zip.elements();
-	while(elements.hasMoreElements()) {
+	Set elements = zip.elements();
+        for(Object element:elements){
+            ClassSource source = (ClassSource)element;
+	    ClassInfo info = new ClassInfo();
+	    info.data = source;
+	    info.isInterface = source.isInterface();
+	    info.className = source.getClassName();
+	    System.out.println(info.className);
+	    MethodSource [] m =  source.getMethods();
+	    info.methods = new Method[m.length];
+	    for(int i = 0; i < m.length; i++)
+		info.methods[i] = new Method(info, m[i]);
+	    info.indexInAll = all.size();
+	    classFinder.put(info.className, info);
+	    all.add(info);
+        }
+	/*while(elements.hasMoreElements()) {
 	    ClassSource source = (ClassSource)elements.nextElement();
 	    ClassInfo info = new ClassInfo();
 	    info.data = source;
@@ -51,7 +66,7 @@ class Main {
 	    info.indexInAll = all.size();
 	    classFinder.put(info.className, info);
 	    all.add(info);
-	}
+	}*/
     }
 
     Main(HashMap classFinder, ArrayList all, ClassInfo[] predefinedClasses, ExtendedDataInputStream[] oldTables, ClassInfo objectClass) throws Exception {

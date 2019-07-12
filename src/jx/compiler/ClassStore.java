@@ -10,7 +10,7 @@ import jx.collections.List;
 
 public class ClassStore implements ClassFinder {
 
-    Hashtable classes = new Hashtable();
+    HashMap classes = new HashMap();
     List classList = new List();
     //    Hashtable registered = new Hashtable();
 
@@ -143,5 +143,4 @@ public class ClassStore implements ClassFinder {
 	//System.out.println("NOT A SUBCLASS: "+bc.getClassName()+", "+sc.getClassName());
 	return false;
     }
-
 }

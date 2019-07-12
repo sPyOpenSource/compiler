@@ -1,12 +1,12 @@
 package jx.compiler.vtable;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 
 // implements a table with holes
 public class InterfaceMethodsTable {
     private final ArrayList methods = new ArrayList();
-    private final Hashtable methodFinder = new Hashtable();
+    private final HashMap methodFinder = new HashMap();
     
     InterfaceMethodsTable(ClassInfo objectClass) {
 	addObjectMethods(objectClass);
