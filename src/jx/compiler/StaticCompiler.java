@@ -140,7 +140,7 @@ public class StaticCompiler implements ClassFinder {
 	    ReadOnlyMemory in;
 	    if (i == -1) {
                 in = domainZip;
-                /*String base = "/home/spy/Java/OS/";
+                String base = "/home/spy/Java/OS/";
                 //String base = "/home/spy/Java/JDK/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
@@ -193,7 +193,7 @@ public class StaticCompiler implements ClassFinder {
                         }
                     }
                 }
-                continue;*/
+                continue;
             }
 	    else in = libZip[i];
             try {
@@ -455,9 +455,11 @@ public class StaticCompiler implements ClassFinder {
 		    */
 		    info.nativeCode[i] = new NativeCodeContainer() {
                             @Override
-			    public BinaryCode getMachineCode() {throw new Error("NATIVE");}
+			    public BinaryCode getMachineCode() {
+                                throw new Error("NATIVE");
+                            }
                             @Override
-			    public ArrayList     getInstructionTable() {throw new Error("NATIVE");}
+			    public ArrayList  getInstructionTable() {throw new Error("NATIVE");}
                             @Override
 			    public int        getLocalVarSize() {throw new Error("NATIVE");}
 			};
@@ -482,7 +484,6 @@ public class StaticCompiler implements ClassFinder {
 		    info.nativeCode[i] = imCode;
 		} catch (Exception ex) {
                     System.out.println(ex.toString());
-                    ex.printStackTrace();
 		    if (options.doInlining(aClass, method)) {
 			System.err.println("!! FAIL to inline !!!!!!!!!!!!!!!");
 			if (!options.doVerbose("inline"))

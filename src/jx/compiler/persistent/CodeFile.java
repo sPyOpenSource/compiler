@@ -263,7 +263,6 @@ public class CodeFile {
                     SymbolTableEntryBase entry = (SymbolTableEntryBase)elements.nextElement();
                     entry.registerStrings(strTable);
                 }
-            } else { 
             }
 	}
     }
@@ -281,11 +280,10 @@ public class CodeFile {
 		//out.writeString("");
 		strTable.writeStringID(out,"");
 	    }
-	    if (aClass.isInterface()) {
+	    if (aClass.isInterface())
 		out.writeInt(1); // isinterface
-	    } else {
+	    else
 		out.writeInt(0); // isinterface
-	    }
 	    out.writeInt(info.interfaces.length); // number of implemented interfaces
             for (BCClass intf : info.interfaces) {
                 //out.writeString(info.interfaces[i].getClassName());
