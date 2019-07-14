@@ -64,7 +64,6 @@ public class CompileNative {
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
-        //metaReader.addMeta(metas, "jdk0");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
 	String libdir = "/home/spy/OS/jx/libs/";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
@@ -75,15 +74,8 @@ public class CompileNative {
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
 
-	//String[] neededLibs = "zero jdk0 zero_misc".split(" ");
-        /*String[] neededLibs = "zero".split(" ");
-        for (String neededLib : neededLibs) {
-            libs.add(libdir + neededLib + ".zip");
-            jlns.add(libdir + neededLib + ".jln");
-        }*/
-
 	String jlnname = libdir + s.getComponentName() + ".jln";
-	//CompilerOptionsNative opts = new CompilerOptionsNative(args);
+        
         CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, libdir + "../JC_CONFIG");
 	compile(opts);
     }

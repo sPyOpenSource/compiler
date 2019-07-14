@@ -1,19 +1,19 @@
 package jx.collections;
 
-import java.util.Vector;
+import java.util.ArrayList;
   
 
 public class QuickSort implements SortedList { 
     Comparator comparator;
-    Vector elements;
+    ArrayList elements;
 
-    public QuickSort(Comparator c, Vector elements) {
+    public QuickSort(Comparator c, ArrayList elements) {
 	comparator = c;
 	this.elements = elements;
 	sort();
     }
     public QuickSort(Comparator c) {
-	this(c, new Vector());
+	this(c, new ArrayList());
     }
     
     public Iterator iterator() {
@@ -23,7 +23,7 @@ public class QuickSort implements SortedList {
 		return counter < elements.size();
 	    }
 	    public Object next() {
-		return elements.elementAt(counter++);
+		return elements.get(counter++);
 	    }
 	};
     }
@@ -35,7 +35,7 @@ public class QuickSort implements SortedList {
     }
     
     public void add(Object o) {
-	elements.addElement(o);
+	elements.add(o);
 	sort();
     }
 
@@ -43,7 +43,7 @@ public class QuickSort implements SortedList {
 	return elements.size();
     }
 
-    private void qsort(Vector a, int p, int r) {
+    private void qsort(ArrayList a, int p, int r) {
 	int q;
 	if(p<r) { 
 	    q = quickPartition(a,p,r);
@@ -52,22 +52,22 @@ public class QuickSort implements SortedList {
 	} 
     } 
 
-    void sort3(Vector a, int lo, int hi) {
+    void sort3(ArrayList a, int lo, int hi) {
 	int i = lo;
 	int j = hi;
 	Object pivot; 
 
-	pivot = a.elementAt((lo+hi) >> 1); // Auswahl des mittleren Elements, Shift, Division durch 2 
+	pivot = a.get((lo+hi) >> 1); // Auswahl des mittleren Elements, Shift, Division durch 2 
 
        do { // wiederhole bis sich die Suche von unten und oben trifft 
 
 	   // Suche greres Element von links 
 
-	   while (comparator.compare(a.elementAt(i), pivot) < 0) i++; // i zeigt danach auf Element >= Pivot 
+	   while (comparator.compare(a.get(i), pivot) < 0) i++; // i zeigt danach auf Element >= Pivot 
 
 	   // Suche kleineres Element von rechts 
 
-	   while (comparator.compare(a.elementAt(j), pivot) > 0) j--; // j zeigt danach auf Element <= Pivot 
+	   while (comparator.compare(a.get(j), pivot) > 0) j--; // j zeigt danach auf Element <= Pivot 
 
 	   if (i <= j) {/* Vertauschen */ swap(a,i,j); i++; j--;} 
 
@@ -79,17 +79,17 @@ public class QuickSort implements SortedList {
 
        } 
     
-    private int quickPartition(Vector a, int p, int r) { 
-	Object x = a.elementAt(p);
+    private int quickPartition(ArrayList a, int p, int r) { 
+	Object x = a.get(p);
 	int i = p-1; 
 	int j = r+1; 
 	while(true) { 
 	    do {
 		j--; 
-	    } while(comparator.compare(a.elementAt(j), x) > 0);
+	    } while(comparator.compare(a.get(j), x) > 0);
 	    do {
 		i++;
-	    } while(comparator.compare(a.elementAt(i), x) < 0); 
+	    } while(comparator.compare(a.get(i), x) < 0); 
 	    if(i<j) {
 		swap(a,i,j);
 	    } else { 
@@ -98,18 +98,18 @@ public class QuickSort implements SortedList {
 	} 
     } 
   
-  void sort2(Vector a, int lo0, int hi0) {
+  void sort2(ArrayList a, int lo0, int hi0) {
         int lo = lo0;
         int hi = hi0;
         if (lo >= hi) {
             return;
         }
-        Object mid = a.elementAt((lo + hi) / 2);
+        Object mid = a.get((lo + hi) / 2);
         while (lo < hi) {
-            while (lo<hi && comparator.compare(a.elementAt(lo), mid) > 0) {
+            while (lo<hi && comparator.compare(a.get(lo), mid) > 0) {
                 lo++;
             }
-            while (lo<hi && comparator.compare(a.elementAt(hi), mid) < 0) {
+            while (lo<hi && comparator.compare(a.get(hi), mid) < 0) {
                 hi--;
             }
             if (lo < hi) {
@@ -125,17 +125,16 @@ public class QuickSort implements SortedList {
         sort2(a, lo == lo0 ? lo+1 : lo, hi0);
     }
 
-    void sort2(Vector a) {
+    void sort2(ArrayList a) {
         sort2(a, 0, a.size()-1);
     }
 
 
 
-   private void swap(Vector a, int i, int j) { 
+   private void swap(ArrayList a, int i, int j) { 
        Object t;
-       t = a.elementAt(i); 
-       a.setElementAt(a.elementAt(j), i);
-       a.setElementAt(t, j);
-   } 
-  
+       t = a.get(i); 
+       a.set(i, a.get(j));
+       a.set(j, t);
+   }
 } 

@@ -1,14 +1,8 @@
 package jx.compiler.imcode; 
 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMBinaryOperator *****
 
 public class IMBinaryOperator extends IMOperator {
@@ -91,7 +85,7 @@ public class IMBinaryOperator extends IMOperator {
 
     public int getNrRegs() { return lOpr.getNrRegs() + rOpr.getNrRegs(); }
 
-    public void getCollectVars(Vector vars) {  
+    public void getCollectVars(ArrayList vars) {  
 	rOpr.getCollectVars(vars);
 	lOpr.getCollectVars(vars);
     }

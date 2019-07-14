@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
+
 import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMLookupSwitch *****
 
 final public class IMLookupSwitch extends IMBranch  {
@@ -70,7 +68,7 @@ final public class IMLookupSwitch extends IMBranch  {
        return output+"        }";	    
    }
 
-    public void getCollectVars(Vector vars) { operant.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { operant.getCollectVars(vars); }
 
     public int getNrRegs() { return operant.getNrRegs(); }
 

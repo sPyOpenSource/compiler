@@ -1,14 +1,11 @@
 
-package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
+package jx.compiler.imcode;
+
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMStoreBlockVariable *****
 
 final public class IMStoreBlockVariable extends IMVarAccess {
@@ -60,9 +57,9 @@ final public class IMStoreBlockVariable extends IMVarAccess {
 
     public int getNrRegs() { return operant.getNrRegs(); }
 
-    public void getCollectVars(Vector vars) { 
+    public void getCollectVars(ArrayList vars) { 
 	operant.getCollectVars(vars);
-	vars.addElement(this); 
+	vars.add(this); 
 	return; 
     }
     

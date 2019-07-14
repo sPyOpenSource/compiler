@@ -1,14 +1,10 @@
 package jx.compiler.imcode; 
 
-import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMInc *****
 
 final public class IMInc extends IMVarAccess  {
@@ -61,7 +57,7 @@ final public class IMInc extends IMVarAccess  {
 
     public int getNrRegs() { return 1; }
 
-    public void getCollectVars(Vector vars) { vars.addElement(this); return; }
+    public void getCollectVars(ArrayList vars) { vars.add(this); return; }
 
     // IMInc
     public void translate(Reg no_result) throws CompileException {

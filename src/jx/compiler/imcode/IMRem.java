@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
+
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
 import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+
 // ***** IMRem *****
 
 final  public class IMRem extends IMBinaryOperator {

@@ -6,7 +6,6 @@
 package jx.compiler.persistent;
 
 import jx.compiler.symbols.SymbolTableEntryBase;
-import java.util.Vector;
 import jx.compiler.*;
 
 public class CompiledMethod {

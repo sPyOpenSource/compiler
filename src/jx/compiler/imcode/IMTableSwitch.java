@@ -1,14 +1,11 @@
 package jx.compiler.imcode; 
 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
 import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMTableSwitch *****
 
 final public class IMTableSwitch extends IMBranch  {
@@ -64,7 +61,7 @@ final public class IMTableSwitch extends IMBranch  {
 	return output + " : "+doff.toLabel();
     }
 
-    public void getCollectVars(Vector vars) { operant.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { operant.getCollectVars(vars); }
 
     public int getNrRegs() { return operant.getNrRegs(); }
     

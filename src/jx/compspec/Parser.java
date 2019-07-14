@@ -1,7 +1,7 @@
 package jx.compspec;
 
 import java.io.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 
 class Parser {
@@ -26,18 +26,18 @@ class Parser {
 
     String[] getComponents() {
 	try {
-	Vector v = new Vector();
+	ArrayList v = new ArrayList();
 	for(int i=0; ; i++) {
 	    String l = readLine();
 	    if (l==null) break;
 	    l = l.trim();
 	    if (l.length() == 0 || l.charAt(0)=='#') { i--; continue; }
 
-	    v.addElement(l);
+	    v.add(l);
 	}
 	String[] s = new String[v.size()];
 	for(int i=0; i<v.size(); i++) {
-	    s[i] = (String)v.elementAt(i);
+	    s[i] = (String)v.get(i);
 	}
 	return s;
 	}catch(Exception e){throw new Error(e.toString());}

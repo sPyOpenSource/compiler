@@ -1,14 +1,10 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
+
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // **** IMThrow ****
 
 final public class IMThrow extends IMBranch  {
@@ -66,7 +62,7 @@ final public class IMThrow extends IMBranch  {
 
     public int getNrRegs() { return exception.getNrRegs(); }
 
-    public void getCollectVars(Vector vars) { exception.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { exception.getCollectVars(vars); }
 
     // IMThrow
     public void translate(Reg result) throws CompileException {

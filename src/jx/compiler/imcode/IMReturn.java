@@ -1,14 +1,10 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
+
 import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 // ***** IMReturn *****
 
@@ -89,7 +85,7 @@ final public class IMReturn extends IMBranch  {
 	return this;
     }
 
-    public void getCollectVars(Vector vars) { if (retValue!=null) retValue.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { if (retValue!=null) retValue.getCollectVars(vars); }
 
     public int getNrRegs() { 
 	if (retValue!=null) return 1+retValue.getNrRegs(); 

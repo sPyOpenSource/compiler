@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
+
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // **** IMCompactNew ****
 
 final public class IMCompactNew extends IMOperator {
@@ -62,8 +60,10 @@ final public class IMCompactNew extends IMOperator {
 	return this;
     }
 
-    public void getCollectVars(Vector vars) { 
-	for (int i=0;i<args.length;i++) args[i].getCollectVars(vars);
+    public void getCollectVars(ArrayList vars) { 
+        for (IMOperant arg : args) {
+            arg.getCollectVars(vars);
+        }
     }
 
     public String toReadableString() {

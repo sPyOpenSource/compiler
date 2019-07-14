@@ -1,10 +1,6 @@
 package jx.compiler.symbols;
 
-import jx.zero.Debug;
-
-import jx.compiler.*;
 import jx.compiler.execenv.*;
-import jx.compiler.symbols.*;
 
 import java.util.*;
 import java.io.IOException;
@@ -12,12 +8,12 @@ import java.io.IOException;
 
 public class StringTable {
 
-    Vector strings;
+    ArrayList strings;
 
     public StringTable() {
-	strings = new Vector();
+	strings = new ArrayList();
 	//strings.addElement("STRING-TABLE:");
-	strings.addElement("java/lang/Object");
+	strings.add("java/lang/Object");
     }
 
     public void register(String str) {
@@ -27,15 +23,15 @@ public class StringTable {
     public int getIdentifier(String str) {
 	int i;
 	for (i=0;i<strings.size();i++) {
-	    String e = (String)strings.elementAt(i);
+	    String e = (String)strings.get(i);
 	    if (e.equals(str)) return i;
 	}
-	strings.addElement(str);
+	strings.add(str);
 	return i;
     }
 
     public String getString(int id) {
-	return (String)strings.elementAt(id);
+	return (String)strings.get(id);
     }
     
     public void writeStringTable(ExtendedDataOutputStream out) throws IOException {
@@ -43,14 +39,14 @@ public class StringTable {
 	//out.writeInt(number+1);
 	out.writeInt(number);
 	for (int i=0;i<number;i++) {
-	    String str = (String)strings.elementAt(i);
+	    String str = (String)strings.get(i);
 	    /*
 	    if (str.equals("STRING-TABLE:")) {
 		out.writeString("STRING-TABLE: size = "+number);
 		continue;
 	    } else {
 	    */
-	    out.writeString((String)strings.elementAt(i));
+	    out.writeString((String)strings.get(i));
 	}
 	//out.writeString("END OF STRING-TABLE");
     }
@@ -58,7 +54,7 @@ public class StringTable {
     public void writeStringID(ExtendedDataOutputStream out, String str) throws IOException {
 	int number = strings.size();
 	for (int i=0;i<number;i++) {
-	    String e = (String)strings.elementAt(i);
+	    String e = (String)strings.get(i);
 	    if (e.equals(str)) {
 		out.writeInt(i);
 		return;

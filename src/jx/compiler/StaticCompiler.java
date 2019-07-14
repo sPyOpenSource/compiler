@@ -140,7 +140,7 @@ public class StaticCompiler implements ClassFinder {
 	    ReadOnlyMemory in;
 	    if (i == -1) {
                 in = domainZip;
-                String base = "/home/spy/Java/OS/";
+                /*String base = "/home/spy/Java/OS/";
                 //String base = "/home/spy/Java/JDK/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
@@ -193,7 +193,7 @@ public class StaticCompiler implements ClassFinder {
                         }
                     }
                 }
-                continue;
+                continue;*/
             }
 	    else in = libZip[i];
             try {

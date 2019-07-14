@@ -2,13 +2,10 @@ package jx.compiler.imcode;
 
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMPutStatic *****
 
 final public class IMPutStatic extends IMOperant  {
@@ -55,7 +52,7 @@ final public class IMPutStatic extends IMOperant  {
 
     public int getNrRegs() { return vOpr.getNrRegs(); }
 
-    public void getCollectVars(Vector vars) { vOpr.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { vOpr.getCollectVars(vars); }
 
     // IMPutStatic
     public void translate(Reg result) throws CompileException {

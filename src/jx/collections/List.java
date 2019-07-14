@@ -1,16 +1,16 @@
 package jx.collections;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Enumeration;
 
 public class List implements Collection {
-    Vector elements=new Vector();
+    ArrayList elements=new ArrayList();
 
     public List() {
     }
 
     public void add(Object o) {
-	elements.addElement(o);
+	elements.add(o);
     }
 
     public int size() {
@@ -24,7 +24,7 @@ public class List implements Collection {
 		return counter < elements.size();
 	    }
 	    public Object next() {
-		return elements.elementAt(counter++);
+		return elements.get(counter++);
 	    }
 	};
     }
@@ -36,7 +36,7 @@ public class List implements Collection {
 		return counter < elements.size();
 	    }
 	    public Object nextElement() {
-		return elements.elementAt(counter++);
+		return elements.get(counter++);
 	    }
 	};
     }

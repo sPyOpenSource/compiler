@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
+
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // **** IMNewMultiArray ****
 
 final public class IMNewMultiArray extends IMOperator {
@@ -46,10 +44,10 @@ final public class IMNewMultiArray extends IMOperator {
 	return this;
     }
 
-    public void getCollectVars(Vector vars) { 
-	for (int i=0;i<oprs.length;i++) {
-	    oprs[i].getCollectVars(vars); 		
-	}
+    public void getCollectVars(ArrayList vars) { 
+        for (IMOperant opr : oprs) {
+            opr.getCollectVars(vars);
+        }
     }
 
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {

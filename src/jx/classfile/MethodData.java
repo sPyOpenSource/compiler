@@ -1,7 +1,8 @@
 package jx.classfile; 
 
 import java.io.*; 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
@@ -233,22 +234,22 @@ public class MethodData extends MethodSource {
 
     public int getModifiers() { return accessFlags; }
     
-    private Vector verifyResults;
+    private ArrayList verifyResults;
     public void setVerifyResult(VerifyResult newElm) {
 	if (newElm == null)
 	    return;
 	if (verifyResults == null) {
-	    verifyResults = new Vector(1);
-	    verifyResults.addElement(newElm);
+	    verifyResults = new ArrayList(1);
+	    verifyResults.add(newElm);
 	} else {
 	    //look if result of same type already there and replace
 	    for (int i = 0; i < verifyResults.size(); i++) {
-		if (((VerifyResult)verifyResults.elementAt(i)).getType() == newElm.getType()) {
-		    verifyResults.setElementAt(newElm, i);
+		if (((VerifyResult)verifyResults.get(i)).getType() == newElm.getType()) {
+		    verifyResults.set(i, newElm);
 		    return;
 		}
 	    }
-	    verifyResults.addElement(newElm);
+	    verifyResults.add(newElm);
 	}
     }
     public VerifyResult getVerifyResult(int type){
@@ -256,14 +257,11 @@ public class MethodData extends MethodSource {
 	    return null;
 	}
 	VerifyResult res = null;
-	for (Enumeration e = verifyResults.elements(); e.hasMoreElements();) {
+	for (Enumeration e = Collections.enumeration(verifyResults); e.hasMoreElements();) {
 	    res = (VerifyResult) e.nextElement();
-	    if (res.getType() == type) {
+	    if (res.getType() == type)
 		return res;
-	    }
 	}
 	return null;
     }
-
-
 }      

@@ -1,14 +1,11 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
+
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // **** IMArrayLength ****
 
 final public class IMArrayLength extends IMOperator {
@@ -56,7 +53,7 @@ final public class IMArrayLength extends IMOperator {
 
     public int getNrRegs() { return array.getNrRegs()+1; }
 
-    public void getCollectVars(Vector vars) { array.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { array.getCollectVars(vars); }
 
     // IMArrayLength
     public void translate(Reg result) throws CompileException {

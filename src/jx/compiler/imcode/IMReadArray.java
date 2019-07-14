@@ -1,14 +1,10 @@
 package jx.compiler.imcode; 
 
-import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 // ***** IMReadArray *****
 
@@ -60,7 +56,7 @@ final public class IMReadArray extends IMOperant {
 
     public int getNrRegs() { return aOpr.getNrRegs() + iOpr.getNrRegs(); }
 
-    public void getCollectVars(Vector vars) { 
+    public void getCollectVars(ArrayList vars) { 
 	aOpr.getCollectVars(vars);
 	iOpr.getCollectVars(vars);
     }

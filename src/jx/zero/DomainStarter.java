@@ -1,8 +1,5 @@
 package jx.zero;
 
-import jx.zero.debug.*;
-import java.util.Vector;
-
 public class DomainStarter {
 
   private static BootFS bootfs;
@@ -134,7 +131,6 @@ public class DomainStarter {
   public static Domain createDomain(String title, String libName, String mainclass, String schedName, int gcinfo0, int gcinfo1, int gcinfo2,  int codesize, String [] argv, Naming naming, String interceptorName, Object[] portals, int garbageCollector) {
       return createDomain(title, libName, mainclass, schedName, gcinfo0, gcinfo1, gcinfo2, (String)null, -1, codesize, argv, naming, interceptorName, portals, garbageCollector);
   }
-
 
 
   public static Domain createDomain(String title, String libName, String mainclass, String schedName, int gcinfo0, int gcinfo1, int gcinfo2, String gcinfo3,  int gcinfo4, int codesize, String [] argv, Naming naming, String interceptorName, Object[] portals, int garbageCollector) {

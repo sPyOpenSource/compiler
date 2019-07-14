@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
+
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMPutField *****
 
 final public class IMPutField extends IMOperant  {
@@ -58,7 +56,7 @@ final public class IMPutField extends IMOperant  {
 	return obj.toReadableString()+"."+cpEntry.getMemberName()+" = " + rvalue.toReadableString();
     }
 
-    public void getCollectVars(Vector vars) { 
+    public void getCollectVars(ArrayList vars) { 
 	obj.getCollectVars(vars);
 	rvalue.getCollectVars(vars); 
     }

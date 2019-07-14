@@ -1,14 +1,13 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
+
 import jx.classfile.*;
 import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMConditionalBranch *****
 
 final  public class IMConditionalBranch extends IMBranch  {
@@ -310,7 +309,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 	return "<unknown branch>";
     }
 
-    public void getCollectVars(Vector vars) { 
+    public void getCollectVars(ArrayList vars) { 
 	if (rOpr!=null) {
 	    rOpr.getCollectVars(vars);
 	}

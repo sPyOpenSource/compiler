@@ -1,14 +1,12 @@
 
 package jx.compiler.imcode; 
+
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // **** IMNewObjArray *****
 
 final public class IMNewObjArray extends IMOperator {
@@ -41,7 +39,7 @@ final public class IMNewObjArray extends IMOperator {
 	return this;
     }
 
-    public void getCollectVars(Vector vars) { size.getCollectVars(vars); }
+    public void getCollectVars(ArrayList vars) { size.getCollectVars(vars); }
 
     public IMNode constant_folding() throws CompileException{
 	size = (IMOperant)size.constant_folding();

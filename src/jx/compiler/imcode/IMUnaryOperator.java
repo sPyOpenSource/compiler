@@ -1,14 +1,9 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
+
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMUnaryOperator *****
 
 public class IMUnaryOperator extends IMOperator {
@@ -45,7 +40,7 @@ public class IMUnaryOperator extends IMOperator {
 	return this;
     }
 
-    public void getCollectVars(Vector vars) { 
+    public void getCollectVars(ArrayList vars) { 
 	operant.getCollectVars(vars); 
 	return; 
     }

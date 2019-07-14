@@ -7,7 +7,7 @@ import jx.zero.Debug;
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
 
 // ***** IMNode *****
 
@@ -213,21 +213,21 @@ public class IMNode {
 
     public int getNrRegs() { return 0; }
 
-    public void getCollectVars(Vector vars) {}
+    public void getCollectVars(ArrayList vars) {}
 
     public String varList() {
 	return frame.varList();
     }
 
     public String getVarInfo() {
-	Vector vars = new Vector();
+	ArrayList vars = new ArrayList();
 
 	getCollectVars(vars);
 
 	String str = " ";
 	for (int i = 0; i < vars.size(); i++) {
 	    //str += " "+((IMNode)vars.elementAt(i)).toReadableString();
-	    str += ((IMVarAccessInterface)vars.elementAt(i)).toSymbolname() + " ";
+	    str += ((IMVarAccessInterface)vars.get(i)).toSymbolname() + " ";
 	}
 
 	return str;

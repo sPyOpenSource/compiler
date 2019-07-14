@@ -2,7 +2,7 @@ package jx.emulation;
 
 import jx.zero.*;
 
-import java.util.Vector;
+import java.util.ArrayList;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
@@ -22,7 +22,7 @@ class Mapping {
 public class MemoryImpl implements Memory, DeviceMemory {
     int start, size;
     byte core[];
-    Vector mappings = new Vector();
+    ArrayList mappings = new ArrayList();
 
     MemoryImpl() {
 	//Debug.out.println("Memory private! ");
@@ -321,7 +321,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    Object o = objectType.newInstance();
 	    Mapping mapping = createMapping(o, objectType, start, true);
 	    mapping.object = o;
-	    mappings.addElement(mapping);
+	    mappings.add(mapping);
 	    fillMapping(mapping);
 	    return o;
 	} catch(Exception e) {
@@ -383,7 +383,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
     }
     public void fillMappings() {
 	for(int i=0; i<mappings.size(); i++) {
-	    Mapping mapping = (Mapping)mappings.elementAt(i);
+	    Mapping mapping = (Mapping)mappings.get(i);
 	    fillMapping(mapping);
 	}
     }
@@ -445,7 +445,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     public void syncMappings() {
 	for(int i=0; i<mappings.size(); i++) {
-	    Mapping mapping = (Mapping)mappings.elementAt(i);
+	    Mapping mapping = (Mapping)mappings.get(i);
 	    syncMapping(mapping);
 	}
     }

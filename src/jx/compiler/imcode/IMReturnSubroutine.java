@@ -1,14 +1,10 @@
 
 package jx.compiler.imcode; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.classfile.*;
-import jx.zero.Debug; 
+
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import jx.compiler.symbols.*;
-import jx.compiler.execenv.*;
-import java.util.Vector;
+import java.util.ArrayList;
+
 // ***** IMReturnSubroutine *****
 
 final public class IMReturnSubroutine extends IMBranch implements IMVarAccessInterface {
@@ -43,7 +39,7 @@ final public class IMReturnSubroutine extends IMBranch implements IMVarAccessInt
 	return "ret v"+Integer.toString(vIndex);	    
     }
 
-    public void getCollectVars(Vector vars) { vars.addElement(this); return; }
+    public void getCollectVars(ArrayList vars) { vars.add(this); return; }
 
     public int getNrRegs() { return 1; }
 
