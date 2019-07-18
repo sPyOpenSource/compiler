@@ -80,6 +80,7 @@ abstract public class ConstantPoolEntry {
   public static final int CONSTANT_NAMEANDTYPE = 12;
   public static final int CONSTANT_INVOKEDYNAMIC = 18;
   public static final int CONSTANT_METHODHANDLE = 15;
+  public static final int CONSTANT_METHODTYPE = 16;
 
   @Override
   public String toString() {

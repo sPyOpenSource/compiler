@@ -72,13 +72,15 @@ final public class IMConstant extends IMOperant {
 		tag      = tag | IMNode.CONSTANT;
 		datatype = cpValue.type();
 	    } catch (Exception ex) {
-		if (verbose && System.err!=null) System.err.println("!! "+ex);
+		if (verbose && System.err != null) System.err.println("!! " + ex);
 		System.exit(-1);
 	    }
 	} else if (cpEntry instanceof UTF8CPEntry) {
 	    datatype = BCBasicDatatype.REFERENCE;
 	} else if (cpEntry instanceof StringCPEntry) {
 	    datatype = BCBasicDatatype.REFERENCE;
+        } else if (cpEntry instanceof ClassCPEntry){
+            datatype = BCBasicDatatype.REFERENCE;
 	} else {
 	    throw new Error("unknown constant value\n");
 	}
@@ -93,7 +95,7 @@ final public class IMConstant extends IMOperant {
 	if (cpEntry == null) return value;
 	if (cpValue instanceof BCInteger)
 	    if (cpValue!=null) return ((BCInteger)cpValue).value();
-	if (verbose && System.err!=null) System.err.println("fixme: constant long");
+	if (verbose && System.err != null) System.err.println("fixme: constant long");
 	return 0;
 	//throw new Error("constant is not Int-Value");
     }

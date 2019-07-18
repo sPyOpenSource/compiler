@@ -288,7 +288,7 @@ public class IMNode {
     }
 
     public final void translate(RegObj result) throws CompileException {
-	if (result==null) translate((Reg)result);
+	if (result == null) translate((Reg)result);
 	switch (result.getDatatype()) {
             case BCBasicDatatype.FLOAT:
             case BCBasicDatatype.DOUBLE:

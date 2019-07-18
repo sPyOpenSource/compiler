@@ -1,8 +1,7 @@
 
 package jx.classfile.constantpool; 
+
 import java.io.*; 
-import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
 
 public class DummyCPEntry extends ConstantPoolEntry {
   

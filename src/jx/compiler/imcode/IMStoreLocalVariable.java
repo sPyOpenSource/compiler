@@ -45,16 +45,18 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	ivar   = index;
     }
 
+    @Override
     public IMNode constant_forwarding(IMNodeList varList) throws CompileException {
 
 	if (operant.isConstant()) { 
-	    if (opts.doVerbose("cfor2")) Debug.out.println("## "+toReadableString());
+	    if (opts.doVerbose("cfor2")) Debug.out.println("## " + toReadableString());
 	    varList.add(this);
 	}
 
 	return this;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	ownBasicBlock = basicBlock;
 
@@ -73,6 +75,7 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	return this;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	operant = (IMOperant)operant.inlineCode(iCode, depth, forceInline);
 	return this;
@@ -86,6 +89,7 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	return operant;
     }
 
+    @Override
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
@@ -99,26 +103,31 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	return this;
     }
 
+    @Override
     public String toReadableString() {
-	if (operant==null) return "v"+Integer.toString(ivar)+" = <top of stack>";
-   	return "v"+
-	    BCBasicDatatype.toSymbol(datatype)+
-	    Integer.toString(ivar)+" = "+
+	if (operant == null) return "v" + Integer.toString(ivar) + " = <top of stack>";
+   	return "v" + 
+	    BCBasicDatatype.toSymbol(datatype) +
+	    Integer.toString(ivar) + " = " +
 	    operant.toReadableString();
     }
 
+    @Override
     public String debugInfo() {
-	return debugTxt+" "+operant.debugInfo();
+	return debugTxt + " " + operant.debugInfo();
     }
 
+    @Override
     public int getNrRegs() { return operant.getNrRegs(); }
 
+    @Override
     public void getCollectVars(ArrayList vars) { 
 	operant.getCollectVars(vars);
 	vars.add(this); 
     }
 
     // IMStoreLocalVariable
+    @Override
     public void translate(Reg result) throws CompileException {
 	int varOffset = frame.getOffset(lvar);
 
@@ -148,6 +157,7 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	code.endBC();
     } 
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	int varOffset = frame.getOffset(lvar);
 	operant.translate(result);

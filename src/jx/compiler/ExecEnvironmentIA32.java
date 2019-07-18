@@ -977,7 +977,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     public void codeMonitorEnter(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
-	Debug.out.println("-- monitor enter");
+	System.out.println("-- monitor enter");
 	if (opts.monitorClass()!=null) {
 	    code.startBC(bcPosition);
 	    
@@ -1020,7 +1020,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     public void codeMonitorLeave(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
-	Debug.out.println("-- monitor exit");
+	System.out.println("-- monitor exit");
 	if (opts.monitorClass()!=null) {
 	    code.startBC(bcPosition);
 	    
@@ -1485,7 +1485,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    isMethod(methodRefCPEntry, "notify", "()V") ||
 	    isMethod(methodRefCPEntry, "notifyAll", "()V")) {
 
-	    Debug.out.println("!!!! call redirect " + methodRefCPEntry.getMemberName()
+	    System.out.println("!!!! call redirect " + methodRefCPEntry.getMemberName()
 			       + " in " + method.getName() + " bytecode " + bcPosition + " !!!!");
 
 	    int offset = codeStaticPushArgs(args);
@@ -1518,7 +1518,10 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	} else {
             System.out.println(className);
             if(className.equals("[Ljava/lang/Object;")) className = "java/lang/Object";
+            if(className.equals("[Ljava/lang/Class;")) className = "java/lang/Object";
+            if(className.equals("[Ljava/lang/invoke/MethodHandleImpl$Intrinsic;")) className = "java/lang/Object";
             if(className.equals("[B")) className = "java/lang/Object";
+            if(className.equals("[I")) className = "java/lang/Object";
 	    BCClass aClass = classStore.findClass(className);
 	    if (aClass == null) System.out.println("Can't find ClassInfo for " + className);
 	    BCClassInfo info = (BCClassInfo) aClass.getInfo();

@@ -1,8 +1,6 @@
 
 package jx.classfile.constantpool; 
-import java.io.*; 
-import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
+
 public class InterfaceMethodRefCPEntry extends ClassMemberCPEntry {
 
   public InterfaceMethodRefCPEntry() {}
@@ -17,6 +15,7 @@ public class InterfaceMethodRefCPEntry extends ClassMemberCPEntry {
     super(classCPEntry, nameAndTypeCPEntry); 
   }
 
+  @Override
   public int getTag() {return CONSTANT_INTERFACEMETHODREF;}
 
   int getMethodIndex() {return 0;}

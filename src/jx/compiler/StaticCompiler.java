@@ -45,6 +45,8 @@ import java.io.File;
 import java.io.PrintStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class StaticCompiler implements ClassFinder {
     static final boolean dumpAll = false;
@@ -139,9 +141,8 @@ public class StaticCompiler implements ClassFinder {
 	for(int i = -1; i < libZip.length; i++) {
 	    ReadOnlyMemory in;
 	    if (i == -1) {
-                in = domainZip;
-                /*String base = "/home/spy/Java/OS/";
-                //String base = "/home/spy/Java/JDK/";
+                //in = domainZip;
+                String base = "/home/spy/Java/OS/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                     barr = new byte[(int)f.length()];
@@ -188,17 +189,18 @@ public class StaticCompiler implements ClassFinder {
                                 m.copyFromByteArray(data, 0, 0, data.length);
                                 domdata.add(m);
                             } catch(IOException e) {
+                                Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
                                 //Debug.throwError("could not read classes.zip file: " + filename);
                             }
                         }
                     }
                 }
-                continue;*/
+                continue;
             }
 	    else in = libZip[i];
             try {
                 ZipFile zip = new ZipFile(in);
-                ZipEntry entry = null;
+                ZipEntry entry;
                 while ((entry = zip.getNextEntry()) != null) {
                     if (entry.isDirectory())
                         continue;
@@ -220,59 +222,7 @@ public class StaticCompiler implements ClassFinder {
                     }
                 }
             } catch (NullPointerException e){
-                String base = "/home/spy/Java/JDK/";
-                byte[] barr;
-                try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                    barr = new byte[(int)f.length()];
-                    f.readFully(barr);
-                }
-                meta = new MetaInfo("", barr);
-                String sd = meta.getVar("SUBDIRS");
-                String[] sds = MetaInfo.split(sd);
-                for(String sub : sds){
-                    File subdir = new File(base + "build/classes/" + sub);
-                    String dirlist[] = subdir.list();
-                    for (String dirlist1 : dirlist) {
-                        if ("GregorianCalendar.class".equals(dirlist1)) continue;
-                        if ("TimeZone.class".equals(dirlist1)) continue;
-                        if ("AbstractSet.class".equals(dirlist1)) continue;
-                        if ("AbstractMap$1.class".equals(dirlist1)) continue;
-                        if ("SimpleTimeZone.class".equals(dirlist1)) continue;
-                        if ("HashMap.class".equals(dirlist1)) continue;
-                        if ("HashMap$Null.class".equals(dirlist1)) continue;
-                        if ("HashMap$HashMapEntry.class".equals(dirlist1)) continue;
-                        if ("HashMap$HashMapSet.class".equals(dirlist1)) continue;
-                        if ("HashMap$HashMapIterator.class".equals(dirlist1)) continue;
-                        if ("HashMap$HashMapCollection.class".equals(dirlist1)) continue;
-                        if ("Calendar.class".equals(dirlist1)) continue;
-                        if ("AbstractMap.class".equals(dirlist1)) continue;
-                        if ("AbstractMap$2$1.class".equals(dirlist1)) continue;
-                        if ("AbstractMap$1$1.class".equals(dirlist1)) continue;
-                        if ("AbstractMap$1.class".equals(dirlist1)) continue;
-                        if ("AbstractMap$2.class".equals(dirlist1)) continue;
-                        if ("SubList.class".equals(dirlist1)) continue;
-                        if ("AbstractSequentialList.class".equals(dirlist1)) continue;
-                        if ("SubList$1.class".equals(dirlist1)) continue;
-                        if ("BufferedInputStream.class".equals(dirlist1)) continue;
-                        if ("StringReader.class".equals(dirlist1)) continue;
-                        if ("PrintWriter.class".equals(dirlist1)) continue;
-                        if ("SecurityManager.class".equals(dirlist1)) continue;
-                        if (StartBuilder.hasExtension(new String[] {".class"}, dirlist1)) {
-                            try {
-                                byte[] data;
-                                try (RandomAccessFile file = new RandomAccessFile(base + "build/classes/" + sub + "/" + dirlist1, "r")) {
-                                    data = new byte[(int)file.length()];
-                                    file.readFully(data);
-                                }
-                                Memory m = memMgr.alloc(data.length);
-                                m.copyFromByteArray(data, 0, 0, data.length);
-                                libdata.add(m);
-                            } catch(IOException ex) {
-                                //Debug.throwError("could not read classes.zip file: " + filename);
-                            }
-                        }
-                    }
-                }
+                Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
             }
 	}
 
@@ -314,6 +264,7 @@ public class StaticCompiler implements ClassFinder {
 		domClassStore.addClass(className, clazz);
 	    }
 	} catch(IOException e) {
+            Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
 	    Debug.throwError("Exception while reading classes.");
 	}
 
@@ -435,7 +386,7 @@ public class StaticCompiler implements ClassFinder {
 		try {
 		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName() + ".imcode"));	
 		} catch (java.io.IOException ex) {
-		    ex.printStackTrace(); 
+		    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    Debug.throwError(); 
 		}
 		imOut.println("class " + aClass.getClassName() + " {");
@@ -470,7 +421,6 @@ public class StaticCompiler implements ClassFinder {
 		BCMethodWithCode method = (BCMethodWithCode)m;
 		options.printVerbose("**  Compiling method " + method.getName());
 		
-		
 		jx.compiler.imcode.CodeContainer imCode = new jx.compiler.imcode.CodeContainer(execEnvNew, method, stat);
 		imCode.init();
 		if (options.doInlining(aClass,method)) {
@@ -483,7 +433,7 @@ public class StaticCompiler implements ClassFinder {
 		    if (options.doPrintIMCode()) imCode.writeCode(imOut);
 		    info.nativeCode[i] = imCode;
 		} catch (Exception ex) {
-                    System.out.println(ex.toString());
+                    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    if (options.doInlining(aClass, method)) {
 			System.err.println("!! FAIL to inline !!!!!!!!!!!!!!!");
 			if (!options.doVerbose("inline"))
@@ -549,7 +499,7 @@ public class StaticCompiler implements ClassFinder {
     }
     
     private void compileStatic() throws Exception {
-	Iterator iter = null;
+	Iterator iter;
 	computeClassGraph();
 	//Debug.out.println("**Finished class checking!");
 

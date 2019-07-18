@@ -734,7 +734,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    basicBlock = (IMBasicBlock)bc_list_top;
 
 	int expHandler = 0;
-	if (opts.doExceptions())
+	if (opts.doExceptions() && false)
 	    if (expHandlerList != null) expHandler = expHandlerList.length;
 
 	while (basicBlock != null) {

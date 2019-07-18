@@ -1,7 +1,8 @@
 
 package jx.compiler.imcode; 
 
-import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jx.classfile.datatypes.*; 
 import jx.zero.Debug; 
 import jx.compiler.*;
@@ -87,7 +88,7 @@ public class IMBasicBlock extends IMNode {
     public boolean isLastBasicBlock() {
 	// if the next basic block is epilog then we are the last 
 	// basic block
-	for (IMNode node=next;node!=null;node=node.next) {
+	for (IMNode node = next; node != null; node = node.next) {
 	    if (node.isBasicBlock()) {
 		return ((IMBasicBlock)node).isEpilog();
 	    }
@@ -128,8 +129,8 @@ public class IMBasicBlock extends IMNode {
 		    System.err.println("process basic block: " + this);
 		    System.err.println("Exception (1): " + node.toString());
 		    System.err.println(node.toReadableString());
-		    ex.printStackTrace();
 		}
+                Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
 		System.exit(-1);
 	    }
 	    // second do we reach end of basic block ?
@@ -156,21 +157,18 @@ public class IMBasicBlock extends IMNode {
 		}
 	    } catch (Exception ex) {
 		if (verbose && System.err != null) System.err.println("2: " + node.toString());
-		ex.printStackTrace();
+		Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
 		System.exit(-1);
 	    }
 	    if (node.isEndOfBasicBlock()) {
 		// node is no branch but end of basicblock
 		if (node.bc_next != null) {
-                    //System.out.println(Arrays.toString(successors));
 		    if (successors == null && node.bc_next.isBasicBlock()) {
 			successors = new IMBasicBlock[1];
 			successors[0] = (IMBasicBlock)node.bc_next;
 		    } else {
 			if (verbose && System.err != null) {
 			    System.err.println("warning: bad imcode !");
-                            //System.out.println(node.toString());
-                            //System.out.println(node.bc_next.toString());
 			    System.err.println("bytecode position: " + Integer.toString(node.getBCPosition()));
 			}
 			System.exit(-1);
@@ -331,7 +329,7 @@ public class IMBasicBlock extends IMNode {
 		regs.endBasicBlock();
 	    }
 	} catch (CompileException ex) {
-	    Debug.out.println(toReadableString());
+	    System.out.println(toReadableString());
 	    IMNode dnode = next;		
 	    while (dnode != null && !dnode.isBasicBlock()) {
 		if (dnode == node)

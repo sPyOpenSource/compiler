@@ -133,11 +133,16 @@ public class ConstantPool {
             newEntry = new NameAndTypeCPEntry();
             break;
           case ConstantPoolEntry.CONSTANT_INVOKEDYNAMIC:
+              newEntry = new InvokeDynamicCPEntry();
+              break;
           case ConstantPoolEntry.CONSTANT_METHODHANDLE:
-              newEntry = new DummyCPEntry();
+              newEntry = new MethodHandleCPEntry();
+              break;
+          case ConstantPoolEntry.CONSTANT_METHODTYPE:
+              newEntry = new MethodTypeCPEntry();
               break;
           default: 
-            Debug.out.println("This must not happen " + tag); 
+            System.out.println("This must not happen " + tag); 
             break; 
       }
       

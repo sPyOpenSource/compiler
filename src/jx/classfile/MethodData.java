@@ -4,9 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
 import jx.zero.Debug; 
+
 /** 
     All data about a method, that can be found 
     in a class file. This is a rather passive class. 
@@ -144,7 +147,7 @@ public class MethodData extends MethodSource {
 	    return codeData.getBytecodeLength();
 	} catch (Exception ex) {
 	    System.err.println("What the hell");
-	    ex.printStackTrace();
+	    Logger.getLogger(MethodData.class.getName()).log(Level.SEVERE, null, ex);
 	    System.exit(-1);
 	}
 	return 0;

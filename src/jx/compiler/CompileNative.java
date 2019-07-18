@@ -11,6 +11,9 @@ import jx.compiler.execenv.IOSystem;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import jx.compspec.MetaInfo;
 import jx.compspec.MetaReader;
 import static jx.compspec.StartBuilder.getCompilerOptions;
@@ -29,12 +32,11 @@ public class CompileNative {
             Memory m = memMgr.alloc(data.length);
             m.copyFromByteArray(data, 0, 0, data.length);
 	} catch(IOException e) {
-	    e.printStackTrace();
+	    Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, e);
 	}
     }
 
     public static Memory getZIP(String filename) {
-        //if (filename.equals("/home/spy/OS/jx/libs/jdk0.zip")) return null;
 	try {
             byte[] data;
             try (RandomAccessFile file = new RandomAccessFile(filename, "r")) {
@@ -45,6 +47,7 @@ public class CompileNative {
 	    m.copyFromByteArray(data, 0, 0, data.length);
 	    return m;
 	} catch(IOException e) {
+            Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, e);
 	    Debug.throwError("could not read classes.zip file: " + filename);
 	    return null;
 	}
@@ -53,9 +56,8 @@ public class CompileNative {
     static ArrayList parsePath(String path) {
 	ArrayList paths = new ArrayList();
 	StringTokenizer tk = new StringTokenizer(path, ":");
-	while (tk.hasMoreTokens()) {
+	while (tk.hasMoreTokens())
 	    paths.add(tk.nextToken());
-	}
 	return paths;
     }
 
@@ -87,8 +89,8 @@ public class CompileNative {
     public static void compile(String path, CompilerOptions opts) throws Exception {
 	System.out.println("Native code compiler version 0.7.10-" + StaticCompiler.version());
 
-	ExtendedDataOutputStream codeFile = null;
-	ExtendedDataOutputStream tableOut = null;       
+	ExtendedDataOutputStream codeFile;
+	ExtendedDataOutputStream tableOut;       
 	if (opts.doDebug()) Debug.out.println("Compiling domain to " + opts.getOutputFile());       
 	if (opts.doDebug()) Debug.out.println("Writing linker output to " + opts.getLinkerOutputFile());	    
 	codeFile = new ExtendedDataOutputStream(new BufferedOutputStream(new FileOutputStream(opts.getOutputFile())));
@@ -101,7 +103,7 @@ public class CompileNative {
         System.out.println(opts.getLibs());
 	Memory[] libClasses = getZIPs(opts.getLibs());
 
-	ExtendedDataInputStream[] tableIn = null;
+	ExtendedDataInputStream[] tableIn;
 	ArrayList links = opts.getLibsLinkerInfo();
 	if (links != null) {
 	   tableIn = new ExtendedDataInputStream[links.size()];
@@ -135,11 +137,10 @@ public class CompileNative {
             tableIn1.close();
 	codeFile.close();
 	tableOut.close();
-	
     }
 
     public static Memory[] getZIPs(ArrayList libs) {
-	Memory[] libClasses = null;
+	Memory[] libClasses;
 	if (libs != null) {
 	    libClasses = new Memory[libs.size()];
 	    for(int i = 0; i < libs.size(); i++) {

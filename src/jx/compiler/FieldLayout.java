@@ -49,8 +49,8 @@ public final class FieldLayout {
     // returns field offset in words
     public int getFieldOffset(String fieldName) {
 	FieldDescription field = (FieldDescription) fieldFinder.get(fieldName);
-	if (field==null) {
-	    Debug.out.println("FieldLayout::getFieldOffset field==null: " + fieldName);
+	if (field == null) {
+	    System.out.println("FieldLayout::getFieldOffset field==null: " + fieldName);
 	    return -1;
 	}
 
