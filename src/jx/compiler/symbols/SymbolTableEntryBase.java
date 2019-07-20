@@ -343,5 +343,3 @@ public abstract class SymbolTableEntryBase {
 
     public void registerStrings(StringTable stringTable) {}
 }
-  
-

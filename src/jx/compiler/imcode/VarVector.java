@@ -1,7 +1,6 @@
 package jx.compiler.imcode;
 
 import java.util.NoSuchElementException;
-//import java.lang.IndexOutOfBoundsException;
 
 public final class VarVector { 
 
@@ -209,4 +208,3 @@ public final class VarVector {
 	return buff.toString();
     }
 }
-

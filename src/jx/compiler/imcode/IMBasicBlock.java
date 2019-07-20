@@ -333,9 +333,9 @@ public class IMBasicBlock extends IMNode {
 	    IMNode dnode = next;		
 	    while (dnode != null && !dnode.isBasicBlock()) {
 		if (dnode == node)
-		    Debug.out.println("->" + dnode.toReadableString());
+		    System.out.println("->" + dnode.toReadableString());
 		else
-		    Debug.out.println("  " + dnode.toReadableString());
+		    System.out.println("  " + dnode.toReadableString());
  		dnode = dnode.next;
 	    }
 	    throw ex;

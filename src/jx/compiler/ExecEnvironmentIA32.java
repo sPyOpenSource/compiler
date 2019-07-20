@@ -120,13 +120,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    String name = methodRefCPEntry.getMemberName();
 	    String sig  = methodRefCPEntry.getMemberTypeDesc();
 
-	    for (int i=0;i<info.methods.length;i++) {
-		method = info.methods[i];
-		if (method.getName().equals(name) &&
-		    method.getSignature().equals(sig)) {		
-		    return method;
-		}
-	    }
+            for (BCMethod method1 : info.methods) {
+                method = method1;
+                if (method.getName().equals(name) &&
+                        method.getSignature().equals(sig)) {
+                    return method;
+                }
+            }
 	}
 	
 	return null;
@@ -732,6 +732,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    }
     }
 
+        @Override
     public void codePutArrayField(IMNode node,Reg array,int datatype,Reg index,Reg value,int bcPosition) throws CompileException {
 	    regs.readIntRegister(index);
 	    regs.readIntRegister(array);
@@ -918,6 +919,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.endBC();
     }
 
+        @Override
     public void codeInstanceOf(IMNode node,ClassCPEntry classCPEntry,Reg objRef,Reg regEAX,int bcPosition) throws CompileException {
 	code.startBC(bcPosition);
 
@@ -976,6 +978,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.endBC();
     }
 
+        @Override
     public void codeMonitorEnter(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
 	System.out.println("-- monitor enter");
 	if (opts.monitorClass()!=null) {
@@ -1019,6 +1022,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     
     }
 
+        @Override
     public void codeMonitorLeave(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
 	System.out.println("-- monitor exit");
 	if (opts.monitorClass()!=null) {
@@ -1037,7 +1041,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(opts.monitorClass(),
 									 "exit",
 									 "(Ljava/lang/Object;)V");
-	    int ip=code.getCurrentIP();
+	    int ip = code.getCurrentIP();
 	    code.call(target);
 	    
 	    node.addDebugInfo(frame.stackMapToString(node));
@@ -1060,15 +1064,18 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }
 
+        @Override
     public SymbolTableEntryBase getStringRef(StringCPEntry cpEntry) throws CompileException{
 	return new StringSTEntry(cpEntry.value());
     } 
 
+        @Override
     public void codeLoadStringRef(StringCPEntry cpEntry,Reg result,int bcPosition) throws CompileException {
 	regs.allocIntRegister(result,BCBasicDatatype.REFERENCE);
 	code.movl(new StringSTEntry(cpEntry.value()),result);
     }
 
+        @Override
     public void codeGetField(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg result,int bcPosition) throws CompileException {
 	int offset = getFieldOffset(fieldRefCPEntry);
 	String className = fieldRefCPEntry.getClassName();
@@ -1103,6 +1110,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }
 
+        @Override
     public void codeGetFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg64 result,int bcPosition) throws CompileException {
 	int offset = getFieldOffset(fieldRefCPEntry);
 	regs.allocLongRegister(result);
@@ -1126,14 +1134,15 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 					    fieldOffset)), addr);
     }
 
-    public void codeGetStaticField(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg result,int bcPosition) throws CompileException {
+        @Override
+    public void codeGetStaticField(IMNode node,FieldRefCPEntry fieldRefCPEntry, Reg result, int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
 	BCClassInfo info = (BCClassInfo)aClass.getInfo();
 	int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	if (offset == -1) {
-	    throw new CompileException("Cannot find field "+fieldRefCPEntry.getMemberName()+" in class "+className);
+	    throw new CompileException("Cannot find field " + fieldRefCPEntry.getMemberName() + " in class " + className);
 	}
 	
 	Reg addr = regs.chooseIntRegister(result);
@@ -1145,6 +1154,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	regs.freeIntRegister(addr);
     }
 
+        @Override
     public void codeGetStaticFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg64 result,int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
@@ -1670,7 +1680,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	} else {
 	    objRef = regs.chooseIntRegister();
 	}
-	int offset = codeVirtualPushArgs(obj,args,objRef,bcPosition);
+	int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
 
 	code.startBC(bcPosition);
 

@@ -1,11 +1,6 @@
 package jx.compiler.symbols; 
 
-import java.io.IOException;
-
 import jx.compiler.imcode.MethodStackFrame;
-
-import jx.compiler.execenv.ExtendedDataOutputStream;
-import jx.compiler.execenv.ExtendedDataInputStream;
 
 /** 
 

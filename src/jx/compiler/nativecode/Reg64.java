@@ -5,7 +5,6 @@
 package jx.compiler.nativecode;
 
 import jx.classfile.datatypes.BCBasicDatatype;
-import jx.compiler.symbols.SymbolTableEntryBase;
 import jx.compiler.imcode.*;
 
 final public class Reg64 implements RegObj, Cloneable {

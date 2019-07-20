@@ -2,8 +2,6 @@ package jx.compiler.persistent;
 
 import java.io.*; 
 
-import jx.zero.Debug;
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 import jx.compiler.symbols.StringTable;
 
@@ -57,5 +55,3 @@ public class StringSTEntry extends SymbolTableEntryBase {
 	validID  = true;
     }
 }
-  
-  

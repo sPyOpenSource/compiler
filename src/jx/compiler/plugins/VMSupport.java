@@ -4,15 +4,12 @@ import jx.zero.Debug;
 
 import jx.compiler.*;
 
-import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
 
 import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.persistent.*;
-import jx.compiler.plugins.*;
 import jx.compiler.execenv.*;
-import jx.compiler.symbols.UnresolvedJump;
 
 public class VMSupport implements CompilerPlugin {
 

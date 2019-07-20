@@ -1,9 +1,7 @@
 package jx.compspec;
 
-
 import java.io.*;
 import java.util.ArrayList;
-
 
 public class MetaReader {
     String[] compdirs;

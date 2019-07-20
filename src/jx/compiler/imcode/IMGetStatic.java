@@ -22,29 +22,34 @@ final public class IMGetStatic extends IMOperant {
 	datatype     = BasicTypeDescriptor.getBasicDatatypeOf(fieldType);
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
         //stack.store();
 	stack.push(this);
 	return null;
     }
 
+    @Override
     public String toReadableString() {
 	return cpEntry.getMemberName();
     }
 
+    @Override
     public int getNrRegs() { return 1; }
     
     // IMGetStatic
+    @Override
     public void translate(Reg result) throws CompileException {
 	code.startBC(bcPosition);
-	execEnv.codeGetStaticField(this,cpEntry,result,bcPosition);
+	execEnv.codeGetStaticField(this, cpEntry, result, bcPosition);
 	code.endBC();
     }
     
+    @Override
     public void translate(Reg64 result) throws CompileException {
-	    if (datatype!=BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
-	    code.startBC(bcPosition);
-	    execEnv.codeGetStaticFieldLong(this,cpEntry,result,bcPosition);
-	    code.endBC();
+        if (datatype!=BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
+        code.startBC(bcPosition);
+        execEnv.codeGetStaticFieldLong(this, cpEntry, result, bcPosition);
+        code.endBC();
     }
 }

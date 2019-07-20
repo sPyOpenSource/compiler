@@ -3,11 +3,7 @@ package jx.compiler.symbols;
 import java.io.IOException;
 import jx.zero.Debug;
 
-import jx.compiler.*;
-import jx.compiler.symbols.SymbolTableEntryBase;
-import jx.compiler.symbols.StringTable;
 import jx.compiler.execenv.ExtendedDataOutputStream;
-import jx.compiler.execenv.ExtendedDataInputStream;
 
 import jx.classfile.ExceptionHandlerData;
 import jx.classfile.constantpool.*;
@@ -61,4 +57,3 @@ public class ExceptionTableSTEntry extends UnresolvedJump {
 	validID  = true;
     }
 }
-

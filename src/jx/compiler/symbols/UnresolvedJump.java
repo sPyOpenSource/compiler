@@ -3,7 +3,6 @@ package jx.compiler.symbols;
 import jx.zero.Debug;
 import java.io.IOException;
 import jx.compiler.execenv.ExtendedDataOutputStream;
-import jx.compiler.execenv.ExtendedDataInputStream;
 
 /** 
     A class for internal jumps. The target 

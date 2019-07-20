@@ -1,6 +1,5 @@
 package jx.compiler.execenv; 
 
-import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 import jx.classfile.datatypes.*; 
 import jx.zero.Debug;
@@ -97,4 +96,3 @@ public class BCMethod {
 	return methodSource.getVerifyResult(type);
     }
 }
-

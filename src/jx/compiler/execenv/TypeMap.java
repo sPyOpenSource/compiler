@@ -1,8 +1,5 @@
 package jx.compiler.execenv; 
 
-import jx.zero.Debug; 
-import jx.compiler.execenv.ExtendedDataOutputStream;
-import jx.compiler.execenv.ExtendedDataInputStream;
 import java.io.IOException;
 import jx.classfile.datatypes.BCBasicDatatype;
 

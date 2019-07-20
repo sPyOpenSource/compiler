@@ -1,7 +1,5 @@
 package jx.zero;
 
-import jx.zero.debug.*;
-
 public class CPUInfo {
     String vendor;
     int features;

@@ -1,7 +1,5 @@
 package jx.compiler.persistent;
 
-import jx.zero.Debug;
-
 import java.io.*;
 
 import jx.compiler.symbols.*;
@@ -74,5 +72,3 @@ public class StaticFieldSTEntry extends SymbolTableEntryBase {
     }  
   
 }
-  
-  

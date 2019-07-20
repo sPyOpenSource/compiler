@@ -4,9 +4,6 @@
 
 package jx.compiler.nativecode;
 
-import jx.compiler.symbols.SymbolTableEntryBase;
-import jx.compiler.imcode.*;
-
 final public class RegDouble implements Cloneable {
 
     public RegDouble() {

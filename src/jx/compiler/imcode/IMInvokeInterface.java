@@ -23,6 +23,7 @@ final public class IMInvokeInterface extends IMMultiOperant {
 	datatype     = typeDesc.getBasicReturnType();
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 
 	int[] argTypes = typeDesc.getBasicArgumentTypes();
@@ -44,6 +45,7 @@ final public class IMInvokeInterface extends IMMultiOperant {
 	}
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	if (obj!=null) {
 	    obj = (IMOperant)obj.inlineCode(iCode, depth, forceInline);
@@ -55,6 +57,7 @@ final public class IMInvokeInterface extends IMMultiOperant {
 	return this;
     }
 
+    @Override
     public String toReadableString() {
 	String retString = "";
 	if (obj!=null) retString = obj.toReadableString()+".";
@@ -74,13 +77,15 @@ final public class IMInvokeInterface extends IMMultiOperant {
     }
 
     // IMInvokeInterface
+    @Override
     public void translate(Reg result) throws CompileException {
 	stat.invoke_interface();
-	execEnv.codeInterfaceCall(this,cpEntry,obj,args,datatype,result,bcPosition);
+	execEnv.codeInterfaceCall(this, cpEntry, obj, args, datatype, result, bcPosition);
     }
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	stat.invoke_interface();
-	execEnv.codeInterfaceCallLong(this,cpEntry,obj,args,datatype,result,bcPosition);
+	execEnv.codeInterfaceCallLong(this, cpEntry, obj, args, datatype, result, bcPosition);
     }
 }

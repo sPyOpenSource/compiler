@@ -1,7 +1,5 @@
 package jx.compiler.persistent;
 
-
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 
 public class AllocArraySTEntry extends SymbolTableEntryBase {

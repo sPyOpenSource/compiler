@@ -1,7 +1,5 @@
 package jx.compiler.persistent;
 
-import jx.zero.Debug;
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 
 public class AllocObjectSTEntry extends SymbolTableEntryBase {   
@@ -21,5 +19,3 @@ public class AllocObjectSTEntry extends SymbolTableEntryBase {
 	return "0x"+Integer.toHexString(getValue());
     }
 }
-  
-  

@@ -3,7 +3,6 @@ package jx.classfile;
 import java.io.*; 
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
 
 /** 
     All data about a field, that can be found 

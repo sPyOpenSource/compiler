@@ -2,8 +2,6 @@ package jx.compiler.persistent;
 
 import java.io.*;
 
-import jx.zero.Debug;
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 import jx.compiler.symbols.StringTable;
 import jx.compiler.execenv.ExtendedDataOutputStream;
@@ -63,5 +61,3 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
 	validID  = true;
     }
 }
-  
-  

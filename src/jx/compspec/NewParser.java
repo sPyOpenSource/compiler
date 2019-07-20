@@ -3,7 +3,6 @@ package jx.compspec;
 import java.io.*;
 import java.util.ArrayList;
 
-
 class NewParser {
     final static int MAXLINE = 256;
     final static int NEWLINE = 0x0a;

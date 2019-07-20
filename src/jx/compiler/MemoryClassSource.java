@@ -15,5 +15,3 @@ public class MemoryClassSource extends ClassData {
       super(new DataInputStream(new MemoryInputStream(input)), allowNative); 
   }
 }
-
-

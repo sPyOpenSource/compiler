@@ -1,7 +1,5 @@
 package jx.compiler.symbols;
 
-import jx.zero.Debug;
-
 import java.io.*;  
 
 import jx.compiler.execenv.ExtendedDataOutputStream;
@@ -34,5 +32,3 @@ public class CurrentThreadPointerSTEntry extends SymbolTableEntryBase {
   }
   
 }
-  
-  

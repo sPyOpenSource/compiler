@@ -5,9 +5,7 @@ import jx.zero.Debug;
 
 import jx.compiler.imcode.MethodStackFrame;
 import jx.compiler.imcode.IMNode;
-
 import jx.compiler.execenv.ExtendedDataOutputStream;
-import jx.compiler.execenv.ExtendedDataInputStream;
 import jx.compiler.execenv.TypeMap;
 
 public class StackMapSTEntry extends SymbolTableEntryBase {
@@ -94,4 +92,3 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 	return ret+" "+node.toReadableString();
     }
 }
-

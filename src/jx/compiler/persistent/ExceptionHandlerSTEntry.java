@@ -1,8 +1,5 @@
 package jx.compiler.persistent;
 
-
-import jx.zero.Debug;
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 
 public class ExceptionHandlerSTEntry extends SymbolTableEntryBase {
@@ -22,5 +19,3 @@ public class ExceptionHandlerSTEntry extends SymbolTableEntryBase {
 	return "0x"+Integer.toHexString(getValue());
     }
 }
-  
-  

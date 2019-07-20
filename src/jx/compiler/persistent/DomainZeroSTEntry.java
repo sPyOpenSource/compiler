@@ -1,8 +1,5 @@
 package jx.compiler.persistent;
 
-
-import jx.zero.Debug;
-
 import jx.compiler.symbols.SymbolTableEntryBase; 
 
 public class DomainZeroSTEntry extends SymbolTableEntryBase {
@@ -24,5 +21,3 @@ public class DomainZeroSTEntry extends SymbolTableEntryBase {
 	return "$0x"+Integer.toHexString(getValue());
     }    
 }
-  
-  

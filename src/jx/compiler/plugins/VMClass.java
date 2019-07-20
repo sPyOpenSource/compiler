@@ -8,8 +8,6 @@ import jx.classfile.constantpool.*;
 import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.persistent.*;
-import jx.compiler.plugins.*;
-import jx.compiler.symbols.UnresolvedJump;
 
 public class VMClass implements CompilerPlugin {
 

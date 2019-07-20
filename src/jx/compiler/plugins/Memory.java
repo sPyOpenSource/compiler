@@ -9,8 +9,6 @@ import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
 import jx.compiler.persistent.*;
-import jx.compiler.plugins.*;
-import jx.compiler.symbols.UnresolvedJump;
 
 public class Memory implements CompilerPlugin {
 

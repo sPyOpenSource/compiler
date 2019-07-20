@@ -1,6 +1,5 @@
 package jx.compiler.symbols;
 
-import jx.zero.Debug;
 import java.io.*;  
 import jx.compiler.execenv.ExtendedDataOutputStream;
 import jx.compiler.execenv.ExtendedDataInputStream;
@@ -45,5 +44,3 @@ public class TCBOffsetSTEntry extends SymbolTableEntryBase {
   }
   
 }
-  
-  

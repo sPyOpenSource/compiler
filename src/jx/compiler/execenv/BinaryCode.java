@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration; 
 
-
 /** 
     BinaryCode is a class that generates and stores a compiled
     function. It is also responsible for resolving jumps and 
@@ -131,7 +130,6 @@ public class BinaryCode {
 						 exceptionHandler)
  {	throw new Error(); }
     */
-
 
 
   /**

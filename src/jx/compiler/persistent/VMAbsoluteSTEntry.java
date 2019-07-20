@@ -5,5 +5,3 @@ public class VMAbsoluteSTEntry extends VMSupportSTEntry {
 	super(name);
     }
 }
-  
-  

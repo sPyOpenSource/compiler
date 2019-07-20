@@ -5,9 +5,6 @@
  */
 package jx.compiler.persistent;
 
-import java.util.*;
-import jx.compiler.*;
-
 public class CompiledClass {
     String className;
     String superName;

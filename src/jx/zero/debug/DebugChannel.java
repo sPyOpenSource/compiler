@@ -7,5 +7,3 @@ public interface DebugChannel extends Portal {
     public int read();
     public  void writeBuf(byte[] b, int off, int len);
 }
-
-

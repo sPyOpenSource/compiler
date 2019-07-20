@@ -14,9 +14,9 @@ class FieldDescription {
     private String fieldType;
     private int offset; // in words
     FieldDescription(String fieldName, String fieldType, int offset) {
-	this.fieldName=fieldName;
-	this.fieldType=fieldType;
-	this.offset=offset;
+	this.fieldName = fieldName;
+	this.fieldType = fieldType;
+	this.offset = offset;
     }
     public String getFieldName() { return fieldName; }
     public String getFieldType() { return fieldType; }
@@ -34,7 +34,7 @@ public final class FieldLayout {
 
     public void addFields(FieldLayout l) {
 	//Debug.out.println("Adding from superclass:");
-	for(int i=0; i<l.fields.size(); i++) {
+	for(int i = 0; i < l.fields.size(); i++) {
 	    FieldDescription field = (FieldDescription)l.fields.get(i);
 	    // Debug.out.println("  "+field.getFieldName()+" "+ field.getFieldType());
 	    addField(new FieldDescription(field.getFieldName(), field.getFieldType(), numWords));
@@ -74,15 +74,14 @@ public final class FieldLayout {
     public void  dump() {
 	for(int i = 0; i < fields.size(); i++) {
 	    FieldDescription f = (FieldDescription)fields.get(i);
-	    Debug.out.println("    " + f.getOffset() + " " + f.getFieldName()+" "+f.getFieldType());
+	    Debug.out.println("    " + f.getOffset() + " " + f.getFieldName() + " " + f.getFieldType());
 	}
-	
     }
 
     public void writeFieldMap(ExtendedDataOutputStream out)  throws IOException {
 	boolean[] map = new boolean[numWords];
 	Enumeration fl = Collections.enumeration(fields);
-	for(int i=0; i<numWords; i++) {
+	for(int i = 0; i < numWords; i++) {
 	    FieldDescription f = (FieldDescription)fl.nextElement();
 	    String t = f.getFieldType();
 	    if (t.charAt(0) == 'J' || t.charAt(0) == 'D') {
@@ -97,21 +96,21 @@ public final class FieldLayout {
 		    map[f.getOffset()] = true;
 		}
 	    }
-	    //Debug.out.println("TYPE:"+t);
+	    //System.out.println("TYPE:" + t);
 	}
-      TypeMap.writeMap(out, map, false);
+        TypeMap.writeMap(out, map, false);
     }
 
     public static FieldLayout readMap(ExtendedDataInputStream in)  throws IOException {
 	int nBytes = in.readInt();
-	for(int i=0; i<nBytes; i++) {
+	for(int i = 0; i < nBytes; i++) {
 	    in.readByte();
 	}
 	return null;
     }
 
     public void registerStrings(StringTable strTable) {
-	for(int i=0; i<fields.size(); i++) {
+	for(int i = 0; i < fields.size(); i++) {
 	    FieldDescription field = (FieldDescription)fields.get(i);
 	    strTable.register(field.getFieldName());
 	    strTable.register(field.getFieldType());
@@ -120,7 +119,7 @@ public final class FieldLayout {
 
     public void writeFieldList(ExtendedDataOutputStream out, StringTable strTable)  throws IOException {
 	out.writeInt(fields.size());
-	for(int i=0; i<fields.size(); i++) {
+	for(int i = 0; i < fields.size(); i++) {
 	    FieldDescription field = (FieldDescription)fields.get(i);
 	    //out.writeString(field.getFieldName());
 	    //out.writeString(field.getFieldType());

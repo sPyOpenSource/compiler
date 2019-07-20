@@ -19,4 +19,3 @@ public class MemoryOutputStream extends OutputStream {
 	buf.set8(pos++, (byte)b);
     }
 }
-
