@@ -10,9 +10,9 @@ import jx.compiler.symbols.StringTable;
  * All fields consume 4 bytes, double and long 8 bytes
  */
 class FieldDescription {
-    private String fieldName;
-    private String fieldType;
-    private int offset; // in words
+    private final String fieldName;
+    private final String fieldType;
+    private final int offset; // in words
     FieldDescription(String fieldName, String fieldType, int offset) {
 	this.fieldName = fieldName;
 	this.fieldType = fieldType;

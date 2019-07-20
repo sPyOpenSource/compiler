@@ -19,10 +19,11 @@ public class DataType {
 	while(typeDesc.charAt(i) == '[') i++;
 	return  new DataType(typeDesc.substring(i, typeDesc.length())); 
     }
-    /** get any reference type (class, element class of array) */
+    /** get any reference type (class, element class of array)
+     * @return  */
     public String getReferenceType() {
 	try {
-	if (! isClass() && ! isArray()) return null;;
+	if (! isClass() && ! isArray()) return null;
 	String className;
 	if (isClass()) {
 	    className = getClassName();
@@ -34,5 +35,4 @@ public class DataType {
 	return className;
 	} catch(NoClassTypeException e){return null;}
     }
-
 }

@@ -16,11 +16,11 @@ import java.util.Enumeration;
 public class BinaryCode {
 
   // bytes of the compiled function 
-  private byte[] code; 
-  private int numCodeBytes; 
+  private final byte[] code; 
+  private final int numCodeBytes; 
 
   // table of unresolved addresses that need the code base 
-  private ArrayList unresolvedAddresses; 
+  private final ArrayList unresolvedAddresses; 
 
   // ***** other vars *****
 

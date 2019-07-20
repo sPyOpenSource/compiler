@@ -39,8 +39,7 @@ final public class CodeData {
 	this.maxStack = maxStack;
 	this.maxLocals = maxLocals;
 	this.codeBytes = new byte[codeBytes.length];
-	for (int i = 0; i < codeBytes.length; i++)
-	    this.codeBytes[i] = codeBytes[i];
+        System.arraycopy(codeBytes, 0, this.codeBytes, 0, codeBytes.length);
 	numHandlers = exceptionHandler.length;
 	this.exceptionHandler = new ExceptionHandlerData[numHandlers];
 	for (int i = 0; i < numHandlers; i++)
@@ -109,6 +108,7 @@ final public class CodeData {
       }
   }
 
+  @Override
   public String toString() {
     return super.toString() + "\n" +  
       "MaxStack     : " + maxStack + "\n" + 
@@ -119,5 +119,4 @@ final public class CodeData {
   public String getDescription(ConstantPool cPool) {
     return toString(); 
   }
-
 }

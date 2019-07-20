@@ -1,11 +1,13 @@
 
 package jx.classfile.datatypes; 
+
 import jx.zero.Debug; 
+
 /** 
     Type descriptor for methods. 
 */
 public class MethodTypeDescriptor {
-  private String typeDesc; 
+  private final String typeDesc; 
   int iteratorIndex,newIteratorIndex; 
 
   /** 
@@ -86,7 +88,8 @@ public class MethodTypeDescriptor {
       return result;
   }
 
-    /** Java language argument list */
+    /** Java language argument list
+     * @return  */
   public String getJavaArgumentList() {
       int n = getNumArguments();
       String result = "";
@@ -179,7 +182,8 @@ public class MethodTypeDescriptor {
   }
 
 
-    /******************************************/
+    /**
+     * @return ****************************************/
     /* NEW INTERFACE */
 
     public DataType getReturnType() {
@@ -195,5 +199,4 @@ public class MethodTypeDescriptor {
 	}
 	return ret;
     }
-
 }

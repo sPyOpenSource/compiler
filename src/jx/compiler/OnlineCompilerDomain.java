@@ -15,11 +15,11 @@ import jx.zip.*;
 
 public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 
-    private BootFS bootfs;
-    private MemoryManager memMgr;
-    private CompilerOptions opts;
-    private Naming naming;
-    private ComponentManager cm;
+    private final BootFS bootfs;
+    private final MemoryManager memMgr;
+    private final CompilerOptions opts;
+    private final Naming naming;
+    private final ComponentManager cm;
 
     public OnlineCompilerDomain() {
 	naming = InitialNaming.getInitialNaming();	
@@ -52,6 +52,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
        */
     }
 
+    @Override
     public void translate(String zip, String lib) throws Exception {
 	String info=null;
 	int i;
@@ -101,8 +102,8 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
     public void compile(String targetName, String linkOut, String domainClasses, ArrayList needed) throws Exception {
 
 	PrintStream gasFile=null;
-	ExtendedDataOutputStream codeFile=null;
-	ExtendedDataOutputStream tableOut=null;
+	ExtendedDataOutputStream codeFile;
+	ExtendedDataOutputStream tableOut;
 
 	Debug.out.println("Reading domain classes from "+domainClasses);
 	Debug.out.println("Compiling domain to "+targetName);
@@ -121,7 +122,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	    }
 	}
 
-	ReadOnlyMemory[] libClasses = null;
+	ReadOnlyMemory[] libClasses;
 	if (libs.size()>0) {
 	    Debug.verbose("libs:");
 	     libClasses = new ReadOnlyMemory[libs.size()];
@@ -161,11 +162,14 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	tableOut = new ExtendedDataOutputStream(new MemoryOutputStream(tableOutMemory));
 
 	IOSystem io = new IOSystem() {
+                @Override
 		public OutputStream getOutputStream(String filename) throws IOException {
 		    return new OutputStream() {
+                            @Override
 			    public void write(int b) throws IOException {}
 			};
 		}
+                @Override
 		public void set(String path) {}
 	    };
 
@@ -203,7 +207,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	
 	ReadOnlyMemory zipFile = bootfs.getFile(zipFileName);
 	ZipFile zip = new ZipFile(zipFile);
-	ZipEntry entry = null;
+	ZipEntry entry;
 
 	Debug.verbose("read "+zipFileName);
 	
@@ -212,7 +216,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 	    if (entry.getName().equals("libs.dep")) {
 		Debug.verbose("find libs.dep");
 		DataInputStream dis = new DataInputStream(new MemoryInputStream(entry.getData()));
-		String line = null;	
+		String line;	
 		try {
 		    while ((line=dis.readLine())!=null) {
 			if (line.equals("#EOF")) break;

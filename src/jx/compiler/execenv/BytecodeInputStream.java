@@ -8,8 +8,8 @@ package jx.compiler.execenv;
 
 public final class BytecodeInputStream {
 
-  private byte[] code; 
-  private int numBytes; 
+  private final byte[] code; 
+  private final int numBytes; 
   private int pos;       // stream pointer 
 
   /** 
@@ -29,6 +29,7 @@ public final class BytecodeInputStream {
 
   /** 
       not really necessary, only used for exp.FastTranslator, 
+     * @param newPos
   */
   public void setCurrentPosition(int newPos) {pos = newPos;}
 
@@ -44,6 +45,7 @@ public final class BytecodeInputStream {
     
   /** 
       get the current byte without modifying the stream state
+     * @return 
   */ 
   public final byte getCurrentByte() {
     return code[pos];
@@ -53,7 +55,7 @@ public final class BytecodeInputStream {
       get an unsigned byte that is 'offset' bytes after 
       the current position (result >= 0, always)
   */
-  private final int getByteUnsigned(int offset) {
+  private int getByteUnsigned(int offset) {
     return ((int)code[pos+offset]) & 0xff; 
   }
 
@@ -61,13 +63,14 @@ public final class BytecodeInputStream {
       get an byte that is 'offset' bytes after 
       the current position
   */ 
-  private final int getByte(int offset) {
+  private int getByte(int offset) {
     return (int)code[pos+offset]; 
   }
 
   /** 
       get an unsigned byte at current position 
       (result >= 0, always) 
+     * @return 
   */ 
   public final int getCurrentByteUnsigned() {
     return ((int)code[pos]) & 0xff; 
@@ -75,6 +78,7 @@ public final class BytecodeInputStream {
 
   /** 
       read byte and advance stream pointer
+     * @return 
   */ 
   public final byte readByte() {
     return code[pos++];
@@ -82,6 +86,7 @@ public final class BytecodeInputStream {
 
   /** 
       read unsigned byte and advance stream pointer
+     * @return 
   */ 
   public final int readUnsignedByte() {
     return ((int)code[pos++]) & 0xff; 
@@ -89,6 +94,7 @@ public final class BytecodeInputStream {
 
   /** 
       read signed short and advance stream pointer
+     * @return 
   */ 
   public final short readShort() {
     int val = getByteUnsigned(1) + 
@@ -99,6 +105,7 @@ public final class BytecodeInputStream {
   
   /** 
       read unsigned short and advanve stream pointer
+     * @return 
   */
   public final int readUnsignedShort() {
     return (int)readShort() & 0xffff; 
@@ -106,6 +113,7 @@ public final class BytecodeInputStream {
   
   /** 
       read integer, advance stream pointer
+     * @return 
   */ 
   public final int readInt() {
     int val = getByteUnsigned(3) + 

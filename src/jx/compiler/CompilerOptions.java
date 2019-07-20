@@ -143,6 +143,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     /**
      *  The zipfilenames of the lib classes or null.
+     * @return 
      */
    public ArrayList getLibs() {
 	return zipLibFiles;
@@ -155,13 +156,13 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public void setNeededLibs(String[] libs) {
 	if (libs!=null) {
 	    zipLibFiles = new ArrayList();
-	    for (int i=0;i<libs.length;i++) {
-		if (libs[i].lastIndexOf('.')>0) {
-		    zipLibFiles.add(libs[i]);
-		} else {
-		    zipLibFiles.add(libs[i]+".zip");
-		}
-	    }
+            for (String lib : libs) {
+                if (lib.lastIndexOf('.') > 0) {
+                    zipLibFiles.add(lib);
+                } else {
+                    zipLibFiles.add(lib + ".zip");
+                }
+            }
 	}
     }
 
@@ -175,6 +176,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     /**
      * 
+     * @return 
      */
 
     public String[] getNeededLibs() {
@@ -210,31 +212,38 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return doFastMemoryAccess;
     }
 
+    @Override
     public boolean doMemoryRangeChecks() {
 	return doMemoryRangeChecks;
     }
 
+    @Override
     public boolean doExceptions() {
 	return doExceptions;
     }
 
+    @Override
     public boolean doClearStack() {
 	return doClearStack;
     }
 
 
+    @Override
     public boolean doZeroDivChecks() {
 	return doZeroDivChecks;
     }
 
+    @Override
     public boolean doNullChecks() {
 	return doNullChecks;
     }
 
+    @Override
     public boolean doBoundsChecks() {
 	return doBoundsChecks;
     }
 
+    @Override
     public boolean doStackSizeCheck(boolean isLeafMethod) {
 	if (isLeafMethod && doOptSizeChecks) {
 	    return false;
@@ -243,10 +252,12 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	}
     }
 
+    @Override
     public boolean doVerbose() {
 	return doVerbose;
     }
 
+    @Override
     public boolean doVerbose(String kind) {
 	if (doVerbose) return true;
 	if (verboseList!=null) {
@@ -257,6 +268,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return false;
     }
 
+    @Override
     public boolean isOption(String kind) {
 	if (optionList!=null) {
 	    for (int i=0;i<optionList.size();i++) {
@@ -266,18 +278,22 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return false;
     }
 
+    @Override
     public boolean doPrintStackTrace() {
 	return doStackTrace;
     }
 
+    @Override
     public boolean doParanoidChecks() {
 	return doParanoid;
     }
 
+    @Override
     public boolean doMagicChecks() {
 	return doMagicTests;
     }
 
+    @Override
     public boolean doTrace() {
 	return doTrace;
     }
@@ -286,26 +302,32 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (doVerbose) System.out.println(txt);
     }
 
+    @Override
     public boolean doAlignCode() {
 	return doAlignCode;
     }
 
+    @Override
     public boolean doOptimize() {
 	return doOptimize;
     }
 
+    @Override
     public boolean doFastThisPtr() {
 	return doFastThisPtr;
     }
 
+    @Override
     public boolean doOptExecPath() {
 	return doOptExecPath;
     }
 
+    @Override
     public boolean doFastStatics() {
 	return doFastStatics;
     }
 
+    @Override
     public boolean doFastCheckCast() {
 	return doFastCheckCast;
     }
@@ -319,22 +341,24 @@ public class CompilerOptions implements CompilerOptionsInterface {
     }
 
 
+    @Override
     public boolean doUsePackedArrays() {
 	return doUsePackedArrays;
     }
 
+    @Override
     public boolean forceInline(BCMethod bcMethod)
     {
-	if (forceInline!=null) {
-	    String currentMethod = null;
-	    for (int i=0;i<forceInline.size();i++) {
+	if (forceInline != null) {
+	    String currentMethod;
+	    for (int i = 0; i < forceInline.size(); i++) {
 		String entry = (String)forceInline.get(i);
 
-		if (entry.startsWith("*.")) currentMethod = "*."+bcMethod.getName();
-		else {currentMethod = bcMethod.getClassName()+"."+bcMethod.getName();}
+		if (entry.startsWith("*.")) currentMethod = "*." + bcMethod.getName();
+		else {currentMethod = bcMethod.getClassName() + "." + bcMethod.getName();}
 
-		if (entry.substring(entry.length()-1).equals("*")) {
-		    entry = entry.substring(0,entry.length()-1);
+		if (entry.substring(entry.length() - 1).equals("*")) {
+		    entry = entry.substring(0, entry.length() - 1);
 		    if (currentMethod.startsWith(entry)) return true;
 		}
 
@@ -364,6 +388,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return false;
     }
 
+    @Override
     public boolean doInlining(String methodName) {
 	if (doInlining) {
 	    if (inlineMethods!=null) {
@@ -377,12 +402,12 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return false;
     }
 
+    @Override
     public boolean doProfile(BCClass bcClass, BCMethod bcMethod) {
 	if (!doProfiling) return false;
         
 	if (bcClass.getClassName().equals("jx/zero/timing/Control")) {
-	    if (bcMethod.getName().startsWith("timing")) return true;
-	    else return false;
+            return bcMethod.getName().startsWith("timing");
 	}
 
 	String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
@@ -403,18 +428,22 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	return false;
     }
 
+    @Override
     public boolean doEventLoging() {
 	return doEventLoging;
     }
 
+    @Override
     public void setUseNewCompiler(boolean flag) {
 	doNewCode = flag;
     }
 
+    @Override
     public boolean doNewCompiler() {
 	return doNewCode;
     }
 
+    @Override
     public boolean doLogMethod(BCClass bcClass,BCMethod bcMethod) {	
       if (logMethods!=null) {
 	String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
@@ -430,6 +459,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
       return false;		
     }
   
+    @Override
     public boolean doNewCompiler(BCClass bcClass,BCMethod bcMethod) {	
 	if (!doNewCode) return false;
         String currentMethod = bcClass.getClassName()+"."+bcMethod.getName();
@@ -460,10 +490,12 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	if (debug) Debug.out.println(txt);
     }
 
+    @Override
     public boolean doDebug() {
 	return debug;
     }
 
+    @Override
     public boolean doRemoveDebug() {
 	return doRemoveDebug;
     }

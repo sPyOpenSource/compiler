@@ -1,5 +1,6 @@
 v1.5 XW 20-07-2019
 removed: unused library and in same package
+improved: source code
 
 v1.4 XW 18-07-2019
 added: MethodTypeCPEntry, InvokeDynamicCPEntry and MethodHandleCPEntry

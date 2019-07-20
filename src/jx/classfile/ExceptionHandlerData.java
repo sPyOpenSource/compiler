@@ -19,7 +19,7 @@ public class ExceptionHandlerData {
   public ExceptionHandlerData(DataInput input, ConstantPool cPool) 
     throws IOException {
       readFromClassFile(input, cPool); 
-  }
+    }
   
     //constructor for copy
     public ExceptionHandlerData(int startBCIndex, int endBCIndex, 
@@ -34,20 +34,22 @@ public class ExceptionHandlerData {
 	return new ExceptionHandlerData(startBCIndex, endBCIndex, handlerBCIndex, 
 					catchTypeCPIndex);
     }
-  public int getStartBCIndex() {return startBCIndex;}
-  public int getEndBCIndex() {return endBCIndex; }
-  public int getHandlerBCIndex() {return handlerBCIndex;}
-  public int getCatchTypeCPIndex() {return catchTypeCPIndex; }
+    
+    public int getStartBCIndex() {return startBCIndex;}
+    public int getEndBCIndex() {return endBCIndex; }
+    public int getHandlerBCIndex() {return handlerBCIndex;}
+    public int getCatchTypeCPIndex() {return catchTypeCPIndex; }
 
-  public void readFromClassFile(DataInput input, ConstantPool cPool) 
+    public void readFromClassFile(DataInput input, ConstantPool cPool) 
     throws IOException {
       startBCIndex = input.readUnsignedShort(); 
       endBCIndex = input.readUnsignedShort(); 
       handlerBCIndex = input.readUnsignedShort(); 
       catchTypeCPIndex = input.readUnsignedShort(); 
-  }
+    }
 
+    @Override
     public String toString() {
-	return new String(startBCIndex+" - "+endBCIndex+" handler "+handlerBCIndex+" type "+catchTypeCPIndex);
+	return startBCIndex + " - " + endBCIndex + " handler " + handlerBCIndex + " type " + catchTypeCPIndex;
     }
 }

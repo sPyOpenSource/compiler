@@ -2,7 +2,6 @@ package jx.collections;
 
 import java.util.ArrayList;
   
-
 public class QuickSort implements SortedList { 
     Comparator comparator;
     ArrayList elements;
@@ -16,12 +15,15 @@ public class QuickSort implements SortedList {
 	this(c, new ArrayList());
     }
     
+    @Override
     public Iterator iterator() {
 	return new Iterator() {
 	    int counter;
+            @Override
 	    public boolean hasNext() {
 		return counter < elements.size();
 	    }
+            @Override
 	    public Object next() {
 		return elements.get(counter++);
 	    }
@@ -34,11 +36,13 @@ public class QuickSort implements SortedList {
 	//qsort(elements, 0, elements.size()-1);
     }
     
+    @Override
     public void add(Object o) {
 	elements.add(o);
 	sort();
     }
 
+    @Override
     public int size() {
 	return elements.size();
     }
@@ -117,9 +121,9 @@ public class QuickSort implements SortedList {
             }
         }
         if (hi < lo) {
-	    int t=lo;
-	    lo=hi;
-	    hi=lo;
+	    int t = lo;
+	    lo = hi;
+	    hi = lo;
         }
         sort2(a, lo0, lo);
         sort2(a, lo == lo0 ? lo+1 : lo, hi0);
@@ -128,7 +132,6 @@ public class QuickSort implements SortedList {
     void sort2(ArrayList a) {
         sort2(a, 0, a.size()-1);
     }
-
 
 
    private void swap(ArrayList a, int i, int j) { 

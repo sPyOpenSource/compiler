@@ -65,7 +65,8 @@ public class FieldData {
 	return new BasicTypeDescriptor(getType());
     }
 
-    /** 
+    /**
+     * @param cPool
 	@return a descriptive string for this field 
     */ 
     public String getDescription(ConstantPool cPool) {

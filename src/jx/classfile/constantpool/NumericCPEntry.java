@@ -1,13 +1,9 @@
 
 package jx.classfile.constantpool; 
+
 import java.io.*; 
 import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
-/** 
-    This class is used for all CP entries that represent
-    a numeric value. (i.e. int, long, float, double) 
-*/ 
-
+ 
 public class NumericCPEntry extends ConstantPoolEntry {
   private BCBasicDatatype value; 
   private int tag; 
@@ -41,8 +37,10 @@ public class NumericCPEntry extends ConstantPoolEntry {
     this.tag = tag; 
   }
   
+  @Override
   public int getTag() {return tag;}
 
+  @Override
   void readFromClassFile(DataInput input) throws IOException {
     switch(tag) {
     case CONSTANT_INTEGER: 
@@ -60,6 +58,7 @@ public class NumericCPEntry extends ConstantPoolEntry {
     }
   }
 
+  @Override
     void readDummyValue(DataInput input) throws IOException {
 	switch(tag) {
 	case CONSTANT_INTEGER: 
@@ -83,10 +82,12 @@ public class NumericCPEntry extends ConstantPoolEntry {
 
   public BCBasicDatatype value() {return value;}
 
+  @Override
   public String getSimpleDescription() {
     return value.toString(); 
   }
 
+  @Override
   public String getDescription() {
     return value.toString();
   }

@@ -24,6 +24,7 @@ public class MethodRefCPEntry extends ClassMemberCPEntry {
     super(classCPEntry, nameAndTypeCPEntry); 
   }
 
+  @Override
   public int getTag() {return CONSTANT_METHODREF;}
 
   int getMethodIndex() {return 0;}

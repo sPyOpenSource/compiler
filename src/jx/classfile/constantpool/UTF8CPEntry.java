@@ -19,22 +19,27 @@ public class UTF8CPEntry extends ConstantPoolEntry {
     this.stringAddress = 0; 
   }
 
+  @Override
   public int getTag() {return CONSTANT_UTF8;}
   
+  @Override
   void readFromClassFile(DataInput input) throws IOException {
     value = input.readUTF(); 
   }
 
   public String value() {return value;}
 
+  @Override
   public String getSimpleDescription() {
     return value; 
   }
 
+  @Override
   public String getDescription(ConstantPool cPool, boolean withIndex) {
     return "\"" + getSimpleDescription() + "\""; 
   }
 
+  @Override
   public String getDescription() {
     return "\"" + value + "\"";
   }

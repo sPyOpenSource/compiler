@@ -10,12 +10,12 @@ public class TypeMap {
       out.writeInt(n_bytes);
       if (writeLen) out.writeInt(map.length);
       //Debug.out.println("--");
-      for(int k=0; k<n_bytes; k++) {
-	  byte b=0;
-	  for(int i=0; i<8; i++) {
-	      if (j==map.length) {
-		  for(;i<8;i++) {
-		      b>>>=1;
+      for(int k = 0; k < n_bytes; k++) {
+	  byte b = 0;
+	  for(int i = 0; i < 8; i++) {
+	      if (j == map.length) {
+		  for(; i < 8; i++) {
+		      b >>>= 1;
 		      b &= 0x7f;
 		  }
 		  break;
@@ -33,13 +33,11 @@ public class TypeMap {
   }    
     public static void writeMap(ExtendedDataOutputStream out, int[] map) throws IOException {
 	boolean []map1 = new boolean[map.length];
-	for(int i=0; i<map1.length; i++) {
+	for(int i = 0; i < map1.length; i++) {
 	    if(map[i] == BCBasicDatatype.REFERENCE) {
 		map1[i] = true;
 	    }
 	}
 	writeMap(out, map1, true);
-	
     }
-    
 }

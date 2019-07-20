@@ -67,8 +67,8 @@ public class Main {
 		  String env) {
 
 	PrintStream gasFile=null;
-	ExtendedDataOutputStream codeFile=null;
-	ExtendedDataOutputStream tableOut=null;
+	ExtendedDataOutputStream codeFile;
+	ExtendedDataOutputStream tableOut;
 
 
 	Debug.out.println("Compiling domain to " + targetName);
@@ -77,7 +77,7 @@ public class Main {
 
 	ReadOnlyMemory domClasses =  bootFS.getFile(domainClasses);
 
-	ReadOnlyMemory[] libClasses = null;
+	ReadOnlyMemory[] libClasses;
 	if (! zipList.equals("-")) {
 	    ArrayList libs = parsePath(zipList);
 	     libClasses = new ReadOnlyMemory[libs.size()];

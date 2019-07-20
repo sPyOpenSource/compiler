@@ -70,6 +70,7 @@ public class BCMethod {
     public boolean isNative() { return methodSource.isNative(); }
     public String getClassName() {return methodSource.getDeclaringClassSource().getClassName();}
 
+  @Override
     public String toString() {
 	return "BCMethod("+name+typeDescString+")";
     }
@@ -84,10 +85,12 @@ public class BCMethod {
 	LineAttributeData lineNumbers[] = methodSource.getLineNumberTable();
 	int line=0;
 	if (lineNumbers != null) {
-	    for(int k=0; k<lineNumbers.length; k++) {		
-		if (bytecodePosition<lineNumbers[k].startBytecodepos) return line;
-		line=lineNumbers[k].lineNumber;
-	    }
+            for (LineAttributeData lineNumber : lineNumbers) {
+                if (bytecodePosition < lineNumber.startBytecodepos) {
+                    return line;
+                }
+                line = lineNumber.lineNumber;
+            }
 	}
 	return -1;
     }

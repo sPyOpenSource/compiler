@@ -91,7 +91,7 @@ public class ClassData extends ClassSource {
 	numMethods++;
 	MethodData oldMethod[] = method;
 	method = new MethodData[numMethods];
-        System.arraycopy(oldMethod, 0, method, 0, numMethods-1);
+        System.arraycopy(oldMethod, 0, method, 0, numMethods - 1);
 	method[numMethods-1] = newMethod;
     }
 

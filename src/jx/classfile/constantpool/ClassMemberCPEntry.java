@@ -26,16 +26,19 @@ abstract public class ClassMemberCPEntry extends ConstantPoolEntry {
     nameAndTypeCPIndex = -1; 
   }
 
+  @Override
   void readFromClassFile(DataInput input) throws IOException {
     classCPIndex = input.readUnsignedShort();
     nameAndTypeCPIndex = input.readUnsignedShort(); 
   }
 
+  @Override
   public void linkCPEntries(ConstantPool cPool) {
     classCPEntry = (ClassCPEntry)cPool.entryAt(classCPIndex); 
     nameAndTypeCPEntry = (NameAndTypeCPEntry)cPool.entryAt(nameAndTypeCPIndex); 
   }
 
+  @Override
   public String getSimpleDescription() {
     return String.valueOf(classCPIndex)+", "+
       String.valueOf(nameAndTypeCPIndex); 
@@ -64,12 +67,14 @@ abstract public class ClassMemberCPEntry extends ConstantPoolEntry {
 	   nameAndTypeCPEntry.getTypeDesc().equals(typeDesc));	  
   }
 
+  @Override
   public String getDescription(ConstantPool cPool, boolean withIndex) {
     return "class=" + getIndexDescString(cPool, classCPIndex) + ", " + 
       "name_and_type=(" + nameAndTypeCPIndex + "), " + 
       nameAndTypeCPEntry.getDescription(cPool, true); 
   }
 
+  @Override
   public String getDescription() {
     return getClassName() + "." + getMemberName() + " (" + getMemberTypeDesc() + ") "; 
   }

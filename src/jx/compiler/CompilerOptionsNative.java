@@ -193,36 +193,42 @@ public class CompilerOptionsNative extends CompilerOptions {
 	    makeLib = true;
 	} else if ((i+1)<args.length && 
 		   args[i+1].charAt(0)!='-') {
-	    if (args[i].equals("-L")) {
-		libPath = args[++i];
-	    } else if (args[i].equals("-env")) {
-		enviroment = args[++i];
-	    } else if (args[i].equals("-o")) {
-		targetName = args[++i];
-	    } else if (args[i].equals("-s")) {
-		zipClassFile=args[++i];
-		
-		if (zipClassFile.lastIndexOf(".zip") < 0)
-		    zipClassFile = zipClassFile + ".zip";
-	    } else if (args[i].equals("-l")) {
-		/* libraries */
-		if (args[i+1].charAt(0)!='-') {
-		    i++;
-		    zipLibFiles = new ArrayList();
-		    jlnLibFiles = new ArrayList();
-		    StringTokenizer tk = new StringTokenizer(args[i], ",;:");
-		    
-		    while (tk.hasMoreTokens()) {
-			String classFile = tk.nextToken();
-			    int idx;
-			    if ((idx = classFile.indexOf(".zip")) > 0)
-				classFile = classFile.substring(0, idx);
-			    zipLibFiles.add(classFile + ".zip");
-			    jlnLibFiles.add(classFile + ".jln");
-		    }
-		    
-		}
-	    }
+            switch (args[i]) {
+                case "-L":
+                    libPath = args[++i];
+                    break;
+                case "-env":
+                    enviroment = args[++i];
+                    break;
+                case "-o":
+                    targetName = args[++i];
+                    break;
+                case "-s":
+                    zipClassFile=args[++i];
+                    if (zipClassFile.lastIndexOf(".zip") < 0)
+                        zipClassFile = zipClassFile + ".zip";
+                    break;
+                case "-l":
+                    /* libraries */
+                    if (args[i+1].charAt(0)!='-') {
+                        i++;
+                        zipLibFiles = new ArrayList();
+                        jlnLibFiles = new ArrayList();
+                        StringTokenizer tk = new StringTokenizer(args[i], ",;:");
+                        
+                        while (tk.hasMoreTokens()) {
+                            String classFile = tk.nextToken();
+                            int idx;
+                            if ((idx = classFile.indexOf(".zip")) > 0)
+                                classFile = classFile.substring(0, idx);
+                            zipLibFiles.add(classFile + ".zip");
+                            jlnLibFiles.add(classFile + ".jln");
+                        }
+                        
+                    }   break;
+                default:
+                    break;
+            }
 	} else {
 	    Debug.out.print("WARNING: Unknown option " + args[i] + " ignored.");
 	    return 1;

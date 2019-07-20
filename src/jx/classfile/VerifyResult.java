@@ -1,6 +1,5 @@
 package jx.classfile;
 
-
 abstract public class VerifyResult {
 
     public static final int NPA_RESULT = 1;

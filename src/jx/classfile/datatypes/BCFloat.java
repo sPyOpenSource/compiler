@@ -1,12 +1,14 @@
 
 package jx.classfile.datatypes; 
 final public class BCFloat extends BCFloatDatatype {
-  private float value; 
+  private final float value; 
 
   public BCFloat(float value) {this.value = value;}
   public float value() {return value;}
+  @Override
   public double doubleValue() {return value;}
     //public String toString() {return String.valueOf(value); }
+  @Override
   public int type() {return FLOAT;}
   public int getBits() {return Float.floatToIntBits(value);}
 
@@ -14,6 +16,7 @@ final public class BCFloat extends BCFloatDatatype {
   public static final BCFloat VALUE_1 = new BCFloat(1); 
   public static final BCFloat VALUE_2 = new BCFloat(2); 
 
+  @Override
   public BCNumericDatatype combined(int operator, BCNumericDatatype op2) {
     float val1 = value; 
     float val2 = ((BCFloat)op2).value; 
@@ -27,6 +30,7 @@ final public class BCFloat extends BCFloatDatatype {
     return new BCFloat(result); 
   }
 
+  @Override
   public BCNumericDatatype negated() {return new BCFloat(-value);}
 
 }

@@ -51,6 +51,7 @@ public class StatisticInfo {
 	exception_calls += value;
     }
 
+    @Override
     public String toString() {
 	String ret;
 	if (libname!=null) {

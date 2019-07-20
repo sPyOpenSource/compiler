@@ -1,8 +1,8 @@
 
 package jx.classfile.constantpool; 
+
 import java.io.*; 
-import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
+
 public class NameAndTypeCPEntry extends ConstantPoolEntry {
   private int nameCPIndex;
   private int typeCPIndex; 
@@ -25,18 +25,22 @@ public class NameAndTypeCPEntry extends ConstantPoolEntry {
     typeCPIndex = -1; 
   }
 
+  @Override
   public int getTag() {return CONSTANT_NAMEANDTYPE;}
 
+  @Override
   void readFromClassFile(DataInput input) throws IOException {
     nameCPIndex = input.readUnsignedShort();
     typeCPIndex = input.readUnsignedShort(); 
   }
 
+  @Override
   void linkCPEntries(ConstantPool cPool) {
     nameCPEntry = (UTF8CPEntry)cPool.entryAt(nameCPIndex); 
     typeCPEntry = (UTF8CPEntry)cPool.entryAt(typeCPIndex); 
   }
 
+  @Override
   public String getSimpleDescription() {
     return String.valueOf(nameCPIndex)+", "+
       String.valueOf(typeCPIndex); 
@@ -50,11 +54,13 @@ public class NameAndTypeCPEntry extends ConstantPoolEntry {
     return typeCPEntry.value(); 
   }
 
+  @Override
   public String getDescription(ConstantPool cPool, boolean withIndex) {
     return "name=" + getIndexDescString(cPool, nameCPIndex) + ", " + 
       "type=" + getIndexDescString(cPool, typeCPIndex); 
   }
 
+  @Override
   public String getDescription() {
     return getName() + " (" + getTypeDesc() + ") "; 
   }

@@ -1,10 +1,5 @@
 package jx.classfile; 
 
-import java.io.*; 
-import jx.classfile.constantpool.*; 
-import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
-
 public class Modifier { 
   public static boolean isPublic(int accessFlags) {return (accessFlags & ClassData.ACC_PUBLIC) != 0;}
   public static boolean isPrivate(int accessFlags) {return (accessFlags & ClassData.ACC_PRIVATE) != 0;}

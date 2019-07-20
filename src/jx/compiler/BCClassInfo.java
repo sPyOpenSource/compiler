@@ -1,5 +1,6 @@
 package jx.compiler;
 
+import java.util.Arrays;
 import jx.compiler.execenv.*; 
 import jx.zero.Memory;
 import jx.compiler.vtable.MethodTable;
@@ -24,6 +25,6 @@ public class BCClassInfo {
 
     @Override
     public String toString() {
-	return "BCClassInfo methods:" + methods;
+	return "BCClassInfo methods:" + Arrays.toString(methods);
     }
 }

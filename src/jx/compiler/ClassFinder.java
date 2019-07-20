@@ -6,6 +6,8 @@ public interface ClassFinder {
     public BCClass findClass(String className);
 
     /**
+     * @param className
+     * @param superName
      * @return true if instances of "className" can be assigned to
      * variables of type superName
      */

@@ -21,7 +21,7 @@ public class ZipClasses {
 	// tokenize zipfile into classfiles
 	ArrayList libdata = new ArrayList();
 	ZipFile zip = new ZipFile(m);
-	ZipEntry entry = null;
+	ZipEntry entry;
 	while ((entry = zip.getNextEntry()) != null) {
 	    if (entry.isDirectory())
 		continue;

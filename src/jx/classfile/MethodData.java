@@ -33,6 +33,7 @@ public class MethodData extends MethodSource {
     private boolean allowNative = false;
     
     public ClassData getDeclaringClass() {return declaringClass;}
+    @Override
     public ClassSource getDeclaringClassSource() {return declaringClass;}
 
     public UTF8CPEntry getMethodNameCPEntry() { return methodNameCPEntry;}
@@ -107,7 +108,7 @@ public class MethodData extends MethodSource {
 	return argTypes; 
 	else {
 	    int[] varTypes = new int[argTypes.length + 1]; 
-	    for(int i=0;i<argTypes.length;i++) varTypes[i+1] = argTypes[i]; 
+            System.arraycopy(argTypes, 0, varTypes, 1, argTypes.length); 
 	    varTypes[0] = BCBasicDatatype.REFERENCE; 
 	    return varTypes; 
 	}
@@ -143,7 +144,7 @@ public class MethodData extends MethodSource {
     public int getNumInstr() {
 	/* is not reale the number of instructions yet */
 	try {
-	    if (codeData==null) return -1;
+	    if (codeData == null) return -1;
 	    return codeData.getBytecodeLength();
 	} catch (Exception ex) {
 	    System.err.println("What the hell");
@@ -216,6 +217,7 @@ public class MethodData extends MethodSource {
 	    exceptionClassCPIndex[i] = input.readUnsignedShort(); 
     }
   
+    @Override
     public String toString() {
 	return super.toString() + "\n" + 
 	    "AccessFlags        : " + accessFlags + "\n" + 
@@ -238,6 +240,7 @@ public class MethodData extends MethodSource {
     public int getModifiers() { return accessFlags; }
     
     private ArrayList verifyResults;
+    @Override
     public void setVerifyResult(VerifyResult newElm) {
 	if (newElm == null)
 	    return;
@@ -255,6 +258,7 @@ public class MethodData extends MethodSource {
 	    verifyResults.add(newElm);
 	}
     }
+    @Override
     public VerifyResult getVerifyResult(int type){
 	if (verifyResults == null){
 	    return null;

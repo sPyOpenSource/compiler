@@ -17,8 +17,8 @@ import java.util.ArrayList;
 public class BCMethodWithCode extends BCMethod {
     //private int numLocalVariables; 
     //private int numOperandSlots; 
-    private byte[] bytecode;
-    private int byteCodeSize;
+    private final byte[] bytecode;
+    private final int byteCodeSize;
 
     /** 
 	Offsets of these variables in the current 
@@ -26,9 +26,9 @@ public class BCMethodWithCode extends BCMethod {
     */ 
     //private int currentOperandsOffset; 
     //private int currentLocalVarOffset; 
-    private ConstantPool  cPool;
-    private ExceptionHandlerData[] handlers;
-    private boolean traceEntry=false;
+    private final ConstantPool  cPool;
+    private final ExceptionHandlerData[] handlers;
+    private final boolean traceEntry=false;
     
     /** 
 	The following two variables are only expected values 
@@ -41,7 +41,9 @@ public class BCMethodWithCode extends BCMethod {
 
     /** 
 	@param methodSource 
-	@param cPool the constant pool of the method's class 
+	@param cPool the constant pool of the method's class
+     * @param replaceInterfaceWithClass 
+     * @throws jx.compiler.CompileException 
     */ 
     public BCMethodWithCode(MethodSource methodSource, ConstantPool cPool, ArrayList replaceInterfaceWithClass)  
 	throws CompileException {

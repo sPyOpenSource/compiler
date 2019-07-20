@@ -12,14 +12,22 @@ class NativeClassSource extends ClassSource {
 	this.superName = superName;
     }
     // abstract public MethodSource[] getCompilableMethods();
+    @Override
     public MethodSource[] getMethods() {return new MethodSource[0];}
+    @Override
     public ConstantPool getConstantPool() {return null;}
+    @Override
     public MethodSource getMethod(String methodName, String methodType) {return null;}
+    @Override
     public String getClassName() {return className;}
+    @Override
     public String getSuperClassName() {return superName;}
     //public boolean isInterface() {return false;}
+    @Override
     public String[] getInterfaceNames() {return new String[0];}
+    @Override
     public FieldData[] getFields() {return new FieldData[0];}
+    @Override
     public String getSourceFileAttribute() {return null;}
 
     public boolean isPublic() {return true;}
