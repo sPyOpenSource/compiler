@@ -71,9 +71,9 @@ public class StartBuilder {
     private static String components;
     private static String javacpath;
 
-    private static boolean opt_f = false; // force recompilation 
-    private static boolean opt_c = false; // make clean
-    private static boolean opt_n = false; // do nothing
+    private static final boolean opt_f = false; // force recompilation 
+    private static final boolean opt_c = false; // make clean
+    private static final boolean opt_n = false; // do nothing
     private static boolean opt_fast = false; // compile only the jll that has changed
     private static boolean opt_new = false; // compute transitive if-depends, impl-depends, and extends relations
     private static boolean opt_debug = false; // verbose debug output
@@ -246,8 +246,7 @@ public class StartBuilder {
 
 	    boolean worktodo = false;
             for (String sda1 : sda) {
-                String dirname = null;
-                dirname = sda1;
+                String dirname = sda1;
                 String subdirname = filename + "/" + dirname + "/";
                 File subdir = new File(subdirname);
                 if (!subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
@@ -291,8 +290,7 @@ public class StartBuilder {
 	    if (compilerOpts.doJavaDoc()) { 
 		ArrayList output = new ArrayList();
                 for (String sda1 : sda) {
-                    String dirname = null;
-                    dirname = sda1;
+                    String dirname = sda1;
                     String subdirname = filename + "/" + dirname + "/";
                     File subdir = new File(subdirname);
                     if (! subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
@@ -376,13 +374,13 @@ public class StartBuilder {
 	if (worktodo) {
 	    try {
 		FileOutputStream out = new FileOutputStream(zipname);
-		java.util.zip.ZipOutputStream zip = new java.util.zip.ZipOutputStream(out);
-		zip.setMethod(java.util.zip.ZipOutputStream.STORED);
-		for(int m = 0; m < todo.size(); m++) {
-		    String subfile = (String)todo.get(m);
-		    addZipEntry(zip, filename, subfile);
-		}
-		zip.close();
+                try (java.util.zip.ZipOutputStream zip = new java.util.zip.ZipOutputStream(out)) {
+                    zip.setMethod(java.util.zip.ZipOutputStream.STORED);
+                    for(int m = 0; m < todo.size(); m++) {
+                        String subfile = (String)todo.get(m);
+                        addZipEntry(zip, filename, subfile);
+                    }
+                }
 		return true;
 	    } catch(IOException ex) {
 		new File(zipname).delete();
@@ -400,10 +398,11 @@ public class StartBuilder {
     static void addZipEntry(java.util.zip.ZipOutputStream zip, String absdir, String subfile) throws Exception {
 	String absfile = absdir + "/" + subfile;
 
-	RandomAccessFile f = new RandomAccessFile(absfile, "r");
-	byte [] data = new byte[(int)f.length()];
-	f.readFully(data);
-	f.close();
+        byte[] data;
+        try (RandomAccessFile f = new RandomAccessFile(absfile, "r")) {
+            data = new byte[(int)f.length()];
+            f.readFully(data);
+        }
 	java.util.zip.ZipEntry entry = new java.util.zip.ZipEntry(subfile);
 	entry.setSize(data.length);
 	java.util.zip.CRC32 crc = new java.util.zip.CRC32();

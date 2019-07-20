@@ -11,6 +11,7 @@ public interface HLS_blocked{
 
              /** A thread was blocked. <BR>
 		 a running thread was blocked (maybe it called cpuManager::block)<BR>
-	         <B>! IRQ are disabled during execution of this method</B> <BR>*/
+	         <B>! IRQ are disabled during execution of this method</B> <BR
+     * @param Thread>*/
 /* yes */    public void blocked    (CPUState Thread);
 }

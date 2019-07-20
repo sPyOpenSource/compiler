@@ -17,20 +17,24 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
     targetNCIndex = -1; 
   }
 
+  @Override
     public String getDescription() {
 	return super.getDescription()+",nativecode.InternalAddr="+targetNCIndex;
     }
 
+  @Override
   public boolean isResolved() {
       if (! isRelative()) return false; /* needs codebase */
       return ((targetNCIndex != -1) && (getNextInstrNCIndex() != -1));
   }
 
+  @Override
   public int getValue() {
     //Debug.assert(isResolved()); 
     return targetNCIndex;
   }
 
+  @Override
   public boolean isValueRelativeToCodeBase() {
     return true; 
   }
@@ -39,6 +43,7 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
     targetNCIndex = ncIndex;
   }
 
+  @Override
   public void apply(byte[] code, int codeBase) {
     //Debug.assert(isReadyForApply());
     applyValue(code, codeBase, targetNCIndex + codeBase); 
@@ -51,18 +56,21 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
     Debug.out.println("InternalAddrSTEntry::applyRelative "+targetNCIndex);
   }
 
+  @Override
   protected void insertInteger(byte[] code, int ncIndex,
 				      int value, int numBytes) {
       //Debug.out.println("InternalAddrSTEntry::insertInteger "+value);
       super.insertInteger(code, ncIndex, value, numBytes);
   }
 
+  @Override
   public void writeEntry(ExtendedDataOutputStream out) throws IOException {
       super.writeEntry(out);
       out.writeInt(targetNCIndex);
   }
 
 
+  @Override
     public void dump() {
 	super.dump();
 	Debug.out.println(" InternalAddrSTEntry");

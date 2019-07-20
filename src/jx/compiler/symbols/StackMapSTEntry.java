@@ -10,13 +10,13 @@ import jx.compiler.execenv.TypeMap;
 
 public class StackMapSTEntry extends SymbolTableEntryBase {
 
-    private MethodStackFrame frame;  
+    private final MethodStackFrame frame;  
 
-    private boolean[] lvars;
-    private boolean[] vars;
-    private boolean[] oprs;
-    private int       immediateNCIndexPre;
-    private IMNode    node;
+    private final boolean[] lvars;
+    private final boolean[] vars;
+    private final boolean[] oprs;
+    private final int       immediateNCIndexPre;
+    private final IMNode    node;
 
     public StackMapSTEntry(IMNode node,int preIP,MethodStackFrame frame) {
 	this.frame     = frame;
@@ -27,23 +27,28 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 	this.immediateNCIndexPre = preIP;
     }
 
+    @Override
     public String getDescription() {
 	return super.getDescription()+",symbols.StackMapSTEntry";
     }
     
+    @Override
     public boolean isResolved() {
 	return false;
     }
 
+    @Override
     public int getValue() {
 	Debug.throwError();
 	return 0;
     }
 
+    @Override
     public void apply(byte[] code, int codeBase) {
 	Debug.throwError();
     }
 
+    @Override
     public void writeEntry(ExtendedDataOutputStream out) throws IOException {
 	super.writeEntry(out);
 	out.writeInt(immediateNCIndexPre);      
@@ -64,20 +69,14 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 
 	m=extraSpace;
 	if (lvars!=null) {
-	    for (int i=0;i<lvars.length;i++) {
-		currStackMap[m + i] = lvars[i];
-	    }
+            System.arraycopy(lvars, 0, currStackMap, m, lvars.length);
 	}
 
 	m+=lvarSize;
-	for (int i=0;i<vars.length;i++) {
-	    currStackMap[m + i] = vars[i];
-	}
+        System.arraycopy(vars, 0, currStackMap, m, vars.length);
 
 	m+=varSize;
-	for (int i=0;i<oprs.length;i++) {
-	    currStackMap[m + i] = oprs[i];
-	}
+        System.arraycopy(oprs, 0, currStackMap, m, oprs.length);
 
 	if (node.getCompilerOptions().isOption("dumpStackMaps")) {Debug.out.println(toString(currStackMap));}
 	    

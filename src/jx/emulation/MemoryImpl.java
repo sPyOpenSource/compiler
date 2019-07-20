@@ -40,6 +40,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     }
 
+    @Override
     public void copy(int from, int to, int length) {
 	if ((from+length > size) || (to+length > size)) { 
 	    Debug.message("copy: memory("+start+","+size+") accessed out of range from="+from+", to="+to+", length="+length);
@@ -48,39 +49,47 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	coreCopy(start+from, start+to, length);
     }
 
+    @Override
     public void move(int dst, int src, int count) {
 	throw new Error("not implemented!");
     }
 
+    @Override
     public void clear() {throw new Error("not emulated");}
 
+    @Override
     public void fill16(short what, int offset, int length) {
 	if ((offset+length)*2 > size) { Debug.message("copy: memory accessed out of range"); return; }
 	coreFill16(what, start+(offset<<1), length);
     }
     public void fill8(byte what, int offset, int length) {
-	if ((offset+length)*2 > size) { Debug.message("copy: memory accessed out of range"); return; }
+	if ((offset+length)*2 > size) { Debug.message("copy: memory accessed out of range"); }
 	
     }
+    @Override
     public void fill32(int what, int offset, int length) { throw new Error("not implemented");}
     /**
      * @param where a 8-bit offset into this memory
      */
+    @Override
     public void set8(int where, byte what) {
 	if (where < 0 || where >= size) { Debug.message("copy: memory accessed out of range"); return; }
 	coreSet8(start+where, what);
     }
     // where is a 16-bit offset
+    @Override
     public void set16(int where, short what) {
 	if (where < 0 || (where<<1) >= size) { Debug.message("copy: memory accessed out of range"); return; }
 	coreSet16(start+(where<<1), what);
     }
     // where is a 32-bit offset
+    @Override
     public void set32(int where, int what) {
 	if (where < 0 || (where<<2) >= size) { Debug.message("copy: memory accessed out of range"); return; }
 	coreSet32(start+(where<<2), what);
     }
     // where is a 8-bit offset
+    @Override
     public byte get8(int where) {
 	if (where < 0 || where >= size) { 
 	  Debug.message("get8: memory accessed out of range " + where + "/" + size);
@@ -89,11 +98,13 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	return coreGet8(start+where); 
     }
     // where is a 16-bit offset
+    @Override
     public short get16(int where) {
 	if (where < 0 || (where<<1) >= size) { Debug.message("copy: memory accessed out of range"); return -1; }
 	return coreGet16(start+(where<<1)); 
     }
     // where is a 32-bit offset
+    @Override
     public int get32(int where) {
 	if (where < 0 || (where<<2) >= size) {Debug.message("get32: " + where + "/" + size); return -1; }/* error message ? */
 	return coreGet32(start+(where<<2));
@@ -113,6 +124,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    set8(mem_offset+i, array[array_offset+i]);
     }
 
+    @Override
     public void copyToByteArray(byte[] array, int array_offset, int mem_offset, int len) {
 	//Debug.out.println("copyToByteArray: mem_offset="+mem_offset);
 	if (array_offset >= array.length)
@@ -127,6 +139,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    array[array_offset+i] = get8(mem_offset+i);
     }
 
+    @Override
     public int copyToMemory(Memory dst, int srcOffset, int dstOffset, int len) {
 	if (srcOffset < 0
 	    || len < 0
@@ -137,16 +150,19 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	return 0;
     }
 
+    @Override
     public int copyFromMemory(Memory src, int srcOffset, int dstOffset, int len) {
 	for(int i=0; i<len; i++) this.set8(dstOffset+i, src.get8(srcOffset+i));
 	return 0;
     }
 
     // return size in bytes
+    @Override
     public int size() {
 	return size;
     }
 
+    @Override
     public int getStartAddress() {
 	return start;
     }
@@ -165,6 +181,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    |   (core[where + 0] & 0xff); 
     }
 
+    @Override
     public int getLittleEndian32(int where) { 
 	where = where + start;
 	return ((core[where + 3] << 24) & 0xff000000) 
@@ -173,6 +190,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    |   (core[where + 0] & 0xff); 
     }
 	
+    @Override
     public void setLittleEndian32(int where, int what)  {
 	where = where + start;
 	core[where   +  3 ] = (byte)((what >>> 24) & 0xff); 
@@ -190,20 +208,25 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    |   (core[where + 0] & 0xff)); 
     }
 
+    @Override
     public short getLittleEndian16(int where) { 
 	where = where + start;
 	return (short)( ((core[where + 1] <<  8) & 0xff00) 
 			|   (core[where + 0] & 0xff)); 
     }
     
+    @Override
     public void setLittleEndian16(int where, short what)  {
 	where = where + start;
 	core[(where) + 1] = (byte)((what >>> 8) & 0xff); 
 	core[(where) + 0] = (byte)(what & 0xff); 
     }
 
-    /**** big endian ***/
+    /**** big endian
+     * @param where
+     * @return  ***/
 
+    @Override
     public int getBigEndian32(int where) { 
 	where = where + start;
 	return ((core[where + 0] << 24) & 0xff000000) 
@@ -212,6 +235,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    |   (core[where + 3] & 0xff); 
     }
 	
+    @Override
     public void setBigEndian32(int where, int what)  {
 	where = where + start;
 	core[where   +  0 ] = (byte)((what >>> 24) & 0xff); 
@@ -220,12 +244,14 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	core[(where) + 3] = (byte)(what & 0xff); 
     }
 
+    @Override
     public short getBigEndian16(int where) { 
 	where = where + start;
 	return (short)( ((core[where + 0] <<  8) & 0xff00) 
 			|   (core[where + 1] & 0xff)); 
     }
     
+    @Override
     public void setBigEndian16(int where, short what)  {
 	where = where + start;
 	core[(where) + 0] = (byte)((what >>> 8) & 0xff); 
@@ -311,6 +337,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	}
     }
 
+    @Override
     public Object map(VMClass vmclass) {
 	throw new Error("map not emulated");
     }
@@ -490,6 +517,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    |  (core[(where) + 3] & 0xff); 
     }
 
+    @Override
     public Memory getSubRange(int start, int size) {
 	if (start+size > this.size) {
 	    Debug.message("getSubRange: memory("+this.start+","+this.size+") accessed out of range start="+start+", size="+size);
@@ -504,6 +532,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	return m;
     }
 
+    @Override
     public ReadOnlyMemory getReadOnlySubRange(int start, int size) {
 	if (start+size > this.size) {
 	    Debug.message("getSubRange: memory("+this.start+","+this.size+") accessed out of range start="+start+", size="+size);
@@ -524,44 +553,61 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	throw new Error("not implemented");
     }
 
+    @Override
     public void split2(int offset, Memory[] parts) {throw new Error();}
 
+    @Override
     public void split3(int offset, int size, Memory[] parts) {throw new Error();}
 
+    @Override
     public Memory joinPrevious() {throw new Error();}
 
+    @Override
     public Memory joinNext() {throw new Error();}
 
+    @Override
     public Memory joinAll() {throw new Error();}
 
     // represents a subrange of Memory
     class SubMemory extends MemoryImpl {
 
+        @Override
 	protected  void coreCopy(int from, int to, int length) {
 	    super.coreCopy(from+start, to+start, length);
 	}
+        @Override
 	protected void coreFill16(short what, int offset, int length) {
 	    super.coreFill16(what, start+offset, length);
 	}
+        @Override
 	protected void coreSet8(int where, byte what) {
 	    super.coreSet8(where, what);
 	}
+        @Override
 	protected void coreSet16(int where, short what) {
 	    super.coreSet16(start+where, what);
 	}
+        @Override
 	protected void coreSet32(int where, int what) {
 	    super.coreSet32(start+where, what);
 	}
+        @Override
 	protected byte coreGet8(int where) { return super.coreGet8(where); }
+        @Override
 	protected short coreGet16(int where) { return super.coreGet16(start+where); }
+        @Override
 	protected int coreGet32(int where) { return super.coreGet32(start+where);	}
     }
 
+    @Override
     public Memory revoke() { throw new Error(); }
     public Memory extendAndRevoke() { throw new Error(); }
     public int getOffset() { throw new Error(); }
+    @Override
     public boolean isValid() { throw new Error();}
 
+    @Override
     public boolean equals(Object o) {return this == o; }
+    @Override
     public Object clone() { throw new Error(); }
 }

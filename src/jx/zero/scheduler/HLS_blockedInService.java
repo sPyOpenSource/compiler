@@ -16,6 +16,8 @@ public interface HLS_blockedInService{
 		 blockedInService ist equivalent to blockedInPortalCall
 		 but the HLS gets a Proxy of the Portal-Thread
 		 So the Domain can donate it's CPU time to the Portal Domain<BR>
-	         <B>! IRQ are disabled during execution of this method</B> <BR>*/
+	         <B>! IRQ are disabled during execution of this method</B> <BR
+     * @param Thread>
+     * @param PortalThread*/
 /* yes */    public void blockedInService (CPUState Thread, CPUStateLink PortalThread);
 }

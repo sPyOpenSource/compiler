@@ -17,19 +17,23 @@ public class DEPFunctionSTEntry extends SymbolTableEntryBase {
 	this.methodSignature = methodSignature;
     }
     
+    @Override
     public String getDescription() {
 	return super.getDescription()+",DEP:"+className+ "."+ methodName+ methodSignature;
     }
 
+    @Override
     public void apply(byte[] code, int codeBase) {
 	//Debug.assert(isReadyForApply()); 
 	myApplyValue(code, codeBase, getValue()); 
     }
 
+    @Override
     public String toGASFormat() {
 	return "0x"+Integer.toHexString(getValue());
     }
 
+    @Override
     public void writeEntry(ExtendedDataOutputStream out) throws IOException {
 	super.writeEntry(out);
 	out.writeString(className);
@@ -37,6 +41,7 @@ public class DEPFunctionSTEntry extends SymbolTableEntryBase {
 	out.writeString(methodSignature);
     }
     
+    @Override
     public void readEntry(ExtendedDataInputStream in) throws IOException {
 	super.readEntry(in);
 	className = in.readString();

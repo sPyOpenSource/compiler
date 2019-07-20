@@ -23,6 +23,8 @@ public interface HLS_serviceCalled{
 
 	 	 if this Interface is not implemented, off-hand Scheduling is used. <BR>
                  <B>! IRQ are disabled during execution of this method</B> <BR>
+     * @param Thread
+     * @param PortalThread
 		 @return 
 		 TRUE: if off-hand scheduling is desired <BR>
 		 FALSE: if the Portal Thread should be unblocked only*/

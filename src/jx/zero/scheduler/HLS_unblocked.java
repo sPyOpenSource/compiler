@@ -12,6 +12,7 @@ public interface HLS_unblocked{
              /** A thread was unblocked. <BR>
 		 a thread was marked RUNNABLE<BR>
 		 the scheduler should store the thread for later execution <BR>
-	         <B>! IRQ are disabled during execution of this method</B><BR> */
+	         <B>! IRQ are disabled during execution of this method</B><BR>
+     * @param newThread */
 /* yes */    public void unblocked  (CPUState newThread);
 }

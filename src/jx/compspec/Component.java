@@ -9,6 +9,7 @@ public class Component {
     String getComponentName() { return name; }
     String[] getSubDirs() { return subdirs; }
 
+    @Override
     public String toString() {
 	String s = name;
 	for(Component c = this; c.extendsOn != null; c = c.extendsOn) s += "::"+c.extendsOn.name;

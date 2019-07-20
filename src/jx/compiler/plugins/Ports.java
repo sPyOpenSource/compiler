@@ -12,10 +12,10 @@ import jx.compiler.execenv.*;
 
 public class Ports implements CompilerPlugin {
 
-    private boolean fastConstants=false;
+    private final boolean fastConstants=false;
 
-    private ExecEnvironmentIA32      e;
-    private CompilerOptionsInterface opts;
+    private final ExecEnvironmentIA32      e;
+    private final CompilerOptionsInterface opts;
     private BinaryCodeIA32           code;
     private RegManager               regs;
 
@@ -24,6 +24,7 @@ public class Ports implements CompilerPlugin {
 	this.opts = e.getCompilerOptions();
     }
 
+    @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,

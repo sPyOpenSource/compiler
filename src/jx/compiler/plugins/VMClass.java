@@ -17,6 +17,7 @@ public class VMClass implements CompilerPlugin {
 	this.e = e;
     }
 
+    @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,
@@ -35,15 +36,19 @@ public class VMClass implements CompilerPlugin {
 	obj.translate(objRef);
 	regs.freeIntRegister(objRef);
 	code.pushl(objRef);
-	if (methodName.equals("getName")) {
-	    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETCLASSNAME));
-	} else if (methodName.equals("getInstanceSize")) {
-	    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETINSTANCESIZE));
-	} else if (methodName.equals("isPrimitive")) {
-	    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_ISPRIMITIVE));
-	} else {
-	    throw new CompileException("VMClass: method not implemented");
-	}
+        switch (methodName) {
+            case "getName":
+                code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETCLASSNAME));
+                break;
+            case "getInstanceSize":
+                code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_GETINSTANCESIZE));
+                break;
+            case "isPrimitive":
+                code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_ISPRIMITIVE));
+                break;
+            default:
+                throw new CompileException("VMClass: method not implemented");
+        }
 	code.addl(4,Reg.esp);
 
 	if (methodName.equals("getName")) {
@@ -57,5 +62,4 @@ public class VMClass implements CompilerPlugin {
 	
 	return true;
     }
-    
 }

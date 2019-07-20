@@ -12,6 +12,7 @@ public interface HLS_destroyed{
              /** A thread was destroyed. <BR>
 		 a running thread has ended its execution<BR>
 		 the scheduler can destroy all information stored about this thread<BR>
-	         <B>! IRQ are disabled during execution of this method</B> <BR>*/
+	         <B>! IRQ are disabled during execution of this method</B> <BR
+     * @param Thread>*/
 /* yes */    public void destroyed  (CPUState Thread);
 }

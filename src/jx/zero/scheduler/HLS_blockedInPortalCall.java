@@ -11,6 +11,7 @@ public interface HLS_blockedInPortalCall{
 
              /** A thread called a Portal. <BR>
 		 a running thread was blocked due to a Portal call<BR>
-	         <B>! IRQ are disabled during execution of this method</B> <BR>*/
+	         <B>! IRQ are disabled during execution of this method</B> <BR
+     * @param Thread>*/
 /* yes */    public void blockedInPortalCall (CPUState Thread);
 }

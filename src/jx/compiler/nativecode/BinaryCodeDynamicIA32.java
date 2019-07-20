@@ -57,7 +57,7 @@ public final class BinaryCodeDynamicIA32 {
     /** 
 	contains the native exception handlers
     */ 
-    private ArrayList exceptionHandlers; 
+    private final ArrayList exceptionHandlers; 
 
     public BinaryCodeDynamicIA32() {
 	code = new byte[INITSIZE]; 
@@ -420,6 +420,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        Integer Subtraction
+     * @param src
+     * @param des
     */
 
     public void subl(Opr src,Reg des) {
@@ -470,6 +472,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        Integer Subtraction with Borrow
+     * @param src
+     * @param des
     */
 
     public void sbbl(Opr src,Reg des) {
@@ -486,6 +490,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        Integer Unsigned Multiplication of eax  (10 clk)
+     * @param src
     */
 
     public void mull(Opr src) {
@@ -496,9 +501,9 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        Integer Signed Multiplication (10 clk)
+     * @param src
+     * @param des
     */
-
-
     public void imull(Opr src,Reg des) {
 	realloc();
 	insertByte(0x0f); 
@@ -543,6 +548,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        increment by 1 (1/3 clks)
+     * @param opr
     */
 
     public void incb(Opr opr) {
@@ -553,6 +559,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /** 
        increment by 1 (1/3 clks)
+     * @param ref
     */
 
     public void incl(Ref ref) {
@@ -563,6 +570,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        increment register by 1 (1 clks)
+     * @param reg
     */
 
     public void incl(Reg reg) {
@@ -577,7 +585,8 @@ public final class BinaryCodeDynamicIA32 {
         m = index * [0,1,2,4,8] + base + disp
 
         base.disp(disp,index,[0,1,2,4,8])
-        
+     * @param opr        
+     * @param reg        
     */
 
     public void lea(Opr opr,Reg reg) {
@@ -588,6 +597,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SHL/SAL Shift left (1/3 clks)
+     * @param immd
+     * @param des
     */
 
     public void shll(int immd, Opr des) {
@@ -604,6 +615,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SHL/SAL Shift left by %cl (4 clks)
+     * @param des
     */
 
     public void shll(Opr des) {
@@ -615,6 +627,9 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SHLD Double Precision Shift left (4 clks)
+     * @param immd
+     * @param low
+     * @param des
     */
 
     public void shld(int immd,Reg low, Opr des) {
@@ -627,6 +642,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SHLD Double Precision Shift left by %cl (4/5 clks)
+     * @param low
+     * @param des
     */
 
     public void shld(Reg low,Opr des) {
@@ -638,6 +655,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SHR Shift right (1/3 clks)
+     * @param immd
+     * @param des
     */
 
     public void shrl(int immd, Opr des) {
@@ -661,6 +680,7 @@ public final class BinaryCodeDynamicIA32 {
 
    /**
        SHL/SAL Shift left by %cl (4 clks)
+     * @param des
     */
 
     public void shrl(Opr des) {
@@ -671,6 +691,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SAR Shift right (signed) (1/3 clks)
+     * @param immd
+     * @param des
     */
 
     public void sarl(int immd, Opr des) {
@@ -687,6 +709,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        SAR Shift right by %cl (signed) (4 clks)
+     * @param des
     */
 
     public void sarl(Opr des) {
@@ -697,6 +720,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        DIV Signed Divide
+     * @param src
     */
 
     public void idivl(Opr src) {
@@ -707,6 +731,7 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        DIV Unsigned Divide
+     * @param src
     */
 
     public void divl(Opr src) {
@@ -717,6 +742,8 @@ public final class BinaryCodeDynamicIA32 {
 
     /**
        Add
+     * @param src
+     * @param des
     */
 
     public void addl(Opr src,Reg des) {

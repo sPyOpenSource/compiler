@@ -10,14 +10,15 @@ import jx.compiler.execenv.*;
 
 public class Debug implements CompilerPlugin {
 
-    private ExecEnvironmentIA32 e;
-    private CompilerOptionsInterface     opts;
+    private final ExecEnvironmentIA32 e;
+    private final CompilerOptionsInterface     opts;
 
     public Debug(ExecEnvironmentIA32 e) {
 	this.e    = e;
 	this.opts = e.getCompilerOptions();
     }
 
+    @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,

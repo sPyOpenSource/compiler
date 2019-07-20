@@ -16,7 +16,8 @@ public interface HLS_yielded{
 		 Warnig: if the Thread is the only Thread in this Domain, 
 		 it can be undesirable to activate this thread immediatly
 		 the scheduler should rather call HLScheduler::yield <BR>
-	         <B>! IRQ are disabled during execution of this method</B><BR> */
+	         <B>! IRQ are disabled during execution of this method</B><BR>
+     * @param newThread */
 /* yes */    public void yielded    (CPUState newThread);
 
 }

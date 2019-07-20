@@ -16,31 +16,36 @@ public class TCBOffsetSTEntry extends SymbolTableEntryBase {
 	this.kind = kind;
     }
 
+    @Override
     public String getDescription() {
 	return super.getDescription()+",ProfileSTEntry";
     }
     
+    @Override
     public int getValue() {
 	return 0;
     }
     
+    @Override
     public void apply(byte[] code, int codeBase) {
 	//Debug.assert(isReadyForApply()); 
 	myApplyValue(code, codeBase, getValue()); 
     }
 
+    @Override
     public String toGASFormat() {
 	return "0x"+Integer.toHexString(getValue());
     }
 
-  public void writeEntry(ExtendedDataOutputStream out) throws IOException {
+    @Override
+    public void writeEntry(ExtendedDataOutputStream out) throws IOException {
       super.writeEntry(out);
       out.writeInt(kind);
-  }
+    }
 
-  public void readEntry(ExtendedDataInputStream in) throws IOException {
+    @Override
+    public void readEntry(ExtendedDataInputStream in) throws IOException {
       super.readEntry(in);
       kind   = in.readInt();
-  }
-  
+    }
 }

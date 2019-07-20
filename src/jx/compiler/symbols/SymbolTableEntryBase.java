@@ -106,6 +106,7 @@ public abstract class SymbolTableEntryBase {
 	if this method returns false, the codeBase-Parameter of
 	apply() has not effect (the entry can be resolved before 
 	the codebase is known) 
+     * @return 
     */ 
     public final boolean needsCodeBase() {
 	return isImmediateRelative != isValueRelativeToCodeBase();
@@ -132,12 +133,14 @@ public abstract class SymbolTableEntryBase {
     /** 
 	True, if the value returned by getValue() 
 	is relative to the code base. 
+     * @return 
     */ 
     public boolean isValueRelativeToCodeBase() {
 	return false; 
     }
     
-    /** 
+    /**
+     * @param codeBase
 	@return the absolute value of this entry. 
 	(favor this method over getValue() !!!) 
     */ 
@@ -151,6 +154,9 @@ public abstract class SymbolTableEntryBase {
     /** 
 	make an entry that is relative to the next 
 	instructions position (call, jge, jmp ...) 
+     * @param immediateNCIndex
+     * @param numBytes
+     * @param nextInstrNCIndex
     */ 
     public void initNCIndexRelative(int immediateNCIndex,
 				    int numBytes,
@@ -163,6 +169,8 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	make an entry with absolute value
+     * @param immediateNCIndex
+     * @param numBytes
     */  
     public void initNCIndexAbsolute(int immediateNCIndex,
 				    int numBytes) {
@@ -201,6 +209,8 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	insert the value of the entry into the code 
+     * @param code
+     * @param codeBase
     */ 
     public abstract void apply(byte[] code, int codeBase);   
     
@@ -253,6 +263,9 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	insert the value of 'absoluteValue' into the code 
+     * @param code
+     * @param codeBase
+     * @param absoluteValue
     */ 
     protected final void applyValue(byte[] code, int codeBase, int absoluteValue) {
 	resolvedValue = absoluteValue; 
@@ -263,6 +276,9 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	insert the value of 'absoluteAddress' into the code 
+     * @param code
+     * @param codeBase
+     * @param absoluteAddress
     */ 
     protected final void myApplyValue(byte[] code, int codeBase, int absoluteAddress) {
 	resolvedCodeBase = codeBase;
@@ -273,6 +289,8 @@ public abstract class SymbolTableEntryBase {
     /** 
      *  reolve a relative address
      * (useful for entries like UnresolvedJump)
+     * @param code
+     * @param targetNCIndex
      */ 
     protected final void myApplyValue(byte[] code, int targetNCIndex) {
 	resolvedValue = getRelativeOffset(targetNCIndex);
@@ -290,6 +308,8 @@ public abstract class SymbolTableEntryBase {
     /** 
 	insert a value that is relative to the codebase into 
 	the code. 
+     * @param code
+     * @param relativeToCodeBaseValue
     */ 
     protected final void applyRelativeValue(byte[] code, int relativeToCodeBaseValue) {
 	//Debug.assert(isImmediateRelative); 
@@ -301,6 +321,8 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	Insert an integer into the code. 
+     * @param code
+     * @param value
     */ 
     protected final void insertInteger(byte[] code, int value) {
 	// Debug.assert(numBytes==4 || (value < 128 && value >= -128)); 
@@ -309,10 +331,14 @@ public abstract class SymbolTableEntryBase {
     
     /** 
 	Insert an integer into the code. 
+     * @param code
+     * @param ncIndex
+     * @param value
+     * @param numBytes
     */       
     protected void insertInteger(byte[] code, int ncIndex,
 				 int value, int numBytes) {
-	code[ncIndex] = (byte)(value >> 0); 
+	code[ncIndex] = (byte)value; 
 	if (numBytes == 1) return; 
 	code[ncIndex+1] = (byte)(value >> 8); 
 	if (numBytes == 2) return;     
@@ -320,6 +346,7 @@ public abstract class SymbolTableEntryBase {
 	code[ncIndex+3] = (byte)(value >> 24);
     } 
 
+    @Override
     public String toString() {
 	return getDescription();
     }

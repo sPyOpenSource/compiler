@@ -33,39 +33,46 @@ public class StaticFieldSTEntry extends SymbolTableEntryBase {
 	this.offset = offset;
     }  
     
+    @Override
     public String getDescription() {
 	return super.getDescription()+",StaticField:"+className+ "."+ offset;
     }
     
+    @Override
     public int getValue() {
 	return 0;
     }
     
+    @Override
     public void apply(byte[] code, int codeBase) {
 	//Debug.assert(isReadyForApply()); 
 	myApplyValue(code, codeBase, getValue()); 
     }
 
+    @Override
     public String toGASFormat() {
 	return "0x"+Integer.toHexString(getValue());
     }
 
-  public void writeEntry(ExtendedDataOutputStream out) throws IOException {
+    @Override
+    public void writeEntry(ExtendedDataOutputStream out) throws IOException {
       super.writeEntry(out);
       //out.writeString(className);
       if (!validID) throw new Error("invalid String ID");
       out.writeInt(stringID);
       out.writeInt(kind);
       out.writeInt(offset);
-  }
+    }
 
-  public void readEntry(ExtendedDataInputStream in) throws IOException {
+    @Override
+    public void readEntry(ExtendedDataInputStream in) throws IOException {
       super.readEntry(in);
       className = in.readString();
       kind   = in.readInt();
       offset = in.readInt();
-  }
+    }
 
+    @Override
     public void registerStrings(StringTable stringTable) {
 	stringID = stringTable.getIdentifier(className);
 	validID  = true;

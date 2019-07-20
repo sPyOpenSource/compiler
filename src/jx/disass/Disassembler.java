@@ -24,11 +24,11 @@ public class Disassembler {
     static String[] index_name16 = {"SI", "DI", "SI", "DI", "SI", "DI", "??", "??"};
     static String[] index_name32 =  {"EAX", "ECX", "EDX", "EBX", "???", "EBP", "ESI", "EDI"};
 
-    static final int  BX_SEGMENT_REG   =    10;
+    static final int BX_SEGMENT_REG       = 10;
     static final int BX_GENERAL_8BIT_REG  = 11;
-    static final int BX_GENERAL_16BIT_REG =12;
-    static final int BX_GENERAL_32BIT_REG =13;
-    static final int BX_NO_REG_TYPE       =14;
+    static final int BX_GENERAL_16BIT_REG = 12;
+    static final int BX_GENERAL_32BIT_REG = 13;
+    static final int BX_NO_REG_TYPE       = 14;
 
     String instruction = "";
     String seg_override = null;

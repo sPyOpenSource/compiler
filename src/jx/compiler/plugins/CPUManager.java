@@ -17,8 +17,8 @@ public class CPUManager implements CompilerPlugin {
   private final static int EVENT_RECORD_SIZE = 20;
   private final static int EVENT_TIME_FIELD  = 12;
 
-    private ExecEnvironmentIA32 e;
-    private CompilerOptionsInterface     opts;
+    private final ExecEnvironmentIA32 e;
+    private final CompilerOptionsInterface     opts;
     private BinaryCodeIA32      code;
     private RegManager          regs;
 
@@ -162,6 +162,7 @@ public class CPUManager implements CompilerPlugin {
       code.addJumpTarget(jumpForward);
   }
 
+  @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,

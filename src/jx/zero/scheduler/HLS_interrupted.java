@@ -12,6 +12,7 @@ public interface HLS_interrupted{
              /** A thread was interrupted. <BR>
 		 the Scheduler may activate it again immediately or<BR>
 		 store the thread for later execution <BR>
-	         <B>! IRQ are disabled during execution of this method</B><BR> */
+	         <B>! IRQ are disabled during execution of this method</B><BR>
+     * @param newThread */
 /* yes */    public void interrupted(CPUState newThread);
 }

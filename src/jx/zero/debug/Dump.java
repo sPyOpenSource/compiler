@@ -10,6 +10,8 @@ public class Dump {
   /**
     * Hexdump in the style:
     *  7f  45  4c  46  01  01  01  00
+     * @param data
+     * @param len
     */
   public static void xdump(byte[] data, int len) {
     if (len > data.length) len = data.length;
@@ -41,6 +43,8 @@ public class Dump {
   /**
     * hexdump in the style:
     * 00000000    7f454c46 01010100 00000000 00000000    .ELF............
+     * @param data
+     * @param len
     */
   public static void xdump1(byte[] data, int len) {
     if (len > data.length) len = data.length;

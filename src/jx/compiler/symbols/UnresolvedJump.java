@@ -21,6 +21,7 @@ public class UnresolvedJump extends InternalAddrSTEntry {
     initNCIndexRelative(immediateNCIndex, 4, nextInstrNCIndex); 
   }
 
+        @Override
     public String getDescription() {
 	if (isResolved()) {
 	    return super.getDescription()+",UnresolvedJump="+getValue();
@@ -29,32 +30,37 @@ public class UnresolvedJump extends InternalAddrSTEntry {
 	}
     }
 
+        @Override
     public void apply(byte[] code, int codeBase) {
 	//Debug.out.print("UNRESOLVEDJUMP::apply ");
 	myApplyValue(code, targetNCIndex); 
     }
 
+        @Override
     public String toGASFormat() {
 	return ".L"+targetNCIndex;
     }
 
 
+        @Override
     public void initNCIndexRelative(int immediateNCIndex, int numBytes, int nextInstrNCIndex) {
 	Debug.throwError("this is the wrong method to call!");
     }
 
-  public void initNCIndexAbsolute(int immediateNCIndex,  int numBytes) {
-	Debug.throwError("this is the wrong method to call!");
-  }
+        @Override
+    public void initNCIndexAbsolute(int immediateNCIndex,  int numBytes) {
+        Debug.throwError("this is the wrong method to call!");
+    }
 
-  public void writeEntry(ExtendedDataOutputStream out) throws IOException {
+        @Override
+    public void writeEntry(ExtendedDataOutputStream out) throws IOException {
       super.writeEntry(out);
-  }
+    }
 
+        @Override
     public void dump() {
 	Debug.out.println(" UnresolvedJump");
 	Debug.out.println(" Bytecode : "+bcPosition);
 	super.dump();
     }
-
 }

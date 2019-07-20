@@ -26,23 +26,28 @@ public class ExceptionTableSTEntry extends UnresolvedJump {
 	}
     }
 
+    @Override
     public String getDescription() {
 	return super.getDescription()+",symbols.ExceptionTableSTEntry";
     }
     
+    @Override
     public boolean isResolved() {
 	return false;
     }
 
+    @Override
     public int getValue() {
 	Debug.throwError();
 	return 0;
     }
 
+    @Override
     public void apply(byte[] code, int codeBase) {
 	Debug.throwError();
     }
 
+    @Override
     public void writeEntry(ExtendedDataOutputStream out) throws IOException {
 	super.writeEntry(out);
 	out.writeInt(handler.getStartBCIndex());
@@ -52,6 +57,7 @@ public class ExceptionTableSTEntry extends UnresolvedJump {
 	out.writeInt(stringID);
     }  
 
+    @Override
     public void registerStrings(StringTable stringTable) {
 	stringID = stringTable.getIdentifier(className);
 	validID  = true;

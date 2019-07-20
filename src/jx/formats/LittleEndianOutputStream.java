@@ -46,6 +46,7 @@ public class LittleEndianOutputStream extends FilterOutputStream {
 	writeInt(checksum);
     }
 
+    @Override
     public void write(int b) throws IOException {
 	if (doChecksum) checksum = (checksum ^ b) & 0xff;
 	super.write(b);

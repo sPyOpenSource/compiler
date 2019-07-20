@@ -20,8 +20,8 @@ public class Memory implements CompilerPlugin {
 
     private final static boolean fastConstants=true;
 
-    private ExecEnvironmentIA32      e;
-    private CompilerOptionsInterface opts;
+    private final ExecEnvironmentIA32      e;
+    private final CompilerOptionsInterface opts;
     private BinaryCodeIA32           code;
     private RegManager               regs;
 
@@ -30,6 +30,7 @@ public class Memory implements CompilerPlugin {
 	this.opts = e.getCompilerOptions();
     }
 
+    @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,

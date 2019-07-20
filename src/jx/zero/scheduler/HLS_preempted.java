@@ -12,6 +12,7 @@ public interface HLS_preempted{
 
              /** A thread was preempted. <BR>
 		 the Scheduler should store the thread for later execution <BR>
-	         <BR><B>! IRQ are disabled during execution of this method</B><BR> */
+	         <BR><B>! IRQ are disabled during execution of this method</B><BR>
+     * @param newThread */
 /* yes */    public void preempted  (CPUState newThread);
 }

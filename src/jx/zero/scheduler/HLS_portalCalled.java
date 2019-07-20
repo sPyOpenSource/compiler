@@ -16,6 +16,7 @@ public interface HLS_portalCalled{
 		 executed the next time the corresponding Domain activates it. <BR>
 		 if this Interface is not implemented, off-hand Scheduling is used. <BR>
 	         <B>! IRQ are disabled during execution of this method</B> <BR>
+     * @param Thread
 		 @return 
 		 TRUE: if off-hand scheduling is desired <BR>
 		 FALSE: if the Portal Thread should be unblocked only*/

@@ -14,7 +14,8 @@ public interface HLS_switchTo{
 	under construction!!!
 	a Thread was unblocked and activated by the kernel (portalcall)
 
-	<B>! IRQ are disabled during execution of this method</B><BR> */
+	<B>! IRQ are disabled during execution of this method</B><BR>
+     * @param Thread */
     
 /* yes */    public void switchedTo(CPUState Thread);
 }

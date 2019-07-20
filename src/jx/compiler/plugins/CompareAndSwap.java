@@ -12,12 +12,12 @@ import jx.compiler.execenv.*;
 
 public class CompareAndSwap implements CompilerPlugin {
 
-    private static int CASPROXY_INDEX_OFF = 4;
+    private static final int CASPROXY_INDEX_OFF = 4;
 
-    private boolean fastConstants=false;    
+    private final boolean fastConstants = false;    
 
-    private ExecEnvironmentIA32      e;
-    private CompilerOptionsInterface opts;
+    private final ExecEnvironmentIA32      e;
+    private final CompilerOptionsInterface opts;
     private BinaryCodeIA32           code;
     private RegManager               regs;
 
@@ -26,6 +26,7 @@ public class CompareAndSwap implements CompilerPlugin {
 	this.opts = e.getCompilerOptions();
     }
 
+    @Override
     public boolean code(IMNode node,
 			RegManager regs,
 			BinaryCodeIA32   code,

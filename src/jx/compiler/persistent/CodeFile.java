@@ -198,6 +198,9 @@ public class CodeFile {
 
     /**
      * Reads a CodeFile form a input stream.
+     * @param in
+     * @return 
+     * @throws java.lang.Exception
      */
     public ArrayList read(ExtendedDataInputStream in) throws Exception {
 
@@ -230,8 +233,8 @@ public class CodeFile {
     }
 
     private void collectStrings(BCClass aClass, StringTable strTable) {
-	BinaryCode mc = null;
-	BCMethod   method = null;
+	BinaryCode mc;
+	BCMethod   method;
 
 	BCClassInfo info = (BCClassInfo)aClass.getInfo();
 
