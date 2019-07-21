@@ -566,6 +566,9 @@ public class StaticCompiler implements ClassFinder {
 	Iterator iter = classStore.iterator();
 	while(iter.hasNext()) {
 	    BCClass c = (BCClass) iter.next();
+            if("bioide/ReadOperation".equals(c.getClassName())){
+                System.out.println(c.getClassName());
+            } //else if("biode/IoOperation")
 	    computeObjectAndClassLayout(c);
 	    computeMappedLayout(c);
 	}
@@ -573,16 +576,25 @@ public class StaticCompiler implements ClassFinder {
 
     private void computeObjectAndClassLayout(BCClass aClass) {
 	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+        //if("bioide/ReadOperation".equals(info.g))
 	if (info.objectLayout != null && info.classLayout != null) return;
 	info.objectLayout = new FieldLayout();
 	info.classLayout = new FieldLayout();
 	BCClass s = info.superClass;
+        if("bioide/IoOperation".equals(s.getClassName())){
+            System.out.println(s.getClassName());
+        }
 	if (s != null) {
 	    FieldLayout superLayout = ((BCClassInfo)s.getInfo()).objectLayout;
 	    if (superLayout == null) {
 		Debug.throwError("FieldLayout of class " + s.getClassName() + " not initialized.");
 	    }
 	    info.objectLayout.addFields(superLayout);
+            superLayout = ((BCClassInfo)s.getInfo()).classLayout;
+	    if (superLayout == null) {
+		Debug.throwError("FieldLayout of class " + s.getClassName() + " not initialized.");
+	    }
+	    info.classLayout.addFields(superLayout);
 	}
 	ClassSource source = aClass.getClassSource();
 	FieldData[] fields = source.getFields();

@@ -33,10 +33,10 @@ public final class FieldLayout {
     }
 
     public void addFields(FieldLayout l) {
-	//Debug.out.println("Adding from superclass:");
+	System.out.println("Adding from superclass:");
 	for(int i = 0; i < l.fields.size(); i++) {
 	    FieldDescription field = (FieldDescription)l.fields.get(i);
-	    // Debug.out.println("  "+field.getFieldName()+" "+ field.getFieldType());
+	    System.out.println("  " + field.getFieldName() + " " + field.getFieldType());
 	    addField(new FieldDescription(field.getFieldName(), field.getFieldType(), numWords));
 	}
     }
