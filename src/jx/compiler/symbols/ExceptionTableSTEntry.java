@@ -11,15 +11,15 @@ import jx.classfile.constantpool.*;
 public class ExceptionTableSTEntry extends UnresolvedJump {
 
     ExceptionHandlerData handler;    
-    String className;
+    String  className;
     int     stringID;
     boolean validID;
 
     public ExceptionTableSTEntry(ConstantPool cPool, ExceptionHandlerData handler) {
 	int cpIndex = handler.getCatchTypeCPIndex();	
-	this.handler   = handler;
+	this.handler = handler;
 
-	if (cpIndex==0) {
+	if (cpIndex == 0) {
 	    this.className = "any";
 	} else {
 	    this.className = cPool.classEntryAt(cpIndex).getClassName();
@@ -28,7 +28,7 @@ public class ExceptionTableSTEntry extends UnresolvedJump {
 
     @Override
     public String getDescription() {
-	return super.getDescription()+",symbols.ExceptionTableSTEntry";
+	return super.getDescription() + ",symbols.ExceptionTableSTEntry";
     }
     
     @Override

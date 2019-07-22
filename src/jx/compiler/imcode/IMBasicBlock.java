@@ -4,7 +4,6 @@ package jx.compiler.imcode;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import jx.classfile.datatypes.*; 
-import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
@@ -125,7 +124,7 @@ public class IMBasicBlock extends IMNode {
 	    try {
 		instr = ((IMNode)node).processStack(stack, this);
 	    } catch (Exception ex) {
-		if (verbose && System.err != null) {
+		if (verbose) {
 		    System.err.println("process basic block: " + this);
 		    System.err.println("Exception (1): " + node.toString());
 		    System.err.println(node.toReadableString());
@@ -156,7 +155,7 @@ public class IMBasicBlock extends IMNode {
 		    }
 		}
 	    } catch (Exception ex) {
-		if (verbose && System.err != null) System.err.println("2: " + node.toString());
+		if (verbose) System.err.println("2: " + node.toString());
 		Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
 		System.exit(-1);
 	    }
@@ -167,7 +166,7 @@ public class IMBasicBlock extends IMNode {
 			successors = new IMBasicBlock[1];
 			successors[0] = (IMBasicBlock)node.bc_next;
 		    } else {
-			if (verbose && System.err != null) {
+			if (verbose) {
 			    System.err.println("warning: bad imcode !");
 			    System.err.println("bytecode position: " + Integer.toString(node.getBCPosition()));
 			}

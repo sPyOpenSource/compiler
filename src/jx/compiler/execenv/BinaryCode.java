@@ -24,8 +24,8 @@ public class BinaryCode {
 
   // ***** other vars *****
 
-  private static final int initialCodeSize=100;
-  private static final int codeChunkSize=50; 
+  private static final int initialCodeSize = 100;
+  private static final int codeChunkSize = 50; 
   private static final boolean DEBUG = true; 
   
   /** 

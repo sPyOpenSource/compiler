@@ -28,7 +28,7 @@ public class IMNode {
     public static final int RETURN      = 1024;
     public static final int VARIABLE    = 2048;
 
-    public static final boolean verbose = false;
+    public static final boolean verbose = true;
 
     public IMNode prev;
     public IMNode next;
@@ -315,13 +315,13 @@ public class IMNode {
     }
 
     public void translate(Reg result) throws CompileException {
-	throw new CompileException(getLineInfo()+" int translation not implemented!");
+	throw new CompileException(getLineInfo() + " int translation not implemented!");
     }
 
     public void translate(Reg64 result) throws CompileException {
         Debug.out.println(this.getClass().getName());
 	Debug.out.println(this.toReadableString());
-	throw new CompileException(getLineInfo()+" long translation not implemeted!");
+	throw new CompileException(getLineInfo() + " long translation not implemeted!");
     }
 
     public final void translateLong(Reg64 result) throws CompileException {
@@ -329,10 +329,10 @@ public class IMNode {
     }
 
     public void translateFloat(RegFloat result) throws CompileException {
-	throw new CompileException(getLineInfo()+" float translation not implemented!");
+	throw new CompileException(getLineInfo() + " float translation not implemented!");
     }
 
     public void translateDouble(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo()+" float translation not implemented!");
+	throw new CompileException(getLineInfo() + " float translation not implemented!");
     }    
 }

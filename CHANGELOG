@@ -1,4 +1,7 @@
-v1.6 XW 21-07-2009
+v1.7 XW 22-07-2019
+added: exception table (issue #2)
+
+v1.6 XW 21-07-2019
 fixed: field not found (issue #8)
 
 v1.5 XW 20-07-2019

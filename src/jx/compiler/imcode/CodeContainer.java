@@ -1,6 +1,7 @@
 package jx.compiler.imcode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import jx.zero.Debug;
 
@@ -26,17 +27,17 @@ class JumpStack {
 
     public void push(IMBasicBlock node) {
 	stack[pos++] = node;
-	if (pos==stack.length) {
+	if (pos == stack.length) {
 	    //System.err.println("work stack to small - realloc !!");
 	    IMBasicBlock[] new_stack = new IMBasicBlock[stack.length+10];
-	    for (int i=0;i<stack.length;i++) new_stack[i] = stack[i];
+            System.arraycopy(stack, 0, new_stack, 0, stack.length);
 	    stack = new_stack;
-	    new_stack=null;
+	    //new_stack = null;
 	}
     }
 
     public IMBasicBlock pop() {
-	if (pos<=0) {
+	if (pos <= 0) {
 	    //System.err.println("no more work!");
 	    return null;
 	}
@@ -46,7 +47,7 @@ class JumpStack {
 
 public class CodeContainer implements NativeCodeContainer {
 
-    private static int id=0;
+    private static int id = 0;
     private int myid;
 
     private IMNode imCodeStart;
@@ -88,14 +89,14 @@ public class CodeContainer implements NativeCodeContainer {
 			 BCMethodWithCode method,
 			 StatisticInfo stat) {
 	// CodeContainer
-	imCodeStart=null;
-	imCodeEnd=null;
-	current=null;
-	numberOfInstr=0;
+	imCodeStart = null;
+	imCodeEnd = null;
+	current = null;
+	numberOfInstr = 0;
 	this.method = method;
 	this.stat = stat;
 	myid = id++;
-	numberOfBasicBlocks=0;
+	numberOfBasicBlocks = 0;
 
 	// Coder
 	bc_list_top = null;
@@ -110,7 +111,7 @@ public class CodeContainer implements NativeCodeContainer {
 	this.execEnv = execEnv;	
 	this.opts    = execEnv.getCompilerOptions();
 
-	frame = new MethodStackFrame(code,method);
+	frame = new MethodStackFrame(code, method);
     }
 
     public void setNoTranslate() {
@@ -159,6 +160,7 @@ public class CodeContainer implements NativeCodeContainer {
 	return frame;
     }
 
+    @Override
     public int getLocalVarSize() {
 	return frame.getStackFrameSize()/4;
     }
@@ -202,7 +204,7 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void readBCInstruction(BytecodeInputStream bcStream) throws CompileException {
-	boolean hasWidePrefix = false;
+	boolean hasWidePrefix;
 	int current, ip;
 	IMBasicBlock des;
 	// ==========================================
@@ -219,12 +221,23 @@ public class CodeContainer implements NativeCodeContainer {
 	if (opts.doExceptions()) {
 	    if (handler != null && handler.length > 0) {
 		expHandlerList = new IMBasicBlock[handler.length];
-		for (int i = 0; i < handler.length; i++) {
-		    createBasicBlock(handler[i].getStartBCIndex(), 0);
-		    createBasicBlock(handler[i].getEndBCIndex(), 0);
-		    expHandlerList[i] = createBasicBlock(handler[i].getHandlerBCIndex(), 0);
-		    expHandlerList[i].setExceptionHandler(new ExceptionTableSTEntry(cPool, handler[i]));
-		}
+                HashMap<String, ExceptionHandlerData> map = new HashMap<>();
+                for (ExceptionHandlerData handler1 : handler) {
+                    //createBasicBlock(handler[i].getStartBCIndex(), 0);
+                    //createBasicBlock(handler[i].getEndBCIndex(), 0);
+                    //expHandlerList[i] = createBasicBlock(handler[i].getHandlerBCIndex(), 0);
+                    //expHandlerList[i].setExceptionHandler(new ExceptionTableSTEntry(cPool, handler[i]));
+                    map.put(Integer.toString(handler1.getHandlerBCIndex()), handler1);
+                }
+                expHandlerList = new IMBasicBlock[map.size()];
+                int i = 0;
+                for (ExceptionHandlerData index : map.values()) {
+                    createBasicBlock(index.getStartBCIndex(), 0);
+		    createBasicBlock(index.getEndBCIndex(), 0);
+                    expHandlerList[i] = createBasicBlock(index.getHandlerBCIndex(), 0);
+		    expHandlerList[i].setExceptionHandler(new ExceptionTableSTEntry(cPool, index));
+                    i++;
+                }
 	    } 
 	}
 
@@ -288,7 +301,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    // read local variables
 	    if (current >= BC.ILOAD && current <= BC.ALOAD_3) {
 
-		IMReadLocalVariable opr = null;
+		IMReadLocalVariable opr;
 
 		if (current <= BC.ALOAD) {
 		    int vi;
@@ -327,7 +340,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    }
 	    
 	    if (current >= BC.ISTORE && current <= BC.ASTORE_3) {
-		IMStoreLocalVariable opr = null;
+		IMStoreLocalVariable opr;
 
 		if (current <= BC.ASTORE) {
 		    int vi;
@@ -358,7 +371,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    // arithmetic types
 	    // IMArithmetic
 	    if (current <= BC.DREM) {
-		IMOperator opr = null;
+		IMOperator opr;
 		if (current <= BC.DADD) {
 		    opr = new IMAdd(this, current, ip);
 		} else if (current <= BC.DSUB) {
@@ -734,7 +747,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    basicBlock = (IMBasicBlock)bc_list_top;
 
 	int expHandler = 0;
-	if (opts.doExceptions() && false)
+	if (opts.doExceptions())
 	    if (expHandlerList != null) expHandler = expHandlerList.length;
 
 	while (basicBlock != null) {
@@ -1150,7 +1163,7 @@ public class CodeContainer implements NativeCodeContainer {
 	this.execEnv   = newContainer.getExecEnv();
 
 	if (!smallMethod) throw new Error("this is not a small Method");
-	if (node == null || node.next==null)
+	if (node == null || node.next == null)
 	    throw new Error("this is not a small method");
 	node = node.next;
 
@@ -1427,9 +1440,9 @@ public class CodeContainer implements NativeCodeContainer {
 	bc_list_end = node;
     }
 
-    private IMBasicBlock createBasicBlock(int ip,int offset) {
+    private IMBasicBlock createBasicBlock(int ip, int offset) {
 	int bcpos = ip + offset;
-	IMBasicBlock label = null;
+	IMBasicBlock label;
 	IMBasicBlock curr;
 
 	if (label_list == null) {

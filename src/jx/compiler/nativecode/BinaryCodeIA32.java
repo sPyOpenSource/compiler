@@ -54,7 +54,7 @@ public final class BinaryCodeIA32 {
     /** 
 	contains the native exception handlers
     */ 
-    private ArrayList exceptionHandlers; 
+    private final ArrayList exceptionHandlers; 
 
     public BinaryCodeIA32() {
 	code = new byte[INITSIZE]; 
@@ -69,6 +69,7 @@ public final class BinaryCodeIA32 {
 	-> Convert a object of preproc.BinaryCodePreproc into a object of 
 	nativecode.BinaryCode.
 	Note: Exceptionhandlers are not copied. 
+     * @return 
     */ 
     /*    public jx.jit.nativecode.BinaryCode getOldBinaryCode() {*/
     public BinaryCode getOldBinaryCode() {
@@ -204,6 +205,7 @@ public final class BinaryCodeIA32 {
 
     /**
        Insert call near (Symbol) (1 clks)
+     * @param entry
     */
 
     public void call(SymbolTableEntryBase entry) {
@@ -275,6 +277,7 @@ public final class BinaryCodeIA32 {
 
     /**
        decrement byte value by 1 (1/3 clks)
+     * @param opr
     */
 
     public void decb(Opr opr) {
@@ -285,6 +288,7 @@ public final class BinaryCodeIA32 {
 
     /**
        decrement long value by 1 (1/3 clks)
+     * @param ref
     */
 
     public void decl(Ref ref) {
@@ -295,6 +299,7 @@ public final class BinaryCodeIA32 {
 
     /** 
        decrement register by 1 (1 clks)
+     * @param reg
     */
     
     public void decl(Reg reg) {
@@ -304,6 +309,7 @@ public final class BinaryCodeIA32 {
 
     /**
        Insert a pushl(reg)
+     * @param reg
     */
 
     public void pushl(Reg reg) {
@@ -347,6 +353,7 @@ public final class BinaryCodeIA32 {
 
     /** 
        Insert a popl(reg)
+     * @param reg
     */
 
     public void popl(Reg reg) {
@@ -391,6 +398,7 @@ public final class BinaryCodeIA32 {
 
   /** 
       spinlocks
+     * @param lock
   */
 
   public void spin_lock(Ref lock) {
@@ -410,6 +418,8 @@ public final class BinaryCodeIA32 {
 
     /**
        Integer Subtraction
+     * @param src
+     * @param des
     */
 
     public void subl(Opr src,Reg des) {
@@ -460,6 +470,8 @@ public final class BinaryCodeIA32 {
 
     /**
        Integer Subtraction with Borrow
+     * @param src
+     * @param des
     */
 
     public void sbbl(Opr src,Reg des) {
@@ -1205,9 +1217,9 @@ public final class BinaryCodeIA32 {
 	insertConst4(tableStart);
 
 	addJumpTarget(tableStart);
-	for (int i=0;i<table.length;i++) {
-	    insertConst4(table[i]);
-	}
+        for (SymbolTableEntryBase table1 : table) {
+            insertConst4(table1);
+        }
     }
 
     /**
@@ -1538,14 +1550,14 @@ public final class BinaryCodeIA32 {
     */ 
     public void insertConst4(int value) {
 	realloc();
-	code[ip++] = (byte)(value >> 0); 
+	code[ip++] = (byte) value; 
 	code[ip++] = (byte)(value >> 8); 
 	code[ip++] = (byte)(value >> 16); 
 	code[ip++] = (byte)(value >> 24);
     }
 
     private void insertConst4At(int ncIndex, int value) {
-	code[ncIndex++] = (byte)(value >> 0); 
+	code[ncIndex++] = (byte) value; 
 	code[ncIndex++] = (byte)(value >> 8); 
 	code[ncIndex++] = (byte)(value >> 16); 
 	code[ncIndex++] = (byte)(value >> 24);
