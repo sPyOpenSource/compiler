@@ -26,7 +26,6 @@ public interface DiskEmulation extends Portal {
      * @param numberOfSectors number of sectors to read
      * @param buf             target memory of transfer
      * @param synchronous     deprecated
-     * @return                -1 if error, 0 if ok
      */
     public void readSectors(int startSector, int numberOfSectors, Memory buf, boolean synchronous);
 
@@ -37,7 +36,6 @@ public interface DiskEmulation extends Portal {
      * @param numberOfSectors number of sectors to write
      * @param buf             source memory of transfer
      * @param synchronous     deprecated
-     * @return                -1 if error, 0 if ok
      */
     public void writeSectors(int startSector, int numberOfSectors, Memory buf, boolean synchronous);
 

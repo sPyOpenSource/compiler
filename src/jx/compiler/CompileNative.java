@@ -67,7 +67,7 @@ public class CompileNative {
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
-	String libdir = "/home/spy/OS/jx/libs/";
+	String libdir = "/home/spy/OS/jcore/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + s.getComponentName() + ".zip";
@@ -78,7 +78,7 @@ public class CompileNative {
 
 	String jlnname = libdir + s.getComponentName() + ".jln";
         
-        CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, libdir + "../JC_CONFIG");
+        CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, libdir + "/JC_CONFIG");
 	compile(opts);
     }
 
@@ -99,7 +99,7 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	Memory domClasses = getZIP(opts.getClassFile());
+	Memory domClasses = null;//getZIP(opts.getClassFile());
         System.out.println(opts.getLibs());
 	Memory[] libClasses = getZIPs(opts.getLibs());
 

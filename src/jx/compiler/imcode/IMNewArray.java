@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 final public class IMNewArray extends IMOperator {
 
-    private int atype;
+    private final int atype;
     private IMOperant size;
-    private String stackMap="[]";
+    private final String stackMap = "[]";
 
     public IMNewArray (CodeContainer container,int bc,int bcpos,int atype) {
 	super(container);
@@ -22,11 +22,12 @@ final public class IMNewArray extends IMOperator {
 	this.atype   = atype;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	// TODO new local variable allocation ??
 	size = stack.pop();
-	if (size.getDatatype()!=BCBasicDatatype.INT) {
-	    if (verbose && System.err!=null) System.err.println("IMNewArray bcpos:"+Integer.toString(bcPosition));
+	if (size.getDatatype() != BCBasicDatatype.INT) {
+	    if (verbose) System.err.println("IMNewArray bcpos:" + Integer.toString(bcPosition));
 	    throw new CompileException("!!! wrong datatype on stack !!!");	    
 	    //System.exit(-1);
 	}
@@ -36,33 +37,39 @@ final public class IMNewArray extends IMOperator {
 	return null;
     }
 
-   public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
+    @Override
+    public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	size = (IMOperant)size.inlineCode(iCode, depth, forceInline);
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
 	size = (IMOperant)size.constant_folding();
 	return this;
     }
 
+    @Override
     public void getCollectVars(ArrayList vars) { size.getCollectVars(vars); }
 
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    @Override
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
 
-	size = (IMOperant)size.assignNewVars(newContainer,slots,opr,retval,bcPos);
+	size = (IMOperant)size.assignNewVars(newContainer, slots, opr, retval, bcPos);
 
 	return this;
     }
 
+    @Override
     public String toReadableString() {
-	return "new "+BCBasicDatatype.toString(atype)+"["+size.toReadableString()+"]";
+	return "new " + BCBasicDatatype.toString(atype) + "[" + size.toReadableString() + "]";
     }
 
     // IMNewArray
+    @Override
     public void translate(Reg result) throws CompileException {
-	execEnv.codeNewArray(this,atype,size,result);
+	execEnv.codeNewArray(this, atype, size, result);
     }
 }

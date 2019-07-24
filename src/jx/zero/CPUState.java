@@ -30,6 +30,7 @@ public interface CPUState extends Portal {
   public CPUState getNext();
   /**
    * sets next-"Pointer" used to generate a linked List of CPUStates
+     * @param next
    * @return    the previous value of the next reference
    */
   public CPUState setNext(CPUState next);

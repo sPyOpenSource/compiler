@@ -13,6 +13,8 @@ public interface IRQ extends Portal {
 
     public void disableAll();
 
-    /** sets the destination Processor for an IRQ (-1=all) */
+    /** sets the destination Processor for an IRQ (-1=all)
+     * @param irq
+     * @param dest_cpu */
     public void set_destination(int irq, int dest_cpu);
 }

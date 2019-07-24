@@ -1,7 +1,7 @@
 package jx.zero;
 
 public class LookupHelper {
-    private static CPUManager cpuManager;
+    private static final CPUManager cpuManager;
     public static boolean verbose = false;
     static {
 	cpuManager = (CPUManager) InitialNaming.getInitialNaming().lookup("CPUManager");
@@ -12,8 +12,8 @@ public class LookupHelper {
     }
 
     public static Portal waitUntilPortalAvailable(Naming naming, String name) {
-	Portal p=null;
-	if (verbose) Debug.out.println("Lookup "+name);
+	Portal p = null;
+	if (verbose) Debug.out.println("Lookup " + name);
 	for(;;) {
 	    p = naming.lookup(name);
 	    if (p != null) break;

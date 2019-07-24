@@ -95,7 +95,7 @@ abstract public class BCBasicDatatype {
       a type descriptor for java/lang/Object for references 
   */ 
   public static final String toTypeDesc(int datatype) {
-    if (datatype==REFERENCE) 
+    if (datatype == REFERENCE) 
       return "Ljava/lang/Object";
     else 
       return String.valueOf(toChar(datatype)); 
@@ -106,7 +106,7 @@ abstract public class BCBasicDatatype {
       @return true, if the datatype has two words 
   */ 
   public static final boolean isDouble(int datatype) {
-    return datatype==LONG || datatype==DOUBLE;
+    return datatype == LONG || datatype == DOUBLE;
   }
   
   /**

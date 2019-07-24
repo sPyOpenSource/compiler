@@ -6,6 +6,7 @@ public interface MemoryManager extends Portal {
      * Allocate memory that is aligned to "bytes".
      * @param size size of memory block
      * @param bytes alignment of memory block
+     * @return 
      */
     public Memory allocAligned(int size, int bytes);
     public DeviceMemory allocDeviceMemory(int start, int size);

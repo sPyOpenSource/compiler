@@ -6,7 +6,6 @@ public class DomainStarter {
   private static ByteCodeTranslater onc;
 
 
-
   public static Domain createDomain(              String libName, String mainclass,                  int gcinfo0) {
     return createDomain(libName+" - "+mainclass, libName, mainclass,null, gcinfo0, -1, -1);
   }

@@ -10,7 +10,9 @@ public interface FBEmulation extends Portal {
     public void update();
     /** @return true if emulated input devices are available */
     public boolean inputDevicesAvailable();
-    /** @return true if event happend; event object is filled with data */
+    /**
+     * @param event 
+     *  @return true if event happend; event object is filled with data */
     public boolean checkEvent(FBEmulationEvent event);
     public boolean open(int mode);
 }

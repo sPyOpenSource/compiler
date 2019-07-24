@@ -12,6 +12,7 @@ public interface LLSchedulerSupport extends Portal {
     
     /** Determines wether a Domain is runnable or not.
      *  Checks the maybeRunnable-Flag of the corresponding Highlevel-Scheduler.
+     * @param domain
      * @return <code>true</code> if this Domain is runnable. <BR>
      *         <code>false</code> if there is no runnable Thread in that domain.
      */
