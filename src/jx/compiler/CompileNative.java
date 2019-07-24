@@ -11,6 +11,7 @@ import jx.compiler.execenv.IOSystem;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
+import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -99,7 +100,7 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	Memory domClasses = null;//getZIP(opts.getClassFile());
+	JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");//getZIP(opts.getClassFile());
         System.out.println(opts.getLibs());
 	Memory[] libClasses = getZIPs(opts.getLibs());
 

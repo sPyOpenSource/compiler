@@ -35,7 +35,7 @@ public class CodeVector {
     private void realloc(int nSize) {
 	if (nSize>code.length) {
 	    CodeContainer[] newArray = new CodeContainer[code.length+5];
-	    for (int i=0;i<code.length;i++) newArray[i] = code[i];
+            System.arraycopy(code, 0, newArray, 0, code.length);
 	    code = newArray;
 	}
     }

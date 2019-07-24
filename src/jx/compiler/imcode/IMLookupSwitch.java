@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 final public class IMLookupSwitch extends IMBranch  {
 
-    private IMBasicBlock doff;
-    private int npairs;
-    private int[] keys;
-    private IMBasicBlock[] offsets;
+    private final IMBasicBlock doff;
+    private final int npairs;
+    private final int[] keys;
+    private final IMBasicBlock[] offsets;
     private IMOperant operant;
-    private UnresolvedJump[] jumpTargets;
+    private final UnresolvedJump[] jumpTargets;
 
     public IMLookupSwitch(CodeContainer container,int bc,int bcpos,
 			 IMBasicBlock doff,int npairs,int[] keys,IMBasicBlock[] offsets) {

@@ -9,9 +9,9 @@ import jx.compiler.nativecode.*;
 
 final public class IMReadBlockVariable extends IMVarAccess {
 
-    private int number;
-    private LocalVariable lvar;
-    private Object refCheckMarke;
+    private final int number;
+    private final LocalVariable lvar;
+    private final Object refCheckMarke;
 
     public IMReadBlockVariable(CodeContainer container,Object marke,int number,int datatype,int bcPosition) {
 	super(container);

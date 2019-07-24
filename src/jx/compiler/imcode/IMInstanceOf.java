@@ -10,7 +10,7 @@ import jx.compiler.nativecode.*;
 
 final public class IMInstanceOf extends IMUnaryOperator {
 
-    private ClassCPEntry cpEntry;
+    private final ClassCPEntry cpEntry;
 
     public IMInstanceOf(CodeContainer container,int bc,int bcpos,ClassCPEntry cpEntry) {
 	super(container);

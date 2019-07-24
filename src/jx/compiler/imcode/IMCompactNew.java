@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 final public class IMCompactNew extends IMOperator {
 
-    private ClassCPEntry         cpEntry;
-    private MethodRefCPEntry     cpEntryMethod;
-    private IMOperant[]          args;
+    private final ClassCPEntry         cpEntry;
+    private final MethodRefCPEntry     cpEntryMethod;
+    private final IMOperant[]          args;
 
     public IMCompactNew(CodeContainer container,int bc,IMNew newObj,IMInvoke initObj,IMOperant[] args) {
 	super(container);

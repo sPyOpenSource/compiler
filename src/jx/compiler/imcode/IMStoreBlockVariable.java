@@ -60,7 +60,6 @@ final public class IMStoreBlockVariable extends IMVarAccess {
     public void getCollectVars(ArrayList vars) { 
 	operant.getCollectVars(vars);
 	vars.add(this); 
-	return; 
     }
     
    // IMStoreBlockVariable

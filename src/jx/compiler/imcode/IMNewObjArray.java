@@ -12,7 +12,7 @@ import java.util.ArrayList;
 final public class IMNewObjArray extends IMOperator {
 
     private IMOperant size;
-    private ClassCPEntry cpEntry;
+    private final ClassCPEntry cpEntry;
     
     public IMNewObjArray(CodeContainer container,int bc,int bcpos,ClassCPEntry cpEntry) {
 	super(container);

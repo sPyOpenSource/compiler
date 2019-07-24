@@ -52,8 +52,7 @@ public class LocalVariable {
 	modifyedIndex = true;
 	size     = BCBasicDatatype.sizeInWords(dtype);
 	unused   = false;
-	if (stype==1) constant = true;
-	else constant=false;
+        constant = stype == 1;
     }
 
     public void check(Object basicBlock) {
@@ -72,9 +71,8 @@ public class LocalVariable {
     }
 
     public boolean isChecked(Object basicBlock) {
-	if (checked!=null && constant && doLessChecks) return true;
-	if (checked!=null && checked==basicBlock) return true;
-	return false;
+	if (checked != null && constant && doLessChecks) return true;
+	return checked != null && checked == basicBlock;
     }
 
     public boolean isModifyed() {
@@ -134,6 +132,7 @@ public class LocalVariable {
 	return Integer.toString(slottype)+":"+Integer.toString(off);
     }
 
+    @Override
     public String toString() {
 	return BCBasicDatatype.toString(datatype)+" at "+addrString();
     }

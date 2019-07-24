@@ -9,7 +9,6 @@ import jx.compiler.nativecode.*;
 
 // ***** IMShiftLeft *****
 final public class IMShiftLeft extends IMBitOperator {
-
     public IMShiftLeft(CodeContainer container,int bc,int bcpos) {
 	super(container);
 	bytecode   = bc;

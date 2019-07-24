@@ -14,7 +14,7 @@ public class IMNop extends IMOperant {
     }
 
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
-	if (verbose && System.err!=null) System.err.println("!! NOP");
+	if (verbose) System.err.println("!! NOP");
 	return this;
     }
 

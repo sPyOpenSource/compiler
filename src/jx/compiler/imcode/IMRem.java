@@ -10,7 +10,6 @@ import jx.compiler.nativecode.*;
 // ***** IMRem *****
 
 final  public class IMRem extends IMBinaryOperator {
-
     public IMRem(CodeContainer container,int bc,int bcpos) {
 	super(container);
 	bytecode   = bc;

@@ -20,13 +20,13 @@ public class MethodStackFrame {
     private final int TMPS      = 3;
     private final int OPRS      = 4;
 
-    private BCMethod     method;
-    private int[]        argTypes;
+    private final BCMethod     method;
+    private final int[]        argTypes;
 
-    private VarVector[]  stack;
+    private final VarVector[]  stack;
     private int          stackSize;
-    private int[]        stackOffset;
-    private int          maxOperants;
+    private final int[]        stackOffset;
+    private final int          maxOperants;
     private int          numberOfOperants;
     private boolean      operantenMap;
 
@@ -37,7 +37,7 @@ public class MethodStackFrame {
     boolean[]        stackMap;
     int              stackMapVars;
 
-    private BinaryCodeIA32 code;
+    private final BinaryCodeIA32 code;
 
     public MethodStackFrame(BinaryCodeIA32 code, BCMethod method) {
 
@@ -47,7 +47,7 @@ public class MethodStackFrame {
 
 	this.stack    = new VarVector[MAX_TYPES];
 	this.stackOffset = new int[MAX_TYPES];
-	for (int i=0;i<MAX_TYPES;i++) this.stack[i] = new VarVector();
+	for (int i = 0; i < MAX_TYPES; i++) this.stack[i] = new VarVector();
 
 	maxOperants = 0;
 
@@ -141,6 +141,7 @@ public class MethodStackFrame {
 
     /**
        size and infos about the stack frame
+     * @return 
      */
 
     public MaxFrameSizeSTEntry getMaxFrameSizeSTEntry() {
@@ -149,6 +150,7 @@ public class MethodStackFrame {
 
     /**
        Maximale noch benoetigte Stackgroesse 
+     * @return 
     */
 
     public int getMaxFrameSize() {
@@ -164,6 +166,7 @@ public class MethodStackFrame {
 
     /**
        Groesse des Methoden Frames ohne dem Operantenstack
+     * @return 
     */
     
     public int getStackFrameSize() {
@@ -189,17 +192,17 @@ public class MethodStackFrame {
 
     public int getStackMapSize() {
 	if (reallocStack) computeStackLayout();
-  	int size=0;
+  	int size = 0;
 	for (int i=1;i<stack.length;i++) {
 	    VarVector curr = stack[i];
 
-	    int csize=0;
-	    if (i!=OPRS) csize = curr.size();
+	    int csize;
+	    if (i != OPRS) csize = curr.size();
 	    else csize = numberOfOperants;
 
-	    for (int j=0;j<csize;j++) {
+	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
-		size+=slot.size;
+		size += slot.size;
 	    }
 	}
 	return size;
@@ -208,15 +211,15 @@ public class MethodStackFrame {
     public int getVarMapSize() {
 	if (reallocStack) computeStackLayout();       
 
-	int size=0;
-	for (int i=2;i<stack.length-1;i++) {
+	int size = 0;
+	for (int i = 2; i < stack.length - 1; i++) {
 	    VarVector curr = stack[i];
-	    int csize=0;
-	    if (i!=OPRS) csize = curr.size();
+	    int csize;
+	    if (i != OPRS) csize = curr.size();
 	    else csize = numberOfOperants;
-	    for (int j=0;j<csize;j++) {
+	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
-		size+=slot.size;
+		size += slot.size;
 	    }
 	}
 
@@ -226,13 +229,13 @@ public class MethodStackFrame {
     public int getLVarMapSize() {
 	if (reallocStack) computeStackLayout();       
 
-	int size=0;
+	int size = 0;
 	VarVector curr = stack[VARS];
-	int csize=0;
+	int csize;
 	csize = curr.size();
-	for (int j=0;j<csize;j++) {
+	for (int j = 0; j < csize; j++) {
 	    LocalVariable slot = curr.elementAt(j);
-	    size+=slot.size;
+	    size += slot.size;
 	}
 
 	return size;
@@ -241,11 +244,11 @@ public class MethodStackFrame {
     public int getOprMapSize() {
 	if (reallocStack) computeStackLayout();       
 
-	int size=0;
+	int size = 0;
 	VarVector curr = stack[OPRS];
-	for (int j=0;j<numberOfOperants;j++) {
+	for (int j = 0; j < numberOfOperants; j++) {
 	    LocalVariable slot = curr.elementAt(j);
-	    size+=curr.elementAt(j).size;
+	    size += curr.elementAt(j).size;
 	}
 
 	return size;
@@ -256,16 +259,16 @@ public class MethodStackFrame {
 
 	if (reallocStack) computeStackLayout();
 
-	String str="";
+	String str = "";
 	VarVector curr = stack[VARS];
 	int csize = curr.size();
 
-	for (int j=0;j<csize;j++) {
+	for (int j = 0; j < csize; j++) {
 	    LocalVariable slot = curr.elementAt(j);	    
 	    if (slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused) {
-		str+="R ";
+		str += "R ";
 	    } else {
-		str+="i ";
+		str += "i ";
 	    }
 	}
 
@@ -281,19 +284,15 @@ public class MethodStackFrame {
 	boolean[] newStackMap = new boolean[size];
 	VarVector curr = stack[VARS];
 	int csize = curr.size();
-	int s=0;
+	int s = 0;
 
 	for (int j=0;j<csize;j++) {
 	    LocalVariable slot = curr.elementAt(j);
 
-	    if (slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused) {
-		newStackMap[s]=true;
-	    } else {
-		newStackMap[s]=false;
-	    }
+            newStackMap[s] = slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused;
 
 	    s++;
-	    if (slot.size==2) {
+	    if (slot.size == 2) {
 		newStackMap[s] = false;
 		s++;
 	    }		
@@ -317,14 +316,10 @@ public class MethodStackFrame {
 	    for (int j=0;j<csize;j++) {
 		LocalVariable slot = curr.elementAt(j);
 
-		if (slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused) {
-		    newStackMap[s]=true;
-		} else {
-		    newStackMap[s]=false;
-		}
+                newStackMap[s] = slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused;
 
 		s++;
-		if (slot.size==2) {
+		if (slot.size == 2) {
 		    newStackMap[s] = false;
 		    s++;
 		}		
@@ -341,18 +336,14 @@ public class MethodStackFrame {
 	boolean[] newStackMap = new boolean[csize];
 	VarVector curr = stack[OPRS];
 
-	int s=0;
-	for (int j=0;j<numberOfOperants;j++) {
+	int s = 0;
+	for (int j = 0; j < numberOfOperants; j++) {
 	    LocalVariable slot = curr.elementAt(j);
 	    
-	    if (slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused) {
-		newStackMap[s]=true;
-	    } else {
-		newStackMap[s]=false;
-	    }
+            newStackMap[s] = slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused;
 	    
 	    s++;
-	    if (slot.size==2) {
+	    if (slot.size == 2) {
 		newStackMap[s] = false;
 		s++;
 	    }		
@@ -367,25 +358,21 @@ public class MethodStackFrame {
 	int size=getStackMapSize();
 	boolean[] newStackMap = new boolean[size];
 
-	int s=0;
-	for (int i=1;i<stack.length;i++) {
+	int s = 0;
+	for (int i = 1; i < stack.length; i++) {
 	    VarVector curr = stack[i];
 
-	    int csize=0;
-	    if (i!=OPRS) csize = curr.size();
+	    int csize;
+	    if (i != OPRS) csize = curr.size();
 	    else csize = numberOfOperants;
 
-	    for (int j=0;j<csize;j++) {
+	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
 
-		if (slot.isDatatype(BCBasicDatatype.REFERENCE)) {
-		    newStackMap[s]=true;
-		} else {
-		    newStackMap[s]=false;
-		}
+                newStackMap[s] = slot.isDatatype(BCBasicDatatype.REFERENCE);
 
 		s++;
-		if (slot.size==2) {
+		if (slot.size == 2) {
 		    newStackMap[s] = false;
 		    s++;
 		}		
@@ -397,6 +384,7 @@ public class MethodStackFrame {
 
     /**
        local variables
+     * @return 
     */
 
     public LocalVariable[] getLocalVars() {
@@ -405,8 +393,8 @@ public class MethodStackFrame {
 
 	LocalVariable[] vars = new LocalVariable[argc+varc];
 
-	for (int i=0;i<argc;i++) vars[i]      = stack[ARGS].elementAt(i);
-	for (int i=0;i<varc;i++) vars[i+argc] = stack[VARS].elementAt(i);
+	for (int i = 0; i < argc; i++) vars[i]        = stack[ARGS].elementAt(i);
+	for (int i = 0; i < varc; i++) vars[i + argc] = stack[VARS].elementAt(i);
 
 	return vars;
     }
@@ -429,19 +417,19 @@ public class MethodStackFrame {
 
 	int ssize = args.size();
 	
-	if (varIndex<ssize) {
+	if (varIndex < ssize) {
 	    return args.elementAt(varIndex);
 	}
 
 	varIndex -= ssize;
 	ssize = vars.size();
 
-	while (varIndex>=ssize) {
-	    reallocStack=true;
-	    if (varIndex==ssize) {
-		vars.add(new LocalVariable(VARS,datatype));
+	while (varIndex >= ssize) {
+	    reallocStack = true;
+	    if (varIndex == ssize) {
+		vars.add(new LocalVariable(VARS, datatype));
 	    } else {
-		vars.add(new LocalVariable(VARS,-2));
+		vars.add(new LocalVariable(VARS, -2));
 	    }
 	    ssize = vars.size();
 	}
@@ -645,33 +633,33 @@ public class MethodStackFrame {
 	    retval += node.getVarStackMapString();
 	}
 
-	int s=0;
-	for (int i=2;i<stack.length;i++) {
+	int s = 0;
+	for (int i = 2; i < stack.length; i++) {
 	    VarVector curr = stack[i];
 	    int csize = curr.size();
 
-	    if (i!=1) retval+=" ";
+	    if (i != 1) retval += " ";
 
-	    for (int j=0;j<csize;j++) {
+	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
 
 		if (slot.unused) {		    
 		    //if (slot.isDatatype(BCBasicDatatype.REFERENCE)) retval+="r";
 		    //else retval+=".";
 		    //else retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
-		    retval+=".";
+		    retval += ".";
 		} else {
-		    retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
+		    retval += BCBasicDatatype.toSymbol(slot.getDatatype());
 		}
 
 		//retval += slot.getType();
 		
-		if (slot.size==2) {
-		    retval+="_";
+		if (slot.size == 2) {
+		    retval += "_";
 		}
 	    }
 	}
-	retval+="]";
+	retval += "]";
 	return retval;
     }
 
@@ -724,32 +712,32 @@ public class MethodStackFrame {
 	retval += "|";
 	*/
 
-	int s=0;
-	for (int i=1;i<stack.length;i++) {	    
+	int s = 0;
+	for (int i = 1; i < stack.length; i++) {	    
 	    VarVector curr = stack[i];
 	    int csize = curr.size();
 
-	    if (i!=1) retval+=" ";
+	    if (i != 1) retval += " ";
 
-	    for (int j=0;j<csize;j++) {
+	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
 
 		if (slot.unused) {
-		    if (slot.isDatatype(BCBasicDatatype.REFERENCE)) retval+="r";
-		    else retval+=".";
+		    if (slot.isDatatype(BCBasicDatatype.REFERENCE)) retval += "r";
+		    else retval += ".";
 		    //else retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
 		} else {
-		    retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
+		    retval += BCBasicDatatype.toSymbol(slot.getDatatype());
 		}
 
 		//retval += slot.getType();
 		
-		if (slot.size==2) {
-		    retval+="_";
+		if (slot.size == 2) {
+		    retval += "_";
 		}
 	    }
 	}
-	retval+="]";
+	retval += "]";
 	return retval;
     }
 

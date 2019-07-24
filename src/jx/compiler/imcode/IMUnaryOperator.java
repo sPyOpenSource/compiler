@@ -14,6 +14,7 @@ public class IMUnaryOperator extends IMOperator {
 	super(container);
     }
     
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	operant=(IMOperant)operant.inlineCode(iCode, depth, forceInline);
 	return this;
@@ -42,7 +43,6 @@ public class IMUnaryOperator extends IMOperator {
 
     public void getCollectVars(ArrayList vars) { 
 	operant.getCollectVars(vars); 
-	return; 
     }
 
     public int getNrRegs() { return operant.getNrRegs(); }

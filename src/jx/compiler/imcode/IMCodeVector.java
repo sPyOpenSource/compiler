@@ -27,7 +27,7 @@ public class IMCodeVector {
     private void realloc(int nSize) {
 	if (nSize>code.length) {
 	    IMNode[] newArray = new IMNode[code.length+5];
-	    for (int i=0;i<code.length;i++) newArray[i] = code[i];
+            System.arraycopy(code, 0, newArray, 0, code.length);
 	    code = newArray;
 	}
     }

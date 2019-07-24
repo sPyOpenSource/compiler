@@ -11,8 +11,8 @@ import java.util.ArrayList;
 final public class IMPutStatic extends IMOperant  {
 
     private IMOperant       vOpr;
-    private FieldRefCPEntry cpEntry;
-    private String fieldType;
+    private final FieldRefCPEntry cpEntry;
+    private final String fieldType;
 
     public IMPutStatic(CodeContainer container,int bc,int bcpos,FieldRefCPEntry cpEntry) {
 	super(container);

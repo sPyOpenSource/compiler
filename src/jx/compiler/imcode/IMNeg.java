@@ -16,6 +16,7 @@ final  public class IMNeg extends IMUnaryOperator {
 	datatype = BCBasicDatatype.INT + (bc-BC.INEG);
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	operant = stack.pop();
 	stack.push(this);

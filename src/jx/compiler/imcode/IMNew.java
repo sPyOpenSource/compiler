@@ -10,7 +10,7 @@ import jx.compiler.nativecode.*;
 
 final public class IMNew extends IMOperator {
 
-    private ClassCPEntry cpEntry;
+    private final ClassCPEntry cpEntry;
 
     public IMNew (CodeContainer container,int bc,int bcpos,ClassCPEntry cpEntry) {
 	super(container);
