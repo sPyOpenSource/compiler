@@ -10,8 +10,8 @@ import jx.compiler.nativecode.*;
 
 final public class IMGetStatic extends IMOperant {
 
-    private FieldRefCPEntry cpEntry;
-    private String fieldType;
+    private final FieldRefCPEntry cpEntry;
+    private final String fieldType;
 
     public IMGetStatic(CodeContainer container,int bc,int bcpos,FieldRefCPEntry cpEntry) {
 	super(container);

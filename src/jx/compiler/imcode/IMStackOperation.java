@@ -8,7 +8,6 @@ import jx.compiler.*;
 // ***** IMStackOperation *****
 
 final public class IMStackOperation extends IMNode {
-
     public IMStackOperation(CodeContainer container,int bc,int bcpos) {
 	super(container);
 	bytecode = bc;

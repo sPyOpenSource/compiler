@@ -11,9 +11,9 @@ import java.util.ArrayList;
 
 final public class IMNewMultiArray extends IMOperator {
 
-    private ClassCPEntry cpEntry;
+    private final ClassCPEntry cpEntry;
     private IMOperant oprs[];
-    private int dim;
+    private final int dim;
 
     public IMNewMultiArray(CodeContainer container,int bc,int bcpos,ClassCPEntry cpEntry,int dim) {
 	super(container);

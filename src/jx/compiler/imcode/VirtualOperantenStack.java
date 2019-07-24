@@ -7,7 +7,7 @@ public class VirtualOperantenStack {
     
     private IMOperant[] opr_stack;
     private int ptr;
-    private CodeContainer imCode;
+    private final CodeContainer imCode;
 
     public VirtualOperantenStack(CodeContainer imCode) {
 	opr_stack = new IMOperant[10];

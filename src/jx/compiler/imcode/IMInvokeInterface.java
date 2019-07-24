@@ -10,8 +10,8 @@ import jx.compiler.nativecode.*;
 
 final public class IMInvokeInterface extends IMMultiOperant {
 
-    private InterfaceMethodRefCPEntry cpEntry;
-    private MethodTypeDescriptor typeDesc;
+    private final InterfaceMethodRefCPEntry cpEntry;
+    private final MethodTypeDescriptor typeDesc;
 
     public IMInvokeInterface(CodeContainer container,int bc,int bcpos,
 			     InterfaceMethodRefCPEntry cpEntry) {

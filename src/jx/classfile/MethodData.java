@@ -69,8 +69,7 @@ public class MethodData extends MethodSource {
 	    new int[exceptionClassCPIndex.length]:
 	    null;
 	if (exceptionClassCPIndex != null) {
-	    for (int i = 0; i < exceptionClassCPIndex.length; i++)
-		this.exceptionClassCPIndex[i] = exceptionClassCPIndex[i];
+            System.arraycopy(exceptionClassCPIndex, 0, this.exceptionClassCPIndex, 0, exceptionClassCPIndex.length);
 	}
 	this.codeData = codeData.copy();
 	this.declaringClass = declaringClass;
@@ -87,16 +86,25 @@ public class MethodData extends MethodSource {
     public final String getName() {
 	return getMethodName();
     }
+    @Override
     public String getMethodName() {return methodNameCPEntry.value(); }
+    @Override
     public String getMethodType() {return methodTypeCPEntry.value(); }
 
+    @Override
     public boolean isPublic() {return ClassData.isPublic(accessFlags);} 
+    @Override
     public boolean isPrivate() {return ClassData.isPrivate(accessFlags);}
+    @Override
     public boolean isProtected() {return ClassData.isProtected(accessFlags);}
+    @Override
     public boolean isStatic() {return ClassData.isStatic(accessFlags);}
+    @Override
     public boolean isFinal() {return ClassData.isFinal(accessFlags);}
 
+    @Override
     public boolean isNative() {return ClassData.isNative(accessFlags);}
+    @Override
     public boolean isAbstract() {return ClassData.isAbstract(accessFlags);}
 
     // get the initial types of the local variables (MD p. 62) 
@@ -138,9 +146,13 @@ public class MethodData extends MethodSource {
 
     // ***** convenience ***** 
 
+    @Override
     public byte[] getBytecode() {return codeData.getBytecode();} 
+    @Override
     public int getNumLocalVariables() {return codeData.getNumLocalVariables();}
+    @Override
     public int getNumStackSlots() {return codeData.getNumStackSlots();}
+    @Override
     public int getNumInstr() {
 	/* is not reale the number of instructions yet */
 	try {
@@ -153,9 +165,13 @@ public class MethodData extends MethodSource {
 	}
 	return 0;
     }
+    
+    @Override
     public ExceptionHandlerData[] getExceptionHandlers() {
 	return codeData.getExceptionHandlers(); 
     }
+    
+    @Override
     public LineAttributeData[] getLineNumberTable() { return codeData.getLineNumberTable(); }
 
     public void readFromClassFile(DataInput input, ConstantPool cPool) 
@@ -240,6 +256,7 @@ public class MethodData extends MethodSource {
     public int getModifiers() { return accessFlags; }
     
     private ArrayList verifyResults;
+    
     @Override
     public void setVerifyResult(VerifyResult newElm) {
 	if (newElm == null)
@@ -258,14 +275,14 @@ public class MethodData extends MethodSource {
 	    verifyResults.add(newElm);
 	}
     }
+    
     @Override
     public VerifyResult getVerifyResult(int type){
 	if (verifyResults == null){
 	    return null;
 	}
-	VerifyResult res = null;
 	for (Enumeration e = Collections.enumeration(verifyResults); e.hasMoreElements();) {
-	    res = (VerifyResult) e.nextElement();
+	    VerifyResult res = (VerifyResult) e.nextElement();
 	    if (res.getType() == type)
 		return res;
 	}

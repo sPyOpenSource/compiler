@@ -22,11 +22,7 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	bcPosition = bcpos;
 	datatype   = BCBasicDatatype.INT + (bc-BC.ILOAD_0) / 4;
 	ivar   = (bc-BC.ILOAD_0) & 0x03;
-	if (ivar==0) {
-	    isThisPointer = true;
-	} else {
-	    isThisPointer = false;
-	}
+        isThisPointer = ivar == 0;
     }
         
     public IMReadLocalVariable(CodeContainer container,int bc,int bcpos,int index) {
@@ -36,11 +32,7 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	bcPosition = bcpos;
 	datatype   = BCBasicDatatype.INT + (bc-BC.ILOAD);
 	ivar   = index;
-	if (ivar==0) {
-	    isThisPointer = true;
-	} else {
-	    isThisPointer = false;
-	}
+        isThisPointer = ivar == 0;
     }
 
     public IMReadLocalVariable(int index,int bcpos, CodeContainer container, int datatype) {
@@ -50,11 +42,7 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	bcPosition = bcpos;
 	ivar   = index;
 	this.datatype = datatype;
-	if (ivar==0) {
-	    isThisPointer = true;
-	} else {
-	    isThisPointer = false;
-	}
+        isThisPointer = ivar == 0;
     }
 
     public boolean isThisPointer() {

@@ -26,7 +26,7 @@ final  public class IMDiv extends IMBinaryOperator {
 
     public IMNode constant_folding() throws CompileException {
 	IMOperant newNode = this;
-	int       value = 0;;
+	int       value = 0;
 	
 	if (rOpr.isOperator()) {
 	    rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();

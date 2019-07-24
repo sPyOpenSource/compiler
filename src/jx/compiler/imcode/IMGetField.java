@@ -9,8 +9,8 @@ import jx.compiler.nativecode.*;
 
 final public class IMGetField extends IMUnaryOperator {
 
-    private FieldRefCPEntry cpEntry;
-    private String fieldType;
+    private final FieldRefCPEntry cpEntry;
+    private final String fieldType;
 
     public IMGetField(CodeContainer container,int bc,int bcpos,
 		      FieldRefCPEntry cpEntry) {

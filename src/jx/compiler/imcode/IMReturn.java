@@ -9,7 +9,6 @@ import java.util.ArrayList;
 // ***** IMReturn *****
 
 final public class IMReturn extends IMBranch  {
-
     private IMOperant    retValue;
     private IMBasicBlock ownBasicBlock;
 

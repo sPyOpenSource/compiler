@@ -181,7 +181,7 @@ public class OnlineCompilerDomain implements ByteCodeTranslater, Service {
 
 	  StaticCompiler compiler = new StaticCompiler(gasFile, codeFile,
 						       tableOut,
-						       domClasses,
+						       null,//domClasses,
 						       libClasses, tableIn,
 						       opts,io);
 	  compiler=null;

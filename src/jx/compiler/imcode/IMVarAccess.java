@@ -22,14 +22,17 @@ public class IMVarAccess extends IMOperator implements IMVarAccessInterface {
 	return ivar;
     }
     
+    @Override
     public int getNrRegs() { return 1; }
 
     @Override
     public void getCollectVars(ArrayList vars) { vars.add(this); }
 
+    @Override
     public String toSymbolname() {
 	return BCBasicDatatype.toSymbol(datatype)+Integer.toString(ivar);
     }
 
+    @Override
     public boolean writeAccess() {return writeAccess;}
 }

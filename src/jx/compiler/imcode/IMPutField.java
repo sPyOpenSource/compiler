@@ -11,10 +11,10 @@ import java.util.ArrayList;
 
 final public class IMPutField extends IMOperant  {
 
-    private FieldRefCPEntry cpEntry;
+    private final FieldRefCPEntry cpEntry;
     private IMOperant rvalue;
     private IMOperant obj;
-    private String fieldType;
+    private final String fieldType;
 
     public IMPutField(CodeContainer container,int bc,int bcpos,FieldRefCPEntry cpEntry) {
 	super(container);

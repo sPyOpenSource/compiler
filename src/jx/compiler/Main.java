@@ -133,7 +133,7 @@ public class Main {
 	try {
 	StaticCompiler compiler = new StaticCompiler(gasFile, codeFile,
 						     tableOut,
-						     domClasses,
+						     null,//domClasses,
 						     libClasses, tableIn,
 						     opts,io);
 	} catch(Exception ex) {

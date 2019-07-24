@@ -121,7 +121,7 @@ public class ClassData extends ClassSource {
 
 	    numInterfaces = input.readUnsignedShort(); 
 	    interfaceCPIndex = new int[numInterfaces]; 
-	    for(int i=0; i<numInterfaces;i++) 
+	    for(int i = 0; i < numInterfaces; i++) 
 		interfaceCPIndex[i] = input.readUnsignedShort(); 
 
 	    numFields = input.readUnsignedShort(); 

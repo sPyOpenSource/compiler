@@ -11,7 +11,6 @@ import java.util.ArrayList;
 // ***** IMStoreArray *****
 
 final public class IMStoreArray extends IMOperant  {
-
     private IMOperant iOpr;
     private IMOperant aOpr;
     private IMOperant rvalue;
@@ -137,5 +136,4 @@ final public class IMStoreArray extends IMOperant  {
 	    regs.freeIntRegister(array);
 	 */
     } 
-
 }

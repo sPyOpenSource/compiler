@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 final public class IMInc extends IMVarAccess  {
 
-    private int value;
+    private final int value;
 
     public IMInc(CodeContainer container,int bc,int bcpos,int ivar,int value) {
 	super(container);

@@ -129,8 +129,7 @@ public class IMInvoke extends IMMultiOperant {
 	if (datatype!=BCBasicDatatype.VOID) return false;
 	if (bytecode!=BC.INVOKESTATIC) return false;
 	if (!(bcMethod instanceof BCMethodWithCode)) return false;
-	if (bcMethod.isOverrideable()) return false;
-	return true;
+	return !bcMethod.isOverrideable();
     }
 
     public IMCompactNew getCompactNew(int ivar,IMNew newObj) {
@@ -235,19 +234,19 @@ public class IMInvoke extends IMMultiOperant {
 	    argn=1;
 	}
 	
-	/*
-	  store arguments vn -> varMap[n]
-	  all arguments must also be constant
-	*/
-	for (int i=0;i<args.length;i++) {
-	    if (argn>=varnr) {
-		if (opts.doVerbose("inline")) Debug.out.println("!! FAIL to inline - because is not a small method !! (1)");
-		return this;
-	    }
-	    oprs[argn] = args[i];
-	    varMap[argn] = -1;
-	    argn++;		
-	}
+        /*
+        store arguments vn -> varMap[n]
+        all arguments must also be constant
+         */
+        for (IMOperant arg : args) {
+            if (argn>=varnr) {
+                if (opts.doVerbose("inline")) Debug.out.println("!! FAIL to inline - because is not a small method !! (1)");
+                return this;
+            }
+            oprs[argn] = arg;
+            varMap[argn] = -1;
+            argn++;
+        }
 	
 	/*
 	  map local variabels vn+i -> varMap[n+i]
@@ -305,23 +304,23 @@ public class IMInvoke extends IMMultiOperant {
 	    }
 	}
 	
-	/*
-	  store arguments vn -> varMap[n]
-	*/
-	for (int i=0;i<args.length;i++) {
-	    // TODO check if v[i] is constant !!!
-	    if (false) {
-		//if (args[i].isConstant()) {
-		oprs[argn] = args[i];
-		varMap[argn] = -1;
-	    } else {		    
-		int argtype = args[i].getDatatype();
-		varMap[argn] = frame.getNewLocalVar(argtype);
-		stores[argn] = new IMStoreLocalVariable(container,varMap[argn],args[i],bcPosition);		
-		oprs[argn]=null;
-	    }
-	    argn++;		
-	}
+        /*
+        store arguments vn -> varMap[n]
+         */
+        for (IMOperant arg : args) {
+            // TODO check if v[i] is constant !!!
+            if (false) {
+                //if (args[i].isConstant()) {
+                oprs[argn] = arg;
+                varMap[argn] = -1;
+            } else {
+                int argtype = arg.getDatatype();
+                varMap[argn] = frame.getNewLocalVar(argtype);
+                stores[argn] = new IMStoreLocalVariable(container, varMap[argn], arg, bcPosition);
+                oprs[argn]=null;
+            }
+            argn++;
+        }
 	
 	/*
 	  map local variabels vn+i -> varMap[n+i]
@@ -344,13 +343,15 @@ public class IMInvoke extends IMMultiOperant {
 	
 	inlineCode.transformForInline(container,varMap,oprs,retval,bcPosition);
 	
-	for (int i=0;i<stores.length;i++) {
-	    //System.err.println("map v"+Integer.toString(i)+" -> "+Integer.toString(varMap[i]));
-	    if (stores[i]!=null) {
-		if (verbose && System.err!=null) System.err.println(stores[i].toReadableString());
-		inlineCode.insertTop(stores[i]);
-	    }
-	}
+        for (IMOperant store : stores) {
+            //System.err.println("map v"+Integer.toString(i)+" -> "+Integer.toString(varMap[i]));
+            if (store != null) {
+                if (verbose) {
+                    System.err.println(store.toReadableString());
+                }
+                inlineCode.insertTop(store);
+            }
+        }
 	
 	iCode.add(inlineCode); // code to insert 
 	

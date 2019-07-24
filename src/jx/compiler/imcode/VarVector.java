@@ -190,9 +190,10 @@ public final class VarVector {
 	while (elementCount < newSize) elementData[elementCount++] = null;
     }
 
+    @Override
     public final String toString()
     {
-	StringBuffer buff = new StringBuffer("[");
+	StringBuilder buff = new StringBuilder("[");
 	for (int i = 0; i < elementCount; i++)
 	    {
 		if (i > 0)
