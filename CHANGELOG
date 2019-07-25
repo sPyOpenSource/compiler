@@ -1,3 +1,6 @@
+v1.9 XW 25-07-2019
+removed: some jx/zero classes
+
 v1.8 XW 24-07-2019
 improved: code
 change: libdir = "/home/spy/OS/jcore/isodir/code"
