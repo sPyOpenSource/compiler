@@ -76,7 +76,7 @@ public class StaticCompiler implements ClassFinder {
     public StaticCompiler(PrintStream gasFile, 
 			  ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
-			  JarFile domainZip, 
+			  ReadOnlyMemory domainZip, 
 			  ReadOnlyMemory[] libZip,
 			  ExtendedDataInputStream tableIn[],
 			  CompilerOptions opts,
@@ -141,7 +141,7 @@ public class StaticCompiler implements ClassFinder {
 
 	// split zipfiles into classfiles
 	for(int i = -1; i < libZip.length; i++) {
-	    JarFile in = null;
+	    ReadOnlyMemory in = null;
 	    if (i == -1) {
                 in = domainZip;
                 String base = "/home/spy/Java/OS/";
@@ -186,11 +186,13 @@ public class StaticCompiler implements ClassFinder {
                 }
                 continue;
             } else {
-                //in = libZip[i];
+                in = libZip[i];
             }
             try {
-                JarFile jar = in;//new ZipFile(in);
-                //ZipEntry entry;
+                ZipFile zip = new ZipFile(in);
+                ZipEntry entry;
+                while((entry = zip.getNextEntry()) != null){
+                /*JarFile jar = in;
                 String base = "/home/spy/Java/OS/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
@@ -229,8 +231,8 @@ public class StaticCompiler implements ClassFinder {
                                 }
                             }
                         }
-                    }
-                    /*if (entry.isDirectory())
+                    }*/
+                    if (entry.isDirectory())
                         continue;
                     //if (entry.getName().indexOf(".class")>0) {		    
 
@@ -247,7 +249,7 @@ public class StaticCompiler implements ClassFinder {
                         //Debug.out.println("classfile "+entry.getName());
                         if (i == -1) domdata.add(entry.getData());
                         else libdata.add(entry.getData());
-                    }*/
+                    }
                 }
                 //System.exit(1);
             } catch (NullPointerException e){
