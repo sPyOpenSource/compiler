@@ -189,7 +189,7 @@ public class MethodData extends MethodSource {
 
 	// System.out.println(getDescription(cPool)); 
       
-	for(int i=0; i<numAttributes; i++) 
+	for(int i = 0; i < numAttributes; i++) 
 	    readAttribute(input, cPool); 
 
 	if (codeData == null) {
@@ -200,8 +200,8 @@ public class MethodData extends MethodSource {
 		}
 		*/
 	    } else {
-		if (! isAbstract()) {
-		    Debug.out.println("Non-abstract Method "+getDescription(cPool)+"contains no code");
+		if (!isAbstract()) {
+		    Debug.out.println("Non-abstract Method " + getDescription(cPool) + "contains no code");
 		    Debug.throwError("Method contains no code");
 		}
 	    }

@@ -106,10 +106,13 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	//JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");
-        Memory domClasses = getZIP(opts.getClassFile());
+	JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");
+        //domClasses = new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar");
+        //domClasses = new JarFile("/home/spy/OS/jx/libs/jdk0.jar");
+        //Memory domClasses = getZIP(opts.getClassFile());
         System.out.println(opts.getLibs());
-	Memory[] libClasses = getZIPs(opts.getLibs());
+	JarFile[] libClasses = new JarFile[0];
+        libClasses = getZIPs(opts.getLibs());
 
 	ExtendedDataInputStream[] tableIn;
 	ArrayList links = opts.getLibsLinkerInfo();
@@ -147,9 +150,14 @@ public class CompileNative {
 	tableOut.close();
     }
 
-    public static Memory[] getZIPs(ArrayList libs) {
-	Memory[] libClasses;
-	if (libs != null) {
+    public static JarFile[] getZIPs(ArrayList libs) {
+	JarFile[] libClasses = null;
+        try {
+            libClasses = new JarFile[]{new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar")};
+        } catch (IOException ex) {
+            Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
+        }
+	/*if (libs != null) {
 	    libClasses = new Memory[libs.size()];
 	    for(int i = 0; i < libs.size(); i++) {
 		//if (opts.doDebug()) Debug.out.println("Reading lib classes from "+(String)libs.elementAt(i));
@@ -157,7 +165,7 @@ public class CompileNative {
 	    }
 	} else {
 	    libClasses = new Memory[0];
-	}
+	}*/
 	return libClasses;
     }
 }

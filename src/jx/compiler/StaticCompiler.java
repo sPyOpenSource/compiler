@@ -5,26 +5,21 @@
  */
 package jx.compiler;
 
+import java.io.ByteArrayOutputStream;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 
 import jx.zero.Debug;
 import jx.zero.Memory;
-import jx.zero.ReadOnlyMemory;
-
-import jx.zip.ZipFile;
-import jx.zip.ZipEntry;
 
 import jx.collections.Iterator;
 import jx.collections.List;
 
 import jx.compiler.persistent.*;
-
 import jx.compiler.vtable.MethodTableFactory;
 import jx.compiler.vtable.ClassInfo;
 import jx.compiler.vtable.Method;
 import jx.compiler.vtable.MethodTable;
-
 import jx.compiler.imcode.ExecEnvironmentInterface;
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
@@ -37,11 +32,9 @@ import jx.compspec.MetaInfo;
 
 import jx.compiler.execenv.NativeCodeContainer;
 import jx.compiler.execenv.BinaryCode;
-import jx.compspec.StartBuilder;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
-import java.io.File;
 import java.io.PrintStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -76,8 +69,8 @@ public class StaticCompiler implements ClassFinder {
     public StaticCompiler(PrintStream gasFile, 
 			  ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
-			  ReadOnlyMemory domainZip, 
-			  ReadOnlyMemory[] libZip,
+			  JarFile domainZip, 
+			  JarFile[] libZip,
 			  ExtendedDataInputStream tableIn[],
 			  CompilerOptions opts,
 			  IOSystem ioSystem
@@ -141,10 +134,10 @@ public class StaticCompiler implements ClassFinder {
 
 	// split zipfiles into classfiles
 	for(int i = -1; i < libZip.length; i++) {
-	    ReadOnlyMemory in = null;
+	    JarFile in = null;
 	    if (i == -1) {
                 in = domainZip;
-                String base = "/home/spy/Java/OS/";
+                /*String base = "/home/spy/Java/OS/";
                 byte[] barr;
                 try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                     barr = new byte[(int)f.length()];
@@ -184,20 +177,30 @@ public class StaticCompiler implements ClassFinder {
                         }
                     }
                 }
-                continue;
+                continue;*/
             } else {
                 in = libZip[i];
             }
             try {
-                ZipFile zip = new ZipFile(in);
-                ZipEntry entry;
-                while((entry = zip.getNextEntry()) != null){
-                /*JarFile jar = in;
-                String base = "/home/spy/Java/OS/";
-                byte[] barr;
-                try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                    barr = new byte[(int)f.length()];
-                    f.readFully(barr);
+                //ZipFile zip = new ZipFile(in);
+                //ZipEntry entry;
+                //while((entry = zip.getNextEntry()) != null){
+                JarFile jar = in;
+                                byte[] barr;
+
+                if(i == -1){
+                    String base = "/home/spy/Java/OS/";
+                    //base = "/home/spy/OS/jx/libs/jdk0/";
+                    try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                        barr = new byte[(int)f.length()];
+                        f.readFully(barr);
+                    }
+                } else {
+                    String base = "/home/spy/OS/jcore/Zero/";
+                    try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                        barr = new byte[(int)f.length()];
+                        f.readFully(barr);
+                    }
                 }
                 meta = new MetaInfo("", barr);
                 String sd = meta.getVar("SUBDIRS");
@@ -212,26 +215,31 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("TimeZone.class")) continue;
                         if (name.endsWith("SimpleTimeZone.class")) continue;
                         if (name.endsWith("Calendar.class")) continue;
-                        if (name.endsWith("SubList.class")) continue;
+                        if (name.endsWith("/SubList.class")) continue;
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
                         if (name.endsWith("BufferedInputStream.class")) continue;
                         if (name.endsWith("StringReader.class")) continue;
                         if (name.endsWith("PrintWriter.class")) continue;
                         for(String s:sds){
-                            if (name.startsWith(s)){
-                                System.out.println(name); 
-                                try (InputStream is = jar.getInputStream(entry)) {
-                                    byte[] buffer = new byte[is.available()];
-                                    is.read(buffer);
-                                    Memory m = memMgr.alloc(buffer.length);
-                                    m.copyFromByteArray(buffer, 0, 0, buffer.length);
-                                    domdata.add(m);
-                                    continue main;
+                            if (name.startsWith(s + "/")){
+                                if(name.split("/").length - 1 == s.split("/").length){
+                                    System.out.println(name); 
+                                    try (InputStream is = jar.getInputStream(entry)) {
+                                        byte[] buffer = getBytesFromInputStream(is);
+                                        Memory m = memMgr.alloc(buffer.length);
+                                        m.copyFromByteArray(buffer, 0, 0, buffer.length);
+                                        if(i == -1)
+                                            domdata.add(m);
+                                        else
+                                            libdata.add(m);
+                                        continue main;
+                                    }
                                 }
                             }
                         }
-                    }*/
+                    }
+                    /*
                     if (entry.isDirectory())
                         continue;
                     //if (entry.getName().indexOf(".class")>0) {		    
@@ -249,7 +257,7 @@ public class StaticCompiler implements ClassFinder {
                         //Debug.out.println("classfile "+entry.getName());
                         if (i == -1) domdata.add(entry.getData());
                         else libdata.add(entry.getData());
-                    }
+                    }*/
                 }
                 //System.exit(1);
             } catch (NullPointerException e){
@@ -301,6 +309,17 @@ public class StaticCompiler implements ClassFinder {
 
 	compileStatic();
     }
+
+
+    public static byte[] getBytesFromInputStream(InputStream is) throws IOException {
+        ByteArrayOutputStream os = new ByteArrayOutputStream(); 
+        byte[] buffer = new byte[0xFFFF];
+        for (int len = is.read(buffer); len != -1; len = is.read(buffer)) { 
+            os.write(buffer, 0, len);
+        }
+        return os.toByteArray();
+    }
+
 
     private void addMethod(ClassInfo aClass, ArrayList mtable, String methodName, String signature) {
 	Method method;
