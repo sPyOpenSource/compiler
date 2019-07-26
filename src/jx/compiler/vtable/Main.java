@@ -229,6 +229,7 @@ class Main {
                 if (dumpAll) Debug.out.println("METHOD " + j + ":" + ii.mtable.getAt(j).ifMethodIndex + ii.mtable.getAt(j).nameAndType);
                 Method realM = (Method)inherited.get(ii.mtable.getAt(j).nameAndType);
                 if(realM == null) {
+                    realM = ii.mtable.getAt(j);
                     System.out.println("METHOD NOT IMPLEMENTED: " + ii.mtable.getAt(j).nameAndType);
                     System.out.println("   IF: " + ii.className);
                     System.out.println("   CL: " + info.className);

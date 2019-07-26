@@ -77,7 +77,9 @@ public class CompileNative {
 
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
-        String[] neededLibs = new String[]{"zero", "jdk0"};
+        String[] neededLibs = new String[]{
+            "zero", "jdk0"
+        };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
@@ -151,7 +153,9 @@ public class CompileNative {
     public static JarFile[] getZIPs(ArrayList libs) {
 	JarFile[] libClasses = null;
         try {
-            libClasses = new JarFile[]{new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Java/OS/dist/OS.jar")};
+            libClasses = new JarFile[]{
+                new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Java/OS/dist/OS.jar")
+            };
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
         }
