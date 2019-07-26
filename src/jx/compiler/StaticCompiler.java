@@ -134,73 +134,41 @@ public class StaticCompiler implements ClassFinder {
 
 	// split zipfiles into classfiles
 	for(int i = -1; i < libZip.length; i++) {
-	    JarFile in = null;
+	    JarFile in;
 	    if (i == -1) {
                 in = domainZip;
-                /*String base = "/home/spy/Java/OS/";
-                byte[] barr;
-                try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                    barr = new byte[(int)f.length()];
-                    f.readFully(barr);
-                }
-                meta = new MetaInfo("", barr);
-                String sd = meta.getVar("SUBDIRS");
-                String[] sds = MetaInfo.split(sd);
-                for(String sub : sds){
-                    File subdir = new File(base + "build/classes/" + sub);
-                    String dirlist[] = subdir.list();
-                    for (String dirlist1 : dirlist) {
-                        if ("GregorianCalendar.class".equals(dirlist1)) continue;
-                        if ("TimeZone.class".equals(dirlist1)) continue;
-                        if ("SimpleTimeZone.class".equals(dirlist1)) continue;
-                        if ("Calendar.class".equals(dirlist1)) continue;
-                        if ("SubList.class".equals(dirlist1)) continue;
-                        if ("AbstractSequentialList.class".equals(dirlist1)) continue;
-                        if ("SubList$1.class".equals(dirlist1)) continue;
-                        if ("BufferedInputStream.class".equals(dirlist1)) continue;
-                        if ("StringReader.class".equals(dirlist1)) continue;
-                        if ("PrintWriter.class".equals(dirlist1)) continue;
-                        if (StartBuilder.hasExtension(new String[] {".class"}, dirlist1)) {
-                            try {
-                                byte[] data;
-                                try (RandomAccessFile file = new RandomAccessFile(base + "build/classes/" + sub + "/" + dirlist1, "r")) {
-                                    data = new byte[(int)file.length()];
-                                    file.readFully(data);
-                                }
-                                Memory m = memMgr.alloc(data.length);
-                                m.copyFromByteArray(data, 0, 0, data.length);
-                                domdata.add(m);
-                            } catch(IOException e) {
-                                Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
-                                //Debug.throwError("could not read classes.zip file: " + filename);
-                            }
-                        }
-                    }
-                }
-                continue;*/
             } else {
                 in = libZip[i];
             }
             try {
-                //ZipFile zip = new ZipFile(in);
-                //ZipEntry entry;
-                //while((entry = zip.getNextEntry()) != null){
                 JarFile jar = in;
-                                byte[] barr;
+                byte[] barr;
 
-                if(i == -1){
-                    String base = "/home/spy/Java/OS/";
-                    //base = "/home/spy/OS/jx/libs/jdk0/";
-                    try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                        barr = new byte[(int)f.length()];
-                        f.readFully(barr);
-                    }
-                } else {
-                    String base = "/home/spy/OS/jcore/Zero/";
-                    try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                        barr = new byte[(int)f.length()];
-                        f.readFully(barr);
-                    }
+                switch (i) {
+                    case 1:
+                        {
+                            String base = "/home/spy/Java/OS/";
+                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                                barr = new byte[(int)f.length()];
+                                f.readFully(barr);
+                            }       break;
+                        }
+                    case 0:
+                        {
+                            String base = "/home/spy/OS/jcore/Zero/";
+                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                                barr = new byte[(int)f.length()];
+                                f.readFully(barr);
+                            }       break;
+                        }
+                    default:
+                        {
+                            String base = "/home/spy/Java/testOS/";
+                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                                barr = new byte[(int)f.length()];
+                                f.readFully(barr);
+                            }       break;
+                        }
                 }
                 meta = new MetaInfo("", barr);
                 String sd = meta.getVar("SUBDIRS");
@@ -259,7 +227,6 @@ public class StaticCompiler implements ClassFinder {
                         else libdata.add(entry.getData());
                     }*/
                 }
-                //System.exit(1);
             } catch (NullPointerException e){
                 Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
             }

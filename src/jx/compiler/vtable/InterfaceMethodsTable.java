@@ -60,12 +60,9 @@ public class InterfaceMethodsTable {
 
     public void setAt(int index, Method m) {
 	m.ifMethodIndex = index;
-	/*if (methods.size() <= index)
-	    methods.setSize(index+1);*/
-        if(index == methods.size())
-            methods.add(m);
-        else
-            methods.set(index, m);
+	for (int i = methods.size(); i <= index; i++)
+            methods.add(null);
+        methods.set(index, m);
 	methodFinder.put(m.nameAndType, m);
     }
 
