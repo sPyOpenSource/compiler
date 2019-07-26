@@ -77,7 +77,7 @@ public class CompileNative {
 
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
-        String[] neededLibs = new String[]{"zero"};
+        String[] neededLibs = new String[]{"zero", "jdk0"};
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
@@ -108,9 +108,7 @@ public class CompileNative {
 
 	JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");
         //domClasses = new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar");
-        //domClasses = new JarFile("/home/spy/OS/jx/libs/jdk0.jar");
-        //Memory domClasses = getZIP(opts.getClassFile());
-        System.out.println(opts.getLibs());
+        domClasses = new JarFile("/home/spy/Java/testOS/dist/testOS.jar");
 	JarFile[] libClasses = new JarFile[0];
         libClasses = getZIPs(opts.getLibs());
 
@@ -153,7 +151,7 @@ public class CompileNative {
     public static JarFile[] getZIPs(ArrayList libs) {
 	JarFile[] libClasses = null;
         try {
-            libClasses = new JarFile[]{new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar")};
+            libClasses = new JarFile[]{new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Java/OS/dist/OS.jar")};
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
         }
