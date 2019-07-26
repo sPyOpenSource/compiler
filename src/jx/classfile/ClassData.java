@@ -131,13 +131,13 @@ public class ClassData extends ClassSource {
 
 	    numMethods = input.readUnsignedShort(); 
 	    method = new MethodData[numMethods];
-	    if (debugRead) Debug.out.println("Class:"+constantPool.classEntryAt(thisClassCPIndex).getClassName());
+	    if (debugRead) System.out.println("Class:" + constantPool.classEntryAt(thisClassCPIndex).getClassName());
 	    for(int i = 0; i < numMethods; i++) {
 		try {
 		    method[i] = new MethodData(this, input, constantPool, allowNative); 
-		    if (debugRead) Debug.out.println("METHOD " + i + ": " + method[i].getMethodName());
+		    if (debugRead) System.out.println("METHOD " + i + ": " + method[i].getMethodName());
 		} catch(NativeMethodException e) {
-		    Debug.out.println("Class:" + constantPool.classEntryAt(thisClassCPIndex).getClassName());
+		    System.out.println("Class:" + constantPool.classEntryAt(thisClassCPIndex).getClassName());
 		    throw e;
 		}
 	    }
