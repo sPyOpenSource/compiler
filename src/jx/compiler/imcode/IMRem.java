@@ -40,13 +40,13 @@ final  public class IMRem extends IMBinaryOperator {
 	    }
 	    
 	    // simpel case (x/1) => c
-	    if (rOpr.isConstant() && (value=rOpr.nodeToConstant().getIntValue())==1) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ no folding x%1 "+toReadableString());
+	    if (rOpr.isConstant() && (value = rOpr.nodeToConstant().getIntValue()) == 1) {
+		if (opts.doVerbose("cf")) Debug.out.println("++ no folding x%1 " + toReadableString());
 	    }
 
 	    // simpel case (0/...) => 0
-	    if (lOpr.isConstant() && (value=lOpr.nodeToConstant().getIntValue())==0) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ no folding 0/x "+toReadableString());
+	    if (lOpr.isConstant() && (value = lOpr.nodeToConstant().getIntValue()) == 0) {
+		if (opts.doVerbose("cf")) Debug.out.println("++ no folding 0/x " + toReadableString());
 	    }
 
 	}
@@ -58,7 +58,7 @@ final  public class IMRem extends IMBinaryOperator {
 
 
     public String toReadableString() {
-	return "("+lOpr.toReadableString()+"%"+rOpr.toReadableString()+")";
+	return "(" + lOpr.toReadableString() + "%" + rOpr.toReadableString() + ")";
     }
 
     // IMRem
