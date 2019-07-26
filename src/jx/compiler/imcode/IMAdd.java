@@ -77,7 +77,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	if (opts.doVerbose("cf")) {
 	    if (lOpr.isSubOrAdd() && rOpr.isSubOrAdd()) {
 		if (lOpr.hasConstant() && rOpr.hasConstant()) {
-		    Debug.out.println("++ no folding ((x+/-x)+(x+/-x)) "+toReadableString());
+		    Debug.out.println("++ no folding ((x+/-x)+(x+/-x)) " + toReadableString());
 		    // todo cases ((x+/-x)+(x+/-x))
 		}
 	    }

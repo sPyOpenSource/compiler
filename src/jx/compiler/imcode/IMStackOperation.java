@@ -19,7 +19,7 @@ final public class IMStackOperation extends IMNode {
 
 	switch (bytecode) {
 	case BC.POP:
-	    opr1=stack.pop();
+	    opr1 = stack.pop();
 	    if (opr1 instanceof IMInvoke) {
 		return opr1;
 	    }
@@ -40,7 +40,7 @@ final public class IMStackOperation extends IMNode {
 	    */
 	    // We won't do typechecks here.
 	    // no long or double on the stack ?
-	    opr2=stack.pop();
+	    opr2 = stack.pop();
 	    break;
 	case BC.DUP:
 	    // We won't do typechecks here.

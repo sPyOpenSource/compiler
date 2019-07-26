@@ -41,23 +41,25 @@ final public class IMTableSwitch extends IMBranch  {
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException {
         if (operant.isOperator()) {
             operant = (IMOperant)((IMOperator)operant).constant_folding();
         }
 
         if (operant.isConstant()) {
-          if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding "+toReadableString());
+            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toReadableString());
         }
 	
 	return this; 
     }
 
+    @Override
     public String toReadableString() {
 	String output = "tswitch ("+operant.toReadableString()+")";
-	for (int i=0;i<offsets.length;i++) {
-	    output += " " + offsets[i].toLabel();
-	}
+        for (IMBasicBlock offset : offsets) {
+            output += " " + offset.toLabel();
+        }
 	return output + " : "+doff.toLabel();
     }
 

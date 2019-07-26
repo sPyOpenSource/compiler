@@ -147,7 +147,7 @@ public class CodeFile {
 	String []vars = meta.getVars();
 	out.writeInt(vars.length);
         for (String var : vars) {
-            //Debug.out.println("  "+vars[i]+"   = "+meta.getVar(vars[i]));
+            System.out.println("  " + var + "   = " + meta.getVar(var));
             out.writeString(var);
             out.writeString(meta.getVar(var));
         }
@@ -217,7 +217,7 @@ public class CodeFile {
 	}
 	String codeType = in.readString();
 	int size = in.readInt();
-	for(int i=0; i<size; i++) {
+	for(int i = 0; i < size; i++) {
 	    CompiledClass compiledClass = readHeaderFromFile();
 	    all.add(compiledClass);
 	}
@@ -226,7 +226,7 @@ public class CodeFile {
 	// read code
 	//
 
-	for(int i=0; i<size; i++) {
+	for(int i = 0; i < size; i++) {
 	    readCodeFromFile((CompiledClass)all.get(i));
 	}	
 	return all;

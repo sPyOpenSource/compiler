@@ -43,10 +43,10 @@ final public class IMLookupSwitch extends IMBranch  {
 
     public IMNode constant_folding() throws CompileException {
 	if (operant.isOperator()) {
-		    operant = (IMOperant)((IMOperator)operant).constant_folding();
+            operant = (IMOperant)((IMOperator)operant).constant_folding();
         }
 	if (operant.isConstant()) {
-          if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding "+toReadableString());
+            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toReadableString());
         }
 
         return this;

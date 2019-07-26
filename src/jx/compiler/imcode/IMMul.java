@@ -69,11 +69,11 @@ final  public class IMMul extends IMBinaryOperator {
 		case 9:
                     // todo (x+c)*c -> (x*c)+(c*c) 
 	            if (opts.doVerbose("lea")) {
-                       if (lOpr.isSubOrAdd()) {
-			    Debug.out.println("!! use lea or add (x+c)*c -> (x*c)+(c*c) "+toReadableString());	
-                       } else {
-			    Debug.out.println("++ use lea or add"+toReadableString());	
-                       }
+                        if (lOpr.isSubOrAdd()) {
+			    Debug.out.println("!! use lea or add (x+c)*c -> (x*c)+(c*c) " + toReadableString());	
+                        } else {
+			    Debug.out.println("++ use lea or add" + toReadableString());	
+                        }
 		    }
 		}
 	    }
@@ -84,7 +84,7 @@ final  public class IMMul extends IMBinaryOperator {
 		if (lOpr.isDivOrMult() && rOpr.isDivOrMult()) {
 		    if (lOpr.hasConstant() && rOpr.hasConstant()) {
 			//if (opts.doVerbose("cf"))
-			    Debug.out.println("++ no folding ((x*c)*(x*c)) "+toReadableString());
+			    Debug.out.println("++ no folding ((x*c)*(x*c)) " + toReadableString());
 		    }
 		}
 	    }

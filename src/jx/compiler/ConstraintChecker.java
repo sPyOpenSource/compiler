@@ -53,7 +53,7 @@ public class ConstraintChecker {
             for (String if1 : ifs) {
                 for (String forbiddenInterface : forbiddenInterfaces) {
                     if (if1.equals(forbiddenInterface)) {
-                        throw new ForbiddenInterfaceImplementedException("Class "+source.getClassName()+" is not allowed to implement " + if1);
+                        throw new ForbiddenInterfaceImplementedException("Class " + source.getClassName() + " is not allowed to implement " + if1);
                     }
                 }
             }
