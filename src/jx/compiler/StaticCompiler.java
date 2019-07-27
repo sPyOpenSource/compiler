@@ -135,54 +135,27 @@ public class StaticCompiler implements ClassFinder {
 	// split zipfiles into classfiles
 	for(int i = -1; i < libZip.length; i++) {
 	    JarFile in;
+            
 	    if (i == -1) {
                 in = domainZip;
             } else {
                 in = libZip[i];
             }
+            
+            String base = in.getName().split("dist")[0];
+            String[] sds;
+            byte[] barr;
+
+            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
+                barr = new byte[(int)f.length()];
+                f.readFully(barr);
+            }    
+            MetaInfo x = new MetaInfo("", barr);
+            String sd = x.getVar("SUBDIRS");
+            sds = MetaInfo.split(sd);
+            
             try {
                 JarFile jar = in;
-                String[] sds;
-                byte[] barr;
-                MetaInfo x;
-                switch (i) {
-                    case 1:
-                        {
-                            String base = "/home/spy/Java/OS/";
-                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                                barr = new byte[(int)f.length()];
-                                f.readFully(barr);
-                            }    
-                            x = new MetaInfo("", barr);
-                            String sd = x.getVar("SUBDIRS");
-                            sds = MetaInfo.split(sd);
-                            break;
-                        }
-                    case 0:
-                        {
-                            String base = "/home/spy/OS/jcore/Zero/";
-                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                                barr = new byte[(int)f.length()];
-                                f.readFully(barr);
-                            }
-                            x = new MetaInfo("", barr);
-                            String sd = x.getVar("SUBDIRS");
-                            sds = MetaInfo.split(sd);
-                            break;
-                        }
-                    default:
-                        {
-                            String base = "/home/spy/Java/testOS/";
-                            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                                barr = new byte[(int)f.length()];
-                                f.readFully(barr);
-                            }
-                            meta = new MetaInfo("", barr);
-                            String sd = meta.getVar("SUBDIRS");
-                            sds = MetaInfo.split(sd);
-                            break;
-                        }
-                }
                 
                 Enumeration<JarEntry> entries = jar.entries();
                 main:
@@ -197,7 +170,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("/SubList.class")) continue;
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
-                        if (name.endsWith("BufferedInputStream.class")) continue;
+                        //if (name.endsWith("BufferedInputStream.class")) continue;
                         if (name.endsWith("StringReader.class")) continue;
                         if (name.endsWith("PrintWriter.class")) continue;
                         for(String s:sds){
@@ -208,10 +181,12 @@ public class StaticCompiler implements ClassFinder {
                                         byte[] buffer = getBytesFromInputStream(is);
                                         Memory m = memMgr.alloc(buffer.length);
                                         m.copyFromByteArray(buffer, 0, 0, buffer.length);
-                                        if(i == -1)
+                                        if(i == -1){
                                             domdata.add(m);
-                                        else
+                                            meta = x;
+                                        } else {
                                             libdata.add(m);
+                                        }
                                         continue main;
                                     }
                                 }

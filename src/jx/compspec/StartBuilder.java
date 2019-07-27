@@ -84,7 +84,7 @@ public class StartBuilder {
     private static CompilerOptions compilerOpts;
 
     public static void main(String[] args) throws Exception {
-        args = "-components /home/spy/OS/jx/libs/COMPONENTS -compdir /home/spy/OS/jx/libs/".split(" ");
+        args = "-components COMPONENTS -compdir /home/spy/OS/jcore/isodir/code/".split(" ");
 	String componentsDir = null;
 	int argc = 0;
 
@@ -125,14 +125,44 @@ public class StartBuilder {
 
 	String[] compdirs = MetaInfo.split(componentsDir, ':');
 
-	if (opt_new)
+	/*if (opt_new)
 	    metas = findlibsNew(compdirs, components);
 	else
-	    metas = findlibs(compdirs, components);
+	    metas = findlibs(compdirs, components);*/
+        byte[] barr;
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/OS/jcore/Zero/META", "r")) {
+            barr = new byte[(int)f.length()];
+            f.readFully(barr);
+        }
+        MetaInfo zero = new MetaInfo("/home/spy/OS/jx/libs/zero", barr);
+        zero.setNeededLibs(new ArrayList());
+        metas.add(zero);
+        
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Java/OS/META", "r")) {
+            barr = new byte[(int)f.length()];
+            f.readFully(barr);
+        }    
+        MetaInfo jdk0 = new MetaInfo("/home/spy/OS/jx/libs/jdk0", barr);
+        ArrayList allLibs2 = new ArrayList();
+        allLibs2.add("zero");
+        jdk0.setNeededLibs(allLibs2);
+        metas.add(jdk0);
+       
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Java/testOS/META", "r")) {
+            barr = new byte[(int)f.length()];
+            f.readFully(barr);
+        }
+        MetaInfo meta = new MetaInfo("/home/spy/OS/jx/libs/init2", barr);
+        ArrayList allLibs = new ArrayList();
+        allLibs.add("zero");
+        allLibs.add("jdk0");
+        meta.setNeededLibs(allLibs);
+        metas.add(meta);
+        
 	buildDir = compdirs[0];
-	String jcFileName = compdirs[0] + "/../JC_CONFIG";
-	String addFileName = compdirs[0] + "/../ADD_TO_ZIP";
-	String codeFileName = compdirs[0] + "/../code.zip";
+	String jcFileName = "JC_CONFIG";
+	String addFileName = "ADD_TO_ZIP";
+	String codeFileName = "/home/spy/OS/jcore/isodir/code/code.zip";
 	File jcFile = new File(jcFileName);
 	zipFileListFile = new File(addFileName);
 	File codeFile = new File(codeFileName);
@@ -249,7 +279,10 @@ public class StartBuilder {
                 String dirname = sda1;
                 String subdirname = filename + "/" + dirname + "/";
                 File subdir = new File(subdirname);
-                if (!subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
+                if (!subdir.exists()) {
+                    continue;
+                    //throw new Error("Subdir " + subdirname + " does not exist.");
+                }
                 ArrayList output = new ArrayList();
                 String dirlist[] = subdir.list();
                 for (String dirlist1 : dirlist) {
@@ -310,7 +343,7 @@ public class StartBuilder {
 	}
 
 	System.out.println("*********** BUILDING ZIPS: CLASS -> ZIP");
-	for(int i = 0; i < metas.size(); i++) {
+	/*for(int i = 0; i < metas.size(); i++) {
 	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.print("* " + s.getComponentName() + "...  ");
 	    if (build_zip(s)) {
@@ -319,13 +352,13 @@ public class StartBuilder {
 	    } else {
 		if (!silent) System.out.println(" nothing to do.");
 	    }
-	}
+	}*/
 
 	System.out.println("*********** BUILDING COMPONENTS: ZIP -> JLL");
 	build_jlls();
 
 	System.out.println("*********** BUILDING BOOT ZIP FILE");
-	build_bootzip();
+	//build_bootzip();
 
 	System.out.println("*********** BUILD COMPLETED");
     }
@@ -583,13 +616,13 @@ public class StartBuilder {
 	    String zipname = libdir + s.getComponentName() + ".zip";
 	    String jllname = libdir + s.getComponentName() + ".jll";
 
-	    File zipfile = new File(zipname);
+	    /*File zipfile = new File(zipname);
 	    File jllfile = new File(jllname);
 
 	    if ((!compiledAJll || opt_fast) && (jllfile.exists() && !new_jcflags) && (jllfile.lastModified() > zipfile.lastModified())) {
 		if (!silent) System.out.println(" nothing to do.");
 		continue;
-	    }
+	    }*/
 	    if (silent) System.out.print("* " + s.getComponentName() + "... ");
 	    compiledAJll = true;
 
@@ -606,7 +639,7 @@ public class StartBuilder {
 
 	    /* public BuilderOptions(Vector libs, Vector jlns, String src, String target, String env) */
 	    //BuilderOptions opts = new BuilderOptions(libs,jlns,zipname,jlnname,jllname,"int");
-	    CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, libdir + "../JC_CONFIG");
+	    CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
 
 	    try {
 		CompileNative.compile(libdir + s.getComponentName(), opts);
