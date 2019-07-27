@@ -109,10 +109,16 @@ public class CompileNative {
 
 
 	JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");
-        //domClasses = new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar");
-        domClasses = new JarFile("/home/spy/Java/testOS/dist/testOS.jar");
-	JarFile[] libClasses = new JarFile[0];
-        libClasses = getZIPs(opts.getLibs());
+        JarFile[] libClasses = new JarFile[]{
+                new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar")
+            };
+        if(path.endsWith("zero")){
+            domClasses = new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar");
+            libClasses = new JarFile[0];
+        } else if(path.endsWith("init2")){
+            domClasses = new JarFile("/home/spy/Java/testOS/dist/testOS.jar");
+            libClasses = getZIPs(opts.getLibs());
+        }
 
 	ExtendedDataInputStream[] tableIn;
 	ArrayList links = opts.getLibsLinkerInfo();

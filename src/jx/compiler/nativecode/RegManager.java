@@ -329,12 +329,12 @@ public class RegManager {
 	if (reg.any()) throw new Error("can`t read from register 'any'");
 	//if (dbg_msg) System.err.println("     read "+reg+" ["+active+"]");
 	if (!active.knows(reg)) {
-	    if (reg.slot!=null) {
+	    if (reg.slot != null) {
 		active.append(reg);
-		readIntRegisterFromSlot(reg.slot,reg,reg.slot.getDatatype());
+		readIntRegisterFromSlot(reg.slot, reg, reg.slot.getDatatype());
 	    } else {
 		if (dbg_msg) System.err.println(active);
-		throw new CompileException("unknown register "+reg);
+		throw new CompileException("unknown register " + reg);
 	    }
 	}
 	reg.unfree();
@@ -370,8 +370,8 @@ public class RegManager {
     */
 
     public void writeIntRegister(Reg reg) throws CompileException {
-	if (reg.any()) throw new Error("can`t write to register 'any'");
-	if (dbg_msg) System.err.println("     write "+reg);
+	if (reg.any()) throw new Error("can't write to register 'any'");
+	if (dbg_msg) System.err.println("     write " + reg);
 	if (reg.free) throw new CompileException("write freed register");
 	readIntRegister(reg);
 	modifyIntRegister(reg);
