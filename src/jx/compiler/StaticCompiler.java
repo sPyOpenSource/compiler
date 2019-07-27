@@ -142,8 +142,9 @@ public class StaticCompiler implements ClassFinder {
             }
             try {
                 JarFile jar = in;
+                String[] sds;
                 byte[] barr;
-
+                MetaInfo x;
                 switch (i) {
                     case 1:
                         {
@@ -151,7 +152,11 @@ public class StaticCompiler implements ClassFinder {
                             try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                                 barr = new byte[(int)f.length()];
                                 f.readFully(barr);
-                            }       break;
+                            }    
+                            x = new MetaInfo("", barr);
+                            String sd = x.getVar("SUBDIRS");
+                            sds = MetaInfo.split(sd);
+                            break;
                         }
                     case 0:
                         {
@@ -159,7 +164,11 @@ public class StaticCompiler implements ClassFinder {
                             try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                                 barr = new byte[(int)f.length()];
                                 f.readFully(barr);
-                            }       break;
+                            }
+                            x = new MetaInfo("", barr);
+                            String sd = x.getVar("SUBDIRS");
+                            sds = MetaInfo.split(sd);
+                            break;
                         }
                     default:
                         {
@@ -167,12 +176,14 @@ public class StaticCompiler implements ClassFinder {
                             try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
                                 barr = new byte[(int)f.length()];
                                 f.readFully(barr);
-                            }       break;
+                            }
+                            meta = new MetaInfo("", barr);
+                            String sd = meta.getVar("SUBDIRS");
+                            sds = MetaInfo.split(sd);
+                            break;
                         }
                 }
-                meta = new MetaInfo("", barr);
-                String sd = meta.getVar("SUBDIRS");
-                String[] sds = MetaInfo.split(sd);
+                
                 Enumeration<JarEntry> entries = jar.entries();
                 main:
                 while (entries.hasMoreElements()) {
@@ -191,7 +202,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("PrintWriter.class")) continue;
                         for(String s:sds){
                             if (name.startsWith(s + "/")){
-                                if(name.split("/").length - 1 == s.split("/").length){
+                                if(name.split("/").length - s.split("/").length < 3){
                                     System.out.println(name); 
                                     try (InputStream is = jar.getInputStream(entry)) {
                                         byte[] buffer = getBytesFromInputStream(is);
