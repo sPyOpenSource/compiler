@@ -68,8 +68,7 @@ public class CompileNative {
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
-	//String libdir = "/home/spy/OS/jcore/isodir/code";
-        String libdir = "/home/spy/OS/jx/libs";
+	String libdir = "/home/spy/OS/jcore/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + s.getComponentName() + ".zip";
@@ -87,8 +86,8 @@ public class CompileNative {
         
 	String jlnname = libdir + s.getComponentName() + ".jln";
         
-        CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, libdir + "../JC_CONFIG");
-	compile(opts);
+        CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+	compile("init2", opts);
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
