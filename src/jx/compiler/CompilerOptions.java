@@ -154,7 +154,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
     }
 
     public void setNeededLibs(String[] libs) {
-	if (libs!=null) {
+	if (libs != null) {
 	    zipLibFiles = new ArrayList();
             for (String lib : libs) {
                 if (lib.lastIndexOf('.') > 0) {
@@ -181,7 +181,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     public String[] getNeededLibs() {
       
-	if (zipLibFiles==null) return null;
+	if (zipLibFiles == null) return null;
 
 	String[] neededLibs = new String[zipLibFiles.size()];
 	for (int i = 0; i < zipLibFiles.size(); i++) {

@@ -7,6 +7,8 @@ package jx.compspec;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import jx.compiler.CompilerOptions;
 import jx.compiler.CompilerOptionsNative;
@@ -63,7 +65,7 @@ public class StartBuilder {
     private static final boolean doDebug = true;
     private static final boolean silent = true;
 
-    private static ArrayList metas = new ArrayList(); // MetaInfo
+    private static final ArrayList metas = new ArrayList(); // MetaInfo
 
     static String compdir;
     static String buildDir;
@@ -644,7 +646,7 @@ public class StartBuilder {
 	    try {
 		CompileNative.compile(libdir + s.getComponentName(), opts);
 	    } catch (Throwable ex) {
-		ex.printStackTrace();
+                Logger.getLogger(StartBuilder.class.getName()).log(Level.SEVERE, null, ex);
 		new File(jllname).delete();
 		throw new Error("Translator returned error");
 	    }
