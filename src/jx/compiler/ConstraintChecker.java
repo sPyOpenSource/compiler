@@ -2,9 +2,7 @@ package jx.compiler;
 
 import jx.classfile.ClassSource;
 import jx.collections.Iterator;
-
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 class ForbiddenInterfaceImplementedException extends Exception {
     public ForbiddenInterfaceImplementedException() {super();}
@@ -39,22 +37,16 @@ public class ConstraintChecker {
 	"jx/zero/CAS",
     };
 
-    public ConstraintChecker(Iterator classFactory) throws Exception {
-	HashMap classFinder = new HashMap();
-	ArrayList all = new ArrayList();	
+    public static void check(Iterator classFactory) throws Exception {
 	while(classFactory.hasNext()) {
 	    ClassSource source = (ClassSource)classFactory.next();
-	    //Debug.out.println(source.getClassName());
 	    if (source.getClassName().startsWith("jx/zero/")) {
-		// TODO: use a different way to find out whether this is lib zero
-		return;
+		continue;
 	    }
 	    String[] ifs = source.getInterfaceNames();
             for (String if1 : ifs) {
-                for (String forbiddenInterface : forbiddenInterfaces) {
-                    if (if1.equals(forbiddenInterface)) {
-                        throw new ForbiddenInterfaceImplementedException("Class " + source.getClassName() + " is not allowed to implement " + if1);
-                    }
+                if (Arrays.asList(forbiddenInterfaces).contains(if1)) {
+                    throw new ForbiddenInterfaceImplementedException("Class " + source.getClassName() + " is not allowed to implement " + if1);
                 }
             }
 	}
