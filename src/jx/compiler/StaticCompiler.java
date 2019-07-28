@@ -517,7 +517,7 @@ public class StaticCompiler implements ClassFinder {
 	domClassStore = sortClasses(domClassStore); // we dont need to sort the classes anymore
 	libClassStore = sortClasses(libClassStore);
 
-	new ConstraintChecker(domClassStore.classSourceIterator());
+	ConstraintChecker.check(domClassStore.classSourceIterator());
 	MethodTableFactory mtableFactory = new MethodTableFactory(domClassStore.classSourceIterator(), predefinedClasses, tableIn);
 	mtableFactory.process();
 

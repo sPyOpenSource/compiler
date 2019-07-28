@@ -3,6 +3,7 @@ fixed: auto build
 fixed: compilenative
 fixed: wrang data type (issue #10)
 added: skip folders
+fixed: jx/zero lib problem (issue #13)
 
 v1.11 XW 27-07-2019
 fixed: meta file (issue #14)
