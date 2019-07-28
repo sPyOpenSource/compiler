@@ -170,9 +170,14 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("/SubList.class")) continue;
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
-                        //if (name.endsWith("BufferedInputStream.class")) continue;
+                        if (name.endsWith("BlockIOFile.class")) continue;
                         if (name.endsWith("StringReader.class")) continue;
                         if (name.endsWith("PrintWriter.class")) continue;
+                        if (name.startsWith("jx/classfile")) continue;
+                        if (name.startsWith("jx/classstore")) continue;
+                        if (name.startsWith("jx/verifier")) continue;
+                        if (name.startsWith("jx/emulation")) continue;
+                        if (name.startsWith("jx/secmgr")) continue;
                         for(String s:sds){
                             if (name.startsWith(s + "/")){
                                 if(name.split("/").length - s.split("/").length < 3){
