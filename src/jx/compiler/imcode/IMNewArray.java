@@ -26,10 +26,9 @@ final public class IMNewArray extends IMOperator {
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	// TODO new local variable allocation ??
 	size = stack.pop();
-	if (size.getDatatype() != BCBasicDatatype.INT) {
+	if (size.getDatatype() != BCBasicDatatype.INT && size.getDatatype() != BCBasicDatatype.SHORT) {
 	    if (verbose) System.err.println("IMNewArray bcpos:" + Integer.toString(bcPosition));
 	    throw new CompileException("!!! wrong datatype on stack !!!");	    
-	    //System.exit(-1);
 	}
 	stack.store(bcPosition);
 	stack.push(this);

@@ -1,6 +1,7 @@
 v1.12 XW 28-07-2019
 fixed: auto build
 fixed: compilenative
+fixed: wrang data type (issue #10)
 
 v1.11 XW 27-07-2019
 fixed: meta file (issue #14)
