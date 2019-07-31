@@ -163,16 +163,11 @@ public class StaticCompiler implements ClassFinder {
                     JarEntry entry = entries.nextElement();
                     String name = entry.getName();
                     if (name.endsWith(".class")) {
-                        if (name.endsWith("GregorianCalendar.class")) continue;
-                        if (name.endsWith("TimeZone.class")) continue;
-                        if (name.endsWith("SimpleTimeZone.class")) continue;
-                        if (name.endsWith("Calendar.class")) continue;
                         if (name.endsWith("/SubList.class")) continue;
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
                         if (name.endsWith("BlockIOFile.class")) continue;
                         if (name.endsWith("StringReader.class")) continue;
-                        if (name.endsWith("PrintWriter.class")) continue;
                         if (name.startsWith("jx/classfile")) continue;
                         if (name.startsWith("jx/classstore")) continue;
                         if (name.startsWith("jx/verifier")) continue;
@@ -180,20 +175,18 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("jx/secmgr")) continue;
                         for(String s:sds){
                             if (name.startsWith(s + "/")){
-                                if(name.split("/").length - s.split("/").length < 3){
-                                    System.out.println(name); 
-                                    try (InputStream is = jar.getInputStream(entry)) {
-                                        byte[] buffer = getBytesFromInputStream(is);
-                                        Memory m = memMgr.alloc(buffer.length);
-                                        m.copyFromByteArray(buffer, 0, 0, buffer.length);
-                                        if(i == -1){
-                                            domdata.add(m);
-                                            meta = x;
-                                        } else {
-                                            libdata.add(m);
-                                        }
-                                        continue main;
+                                System.out.println(name); 
+                                try (InputStream is = jar.getInputStream(entry)) {
+                                    byte[] buffer = getBytesFromInputStream(is);
+                                    Memory m = memMgr.alloc(buffer.length);
+                                    m.copyFromByteArray(buffer, 0, 0, buffer.length);
+                                    if(i == -1){
+                                        domdata.add(m);
+                                        meta = x;
+                                    } else {
+                                        libdata.add(m);
                                     }
+                                    continue main;
                                 }
                             }
                         }
