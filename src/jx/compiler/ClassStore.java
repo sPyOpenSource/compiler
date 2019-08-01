@@ -38,7 +38,7 @@ public class ClassStore implements ClassFinder {
     }
 
     void addArrayClass(String elementClassName, Memory elemPtr) {
-	addClass('['+elementClassName, null);
+	addClass('[' + elementClassName, null);
     }
 
     //  void registerClass(String className, BCClass aClass) {
