@@ -52,14 +52,14 @@ public class IMInvoke extends IMMultiOperant {
 	    args[i] = stack.pop();
 	}
 	
-	obj=null;
-	if (bytecode!=BC.INVOKESTATIC) {
+	obj = null;
+	if (bytecode != BC.INVOKESTATIC) {
 	    obj = stack.pop();
 	}
 
 	saveVarStackMap(frame);
 
-	if (datatype==BCBasicDatatype.VOID) {
+	if (datatype == BCBasicDatatype.VOID) {
 	    return this;
 	} else {	
 	    stack.push(this);
@@ -74,7 +74,7 @@ public class IMInvoke extends IMMultiOperant {
 	  if virtual call then try to inline reference code
 	*/
 
-	if (obj!=null) {
+	if (obj != null) {
 	    obj = (IMOperant)obj.inlineCode(iCode, depth, forceInline);
 	}
 
@@ -82,7 +82,7 @@ public class IMInvoke extends IMMultiOperant {
 	  try to inline arguments
 	*/
 
-	for (int i=0;i<args.length;i++) {
+	for (int i = 0; i < args.length; i++) {
 	    args[i] = (IMOperant)args[i].inlineCode(iCode, depth, forceInline);
 	}
 	
@@ -94,7 +94,7 @@ public class IMInvoke extends IMMultiOperant {
 	if (cpEntry.getClassName().equals("jx/zero/InitialNaming")) return this;
 	// Don't inline class constructors !!
 	if (cpEntry.getMemberName().equals("<clinit>")) return this;
-	// Don`t inline some classes in test/PerfTest
+	// Don't inline some classes in test/PerfTest
 	if (cpEntry.getClassName().equals("test/compiler/PerfTest")) {
 	    if (cpEntry.getMemberName().startsWith("perf")) return this;
 	}
@@ -126,8 +126,8 @@ public class IMInvoke extends IMMultiOperant {
 
     public boolean isInlineable() {
 	BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
-	if (datatype!=BCBasicDatatype.VOID) return false;
-	if (bytecode!=BC.INVOKESTATIC) return false;
+	if (datatype != BCBasicDatatype.VOID) return false;
+	if (bytecode != BC.INVOKESTATIC) return false;
 	if (!(bcMethod instanceof BCMethodWithCode)) return false;
 	return !bcMethod.isOverrideable();
     }
@@ -148,32 +148,33 @@ public class IMInvoke extends IMMultiOperant {
     }
 
     // IMInvoke 
+    @Override
     public void translate(Reg result) throws CompileException {
 	switch (bytecode) {
-	case BC.INVOKEVIRTUAL:
-	    if (doStaticMethodCalls) {
-		BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
-		if ((bcMethod instanceof BCMethodWithCode)) {
-		    if (!bcMethod.isOverrideable()) {
-			stat.invoke_static();
-			execEnv.codeSpecialCall(this,cpEntry,obj,args,datatype,result,bcPosition);
-			break;
-		    }
-		}
-	    }
-	    stat.invoke_virtual();
-	    execEnv.codeVirtualCall(this,cpEntry,obj,args,datatype,result,bcPosition);
-	    break;
-	case BC.INVOKESPECIAL:
-	    stat.invoke_static();
-	    execEnv.codeSpecialCall(this,cpEntry,obj,args,datatype,result,bcPosition);
-	    break;
-	case BC.INVOKESTATIC:
-	    stat.invoke_static();
-	    execEnv.codeStaticCall(this,cpEntry,args,datatype,result,bcPosition);
-	    break;
-	default:
-	    throw new CompileException("unknown invokation -- not implemented yet! ");
+            case BC.INVOKEVIRTUAL:
+                if (doStaticMethodCalls) {
+                    BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
+                    if ((bcMethod instanceof BCMethodWithCode)) {
+                        if (!bcMethod.isOverrideable()) {
+                            stat.invoke_static();
+                            execEnv.codeSpecialCall(this,cpEntry,obj,args,datatype,result,bcPosition);
+                            break;
+                        }
+                    }
+                }
+                stat.invoke_virtual();
+                execEnv.codeVirtualCall(this, cpEntry, obj, args, datatype, result, bcPosition);
+                break;
+            case BC.INVOKESPECIAL:
+                stat.invoke_static();
+                execEnv.codeSpecialCall(this, cpEntry, obj, args, datatype, result, bcPosition);
+                break;
+            case BC.INVOKESTATIC:
+                stat.invoke_static();
+                execEnv.codeStaticCall(this, cpEntry, args, datatype, result, bcPosition);
+                break;
+            default:
+                throw new CompileException("unknown invokation -- not implemented yet! ");
 	}
     }
 

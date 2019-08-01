@@ -147,7 +147,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
       return 0;
     }
 
-        @Override
+    @Override
     public void codeProlog() throws CompileException {	
 	// save old frame pointer
 	code.pushl(Reg.ebp);
@@ -228,7 +228,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
     }
 
-        @Override
+    @Override
     public void codeEpilog() throws CompileException {
 
 	if (opts.doProfile(bcClass,method)) {
@@ -379,7 +379,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
      * @throws jx.compiler.CompileException
     */
 
-        @Override
+    @Override
     public void codeCheckReference(IMNode node,Reg reg,int bcPosition) throws CompileException {
 	if (opts.doNullChecks()) {	    
 	    code.test(reg,reg);
@@ -391,8 +391,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }
 
-        @Override
-     public void codeCheckMagic(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    @Override
+    public void codeCheckMagic(IMNode node,Reg reg,int bcPosition) throws CompileException {
 	if (doExtraMagic && opts.doMagicChecks() && opts.doParanoidChecks()) {
 	    UnresolvedJump jumpForward  = new UnresolvedJump();
 	    regs.readIntRegister(reg);
@@ -404,7 +404,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }   
 
-        @Override
+    @Override
     public void codeCheckDivZero(IMNode node,Reg reg,int bcPosition) throws CompileException {
 	if (opts.doZeroDivChecks()) {	    
 	    code.test(reg,reg);
@@ -421,7 +421,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
      * @throws jx.compiler.CompileException
     */
 
-        @Override
+    @Override
     public void codeCheckArrayRange(IMNode node,Reg array,int index,int bcPosition) throws CompileException {
 	if (opts.doBoundsChecks()) {
 	    Reg len = regs.chooseIntRegister(array);
@@ -435,7 +435,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }
 
-        @Override
+    @Override
     public void codeCheckArrayRange(IMNode node,Reg array,Reg index,int bcPosition) throws CompileException {
 	if (opts.doBoundsChecks()) {
 	    Reg len = regs.chooseIntRegister(array,index);
@@ -451,7 +451,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
     }
 
-        @Override
+    @Override
     public void codeNewObject(IMNode node,ClassCPEntry classCPEntry,Reg result) throws CompileException {
 	code.startBC(node.getBCPosition());
 
@@ -471,7 +471,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.endBC();
     }
 
-        @Override
+    @Override
     public void codeCompactNew(IMNode node,ClassCPEntry classCPEntry,MethodRefCPEntry methodRefCPEntry,IMOperant[] args,Reg result) throws CompileException {
 	int ip;
 
@@ -1513,7 +1513,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    code.movl(Reg.eax, result);
     }
 
-        @Override
+    @Override
     public void codeVirtualCall(IMNode node,
 				MethodRefCPEntry methodRefCPEntry,
 				IMOperant        obj,
@@ -1572,12 +1572,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
             if(className.equals("[Z")) className = "java/lang/Object";
             if(className.equals("[Lorg/jnode/fs/fat/FatType;")) className = "java/lang/Object";
 	    BCClass aClass = classStore.findClass(className);
-	    if (aClass == null) System.out.println("Can't find ClassInfo for " + className);
+            //System.out.println("call " + methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());
+	    if (aClass == null) {
+                System.out.println("Can't find ClassInfo for " + className);
+            }
 	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
-	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());
+	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());	    
 
-	    //Debug.out.println("call "+methodRefCPEntry.getMemberName());
-	    
 	    Reg objRef = regs.chooseIntRegister(null);
 	    
 	    int offset = codeVirtualPushArgs(obj, args, objRef, bcPosition);
