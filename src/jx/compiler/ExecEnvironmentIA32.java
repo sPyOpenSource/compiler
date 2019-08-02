@@ -117,7 +117,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 
 	BCClass aClass = classStore.findClass(methodRefCPEntry.getClassName());
-	if (aClass!=null) {
+	if (aClass != null) {
 	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
 	    BCMethod method;
 
@@ -136,12 +136,12 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	return null;
     }
 
-        @Override
+    @Override
     public boolean doOptimize(int level) {
 	return opts.doOptimize();
     }
 
-        @Override
+    @Override
     public int getExtraStackSpace() {
       if (pushMethodDesc) return 1;
       return 0;
@@ -152,7 +152,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	// save old frame pointer
 	code.pushl(Reg.ebp);
 	// copy stackpointer to framepointer
-	code.movl(Reg.esp,Reg.ebp);
+	code.movl(Reg.esp, Reg.ebp);
 
 	if (!pushMethodDesc) {
 	    frame.setExtraSpace(4);
@@ -164,40 +164,40 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	if (opts.doStackSizeCheck(container.isLeafMethod())) { /* new stack size check */
 	    UnresolvedJump back = new UnresolvedJump();
 	    code.addJumpTarget(back);
-	    code.movl(new CurrentThreadPointerSTEntry(),Reg.esi);
-	    code.movl(Ref.esi,Reg.eax);
-	    code.movl(Reg.esp,Reg.ecx);
-	    code.addl(new TCBOffsetSTEntry(TCBOffsetSTEntry.STACKTOP),Reg.eax);
-	    code.subl(frame.getMaxFrameSizeSTEntry(),Reg.ecx);	    
-	    code.cmpl(Ref.eax,Reg.ecx);
-	    code.jle(createExceptionCall(THROW_StackOverflowError,0,back));
+	    code.movl(new CurrentThreadPointerSTEntry(), Reg.esi);
+	    code.movl(Ref.esi, Reg.eax);
+	    code.movl(Reg.esp, Reg.ecx);
+	    code.addl(new TCBOffsetSTEntry(TCBOffsetSTEntry.STACKTOP), Reg.eax);
+	    code.subl(frame.getMaxFrameSizeSTEntry(), Reg.ecx);	    
+	    code.cmpl(Ref.eax, Reg.ecx);
+	    code.jle(createExceptionCall(THROW_StackOverflowError, 0, back));
 	}
 
 	if (opts.doTrace()) {
-	    int offset=frame.start();
-	    frame.push(-1,new MethodeDescSTEntry());
-	    frame.push(-1,Ref.ebp.disp(4));		    
-	    frame.push(-1,0);
+	    int offset = frame.start();
+	    frame.push(-1, new MethodeDescSTEntry());
+	    frame.push(-1, Ref.ebp.disp(4));		    
+	    frame.push(-1, 0);
 	    code.call(new ProfileSTEntry(ProfileSTEntry.PROFILE_TRACE));	
 	    frame.cleanup(offset);
 	}
 
 	// alloc local variabels
 	if (opts.doClearStack() && !initStack) {
-    	    if (pushMethodDesc) throw new Error("initStack didn`t work!!");
+    	    if (pushMethodDesc) throw new Error("initStack didn't work!!");
 	    UnresolvedJump loop1 = new UnresolvedJump();
 	    UnresolvedJump loop2 = new UnresolvedJump();	    
-	    code.movl(frame.getAllocSTEntry(),Reg.eax);
-	    code.xorl(Reg.ecx,Reg.ecx);
+	    code.movl(frame.getAllocSTEntry(), Reg.eax);
+	    code.xorl(Reg.ecx, Reg.ecx);
 	    code.jmp(loop1);
 	    code.addJumpTarget(loop2);
 	    code.pushl(Reg.ecx);
-	    code.subl(4,Reg.eax);
+	    code.subl(4, Reg.eax);
 	    code.addJumpTarget(loop1);
-	    code.test(Reg.eax,Reg.eax);
+	    code.test(Reg.eax, Reg.eax);
 	    code.jne(loop2);
 	} else {
-	    code.subl(frame.getAllocSTEntry(),Reg.esp);
+	    code.subl(frame.getAllocSTEntry(), Reg.esp);
 	    if (initStack) {
 		frame.initReferences(code);
 	    }
@@ -205,25 +205,25 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	// save register (this is history)
 	if (extraRegSave) {
-	    frame.push(-1,Reg.ebx);
-	    frame.push(-1,Reg.esi);
-	    frame.push(-1,Reg.edi);
+	    frame.push(-1, Reg.ebx);
+	    frame.push(-1, Reg.esi);
+	    frame.push(-1, Reg.edi);
 	}
 
-	if (opts.doProfile(bcClass,method)) {
+	if (opts.doProfile(bcClass, method)) {
 	    addTimerSP();
 	}
 
-        if (opts.doLogMethod(bcClass,method)) {
-	  jx.compiler.plugins.CPUManager.codeEvent(this,regs,code,new ProfileSTEntry(ProfileSTEntry.EVENT_AUTOID),-1);
+        if (opts.doLogMethod(bcClass, method)) {
+	    jx.compiler.plugins.CPUManager.codeEvent(this, regs, code, new ProfileSTEntry(ProfileSTEntry.EVENT_AUTOID), -1);
 	}	
 
 	if (!opts.isOption("noClassInit")) {
-		if (method.isStatic() || method.isConstructor()) {
-			code.pushl(new ClassSTEntry(bcClass.getClassName()));
-			code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_CINIT));
-			code.popl(Reg.ecx);
-		}
+            if (method.isStatic() || method.isConstructor()) {
+                code.pushl(new ClassSTEntry(bcClass.getClassName()));
+                code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_CINIT));
+                code.popl(Reg.ecx);
+            }
 	}
 
     }
@@ -353,9 +353,9 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	// cont irqs
 	if (false) {	  
-	  frame.popfl();
+	    frame.popfl();
 	} else {
-	  frame.clearStack(1);
+	    frame.clearStack(1);
 	}
 
 	// drift[0] += eax:edx
@@ -456,16 +456,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.startBC(node.getBCPosition());
 
 	regs.saveIntRegister();
-	frame.push(BCBasicDatatype.INT,new ClassSTEntry(classCPEntry.getClassName()));
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
 
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(new AllocObjectSTEntry());
 	regs.clearActives();
 	codeStackMap(node,ip);
 	frame.pop(Reg.ecx);
-	regs.allocIntRegister(result,Reg.eax,BCBasicDatatype.REFERENCE);	
-	if (result.value!=0) {
-	    code.movl(Reg.eax,result);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);	
+	if (result.value != 0) {
+	    code.movl(Reg.eax, result);
 	}
 
 	code.endBC();
@@ -600,45 +600,45 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.endBC();
     }
 
-        @Override
-    public void codeGetArrayField(IMNode node,Reg array,int datatype,int index,Reg result,int bcPosition) throws CompileException {	
-	    regs.readIntRegister(array);
-	    regs.allocIntRegister(result,datatype);
+    @Override
+    public void codeGetArrayField(IMNode node, Reg array, int datatype, int index, Reg result, int bcPosition) throws CompileException {	
+        regs.readIntRegister(array);
+        regs.allocIntRegister(result, datatype);
 
-	    if (opts.isOption("32BitArrays")) {
-		    code.movl(array.rdisp(arrayDataStart+(index*4)),result);
-	    } else {
-			System.out.println("warn: use compact arrays");
-		    switch (datatype) {
-			    case BCBasicDatatype.BYTE:
-				    code.movsbl(array.rdisp(arrayDataStart+index),result);
-				    //code.movswl(array.rdisp(arrayDataStart+index),result);
-			            //code.andl(0x000000ff,result);	
-				    break;
-			    case BCBasicDatatype.CHAR:
-				    if (opts.isOption("8BitChars")) {
-					    code.movsbl(array.rdisp(arrayDataStart+index),result);
-					    //code.movswl(array.rdisp(arrayDataStart+index),result);
-					    //code.andl(0x000000ff,result);	
-				    } else {
-					    code.movswl(array.rdisp(arrayDataStart+(index*2)),result);
-				    }
-				    break;
-			    case BCBasicDatatype.SHORT:
-				    code.movswl(array.rdisp(arrayDataStart+(index*2)),result);
-				    break;
-			    case BCBasicDatatype.INT:
-			    case BCBasicDatatype.REFERENCE:
-				    code.movl(array.rdisp(arrayDataStart+(index*4)),result);
-				    break;
-			    default:
-				    throw new CompileException("not implemented yet!");
-		    }
-	    }
+        if (opts.isOption("32BitArrays")) {
+            code.movl(array.rdisp(arrayDataStart + (index * 4)), result);
+        } else {
+            System.out.println("warn: use compact arrays");
+            switch (datatype) {
+                case BCBasicDatatype.BYTE:
+                    code.movsbl(array.rdisp(arrayDataStart + index), result);
+                    //code.movswl(array.rdisp(arrayDataStart+index),result);
+                    //code.andl(0x000000ff,result);	
+                    break;
+                case BCBasicDatatype.CHAR:
+                    if (opts.isOption("8BitChars")) {
+                        code.movsbl(array.rdisp(arrayDataStart + index), result);
+                        //code.movswl(array.rdisp(arrayDataStart+index),result);
+                        //code.andl(0x000000ff,result);	
+                    } else {
+                        code.movswl(array.rdisp(arrayDataStart + (index * 2)), result);
+                    }
+                    break;
+                case BCBasicDatatype.SHORT:
+                    code.movswl(array.rdisp(arrayDataStart + (index * 2)), result);
+                    break;
+                case BCBasicDatatype.INT:
+                case BCBasicDatatype.REFERENCE:
+                    code.movl(array.rdisp(arrayDataStart + (index * 4)), result);
+                    break;
+                default:
+                    throw new CompileException("not implemented yet!");
+            }
+        }
     }   
     
-        @Override
-    public void codeGetArrayField(IMNode node,Reg array,int datatype,Reg index,Reg result,int bcPosition) throws CompileException {	
+    @Override
+    public void codeGetArrayField(IMNode node, Reg array, int datatype, Reg index, Reg result, int bcPosition) throws CompileException {	
 	    regs.readIntRegister(index);
 	    regs.readIntRegister(array);
 	    regs.allocIntRegister(result,datatype);
@@ -2204,39 +2204,39 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	/*
 	 * push results
 	 */
-	for (int i=(args.length-1);i>=0;i--) {
+	for (int i = (args.length - 1); i >= 0; i--) {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
-	    case BCBasicDatatype.FLOAT:
-		frame.push(-1,0);
-		break;
-	    case BCBasicDatatype.DOUBLE:
-		frame.push(-1,0);
-		frame.push(-1,0);
-		break;
-	    case BCBasicDatatype.LONG:
-		if (opts.isOption("long")) {
-		    regs.readLongRegister((Reg64)results[i]);
-		    frame.push((Reg64)results[i]);
-		} else {
-		    frame.push(-1,0);
-		    frame.push(-1,0);
-		}
-		break;	
-	    case BCBasicDatatype.INT:
-	    case BCBasicDatatype.BOOLEAN:
-	    case BCBasicDatatype.CHAR:
-	    case BCBasicDatatype.SHORT:
-	    case BCBasicDatatype.BYTE:
-	    case BCBasicDatatype.REFERENCE:
-		if (args[i].isConstant()) {
-		    frame.push(datatype,((IMConstant)args[i]).getIntValue());
-		} else if (args[i].isVariable()) {
-		    ((IMReadLocalVariable)args[i]).codePush();
-		} else {
-		    regs.readIntRegister((Reg)results[i]);
-		    frame.push(results[i]);		    
-		}
+                case BCBasicDatatype.FLOAT:
+                    frame.push(-1,0);
+                    break;
+                case BCBasicDatatype.DOUBLE:
+                    frame.push(-1,0);
+                    frame.push(-1,0);
+                    break;
+                case BCBasicDatatype.LONG:
+                    if (opts.isOption("long")) {
+                        regs.readLongRegister((Reg64)results[i]);
+                        frame.push((Reg64)results[i]);
+                    } else {
+                        frame.push(-1,0);
+                        frame.push(-1,0);
+                    }
+                    break;	
+                case BCBasicDatatype.INT:
+                case BCBasicDatatype.BOOLEAN:
+                case BCBasicDatatype.CHAR:
+                case BCBasicDatatype.SHORT:
+                case BCBasicDatatype.BYTE:
+                case BCBasicDatatype.REFERENCE:
+                    if (args[i].isConstant()) {
+                        frame.push(datatype, ((IMConstant)args[i]).getIntValue());
+                    } else if (args[i].isVariable()) {
+                        ((IMReadLocalVariable)args[i]).codePush();
+                    } else {
+                        regs.readIntRegister((Reg)results[i]);
+                        frame.push(results[i]);		    
+                    }
 	    }
 	}
 

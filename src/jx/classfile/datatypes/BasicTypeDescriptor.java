@@ -9,36 +9,36 @@ package jx.classfile.datatypes;
 */ 
 
 public class BasicTypeDescriptor {
-  private final String typeDesc; 
+    private final String typeDesc; 
 
-  /**
+    /**
       @param typeDesc a JVM type descriptor for a datatype 
-  */ 
-  public BasicTypeDescriptor(String typeDesc) {
-    //Debug.assert(typeDesc.length() >= 1); 
-    this.typeDesc = typeDesc;
-  }
+    */ 
+    public BasicTypeDescriptor(String typeDesc) {
+        //Debug.assert(typeDesc.length() >= 1); 
+        this.typeDesc = typeDesc;
+    }
 
-  private char firstChar() {return typeDesc.charAt(0);}
+    private char firstChar() {return typeDesc.charAt(0);}
 
-  /**  
+    /**  
       @return true, if the type descriptor represents a
       primitive type (e.g. an int or a long, but not an object) 
-  */ 
-  public boolean isPrimitive() {
-    return firstChar() != CLASS && firstChar() != ARRAY; 
-  }
+    */ 
+    public boolean isPrimitive() {
+        return firstChar() != CLASS && firstChar() != ARRAY; 
+    }
 
-  /** 
+    /** 
       used for primitive types, to convert them to basic datatypes 
      * @return 
-  */ 
-  public int toBasicDatatype() {
-    return toBasicDatatype(firstChar());
-  }
+    */ 
+    public int toBasicDatatype() {
+        return toBasicDatatype(firstChar());
+    }
 
-    public boolean isArray() { return firstChar()==ARRAY; }
-    public boolean isClass() { return firstChar()==CLASS; }
+    public boolean isArray() { return firstChar() == ARRAY; }
+    public boolean isClass() { return firstChar() == CLASS; }
     public boolean isVoid() { return firstChar() == VOID; }
     public boolean isInteger() { return firstChar() == INT; }
     public boolean isShort() { return firstChar() == SHORT; }
@@ -49,36 +49,36 @@ public class BasicTypeDescriptor {
     public boolean isChar() { return firstChar() == CHAR; }
     public boolean isBoolean() { return firstChar() == BOOLEAN; }
 
-  public int getArrayDimension() {
-    int numDimensions = 0; 
-    while (typeDesc.charAt(numDimensions)=='[') numDimensions++; 
-    return numDimensions;
-  }
-  
-  /** 
+    public int getArrayDimension() {
+        int numDimensions = 0; 
+        while (typeDesc.charAt(numDimensions)=='[') numDimensions++; 
+        return numDimensions;
+    }
+
+    /** 
       @return the type descriptor of the array fields
       (without the ['s ) 
-  */ 
-  public String getArrayTypeDesc() {
-    return typeDesc.substring(getArrayDimension()); 
-  }
+    */ 
+    public String getArrayTypeDesc() {
+        return typeDesc.substring(getArrayDimension()); 
+    }
 
 
-  public BasicTypeDescriptor getComponentType() {
-      if (! isArray()) return null;
-    return new BasicTypeDescriptor(typeDesc.substring(getArrayDimension())); 
-  }
+    public BasicTypeDescriptor getComponentType() {
+        if (! isArray()) return null;
+            return new BasicTypeDescriptor(typeDesc.substring(getArrayDimension())); 
+    }
 
-  /** 
+    /** 
       @return the name of the class. 
       NOTE: typeDesc must represent a class and not
       a basic datatype !!! 
-  */ 
-  public String getClassName() {
-    // remove leading 'L' and trailing ';' 
-      // Debug.out.println("***"+typeDesc+"***");
-    return typeDesc.substring(1, typeDesc.length()-1 ); 
-  }  
+    */ 
+    public String getClassName() {
+        // remove leading 'L' and trailing ';' 
+        // Debug.out.println("***"+typeDesc+"***");
+        return typeDesc.substring(1, typeDesc.length()-1 ); 
+    }  
 
     /**
        @return type name that would be used for this type at the Java language level
@@ -91,31 +91,31 @@ public class BasicTypeDescriptor {
 	    return at+"[]";
 	}
 	switch(firstChar()) {
-	case 'B': return "byte";
-	case 'C': return "char";
-	case 'D': return "double";
-	case 'F': return "float";
-	case 'I': return "int";
-	case 'J': return "long";
-	case 'S': return "short";
-	case 'Z': return "boolean";
-	case 'V': return "void";
+            case 'B': return "byte";
+            case 'C': return "char";
+            case 'D': return "double";
+            case 'F': return "float";
+            case 'I': return "int";
+            case 'J': return "long";
+            case 'S': return "short";
+            case 'Z': return "boolean";
+            case 'V': return "void";
 	}
 	throw new Error();
     }
 
-  // type descriptors for basic datatypes 
-  public static final char BYTE    = 'B'; 
-  public static final char CHAR    = 'C'; 
-  public static final char DOUBLE  = 'D'; 
-  public static final char FLOAT   = 'F'; 
-  public static final char INT     = 'I'; 
-  public static final char LONG    = 'J'; 
-  public static final char SHORT   = 'S'; 
-  public static final char BOOLEAN = 'Z'; 
-  public static final char CLASS   = 'L'; 
-  public static final char ARRAY   = '['; 
-  public static final char VOID    = 'V'; 
+    // type descriptors for basic datatypes 
+    public static final char BYTE    = 'B'; 
+    public static final char CHAR    = 'C'; 
+    public static final char DOUBLE  = 'D'; 
+    public static final char FLOAT   = 'F'; 
+    public static final char INT     = 'I'; 
+    public static final char LONG    = 'J'; 
+    public static final char SHORT   = 'S'; 
+    public static final char BOOLEAN = 'Z'; 
+    public static final char CLASS   = 'L'; 
+    public static final char ARRAY   = '['; 
+    public static final char VOID    = 'V'; 
 
   /**
      * @param firstChar

@@ -11,32 +11,32 @@ final  public class IMCast extends IMUnaryOperator {
 
     private int shortOpr;
 
-    public IMCast(CodeContainer container,int bc,int bcpos) {	
+    public IMCast(CodeContainer container, int bc, int bcpos) {	
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	shortOpr   = bc-BC.I2L;
+	shortOpr   = bc - BC.I2L;
 	switch (shortOpr) {
-	    // i2<x>
-	case 0: datatype = BCBasicDatatype.LONG;break;
-	case 1: datatype = BCBasicDatatype.FLOAT;break;
-	case 2: datatype = BCBasicDatatype.DOUBLE;break;
-	    // l2<x>
-	case 3: datatype = BCBasicDatatype.INT;break;
-	case 4: datatype = BCBasicDatatype.FLOAT;break;
-	case 5: datatype = BCBasicDatatype.DOUBLE;break;
-	    // f2<x>
-	case 6: datatype = BCBasicDatatype.INT;break;
-	case 7: datatype = BCBasicDatatype.LONG;break;
-	case 8: datatype = BCBasicDatatype.DOUBLE;break;
-	    // d2<x>
-	case 9: datatype = BCBasicDatatype.INT;break;
-	case 10: datatype = BCBasicDatatype.LONG;break;
-	case 11: datatype = BCBasicDatatype.FLOAT;break;
-	    // i2<x>
-	case 12: datatype = BCBasicDatatype.BYTE;break;
-	case 13: datatype = BCBasicDatatype.CHAR;break;
-	case 14: datatype = BCBasicDatatype.SHORT;break;
+                // i2<x>
+            case 0: datatype = BCBasicDatatype.LONG;break;
+            case 1: datatype = BCBasicDatatype.FLOAT;break;
+            case 2: datatype = BCBasicDatatype.DOUBLE;break;
+                // l2<x>
+            case 3: datatype = BCBasicDatatype.INT;break;
+            case 4: datatype = BCBasicDatatype.FLOAT;break;
+            case 5: datatype = BCBasicDatatype.DOUBLE;break;
+                // f2<x>
+            case 6: datatype = BCBasicDatatype.INT;break;
+            case 7: datatype = BCBasicDatatype.LONG;break;
+            case 8: datatype = BCBasicDatatype.DOUBLE;break;
+                // d2<x>
+            case 9: datatype = BCBasicDatatype.INT;break;
+            case 10: datatype = BCBasicDatatype.LONG;break;
+            case 11: datatype = BCBasicDatatype.FLOAT;break;
+                // i2<x>
+            case 12: datatype = BCBasicDatatype.BYTE;break;
+            case 13: datatype = BCBasicDatatype.CHAR;break;
+            case 14: datatype = BCBasicDatatype.SHORT;break;
 	}
     }
 
