@@ -73,19 +73,19 @@ abstract public class BCBasicDatatype {
   */ 
   public static final char toChar(int datatype) {
     switch (datatype) {
-    case INT: return BasicTypeDescriptor.INT; 
-    case LONG: return BasicTypeDescriptor.LONG; 
-    case FLOAT: return BasicTypeDescriptor.FLOAT; 
-    case DOUBLE: return BasicTypeDescriptor.DOUBLE; 
-    case REFERENCE : return BasicTypeDescriptor.CLASS; 
-    case BYTE: return BasicTypeDescriptor.BYTE; 
-    case CHAR : return BasicTypeDescriptor.CHAR; 
-    case SHORT : return BasicTypeDescriptor.SHORT; 
-    case BOOLEAN: return BasicTypeDescriptor.BOOLEAN; 
-    case VOID: return BasicTypeDescriptor.VOID; 
-    default: Debug.throwError(); 
-      return 'x'; 
-    }
+        case INT: return BasicTypeDescriptor.INT; 
+        case LONG: return BasicTypeDescriptor.LONG; 
+        case FLOAT: return BasicTypeDescriptor.FLOAT; 
+        case DOUBLE: return BasicTypeDescriptor.DOUBLE; 
+        case REFERENCE : return BasicTypeDescriptor.CLASS; 
+        case BYTE: return BasicTypeDescriptor.BYTE; 
+        case CHAR : return BasicTypeDescriptor.CHAR; 
+        case SHORT : return BasicTypeDescriptor.SHORT; 
+        case BOOLEAN: return BasicTypeDescriptor.BOOLEAN; 
+        case VOID: return BasicTypeDescriptor.VOID; 
+        default: Debug.throwError(); 
+          return 'x'; 
+        }
   }
   
   /**
@@ -116,16 +116,16 @@ abstract public class BCBasicDatatype {
   */ 
   public static final int sizeInByte(int datatype) {
     switch (datatype) {
-    case INT: return 4; 
-    case LONG: return 8; 
-    case FLOAT: return 4; 
-    case DOUBLE: return 8; 
-    case REFERENCE: return 4; 
-    case BYTE: return 1; 
-    case CHAR: return 2; 
-    case SHORT: return 2; 
-    case BOOLEAN: return 1; 
-    default: return 4; 
+        case INT: return 4; 
+        case LONG: return 8; 
+        case FLOAT: return 4; 
+        case DOUBLE: return 8; 
+        case REFERENCE: return 4; 
+        case BYTE: return 1; 
+        case CHAR: return 2; 
+        case SHORT: return 2; 
+        case BOOLEAN: return 1; 
+        default: return 4; 
     }
   }
 
@@ -154,33 +154,33 @@ abstract public class BCBasicDatatype {
 
   public final static String toSymbol(int datatype) {
     switch (datatype) {
-    case INT: return "i";
-    case LONG: return "l";
-    case FLOAT: return "l"; 
-    case DOUBLE: return "d"; 
-    case REFERENCE: return "R"; 
-    case BYTE: return "b"; 
-    case CHAR: return "c"; 
-    case SHORT: return "s"; 
-    case BOOLEAN: return "b"; 
-    case VOID: return "V"; 
-    default: return "?"; 
+        case INT: return "i";
+        case LONG: return "l";
+        case FLOAT: return "l"; 
+        case DOUBLE: return "d"; 
+        case REFERENCE: return "R"; 
+        case BYTE: return "b"; 
+        case CHAR: return "c"; 
+        case SHORT: return "s"; 
+        case BOOLEAN: return "b"; 
+        case VOID: return "V"; 
+        default: return "?"; 
     }
   }
 
   public final static String toString(int datatype) {
     switch (datatype) {
-    case INT: return "int";
-    case LONG: return "long";
-    case FLOAT: return "float"; 
-    case DOUBLE: return "double"; 
-    case REFERENCE: return "reference"; 
-    case BYTE: return "byte"; 
-    case CHAR: return "char"; 
-    case SHORT: return "short"; 
-    case BOOLEAN: return "boolean"; 
-    case VOID: return "void"; 
-    default: return "unknown"; 
+        case INT: return "int";
+        case LONG: return "long";
+        case FLOAT: return "float"; 
+        case DOUBLE: return "double"; 
+        case REFERENCE: return "reference"; 
+        case BYTE: return "byte"; 
+        case CHAR: return "char"; 
+        case SHORT: return "short"; 
+        case BOOLEAN: return "boolean"; 
+        case VOID: return "void"; 
+        default: return "unknown"; 
     }
   }
 }
