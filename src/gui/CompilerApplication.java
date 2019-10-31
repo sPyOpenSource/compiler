@@ -29,17 +29,6 @@ public class CompilerApplication extends javax.swing.JFrame {
      */
     public CompilerApplication() {
         initComponents();
-        // Creating a File object that represents the disk file. 
-        try {
-            PrintStream o = new PrintStream(new File("/home/spy/output.txt"));
-            // Assign o to output stream 
-            System.setOut(o);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-        OutputReader reader = new OutputReader(jTextArea1);
-        Thread reader1 = new Thread(reader);
-        reader1.start();
     }
 
     /**
@@ -51,12 +40,12 @@ public class CompilerApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Compile = new javax.swing.JButton();
+        Run = new javax.swing.JButton();
+        Kernel = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jButton4 = new javax.swing.JButton();
+        Open = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         menuBar = new javax.swing.JMenuBar();
@@ -76,21 +65,26 @@ public class CompilerApplication extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Compile");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Compile.setText("Compile");
+        Compile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CompileActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Run");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Run.setText("Run");
+        Run.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                RunActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Open Kernel");
+        Kernel.setText("Kernel");
+        Kernel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KernelActionPerformed(evt);
+            }
+        });
 
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
@@ -98,10 +92,10 @@ public class CompilerApplication extends javax.swing.JFrame {
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTextArea1);
 
-        jButton4.setText("Open");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Open.setText("NetBeans");
+        Open.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                OpenActionPerformed(evt);
             }
         });
 
@@ -184,14 +178,13 @@ public class CompilerApplication extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton1))
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(Run)
+                    .addComponent(Kernel)
+                    .addComponent(Open)
+                    .addComponent(Compile))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,13 +196,13 @@ public class CompilerApplication extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jButton3)
+                                .addComponent(Kernel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
+                                .addComponent(Open)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2)
+                                .addComponent(Compile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)))
+                                .addComponent(Run)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -221,13 +214,15 @@ public class CompilerApplication extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CompileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompileActionPerformed
+        if (project == null)
+            return;
         try {
             StartBuilder.main(null);
         } catch (Exception ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CompileActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         JFileChooser fc = new JFileChooser();
@@ -265,17 +260,50 @@ public class CompilerApplication extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                // Creating a File object that represents the disk file. 
+                try {
+                    PrintStream o = new PrintStream(new File("/home/spy/output.txt"));
+                    // Assign o to output stream 
+                    System.setOut(o);
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+                } 
+                OutputReader reader = new OutputReader(jTextArea1);
+                Thread reader1 = new Thread(reader);
+                reader1.start();
             }
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void RunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RunActionPerformed
+        if (project == null)
+            return;
+        try {
+            Runtime.getRuntime().exec("VirtualBox --startvm Slax");
+        } catch (IOException ex) {
+            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_RunActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
+        if (project == null)
+            return;
+        try {
+            Runtime.getRuntime().exec("netbeans");
+        } catch (IOException ex) {
+            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_OpenActionPerformed
+
+    private void KernelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KernelActionPerformed
+        if (project == null)
+            return;
+        try {
+            Runtime.getRuntime().exec("atom");
+        } catch (IOException ex) {
+            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_KernelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,6 +335,10 @@ public class CompilerApplication extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Compile;
+    private javax.swing.JButton Kernel;
+    private javax.swing.JButton Open;
+    private javax.swing.JButton Run;
     private javax.swing.JMenuItem aboutMenuItem;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
@@ -316,10 +348,6 @@ public class CompilerApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
