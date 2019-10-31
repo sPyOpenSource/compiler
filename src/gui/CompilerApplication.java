@@ -6,7 +6,12 @@
 package gui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import jx.compspec.StartBuilder;
 
 /**
  *
@@ -18,7 +23,10 @@ public class CompilerApplication extends javax.swing.JFrame {
      * Creates new form NewApplication
      */
     public CompilerApplication() {
-        initComponents();
+        initComponents();  
+        OutputReader reader = new OutputReader(jTextArea1);
+        Thread reader1 = new Thread(reader);
+        reader1.start();
     }
 
     /**
@@ -63,6 +71,7 @@ public class CompilerApplication extends javax.swing.JFrame {
 
         jButton3.setText("Open Kernel");
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -174,16 +183,28 @@ public class CompilerApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            StartBuilder.main(null);
+        } catch (Exception ex) {
+            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Open Java OS Project File");
-        fc.setFileFilter(new OpenFileFilter("os", "Java OS Project File"));
+        fc.setFileFilter(new OpenFileFilter(".os", "Java OS Project File"));
         int returnVal = fc.showSaveDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             project = fc.getSelectedFile();
+            // Creating a File object that represents the disk file. 
+            try {
+                PrintStream o = new PrintStream(project);
+                // Assign o to output stream 
+                System.setOut(o);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+            }  
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
 
