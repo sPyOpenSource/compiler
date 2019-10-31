@@ -23,7 +23,15 @@ public class CompilerApplication extends javax.swing.JFrame {
      * Creates new form NewApplication
      */
     public CompilerApplication() {
-        initComponents();  
+        initComponents();
+        // Creating a File object that represents the disk file. 
+        try {
+            PrintStream o = new PrintStream(new File("/home/spy/output.txt"));
+            // Assign o to output stream 
+            System.setOut(o);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+        } 
         OutputReader reader = new OutputReader(jTextArea1);
         Thread reader1 = new Thread(reader);
         reader1.start();
@@ -74,6 +82,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(jTextArea1);
 
         fileMenu.setMnemonic('f');
@@ -149,29 +158,27 @@ public class CompilerApplication extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
                         .addComponent(jButton3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -196,15 +203,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         fc.setFileFilter(new OpenFileFilter(".os", "Java OS Project File"));
         int returnVal = fc.showSaveDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            project = fc.getSelectedFile();
-            // Creating a File object that represents the disk file. 
-            try {
-                PrintStream o = new PrintStream(project);
-                // Assign o to output stream 
-                System.setOut(o);
-            } catch (FileNotFoundException ex) {
-                Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+            project = fc.getSelectedFile(); 
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
 

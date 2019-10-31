@@ -17,27 +17,21 @@ import javax.swing.JTextArea;
  * @author spy
  */
 public class OutputReader implements Runnable{
-    private JTextArea jtextArea;
+    private final JTextArea jtextArea;
+    
     public OutputReader(JTextArea jtextArea){
         this.jtextArea = jtextArea;
     }
 
     @Override
     public void run() {
-        BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader("/home/spy/test.os"));
-            String str;
+            BufferedReader in = new BufferedReader(new FileReader("/home/spy/output.txt"));
+            int i;
             while (true) {
-                if((str = in.readLine()) != null){
-                jtextArea.append(str);
-                jtextArea.append("\n");
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(OutputReader.class.getName()).log(Level.SEVERE, null, ex);
+                if((i = in.read()) != -1){
+                    jtextArea.append(String.valueOf((char)i));
                 }
-            }
             }
         } catch (IOException e){
             
