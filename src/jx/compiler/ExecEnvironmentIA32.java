@@ -1571,6 +1571,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
             if(className.equals("[I")) className = "java/lang/Object";
             if(className.equals("[Z")) className = "java/lang/Object";
             if(className.equals("[Lorg/jnode/fs/fat/FatType;")) className = "java/lang/Object";
+            if(className.equals("[Ljava/lang/StackTraceElement;")) className = "java/lang/Object";
 	    BCClass aClass = classStore.findClass(className);
             //System.out.println("call " + methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());
 	    if (aClass == null) {

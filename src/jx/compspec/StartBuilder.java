@@ -119,7 +119,7 @@ public class StartBuilder {
                     componentsDir = args[argc];
                     break;
                 default:
-                    throw new Error("Unknown option "+args[argc]);
+                    throw new Error("Unknown option " + args[argc]);
             }
  	    argc++;
 	}
