@@ -28,13 +28,22 @@ public class OutputReader implements Runnable{
         try {
             BufferedReader in = new BufferedReader(new FileReader("/home/spy/output.txt"));
             int i;
+            String line = "";
             while (true) {
-                if((i = in.read()) != -1){
-                    jtextArea.append(String.valueOf((char)i));
+                i = in.read();
+                if(i != -1){
+                    if(i == 10){
+                        jtextArea.append(line);
+                        jtextArea.append("\n");
+                        jtextArea.setCaretPosition(jtextArea.getDocument().getLength());
+                        line = "";
+                    } else {
+                        line += String.valueOf((char)i);
+                    }
                 }
             }
-        } catch (IOException e){
-            
+        } catch (IOException ex){
+            Logger.getLogger(OutputReader.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
