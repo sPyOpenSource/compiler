@@ -86,7 +86,6 @@ public class StartBuilder {
     private static CompilerOptions compilerOpts;
 
     public static void main(String[] args) throws Exception {
-        args = "-components COMPONENTS -compdir /home/spy/OS/jcore/isodir/code/".split(" ");
 	String componentsDir = null;
 	int argc = 0;
 
@@ -132,7 +131,7 @@ public class StartBuilder {
 	else
 	    metas = findlibs(compdirs, components);*/
         byte[] barr;
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/OS/jcore/Zero/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/Zero/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -140,7 +139,7 @@ public class StartBuilder {
         zero.setNeededLibs(new ArrayList());
         metas.add(zero);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Java/OS/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/OS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }    
@@ -150,7 +149,7 @@ public class StartBuilder {
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
        
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Java/testOS/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/testOS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -164,7 +163,7 @@ public class StartBuilder {
 	buildDir = compdirs[0];
 	String jcFileName = "JC_CONFIG";
 	String addFileName = "ADD_TO_ZIP";
-	String codeFileName = "/home/spy/OS/jcore/isodir/code/code.zip";
+	String codeFileName = "/home/spy/Source/jcore/isodir/code/code.zip";
 	File jcFile = new File(jcFileName);
 	zipFileListFile = new File(addFileName);
 	File codeFile = new File(codeFileName);
@@ -180,181 +179,6 @@ public class StartBuilder {
 	    String filename = componentsDir + "/" + s.getComponentName();
 	    classPath += filename + ":";
 	}
-	
-	System.out.println("*********** BUILDING COMPONENTS: JAVA -> CLASS");
-	String jxclasspath = "";
-	for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
-
-	    if (!silent) System.out.print("* " + s.getComponentName());
-	    boolean firstout = true;
-
-	    String filename = s.getFilename()/*+"/"+s.getComponentName()+"/"*/;
-	    //System.out.println("FILENAME=" + filename);
-
-	    jxclasspath += filename + ":";
-
-	    // System.out.println("CLASSPATH=" + jxclasspath);
-
-	    // first activate generators, such as rpcgen
-	    String rpcif = s.getVar("RPC_INTERFACES");
-	    if (rpcif != null) {
-		String[] comps = MetaInfo.split(s.getVar("RPC_COMPONENTS"));
-		String[] rargs = new String[comps.length + 2];
-		rargs[0] = filename + s.getVar("RPC_OUTPUTDIR");
-
-		String[] ifs = MetaInfo.split(rpcif);
-
-		// find youngest component
-		long youngest = 0;
-                for (String comp : comps) {
-                    File cf = new File(componentsDir + "/" + comp + ".zip");
-                    if (cf.exists() && cf.lastModified() > youngest)
-                        youngest = cf.lastModified();
-                }
-		/* seems not to work as expected
-		boolean worktodo = false;
-		for(int r=0; r<ifs.length; r++) {
-		    String stubname = rargs[0] + "/" + packageToClassName(ifs[r])+"_Stub.java";
-		    File stubfile = new File(stubname);
-		    if (! stubfile.exists() || youngest > stubfile.lastModified()) {		    
-			worktodo = true;
-			break;
-		    }
-		}
-		*/
-		boolean worktodo = true;
-
-		if (worktodo) {
-		    // build zip files for needed components
-		    for(int r = 0; r < comps.length; r++) {
-			MetaInfo compmeta = null;
-			for(int l = 0; l < metas.size(); l++) {
-			    MetaInfo sc = (MetaInfo)metas.get(l); // process this component
-			    if (comps[r].equals(sc.getComponentName())) {
-				compmeta = sc;
-				break;
-			    }
-			}
-			build_zip(compmeta); // rpcgen reads zip
-			rargs[r+1] = componentsDir + "/" + comps[r] + ".zip";
-		    }
-		    rargs[rargs.length-1] = rpcif;
-		    //jx.rpcgen.StartRPCGen.main(rargs);
-		}
-	    }
-
-	    // now activate javac
-	    String sd = s.getVar("SUBDIRS");
-	    String[] sda = MetaInfo.split(sd);
-
-	    ArrayList todo = new ArrayList();
-	    // todo.addElement("-verbose");
-	    todo.add("-O");
-	    todo.add("-d");
-	    todo.add(filename);
-	    //System.out.println("Generating into dir "+filename);
-	    todo.add("-classpath");
-	    todo.add(jxclasspath);
-	    /* component zero needs minimal jdk but jdk0 needs zero
-	     * so we use the sun jdk
-	     * jdk0 and jdk1 also depend on unknown types of the jdk */
-	    /*	    if (javacpath != null 
-		&& s.getComponentName().equals("zero") 
-		) {*/
-		
-	    if (javacpath != null 
-		&& !s.getComponentName().equals("zero") 
-		&& !s.getComponentName().equals("jdk0") 
-		&& !s.getComponentName().equals("jdk1")
-		) {
-		
-		todo.add("-bootclasspath");
-		todo.add(javacpath);
-	    }
-
-	    todo.add("-sourcepath");
-	    todo.add(filename);
-
-	    boolean worktodo = false;
-            for (String sda1 : sda) {
-                String dirname = sda1;
-                String subdirname = filename + "/" + dirname + "/";
-                File subdir = new File(subdirname);
-                if (!subdir.exists()) {
-                    continue;
-                    //throw new Error("Subdir " + subdirname + " does not exist.");
-                }
-                ArrayList output = new ArrayList();
-                String dirlist[] = subdir.list();
-                for (String dirlist1 : dirlist) {
-                    if (hasExtension(new String[] {".java"}, dirlist1)) {
-                        String javafilename = filename + "/" + dirname + "/" + dirlist1;
-                        File javafile = new File(javafilename);
-                        String classfilename = filename + "/" + dirname + "/" + j2c(dirlist1);
-                        File classfile = new File(classfilename);
-                        if (opt_f || javafile.lastModified() > classfile.lastModified()) {
-                            todo.add(subdirname + "/" + dirlist1);
-                            output.add(dirlist1);
-                            worktodo = true;
-                        }
-                    }
-                }
-                if (output.size() > 0) {
-                    if (firstout) {
-                        System.out.println(""); 
-                        firstout = false;
-                    }
-                    System.out.print(dirname + ": ");
-                    for(int o = 0; o < output.size(); o++)
-                        System.out.print(((String)output.get(o)) + " ");
-                    System.out.println("");
-                }
-            }
-
-	    if (worktodo) { 
-		String jargs[] = new String[todo.size()];
-		todo.toArray(jargs);
-		String mainClass = "com.sun.tools.javac.Main";
-		int ret = exec("", classPath, mainClass, jargs);
-		if (ret != 0) throw new Error("Compiler returned error");
-	    } else {
-		if (!silent) System.out.println(" ... nothing to do.");
-	    }
-
-	    if (compilerOpts.doJavaDoc()) { 
-		ArrayList output = new ArrayList();
-                for (String sda1 : sda) {
-                    String dirname = sda1;
-                    String subdirname = filename + "/" + dirname + "/";
-                    File subdir = new File(subdirname);
-                    if (! subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
-                    String dirlist[] = subdir.list();
-                    for (String dirlist1 : dirlist) {
-                        if (hasExtension(new String[] {".java"}, dirlist1)) {
-                            String javafilename = filename + "/" + dirname + "/" + dirlist1;
-                            output.add(javafilename);
-                        }
-                    }
-                }
-		String files[] = new String[output.size()];
-		output.toArray(files);
-		int ret = execJavaDoc(s.getComponentName(), componentsDir, files, classPath);
-		if (ret != 0) throw new Error("Javadoc returned error");
-	    }
-	}
-
-	System.out.println("*********** BUILDING ZIPS: CLASS -> ZIP");
-	/*for(int i = 0; i < metas.size(); i++) {
-	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
-	    if (!silent) System.out.print("* " + s.getComponentName() + "...  ");
-	    if (build_zip(s)) {
-		if (!silent) System.out.println("Creating.");
-		else System.out.println("* " + s.getComponentName() + " Creating.");
-	    } else {
-		if (!silent) System.out.println(" nothing to do.");
-	    }
-	}*/
 
 	System.out.println("*********** BUILDING COMPONENTS: ZIP -> JLL");
 	build_jlls();
@@ -470,7 +294,7 @@ public class StartBuilder {
 			return opts;
 		    }
 		}
-	    } catch (Exception ex) {
+	    } catch (IOException ex) {
 		System.err.println(ex.getClass().getName());
 		System.err.println("WARNING: Can`t read " + optionFile + " !!!");
 	    }
@@ -645,7 +469,7 @@ public class StartBuilder {
 
 	    try {
 		CompileNative.compile(libdir + s.getComponentName(), opts);
-	    } catch (Throwable ex) {
+	    } catch (Exception ex) {
                 Logger.getLogger(StartBuilder.class.getName()).log(Level.SEVERE, null, ex);
 		new File(jllname).delete();
 		throw new Error("Translator returned error");
@@ -774,7 +598,7 @@ public class StartBuilder {
 	    exec0(cmd0);
 	    exec0(cmd1);
 	    exec0(cmd);
-	} catch (Throwable t) {
+	} catch (Exception t) {
 	    System.out.println("Exception: " + t.getMessage());
 	    ret = 1;
 	}

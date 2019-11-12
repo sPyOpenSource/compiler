@@ -45,9 +45,9 @@ public class CompilerApplication extends javax.swing.JFrame {
         Kernel = new javax.swing.JButton();
         Open = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        projects = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        output = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -93,14 +93,14 @@ public class CompilerApplication extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(projects);
 
         jScrollPane2.setAutoscrolls(true);
 
-        jTextArea2.setEditable(false);
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        output.setEditable(false);
+        output.setColumns(20);
+        output.setRows(5);
+        jScrollPane2.setViewportView(output);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -217,7 +217,8 @@ public class CompilerApplication extends javax.swing.JFrame {
         if (project == null)
             return;
         try {
-            StartBuilder.main(null);
+            String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
+            StartBuilder.main(args.split(" "));
         } catch (Exception ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -238,11 +239,14 @@ public class CompilerApplication extends javax.swing.JFrame {
                 while ((st = br.readLine()) != null){ 
                     liststrings.add(st);
                 }
-                String[] strings = new String[liststrings.size()];
-                    for(int i = 0; i < liststrings.size(); i++){
+                String[] strings = new String[3];
+                    /*for(int i = 0; i < liststrings.size(); i++){
                         strings[i] = liststrings.get(i);
-                    }
-                jList1.setModel(new javax.swing.AbstractListModel<String>() {
+                    }*/
+                    strings[0] = "Zero";
+                     strings[1] = "OS";
+                      strings[2] = "testOS";
+                projects.setModel(new javax.swing.AbstractListModel<String>() {
                     
                     @Override
                     public int getSize() { return strings.length; }
@@ -267,7 +271,7 @@ public class CompilerApplication extends javax.swing.JFrame {
                 } catch (FileNotFoundException ex) {
                     Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 } 
-                OutputReader reader = new OutputReader(jTextArea2);
+                OutputReader reader = new OutputReader(output);
                 Thread reader1 = new Thread(reader);
                 reader1.start();
             }
@@ -278,7 +282,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         if (project == null)
             return;
         try {
-            Runtime.getRuntime().exec("VirtualBox --startvm Slax");
+            Runtime.getRuntime().exec("VBoxManage startvm JavaOS");
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -287,18 +291,18 @@ public class CompilerApplication extends javax.swing.JFrame {
     private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
         if (project == null)
             return;
-        try {
-            Runtime.getRuntime().exec("netbeans");
+        /*try {
+            Runtime.getRuntime().exec("netbeans --open /home/spy/Java/JDK");
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_OpenActionPerformed
 
     private void KernelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KernelActionPerformed
         if (project == null)
             return;
         try {
-            Runtime.getRuntime().exec("atom");
+            Runtime.getRuntime().exec("atom " + project.getAbsoluteFile().getParent());
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -347,13 +351,13 @@ public class CompilerApplication extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JTextArea output;
     private javax.swing.JMenuItem pasteMenuItem;
+    private javax.swing.JList<String> projects;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables

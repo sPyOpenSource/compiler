@@ -63,12 +63,12 @@ public class CompileNative {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] a = {"/home/spy/OS/jx/libs"};
+        String[] a = {"/home/spy/Source/jcore/libs"};
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
-	String libdir = "/home/spy/OS/jcore/isodir/code";
+	String libdir = "/home/spy/Source/jcore/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + s.getComponentName() + ".zip";
@@ -107,15 +107,15 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	JarFile domClasses = new JarFile("/home/spy/Java/OS/dist/OS.jar");
+	JarFile domClasses = new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar");
         JarFile[] libClasses = new JarFile[]{
-                new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar")
+                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar")
             };
         if(path.endsWith("zero")){
-            domClasses = new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar");
+            domClasses = new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar");
             libClasses = new JarFile[0];
         } else if(path.endsWith("init2")){
-            domClasses = new JarFile("/home/spy/Java/testOS/dist/testOS.jar");
+            domClasses = new JarFile("/home/spy/Source/jcore/testOS/dist/testOS.jar");
             libClasses = getZIPs(opts.getLibs());
         }
 
@@ -159,7 +159,7 @@ public class CompileNative {
 	JarFile[] libClasses = null;
         try {
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Java/OS/dist/OS.jar")
+                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
