@@ -216,12 +216,24 @@ public class CompilerApplication extends javax.swing.JFrame {
     private void CompileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompileActionPerformed
         if (project == null)
             return;
-        try {
-            String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
-            StartBuilder.main(args.split(" "));
-        } catch (Exception ex) {
-            Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        class PrimeThread extends Thread {
+                long minPrime;
+                PrimeThread(long minPrime) {
+                    this.minPrime = minPrime;
+                }
+
+                @Override
+                public void run() {
+                    String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
+                    try {
+                        StartBuilder.main(args.split(" "));
+                    } catch (Exception ex) {
+                        Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            PrimeThread compiler = new PrimeThread(0);
+            compiler.start();
     }//GEN-LAST:event_CompileActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
@@ -229,6 +241,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         fc.setDialogTitle("Open Java OS Project File");
         fc.setFileFilter(new OpenFileFilter(".os", "Java OS Project File"));
         int returnVal = fc.showSaveDialog(null);
+
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             BufferedReader br = null;
             try {
@@ -239,13 +252,14 @@ public class CompilerApplication extends javax.swing.JFrame {
                 while ((st = br.readLine()) != null){ 
                     liststrings.add(st);
                 }
-                String[] strings = new String[3];
+                String[] strings = new String[4];
                     /*for(int i = 0; i < liststrings.size(); i++){
                         strings[i] = liststrings.get(i);
                     }*/
                     strings[0] = "Zero";
                      strings[1] = "OS";
                       strings[2] = "testOS";
+                      strings[3] = "AIZero";
                 projects.setModel(new javax.swing.AbstractListModel<String>() {
                     
                     @Override
@@ -264,16 +278,9 @@ public class CompilerApplication extends javax.swing.JFrame {
                     Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 // Creating a File object that represents the disk file. 
-                try {
-                    PrintStream o = new PrintStream(new File("/home/spy/output.txt"));
-                    // Assign o to output stream 
-                    System.setOut(o);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-                } 
-                OutputReader reader = new OutputReader(output);
-                Thread reader1 = new Thread(reader);
-                reader1.start();
+                TextAreaOutputStream out = new TextAreaOutputStream(output);
+                // Assign o to output stream 
+                System.setOut(new PrintStream(out));
             }
         }
     }//GEN-LAST:event_openMenuItemActionPerformed
@@ -283,6 +290,8 @@ public class CompilerApplication extends javax.swing.JFrame {
             return;
         try {
             Runtime.getRuntime().exec("VBoxManage startvm JavaOS");
+            Thread reader = new Thread(new OutputReader(output));
+             reader.start();
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }

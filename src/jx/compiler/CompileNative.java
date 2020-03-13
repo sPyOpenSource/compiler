@@ -117,6 +117,12 @@ public class CompileNative {
         } else if(path.endsWith("init2")){
             domClasses = new JarFile("/home/spy/Source/jcore/testOS/dist/testOS.jar");
             libClasses = getZIPs(opts.getLibs());
+        } else if(path.endsWith("ai")){
+            domClasses = new JarFile("/home/spy/Source/jcore/AIZero/dist/AIZero.jar");
+            libClasses = new JarFile[]{
+                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"),
+                new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar")
+            };
         }
 
 	ExtendedDataInputStream[] tableIn;
@@ -142,7 +148,6 @@ public class CompileNative {
 	    };
 
 	io.set(path);
-	//io.set("/home/spy/OS/jx/libs/jdk0");
 	StaticCompiler compiler = new StaticCompiler(null, codeFile, tableOut,
 						     domClasses,
 						     libClasses, tableIn,
@@ -159,7 +164,7 @@ public class CompileNative {
 	JarFile[] libClasses = null;
         try {
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar")
+                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar"), new JarFile("/home/spy/Source/jcore/AIZero/dist/AIZero.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);

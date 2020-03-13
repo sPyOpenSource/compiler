@@ -89,8 +89,6 @@ public class StartBuilder {
 	String componentsDir = null;
 	int argc = 0;
 
-	System.setSecurityManager(new NoExit());
-
 	if (args.length < 2)
 	    throw new Error("StartBuilder: wrong number of parameters");
 
@@ -126,10 +124,6 @@ public class StartBuilder {
 
 	String[] compdirs = MetaInfo.split(componentsDir, ':');
 
-	/*if (opt_new)
-	    metas = findlibsNew(compdirs, components);
-	else
-	    metas = findlibs(compdirs, components);*/
         byte[] barr;
         try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/Zero/META", "r")) {
             barr = new byte[(int)f.length()];
@@ -148,7 +142,18 @@ public class StartBuilder {
         allLibs2.add("zero");
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
-       
+        
+       try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/AIZero/META", "r")) {
+            barr = new byte[(int)f.length()];
+            f.readFully(barr);
+        }
+        MetaInfo ai = new MetaInfo("/home/spy/OS/jx/libs/ai", barr);
+        ArrayList allLibs3 = new ArrayList();
+        allLibs3.add("zero");
+        allLibs3.add("jdk0");
+        ai.setNeededLibs(allLibs3);
+        metas.add(ai);
+        
         try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/testOS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
@@ -157,6 +162,7 @@ public class StartBuilder {
         ArrayList allLibs = new ArrayList();
         allLibs.add("zero");
         allLibs.add("jdk0");
+        allLibs.add("ai");
         meta.setNeededLibs(allLibs);
         metas.add(meta);
         
