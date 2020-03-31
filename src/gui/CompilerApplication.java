@@ -24,11 +24,14 @@ import jx.compspec.StartBuilder;
  */
 public class CompilerApplication extends javax.swing.JFrame {
     File project;
+    Thread reader;
+    
     /**
      * Creates new form NewApplication
      */
     public CompilerApplication() {
         initComponents();
+         reader = new Thread(new OutputReader(output));
     }
 
     /**
@@ -48,6 +51,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         projects = new javax.swing.JList<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         output = new javax.swing.JTextArea();
+        logOn = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -101,6 +105,13 @@ public class CompilerApplication extends javax.swing.JFrame {
         output.setColumns(20);
         output.setRows(5);
         jScrollPane2.setViewportView(output);
+
+        logOn.setText("Log On");
+        logOn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logOnActionPerformed(evt);
+            }
+        });
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("File");
@@ -176,13 +187,14 @@ public class CompilerApplication extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Run)
-                    .addComponent(Kernel)
-                    .addComponent(Open)
-                    .addComponent(Compile))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Open, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Kernel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Compile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Run, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(logOn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
                 .addContainerGap())
@@ -202,7 +214,9 @@ public class CompilerApplication extends javax.swing.JFrame {
                         .addComponent(Compile)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Run)
-                        .addGap(0, 255, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(logOn)
+                        .addGap(0, 222, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -216,6 +230,7 @@ public class CompilerApplication extends javax.swing.JFrame {
     private void CompileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CompileActionPerformed
         if (project == null)
             return;
+        
         class PrimeThread extends Thread {
                 long minPrime;
                 PrimeThread(long minPrime) {
@@ -290,7 +305,6 @@ public class CompilerApplication extends javax.swing.JFrame {
             return;
         try {
             Runtime.getRuntime().exec("VBoxManage startvm JavaOS");
-            Thread reader = new Thread(new OutputReader(output));
              reader.start();
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
@@ -316,6 +330,10 @@ public class CompilerApplication extends javax.swing.JFrame {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_KernelActionPerformed
+
+    private void logOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOnActionPerformed
+             reader.start();
+    }//GEN-LAST:event_logOnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,6 +380,7 @@ public class CompilerApplication extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton logOn;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JTextArea output;
