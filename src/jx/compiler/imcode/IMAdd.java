@@ -98,6 +98,7 @@ final  public class IMAdd extends IMBinaryOperator {
     }
 
     // IMAdd
+    @Override
     public void translate(Reg result) throws CompileException {
 
 	if (lOpr.isConstant()) {

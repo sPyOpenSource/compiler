@@ -24,13 +24,12 @@ final public class IMReturn extends IMBranch  {
 	targets = null;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException { 
 	ownBasicBlock = basicBlock;
 	if (bytecode==BC.RETURN) return this;
 	retValue = stack.pop();
 	datatype = retValue.getDatatype();
-	//stack.flush();
-	//basicBlock.leave(stack);
 	return this;
     }
 
@@ -52,7 +51,6 @@ final public class IMReturn extends IMBranch  {
     }
 
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
-        //throw new Error("use wrong assignNewVars method for IMReturn");
 	init(newContainer);
 	if (retValue!=null) {
 	  return (IMOperant)retValue.assignNewVars(newContainer,slots,opr,retval,bcPos);

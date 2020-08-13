@@ -81,7 +81,6 @@ class Main {
             //Debug.out.println("Reading table "+i);
             deserialize(oldTable);
         }
-	
     }
 
     /**
@@ -110,7 +109,6 @@ class Main {
 	    if (info == null) continue;
 	    putIn(info, false, false, false);
 	}
-	
     }
 
 

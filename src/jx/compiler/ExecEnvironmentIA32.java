@@ -66,7 +66,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	private final int     OBJECT_MAGIC      = 0xbebeceee;
 	private final int     classDescOffset   = -4;
 
-	private final boolean doFastInstanceOf  = false; // buggy! don`t use
 	private final boolean doFastStatics     = false;
 
 	private final boolean extraRegSave      = false; // not needed
@@ -112,7 +111,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
-
 	if (methodRefCPEntry==null) return null;
 
 
@@ -780,7 +778,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    }	
 
 	    if (opts.isOption("32BitArrays")) {
-		    code.movl(value,array.rdisp(arrayDataStart,index,4));
+		    code.movl(value,array.rdisp(arrayDataStart, index, 4));
 	    } else {
 			System.out.println("warn: use compact arrays");
 		    switch (datatype) {
@@ -925,7 +923,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	  regs.saveIntRegister();
 
-	  int offset=frame.start();
+	  int offset = frame.start();
 	  frame.push(-1,new ClassSTEntry(classCPEntry.getClassName()));
 	  frame.push(BCBasicDatatype.REFERENCE,objRef);
 	  code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_CHECKCAST));
@@ -939,7 +937,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	} else {
 	  regs.saveIntRegister();
 
-	  int offset=frame.start();
+	  int offset = frame.start();
 	  frame.push(-1,new ClassSTEntry(classCPEntry.getClassName()));
 	  frame.push(BCBasicDatatype.REFERENCE,objRef);
 	  code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_CHECKCAST));
@@ -980,14 +978,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  code.je(jumpForward);
 	  regs.freeIntRegister(regEAX);
 	  regs.saveIntRegister();
-	  int offset=frame.start();
+	  int offset = frame.start();
 	  frame.push(-1,new ClassSTEntry(classCPEntry.getClassName()));
 	  frame.push(BCBasicDatatype.REFERENCE,objRef);
 	  code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_INSTANCEOF));
 	  frame.cleanup(offset);
 	  regs.allocIntRegister(regEAX,BCBasicDatatype.BOOLEAN);
-	  if (regEAX.value!=0) {
-	      code.movl(Reg.eax,regEAX);
+	  if (regEAX.value != 0) {
+	      code.movl(Reg.eax, regEAX);
 	  }
 	  code.addJumpTarget(jumpForward);
 
@@ -1002,8 +1000,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    frame.cleanup(offset);
 
 	    regs.allocIntRegister(regEAX,Reg.eax,BCBasicDatatype.BOOLEAN);
-	    if (regEAX.value!=0) {
-		code.movl(Reg.eax,regEAX);
+	    if (regEAX.value != 0) {
+		code.movl(Reg.eax, regEAX);
 	    }
 	}
 
@@ -1029,7 +1027,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(opts.monitorClass(),
 									 "enter",
 									 "(Ljava/lang/Object;)V");
-	    int ip=code.getCurrentIP();
+	    int ip = code.getCurrentIP();
 	    code.call(target);
 	    
 	    node.addDebugInfo(frame.stackMapToString(node));
@@ -1057,7 +1055,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
         @Override
     public void codeMonitorLeave(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
 	System.out.println("-- monitor exit");
-	if (opts.monitorClass()!=null) {
+	if (opts.monitorClass() != null) {
 	    code.startBC(bcPosition);
 	    
 	    int datatype = obj.getDatatype();
@@ -1255,12 +1253,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    }
     }
 
+        @Override
     public void codePutFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg64 value,int bcPosition) throws CompileException {	
 	int offset = getFieldOffset(fieldRefCPEntry);
 	code.movl(value.low,objRef.rdisp(offset));
 	code.movl(value.high,objRef.rdisp(offset+4));
     }
 
+        @Override
     public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg value, int bcPosition) throws CompileException {
 	    String className = fieldRefCPEntry.getClassName();
 	    BCClass aClass = classStore.findClass(className);
@@ -1268,16 +1268,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	    if (offset == -1) {
-		    throw new CompileException("Cannot find field "+fieldRefCPEntry.getMemberName()+" in class "+className);
+		    throw new CompileException("Cannot find field " + fieldRefCPEntry.getMemberName() + " in class " + className);
 	    }
 
-	    if (false && node.getDatatype()==BCBasicDatatype.REFERENCE && opts.isOption("writeBarrier")) {
+	    if (false && node.getDatatype() == BCBasicDatatype.REFERENCE && opts.isOption("writeBarrier")) {
 		    regs.saveIntRegister();
 
-		    int foff=frame.start();
+		    int foff = frame.start();
 		    frame.push(value);
-		    frame.push(BCBasicDatatype.INT,offset);	
-		    frame.push(-1,new ClassSTEntry(className));
+		    frame.push(BCBasicDatatype.INT, offset);	
+		    frame.push(-1, new ClassSTEntry(className));
 		    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_PUTSFIELD32));
 		    frame.cleanup(foff);
 	    } else {

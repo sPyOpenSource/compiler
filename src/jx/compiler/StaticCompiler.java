@@ -433,7 +433,7 @@ public class StaticCompiler implements ClassFinder {
 		    imCode.translate();
 		    if (options.doPrintIMCode()) imCode.writeCode(imOut);
 		    info.nativeCode[i] = imCode;
-		} catch (Exception ex) {
+		} catch (CompileException ex) {
                     Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    if (options.doInlining(aClass, method)) {
 			System.err.println("!! FAIL to inline !!!!!!!!!!!!!!!");

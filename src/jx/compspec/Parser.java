@@ -39,7 +39,7 @@ class Parser {
 	    s[i] = (String)v.get(i);
 	}
 	return s;
-	}catch(Exception e){throw new Error(e.toString());}
+	}catch(IOException e){throw new Error(e.toString());}
     }
 
     private String readLine()  throws IOException {

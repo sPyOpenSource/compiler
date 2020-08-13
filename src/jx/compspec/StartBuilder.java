@@ -71,7 +71,6 @@ public class StartBuilder {
     static String buildDir;
 
     private static String components;
-    private static String javacpath;
 
     private static final boolean opt_f = false; // force recompilation 
     private static final boolean opt_c = false; // make clean
@@ -102,10 +101,6 @@ public class StartBuilder {
                     break;
                 case "-debug":
                     opt_debug = true;
-                    break;
-                case "-javacpath":
-                    argc++;
-                    javacpath = args[argc];
                     break;
                 case "-components":
                     argc++;
@@ -178,12 +173,9 @@ public class StartBuilder {
         
 	compilerOpts = getCompilerOptions(null, null, null, null, null, jcFileName);
 
-	String classPath = "";
 	for(int i = 0; i < metas.size(); i++) {
 	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.println("COMPONENTS += " + s.getComponentName());	
-	    String filename = componentsDir + "/" + s.getComponentName();
-	    classPath += filename + ":";
 	}
 
 	System.out.println("*********** BUILDING COMPONENTS: ZIP -> JLL");

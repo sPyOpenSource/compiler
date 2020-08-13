@@ -117,7 +117,7 @@ public class LocalVariable {
     }
 
     public boolean isDatatype(int dtype) {
-	return datatype==dtype;
+	return datatype == dtype;
     }
 
     public int getType() {

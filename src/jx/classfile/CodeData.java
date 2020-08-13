@@ -78,8 +78,6 @@ final public class CodeData {
       codeBytes = new byte[numCodeBytes]; 
       input.readFully(codeBytes, 0, numCodeBytes); 
       
-      // System.out.println(getDescription(cPool)); 
-
       numHandlers = input.readUnsignedShort(); 
       exceptionHandler = new ExceptionHandlerData[numHandlers]; 
       for(int i=0; i<numHandlers; i++) {
@@ -88,8 +86,9 @@ final public class CodeData {
       }
       
       int numAttributes = input.readUnsignedShort(); 
-      for(int i=0; i<numAttributes; i++) 
+      for(int i=0; i<numAttributes; i++) {
 	readAttribute(input, cPool); 
+      }
   }
 
   private void readAttribute(DataInput input, ConstantPool cPool) 

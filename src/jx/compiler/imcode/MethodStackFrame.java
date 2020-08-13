@@ -9,9 +9,7 @@ import jx.classfile.datatypes.*;
 
 public class MethodStackFrame {
 
-    //private final int     EXTRA_FRAME_SPACE = 60;
     private final int     EXTRA_FRAME_SPACE = 500;
-    private final int     NUMBER_OF_TEMPS   = 3;
 
     private final int MAX_TYPES = 5;
     private final int ARGS      = 0;
@@ -20,15 +18,12 @@ public class MethodStackFrame {
     private final int TMPS      = 3;
     private final int OPRS      = 4;
 
-    private final BCMethod     method;
     private final int[]        argTypes;
 
     private final VarVector[]  stack;
     private int          stackSize;
     private final int[]        stackOffset;
-    private final int          maxOperants;
     private int          numberOfOperants;
-    private boolean      operantenMap;
 
     private boolean      reallocStack;
 
@@ -40,8 +35,6 @@ public class MethodStackFrame {
     private final BinaryCodeIA32 code;
 
     public MethodStackFrame(BinaryCodeIA32 code, BCMethod method) {
-
-	this.method   = method;
 	this.argTypes = method.getArgumentTypes();
 	this.code     = code;
 
@@ -49,20 +42,18 @@ public class MethodStackFrame {
 	this.stackOffset = new int[MAX_TYPES];
 	for (int i = 0; i < MAX_TYPES; i++) this.stack[i] = new VarVector();
 
-	maxOperants = 0;
-
 	int  offsetArgs = 0; // %ebp , %eip
 	if (!method.isStatic()) {
-	    stack[ARGS].add(new LocalVariable(ARGS,BCBasicDatatype.REFERENCE,offsetArgs));
-	    offsetArgs+=4;
+	    stack[ARGS].add(new LocalVariable(ARGS, BCBasicDatatype.REFERENCE, offsetArgs));
+	    offsetArgs += 4;
 	}
 
-	for (int i=0;i<argTypes.length;i++) {
-	    stack[ARGS].add(new LocalVariable(ARGS,argTypes[i],offsetArgs));
-	    offsetArgs+=(BCBasicDatatype.sizeInWords(argTypes[i])*4);
+	for (int i = 0; i < argTypes.length; i++) {
+	    stack[ARGS].add(new LocalVariable(ARGS, argTypes[i], offsetArgs));
+	    offsetArgs += (BCBasicDatatype.sizeInWords(argTypes[i]) * 4);
 	}
 
-	numberOfOperants=0;
+	numberOfOperants = 0;
 	reallocStack = true;
 	extraStackSpace = 4;
     }
@@ -122,8 +113,6 @@ public class MethodStackFrame {
 	if (reallocStack) computeStackLayout();
 
 	offset=stackOffset[slot.getType()]+slot.off;
-
-	/*stackOffset[VARS] = -extraStackSpace*/
 
 	if ((offset==0)||((offset>-extraStackSpace)&&(slot.getType()!=ARGS))) {
 	  System.err.println("### type: "+slot.getType()+
@@ -436,14 +425,6 @@ public class MethodStackFrame {
 	
 	LocalVariable var = vars.elementAt(varIndex);
 
-	/*
-	if (!var.isDatatype(datatype) && !var.isDatatype(-2)) {
-	    System.err.print("!!! type change !!! "+var.getDatatype()+"->"+datatype+" ");
-	    System.err.println(BCBasicDatatype.toString(var.getDatatype())+"->"+BCBasicDatatype.toString(datatype));
-	    //if (var.datatype!=-2) System.exit(-1);
-	}
-	*/
-
 	var.setDatatype(datatype);
 
 	return var;
@@ -480,13 +461,6 @@ public class MethodStackFrame {
     public void push(RegObj reg) {
 	reg.push(this);
     }
-
-    /*
-    public void pushLong(Reg64 operant) {
-	push(-1,operant.high);
-	push(-1,operant.low);
-    }
-    */
 
     public void push(int datatype, int immd) {
 	code.pushl(immd);
@@ -571,7 +545,6 @@ public class MethodStackFrame {
 	int ssize = vars.size();
 	LocalVariable var;
 
-	//reallocStack=true;
 	computeStackLayout();
 
 	for (int i=0;i<ssize;i++) {
@@ -583,7 +556,6 @@ public class MethodStackFrame {
 	    }
 	}
 
-	//reallocStack=true;
 	var = new LocalVariable(TMPS,datatype);
 	vars.add(var);
 	
@@ -604,7 +576,6 @@ public class MethodStackFrame {
     public void freeSlot(LocalVariable slot) {
 	if (slot==null) return;
 	if (!slot.isType(VARS) && !slot.isType(BLKS)) {
-	    //slot.setDatatype(-1);
 	    slot.unused   = true;
 	}
     }
@@ -643,16 +614,11 @@ public class MethodStackFrame {
 	    for (int j = 0; j < csize; j++) {
 		LocalVariable slot = curr.elementAt(j);
 
-		if (slot.unused) {		    
-		    //if (slot.isDatatype(BCBasicDatatype.REFERENCE)) retval+="r";
-		    //else retval+=".";
-		    //else retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
+		if (slot.unused) {
 		    retval += ".";
 		} else {
 		    retval += BCBasicDatatype.toSymbol(slot.getDatatype());
 		}
-
-		//retval += slot.getType();
 		
 		if (slot.size == 2) {
 		    retval += "_";
@@ -663,54 +629,9 @@ public class MethodStackFrame {
 	return retval;
     }
 
-    /*
-    public String stackMapToString(IMNode node) {
-	int       lvarSize = getLVarMapSize();
-	int       varSize  = getVarMapSize();
-	boolean[] vars     = getVarMap();
-	boolean[] lvars    = node.getVarStackMap();
-	boolean[] oprs     = getOprMap();
-
-	char[] currStackMap = new char[lvarSize + varSize + oprs.length + 4];
-
-	currStackMap[0]='[';
-	for (int i=1;i<currStackMap.length-1;i++) currStackMap[i]='?';
-	currStackMap[currStackMap.length-1]=']';
-
-	for (int i=0;i<lvars.length;i++) {
-	    if (lvars[i]) currStackMap[i+1] = 'R';
-	    else if (stack[VARS].elementAt(i).getDatatype()>=0) currStackMap[i+1] = '.';
-	}
-
-	currStackMap[lvarSize+1] = ' ';
-
-	for (int i=0;i<vars.length;i++) {
-	    if (vars[i]) currStackMap[lvarSize + i + 2] = 'R';
-	}
-
-	currStackMap[lvarSize + varSize + 2] = ' ';
-
-	for (int i=0;i<oprs.length;i++) {
-	    if (oprs[i]) currStackMap[lvarSize + varSize + i + 3] = 'R';
-	    else currStackMap[lvarSize + varSize + i + 3] = 'i';
-	}
-	    
-	return new String(currStackMap);
-    }
-    */
-
     public String stackMapToString() {
 	boolean[] sMap = getStackMap();
 	String retval = "[";
-
-	/*
-	for (int s=0;s<sMap.length;s++) {
-	    if (sMap[s]) retval+="1";
-	    else retval+="0";
-	}
-	    
-	retval += "|";
-	*/
 
 	int s = 0;
 	for (int i = 1; i < stack.length; i++) {	    
@@ -725,12 +646,9 @@ public class MethodStackFrame {
 		if (slot.unused) {
 		    if (slot.isDatatype(BCBasicDatatype.REFERENCE)) retval += "r";
 		    else retval += ".";
-		    //else retval+=BCBasicDatatype.toSymbol(slot.getDatatype());
 		} else {
 		    retval += BCBasicDatatype.toSymbol(slot.getDatatype());
 		}
-
-		//retval += slot.getType();
 		
 		if (slot.size == 2) {
 		    retval += "_";
@@ -757,8 +675,8 @@ public class MethodStackFrame {
     }
 
     private void computeStackLayout() {
-	int ssize,csize;
-	LocalVariable last,curr;
+	int ssize, csize;
+	LocalVariable last, curr;
 	VarVector slots;
 
 	// set offset for args (this is fix :-))

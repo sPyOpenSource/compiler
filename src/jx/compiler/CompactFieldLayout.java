@@ -41,7 +41,7 @@ public final class CompactFieldLayout {
     }
 
     public void addField(FieldData [] fields, String fieldName, String fieldType) {
-	int size=0;
+	int size = 0;
         switch (fieldType) {
             case "D":
             case "J":
@@ -79,7 +79,7 @@ public final class CompactFieldLayout {
             default:
                 break;
         }
-	if (size==0) throw new Error("Unable to compute field size");
+	if (size == 0) throw new Error("Unable to compute field size");
 	CompactFieldDescription field = new CompactFieldDescription(fieldName, fieldType, numBytes, size);
 	addField(field);
     }
@@ -96,7 +96,7 @@ public final class CompactFieldLayout {
     }
 
     public int wordsNeeded() {
-	return (numBytes+3)>>2;
+	return (numBytes + 3) >> 2;
     }
     public int bytesNeeded() {
 	return numBytes;

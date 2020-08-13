@@ -102,22 +102,15 @@ public class ClassData extends ClassSource {
 	    if(magicNumber!=0xcafebabe) throw new NoMagicNumberException();
 	    int minorVersion = input.readUnsignedShort();
 	    int majorVersion = input.readUnsignedShort(); 
-
-	    //Debug.out.println("version "+majorVersion+"."+minorVersion);
     
 	    constantPool = new ConstantPool(); 
 	    constantPool.readFromClassFile(input); 
-
-	    //Debug.out.println(constantPool.toString()); 
     
 	    accessFlags = input.readUnsignedShort(); 
 	    thisClassCPIndex = input.readUnsignedShort(); 
 	    superClassCPIndex = input.readUnsignedShort(); 
     
 	    constantPool.setThisClassCPIndex(thisClassCPIndex); 
-
-	    //Debug.out.println("** Class was "+constantPool.getClassName());
-	    //Debug.out.println("");
 
 	    numInterfaces = input.readUnsignedShort(); 
 	    interfaceCPIndex = new int[numInterfaces]; 
@@ -126,8 +119,9 @@ public class ClassData extends ClassSource {
 
 	    numFields = input.readUnsignedShort(); 
 	    field = new FieldData[numFields]; 
-	    for(int i = 0; i < numFields; i++)
+	    for(int i = 0; i < numFields; i++){
 		field[i] = new FieldData(this, input, constantPool); 
+            }
 
 	    numMethods = input.readUnsignedShort(); 
 	    method = new MethodData[numMethods];
@@ -143,8 +137,9 @@ public class ClassData extends ClassSource {
 	    }
 
 	    int numAttributes = input.readUnsignedShort(); 
-	    for(int i = 0; i < numAttributes; i++) 
+	    for(int i = 0; i < numAttributes; i++) {
 		readAttribute(input, constantPool); 
+            }
 	} catch(EOFException ex) {
 	    throw new Error("Unexpected EOF");
 	}
