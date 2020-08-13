@@ -8,8 +8,8 @@ import jx.compiler.imcode.*;
 
 public class Opr implements Cloneable {
 
-    public static int REG=1;
-    public static int REF=2;
+    public static int REG = 1;
+    public static int REF = 2;
 
     /* constants for scale value in sib-byte */
     public static int BYTE  = 0x00;
@@ -19,15 +19,14 @@ public class Opr implements Cloneable {
 
     public int value;
     public int tag;
-    public int id=-1;
+    public int id = -1;
     public LocalVariable slot = null;
-    //public boolean       free = false;
     protected boolean free = false;
 
-    private int datatype=-1;
+    private int datatype = -1;
 
     public void setDatatype(int dtype) {
-	datatype=dtype;
+	datatype = dtype;
     }
 
     public int getDatatype() {
@@ -42,22 +41,23 @@ public class Opr implements Cloneable {
 	return this.value == opr.value;
     }
 
-    public void free() {free=true;}
+    public void free() {free = true;}
 
-    public void unfree() {free=false;}
+    public void unfree() {free = false;}
 
     public boolean isFree() {return free;}
     
+    @Override
     public String toString() {
 	//String rval = "r"+Integer.toString(value);
 	String rval = regToString(value);
 
-	if (id>=0) {
-	    rval+="("+Integer.toString(id);
-	    if (free) rval+="-"; else rval+="+";
-	    if (slot!=null) rval+="m";
-	    if (tag==REF) rval+="f";
-	    rval+=")";
+	if (id >= 0) {
+	    rval += "(" + Integer.toString(id);
+	    if (free) rval += "-"; else rval += "+";
+	    if (slot != null) rval += "m";
+	    if (tag == REF) rval += "f";
+	    rval += ")";
 	}
 
 	return rval;
@@ -68,7 +68,7 @@ public class Opr implements Cloneable {
     }; 
 
     public static String regToString(int reg) {
-	if (reg<0) return "!any";
+	if (reg < 0) return "!any";
 	return "%e" + REGNAME[reg]; 
     }
 }

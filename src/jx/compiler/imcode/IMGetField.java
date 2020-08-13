@@ -12,7 +12,7 @@ final public class IMGetField extends IMUnaryOperator {
     private final FieldRefCPEntry cpEntry;
     private final String fieldType;
 
-    public IMGetField(CodeContainer container,int bc,int bcpos,
+    public IMGetField(CodeContainer container, int bc, int bcpos,
 		      FieldRefCPEntry cpEntry) {
 	super(container);
 	bytecode     = bc;
@@ -22,36 +22,26 @@ final public class IMGetField extends IMUnaryOperator {
 	datatype     = BasicTypeDescriptor.getBasicDatatypeOf(fieldType);
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	operant = stack.pop();
-	//stack.store();
 	stack.push(this);
 	return null;
     }
 
+    @Override
     public String toReadableString() {
 	return operant.toReadableString()+"."+cpEntry.getMemberName();
     } 
 
     // IMGetField
+    @Override
     public void translate(Reg result) throws CompileException {	
 	Reg objRef = regs.chooseIntRegister(result);	
 	operant.translate(objRef);
 	code.startBC(bcPosition);
 
-	// Example NPA 
-
-	if (false) {
-	    /*
-	    jx.verifier.npa.NPAResult npaResult 
-		= (jx.verifier.npa.NPAResult)container.getBCMethod().getVerifyResult(jx.verifier.npa.VerifyResult.NPA_RESULT);	    
-	    if (!(npaResult!=null && npaResult.notNull(bcPosition))) {
-		if (operant.checkReference()) 
-		    execEnv.codeCheckReference(this,objRef,bcPosition);
-	    }
-	    */
-	    
-	} else {
+	{
 	    if (operant.checkReference()) 
 		execEnv.codeCheckReference(this,objRef,bcPosition);
 	}
@@ -61,8 +51,9 @@ final public class IMGetField extends IMUnaryOperator {
 	regs.freeIntRegister(objRef);			     
     }
 
+    @Override
     public void translate(Reg64 result) throws CompileException {	
-	if (datatype!=BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
+	if (datatype != BCBasicDatatype.LONG) throw new CompileException("wrong datatype");
 
 	Reg objRef = regs.chooseIntRegister(result.low,result.high);	
 	operant.translate(objRef);

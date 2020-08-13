@@ -16,7 +16,7 @@ public class FieldData {
     private int fieldTypeCPIndex; 
     private boolean hasInitialValue; 
     private int constantValueCPIndex; 
-    private  ConstantPool constantPool; 
+    private final  ConstantPool constantPool; 
     ClassData declaringClass;
 
     public FieldData(ClassData declaringClass, DataInput input, ConstantPool cPool) throws IOException {
@@ -33,11 +33,10 @@ public class FieldData {
      
 	hasInitialValue = false; 
 
-	// System.out.println(this.getDescription(cPool)+"\n");
-
 	int numAttributes = input.readUnsignedShort(); 
-	for(int i=0; i<numAttributes; i++) 
+	for(int i=0; i<numAttributes; i++) {
 	    readAttribute(input, cPool); 
+        }
     }
 
     private void readAttribute(DataInput input, ConstantPool cPool) 

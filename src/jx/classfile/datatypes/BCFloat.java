@@ -7,7 +7,6 @@ final public class BCFloat extends BCFloatDatatype {
   public float value() {return value;}
   @Override
   public double doubleValue() {return value;}
-    //public String toString() {return String.valueOf(value); }
   @Override
   public int type() {return FLOAT;}
   public int getBits() {return Float.floatToIntBits(value);}
@@ -20,7 +19,7 @@ final public class BCFloat extends BCFloatDatatype {
   public BCNumericDatatype combined(int operator, BCNumericDatatype op2) {
     float val1 = value; 
     float val2 = ((BCFloat)op2).value; 
-    float result=0; 
+    float result = 0; 
     switch (operator) {
     case ADD:  result = val1 + val2;   break; 
     case SUB:  result = val1 - val2;   break; 

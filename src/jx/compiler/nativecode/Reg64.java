@@ -56,10 +56,12 @@ final public class Reg64 implements RegObj, Cloneable {
 	return null;
     }
 
+    @Override
     public int getDatatype() {
 	return BCBasicDatatype.LONG;
     }
 
+    @Override
     public void push(MethodStackFrame frame) {
 	frame.push(BCBasicDatatype.LONG, low);
 	frame.push(BCBasicDatatype.LONG, high);
@@ -78,7 +80,7 @@ final public class Reg64 implements RegObj, Cloneable {
     }
 
     public Reg64 getClone() {
-	Reg64 nreg = null;
+	Reg64 nreg;
 	try {
 	    nreg = (Reg64)this.clone();
 	} catch (CloneNotSupportedException ex) {

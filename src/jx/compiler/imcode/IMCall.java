@@ -12,7 +12,7 @@ final  public class IMCall extends IMBranch  {
 
     private UnresolvedJump jumpTarget;
 
-    public IMCall(CodeContainer container,int bc,int bcpos,IMBasicBlock label) {
+    public IMCall(CodeContainer container, int bc, int bcpos, IMBasicBlock label) {
 	super(container);
 
 	bytecode   = bc;
@@ -23,6 +23,7 @@ final  public class IMCall extends IMBranch  {
 	targets[0] = label;
     }
 
+    @Override
     public IMBasicBlock[] getTargets() {
 	if (bc_next.isBasicBlock()) {
 	    targets[1] = (IMBasicBlock)bc_next;
@@ -34,6 +35,7 @@ final  public class IMCall extends IMBranch  {
 	return targets;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	Debug.out.println("!!! warn: bcjsr used !!!");
 	jumpTarget = targets[0].getNewJumpTarget();
@@ -41,11 +43,13 @@ final  public class IMCall extends IMBranch  {
 	return this;
     }
 
+    @Override
     public String toReadableString() {
 	return "call "+targets[0].toReadableString();	    
     }
 
     // IMCall
+    @Override
     public void translate(Reg result) throws CompileException {
 	UnresolvedJump retAddr = new UnresolvedJump();
 

@@ -97,29 +97,26 @@ final public class IMConstant extends IMOperant {
 	    if (cpValue!=null) return ((BCInteger)cpValue).value();
 	if (verbose && System.err != null) System.err.println("fixme: constant long");
 	return 0;
-	//throw new Error("constant is not Int-Value");
     }
 
     public void setIntValue(int value) {
-	cpEntry=null;
+	cpEntry = null;
 	this.value = value;
     }
 
     public long getLongValue() {
-	if (cpValue!=null) return ((BCLong)cpValue).value();
+	if (cpValue != null) return ((BCLong)cpValue).value();
 	return (long)value;
     }
 
     public double getDoubleValue() {
-	if (cpValue!=null) return ((BCDouble)cpValue).value();
+	if (cpValue != null) return ((BCDouble)cpValue).value();
 	return (double)value;
-	//throw new Error("wrong constant value - no double \n");
     }
 
     public float getFloatValue() {
-	if (cpValue!=null) return ((BCFloat)cpValue).value();
+	if (cpValue != null) return ((BCFloat)cpValue).value();
 	return (float)value;
-	//throw new Error("wrong constant value - no float \n");
     }	
 
     @Override

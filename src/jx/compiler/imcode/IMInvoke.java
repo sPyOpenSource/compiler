@@ -43,6 +43,7 @@ public class IMInvoke extends IMMultiOperant {
 	return cpEntry;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 
 	int[] argTypes = typeDesc.getBasicArgumentTypes();
@@ -63,11 +64,11 @@ public class IMInvoke extends IMMultiOperant {
 	    return this;
 	} else {	
 	    stack.push(this);
-	    //stack.store(bcPosition);
 	    return null;
 	}
     } 
 
+    @Override
     public IMNode inlineCode(CodeVector iCode, int depth, boolean forceInline) throws CompileException {
 
 	/*
@@ -102,7 +103,6 @@ public class IMInvoke extends IMMultiOperant {
 	BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
 	if ((bcMethod instanceof BCMethodWithCode) &&
 	    !bcMethod.getName().equals("<clinit>") &&
-	    //!bcMethod.getName().equals("<init>") &&
 	    !bcMethod.isOverrideable()) {
 
 	    CodeContainer inlineCode = new CodeContainer(execEnv,(BCMethodWithCode)bcMethod);
@@ -177,33 +177,6 @@ public class IMInvoke extends IMMultiOperant {
                 throw new CompileException("unknown invokation -- not implemented yet! ");
 	}
     }
-
-    /*
-    public void translateLong(Reg64 result) throws CompileException {
-	switch (bytecode) {
-	case BC.INVOKEVIRTUAL:
-	    if (doStaticMethodCalls) {
-		BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
-		if ((bcMethod instanceof BCMethodWithCode)) {
-		    if (!bcMethod.isOverrideable()) {
-			execEnv.codeSpecialCallLong(this,cpEntry,obj,args,datatype,result,bcPosition);
-			break;
-		    }
-		}
-	    }
-	    execEnv.codeVirtualCallLong(this,cpEntry,obj,args,datatype,result,bcPosition);
-	    break;
-	case BC.INVOKESPECIAL:
-	    execEnv.codeSpecialCallLong(this,cpEntry,obj,args,datatype,result,bcPosition);
-	    break;
-	case BC.INVOKESTATIC:
-	    execEnv.codeStaticCallLong(this,cpEntry,args,datatype,result,bcPosition);
-	    break;
-	default:
-	    throw new CompileException("unknown invokation -- not implemented yet! ");
-	}
-    } 
-    */
 
     private IMNode inlineSmallMethod(BCMethodWithCode bcMethod, CodeContainer inlineCode,CodeVector iCode,int depth) throws CompileException {
 
@@ -294,15 +267,9 @@ public class IMInvoke extends IMMultiOperant {
 	   if virtual then store v0 -> varMap[0]
 	*/	
 	if (obj!=null) {
-	    if (true) {
 		varMap[0]=-1;
 		oprs[0]=obj;
 		argn=1;
-	    } else {
-		varMap[0] = frame.getNewLocalVar(BCBasicDatatype.REFERENCE);
-		stores[0] = new IMStoreLocalVariable(container,varMap[0],obj,bcPosition);
-		oprs[0]  = null;
-	    }
 	}
 	
         /*
@@ -310,11 +277,7 @@ public class IMInvoke extends IMMultiOperant {
          */
         for (IMOperant arg : args) {
             // TODO check if v[i] is constant !!!
-            if (false) {
-                //if (args[i].isConstant()) {
-                oprs[argn] = arg;
-                varMap[argn] = -1;
-            } else {
+            {
                 int argtype = arg.getDatatype();
                 varMap[argn] = frame.getNewLocalVar(argtype);
                 stores[argn] = new IMStoreLocalVariable(container, varMap[argn], arg, bcPosition);
@@ -345,7 +308,6 @@ public class IMInvoke extends IMMultiOperant {
 	inlineCode.transformForInline(container,varMap,oprs,retval,bcPosition);
 	
         for (IMOperant store : stores) {
-            //System.err.println("map v"+Integer.toString(i)+" -> "+Integer.toString(varMap[i]));
             if (store != null) {
                 if (verbose) {
                     System.err.println(store.toReadableString());

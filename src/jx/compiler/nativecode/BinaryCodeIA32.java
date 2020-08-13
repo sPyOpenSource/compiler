@@ -107,7 +107,7 @@ public final class BinaryCodeIA32 {
 	if (ip + requiredSpace > code.length) {
 	    int newSize = code.length;
 
-	    if (code.length>requiredSpace && code.length<8000) {
+	    if (code.length > requiredSpace && code.length < 8000) {
 		newSize += code.length;
 	    } else {
 		newSize += requiredSpace;
@@ -501,7 +501,7 @@ public final class BinaryCodeIA32 {
     */
 
 
-    public void imull(Opr src,Reg des) {
+    public void imull(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f); 
 	insertByte(0xaf);
@@ -510,7 +510,7 @@ public final class BinaryCodeIA32 {
 
     /* imull(Reg src, Ref des) no x86-code */
 
-    public void imull(int immd,Reg des) {
+    public void imull(int immd, Reg des) {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
@@ -523,7 +523,7 @@ public final class BinaryCodeIA32 {
 	}
     }
 
-    public void imull(int immd,Opr src,Reg des) {
+    public void imull(int immd, Opr src, Reg des) {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
@@ -614,11 +614,11 @@ public final class BinaryCodeIA32 {
        SHLD Double Precision Shift left (4 clks)
     */
 
-    public void shld(int immd,Reg low, Opr des) {
+    public void shld(int immd, Reg low, Opr des) {
 	realloc();	
 	insertByte(0x0F);
 	insertByte(0xA4);
-	insertModRM(low,des);
+	insertModRM(low, des);
 	insertByte(immd);
     }
 
@@ -1571,13 +1571,13 @@ public final class BinaryCodeIA32 {
 	realloc();
 	entry.initNCIndex(ip, 4);  // size is always 4 bytes 
 	symbolTable.add(entry); 
-	ip+=4; 
+	ip += 4; 
     }
     
     // (immd>>8)==0
     public boolean is8BitValue(int value) {
-	if (value<0) value=-value;
-	return ((value>>7)==0);
+	if (value < 0) value = -value;
+	return ((value >> 7) == 0);
     }
 
     /** 
@@ -1872,4 +1872,3 @@ public final class BinaryCodeIA32 {
     }
 
 }
-  

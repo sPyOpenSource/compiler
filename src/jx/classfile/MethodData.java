@@ -214,13 +214,12 @@ public class MethodData extends MethodSource {
 	int numBytes = input.readInt();
 
 	String attributeName = cPool.getUTF8StringAt(attrNameCPIndex); 
-	//Debug.out.println("AttributeName: "+attributeName);
 	if (attributeName.equals("Code")) {
 	    codeData = new CodeData(); 
 	    codeData.readFromClassFile(input, cPool); 
-	}
-	else 
+	} else {
 	    input.skipBytes(numBytes); 
+        }
     }
 
     // reads the Exception  Method Attribute

@@ -94,16 +94,13 @@ public class ConstantPool {
   */
   public void readFromClassFile(DataInput input) throws IOException {
     numEntries = input.readUnsignedShort();
-    //System.out.println(numEntries);
     entry = new ConstantPoolEntry[numEntries]; 
     entry[0] = new DummyCPEntry(); 
     int i = 1; 
  
     while (i < numEntries) {
-      //System.out.println(i);
       ConstantPoolEntry newEntry = null;     
       int tag = input.readUnsignedByte(); 
-      //System.out.println(tag);
       switch (tag) {
           case ConstantPoolEntry.CONSTANT_UTF8: 
             newEntry = new UTF8CPEntry();
@@ -150,7 +147,6 @@ public class ConstantPool {
       if (noLongs &&
 	  (tag == ConstantPoolEntry.CONSTANT_LONG ||
 	   tag == ConstantPoolEntry.CONSTANT_DOUBLE)) {
-	  //Debug.out.println("!! skip longs in jx/classfile/constantpool/ConstantPool.java !!");
 	  newEntry.readDummyValue(input);
       } else {
 	  newEntry.readFromClassFile(input); 
@@ -204,7 +200,6 @@ public class ConstantPool {
     if (entry[index]==null)  {
 	Debug.throwError();
     }
-    /*if (DebugConf.doPrintCPEntry) Debug.out.println("Entry["+index+"]:" + entry[index]);*/
     return (MethodRefCPEntry)entry[index]; 
   }
 
@@ -234,11 +229,9 @@ public class ConstantPool {
       if (index == -1) {
 	  throw new Error("Attempt to access a dynamically generated CPEntry via an index.");
       }
-    if (entry[index]==null)
+    if (entry[index]==null){
       Debug.throwError("Accessing of entries not allowed"); 
-
-    // if (entry[index] == null) 
-    // loadCPEntryFromInterpreterInterface(index); 
+    }
 
     return entry[index];
   }

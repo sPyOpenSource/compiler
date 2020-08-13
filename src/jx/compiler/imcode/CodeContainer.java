@@ -28,17 +28,14 @@ class JumpStack {
     public void push(IMBasicBlock node) {
 	stack[pos++] = node;
 	if (pos == stack.length) {
-	    //System.err.println("work stack to small - realloc !!");
 	    IMBasicBlock[] new_stack = new IMBasicBlock[stack.length+10];
             System.arraycopy(stack, 0, new_stack, 0, stack.length);
 	    stack = new_stack;
-	    //new_stack = null;
 	}
     }
 
     public IMBasicBlock pop() {
 	if (pos <= 0) {
-	    //System.err.println("no more work!");
 	    return null;
 	}
 	return stack[--pos];
@@ -106,8 +103,6 @@ public class CodeContainer implements NativeCodeContainer {
 
 	// NativeCodeContainer
 	code = new BinaryCodeIA32();
-	//execEnv    = method.getExecEnvironment();
-	//execEnv    = new ExecEnvironment(classFinder,opts);
 	this.execEnv = execEnv;	
 	this.opts    = execEnv.getCompilerOptions();
 
@@ -223,10 +218,6 @@ public class CodeContainer implements NativeCodeContainer {
 		expHandlerList = new IMBasicBlock[handler.length];
                 HashMap<String, ExceptionHandlerData> map = new HashMap<>();
                 for (ExceptionHandlerData handler1 : handler) {
-                    //createBasicBlock(handler[i].getStartBCIndex(), 0);
-                    //createBasicBlock(handler[i].getEndBCIndex(), 0);
-                    //expHandlerList[i] = createBasicBlock(handler[i].getHandlerBCIndex(), 0);
-                    //expHandlerList[i].setExceptionHandler(new ExceptionTableSTEntry(cPool, handler[i]));
                     map.put(Integer.toString(handler1.getHandlerBCIndex()), handler1);
                 }
                 expHandlerList = new IMBasicBlock[map.size()];
@@ -285,12 +276,7 @@ public class CodeContainer implements NativeCodeContainer {
 		if (current == BC.LDC) cpIndex = bcStream.readUnsignedByte();
 		else cpIndex = bcStream.readUnsignedShort();
 
-		//Debug.out.println("read constant "+cpIndex);
 		ConstantPoolEntry cpEntry = cPool.constantEntryAt(cpIndex);
-		
-		/*
-		IMConstantRef opr = new IMConstantRef(this,current,ip,cpEntry);
-		*/
 
 		IMConstant opr = new IMConstant(this, current, ip, cpEntry);
 
@@ -710,7 +696,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    bc_list_top = basicBlock;
 	}
 
-	//System.err.println(node.toString());
 	while (node.bc_next != null) {
 	    int bcpos = node.bc_next.getBCPosition();
 	    while (label_list != null) {
@@ -761,13 +746,11 @@ public class CodeContainer implements NativeCodeContainer {
 		    basicBlock.setInitStack(leave);
 		    continue;
 		}
-		//System.err.println("FIN 1");
 		break;
 	    }
 	    if (nextBB != null) {
 		for (int i = nextBB.length - 1; i >= 0; i--) {
 		    if (nextBB[i] != null) {
-			//System.out.println(" -> " + nextBB[i]);
 			nextBB[i].setInitStack(leave);
 			stack.push(nextBB[i]);
 		    } else {
@@ -777,7 +760,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    }
 	    basicBlock = stack.pop();
 	    while (basicBlock != null && basicBlock.done) {
-		//System.err.println(basicBlock + " already done");
 		basicBlock = stack.pop();
 	    }
 
@@ -787,7 +769,6 @@ public class CodeContainer implements NativeCodeContainer {
 		basicBlock = expHandlerList[--expHandler];
 		basicBlock.setInitStack(enterStack);
 	    }
-	    //if (basicBlock==null) System.err.println("FIN 2");
 	}
 	
 	// ===============================================
@@ -796,7 +777,6 @@ public class CodeContainer implements NativeCodeContainer {
 	// found special code pattern
 	// ===============================================
 	IMNode inode = imCodeStart;
-	//IMBasicBlock curr = null;
 	int ic = 0;
 	smallMethod = true;
 	
@@ -916,12 +896,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    IMInvoke initInstr = (IMInvoke)bvar.next;
 	    IMCompactNew inew = initInstr.getCompactNew(bvar.getBlockVarIndex(),(IMNew)opr);
 	    if (inew!=null) {
-		/*
-		  inew.prev = inode.prev;
-		  inew.next = inode.next.next;
-		  inew.prev.next = inew;
-		  inew.next.prev = inew;
-		*/
 		bvar.setOperant(inew);
 		bvar.next = bvar.next.next;
 		bvar.next.prev = bvar;
@@ -943,8 +917,6 @@ public class CodeContainer implements NativeCodeContainer {
 			    lstore.prev.next = lstore;
 			    
 			    lstore.setOperant(inew);
-			    
-			    //lstore.addDebugInfo("bn forwarded ");
 			}
 		    }				
 		    if (bvar.next instanceof IMThrow) {
@@ -954,8 +926,6 @@ public class CodeContainer implements NativeCodeContainer {
 			lthrow.prev.next = lthrow;
 			
 			lthrow.setOperant(inew);
-			
-			//lthrow.addDebugInfo("bn forwarded ");
 		    }
 		    if (bvar.next instanceof IMReturn) {
 			IMReturn  ret = (IMReturn) bvar.next;
@@ -966,7 +936,6 @@ public class CodeContainer implements NativeCodeContainer {
 			    ret.prev.next = ret;
 			    
 			    ret.setOperant(inew);
-			    //bvar.next.addDebugInfo("may forwarded ");
 			}
 		    }
 		    
@@ -977,14 +946,6 @@ public class CodeContainer implements NativeCodeContainer {
 
 
     public void join(IMNode node) {
-
-	/*
-	if (method.getName().equals("expandTable")) {
-	    System.out.println("join "+Integer.toString(node.getBCPosition())+": "+node.toReadableString());
-	    //try { Thread.sleep(100); } catch (Exception ex) {}
-	}
-	*/
-
 	if (node.isInstruction()) numberOfInstr++;
 
 	if (imCodeStart == null) {
@@ -1001,9 +962,7 @@ public class CodeContainer implements NativeCodeContainer {
 		    return;
 		}
 
-		// curr_bcpos == node_bcpos
 		if (curr.isBasicBlock() || curr.isBlockVariable()) {
-		    //insertBehind(curr,node);
 		    continue;
 		} else {
 		    insertBefore(curr, node);
@@ -1035,7 +994,6 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void insertBefore(IMNode curr, IMNode entry) {
-	//if (entry==null) throw new Error("null");
 	if (imCodeStart == null && imCodeEnd == null) {
 	    imCodeStart = entry;
 	    imCodeEnd   = entry;
@@ -1057,7 +1015,6 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void insertBehind(IMNode curr, IMNode entry) {
-	//if (entry==null) throw new Error("null");
 	if (imCodeStart == null && imCodeEnd == null) {
 	    imCodeStart = entry;
 	    imCodeEnd   = entry;
@@ -1096,7 +1053,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    if (node.isInstruction()) {
 		
 		IMNode inode = (IMNode)node;
-		//if (depth<4) System.err.println(inode.toReadableString());
 		CodeVector inlineCode = new CodeVector();
 
 		IMNode newinode = inode.inlineCode(inlineCode, depth, forceInline);
@@ -1121,7 +1077,6 @@ public class CodeContainer implements NativeCodeContainer {
 		}
 
 		if (newinode!=null && newinode!=inode) {
-		    //System.err.println("change node");
 		    if (node.prev!=null) node.prev.next = newinode;
 		    newinode.prev  = node.prev;
 		    if (node.next!=null) node.next.prev = newinode;
@@ -1156,7 +1111,6 @@ public class CodeContainer implements NativeCodeContainer {
 	IMNode node = imCodeStart;
 
 	this.cPool     = newContainer.getConstantPool();
-	//this.code      = newContainer.getIA32Code();
 	this.code      = null;
 	this.regs      = newContainer.getRegManager();
 	this.frame     = newContainer.getMethodStackFrame();
@@ -1180,7 +1134,6 @@ public class CodeContainer implements NativeCodeContainer {
 	IMNode node = imCodeStart;
 
 	this.cPool     = newContainer.getConstantPool();
-	//this.code      = newContainer.getIA32Code();
 	this.code      = null;
 	this.regs      = newContainer.getRegManager();
 	this.frame     = newContainer.getMethodStackFrame();
@@ -1231,7 +1184,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    if (node.isBasicBlock()) {
 		((IMBasicBlock)node).constant_forwarding();
 		node.constant_folding();
-		//node.constant_forwarding();
 	    }
 	    node = node.next;
 	}
@@ -1262,7 +1214,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    node = node.next;
 	}
 
-	//if (opts.doAlignCode()) code.alignIP();
 	if (opts.doAlignCode()) code.alignIP_16_Byte();
     }
 
@@ -1389,29 +1340,13 @@ public class CodeContainer implements NativeCodeContainer {
 
 	outStream.println(" ");
 	outStream.println(" method " + method.getName() + method.getSignature() + " {");	
-	/*
-	outStream.println("// NumArgs     : "+
-			  Integer.toString(frame.getNumArgs()));
-	outStream.println("// NumLocalVars: "+
-			  Integer.toString(frame.getNumLocalVars()));
-	outStream.println("// NumBlockVars: "+
-			  Integer.toString(frame.getNumBlockVars()));
-	outStream.println("// NumTempSlots: "+
-			  Integer.toString(frame.getNumTempSlots()));
-	*/
-	//outStream.println("// Stackmap : " + frame.stackMapToString());
 
 	while (node != null) {
 	    if (node.isBasicBlock()) {
 		IMBasicBlock label = (IMBasicBlock)node;		
 		outStream.println("  " + label.toReadableString() + ":  " + label.getDebugString());
-		//outStream.println("  "+label.varList());
 	    } else {
 		outStream.println("        " + node.toReadableString() + ";   " + node.debugInfo());
-		//outStream.println(node.getNrRegs()+"        "+node.toReadableString()+";   "+node.debugInfo());
-		//outStream.println(node.getVarInfo()+" :      "+node.toReadableString()+";   "+node.debugInfo());
-		//outStream.println("       "+node.toReadableString()+";   ["+node.getVarInfo()+"]");
-		//outStream.println("  "+node.getVarInfo()+" "+node.toReadableString()+";");
 	    }
 	    node = node.next;
 	}
