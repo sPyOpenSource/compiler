@@ -2,8 +2,7 @@ package jx.classfile;
 
 /** 
     This class contains all Java Virtual Machine Instruction.
-
-    @see http://java.sun.com/docs/books/vmspec/2nd-edition/html/Instructions.doc.html for details.
+    see http://java.sun.com/docs/books/vmspec/2nd-edition/html/Instructions.doc.html for details.
 */ 
 
 final public class BC {
