@@ -2,13 +2,10 @@ package jx.compiler.execenv;
 
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
-
+import jx.compiler.CompileException;
 import java.util.ArrayList;
 
-import jx.compiler.CompileException;
-
 public interface BCClassInterface {
-
     public void setInfo(Object info);
     public Object getInfo();
 

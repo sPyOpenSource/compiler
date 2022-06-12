@@ -10,7 +10,7 @@ public class DataType {
 	return typeDesc.charAt(0)=='[';
     }
     public String getClassName() throws NoClassTypeException {
-	if (isClass()) return  typeDesc.substring(1, typeDesc.length()-1 ); 
+	if (isClass()) return  typeDesc.substring(1, typeDesc.length() - 1 ); 
 	throw new NoClassTypeException();
     }
     public DataType getElementType() throws NoClassTypeException {

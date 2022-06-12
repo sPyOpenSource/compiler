@@ -10,7 +10,6 @@ class ForbiddenInterfaceImplementedException extends Exception {
 }
 
 public class ConstraintChecker {
-    
     final static String[] forbiddenInterfaces = {
 	"jx/zero/AtomicVariable",
 	"jx/zero/IRQ",

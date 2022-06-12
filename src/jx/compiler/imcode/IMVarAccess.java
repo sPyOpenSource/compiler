@@ -7,10 +7,9 @@ import java.util.ArrayList;
 // ***** IMVarAccess ****
 
 public class IMVarAccess extends IMOperator implements IMVarAccessInterface {
-
     protected int           ivar;
     protected LocalVariable lvar;
-    protected boolean       writeAccess=false; 
+    protected boolean       writeAccess = false; 
 
     public IMVarAccess(CodeContainer container) {super(container);}
 

@@ -2,7 +2,6 @@
 package jx.classfile.datatypes; 
 
 abstract public class BCIntegerDatatype extends BCNumericDatatype {
-  
     abstract long longValue(); 
 
     abstract protected BCIntegerDatatype getObjectFor(long value);  

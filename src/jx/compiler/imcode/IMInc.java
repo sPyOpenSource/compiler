@@ -61,11 +61,10 @@ final public class IMInc extends IMVarAccess  {
 
     // IMInc
     public void translate(Reg no_result) throws CompileException {
-	
-	if (value==0) return;
+	if (value == 0) return;
 
 	Reg ireg = regs.getIntRegister(Reg.any);
-	regs.readIntRegisterFromSlot(lvar,ireg,BCBasicDatatype.INT);
+	regs.readIntRegisterFromSlot(lvar, ireg, BCBasicDatatype.INT);
 	regs.writeIntRegister(ireg);
 
 	switch (value) {
@@ -76,10 +75,10 @@ final public class IMInc extends IMVarAccess  {
 	    code.decl(ireg);
 	    break;
 	default:
-	    code.addl(value,ireg);
+	    code.addl(value, ireg);
 	}
 	
-	regs.writeIntRegisterToSlot(ireg,lvar);
+	regs.writeIntRegisterToSlot(ireg, lvar);
 	regs.freeIntRegister(ireg);
     }
 }

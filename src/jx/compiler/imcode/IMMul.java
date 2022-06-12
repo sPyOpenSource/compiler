@@ -9,7 +9,6 @@ import jx.compiler.nativecode.*;
 // ***** IMMul *****
 
 final  public class IMMul extends IMBinaryOperator {
-    
     public IMMul(CodeContainer container,int bc,int bcpos) {
 	super(container);
 	bytecode   = bc;
@@ -22,12 +21,12 @@ final  public class IMMul extends IMBinaryOperator {
     public boolean isDivOrMult() {return true;}    
     
     public String toReadableString() {
-	return "("+lOpr.toReadableString()+"*"+rOpr.toReadableString()+")";
+	return "(" + lOpr.toReadableString() + "*" + rOpr.toReadableString() + ")";
     }
     
     public IMNode constant_folding() throws CompileException {
 	IMOperant newNode = this;
-	int       value = 0;;
+	int       value   = 0;
 	
 	if (rOpr.isOperator()) {
 	    rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();

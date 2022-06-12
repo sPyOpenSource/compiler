@@ -6,8 +6,8 @@ public class NCExceptionHandler {
 
   // methodID and handlerIndex are a ID for this handler 
   // (maybe, they are useless) 
-  private Object methodID; 
-  private int handlerIndex; 
+  private final Object methodID; 
+  private final int handlerIndex; 
   
   public NCExceptionHandler(int handlerIndex, Object methodID) {
     startNCIndex = -1; 
@@ -35,6 +35,7 @@ public class NCExceptionHandler {
     return startNCIndex >= 0 && endNCIndex >= 0 && handlerNCIndex >= 0; 
   }
 
+  @Override
   public String toString() {
     return "Exceptionhandler(" + startNCIndex + ", " + endNCIndex + ") -> " + 
       handlerNCIndex + ":"; 

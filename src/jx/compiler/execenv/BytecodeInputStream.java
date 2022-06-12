@@ -7,7 +7,6 @@ package jx.compiler.execenv;
 */ 
 
 public final class BytecodeInputStream {
-
   private final byte[] code; 
   private final int numBytes; 
   private int pos;       // stream pointer 

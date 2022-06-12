@@ -4,7 +4,6 @@ package jx.classfile.datatypes;
 // different datatypes (e.g. to store constants in package bytecode.code) 
 
 abstract public class BCNumericDatatype extends BCBasicDatatype {
-
   // for combined() 
   public static final int ADD = 0; 
   public static final int SUB = 1; 

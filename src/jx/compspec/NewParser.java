@@ -16,7 +16,7 @@ class NewParser {
     final static int LPAREN = 0x5b;
     final static int RPAREN = 0x5d;
     int pos;
-    int linenumber=1;
+    int linenumber = 1;
     FileInputStream in ;
     
     NewParser(String filename) throws IOException {
@@ -26,29 +26,32 @@ class NewParser {
     String[][] getComponents() {
 	try {
 	    ArrayList v = new ArrayList();
-	    for(int i=0; ; i++) {
+	    for(int i = 0; ; i++) {
 		String l = readLine();
-		if (l==null) break;
+		if (l == null) break;
 		l = l.trim();
-		if (l.length() == 0 || l.charAt(0)=='#') { i--; continue; }
+		if (l.length() == 0 || l.charAt(0) == '#') { i--; continue; }
 		String[] l1 = splitByChar(l, ':');
 		v.add(l1);
 	    }
 	    String[][] s = new String[v.size()][];
-	    for(int i=0; i<v.size(); i++) {
+	    for(int i = 0; i < v.size(); i++) {
 		s[i] = (String[])v.get(i);
 	    }
 	    return s;
-	}catch(Exception e){throw new Error(e.toString());}
+	} catch(IOException e) {
+            throw new Error(e.toString());
+        }
     }
     
     private String readLine()  throws IOException {
 	linenumber++;
 	return readLine(in);
     }
+    
     public static String readLine(InputStream in)  throws IOException {
 	int bi;
-	int i=0;
+	int i = 0;
 	char data[] = new char[MAXLINE];
 	for(;;) {
 	    bi = in.read();
@@ -70,12 +73,12 @@ class NewParser {
 	while(! exit){
 	    int c3 = stringToParse.indexOf(separator);
 	    String s;
-	    if (c3==-1) { 
+	    if (c3 == -1) { 
 		exit = true;
 		s = stringToParse;
 	    } else {
 		s = stringToParse.substring(0, c3);
-		stringToParse = stringToParse.substring(c3+1).trim();
+		stringToParse = stringToParse.substring(c3 + 1).trim();
 	    }
 	    v.add(s);
 	}

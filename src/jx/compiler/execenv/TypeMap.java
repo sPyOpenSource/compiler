@@ -5,8 +5,8 @@ import jx.classfile.datatypes.BCBasicDatatype;
 
 public class TypeMap {
   public static void writeMap(ExtendedDataOutputStream out, boolean[] map, boolean writeLen) throws IOException {
-      int n_bytes = (map.length+7) >> 3;
-      int j=0;
+      int n_bytes = (map.length + 7) >> 3;
+      int j = 0;
       out.writeInt(n_bytes);
       if (writeLen) out.writeInt(map.length);
       //Debug.out.println("--");
@@ -30,9 +30,10 @@ public class TypeMap {
 	  //Debug.out.println("B: 0x"+Integer.toBinaryString(b));
 	  out.writeByte(b);
       }
-  }    
+  }
+  
     public static void writeMap(ExtendedDataOutputStream out, int[] map) throws IOException {
-	boolean []map1 = new boolean[map.length];
+	boolean[] map1 = new boolean[map.length];
 	for(int i = 0; i < map1.length; i++) {
 	    if(map[i] == BCBasicDatatype.REFERENCE) {
 		map1[i] = true;

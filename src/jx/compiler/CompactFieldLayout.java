@@ -9,6 +9,7 @@ class CompactFieldDescription {
     private final String fieldType;
     private final int offset; // in bytes
     private final int size;
+    
     CompactFieldDescription(String fieldName, String fieldType, int offset, int size) {
 	this.fieldName=fieldName;
 	this.fieldType=fieldType;
@@ -98,6 +99,7 @@ public final class CompactFieldLayout {
     public int wordsNeeded() {
 	return (numBytes + 3) >> 2;
     }
+    
     public int bytesNeeded() {
 	return numBytes;
     }

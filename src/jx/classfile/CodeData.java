@@ -9,12 +9,12 @@ import jx.classfile.constantpool.*;
     It only reads the data from the class file and stores it.
 */ 
 final public class CodeData {
-  int maxStack; 
-  int maxLocals; 
+    int maxStack;
+    int maxLocals;
 
-  byte[] codeBytes; 
-  int numHandlers; 
-  ExceptionHandlerData[] exceptionHandler; 
+    byte[] codeBytes;
+    int numHandlers;
+    ExceptionHandlerData[] exceptionHandler;
 
     LineAttributeData []lineNumberTable;
 

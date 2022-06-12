@@ -8,15 +8,14 @@ import jx.compiler.symbols.*;
 // ***** IMGoto *****
 
 final  public class IMGoto extends IMBranch  {
-
     private UnresolvedJump jumpTarget;
 
     public IMGoto(CodeContainer container,int bc,int bcpos,IMBasicBlock label) {
 	super(container);
 
-	bytecode    = bc;
-	bcPosition  = bcpos;
-	datatype    = -1;
+	bytecode   = bc;
+	bcPosition = bcpos;
+	datatype   = -1;
 
 	targets    = new IMBasicBlock[1];
 	targets[0] = label;
@@ -25,9 +24,9 @@ final  public class IMGoto extends IMBranch  {
     public IMGoto(CodeContainer container,int bcpos,IMBasicBlock label, UnresolvedJump target) {
 	super(container);
 
-	bytecode    = 0;
-	bcPosition  = bcpos;
-	datatype    = -1;
+	bytecode   = 0;
+	bcPosition = bcpos;
+	datatype   = -1;
 
 	targets    = new IMBasicBlock[1];
 	targets[0] = label;
@@ -46,14 +45,14 @@ final  public class IMGoto extends IMBranch  {
     }
     
     public String toReadableString() {
-	return "goto "+targets[0].toReadableString();	    
+	return "goto " + targets[0].toReadableString();	    
     }
 
     // IMGoto
     public void translate(Reg result) throws CompileException {
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.jmp(jumpTarget);
 	addDebugInfo(frame.stackMapToString(this));
-	execEnv.codeStackMap(this,ip);
+	execEnv.codeStackMap(this, ip);
     }   
 }

@@ -9,10 +9,9 @@ import jx.collections.Iterator;
 import jx.collections.List;
 
 public class ClassStore implements ClassFinder {
-
     HashMap classes = new HashMap();
     List classList = new List();
-    //    Hashtable registered = new Hashtable();
+    //Hashtable registered = new Hashtable();
 
     public ClassStore() {
     }
@@ -41,7 +40,7 @@ public class ClassStore implements ClassFinder {
 	addClass('[' + elementClassName, null);
     }
 
-    //  void registerClass(String className, BCClass aClass) {
+    //void registerClass(String className, BCClass aClass) {
     //	registered.put(className, aClass);
     //}
 

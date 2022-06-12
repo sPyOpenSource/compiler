@@ -2,7 +2,6 @@
 package jx.classfile.constantpool;
 
 public class MethodRefCPEntry extends ClassMemberCPEntry {
-
   // index of this method in the methodtable 
   private int methodIndex; 
 
