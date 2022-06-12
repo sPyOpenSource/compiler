@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package gui;
 
 import java.io.BufferedReader;
@@ -11,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintStream;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,7 +33,7 @@ public class CompilerApplication extends javax.swing.JFrame {
      */
     public CompilerApplication() {
         initComponents();
-         reader = new Thread(new OutputReader(output));
+        reader = new Thread(new OutputReader(output));
     }
 
     /**
@@ -106,7 +108,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         output.setRows(5);
         jScrollPane2.setViewportView(output);
 
-        logOn.setText("Log On");
+        logOn.setText("Start Logging");
         logOn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOnActionPerformed(evt);
@@ -196,7 +198,7 @@ public class CompilerApplication extends javax.swing.JFrame {
                     .addComponent(Run, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logOn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 481, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,23 +234,23 @@ public class CompilerApplication extends javax.swing.JFrame {
             return;
         
         class PrimeThread extends Thread {
-                long minPrime;
-                PrimeThread(long minPrime) {
-                    this.minPrime = minPrime;
-                }
+            long minPrime;
+            PrimeThread(long minPrime) {
+                this.minPrime = minPrime;
+            }
 
-                @Override
-                public void run() {
-                    String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
-                    try {
-                        StartBuilder.main(args.split(" "));
-                    } catch (Exception ex) {
-                        Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            @Override
+            public void run() {
+                String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
+                try {
+                    StartBuilder.main(args.split(" "));
+                } catch (Exception ex) {
+                    Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            PrimeThread compiler = new PrimeThread(0);
-            compiler.start();
+        }
+        PrimeThread compiler = new PrimeThread(0);
+        compiler.start();
     }//GEN-LAST:event_CompileActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
@@ -272,9 +274,9 @@ public class CompilerApplication extends javax.swing.JFrame {
                         strings[i] = liststrings.get(i);
                     }*/
                     strings[0] = "Zero";
-                     strings[1] = "OS";
-                      strings[2] = "testOS";
-                      strings[3] = "AIZero";
+                    strings[1] = "OS";
+                    strings[2] = "testOS";
+                    strings[3] = "AIZero";
                 projects.setModel(new javax.swing.AbstractListModel<String>() {
                     
                     @Override
@@ -305,7 +307,7 @@ public class CompilerApplication extends javax.swing.JFrame {
             return;
         try {
             Runtime.getRuntime().exec("VBoxManage startvm JavaOS");
-             reader.start();
+            //reader.start();
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -314,25 +316,25 @@ public class CompilerApplication extends javax.swing.JFrame {
     private void OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenActionPerformed
         if (project == null)
             return;
-        /*try {
-            Runtime.getRuntime().exec("netbeans --open /home/spy/Java/JDK");
+        try {
+            Runtime.getRuntime().exec("flatpak run org.apache.netbeans");
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
     }//GEN-LAST:event_OpenActionPerformed
 
     private void KernelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KernelActionPerformed
         if (project == null)
             return;
         try {
-            Runtime.getRuntime().exec("atom " + project.getAbsoluteFile().getParent());
+            Runtime.getRuntime().exec("flatpak run io.atom.Atom");
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_KernelActionPerformed
 
     private void logOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOnActionPerformed
-             reader.start();
+        reader.start();
     }//GEN-LAST:event_logOnActionPerformed
 
     /**

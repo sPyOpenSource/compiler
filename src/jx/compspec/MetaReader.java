@@ -11,7 +11,6 @@ public class MetaReader {
 	for(int i = 0; i < compdirs.length; i++) {
 	    this.compdirs[i] = compdirs[i].trim();
 	}
-	
     }
 
     public void addMeta(ArrayList v, String l) throws IOException {
@@ -20,7 +19,7 @@ public class MetaReader {
             RandomAccessFile file;
             try {
                 file = new RandomAccessFile(filename + "/META", "r");
-            } catch (Exception ex) {
+            } catch (FileNotFoundException ex) {
                 continue;
             }
             byte [] data = new byte[(int)file.length()];

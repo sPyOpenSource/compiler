@@ -69,7 +69,7 @@ public class ConstantPool {
   }
 
   public void setSuperClassCPIndex(int cpIndex) {
-      //Debug.out.println("ENTRY: "+entryAt(cpIndex));
+      //Debug.out.println("ENTRY: " + entryAt(cpIndex));
       superClassName = ((ClassCPEntry)entryAt(cpIndex)).getClassName(); 
   }
 

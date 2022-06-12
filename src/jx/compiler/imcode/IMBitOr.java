@@ -18,7 +18,7 @@ public class IMBitOr extends IMBitOperator {
     }
 
     public String toReadableString() {
-	return "("+lOpr.toReadableString()+" | "+rOpr.toReadableString()+")";
+	return "(" + lOpr.toReadableString() + " | " + rOpr.toReadableString() + ")";
     }
 
     public IMNode constant_folding() throws CompileException {
@@ -28,9 +28,8 @@ public class IMBitOr extends IMBitOperator {
 	    if (rOpr.isConstant() && lOpr.isConstant()) {
 		IMConstant lcOpr = lOpr.nodeToConstant();
 		IMConstant rcOpr = rOpr.nodeToConstant();
-		int value = 0;
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c|c "+toReadableString());
-		value = lcOpr.getIntValue() | rcOpr.getIntValue();
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c|c " + toReadableString());
+		int value = lcOpr.getIntValue() | rcOpr.getIntValue();
 		lcOpr.setIntValue(value);
 		return lcOpr;
 	    }
@@ -43,11 +42,11 @@ public class IMBitOr extends IMBitOperator {
 
 	    if (rOpr.isConstant()) {
     		int value = rOpr.nodeToConstant().getIntValue(); 		
-                if (value==0) {
+                if (value == 0) {
 		  if (opts.doVerbose("cf")) Debug.out.println("++ folding c|0 "+toReadableString());	
                   return lOpr;
                 }  
-                if (value==0xffffffff) {
+                if (value == 0xffffffff) {
 		  if (opts.doVerbose("cf")) Debug.out.println("++ folding c|0xffffffff "+toReadableString());
                   return rOpr;
                 }

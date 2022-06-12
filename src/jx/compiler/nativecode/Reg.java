@@ -23,26 +23,23 @@ final public class Reg extends Opr implements RegObj, Cloneable {
     public boolean valid = true;
 
     public Reg(int reg) {
-	if (true) {
-	    if (reg==-1) value = -1;
-	    else this.value = reg & 0x07;
-	} else {
-	    this.value = reg & 0x07;
-	}
+	if (reg == -1) value = -1;
+	else this.value = reg & 0x07;
 	this.tag   = Opr.REG;
     }
 
+    @Override
     public void free() {
-	if (this== any ) throw new Error("any");
-	if (this== eax ) throw new Error("eax");
-	if (this== ecx ) throw new Error("ecx");
-	if (this== edx ) throw new Error("edx");
-	if (this== ebx ) throw new Error("ebx");
-	if (this== esp ) throw new Error("esp");
-	if (this== ebp ) throw new Error("ebp");
-	if (this== esi ) throw new Error("esi");
-	if (this== edi ) throw new Error("edi"); 
-	free=true;
+	if (this == any ) throw new Error("any");
+	if (this == eax ) throw new Error("eax");
+	if (this == ecx ) throw new Error("ecx");
+	if (this == edx ) throw new Error("edx");
+	if (this == ebx ) throw new Error("ebx");
+	if (this == esp ) throw new Error("esp");
+	if (this == ebp ) throw new Error("ebp");
+	if (this == esi ) throw new Error("esi");
+	if (this == edi ) throw new Error("edi"); 
+	free = true;
     }
 
     public Ref ref() {
@@ -52,11 +49,11 @@ final public class Reg extends Opr implements RegObj, Cloneable {
     }
 
     public boolean any() {
-	return value==-1;
+	return value == -1;
     }
 
     public void push(MethodStackFrame frame) {
-	frame.push(getDatatype(),this);
+	frame.push(getDatatype(), this);
     }
 
     public Ref rdisp(int disp) {
@@ -73,10 +70,10 @@ final public class Reg extends Opr implements RegObj, Cloneable {
 	return nref;
     }
 
-    public Ref rdisp(int disp,Reg index,int size) {
+    public Ref rdisp(int disp, Reg index, int size) {
 	Ref nref = Ref.eax.getClone();
 	nref.value = value;
-	nref.setdisp(disp,index,size);
+	nref.setdisp(disp, index, size);
 	return nref;
     }
     
@@ -88,7 +85,7 @@ final public class Reg extends Opr implements RegObj, Cloneable {
 	    System.err.println("!!!! CloneNotSupportedException !!!!");
 	    nreg = new Reg(value);
 	}
-	if (nreg==null) {
+	if (nreg == null) {
 	    System.err.println("can`t clone myself :-(");
 	    nreg = new Reg(value);
 	}

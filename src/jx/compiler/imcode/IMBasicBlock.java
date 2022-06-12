@@ -123,7 +123,7 @@ public class IMBasicBlock extends IMNode {
 
 	    try {
 		instr = ((IMNode)node).processStack(stack, this);
-	    } catch (Exception ex) {
+	    } catch (CompileException ex) {
 		if (verbose) {
 		    System.err.println("process basic block: " + this);
 		    System.err.println("Exception (1): " + node.toString());

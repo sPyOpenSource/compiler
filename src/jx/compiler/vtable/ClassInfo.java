@@ -14,7 +14,7 @@ public class ClassInfo {
     ClassInfo superClass;
     MethodTable mtable;
 
-    transient Method [] methods;
+    transient Method[] methods;
     transient ClassSource data;
     transient int indexInAll;
     boolean isInterface;

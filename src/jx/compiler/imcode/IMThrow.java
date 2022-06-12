@@ -8,7 +8,6 @@ import java.util.ArrayList;
 // **** IMThrow ****
 
 final public class IMThrow extends IMBranch  {
-
     private IMOperant exception;
 
     public IMThrow(CodeContainer container,int bc,int bcpos) {

@@ -7,7 +7,6 @@ import jx.compiler.nativecode.*;
 // ***** IMInvokeStatic *****
 
 final public class IMInvokeStatic extends IMInvoke {
-
     public IMInvokeStatic(CodeContainer container,int bc,int bcpos,
 			   MethodRefCPEntry cpEntry) {
 	super(container,bc,bcpos,cpEntry);

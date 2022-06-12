@@ -107,21 +107,21 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	JarFile domClasses = new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar");
+	JarFile domClasses = new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar");
         JarFile[] libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar")
+                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar")
             };
         if(path.endsWith("zero")){
-            domClasses = new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar");
+            domClasses = new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar");
             libClasses = new JarFile[0];
         } else if(path.endsWith("init2")){
-            domClasses = new JarFile("/home/spy/Source/jcore/testOS/dist/testOS.jar");
+            domClasses = new JarFile("/home/spy/Source/OS/jcore/testOS/dist/testOS.jar");
             libClasses = getZIPs(opts.getLibs());
         } else if(path.endsWith("ai")){
-            domClasses = new JarFile("/home/spy/Source/jcore/AIZero/dist/AIZero.jar");
+            domClasses = new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar");
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"),
-                new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar")
+                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"),
+                new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar")
             };
         }
 
@@ -164,7 +164,7 @@ public class CompileNative {
 	JarFile[] libClasses = null;
         try {
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/jcore/OS/dist/OS.jar"), new JarFile("/home/spy/Source/jcore/AIZero/dist/AIZero.jar")
+                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar"), new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);

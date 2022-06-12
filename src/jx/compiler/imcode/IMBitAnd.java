@@ -24,7 +24,7 @@ public class IMBitAnd extends IMBitOperator {
     public IMNode constant_folding() throws CompileException {
 	super.constant_folding();
 
-	if (datatype==BCBasicDatatype.INT) {
+	if (datatype == BCBasicDatatype.INT) {
 	    if (rOpr.isConstant() && lOpr.isConstant()) {
 		IMConstant lcOpr = lOpr.nodeToConstant();
 		IMConstant rcOpr = rOpr.nodeToConstant();
@@ -43,11 +43,11 @@ public class IMBitAnd extends IMBitOperator {
 
 	    if (rOpr.isConstant()) {
     		int value = rOpr.nodeToConstant().getIntValue(); 		
-                if (value==0) {
+                if (value == 0) {
 		  if (opts.doVerbose("cf")) Debug.out.println("++ folding c&0 "+toReadableString());	
                   return rOpr;
                 }
-		if (value==0xffffffff) {
+		if (value == 0xffffffff) {
 		  if (opts.doVerbose("cf")) Debug.out.println("++ folding c&c "+toReadableString());
 		  return lOpr; 
                 }

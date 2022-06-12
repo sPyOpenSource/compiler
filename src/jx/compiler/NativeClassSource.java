@@ -7,6 +7,7 @@ import jx.classfile.constantpool.ConstantPool;
 
 class NativeClassSource extends ClassSource {
     String className, superName;
+    
     NativeClassSource(String className, String superName) {
 	this.className = className;
 	this.superName = superName;
