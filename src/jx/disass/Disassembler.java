@@ -3,26 +3,32 @@
  */
 package jx.disass;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jx.zero.Debug;
 import jx.zero.debug.*;
 import jx.compiler.LineInfo;
 
 public class Disassembler {
-    static String[] sreg_mod01_rm32   = { "DS", "DS", "DS", "DS", "??", "SS", "DS", "DS"};
-    static String[] sreg_mod10_rm32   = { "DS", "DS", "DS", "DS", "??", "SS", "DS", "DS"};
-    static String[] sreg_mod00_base32 = { "DS", "DS", "DS", "DS", "SS", "DS", "DS", "DS"};
-    static String[] sreg_mod01_base32 = { "DS", "DS", "DS", "DS", "SS", "SS", "DS", "DS"};
-    static String[] sreg_mod10_base32 = { "DS", "DS", "DS", "DS", "SS", "SS", "DS", "DS"};
-    static String[] sreg_mod00_rm16   = { "DS", "SS", "SS", "DS", "DS", "DS", "DS"};
-    static String[] sreg_mod01_rm16   = { "DS", "DS", "SS", "SS", "DS", "DS", "DS", "DS"};
-    static String[] sreg_mod10_rm16   = { "DS", "DS", "SS", "SS", "DS", "DS", "SS", "DS"};
-    static String[] segment_name = {"ES", "CS", "SS", "DS", "FS", "GS", "??", "??"};
-    static String[] general_8bit_reg_name = { "AL", "CL", "DL", "BL", "AH", "CH", "DH", "BH"};
-    static String[] general_16bit_reg_name = { "AX", "CX", "DX", "BX", "SP", "BP", "SI", "DI"};
+    static String[] sreg_mod01_rm32   = {"DS", "DS", "DS", "DS", "??", "SS", "DS", "DS"};
+    static String[] sreg_mod10_rm32   = {"DS", "DS", "DS", "DS", "??", "SS", "DS", "DS"};
+    static String[] sreg_mod00_base32 = {"DS", "DS", "DS", "DS", "SS", "DS", "DS", "DS"};
+    static String[] sreg_mod01_base32 = {"DS", "DS", "DS", "DS", "SS", "SS", "DS", "DS"};
+    static String[] sreg_mod10_base32 = {"DS", "DS", "DS", "DS", "SS", "SS", "DS", "DS"};
+    static String[] sreg_mod00_rm16   = {"DS", "SS", "SS", "DS", "DS", "DS", "DS"};
+    static String[] sreg_mod01_rm16   = {"DS", "DS", "SS", "SS", "DS", "DS", "DS", "DS"};
+    static String[] sreg_mod10_rm16   = {"DS", "DS", "SS", "SS", "DS", "DS", "SS", "DS"};
+    static String[] segment_name      = {"ES", "CS", "SS", "DS", "FS", "GS", "??", "??"};
+    static String[] general_8bit_reg_name  = { "AL",  "CL",  "DL",  "BL",  "AH",  "CH",  "DH",  "BH"};
+    static String[] general_16bit_reg_name = { "AX",  "CX",  "DX",  "BX",  "SP",  "BP",  "SI",  "DI"};
     static String[] general_32bit_reg_name = {"EAX", "ECX", "EDX", "EBX", "ESP", "EBP", "ESI", "EDI"};
-    static String[] base_name16 =  {"BX", "BX", "BP", "BP", "??", "??", "BP", "BX"};
-    static String[] index_name16 = {"SI", "DI", "SI", "DI", "SI", "DI", "??", "??"};
-    static String[] index_name32 =  {"EAX", "ECX", "EDX", "EBX", "???", "EBP", "ESI", "EDI"};
+    static String[] base_name16  = { "BX",  "BX",  "BP",  "BP",  "??",  "??",  "BP",  "BX"};
+    static String[] index_name16 = { "SI",  "DI",  "SI",  "DI",  "SI",  "DI",  "??",  "??"};
+    static String[] index_name32 = {"EAX", "ECX", "EDX", "EBX", "???", "EBP", "ESI", "EDI"};
 
     static final int BX_SEGMENT_REG       = 10;
     static final int BX_GENERAL_8BIT_REG  = 11;
@@ -43,7 +49,6 @@ public class Disassembler {
     int db_rep_prefix = 0;
     int db_repne_prefix = 0;
 
-
     // used for BX_DECODE_MODRM
     int mod, opcode, rm;
 
@@ -59,6 +64,28 @@ public class Disassembler {
 	this.asmout = asmout;
 	this.dout = dout;
 	codePosition = ofs;
+    }
+
+    Disassembler(String file, int len, int ofs) {
+        FileInputStream fis = null;
+        try {
+            File f = new File(file);
+            fis = new FileInputStream(f);
+            this.len = len;
+            this.ofs = ofs;
+            code = new byte[len+ofs];
+            fis.read(code, ofs, len);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Disassembler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Disassembler.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                fis.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Disassembler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     private void panic(String msg) {
@@ -78,15 +105,13 @@ public class Disassembler {
     }
 
     private int fetch_word() {
-	int x;
-	x = (code[codePosition++] & 0xff);
+	int x = (code[codePosition++] & 0xff);
 	x = (x << 8) | (code[codePosition++] & 0xff);
 	return x;
     }
 
     private int fetch_dword() {
-	int x;
-	x = (code[codePosition+3] & 0xff);
+	int x = (code[codePosition+3] & 0xff);
 	x = (x << 8) | (code[codePosition+2] & 0xff);
 	x = (x << 8) | (code[codePosition+1] & 0xff);
 	x = (x << 8) | (code[codePosition+0] & 0xff);
@@ -101,24 +126,24 @@ public class Disassembler {
     private void BX_DECODE_MODRM(int mod_rm_byte) {
 	mod    = (mod_rm_byte >> 6) & 0x03; 
 	opcode = (mod_rm_byte >> 3) & 0x07; 
-	rm     =  mod_rm_byte & 0x07; 
+	rm     =  mod_rm_byte       & 0x07; 
     }
 
     public void disasm() {
-	while(codePosition < ofs+len) {
-	    instruction = toHexInt(codePosition)+"  ";
+	while(codePosition < ofs + len) {
+	    instruction = toHexInt(codePosition) + "  ";
 	    asmout.println(disasmInstr());
 	}
     }
 
     public void disasm(LineInfo[] lineTable) {
 	int lineTablePos = 0;
-	while(codePosition < ofs+len) {
+	while(codePosition < ofs + len) {
 	    while (lineTablePos < lineTable.length && lineTable[lineTablePos].start <= codePosition) {
-		asmout.println("Bytecode: "+lineTable[lineTablePos].bytecodePos);
+		asmout.println("Bytecode: " + lineTable[lineTablePos].bytecodePos);
 		lineTablePos++;
 	    }
-	    instruction = toHexInt(codePosition)+"  ";
+	    instruction = toHexInt(codePosition) + "  ";
 	    asmout.println(disasmInstr());
 	}
     }
@@ -133,7 +158,7 @@ public class Disassembler {
 	 * this means redundant prefix codes can put the byte count over 15 and
 	 * cause an illegal instruction.
 	 */
-	for (byte_count=0; byte_count<15; byte_count++) {
+	for (byte_count = 0; byte_count < 15; byte_count++) {
 	    next_byte = fetch_byte();
 	    switch (next_byte) {
 		
@@ -1244,58 +1269,35 @@ public class Disassembler {
     }
 
 
-
-
-
-
     // Floating point stuff
     void ST_STi() {Debug.throwError("*** ST_STi() unfinished ***");}
     void STi_ST() {Debug.throwError("*** STi_ST() unfinished ***");}
-    void
-	STi() {Debug.throwError("*** STi() unfinished ***");}
+    void STi()    {Debug.throwError("*** STi() unfinished ***");}
 
 
     // Debug, Test, and Control Register stuff
-    void
-	RdCd() {Debug.throwError("*** RdCd() unfinished ***");}
-    void
-	RdDd() {Debug.throwError("*** RdDd() unfinished ***");}
-    void
-	CdRd() {Debug.throwError("*** CdRd() unfinished ***");}
-    void
-	DdRd() {Debug.throwError("*** DdRd() unfinished ***");}
-    void
-	RdTd() {Debug.throwError("*** RdTd() unfinished ***");}
-    void
-	TdRd() {Debug.throwError("*** TdRd() unfinished ***");}
+    void RdCd() {Debug.throwError("*** RdCd() unfinished ***");}
+    void RdDd() {Debug.throwError("*** RdDd() unfinished ***");}
+    void CdRd() {Debug.throwError("*** CdRd() unfinished ***");}
+    void DdRd() {Debug.throwError("*** DdRd() unfinished ***");}
+    void RdTd() {Debug.throwError("*** RdTd() unfinished ***");}
+    void TdRd() {Debug.throwError("*** TdRd() unfinished ***");}
 
 
     // Other un-implemented operand signatures
-    void
-	Ms() {Debug.throwError("*** Ms() unfinished ***");}
-    void
-	XBTS() {Debug.throwError("*** XBTS() unfinished ***");}
-    void
-	IBTS() {Debug.throwError("*** IBTS() unfinished ***");}
-    void
-	Mp() {Debug.throwError("*** Mp() unfinished ***");}
-    void
-	GvMa() {Debug.throwError("*** GvMa() unfinished ***");}
-    void
-	EwRw() {Debug.throwError("*** EwRw() unfinished ***");}
-    void
-	YbDX() {Debug.throwError("*** YbDX() unfinished ***");}
-    void
-	YvDX() {Debug.throwError("*** YvDX() unfinished ***");}
-    void
-	DXXb() {Debug.throwError("*** DXXb() unfinished ***");}
-    void
-	DXXv() {Debug.throwError("*** DXXv() unfinished ***");}
-    void
-	ALOb() {Debug.throwError("*** ALOb() unfinished ***");}
+    void Ms()   {Debug.throwError("*** Ms() unfinished ***");}
+    void XBTS() {Debug.throwError("*** XBTS() unfinished ***");}
+    void IBTS() {Debug.throwError("*** IBTS() unfinished ***");}
+    void Mp()   {Debug.throwError("*** Mp() unfinished ***");}
+    void GvMa() {Debug.throwError("*** GvMa() unfinished ***");}
+    void EwRw() {Debug.throwError("*** EwRw() unfinished ***");}
+    void YbDX() {Debug.throwError("*** YbDX() unfinished ***");}
+    void YvDX() {Debug.throwError("*** YvDX() unfinished ***");}
+    void DXXb() {Debug.throwError("*** DXXb() unfinished ***");}
+    void DXXv() {Debug.throwError("*** DXXv() unfinished ***");}
+    void ALOb() {Debug.throwError("*** ALOb() unfinished ***");}
 
-    void
-	eAXOv()
+    void eAXOv()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EAX, ");
@@ -1318,8 +1320,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	OveAX()
+    void OveAX()
     {
 	if (db_32bit_addrsize) {
 	    int imm32;
@@ -1343,29 +1344,17 @@ public class Disassembler {
 
     }
 
-    void
-	ObAL() {Debug.throwError("*** ObAL() unfinished ***");}
-
-    void
-	XvYv() {Debug.throwError("*** XvYv() unfinished ***");}
-    void
-	YbAL() {Debug.throwError("*** YbAL() unfinished ***");}
-    void
-	ALXb() {Debug.throwError("*** ALXb() unfinished ***");}
-    void
-	eAXXv() { Debug.throwError("*** eAXXv() unfinished ***"); }
-    void
-	Es() {Debug.throwError("*** Es() unfinished ***");}
-    void
-	Ea() {Debug.throwError("*** Ea() unfinished ***");}
-    void
-	Et() {Debug.throwError("*** Et() unfinished ***");}
-    void
-	Ed() {Debug.throwError("*** Ed() unfinished ***");}
-    void
-	El() {Debug.throwError("*** El() unfinished ***");}
-    void
-	Eq() {Debug.throwError("*** Eq() unfinished ***");}
+    void ObAL() {Debug.throwError("*** ObAL() unfinished ***");}
+    void XvYv() {Debug.throwError("*** XvYv() unfinished ***");}
+    void YbAL() {Debug.throwError("*** YbAL() unfinished ***");}
+    void ALXb() {Debug.throwError("*** ALXb() unfinished ***");}
+    void eAXXv() { Debug.throwError("*** eAXXv() unfinished ***"); }
+    void Es() {Debug.throwError("*** Es() unfinished ***");}
+    void Ea() {Debug.throwError("*** Ea() unfinished ***");}
+    void Et() {Debug.throwError("*** Et() unfinished ***");}
+    void Ed() {Debug.throwError("*** Ed() unfinished ***");}
+    void El() {Debug.throwError("*** El() unfinished ***");}
+    void Eq() {Debug.throwError("*** Eq() unfinished ***");}
 
     void GvEb() {
 	if (db_32bit_opsize)
@@ -1375,8 +1364,7 @@ public class Disassembler {
     }
 
 
-    void
-	Av()
+    void Av()
     {
 	if (db_32bit_opsize) {
 	    int imm32;
@@ -1390,21 +1378,18 @@ public class Disassembler {
 	}
     }
 
-    void
-	Eb()
+    void Eb()
     {
 	decode_exgx(BX_GENERAL_8BIT_REG, BX_NO_REG_TYPE);
     }
 
-    void
-	Eb1()
+    void Eb1()
     {
 	decode_exgx(BX_GENERAL_8BIT_REG, BX_NO_REG_TYPE);
 	addInstr(", 1");
     }
 
-    void
-	Ev1()
+    void Ev1()
     {
 	if (db_32bit_opsize)
 	    decode_exgx(BX_GENERAL_32BIT_REG, BX_NO_REG_TYPE);
@@ -1413,10 +1398,7 @@ public class Disassembler {
 	addInstr(", 1");
     }
 
-
-
-    void
-	Iw()
+    void Iw()
     {
 	int imm16;
 
@@ -1424,16 +1406,12 @@ public class Disassembler {
 	addInstr("#"+toHexInt(imm16));
     }
 
-
-
-    void
-	EbGb()
+    void EbGb()
     {
 	decode_exgx(BX_GENERAL_8BIT_REG, BX_GENERAL_8BIT_REG);
     }
 
-    void
-	EvGv()
+    void EvGv()
     {
 	if (db_32bit_opsize)
 	    decode_exgx(BX_GENERAL_32BIT_REG, BX_GENERAL_32BIT_REG);
@@ -1441,14 +1419,12 @@ public class Disassembler {
 	    decode_exgx(BX_GENERAL_16BIT_REG, BX_GENERAL_16BIT_REG);
     }
 
-    void
-	GbEb()
+    void GbEb()
     {
 	decode_gxex(BX_GENERAL_8BIT_REG, BX_GENERAL_8BIT_REG);
     }
 
-    void
-	GvEv()
+    void GvEv()
     {
 	if (db_32bit_opsize)
 	    decode_gxex(BX_GENERAL_32BIT_REG, BX_GENERAL_32BIT_REG);
@@ -1456,15 +1432,12 @@ public class Disassembler {
 	    decode_gxex(BX_GENERAL_16BIT_REG, BX_GENERAL_16BIT_REG);
     }
 
-
-    void
-	Ew()
+    void Ew()
     {
 	decode_exgx(BX_GENERAL_16BIT_REG, BX_NO_REG_TYPE);
     }
 
-    void
-	GvEw()
+    void GvEw()
     {
 	if (db_32bit_opsize)
 	    decode_gxex(BX_GENERAL_32BIT_REG, BX_GENERAL_16BIT_REG);
@@ -1472,35 +1445,29 @@ public class Disassembler {
 	    decode_gxex(BX_GENERAL_16BIT_REG, BX_GENERAL_16BIT_REG);
     }
 
-
     void Jv() {
 	if (db_32bit_opsize) {
 	    int imm32;
 	    
 	    imm32 = fetch_dword();
 	    addInstr("+#"+toHexInt(imm32) + "  (->"+toHexInt(codePosition+imm32)+")");
-	}
-	else
-	    {
-		int imm16;
+	} else {
+            int imm16;
 
-		imm16 = fetch_word();
-		addInstr("+#"+toHexInt(imm16));
-	    }
+            imm16 = fetch_word();
+            addInstr("+#"+toHexInt(imm16));
+        }
     }
 
-
-    void
-	EvIb()
+    void EvIb()
     {
 	int imm8;
 
 	if (db_32bit_opsize) {
 	    decode_exgx(BX_GENERAL_32BIT_REG, BX_NO_REG_TYPE);
 	    imm8 = fetch_byte();
-	    addInstr(", #"+ toHexInt(imm8));
-	}
-	else {
+	    addInstr(", #" + toHexInt(imm8));
+	} else {
 	    decode_exgx(BX_GENERAL_16BIT_REG, BX_NO_REG_TYPE);
 	    imm8 = fetch_byte();
 	    addInstr(", #"+ toHexInt(imm8));
@@ -1508,16 +1475,14 @@ public class Disassembler {
     }
 
 
-    void
-	Iv()
+    void Iv()
     {
 	if (db_32bit_opsize) {
 	    int imm32;
 
 	    imm32 = fetch_dword();
 	    addInstr("#"+ toHexInt(imm32));
-	}
-	else {
+	} else {
 	    int imm16;
 
 	    imm16 = fetch_word();
@@ -1526,8 +1491,7 @@ public class Disassembler {
     }
 
 
-    void
-	Ib()
+    void Ib()
     {
 	int imm8;
 
@@ -1536,8 +1500,7 @@ public class Disassembler {
     }
 
 
-    void
-	Jb()
+    void Jb()
     {
 	int imm8;
 
@@ -1545,8 +1508,7 @@ public class Disassembler {
 	addInstr("+#"+toHexInt(imm8));
     }
 
-    void
-	EbIb()
+    void EbIb()
     {
 	int imm8;
 
@@ -1555,8 +1517,7 @@ public class Disassembler {
 	addInstr(", #"+toHexInt(imm8));
     }
 
-    void
-	EvIv()
+    void EvIv()
     {
 	int imm16;
 
@@ -1574,14 +1535,12 @@ public class Disassembler {
 	}
     }
 
-    void
-	EwSw()
+    void EwSw()
     {
 	decode_exgx(BX_GENERAL_16BIT_REG, BX_SEGMENT_REG);
     }
 
-    void
-	GvM()
+    void GvM()
     {
 	if (db_32bit_opsize)
 	    decode_gxex(BX_GENERAL_32BIT_REG, BX_GENERAL_32BIT_REG);
@@ -1589,14 +1548,12 @@ public class Disassembler {
 	    decode_gxex(BX_GENERAL_16BIT_REG, BX_GENERAL_16BIT_REG);
     }
 
-    void
-	SwEw()
+    void SwEw()
     {
 	decode_gxex(BX_SEGMENT_REG, BX_GENERAL_16BIT_REG);
     }
 
-    void
-	Ev()
+    void Ev()
     {
 	if (db_32bit_opsize) {
 	    decode_exgx(BX_GENERAL_32BIT_REG, BX_NO_REG_TYPE);
@@ -1606,10 +1563,8 @@ public class Disassembler {
 	}
     }
 
-    void
-	Ap()
+    void Ap()
     {
-
 	if (db_32bit_opsize) {
 	    int imm32;
 	    int cs_selector;
@@ -1630,8 +1585,7 @@ public class Disassembler {
     }
 
 
-    void
-	XbYb()
+    void XbYb()
     {
 	String esi, edi;
 	String seg;
@@ -1654,8 +1608,7 @@ public class Disassembler {
     }
 
 
-    void
-	YveAX()
+    void YveAX()
     {
 	String eax, edi;
 
@@ -1672,8 +1625,7 @@ public class Disassembler {
 	addInstr("ES:["+edi+"], "+eax);
     }
 
-    void
-	GvMp()
+    void GvMp()
     {
 	if (db_32bit_opsize)
 	    decode_gxex(BX_GENERAL_32BIT_REG, BX_GENERAL_32BIT_REG);
@@ -1681,21 +1633,18 @@ public class Disassembler {
 	    decode_gxex(BX_GENERAL_16BIT_REG, BX_GENERAL_16BIT_REG);
     }
 
-    void
-	eAXEv()
+    void eAXEv()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EAX, ");
 	    decode_gxex(BX_NO_REG_TYPE, BX_GENERAL_32BIT_REG);
-	}
-	else {
+	} else {
 	    addInstr("AX, ");
 	    decode_gxex(BX_NO_REG_TYPE, BX_GENERAL_16BIT_REG);
 	}
     }
 
-    void
-	Ep()
+    void Ep()
     {
 	if (db_32bit_opsize) {
 	    decode_exgx(BX_GENERAL_32BIT_REG, BX_NO_REG_TYPE);
@@ -1705,8 +1654,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eAX()
+    void eAX()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EAX");
@@ -1716,8 +1664,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eCX()
+    void eCX()
     {
 	if (db_32bit_opsize) {
 	    addInstr("ECX");
@@ -1727,8 +1674,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eDX()
+    void eDX()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EDX");
@@ -1738,8 +1684,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eBX()
+    void eBX()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EBX");
@@ -1749,8 +1694,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eSP()
+    void eSP()
     {
 	if (db_32bit_opsize) {
 	    addInstr("ESP");
@@ -1760,8 +1704,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eBP()
+    void eBP()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EBP");
@@ -1771,8 +1714,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eSI()
+    void eSI()
     {
 	if (db_32bit_opsize) {
 	    addInstr("ESI");
@@ -1782,8 +1724,7 @@ public class Disassembler {
 	}
     }
 
-    void
-	eDI()
+    void eDI()
     {
 	if (db_32bit_opsize) {
 	    addInstr("EDI");
@@ -1798,12 +1739,10 @@ public class Disassembler {
      * decode
      */
 
-    void decode_exgx(int modrm_reg_type, int reg_type) {
-	int modrm, ttt;
-	
-	modrm = fetch_byte();
+    void decode_exgx(int modrm_reg_type, int reg_type) {	
+	int modrm = fetch_byte();
 	decode_ex(modrm, modrm_reg_type);
-	ttt = (modrm >> 3) & 0x07;
+	int ttt = (modrm >> 3) & 0x07;
 	
 	if (reg_type != BX_NO_REG_TYPE) {
 	    addInstr(", ");
@@ -1814,10 +1753,8 @@ public class Disassembler {
 
 
     void decode_gxex(int reg_type, int modrm_reg_type) {
-	int modrm, ttt;
-	
-	modrm = fetch_byte();
-	ttt = (modrm >> 3) & 0x07;
+	int modrm = fetch_byte();
+	int ttt = (modrm >> 3) & 0x07;
 	
 	if (reg_type != BX_NO_REG_TYPE) {
 	  out_reg_name(ttt, reg_type);
@@ -1832,13 +1769,12 @@ public class Disassembler {
 	int mod_rm_addr;
 	String mod_rm_seg_reg;
 	
-	int  mod, ttt, rm;
-	int  displ8;
+	int displ8;
 	int displ16;
 	
-	mod = modrm >> 6;
-	ttt = (modrm >> 3) & 0x07;
-	rm = modrm & 0x07;
+	int mod = modrm >> 6;
+	int ttt = (modrm >> 3) & 0x07;
+	int rm = modrm & 0x07;
 
 	if (db_32bit_addrsize) {
 	    int sib, ss, index, base;
@@ -1852,8 +1788,7 @@ public class Disassembler {
 	    
 	    if (mod == 3) { /* mod, reg, reg */
 		out_reg_name(rm, modrm_reg_type);
-	    }
-	    else { /* mod != 3 */
+	    } else { /* mod != 3 */
 		if (rm != 4) { /* rm != 100b, no s-i-b byte */
 		    // one byte modrm
 		    switch (mod) {
@@ -2057,7 +1992,6 @@ public class Disassembler {
 	}
     }
 
-
     ////////
 
     void out_reg_name(int reg, int reg_type)
@@ -2084,20 +2018,16 @@ public class Disassembler {
 	    addInstr("["+  base_name16[base] + "]");
     }
 
-    void
-	out_16bit_index(int index)
+    void out_16bit_index(int index)
     {
 	if (index_name16[index] != null)
 	    addInstr("["+ index_name16[index]+"]");
     }
 
 
-  String toHexInt(int value) {
-    String hex = Long.toHexString(value & 0xffffffffL);         
-    return  "00000000".substring(Math.min(hex.length(),8)) + hex + " "; 
-  }
-
-
-
+    String toHexInt(int value) {
+        String hex = Long.toHexString(value & 0xffffffffL);         
+        return  "00000000".substring(Math.min(hex.length(),8)) + hex + " "; 
+    }
     
 }

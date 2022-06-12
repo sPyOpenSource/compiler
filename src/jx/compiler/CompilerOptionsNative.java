@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class CompilerOptionsNative extends CompilerOptions {
-
     protected CompilerOptionsNative() {}
 
     /**
@@ -344,8 +343,6 @@ public class CompilerOptionsNative extends CompilerOptions {
 	    }
 	}
     }
-
-
 
     protected void printUsage() {
 	System.out.print("usage: jc ");

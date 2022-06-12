@@ -14,7 +14,6 @@ import java.util.Enumeration;
     task. 
 */ 
 public class BinaryCode {
-
   // bytes of the compiled function 
   private final byte[] code; 
   private final int numCodeBytes; 
@@ -78,7 +77,6 @@ public class BinaryCode {
     }
   }
     
-
   // ***** Output Functions *****
 
   private String getBinaryCodeAsHex(int firstByte, int stopByte) {

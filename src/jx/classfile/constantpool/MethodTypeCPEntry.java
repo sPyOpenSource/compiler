@@ -25,7 +25,6 @@ import java.io.IOException;
  *
  */
 public class MethodTypeCPEntry extends ConstantPoolEntry {
-
     /** Index into the constant pool for the class */
     private int methodDescriptorIndex;
     /** the value of the method descriptor pointed to */

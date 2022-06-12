@@ -79,9 +79,10 @@ final public class IMConstant extends IMOperant {
 	    datatype = BCBasicDatatype.REFERENCE;
 	} else if (cpEntry instanceof StringCPEntry) {
 	    datatype = BCBasicDatatype.REFERENCE;
-        } else if (cpEntry instanceof ClassCPEntry){
-            datatype = BCBasicDatatype.REFERENCE;
+                     } else if (cpEntry instanceof ClassCPEntry){
+                         datatype = BCBasicDatatype.REFERENCE;
 	} else {
+                         System.out.println(datatype);
 	    throw new Error("unknown constant value\n");
 	}
     }

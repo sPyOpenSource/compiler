@@ -4,51 +4,52 @@ import java.io.*;
 import java.util.ArrayList;
 
 class Parser {
-	final static int MAXLINE = 256;
-	final static int NEWLINE = 0x0a;
-	final static int QUOTATION = 0x22;
-	final static int COMMA = 0x2c;
-	final static int SPACE = 0x20;
-	final static int SEPARATOR = COMMA;
-	final static int NUM_ZERO = 0x30;
-	final static int NUM_NINE = 0x39;
-	final static int COMMENT = 0x23;
-	final static int LPAREN = 0x5b;
-	final static int RPAREN = 0x5d;
-	int pos;
-	int linenumber=1;
-	FileInputStream in ;
+    final static int MAXLINE = 256;
+    final static int NEWLINE = 0x0a;
+    final static int QUOTATION = 0x22;
+    final static int COMMA = 0x2c;
+    final static int SPACE = 0x20;
+    final static int SEPARATOR = COMMA;
+    final static int NUM_ZERO = 0x30;
+    final static int NUM_NINE = 0x39;
+    final static int COMMENT = 0x23;
+    final static int LPAREN = 0x5b;
+    final static int RPAREN = 0x5d;
+    int pos;
+    int linenumber = 1;
+    FileInputStream in;
 
-	Parser(String filename) throws IOException {
-	    in = new FileInputStream(filename);
-	}
+    Parser(String filename) throws IOException {
+        in = new FileInputStream(filename);
+    }
 
     String[] getComponents() {
 	try {
-	ArrayList v = new ArrayList();
-	for(int i=0; ; i++) {
-	    String l = readLine();
-	    if (l==null) break;
-	    l = l.trim();
-	    if (l.length() == 0 || l.charAt(0)=='#') { i--; continue; }
+            ArrayList v = new ArrayList();
+            for(int i = 0; ; i++) {
+                String l = readLine();
+                if (l==null) break;
+                l = l.trim();
+                if (l.length() == 0 || l.charAt(0)=='#') { i--; continue; }
 
-	    v.add(l);
-	}
-	String[] s = new String[v.size()];
-	for(int i=0; i<v.size(); i++) {
-	    s[i] = (String)v.get(i);
-	}
-	return s;
+                v.add(l);
+            }
+            String[] s = new String[v.size()];
+            for(int i = 0; i < v.size(); i++) {
+                s[i] = (String)v.get(i);
+            }
+            return s;
 	}catch(IOException e){throw new Error(e.toString());}
     }
 
-    private String readLine()  throws IOException {
+    private String readLine() throws IOException {
 	linenumber++;
 	return readLine(in);
     }
-    public static String readLine(InputStream in)  throws IOException {
+    
+    public static String readLine(InputStream in) throws IOException {
 	int bi;
-	int i=0;
+	int i = 0;
 	char data[] = new char[MAXLINE];
 	for(;;) {
 	    bi = in.read();
@@ -57,7 +58,7 @@ class Parser {
 	    data[i] = (char)bi;
 	    i++;
 	}
-	if (i==0) {
+	if (i == 0) {
 	    if (bi == -1) return null;
 	    else return "";
 	}

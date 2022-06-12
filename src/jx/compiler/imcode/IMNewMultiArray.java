@@ -63,9 +63,9 @@ final public class IMNewMultiArray extends IMOperator {
 
     public String toReadableString() {
 	String retValue =  "new "+cpEntry.getClassName();
-	for (int i=0;i<oprs.length;i++) {
-	    retValue += "[" + oprs[i].toReadableString() +"]";
-	}
+        for (IMOperant opr : oprs) {
+            retValue += "[" + opr.toReadableString() + "]";
+        }
 	return retValue;
     }
 

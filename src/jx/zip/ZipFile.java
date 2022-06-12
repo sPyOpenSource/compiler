@@ -13,37 +13,37 @@ public class ZipFile  {
     
 
     final static int LOCAL_HEADER_SIGNATURE         = 0x04034b50;
-    final static int L_VERSION_NEEDED_TO_EXTRACT_0   =   4;
-    final static int L_VERSION_NEEDED_TO_EXTRACT_1  =    5;
-    final static int L_GENERAL_PURPOSE_BIT_FLAG     =    6;
-    final static int L_COMPRESSION_METHOD            =   8;
-    final static int L_LAST_MOD_FILE_TIME            =   10;
-    final static int L_LAST_MOD_FILE_DATE             =  12;
-    final static int L_CRC32                         =   14;
-    final static int L_COMPRESSED_SIZE               =   18;
-    final static int L_UNCOMPRESSED_SIZE             =   22;
-    final static int L_FILENAME_LENGTH               =   26;
-    final static int L_EXTRA_FIELD_LENGTH             =  28;
+    final static int L_VERSION_NEEDED_TO_EXTRACT_0  =   4;
+    final static int L_VERSION_NEEDED_TO_EXTRACT_1  =   5;
+    final static int L_GENERAL_PURPOSE_BIT_FLAG     =   6;
+    final static int L_COMPRESSION_METHOD           =   8;
+    final static int L_LAST_MOD_FILE_TIME           =  10;
+    final static int L_LAST_MOD_FILE_DATE           =  12;
+    final static int L_CRC32                        =  14;
+    final static int L_COMPRESSED_SIZE              =  18;
+    final static int L_UNCOMPRESSED_SIZE            =  22;
+    final static int L_FILENAME_LENGTH              =  26;
+    final static int L_EXTRA_FIELD_LENGTH           =  28;
 
     final static int CENTRAL_HEADER_SIGNATURE       = 0x02014b50;
-    final static int C_SIGNATURE                     =   0;
-    final static int C_VERSION_MADE_BY_0             =   4;
-    final static int C_VERSION_MADE_BY_1              =  5;
-    final static int C_VERSION_NEEDED_TO_EXTRACT_0   =   7;
-    final static int C_VERSION_NEEDED_TO_EXTRACT_1   =   8;
-    final static int C_GENERAL_PURPOSE_BIT_FLAG     =    9;
-    final static int C_COMPRESSION_METHOD           =   10;
-    final static int C_LAST_MOD_FILE_TIME           =   12;
-    final static int C_LAST_MOD_FILE_DATE           =   14;
-    final static int C_CRC32                        =   16;
-    final static int C_COMPRESSED_SIZE              =   20;
-    final static int C_UNCOMPRESSED_SIZE            =   24;
-    final static int C_FILENAME_LENGTH              =   28;
-    final static int C_EXTRA_FIELD_LENGTH           =   30;
-    final static int C_COMMENT_LENGTH               =   32;
-    final static int C_DISK_NUMBER_START            =   34;
-    final static int C_INTERNAL_FILE_ATTRIBUTES     =   36;
-    final static int C_EXTERNAL_FILE_ATTRIBUTES     =   38;
+    final static int C_SIGNATURE                    =   0;
+    final static int C_VERSION_MADE_BY_0            =   4;
+    final static int C_VERSION_MADE_BY_1            =   5;
+    final static int C_VERSION_NEEDED_TO_EXTRACT_0  =   7;
+    final static int C_VERSION_NEEDED_TO_EXTRACT_1  =   8;
+    final static int C_GENERAL_PURPOSE_BIT_FLAG     =   9;
+    final static int C_COMPRESSION_METHOD           =  10;
+    final static int C_LAST_MOD_FILE_TIME           =  12;
+    final static int C_LAST_MOD_FILE_DATE           =  14;
+    final static int C_CRC32                        =  16;
+    final static int C_COMPRESSED_SIZE              =  20;
+    final static int C_UNCOMPRESSED_SIZE            =  24;
+    final static int C_FILENAME_LENGTH              =  28;
+    final static int C_EXTRA_FIELD_LENGTH           =  30;
+    final static int C_COMMENT_LENGTH               =  32;
+    final static int C_DISK_NUMBER_START            =  34;
+    final static int C_INTERNAL_FILE_ATTRIBUTES     =  36;
+    final static int C_EXTERNAL_FILE_ATTRIBUTES     =  38;
     final static int C_RELATIVE_OFFSET_LOCAL_HEADER =  42;
     final static int C_FILENAME                     =  46;
 
@@ -56,7 +56,7 @@ public class ZipFile  {
     final static int OFFSET_START_CENTRAL_DIRECTORY   = 16;
     final static int ZIPFILE_COMMENT_LENGTH           = 20;
 
-    private ReadOnlyMemory zip;
+    private final ReadOnlyMemory zip;
     private int count;
     private int dirofs;
     private int mempos;
@@ -89,7 +89,7 @@ public class ZipFile  {
 	read(buffer);
 	if (doDebug) {
 	    Debug.out.println("Array Zip directory:");
-	    Dump.xdump(buffer,32);
+	    Dump.xdump(buffer, 32);
 	}
 	int signature = makelong(buffer, 0);
 	if (signature != END_CENTRAL_DIR_SIGNATURE) {
@@ -176,5 +176,4 @@ public class ZipFile  {
       //Dump.xdump(b, offset, len);
 	return new String(b, offset, len);
     }
-
 }

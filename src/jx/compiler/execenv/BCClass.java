@@ -6,7 +6,7 @@ import jx.classfile.*;
 
 import java.util.ArrayList;
 
-// BCClass stimmt nicht unbedingt mit ClassData ueberein -> subclassen etc ! 
+// BCClass stimmt nicht unbedingt mit ClassData ueberein to subclassen etc ! 
 // vorerst: Schnittstellen sind wichtig 
 public class BCClass implements BCClassInterface {
     BCMethod[] method; 

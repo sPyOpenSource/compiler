@@ -27,10 +27,9 @@ public class OutputReader implements Runnable{
     public void run() {
         try {
             BufferedReader in = new BufferedReader(new FileReader("/home/spy/output.txt"));
-            int i;
             String line = "";
             while (true) {
-                i = in.read();
+                int i = in.read();
                 if(i != -1){
                     if(i == 10){
                         jtextArea.append(line);

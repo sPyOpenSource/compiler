@@ -4,7 +4,6 @@ import jx.classfile.datatypes.*;
 
 
 public class VirtualOperantenStack {
-    
     private IMOperant[] opr_stack;
     private int ptr;
     private final CodeContainer imCode;
@@ -22,7 +21,7 @@ public class VirtualOperantenStack {
 	    System.err.println(" store null pointer \n");
 	    nullPointer.toString();
 	}    
-	opr_stack[ptr++]=opr;
+	opr_stack[ptr++] = opr;
     }
 
     public IMOperant pop() {
@@ -54,7 +53,7 @@ public class VirtualOperantenStack {
 	}
     }
 
-    public void store2(int bcPosition,int varIndex) {
+    public void store2(int bcPosition, int varIndex) {
 	int next_block_ndx = 0;
 
     	for (int i = 0; i < ptr; i++) {
@@ -83,9 +82,8 @@ public class VirtualOperantenStack {
     }
 
     public IMOperant[] leave() {
-	IMOperant[] leaveStack = new IMOperant[ptr+1];
+	IMOperant[] leaveStack = new IMOperant[ptr + 1];
 	for (int i = 0; i < ptr; i++) {
-
             if (opr_stack[i] instanceof IMReadBlockVariable) {
                 if (((IMReadBlockVariable)opr_stack[i]).getBlockVarIndex() == i) {
 			leaveStack[i] = opr_stack[i];
@@ -122,7 +120,7 @@ public class VirtualOperantenStack {
     }
 
     public void extend(int value) {
-	IMOperant[] new_stack = new IMOperant[opr_stack.length+value];
+	IMOperant[] new_stack = new IMOperant[opr_stack.length + value];
         System.arraycopy(opr_stack, 0, new_stack, 0, opr_stack.length);
 	opr_stack =  new_stack;
 	new_stack = null;

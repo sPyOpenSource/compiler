@@ -21,7 +21,6 @@ import jx.zero.Debug;
 
 public final class BinaryCodeDynamicIA32 {
 
-
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -104,12 +103,12 @@ public final class BinaryCodeDynamicIA32 {
 	After calling this method, there are at least 
 	'requiredSpace' free bytes in the array. 
      * @param requiredSpace
-     */ 
+     */
     public void realloc(int requiredSpace) {
 	if (ip + requiredSpace > code.length) {
 	    int newSize = code.length;
 
-	    if (code.length>requiredSpace && code.length<8000) {
+	    if (code.length > requiredSpace && code.length < 8000) {
 		newSize += code.length;
 	    } else {
 		newSize += requiredSpace;
@@ -135,10 +134,10 @@ public final class BinaryCodeDynamicIA32 {
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
 	symbolTable.add(entry); 
-	ip+=1; 
+	ip += 1; 
     }
 
-    void insertBytes(int a,int b) {
+    void insertBytes(int a, int b) {
 	code[ip++] = (byte)a;
 	code[ip++] = (byte)b;
     }
@@ -147,32 +146,32 @@ public final class BinaryCodeDynamicIA32 {
        Insert ModRM and SIB byte 
     */
 
-    private void insertModRM(int reg,Opr rm) {
+    private void insertModRM(int reg, Opr rm) {
 	reg = reg & 0x07;
 	rm.value  = rm.value & 0x07;
 	if (rm.tag == Opr.REF) {
 	    Ref ref = (Ref)rm;
-	    if (ref.sym_disp!=null) {
-		insertByte(0x80 | (reg<<3) | ref.value);
-		if (ref.value==4) insertByte(0x24);
+	    if (ref.sym_disp != null) {
+		insertByte(0x80 | (reg << 3) | ref.value);
+		if (ref.value == 4) insertByte(0x24);
 		insertConst4(ref.sym_disp);
 		return;
 	    }
-	    if (ref.disp==0) {
+	    if (ref.disp == 0) {
 		if (ref.hasIndex) {
 		    insertByte(0x04 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {
-		    insertByte((reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte((reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 	    } else if (is8BitValue(ref.disp)) { 
 		if (ref.hasIndex) {
 		    insertByte(0x44 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {
-		    insertByte(0x40 | (reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte(0x40 | (reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 		insertByte((byte)ref.disp);
 	    } else {
@@ -180,18 +179,18 @@ public final class BinaryCodeDynamicIA32 {
 		    insertByte(0x84 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {		    
-		    insertByte(0x80 | (reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte(0x80 | (reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 		insertConst4(ref.disp);
 	    }
 	    return;
 	}
-	insertByte(0xc0 | (reg<<3) | rm.value);
+	insertByte(0xc0 | (reg << 3) | rm.value);
     }	
 	
-    private void insertModRM(Reg reg,Opr rm) {
-	insertModRM(reg.value,rm);
+    private void insertModRM(Reg reg, Opr rm) {
+	insertModRM(reg.value, rm);
     }
 
     /**
@@ -202,7 +201,7 @@ public final class BinaryCodeDynamicIA32 {
     public void call(Opr opr) {
 	realloc();
 	insertByte(0xff);
-	insertModRM(2,opr);
+	insertModRM(2, opr);
     }
 
     /**
@@ -213,9 +212,9 @@ public final class BinaryCodeDynamicIA32 {
     public void call(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0xe8); 
-	entry.initNCIndexRelative(ip, 4,ip+4);  // size is always 4 bytes 
+	entry.initNCIndexRelative(ip, 4,ip + 4); // size is always 4 bytes 
 	symbolTable.add(entry); 
-	ip+=4; 	    
+	ip += 4; 	    
     }
 
     /**
@@ -285,7 +284,7 @@ public final class BinaryCodeDynamicIA32 {
     public void decb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
-	insertModRM(1,opr);
+	insertModRM(1, opr);
     }
 
     /**
@@ -296,7 +295,7 @@ public final class BinaryCodeDynamicIA32 {
     public void decl(Ref ref) {
 	realloc();
 	insertByte(0xff);
-	insertModRM(1,ref);
+	insertModRM(1, ref);
     }
 
     /** 
@@ -306,7 +305,7 @@ public final class BinaryCodeDynamicIA32 {
     
     public void decl(Reg reg) {
 	realloc();
-	insertByte(0x48+reg.value);
+	insertByte(0x48 + reg.value);
     }
 
     /**
@@ -832,19 +831,19 @@ public final class BinaryCodeDynamicIA32 {
        Or (1/3 clks)
     */
 
-    public void orl(Opr src,Reg des) {
+    public void orl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0b); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void orl(Reg src,Ref des) {
+    public void orl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x09);
 	insertModRM(src,des);
     }
     
-    public void orl(int immd,Opr des) {
+    public void orl(int immd, Opr des) {
 	realloc();
 	if ((des.tag==Opr.REG)&&(des.value==0)) {
 	    insertByte(0x0d);
@@ -1000,9 +999,8 @@ public final class BinaryCodeDynamicIA32 {
     }
 
     /**
-
+     * @param des
      */
-
     public void sete(Opr des) {
 	realloc();
 	insertByte(0x0f);
@@ -1208,9 +1206,9 @@ public final class BinaryCodeDynamicIA32 {
 	insertConst4(tableStart);
 
 	addJumpTarget(tableStart);
-	for (int i=0;i<table.length;i++) {
-	    insertConst4(table[i]);
-	}
+        for (SymbolTableEntryBase table1 : table) {
+            insertConst4(table1);
+        }
     }
 
     /**
@@ -1606,7 +1604,7 @@ public final class BinaryCodeDynamicIA32 {
     
     private static final String[] REGNAME = {
 	"ax", "cx", "dx", "bx", "sp", "bp", "si", "di"
-    }; 
+    };
     
     public static String regToString(int reg) {
 	return "%e" + REGNAME[reg]; 
@@ -1758,7 +1756,7 @@ public final class BinaryCodeDynamicIA32 {
     }
     
     public void endBC() {
-	instructionTable.add(new int[] { bcIndex, startIP, ip});	
+	instructionTable.add(new int[] { bcIndex, startIP, ip });	
     }
     
     public ArrayList getInstructionTable() {

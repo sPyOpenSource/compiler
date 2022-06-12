@@ -7,7 +7,6 @@
 package jx.compiler.execenv;
 
 public interface CompilerOptionsInterface {
-
   public boolean doFastMemoryAccess();
   public boolean doMemoryRangeChecks();
   public boolean doExceptions();

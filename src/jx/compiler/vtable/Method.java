@@ -18,7 +18,7 @@ public class Method {
 	data = m;
 	name = m.getMethodName();
 	type = m.getMethodType();
-	nameAndType = name+type;
+	nameAndType = name + type;
     }
 
 

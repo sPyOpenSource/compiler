@@ -8,10 +8,12 @@ public class InterfaceMethodTable extends MethodTable {
     private static final boolean dumpAll = false;
     InterfaceMethodsTable itable;
     ArrayList mt = new ArrayList();
+    
     InterfaceMethodTable(String className){
 	super(className);
 	Debug.out.println("Creating empty InterfaceMethodTable");
     }
+    
     InterfaceMethodTable(ClassInfo info, InterfaceMethodsTable itable, HashMap classPool) {	
 	super(info.className);
 	if (dumpAll) System.out.println("Procesing "+info.className);
