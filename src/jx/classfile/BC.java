@@ -163,7 +163,7 @@ final public class BC {
     public static final int FDIV = 0x6e;
     public static final int DDIV = 0x6f;
     
-    // rem value1,value2 -> value1-(value1/value2)*value2
+    // rem value1,value2 to value1-(value1/value2)*value2
     public static final int IREM = 0x70;
     public static final int LREM = 0x71;
     public static final int FREM = 0x72;
