@@ -9,7 +9,6 @@ import jx.classfile.constantpool.ConstantPool;
 */ 
 
 abstract public class ClassSource {
-
     public static final int ACC_PUBLIC       = 0x0001; 
     public static final int ACC_PRIVATE      = 0x0002; 
     public static final int ACC_PROTECTED    = 0x0004; 
