@@ -1318,7 +1318,7 @@ public final class BinaryCodeDynamicIA32 {
     }
 
     /**
-       Move with Sign-Extend (short -> register) (3 clks)
+       Move with Sign-Extend (short to register) (3 clks)
     */
     public void movswl(Opr src,Reg des) {
 	realloc();
@@ -1328,7 +1328,7 @@ public final class BinaryCodeDynamicIA32 {
     }
 
     /**
-       Move with Sign-Extend (byte -> register) (3 clks)
+       Move with Sign-Extend (byte to register) (3 clks)
     */
     public void movsbl(Opr src,Reg des) {
 	realloc();
