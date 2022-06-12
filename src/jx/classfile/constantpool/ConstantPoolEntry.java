@@ -122,7 +122,7 @@ abstract public class ConstantPoolEntry {
      * @param withIndex
       @return a textual description of the entry (similar to the 
       output of javap (but not exactly equal))
-      @see bytecode.code.BCInstr
+      see bytecode.code.BCInstr
   */ 
   public String getDescription(ConstantPool cPool, boolean withIndex) {
     return getSimpleDescription(); 
