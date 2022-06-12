@@ -62,7 +62,7 @@ public final class BinaryCodeIA32 {
     /** 
 	The methods in the frontend expect the compiled code
 	stored inside of a object of class nativecode.BinaryCode. 
-	-> Convert a object of preproc.BinaryCodePreproc into a object of 
+	Convert a object of preproc.BinaryCodePreproc into a object of 
 	nativecode.BinaryCode.
 	Note: Exceptionhandlers are not copied. 
      * @return 
@@ -393,6 +393,7 @@ public final class BinaryCodeIA32 {
      * @param src
      * @param des
     */
+
     public void subl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x2b);
@@ -1271,7 +1272,7 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Move with Sign-Extend (short -> register) (3 clks)
+       Move with Sign-Extend (short to register) (3 clks)
     */
     public void movswl(Opr src,Reg des) {
 	realloc();
@@ -1281,7 +1282,7 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Move with Sign-Extend (byte -> register) (3 clks)
+       Move with Sign-Extend (byte to register) (3 clks)
     */
     public void movsbl(Opr src,Reg des) {
 	realloc();

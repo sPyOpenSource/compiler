@@ -195,7 +195,7 @@ public class IMInvoke extends IMMultiOperant {
 	LocalVariable[] lVars = inlineFrame.getLocalVars();
 
 	/*
-	  if virtual then store v0 -> varMap[0]^
+	  if virtual then store v0 to varMap[0]^
 	  the this-pointer must be constant in a "small" method
 	*/	
 	if (obj!=null) {
@@ -209,7 +209,7 @@ public class IMInvoke extends IMMultiOperant {
 	}
 	
         /*
-        store arguments vn -> varMap[n]
+        store arguments vn to varMap[n]
         all arguments must also be constant
          */
         for (IMOperant arg : args) {
@@ -223,7 +223,7 @@ public class IMInvoke extends IMMultiOperant {
         }
 	
 	/*
-	  map local variabels vn+i -> varMap[n+i]
+	  map local variabels vn+i to varMap[n+i]
 	  no local variables 
 	*/
 	if (argn<varMap.length) {
@@ -264,7 +264,7 @@ public class IMInvoke extends IMMultiOperant {
 	LocalVariable[] lVars = inlineFrame.getLocalVars();
 
 	/* 
-	   if virtual then store v0 -> varMap[0]
+	   if virtual then store v0 to varMap[0]
 	*/	
 	if (obj!=null) {
 		varMap[0]=-1;

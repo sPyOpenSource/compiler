@@ -303,5 +303,5 @@ public class ConstantPool {
 // effizienter waere es, man wuerde direkte Referenzen auf die CPoolEntries 
 // speichern. Auch die CPoolEntries selbst muessten dann auf andere CPoolEntries 
 // ueber Referenzen zugreifen. 
-// (Linkphase nach Laden des Pools -> intern sind die Indices immer noch notw.) 
+// (Linkphase nach Laden des Pools to intern sind die Indices immer noch notw.) 
 // Problem: Zeilennummern 

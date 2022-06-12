@@ -491,7 +491,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  frame.clearStack(1);
 	}
 
-	// save object reference (eax -> stack)
+	// save object reference (eax to stack)
 	Reg objRef = regs.getIntRegister(Reg.eax);
 	regs.allocIntRegister(objRef,BCBasicDatatype.REFERENCE);
 
