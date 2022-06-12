@@ -69,7 +69,7 @@ public final class BinaryCodeDynamicIA32 {
     /** 
 	The methods in the frontend expect the compiled code
 	stored inside of a object of class nativecode.BinaryCode. 
-	-> Convert a object of preproc.BinaryCodePreproc into a object of 
+	Convert a object of preproc.BinaryCodePreproc into a object of 
 	nativecode.BinaryCode.
 	Note: Exceptionhandlers are not copied. 
     */ 

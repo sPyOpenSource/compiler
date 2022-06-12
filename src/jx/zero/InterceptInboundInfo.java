@@ -9,7 +9,7 @@ public interface InterceptInboundInfo extends Portal {
      * returns the first parameter of the intercepted method-call
      * (with succsessive calls of getNextParameter all parameters
      * can be observed )
-     * @param obj is filled with the corresponding information
+     * @param result is filled with the corresponding information
      */
     boolean getFirstParameter(VMObject result);
     boolean getNextParameter(VMObject result);
