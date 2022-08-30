@@ -51,7 +51,7 @@ abstract public class ClassSource {
     abstract public MethodSource getMethod(String methodName, String methodType); 
     abstract public String getClassName();
     abstract public String getSuperClassName();
-    //    abstract public boolean isInterface();
+    // abstract public boolean isInterface();
     abstract public String[] getInterfaceNames();
     abstract public FieldData[] getFields();
     abstract public String getSourceFileAttribute();

@@ -1,8 +1,8 @@
 package jx.classfile; 
 
-import java.io.*; 
-import jx.classfile.constantpool.*; 
-import jx.zero.Debug; 
+import java.io.*;
+import jx.classfile.constantpool.*;
+import jx.zero.Debug;
 
 /** 
     All data about a class, that can be found 
@@ -32,7 +32,7 @@ public class ClassData extends ClassSource {
 
     private boolean allowNative = false;
 
-      public int getThisClassCPIndex() {
+    public int getThisClassCPIndex() {
 	return thisClassCPIndex;
     }
 
@@ -96,7 +96,7 @@ public class ClassData extends ClassSource {
     public void readFromClassFile(DataInput input) throws IOException, EOFException, NoMagicNumberException {
 	int magicNumber = input.readInt();
 	try {
-	    if(magicNumber!=0xcafebabe) throw new NoMagicNumberException();
+	    if(magicNumber != 0xcafebabe) throw new NoMagicNumberException();
 	    int minorVersion = input.readUnsignedShort();
 	    int majorVersion = input.readUnsignedShort(); 
     
