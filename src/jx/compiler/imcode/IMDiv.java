@@ -15,7 +15,7 @@ final  public class IMDiv extends IMBinaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.IDIV);
+	datatype = BCBasicDatatype.INT + (bc-Opcodes.IDIV);
     }
 
     public boolean isDibOrMult() {return true;}

@@ -24,21 +24,21 @@ final public class IMConstant extends IMOperant {
 	cpEntry    = null;
 	cpValue    = null;
 	
-	if (bc==BC.ACONST_NULL) {
+	if (bc==Opcodes.ACONST_NULL) {
 	    datatype = BCBasicDatatype.REFERENCE;
 	    value    = 0;
-	} else if (bc<=BC.ICONST_5) {
+	} else if (bc<=Opcodes.ICONST_5) {
 	    datatype = BCBasicDatatype.INT;
-	    value    = bc - BC.ICONST_0;
-	} else if (bc<=BC.LCONST_1) {
+	    value    = bc - Opcodes.ICONST_0;
+	} else if (bc<=Opcodes.LCONST_1) {
 	    datatype = BCBasicDatatype.LONG;
-	    value    = bc - BC.LCONST_0;
-	} else if (bc<=BC.FCONST_2) {
+	    value    = bc - Opcodes.LCONST_0;
+	} else if (bc<=Opcodes.FCONST_2) {
 	    datatype = BCBasicDatatype.FLOAT;
-	    value    = bc - BC.FCONST_0;
-	} else if (bc<=BC.DCONST_1) {
+	    value    = bc - Opcodes.FCONST_0;
+	} else if (bc<=Opcodes.DCONST_1) {
 	    datatype = BCBasicDatatype.DOUBLE;
-	    value    = bc - BC.DCONST_0;
+	    value    = bc - Opcodes.DCONST_0;
 	} else {
 	    if (verbose && System.err!=null) System.err.println("unknown constant value\n");
 	    System.exit(-1);

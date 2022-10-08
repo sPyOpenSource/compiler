@@ -13,7 +13,7 @@ final  public class IMNeg extends IMUnaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.INEG);
+	datatype = BCBasicDatatype.INT + (bc-Opcodes.INEG);
     }
 
     @Override

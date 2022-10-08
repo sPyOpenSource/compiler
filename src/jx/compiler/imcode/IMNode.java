@@ -58,7 +58,7 @@ public class IMNode {
 
     public IMNode() {
 	tag = 0;
-	bytecode   = BC.NOP;
+	bytecode   = Opcodes.NOP;
 	bcPosition = -1;
 	datatype   = -1;
 	tag        = IMNode.INSTRUCTION;

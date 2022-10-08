@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=DomainZeroSTEntry
+comment1.params=
+comment1.target=DomainZeroSTEntry()
+comment2.params=
+comment2.target=java.lang.String\ getDescription()
+comment3.params=
+comment3.target=boolean\ isResolved()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=
+comment5.target=java.lang.String\ toGASFormat()
+numComments=6

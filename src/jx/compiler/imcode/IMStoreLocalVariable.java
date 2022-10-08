@@ -22,8 +22,8 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	bytecode   = bc;
 	bcPosition = bcpos;
 	writeAccess= true;
-	datatype   = BCBasicDatatype.INT + (bc-BC.ISTORE_0) / 4;
-	ivar   = (bc-BC.ISTORE_0) & 0x03;
+	datatype   = BCBasicDatatype.INT + (bc-Opcodes.ISTORE_0) / 4;
+	ivar   = (bc-Opcodes.ISTORE_0) & 0x03;
     }
 
     public IMStoreLocalVariable(CodeContainer container,int bc,int bcpos,int index) {
@@ -31,7 +31,7 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
 	bytecode   = bc;
 	bcPosition = bcpos;
 	writeAccess= true;
-	datatype   = BCBasicDatatype.INT + (bc-BC.ISTORE);
+	datatype   = BCBasicDatatype.INT + (bc-Opcodes.ISTORE);
 	ivar   = index;
     }
 

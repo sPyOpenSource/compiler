@@ -18,7 +18,7 @@ final public class IMStackOperation extends IMNode {
 	IMOperant opr1,opr2,opr3,opr4;
 
 	switch (bytecode) {
-	case BC.POP:
+	case Opcodes.POP:
 	    opr1 = stack.pop();
 	    if (opr1 instanceof IMInvoke) {
 		return opr1;
@@ -27,7 +27,7 @@ final public class IMStackOperation extends IMNode {
 		return opr1;
 	    }
 	    break;
-	case BC.POP2:
+	case Opcodes.POP2:
 	    // TODO FIXME
 	    opr1 = stack.pop();
 	    if (opr1.isDouble()) break;
@@ -42,7 +42,7 @@ final public class IMStackOperation extends IMNode {
 	    // no long or double on the stack ?
 	    opr2 = stack.pop();
 	    break;
-	case BC.DUP:
+	case Opcodes.DUP:
 	    // We won't do typechecks here.
 	    // no long or double on the stack ?
 	    stack.store(bcPosition);
@@ -50,7 +50,7 @@ final public class IMStackOperation extends IMNode {
 	    stack.push(opr1);
 	    stack.push(opr1);
 	    break;
-	case BC.DUP_X1:
+	case Opcodes.DUP_X1:
 	    // We won't do typechecks here.
 	    // no long or double for src1,src2?
 	    stack.store(bcPosition);
@@ -60,7 +60,7 @@ final public class IMStackOperation extends IMNode {
 	    stack.push(opr2);
 	    stack.push(opr1);
 	    break;
-	case BC.DUP_X2:
+	case Opcodes.DUP_X2:
 	    // We won't do typechecks here.
 	    // no long or double for opr1 
 	    stack.store(bcPosition);
@@ -80,7 +80,7 @@ final public class IMStackOperation extends IMNode {
 	    stack.push(opr2);
 	    stack.push(opr1);
 	    break;
-	case BC.DUP2:
+	case Opcodes.DUP2:
 	    // We won't do typechecks here.
 	    // no long or double on the stack ?
 	    stack.store(bcPosition);
@@ -99,7 +99,7 @@ final public class IMStackOperation extends IMNode {
 	    stack.push(opr2);
 	    stack.push(opr1);
 	    break;
-	case BC.DUP2_X1:
+	case Opcodes.DUP2_X1:
 	    // Duplicate the top one or two operand stack values and insert two or three values down
 	    // We won't do typechecks here.
 	    // no long or double for src1,src2?
@@ -120,7 +120,7 @@ final public class IMStackOperation extends IMNode {
 		stack.push(opr1);
 	    }
 	    break;
-	case BC.DUP2_X2:
+	case Opcodes.DUP2_X2:
 	    // Duplicate the top one or two operand stack values and insert two, three, or four values down
 	    // We won't do typechecks here.
 	    // no long or double for opr1 
@@ -158,7 +158,7 @@ final public class IMStackOperation extends IMNode {
 		stack.push(opr1);
 	    }
 	    break;
-	case BC.SWAP:
+	case Opcodes.SWAP:
 	    // We won't do typechecks here.
 	    // no long or double for src1,src2
 	    stack.store(bcPosition);

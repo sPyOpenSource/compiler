@@ -28,9 +28,9 @@ final  public class IMConditionalBranch extends IMBranch  {
     }
 
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
-	if (bytecode < BC.IF_ICMPEQ ||
-	    bytecode == BC.IFNULL   ||
-	    bytecode == BC.IFNONNULL ) {
+	if (bytecode < Opcodes.IF_ICMPEQ ||
+	    bytecode == Opcodes.IFNULL   ||
+	    bytecode == Opcodes.IFNONNULL ) {
 	    rOpr = null;
 	    lOpr = stack.pop();
 	} else {
@@ -60,7 +60,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 	    IMConstant clOpr = lOpr.nodeToConstant();
 	    if (rOpr==null) {
 		switch (bytecode) {
-		case BC.IFEQ: 
+		case Opcodes.IFEQ: 
 		    {
 			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			if (clOpr.getIntValue()==0) {
@@ -74,7 +74,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 			    return ngoto;
 			}
 		    }
-		case BC.IFNE:
+		case Opcodes.IFNE:
 		    {
 			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			if (clOpr.getIntValue()!=0) {
@@ -88,7 +88,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 			    return ngoto;
 			}
 		    }
-		case BC.IFNULL:
+		case Opcodes.IFNULL:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()==0) {
@@ -102,7 +102,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 				    return ngoto;
 			    }
 		    }
-		case BC.IFNONNULL:
+		case Opcodes.IFNONNULL:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()!=0) {
@@ -116,7 +116,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 				    return ngoto;
 			    }
 		    }
-		case BC.IFLT:
+		case Opcodes.IFLT:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()<0) {
@@ -130,7 +130,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 				    return ngoto;
 			    }
 		    }
-		case BC.IFGE:
+		case Opcodes.IFGE:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()>=0) {
@@ -144,7 +144,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 				    return ngoto;
 			    }
 		    }
-		case BC.IFGT:
+		case Opcodes.IFGT:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()>0) {
@@ -158,7 +158,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 				    return ngoto;
 			    }
 		    }
-		case BC.IFLE:
+		case Opcodes.IFLE:
 		    {
 			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
 			    if (clOpr.getIntValue()<=0) {
@@ -220,90 +220,90 @@ final  public class IMConditionalBranch extends IMBranch  {
 	jumpTarget = targets[1].getNewJumpTarget();
 
 	switch (bytecode) {
-	case BC.IFEQ:
-	    bytecode = BC.IFNE;
+	case Opcodes.IFEQ:
+	    bytecode = Opcodes.IFNE;
 	    break;
-	case BC.IFNE:
-	    bytecode = BC.IFEQ;
+	case Opcodes.IFNE:
+	    bytecode = Opcodes.IFEQ;
 	    break;
-	case BC.IFLT:
-	    bytecode = BC.IFGE;
+	case Opcodes.IFLT:
+	    bytecode = Opcodes.IFGE;
 	    break;
-	case BC.IFGE:
-	    bytecode = BC.IFLT;
+	case Opcodes.IFGE:
+	    bytecode = Opcodes.IFLT;
 	    break;
-	case BC.IFGT:
-	    bytecode = BC.IFLE;
+	case Opcodes.IFGT:
+	    bytecode = Opcodes.IFLE;
 	    break;
-	case BC.IFLE:
-	    bytecode = BC.IFGT;
+	case Opcodes.IFLE:
+	    bytecode = Opcodes.IFGT;
 	    break;
-	case BC.IF_ICMPEQ:
-	    bytecode = BC.IF_ICMPNE;
+	case Opcodes.IF_ICMPEQ:
+	    bytecode = Opcodes.IF_ICMPNE;
 	    break;
-	case BC.IF_ICMPNE:
-	    bytecode = BC.IF_ICMPEQ;
+	case Opcodes.IF_ICMPNE:
+	    bytecode = Opcodes.IF_ICMPEQ;
 	    break;
-	case BC.IF_ICMPLT:
-	    bytecode = BC.IF_ICMPGE;
+	case Opcodes.IF_ICMPLT:
+	    bytecode = Opcodes.IF_ICMPGE;
 	    break;
-	case BC.IF_ICMPGE:
-	    bytecode = BC.IF_ICMPLT;
+	case Opcodes.IF_ICMPGE:
+	    bytecode = Opcodes.IF_ICMPLT;
 	    break;
-	case BC.IF_ICMPGT:
-	    bytecode = BC.IF_ICMPLE;
+	case Opcodes.IF_ICMPGT:
+	    bytecode = Opcodes.IF_ICMPLE;
 	    break;
-	case BC.IF_ICMPLE:
-	    bytecode = BC.IF_ICMPGT;
+	case Opcodes.IF_ICMPLE:
+	    bytecode = Opcodes.IF_ICMPGT;
 	    break;
-	case BC.IF_ACMPEQ:
-	    bytecode = BC.IF_ACMPNE;
+	case Opcodes.IF_ACMPEQ:
+	    bytecode = Opcodes.IF_ACMPNE;
 	    break;
-	case BC.IF_ACMPNE:
-	    bytecode = BC.IF_ACMPEQ;
+	case Opcodes.IF_ACMPNE:
+	    bytecode = Opcodes.IF_ACMPEQ;
 	    break;
-	case BC.IFNULL:
-	    bytecode = BC.IFNONNULL;
+	case Opcodes.IFNULL:
+	    bytecode = Opcodes.IFNONNULL;
 	    break;
-	case BC.IFNONNULL:
-	    bytecode = BC.IFNULL;
+	case Opcodes.IFNONNULL:
+	    bytecode = Opcodes.IFNULL;
 	    break;
 	}
     }
 
     public String toReadableString() {
 	switch (bytecode) {
-	case BC.IFEQ:
+	case Opcodes.IFEQ:
 	    return "if "+lOpr.toReadableString()+"==0 goto "+targets[1].toLabel();
-	case BC.IFNE:
+	case Opcodes.IFNE:
 	    return "if "+lOpr.toReadableString()+"!=0 goto "+targets[1].toLabel();	    
-	case BC.IFLT:
+	case Opcodes.IFLT:
 	    return "if "+lOpr.toReadableString()+"< 0 goto "+targets[1].toLabel();
-	case BC.IFGE:
+	case Opcodes.IFGE:
 	    return "if "+lOpr.toReadableString()+">=0 goto "+targets[1].toLabel();
-	case BC.IFGT:
+	case Opcodes.IFGT:
 	    return "if "+lOpr.toReadableString()+"> 0 goto "+targets[1].toLabel();
-	case BC.IFLE:
+	case Opcodes.IFLE:
 	    return "if "+lOpr.toReadableString()+"<=0 goto "+targets[1].toLabel();
-	case BC.IF_ICMPEQ:
+	case Opcodes.IF_ICMPEQ:
 	    return "if "+lOpr.toReadableString()+"=="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ICMPNE:
+	case Opcodes.IF_ICMPNE:
 	    return "if "+lOpr.toReadableString()+"!="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ICMPLT:
+	case Opcodes.IF_ICMPLT:
 	    return "if "+lOpr.toReadableString()+"<"+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ICMPGE:
+	case Opcodes.IF_ICMPGE:
 	    return "if "+lOpr.toReadableString()+">="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ICMPGT:
+	case Opcodes.IF_ICMPGT:
 	    return "if "+lOpr.toReadableString()+">"+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ICMPLE:
+	case Opcodes.IF_ICMPLE:
 	    return "if "+lOpr.toReadableString()+"<="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ACMPEQ:
+	case Opcodes.IF_ACMPEQ:
 	    return "if "+lOpr.toReadableString()+"=="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IF_ACMPNE:
+	case Opcodes.IF_ACMPNE:
 	    return "if "+lOpr.toReadableString()+"!="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
-	case BC.IFNULL:
+	case Opcodes.IFNULL:
 	    return "if "+lOpr.toReadableString()+"==null goto "+targets[1].toLabel();
-	case BC.IFNONNULL:
+	case Opcodes.IFNONNULL:
 	    return "if "+lOpr.toReadableString()+"!=null goto "+targets[1].toLabel();
 	}
 	return "<unknown branch>";
@@ -330,14 +330,14 @@ final  public class IMConditionalBranch extends IMBranch  {
 
 	lOpr.translate(result);
 	
-	if (bytecode < BC.IF_ICMPEQ) {
+	if (bytecode < Opcodes.IF_ICMPEQ) {
 	    if (!lOpr.isComperator()) {
 		/* no compare after add, sub needed */
 		code.test(result,result);
 	    }
 	    ip=code.getCurrentIP();
-	    code_condjump(bytecode-BC.IFEQ);
-	} else if (bytecode < BC.IF_ACMPEQ) {
+	    code_condjump(bytecode-Opcodes.IFEQ);
+	} else if (bytecode < Opcodes.IF_ACMPEQ) {
 	    if (rOpr.isRealConstant()) {
 		int value = ((IMConstant)rOpr).getIntValue();
 		if (value==0) {
@@ -352,8 +352,8 @@ final  public class IMConditionalBranch extends IMBranch  {
 		code.cmpl(rtmp,result);
 	    }
 	    ip=code.getCurrentIP();
-	    code_condjump(bytecode-BC.IF_ICMPEQ);
-	} else if (bytecode < BC.IFNULL) {
+	    code_condjump(bytecode-Opcodes.IF_ICMPEQ);
+	} else if (bytecode < Opcodes.IFNULL) {
 	    if (rOpr.isRealConstant()) {
 		int value = ((IMConstant)rOpr).getIntValue();
 		if (value==0) {
@@ -368,11 +368,11 @@ final  public class IMConditionalBranch extends IMBranch  {
 		code.cmpl(rtmp,result);
 	    }
 	    ip=code.getCurrentIP();
-	    code_condjump(bytecode-BC.IF_ACMPEQ);
+	    code_condjump(bytecode-Opcodes.IF_ACMPEQ);
 	} else {
 	    code.test(result,result);
 	    ip=code.getCurrentIP();
-	    code_condjump(bytecode-BC.IFNULL);
+	    code_condjump(bytecode-Opcodes.IFNULL);
 	}
 
 	// all Branches get a stackMap

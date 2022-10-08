@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=VMAbsoluteSTEntry
+comment1.params=name
+comment1.target=VMAbsoluteSTEntry(java.lang.String)
+numComments=2

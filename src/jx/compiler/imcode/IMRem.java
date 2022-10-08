@@ -14,7 +14,7 @@ final  public class IMRem extends IMBinaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.IREM);
+	datatype = BCBasicDatatype.INT + (bc-Opcodes.IREM);
     }
 
     public IMNode constant_folding() throws CompileException {

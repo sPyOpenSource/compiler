@@ -23,7 +23,7 @@ public class IMBitOperator extends IMBinaryOperator {
     }
 
     public static IMBitOperator getIMOperator(CodeContainer container,int bc,int bcpos) {
-	int shortOpr = (bc-BC.ISHL)/2;
+	int shortOpr = (bc-Opcodes.ISHL)/2;
 	switch (shortOpr) {
 	case 0:
 	    return new IMShiftLeft(container,bc,bcpos);

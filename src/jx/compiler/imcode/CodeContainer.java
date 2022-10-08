@@ -2,13 +2,12 @@ package jx.compiler.imcode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 import jx.zero.Debug;
 
 import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
 import jx.classfile.*;
-import jx.classfile.BC;
+import jx.classfile.Opcodes;
 
 import jx.compiler.CompileException;
 import jx.compiler.StatisticInfo;
@@ -237,7 +236,7 @@ public class CodeContainer implements NativeCodeContainer {
 
 	    ip = bcStream.getCurrentPosition() - 1;
 
-	    if (current == BC.WIDE) {
+	    if (current == Opcodes.WIDE) {
 		hasWidePrefix = true;
 		current = bcStream.readUnsignedByte();
 		ip = bcStream.getCurrentPosition();		
@@ -247,20 +246,20 @@ public class CodeContainer implements NativeCodeContainer {
 
 	    // should we implement the nop operation ?!?
 	    // public static const int BC.NOP 0x00;
-	    if (current == BC.NOP) {
+	    if (current == Opcodes.NOP) {
 		insertBCList(new IMNop(this, ip));
 		continue;
 	    }
 	    
 	    // immediate constants
-	    if (current >= BC.ACONST_NULL && current <= BC.SIPUSH) {
+	    if (current >= Opcodes.ACONST_NULL && current <= Opcodes.SIPUSH) {
 		IMConstant opr = null;
-		if (current <= BC.DCONST_1) {
+		if (current <= Opcodes.DCONST_1) {
 		    opr = new IMConstant(this,current,ip);
-		} else if (current == BC.BIPUSH) {
+		} else if (current == Opcodes.BIPUSH) {
 		    int bi = (int) bcStream.readByte();
 		    opr = new IMConstant(this, current, ip, bi);
-		} else if (current == BC.SIPUSH) {
+		} else if (current == Opcodes.SIPUSH) {
 		    int si = bcStream.readShort();
 		    opr = new IMConstant(this, current, ip, si);
 		}
@@ -270,10 +269,10 @@ public class CodeContainer implements NativeCodeContainer {
 	    
 	    // constants form constantpool
 	    // read constants from pool [index 1-2]
-	    if (current >= BC.LDC && current <= BC.LDC2_W) {
+	    if (current >= Opcodes.LDC && current <= Opcodes.LDC2_W) {
 		int cpIndex;
 
-		if (current == BC.LDC) cpIndex = bcStream.readUnsignedByte();
+		if (current == Opcodes.LDC) cpIndex = bcStream.readUnsignedByte();
 		else cpIndex = bcStream.readUnsignedShort();
 
 		ConstantPoolEntry cpEntry = cPool.constantEntryAt(cpIndex);
@@ -285,11 +284,11 @@ public class CodeContainer implements NativeCodeContainer {
 	    }
 
 	    // read local variables
-	    if (current >= BC.ILOAD && current <= BC.ALOAD_3) {
+	    if (current >= Opcodes.ILOAD && current <= Opcodes.ALOAD_3) {
 
 		IMReadLocalVariable opr;
 
-		if (current <= BC.ALOAD) {
+		if (current <= Opcodes.ALOAD) {
 		    int vi;
 
 		    if (hasWidePrefix) vi = bcStream.readUnsignedShort();
@@ -304,7 +303,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.IINC) {
+	    if (current == Opcodes.IINC) {
 		int vIndex, value;
 		
 		if (hasWidePrefix) {
@@ -319,16 +318,16 @@ public class CodeContainer implements NativeCodeContainer {
 	    }
 				
 	    // read array values
-	    if (current >= BC.IALOAD && current <= BC.SALOAD) {
+	    if (current >= Opcodes.IALOAD && current <= Opcodes.SALOAD) {
 		IMReadArray opr = new IMReadArray(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 	    
-	    if (current >= BC.ISTORE && current <= BC.ASTORE_3) {
+	    if (current >= Opcodes.ISTORE && current <= Opcodes.ASTORE_3) {
 		IMStoreLocalVariable opr;
 
-		if (current <= BC.ASTORE) {
+		if (current <= Opcodes.ASTORE) {
 		    int vi;
 		    if (hasWidePrefix)
 			vi = bcStream.readUnsignedShort();
@@ -342,13 +341,13 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current >= BC.IASTORE && current <= BC.SASTORE) {
+	    if (current >= Opcodes.IASTORE && current <= Opcodes.SASTORE) {
 		IMStoreArray opr = new IMStoreArray(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
-	    if ( current >= BC.POP && current <= BC.SWAP) {
+	    if ( current >= Opcodes.POP && current <= Opcodes.SWAP) {
 		IMStackOperation opr = new IMStackOperation(this, current, ip);
 		insertBCList(opr);
 		continue;
@@ -356,15 +355,15 @@ public class CodeContainer implements NativeCodeContainer {
 
 	    // arithmetic types
 	    // IMArithmetic
-	    if (current <= BC.DREM) {
+	    if (current <= Opcodes.DREM) {
 		IMOperator opr;
-		if (current <= BC.DADD) {
+		if (current <= Opcodes.DADD) {
 		    opr = new IMAdd(this, current, ip);
-		} else if (current <= BC.DSUB) {
+		} else if (current <= Opcodes.DSUB) {
 		    opr = new IMSub(this, current, ip);
-		} else if (current <= BC.DMUL) {
+		} else if (current <= Opcodes.DMUL) {
 		    opr = new IMMul(this, current, ip);
-		} else if (current <= BC.DDIV) {
+		} else if (current <= Opcodes.DDIV) {
 		    opr = new IMDiv(this, current, ip);
 		} else {
 		    opr = new IMRem(this, current, ip);
@@ -373,13 +372,13 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current <= BC.DNEG) {
+	    if (current <= Opcodes.DNEG) {
 		IMNeg opr = new IMNeg(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
-	    if (current <= BC.LXOR) {
+	    if (current <= Opcodes.LXOR) {
 		//IMBitOperator opr = new IMBitOperator(this,current,ip);
 		IMBitOperator opr = IMBitOperator.getIMOperator(this, current, ip);
 		insertBCList(opr);
@@ -387,23 +386,23 @@ public class CodeContainer implements NativeCodeContainer {
 	    }
 
 	    // type casting
-	    if (current <= BC.I2S) {
+	    if (current <= Opcodes.I2S) {
 		IMCast opr = new IMCast(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
 	    // compare long,float and double read spec carefuly !!!
-	    if (current <= BC.DCMPG) {
+	    if (current <= Opcodes.DCMPG) {
 		IMCompare opr = new IMCompare(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
 	    // conditinal branch
-	    if (current <= BC.IF_ACMPNE ||
-		current == BC.IFNULL ||
-		current == BC.IFNONNULL) {
+	    if (current <= Opcodes.IF_ACMPNE ||
+		current == Opcodes.IFNULL ||
+		current == Opcodes.IFNONNULL) {
 
 		int offset = bcStream.readShort();
 
@@ -417,10 +416,10 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 	    
-	    if (current == BC.GOTO || current == BC.GOTO_W) {
+	    if (current == Opcodes.GOTO || current == Opcodes.GOTO_W) {
 		int offset;
 
-		if (current == BC.GOTO) offset = bcStream.readShort();
+		if (current == Opcodes.GOTO) offset = bcStream.readShort();
 		else offset = bcStream.readInt();
 
 		des = createBasicBlock(ip, offset);
@@ -431,10 +430,10 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.JSR || current == BC.JSR_W) {
+	    if (current == Opcodes.JSR || current == Opcodes.JSR_W) {
 		int offset;
 
-		if (current == BC.JSR) offset = bcStream.readShort();
+		if (current == Opcodes.JSR) offset = bcStream.readShort();
 		else offset = bcStream.readInt();
 
 		des = createBasicBlock(ip, offset);
@@ -445,7 +444,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.RET) {
+	    if (current == Opcodes.RET) {
 		int vindex;
 
 		if (hasWidePrefix)
@@ -459,7 +458,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 		
-	    if (current == BC.TABLESWITCH) {
+	    if (current == Opcodes.TABLESWITCH) {
 
 		// skip padding zeroes
 		while (bcStream.getCurrentPosition() % 4 != 0) bcStream.readByte();
@@ -481,7 +480,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.LOOKUPSWITCH) {
+	    if (current == Opcodes.LOOKUPSWITCH) {
 		
 		// skip padding zeroes
 		while (bcStream.getCurrentPosition() % 4 != 0) bcStream.readByte();
@@ -503,25 +502,25 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current <= BC.RETURN) {		
+	    if (current <= Opcodes.RETURN) {		
 		IMReturn opr = new IMReturn(this, current, ip);
 		insertBCList(opr);		
 		continue;
 	    }
 
-	    if (current <= BC.PUTFIELD) {
+	    if (current <= Opcodes.PUTFIELD) {
 		int cpIndex = bcStream.readUnsignedShort();
 		FieldRefCPEntry cpEntry = cPool.fieldRefEntryAt(cpIndex);
 		IMNode opr;
 
                 switch (current) {
-                    case BC.GETFIELD:
+                    case Opcodes.GETFIELD:
                         opr = new IMGetField(this, current, ip, cpEntry);
                         break;
-                    case BC.GETSTATIC:
+                    case Opcodes.GETSTATIC:
                         opr = new IMGetStatic(this, current, ip, cpEntry);
                         break;
-                    case BC.PUTFIELD:
+                    case Opcodes.PUTFIELD:
                         opr = new IMPutField(this, current, ip, cpEntry);
                         break;
                     default:
@@ -533,19 +532,19 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current < BC.INVOKEINTERFACE) {
+	    if (current < Opcodes.INVOKEINTERFACE) {
 		int cpIndex = bcStream.readUnsignedShort();
 		MethodRefCPEntry cpEntry = cPool.methodRefEntryAt(cpIndex);
 
 		IMInvoke opr = null;
 		switch (current) {
-                    case BC.INVOKEVIRTUAL:
+                    case Opcodes.INVOKEVIRTUAL:
                         opr = new IMInvokeVirtual(this, current, ip, cpEntry);
                         break;
-                    case BC.INVOKESPECIAL:
+                    case Opcodes.INVOKESPECIAL:
                         opr = new IMInvokeSpecial(this, current, ip, cpEntry);
                         break;
-                    case BC.INVOKESTATIC:
+                    case Opcodes.INVOKESTATIC:
                         opr = new IMInvokeStatic(this, current, ip, cpEntry);
                         break;
                     default:
@@ -558,7 +557,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.INVOKEINTERFACE) {
+	    if (current == Opcodes.INVOKEINTERFACE) {
 		int cpIndex = bcStream.readUnsignedShort();
 
 		int args_size = bcStream.readByte(); // read usless arg length
@@ -573,9 +572,9 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 	    
-	    if (current == BC.UNUSED) continue;
+	    if (current == Opcodes.UNUSED) continue;
 
-	    if (current == BC.NEW) {
+	    if (current == Opcodes.NEW) {
 		int cpIndex = bcStream.readUnsignedShort();
 		ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);		
 		IMNew opr = new IMNew(this, current, ip, cpEntry);
@@ -583,7 +582,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.NEWARRAY) {
+	    if (current == Opcodes.NEWARRAY) {
 		int aType = bcStream.readByte();
 		switch (aType) {
 		case 4:
@@ -616,7 +615,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.ANEWARRAY) {
+	    if (current == Opcodes.ANEWARRAY) {
 		int cpIndex = bcStream.readUnsignedShort();
 		ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
 		IMNewObjArray opr = new IMNewObjArray(this, current, ip, cpEntry);
@@ -624,19 +623,19 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.ARRAYLENGTH) {
+	    if (current == Opcodes.ARRAYLENGTH) {
 		IMArrayLength opr = new IMArrayLength(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
-	    if (current == BC.ATHROW) {
+	    if (current == Opcodes.ATHROW) {
 		IMThrow opr = new IMThrow(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
-	    if (current == BC.CHECKCAST) {
+	    if (current == Opcodes.CHECKCAST) {
 		int cpIndex = bcStream.readUnsignedShort();
 		ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
 		
@@ -645,7 +644,7 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.INSTANCEOF) {
+	    if (current == Opcodes.INSTANCEOF) {
 		int cpIndex = bcStream.readUnsignedShort();
 		ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
 
@@ -654,15 +653,15 @@ public class CodeContainer implements NativeCodeContainer {
 		continue;
 	    }
 
-	    if (current == BC.MONITORENTER || 
-		current == BC.MONITOREXIT) {
+	    if (current == Opcodes.MONITORENTER || 
+		current == Opcodes.MONITOREXIT) {
 
 		IMMonitor opr = new IMMonitor(this, current, ip);
 		insertBCList(opr);
 		continue;
 	    }
 
-	    if (current == BC.MULTIANEWARRAY) {
+	    if (current == Opcodes.MULTIANEWARRAY) {
 		int cpIndex = bcStream.readUnsignedShort();
 		int dim     = bcStream.readUnsignedByte();
 		ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
@@ -784,14 +783,12 @@ public class CodeContainer implements NativeCodeContainer {
 	    if (inode.isBasicBlock()) {
 		basicBlock = (IMBasicBlock)inode;
 	    } else if (inode.isInstruction()) {
-
 		if (inode.isThrow()) basicBlock.setLowPriorityPath();
 
 		if (inode.isBlockVariable() && inode.next!=null) optPatternBlockVar((IMStoreBlockVariable)inode);
 
 		if (experimentalCode && opts.doOptimize()) {
-		  if (inode instanceof IMGoto) {
-		    IMGoto igoto = (IMGoto)inode;
+		  if (inode instanceof IMGoto igoto) {
 		    IMBasicBlock targets[] = igoto.getTargets();
 		    
 		    /* nur 91 faelle
@@ -835,9 +832,7 @@ public class CodeContainer implements NativeCodeContainer {
 			if (inode.isEndOfBasicBlock() &&
 			    inode.isBranch() &&
 			    inode.next.isLowPriorityPath()) {
-			    
-			    if (inode instanceof IMConditionalBranch) {
-				IMConditionalBranch bnode = (IMConditionalBranch)inode;
+			    if (inode instanceof IMConditionalBranch bnode) {
 				IMBasicBlock succ[] = bnode.getTargets();
 				
 				if (opts.doVerbose("path"))
@@ -908,9 +903,7 @@ public class CodeContainer implements NativeCodeContainer {
 		      remove b0 if b0 is dead
 		    */
 		    
-		    if (bvar.next instanceof IMStoreLocalVariable) {
-			IMStoreLocalVariable lstore = (IMStoreLocalVariable)bvar.next;
-			
+		    if (bvar.next instanceof IMStoreLocalVariable lstore) {
 			if (lstore.getOperant().isBlockVariable()) {
 			    
 			    lstore.prev = bvar.prev;
@@ -919,16 +912,13 @@ public class CodeContainer implements NativeCodeContainer {
 			    lstore.setOperant(inew);
 			}
 		    }				
-		    if (bvar.next instanceof IMThrow) {
-			IMThrow lthrow = (IMThrow)bvar.next;
-			
+		    if (bvar.next instanceof IMThrow lthrow) {
 			lthrow.prev = bvar.prev;
 			lthrow.prev.next = lthrow;
 			
 			lthrow.setOperant(inew);
 		    }
-		    if (bvar.next instanceof IMReturn) {
-			IMReturn  ret = (IMReturn) bvar.next;
+		    if (bvar.next instanceof IMReturn ret) {
 			IMOperant ropr = ret.getOperant();
 			
 			if (ropr!=null && ropr.isBlockVariable()) {
@@ -1191,7 +1181,6 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void translate() throws CompileException {
-	Reg result;
 	IMNode node = imCodeStart;
 
 	//======================================
@@ -1274,7 +1263,6 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void insertBefor(IMNode node) {
-	
 	if (imCodeStart == null) {
 	    node.next = null;	    
 	    imCodeStart = node;
@@ -1301,7 +1289,7 @@ public class CodeContainer implements NativeCodeContainer {
 	    current.prev.next = node;
 	    current.prev      = node;
 	}
-    }	    
+    }
 
     public void insertTop(IMNode node) {
 	if (node != null) {

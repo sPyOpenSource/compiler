@@ -13,7 +13,7 @@ final  public class IMMul extends IMBinaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.IMUL);
+	datatype = BCBasicDatatype.INT + (bc-Opcodes.IMUL);
     }
 
     public boolean isMul() {return true;}

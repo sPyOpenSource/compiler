@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IrLabel
+comment1.params=st
+comment1.target=void\ parse(java.lang.String)
+comment2.params=
+comment2.target=j2ll.graph.IrVariable\ getLeft()
+comment3.params=old\ newv
+comment3.target=void\ replaceVarName(j2ll.graph.IrVariable,\ j2ll.graph.IrVariable)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

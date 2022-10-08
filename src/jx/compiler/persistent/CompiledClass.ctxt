@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=CompiledClass
+comment1.params=className\ superName\ objectSize\ classSize\ methods
+comment1.target=CompiledClass(java.lang.String,\ java.lang.String,\ int,\ int,\ CompiledMethod[])
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=CompiledMethod[]\ getMethods()
+numComments=4

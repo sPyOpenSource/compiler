@@ -20,8 +20,8 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	tag |= IMNode.VARIABLE; 
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype   = BCBasicDatatype.INT + (bc-BC.ILOAD_0) / 4;
-	ivar   = (bc-BC.ILOAD_0) & 0x03;
+	datatype   = BCBasicDatatype.INT + (bc-Opcodes.ILOAD_0) / 4;
+	ivar   = (bc-Opcodes.ILOAD_0) & 0x03;
         isThisPointer = ivar == 0;
     }
         
@@ -30,7 +30,7 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	tag |= IMNode.VARIABLE; 
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype   = BCBasicDatatype.INT + (bc-BC.ILOAD);
+	datatype   = BCBasicDatatype.INT + (bc-Opcodes.ILOAD);
 	ivar   = index;
         isThisPointer = ivar == 0;
     }

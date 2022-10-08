@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=IrSentence
+comment1.params=
+comment1.target=IrSentence()
+comment2.params=
+comment2.target=int\ getInstType()
+comment3.params=
+comment3.target=int\ getStackSize()
+comment4.params=
+comment4.target=IrVariable\ getLeft()
+comment5.params=st
+comment5.target=void\ parse(java.lang.String)
+comment6.params=old\ newv
+comment6.target=void\ replaceVarName(IrVariable,\ IrVariable)
+comment7.params=str
+comment7.target=IrSentence\ parseInst(java.lang.String)
+comment8.params=s\ regex
+comment8.target=java.lang.String[]\ split(java.lang.String,\ java.lang.String)
+comment8.text=\n\ split\ code\ line\ ,\n\ ex\:\ \ \ %__tmpc6\ \=\ bitcast\ {i32,\ {i32,\ [0\ x\ i16]}*,\ i32,\ i32}*\ %stack1\ to\ {i32,\ [0\ x\ i16]}*\n\ the\ "{i32,\ {i32,\ [0\ x\ i16]}*,\ i32,\ i32}*"\ and\ "{i32,\ [0\ x\ i16]}*"\ as\ a\ whole\ entry\n\ <p>\n\ the\ method\ can\ process\ 2\ level\ '{{}}'\n\n\ @param\ s\n\ @param\ regex\n\ @return\n
+comment9.params=deep
+comment9.target=java.lang.String\ toString(int)
+numComments=10
