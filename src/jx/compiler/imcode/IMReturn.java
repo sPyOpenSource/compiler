@@ -27,7 +27,7 @@ final public class IMReturn extends IMBranch  {
     @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException { 
 	ownBasicBlock = basicBlock;
-	if (bytecode==BC.RETURN) return this;
+	if (bytecode==Opcodes.RETURN) return this;
 	retValue = stack.pop();
 	datatype = retValue.getDatatype();
 	return this;

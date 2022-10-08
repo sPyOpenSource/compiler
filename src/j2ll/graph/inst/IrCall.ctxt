@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IrCall
+comment1.params=
+comment1.target=int\ getStackSize()
+comment2.params=p
+comment2.target=void\ parse(java.lang.String)
+comment3.params=
+comment3.target=j2ll.graph.IrVariable\ getLeft()
+comment4.params=old\ newv
+comment4.target=void\ replaceVarName(j2ll.graph.IrVariable,\ j2ll.graph.IrVariable)
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

@@ -17,7 +17,7 @@ final public class IMReadArray extends IMOperant {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype   = BCBasicDatatype.INT + (bc-BC.IALOAD);
+	datatype   = BCBasicDatatype.INT + (bc-Opcodes.IALOAD);
     }
 
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {

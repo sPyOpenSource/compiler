@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=JSignature
+comment0.text=\n\ Java\ Signature.\ Example\:\ (IDJ)V\n
+comment1.params=resolver\ str
+comment1.target=JSignature(Resolver,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getJavaArgs()
+comment3.params=
+comment3.target=java.lang.String\ getJavaResult()
+comment4.params=
+comment4.target=java.util.List\ getArgs()
+comment5.params=
+comment5.target=java.lang.String\ getResult()
+comment6.params=className\ methodName
+comment6.target=java.lang.String\ getID(java.lang.String,\ java.lang.String)
+numComments=7

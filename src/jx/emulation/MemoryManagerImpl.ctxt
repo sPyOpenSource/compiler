@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=MemoryManagerImpl
+comment1.params=size
+comment1.target=jx.zero.Memory\ alloc(int)
+comment2.params=size\ bytes
+comment2.target=jx.zero.Memory\ allocAligned(int,\ int)
+comment3.params=start\ size
+comment3.target=jx.zero.DeviceMemory\ allocDeviceMemory(int,\ int)
+comment4.params=
+comment4.target=int\ getTotalMemory()
+comment4.text=query\ global\ status\ information
+comment5.params=
+comment5.target=int\ getTotalFreeMemory()
+comment6.params=
+comment6.target=int\ getFreeHeapMemory()
+comment6.text=query\ domain\ specific\ status\ information
+numComments=7

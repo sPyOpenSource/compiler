@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=ZipEntry
+comment1.params=
+comment1.target=boolean\ isDirectory()
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=int\ getSize()
+comment4.params=
+comment4.target=jx.zero.ReadOnlyMemory\ getData()
+numComments=5

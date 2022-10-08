@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Resolver
+comment0.text=\n\ External\ class\ resolver\n
+comment1.params=str
+comment1.target=java.lang.String\ resolve(java.lang.String)
+comment2.params=str
+comment2.target=java.lang.String\ resolveStruct(java.lang.String)
+comment3.params=
+comment3.target=java.util.Set\ getClasses()
+numComments=4

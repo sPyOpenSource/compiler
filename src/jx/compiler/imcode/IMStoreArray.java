@@ -19,7 +19,7 @@ final public class IMStoreArray extends IMOperant  {
 	super(container);
 	bytecode    = bc;
 	bcPosition  = bcpos;
-	datatype    = BCBasicDatatype.INT + (bc-BC.IASTORE);
+	datatype    = BCBasicDatatype.INT + (bc-Opcodes.IASTORE);
     }
 
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {

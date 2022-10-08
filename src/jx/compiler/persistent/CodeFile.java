@@ -6,21 +6,18 @@
  */
 package jx.compiler.persistent;
 
-import jx.classfile.*; 
-import jx.zero.Debug;
-
-import java.util.ArrayList;
-import java.util.Enumeration;
-
 import java.io.IOException;
 import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Enumeration;
 
 import jx.compiler.*;
 import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
 import jx.collections.Iterator;
 import jx.compspec.MetaInfo;
-
+import jx.classfile.*; 
+import jx.zero.Debug;
 
     /**
      * Format of codefile:
@@ -41,7 +38,7 @@ import jx.compspec.MetaInfo;
 
      * CLASSHEADERx      ::= CLASSNAME SUPERCLASSNAME ISINTERFACE 
                              NUMBER_OF_IMPLEMENTED_INTERFACES INTERFACENAME*
-			     NUMBER_OF_METHODS INSTANCE_SIZE INSTANCE_FIELDMAP FIELDLIST STATICFIELDS_SIZE BYTECODESIZE VTABLE METHODHEADER*
+                             NUMBER_OF_METHODS INSTANCE_SIZE INSTANCE_FIELDMAP FIELDLIST STATICFIELDS_SIZE BYTECODESIZE VTABLE METHODHEADER*
      * CLASSNAME          ::= string
      * ISINTERFACE        ::= int (0=class, 1=interface)
      * NUMBER_OF_IMPLEMENTED_INTERFACES ::= int
@@ -98,38 +95,38 @@ public class CodeFile {
      */
 
     public CodeFile(CompilerOptions opts, MetaInfo meta) {
-	this.opts = opts;
-	this.meta = meta;
+    this.opts = opts;
+    this.meta = meta;
     }
 
     //public void write(ExtendedDataOutputStream out, ClassStore classStore, CompilerOptions opts) throws IOException {
     public void write(ExtendedDataOutputStream out, ClassStore classStore) throws IOException {
-	this.out = out;
+    this.out = out;
         
         //
         // write header
         //
 
-	out.writeInt(VERSION);
-	out.writeString(opts.codeType());
+    out.writeInt(VERSION);
+    out.writeString(opts.codeType());
 
-	/*
-	  symbol - base - table
-	*/
+    /*
+      symbol - base - table
+    */
 
-	out.writeInt(0);
+    out.writeInt(0);
 
-	//
-	//  needed libs
-	//
-	
-	String[] libs = opts.getNeededLibs();
-	if (libs == null) {
-	    //	    Debug.out.println("NO LIBS NEEDED");
-	  out.writeInt(0);
-	} else {
-	    //	    Debug.out.println("NEEDED LIBS");
-	    out.writeInt(libs.length);
+    //
+    //  needed libs
+    //
+    
+    String[] libs = opts.getNeededLibs();
+    if (libs == null) {
+        // Debug.out.println("NO LIBS NEEDED");
+      out.writeInt(0);
+    } else {
+        // Debug.out.println("NEEDED LIBS");
+        out.writeInt(libs.length);
             for (String lib : libs) {
                 try {
                     //Debug.out.println("\""+libs[i]+"\"");
@@ -138,61 +135,61 @@ public class CodeFile {
                     throw new Error(ex.getClass().getName());
                 }
             }
-	}
+    }
 
-	//
-	//  metainfo
-	//
-	String []vars = meta.getVars();
-	out.writeInt(vars.length);
+    //
+    //  metainfo
+    //
+    String []vars = meta.getVars();
+    out.writeInt(vars.length);
         for (String var : vars) {
             System.out.println("  " + var + "   = " + meta.getVar(var));
             out.writeString(var);
             out.writeString(meta.getVar(var));
         }
 
-	//
-	// write string table
-	//
+    //
+    // write string table
+    //
 
-	StringTable stringTable = new StringTable();
-	Iterator iter = classStore.iterator();
-	while (iter.hasNext()) {
-	    BCClass c = (BCClass) iter.next();
-	    collectStrings(c,stringTable);
-	}
-	stringTable.writeStringTable(out);
+    StringTable stringTable = new StringTable();
+    Iterator iter = classStore.iterator();
+    while (iter.hasNext()) {
+        BCClass c = (BCClass) iter.next();
+        collectStrings(c,stringTable);
+    }
+    stringTable.writeStringTable(out);
 
-	//
-	//  vmsupport-base-table
-	//
-	
-	VMSupportSTEntry.writeSymTable(out);
+    //
+    //  vmsupport-base-table
+    //
+    
+    VMSupportSTEntry.writeSymTable(out);
 
-	//
-	// write header
-	//
-	  
-	out.writeInt(classStore.size());
-	iter = classStore.iterator();
-	while(iter.hasNext()) {
-	    BCClass c = (BCClass) iter.next();
-	    saveToFile(c,stringTable,true);
-	}
+    //
+    // write header
+    //
+      
+    out.writeInt(classStore.size());
+    iter = classStore.iterator();
+    while(iter.hasNext()) {
+        BCClass c = (BCClass) iter.next();
+        saveToFile(c,stringTable,true);
+    }
 
-	//
-        // write code
-	//
+    //
+    // write code
+    //
 
-	iter = classStore.iterator();
-	while(iter.hasNext()) {
-	    BCClass c = (BCClass) iter.next();
-	    saveToFile(c,stringTable,false);
-	}
+    iter = classStore.iterator();
+    while(iter.hasNext()) {
+        BCClass c = (BCClass) iter.next();
+        saveToFile(c,stringTable,false);
+    }
 
-	out.writeChecksum();
+    out.writeChecksum();
 
-	if (verbose) Debug.out.println("**********Finished saving!");
+    if (verbose) Debug.out.println("**********Finished saving!");
     }
 
     /**
@@ -202,61 +199,61 @@ public class CodeFile {
      * @throws java.lang.Exception
      */
     public ArrayList read(ExtendedDataInputStream in) throws Exception {
-	this.in = in;
+    this.in = in;
 
-	ArrayList all = new ArrayList();
-	
-	// 
-        // read header
-	//
+    ArrayList all = new ArrayList();
+    
+    // 
+    // read header
+    //
 
-	if (in.readInt() != VERSION) {
-	    Debug.throwError("Wrong version");
-	}
-	String codeType = in.readString();
-	int size = in.readInt();
-	for(int i = 0; i < size; i++) {
-	    CompiledClass compiledClass = readHeaderFromFile();
-	    all.add(compiledClass);
-	}
+    if (in.readInt() != VERSION) {
+        Debug.throwError("Wrong version");
+    }
+    String codeType = in.readString();
+    int size = in.readInt();
+    for(int i = 0; i < size; i++) {
+        CompiledClass compiledClass = readHeaderFromFile();
+        all.add(compiledClass);
+    }
 
-	//
-	// read code
-	//
+    //
+    // read code
+    //
 
-	for(int i = 0; i < size; i++) {
-	    readCodeFromFile((CompiledClass)all.get(i));
-	}	
-	return all;
+    for(int i = 0; i < size; i++) {
+        readCodeFromFile((CompiledClass)all.get(i));
+    }    
+    return all;
     }
 
     private void collectStrings(BCClass aClass, StringTable strTable) {
-	BinaryCode mc;
-	BCMethod   method;
+    BinaryCode mc;
+    BCMethod   method;
 
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+    BCClassInfo info = (BCClassInfo)aClass.getInfo();
 
-	strTable.register(aClass.getClassName());
-	if (info.superClass != null)
-	    strTable.register(info.superClass.getClassName());
-	else
-	    strTable.register("");
+    strTable.register(aClass.getClassName());
+    if (info.superClass != null)
+        strTable.register(info.superClass.getClassName());
+    else
+        strTable.register("");
 
         for (BCClass intf : info.interfaces)
             strTable.register(intf.getClassName());
 
-	info.objectLayout.registerStrings(strTable);
-	info.classLayout.registerStrings(strTable);
-	info.methodTable.registerStrings(strTable);
+    info.objectLayout.registerStrings(strTable);
+    info.classLayout.registerStrings(strTable);
+    info.methodTable.registerStrings(strTable);
 
-	int len = info.nativeCode.length;
-	for(int i = 0; i < len; i++) {
-	    method = info.methods[i];
+    int len = info.nativeCode.length;
+    for(int i = 0; i < len; i++) {
+        method = info.methods[i];
 
-	    strTable.register(method.getName());
-	    strTable.register(method.getSignature());
+        strTable.register(method.getName());
+        strTable.register(method.getSignature());
 
-	    if (!method.isAbstract() && info.nativeCode[i] != null) {
+        if (!method.isAbstract() && info.nativeCode[i] != null) {
                 mc     = info.nativeCode[i].getMachineCode();
                 ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
                 Enumeration elements = Collections.enumeration(unresolvedAddresses);
@@ -265,47 +262,47 @@ public class CodeFile {
                     entry.registerStrings(strTable);
                 }
             }
-	}
+    }
     }
 
     private void saveToFile(BCClass aClass, StringTable strTable, boolean saveHeader) throws IOException {
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
-	if (saveHeader) { 
-	    if (verbose) Debug.out.println("***** Saving header class: " + aClass.getClassName());
-	    //out.writeString(aClass.getClassName());
-	    strTable.writeStringID(out,aClass.getClassName());
-	    if (info.superClass != null) {
-		//out.writeString(info.superClass.getClassName());
-		strTable.writeStringID(out,info.superClass.getClassName());
-	    } else {
-		//out.writeString("");
-		strTable.writeStringID(out,"");
-	    }
-	    if (aClass.isInterface())
-		out.writeInt(1); // isinterface
-	    else
-		out.writeInt(0); // isinterface
-	    out.writeInt(info.interfaces.length); // number of implemented interfaces
+    BCClassInfo info = (BCClassInfo)aClass.getInfo();
+    if (saveHeader) { 
+        if (verbose) Debug.out.println("***** Saving header class: " + aClass.getClassName());
+        //out.writeString(aClass.getClassName());
+        strTable.writeStringID(out,aClass.getClassName());
+        if (info.superClass != null) {
+        //out.writeString(info.superClass.getClassName());
+        strTable.writeStringID(out,info.superClass.getClassName());
+        } else {
+        //out.writeString("");
+        strTable.writeStringID(out,"");
+        }
+        if (aClass.isInterface())
+        out.writeInt(1); // isinterface
+        else
+        out.writeInt(0); // isinterface
+        out.writeInt(info.interfaces.length); // number of implemented interfaces
             for (BCClass intf : info.interfaces) {
                 //out.writeString(info.interfaces[i].getClassName());
                 strTable.writeStringID(out, intf.getClassName());
             }
-	    out.writeInt(info.nativeCode.length);
-	    out.writeInt(info.objectLayout.wordsNeeded());
-	    // fieldmap
-	    info.objectLayout.writeFieldMap(out);
-	    // fieldlist
-	    info.objectLayout.writeFieldList(out,strTable);
-	    // statics
-	    out.writeInt(info.classLayout.wordsNeeded());
-	    info.classLayout.writeFieldMap(out);
+        out.writeInt(info.nativeCode.length);
+        out.writeInt(info.objectLayout.wordsNeeded());
+        // fieldmap
+        info.objectLayout.writeFieldMap(out);
+        // fieldlist
+        info.objectLayout.writeFieldList(out,strTable);
+        // statics
+        out.writeInt(info.classLayout.wordsNeeded());
+        info.classLayout.writeFieldMap(out);
 
-	    /* accumulated bytecode size */
-	    //Debug.out.println("BYTECODES-CLASS-START "+aClass.getClassName());
-	    if (aClass.isInterface()) {
-		out.writeInt(0); // no bytecode in an interface
-	    } else {
-		int bcsize=0;
+        /* accumulated bytecode size */
+        //Debug.out.println("BYTECODES-CLASS-START "+aClass.getClassName());
+        if (aClass.isInterface()) {
+        out.writeInt(0); // no bytecode in an interface
+        } else {
+        int bcsize=0;
                 for (BCMethod method : info.methods) {
                     if (method instanceof BCMethodWithCode) {
                         BCMethodWithCode b = (BCMethodWithCode) method;
@@ -313,220 +310,220 @@ public class CodeFile {
                         //Debug.out.println("BYTECODES of "+b.getName()+b.getSignature()+":"+b.getByteCodeSize());
                     }
                 }
-		//Debug.out.println("BYTECODES-CLASS "+aClass.getClassName()+"="+bcsize);
-		out.writeInt(bcsize); 
-	    }
+        //Debug.out.println("BYTECODES-CLASS "+aClass.getClassName()+"="+bcsize);
+        out.writeInt(bcsize); 
+        }
 
-	    info.methodTable.serialize(out,strTable);
-	}
-	int len = info.nativeCode.length;
-	for(int i = 0; i < len; i++) {
-	    //for (int i=0;i<info.methods.length;i++) {
-	    if (saveHeader) {		
-	        if (verbose) Debug.out.println("**  Saving header method " + i + "/" + len + " "
-					       + aClass.getClassName() + "." + info.methods[i].getName());
-		saveHeaderToFile(strTable, aClass.getClassName(), info.methods[i].getName(), 
-				 info.methods[i].getSignature(), info.nativeCode[i], info.methods[i], info);
-	    } else {
-	        if (verbose) Debug.out.println("**  Saving code method " + i + " " + info.methods[i].getName());
-		saveCodeToFile(info.methods[i], info.nativeCode[i]);
-	    }
-	}
+        info.methodTable.serialize(out,strTable);
+    }
+    int len = info.nativeCode.length;
+    for(int i = 0; i < len; i++) {
+        //for (int i=0;i<info.methods.length;i++) {
+        if (saveHeader) {        
+            if (verbose) Debug.out.println("**  Saving header method " + i + "/" + len + " "
+                           + aClass.getClassName() + "." + info.methods[i].getName());
+        saveHeaderToFile(strTable, aClass.getClassName(), info.methods[i].getName(), 
+                 info.methods[i].getSignature(), info.nativeCode[i], info.methods[i], info);
+        } else {
+            if (verbose) Debug.out.println("**  Saving code method " + i + " " + info.methods[i].getName());
+        saveCodeToFile(info.methods[i], info.nativeCode[i]);
+        }
+    }
     }
 
     private void saveHeaderToFile(StringTable strTable, String className, String methodName, String methodType,
-				  NativeCodeContainer nativeCode, BCMethod method, BCClassInfo info) {
-	BinaryCode mc = null;
+                  NativeCodeContainer nativeCode, BCMethod method, BCClassInfo info) {
+    BinaryCode mc = null;
 
-	try {
-	    //out.writeString(methodName);
-	    //out.writeString(methodType);
-	    strTable.writeStringID(out,methodName);
-	    strTable.writeStringID(out,methodType);
+    try {
+        //out.writeString(methodName);
+        //out.writeString(methodType);
+        strTable.writeStringID(out,methodName);
+        strTable.writeStringID(out,methodType);
 
-	    if (method.isAbstract()) {
-		out.writeInt(0);
-		out.writeInt(0);
-	    } else {
-		out.writeInt(nativeCode.getLocalVarSize());
-		mc = nativeCode.getMachineCode(); 
-		int numCodeBytes = mc.getNumCodeBytes();
-		if (numCodeBytes <= 0)
-		    Debug.throwError("Fatal error: Number of code bytes <=0");
-		out.writeInt(numCodeBytes);
-	    }
+        if (method.isAbstract()) {
+        out.writeInt(0);
+        out.writeInt(0);
+        } else {
+        out.writeInt(nativeCode.getLocalVarSize());
+        mc = nativeCode.getMachineCode(); 
+        int numCodeBytes = mc.getNumCodeBytes();
+        if (numCodeBytes <= 0)
+            Debug.throwError("Fatal error: Number of code bytes <=0");
+        out.writeInt(numCodeBytes);
+        }
 
-	    // write argument map
-	    int[] argtypes = method.getArgumentTypes();
-	    TypeMap.writeMap(out, argtypes);
+        // write argument map
+        int[] argtypes = method.getArgumentTypes();
+        TypeMap.writeMap(out, argtypes);
 
-	    // write return type (0=numeric; 1=reference)
-	    if (method.returnsReference())
-		out.writeInt(1);
-	    else
-		out.writeInt(0);
+        // write return type (0=numeric; 1=reference)
+        if (method.returnsReference())
+        out.writeInt(1);
+        else
+        out.writeInt(0);
 
-	    // write flags (static, etc.)
-	    if (method.isStatic())
-		out.writeInt(1);
-	    else
-		out.writeInt(0);
+        // write flags (static, etc.)
+        if (method.isStatic())
+        out.writeInt(1);
+        else
+        out.writeInt(0);
 
-	    if (method.isAbstract() || nativeCode==null) { 
-		out.writeInt(0); // number of symbols
-		out.writeInt(0); // number of lineinfos
-		out.writeInt(0); // number of lineinfos
-	    } else {
-		ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
-		int numEntries = 0;
-		Enumeration elements = Collections.enumeration(unresolvedAddresses); 
-		while (elements.hasMoreElements()) {
-		    SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
-		    //Debug.out.println("* SymTableEntry:");
-		    //entry.dump();
-		    if(! entry.isResolved()) {
-			if ((entry instanceof UnresolvedJump)
-			    && entry.isRelative()) {
-			    Debug.out.println("ERROR: relative Jump Entry not resolved: Class: "+className+", Method: "+method);
-			    entry.dump();
-			    Debug.throwError("unresolved jump: "+entry);
-			}
-			numEntries++;
-		    }
-		}
-		out.writeInt(numEntries);
-		elements = Collections.enumeration(unresolvedAddresses); 
-		while (elements.hasMoreElements()) {
-		    SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
-		    if(entry.isResolved()) {
-			//Debug.out.println("Skipping resolved entry: "+entry);
-		    } else {
-			//Debug.out.println("Wrinting to file: "+entry);
-			entry.writeEntry(out); 
-		    }
-		}
-		// write  nativecode -> bytecode mapping
-		if (! opts.isOption("noBytecodeNumbers")) {
-		    ArrayList lineTable = nativeCode.getInstructionTable();
-		    out.writeInt(lineTable.size());
-		    for(int k = 0; k < lineTable.size(); k++) {
-			int[] l = (int[])lineTable.get(k);
-			out.writeInt(l[0]);
-			out.writeInt(l[1]);
-			out.writeInt(l[2]);
-		    }
-		} else { 
-		    out.writeInt(0); // no lineinfos available
-		}
-		// write  bytecode -> sourcecode mapping
-		LineAttributeData lineNumbers[] = method.getLineNumberTable();
-		//Debug.out.println("LINENUMBERS: "+lineNumbers.length);
-		if (lineNumbers != null && ! opts.isOption("noLineNumbers")) {
-		    out.writeInt(lineNumbers.length); // number of lineinfos
+        if (method.isAbstract() || nativeCode==null) { 
+        out.writeInt(0); // number of symbols
+        out.writeInt(0); // number of lineinfos
+        out.writeInt(0); // number of lineinfos
+        } else {
+        ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
+        int numEntries = 0;
+        Enumeration elements = Collections.enumeration(unresolvedAddresses); 
+        while (elements.hasMoreElements()) {
+            SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
+            //Debug.out.println("* SymTableEntry:");
+            //entry.dump();
+            if(! entry.isResolved()) {
+            if ((entry instanceof UnresolvedJump)
+                && entry.isRelative()) {
+                Debug.out.println("ERROR: relative Jump Entry not resolved: Class: "+className+", Method: "+method);
+                entry.dump();
+                Debug.throwError("unresolved jump: "+entry);
+            }
+            numEntries++;
+            }
+        }
+        out.writeInt(numEntries);
+        elements = Collections.enumeration(unresolvedAddresses); 
+        while (elements.hasMoreElements()) {
+            SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
+            if(entry.isResolved()) {
+            //Debug.out.println("Skipping resolved entry: "+entry);
+            } else {
+            //Debug.out.println("Wrinting to file: "+entry);
+            entry.writeEntry(out); 
+            }
+        }
+        // write  nativecode -> bytecode mapping
+        if (! opts.isOption("noBytecodeNumbers")) {
+            ArrayList lineTable = nativeCode.getInstructionTable();
+            out.writeInt(lineTable.size());
+            for(int k = 0; k < lineTable.size(); k++) {
+            int[] l = (int[])lineTable.get(k);
+            out.writeInt(l[0]);
+            out.writeInt(l[1]);
+            out.writeInt(l[2]);
+            }
+        } else { 
+            out.writeInt(0); // no lineinfos available
+        }
+        // write  bytecode -> sourcecode mapping
+        LineAttributeData lineNumbers[] = method.getLineNumberTable();
+        //Debug.out.println("LINENUMBERS: "+lineNumbers.length);
+        if (lineNumbers != null && ! opts.isOption("noLineNumbers")) {
+            out.writeInt(lineNumbers.length); // number of lineinfos
                     for (LineAttributeData lineNumber : lineNumbers) {
                         out.writeInt(lineNumber.startBytecodepos);
                         out.writeInt(lineNumber.lineNumber);
                     }
-		} else {
-		    out.writeInt(0); // no lineinfos available
-		}
-	    }
-	} catch (IOException e) {
-	    Debug.throwError("Exception " + e.getClass().getName() + " caught while writting code file.");
-	}
+        } else {
+            out.writeInt(0); // no lineinfos available
+        }
+        }
+    } catch (IOException e) {
+        Debug.throwError("Exception " + e.getClass().getName() + " caught while writting code file.");
+    }
 
     }
     private void saveCodeToFile(BCMethod method, 
-				//IMCode nativeCode) {
-				NativeCodeContainer nativeCode) {
-	try {
-	    if (method.isAbstract() || nativeCode==null) {
-		return;
-	    }
-	    BinaryCode mc = nativeCode.getMachineCode();
-	    byte[] code = mc.getCode();
-	    int numCodeBytes = mc.getNumCodeBytes();
-	    // apply the symbols that already are resolved
-	    ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
-	    Enumeration elements = Collections.enumeration(unresolvedAddresses); 
-	    while (elements.hasMoreElements()) {
-		SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement();
-		if(entry.isRelative()) {
-		    if(entry.isResolved()) {
-			// this entry must be applied before the code is saved
-			entry.apply(code, 0);
-		    } 
-		}
-	    }
+                //IMCode nativeCode) {
+                NativeCodeContainer nativeCode) {
+    try {
+        if (method.isAbstract() || nativeCode==null) {
+        return;
+        }
+        BinaryCode mc = nativeCode.getMachineCode();
+        byte[] code = mc.getCode();
+        int numCodeBytes = mc.getNumCodeBytes();
+        // apply the symbols that already are resolved
+        ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
+        Enumeration elements = Collections.enumeration(unresolvedAddresses); 
+        while (elements.hasMoreElements()) {
+        SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement();
+        if(entry.isRelative()) {
+            if(entry.isResolved()) {
+            // this entry must be applied before the code is saved
+            entry.apply(code, 0);
+            } 
+        }
+        }
 
-	    out.write(code,0,numCodeBytes);
-	    //Disassembler disass = new Disassembler(code, 0, numCodeBytes);
-	    //disass.disasm();
-	} catch(IOException e) {
-	    Debug.throwError("Error writing code file");
-	}
+        out.write(code,0,numCodeBytes);
+        //Disassembler disass = new Disassembler(code, 0, numCodeBytes);
+        //disass.disasm();
+    } catch(IOException e) {
+        Debug.throwError("Error writing code file");
+    }
     }
 
     private CompiledClass readHeaderFromFile() throws Exception {
-	String className = in.readString();
-	String superName = in.readString();
-	///Debug.out.println(className + " - " +superName);
-	int isInterface = in.readInt();
-	int numberOfMethods = in.readInt();
-	int vtableSize = in.readInt();
-	int objectSize = in.readInt();
-	FieldLayout.readMap(in); // object map
-	int classSize = in.readInt();
-	FieldLayout.readMap(in); // statics map
-	int numberOfBytecodes = in.readInt();
-	//Debug.out.println("Ml " +numberOfMethods);	
-	CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
-	for(int i = 0; i < numberOfMethods; i++) {
-	    methods[i] = readMethodHeaderFromFile();
-	}
-	CompiledClass compiledClass = new CompiledClass(className, superName, objectSize, classSize, methods);
-	return compiledClass;
+    String className = in.readString();
+    String superName = in.readString();
+    ///Debug.out.println(className + " - " +superName);
+    int isInterface = in.readInt();
+    int numberOfMethods = in.readInt();
+    int vtableSize = in.readInt();
+    int objectSize = in.readInt();
+    FieldLayout.readMap(in); // object map
+    int classSize = in.readInt();
+    FieldLayout.readMap(in); // statics map
+    int numberOfBytecodes = in.readInt();
+    //Debug.out.println("Ml " +numberOfMethods);    
+    CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
+    for(int i = 0; i < numberOfMethods; i++) {
+        methods[i] = readMethodHeaderFromFile();
+    }
+    CompiledClass compiledClass = new CompiledClass(className, superName, objectSize, classSize, methods);
+    return compiledClass;
     }
 
     private CompiledMethod readMethodHeaderFromFile() throws Exception {
-	String methodName = in.readString();
-	String methodType = in.readString();
-	//Debug.out.println("Method:"+methodName + " - " +methodType);
-	int numCodeBytes = in.readInt();
-	int vtableIndex = in.readInt(); // -1 means: no virtual method
-	if (numCodeBytes > 0) { // not an abstract method
-	}
-	int numSymbols = in.readInt(); // number of symbols
-	SymbolTableEntryBase[] symbols = new SymbolTableEntryBase[numSymbols];
-	for(int i=0; i<numSymbols; i++) {
-	    symbols[i] = SymbolTableEntryBase.readUnknownEntry(in);
-	}
-	int numLineInfo = in.readInt(); // number of lineinfos
-	LineInfo[] lineTable = new LineInfo[numLineInfo];
-	for(int k=0; k<numLineInfo; k++) {
-	    LineInfo l = new LineInfo();
-	    l.bytecodePos = in.readInt();
-	    l.start = in.readInt();
-	    l.end = in.readInt();
-	    lineTable[k] = l;
-	}
-	return new CompiledMethod(methodName, methodType, numCodeBytes, vtableIndex, symbols, lineTable);
+    String methodName = in.readString();
+    String methodType = in.readString();
+    //Debug.out.println("Method:"+methodName + " - " +methodType);
+    int numCodeBytes = in.readInt();
+    int vtableIndex = in.readInt(); // -1 means: no virtual method
+    if (numCodeBytes > 0) { // not an abstract method
+    }
+    int numSymbols = in.readInt(); // number of symbols
+    SymbolTableEntryBase[] symbols = new SymbolTableEntryBase[numSymbols];
+    for(int i=0; i<numSymbols; i++) {
+        symbols[i] = SymbolTableEntryBase.readUnknownEntry(in);
+    }
+    int numLineInfo = in.readInt(); // number of lineinfos
+    LineInfo[] lineTable = new LineInfo[numLineInfo];
+    for(int k=0; k<numLineInfo; k++) {
+        LineInfo l = new LineInfo();
+        l.bytecodePos = in.readInt();
+        l.start = in.readInt();
+        l.end = in.readInt();
+        lineTable[k] = l;
+    }
+    return new CompiledMethod(methodName, methodType, numCodeBytes, vtableIndex, symbols, lineTable);
     }
 
     private void readCodeFromFile(CompiledClass compiledClass) throws IOException {
-	CompiledMethod[] methods = compiledClass.getMethods();
+    CompiledMethod[] methods = compiledClass.getMethods();
         for (CompiledMethod method : methods) {
             readCodeFromFile(method);
         }
-	
+    
     }
 
     private void readCodeFromFile(CompiledMethod method) throws IOException {
-	if (method.isAbstract()) {
-	    return;
-	}
-	byte[] code = new byte[method.numCodeBytes];
-	method.setCode(code);
-	in.read(code,0,method.numCodeBytes);
+    if (method.isAbstract()) {
+        return;
+    }
+    byte[] code = new byte[method.numCodeBytes];
+    method.setCode(code);
+    in.read(code,0,method.numCodeBytes);
     }
 }

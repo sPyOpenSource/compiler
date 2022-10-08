@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=ExtendedDataOutputStream
+comment0.text=\n\ Writes\ numbers\ in\ little\ endian\ format.\n\ Writes\ strings\ by\ first\ writing\ the\ stringlength\ and\n\ then\ the\ *bytes*\ of\ the\ string\ (no\ unicode\ support\ up\ to\ now)\n
+comment1.params=out
+comment1.target=ExtendedDataOutputStream(java.io.OutputStream)
+numComments=2

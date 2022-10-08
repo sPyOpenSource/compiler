@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ExtendedDataInputStream
+comment1.params=in
+comment1.target=ExtendedDataInputStream(java.io.InputStream)
+numComments=2

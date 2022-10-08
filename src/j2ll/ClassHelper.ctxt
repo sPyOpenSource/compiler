@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ClassHelper
+comment0.text=\n\n\ @author\ xuyi\n
+comment1.params=string\ toArray
+comment1.target=ClassHelper(java.lang.String,\ java.lang.String[])
+comment2.params=
+comment2.target=void\ openClasses()
+comment3.params=className
+comment3.target=jx.classfile.ClassData\ getClassFile(java.lang.String)
+numComments=4

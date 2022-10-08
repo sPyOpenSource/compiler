@@ -15,7 +15,7 @@ final  public class IMCast extends IMUnaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	shortOpr   = bc - BC.I2L;
+	shortOpr   = bc - Opcodes.I2L;
 	switch (shortOpr) {
                 // i2<x>
             case 0: datatype = BCBasicDatatype.LONG;break;

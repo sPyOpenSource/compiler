@@ -13,7 +13,7 @@ final public class IMShiftLeft extends IMBitOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	int i = bc - BC.ISHL;
+	int i = bc - Opcodes.ISHL;
 	datatype = i & 0x01;
     }
 

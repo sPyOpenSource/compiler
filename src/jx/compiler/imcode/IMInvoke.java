@@ -54,7 +54,7 @@ public class IMInvoke extends IMMultiOperant {
 	}
 	
 	obj = null;
-	if (bytecode != BC.INVOKESTATIC) {
+	if (bytecode != Opcodes.INVOKESTATIC) {
 	    obj = stack.pop();
 	}
 
@@ -127,13 +127,13 @@ public class IMInvoke extends IMMultiOperant {
     public boolean isInlineable() {
 	BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
 	if (datatype != BCBasicDatatype.VOID) return false;
-	if (bytecode != BC.INVOKESTATIC) return false;
+	if (bytecode != Opcodes.INVOKESTATIC) return false;
 	if (!(bcMethod instanceof BCMethodWithCode)) return false;
 	return !bcMethod.isOverrideable();
     }
 
     public IMCompactNew getCompactNew(int ivar,IMNew newObj) {
-	if (bytecode!=BC.INVOKESPECIAL) return null;
+	if (bytecode!=Opcodes.INVOKESPECIAL) return null;
 	if (obj instanceof IMReadBlockVariable) {
 	    int varnr = ((IMReadBlockVariable)obj).getBlockVarIndex();
 	    if (varnr!=ivar) return null;
@@ -151,7 +151,7 @@ public class IMInvoke extends IMMultiOperant {
     @Override
     public void translate(Reg result) throws CompileException {
 	switch (bytecode) {
-            case BC.INVOKEVIRTUAL:
+            case Opcodes.INVOKEVIRTUAL:
                 if (doStaticMethodCalls) {
                     BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
                     if ((bcMethod instanceof BCMethodWithCode)) {
@@ -165,11 +165,11 @@ public class IMInvoke extends IMMultiOperant {
                 stat.invoke_virtual();
                 execEnv.codeVirtualCall(this, cpEntry, obj, args, datatype, result, bcPosition);
                 break;
-            case BC.INVOKESPECIAL:
+            case Opcodes.INVOKESPECIAL:
                 stat.invoke_static();
                 execEnv.codeSpecialCall(this, cpEntry, obj, args, datatype, result, bcPosition);
                 break;
-            case BC.INVOKESTATIC:
+            case Opcodes.INVOKESTATIC:
                 stat.invoke_static();
                 execEnv.codeStaticCall(this, cpEntry, args, datatype, result, bcPosition);
                 break;

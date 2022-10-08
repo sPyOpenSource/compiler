@@ -14,11 +14,11 @@ public class IMBasicBlock extends IMNode {
 
     public  boolean done;
 
-    private String       dbgString;
-    private String       labelText;
-    private boolean      subroutine;
-    private boolean      isEpilog;
-    private boolean      isLoopEntry;
+    private String dbgString;
+    private String labelText;
+    private boolean subroutine;
+    private boolean isEpilog;
+    private boolean isLoopEntry;
     private int counter;
     
     private IMBasicBlock[] successors;
@@ -33,273 +33,273 @@ public class IMBasicBlock extends IMNode {
     private ExceptionTableSTEntry handler = null;
 
     public IMBasicBlock(CodeContainer container, boolean epilog) {
-	super(container);
-	tag = IMNode.BASICBLOCK;
-	this.bcPosition  = -1;
-	this.bytecode    = 0;
-	dbgString        = null;
-	enterStack       = null;
-	leaveStack       = null;
-	successors       = null;
-	done             = false;
-	subroutine       = false;
-	isEpilog         = epilog;
-	isLoopEntry      = false;
-	counter          = 1;
-	nextJumpTarget   = 0;
-	labelText        = "END";  
-    }	
+    super(container);
+    tag = IMNode.BASICBLOCK;
+    this.bcPosition  = -1;
+    this.bytecode    = 0;
+    dbgString        = null;
+    enterStack       = null;
+    leaveStack       = null;
+    successors       = null;
+    done             = false;
+    subroutine       = false;
+    isEpilog         = epilog;
+    isLoopEntry      = false;
+    counter          = 1;
+    nextJumpTarget   = 0;
+    labelText        = "END";  
+    }    
 
     public IMBasicBlock(CodeContainer container, int bcPosition) {
-	super(container);
+    super(container);
         tag = IMNode.BASICBLOCK;
-	this.bcPosition = bcPosition;
-	this.bytecode = 0;
-	dbgString  = null;
-	enterStack = null;
-	leaveStack = null;
-	successors = null;
-	done       = false;
-	subroutine = false;
-	counter    = 1;
-	nextJumpTarget = 0;
-	if (bcPosition == 0) labelText = "START";
-	else labelText = "B" + Integer.toString(bcPosition);
+    this.bcPosition = bcPosition;
+    this.bytecode = 0;
+    dbgString  = null;
+    enterStack = null;
+    leaveStack = null;
+    successors = null;
+    done       = false;
+    subroutine = false;
+    counter    = 1;
+    nextJumpTarget = 0;
+    if (bcPosition == 0) labelText = "START";
+    else labelText = "B" + Integer.toString(bcPosition);
     }
 
     public void setExceptionHandler(ExceptionTableSTEntry handler) {
-	this.handler = handler;
-	labelText = "H" + Integer.toString(bcPosition);
+    this.handler = handler;
+    labelText = "H" + Integer.toString(bcPosition);
     }
 
     public boolean isEpilog() {
-	return isEpilog;
+    return isEpilog;
     }
 
     public boolean isLoopEntry() {
-	return isLoopEntry;
+    return isLoopEntry;
     }
 
     public void setLoopEntry(boolean flag) {
-	isLoopEntry=flag;
+    isLoopEntry=flag;
     }
 
     public boolean isLastBasicBlock() {
-	// if the next basic block is epilog then we are the last 
-	// basic block
-	for (IMNode node = next; node != null; node = node.next) {
-	    if (node.isBasicBlock()) {
-		return ((IMBasicBlock)node).isEpilog();
-	    }
-	}
-	return true;
+    // if the next basic block is epilog then we are the last 
+    // basic block
+    for (IMNode node = next; node != null; node = node.next) {
+        if (node.isBasicBlock()) {
+        return ((IMBasicBlock)node).isEpilog();
+        }
+    }
+    return true;
     }
 
     public void incCounter() {
-	counter++;
+    counter++;
     }
 
     public void setInitStack(IMOperant[] stack) {
-	enterStack = stack;
+    enterStack = stack;
     }
 
     public IMBasicBlock[] getSucc() {
-	return successors;
+    return successors;
     }
     
     public void processBasicBlock(VirtualOperantenStack stack) throws CompileException {
-	done = true;
+    done = true;
 
-	stack.init(enterStack);
-	
-	IMNode node  = bc_next;
-	IMNode instr = null;
+    stack.init(enterStack);
+    
+    IMNode node  = bc_next;
+    IMNode instr = null;
 
-	//System.out.println("process basic block: " + this.toReadableString());
-	//System.out.println("stack: " + stack.toTypeString());
-	
-	while (node != null) {
-	    // first process stack for current bytecode
+    //System.out.println("process basic block: " + this.toReadableString());
+    //System.out.println("stack: " + stack.toTypeString());
+    
+    while (node != null) {
+        // first process stack for current bytecode
 
-	    try {
-		instr = ((IMNode)node).processStack(stack, this);
-	    } catch (CompileException ex) {
-		if (verbose) {
-		    System.err.println("process basic block: " + this);
-		    System.err.println("Exception (1): " + node.toString());
-		    System.err.println(node.toReadableString());
-		}
+        try {
+        instr = ((IMNode)node).processStack(stack, this);
+        } catch (CompileException ex) {
+        if (verbose) {
+            System.err.println("process basic block: " + this);
+            System.err.println("Exception (1): " + node.toString());
+            System.err.println(node.toReadableString());
+        }
                 Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
-		System.exit(-1);
-	    }
-	    // second do we reach end of basic block ?
+        System.exit(-1);
+        }
+        // second do we reach end of basic block ?
 
-	    try {
-		if (instr != null) {
-		    stack.join(instr);
-		    if (verbose) System.out.println(instr.toReadableString());
-		    // Return from Subroutine
-		    if (instr.isReturnSubroutine()) {
-			subroutine = true;
-			break;
-		    }
-		    // IMGoto, IMConditionalBranch, IMReturn etc.
-		    if (instr.isBranch()) {
-			successors = ((IMBranch)instr).getTargets();
-			if (successors == null) {
-			    // Return 
-			    break;
-			} 
-			// GOTO etc.
-			break;
-		    }
-		}
-	    } catch (Exception ex) {
-		if (verbose) System.err.println("2: " + node.toString());
-		Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
-		System.exit(-1);
-	    }
-	    if (node.isEndOfBasicBlock()) {
-		// node is no branch but end of basicblock
-		if (node.bc_next != null) {
-		    if (successors == null && node.bc_next.isBasicBlock()) {
-			successors = new IMBasicBlock[1];
-			successors[0] = (IMBasicBlock)node.bc_next;
-		    } else {
-			if (verbose) {
-			    System.err.println("warning: bad imcode !");
-			    System.err.println("bytecode position: " + Integer.toString(node.getBCPosition()));
-			}
-			System.exit(-1);
-		    }
-		}
-		break;
-	    }
-	    node = node.bc_next;
-	}
+        try {
+        if (instr != null) {
+            stack.join(instr);
+            if (verbose) System.out.println(instr.toReadableString());
+            // Return from Subroutine
+            if (instr.isReturnSubroutine()) {
+            subroutine = true;
+            break;
+            }
+            // IMGoto, IMConditionalBranch, IMReturn etc.
+            if (instr.isBranch()) {
+            successors = ((IMBranch)instr).getTargets();
+            if (successors == null) {
+                // Return 
+                break;
+            } 
+            // GOTO etc.
+            break;
+            }
+        }
+        } catch (Exception ex) {
+        if (verbose) System.err.println("2: " + node.toString());
+        Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
+        System.exit(-1);
+        }
+        if (node.isEndOfBasicBlock()) {
+        // node is no branch but end of basicblock
+        if (node.bc_next != null) {
+            if (successors == null && node.bc_next.isBasicBlock()) {
+            successors = new IMBasicBlock[1];
+            successors[0] = (IMBasicBlock)node.bc_next;
+            } else {
+            if (verbose) {
+                System.err.println("warning: bad imcode !");
+                System.err.println("bytecode position: " + Integer.toString(node.getBCPosition()));
+            }
+            System.exit(-1);
+            }
+        }
+        break;
+        }
+        node = node.bc_next;
+    }
 
-	//stack.store();
-	leaveStack = stack.leave();
+    //stack.store();
+    leaveStack = stack.leave();
     }
 
     public boolean isSubroutine() {
-	return subroutine;
+    return subroutine;
     }
 
     public IMOperant[] getLeaveStack() {
-	return leaveStack;
+    return leaveStack;
     }
      
     public void setDebugString(String msg) {
-	dbgString = msg;
+    dbgString = msg;
     }
 
     public String getDebugString() {
-	String ret = " #" + Integer.toString(counter);
-	if (enterStack != null) {
+    String ret = " #" + Integer.toString(counter);
+    if (enterStack != null) {
             for (IMOperant enterStack1 : enterStack) {
                 if (enterStack1 != null)
                     ret += " " + BCBasicDatatype.toString(enterStack1.getDatatype());
             }
-	}
-	    
-	if (dbgString != null) ret += " " + dbgString;	
-	
-	return ret;
+    }
+        
+    if (dbgString != null) ret += " " + dbgString;    
+    
+    return ret;
     }
 
     @Override
     public String toReadableString() {
         String ret = toLabel();
-	if (isLowPriorityPath())
-	    ret = "-" + ret;
-	else
-	    ret = "+" + ret;
-	if (enterStack == null) return ret;
+    if (isLowPriorityPath())
+        ret = "-" + ret;
+    else
+        ret = "+" + ret;
+    if (enterStack == null) return ret;
         for (IMOperant enterStack1 : enterStack) {
             if (enterStack1 != null)
                 ret = ret + enterStack1.toReadableString();
         }
-	return ret;
+    return ret;
     }
 
     public String toLabel() {
-	return labelText;
+    return labelText;
     }
 
     @Override
     public String toString() {
-	return super.toString() + "B #" + Integer.toString(counter);
+    return super.toString() + "B #" + Integer.toString(counter);
     }
 
     public UnresolvedJump getNewJumpTarget() {
-	if (nextJumpTarget >= jumpTargets.length) {
-	    UnresolvedJump newArray[] = new UnresolvedJump[nextJumpTarget+10];
+    if (nextJumpTarget >= jumpTargets.length) {
+        UnresolvedJump newArray[] = new UnresolvedJump[nextJumpTarget+10];
             System.arraycopy(jumpTargets, 0, newArray, 0, jumpTargets.length);
-	    jumpTargets = newArray;
-	}	    
-	jumpTargets[nextJumpTarget] = new UnresolvedJump();
-	jumpTargets[nextJumpTarget].setBCPosition(bcPosition);
-	return jumpTargets[nextJumpTarget++];
+        jumpTargets = newArray;
+    }        
+    jumpTargets[nextJumpTarget] = new UnresolvedJump();
+    jumpTargets[nextJumpTarget].setBCPosition(bcPosition);
+    return jumpTargets[nextJumpTarget++];
     }
 
     public void removeJumpTarget(UnresolvedJump jumpTarget) {
-	for (int i = 0; i < jumpTargets.length; i++) {
-	    if (jumpTarget == jumpTargets[i]) {
-		jumpTargets[i] = null;
-		return;
-	    }
-	}
+    for (int i = 0; i < jumpTargets.length; i++) {
+        if (jumpTarget == jumpTargets[i]) {
+        jumpTargets[i] = null;
+        return;
+        }
+    }
     }
 
     @Override
     public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
-	//labelText = container.getBCMethod().getName()+":"+labelText;
-	bcPosition = bcPos;
-	isEpilog   = false;
-	init(newContainer);
-	return this;
+    //labelText = container.getBCMethod().getName()+":"+labelText;
+    bcPosition = bcPos;
+    isEpilog   = false;
+    init(newContainer);
+    return this;
     }
 
     public void constant_forwarding() throws CompileException {
-	IMNodeList varList = new IMNodeList();
-	IMNode node = next;
-	while (node!=null && !node.isBasicBlock()) {
-	    node.constant_forwarding(varList);
-	    node = node.next;
-	}
+    IMNodeList varList = new IMNodeList();
+    IMNode node = next;
+    while (node!=null && !node.isBasicBlock()) {
+        node.constant_forwarding(varList);
+        node = node.next;
+    }
     }
 
     // IMBasicBlock
     @Override
     public void translate(Reg result) throws CompileException {
-	IMNode node = next;
+    IMNode node = next;
 
-	try {
-	    // insert prolog
-	    if (bcPosition == 0)
-		execEnv.codeProlog();
+    try {
+        // insert prolog
+        if (bcPosition == 0)
+        execEnv.codeProlog();
 
-	    if (handler != null)
-		code.addExceptionTarget(handler);
+        if (handler != null)
+        code.addExceptionTarget(handler);
 
             // insert jump targets
             for (UnresolvedJump jumpTarget : jumpTargets) {
                 if (jumpTarget != null)
                     code.addJumpTarget(jumpTarget);
             }
-	    
-	    // add epilog
-	    if (isEpilog) {
-		execEnv.codeEpilog();
-	    } else {
-		node = next;
-		
-		regs.startBasicBlock();
-		
-		while (node != null && !node.isBasicBlock()) {
-		    //System.err.println(node.toReadableString());
-		    switch (node.getDatatype()) {
+        
+        // add epilog
+        if (isEpilog) {
+        execEnv.codeEpilog();
+        } else {
+        node = next;
+        
+        regs.startBasicBlock();
+        
+        while (node != null && !node.isBasicBlock()) {
+            //System.err.println(node.toReadableString());
+            switch (node.getDatatype()) {
                         case BCBasicDatatype.FLOAT:
                         case BCBasicDatatype.DOUBLE:
                             code.nop();
@@ -321,23 +321,23 @@ public class IMBasicBlock extends IMNode {
                             Reg rval = regs.getIntRegister(Reg.any);
                             node.translate(rval);
                             regs.freeIntRegister(rval);
-		    }
-		    node = node.next;
-		}
-		
-		regs.endBasicBlock();
-	    }
-	} catch (CompileException ex) {
-	    System.out.println(toReadableString());
-	    IMNode dnode = next;		
-	    while (dnode != null && !dnode.isBasicBlock()) {
-		if (dnode == node)
-		    System.out.println("->" + dnode.toReadableString());
-		else
-		    System.out.println("  " + dnode.toReadableString());
- 		dnode = dnode.next;
-	    }
-	    throw ex;
-	}
+            }
+            node = node.next;
+        }
+        
+        regs.endBasicBlock();
+        }
+    } catch (CompileException ex) {
+        System.out.println(toReadableString());
+        IMNode dnode = next;        
+        while (dnode != null && !dnode.isBasicBlock()) {
+        if (dnode == node)
+            System.out.println("->" + dnode.toReadableString());
+        else
+            System.out.println("  " + dnode.toReadableString());
+         dnode = dnode.next;
+        }
+        throw ex;
+    }
     }
 }

@@ -16,7 +16,7 @@ final  public class IMSub extends IMBinaryOperator {
 	tag = tag | OPERATOR | COMPERATOR;	
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.ISUB);
+	datatype = BCBasicDatatype.INT + (bc-Opcodes.ISUB);
     }
 
     public IMSub(CodeContainer container,IMOperant lOpr,IMOperant rOpr,int datatype,int bcpos) {	

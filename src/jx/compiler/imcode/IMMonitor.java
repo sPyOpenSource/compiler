@@ -22,7 +22,7 @@ final public class IMMonitor extends IMUnaryOperator  {
     }
 
     public String toReadableString() {
-	if (bytecode == BC.MONITORENTER) {
+	if (bytecode == Opcodes.MONITORENTER) {
 	    return operant.toReadableString() + ".enter()";
 	}
 	return operant.toReadableString() + ".leave()";
@@ -30,7 +30,7 @@ final public class IMMonitor extends IMUnaryOperator  {
 
     // IMMonitor
     public void translate(Reg result) throws CompileException {
-	if (bytecode == BC.MONITORENTER) {
+	if (bytecode == Opcodes.MONITORENTER) {
 	    execEnv.codeMonitorEnter(this, operant, bcPosition);
 	} else {
 	    execEnv.codeMonitorLeave(this, operant, bcPosition);

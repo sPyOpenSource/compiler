@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=JField
+comment0.text=\n\ Java\ Field\n
+comment1.params=name\ javaSignature
+comment1.target=JField(java.lang.String,\ java.lang.String)
+comment2.params=className\ name\ javaSignature
+comment2.target=JField(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=int\ hashCode()
+comment4.params=o
+comment4.target=boolean\ equals(java.lang.Object)
+numComments=5

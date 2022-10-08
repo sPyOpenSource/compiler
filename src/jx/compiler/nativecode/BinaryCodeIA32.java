@@ -25,8 +25,6 @@ public final class BinaryCodeIA32 {
     private byte[] code; 
     private int ip;
 
-    int numBytesMachinecode;
-
     // mapping from instruction addresses to bytecode
     ArrayList instructionTable = new ArrayList();
     int bcIndex, startIP;
@@ -72,8 +70,8 @@ public final class BinaryCodeIA32 {
 	ArrayList unresolvedEntries = new ArrayList(); 
 	while(enume.hasMoreElements()) {
 	    SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement();
-	    if (entry instanceof IntValueSTEntry) {
-		((IntValueSTEntry)entry).applyValue(code);
+	    if (entry instanceof IntValueSTEntry intValueSTEntry) {
+		intValueSTEntry.applyValue(code);
 	    } else {
 		unresolvedEntries.add(entry); 
 	    }
@@ -121,8 +119,8 @@ public final class BinaryCodeIA32 {
 	realloc();
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
-	symbolTable.add(entry); 
-	ip += 1; 
+	symbolTable.add(entry);
+	ip += 1;
     }
 
     void insertBytes(int a, int b) {

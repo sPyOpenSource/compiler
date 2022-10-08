@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=MethodStatisticsCollector
+comment0.text=\n\ Vars\ Collector\n
+comment1.params=i\ vars\ resolver
+comment1.target=MethodStatisticsCollector(int,\ LocalVarTable,\ Resolver)
+comment2.params=name\ sign\ s2\ label\ label1\ slot
+comment2.target=void\ visitLocalVariable(java.lang.String,\ java.lang.String,\ java.lang.String,\ org.objectweb.asm.Label,\ org.objectweb.asm.Label,\ int)
+comment3.params=label
+comment3.target=void\ visitLabel(org.objectweb.asm.Label)
+comment4.params=opcode\ slot
+comment4.target=void\ visitVarInsn(int,\ int)
+numComments=5

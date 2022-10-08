@@ -16,7 +16,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	tag = tag | OPERATOR | COMPERATOR;
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc - BC.IADD);
+	datatype = BCBasicDatatype.INT + (bc - Opcodes.IADD);
     }
 
     public IMAdd(CodeContainer container, IMOperant lOpr, IMOperant rOpr, int datatype, int bcpos) {	
@@ -28,14 +28,18 @@ final  public class IMAdd extends IMBinaryOperator {
 	this.datatype = datatype;
     }
 
+    @Override
     public boolean isAdd() {return true;}
 
+    @Override
     public boolean isSubOrAdd() {return true;}
 
+    @Override
     public String toReadableString() {
 	return "(" + lOpr.toReadableString() + "+" + rOpr.toReadableString() + ")";
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException {
 	if (rOpr.isOperator()) {
 	    rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();
@@ -64,11 +68,11 @@ final  public class IMAdd extends IMBinaryOperator {
 	    // case ((x+/-x)+c2) => (x+c3)
 	    if (rOpr.isConstant() && lOpr.isOperator()) {
 		int value = rOpr.nodeToConstant().getIntValue();
-		if (lOpr instanceof IMAdd) {
-		    return ((IMAdd)lOpr).constant_folding2la(this,value);
+		if (lOpr instanceof IMAdd iMAdd) {
+		    return iMAdd.constant_folding2la(this,value);
 		}
-		if (lOpr instanceof IMSub) {
-		    return ((IMSub)lOpr).constant_folding2la(this,value);
+		if (lOpr instanceof IMSub iMSub) {
+		    return iMSub.constant_folding2la(this,value);
 		}
 	    }
 	}
@@ -109,7 +113,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	    int value = rOpr.nodeToConstant().getIntValue();
 
             IMConstant mult = null;
-            int mvalue = 0;
+            int mvalue;
 	    if (opts.isOption("lea") && lOpr.isMul() && lOpr.getRightOperant().isRealConstant()) {
               mult = lOpr.getRightOperant().nodeToConstant();
               mvalue = mult.getIntValue();

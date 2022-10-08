@@ -63,12 +63,12 @@ public class CompileNative {
     }
 
     public static void main(String[] args) throws Exception {
-        String[] a = {"/home/spy/Source/jcore/libs"};
+        String[] a = {"~/Source/OS/jcore/libs"};
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
         MetaInfo s = (MetaInfo)metas.get(0); // process this component
-	String libdir = "/home/spy/Source/jcore/isodir/code";
+	String libdir = "~/Source/OS/jcore/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + s.getComponentName() + ".zip";
@@ -95,7 +95,7 @@ public class CompileNative {
     }
 
     public static void compile(String path, CompilerOptions opts) throws Exception {
-	System.out.println("Native code compiler version 0.7.10-" + StaticCompiler.version());
+	System.out.println("Native code compiler version " + StaticCompiler.version());
 
 	ExtendedDataOutputStream codeFile;
 	ExtendedDataOutputStream tableOut;       
@@ -107,21 +107,21 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	JarFile domClasses = new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar");
+	JarFile domClasses = new JarFile("~/Source/OS/armOS/lib/jcore/OS/dist/OS.jar");
         JarFile[] libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar")
+                new JarFile("~/Source/OS/jcore/Zero/dist/Zero.jar")
             };
         if(path.endsWith("zero")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar");
+            domClasses = new JarFile("~/Source/OS/armOS/lib/jcore/Zero/dist/Zero.jar");
             libClasses = new JarFile[0];
         } else if(path.endsWith("init2")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/testOS/dist/testOS.jar");
+            domClasses = new JarFile("~/Source/OS/armOS/lib/jcore/testOS/dist/testOS.jar");
             libClasses = getZIPs(opts.getLibs());
         } else if(path.endsWith("ai")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar");
+            domClasses = new JarFile("~/Source/OS/armOS/lib/jcore/AIZero/dist/AIZero.jar");
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"),
-                new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar")
+                new JarFile("~/Source/OS/armOS/lib/jcore/Zero/dist/Zero.jar"),
+                new JarFile("~/Source/OS/armOS/lib/jcore/OS/dist/OS.jar")
             };
         }
 
@@ -148,14 +148,14 @@ public class CompileNative {
 	    };
 
 	io.set(path);
-	StaticCompiler compiler = new StaticCompiler(null, codeFile, tableOut,
+	StaticCompiler compiler = new StaticCompiler(codeFile, tableOut,
 						     domClasses,
 						     libClasses, tableIn,
 						     opts, io);
 
         // release resources
-        for (ExtendedDataInputStream tableIn1 : tableIn)
-            tableIn1.close();
+        for (ExtendedDataInputStream table : tableIn)
+            table.close();
 	codeFile.close();
 	tableOut.close();
     }
@@ -164,7 +164,9 @@ public class CompileNative {
 	JarFile[] libClasses = null;
         try {
             libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar"), new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar")
+                new JarFile("~/Source/OS/armOS/lib/jcore/Zero/dist/Zero.jar"), 
+                new JarFile("~/Source/OS/armOS/lib/jcore/OS/dist/OS.jar"), 
+                new JarFile("~/Source/OS/armOS/lib/jcore/AIZero/dist/AIZero.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);

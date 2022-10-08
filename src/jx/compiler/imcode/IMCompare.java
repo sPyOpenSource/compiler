@@ -37,7 +37,7 @@ final  public class IMCompare extends IMBinaryOperator {
 
     // IMCompare for long, float and double read spec
     public void translate(Reg result) throws CompileException {	
-	if (opts.isOption("long") && bytecode==BC.LCMP) {
+	if (opts.isOption("long") && bytecode==Opcodes.LCMP) {
 	    execEnv.codeLongCompare(this,lOpr,rOpr,result,bcPosition);
 	    return ;
 	}
