@@ -39,7 +39,7 @@ final public class Ref extends Opr implements Cloneable {
     }
 
     public Ref disp(int d) {
-	Ref nref = null;
+	Ref nref;
 	try {
 	    nref = (Ref)this.clone();
 	} catch (CloneNotSupportedException ex) {
@@ -51,7 +51,7 @@ final public class Ref extends Opr implements Cloneable {
     }
 
     public Ref disp(int d,Reg index,int size) {
-	Ref nref = null;
+	Ref nref;
 	try {
 	    nref = (Ref)this.clone();
 	} catch (CloneNotSupportedException ex) {
@@ -85,7 +85,7 @@ final public class Ref extends Opr implements Cloneable {
     } 
 
     public Ref getClone() {
-	Ref nref = null;
+	Ref nref;
 	try {
 	    nref = (Ref)this.clone();
 	} catch (CloneNotSupportedException ex) {

@@ -12,6 +12,8 @@ import jx.classfile.Opcodes;
 import jx.compiler.CompileException;
 import jx.compiler.StatisticInfo;
 import jx.compiler.execenv.*;
+import jx.compiler.imcode.graph.*;
+import jx.compiler.imcode.graph.inst.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
 

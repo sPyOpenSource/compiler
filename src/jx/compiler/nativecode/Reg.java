@@ -52,6 +52,7 @@ final public class Reg extends Opr implements RegObj, Cloneable {
 	return value == -1;
     }
 
+    @Override
     public void push(MethodStackFrame frame) {
 	frame.push(getDatatype(), this);
     }
@@ -78,7 +79,7 @@ final public class Reg extends Opr implements RegObj, Cloneable {
     }
     
     public Reg getClone() {
-	Reg nreg = null;
+	Reg nreg;
 	try {
 	    nreg = (Reg)this.clone();
 	} catch (CloneNotSupportedException ex) {

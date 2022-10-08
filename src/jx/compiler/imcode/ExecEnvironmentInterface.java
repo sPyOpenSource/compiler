@@ -6,6 +6,8 @@ import jx.compiler.symbols.*;
 import jx.compiler.execenv.*;
 
 import jx.classfile.constantpool.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 
 public interface ExecEnvironmentInterface {
    

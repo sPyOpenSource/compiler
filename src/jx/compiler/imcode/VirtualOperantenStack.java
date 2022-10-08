@@ -1,6 +1,11 @@
 package jx.compiler.imcode;
 
 import jx.classfile.datatypes.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
+import jx.compiler.imcode.graph.IMReadBlockVariable;
+import jx.compiler.imcode.graph.IMReadLocalVariable;
+import jx.compiler.imcode.graph.inst.IMStoreBlockVariable;
 
 
 public class VirtualOperantenStack {

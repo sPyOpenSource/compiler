@@ -10,6 +10,8 @@ import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 
 public class VMSupport implements CompilerPlugin {
 

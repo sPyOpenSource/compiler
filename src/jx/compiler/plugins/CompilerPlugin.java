@@ -3,8 +3,8 @@ package jx.compiler.plugins;
 import jx.compiler.*;
 
 import jx.classfile.constantpool.*;
-
-import jx.compiler.imcode.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 import jx.compiler.nativecode.*;
 
 public interface CompilerPlugin {

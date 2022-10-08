@@ -4,7 +4,7 @@ import java.io.IOException;
 import jx.zero.Debug;
 
 import jx.compiler.imcode.MethodStackFrame;
-import jx.compiler.imcode.IMNode;
+import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.execenv.ExtendedDataOutputStream;
 import jx.compiler.execenv.TypeMap;
 

@@ -6,6 +6,7 @@ import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
 
 import jx.classfile.datatypes.*;
+import jx.compiler.imcode.graph.IMNode;
 
 public class MethodStackFrame {
 
