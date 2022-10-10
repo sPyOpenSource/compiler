@@ -51,7 +51,7 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
     public IMNode constant_forwarding(IMNodeList varList) throws CompileException {
 
 	if (operant.isConstant()) { 
-	    if (opts.doVerbose("cfor2")) Debug.out.println("## " + toReadableString());
+	    if (opts.doVerbose("cfor2")) Debug.out.println("## " + toString());
 	    varList.add(this);
 	}
 
@@ -106,12 +106,12 @@ final public class IMStoreLocalVariable extends IMVarAccess  {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	if (operant == null) return "v" + Integer.toString(ivar) + " = <top of stack>";
    	return "v" + 
 	    BCBasicDatatype.toSymbol(datatype) +
 	    Integer.toString(ivar) + " = " +
-	    operant.toReadableString();
+	    operant.toString();
     }
 
     @Override

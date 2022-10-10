@@ -58,10 +58,10 @@ final public class IMStoreArray extends IMOperant  {
 	return this;
     }
 
-    public String toReadableString() {
-	return aOpr.toReadableString()+"["
-	    +iOpr.toReadableString()+"] = "
-	    +rvalue.toReadableString();
+    public String toString() {
+	return aOpr.toString()+"["
+	    +iOpr.toString()+"] = "
+	    +rvalue.toString();
     }
 
     public int getNrRegs() { return rvalue.getNrRegs() + aOpr.getNrRegs() + iOpr.getNrRegs(); }

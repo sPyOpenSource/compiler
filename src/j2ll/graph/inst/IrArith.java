@@ -18,8 +18,7 @@ public class IrArith extends IrSentence {
     //%stack8 = add i32 %stack4, %stack7
     @Override
     public void parse(String st) {
-        String[] ss = split(st,"[ ,=]{1,}");
-        //
+        String[] ss = split(st, "[ ,=]{1,}");
         instName = ss[1];
         irtype = ss[2];
         operand1 = new IrVariable(irtype, ss[3]);

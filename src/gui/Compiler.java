@@ -78,14 +78,14 @@ public class Compiler extends javax.swing.JFrame {
             }
         });
 
-        Run.setText("Run");
+        Run.setText("Run OS");
         Run.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RunActionPerformed(evt);
             }
         });
 
-        Kernel.setText("Kernel");
+        Kernel.setText("Kernel IDE");
         Kernel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KernelActionPerformed(evt);
@@ -108,7 +108,7 @@ public class Compiler extends javax.swing.JFrame {
         output.setRows(5);
         jScrollPaneLog.setViewportView(output);
 
-        logOn.setText("Start Logging");
+        logOn.setText("Show Logging");
         logOn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOnActionPerformed(evt);
@@ -198,7 +198,7 @@ public class Compiler extends javax.swing.JFrame {
                     .addComponent(Run, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(logOn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(jScrollPaneLog, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -306,7 +306,7 @@ public class Compiler extends javax.swing.JFrame {
         if (project == null)
             return;
         try {
-            Runtime.getRuntime().exec("VBoxManage startvm JavaOS");
+            Runtime.getRuntime().exec("run.sh");
             //reader.start();
         } catch (IOException ex) {
             Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);

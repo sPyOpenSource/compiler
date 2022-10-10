@@ -78,11 +78,11 @@ public class IMMultiOperant extends IMOperant {
 	return sum;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	String retString = "(";
 	int i=0;
 	while (i<args.length)  {
-	    retString += args[i].toReadableString();
+	    retString += args[i].toString();
 	    i++;
 	    if (i<args.length) retString+=",";
 	}

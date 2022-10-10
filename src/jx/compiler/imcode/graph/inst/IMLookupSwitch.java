@@ -48,7 +48,7 @@ final public class IMLookupSwitch extends IMBranch  {
             operant = (IMOperant)((IMOperator)operant).constant_folding();
         }
 	if (operant.isConstant()) {
-            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toReadableString());
+            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toString());
         }
 
         return this;
@@ -60,8 +60,8 @@ final public class IMLookupSwitch extends IMBranch  {
 	return this;
     }
 
-    public String toReadableString() {
-       String output = "lswitch (" + operant.toReadableString() + ") { \n";
+    public String toString() {
+       String output = "lswitch (" + operant.toString() + ") { \n";
 
        for (int i = 0; i < offsets.length; i++) {
 	   output +=  "           " + Integer.toString(keys[i]) + ":" + offsets[i].toLabel() + "\n";

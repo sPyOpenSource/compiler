@@ -14,6 +14,7 @@ import jx.compiler.imcode.CodeVector;
 import jx.compiler.imcode.ExecEnvironmentInterface;
 import jx.compiler.imcode.MethodStackFrame;
 import jx.compiler.imcode.VirtualOperantenStack;
+import jx.compiler.imcode.graph.inst.IMConstant;
 import jx.compiler.imcode.graph.inst.IMThrow;
 
 // ***** IMNode *****
@@ -185,13 +186,13 @@ public class IMNode {
 	return false;
     }
 
-    public int  getDatatype() {
+    public int getDatatype() {
 	return datatype;
     }
 
-    public String toReadableString() {
+    /*public String toReadableString() {
 	return "<unkown node>";
-    }
+    }*/
 
     public String debugInfo() {
 	return debugTxt;
@@ -246,7 +247,7 @@ public class IMNode {
 		+ " (l:" + method.getLineNumber(bcPosition) + " bc:" + bcPosition + ") ";
     }
 
-    public int  getBytecode() {
+    public int getBytecode() {
 	return bytecode;
     }
 
@@ -327,7 +328,7 @@ public class IMNode {
 
     public void translate(Reg64 result) throws CompileException {
         Debug.out.println(this.getClass().getName());
-	Debug.out.println(this.toReadableString());
+	Debug.out.println(this.toString());
 	throw new CompileException(getLineInfo() + " long translation not implemeted!");
     }
 

@@ -838,7 +838,7 @@ public class CodeContainer implements NativeCodeContainer {
 				IMBasicBlock succ[] = bnode.getTargets();
 				
 				if (opts.doVerbose("path"))
-				    Debug.out.println("o:" + bnode.toReadableString());
+				    Debug.out.println("o:" + bnode.toString());
 				
 				try {
 				    bnode.addDebugInfo("swap jump " + succ[0].toLabel() + " " + succ[1].toLabel());
@@ -851,7 +851,7 @@ public class CodeContainer implements NativeCodeContainer {
 				bnode.swapJumpTargets();
 				
 				if (opts.doVerbose("path"))
-				    Debug.out.println("n:" + bnode.toReadableString());
+				    Debug.out.println("n:" + bnode.toString());
 			    }
 			}
 		    }
@@ -1334,9 +1334,9 @@ public class CodeContainer implements NativeCodeContainer {
 	while (node != null) {
 	    if (node.isBasicBlock()) {
 		IMBasicBlock label = (IMBasicBlock)node;		
-		outStream.println("  " + label.toReadableString() + ":  " + label.getDebugString());
+		outStream.println("  " + label.toString() + ":  " + label.getDebugString());
 	    } else {
-		outStream.println("        " + node.toReadableString() + ";   " + node.debugInfo());
+		outStream.println("        " + node.toString() + ";   " + node.debugInfo());
 	    }
 	    node = node.next;
 	}

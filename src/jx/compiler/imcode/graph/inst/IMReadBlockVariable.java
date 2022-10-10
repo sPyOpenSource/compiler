@@ -1,10 +1,11 @@
 
-package jx.compiler.imcode.graph; 
+package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.datatypes.*; 
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.LocalVariable;
+import jx.compiler.imcode.graph.*;
 import jx.compiler.nativecode.*;
 
 // ***** IMReadBlockVariable *****
@@ -30,7 +31,7 @@ final public class IMReadBlockVariable extends IMVarAccess {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	return "b" + Integer.toString(number);
     }
 

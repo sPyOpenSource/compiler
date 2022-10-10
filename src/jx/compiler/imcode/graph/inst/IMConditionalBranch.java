@@ -64,120 +64,120 @@ final  public class IMConditionalBranch extends IMBranch  {
 		switch (bytecode) {
 		case Opcodes.IFEQ: 
 		    {
-			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			if (clOpr.getIntValue()==0) {
 			    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-			    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 			    return ngoto;
 			} else {
 			    targets[1].removeJumpTarget(jumpTarget);
 			    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-			    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 			    return ngoto;
 			}
 		    }
 		case Opcodes.IFNE:
 		    {
-			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			if (clOpr.getIntValue()!=0) {
 			    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-			    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 			    return ngoto;
 			} else {
 			    targets[1].removeJumpTarget(jumpTarget);
 			    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-			    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 			    return ngoto;
 			}
 		    }
 		case Opcodes.IFNULL:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()==0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		case Opcodes.IFNONNULL:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()!=0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		case Opcodes.IFLT:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()<0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		case Opcodes.IFGE:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()>=0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		case Opcodes.IFGT:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()>0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		case Opcodes.IFLE:
 		    {
-			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toReadableString());
+			    if (opts.doVerbose("cf")) Debug.out.println("++ folding "+toString());
 			    if (clOpr.getIntValue()<=0) {
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[1],jumpTarget);
-				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ true => "+ngoto.toString());
 				    return ngoto;
 			    } else {
 				    targets[1].removeJumpTarget(jumpTarget);
 				    IMGoto ngoto = new IMGoto(container,bcPosition,targets[0],targets[0].getNewJumpTarget());
-				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toReadableString());
+				    if (opts.doVerbose("cf")) Debug.out.println("++ false => "+ngoto.toString());
 				    return ngoto;
 			    }
 		    }
 		}
 	    } else { 
 		if (rOpr.isConstant()) {
-		    if (opts.doVerbose("cf")) Debug.out.println("++ no folding "+toReadableString());
+		    if (opts.doVerbose("cf")) Debug.out.println("++ no folding "+toString());
 		}
 	    }
 	}
@@ -273,40 +273,40 @@ final  public class IMConditionalBranch extends IMBranch  {
 	}
     }
 
-    public String toReadableString() {
+    public String toString() {
 	switch (bytecode) {
 	case Opcodes.IFEQ:
-	    return "if "+lOpr.toReadableString()+"==0 goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"==0 goto "+targets[1].toLabel();
 	case Opcodes.IFNE:
-	    return "if "+lOpr.toReadableString()+"!=0 goto "+targets[1].toLabel();	    
+	    return "if "+lOpr.toString()+"!=0 goto "+targets[1].toLabel();	    
 	case Opcodes.IFLT:
-	    return "if "+lOpr.toReadableString()+"< 0 goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"< 0 goto "+targets[1].toLabel();
 	case Opcodes.IFGE:
-	    return "if "+lOpr.toReadableString()+">=0 goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+">=0 goto "+targets[1].toLabel();
 	case Opcodes.IFGT:
-	    return "if "+lOpr.toReadableString()+"> 0 goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"> 0 goto "+targets[1].toLabel();
 	case Opcodes.IFLE:
-	    return "if "+lOpr.toReadableString()+"<=0 goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"<=0 goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPEQ:
-	    return "if "+lOpr.toReadableString()+"=="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"=="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPNE:
-	    return "if "+lOpr.toReadableString()+"!="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"!="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPLT:
-	    return "if "+lOpr.toReadableString()+"<"+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"<"+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPGE:
-	    return "if "+lOpr.toReadableString()+">="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+">="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPGT:
-	    return "if "+lOpr.toReadableString()+">"+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+">"+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ICMPLE:
-	    return "if "+lOpr.toReadableString()+"<="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"<="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ACMPEQ:
-	    return "if "+lOpr.toReadableString()+"=="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"=="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IF_ACMPNE:
-	    return "if "+lOpr.toReadableString()+"!="+rOpr.toReadableString()+" goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"!="+rOpr.toString()+" goto "+targets[1].toLabel();
 	case Opcodes.IFNULL:
-	    return "if "+lOpr.toReadableString()+"==null goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"==null goto "+targets[1].toLabel();
 	case Opcodes.IFNONNULL:
-	    return "if "+lOpr.toReadableString()+"!=null goto "+targets[1].toLabel();
+	    return "if "+lOpr.toString()+"!=null goto "+targets[1].toLabel();
 	}
 	return "<unknown branch>";
     }

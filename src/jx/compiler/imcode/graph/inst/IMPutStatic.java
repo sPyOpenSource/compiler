@@ -48,8 +48,8 @@ final public class IMPutStatic extends IMOperant  {
 	return this;
     }
 
-    public String toReadableString() {
-	return cpEntry.getMemberName()+" = "+vOpr.toReadableString();
+    public String toString() {
+	return cpEntry.getMemberName()+" = "+vOpr.toString();
     }
 
     public int getNrRegs() { return vOpr.getNrRegs(); }

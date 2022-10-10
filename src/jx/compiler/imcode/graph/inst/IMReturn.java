@@ -76,9 +76,9 @@ final public class IMReturn extends IMBranch  {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	if (retValue==null) return "return";
-	return "return "+retValue.toReadableString();	    
+	return "return "+retValue.toString();	    
     }    
 
     @Override

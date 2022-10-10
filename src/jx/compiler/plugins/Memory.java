@@ -6,7 +6,7 @@ import jx.classfile.constantpool.*;
 
 import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
-import jx.compiler.imcode.graph.IMConstant;
+import jx.compiler.imcode.graph.inst.IMConstant;
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMOperant;
 import jx.compiler.persistent.*;

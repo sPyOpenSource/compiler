@@ -54,8 +54,8 @@ final public class IMPutField extends IMOperant  {
 	return this;
     }
 
-    public String toReadableString() {
-	return obj.toReadableString()+"."+cpEntry.getMemberName()+" = " + rvalue.toReadableString();
+    public String toString() {
+	return obj.toString()+"."+cpEntry.getMemberName()+" = " + rvalue.toString();
     }
 
     public void getCollectVars(ArrayList vars) { 

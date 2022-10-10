@@ -51,15 +51,15 @@ final  public class IMCast extends IMUnaryOperator {
 	return null;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	switch (datatype) {
-	case 0: return "(int)"+operant.toReadableString();
-	case 1: return "(long)"+operant.toReadableString();
-	case 2: return "(float)"+operant.toReadableString();
-	case 3: return "(double)"+operant.toReadableString();
-	case 5: return "(byte)"+operant.toReadableString();
-	case 6: return "(char)"+operant.toReadableString();
-	case 7: return "(short)"+operant.toReadableString();
+	case 0: return "(int)"+operant.toString();
+	case 1: return "(long)"+operant.toString();
+	case 2: return "(float)"+operant.toString();
+	case 3: return "(double)"+operant.toString();
+	case 5: return "(byte)"+operant.toString();
+	case 6: return "(char)"+operant.toString();
+	case 7: return "(short)"+operant.toString();
 	default: return "<error>";
 	}
     }

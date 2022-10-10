@@ -21,7 +21,7 @@ final public class IMPopReturnAddr extends IMOperant {
 	return null;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	return "return_addr";
     }
 

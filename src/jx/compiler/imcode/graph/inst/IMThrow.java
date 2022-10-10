@@ -57,9 +57,9 @@ final public class IMThrow extends IMBranch  {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	if (exception==null) return "throw <error null>";
-	return "throw "+exception.toReadableString();
+	return "throw "+exception.toString();
     }
 
     public int getNrRegs() { return exception.getNrRegs(); }

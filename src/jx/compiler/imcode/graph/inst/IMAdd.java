@@ -37,8 +37,8 @@ final  public class IMAdd extends IMBinaryOperator {
     public boolean isSubOrAdd() {return true;}
 
     @Override
-    public String toReadableString() {
-	return "(" + lOpr.toReadableString() + "+" + rOpr.toReadableString() + ")";
+    public String toString() {
+	return "(" + lOpr.toString() + "+" + rOpr.toString() + ")";
     }
 
     @Override
@@ -54,7 +54,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	if (datatype == BCBasicDatatype.INT) {
 	    // simpel case (c+c)
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c+c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c+c "+toString());
 		int value = lOpr.nodeToConstant().getIntValue()+rOpr.nodeToConstant().getIntValue();
 		IMConstant newNode = new IMConstant(container,-1,bcPosition,value);		
 		return newNode;
@@ -82,7 +82,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	if (opts.doVerbose("cf")) {
 	    if (lOpr.isSubOrAdd() && rOpr.isSubOrAdd()) {
 		if (lOpr.hasConstant() && rOpr.hasConstant()) {
-		    Debug.out.println("++ no folding ((x+/-x)+(x+/-x)) " + toReadableString());
+		    Debug.out.println("++ no folding ((x+/-x)+(x+/-x)) " + toString());
 		    // todo cases ((x+/-x)+(x+/-x))
 		}
 	    }
@@ -94,7 +94,7 @@ final  public class IMAdd extends IMBinaryOperator {
     public IMOperant constant_folding2la(IMAdd Opr,int value) {
 	// case ((x+c1)+c2) => (x+c3)
 	if (rOpr.isConstant()) {
-	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (x+c)+c) " + Opr.toReadableString());
+	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (x+c)+c) " + Opr.toString());
 	    IMConstant rcOpr = rOpr.nodeToConstant();
 	    rcOpr.setIntValue(rcOpr.getIntValue() + value);
 	    return this;
@@ -141,7 +141,7 @@ final  public class IMAdd extends IMBinaryOperator {
 		default:
 			mult = null;
               }
-              if (mult != null && opts.doVerbose("lea")) Debug.out.println("++ lea " + toReadableString());	
+              if (mult != null && opts.doVerbose("lea")) Debug.out.println("++ lea " + toString());	
 	    }
 
             if (mult == null) {
@@ -165,7 +165,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	    
 	    lOpr.translate(result);
 	    if (result.any()) {
-		Debug.out.println(toReadableString());
+		Debug.out.println(toString());
 		throw new Error(getLineInfo() + " get any");
 	    }
 

@@ -85,7 +85,7 @@ public class IMBasicBlock extends IMNode {
     }
 
     public void setLoopEntry(boolean flag) {
-    isLoopEntry=flag;
+    isLoopEntry = flag;
     }
 
     public boolean isLastBasicBlock() {
@@ -131,7 +131,7 @@ public class IMBasicBlock extends IMNode {
         if (verbose) {
             System.err.println("process basic block: " + this);
             System.err.println("Exception (1): " + node.toString());
-            System.err.println(node.toReadableString());
+            //System.err.println(node.toReadableString());
         }
                 Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
         System.exit(-1);
@@ -141,7 +141,7 @@ public class IMBasicBlock extends IMNode {
         try {
         if (instr != null) {
             stack.join(instr);
-            if (verbose) System.out.println(instr.toReadableString());
+            if (verbose) System.out.println(instr.toString());
             // Return from Subroutine
             if (instr.isReturnSubroutine()) {
             subroutine = true;
@@ -213,7 +213,7 @@ public class IMBasicBlock extends IMNode {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
         String ret = toLabel();
     if (isLowPriorityPath())
         ret = "-" + ret;
@@ -222,7 +222,7 @@ public class IMBasicBlock extends IMNode {
     if (enterStack == null) return ret;
         for (IMOperant enterStack1 : enterStack) {
             if (enterStack1 != null)
-                ret = ret + enterStack1.toReadableString();
+                ret = ret + enterStack1.toString();
         }
     return ret;
     }
@@ -231,10 +231,10 @@ public class IMBasicBlock extends IMNode {
     return labelText;
     }
 
-    @Override
+    /*@Override
     public String toString() {
     return super.toString() + "B #" + Integer.toString(counter);
-    }
+    }*/
 
     public UnresolvedJump getNewJumpTarget() {
     if (nextJumpTarget >= jumpTargets.length) {
@@ -332,13 +332,13 @@ public class IMBasicBlock extends IMNode {
         regs.endBasicBlock();
         }
     } catch (CompileException ex) {
-        System.out.println(toReadableString());
+        System.out.println(toString());
         IMNode dnode = next;        
         while (dnode != null && !dnode.isBasicBlock()) {
         if (dnode == node)
-            System.out.println("->" + dnode.toReadableString());
+            System.out.println("->" + dnode.toString());
         else
-            System.out.println("  " + dnode.toReadableString());
+            System.out.println("  " + dnode.toString());
          dnode = dnode.next;
         }
         throw ex;

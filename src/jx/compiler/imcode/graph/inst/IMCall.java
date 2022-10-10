@@ -48,8 +48,8 @@ final  public class IMCall extends IMBranch  {
     }
 
     @Override
-    public String toReadableString() {
-	return "call "+targets[0].toReadableString();	    
+    public String toString() {
+	return "call " + targets[0].toString();	    
     }
 
     // IMCall

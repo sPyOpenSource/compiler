@@ -37,18 +37,18 @@ final  public class IMRem extends IMBinaryOperator {
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
 		value = lOpr.nodeToConstant().getIntValue() % rOpr.nodeToConstant().getIntValue();
 		newNode = new IMConstant(container,-1,bcPosition,value);
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c%c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c%c "+toString());
 		return newNode;
 	    }
 	    
 	    // simpel case (x/1) => c
 	    if (rOpr.isConstant() && (value = rOpr.nodeToConstant().getIntValue()) == 1) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ no folding x%1 " + toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ no folding x%1 " + toString());
 	    }
 
 	    // simpel case (0/...) => 0
 	    if (lOpr.isConstant() && (value = lOpr.nodeToConstant().getIntValue()) == 0) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ no folding 0/x " + toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ no folding 0/x " + toString());
 	    }
 
 	}
@@ -59,8 +59,8 @@ final  public class IMRem extends IMBinaryOperator {
     }
 
 
-    public String toReadableString() {
-	return "(" + lOpr.toReadableString() + "%" + rOpr.toReadableString() + ")";
+    public String toString() {
+	return "(" + lOpr.toString() + "%" + rOpr.toString() + ")";
     }
 
     // IMRem

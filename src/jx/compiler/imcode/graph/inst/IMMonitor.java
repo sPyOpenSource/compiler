@@ -24,11 +24,11 @@ final public class IMMonitor extends IMUnaryOperator  {
 	return this;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	if (bytecode == Opcodes.MONITORENTER) {
-	    return operant.toReadableString() + ".enter()";
+	    return operant.toString() + ".enter()";
 	}
-	return operant.toReadableString() + ".leave()";
+	return operant.toString() + ".leave()";
     }
 
     // IMMonitor

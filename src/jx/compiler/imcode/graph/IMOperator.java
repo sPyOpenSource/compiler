@@ -11,7 +11,7 @@ public class IMOperator extends IMOperant {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	return "<operator>";
     }
 }

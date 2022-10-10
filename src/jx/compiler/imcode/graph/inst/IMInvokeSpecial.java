@@ -14,11 +14,11 @@ final public class IMInvokeSpecial extends IMInvoke {
     }
 
     @Override
-    public String toReadableString() {
-	String retString = obj.toReadableString() + ".";
+    public String toString() {
+	String retString = obj.toString() + ".";
 	retString += cpEntry.getMemberName();
 	if (stat_flag) {retString += "@special";}
-	return retString += super.toReadableString();
+	return retString += super.toString();
 
     }
 

@@ -351,7 +351,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    mappings.add(mapping);
 	    fillMapping(mapping);
 	    return o;
-	} catch(Exception e) {
+	} catch(ClassNotFoundException | IllegalAccessException | InstantiationException e) {
 	    e.printStackTrace();
 	    return null;
 	}
@@ -398,7 +398,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 		    } else if (fieldType.equals(Byte.TYPE)) {
 			mapping.fields[i].setByte(mapping.object, coreGet8(mapping.start + mapping.offsets[i]));
 		    }
-		} catch(Exception ex) {
+		} catch(IllegalAccessException | IllegalArgumentException ex) {
 		    ex.printStackTrace();
 		}
 	    }
@@ -459,7 +459,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 		    } else if (fieldType.equals(Byte.TYPE)) {
 			coreSet8(mapping.start + mapping.offsets[i], mapping.fields[i].getByte(mapping.object)); 
 		    }
-		} catch(Exception ex) {
+		} catch(IllegalAccessException | IllegalArgumentException ex) {
 		    ex.printStackTrace();
 		}
 	    }

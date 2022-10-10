@@ -37,8 +37,8 @@ final  public class IMSub extends IMBinaryOperator {
     public boolean isSubOrAdd() {return true;}
 
     @Override
-    public String toReadableString() {
-	return "("+lOpr.toReadableString()+"-"+rOpr.toReadableString()+")";
+    public String toString() {
+	return "("+lOpr.toString()+"-"+rOpr.toString()+")";
     } 
 
     @Override
@@ -57,7 +57,7 @@ final  public class IMSub extends IMBinaryOperator {
 	if (datatype == BCBasicDatatype.INT) {
 	    // simpel case (c-c)
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c-c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c-c "+toString());
 		value = lOpr.nodeToConstant().getIntValue() - rOpr.nodeToConstant().getIntValue();
 		newNode = new IMConstant(container,-1,bcPosition,value);
 		return newNode;
@@ -76,7 +76,7 @@ final  public class IMSub extends IMBinaryOperator {
 	    if (lOpr.isConstant()) {
 		// todo cases (c-(.+/-.))
 		//if (opts.doVerbose("cf")) 
-		    Debug.out.println("++ no folding  (c-(.+/-.)) "+toReadableString());
+		    Debug.out.println("++ no folding  (c-(.+/-.)) "+toString());
 	    } else if (lOpr.isSubOrAdd() && lOpr.hasConstant()) {
 		// case ((.+/-.)-(.-.)) => ((.+/-.)+(.-.)) -> IMAdd		
 		if (rOpr.isSub()) {
@@ -88,12 +88,12 @@ final  public class IMSub extends IMBinaryOperator {
 		if (lOpr.isSub()) {
 		    // case ((.-.)-(x2+c2)) => ((x1-x2)+c)
 		    //if (opts.doVerbose("cf")) 
-			Debug.out.println("++ no folding  ((.-.)-(x+c)) "+toReadableString());
+			Debug.out.println("++ no folding  ((.-.)-(x+c)) "+toString());
 		    return this;
 		} else {	
 		    // case ((x1+c1)-(x2+c2)) => ((x1-x2)+c)
 		    if (opts.doVerbose("cf")) 
-			Debug.out.println("++ folding  ((x+c)-(x+c)) "+toReadableString());
+			Debug.out.println("++ folding  ((x+c)-(x+c)) "+toString());
 
 		    IMOperant  x1 = lOpr.getLeftOperant();
 		    IMConstant c1 = lOpr.getRightOperant().nodeToConstant();
@@ -109,7 +109,7 @@ final  public class IMSub extends IMBinaryOperator {
 		    rOpr = c1;
 
 		    if (opts.doVerbose("cf")) 
-			Debug.out.println("++ folding  => "+toReadableString());
+			Debug.out.println("++ folding  => "+toString());
 
 		    return this;
 		}
@@ -122,7 +122,7 @@ final  public class IMSub extends IMBinaryOperator {
     public IMOperant constant_folding2la(IMAdd Opr,int c2) {
 	if (lOpr.isConstant()) {
 	    // ((c1-x)+c2) => (c3-x)
-	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (c-x)+c "+Opr.toReadableString());
+	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (c-x)+c "+Opr.toString());
 	    IMConstant lcOpr = lOpr.nodeToConstant();
 	    int c3 = lcOpr.getIntValue() + c2;	    
 	    if (c3==0) return rOpr;

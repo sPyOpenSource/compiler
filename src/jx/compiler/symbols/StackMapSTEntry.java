@@ -88,6 +88,6 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
         for (int i=0;i<map.length;i++) {
            if (map[i]) ret+="R"; else ret+=".";
         } 
-	return ret+" "+node.toReadableString();
+	return ret + " " + node.toString();
     }
 }

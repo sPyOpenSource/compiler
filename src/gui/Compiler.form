@@ -133,7 +133,7 @@
                   <Component id="logOn" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPaneLog" pref="453" max="32767" attributes="0"/>
+              <Component id="jScrollPaneLog" pref="448" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -174,7 +174,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Run">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Run"/>
+        <Property name="text" type="java.lang.String" value="Run OS"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RunActionPerformed"/>
@@ -182,7 +182,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="Kernel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Kernel"/>
+        <Property name="text" type="java.lang.String" value="Kernel IDE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KernelActionPerformed"/>
@@ -236,7 +236,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="logOn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Start Logging"/>
+        <Property name="text" type="java.lang.String" value="Show Logging"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="logOnActionPerformed"/>

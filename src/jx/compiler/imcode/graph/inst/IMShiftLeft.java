@@ -19,8 +19,8 @@ final public class IMShiftLeft extends IMBitOperator {
 	datatype = i & 0x01;
     }
 
-    public String toReadableString() {
-	return "("+lOpr.toReadableString()+" << "+rOpr.toReadableString()+")";
+    public String toString() {
+	return "("+lOpr.toString()+" << "+rOpr.toString()+")";
     }
 
     public IMNode constant_folding() throws CompileException {
@@ -30,7 +30,7 @@ final public class IMShiftLeft extends IMBitOperator {
 	    if (rOpr.isConstant() && lOpr.isConstant()) {
 		IMConstant lcOpr = lOpr.nodeToConstant();
 		IMConstant rcOpr = rOpr.nodeToConstant();
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c<<c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c<<c "+toString());
 		lcOpr.setIntValue(lcOpr.getIntValue() << rcOpr.getIntValue());
 		return lcOpr;
 	    }

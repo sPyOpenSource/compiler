@@ -93,7 +93,7 @@ final public class IMStoreBlockVariable extends IMVarAccess {
 	    code.startBC(bcPosition);
 
 	    if (result.any()) {
-		if (verbose && System.err!=null) System.err.println("operant: "+operant.toReadableString());
+		if (verbose && System.err!=null) System.err.println("operant: "+operant.toString());
 		throw new Error("can`t write to any (bcPos:"+bcPosition+")");
 	    }
 
@@ -116,8 +116,8 @@ final public class IMStoreBlockVariable extends IMVarAccess {
     	return new IMReadBlockVariable(container,this,number,datatype,bcPosition);
     }
     
-    public String toReadableString() {
-	return "b"+Integer.toString(number)+" = "+operant.toReadableString();
+    public String toString() {
+	return "b"+Integer.toString(number)+" = "+operant.toString();
     }    
 
     public String debugInfo() {

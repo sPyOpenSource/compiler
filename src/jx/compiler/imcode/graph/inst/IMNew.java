@@ -34,7 +34,7 @@ final public class IMNew extends IMOperator {
 	return null;
     }
     
-    public String toReadableString() {
+    public String toString() {
 	return "new "+cpEntry.getClassName();
     }
 
