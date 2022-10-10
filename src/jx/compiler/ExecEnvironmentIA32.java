@@ -11,6 +11,8 @@ import jx.zero.Debug;
 import jx.compiler.execenv.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
+import jx.compiler.imcode.graph.inst.IMConstant;
+import jx.compiler.imcode.graph.inst.IMReadLocalVariable;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
 import jx.compiler.persistent.*;

@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String srcPath = "./app/java/";
         String classesPath = "../Zero/build/classes/";
-        String llvmPath = "./app/c/";
+        String llvmPath = "./app/ir/";
 
 
         if (args.length < 3) {
@@ -92,7 +92,6 @@ public class Main {
         try (InputStream is = new FileInputStream(fn)) {
             ClassReader cr = new ClassReader(is);
             cr.accept(sc, 0);
-            
             
             cr.accept(cv, 0);
             ps.flush();

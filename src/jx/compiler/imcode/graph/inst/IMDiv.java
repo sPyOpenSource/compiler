@@ -22,8 +22,8 @@ final  public class IMDiv extends IMBinaryOperator {
 
     public boolean isDibOrMult() {return true;}
 
-    public String toReadableString() {
-	return "("+lOpr.toReadableString()+"/"+rOpr.toReadableString()+")";
+    public String toString() {
+	return "("+lOpr.toString()+"/"+rOpr.toString()+")";
     }
 
     public IMNode constant_folding() throws CompileException {
@@ -44,26 +44,26 @@ final  public class IMDiv extends IMBinaryOperator {
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
 		value = ((IMConstant)lOpr).getIntValue() / ((IMConstant)rOpr).getIntValue();
 		newNode = new IMConstant(container,-1,bcPosition,value);
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c/c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c/c "+toString());
 		return newNode;
 	    }
 	    
 	    // simpel case (x/1) => c
 	    if (rOpr.isConstant() && (value=((IMConstant)rOpr).getIntValue())==1) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding x/1 "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding x/1 "+toString());
 		return lOpr;
 	    }
 
 	    // simpel case (0/...) => 0
 	    if (lOpr.isConstant() && (value=((IMConstant)lOpr).getIntValue())==0) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding 0/x "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding 0/x "+toString());
 		return lOpr;
 	    }
 
 	    if (opts.doVerbose("cf")) {
 		if (lOpr.isDivOrMult() && rOpr.isDivOrMult()) {
 		    if (lOpr.hasConstant() && rOpr.hasConstant()) {
-			Debug.out.println("++ no folding ((x*c)/(x*c)) "+toReadableString());
+			Debug.out.println("++ no folding ((x*c)/(x*c)) "+toString());
 		    }
 		}
 	    }

@@ -50,15 +50,15 @@ final public class IMTableSwitch extends IMBranch  {
         }
 
         if (operant.isConstant()) {
-            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toReadableString());
+            if (opts.doVerbose("cf")) Debug.out.println("-- todo constant folding " + toString());
         }
 	
 	return this; 
     }
 
     @Override
-    public String toReadableString() {
-	String output = "tswitch (" + operant.toReadableString() + ")";
+    public String toString() {
+	String output = "tswitch (" + operant.toString() + ")";
         for (IMBasicBlock offset : offsets) {
             output += " " + offset.toLabel();
         }

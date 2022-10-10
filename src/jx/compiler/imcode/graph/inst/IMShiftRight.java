@@ -20,8 +20,8 @@ final public class IMShiftRight extends IMBitOperator {
     }
 
     @Override
-    public String toReadableString() {
-	return "("+lOpr.toReadableString()+" >> "+rOpr.toReadableString()+")";
+    public String toString() {
+	return "("+lOpr.toString()+" >> "+rOpr.toString()+")";
     }
 
     @Override
@@ -32,7 +32,7 @@ final public class IMShiftRight extends IMBitOperator {
 	    if (rOpr.isConstant() && lOpr.isConstant()) {
 		IMConstant lcOpr = lOpr.nodeToConstant();
 		IMConstant rcOpr = rOpr.nodeToConstant();
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c>>c " + toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c>>c " + toString());
 		int value = lcOpr.getIntValue() >> rcOpr.getIntValue();
 		lcOpr.setIntValue(value);
 		return lcOpr;

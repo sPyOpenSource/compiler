@@ -59,9 +59,9 @@ final public class IMInvokeInterface extends IMMultiOperant {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	String retString = "";
-	if (obj!=null) retString = obj.toReadableString()+".";
+	if (obj!=null) retString = obj.toString()+".";
 	retString += cpEntry.getMemberName();
 	/*
 	retString += "(";
@@ -73,7 +73,7 @@ final public class IMInvokeInterface extends IMMultiOperant {
 	}
 	return retString+")";
 	*/
-	retString += super.toReadableString();
+	retString += super.toString();
 	return retString;
     }
 

@@ -1,12 +1,11 @@
-package jx.compiler.imcode.graph; 
+package jx.compiler.imcode.graph.inst; 
 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
 import jx.zero.Debug; 
 import jx.compiler.*;
-import jx.compiler.imcode.CodeContainer;
-import jx.compiler.imcode.VirtualOperantenStack;
-import jx.compiler.imcode.graph.inst.IMStoreLocalVariable;
+import jx.compiler.imcode.*;
+import jx.compiler.imcode.graph.*;
 import jx.compiler.nativecode.*;
 
 // ***** IMReadLocalVariable *****
@@ -61,8 +60,8 @@ final public class IMReadLocalVariable extends IMVarAccess {
     @Override
     public IMConstant nodeToConstant() {
 	if (constValue==null) throw new ClassCastException("node is not constant!");
-	if (opts.doVerbose("cfor")) Debug.out.println(":# "+toReadableString()+"->"
-						      +constValue.toReadableString());
+	if (opts.doVerbose("cfor")) Debug.out.println(":# "+toString()+"->"
+						      +constValue.toString());
 	return constValue;
     }
 
@@ -72,11 +71,11 @@ final public class IMReadLocalVariable extends IMVarAccess {
 	    IMStoreLocalVariable svar = (IMStoreLocalVariable)varList.at(i);	    
 	    if (svar.getVarIndex()==ivar) {
 		if (lazyForwarding) {
-		    if (opts.doVerbose("cfor")) Debug.out.println("#: "+svar.toReadableString());
+		    if (opts.doVerbose("cfor")) Debug.out.println("#: "+svar.toString());
 		    constValue = svar.getOperant().nodeToConstant();
 		    return this;
 		} else {
-		    if (opts.doVerbose("cfor")) Debug.out.println("## "+svar.toReadableString());
+		    if (opts.doVerbose("cfor")) Debug.out.println("## "+svar.toString());
 		    return svar.getOperant();
 		}
 	    }
@@ -117,11 +116,11 @@ final public class IMReadLocalVariable extends IMVarAccess {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	if (opts.doFastThisPtr() && isThisPointer) {
 	    return "this";
 	} else {
-	    return "v"+BCBasicDatatype.toSymbol(datatype)+Integer.toString(ivar);
+	    return "v" + BCBasicDatatype.toSymbol(datatype) + Integer.toString(ivar);
 	}
     }
 

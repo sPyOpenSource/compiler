@@ -37,7 +37,7 @@ final public class IMReturnSubroutine extends IMBranch implements IMVarAccessInt
 	return "v"+Integer.toString(vIndex);
     }
 
-    public String toReadableString() {
+    public String toString() {
 	return "ret v"+Integer.toString(vIndex);	    
     }
 

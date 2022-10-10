@@ -24,7 +24,7 @@ final public class IMCaughtException extends IMOperant {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	return "<caught exception>";
     }
 

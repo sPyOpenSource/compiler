@@ -64,8 +64,8 @@ final public class IMNewArray extends IMOperator {
     }
 
     @Override
-    public String toReadableString() {
-	return "new " + BCBasicDatatype.toString(atype) + "[" + size.toReadableString() + "]";
+    public String toString() {
+	return "new " + BCBasicDatatype.toString(atype) + "[" + size.toString() + "]";
     }
 
     // IMNewArray

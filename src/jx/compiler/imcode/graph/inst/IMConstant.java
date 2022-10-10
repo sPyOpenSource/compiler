@@ -1,5 +1,5 @@
 
-package jx.compiler.imcode.graph; 
+package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
@@ -7,6 +7,9 @@ import jx.classfile.*;
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
+import jx.compiler.imcode.graph.IMBasicBlock;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 import jx.compiler.nativecode.*;
 
 // ***** IMConstant *****
@@ -123,13 +126,13 @@ final public class IMConstant extends IMOperant {
     }	
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) {
 	stack.push(this);
 	return null;
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	if (cpEntry == null) return Integer.toString(value);
 	if (cpEntry instanceof StringCPEntry)
 	    return "\"" + cpEntry.getDescription() + "\"";

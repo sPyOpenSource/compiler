@@ -64,8 +64,8 @@ final public class IMNewObjArray extends IMOperator {
     }
 
     @Override
-    public String toReadableString() {
-	return "new "+cpEntry.getClassName()+"()["+size.toReadableString()+"]";
+    public String toString() {
+	return "new "+cpEntry.getClassName()+"()["+size.toString()+"]";
     }
 
     // IMNewObjArray

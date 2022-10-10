@@ -14,10 +14,10 @@ final public class IMInvokeStatic extends IMInvoke {
 	super(container,bc,bcpos,cpEntry);
     }
 
-    public String toReadableString() {
+    public String toString() {
 	String retString = cpEntry.getMemberName();
 	if (stat_flag) {retString += "@special";}
-	return retString += super.toReadableString();
+	return retString += super.toString();
     }
 
     // IMInvokeStatic

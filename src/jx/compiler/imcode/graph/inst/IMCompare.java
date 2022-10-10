@@ -28,13 +28,13 @@ final  public class IMCompare extends IMBinaryOperator {
 	    lOpr = (IMOperant)((IMOperator)lOpr).constant_folding();
 	}
 	if (rOpr.isConstant() && lOpr.isConstant()) {
-	    if (opts.doVerbose("cf")) Debug.out.println("-- no folding "+toReadableString());
+	    if (opts.doVerbose("cf")) Debug.out.println("-- no folding "+toString());
 	}
 	return this;
     }
 
-    public String toReadableString() {
-	return "compare("+lOpr.toReadableString()+","+rOpr.toReadableString()+")";
+    public String toString() {
+	return "compare("+lOpr.toString()+","+rOpr.toString()+")";
     }
 
     // IMCompare for long, float and double read spec

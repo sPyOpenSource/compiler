@@ -52,8 +52,8 @@ final public class IMReadArray extends IMOperant {
 	return this;
     }
 
-    public String toReadableString() {
-	return aOpr.toReadableString()+"["+iOpr.toReadableString()+"]";
+    public String toString() {
+	return aOpr.toString()+"["+iOpr.toString()+"]";
     }   
 
     public int getNrRegs() { return aOpr.getNrRegs() + iOpr.getNrRegs(); }

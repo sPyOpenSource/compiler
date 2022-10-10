@@ -22,7 +22,6 @@ public class CV extends ClassVisitor {
     // shared states
     Set<String> declares = new HashSet<>();
 
-
     Map<String, String> staticStrs = new HashMap();
     Set<String> assistFunc = new HashSet<>();
 

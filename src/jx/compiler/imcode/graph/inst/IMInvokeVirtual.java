@@ -15,8 +15,8 @@ final public class IMInvokeVirtual extends IMInvoke {
     }
 
     @Override
-    public String toReadableString() {
-	String retString = obj.toReadableString() + ".";
+    public String toString() {
+	String retString = obj.toString() + ".";
 	retString += cpEntry.getMemberName();
 	if (stat_flag) {
 	    BCMethod bcMethod = execEnv.getBCMethod(cpEntry);
@@ -25,7 +25,7 @@ final public class IMInvokeVirtual extends IMInvoke {
 	    else if (obj.isThisPointer())
 		retString += "@this";
 	}
-	return retString += super.toReadableString();
+	return retString += super.toString();
     }
 
     // IMInvokeVirtual

@@ -38,6 +38,7 @@ final  public class IMGoto extends IMBranch  {
 	jumpTarget  = target;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	//stack.flush();
 	//basicBlock.leave(stack);
@@ -48,11 +49,13 @@ final  public class IMGoto extends IMBranch  {
 	return this;
     }
     
-    public String toReadableString() {
-	return "goto " + targets[0].toReadableString();	    
+    @Override
+    public String toString() {
+	return "goto " + targets[0].toString();	    
     }
 
     // IMGoto
+    @Override
     public void translate(Reg result) throws CompileException {
 	int ip = code.getCurrentIP();
 	code.jmp(jumpTarget);

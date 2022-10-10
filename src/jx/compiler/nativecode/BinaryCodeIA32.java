@@ -1,13 +1,13 @@
-package jx.compiler.nativecode; 
+package jx.compiler.nativecode;
 
-import java.util.ArrayList; 
-import java.util.Enumeration; 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Collections;
 import java.io.PrintStream;
 
 import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
 
 /** 
     Parallel to this class there is a class 
@@ -22,7 +22,7 @@ public final class BinaryCodeIA32 {
 
     // not private, so that javac can do inlining 
     // not accessed by any other classes (they are used as if they were private)
-    private byte[] code; 
+    private byte[] code;
     private int ip;
 
     // mapping from instruction addresses to bytecode
@@ -43,18 +43,18 @@ public final class BinaryCodeIA32 {
         allow the storing of compiled code between JVM invocations 
 	- actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private ArrayList symbolTable; 
+    private ArrayList symbolTable;
   
     /** 
 	contains the native exception handlers
     */ 
-    private final ArrayList exceptionHandlers; 
+    private final ArrayList exceptionHandlers;
 
     public BinaryCodeIA32() {
-	code = new byte[INITSIZE]; 
+	code = new byte[INITSIZE];
 	ip = 0;
-	symbolTable = new ArrayList(); 
-	exceptionHandlers = new ArrayList(); 
+	symbolTable = new ArrayList();
+	exceptionHandlers = new ArrayList();
     }
 
     /** 
@@ -64,7 +64,7 @@ public final class BinaryCodeIA32 {
 	nativecode.BinaryCode.
 	Note: Exceptionhandlers are not copied. 
      * @return 
-    */ 
+     */
     public BinaryCode getOldBinaryCode() {
 	Enumeration enume = Collections.enumeration(symbolTable); 
 	ArrayList unresolvedEntries = new ArrayList(); 

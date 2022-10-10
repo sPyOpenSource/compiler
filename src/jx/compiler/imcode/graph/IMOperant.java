@@ -33,7 +33,7 @@ public class IMOperant extends IMNode {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	return "<operant>";
     }
 

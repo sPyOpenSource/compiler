@@ -312,7 +312,7 @@ public class IMInvoke extends IMMultiOperant {
         for (IMOperant store : stores) {
             if (store != null) {
                 if (verbose) {
-                    System.err.println(store.toReadableString());
+                    System.err.println(store.toString());
                 }
                 inlineCode.insertTop(store);
             }

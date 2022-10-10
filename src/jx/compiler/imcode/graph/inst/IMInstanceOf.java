@@ -30,8 +30,8 @@ final public class IMInstanceOf extends IMUnaryOperator {
 	return null;
     }
 
-    public String toReadableString() {
-	return "(" + operant.toReadableString() + " instanceof " + cpEntry.getClassName() + ")";
+    public String toString() {
+	return "(" + operant.toString() + " instanceof " + cpEntry.getClassName() + ")";
     }
 
     // IMInstanceOf

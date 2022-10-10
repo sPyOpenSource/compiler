@@ -34,7 +34,7 @@ final  public class IMNeg extends IMUnaryOperator {
 	if (datatype == BCBasicDatatype.INT) {
 	    // simpel case -(c) => -c
 	    if (operant.isConstant()) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding -(c) "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding -(c) "+toString());
 		IMConstant rcOpr = operant.nodeToConstant();
 		rcOpr.setIntValue(-rcOpr.getIntValue());
 		return rcOpr;
@@ -44,8 +44,8 @@ final  public class IMNeg extends IMUnaryOperator {
 	return this;
     }
 
-    public String toReadableString() {
-	return "-"+operant.toReadableString();
+    public String toString() {
+	return "-"+operant.toString();
     }
 
     // IMNeg

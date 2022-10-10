@@ -64,10 +64,10 @@ final public class IMNewMultiArray extends IMOperator {
 	return this;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	String retValue =  "new "+cpEntry.getClassName();
         for (IMOperant opr : oprs) {
-            retValue += "[" + opr.toReadableString() + "]";
+            retValue += "[" + opr.toString() + "]";
         }
 	return retValue;
     }

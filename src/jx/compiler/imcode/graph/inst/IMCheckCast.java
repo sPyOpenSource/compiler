@@ -40,8 +40,8 @@ final public class IMCheckCast extends IMUnaryOperator {
     }
 
     @Override
-    public String toReadableString() {
-	return "(" + cpEntry.getClassName() + ")(" + operant.toReadableString() + ")";
+    public String toString() {
+	return "(" + cpEntry.getClassName() + ")(" + operant.toString() + ")";
     }
 
     // IMCheckCast

@@ -49,8 +49,8 @@ final public class IMArrayLength extends IMOperator {
 	return this;
     }
     
-    public String toReadableString() {
-	return array.toReadableString()+".length";
+    public String toString() {
+	return array.toString()+".length";
     }
 
     public int getNrRegs() { return array.getNrRegs()+1; }

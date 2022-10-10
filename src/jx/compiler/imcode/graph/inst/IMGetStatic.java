@@ -32,7 +32,7 @@ final public class IMGetStatic extends IMOperant {
     }
 
     @Override
-    public String toReadableString() {
+    public String toString() {
 	return cpEntry.getMemberName();
     }
 

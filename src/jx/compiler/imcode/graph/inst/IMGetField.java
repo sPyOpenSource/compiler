@@ -33,8 +33,8 @@ final public class IMGetField extends IMUnaryOperator {
     }
 
     @Override
-    public String toReadableString() {
-	return operant.toReadableString()+"."+cpEntry.getMemberName();
+    public String toString() {
+	return operant.toString()+"."+cpEntry.getMemberName();
     } 
 
     // IMGetField

@@ -43,7 +43,7 @@ final public class IMInc extends IMVarAccess  {
 	init(newContainer);
 	
 	if (opr[ivar]!=null) {
-	    throw new CompileException("Can`t propagate left operant! var.index="+ivar+" operant="+opr[ivar].toReadableString());
+	    throw new CompileException("Can`t propagate left operant! var.index="+ivar+" operant="+opr[ivar].toString());
 	}
 
 	ivar = slots[ivar];
@@ -51,7 +51,7 @@ final public class IMInc extends IMVarAccess  {
 	return this;
     }
 
-    public String toReadableString() {
+    public String toString() {
 	if (value==1) return "vi"+Integer.toString(ivar)+"++";
 	if (value==-1) return "vi"+Integer.toString(ivar)+"--";
 	return "vi"+Integer.toString(ivar)+"+="+Integer.toString(value);

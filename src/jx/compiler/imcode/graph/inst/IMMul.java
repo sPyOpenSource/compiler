@@ -22,8 +22,8 @@ final  public class IMMul extends IMBinaryOperator {
 
     public boolean isDivOrMult() {return true;}    
     
-    public String toReadableString() {
-	return "(" + lOpr.toReadableString() + "*" + rOpr.toReadableString() + ")";
+    public String toString() {
+	return "(" + lOpr.toString() + "*" + rOpr.toString() + ")";
     }
     
     public IMNode constant_folding() throws CompileException {
@@ -42,7 +42,7 @@ final  public class IMMul extends IMBinaryOperator {
 
 	    // simpel case (c*c)
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
-		if (opts.doVerbose("cf")) Debug.out.println("++ folding c*c "+toReadableString());
+		if (opts.doVerbose("cf")) Debug.out.println("++ folding c*c "+toString());
 		value = lOpr.nodeToConstant().getIntValue() * rOpr.nodeToConstant().getIntValue();
 		newNode = new IMConstant(container,-1,bcPosition,value);
 		return newNode;
@@ -59,10 +59,10 @@ final  public class IMMul extends IMBinaryOperator {
 	    if (rOpr.isConstant()) {
 		switch (rOpr.nodeToConstant().getIntValue()) {
 		case 0:
-		    if (opts.doVerbose("cf")) Debug.out.println("++ folding x*0 "+toReadableString());
+		    if (opts.doVerbose("cf")) Debug.out.println("++ folding x*0 "+toString());
 		    return rOpr;
 		case 1:
-		    if (opts.doVerbose("cf")) Debug.out.println("++ folding x*1 "+toReadableString());
+		    if (opts.doVerbose("cf")) Debug.out.println("++ folding x*1 "+toString());
 		    return lOpr;
 		case 2:
 		case 3:
@@ -71,9 +71,9 @@ final  public class IMMul extends IMBinaryOperator {
                     // todo (x+c)*c -> (x*c)+(c*c) 
 	            if (opts.doVerbose("lea")) {
                         if (lOpr.isSubOrAdd()) {
-			    Debug.out.println("!! use lea or add (x+c)*c -> (x*c)+(c*c) " + toReadableString());	
+			    Debug.out.println("!! use lea or add (x+c)*c -> (x*c)+(c*c) " + toString());	
                         } else {
-			    Debug.out.println("++ use lea or add" + toReadableString());	
+			    Debug.out.println("++ use lea or add" + toString());	
                         }
 		    }
 		}
@@ -85,7 +85,7 @@ final  public class IMMul extends IMBinaryOperator {
 		if (lOpr.isDivOrMult() && rOpr.isDivOrMult()) {
 		    if (lOpr.hasConstant() && rOpr.hasConstant()) {
 			//if (opts.doVerbose("cf"))
-			    Debug.out.println("++ no folding ((x*c)*(x*c)) " + toReadableString());
+			    Debug.out.println("++ no folding ((x*c)*(x*c)) " + toString());
 		    }
 		}
 	    }
