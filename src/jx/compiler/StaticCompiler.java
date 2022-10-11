@@ -6,13 +6,13 @@
 
 package jx.compiler;
 
-import jx.classfile.constantpool.*; 
-import jx.classfile.*; 
+import jx.classfile.constantpool.*;
+import jx.classfile.*;
 
 import jx.zero.Debug;
-
 import jx.collections.Iterator;
 import jx.collections.List;
+import jx.compspec.MetaInfo;
 
 import jx.compiler.persistent.*;
 import jx.compiler.vtable.MethodTableFactory;
@@ -26,8 +26,6 @@ import jx.compiler.execenv.BCMethodWithCode;
 import jx.compiler.execenv.IOSystem;
 import jx.compiler.execenv.NativeCodeContainer;
 import jx.compiler.execenv.BinaryCode;
-
-import jx.compspec.MetaInfo;
 
 import java.io.PrintStream;
 import java.io.IOException;

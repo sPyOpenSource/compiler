@@ -20,7 +20,6 @@ import jx.compspec.MetaReader;
 import static jx.compspec.StartBuilder.getCompilerOptions;
 
 public class CompileNative {
-
     static MemoryManager memMgr = new MemoryManagerImpl();
 
     public static void readZipFile(String filename) {

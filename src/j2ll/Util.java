@@ -20,7 +20,7 @@ public final class Util {
             return SHORT;
         } else if (str.equals("C")) {
             return CHAR;
-        } else if (str.equals("I")) {
+        } else if (str.startsWith("I")) {
             return INT;
         } else if (str.equals("J")) {
             return LONG;
@@ -180,13 +180,15 @@ public final class Util {
                 s += " = type " + javaArr2struct(resolver, className);
                 return s;
             } else {
+                if(className.endsWith(";"))
+                    className = className.split(";")[0];
                 ClassData c = helper.getClassFile(className);
 //                if (c == null) {
 //                    int debug = 1;
 //                }
                 StringJoiner joiner = new StringJoiner(", ", "{", "}");
                 for (FieldData f : c.getFields()) {
-                    joiner.add(javaSignature2irType(resolver, f.getDescription(null)));
+                    joiner.add(javaSignature2irType(resolver, f.getDescription(c.getConstantPool())));
                 }
                 String s = "%" + className.replace('/', '_') + " = type " + joiner; //todo struct -> internals
                 //System.out.println("class2struct:" + s);
