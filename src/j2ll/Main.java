@@ -33,7 +33,8 @@ public class Main {
         System.out.println("llvm *.ll output path        : " + llvmPath);
 
         //javaSrc2class(srcPath, classesPath);
-
+        Util.helper = new ClassHelper();
+        Util.helper.openClasses();
         class2ll(classesPath, llvmPath);
 
 //        conv("java.lang.Object", classesPath, llvmPath);

@@ -7,7 +7,6 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class CV extends ClassVisitor {
-
     // out
     private final PrintStream ps;
     private final Statistics statistics;

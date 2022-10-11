@@ -20,4 +20,14 @@ public class JUnitTest {
             Logger.getLogger(JUnitTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    @Test
+    public void testIM(){
+        
+    }
+    
+    @Test
+    public void testIR(){
+        
+    }
 }

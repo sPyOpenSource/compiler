@@ -32,7 +32,6 @@ public class IrFunction {
         SourceToken st = new SourceToken(strs);
         st.pos = 0;
 
-        //System.out.println();
         parse(st);
     }
 
@@ -51,7 +50,8 @@ public class IrFunction {
                     break;
                 }
                 default: {
-                    if (irb == null) throw new RuntimeException("irb can't null");
+                    if (irb == null) //throw new RuntimeException("irb can't null");
+                        return;
                     irb.lines.add(irs);
                 }
             }

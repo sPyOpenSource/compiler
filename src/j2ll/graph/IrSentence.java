@@ -126,8 +126,12 @@ abstract public class IrSentence extends IrObject {
                         || right.startsWith("fmul ")
                         || right.startsWith("fdiv ")
                         || right.startsWith("frem ")
+                        || right.startsWith("and")
+                        || right.startsWith("lshr")
+                        || right.startsWith("shl")
         ) {
             irs = new IrArith();
+            System.out.println(s);
             irs.parse(s);
         } else {
             System.out.println("unknow :" + s);

@@ -13,7 +13,6 @@ import static j2ll.Internals.*;
  *
  */
 public class MV extends MethodVisitor {
-
     // parent
     private CV cv;
 
@@ -38,7 +37,6 @@ public class MV extends MethodVisitor {
     List<String> labels = new ArrayList<>();
     List<String> usedLabels = new ArrayList<>();
     String curLabel;
-
 
     int max_local;
     int max_stack;
@@ -1040,7 +1038,6 @@ public class MV extends MethodVisitor {
         String ms = mergeString(result);
         result = ms.split("\n");
         discardDoubleLabel(result);
-
         IrFunction irf = new IrFunction(cv.className, methodName, javaSignature);
         irf.define = define;
         irf.end = "}";
@@ -1048,9 +1045,9 @@ public class MV extends MethodVisitor {
         String str = irf.toString();
         result = str.split("\n");
 
-        for (String result1 : result) {
+        for (String rst : result) {
             ps.print("    ");
-            ps.println(result1);
+            ps.println(rst);
         }
         // 3) end
         ps.println("}");
