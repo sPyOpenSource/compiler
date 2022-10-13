@@ -115,7 +115,7 @@ public class BinaryCode {
    * @param handle Handle to native code memory
    */
   private void writeNativeCode(int handle, byte buffer[],
-				      int off, int len) {	throw new Error(); }
+                               int off, int len) { throw new Error(); }
 
   /**
    * Write the native code into the memory assoziated with handle.

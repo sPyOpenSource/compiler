@@ -1,4 +1,4 @@
-; CLASS: jx/zero/DeviceMemory extends java/lang/Object
+; CLASS: jx/net/rpcsvc/nfs/Stat extends java/lang/Object
 
 declare noalias i8* @malloc(i32)
 declare void @free(i8*)

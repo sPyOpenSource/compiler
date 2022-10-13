@@ -21,6 +21,7 @@ final public class IMArrayLength extends IMOperator {
 	datatype     = BCBasicDatatype.INT;
     }
     
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
         array = stack.pop();
 	if (array.getDatatype()!=BCBasicDatatype.REFERENCE) 
@@ -30,16 +31,19 @@ final public class IMArrayLength extends IMOperator {
 	return null;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	array = (IMOperant)array.inlineCode(iCode, depth, forceInline);
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
 	array = (IMOperant)array.constant_folding();
 	return this;
     }
 
+    @Override
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
@@ -49,15 +53,19 @@ final public class IMArrayLength extends IMOperator {
 	return this;
     }
     
+    @Override
     public String toString() {
 	return array.toString()+".length";
     }
 
+    @Override
     public int getNrRegs() { return array.getNrRegs()+1; }
 
+    @Override
     public void getCollectVars(ArrayList vars) { array.getCollectVars(vars); }
 
     // IMArrayLength
+    @Override
     public void translate(Reg result) throws CompileException {
 	
 	Reg arrayRef = regs.chooseIntRegister(result);	

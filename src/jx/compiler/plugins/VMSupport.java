@@ -54,7 +54,7 @@ public class VMSupport implements CompilerPlugin {
 	    
 	    regs.saveIntRegister();
 
-	    int ip=code.getCurrentIP();
+	    int ip = code.getCurrentIP();
 	    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_ARRAYCOPY_RIGHT));
 	    
 	    node.addDebugInfo(frame.stackMapToString(node));

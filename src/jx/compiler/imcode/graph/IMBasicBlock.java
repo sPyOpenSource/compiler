@@ -57,18 +57,18 @@ public class IMBasicBlock extends IMNode {
     public IMBasicBlock(CodeContainer container, int bcPosition) {
     super(container);
         tag = IMNode.BASICBLOCK;
-    this.bcPosition = bcPosition;
-    this.bytecode = 0;
-    dbgString  = null;
-    enterStack = null;
-    leaveStack = null;
-    successors = null;
-    done       = false;
-    subroutine = false;
-    counter    = 1;
-    nextJumpTarget = 0;
-    if (bcPosition == 0) labelText = "START";
-    else labelText = "B" + Integer.toString(bcPosition);
+        this.bcPosition = bcPosition;
+        this.bytecode = 0;
+        dbgString  = null;
+        enterStack = null;
+        leaveStack = null;
+        successors = null;
+        done       = false;
+        subroutine = false;
+        counter    = 1;
+        nextJumpTarget = 0;
+        if (bcPosition == 0) labelText = "START";
+        else labelText = "B" + Integer.toString(bcPosition);
     }
 
     public void setExceptionHandler(ExceptionTableSTEntry handler) {
@@ -304,27 +304,27 @@ public class IMBasicBlock extends IMNode {
         while (node != null && !node.isBasicBlock()) {
             //System.err.println(node.toReadableString());
             switch (node.getDatatype()) {
-                        case BCBasicDatatype.FLOAT:
-                        case BCBasicDatatype.DOUBLE:
-                            code.nop();
-                            //execEnv.codeThrow(this,-11,bcPosition);
-                            break;
-                        case BCBasicDatatype.LONG: 
-                            if (opts.isOption("long")) {
-                                Reg64 result64 = regs.chooseLongRegister();
-                                node.translateLong(result64);
-                                regs.freeLongRegister(result64);
-                            } else {
-                                code.nop();
-                            }
-                            break;
-                        case BCBasicDatatype.INT:
-                        case BCBasicDatatype.BOOLEAN:
-                        case BCBasicDatatype.VOID:
-                        default:
-                            Reg rval = regs.getIntRegister(Reg.any);
-                            node.translate(rval);
-                            regs.freeIntRegister(rval);
+                case BCBasicDatatype.FLOAT:
+                case BCBasicDatatype.DOUBLE:
+                    code.nop();
+                    //execEnv.codeThrow(this,-11,bcPosition);
+                    break;
+                case BCBasicDatatype.LONG: 
+                    if (opts.isOption("long")) {
+                        Reg64 result64 = regs.chooseLongRegister();
+                        node.translateLong(result64);
+                        regs.freeLongRegister(result64);
+                    } else {
+                        code.nop();
+                    }
+                    break;
+                case BCBasicDatatype.INT:
+                case BCBasicDatatype.BOOLEAN:
+                case BCBasicDatatype.VOID:
+                default:
+                    Reg rval = regs.getIntRegister(Reg.any);
+                    node.translate(rval);
+                    regs.freeIntRegister(rval);
             }
             node = node.next;
         }

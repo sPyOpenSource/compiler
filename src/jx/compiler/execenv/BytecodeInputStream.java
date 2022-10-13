@@ -119,7 +119,7 @@ public final class BytecodeInputStream {
       (getByteUnsigned(2) << 8) + 
       (getByteUnsigned(1) << 16) +
       (getByteUnsigned(0) << 24);
-    pos+=4; 
+    pos += 4; 
     return val;
   }
 }

@@ -182,7 +182,7 @@ public final class Util {
             } else {
                 if(className.endsWith(";"))
                     className = className.split(";")[0];
-                ClassData c = helper.getClassFile(className);
+                ClassData c = helper.getClassFile(className + ".class");
 //                if (c == null) {
 //                    int debug = 1;
 //                }

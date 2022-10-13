@@ -3,9 +3,9 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import java.util.ArrayList;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
+import java.util.ArrayList;
 
 // **** IMThrow ****
 
@@ -14,12 +14,13 @@ final public class IMThrow extends IMBranch  {
 
     public IMThrow(CodeContainer container,int bc,int bcpos) {
 	super(container);
-	bytecode     = bc;
-	bcPosition   = bcpos;
-	datatype     = -1 ; // FIXME ObjectRef
-	targets = null;
+	bytecode    = bc;
+	bcPosition  = bcpos;
+	datatype    = -1 ; // FIXME ObjectRef
+	targets     = null;
     }
     
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	//stack.store();
         exception = stack.pop();	
@@ -37,16 +38,19 @@ final public class IMThrow extends IMBranch  {
 	return exception;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	exception = (IMOperant)exception.inlineCode(iCode, depth, forceInline);
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
 	exception = (IMOperant)exception.constant_folding();
 	return this;
     }
 
+    @Override
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
@@ -62,11 +66,14 @@ final public class IMThrow extends IMBranch  {
 	return "throw "+exception.toString();
     }
 
+    @Override
     public int getNrRegs() { return exception.getNrRegs(); }
 
+    @Override
     public void getCollectVars(ArrayList vars) { exception.getCollectVars(vars); }
 
     // IMThrow
+    @Override
     public void translate(Reg result) throws CompileException {
 	execEnv.codeThrow(this,exception,bcPosition);
     }
