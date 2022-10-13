@@ -71,7 +71,7 @@ public class BCMethod {
 
     @Override
     public String toString() {
-	return "BCMethod("+name+typeDescString+")";
+	return "BCMethod(" + name + typeDescString + ")";
     }
 
     public int[] getArgumentTypes() { return argumentTypes; }
@@ -94,7 +94,7 @@ public class BCMethod {
 	return -1;
     }
 
-    public VerifyResult  getVerifyResult(int type) {
+    public VerifyResult getVerifyResult(int type) {
 	return methodSource.getVerifyResult(type);
     }
 }

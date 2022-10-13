@@ -55,17 +55,17 @@ public class AssistLLVM {
             String extFunc = "define " + funcName + "  {\n"
                     + "    %tmps0 = alloca " + carrIRtype + "\n"
                     + "    store " + carrIRtype + " %s0, " + carrIRtype + "* %tmps0\n"
-                    + "    %stack0 = load " + carrIRtype + ", " + carrIRtype + "* %tmps0             \n"
+                    + "    %stack0 = load " + carrIRtype + ", " + carrIRtype + "* %tmps0\n"
                     + "    ; new %java_lang_String\n"
                     + "    %__objptr = getelementptr %java_lang_String, %java_lang_String* null, i32 1\n"
                     + "    %__memsize = ptrtoint %java_lang_String* %__objptr to i32 \n"
                     + "    ;call void @print_debug(i32 %__memsize) \n"
                     + "    %__tmp0 = call i8* @malloc(i32 %__memsize)\n"
                     + "    %stack1 = bitcast i8* %__tmp0 to %java_lang_String*\n"
-                    + "    ;              \n"
+                    + "    ;\n"
                     + "    call void @java_lang_String__init___C(%java_lang_String* %stack1, " + carrIRtype + " %stack0) \n"
                     + "    ret %java_lang_String* %stack1\n"
-                    + "}                  \n";
+                    + "}\n";
             ps.println(extFunc);
             ps.println("\n");
 

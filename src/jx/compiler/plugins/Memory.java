@@ -19,7 +19,7 @@ public class Memory implements CompilerPlugin {
     public final static int DZ_OFFSET    = 12;  
     public final static  int VALID_OFFSET = 4;
 
-    private final static boolean fastConstants=true;
+    private final static boolean fastConstants = true;
 
     private final ExecEnvironmentIA32      e;
     private final CompilerOptionsInterface opts;

@@ -31,8 +31,8 @@ final public class Opcodes {
     public static final int SIPUSH = 0x11;
     
     // load constant from pool [index 1-2]
-    public static final int LDC = 0x12;
-    public static final int LDC_W = 0x13;
+    public static final int LDC    = 0x12;
+    public static final int LDC_W  = 0x13;
     public static final int LDC2_W = 0x14;
     
     // load int,long,float,double form local variable [index 1]
@@ -134,10 +134,10 @@ final public class Opcodes {
     public static final int DUP_X2 = 0x5b;
     
     // Duplicate the top one or two operand stack values
-    public static final int DUP2 = 0x5c;
+    public static final int DUP2    = 0x5c;
     public static final int DUP2_X1 = 0x5d;
     public static final int DUP2_X2 = 0x5e;
-    public static final int SWAP = 0x5f;
+    public static final int SWAP    = 0x5f;
     
     // add
     public static final int IADD = 0x60;

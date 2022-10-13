@@ -6,6 +6,8 @@ import org.objectweb.asm.ClassReader;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,29 +15,15 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        String srcPath = "./app/java/";
-        String classesPath = "../Zero/build/classes/";
         String llvmPath = "./app/ir/";
 
-
-        if (args.length < 3) {
-            System.out.println("Posix :");
-            System.out.println("Compile java file:");
-            System.out.println("java -cp ./class2ir/dist/class2ir.jar:./class2ir/lib/asm-7.2.jar:./class2ir/lib/classparser.jar j2ll.Main ./app/java ./app/out/classes ./app/c/");
-        } else {
-            srcPath = args[0] + "/";
-            classesPath = args[1] + "/";
-            llvmPath = args[2] + "/";
-        }
-
-        System.out.println("java source *.java path      : " + srcPath);
-        System.out.println("classes *.class output path  : " + classesPath);
-        System.out.println("llvm *.ll output path        : " + llvmPath);
+        System.out.println("llvm *.ll output path: " + llvmPath);
 
         //javaSrc2class(srcPath, classesPath);
         Util.helper = new ClassHelper();
         Util.helper.openClasses();
-        class2ll(classesPath, llvmPath);
+        
+        class2ll(llvmPath);
 
 //        conv("java.lang.Object", classesPath, llvmPath);
 //        conv("java.io.PrintStream", classesPath, llvmPath);
@@ -66,21 +54,19 @@ public class Main {
 
     }
 
-    static void class2ll(String classesPath, String llvmPath) throws IOException {
-        List<String> files = new ArrayList<>();
-        MyCompiler.find(classesPath, files, null, ".class");
-        String classesAbsPath = new File(classesPath).getAbsolutePath();
-        for (String cp : files) {
-            String className = cp.substring(classesAbsPath.length() + 1);
-            className = className.replaceAll("[\\\\/]{1,}", ".");
-            className = className.replace(".class", "");
-            conv(className, classesPath, llvmPath);
+    static void class2ll(String llvmPath) throws IOException {
+        for (String key:Util.helper.getAllClass()) {
+            try {
+                conv(Util.helper.getClassFileStream(key), key, llvmPath);
+            } catch (IOException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public static void conv(String className, String classesPath, String llvmPath) throws IOException {
-
-        String outFileName = className + ".ll";
+    public static void conv(InputStream is, String name, String llvmPath) throws IOException {
+        String outFileName = name.replaceAll(".class", "").replaceAll("/", ".") + ".ll";
+        System.out.println(outFileName);
         PrintStream ps = new PrintStream(new File(llvmPath, outFileName));
 
         Statistics statistics = new Statistics();
@@ -88,16 +74,11 @@ public class Main {
         CV cv = new CV(ps, statistics);
 
         // read class
-        String fn = classesPath + className.replace('.', '/') + ".class";
-        System.out.println("class convert to llvm ir:" + fn);
-        try (InputStream is = new FileInputStream(fn)) {
-            ClassReader cr = new ClassReader(is);
-            cr.accept(sc, 0);
-            
-            cr.accept(cv, 0);
-            ps.flush();
-        }
+        ClassReader cr = new ClassReader(is);
+        cr.accept(sc, 0);
 
+        cr.accept(cv, 0);
+        ps.flush();
     }
 
 }

@@ -2,7 +2,8 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
+
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.graph.*;
@@ -18,14 +19,18 @@ final  public class IMMul extends IMBinaryOperator {
 	datatype = BCBasicDatatype.INT + (bc-Opcodes.IMUL);
     }
 
+    @Override
     public boolean isMul() {return true;}
 
+    @Override
     public boolean isDivOrMult() {return true;}    
     
+    @Override
     public String toString() {
 	return "(" + lOpr.toString() + "*" + rOpr.toString() + ")";
     }
     
+    @Override
     public IMNode constant_folding() throws CompileException {
 	IMOperant newNode = this;
 	int       value   = 0;
@@ -97,6 +102,7 @@ final  public class IMMul extends IMBinaryOperator {
     }
 
     // IMMul
+    @Override
     public void translate(Reg result) throws CompileException {
 	if (rOpr.isRealConstant()) {
             int value = ((IMConstant)rOpr).getIntValue();
@@ -142,6 +148,7 @@ final  public class IMMul extends IMBinaryOperator {
 	code.endBC();
     } 
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	if (datatype!=BCBasicDatatype.LONG) throw new Error();
 	execEnv.codeLongMul(this,lOpr,rOpr,result,bcPosition);

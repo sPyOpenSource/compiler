@@ -90,7 +90,7 @@ public final class BinaryCodeDynamicARM {
     public int getCurrentIP() { return ip; }
 
     public void realloc() {
-	realloc(CHUNKSIZE); 
+	realloc(CHUNKSIZE);
     }
 
     /** 
@@ -862,7 +862,7 @@ public final class BinaryCodeDynamicARM {
 
     public void xorl(Opr src, Reg des) {
 	realloc();
-	insertByte(0x33); 
+	insertByte(0x33);
 	insertModRM(des,src);
     }
 
