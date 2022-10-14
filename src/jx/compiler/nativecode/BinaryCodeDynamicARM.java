@@ -305,13 +305,13 @@ public final class BinaryCodeDynamicARM {
 
     public void pushl(Reg reg) {
 	realloc();
-	insertByte(0x50+reg.value);
+	insertByte(0x50 + reg.value);
     }
 
     public void pushl(Ref ref) {
 	realloc();
         insertByte(0xff);
-        insertModRM(6,ref);
+        insertModRM(6, ref);
     }
 
     public void pushl(int immd) {
@@ -413,7 +413,7 @@ public final class BinaryCodeDynamicARM {
      * @param des
     */
 
-    public void subl(Opr src,Reg des) {
+    public void subl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x2b);
 	insertModRM(des, src);
@@ -422,28 +422,28 @@ public final class BinaryCodeDynamicARM {
     public void subl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x29);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
     public void subl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG) && (des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x2D);
 	    insertConst4(immd);
 	} else if (is8BitValue(immd)) { /* FIXME */
 	    insertByte(0x83);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertByte(immd);   
 	} else {
 	    insertByte(0x81);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertConst4(immd);
 	}
     }
 
     public void subl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG) && (des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x2D);
 	    insertConst4(entry);
 	    /* FIXME: no 8 bit support yet 
@@ -454,7 +454,7 @@ public final class BinaryCodeDynamicARM {
 	    */
 	} else {
 	    insertByte(0x81);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertConst4(entry);
 	}
     }
@@ -468,13 +468,13 @@ public final class BinaryCodeDynamicARM {
     public void sbbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x1B);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     public void sbbl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x19);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
     /**
@@ -493,11 +493,11 @@ public final class BinaryCodeDynamicARM {
      * @param src
      * @param des
     */
-    public void imull(Opr src,Reg des) {
+    public void imull(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
 	insertByte(0xaf);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     /* imull(Reg src, Ref des) no x86-code */
@@ -506,7 +506,7 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
-	    insertModRM(des,des);
+	    insertModRM(des, des);
 	    insertByte(immd);
 	} else {
 	    insertByte(0x69);
@@ -519,11 +519,11 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
-	    insertModRM(des,src);
+	    insertModRM(des, src);
 	    insertByte(immd);
 	} else {
 	    insertByte(0x69);
-	    insertModRM(des,src);
+	    insertModRM(des, src);
 	    insertConst4(immd);
 	}
     }
@@ -578,7 +578,7 @@ public final class BinaryCodeDynamicARM {
      * @param reg        
     */
 
-    public void lea(Opr opr,Reg reg) {
+    public void lea(Opr opr, Reg reg) {
 	realloc();
 	insertByte(0x8D);
 	insertModRM(reg, opr);
@@ -749,30 +749,30 @@ public final class BinaryCodeDynamicARM {
     
     public void addl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(immd==1)) {
-	    insertByte(0x40+des.value);
-	} else if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (immd == 1)) {
+	    insertByte(0x40 + des.value);
+	} else if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x05);
 	    insertConst4(immd);
 	} else if (is8BitValue(immd)) { 
 	    insertByte(0x83);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertByte(immd);	    
 	} else {
 	    insertByte(0x81);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void addl(SymbolTableEntryBase entry,Opr des) {
+    public void addl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x05);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(entry);
 	}
     }
@@ -784,35 +784,35 @@ public final class BinaryCodeDynamicARM {
     public void andl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x23); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     public void andl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x21);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
     public void andl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x25);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void andl(SymbolTableEntryBase entry,Opr des) {
+    public void andl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x25);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	    insertConst4(entry);
 	}
     }
@@ -830,29 +830,29 @@ public final class BinaryCodeDynamicARM {
     public void orl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x09);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
     public void orl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x0d);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(1,des);
+	    insertModRM(1, des);
 	    insertConst4(immd);
 	}
     }
 
     public void orl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x0d);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(1,des);
+	    insertModRM(1, des);
 	    insertConst4(entry);
 	}
     }
@@ -863,13 +863,13 @@ public final class BinaryCodeDynamicARM {
     public void xorl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x33);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     public void xorl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x31);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
     public void xorl(int immd, Opr des) {
@@ -1078,7 +1078,7 @@ public final class BinaryCodeDynamicARM {
 	insertByte(0x8c);
 	insertConst4(entry);
 	makeRelative(entry);
-    }   
+    }
     
     /**
        Jump short/near if greater or equal
@@ -1102,7 +1102,7 @@ public final class BinaryCodeDynamicARM {
 	insertByte(0x8f);
 	insertConst4(entry);
 	makeRelative(entry);
-    }   
+    }
 
     /**
        Jump short/near if less or equal
@@ -1126,7 +1126,7 @@ public final class BinaryCodeDynamicARM {
 	insertByte(0x87);
 	insertConst4(entry);
 	makeRelative(entry);
-    }  
+    }
 
     /**
        Jump short/near if unsigned greater or equal
@@ -1214,17 +1214,17 @@ public final class BinaryCodeDynamicARM {
     public void movb(Reg src, Ref des) {
 	realloc();
 	insertByte(0x88);
-	insertModRM(src,des);	
+	insertModRM(src, des);	
     }
 
     public void movb(int immd, Opr des) {
 	realloc();
-	if (des.tag==Opr.REG) {
+	if (des.tag == Opr.REG) {
 	    insertByte(0xb0 + des.value);
 	    insertByte(immd);
 	} else {
 	    insertByte(0xc6);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertByte(immd);
 	}
     }
@@ -1237,14 +1237,14 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	insertByte(0x66);
 	insertByte(0x8b);
-	insertModRM(des,src);	
+	insertModRM(des, src);	
     }
 
     public void movw(Reg src, Ref des) {
 	realloc();
 	insertByte(0x66);
 	insertByte(0x89);
-	insertModRM(src,des);	
+	insertModRM(src, des);	
     }
 
     /**
@@ -1254,35 +1254,35 @@ public final class BinaryCodeDynamicARM {
     public void movl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x8b);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     public void movl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x89);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
     public void movl(int immd, Opr des) {
 	realloc();
-	if (des.tag==Opr.REG) {
+	if (des.tag == Opr.REG) {
 	    insertByte(0xb8 + des.value);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0xc7);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(immd);
 	}
     }
 
     public void movl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if (des.tag==Opr.REG) {
+	if (des.tag == Opr.REG) {
 	    insertByte(0xb8 + des.value);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0xc7);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(entry);
 	}
     }
@@ -1294,7 +1294,7 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	insertByte(0x0f);
 	insertByte(0xb7);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     /**
@@ -1314,7 +1314,7 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	insertByte(0x0f);
 	insertByte(0xbf);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     /**
@@ -1324,7 +1324,7 @@ public final class BinaryCodeDynamicARM {
 	realloc();
 	insertByte(0x0f);
 	insertByte(0xbe);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }  
 
     /**
@@ -1405,17 +1405,17 @@ public final class BinaryCodeDynamicARM {
     public void test(Opr src, Reg des) {
 	realloc();
 	insertByte(0x85); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void test(int immd,Opr des) {
+    public void test(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0xA9);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0xF7);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(immd);
 	}
     }
@@ -1459,8 +1459,8 @@ public final class BinaryCodeDynamicARM {
     
     // (immd>>8)==0
     public boolean is8BitValue(int value) {
-	if (value<0) value=-value;
-	return ((value>>7)==0);
+	if (value < 0) value = -value;
+	return ((value >> 7) == 0);
     }
 
     /** 
@@ -1490,8 +1490,8 @@ public final class BinaryCodeDynamicARM {
     
     public void alignCode() {
 	int drift = ip % 16;
-	if (drift<8) {
-	    for (int i=0; i<drift;i++) nop();
+	if (drift < 8) {
+	    for (int i = 0; i < drift; i++) nop();
 	}
     }
     
@@ -1500,25 +1500,25 @@ public final class BinaryCodeDynamicARM {
 	(Call insertConst4() for corresponding jump instruction) 
     */
     public void addJumpTarget(UnresolvedJump jumpObject) {
-	if (doAlignJumpTargets) while ((ip%4)!=0) nop();
+	if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
 	jumpObject.setTargetNCIndex(ip);
     }
 
     public void alignIP() {
-	int distance = (ip%16);
-	if (distance<8) alignIP_16_Byte();
+	int distance = (ip % 16);
+	if (distance < 8) alignIP_16_Byte();
     }
 
     public void alignIP_4_Byte() {
-	while ((ip % 4)!=0) nop();
+	while ((ip % 4) != 0) nop();
     }
 
     public void alignIP_16_Byte() {
-	while ((ip % 16)!=0) nop();
+	while ((ip % 16) != 0) nop();
     }
 
     public void alignIP_32_Byte() {
-	while ((ip % 32)!=0) nop();
+	while ((ip % 32) != 0) nop();
     }
 
     public void addExceptionTarget(UnresolvedJump handler) {
@@ -1636,9 +1636,9 @@ public final class BinaryCodeDynamicARM {
     
     public String getBinaryCodeAsHex(int firstByte, int stopByte) {
 	String s = ""; 
-	for(int i=firstByte; i<stopByte; i++) {
+	for(int i = firstByte; i < stopByte; i++) {
 	    String hex = Integer.toHexString(code[i] & 0xff); 
-	    if (hex.length()==1) hex = "0" + hex; 
+	    if (hex.length() == 1) hex = "0" + hex; 
 	    s = s + hex  + " "; 
 	}
 	return s; 
@@ -1651,9 +1651,9 @@ public final class BinaryCodeDynamicARM {
     
     private String getBinaryCodeAsAssembler(int firstByte, int stopByte) {
 	String s = ""; 
-	for(int i=firstByte; i<stopByte; i++) {
+	for(int i = firstByte; i < stopByte; i++) {
 	  String hex = Integer.toHexString(code[i] & 0xff); 
-	  if (hex.length()==1) hex = "0" + hex; 
+	  if (hex.length() == 1) hex = "0" + hex; 
 	  s = s + hex  + " "; 
 	}
 	return s; 
@@ -1702,13 +1702,13 @@ public final class BinaryCodeDynamicARM {
     
     public void printHexByte(int value) {
 	String hex = Integer.toHexString(value & 0xff); 
-	if (hex.length()==1) hex = "0" + hex; 
+	if (hex.length() == 1) hex = "0" + hex; 
 	Debug.out.print(hex + " "); 
     }    
     
     public void printHexInt(int value) {
 	String hex = Long.toHexString(value & 0xffffffffL);         
-	Debug.out.print( "00000000".substring(Math.min(hex.length(),8)) + hex + " "); 
+	Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
     }
     
 

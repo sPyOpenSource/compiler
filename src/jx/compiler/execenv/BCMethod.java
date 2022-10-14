@@ -82,7 +82,7 @@ public class BCMethod {
 
     public int getLineNumber(int bytecodePosition) {
 	LineAttributeData lineNumbers[] = methodSource.getLineNumberTable();
-	int line=0;
+	int line = 0;
 	if (lineNumbers != null) {
             for (LineAttributeData lineNumber : lineNumbers) {
                 if (bytecodePosition < lineNumber.startBytecodepos) {

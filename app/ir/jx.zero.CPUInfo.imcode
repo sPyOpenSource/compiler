@@ -1,0 +1,40 @@
+class jx/zero/CPUInfo {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.vendor = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;IIIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.vendor = vR1;   
+        vR0.type = vi2;   
+        vR0.family = vi3;   
+        vR0.model = vi4;   
+        vR0.stepping = vi5;   
+        vR0.brand = vi6;   
+        vR0.features = vi7;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasMTRR()Z {
+  +START:   #1
+        if (vR0.features & 4096)==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 hasMTRR
+}

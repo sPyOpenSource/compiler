@@ -136,20 +136,20 @@ public class BinaryCode {
    * @return unsigned base address of native code memory, 
    *         on 32-bit machines only the lower 32 bits are used
    */
-  private int nativeCodeBase(int handle) {	throw new Error(); }
+  private int nativeCodeBase(int handle) { throw new Error(); }
 
   /**
    * Free the native code memory.
    * @param handle Handle to code memory.
    */
-  private void freeNativeCode(int handle) {	throw new Error(); }
+  private void freeNativeCode(int handle) { throw new Error(); }
 
   /**
    * Replaces the method code with this native code.
    * @param handle Handle to code memory.
    */
   private void replugMethod(String classname, String methodname,
-                            String signature, int handle) {	throw new Error(); }
+                            String signature, int handle) { throw new Error(); }
 
   /** 
       Deactivate compiled code and use interpreted code for this 
@@ -159,5 +159,5 @@ public class BinaryCode {
      * @param signature
   */ 
   public static void unplugMethod(String classname,
-			          String methodname, String signature) {	throw new Error(); }
+			          String methodname, String signature) { throw new Error(); }
 }  
