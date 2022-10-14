@@ -36,7 +36,7 @@ public class BCMethodWithCode extends BCMethod {
 	They do not need to contain correct values, they are 
 	only here to avoid unneccessary passes. 
     */ 
-    private static final int EXPECTED_LOCVAR_OFFSET = 1; 
+    private static final int EXPECTED_LOCVAR_OFFSET  = 1; 
     private static final int EXPECTED_OPSVARS_OFFSET = 5; 
 
     /** 

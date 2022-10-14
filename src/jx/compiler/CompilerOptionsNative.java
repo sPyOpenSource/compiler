@@ -259,7 +259,7 @@ public class CompilerOptionsNative extends CompilerOptions {
 	doFastMemoryAccess   = false;
 	doFastStatics        = false;
 	doNewCode            = true;
-	doPrintIMCode        = false;
+	doPrintIMCode        = true;
         doStackTrace         = false;	    
 	doUsePackedArrays    = false; // old Compiler allways use 32 Bit
 

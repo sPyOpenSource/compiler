@@ -378,7 +378,7 @@ public class StaticCompiler implements ClassFinder {
 	    PrintStream imOut = null;
 	    if (options.doPrintIMCode()) {
 		try {
-		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName() + ".imcode"));	
+		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName().replace("/", ".") + ".imcode"));	
 		} catch (java.io.IOException ex) {
 		    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    Debug.throwError(); 

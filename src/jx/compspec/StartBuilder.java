@@ -39,7 +39,7 @@ class BuilderOptions extends CompilerOptionsNative {
         doEventLoging        = false;
         doFastMemoryAccess   = false;
         doFastStatics        = false;
-        doPrintIMCode        = false;
+        doPrintIMCode        = true;
         doStackTrace         = false;
         doUsePackedArrays    = false; // old Compiler allways use 32 Bit
 
