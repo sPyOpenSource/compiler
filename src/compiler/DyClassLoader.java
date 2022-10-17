@@ -10,13 +10,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Gust
  */
 public class DyClassLoader extends ClassLoader {
-
     ArrayList<String> classpath = new ArrayList<>();
 
     /**
@@ -27,7 +28,7 @@ public class DyClassLoader extends ClassLoader {
     }
 
     /**
-     * 增加类路径
+     * added class path
      * @param s
      */
     public void addClassPath(String s) {
@@ -58,11 +59,11 @@ public class DyClassLoader extends ClassLoader {
             }
         } catch (Exception ex) {
             System.out.println("clear jhtml output dir error ");
-            ex.printStackTrace();
+            Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     /**
-     * 从自有路径下加载类
+     * load from custom respository
      * @param className
      * @return
      */
@@ -80,7 +81,7 @@ public class DyClassLoader extends ClassLoader {
 
                     if (file.exists()) {
                         InputStream is = new FileInputStream(file);
-                        /**把文件读到字节文件*/
+                        /**read bytes from the file*/
                         classBytes = new byte[is.available()];
                         int read=0;
                         for (; read < classBytes.length; ) {
@@ -91,16 +92,16 @@ public class DyClassLoader extends ClassLoader {
                     }
                 } catch (IOException ex) {
                     System.out.println("IOException raised while reading class file data");
-                    ex.printStackTrace();
+                    Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
                     return null;
                 }
 
             className=className.replace('/', '.');
             className=className.replace('\\', '.');
-            return this.defineClass(className, classBytes, 0, classBytes.length); //加载类
+            return this.defineClass(className, classBytes, 0, classBytes.length); //load the class
         } catch (Exception ex) {
             System.out.println("ClassNotFoundException load class : "+className);
-            ex.printStackTrace();
+            Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 
@@ -112,10 +113,10 @@ public class DyClassLoader extends ClassLoader {
      * @return
      */
     public Class loadFromSysAndCustomRepository(String className) {
-        /**取环境变量*/
+        /**read enviroment path*/
         String classPath = System.getProperty("java.class.path");
         List classRepository = new ArrayList();
-        /**取得该路径下的所有文件夹 */
+        /**read all the folders*/
         if ((classPath != null) && !(classPath.equals(""))) {
             StringTokenizer tokenizer = new StringTokenizer(classPath,
                     File.pathSeparator);
@@ -125,7 +126,7 @@ public class DyClassLoader extends ClassLoader {
         }
         Iterator dirs = classRepository.iterator();
         byte[] classBytes = null;
-        /**在类路径上查找该名称的类是否存在，如果不存在继续查找*/
+        /**found all the classes from the (sub)folders*/
         while (dirs.hasNext()) {
             String dir = (String) dirs.next();
             //replace '.' in the class name with File.separatorChar & append .class to the name
@@ -135,19 +136,17 @@ public class DyClassLoader extends ClassLoader {
                 File file = new File(dir + File.separatorChar + classFileName);
                 if (file.exists()) {
                     InputStream is = new FileInputStream(file);
-                    /**把文件读到字节文件*/
+                    /**read the bytes*/
                     classBytes = new byte[is.available()];
                     is.read(classBytes);
                     break;
                 }
             } catch (IOException ex) {
                 System.out.println("IOException raised while reading class file data");
-                ex.printStackTrace();
+                Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
         }
-        return this.defineClass(className, classBytes, 0, classBytes.length);//加载类
-
+        return this.defineClass(className, classBytes, 0, classBytes.length);//load the class
     }
 }
-
