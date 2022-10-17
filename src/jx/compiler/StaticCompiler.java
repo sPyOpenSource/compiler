@@ -20,6 +20,7 @@ import jx.compiler.vtable.ClassInfo;
 import jx.compiler.vtable.Method;
 import jx.compiler.vtable.MethodTable;
 import jx.compiler.imcode.ExecEnvironmentInterface;
+
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
 import jx.compiler.execenv.BCMethodWithCode;

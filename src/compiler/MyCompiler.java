@@ -3,6 +3,8 @@ package compiler;
 import javax.tools.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.*;
 
 /**
@@ -51,7 +53,7 @@ public class MyCompiler {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Logger.getLogger(MyCompiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -60,7 +62,7 @@ public class MyCompiler {
      *
      */
     static public void compile(List<File> srcList, String outputPath) {
-//          //simp compiler
+// simp compiler
 //        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 //        compiler.run(System.in, System.out, System.err,
 //                "-encoding", "UTF-8", "-d", outputPath, files);
@@ -71,10 +73,8 @@ public class MyCompiler {
 
          */
         DiagnosticListener listener = new DiagnosticListener() {
-
             @Override
             public void report(Diagnostic diagnostic) {
-
 //                System.out.println("compile: " + diagnostic);
 //                System.out.println(diagnostic.getSource().toString());
 //                System.out.println("line: " + diagnostic.getLineNumber());
@@ -97,9 +97,8 @@ public class MyCompiler {
             // the compilation occures here
             task.call();
             manager.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(MyCompiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
-
