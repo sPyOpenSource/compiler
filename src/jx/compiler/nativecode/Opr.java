@@ -49,7 +49,6 @@ public class Opr implements Cloneable {
     
     @Override
     public String toString() {
-	//String rval = "r"+Integer.toString(value);
 	String rval = regToString(value);
 
 	if (id >= 0) {

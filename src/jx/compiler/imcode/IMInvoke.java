@@ -49,7 +49,7 @@ public class IMInvoke extends IMMultiOperant {
 	int[] argTypes = typeDesc.getBasicArgumentTypes();
 
 	args = new IMOperant[argTypes.length];
-	for (int i=(argTypes.length-1);i>=0;i--) {
+	for (int i = (argTypes.length - 1); i >= 0; i--) {
 	    args[i] = stack.pop();
 	}
 	
@@ -182,12 +182,12 @@ public class IMInvoke extends IMMultiOperant {
 
 	stat.tryinline();
 
-	if (depth>0) {inlineCode.inlineMethods(depth);}
+	if (depth > 0) {inlineCode.inlineMethods(depth);}
 
 	MethodStackFrame inlineFrame = inlineCode.getMethodStackFrame();
 	int varnr = inlineFrame.getNumLocalVars() + inlineFrame.getNumArgs();
 
-	int retval=-1;
+	int retval = -1;
 	int argn=0;
 	int[] varMap = new int[varnr];
 	IMOperant[] stores = new IMOperant[varnr];

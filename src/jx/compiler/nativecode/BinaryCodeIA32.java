@@ -2,13 +2,11 @@ package jx.compiler.nativecode;
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
-
-import java.io.PrintStream;
 import java.util.Collections;
+import java.io.PrintStream;
 
 import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
-
 import jx.zero.Debug; 
 
 /** 
@@ -20,7 +18,6 @@ import jx.zero.Debug;
 */ 
 
 public final class BinaryCodeIA32 {
-
 
     private final boolean doAlignJumpTargets = false;
 
@@ -71,7 +68,6 @@ public final class BinaryCodeIA32 {
 	Note: Exceptionhandlers are not copied. 
      * @return 
     */ 
-    /*    public jx.jit.nativecode.BinaryCode getOldBinaryCode() {*/
     public BinaryCode getOldBinaryCode() {
 	Enumeration enume = Collections.enumeration(symbolTable); 
 	ArrayList unresolvedEntries = new ArrayList(); 
@@ -79,14 +75,12 @@ public final class BinaryCodeIA32 {
 	    SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement();
 	    if (entry instanceof IntValueSTEntry) {
 		((IntValueSTEntry)entry).applyValue(code);
-		//entry.apply(code, codeBase);
 	    } else {
 		unresolvedEntries.add(entry); 
 	    }
 	}
 	symbolTable = unresolvedEntries;	
 
-	//return new jx.jit.nativecode.BinaryCode(code, ip, symbolTable); 
 	return new BinaryCode(code, ip, symbolTable); 
     }
 
@@ -103,7 +97,6 @@ public final class BinaryCodeIA32 {
      * @param requiredSpace
      */ 
     public void realloc(int requiredSpace) {
-	//System.err.println(" --- realloc --- "+Integer.toString(ip)+" "+this);
 	if (ip + requiredSpace > code.length) {
 	    int newSize = code.length;
 
@@ -119,11 +112,8 @@ public final class BinaryCodeIA32 {
     }
     
     // ***** Code Generation ***** 
-    
-    /** 
-	Insert a single byte
+    /** Insert a single byte
     */ 
-
     void insertByte(int value) {
 	code[ip++] = (byte)value;
     }
@@ -133,10 +123,10 @@ public final class BinaryCodeIA32 {
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
 	symbolTable.add(entry); 
-	ip+=1; 
+	ip += 1; 
     }
 
-    void insertBytes(int a,int b) {
+    void insertBytes(int a, int b) {
 	code[ip++] = (byte)a;
 	code[ip++] = (byte)b;
     }
@@ -145,32 +135,32 @@ public final class BinaryCodeIA32 {
        Insert ModRM and SIB byte 
     */
 
-    private void insertModRM(int reg,Opr rm) {
+    private void insertModRM(int reg, Opr rm) {
 	reg = reg & 0x07;
 	rm.value  = rm.value & 0x07;
 	if (rm.tag == Opr.REF) {
 	    Ref ref = (Ref)rm;
-	    if (ref.sym_disp!=null) {
-		insertByte(0x80 | (reg<<3) | ref.value);
-		if (ref.value==4) insertByte(0x24);
+	    if (ref.sym_disp != null) {
+		insertByte(0x80 | (reg << 3) | ref.value);
+		if (ref.value == 4) insertByte(0x24);
 		insertConst4(ref.sym_disp);
 		return;
 	    }
-	    if (ref.disp==0) {
+	    if (ref.disp == 0) {
 		if (ref.hasIndex) {
 		    insertByte(0x04 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {
-		    insertByte((reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte((reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 	    } else if (is8BitValue(ref.disp)) { 
 		if (ref.hasIndex) {
 		    insertByte(0x44 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {
-		    insertByte(0x40 | (reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte(0x40 | (reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 		insertByte((byte)ref.disp);
 	    } else {
@@ -178,8 +168,8 @@ public final class BinaryCodeIA32 {
 		    insertByte(0x84 | (reg << 3));
 		    insertByte(ref.sib);
 		} else {		    
-		    insertByte(0x80 | (reg<<3) | ref.value);
-		    if (ref.value==4) insertByte(0x24);
+		    insertByte(0x80 | (reg << 3) | ref.value);
+		    if (ref.value == 4) insertByte(0x24);
 		}
 		insertConst4(ref.disp);
 	    }
@@ -188,38 +178,35 @@ public final class BinaryCodeIA32 {
 	insertByte(0xc0 | (reg<<3) | rm.value);
     }	
 	
-    private void insertModRM(Reg reg,Opr rm) {
-	insertModRM(reg.value,rm);
+    private void insertModRM(Reg reg, Opr rm) {
+	insertModRM(reg.value, rm);
     }
 
     /**
        Insert call near indirect (reg/mem) (2 clks)
      * @param opr
     */
-
     public void call(Opr opr) {
 	realloc();
 	insertByte(0xff);
-	insertModRM(2,opr);
+	insertModRM(2, opr);
     }
 
     /**
        Insert call near (Symbol) (1 clks)
      * @param entry
     */
-
     public void call(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0xe8); 
-	entry.initNCIndexRelative(ip, 4,ip+4);  // size is always 4 bytes 
+	entry.initNCIndexRelative(ip, 4, ip + 4);  // size is always 4 bytes 
 	symbolTable.add(entry); 
-	ip+=4; 	    
+	ip += 4;
     }
 
     /**
        Convert byte to word (3 clks) + (.. clks)
     */
-
     public void cbw() {
 	realloc();
 	insertByte(0x66);
@@ -240,7 +227,6 @@ public final class BinaryCodeIA32 {
        Convert word to double word (3 clks)
        fill dx with sign bit of ax
     */
-
     public void cwde() {
 	realloc();
 	insertByte(0x98);
@@ -260,7 +246,6 @@ public final class BinaryCodeIA32 {
     /**
        Insert return
     */
-
     public void ret() {
 	realloc();
         insertByte(0xc3);
@@ -269,7 +254,6 @@ public final class BinaryCodeIA32 {
     /**
        clear interrupt flag (7 clks)
     */
-
     public void cli() { 
 	realloc();
 	insertByte(0xfa);
@@ -279,7 +263,6 @@ public final class BinaryCodeIA32 {
        decrement byte value by 1 (1/3 clks)
      * @param opr
     */
-
     public void decb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
@@ -290,37 +273,34 @@ public final class BinaryCodeIA32 {
        decrement long value by 1 (1/3 clks)
      * @param ref
     */
-
     public void decl(Ref ref) {
 	realloc();
 	insertByte(0xff);
-	insertModRM(1,ref);
+	insertModRM(1, ref);
     }
 
     /** 
        decrement register by 1 (1 clks)
      * @param reg
     */
-    
     public void decl(Reg reg) {
 	realloc();
-	insertByte(0x48+reg.value);
+	insertByte(0x48 + reg.value);
     }
 
     /**
        Insert a pushl(reg)
      * @param reg
     */
-
     public void pushl(Reg reg) {
 	realloc();
-	insertByte(0x50+reg.value);
+	insertByte(0x50 + reg.value);
     }
 
     public void pushl(Ref ref) {
 	realloc();
         insertByte(0xff);
-        insertModRM(6,ref);
+        insertModRM(6, ref);
     }
 
     public void pushl(int immd) {
@@ -345,8 +325,7 @@ public final class BinaryCodeIA32 {
        (eax,ecx,edx,ebx,esp,ebp,esi,edi) 
        (5 clks)
     */
-
-    public void pushal() { /* 5 clks */
+    public void pushal() {
 	realloc();
         insertByte(0x60);
     }
@@ -355,7 +334,6 @@ public final class BinaryCodeIA32 {
        Insert a popl(reg)
      * @param reg
     */
-
     public void popl(Reg reg) {
 	realloc();
 	insertByte(0x58+reg.value);
@@ -364,7 +342,6 @@ public final class BinaryCodeIA32 {
     /**
        pop stack into eflags register (4 clks)
     */
-
     public void popfl() { 
 	realloc();
         insertByte(0x9d);
@@ -373,7 +350,6 @@ public final class BinaryCodeIA32 {
     /**
        pop all general register
     */
-
     public void popal() {
 	realloc();
         insertByte(0x61);
@@ -382,7 +358,6 @@ public final class BinaryCodeIA32 {
   /** 
       lock prefix
   */
-
   public void lock() {
     insertByte(0xf0);
   }
@@ -390,7 +365,6 @@ public final class BinaryCodeIA32 {
   /**
      rep prefix
   */
-
   public void repz() {
     insertByte(0xf3);
   }
@@ -400,7 +374,6 @@ public final class BinaryCodeIA32 {
       spinlocks
      * @param lock
   */
-
   public void spin_lock(Ref lock) {
     realloc();
     lock();decb(lock);
@@ -421,38 +394,37 @@ public final class BinaryCodeIA32 {
      * @param src
      * @param des
     */
-
-    public void subl(Opr src,Reg des) {
+    public void subl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x2b);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void subl(Reg src,Ref des) {
+    public void subl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x29);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
-    public void subl(int immd,Opr des) {
+    public void subl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG) && (des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x2D);
 	    insertConst4(immd);
 	} else if (is8BitValue(immd)) { /* FIXME */
 	    insertByte(0x83);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertByte(immd);	    
 	} else {
 	    insertByte(0x81);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void subl(SymbolTableEntryBase entry,Opr des) {
+    public void subl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG) && (des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x2D);
 	    insertConst4(entry);
 	    /* FIXME: no 8 bit support yet 
@@ -463,7 +435,7 @@ public final class BinaryCodeIA32 {
 	    */
 	} else {
 	    insertByte(0x81);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertConst4(entry);
 	}
     }
@@ -473,52 +445,47 @@ public final class BinaryCodeIA32 {
      * @param src
      * @param des
     */
-
-    public void sbbl(Opr src,Reg des) {
+    public void sbbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x1B);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void sbbl(Reg src,Ref des) {
+    public void sbbl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x19);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
     /**
        Integer Unsigned Multiplication of eax  (10 clk)
     */
-
     public void mull(Opr src) {
 	realloc();
 	insertByte(0xF7);
-	insertModRM(4,src);
+	insertModRM(4, src);
     }
 
     /**
        Integer Signed Multiplication (10 clk)
     */
-
-
     public void imull(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f); 
 	insertByte(0xaf);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
     /* imull(Reg src, Ref des) no x86-code */
-
     public void imull(int immd, Reg des) {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
-	    insertModRM(des,des);
+	    insertModRM(des, des);
 	    insertByte(immd);
 	} else {
 	    insertByte(0x69);
-	    insertModRM(des,des);
+	    insertModRM(des, des);
 	    insertConst4(immd);
 	}
     }
@@ -527,74 +494,69 @@ public final class BinaryCodeIA32 {
 	realloc();
 	if (is8BitValue(immd)) {
 	    insertByte(0x6b);
-	    insertModRM(des,src);
+	    insertModRM(des, src);
 	    insertByte(immd);
 	} else {
 	    insertByte(0x69);
-	    insertModRM(des,src);
+	    insertModRM(des, src);
 	    insertConst4(immd);
 	}
     }
 
-    public void imull(SymbolTableEntryBase entry,Reg des) {
+    public void imull(SymbolTableEntryBase entry, Reg des) {
 	realloc();
 	insertByte(0x69);
-	insertModRM(des,des);
+	insertModRM(des, des);
 	insertConst4(entry);
     }
 
     /**
        increment by 1 (1/3 clks)
     */
-
     public void incb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
-	insertModRM(0,opr);
+	insertModRM(0, opr);
     }
 
     /** 
        increment by 1 (1/3 clks)
     */
-
     public void incl(Ref ref) {
 	realloc();
 	insertByte(0xff);
-	insertModRM(0,ref);
+	insertModRM(0, ref);
     }
 
     /**
        increment register by 1 (1 clks)
     */
-
     public void incl(Reg reg) {
 	realloc();
-	insertByte(0x40+reg.value);
+	insertByte(0x40 + reg.value);
     }
 
 
     /** 
 	lea Load Effective Address (1 clk)
     */
-
-    public void lea(Opr opr,Reg reg) {
+    public void lea(Opr opr, Reg reg) {
 	realloc();
 	insertByte(0x8D);
-	insertModRM(reg,opr);
+	insertModRM(reg, opr);
     }
 
     /**
        SHL/SAL Shift left (1/3 clks)
     */
-
     public void shll(int immd, Opr des) {
 	realloc();
 	if (immd == 1) {
 	    insertByte(0xd1);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	} else {
 	    insertByte(0xc1);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	    insertByte(immd);
 	}
     }
@@ -602,18 +564,16 @@ public final class BinaryCodeIA32 {
     /**
        SHL/SAL Shift left by %cl (4 clks)
     */
-
     public void shll(Opr des) {
 	realloc();
 	insertByte(0xd3);
-	insertModRM(4,des);
+	insertModRM(4, des);
     }
 
 
     /**
        SHLD Double Precision Shift left (4 clks)
     */
-
     public void shld(int immd, Reg low, Opr des) {
 	realloc();	
 	insertByte(0x0F);
@@ -625,59 +585,54 @@ public final class BinaryCodeIA32 {
     /**
        SHLD Double Precision Shift left by %cl (4/5 clks)
     */
-
-    public void shld(Reg low,Opr des) {
+    public void shld(Reg low, Opr des) {
 	realloc();
 	insertByte(0x0F);
 	insertByte(0xA5);
-	insertModRM(low,des);
+	insertModRM(low, des);
     }  
 
     /**
        SHR Shift right (1/3 clks)
     */
-
     public void shrl(int immd, Opr des) {
 	realloc();
 	if (immd == 1) {
 	    insertByte(0xd1);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	} else {
 	    insertByte(0xc1);
-	    insertModRM(5,des);
+	    insertModRM(5, des);
 	    insertByte(immd);
 	}
     }
-
     public void shrl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
 	insertByte(0xc1);
-	insertModRM(5,des);
+	insertModRM(5, des);
 	insertByte(entry);
     }
 
    /**
        SHL/SAL Shift left by %cl (4 clks)
     */
-
     public void shrl(Opr des) {
 	realloc();
 	insertByte(0xd3);
-	insertModRM(5,des);
+	insertModRM(5, des);
     }
 
     /**
        SAR Shift right (signed) (1/3 clks)
     */
-
     public void sarl(int immd, Opr des) {
 	realloc();
 	if (immd == 1) {
 	    insertByte(0xd1);
-	    insertModRM(7,des);
+	    insertModRM(7, des);
 	} else {
 	    insertByte(0xc1);
-	    insertModRM(7,des);
+	    insertModRM(7, des);
 	    insertByte(immd);
 	}
     }
@@ -685,115 +640,126 @@ public final class BinaryCodeIA32 {
     /**
        SAR Shift right by %cl (signed) (4 clks)
     */
-
     public void sarl(Opr des) {
 	realloc();
 	insertByte(0xd3);
-	insertModRM(7,des);
+	insertModRM(7, des);
     }
 
     /**
        DIV Signed Divide
     */
-
     public void idivl(Opr src) {
 	realloc();
 	insertByte(0xf7);
-	insertModRM(7,src);
+	insertModRM(7, src);
     }
 
     /**
        DIV Unsigned Divide
     */
-
     public void divl(Opr src) {
 	realloc();
 	insertByte(0xf7);
-	insertModRM(6,src);
+	insertModRM(6, src);
     }
 
     /**
        Add
     */
-
-    public void addl(Opr src,Reg des) {
+    public void addl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x03); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void addl(Reg src,Ref des) {
+    public void addl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x01);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
-    public void addl(int immd,Opr des) {
+    public void addl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(immd==1)) {
-	    insertByte(0x40+des.value);
-	} else if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (immd == 1)) {
+	    insertByte(0x40 + des.value);
+	} else if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x05);
 	    insertConst4(immd);
 	} else if (is8BitValue(immd)) { 
 	    insertByte(0x83);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertByte(immd);	    
 	} else {
 	    insertByte(0x81);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void addl(SymbolTableEntryBase entry,Opr des) {
+    public void addl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG)&&(des.value == 0)) {
 	    insertByte(0x05);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(0,des);
+	    insertModRM(0, des);
 	    insertConst4(entry);
 	}
     }
+    
+ public void addsd(Opr src, Reg des){
+     
+ }
  
+  public void addsd(Reg src, Ref des){
+     
+ }
+  
+   public void addsd(){
+     
+ }
+   
+    public void addsd(SymbolTableEntryBase entry, Opr des){
+     
+ }
+    
     /**
        And (1/3 clks)
     */
-
-    public void andl(Opr src,Reg des) {
+    public void andl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x23); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void andl(Reg src,Ref des) {
+    public void andl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x21);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
     public void andl(int immd,Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x25);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void andl(SymbolTableEntryBase entry,Opr des) {
+    public void andl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x25);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(4,des);
+	    insertModRM(4, des);
 	    insertConst4(entry);
 	}
     }
@@ -801,78 +767,77 @@ public final class BinaryCodeIA32 {
     /**
        Or (1/3 clks)
     */
-
-    public void orl(Opr src,Reg des) {
+    public void orl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0b); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void orl(Reg src,Ref des) {
+    public void orl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x09);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
-    public void orl(int immd,Opr des) {
+    public void orl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x0d);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(1,des);
+	    insertModRM(1, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void orl(SymbolTableEntryBase entry,Opr des) {
+    public void orl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x0d);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(1,des);
+	    insertModRM(1, des);
 	    insertConst4(entry);
 	}
     }
+    
     /**
        Or (1/3 clks)
     */
-
-    public void xorl(Opr src,Reg des) {
+    public void xorl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x33); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void xorl(Reg src,Ref des) {
+    public void xorl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x31);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
     
-    public void xorl(int immd,Opr des) {
+    public void xorl(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x35);
 	    insertConst4(immd);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(6,des);
+	    insertModRM(6, des);
 	    insertConst4(immd);
 	}
     }
 
-    public void xorl(SymbolTableEntryBase entry,Opr des) {
+    public void xorl(SymbolTableEntryBase entry, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG)&&(des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x35);
 	    insertConst4(entry);
 	} else {
 	    insertByte(0x81);
-	    insertModRM(6,des);
+	    insertModRM(6, des);
 	    insertConst4(entry);
 	}
     }
@@ -880,61 +845,58 @@ public final class BinaryCodeIA32 {
     /**
        Not (1/3 clks)
     */
-
     public void notl(Opr opr) {
 	realloc();
 	insertByte(0xf7);
-	insertModRM(2,opr);
+	insertModRM(2, opr);
     }
 
     /**
        Neg (1/3 clks)
     */
-
     public void negl(Opr opr) {
 	realloc();
 	insertByte(0xf7);
-	insertModRM(3,opr);
+	insertModRM(3, opr);
     }
 
     /**
        Add with Carry
     */
-
-    public void adcl(Opr src,Reg des) {
+    public void adcl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x13); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void adcl(Reg src,Ref des) {
+    public void adcl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x11);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
     public void adcl(int immd, Opr des) {
 	realloc();
-	if (is8BitValue(immd) && immd>0) {
-	    if ((des.tag==Opr.REG) && (des.value==0)) {
+	if (is8BitValue(immd) && immd > 0) {
+	    if ((des.tag == Opr.REG) && (des.value == 0)) {
 		insertByte(0x14);
 		insertByte(immd);
 	    } else {
 		insertByte(0x80);
-		insertModRM(2,des);
+		insertModRM(2, des);
 		insertByte(immd);
 	    }
 	} else {
-	    if ((des.tag==Opr.REG) && (des.value==0)) {
+	    if ((des.tag == Opr.REG) && (des.value == 0)) {
 		insertByte(0x15);
 		insertConst4(immd);
 	    } else if (is8BitValue(immd)) {
 		insertByte(0x83);
-		insertModRM(2,des);
+		insertModRM(2, des);
 		insertByte(immd);
 	    } else {
 		insertByte(0x81);
-		insertModRM(2,des);
+		insertModRM(2, des);
 		insertConst4(immd);
 	    }
 	}
@@ -943,32 +905,31 @@ public final class BinaryCodeIA32 {
     /**
        Compare Two Operands
     */
-
-    public void cmpb(int immd,Opr des) {
+    public void cmpb(int immd, Opr des) {
 	realloc();
-	if ((des.tag==Opr.REG) && (des.value==0)) {
+	if ((des.tag == Opr.REG) && (des.value == 0)) {
 	    insertByte(0x3C);
 	    insertByte(immd);
 	} else {
 	    insertByte(0x80);
-	    insertModRM(7,des);
+	    insertModRM(7, des);
 	    insertByte(immd);
 	}
     } 
 
-    public void cmpl(Opr src,Reg des) {
+    public void cmpl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x3B);
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void cmpl(Reg src,Ref des) {
+    public void cmpl(Reg src, Ref des) {
 	realloc();
 	insertByte(0x39);
-	insertModRM(src,des);
+	insertModRM(src, des);
     }
 
-    public void cmpl(int immd,Opr des) {
+    public void cmpl(int immd, Opr des) {
 	realloc();
 	if ((des.tag==Opr.REG) && (des.value==0)) {
 	    insertByte(0x3D);
@@ -999,7 +960,6 @@ public final class BinaryCodeIA32 {
     /**
        Compare and Exchange (6 clks)
     */
-    
     public void cmpxchg(Reg eax, Reg src, Opr des) {
 	realloc();
 	if (eax.value!=0) throw new Error("wrong Register");
@@ -1007,10 +967,6 @@ public final class BinaryCodeIA32 {
 	insertByte(0xB1);
 	insertModRM(src, des);
     }
-
-    /**
-
-     */
 
     public void sete(Opr des) {
 	realloc();
@@ -1036,7 +992,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if equal
     */
-
     public void je(int rel) {
 	realloc();
 	if (is8BitValue(rel)) {
@@ -1060,7 +1015,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if not equal
     */
-
     public void jne(int rel) {
 	realloc();
 	if (is8BitValue(rel)) {
@@ -1092,7 +1046,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if less
     */
-
     public void jl(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1104,7 +1057,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if greater or equal
     */
-
     public void jge(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1116,7 +1068,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if greater
     */
-    
     public void jg(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1128,7 +1079,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if less or equal
     */
-
     public void jle(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1140,7 +1090,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if unsigned greater
     */
-
     public void ja(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1152,7 +1101,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near if unsigned greater or equal
     */
-
     public void jae(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0x0f);
@@ -1164,7 +1112,6 @@ public final class BinaryCodeIA32 {
    /**
        Jump short/near if sign
     */
-
     public void js(int rel) {
 	realloc();
 	if (is8BitValue(rel)) {
@@ -1180,7 +1127,6 @@ public final class BinaryCodeIA32 {
     /**
        Jump short/near 
     */
-
     public void jmp(int rel) {
 	realloc();
 	if (is8BitValue(rel)) {
@@ -1207,9 +1153,9 @@ public final class BinaryCodeIA32 {
 	makeRelative(entry);
     }
 
-    public void jmp(Reg index,SymbolTableEntryBase[] table) {
+    public void jmp(Reg index, SymbolTableEntryBase[] table) {
 	UnresolvedJump tableStart = new UnresolvedJump();
-	realloc(50 + table.length*4);
+	realloc(50 + table.length * 4);
 
 	insertByte(0xff);
 	insertByte(0x24);
@@ -1225,8 +1171,7 @@ public final class BinaryCodeIA32 {
     /**
        Move 8 Bit Data
     */
-
-    public void movb(Opr src,Reg des) {
+    public void movb(Opr src, Reg des) {
 	realloc();
 	insertByte(0x8A);
 	insertModRM(des,src);
@@ -1253,7 +1198,6 @@ public final class BinaryCodeIA32 {
     /** 
 	Move 16 Bit Data
     */
-
     public void movw(Opr src,Reg des) {
 	realloc();
 	insertByte(0x66);
@@ -1271,7 +1215,6 @@ public final class BinaryCodeIA32 {
     /**
        Move 32 Bit Data
     */
-
     public void movl(Opr src,Reg des) {
 	realloc();
 	insertByte(0x8b);
@@ -1351,7 +1294,6 @@ public final class BinaryCodeIA32 {
     /**
        No Operation (1 clks)
     */
-
     public void nop() {
 	realloc();
 	insertByte(0x90);
@@ -1360,7 +1302,6 @@ public final class BinaryCodeIA32 {
     /**
        Input from Port (7 clks)
     */
-
     public void inb(byte ib, Reg al) {
 	realloc();
 	if (al.value!=0) throw new Error("wrong Register");
@@ -1408,7 +1349,6 @@ public final class BinaryCodeIA32 {
     /**
        Output to Port (12 clks)
     */
-
     public void outb(Reg al, byte ib) {
 	realloc();
 	if (al.value!=0) throw new Error("wrong Register");
@@ -1467,7 +1407,6 @@ public final class BinaryCodeIA32 {
        0x13 | counter 1
 
     */
-    
     public void wrmsr() {
 	realloc();
 	insertByte(0x0f);
@@ -1479,7 +1418,6 @@ public final class BinaryCodeIA32 {
 
        see wrmsr() for register selection
      */
-
     public void rdmsr() {
 	realloc();
 	insertByte(0x0f);
@@ -1491,7 +1429,6 @@ public final class BinaryCodeIA32 {
        Read from Time Stamp Counter 
        return EDX:EAX
     */
-
     public void rdtsc() {
 	realloc();
 	insertByte(0x0f);
@@ -1506,7 +1443,6 @@ public final class BinaryCodeIA32 {
        ecx = 1 : return EDX:EAX counter1
 
     */
-
     public void rdpmc() {
 	realloc();
 	insertByte(0x0f);
@@ -1518,14 +1454,13 @@ public final class BinaryCodeIA32 {
     /**
        test - logical compare (1/2 clks)
     */
-
-    public void test(Opr src,Reg des) {
+    public void test(Opr src, Reg des) {
 	realloc();
 	insertByte(0x85); 
-	insertModRM(des,src);
+	insertModRM(des, src);
     }
 
-    public void test(int immd,Opr des) {
+    public void test(int immd, Opr des) {
 	realloc();
 	if ((des.tag==Opr.REG)&&(des.value==0)) {
 	    insertByte(0xA9);
@@ -1604,11 +1539,10 @@ public final class BinaryCodeIA32 {
        
        * Labels that follow a conditional branch need _not_ be aligned.
     */
-    
     public void alignCode() {
 	int drift = ip % 16;
-	if (drift<8) {
-	    for (int i=0; i<drift;i++) nop();
+	if (drift < 8) {
+	    for (int i = 0; i < drift; i++) nop();
 	}
     }
     
@@ -1617,13 +1551,13 @@ public final class BinaryCodeIA32 {
 	(Call insertConst4() for corresponding jump instruction) 
     */ 
     public void addJumpTarget(UnresolvedJump jumpObject) {
-	if (doAlignJumpTargets) while ((ip%4)!=0) nop();
+	if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
 	jumpObject.setTargetNCIndex(ip); 
     }
 
     public void alignIP() {
-	int distance = (ip%16);
-	if (distance<8) alignIP_16_Byte();
+	int distance = (ip % 16);
+	if (distance < 8) alignIP_16_Byte();
     }
 
     public void alignIP_4_Byte() {
@@ -1635,7 +1569,7 @@ public final class BinaryCodeIA32 {
     }
 
     public void alignIP_32_Byte() {
-	while ((ip % 32)!=0) nop();
+	while ((ip % 32) != 0) nop();
     }
 
     public void addExceptionTarget(UnresolvedJump handler) {
@@ -1755,7 +1689,7 @@ public final class BinaryCodeIA32 {
     public NCExceptionHandler[] getExceptionHandlers() {
 	NCExceptionHandler[] handlerArray = 
 	new NCExceptionHandler[exceptionHandlers.size()]; 
-	for(int i=0;i<exceptionHandlers.size();i++) {
+	for(int i = 0; i < exceptionHandlers.size(); i++) {
 	    handlerArray[i] = (NCExceptionHandler)exceptionHandlers.get(i); 
 	    //Debug.assert(handlerArray[i].isFinished()); 
 	}
@@ -1870,5 +1804,4 @@ public final class BinaryCodeIA32 {
     public ArrayList getInstructionTable() {
 	return instructionTable;
     }
-
 }

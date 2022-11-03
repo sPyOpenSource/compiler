@@ -3,9 +3,9 @@
  *
  * Copyright 2000 Michael Golm
  */
+
 package jx.compiler;
 
-import java.io.ByteArrayOutputStream;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 
@@ -25,13 +25,12 @@ import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
 import jx.compiler.execenv.BCMethodWithCode;
 import jx.compiler.execenv.IOSystem;
+import jx.compiler.execenv.NativeCodeContainer;
+import jx.compiler.execenv.BinaryCode;
 
 import static jx.compiler.CompileNative.memMgr;
 
 import jx.compspec.MetaInfo;
-
-import jx.compiler.execenv.NativeCodeContainer;
-import jx.compiler.execenv.BinaryCode;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -39,6 +38,8 @@ import java.io.PrintStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
+import java.io.ByteArrayOutputStream;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.jar.*;
@@ -173,6 +174,8 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("jx/verifier")) continue;
                         if (name.startsWith("jx/emulation")) continue;
                         if (name.startsWith("jx/secmgr")) continue;
+                        if (name.startsWith("AI/Models/BytecodeParser")) continue;
+                        if (name.startsWith("AI/Models/ByteCode")) continue;
                         for(String s:sds){
                             if (name.startsWith(s + "/")){
                                 System.out.println(name); 

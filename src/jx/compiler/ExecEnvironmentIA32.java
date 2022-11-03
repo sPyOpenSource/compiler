@@ -12,7 +12,6 @@ import jx.compiler.execenv.*;
 import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-
 import jx.compiler.persistent.*;
 import jx.compiler.plugins.CompilerPlugin;
 
@@ -287,36 +286,36 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	frame.push(-1,Reg.ecx);
 
 	// caller (return addr) => stack
-	code.movl(Ref.ebp.disp(4),Reg.ecx);
-	frame.push(-1,Reg.ecx);
+	code.movl(Ref.ebp.disp(4), Reg.ecx);
+	frame.push(-1, Reg.ecx);
 
 	// a = *current
-        code.movl(new CurrentThreadPointerSTEntry(),Reg.esi);
-	code.movl(Ref.esi,Reg.eax);
+        code.movl(new CurrentThreadPointerSTEntry(), Reg.esi);
+	code.movl(Ref.esi, Reg.eax);
 	// a = current.profile
-       	code.addl(new ProfileSTEntry(ProfileSTEntry.PROFILE_OFFSET),Reg.eax);
-       	code.movl(Ref.eax,Reg.ecx);
+       	code.addl(new ProfileSTEntry(ProfileSTEntry.PROFILE_OFFSET), Reg.eax);
+       	code.movl(Ref.eax, Reg.ecx);
 	// *(a)++  <=> current->profile->dirft_ptr++
 	code.addl(8,Ref.ecx);
-	code.movl(Ref.ecx,Reg.esi);
-	code.movl(0,Ref.esi);
-	code.movl(0,Ref.esi.disp(4));
+	code.movl(Ref.ecx, Reg.esi);
+	code.movl(0, Ref.esi);
+	code.movl(0, Ref.esi.disp(4));
 
 	code.rdtsc();
 	// timer 1 => stack
-	frame.push(-1,Reg.edx);
-	frame.push(-1,Reg.eax);
+	frame.push(-1, Reg.edx);
+	frame.push(-1, Reg.eax);
 
         // current->profile => stack	
-	frame.push(-1,Reg.ecx);
+	frame.push(-1, Reg.ecx);
     }
 
     private void addTimerEP() {
 	frame.pop(Reg.ecx);
 
 	// save return value => stack
-	frame.push(-1,Reg.edx);
-	frame.push(-1,Reg.eax);
+	frame.push(-1, Reg.edx);
+	frame.push(-1, Reg.eax);
 
 	if (false) {	
 	  // stop irqs 
@@ -327,7 +326,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
 
 	code.rdtsc();
-	code.movl(2,Ref.ecx.disp(4));
+	code.movl(2, Ref.ecx.disp(4));
 	
 	// timer 2 => stack
 	frame.push(-1,Reg.edx);
@@ -1563,6 +1562,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    code.endBC();
 
 	} else {
+            // todo: classname
             System.out.println(className);
             if(className.equals("[Ljava/lang/Object;")) className = "java/lang/Object";
             if(className.equals("[Ljava/lang/Class;")) className = "java/lang/Object";
@@ -2057,7 +2057,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    switch (datatype) {
                 case BCBasicDatatype.FLOAT:
                 case BCBasicDatatype.DOUBLE:
-                    codeThrow(thisPtr, -11, bcPosition);
+                    //codeThrow(thisPtr, -11, bcPosition);
+                    if (!(args[i].isConstant() || args[i].isVariable())) {
+                        results[i] = regs.chooseFloatRegister();
+                        args[i].translate(results[i]);
+                    }
                     break;
                 case BCBasicDatatype.LONG:
                     if (opts.isOption("long")) {
@@ -2171,7 +2175,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	/*
 	 * first execute parameters
 	 */
-	for (int i=0;i<args.length;i++) {
+	for (int i = 0; i < args.length; i++) {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
 	    case BCBasicDatatype.FLOAT:
@@ -2180,7 +2184,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		break;
 	    case BCBasicDatatype.LONG:
 		if (opts.isOption("long")) {
-		    results[i]=regs.chooseLongRegister();
+		    results[i] = regs.chooseLongRegister();
 		    args[i].translate(results[i]);
 		} else {
 		    code.nop();
@@ -2209,19 +2213,19 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int datatype = args[i].getDatatype();
 	    switch (datatype) {
                 case BCBasicDatatype.FLOAT:
-                    frame.push(-1,0);
+                    frame.push(-1, 0);
                     break;
                 case BCBasicDatatype.DOUBLE:
-                    frame.push(-1,0);
-                    frame.push(-1,0);
+                    frame.push(-1, 0);
+                    frame.push(-1, 0);
                     break;
                 case BCBasicDatatype.LONG:
                     if (opts.isOption("long")) {
                         regs.readLongRegister((Reg64)results[i]);
                         frame.push((Reg64)results[i]);
                     } else {
-                        frame.push(-1,0);
-                        frame.push(-1,0);
+                        frame.push(-1, 0);
+                        frame.push(-1, 0);
                     }
                     break;	
                 case BCBasicDatatype.INT:

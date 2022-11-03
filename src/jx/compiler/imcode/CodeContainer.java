@@ -1365,7 +1365,6 @@ public class CodeContainer implements NativeCodeContainer {
 	    outStream.println("// Register: " + regs.getStatistics() + " " + method.getName());
     }
 
-
     private void insertBCList(IMNode node) {
 	node.bc_next = null;
 	if (bc_list_top == null)
