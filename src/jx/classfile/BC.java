@@ -2,8 +2,7 @@ package jx.classfile;
 
 /** 
     This class contains all Java Virtual Machine Instruction.
-
-    @see http://java.sun.com/docs/books/vmspec/2nd-edition/html/Instructions.doc.html for details.
+    see http://java.sun.com/docs/books/vmspec/2nd-edition/html/Instructions.doc.html for details.
 */ 
 
 final public class BC {
@@ -68,7 +67,7 @@ final public class BC {
     public static final int ALOAD_3 = 0x2d;
 
     // load int,long,float,double,ref,(byte/boolean),char, short
-    // from array (ref,index) -> (value)
+    // from array (ref,index) to (value)
     public static final int IALOAD = 0x2e;
     public static final int LALOAD = 0x2f;
     public static final int FALOAD = 0x30;
@@ -107,7 +106,7 @@ final public class BC {
     public static final int ASTORE_3 = 0x4e;
 
     // store int,long,float,double,ref,(byte/boolean),
-    // char,short into array (ref,index,value) -> ...
+    // char, short into array (ref,index,value) to ...
     public static final int IASTORE = 0x4f;
     public static final int LASTORE = 0x50;
     public static final int FASTORE = 0x51;
@@ -122,16 +121,16 @@ final public class BC {
     public static final int POP2 = 0x58;
 
     // Duplicate the top operand stack value
-    // ..., value -> ...,value,value
+    // ..., value to ...,value, value
     public static final int DUP  = 0x59;
     
     // Duplicate the top operand stack value and insert two values down
-    // ...,value2,value1 -> ...,value1,value2,value1
+    // ..., value2, value1 to ..., value1, value2, value1
     public static final int DUP_X1 = 0x5a;
     
     // Duplicate the top operand stack value and insert two or three values down
-    // if value2==32bit : ...,value3,value2,value1 -> ...,value1,value3,value2,value1
-    // if value2==64bit : ...,value2,value1 -> value1,value2,value1
+    // if value2==32bit : ...,value3,value2,value1 to ...,value1,value3,value2,value1
+    // if value2==64bit : ...,value2,value1 to value1,value2,value1
     public static final int DUP_X2 = 0x5b;
     
     // Duplicate the top one or two operand stack values
@@ -164,7 +163,7 @@ final public class BC {
     public static final int FDIV = 0x6e;
     public static final int DDIV = 0x6f;
     
-    // rem value1,value2 -> value1-(value1/value2)*value2
+    // rem value1,value2 to value1-(value1/value2)*value2
     public static final int IREM = 0x70;
     public static final int LREM = 0x71;
     public static final int FREM = 0x72;

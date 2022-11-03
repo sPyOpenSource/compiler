@@ -6,7 +6,6 @@ import jx.classfile.ClassData;
 import jx.zero.memory.MemoryInputStream;
 
 public class MemoryClassSource extends ClassData {
-
   public MemoryClassSource(Memory input) throws IOException {
       super(new DataInputStream(new MemoryInputStream(input))); 
   }

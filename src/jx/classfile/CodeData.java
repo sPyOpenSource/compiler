@@ -9,12 +9,12 @@ import jx.classfile.constantpool.*;
     It only reads the data from the class file and stores it.
 */ 
 final public class CodeData {
-  int maxStack; 
-  int maxLocals; 
+    int maxStack;
+    int maxLocals;
 
-  byte[] codeBytes; 
-  int numHandlers; 
-  ExceptionHandlerData[] exceptionHandler; 
+    byte[] codeBytes;
+    int numHandlers;
+    ExceptionHandlerData[] exceptionHandler;
 
     LineAttributeData []lineNumberTable;
 
@@ -24,11 +24,11 @@ final public class CodeData {
 
     public void setCodeBytes(byte[] newCode) {codeBytes = newCode;}
 
-  public CodeData() {}
-  public CodeData(DataInput input, ConstantPool cPool) 
-    throws IOException {
-      readFromClassFile(input, cPool); 
-  }
+    public CodeData() {}
+    public CodeData(DataInput input, ConstantPool cPool)
+      throws IOException {
+        readFromClassFile(input, cPool);
+    }
     
     //Constructor for copy
     private CodeData(int maxStack,
@@ -54,56 +54,56 @@ final public class CodeData {
 			    lineNumberTable);
     }
 
-  public int getNumStackSlots() {return maxStack;}
-  public int getNumLocalVariables() {return maxLocals;}
- 
-  public byte[] getBytecode() {return codeBytes; }
+    public int getNumStackSlots() {return maxStack;}
+    public int getNumLocalVariables() {return maxLocals;}
 
-  public int getBytecodeLength() {return codeBytes.length;}
+    public byte[] getBytecode() { return codeBytes; }
+
+    public int getBytecodeLength() {return codeBytes.length;}
 
     public LineAttributeData[] getLineNumberTable() { return lineNumberTable; }
 
-  public ExceptionHandlerData[] getExceptionHandlers() {
-    // assert(exceptionHandler.length == numHandlers); 
-    return exceptionHandler; 
-  }
+    public ExceptionHandlerData[] getExceptionHandlers() {
+        // assert(exceptionHandler.length == numHandlers);
+        return exceptionHandler;
+    }
   
-  public void readFromClassFile(DataInput input, ConstantPool cPool) 
-    throws IOException {
-      // bytes_count already read 
-      maxStack = input.readUnsignedShort(); 
-      maxLocals = input.readUnsignedShort(); 
-      
-      int numCodeBytes = input.readInt(); 
-      codeBytes = new byte[numCodeBytes]; 
-      input.readFully(codeBytes, 0, numCodeBytes); 
-      
-      numHandlers = input.readUnsignedShort(); 
-      exceptionHandler = new ExceptionHandlerData[numHandlers]; 
-      for(int i=0; i<numHandlers; i++) {
-	exceptionHandler[i] = new ExceptionHandlerData(); 
-	exceptionHandler[i].readFromClassFile(input, cPool); 
-      }
-      
-      int numAttributes = input.readUnsignedShort(); 
-      for(int i=0; i<numAttributes; i++) {
-	readAttribute(input, cPool); 
-      }
-  }
+    public void readFromClassFile(DataInput input, ConstantPool cPool)
+      throws IOException {
+        // bytes_count already read
+        maxStack = input.readUnsignedShort();
+        maxLocals = input.readUnsignedShort();
 
-  private void readAttribute(DataInput input, ConstantPool cPool) 
+        int numCodeBytes = input.readInt();
+        codeBytes = new byte[numCodeBytes];
+        input.readFully(codeBytes, 0, numCodeBytes);
+
+        numHandlers = input.readUnsignedShort();
+        exceptionHandler = new ExceptionHandlerData[numHandlers];
+        for(int i=0; i<numHandlers; i++) {
+            exceptionHandler[i] = new ExceptionHandlerData();
+            exceptionHandler[i].readFromClassFile(input, cPool);
+        }
+
+        int numAttributes = input.readUnsignedShort();
+        for(int i=0; i<numAttributes; i++) {
+            readAttribute(input, cPool);
+        }
+    }
+
+  private void readAttribute(DataInput input, ConstantPool cPool)
     throws IOException {
-      int attrNameCPIndex = input.readUnsignedShort(); 
-      int numBytes = input.readInt(); 
+      int attrNameCPIndex = input.readUnsignedShort();
+      int numBytes = input.readInt();
       String attrName = cPool.getUTF8StringAt(attrNameCPIndex);
       if (attrName.equals("LineNumberTable")) {
-	  int numLines = input.readShort(); 
+	  int numLines = input.readShort();
 	  lineNumberTable = new LineAttributeData[numLines];
 	  for(int i=0; i<numLines; i++) {
 	      lineNumberTable[i] = new LineAttributeData(input.readShort(), input.readShort());
 	  }
-      } else { 
-	  input.skipBytes(numBytes); 
+      } else {
+	  input.skipBytes(numBytes);
       }
   }
 
@@ -112,10 +112,10 @@ final public class CodeData {
     return super.toString() + "\n" +  
       "MaxStack     : " + maxStack + "\n" + 
       "maxLocals    : " + maxLocals + "\n" + 
-      "numCodeBytes : " + codeBytes.length + "\n"; 
+      "numCodeBytes : " + codeBytes.length + "\n";
   }
 
   public String getDescription(ConstantPool cPool) {
-    return toString(); 
+    return toString();
   }
 }

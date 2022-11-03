@@ -5,7 +5,6 @@ import jx.zero.Debug;
 import java.util.ArrayList;
 
 final public class MetaInfo {
-
     final static int MAXLINE = 5000;
     final static int NEWLINE = 0x0a;
     final static int QUOTATION = 0x22;
@@ -239,8 +238,8 @@ final public class MetaInfo {
     public static String[] split(String s) {
 	return split(s, ' ');
     }
+    
     public static String[] split(String s, char splitchar) {
-
 	char[] c = s.toCharArray();
 	char[] w = new char[c.length];
 

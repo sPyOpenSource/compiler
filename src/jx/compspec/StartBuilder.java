@@ -17,45 +17,44 @@ import jx.compiler.CompileNative;
 class BuilderOptions extends CompilerOptionsNative {
 	
     public BuilderOptions(ArrayList libs, ArrayList jlns, String src, String jlnFile, String target, String env) {
-	
-	/* set defaults */
-	doZeroDivChecks      = true; 
-	doNullChecks         = true;
+        /* set defaults */
+        doZeroDivChecks      = true;
+        doNullChecks         = true;
         doBoundsChecks       = true;  
-	doStackSizeCheck     = true;
-	doExceptions         = true;
-	doMemoryRangeChecks  = true;
+        doStackSizeCheck     = true;
+        doExceptions         = true;
+        doMemoryRangeChecks  = true;
 
-	/* -O ============== */
-	//doOptimize           = true;
-	//doFastStatics        = true;
-	//doOptSizeChecks      = true;
-	//doAlignCode          = true;
-	/* -O ============= */
+        /* -O ============== */
+        //doOptimize           = true;
+        //doFastStatics        = true;
+        //doOptSizeChecks      = true;
+        //doAlignCode          = true;
+        /* -O ============= */
 
-	//doInlining           = true;
-	//doCF                 = true;
+        //doInlining           = true;
+        //doCF                 = true;
 
-	doProfiling          = false;
+        doProfiling          = false;
         doEventLoging        = false;
-	doFastMemoryAccess   = false;
-	doFastStatics        = false;
-	doPrintIMCode        = false;
-        doStackTrace         = false;	    
-	doUsePackedArrays    = false; // old Compiler allways use 32 Bit
+        doFastMemoryAccess   = false;
+        doFastStatics        = false;
+        doPrintIMCode        = false;
+        doStackTrace         = false;
+        doUsePackedArrays    = false; // old Compiler allways use 32 Bit
 
-	replaceInterfaceWithClass = null; // substitute a classname for an interface name when loading
+        replaceInterfaceWithClass = null; // substitute a classname for an interface name when loading
 
-	debug        = false;
-	makeLib      = true;
-	libPath      = null;
+        debug        = false;
+        makeLib      = true;
+        libPath      = null;
 
-	enviroment   = env;
-	zipClassFile = src;
-	zipLibFiles  = libs;
-	jlnLibFiles  = jlns;
-	jxdFileName  = target;
-	jlnFileName  = jlnFile;
+        enviroment   = env;
+        zipClassFile = src;
+        zipLibFiles  = libs;
+        jlnLibFiles  = jlns;
+        jxdFileName  = target;
+        jlnFileName  = jlnFile;
     }
 
     //public boolean doDebug() {return true;}
@@ -131,14 +130,14 @@ public class StartBuilder {
         try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/OS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
-        }    
+        }
         MetaInfo jdk0 = new MetaInfo("/home/spy/OS/jx/libs/jdk0", barr);
         ArrayList allLibs2 = new ArrayList();
         allLibs2.add("zero");
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
         
-       try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/AIZero/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/AIZero/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -279,7 +278,6 @@ public class StartBuilder {
 
 	if (config.exists()) {
 	    try {
-
 		BufferedReader file = new BufferedReader(new FileReader(config));
 		String line;
 		while ((line = file.readLine()) != null) {
@@ -519,7 +517,7 @@ public class StartBuilder {
                     addZipEntry(zip, buildDir + "/../" + pathname, filename);
                 }
                 
-                //		addZipEntry(zip, componentsDir+"/../", "boot.rc");
+                //addZipEntry(zip, componentsDir+"/../", "boot.rc");
                 //addZipEntry(zip, componentsDir+"/wm_impl/jx/wm/", "std.keymap");
                 //addZipEntry(zip, componentsDir+"/wm_impl/jx/wm/", "default.fon");
                 //File rmfile = new File(componentsDir+"../jcore/realmode");
@@ -542,15 +540,15 @@ public class StartBuilder {
 	// System.out.println("CP: " + cp);
 	try {
 	    try {
-		    /*System.out.println("************");
-		    System.out.println("CWD: " + cwd);
-		    System.out.println("CP: " + classPath);
-		    System.out.println("Class: " + mainClass);
-		    System.out.print("args: ");
-                    for (String arg : args) {
-                        System.out.print(arg + " ");
-                    }
-		    System.out.println("");*/
+                /*System.out.println("************");
+                System.out.println("CWD: " + cwd);
+                System.out.println("CP: " + classPath);
+                System.out.println("Class: " + mainClass);
+                System.out.print("args: ");
+                for (String arg : args) {
+                    System.out.print(arg + " ");
+                }
+                System.out.println("");*/
 
 		//setProperty("user.dir", cwd);
 		
@@ -584,7 +582,7 @@ public class StartBuilder {
     public static int execJavaDoc(String libname, String componentsDir, String[] files, String classPath) {
         int ret = 0;
 	try {
-	    String cmd = "javadoc -author -version -d "+componentsDir+"../docs/"+libname+" -classpath "+classPath+" ";
+	    String cmd = "javadoc -author -version -d " + componentsDir + "../docs/" + libname + " -classpath " + classPath + " ";
             for (String file : files) {
                 cmd += " " + file;
             }

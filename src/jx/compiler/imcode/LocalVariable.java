@@ -3,7 +3,6 @@ package jx.compiler.imcode;
 import jx.classfile.datatypes.BCBasicDatatype;
 
 public class LocalVariable {
-
     // experimental 
     private boolean doLessChecks = false;
 
@@ -129,11 +128,11 @@ public class LocalVariable {
     }
 
     public String addrString() {
-	return Integer.toString(slottype)+":"+Integer.toString(off);
+	return Integer.toString(slottype) + ":" + Integer.toString(off);
     }
 
     @Override
     public String toString() {
-	return BCBasicDatatype.toString(datatype)+" at "+addrString();
+	return BCBasicDatatype.toString(datatype) + " at " + addrString();
     }
 }

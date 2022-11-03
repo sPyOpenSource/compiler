@@ -42,21 +42,21 @@ import jx.compspec.MetaInfo;
      * CLASSHEADERx      ::= CLASSNAME SUPERCLASSNAME ISINTERFACE 
                              NUMBER_OF_IMPLEMENTED_INTERFACES INTERFACENAME*
 			     NUMBER_OF_METHODS INSTANCE_SIZE INSTANCE_FIELDMAP FIELDLIST STATICFIELDS_SIZE BYTECODESIZE VTABLE METHODHEADER*
-     * CLASSNAME         ::= string
+     * CLASSNAME          ::= string
      * ISINTERFACE        ::= int (0=class, 1=interface)
      * NUMBER_OF_IMPLEMENTED_INTERFACES ::= int
-     * INTERFACENAME        ::= string
+     * INTERFACENAME      ::= string
      * STATIC_FIELDS_SIZE ::= int
-     * INSTANCE_SIZE     ::= int
-     * INSTANCE_FIELDMAP ::= NUMBER_OF_FIELDMAPBYTES bytes 
+     * INSTANCE_SIZE      ::= int
+     * INSTANCE_FIELDMAP  ::= NUMBER_OF_FIELDMAPBYTES bytes 
      * NUMBER_OF_FIELDMAPBYTES ::= int 
      * FIELDLIST          ::= NUMBER_OF_FIELDS FIELD*
-     * NUMBER_OF_FIELDS ::= int 
-     * FIELD             ::= FIELDNAME FIELDTYPE FIELDOFFSET
-     * FIELDNAME        ::= string
-     * FIELDTYPE        ::= string
+     * NUMBER_OF_FIELDS   ::= int 
+     * FIELD              ::= FIELDNAME FIELDTYPE FIELDOFFSET
+     * FIELDNAME          ::= string
+     * FIELDTYPE          ::= string
      * FIELDOFFSET        ::= int
-     * NUMBER_OF_METHODS ::= int
+     * NUMBER_OF_METHODS  ::= int
 
      * METHODHEADER      ::= METHODNAME METHODSIGNATURE 
                              SIZE_LOCAL_VARS NUMBER_CODEBYTES ARGUMENTMAP RETURNTYPE FLAGS
@@ -103,8 +103,7 @@ public class CodeFile {
     }
 
     //public void write(ExtendedDataOutputStream out, ClassStore classStore, CompilerOptions opts) throws IOException {
-    public void write(ExtendedDataOutputStream out, ClassStore classStore) throws IOException {    
-	
+    public void write(ExtendedDataOutputStream out, ClassStore classStore) throws IOException {
 	this.out = out;
         
         //
@@ -130,12 +129,12 @@ public class CodeFile {
 	  out.writeInt(0);
 	} else {
 	    //	    Debug.out.println("NEEDED LIBS");
-	  out.writeInt(libs.length);
+	    out.writeInt(libs.length);
             for (String lib : libs) {
                 try {
-                    //		Debug.out.println("\""+libs[i]+"\"");
+                    //Debug.out.println("\""+libs[i]+"\"");
                     out.writeString(lib);
-                }catch (Exception ex) {
+                }catch (IOException ex) {
                     throw new Error(ex.getClass().getName());
                 }
             }
@@ -203,7 +202,6 @@ public class CodeFile {
      * @throws java.lang.Exception
      */
     public ArrayList read(ExtendedDataInputStream in) throws Exception {
-
 	this.in = in;
 
 	ArrayList all = new ArrayList();
@@ -411,7 +409,7 @@ public class CodeFile {
 		if (! opts.isOption("noBytecodeNumbers")) {
 		    ArrayList lineTable = nativeCode.getInstructionTable();
 		    out.writeInt(lineTable.size());
-		    for(int k=0; k<lineTable.size(); k++) {
+		    for(int k = 0; k < lineTable.size(); k++) {
 			int[] l = (int[])lineTable.get(k);
 			out.writeInt(l[0]);
 			out.writeInt(l[1]);
@@ -433,8 +431,8 @@ public class CodeFile {
 		    out.writeInt(0); // no lineinfos available
 		}
 	    }
-	} catch (Exception e) {
-	  Debug.throwError("Exception "+e.getClass().getName()+" caught while writting code file.");
+	} catch (IOException e) {
+	    Debug.throwError("Exception " + e.getClass().getName() + " caught while writting code file.");
 	}
 
     }
@@ -483,7 +481,7 @@ public class CodeFile {
 	int numberOfBytecodes = in.readInt();
 	//Debug.out.println("Ml " +numberOfMethods);	
 	CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
-	for(int i=0; i<numberOfMethods; i++) {
+	for(int i = 0; i < numberOfMethods; i++) {
 	    methods[i] = readMethodHeaderFromFile();
 	}
 	CompiledClass compiledClass = new CompiledClass(className, superName, objectSize, classSize, methods);

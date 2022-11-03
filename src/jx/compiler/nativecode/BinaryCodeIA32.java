@@ -18,7 +18,6 @@ import jx.zero.Debug;
 */ 
 
 public final class BinaryCodeIA32 {
-
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -63,7 +62,7 @@ public final class BinaryCodeIA32 {
     /** 
 	The methods in the frontend expect the compiled code
 	stored inside of a object of class nativecode.BinaryCode. 
-	-> Convert a object of preproc.BinaryCodePreproc into a object of 
+	Convert a object of preproc.BinaryCodePreproc into a object of 
 	nativecode.BinaryCode.
 	Note: Exceptionhandlers are not copied. 
      * @return 
@@ -709,21 +708,17 @@ public final class BinaryCodeIA32 {
 	}
     }
     
- public void addsd(Opr src, Reg des){
+    public void addsd(Opr src, Reg des){
      
- }
- 
-  public void addsd(Reg src, Ref des){
-     
- }
+    }
   
-   public void addsd(){
+    public void addsd(){
      
- }
+    }
    
     public void addsd(SymbolTableEntryBase entry, Opr des){
      
- }
+    }
     
     /**
        And (1/3 clks)
@@ -1272,7 +1267,7 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Move with Sign-Extend (short -> register) (3 clks)
+       Move with Sign-Extend (short to register) (3 clks)
     */
     public void movswl(Opr src,Reg des) {
 	realloc();
@@ -1282,7 +1277,7 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Move with Sign-Extend (byte -> register) (3 clks)
+       Move with Sign-Extend (byte to register) (3 clks)
     */
     public void movsbl(Opr src,Reg des) {
 	realloc();

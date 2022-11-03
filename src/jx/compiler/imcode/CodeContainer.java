@@ -28,7 +28,7 @@ class JumpStack {
     public void push(IMBasicBlock node) {
 	stack[pos++] = node;
 	if (pos == stack.length) {
-	    IMBasicBlock[] new_stack = new IMBasicBlock[stack.length+10];
+	    IMBasicBlock[] new_stack = new IMBasicBlock[stack.length + 10];
             System.arraycopy(stack, 0, new_stack, 0, stack.length);
 	    stack = new_stack;
 	}
@@ -1191,7 +1191,7 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void translate() throws CompileException {
-	Reg    result;
+	Reg result;
 	IMNode node = imCodeStart;
 
 	//======================================
@@ -1361,7 +1361,7 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void writeStatistics(java.io.PrintStream outStream) {
-	if (regs.getStatistics()!=null)
+	if (regs.getStatistics() != null)
 	    outStream.println("// Register: " + regs.getStatistics() + " " + method.getName());
     }
 

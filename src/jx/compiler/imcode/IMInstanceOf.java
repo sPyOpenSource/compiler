@@ -9,7 +9,6 @@ import jx.compiler.nativecode.*;
 // **** IMInstanceOf *****
 
 final public class IMInstanceOf extends IMUnaryOperator {
-
     private final ClassCPEntry cpEntry;
 
     public IMInstanceOf(CodeContainer container,int bc,int bcpos,ClassCPEntry cpEntry) {
@@ -22,25 +21,24 @@ final public class IMInstanceOf extends IMUnaryOperator {
     
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
         operant = stack.pop();
-	if (operant.getDatatype()!=BCBasicDatatype.REFERENCE) {
-	    throw new CompileException("IMInstanceOf bcpos:"+Integer.toString(bcPosition)+" wrong datatype on stack!");
+	if (operant.getDatatype() != BCBasicDatatype.REFERENCE) {
+	    throw new CompileException("IMInstanceOf bcpos:" + Integer.toString(bcPosition) + " wrong datatype on stack!");
 	}
 	stack.push(this);
 	return null;
     }
 
     public String toReadableString() {
-	return "("+operant.toReadableString()+" instanceof "+cpEntry.getClassName()+")";
+	return "(" + operant.toReadableString() + " instanceof " + cpEntry.getClassName() + ")";
     }
 
     // IMInstanceOf
     public void translate(Reg result) throws CompileException {
-
 	Reg refObj = regs.chooseIntRegister(null);
 	operant.translate(refObj);
 	regs.freeIntRegister(refObj); 
 
 	// execEnv.codeCheckReference(...); done by jxcore
-        execEnv.codeInstanceOf(this,cpEntry,refObj,result,bcPosition);
+        execEnv.codeInstanceOf(this, cpEntry, refObj, result, bcPosition);
     }
 }

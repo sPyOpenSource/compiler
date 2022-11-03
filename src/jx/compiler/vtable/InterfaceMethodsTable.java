@@ -24,6 +24,7 @@ public class InterfaceMethodsTable {
                 append(method);	
         }
     }
+    
     /**
      * add class or interface from lib 
      * @param info

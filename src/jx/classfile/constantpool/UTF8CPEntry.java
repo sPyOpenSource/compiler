@@ -4,19 +4,19 @@ package jx.classfile.constantpool;
 import java.io.*; 
 
 public class UTF8CPEntry extends ConstantPoolEntry {
-  private String value; 
-  private int stringAddress; 
+  private String value;
+  private int stringAddress;
   
   public UTF8CPEntry() {}
 
   public UTF8CPEntry(String value, int stringAddress) {
     this.value = value;
-    this.stringAddress = stringAddress; 
+    this.stringAddress = stringAddress;
   }
 
   public UTF8CPEntry(String value) {
     this.value = value;
-    this.stringAddress = 0; 
+    this.stringAddress = 0;
   }
 
   @Override
@@ -24,19 +24,19 @@ public class UTF8CPEntry extends ConstantPoolEntry {
   
   @Override
   void readFromClassFile(DataInput input) throws IOException {
-    value = input.readUTF(); 
+    value = input.readUTF();
   }
 
   public String value() {return value;}
 
   @Override
   public String getSimpleDescription() {
-    return value; 
+    return value;
   }
 
   @Override
   public String getDescription(ConstantPool cPool, boolean withIndex) {
-    return "\"" + getSimpleDescription() + "\""; 
+    return "\"" + getSimpleDescription() + "\"";
   }
 
   @Override
