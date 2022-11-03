@@ -89,7 +89,7 @@ public class MethodStackFrame {
 
 	curr = stack[BLKS];
         csize = curr.size();
-	for (int j=0;j<csize;j++) {
+	for (int j = 0; j < csize; j++) {
 	    LocalVariable slot = curr.elementAt(j);
 	    if (slot.isDatatype(BCBasicDatatype.REFERENCE)) {
 		int offset = getOffset(slot);
@@ -275,7 +275,7 @@ public class MethodStackFrame {
 	int csize = curr.size();
 	int s = 0;
 
-	for (int j=0;j<csize;j++) {
+	for (int j = 0; j < csize; j++) {
 	    LocalVariable slot = curr.elementAt(j);
 
             newStackMap[s] = slot.isDatatype(BCBasicDatatype.REFERENCE) && !slot.unused;

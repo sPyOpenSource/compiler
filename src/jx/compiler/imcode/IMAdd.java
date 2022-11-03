@@ -11,15 +11,15 @@ import jx.compiler.nativecode.*;
 
 final  public class IMAdd extends IMBinaryOperator {
 
-    public IMAdd(CodeContainer container,int bc,int bcpos) {
+    public IMAdd(CodeContainer container, int bc, int bcpos) {
 	super(container);
 	tag = tag | OPERATOR | COMPERATOR;
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-BC.IADD);
+	datatype = BCBasicDatatype.INT + (bc - BC.IADD);
     }
 
-    public IMAdd(CodeContainer container,IMOperant lOpr,IMOperant rOpr,int datatype,int bcpos) {	
+    public IMAdd(CodeContainer container, IMOperant lOpr, IMOperant rOpr, int datatype, int bcpos) {	
 	super(container);
 	tag = tag | OPERATOR | COMPERATOR;
 	this.rOpr = rOpr;
@@ -33,11 +33,10 @@ final  public class IMAdd extends IMBinaryOperator {
     public boolean isSubOrAdd() {return true;}
 
     public String toReadableString() {
-	return "("+lOpr.toReadableString()+"+"+rOpr.toReadableString()+")";
+	return "(" + lOpr.toReadableString() + "+" + rOpr.toReadableString() + ")";
     }
 
     public IMNode constant_folding() throws CompileException {
-
 	if (rOpr.isOperator()) {
 	    rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();
 	}
@@ -46,7 +45,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	    lOpr = (IMOperant)((IMOperator)lOpr).constant_folding();
 	}
 
-	if (datatype==BCBasicDatatype.INT) {
+	if (datatype == BCBasicDatatype.INT) {
 	    // simpel case (c+c)
 	    if (lOpr.isConstant() && rOpr.isConstant()) {
 		if (opts.doVerbose("cf")) Debug.out.println("++ folding c+c "+toReadableString());
@@ -89,9 +88,9 @@ final  public class IMAdd extends IMBinaryOperator {
     public IMOperant constant_folding2la(IMAdd Opr,int value) {
 	// case ((x+c1)+c2) => (x+c3)
 	if (rOpr.isConstant()) {
-	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (x+c)+c) "+Opr.toReadableString());
+	    if (opts.doVerbose("cf")) Debug.out.println("++ folding (x+c)+c) " + Opr.toReadableString());
 	    IMConstant rcOpr = rOpr.nodeToConstant();
-	    rcOpr.setIntValue(rcOpr.getIntValue() + value);	    
+	    rcOpr.setIntValue(rcOpr.getIntValue() + value);
 	    return this;
 	}
 	return Opr;
@@ -100,7 +99,6 @@ final  public class IMAdd extends IMBinaryOperator {
     // IMAdd
     @Override
     public void translate(Reg result) throws CompileException {
-
 	if (lOpr.isConstant()) {
 	    IMOperant swap = lOpr;
 	    lOpr = rOpr;
@@ -110,8 +108,8 @@ final  public class IMAdd extends IMBinaryOperator {
 	if (rOpr.isConstant()) {
 	    int value = rOpr.nodeToConstant().getIntValue();
 
-            IMConstant mult=null;
-            int mvalue=0;
+            IMConstant mult = null;
+            int mvalue = 0;
 	    if (opts.isOption("lea") && lOpr.isMul() && lOpr.getRightOperant().isRealConstant()) {
               mult = lOpr.getRightOperant().nodeToConstant();
               mvalue = mult.getIntValue();
@@ -135,12 +133,12 @@ final  public class IMAdd extends IMBinaryOperator {
 		    code.lea(result.rdisp(value,result,8),result);
 	            break;	
 		default:
-			mult=null;
+			mult = null;
               }
-              if (mult!=null && opts.doVerbose("lea")) Debug.out.println("++ lea "+toReadableString());	
+              if (mult != null && opts.doVerbose("lea")) Debug.out.println("++ lea " + toReadableString());	
 	    }
 
-            if (mult==null) {
+            if (mult == null) {
 		    lOpr.translate(result);	    
 
 		    code.startBC(bcPosition);
@@ -153,7 +151,7 @@ final  public class IMAdd extends IMBinaryOperator {
 			code.incl(result);
 			break;
 		    default:
-			code.addl(value,result);
+			code.addl(value, result);
 		    }
             } 
 	} else {	    
@@ -162,7 +160,7 @@ final  public class IMAdd extends IMBinaryOperator {
 	    lOpr.translate(result);
 	    if (result.any()) {
 		Debug.out.println(toReadableString());
-		throw new Error(getLineInfo()+" get any");
+		throw new Error(getLineInfo() + " get any");
 	    }
 
 	    reg = regs.chooseIntRegister(result);
@@ -171,13 +169,14 @@ final  public class IMAdd extends IMBinaryOperator {
 	    code.startBC(bcPosition);
 	    regs.writeIntRegister(result);
 
-	    code.addl(reg,result);
+	    code.addl(reg, result);
 	    regs.freeIntRegister(reg);
         }
 
 	code.endBC();
     } 
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	Reg64 reg;
 	    

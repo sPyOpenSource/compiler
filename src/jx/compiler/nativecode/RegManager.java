@@ -15,13 +15,13 @@ public class RegManager {
     private String           method_name;
     private MethodStackFrame frame;
 
-    private boolean dbg_msg         = false;
-    private boolean dbg_free        = false;
-    private boolean stat_flag       = true;
-    private boolean optimize_read   = false;
-    private boolean clear_temps     = true;
-    private boolean paranoid_checks = false;
-    private boolean clear_stack     = true;
+    private final boolean dbg_msg         = false;
+    private final boolean dbg_free        = false;
+    private final boolean stat_flag       = true;
+    private final boolean optimize_read   = false;
+    private final boolean clear_temps     = true;
+    private final boolean paranoid_checks = false;
+    private final boolean clear_stack     = true;
 
     private int     readsIntoAny;
     private int     foundInReg;
@@ -32,13 +32,15 @@ public class RegManager {
 
     // all known int register
     private Reg[]           regList;
+    private RegFloat[] regFloatList;
     // all register objects active in register
-    private RegList         active;
+    private final RegList         active;
 
     private int uniID = 0;
 
     public RegManager() {
 	this.regList  = new Reg[6];
+        this.regFloatList = new RegFloat[6];
 	this.active   = new RegList(); 
 	uniID = 0;
     }
@@ -51,6 +53,13 @@ public class RegManager {
 	regList[3]        = Reg.ebx;
 	regList[4]        = Reg.esi;
 	regList[5]        = Reg.edi;
+        this.regFloatList = new RegFloat[6];
+        regFloatList[0] = RegFloat.xmm0;
+        regFloatList[1] = RegFloat.xmm1;
+        regFloatList[2] = RegFloat.xmm2;
+        regFloatList[3] = RegFloat.xmm3;
+        regFloatList[4] = RegFloat.xmm4;
+        regFloatList[5] = RegFloat.xmm5;
 	this.container = container;
 	this.code = container.getIA32Code();
 	this.frame = container.getMethodStackFrame();
@@ -70,8 +79,8 @@ public class RegManager {
     */
 
     public void chooseAnyIntRegister(Reg any) throws CompileException {
-	Reg choose=chooseIntRegister(null,null);	
-	any.value=choose.value;
+	Reg choose = chooseIntRegister(null, null);	
+	any.value = choose.value;
     }
 
     /**
@@ -80,9 +89,9 @@ public class RegManager {
        Waehlt ein physikalisches Register.
     */
 
-    public Reg chooseIntRegisterForSlot(LocalVariable slot,Reg blocked) throws CompileException {
+    public Reg chooseIntRegisterForSlot(LocalVariable slot, Reg blocked) throws CompileException {
 	Reg choose = chooseIntRegister(blocked);
-	choose.slot=slot;
+	choose.slot = slot;
 	return choose;
     }
 
@@ -90,10 +99,10 @@ public class RegManager {
        Reg chooseIntRegister
 
        Waehlt ein physikalisches Register fuer ein virtuelles Register aus.
-    */    
+    */
 
     public Reg chooseIntRegister() throws CompileException {
-	return chooseIntRegister(null,null);
+	return chooseIntRegister(null, null);
     }
 
     /**
@@ -104,10 +113,10 @@ public class RegManager {
     */    
 
     public Reg chooseIntRegister(Reg blocked) throws CompileException {
-	if (dbg_msg && blocked!=null && blocked.any()) {
+	if (dbg_msg && blocked != null && blocked.any()) {
 	    System.err.println("     !! can`t block any");
 	}
-	return chooseIntRegister(blocked,null);
+	return chooseIntRegister(blocked, null);
     }  
 
     /**
@@ -117,37 +126,59 @@ public class RegManager {
        der Einschraenke nicht die Register der Argumente zu nehmen.
     */ 
 
-    public Reg chooseIntRegister(Reg blocked1,Reg blocked2) throws CompileException {
-	return chooseIntRegister(blocked1,blocked2,null);
+    public Reg chooseIntRegister(Reg blocked1, Reg blocked2) throws CompileException {
+	return chooseIntRegister(blocked1, blocked2, null);
     }
 
-    public Reg chooseIntRegister(Reg blocked1,Reg blocked2, Reg blocked3) throws CompileException {
-	Reg choose =null;
-	int badness=1000;
+    public Reg chooseIntRegister(Reg blocked1, Reg blocked2, Reg blocked3) throws CompileException {
+	Reg choose = null;
+	int badness = 1000;
 	
-	for (int i=0;(i<6 && badness!=0);i++) {
+	for (int i = 0; (i < 6 && badness != 0); i++) {
 	    Reg reg = regList[i];
 	    
 	    // don`t choose blocked register at all
-	    if (blocked1!=null && blocked1.conflict(reg)) continue;
-	    if (blocked2!=null && blocked2.conflict(reg)) continue;
-	    if (blocked3!=null && blocked3.conflict(reg)) continue;
+	    if (blocked1 != null && blocked1.conflict(reg)) continue;
+	    if (blocked2 != null && blocked2.conflict(reg)) continue;
+	    if (blocked3 != null && blocked3.conflict(reg)) continue;
 	    
-	    int value = computeBadness(reg,6);
+	    int value = computeBadness(reg, 6);
 	    
-	    if (choose==null || value < badness) {
-		choose   = reg;		    
-		badness  = value;
+	    if (choose == null || value < badness) {
+		choose = reg;		    
+		badness = value;
 	    }
-	    
 	}
 	
-	choose    = choose.getClone();
+	choose = choose.getClone();
 	choose.id = uniID++;
 	
 	if (dbg_msg) {	    
 	    System.err.println("     choose " + choose);
 	    //Thread.dumpStack();
+	}
+	return choose;
+    }
+    
+public RegFloat chooseFloatRegister() throws CompileException {
+	RegFloat choose = null;
+	int badness = 1000;
+	
+	for (int i = 0; (i < 6 && badness != 0); i++) {
+	    RegFloat reg = regFloatList[i];
+	    
+	    //int value = computeBadness(reg, 6);
+	    
+	    if (choose == null) {
+		choose = reg;		    
+	    }
+	}
+	
+	choose = choose.getClone();
+	choose.id = uniID++;
+	
+	if (dbg_msg) {	    
+	    System.err.println("     choose " + choose);
 	}
 	return choose;
     }
@@ -157,7 +188,7 @@ public class RegManager {
     }
 
     public Reg64 chooseLongRegister(Reg64 blocked) throws CompileException {
-	return new Reg64(chooseIntRegister(blocked.low,blocked.high));
+	return new Reg64(chooseIntRegister(blocked.low, blocked.high));
     }
 
 
@@ -169,8 +200,8 @@ public class RegManager {
     */ 
 
     public Reg chooseAndAllocIntRegister(Reg blocked, int datatype) throws CompileException {
-	Reg choose = chooseIntRegister(blocked,null);
-	allocIntRegister(choose,datatype);
+	Reg choose = chooseIntRegister(blocked, null);
+	allocIntRegister(choose, datatype);
 	return choose;
     }
 
@@ -185,8 +216,7 @@ public class RegManager {
 	Reg choose = reg.getClone();
 	choose.id = uniID++;
 	if (dbg_msg) {
-	    System.err.println("     choose "+reg+" (get)");
-	    //Thread.dumpStack();
+	    System.err.println("     choose " + reg + " (get)");
 	}
 	return choose;
     }
@@ -209,7 +239,7 @@ public class RegManager {
 
     public void setAnyIntRegister(Reg any,Reg reg) {
 	if (!any.any()) throw new Error("can`t rename register");
-	any.value=reg.value;
+	any.value = reg.value;
     }
 
     /**
@@ -225,8 +255,9 @@ public class RegManager {
     */
 
     public void endBasicBlock() {
-	if (dbg_msg) 
-	    System.err.println(method_name+": end of basic block active: "+active);
+	if (dbg_msg) {
+	    System.err.println(method_name + ": end of basic block active: " + active);
+        }
 
 	if (clear_temps) { frame.freeAllTemps(); }
 	
@@ -239,10 +270,10 @@ public class RegManager {
 
     public boolean hasFreeIntRegister() {
 	int used = 0;	
-	for (Reg reg=active.top();reg!=null;reg=active.next()) {
-	    if (reg.slot==null && !reg.free) used++;
+	for (Reg reg = active.top(); reg != null; reg = active.next()) {
+	    if (reg.slot == null && !reg.free) used++;
 	}
-	return (used<6);
+	return (used < 6);
     }
 
     /**
@@ -256,10 +287,10 @@ public class RegManager {
     */
        
 
-    public void allocIntRegister(Reg reg,int datatype) throws CompileException {
+    public void allocIntRegister(Reg reg, int datatype) throws CompileException {
 	if (reg.any()) chooseAnyIntRegister(reg);
 	
-	if (dbg_msg) System.err.println("     alloc "+reg);
+	if (dbg_msg) System.err.println("     alloc " + reg);
 	
 	if (reg.free) throw new CompileException("alloc freed register ?!?");
 	
@@ -267,7 +298,7 @@ public class RegManager {
 	
 	swapEqualIntRegister(reg);
 	if (active.knows(reg)) {
-	    if (dbg_msg) System.err.println("2nd alloc "+reg);
+	    if (dbg_msg) System.err.println("2nd alloc " + reg);
 	} else {
 	    active.append(reg);
 	}
@@ -281,9 +312,9 @@ public class RegManager {
 	den Platzhalter "any" ein bevorzugtes Register angegeben werden kann.
     */
 
-    public void allocIntRegister(Reg reg,Reg prefer,int datatype) throws CompileException {
-	if (reg.any()) setAnyIntRegister(reg,prefer);
-	allocIntRegister(reg,datatype);
+    public void allocIntRegister(Reg reg, Reg prefer, int datatype) throws CompileException {
+	if (reg.any()) setAnyIntRegister(reg, prefer);
+	allocIntRegister(reg, datatype);
     }
 
     /** 
@@ -293,7 +324,7 @@ public class RegManager {
 	den Platzhalter "any" ein bevorzugtes Register angegeben werden kann.
     */
 
-    public void allocLongRegister(Reg64 reg,Reg64 prefer) throws CompileException {
+    public void allocLongRegister(Reg64 reg, Reg64 prefer) throws CompileException {
 	//if (reg.equals(Reg64.any())) setAnyLongRegister(reg,prefer);
 	allocLongRegister(reg);
     } 
@@ -313,8 +344,8 @@ public class RegManager {
 	if (reg.equals(Reg64.any)) {
 	    throw new CompileException(" 64 Bit any not implemented");
 	}
-	allocIntRegister(reg.low,BCBasicDatatype.INT);
-	allocIntRegister(reg.high,BCBasicDatatype.INT);
+	allocIntRegister(reg.low, BCBasicDatatype.INT);
+	allocIntRegister(reg.high, BCBasicDatatype.INT);
     }
 
     /** 
@@ -338,13 +369,11 @@ public class RegManager {
 	    }
 	}
 	reg.unfree();
-	//reg.free=false;
     }
 
     public boolean known(Reg reg) {
 	if (active.knows(reg)) return true;
-	if (reg.slot!=null) return true;
-	return false;
+	return reg.slot != null;
     }
 
    /** 
@@ -399,18 +428,18 @@ public class RegManager {
     */
 
     public void freeIntRegister(Reg reg) throws CompileException {
-	if (dbg_msg && dbg_free && !reg.any()) System.err.println("     free "+reg);
+	if (dbg_msg && dbg_free && !reg.any()) System.err.println("     free " + reg);
 
 	reg.free();
 
 	if (!reg.valid) active.remove(reg);
 
-	if (reg.slot!=null) {
+	if (reg.slot != null) {
 	    if (clear_stack && reg.slot.isType(LocalVariable.TMPS)) {
-		code.movl(0,Ref.ebp.disp(frame.getOffset(reg.slot)));
+		code.movl(0, Ref.ebp.disp(frame.getOffset(reg.slot)));
 	    }
 	    frame.freeSlot(reg.slot);
-	    reg.slot=null;
+	    reg.slot = null;
 	}
     }
 
@@ -421,32 +450,28 @@ public class RegManager {
     */
 
     public void freeLongRegister(Reg64 reg) throws CompileException {
-	if (reg.low!=null) freeIntRegister(reg.low);
-	if (reg.high!=null) freeIntRegister(reg.high);
+	if (reg.low != null) freeIntRegister(reg.low);
+	if (reg.high != null) freeIntRegister(reg.high);
     }
-
-
-
 
     /**
        readLongRegisterFromSlot(slot,reg,datatype)
        Liest den Inhalt von einer Stackposition in ein Register
     */
+    public void readLongRegisterFromSlot(LocalVariable slot, Reg64 reg) throws CompileException {
+	if (stat_flag) numberOfReads += 2;
 
-    public void readLongRegisterFromSlot(LocalVariable slot,Reg64 reg) throws CompileException {
-	if (stat_flag) numberOfReads+=2;
-
-	if (dbg_msg) System.err.println("     read "+slot.addrString()+"->"+reg);
+	if (dbg_msg) System.err.println("     read " + slot.addrString() + "->" + reg);
 
 	allocLongRegister(reg);
 
-	if (stat_flag) numberOfMoveIn+=2;
+	if (stat_flag) numberOfMoveIn += 2;
 
 	int offset = frame.getOffset(slot);
-	if (offset==0) throw new Error("zero offset");
+	if (offset == 0) throw new Error("zero offset");
 
-	code.movl(Ref.ebp.disp(offset),reg.low);
-	code.movl(Ref.ebp.disp(offset-4),reg.high);
+	code.movl(Ref.ebp.disp(offset), reg.low);
+	code.movl(Ref.ebp.disp(offset - 4), reg.high);
 
 	//reg.low.slot  = slot;
 	//reg.high.slot = slot;
@@ -464,8 +489,7 @@ public class RegManager {
        Liest den Inhalt von einer Stackposition in ein Register
 
     */
-
-    public void readIntRegisterFromSlot(LocalVariable slot,Reg reg,int datatype) throws CompileException {
+    public void readIntRegisterFromSlot(LocalVariable slot, Reg reg, int datatype) throws CompileException {
 	if (stat_flag) numberOfReads++;
 
 	Reg inReg = findSlotInReg(slot);
@@ -473,46 +497,42 @@ public class RegManager {
 	if (stat_flag && reg.any()) readsIntoAny++;
 	if (stat_flag && inReg!=null) foundInReg++;
 
-	if (optimize_read && inReg!=null) {
-	    if (reg.any()) setAnyIntRegister(reg,inReg);
+	if (optimize_read && inReg != null) {
+	    if (reg.any()) setAnyIntRegister(reg, inReg);
 	    if (reg.equals(inReg)) {
-		if (dbg_msg) System.err.println("     reread "+slot.addrString()+"->"+reg);
+		if (dbg_msg) System.err.println("     reread " + slot.addrString() + "->" + reg);
 		if (paranoid_checks) {
 		    int offset = frame.getOffset(slot);
 		    //if (offset==0) throw new Error("zero offset");
-		    code.cmpl(Ref.ebp.disp(offset),reg);
-		    code.jne(container.getExecEnv().createExceptionCall(-8,code.getCurrentIP()));
+		    code.cmpl(Ref.ebp.disp(offset), reg);
+		    code.jne(container.getExecEnv().createExceptionCall(-8, code.getCurrentIP()));
 		}
 		reg.unfree();
-		//reg.free=false;
-		if (datatype==-1) {
-		    allocIntRegister(reg,slot.getDatatype());
+		if (datatype == -1) {
+		    allocIntRegister(reg, slot.getDatatype());
 		} else {
-		    allocIntRegister(reg,datatype);
+		    allocIntRegister(reg, datatype);
 		}
-		reg.slot=slot;
-		reg.valid=true;
+		reg.slot = slot;
+		reg.valid = true;
 		return;
 	    }
 	} 
 
-	if (dbg_msg) System.err.println("     read "+slot.addrString()+"->"+reg);
+	if (dbg_msg) System.err.println("     read " + slot.addrString() + "->" + reg);
 
-	//if (!active.knows(reg)) {
 	//if (dbg_msg) System.err.println("    !!! auto alloc "+reg+" !!!");
-	if (datatype==-1) {
-	    allocIntRegister(reg,slot.getDatatype());
+	if (datatype == -1) {
+	    allocIntRegister(reg, slot.getDatatype());
 	} else {
-	    allocIntRegister(reg,datatype);
+	    allocIntRegister(reg, datatype);
 	}
-	//}
 
 	if (stat_flag) numberOfMoveIn++;
 	int offset = frame.getOffset(slot);
-	if (offset==0) throw new Error("zero offset");
-	code.movl(Ref.ebp.disp(offset),reg);
+	if (offset == 0) throw new Error("zero offset");
+	code.movl(Ref.ebp.disp(offset), reg);
 	if (!slot.isType(LocalVariable.TMPS)) reg.slot  = slot;
-	//reg.free  = false;
 	reg.unfree();
 	reg.valid = true;
     }
@@ -522,19 +542,18 @@ public class RegManager {
 
        Veraendert den Wert einer Stackposition.
     */
-
     public void writeIntToSlot(int value, LocalVariable slot) throws CompileException {
 	//if (stat_flag) numberOfWrites++;
 
 	if (optimize_read) {
 	    Reg inReg = findSlotInReg(slot);
-	    if (inReg!=null) inReg.valid=false;
+	    if (inReg != null) inReg.valid = false;
 	}
 
 	int offset = frame.getOffset(slot);
 	//if (offset==0) throw new Error("zero offset");
 	slot.modify();
-	code.movl(value,Ref.ebp.disp(offset));	
+	code.movl(value, Ref.ebp.disp(offset));	
     }
 
     /**
@@ -542,21 +561,20 @@ public class RegManager {
 
        Schreibt den Wert eines Registers auf den Stack.
     */
-
-    public void writeIntRegisterToSlot(Reg reg,LocalVariable slot) throws CompileException {
+    public void writeIntRegisterToSlot(Reg reg, LocalVariable slot) throws CompileException {
 	if (stat_flag) numberOfWrites++;
 	if (reg.any()) throw new Error("can`t write to register 'any'");
 	if (reg.free) throw new CompileException("write out freed register");
 
 	if (optimize_read) {
 	    Reg inReg = findSlotInReg(slot);
-	    if (inReg!=null) inReg.valid=false;
+	    if (inReg != null) inReg.valid = false;
 	}	
         
 	int offset = frame.getOffset(slot);
-	if (dbg_msg) System.err.println("     write "+reg+"->"+slot.addrString());
+	if (dbg_msg) System.err.println("     write " + reg + "->" + slot.addrString());
 	//if (offset==0) throw new Error("zero offset");
-	code.movl(reg,Ref.ebp.disp(offset));
+	code.movl(reg, Ref.ebp.disp(offset));
 
 	slot.modify();
 	reg.slot = slot;
@@ -568,8 +586,7 @@ public class RegManager {
 
        Schreibt den Wert eines Registers auf den Stack.
     */
-
-    public void writeLongRegisterToSlot(Reg64 reg,LocalVariable slot) throws CompileException {
+    public void writeLongRegisterToSlot(Reg64 reg, LocalVariable slot) throws CompileException {
 	if (stat_flag) numberOfWrites++;
 	//if (reg.any()) throw new Error("can`t write to register 'any'");
 	//if (reg.low.free || reg.high.free) throw new CompileException("write out freed register");
@@ -577,14 +594,14 @@ public class RegManager {
 
 	if (optimize_read) {
 	    Reg inReg = findSlotInReg(slot);
-	    if (inReg!=null) inReg.valid=false;
+	    if (inReg != null) inReg.valid = false;
 	}	
         
 	int offset = frame.getOffset(slot);
-	if (dbg_msg) System.err.println("     write "+reg+"->"+slot.addrString());
+	if (dbg_msg) System.err.println("     write " + reg + "->" + slot.addrString());
 
-	code.movl(reg.low,Ref.ebp.disp(offset));
-	code.movl(reg.high,Ref.ebp.disp(offset+4));
+	code.movl(reg.low, Ref.ebp.disp(offset));
+	code.movl(reg.high, Ref.ebp.disp(offset + 4));
 	slot.modify();
 
 	reg.low.slot = slot;
@@ -597,15 +614,14 @@ public class RegManager {
        Sichert alle benutzten Register auf dem Stack. Dieses ist zum Beispiel vor jedem
        Methodenaufruf noetig.       
     */
-
     public void saveIntRegister() throws CompileException {
-	if (dbg_msg) System.err.println("     save "+active);
+	if (dbg_msg) System.err.println("     save " + active);
 	Reg reg = active.top();
-	while (reg!=null) {
+	while (reg != null) {
 	    //if (dbg_msg) System.err.println("       rm "+reg);
-	    if (reg.slot==null && !reg.free) {		
-		reg.slot=frame.getFreeTempSlot(reg.getDatatype());
-		writeIntRegisterToSlot(reg,reg.slot);
+	    if (reg.slot == null && !reg.free) {		
+		reg.slot = frame.getFreeTempSlot(reg.getDatatype());
+		writeIntRegisterToSlot(reg, reg.slot);
 		reg.valid = false;
 	    }
 	    active.remove();
@@ -619,15 +635,14 @@ public class RegManager {
        Sichert alle benutzten Register auf dem Stack. Dieses ist zum Beispiel vor jedem
        Methodenaufruf noetig.       
     */
-
     public void saveOtherIntRegister(Reg doNotSave) throws CompileException {
-	if (dbg_msg) System.err.println("     save "+active);
+	if (dbg_msg) System.err.println("     save " + active);
 	Reg reg = active.top();
-	while (reg!=null) {
+	while (reg != null) {
 	    //if (reg.slot==null && !reg.free && !reg.equals(doNotSave)) {		
-	    if (reg.slot==null && !reg.isFree() && !reg.equals(doNotSave)) {
-		reg.slot=frame.getFreeTempSlot(reg.getDatatype());
-		writeIntRegisterToSlot(reg,reg.slot);
+	    if (reg.slot == null && !reg.isFree() && !reg.equals(doNotSave)) {
+		reg.slot = frame.getFreeTempSlot(reg.getDatatype());
+		writeIntRegisterToSlot(reg, reg.slot);
 		reg.valid = false;
 	    }
 	    active.remove();
@@ -638,7 +653,6 @@ public class RegManager {
     /**
        Liefert statistische Information zurueck
     */
-
     public String getStatistics() {
 	if (stat_flag) {
 	    String out = "rd " + numberOfMoveIn + "/" + numberOfReads +
@@ -661,7 +675,7 @@ public class RegManager {
     */
 
     public void clearActives() {
-	for (Reg reg=active.top();reg!=null;reg=active.top()) {
+	for (Reg reg = active.top(); reg != null; reg = active.top()) {
 	    modifyIntRegister(reg);
 	    active.remove();
 	}	
@@ -669,24 +683,24 @@ public class RegManager {
 
     private void modifyIntRegister(Reg reg) {
 	frame.freeSlot(reg.slot);
-	reg.slot=null;
+	reg.slot = null;
     }
 
-    private int computeBadness(Reg choose,int depth) {
-	int value=0;
+    private int computeBadness(Reg choose, int depth) {
+	int value = 0;
 
 	if (choose.equals(Reg.eax)) value++;
 	if (choose.equals(Reg.ecx)) value++;
 
-	int i=1;
-	for (Reg reg=active.top();(reg!=null && i<=depth);reg=active.next()) {
+	int i = 1;
+	for (Reg reg = active.top(); (reg != null && i <= depth); reg = active.next()) {
 	    //if (dbg_msg) System.err.println(reg+"?="+choose);
 	    if (reg.equals(choose)) {
 		//if (dbg_msg) System.err.println(reg+"=="+choose);
 		// use the newer regs less
-		value+=i;
+		value += i;
 		// some regs are already freed
-		if (!reg.free) value+=10;
+		if (!reg.free) value += 10;
 		break;
 	    }
 	    i++;
@@ -696,31 +710,30 @@ public class RegManager {
     }
 
     private Reg findSlotInReg(LocalVariable slot) {
-	for (Reg reg=active.top();reg!=null;reg=active.next()) {
-	    if (reg.valid && reg.slot==slot) return reg;
+	for (Reg reg = active.top(); reg != null; reg = active.next()) {
+	    if (reg.valid && reg.slot == slot) return reg;
 	}
 	return null;
     }
 
     private void swapEqualIntRegister(Reg nReg) throws CompileException {
-	Reg reg=active.top();
-	while (reg!=null) {
-	    if (reg.equals(nReg) && !(reg.id==nReg.id)) {
+	Reg reg = active.top();
+	while (reg != null) {
+	    if (reg.equals(nReg) && !(reg.id == nReg.id)) {
 		reg.valid = false;
-		if (reg.slot==null && !reg.free) {
-		    if (dbg_msg) System.err.println("     swap "+reg);
+		if (reg.slot == null && !reg.free) {
+		    if (dbg_msg) System.err.println("     swap " + reg);
 		    if (stat_flag) numberOfSwaps++;
-		    reg.slot=frame.getFreeTempSlot(BCBasicDatatype.INT);
-		    writeIntRegisterToSlot(reg,reg.slot);
-		    reg=active.remove();
-		    
+		    reg.slot = frame.getFreeTempSlot(BCBasicDatatype.INT);
+		    writeIntRegisterToSlot(reg, reg.slot);
+		    reg = active.remove();
 		} else {
-		    if (dbg_msg) System.err.println("     del "+reg);
-		    reg=active.remove();
+		    if (dbg_msg) System.err.println("     del " + reg);
+		    reg = active.remove();
 		}
 	    } else {
 		//System.err.println(active);
-		reg=active.next();
+		reg = active.next();
 	    }
 	}
     }

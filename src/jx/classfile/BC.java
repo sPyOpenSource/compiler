@@ -9,6 +9,7 @@ package jx.classfile;
 final public class BC {
 
     public static final int NOP = 0x00;
+    
     // push int constant to operanten stack
     public static final int ACONST_NULL = 0x01;
     public static final int ICONST_M1 = 0x02; 
@@ -25,20 +26,25 @@ final public class BC {
     public static final int FCONST_2 = 0x0d;
     public static final int DCONST_0 = 0x0e;	    
     public static final int DCONST_1 = 0x0f;
+    
     // push int constant to operanten stack [value 1-2]
     public static final int BIPUSH = 0x10; 
     public static final int SIPUSH = 0x11;
+    
     // load constant from pool [index 1-2]
     public static final int LDC = 0x12;
     public static final int LDC_W = 0x13;
     public static final int LDC2_W = 0x14;
+    
     // load int,long,float,double form local variable [index 1]
     public static final int ILOAD = 0x15;    
     public static final int LLOAD = 0x16;
     public static final int FLOAD = 0x17;    
     public static final int DLOAD = 0x18;
+    
     // load reference from local variable [index 1]
     public static final int ALOAD = 0x19;
+    
     // load int,long,float,double from local variable
     public static final int ILOAD_0 = 0x1a;
     public static final int ILOAD_1 = 0x1b;
@@ -118,38 +124,46 @@ final public class BC {
     // Duplicate the top operand stack value
     // ..., value -> ...,value,value
     public static final int DUP  = 0x59;
+    
     // Duplicate the top operand stack value and insert two values down
     // ...,value2,value1 -> ...,value1,value2,value1
     public static final int DUP_X1 = 0x5a;
+    
     // Duplicate the top operand stack value and insert two or three values down
     // if value2==32bit : ...,value3,value2,value1 -> ...,value1,value3,value2,value1
     // if value2==64bit : ...,value2,value1 -> value1,value2,value1
     public static final int DUP_X2 = 0x5b;
+    
     // Duplicate the top one or two operand stack values
     public static final int DUP2 = 0x5c;
     public static final int DUP2_X1 = 0x5d;
     public static final int DUP2_X2 = 0x5e;
     public static final int SWAP = 0x5f;
+    
     // add
     public static final int IADD = 0x60;
     public static final int LADD = 0x61;
     public static final int FADD = 0x62;
     public static final int DADD = 0x63;
+    
     // sub
     public static final int ISUB = 0x64;
     public static final int LSUB = 0x65;
     public static final int FSUB = 0x66;
     public static final int DSUB = 0x67;
+    
     // mul
     public static final int IMUL = 0x68;
     public static final int LMUL = 0x69;
     public static final int FMUL = 0x6a;
     public static final int DMUL = 0x6b;
+    
     // div
     public static final int IDIV = 0x6c;
     public static final int LDIV = 0x6d;
     public static final int FDIV = 0x6e;
     public static final int DDIV = 0x6f;
+    
     // rem value1,value2 -> value1-(value1/value2)*value2
     public static final int IREM = 0x70;
     public static final int LREM = 0x71;
@@ -227,8 +241,10 @@ final public class BC {
 
     // branch [offset 2]
     public static final int GOTO = 0xa7;
+    
     // jump subroutine with in a method [offset 2]
     public static final int JSR  = 0xa8;
+    
     // return from subroutine
     public static final int RET  = 0xa9; //ret
 
@@ -276,7 +292,6 @@ final public class BC {
     public static final int JSR_W = 0xc9;
 
      // Reserved opcodes:
-
     public static final int BREAKPOINT = 0xca;
     public static final int IMPDEP1 = 0xfe;
     public static final int IMPDEP2 = 0xff;

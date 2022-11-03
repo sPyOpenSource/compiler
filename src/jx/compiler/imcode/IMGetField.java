@@ -59,8 +59,9 @@ final public class IMGetField extends IMUnaryOperator {
 	operant.translate(objRef);
 	code.startBC(bcPosition);
 
-	if (operant.checkReference()) 
+	if (operant.checkReference()) {
 		execEnv.codeCheckReference(this,objRef,bcPosition);
+        }
 
 	execEnv.codeGetFieldLong(this,cpEntry,objRef,result,bcPosition);
 	code.endBC();

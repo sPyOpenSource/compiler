@@ -120,7 +120,7 @@ public class StartBuilder {
 	String[] compdirs = MetaInfo.split(componentsDir, ':');
 
         byte[] barr;
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/Zero/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/Zero/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -128,7 +128,7 @@ public class StartBuilder {
         zero.setNeededLibs(new ArrayList());
         metas.add(zero);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/OS/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/OS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }    
@@ -138,7 +138,7 @@ public class StartBuilder {
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
         
-       try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/AIZero/META", "r")) {
+       try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/AIZero/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -149,7 +149,7 @@ public class StartBuilder {
         ai.setNeededLibs(allLibs3);
         metas.add(ai);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/jcore/testOS/META", "r")) {
+        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/testOS/META", "r")) {
             barr = new byte[(int)f.length()];
             f.readFully(barr);
         }
@@ -164,7 +164,7 @@ public class StartBuilder {
 	buildDir = compdirs[0];
 	String jcFileName = "JC_CONFIG";
 	String addFileName = "ADD_TO_ZIP";
-	String codeFileName = "/home/spy/Source/jcore/isodir/code/code.zip";
+	String codeFileName = "/home/spy/Source/OS/jcore/isodir/code/code.zip";
 	File jcFile = new File(jcFileName);
 	zipFileListFile = new File(addFileName);
 	File codeFile = new File(codeFileName);
