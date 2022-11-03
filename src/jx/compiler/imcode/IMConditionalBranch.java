@@ -28,9 +28,9 @@ final  public class IMConditionalBranch extends IMBranch  {
     }
 
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
-	if (bytecode<BC.IF_ICMPEQ ||
-	    bytecode==BC.IFNULL   ||
-	    bytecode==BC.IFNONNULL ) {
+	if (bytecode < BC.IF_ICMPEQ ||
+	    bytecode == BC.IFNULL   ||
+	    bytecode == BC.IFNONNULL ) {
 	    rOpr = null;
 	    lOpr = stack.pop();
 	} else {

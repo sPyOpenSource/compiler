@@ -32,14 +32,14 @@ import static jx.compiler.CompileNative.memMgr;
 
 import jx.compspec.MetaInfo;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.io.PrintStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.io.ByteArrayOutputStream;
 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.jar.*;

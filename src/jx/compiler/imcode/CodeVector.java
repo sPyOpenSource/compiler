@@ -15,16 +15,16 @@ public class CodeVector {
     }
 
     public void add(CodeContainer aCode) {
-	if (aCode==null) return;
+	if (aCode == null) return;
 	realloc(size);
 	code[size++] = aCode;
     }
 
     public void add(CodeVector vec) {
-	if (vec==null) return;
-	realloc(size+vec.size());
-	for (int i=0;i<vec.size();i++) {
-	    code[size++]=vec.element(i);
+	if (vec == null) return;
+	realloc(size + vec.size());
+	for (int i = 0; i < vec.size(); i++) {
+	    code[size++] = vec.element(i);
 	}
     }
 
@@ -33,8 +33,8 @@ public class CodeVector {
     }
 
     private void realloc(int nSize) {
-	if (nSize>code.length) {
-	    CodeContainer[] newArray = new CodeContainer[code.length+5];
+	if (nSize > code.length) {
+	    CodeContainer[] newArray = new CodeContainer[code.length + 5];
             System.arraycopy(code, 0, newArray, 0, code.length);
 	    code = newArray;
 	}

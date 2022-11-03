@@ -70,7 +70,7 @@ public class InvokeDynamicCPEntry extends ConstantPoolEntry {
      * Resolve this constant pool entry with respect to its dependents in
      * the constant pool.
      *
-     * @param constantPool the constant pool of which this entry is a member
+     * param constantPool the constant pool of which this entry is a member
      *      and against which this entry is to be resolved.
      */
     /*public void resolve(ConstantPool constantPool) {

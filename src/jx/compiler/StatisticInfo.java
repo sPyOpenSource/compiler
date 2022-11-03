@@ -1,7 +1,6 @@
 package jx.compiler;
 
 public class StatisticInfo {
-
     String libname;
 
     int inline_succed_count;

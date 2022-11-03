@@ -33,7 +33,7 @@ public class CompilerApplication extends javax.swing.JFrame {
      */
     public CompilerApplication() {
         initComponents();
-         reader = new Thread(new OutputReader(output));
+        reader = new Thread(new OutputReader(output));
     }
 
     /**
@@ -234,23 +234,23 @@ public class CompilerApplication extends javax.swing.JFrame {
             return;
         
         class PrimeThread extends Thread {
-                long minPrime;
-                PrimeThread(long minPrime) {
-                    this.minPrime = minPrime;
-                }
+            long minPrime;
+            PrimeThread(long minPrime) {
+                this.minPrime = minPrime;
+            }
 
-                @Override
-                public void run() {
-                    String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
-                    try {
-                        StartBuilder.main(args.split(" "));
-                    } catch (Exception ex) {
-                        Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+            @Override
+            public void run() {
+                String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
+                try {
+                    StartBuilder.main(args.split(" "));
+                } catch (Exception ex) {
+                    Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            PrimeThread compiler = new PrimeThread(0);
-            compiler.start();
+        }
+        PrimeThread compiler = new PrimeThread(0);
+        compiler.start();
     }//GEN-LAST:event_CompileActionPerformed
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
@@ -274,9 +274,9 @@ public class CompilerApplication extends javax.swing.JFrame {
                         strings[i] = liststrings.get(i);
                     }*/
                     strings[0] = "Zero";
-                     strings[1] = "OS";
-                      strings[2] = "testOS";
-                      strings[3] = "AIZero";
+                    strings[1] = "OS";
+                    strings[2] = "testOS";
+                    strings[3] = "AIZero";
                 projects.setModel(new javax.swing.AbstractListModel<String>() {
                     
                     @Override
@@ -317,7 +317,7 @@ public class CompilerApplication extends javax.swing.JFrame {
         if (project == null)
             return;
         try {
-            Runtime.getRuntime().exec("netbeans");
+            Runtime.getRuntime().exec("flatpak run org.apache.netbeans");
         } catch (IOException ex) {
             Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -334,7 +334,7 @@ public class CompilerApplication extends javax.swing.JFrame {
     }//GEN-LAST:event_KernelActionPerformed
 
     private void logOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOnActionPerformed
-             reader.start();
+        reader.start();
     }//GEN-LAST:event_logOnActionPerformed
 
     /**

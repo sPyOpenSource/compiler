@@ -28,7 +28,7 @@ public class BCMethodWithCode extends BCMethod {
     //private int currentLocalVarOffset; 
     private final ConstantPool  cPool;
     private final ExceptionHandlerData[] handlers;
-    private final boolean traceEntry=false;
+    private final boolean traceEntry = false;
     
     /** 
 	The following two variables are only expected values 

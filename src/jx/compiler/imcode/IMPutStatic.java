@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 final public class IMPutStatic extends IMOperant  {
 
-    private IMOperant       vOpr;
+    private IMOperant vOpr;
     private final FieldRefCPEntry cpEntry;
     private final String fieldType;
 

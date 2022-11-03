@@ -2,7 +2,6 @@
 package jx.classfile.constantpool; 
 
 public class InterfaceMethodRefCPEntry extends ClassMemberCPEntry {
-
   public InterfaceMethodRefCPEntry() {}
   
   public InterfaceMethodRefCPEntry(int classCPIndex, int nameAndTypeCPIndex) {

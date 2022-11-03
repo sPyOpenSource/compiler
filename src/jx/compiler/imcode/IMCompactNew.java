@@ -10,10 +10,9 @@ import java.util.ArrayList;
 // **** IMCompactNew ****
 
 final public class IMCompactNew extends IMOperator {
-
-    private final ClassCPEntry         cpEntry;
-    private final MethodRefCPEntry     cpEntryMethod;
-    private final IMOperant[]          args;
+    private final ClassCPEntry     cpEntry;
+    private final MethodRefCPEntry cpEntryMethod;
+    private final IMOperant[]      args;
 
     public IMCompactNew(CodeContainer container,int bc,IMNew newObj,IMInvoke initObj,IMOperant[] args) {
 	super(container);
@@ -34,8 +33,7 @@ final public class IMCompactNew extends IMOperator {
     }
 
     public IMNode constant_folding() throws CompileException{
-
-	for (int i=0;i<args.length;i++) {
+	for (int i = 0; i < args.length; i++) {
 	    args[i] = (IMOperant)args[i].constant_folding();
 	}
 	
@@ -46,7 +44,7 @@ final public class IMCompactNew extends IMOperator {
 	bcPosition = bcPos;
 	init(newContainer);
 
-	for (int i=0;i<args.length;i++) {
+	for (int i = 0; i < args.length; i++) {
 	    args[i] = (IMOperant)args[i].assignNewVars(newContainer,slots,opr,retval,bcPos);
 	}
 	
@@ -54,7 +52,7 @@ final public class IMCompactNew extends IMOperator {
     }
 
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
-	for (int i=0;i<args.length;i++) {
+	for (int i = 0; i < args.length; i++) {
 	    args[i] = (IMOperant)args[i].inlineCode(iCode, depth, forceInline);
 	}
 	return this;

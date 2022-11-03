@@ -11,23 +11,22 @@ import jx.zero.Debug;
     stores it. 
 */ 
 public class ClassData extends ClassSource {
-
     final static boolean debugRead = false;
 
-    ConstantPool constantPool; 
+    ConstantPool constantPool;
 
-    int accessFlags; 
-    int thisClassCPIndex; 
-    int superClassCPIndex; 
+    int accessFlags;
+    int thisClassCPIndex;
+    int superClassCPIndex;
+    
+    int numInterfaces;
+    int[] interfaceCPIndex;
 
-    int numInterfaces; 
-    int[] interfaceCPIndex; 
+    int numFields;
+    FieldData[] field;
 
-    int numFields; 
-    FieldData[] field; 
-
-    int numMethods; 
-    MethodData[] method; 
+    int numMethods;
+    MethodData[] method;
 
     String sourceFile;
 
@@ -83,7 +82,6 @@ public class ClassData extends ClassSource {
 	return null; 
     }
 
-
     //neu, fuer Verifier
     public void addMethod(MethodData newMethod) {
 	if (newMethod == null)
@@ -95,9 +93,8 @@ public class ClassData extends ClassSource {
 	method[numMethods-1] = newMethod;
     }
 
-
     public void readFromClassFile(DataInput input) throws IOException, EOFException, NoMagicNumberException {
-	int magicNumber = input.readInt(); 
+	int magicNumber = input.readInt();
 	try {
 	    if(magicNumber!=0xcafebabe) throw new NoMagicNumberException();
 	    int minorVersion = input.readUnsignedShort();
@@ -147,42 +144,42 @@ public class ClassData extends ClassSource {
 
     private void readAttribute(DataInput input, ConstantPool cPool) 
 	throws IOException {
-	int attrNameCPIndex = input.readUnsignedShort(); 
-	int numBytes = input.readInt(); 
+	int attrNameCPIndex = input.readUnsignedShort();
+	int numBytes = input.readInt();
 	String attrName = constantPool.getUTF8StringAt(attrNameCPIndex);
 	if (attrName.equals("SourceFile")) {
 	    int sourceFileCPIndex = input.readUnsignedShort();
 	    sourceFile = constantPool.getUTF8StringAt(sourceFileCPIndex);
 	} else {
-	    input.skipBytes(numBytes); 
+	    input.skipBytes(numBytes);
 	}
     }
 
     private static final String[] accessFlagsString = {
 	"public", "private", "protected", "static", 
 	"final", "synchronized", "volatile", "transient", 
-	"native", "interface", "abstract" 
+	"native", "interface", "abstract"
     }; 
 
     public static String getAccessFlagsString(int accessFlags) {
-	String s = ""; 
-	boolean isFirstWord = true; 
-	for( int i=0; i<accessFlagsString.length; i++) {
+	String s = "";
+	boolean isFirstWord = true;
+	for( int i = 0; i < accessFlagsString.length; i++) {
 	    if ((accessFlags & (1 << i)) != 0) {
-		if (!isFirstWord) s += ", "; 
-		s += accessFlagsString[i]; 
-		isFirstWord = false; 
+		if (!isFirstWord) s += ", ";
+		s += accessFlagsString[i];
+		isFirstWord = false;
 	    }
 	}
-	return s; 
+	return s;
     }
     
-    public int getAccessFlags() { return accessFlags;}
-    //    public boolean isInterface() {return isInterface(accessFlags);}
+    public int getAccessFlags() { return accessFlags; }
+    //public boolean isInterface() {return isInterface(accessFlags);}
 
     @Override
     public String getClassName() {
-	return constantPool.getClassName(); 
+	return constantPool.getClassName();
     }
 
     @Override
@@ -193,13 +190,13 @@ public class ClassData extends ClassSource {
 
 	ClassCPEntry superClassCP = constantPool.classEntryAt(superClassCPIndex);
 	return superClassCP.getClassName();
-    }		
+    }
 
     @Override
     public String[] getInterfaceNames() {
 	String ifs[] = new String[numInterfaces];
-	for(int j=0; j<numInterfaces; j++) {
-	    ClassCPEntry ifCP = constantPool.classEntryAt(interfaceCPIndex[j]); 
+	for(int j = 0; j < numInterfaces; j++) {
+	    ClassCPEntry ifCP = constantPool.classEntryAt(interfaceCPIndex[j]);
 	    ifs[j] = ifCP.getClassName();
 	}
 	return ifs;
@@ -216,7 +213,7 @@ public class ClassData extends ClassSource {
     }
 
     public void dump() {
-	Debug.out.println("ClassData for class: "+getClassName());
+	Debug.out.println("ClassData for class: " + getClassName());
 	Debug.out.println("   Superclass: " + getSuperClassName());
 	Debug.out.print("   Implements: ");
 	String[] ifs = getInterfaceNames();
@@ -226,30 +223,34 @@ public class ClassData extends ClassSource {
     }
 
     public String getJavaLanguageName() {
-	return getClassName().replace('/','.');
+	return getClassName().replace('/', '.');
     }
+    
     /* ------
      * Java Reflection "compatible" methods
      */
     public final FieldData[] getDeclaredFields() {
 	return getFields();
     }
+    
     public final String getName() {
 	return getClassName();
     }
+    
     @Override
     public final MethodSource[] /* should be MethodData */  getMethods() {
 	return method;
     }
+    
     public final FieldData getField(String name) {
         for (FieldData field1 : field) {
             if (field1.getName().equals(name))
-                return field1; 
+                return field1;
         }
 	return null;
     }
 
-    public boolean isPublic()    {return ClassData.isPublic(accessFlags);} 
+    public boolean isPublic()    {return ClassData.isPublic(accessFlags);}
     public boolean isPrivate()   {return ClassData.isPrivate(accessFlags);}
     public boolean isProtected() {return ClassData.isProtected(accessFlags);}
     public boolean isStatic()    {return ClassData.isStatic(accessFlags);}

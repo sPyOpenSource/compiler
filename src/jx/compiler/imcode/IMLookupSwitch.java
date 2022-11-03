@@ -10,7 +10,6 @@ import java.util.ArrayList;
 // ***** IMLookupSwitch *****
 
 final public class IMLookupSwitch extends IMBranch  {
-
     private final IMBasicBlock doff;
     private final int npairs;
     private final int[] keys;
@@ -18,8 +17,8 @@ final public class IMLookupSwitch extends IMBranch  {
     private IMOperant operant;
     private final UnresolvedJump[] jumpTargets;
 
-    public IMLookupSwitch(CodeContainer container,int bc,int bcpos,
-			 IMBasicBlock doff,int npairs,int[] keys,IMBasicBlock[] offsets) {
+    public IMLookupSwitch(CodeContainer container, int bc, int bcpos,
+			 IMBasicBlock doff, int npairs, int[] keys, IMBasicBlock[] offsets) {
 	super(container);
 	
 	bytecode   = bc;
@@ -33,9 +32,9 @@ final public class IMLookupSwitch extends IMBranch  {
 
 	targets      = new IMBasicBlock[1 + offsets.length];
 	targets[0]   = doff;
-	System.arraycopy(offsets,0,targets,1,offsets.length);
+	System.arraycopy(offsets, 0, targets, 1, offsets.length);
 	jumpTargets = new UnresolvedJump[targets.length];
-	for (int i=0;i<targets.length;i++) {
+	for (int i = 0; i < targets.length; i++) {
 	    jumpTargets[i] = targets[i].getNewJumpTarget();
 	}
 	    
@@ -52,20 +51,20 @@ final public class IMLookupSwitch extends IMBranch  {
         return this;
     }
 
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
 	operant = stack.pop();
 	//basicBlock.leave(stack);
 	return this;
     }
 
     public String toReadableString() {
-       String output = "lswitch ("+operant.toReadableString()+") { \n";
+       String output = "lswitch (" + operant.toReadableString() + ") { \n";
 
-       for (int i=0;i<offsets.length;i++) {
-	   output +=  "           "+Integer.toString(keys[i])+":"+offsets[i].toLabel() + "\n";
+       for (int i = 0; i < offsets.length; i++) {
+	   output +=  "           " + Integer.toString(keys[i]) + ":" + offsets[i].toLabel() + "\n";
        }       
-       output += "           ::"+doff.toLabel() + "\n";
-       return output+"        }";	    
+       output += "           ::" + doff.toLabel() + "\n";
+       return output + "        }";	    
    }
 
     public void getCollectVars(ArrayList vars) { operant.getCollectVars(vars); }
@@ -77,8 +76,8 @@ final public class IMLookupSwitch extends IMBranch  {
 
 	operant.translate(result);
         
-	for (int i=1;i<targets.length;i++) {
-	    code.cmpl(keys[i-1],result);
+	for (int i = 1; i < targets.length; i++) {
+	    code.cmpl(keys[i - 1],result);
 	    code.je(jumpTargets[i]);
 	    /*execEnv.codeStackMap(this);*/
 	}	

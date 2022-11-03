@@ -7,30 +7,27 @@
 package jx.compiler;
 
 import jx.zero.Debug;
-
-import java.util.ArrayList;
-
 import jx.compiler.execenv.CompilerOptionsInterface;
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
+import java.util.ArrayList;
 
 public class CompilerOptions implements CompilerOptionsInterface {
-
-    protected String  codeType;
+    protected String codeType;
  
     protected boolean debug;
-    protected ArrayList  debugFlags;
+    protected ArrayList debugFlags;
     protected boolean makeLib;
-    protected String  enviroment;
+    protected String enviroment;
 
-    private boolean useLibsDependence = false;
+    private boolean useLibsDependence      = false;
 
     protected boolean doNewCode            = false;
-    protected ArrayList  newCompiler;
+    protected ArrayList newCompiler;
 
     protected boolean doInlining           = false;
-    protected ArrayList  inlineMethods;
-    protected ArrayList  forceInline = null;
+    protected ArrayList inlineMethods;
+    protected ArrayList forceInline = null;
 
     protected boolean doOptimize           = false;
     protected boolean doAlignCode          = false;
@@ -53,14 +50,14 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     protected boolean doProfiling          = true;
     protected boolean doEventLoging        = false;
-    protected ArrayList logMethods            = null;
+    protected ArrayList logMethods         = null;
     protected boolean doProfileNoIRQ       = false;
-    protected ArrayList  profileMethods;
+    protected ArrayList profileMethods;
     protected boolean doFastMemoryAccess   = false;
     protected boolean doPrintIMCode;
     protected boolean doVerbose            = true;
-    protected ArrayList  verboseList          = null;
-    protected ArrayList  optionList           = null;
+    protected ArrayList verboseList        = null;
+    protected ArrayList optionList         = null;
     protected boolean doRemoveDebug        = false;
     protected boolean doStackTrace;
     protected boolean doParanoid           = false;
@@ -101,13 +98,13 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	enviroment = env;
     }
 
-    public CompilerOptions(String[] libs,String env) {
+    public CompilerOptions(String[] libs, String env) {
 	this();
 	setNeededLibs(libs);
 	enviroment = env;
     }
 
-    public CompilerOptions(ArrayList libs,String env) {
+    public CompilerOptions(ArrayList libs, String env) {
 	this();
 	setNeededLibs(libs);
 	enviroment  = env;
@@ -145,7 +142,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
      *  The zipfilenames of the lib classes or null.
      * @return 
      */
-   public ArrayList getLibs() {
+    public ArrayList getLibs() {
 	return zipLibFiles;
     }
 
@@ -180,7 +177,6 @@ public class CompilerOptions implements CompilerOptionsInterface {
      */
 
     public String[] getNeededLibs() {
-      
 	if (zipLibFiles == null) return null;
 
 	String[] neededLibs = new String[zipLibFiles.size()];
@@ -226,7 +222,6 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public boolean doClearStack() {
 	return doClearStack;
     }
-
 
     @Override
     public boolean doZeroDivChecks() {
@@ -339,7 +334,6 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public boolean doJavaDoc() {
 	return doJavaDoc;
     }
-
 
     @Override
     public boolean doUsePackedArrays() {

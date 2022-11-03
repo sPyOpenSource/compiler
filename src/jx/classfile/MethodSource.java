@@ -7,7 +7,6 @@ package jx.classfile;
 */ 
 
 abstract public class MethodSource {
-
   abstract public ClassSource getDeclaringClassSource();
   abstract public String getMethodName(); 
   abstract public String getMethodType(); 

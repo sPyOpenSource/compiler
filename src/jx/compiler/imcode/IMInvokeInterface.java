@@ -9,7 +9,6 @@ import jx.compiler.nativecode.*;
 // ***** IMInvokeInterface *****
 
 final public class IMInvokeInterface extends IMMultiOperant {
-
     private final InterfaceMethodRefCPEntry cpEntry;
     private final MethodTypeDescriptor typeDesc;
 
@@ -37,7 +36,7 @@ final public class IMInvokeInterface extends IMMultiOperant {
 
 	saveVarStackMap(frame);
 
-	if (datatype==BCBasicDatatype.VOID) {
+	if (datatype == BCBasicDatatype.VOID) {
 	    return this;
 	} else {
 	    stack.push(this);

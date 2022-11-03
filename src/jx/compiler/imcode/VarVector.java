@@ -2,8 +2,7 @@ package jx.compiler.imcode;
 
 import java.util.NoSuchElementException;
 
-public final class VarVector { 
-
+public final class VarVector {
     private  int capacityIncrement;
     private  int elementCount;
     private  LocalVariable[] elementData;

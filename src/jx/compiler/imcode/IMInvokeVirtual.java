@@ -8,7 +8,6 @@ import jx.compiler.execenv.*;
 // ***** IMInvokeVirtual *****
 
 final public class IMInvokeVirtual extends IMInvoke {
-
     public IMInvokeVirtual(CodeContainer container, int bc, int bcpos,
 			   MethodRefCPEntry cpEntry) {
 	super(container, bc, bcpos, cpEntry);

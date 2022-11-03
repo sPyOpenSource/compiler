@@ -7,7 +7,6 @@ package jx.compiler.execenv;
 */ 
 
 public final class BytecodeInputStream {
-
   private final byte[] code; 
   private final int numBytes; 
   private int pos;       // stream pointer 
@@ -53,7 +52,7 @@ public final class BytecodeInputStream {
 
   /** 
       get an unsigned byte that is 'offset' bytes after 
-      the current position (result >= 0, always)
+      the current position (result larger or equel to 0, always)
   */
   private int getByteUnsigned(int offset) {
     return ((int)code[pos+offset]) & 0xff; 
@@ -69,7 +68,7 @@ public final class BytecodeInputStream {
 
   /** 
       get an unsigned byte at current position 
-      (result >= 0, always) 
+      (result larger or equal to 0, always) 
      * @return 
   */ 
   public final int getCurrentByteUnsigned() {
