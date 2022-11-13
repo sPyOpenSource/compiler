@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ConditionalVariables
+comment1.params=obj
+comment1.target=void\ impl_wait(java.lang.Object)
+comment2.params=obj
+comment2.target=void\ impl_notify(java.lang.Object)
+comment3.params=obj
+comment3.target=void\ impl_notifyAll(java.lang.Object)
+numComments=4

@@ -202,8 +202,8 @@ class Main {
                     mt.set(index, method);
                 }
             } else {
-                int index = mt.size();
-                for(index = mt.size(); ! itable.isFree(index); index++);
+                int index;
+                for(index = mt.size(); !itable.isFree(index); index++);
                 method.indices.add(index);
                 //mt.setSize(index+1);
                 if(index == mt.size())

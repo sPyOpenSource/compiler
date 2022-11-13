@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=AllocArraySTEntry
+comment1.params=
+comment1.target=AllocArraySTEntry()
+comment2.params=
+comment2.target=java.lang.String\ getDescription()
+comment3.params=
+comment3.target=int\ getValue()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=
+comment5.target=java.lang.String\ toGASFormat()
+numComments=6

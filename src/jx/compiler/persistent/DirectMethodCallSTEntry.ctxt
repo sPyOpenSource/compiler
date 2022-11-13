@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=DirectMethodCallSTEntry
+comment1.params=
+comment1.target=DirectMethodCallSTEntry()
+comment2.params=className\ methodName\ methodSignature
+comment2.target=DirectMethodCallSTEntry(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getDescription()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=
+comment5.target=java.lang.String\ toGASFormat()
+comment6.params=out
+comment6.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment7.params=in
+comment7.target=void\ readEntry(jx.compiler.execenv.ExtendedDataInputStream)
+comment8.params=stringTable
+comment8.target=void\ registerStrings(jx.compiler.symbols.StringTable)
+numComments=9

@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=LocalVarTable
+comment0.text=\n\ Block\ of\ Local\ Vars\ (for\ 1\ method)\n
+comment1.params=localVar
+comment1.target=void\ addVar(LocalVar)
+comment2.params=lab
+comment2.target=void\ addParseLabel(java.lang.String)
+comment3.params=lab
+comment3.target=void\ addUseLabel(java.lang.String)
+comment4.params=slot\ lab
+comment4.target=LocalVar\ get(int,\ java.lang.String)
+comment5.params=o1\ o2
+comment5.target=int\ compare(LocalVar,\ LocalVar)
+comment6.params=
+comment6.target=java.util.List\ getAll()
+comment7.params=i
+comment7.target=java.util.List\ getBySlot(int)
+comment8.params=name\ lab1\ lab2\ slot
+comment8.target=void\ parseRange(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
+comment8.text=\n\ same\ slot\ would\ be\ more\ than\ 1\ vars\ ,every\ var\ \ have\ a\ rang\ in\ lab1\ to\ lab2\n\ so\ a\ lab\ vist\ ,\ check\ this\ lab\ range\ var\n
+numComments=9

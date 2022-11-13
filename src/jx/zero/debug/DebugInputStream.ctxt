@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=DebugInputStream
+comment1.params=c
+comment1.target=DebugInputStream(DebugChannel)
+comment2.params=
+comment2.target=int\ read()
+numComments=3

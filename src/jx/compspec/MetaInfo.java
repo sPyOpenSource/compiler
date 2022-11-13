@@ -5,17 +5,17 @@ import jx.zero.Debug;
 import java.util.ArrayList;
 
 final public class MetaInfo {
-    final static int MAXLINE = 5000;
-    final static int NEWLINE = 0x0a;
+    final static int MAXLINE   = 5000;
+    final static int NEWLINE   = 0x0a;
     final static int QUOTATION = 0x22;
-    final static int COMMA = 0x2c;
-    final static int SPACE = 0x20;
+    final static int COMMA     = 0x2c;
+    final static int SPACE     = 0x20;
     final static int SEPARATOR = COMMA;
-    final static int NUM_ZERO = 0x30;
-    final static int NUM_NINE = 0x39;
-    final static int COMMENT = 0x23;
-    final static int LPAREN = 0x5b;
-    final static int RPAREN = 0x5d;
+    final static int NUM_ZERO  = 0x30;
+    final static int NUM_NINE  = 0x39;
+    final static int COMMENT   = 0x23;
+    final static int LPAREN    = 0x5b;
+    final static int RPAREN    = 0x5d;
     char data[] = new char[MAXLINE];
     int pos;
     int linenumber = 1;
@@ -200,37 +200,37 @@ final public class MetaInfo {
 
 	buf.append("# LIBRARY BASE IS AT ").append(path).append("\n");
 
-	buf.append("default:" + "\n");
-	buf.append("\tcd ").append(path).append("; $(MAKE)" + "\n");
+	buf.append("default:\n");
+	buf.append("\tcd ").append(path).append("; $(MAKE)\n");
 
 	buf.append("\n");
 	    
-	buf.append("compile: decomp" + "\n");
-	buf.append("\t@echo \"Environment:\"" + "\n");
-	buf.append("\t@echo \"CLASSPATH =\" $(CLASSPATH)" + "\n");
-	buf.append("\t@echo \"  JAVAC_FLAGS=${JAVAC_FLAGS}\"" + "\n");
-	buf.append("\t@echo \"Files to compile: \"" + "\n");
-	buf.append("\t@if $(PERL) $(LISTNEW) *.java; then \\" + "\n");
-	buf.append("\t$(JAVAC) $(JAVAC_FLAGS) `$(PERL) $(LISTNEW) *.java`; fi;  " + "\n");
+	buf.append("compile: decomp\n");
+	buf.append("\t@echo \"Environment:\"\n");
+	buf.append("\t@echo \"CLASSPATH =\" $(CLASSPATH)\n");
+	buf.append("\t@echo \"  JAVAC_FLAGS=${JAVAC_FLAGS}\"\n");
+	buf.append("\t@echo \"Files to compile: \"\n");
+	buf.append("\t@if $(PERL) $(LISTNEW) *.java; then \\\n");
+	buf.append("\t$(JAVAC) $(JAVAC_FLAGS) `$(PERL) $(LISTNEW) *.java`; fi;\n");
 	    
-	buf.append("complete allzip nat:" + "\n");
-	buf.append("\tcd ").append(path).append("; $(MAKE) $@" + "\n");
+	buf.append("complete allzip nat:\n");
+	buf.append("\tcd ").append(path).append("; $(MAKE) $@\n");
 	    
-	buf.append("decomp: " + "\n");
-	buf.append("\tsh -c 'for i in *.java.classes; do $(PERL) $(XDECOMP) $$i; done'" + "\n");
+	buf.append("decomp:\n");
+	buf.append("\tsh -c 'for i in *.java.classes; do $(PERL) $(XDECOMP) $$i; done'\n");
 	    
-	buf.append("clean: " + "\n");
-	buf.append("\t-rm -f *.class *.imcode" + "\n");
-	buf.append("\t-rm -f *~ " + "\n");
+	buf.append("clean:\n");
+	buf.append("\t-rm -f *.class *.imcode\n");
+	buf.append("\t-rm -f *~\n");
 	    
-	buf.append("rpcstubs: $(RPC_INTERFACES)" + "\n");
-	buf.append("\t@$(RPCGEN) $(ZIPS) $<" + "\n");
+	buf.append("rpcstubs: $(RPC_INTERFACES)\n");
+	buf.append("\t@$(RPCGEN) $(ZIPS) $<\n");
 	    
-	buf.append("docs:" + "\n");
-	buf.append("\tcd ").append(path).append("; $(MAKE) docs" + "\n");
+	buf.append("docs:\n");
+	buf.append("\tcd ").append(path).append("; $(MAKE) docs\n");
 
-	buf.append("javadoc:" + "\n");
-	buf.append("\tjavadoc -author -version -d $(JXROOT)/docs/$(LIBNAME) *.java" + "\n");
+	buf.append("javadoc:\n");
+	buf.append("\tjavadoc -author -version -d $(JXROOT)/docs/$(LIBNAME) *.java\n");
 
 	return buf.toString();
     }

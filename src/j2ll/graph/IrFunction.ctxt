@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=IrFunction
+comment1.params=className\ methodName\ javaSignature
+comment1.target=IrFunction(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=funcStr
+comment2.target=void\ parse(java.lang.String)
+comment3.params=strs
+comment3.target=void\ parse(java.lang.String[])
+comment4.params=st
+comment4.target=void\ parse(SourceToken)
+comment5.params=lab
+comment5.target=IrBlock\ findBlock(java.lang.String)
+comment6.params=
+comment6.target=java.lang.String\ getFuncDes()
+comment7.params=
+comment7.target=java.lang.String\ toString()
+numComments=8
