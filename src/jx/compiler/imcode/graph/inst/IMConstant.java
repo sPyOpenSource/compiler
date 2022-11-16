@@ -4,6 +4,7 @@ package jx.compiler.imcode.graph.inst;
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
+
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
@@ -100,7 +101,7 @@ final public class IMConstant extends IMOperant {
     public int getIntValue() {
 	if (cpEntry == null) return value;
 	if (cpValue instanceof BCInteger)
-	    if (cpValue!=null) return ((BCInteger)cpValue).value();
+	    if (cpValue != null) return ((BCInteger)cpValue).value();
 	if (verbose && System.err != null) System.err.println("fixme: constant long");
 	return 0;
     }

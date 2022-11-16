@@ -46,7 +46,7 @@ public class IMInvoke extends IMMultiOperant {
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
 
 	int[] argTypes = typeDesc.getBasicArgumentTypes();
 

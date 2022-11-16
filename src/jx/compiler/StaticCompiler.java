@@ -259,7 +259,6 @@ public class StaticCompiler implements ClassFinder {
 	compileStatic();
     }
 
-
     public static byte[] getBytesFromInputStream(InputStream is) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream(); 
         byte[] buffer = new byte[0xFFFF];
@@ -268,7 +267,6 @@ public class StaticCompiler implements ClassFinder {
         }
         return os.toByteArray();
     }
-
 
     private void addMethod(ClassInfo aClass, ArrayList mtable, String methodName, String signature) {
 	Method method;
@@ -299,7 +297,6 @@ public class StaticCompiler implements ClassFinder {
 	    }
 	}
     }
-
 
     private ClassStore sortClasses(ClassStore classStore) {
 	ArrayList all = new ArrayList();

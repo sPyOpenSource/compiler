@@ -1,3 +1,4 @@
+
 package compiler;
 
 import javax.tools.*;
@@ -18,7 +19,6 @@ public class MyCompiler {
     /**
      * compiles a java source file with the given <code>fileName</code>
      */
-
     static public void compile(String srcPath, String outputPath) {
         List<File> files = new ArrayList<>();
         find(srcPath, null, files, JAVA_EXT);
@@ -68,9 +68,7 @@ public class MyCompiler {
 //                "-encoding", "UTF-8", "-d", outputPath, files);
 
         /*
-
          * the compiler will send its messages to this listener
-
          */
         DiagnosticListener listener = new DiagnosticListener() {
             @Override

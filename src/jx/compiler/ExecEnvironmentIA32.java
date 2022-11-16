@@ -1,3 +1,4 @@
+
 package jx.compiler;
 
 import java.util.ArrayList;
@@ -5,7 +6,6 @@ import java.util.HashMap;
 
 import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
-
 import jx.zero.Debug;
 
 import jx.compiler.execenv.*;
@@ -30,7 +30,6 @@ class ExceptionEntry {
  * @author Christian Wawersich
  */
 public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
-
 	final private static int THROW_RuntimeException       = -1;
 	final private static int THROW_NullPointerException   = -2;
 	final private static int THROW_OutOfMemoryError       = -3; 
@@ -51,11 +50,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	private RegManager       regs;
 	private MethodStackFrame frame;
 	private BCMethod         method;
-	private final ClassFinder      classStore;
+	private final ClassFinder classStore;
 	private BCClass          bcClass;
-	private final CompilerOptions  opts;
-	private final ArrayList           exceptionStore;
-	private HashMap        plugins;
+	private final CompilerOptions opts;
+	private final ArrayList exceptionStore;
+	private HashMap         plugins;
 
 	private final int arrayLengthOffset = 8;
 	private final int arrayDataStart    = 12;
@@ -91,7 +90,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		initPlugins();
 	}
 
-        @Override
+    @Override
     public void setCodeContainer(CodeContainer container) {
 	this.container  = container;
 	this.cPool      = container.getConstantPool();
@@ -101,17 +100,17 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	this.method     = container.getBCMethod();
     }
 
-        @Override
+    @Override
     public void setCurrentlyCompiling(BCClass aClass) {
 	this.bcClass = aClass;
     }
 
-        @Override
+    @Override
     public CompilerOptionsInterface getCompilerOptions() {
 	return opts;
     }
 
-        @Override
+    @Override
     public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
 	if (methodRefCPEntry==null) return null;
 
@@ -380,7 +379,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     */
 
     @Override
-    public void codeCheckReference(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckReference(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (opts.doNullChecks()) {	    
 	    code.test(reg,reg);
 	    code.je(createExceptionCall(-2,bcPosition));
@@ -392,7 +391,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     @Override
-    public void codeCheckMagic(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckMagic(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (doExtraMagic && opts.doMagicChecks() && opts.doParanoidChecks()) {
 	    UnresolvedJump jumpForward  = new UnresolvedJump();
 	    regs.readIntRegister(reg);
@@ -405,7 +404,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }   
 
     @Override
-    public void codeCheckDivZero(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckDivZero(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (opts.doZeroDivChecks()) {	    
 	    code.test(reg,reg);
 	    code.je(createExceptionCall(-6,bcPosition));
@@ -422,7 +421,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     */
 
     @Override
-    public void codeCheckArrayRange(IMNode node,Reg array,int index,int bcPosition) throws CompileException {
+    public void codeCheckArrayRange(IMNode node, Reg array, int index, int bcPosition) throws CompileException {
 	if (opts.doBoundsChecks()) {
 	    Reg len = regs.chooseIntRegister(array);
 

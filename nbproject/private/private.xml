@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/graph/inst/IMConstant.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/graph/inst/IMNewArray.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/CodeContainer.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/classfile/datatypes/BCInteger.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/j2ll/AssistLLVM.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/j2ll/IR.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/StaticCompiler.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/graph/inst/IMInvoke.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/classfile/datatypes/BCBasicDatatype.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/graph/inst/IMAdd.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/ExecEnvironmentIA32.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/VirtualOperantenStack.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/imcode/graph/inst/IMInvokeInterface.java</file>
+            <file>file:/run/media/spy/home/ArchARM/home/spy/Source/Java/OpenLab/distribution/Elements/CircuitElements/Interface/Compiler/src/jx/compiler/nativecode/BinaryCodeIA32.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -25,7 +25,7 @@ final public class IMNewArray extends IMOperator {
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
 	// TODO new local variable allocation ??
 	size = stack.pop();
 	if (size.getDatatype() != BCBasicDatatype.INT && size.getDatatype() != BCBasicDatatype.SHORT) {

@@ -33,7 +33,7 @@ public class DyClassLoader extends ClassLoader {
      */
     public void addClassPath(String s) {
         classpath.add(s);
-        File f=new File(s);
+        File f = new File(s);
         find(f.getAbsolutePath(),s);
     }
 
@@ -44,15 +44,14 @@ public class DyClassLoader extends ClassLoader {
             if (dir.exists()) {
                 File[] files = dir.listFiles();
 
-                //
                 if (files != null) {
                     for (File f : files) {
                         if (f.isFile() && f.getName().endsWith(".class")) {
                             String className = f.getAbsolutePath();
-                            className=className.substring(root.length()+1,className.lastIndexOf(".class"));
-                            loadFromCustomRepository(f,className);
+                            className = className.substring(root.length() + 1, className.lastIndexOf(".class"));
+                            loadFromCustomRepository(f, className);
                         } else {
-                            find(root,f.getAbsolutePath());
+                            find(root, f.getAbsolutePath());
                         }
                     }
                 }
@@ -83,8 +82,7 @@ public class DyClassLoader extends ClassLoader {
                         InputStream is = new FileInputStream(file);
                         /**read bytes from the file*/
                         classBytes = new byte[is.available()];
-                        int read=0;
-                        for (; read < classBytes.length; ) {
+                        for (int read = 0; read < classBytes.length; ) {
                             read+=is.read(classBytes);
                         }
                         is.close();
@@ -96,11 +94,11 @@ public class DyClassLoader extends ClassLoader {
                     return null;
                 }
 
-            className=className.replace('/', '.');
-            className=className.replace('\\', '.');
+            className = className.replace('/', '.');
+            className = className.replace('\\', '.');
             return this.defineClass(className, classBytes, 0, classBytes.length); //load the class
         } catch (Exception ex) {
-            System.out.println("ClassNotFoundException load class : "+className);
+            System.out.println("ClassNotFoundException load class : " + className);
             Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -147,6 +145,6 @@ public class DyClassLoader extends ClassLoader {
                 return null;
             }
         }
-        return this.defineClass(className, classBytes, 0, classBytes.length);//load the class
+        return this.defineClass(className, classBytes, 0, classBytes.length); //load the class
     }
 }

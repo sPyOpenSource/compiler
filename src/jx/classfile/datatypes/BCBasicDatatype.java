@@ -3,6 +3,7 @@
 package jx.classfile.datatypes; 
 // COMMON_HEADER: package jx.classfile.datatypes; 
 
+import VisualLogic.variables.VSObject;
 import jx.zero.Debug; 
 
 /**
@@ -14,7 +15,7 @@ import jx.zero.Debug;
    The constants in BCBasicDatatype are used very frequently. 
 */
 		       
-abstract public class BCBasicDatatype {
+abstract public class BCBasicDatatype extends VSObject {
 
   // the following constants for the basic datatypes are
   // choosen according to the JVM opcode values. 
@@ -25,16 +26,16 @@ abstract public class BCBasicDatatype {
 
   // basic datatypes 
   // according to Bytecode instructions (e.g. iaload ff.)
-  public static final int INT = 0;  
-  public static final int LONG = 1; 
-  public static final int FLOAT = 2; 
+  public static final int INT    = 0;
+  public static final int LONG   = 1;
+  public static final int FLOAT  = 2;
   public static final int DOUBLE = 3;
-  public static final int REFERENCE = 4; 
-  public static final int BYTE = 5; 
-  public static final int CHAR = 6; 
-  public static final int SHORT = 7; 
+  public static final int REFERENCE = 4;
+  public static final int BYTE  = 5;
+  public static final int CHAR  = 6;
+  public static final int SHORT = 7;
 
-  public static final int BOOLEAN = 8; 
+  public static final int BOOLEAN = 8;
   public static final int RETURN_ADDRESS = 9;  // possibly not necessary 
   public static final int VOID = 10; 
 
