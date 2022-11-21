@@ -9,19 +9,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 abstract public class IrSentence extends IrObject {
-    public static final int LOAD = 0;
-    public static final int STORE = 1;
+    public static final int LOAD   = 0;
+    public static final int STORE  = 1;
     public static final int GETPTR = 2;
     public static final int BR2 = 3;
     public static final int BR1 = 4;
-    public static final int LABEL = 5;
-    public static final int ALLOCA = 6;
-    public static final int ICMP = 7;
+    public static final int LABEL   = 5;
+    public static final int ALLOCA  = 6;
+    public static final int ICMP    = 7;
     public static final int COMMENT = 8;
-    public static final int RET = 9;
+    public static final int RET  = 9;
     public static final int CALL = 10;
-    public static final int BITCAST = 11;//trunc sext zext
-    public static final int ARITH = 12;//add sub mul div
+    public static final int BITCAST = 11; //trunc sext zext
+    public static final int ARITH   = 12; //add sub mul div
 
     protected String line;
     protected String comment;
@@ -79,7 +79,7 @@ abstract public class IrSentence extends IrObject {
             irs.parse(s);
         } else if (
                 right.startsWith("icmp ")
-                        || right.startsWith("fcmp ")
+                || right.startsWith("fcmp ")
         ) {
             irs = new IrIcmp();
             irs.parse(s);
@@ -156,7 +156,7 @@ abstract public class IrSentence extends IrObject {
     public static String[] split(String s, String regex) {
 
         String data = s.trim();
-        //预处理include
+        // process include
         Pattern p = Pattern.compile("(\\{([^{}]+|\\{([^{}]+)*\\})*\\}[*]{0,})", Pattern.DOTALL);
         Matcher m = p.matcher(data);
         int index = 0;

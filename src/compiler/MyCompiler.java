@@ -39,7 +39,6 @@ public class MyCompiler {
             if (dir.exists()) {
                 File[] all = dir.listFiles();
 
-                //
                 if (all != null) {
                     for (File f : all) {
                         if (f.isFile() && f.getName().endsWith(fileExt)) {
@@ -68,9 +67,7 @@ public class MyCompiler {
 //                "-encoding", "UTF-8", "-d", outputPath, files);
 
         /*
-
          * the compiler will send its messages to this listener
-
          */
         DiagnosticListener listener = new DiagnosticListener() {
             @Override
@@ -83,14 +80,14 @@ public class MyCompiler {
         };
 
         try {
-            //getting the compiler object
+            // getting the compiler object
             JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
             StandardJavaFileManager manager = compiler.getStandardFileManager(null, null, null);
 
             Iterable<? extends JavaFileObject> files = manager.getJavaFileObjectsFromFiles(srcList);
 
-            Iterable options = Arrays.asList("-encoding", srcFileEncode, "-d",outputPath,"-g");
+            Iterable options = Arrays.asList("-encoding", srcFileEncode, "-d", outputPath, "-g");
 
             JavaCompiler.CompilationTask task = compiler.getTask(null, manager, listener, options, null, files);
 

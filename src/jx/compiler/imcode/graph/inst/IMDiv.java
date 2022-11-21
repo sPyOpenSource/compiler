@@ -17,15 +17,17 @@ final  public class IMDiv extends IMBinaryOperator {
 	super(container);
 	bytecode   = bc;
 	bcPosition = bcpos;
-	datatype = BCBasicDatatype.INT + (bc-Opcodes.IDIV);
+	datatype = BCBasicDatatype.INT + (bc - Opcodes.IDIV);
     }
 
     public boolean isDibOrMult() {return true;}
 
+    @Override
     public String toString() {
-	return "("+lOpr.toString()+"/"+rOpr.toString()+")";
+	return "(" + lOpr.toString() + "/" + rOpr.toString() + ")";
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException {
 	IMOperant newNode = this;
 	int       value = 0;
@@ -76,10 +78,11 @@ final  public class IMDiv extends IMBinaryOperator {
     }
 
     // IMDiv
+    @Override
     public void translate(Reg result) throws CompileException {
 	Reg rEAX = regs.getIntRegister(Reg.eax);
 	Reg rEDX = regs.getIntRegister(Reg.edx);
-	Reg divisor = regs.chooseIntRegister(rEAX,rEDX);
+	Reg divisor = regs.chooseIntRegister(rEAX, rEDX);
 	
 	if (rOpr.isConstant() && ((IMConstant)rOpr).getIntValue()==0) {
 	    execEnv.codeThrow(this,-6,bcPosition);

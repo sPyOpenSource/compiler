@@ -119,7 +119,6 @@ public final class BinaryCodeDynamicARM {
     /** 
 	Insert a single byte
     */ 
-
     void insertByte(int value) {
 	code[ip++] = (byte)value;
     }
@@ -129,13 +128,12 @@ public final class BinaryCodeDynamicARM {
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
 	symbolTable.add(entry); 
-	ip += 1; 
+	ip += 1;
     }
 
     /**
        Insert ModRM and SIB byte 
     */
-
     private void insertModRM(int reg, Opr rm) {
 	reg = reg & 0x07;
 	rm.value  = rm.value & 0x07;
@@ -187,7 +185,6 @@ public final class BinaryCodeDynamicARM {
        Insert call near indirect (reg/mem) (2 clks)
      * @param opr
      */
-
     public void call(Opr opr) {
 	realloc();
 	insertByte(0xff);
@@ -198,7 +195,6 @@ public final class BinaryCodeDynamicARM {
        Insert call near (Symbol) (1 clks)
      * @param entry
      */
-
     public void call(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0xe8); 
@@ -210,7 +206,6 @@ public final class BinaryCodeDynamicARM {
     /**
        Convert byte to word (3 clks) + (.. clks)
     */
-
     public void cbw() {
 	realloc();
 	insertByte(0x66);
@@ -231,7 +226,6 @@ public final class BinaryCodeDynamicARM {
        Convert word to double word (3 clks)
        fill dx with sign bit of ax
     */
-
     public void cwde() {
 	realloc();
 	insertByte(0x98);
@@ -251,7 +245,6 @@ public final class BinaryCodeDynamicARM {
     /**
        Insert return
     */
-
     public void ret() {
 	realloc();
         insertByte(0xc3);
@@ -260,7 +253,6 @@ public final class BinaryCodeDynamicARM {
     /**
        clear interrupt flag (7 clks)
     */
-
     public void cli() {
 	realloc();
 	insertByte(0xfa);
@@ -270,18 +262,16 @@ public final class BinaryCodeDynamicARM {
        decrement byte value by 1 (1/3 clks)
      * @param opr
      */
-
     public void decb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
 	insertModRM(1, opr);
     }
-
+    
     /**
        decrement long value by 1 (1/3 clks)
      * @param ref
      */
-
     public void decl(Ref ref) {
 	realloc();
 	insertByte(0xff);
@@ -292,7 +282,6 @@ public final class BinaryCodeDynamicARM {
        decrement register by 1 (1 clks)
      * @param reg
      */
-    
     public void decl(Reg reg) {
 	realloc();
 	insertByte(0x48 + reg.value);
@@ -302,7 +291,6 @@ public final class BinaryCodeDynamicARM {
        Insert a pushl(reg)
      * @param reg
     */
-
     public void pushl(Reg reg) {
 	realloc();
 	insertByte(0x50 + reg.value);
@@ -336,7 +324,6 @@ public final class BinaryCodeDynamicARM {
        (eax,ecx,edx,ebx,esp,ebp,esi,edi) 
        (5 clks)
     */
-
     public void pushal() { /* 5 clks */
 	realloc();
         insertByte(0x60);
@@ -346,7 +333,6 @@ public final class BinaryCodeDynamicARM {
        Insert a popl(reg)
      * @param reg
     */
-
     public void popl(Reg reg) {
 	realloc();
 	insertByte(0x58 + reg.value);
@@ -355,7 +341,6 @@ public final class BinaryCodeDynamicARM {
     /**
        pop stack into eflags register (4 clks)
     */
-
     public void popfl() {
 	realloc();
         insertByte(0x9d);
@@ -364,34 +349,30 @@ public final class BinaryCodeDynamicARM {
     /**
        pop all general register
     */
-
     public void popal() {
 	realloc();
         insertByte(0x61);
     }
 
-  /** 
+    /** 
       lock prefix
-  */
-
+     */
   public void lock() {
     insertByte(0xf0);
   }
 
-  /**
+    /**
      rep prefix
-  */
-
+     */
   public void repz() {
     insertByte(0xf3);
   }
 
 
-  /** 
-      spinlocks
+    /** 
+       spinlocks
      * @param lock
-  */
-
+     */
   public void spin_lock(Ref lock) {
     realloc();
     lock();decb(lock);
@@ -411,8 +392,7 @@ public final class BinaryCodeDynamicARM {
        Integer Subtraction
      * @param src
      * @param des
-    */
-
+     */
     public void subl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x2b);
@@ -463,8 +443,7 @@ public final class BinaryCodeDynamicARM {
        Integer Subtraction with Borrow
      * @param src
      * @param des
-    */
-
+     */
     public void sbbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x1B);
@@ -476,12 +455,11 @@ public final class BinaryCodeDynamicARM {
 	insertByte(0x19);
 	insertModRM(src, des);
     }
-
+    
     /**
        Integer Unsigned Multiplication of eax  (10 clk)
      * @param src
-    */
-
+     */
     public void mull(Opr src) {
 	realloc();
 	insertByte(0xF7);
@@ -492,7 +470,7 @@ public final class BinaryCodeDynamicARM {
        Integer Signed Multiplication (10 clk)
      * @param src
      * @param des
-    */
+     */
     public void imull(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
@@ -538,8 +516,7 @@ public final class BinaryCodeDynamicARM {
     /**
        increment by 1 (1/3 clks)
      * @param opr
-    */
-
+     */
     public void incb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
@@ -549,8 +526,7 @@ public final class BinaryCodeDynamicARM {
     /** 
        increment by 1 (1/3 clks)
      * @param ref
-    */
-
+     */
     public void incl(Ref ref) {
 	realloc();
 	insertByte(0xff);
@@ -560,8 +536,7 @@ public final class BinaryCodeDynamicARM {
     /**
        increment register by 1 (1 clks)
      * @param reg
-    */
-
+     */
     public void incl(Reg reg) {
 	realloc();
 	insertByte(0x40 + reg.value);
@@ -576,8 +551,7 @@ public final class BinaryCodeDynamicARM {
         base.disp(disp,index,[0,1,2,4,8])
      * @param opr        
      * @param reg        
-    */
-
+     */
     public void lea(Opr opr, Reg reg) {
 	realloc();
 	insertByte(0x8D);
@@ -588,8 +562,7 @@ public final class BinaryCodeDynamicARM {
        SHL/SAL Shift left (1/3 clks)
      * @param immd
      * @param des
-    */
-
+     */
     public void shll(int immd, Opr des) {
 	realloc();
 	if (immd == 1) {
@@ -605,8 +578,7 @@ public final class BinaryCodeDynamicARM {
     /**
        SHL/SAL Shift left by %cl (4 clks)
      * @param des
-    */
-
+     */
     public void shll(Opr des) {
 	realloc();
 	insertByte(0xd3);
@@ -619,8 +591,7 @@ public final class BinaryCodeDynamicARM {
      * @param immd
      * @param low
      * @param des
-    */
-
+     */
     public void shld(int immd, Reg low, Opr des) {
 	realloc();	
 	insertByte(0x0F);
@@ -633,8 +604,7 @@ public final class BinaryCodeDynamicARM {
        SHLD Double Precision Shift left by %cl (4/5 clks)
      * @param low
      * @param des
-    */
-
+     */
     public void shld(Reg low, Opr des) {
 	realloc();
 	insertByte(0x0F);
@@ -646,7 +616,7 @@ public final class BinaryCodeDynamicARM {
        SHR Shift right (1/3 clks)
      * @param immd
      * @param des
-    */
+     */
 
     public void shrl(int immd, Opr des) {
 	realloc();
@@ -667,10 +637,10 @@ public final class BinaryCodeDynamicARM {
 	insertByte(entry);
     }
 
-   /**
+    /**
        SHL/SAL Shift left by %cl (4 clks)
      * @param des
-    */
+     */
 
     public void shrl(Opr des) {
 	realloc();
@@ -682,7 +652,7 @@ public final class BinaryCodeDynamicARM {
        SAR Shift right (signed) (1/3 clks)
      * @param immd
      * @param des
-    */
+     */
 
     public void sarl(int immd, Opr des) {
 	realloc();
@@ -699,7 +669,7 @@ public final class BinaryCodeDynamicARM {
     /**
        SAR Shift right by %cl (signed) (4 clks)
      * @param des
-    */
+     */
 
     public void sarl(Opr des) {
 	realloc();
@@ -710,7 +680,7 @@ public final class BinaryCodeDynamicARM {
     /**
        DIV Signed Divide
      * @param src
-    */
+     */
 
     public void idivl(Opr src) {
 	realloc();
@@ -721,7 +691,7 @@ public final class BinaryCodeDynamicARM {
     /**
        DIV Unsigned Divide
      * @param src
-    */
+     */
 
     public void divl(Opr src) {
 	realloc();
@@ -733,7 +703,7 @@ public final class BinaryCodeDynamicARM {
        Add
      * @param src
      * @param des
-    */
+     */
 
     public void addl(Opr src, Reg des) {
 	realloc();
@@ -779,7 +749,7 @@ public final class BinaryCodeDynamicARM {
  
     /**
        And (1/3 clks)
-    */
+     */
 
     public void andl(Opr src, Reg des) {
 	realloc();
@@ -819,7 +789,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Or (1/3 clks)
-    */
+     */
 
     public void orl(Opr src, Reg des) {
 	realloc();
@@ -858,7 +828,7 @@ public final class BinaryCodeDynamicARM {
     }
     /**
        Or (1/3 clks)
-    */
+     */
 
     public void xorl(Opr src, Reg des) {
 	realloc();
@@ -898,7 +868,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Not (1/3 clks)
-    */
+     */
 
     public void notl(Opr opr) {
 	realloc();
@@ -1038,7 +1008,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Jump short/near if not equal
-    */
+     */
 
     public void jne(int rel) {
 	realloc();
@@ -1070,7 +1040,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Jump short/near if less
-    */
+     */
 
     public void jl(SymbolTableEntryBase entry) {
 	realloc();
@@ -1082,7 +1052,7 @@ public final class BinaryCodeDynamicARM {
     
     /**
        Jump short/near if greater or equal
-    */
+     */
 
     public void jge(SymbolTableEntryBase entry) {
 	realloc();
@@ -1094,7 +1064,7 @@ public final class BinaryCodeDynamicARM {
     
     /**
        Jump short/near if greater
-    */
+     */
     
     public void jg(SymbolTableEntryBase entry) {
 	realloc();
@@ -1106,7 +1076,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Jump short/near if less or equal
-    */
+     */
 
     public void jle(SymbolTableEntryBase entry) {
 	realloc();
@@ -1118,7 +1088,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Jump short/near if unsigned greater
-    */
+     */
 
     public void ja(SymbolTableEntryBase entry) {
 	realloc();
@@ -1130,7 +1100,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Jump short/near if unsigned greater or equal
-    */
+     */
 
     public void jae(SymbolTableEntryBase entry) {
 	realloc();
@@ -1140,9 +1110,9 @@ public final class BinaryCodeDynamicARM {
 	makeRelative(entry);
     }
 
-   /**
+    /**
        Jump short/near if sign
-    */
+     */
 
     public void js(int rel) {
 	realloc();
@@ -1158,7 +1128,7 @@ public final class BinaryCodeDynamicARM {
   
     /**
        Jump short/near 
-    */
+     */
 
     public void jmp(int rel) {
 	realloc();
@@ -1203,7 +1173,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Move 8 Bit Data
-    */
+     */
 
     public void movb(Opr src, Reg des) {
 	realloc();
@@ -1231,7 +1201,7 @@ public final class BinaryCodeDynamicARM {
 	    
     /** 
 	Move 16 Bit Data
-    */
+     */
 
     public void movw(Opr src, Reg des) {
 	realloc();
@@ -1249,7 +1219,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Move 32 Bit Data
-    */
+     */
 
     public void movl(Opr src, Reg des) {
 	realloc();
@@ -1289,7 +1259,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Move with Zero-Extend (short) (3 clks)
-    */
+     */
     public void movzwl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
@@ -1299,7 +1269,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        move with Zero-Extend (byte) (3 clks)
-    */
+     */
     public void movzbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
@@ -1309,7 +1279,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Move with Sign-Extend (short to register) (3 clks)
-    */
+     */
     public void movswl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
@@ -1319,7 +1289,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        Move with Sign-Extend (byte to register) (3 clks)
-    */
+     */
     public void movsbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x0f);
@@ -1329,7 +1299,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        No Operation (1 clks)
-    */
+     */
 
     public void nop() {
 	realloc();
@@ -1349,7 +1319,7 @@ public final class BinaryCodeDynamicARM {
        0x12 | counter 0
        0x13 | counter 1
 
-    */
+     */
     
     public void wrmsr() {
 	realloc();
@@ -1373,7 +1343,7 @@ public final class BinaryCodeDynamicARM {
     /**
        Read from Time Stamp Counter 
        return EDX:EAX
-    */
+     */
 
     public void rdtsc() {
 	realloc();
@@ -1387,8 +1357,7 @@ public final class BinaryCodeDynamicARM {
        
        ecx = 0 : return EDX:EAX counter0
        ecx = 1 : return EDX:EAX counter1
-
-    */
+     */
 
     public void rdpmc() {
 	realloc();
@@ -1400,7 +1369,7 @@ public final class BinaryCodeDynamicARM {
 
     /**
        test - logical compare (1/2 clks)
-    */
+     */
 
     public void test(Opr src, Reg des) {
 	realloc();
@@ -1422,7 +1391,7 @@ public final class BinaryCodeDynamicARM {
 
     /** 
 	Insert a single byte constant 
-    */ 
+     */ 
     public void insertConst1(int value) {
 	realloc();
 	code[ip++] = (byte)value;
@@ -1430,7 +1399,7 @@ public final class BinaryCodeDynamicARM {
   
     /** 
 	Insert a four byte constant 
-    */ 
+     */ 
     public void insertConst4(int value) {
 	realloc();
 	code[ip++] = (byte)(value); 
@@ -1449,7 +1418,7 @@ public final class BinaryCodeDynamicARM {
     /** 
 	Insert a four byte constant with an unknown value. 
 	(must be resolved before the code is installed) 
-    */ 
+     */ 
     public void insertConst4(SymbolTableEntryBase entry) {
 	realloc();
 	entry.initNCIndex(ip, 4);  // size is always 4 bytes 
@@ -1466,7 +1435,7 @@ public final class BinaryCodeDynamicARM {
     /** 
 	Insert a 0 byte constant with an unknown value. 
 	(contains information about current code position, i.e., a stack map) 
-    */ 
+     */ 
     public void insertConst0(SymbolTableEntryBase entry) {
 	entry.initNCIndex(ip, 0);  // size is always 0 bytes 
 	symbolTable.add(entry);
@@ -1486,7 +1455,7 @@ public final class BinaryCodeDynamicARM {
        should be aligend as above.
        
        * Labels that follow a conditional branch need _not_ be aligned.
-    */
+     */
     
     public void alignCode() {
 	int drift = ip % 16;
@@ -1498,7 +1467,7 @@ public final class BinaryCodeDynamicARM {
     /** 
 	Initialized the target position of 'jumpObject'. 
 	(Call insertConst4() for corresponding jump instruction) 
-    */
+     */
     public void addJumpTarget(UnresolvedJump jumpObject) {
 	if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
 	jumpObject.setTargetNCIndex(ip);
@@ -1536,14 +1505,14 @@ public final class BinaryCodeDynamicARM {
 	the instruction pointer of the next instruction. 
 	That is what you can tell the compiler with this 
 	method. 
-    */ 
+     */ 
     public void makeRelative(SymbolTableEntryBase entry) {
 	entry.makeRelative(ip);
     }
     
     /**
        Called after each instruction. 
-    */ 
+     */ 
     public void endInstr() {
 	//if (DebugConf.doPrintBinaryCode) Debug.out.println(""); 
 	//      currentInstruction.machinecode = new byte[numBytesMachinecode];

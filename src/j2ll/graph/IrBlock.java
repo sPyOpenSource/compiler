@@ -11,7 +11,6 @@ public class IrBlock extends IrObject {
     int index;
     List<IrSentence> lines = new CopyOnWriteArrayList<>();
 
-    //
     List<IrBlock> inner = new ArrayList<>();
     List<IrBlock> outer = new ArrayList<>();
 
@@ -25,7 +24,7 @@ public class IrBlock extends IrObject {
 
     void iteratorForward(IrBlock block, IrBlock stop, List<IrBlock> curPath, List<List<IrBlock>> allPaths) {
 
-        if (count(curPath, this) > 1) {// while follow stream
+        if (count(curPath, this) > 1) { // while follow stream
             return;
         }
         curPath.add(this);
@@ -45,7 +44,7 @@ public class IrBlock extends IrObject {
 
     void iteratorBackward(IrBlock block, IrBlock stop, List<IrBlock> curPath, List<List<IrBlock>> allPaths) {
 
-        if (count(curPath, this) > 1) {// while follow stream
+        if (count(curPath, this) > 1) { // while follow stream
             return;
         }
         curPath.add(this);
@@ -117,9 +116,9 @@ public class IrBlock extends IrObject {
      * find this block register(%stack16) used but created by other block
      */
     public void findOperandCreatedByOther() {
-        Set<IrVariable> lefts = new LinkedHashSet<>();//left register var
+        Set<IrVariable> lefts = new LinkedHashSet<>(); //left register var
 
-        Set<IrVariable> operands = new LinkedHashSet<>();//right register var
+        Set<IrVariable> operands = new LinkedHashSet<>(); //right register var
 
         for (IrObject irb : lines) {
             if (irb instanceof IrSentence) {
