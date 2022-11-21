@@ -86,7 +86,6 @@ class Main {
     /**
      * deserialize method tables 
      */
-
     void process() throws Exception {
 	ClassInfo info;
 	//info = (ClassInfo)classFinder.get("java/lang/Object");

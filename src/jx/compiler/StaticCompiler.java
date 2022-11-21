@@ -277,7 +277,7 @@ public class StaticCompiler implements ClassFinder {
 	method.indices.add(mtable.size() - 1);
     }
 
-    private void computeClassGraph() {
+    private void dependencyCheck() {
 	Enumeration classIterator = domClassStore.elements();
 	while(classIterator.hasMoreElements()) {
 	    BCClass aClass = (BCClass)classIterator.nextElement();
@@ -288,7 +288,7 @@ public class StaticCompiler implements ClassFinder {
 		if (e instanceof ClassCPEntry ec) {
 		    String className = ec.getClassName();
 		    if (className.charAt(0) == '[') {
-			//Debug.out.println("Skipping array class "+className);
+			//Debug.out.println("Skipping array class " + className);
 			continue;
 		    }
 		    if (findClass(className) == null) {
@@ -412,13 +412,13 @@ public class StaticCompiler implements ClassFinder {
 		    continue;
 		}
 
-		if (! (m instanceof BCMethodWithCode)) continue;
+		if (!(m instanceof BCMethodWithCode)) continue;
 		BCMethodWithCode method = (BCMethodWithCode)m;
 		options.printVerbose("**  Compiling method " + method.getName());
 		
 		jx.compiler.imcode.CodeContainer imCode = new jx.compiler.imcode.CodeContainer(execEnvNew, method, stat);
 		imCode.init();
-		if (options.doInlining(aClass,method)) {
+		if (options.doInlining(aClass, method)) {
 		    if (options.doPrintIMCode())
 			imOut.println("// try to inline methods ");
 		    imCode.inlineMethods(4);
@@ -493,8 +493,7 @@ public class StaticCompiler implements ClassFinder {
     }
     
     private void compileStatic() throws Exception {
-	Iterator iter;
-	computeClassGraph();
+	dependencyCheck();
 	//Debug.out.println("**Finished class checking!");
 
 	createClassInfo(libClassStore);
@@ -507,12 +506,12 @@ public class StaticCompiler implements ClassFinder {
 	MethodTableFactory mtableFactory = new MethodTableFactory(domClassStore.classSourceIterator(), predefinedClasses, tableIn);
 	mtableFactory.process();
 
-	iter = libClassStore.iterator();
+	Iterator iter = libClassStore.iterator();
 	while(iter.hasNext()) {
 	    BCClass c = (BCClass) iter.next();
 	    BCClassInfo info = (BCClassInfo)c.getInfo();
 	    info.methodTable = mtableFactory.getMethodTable(c.getClassName());
-	    //Debug.out.println(" setting mtable for "+c.getClassName());
+	    //Debug.out.println(" setting mtable for " + c.getClassName());
 	    if (info.methodTable == null) Debug.throwError("No Methodtable for " + c.getClassName());
 	}
 

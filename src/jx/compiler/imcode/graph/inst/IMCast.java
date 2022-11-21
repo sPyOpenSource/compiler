@@ -45,26 +45,29 @@ final  public class IMCast extends IMUnaryOperator {
 	}
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	operant = stack.pop();
 	stack.push(this);
 	return null;
     }
 
+    @Override
     public String toString() {
 	switch (datatype) {
-	case 0: return "(int)"+operant.toString();
-	case 1: return "(long)"+operant.toString();
-	case 2: return "(float)"+operant.toString();
-	case 3: return "(double)"+operant.toString();
-	case 5: return "(byte)"+operant.toString();
-	case 6: return "(char)"+operant.toString();
-	case 7: return "(short)"+operant.toString();
+	case 0: return "(int)" + operant.toString();
+	case 1: return "(long)" + operant.toString();
+	case 2: return "(float)" + operant.toString();
+	case 3: return "(double)" + operant.toString();
+	case 5: return "(byte)" + operant.toString();
+	case 6: return "(char)" + operant.toString();
+	case 7: return "(short)" + operant.toString();
 	default: return "<error>";
 	}
     }
 
     // IMCast
+    @Override
     public void translate(Reg result) throws CompileException {
 	switch (shortOpr) {
 	    // i2<x>

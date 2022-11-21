@@ -70,7 +70,7 @@ public class IrFunction {
             }
         }
 
-        //for debug, print execute path ,may be lots of path
+        //for debug, print execute path, may be lots of path
         if (false) {
             List<List<IrBlock>> paths = new ArrayList<>();
             List<IrBlock> cur = new ArrayList<>();
