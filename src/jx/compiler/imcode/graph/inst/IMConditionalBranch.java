@@ -1,12 +1,13 @@
 
 package jx.compiler.imcode.graph.inst; 
 
+import java.util.ArrayList;
+
 import jx.classfile.*;
 import jx.zero.Debug; 
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import java.util.ArrayList;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 
@@ -46,12 +47,14 @@ final  public class IMConditionalBranch extends IMBranch  {
 	return this;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	if (rOpr!=null) rOpr = (IMOperant)rOpr.inlineCode(iCode, depth, forceInline);
 	lOpr = (IMOperant)lOpr.inlineCode(iCode, depth, forceInline);
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
 	if (rOpr!=null) rOpr = (IMOperant)rOpr.constant_folding();
 	lOpr = (IMOperant)lOpr.constant_folding();

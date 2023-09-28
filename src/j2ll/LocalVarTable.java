@@ -1,7 +1,5 @@
 package j2ll;
 
-import org.objectweb.asm.Opcodes;
-
 import java.util.*;
 
 /**
@@ -78,6 +76,5 @@ public final class LocalVarTable {
             }
         }
     }
-
 
 }

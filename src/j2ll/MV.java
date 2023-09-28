@@ -882,20 +882,16 @@ public class MV extends MethodVisitor {
     @Override
     public void visitLdcInsn(Object o) {
         out.add("; ldc " + o);
-        if (o instanceof String) {
+        if (o instanceof String string) {
             // const
-            out.newString(cv, stack, (String) o);
-        } else if (o instanceof Integer) {
-            Integer value = (Integer) o;
+            out.newString(cv, stack, string);
+        } else if (o instanceof Integer value) {
             out.addImm(value, INT, stack);
-        } else if (o instanceof Long) {
-            Long value = (Long) o;
+        } else if (o instanceof Long value) {
             out.addImm(value, LONG, stack);
-        } else if (o instanceof Float) {
-            Float value = (Float) o;
+        } else if (o instanceof Float value) {
             out.addImm(value, FLOAT, stack);
-        } else if (o instanceof Double) {
-            Double value = (Double) o;
+        } else if (o instanceof Double value) {
             out.addImm(value, DOUBLE, stack);
         } else {
             out.add("; todo add const " + o);
@@ -904,7 +900,6 @@ public class MV extends MethodVisitor {
 
     @Override
     public void visitIincInsn(int slot, int value) {
-
         LocalVar var = this.vars.get(slot, curLabel);
         out.add("%__tmpv" + out.tmp + " = load i32, i32* %" + var.name);
         out.tmp++;

@@ -74,25 +74,25 @@ public class DyClassLoader extends ClassLoader {
             }
             byte[] classBytes = null;
 
-                //replace '.' in the class name with File.separatorChar & append .class to the name
-                String classFileName = className.replace('.', File.separatorChar);
-                try {
+            //replace '.' in the class name with File.separatorChar & append .class to the name
+            String classFileName = className.replace('.', File.separatorChar);
+            try {
 
-                    if (file.exists()) {
-                        InputStream is = new FileInputStream(file);
-                        /**read bytes from the file*/
-                        classBytes = new byte[is.available()];
-                        for (int read = 0; read < classBytes.length; ) {
-                            read+=is.read(classBytes);
-                        }
-                        is.close();
-
+                if (file.exists()) {
+                    InputStream is = new FileInputStream(file);
+                    /**read bytes from the file*/
+                    classBytes = new byte[is.available()];
+                    for (int read = 0; read < classBytes.length; ) {
+                        read+=is.read(classBytes);
                     }
-                } catch (IOException ex) {
-                    System.out.println("IOException raised while reading class file data");
-                    Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
-                    return null;
+                    is.close();
+
                 }
+            } catch (IOException ex) {
+                System.out.println("IOException raised while reading class file data");
+                Logger.getLogger(DyClassLoader.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
 
             className = className.replace('/', '.');
             className = className.replace('\\', '.');

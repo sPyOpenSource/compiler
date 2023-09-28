@@ -1,8 +1,6 @@
 package j2ll;
 
-import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -10,7 +8,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 public final class Resolver {
 
-    private Set<String> classes = new CopyOnWriteArraySet<>();
+    private final Set<String> classes = new CopyOnWriteArraySet<>();
 
     public String resolve(String str) {
 
