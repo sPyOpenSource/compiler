@@ -1,7 +1,7 @@
 Compiler
 ========
 
-This is a part of Java OS project.
+This is a part of Java OS project. It compiles the Java Bytecode to native machine code for x86 processor.
 
 Build
 -----

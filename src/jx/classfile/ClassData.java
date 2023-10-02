@@ -1,8 +1,8 @@
 package jx.classfile; 
 
-import java.io.*; 
-import jx.classfile.constantpool.*; 
-import jx.zero.Debug; 
+import java.io.*;
+import jx.classfile.constantpool.*;
+import jx.zero.Debug;
 
 /** 
     All data about a class, that can be found 
@@ -32,7 +32,7 @@ public class ClassData extends ClassSource {
 
     private boolean allowNative = false;
 
-      public int getThisClassCPIndex() {
+    public int getThisClassCPIndex() {
 	return thisClassCPIndex;
     }
 
@@ -52,7 +52,6 @@ public class ClassData extends ClassSource {
     public MethodSource getMethod(String methodName, String methodType) {
 	return getMethodData(methodName, methodType); 
     }
-
 
     public MethodData[] getMethodData() {
 	return method;
@@ -90,22 +89,22 @@ public class ClassData extends ClassSource {
 	MethodData oldMethod[] = method;
 	method = new MethodData[numMethods];
         System.arraycopy(oldMethod, 0, method, 0, numMethods - 1);
-	method[numMethods-1] = newMethod;
+	method[numMethods - 1] = newMethod;
     }
 
     public void readFromClassFile(DataInput input) throws IOException, EOFException, NoMagicNumberException {
 	int magicNumber = input.readInt();
 	try {
-	    if(magicNumber!=0xcafebabe) throw new NoMagicNumberException();
+	    if(magicNumber != 0xcafebabe) throw new NoMagicNumberException();
 	    int minorVersion = input.readUnsignedShort();
-	    int majorVersion = input.readUnsignedShort(); 
+	    int majorVersion = input.readUnsignedShort();
     
-	    constantPool = new ConstantPool(); 
-	    constantPool.readFromClassFile(input); 
+	    constantPool = new ConstantPool();
+	    constantPool.readFromClassFile(input);
     
-	    accessFlags = input.readUnsignedShort(); 
-	    thisClassCPIndex = input.readUnsignedShort(); 
-	    superClassCPIndex = input.readUnsignedShort(); 
+	    accessFlags = input.readUnsignedShort();
+	    thisClassCPIndex = input.readUnsignedShort();
+	    superClassCPIndex = input.readUnsignedShort();
     
 	    constantPool.setThisClassCPIndex(thisClassCPIndex); 
 
