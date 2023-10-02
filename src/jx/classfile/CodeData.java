@@ -80,13 +80,13 @@ final public class CodeData {
 
         numHandlers = input.readUnsignedShort();
         exceptionHandler = new ExceptionHandlerData[numHandlers];
-        for(int i=0; i<numHandlers; i++) {
+        for(int i = 0; i < numHandlers; i++) {
             exceptionHandler[i] = new ExceptionHandlerData();
             exceptionHandler[i].readFromClassFile(input, cPool);
         }
 
         int numAttributes = input.readUnsignedShort();
-        for(int i=0; i<numAttributes; i++) {
+        for(int i = 0; i < numAttributes; i++) {
             readAttribute(input, cPool);
         }
     }
@@ -109,7 +109,7 @@ final public class CodeData {
 
   @Override
   public String toString() {
-    return super.toString() + "\n" +  
+    return super.toString() + "\n" + 
       "MaxStack     : " + maxStack + "\n" + 
       "maxLocals    : " + maxLocals + "\n" + 
       "numCodeBytes : " + codeBytes.length + "\n";

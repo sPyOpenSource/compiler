@@ -6,7 +6,6 @@ package jx.classfile;
 */ 
 
 final public class BC {
-
     public static final int NOP = 0x00;
     
     // push int constant to operanten stack
@@ -290,7 +289,7 @@ final public class BC {
     public static final int GOTO_W = 0xc8;
     public static final int JSR_W = 0xc9;
 
-     // Reserved opcodes:
+    // Reserved opcodes:
     public static final int BREAKPOINT = 0xca;
     public static final int IMPDEP1 = 0xfe;
     public static final int IMPDEP2 = 0xff;
