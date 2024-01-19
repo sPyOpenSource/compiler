@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=ExecEnvironmentInterface
+comment1.params=container
+comment1.target=void\ setCodeContainer(CodeContainer)
+comment10.params=cpEntry\ result\ bcPosition
+comment10.target=void\ codeLoadStringRef(jx.classfile.constantpool.StringCPEntry,\ jx.compiler.nativecode.Reg,\ int)
+comment11.params=exception\ bcPosition
+comment11.target=jx.compiler.symbols.UnresolvedJump\ createExceptionCall(int,\ int)
+comment2.params=aClass
+comment2.target=void\ setCurrentlyCompiling(jx.compiler.execenv.BCClass)
+comment3.params=methodRefCPEntry
+comment3.target=jx.compiler.execenv.BCMethod\ getBCMethod(jx.classfile.constantpool.MethodRefCPEntry)
+comment4.params=level
+comment4.target=boolean\ doOptimize(int)
+comment5.params=
+comment5.target=jx.compiler.execenv.CompilerOptionsInterface\ getCompilerOptions()
+comment6.params=
+comment6.target=int\ getExtraStackSpace()
+comment7.params=
+comment7.target=void\ codeProlog()
+comment8.params=
+comment8.target=void\ codeEpilog()
+comment9.params=cpEntry
+comment9.target=jx.compiler.symbols.SymbolTableEntryBase\ getStringRef(jx.classfile.constantpool.StringCPEntry)
+numComments=12

@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=BCMethodWithCode
+comment0.text=\ \n\ \ \ \ This\ class\ represents\ a\ Java\ method\ with\ its\ associated\ \n\ \ \ \ bytecode.\ It's\ interface\ contains\ various\ \n\ \ \ \ methods\ to\ transform\ and\ evaluate\ the\ method.\ \n\ \ \ \ Ususally\ you\ will\ use\ this\ class\ to\ translate\ a\ method\ into\ \n\ \ \ \ native\ code.\ \n
+comment1.params=methodSource\ cPool\ replaceInterfaceWithClass
+comment1.target=BCMethodWithCode(jx.classfile.MethodSource,\ jx.classfile.constantpool.ConstantPool,\ java.util.ArrayList)
+comment1.text=\ \n\t@param\ methodSource\ \n\t@param\ cPool\ the\ constant\ pool\ of\ the\ method's\ class\n\ @param\ replaceInterfaceWithClass\ \n\ @throws\ jx.compiler.CompileException\ \n
+comment2.params=
+comment2.target=jx.classfile.ExceptionHandlerData[]\ getExceptionHandlers()
+comment3.params=
+comment3.target=BytecodeInputStream\ getBytecodeStream()
+comment3.text=\ \n\ @return\ a\ stream\ that\ allows\ to\ read\ the\ code\ of\ this\ method\n
+comment4.params=
+comment4.target=jx.classfile.constantpool.ConstantPool\ getConstantPool()
+comment5.params=
+comment5.target=int\ getByteCodeSize()
+numComments=6

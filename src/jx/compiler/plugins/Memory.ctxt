@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Memory
+comment1.params=e
+comment1.target=Memory(jx.compiler.ExecEnvironmentIA32)
+comment2.params=memory\ lock\ bcPosition
+comment2.target=void\ codeLock(jx.compiler.nativecode.Reg,\ jx.compiler.nativecode.Reg,\ int)
+comment3.params=memory\ lock\ bcPosition
+comment3.target=void\ codeUnLock(jx.compiler.nativecode.Reg,\ jx.compiler.nativecode.Reg,\ int)
+numComments=4

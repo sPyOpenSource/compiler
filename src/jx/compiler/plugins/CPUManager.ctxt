@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=CPUManager
+comment1.params=e
+comment1.target=CPUManager(jx.compiler.ExecEnvironmentIA32)
+comment2.params=e\ regs\ code\ event_id\ bcPosition
+comment2.target=void\ codeEvent(jx.compiler.ExecEnvironmentIA32,\ jx.compiler.nativecode.RegManager,\ jx.compiler.nativecode.BinaryCodeIA32,\ jx.compiler.symbols.ProfileSTEntry,\ int)
+numComments=3

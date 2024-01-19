@@ -268,7 +268,6 @@ public class Compiler extends javax.swing.JFrame {
                     strings[2] = "testOS";
                     strings[3] = "AIZero";
                 projects.setModel(new javax.swing.AbstractListModel<String>() {
-                    
                     @Override
                     public int getSize() { return strings.length; }
                     @Override

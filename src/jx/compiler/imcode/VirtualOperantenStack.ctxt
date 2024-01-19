@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=VirtualOperantenStack
+comment1.params=imCode
+comment1.target=VirtualOperantenStack(CodeContainer)
+comment2.params=
+comment2.target=void\ clear()
+comment3.params=bcPosition
+comment3.target=void\ store(int)
+comment4.params=bcPosition\ varIndex
+comment4.target=void\ store2(int,\ int)
+comment5.params=
+comment5.target=java.lang.String\ toTypeString()
+comment6.params=
+comment6.target=java.lang.String\ stackToString()
+comment7.params=value
+comment7.target=void\ extend(int)
+numComments=8

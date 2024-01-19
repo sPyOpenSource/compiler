@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=CompilerOptionsNative
+comment1.params=
+comment1.target=CompilerOptionsNative()
+comment2.params=args
+comment2.target=CompilerOptionsNative(java.lang.String[])
+comment2.text=\n\ constructor\ to\ parse\ command\ line\ options\n\ @param\ args\n
+comment3.params=line
+comment3.target=void\ parseOptionLine(java.lang.String)
+comment4.params=args\ i
+comment4.target=int\ parseOption(java.lang.String[],\ int)
+comment5.params=args
+comment5.target=void\ parseArgs(java.lang.String[])
+comment6.params=
+comment6.target=void\ printUsage()
+comment7.params=path
+comment7.target=java.util.ArrayList\ parsePath(java.lang.String)
+numComments=8

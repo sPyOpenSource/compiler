@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=FirstLevelIrqHandler
+comment1.params=
+comment1.target=void\ interrupt()
+numComments=2
