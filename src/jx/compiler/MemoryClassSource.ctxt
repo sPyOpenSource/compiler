@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MemoryClassSource
+comment1.params=input
+comment1.target=MemoryClassSource(jx.zero.Memory)
+comment2.params=input\ allowNative
+comment2.target=MemoryClassSource(jx.zero.Memory,\ boolean)
+numComments=3

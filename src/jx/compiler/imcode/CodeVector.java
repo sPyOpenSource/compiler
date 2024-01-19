@@ -1,3 +1,4 @@
+
 package jx.compiler.imcode;
 
 public class CodeVector {
@@ -6,38 +7,38 @@ public class CodeVector {
     private CodeContainer[] code;
 
     public CodeVector() {
-	size = 0;
-	code = new CodeContainer[5];
+        size = 0;
+        code = new CodeContainer[5];
     }
 
     public CodeContainer element(int i) {
-	return code[i];
+        return code[i];
     }
 
     public void add(CodeContainer aCode) {
-	if (aCode == null) return;
-	realloc(size);
-	code[size++] = aCode;
+        if (aCode == null) return;
+        realloc(size);
+        code[size++] = aCode;
     }
 
     public void add(CodeVector vec) {
-	if (vec == null) return;
-	realloc(size + vec.size());
-	for (int i = 0; i < vec.size(); i++) {
-	    code[size++] = vec.element(i);
-	}
+        if (vec == null) return;
+        realloc(size + vec.size());
+        for (int i = 0; i < vec.size(); i++) {
+            code[size++] = vec.element(i);
+        }
     }
 
     public int size() {
-	return size;
+        return size;
     }
 
     private void realloc(int nSize) {
-	if (nSize > code.length) {
-	    CodeContainer[] newArray = new CodeContainer[code.length + 5];
-            System.arraycopy(code, 0, newArray, 0, code.length);
-	    code = newArray;
-	}
+        if (nSize > code.length) {
+            CodeContainer[] newArray = new CodeContainer[code.length + 5];
+                System.arraycopy(code, 0, newArray, 0, code.length);
+            code = newArray;
+        }
     }
     
 }
