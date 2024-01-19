@@ -1,8 +1,7 @@
+
 package j2ll;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 /**
  * Java Signature. Example: (IDJ)V
@@ -44,4 +43,5 @@ public class JSignature {
     public String getID(String className, String methodName) {
         return Util.classMethodSignature2id(className, methodName, this);
     }
+    
 }

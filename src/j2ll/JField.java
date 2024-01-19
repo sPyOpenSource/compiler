@@ -1,3 +1,4 @@
+
 package j2ll;
 
 /**
@@ -19,6 +20,7 @@ public class JField {
         this.javaSignature = javaSignature;
     }
 
+    @Override
     public int hashCode() {
         String s = className + name + javaSignature;
         return s.hashCode();
@@ -26,8 +28,7 @@ public class JField {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof JField) {
-            JField f = (JField) o;
+        if (o instanceof JField f) {
             if (className != null && className.equals(f.className) || className == f.className) {
                 if (name != null && name.equals(f.name) || name == f.name) {
                     if (javaSignature != null && javaSignature.equals(f.javaSignature) || javaSignature == f.javaSignature) {
@@ -38,4 +39,5 @@ public class JField {
         }
         return false;
     }
+    
 }

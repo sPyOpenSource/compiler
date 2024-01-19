@@ -1,3 +1,4 @@
+
 package j2ll;
 
 /**
@@ -8,7 +9,7 @@ public class LocalVar {
     int slot;
     String name;
     String signature;
-    int startAt;  //start at label index
+    int startAt;   //start at label index
     int endAt;     //end at label index
 
     public LocalVar(int slot, String name, String signature) {

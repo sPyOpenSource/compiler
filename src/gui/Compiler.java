@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package gui;
 
@@ -234,11 +229,6 @@ public class Compiler extends javax.swing.JFrame {
             return;
         
         class PrimeThread extends Thread {
-            long minPrime;
-            PrimeThread(long minPrime) {
-                this.minPrime = minPrime;
-            }
-
             @Override
             public void run() {
                 String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
@@ -249,7 +239,7 @@ public class Compiler extends javax.swing.JFrame {
                 }
             }
         }
-        PrimeThread compiler = new PrimeThread(0);
+        PrimeThread compiler = new PrimeThread();
         compiler.start();
     }//GEN-LAST:event_CompileActionPerformed
 
