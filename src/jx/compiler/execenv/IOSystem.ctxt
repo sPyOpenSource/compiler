@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=IOSystem
+comment1.params=filename
+comment1.target=java.io.OutputStream\ getOutputStream(java.lang.String)
+comment2.params=path
+comment2.target=void\ set(java.lang.String)
+numComments=3

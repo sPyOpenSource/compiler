@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=RegObj
+comment1.params=
+comment1.target=int\ getDatatype()
+comment2.params=frame
+comment2.target=void\ push(jx.compiler.imcode.MethodStackFrame)
+numComments=3

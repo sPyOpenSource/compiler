@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Ports
+comment1.params=addr\ b
+comment1.target=void\ outb(int,\ byte)
+comment10.params=addr\ b
+comment10.target=void\ outw_p(int,\ short)
+comment11.params=addr
+comment11.target=short\ inw(int)
+comment12.params=addr
+comment12.target=short\ inw_p(int)
+comment2.params=addr\ b
+comment2.target=void\ outb_p(int,\ byte)
+comment3.params=addr
+comment3.target=byte\ inb(int)
+comment4.params=addr
+comment4.target=byte\ inb_p(int)
+comment5.params=addr\ b
+comment5.target=void\ outl(int,\ int)
+comment6.params=addr\ b
+comment6.target=void\ outl_p(int,\ int)
+comment7.params=addr
+comment7.target=int\ inl(int)
+comment8.params=addr
+comment8.target=int\ inl_p(int)
+comment9.params=addr\ b
+comment9.target=void\ outw(int,\ short)
+numComments=13

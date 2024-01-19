@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Reg
+comment1.params=reg
+comment1.target=Reg(int)
+comment2.params=
+comment2.target=void\ free()
+comment3.params=
+comment3.target=Ref\ ref()
+comment4.params=
+comment4.target=boolean\ any()
+comment5.params=frame
+comment5.target=void\ push(jx.compiler.imcode.MethodStackFrame)
+comment6.params=disp
+comment6.target=Ref\ rdisp(int)
+comment7.params=entry
+comment7.target=Ref\ rdisp(jx.compiler.symbols.SymbolTableEntryBase)
+comment8.params=disp\ index\ size
+comment8.target=Ref\ rdisp(int,\ Reg,\ int)
+comment9.params=
+comment9.target=Reg\ getClone()
+numComments=10

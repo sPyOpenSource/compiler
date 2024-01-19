@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=NewParser
+comment1.params=filename
+comment1.target=NewParser(java.lang.String)
+comment2.params=
+comment2.target=java.lang.String[][]\ getComponents()
+comment3.params=
+comment3.target=java.lang.String\ readLine()
+comment4.params=in
+comment4.target=java.lang.String\ readLine(java.io.InputStream)
+comment5.params=stringToParse\ separator
+comment5.target=java.lang.String[]\ splitByChar(java.lang.String,\ char)
+numComments=6
