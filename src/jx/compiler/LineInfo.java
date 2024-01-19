@@ -1,3 +1,4 @@
+
 package jx.compiler;
 
 public class LineInfo {

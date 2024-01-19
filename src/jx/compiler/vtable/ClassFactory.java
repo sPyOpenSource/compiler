@@ -1,3 +1,4 @@
+
 package jx.compiler.vtable;
 /**
  * Must be implemneted by the user of the service
