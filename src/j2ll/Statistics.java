@@ -1,3 +1,4 @@
+
 package j2ll;
 
 import java.util.HashMap;
@@ -22,4 +23,5 @@ public final class Statistics {
     public LocalVarTable get(String name) {
         return this.vars.get(name);
     }
+    
 }

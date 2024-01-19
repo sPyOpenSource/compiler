@@ -18,7 +18,6 @@ public class MyCompiler {
     /**
      * compiles a java source file with the given <code>fileName</code>
      */
-
     static public void compile(String srcPath, String outputPath) {
         List<File> files = new ArrayList<>();
         find(srcPath, null, files, JAVA_EXT);
@@ -59,6 +58,8 @@ public class MyCompiler {
 
     /**
      *
+     * @param srcList
+     * @param outputPath
      */
     static public void compile(List<File> srcList, String outputPath) {
 // simp compiler

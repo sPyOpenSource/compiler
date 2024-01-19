@@ -1,6 +1,5 @@
-package j2ll;
 
-import org.objectweb.asm.Opcodes;
+package j2ll;
 
 import java.util.*;
 
@@ -8,7 +7,6 @@ import java.util.*;
  * Block of Local Vars (for 1 method)
  */
 public final class LocalVarTable {
-
 
     List<LocalVar> all = new ArrayList<>(); // a slot maybe 2 or more var in deference bytecode range
 
@@ -29,7 +27,7 @@ public final class LocalVarTable {
     public LocalVar get(int slot,String lab) {
 
         List<LocalVar> list=getBySlot( slot);
-        Collections.sort(list, new Comparator<LocalVar>() {
+        Collections.sort(list, new Comparator<>() {
             @Override
             public int compare(LocalVar o1, LocalVar o2) {
                 if(o1.endAt==o2.startAt){
@@ -39,8 +37,8 @@ public final class LocalVarTable {
             }
         });
 
-        int labIndex=labelsForUse.indexOf(lab);
-        if(labIndex<0){
+        int labIndex = labelsForUse.indexOf(lab);
+        if(labIndex < 0){
             throw new RuntimeException("can't found label: "+lab);
         }
         for(LocalVar lv:list){
@@ -78,6 +76,5 @@ public final class LocalVarTable {
             }
         }
     }
-
 
 }

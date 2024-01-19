@@ -1,3 +1,4 @@
+
 package j2ll;
 
 /**
@@ -49,14 +50,13 @@ public class StackValue {
         this.IR = IR;
     }
 
+    @Override
     public String toString() {
         if (this.mode == MODE_REG || this.mode == MODE_OBJREF) return "%stack" + value;
-        if (value instanceof Float) {
-            Float f = (Float) value;
+        if (value instanceof Float f) {
             return "0x" + Integer.toHexString(Float.floatToRawIntBits(f)) + "00000000";
         }
-        if (value instanceof Double) {
-            Double f = (Double) value;
+        if (value instanceof Double f) {
             return "0x" + Long.toHexString(Double.doubleToRawLongBits(f));
         }
         return value.toString(); // imm ??
