@@ -20,8 +20,8 @@ import jx.compspec.StartBuilder;
  * @author spy
  */
 public class Compiler extends javax.swing.JFrame {
-    File project;
-    Thread reader;
+    private File project;
+    private final Thread reader;
     
     /**
      * Creates new form NewApplication
