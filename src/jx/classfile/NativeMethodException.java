@@ -1,3 +1,4 @@
+
 package jx.classfile; 
 
 public class NativeMethodException extends RuntimeException {
