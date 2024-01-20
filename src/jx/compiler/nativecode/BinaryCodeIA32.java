@@ -58,11 +58,11 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-	The methods in the frontend expect the compiled code
-	stored inside of a object of class nativecode.BinaryCode. 
-	Convert a object of preproc.BinaryCodePreproc into a object of 
-	nativecode.BinaryCode.
-	Note: Exceptionhandlers are not copied. 
+     * The methods in the frontend expect the compiled code
+     * stored inside of a object of class nativecode.BinaryCode. 
+     * Convert a object of preproc.BinaryCodePreproc into a object of 
+     * nativecode.BinaryCode.
+     * Note: Exceptionhandlers are not copied. 
      * @return 
      */
     public BinaryCode getOldBinaryCode() {
@@ -88,9 +88,9 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-	Realloc memory in the byte code array. 
-	After calling this method, there are at least 
-	'requiredSpace' free bytes in the array. 
+     * Realloc memory in the byte code array. 
+     * After calling this method, there are at least 
+     * 'requiredSpace' free bytes in the array. 
      * @param requiredSpace
      */ 
     public void realloc(int requiredSpace) {
@@ -109,6 +109,7 @@ public final class BinaryCodeIA32 {
     }
     
     // ***** Code Generation ***** 
+    
     /** Insert a single byte
     */ 
     void insertByte(int value) {
@@ -131,7 +132,6 @@ public final class BinaryCodeIA32 {
     /**
        Insert ModRM and SIB byte 
     */
-
     private void insertModRM(int reg, Opr rm) {
 	reg = reg & 0x07;
 	rm.value  = rm.value & 0x07;
@@ -180,9 +180,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Insert call near indirect (reg/mem) (2 clks)
+     * Insert call near indirect (reg/mem) (2 clks)
      * @param opr
-    */
+     */
     public void call(Opr opr) {
 	realloc();
 	insertByte(0xff);
@@ -190,9 +190,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Insert call near (Symbol) (1 clks)
+     * Insert call near (Symbol) (1 clks)
      * @param entry
-    */
+     */
     public void call(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0xe8); 
@@ -257,9 +257,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       decrement byte value by 1 (1/3 clks)
+     * decrement byte value by 1 (1/3 clks)
      * @param opr
-    */
+     */
     public void decb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
@@ -267,9 +267,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       decrement long value by 1 (1/3 clks)
+     * decrement long value by 1 (1/3 clks)
      * @param ref
-    */
+     */
     public void decl(Ref ref) {
 	realloc();
 	insertByte(0xff);
@@ -277,18 +277,18 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-       decrement register by 1 (1 clks)
+     * decrement register by 1 (1 clks)
      * @param reg
-    */
+     */
     public void decl(Reg reg) {
 	realloc();
 	insertByte(0x48 + reg.value);
     }
 
     /**
-       Insert a pushl(reg)
+     * Insert a pushl(reg)
      * @param reg
-    */
+     */
     public void pushl(Reg reg) {
 	realloc();
 	insertByte(0x50 + reg.value);
@@ -328,9 +328,9 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-       Insert a popl(reg)
+     * Insert a popl(reg)
      * @param reg
-    */
+     */
     public void popl(Reg reg) {
 	realloc();
 	insertByte(0x58+reg.value);
@@ -367,10 +367,10 @@ public final class BinaryCodeIA32 {
   }
 
 
-  /** 
-      spinlocks
+    /** 
+     * spinlocks
      * @param lock
-  */
+     */
   public void spin_lock(Ref lock) {
     realloc();
     lock();decb(lock);
@@ -387,10 +387,10 @@ public final class BinaryCodeIA32 {
   }
 
     /**
-       Integer Subtraction
+     * Integer Subtraction
      * @param src
      * @param des
-    */
+     */
 
     public void subl(Opr src, Reg des) {
 	realloc();
@@ -439,10 +439,10 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Integer Subtraction with Borrow
+     * Integer Subtraction with Borrow
      * @param src
      * @param des
-    */
+     */
     public void sbbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x1B);
@@ -707,21 +707,21 @@ public final class BinaryCodeIA32 {
 	}
     }
     
- public void addsd(Opr src, Reg des){
-     
- }
- 
- public void addsd(Reg src, Ref des){
-     
- }
-  
- public void addsd(){
-     
- }
-   
- public void addsd(SymbolTableEntryBase entry, Opr des){
-     
- }
+    public void addsd(Opr src, Reg des){
+
+    }
+
+    public void addsd(Reg src, Ref des){
+
+    }
+
+    public void addsd(){
+
+    }
+
+    public void addsd(SymbolTableEntryBase entry, Opr des){
+
+    }
     
     /**
        And (1/3 clks)
@@ -1107,7 +1107,7 @@ public final class BinaryCodeIA32 {
 	makeRelative(entry);
     }
 
-   /**
+    /**
        Jump short/near if sign
     */
     public void js(int rel) {
@@ -1606,14 +1606,14 @@ public final class BinaryCodeIA32 {
     }
     
     /** 
-	Apply all resolveable symbol table entries.
-	(e.g. insert jump offsets ....)
-	After calling this method, the vector 'symbolTable' 
-	contains all symbol table entries that are not resolveable.
-	If you want to install the compiled code after calling this 
-	method, this vector should be empty. 
+     * Apply all resolveable symbol table entries.
+     * (e.g. insert jump offsets ....)
+     * After calling this method, the vector 'symbolTable' 
+     * contains all symbol table entries that are not resolveable.
+     * If you want to install the compiled code after calling this 
+     * method, this vector should be empty. 
      * @param codeBase
-    */ 
+     */ 
     public void resolve(int codeBase) {
 	Enumeration enume = Collections.enumeration(symbolTable); 
 	ArrayList unresolvedEntries = new ArrayList(); 
@@ -1796,7 +1796,7 @@ public final class BinaryCodeIA32 {
     }
     
     public void endBC() {
-	instructionTable.add(new int[] { bcIndex, startIP, ip});	
+	instructionTable.add(new int[] { bcIndex, startIP, ip });	
     }
     
     public ArrayList getInstructionTable() {
