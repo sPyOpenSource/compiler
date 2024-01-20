@@ -114,7 +114,7 @@ public class MV extends MethodVisitor {
 
         // 1) local vars & args
         int cntSlot = 0, cntArgs = 0;
-        for (; ; ) {
+        while (true) {
             List<LocalVar> lvs = vars.getBySlot(cntSlot);
             if (lvs.isEmpty()) {
                 break;

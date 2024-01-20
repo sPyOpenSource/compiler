@@ -278,7 +278,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    mapping.offsets = new int[numFields];
 	    mapping.sizes = new int[numFields];
 	    int offset = 0;
-	    int j=-1;
+	    int j =- 1;
             for (Field field : fields) {
                 int mod = field.getModifiers();
                 if (! Modifier.isStatic(mod)) {
@@ -573,11 +573,11 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
         @Override
 	protected  void coreCopy(int from, int to, int length) {
-	    super.coreCopy(from+start, to+start, length);
+	    super.coreCopy(from + start, to + start, length);
 	}
         @Override
 	protected void coreFill16(short what, int offset, int length) {
-	    super.coreFill16(what, start+offset, length);
+	    super.coreFill16(what, start + offset, length);
 	}
         @Override
 	protected void coreSet8(int where, byte what) {
@@ -585,18 +585,18 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	}
         @Override
 	protected void coreSet16(int where, short what) {
-	    super.coreSet16(start+where, what);
+	    super.coreSet16(start + where, what);
 	}
         @Override
 	protected void coreSet32(int where, int what) {
-	    super.coreSet32(start+where, what);
+	    super.coreSet32(start + where, what);
 	}
         @Override
 	protected byte coreGet8(int where) { return super.coreGet8(where); }
         @Override
-	protected short coreGet16(int where) { return super.coreGet16(start+where); }
+	protected short coreGet16(int where) { return super.coreGet16(start + where); }
         @Override
-	protected int coreGet32(int where) { return super.coreGet32(start+where);	}
+	protected int coreGet32(int where) { return super.coreGet32(start + where);	}
     }
 
     @Override

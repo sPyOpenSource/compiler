@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=Modifier
+comment1.params=accessFlags
+comment1.target=boolean\ isPublic(int)
+comment10.params=accessFlags
+comment10.target=boolean\ isInterface(int)
+comment11.params=accessFlags
+comment11.target=boolean\ isAbstract(int)
+comment2.params=accessFlags
+comment2.target=boolean\ isPrivate(int)
+comment3.params=accessFlags
+comment3.target=boolean\ isProtected(int)
+comment4.params=accessFlags
+comment4.target=boolean\ isStatic(int)
+comment5.params=accessFlags
+comment5.target=boolean\ isFinal(int)
+comment6.params=accessFlags
+comment6.target=boolean\ isSynchronized(int)
+comment7.params=accessFlags
+comment7.target=boolean\ isVolatile(int)
+comment8.params=accessFlags
+comment8.target=boolean\ isTransient(int)
+comment9.params=accessFlags
+comment9.target=boolean\ isNative(int)
+numComments=12

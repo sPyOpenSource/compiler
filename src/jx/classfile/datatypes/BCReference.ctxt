@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=BCReference
+comment1.params=value
+comment1.target=BCReference(int)
+comment2.params=
+comment2.target=int\ value()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=int\ type()
+numComments=5
