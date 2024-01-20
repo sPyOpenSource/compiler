@@ -65,7 +65,7 @@ public class IMNode {
     /*********************** init *************************/
 
     public IMNode() {
-	tag = 0;
+	tag        = 0;
 	bytecode   = Opcodes.NOP;
 	bcPosition = -1;
 	datatype   = -1;
