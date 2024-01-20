@@ -56,12 +56,10 @@ public class IRBuilder {
 
 
     public String floatToString(Object value) {
-        if (value instanceof Float) {
-            Float f = (Float) value;
+        if (value instanceof Float f) {
             return "0x" + Integer.toHexString(Float.floatToRawIntBits(f)) + "00000000";
         }
-        if (value instanceof Double) {
-            Double f = (Double) value;
+        if (value instanceof Double f) {
             return "0x" + Long.toHexString(Double.doubleToRawLongBits(f));
         }
         return value.toString(); // imm ??
@@ -217,7 +215,6 @@ public class IRBuilder {
         tmp.append(op2);
         add(tmp.toString());
     }
-
 
     public void newString(CV cv, RuntimeStack stack, String src) {
         try {

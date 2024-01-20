@@ -1,3 +1,4 @@
+
 package jx.compiler.imcode;
 
 import jx.compiler.*;
@@ -129,4 +130,5 @@ public interface ExecEnvironmentInterface {
     
     public void codeStackMap(IMNode node,int InstructionPointer) throws CompileException;
     public UnresolvedJump createExceptionCall(int exception,int bcPosition);
+    
 }
