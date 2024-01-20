@@ -1,3 +1,4 @@
+
 package jx.compiler.plugins;
 
 import jx.compiler.*;
@@ -18,4 +19,5 @@ public interface CompilerPlugin {
 			int              datatype,
 			Reg              result,
 			int              bcPosition) throws CompileException;
+    
 }
