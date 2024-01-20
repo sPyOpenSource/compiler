@@ -21,6 +21,7 @@ import jx.compiler.vtable.ClassInfo;
 import jx.compiler.vtable.Method;
 import jx.compiler.vtable.MethodTable;
 import jx.compiler.imcode.ExecEnvironmentInterface;
+
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
 import jx.compiler.execenv.BCMethodWithCode;
@@ -37,6 +38,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.io.ByteArrayOutputStream;
+import java.net.JarURLConnection;
+import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -70,8 +73,8 @@ public class StaticCompiler implements ClassFinder {
     public StaticCompiler(PrintStream gasFile, 
 			  ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
-			  JarFile domainZip, 
-			  JarFile[] libZip,
+			  URL domainZip, 
+			  URL[] libZip,
 			  ExtendedDataInputStream tableIn[],
 			  CompilerOptions opts,
 			  IOSystem ioSystem
@@ -92,8 +95,8 @@ public class StaticCompiler implements ClassFinder {
 	this.tableIn = tableIn;
 	this.ioSystem = ioSystem;
 
-	ArrayList libdata = new ArrayList();
-	ArrayList domdata = new ArrayList();
+	ArrayList<ClassSource> libdata = new ArrayList();
+	ArrayList<ClassSource> domdata = new ArrayList();
 	libClassStore = new ClassStore();
 	domClassStore = new ClassStore();
 
@@ -135,7 +138,7 @@ public class StaticCompiler implements ClassFinder {
 
 	// split zipfiles into classfiles
 	for(int i = -1; i < libZip.length; i++) {
-	    JarFile in;
+	    URL in;
             
 	    if (i == -1) {
                 in = domainZip;
@@ -143,7 +146,7 @@ public class StaticCompiler implements ClassFinder {
                 in = libZip[i];
             }
             
-            String base = in.getName().split("dist")[0];
+            String base = in.getPath().split("dist")[0];
             String[] sds;
             byte[] barr;
 
@@ -156,7 +159,8 @@ public class StaticCompiler implements ClassFinder {
             sds = MetaInfo.split(sd);
             
             try {
-                JarFile jar = in;
+                JarURLConnection con = (JarURLConnection)in.openConnection();
+                JarFile jar = con.getJarFile();
                 
                 Enumeration<JarEntry> entries = jar.entries();
                 main:
@@ -184,10 +188,10 @@ public class StaticCompiler implements ClassFinder {
                                     Memory m = memMgr.alloc(buffer.length);
                                     m.copyFromByteArray(buffer, 0, 0, buffer.length);
                                     if(i == -1){
-                                        domdata.add(m);
+                                        domdata.add(new MemoryClassSource(m));
                                         meta = x;
                                     } else {
-                                        libdata.add(m);
+                                        libdata.add(new MemoryClassSource(m));
                                     }
                                     continue main;
                                 }
@@ -221,49 +225,44 @@ public class StaticCompiler implements ClassFinder {
 
 	this.codeFile = new CodeFile(options, meta);
 
-	// parse classfiles into classes
-	try {
-	    if (opt_v) System.out.println("Adding classes from existing lib");
-	    for(int i = 0; i < libdata.size(); i++) {
-		ClassSource classData = new MemoryClassSource((Memory)libdata.get(i)); 
-		String className = classData.getClassName();
-
-		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
-
-		if (opt_v) System.out.println("Add class " + className);
-
-		BCClass oldClass = findClass(className);
-		if (oldClass != null)
-		    Debug.throwError("Duplicate class " + className);
-		BCClass clazz = new BCClass(classData, className);
-		libClassStore.addClass(className, clazz);
-	    }
-	    if (opt_v) System.out.println("Adding classes from lib");
-
-	    for(int i = 0; i < domdata.size(); i++) {
-		ClassSource classData = new MemoryClassSource((Memory)domdata.get(i)); 
-		String className = classData.getClassName();
-
-		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
-
-		if (opt_v) System.out.println("Add class " + className);
-
-		BCClass oldClass = findClass(className);
-		if (oldClass != null) {
-		    System.out.println("Duplicate class " + className);
-		    Debug.throwError("Duplicate class " + className);
-		}
-		BCClass clazz = new BCClass(classData, className);
-		domClassStore.addClass(className, clazz);
-	    }
-	} catch(IOException e) {
-            Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
-	    Debug.throwError("Exception while reading classes.");
-	}
+        // parse classfiles into classes
+        if (opt_v) {
+            System.out.println("Adding classes from existing lib");
+        }
+        for(int i = 0; i < libdata.size(); i++) {
+            ClassSource classData = libdata.get(i);
+            String className = classData.getClassName();
+            
+            if (addPredefinedObject && className.equals("java/lang/Object")) continue;
+            
+            if (opt_v) System.out.println("Add class " + className);
+            
+            BCClass oldClass = findClass(className);
+            if (oldClass != null)
+                Debug.throwError("Duplicate class " + className);
+            BCClass clazz = new BCClass(classData, className);
+            libClassStore.addClass(className, clazz);
+        }
+        if (opt_v) System.out.println("Adding classes from lib");
+        for(int i = 0; i < domdata.size(); i++) {
+            ClassSource classData = domdata.get(i);
+            String className = classData.getClassName();
+            
+            if (addPredefinedObject && className.equals("java/lang/Object")) continue;
+            
+            if (opt_v) System.out.println("Add class " + className);
+            
+            BCClass oldClass = findClass(className);
+            if (oldClass != null) {
+                System.out.println("Duplicate class " + className);
+                Debug.throwError("Duplicate class " + className);
+            }
+            BCClass clazz = new BCClass(classData, className);
+            domClassStore.addClass(className, clazz);
+        }
 
 	compileStatic();
     }
-
 
     public static byte[] getBytesFromInputStream(InputStream is) throws IOException {
         ByteArrayOutputStream os = new ByteArrayOutputStream(); 
@@ -273,7 +272,6 @@ public class StaticCompiler implements ClassFinder {
         }
         return os.toByteArray();
     }
-
 
     private void addMethod(ClassInfo aClass, ArrayList mtable, String methodName, String signature) {
 	Method method;
