@@ -1,24 +1,19 @@
-package jx.compiler.nativecode; 
+package compiler; 
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
-
 import java.io.PrintStream;
 import java.util.Collections;
 
+import jx.compiler.nativecode.NCExceptionHandler;
+import jx.compiler.nativecode.Opr;
+import jx.compiler.nativecode.Ref;
+import jx.compiler.nativecode.Reg;
+
 import jx.compiler.symbols.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
 
-
-/** 
-    Parallel to this class there is a class 
-    nativeCode.Binarycode. 
-    In this version of the compiler, the second class 
-    is used as a mere container, while this class 
-    is used to assemble the binary code. 
-*/ 
-
-public final class BinaryCodeDynamicARM {
+public final class BinaryByteCodeDynamic {
 
     private final boolean doAlignJumpTargets = false;
 
@@ -53,7 +48,7 @@ public final class BinaryCodeDynamicARM {
     */ 
     private final ArrayList exceptionHandlers; 
 
-    public BinaryCodeDynamicARM() {
+    public BinaryByteCodeDynamic() {
         code = new byte[INITSIZE]; 
         ip = 0;
         symbolTable = new ArrayList(); 
@@ -212,43 +207,6 @@ public final class BinaryCodeDynamicARM {
     }
 
     /**
-       clear interrupt flag (7 clks)
-    */
-    public void cli() {
-        realloc();
-        insertByte(0xfa);
-    }
-
-    /**
-       decrement byte value by 1 (1/3 clks)
-     * @param opr
-     */
-    public void decb(Opr opr) {
-    realloc();
-    insertByte(0xfe);
-    insertModRM(1, opr);
-    }
-    
-    /**
-       decrement long value by 1 (1/3 clks)
-     * @param ref
-     */
-    public void decl(Ref ref) {
-    realloc();
-    insertByte(0xff);
-    insertModRM(1, ref);
-    }
-
-    /** 
-       decrement register by 1 (1 clks)
-     * @param reg
-     */
-    public void decl(Reg reg) {
-    realloc();
-    insertByte(0x48 + reg.value);
-    }
-
-    /**
        Insert a pushl(reg)
      * @param reg
     */
@@ -274,21 +232,6 @@ public final class BinaryCodeDynamicARM {
         insertByte(0x68);
         insertConst4(entry);
     }
-    
-    public void pushfl() { 
-        realloc();
-        insertByte(0x9c);
-    }
-
-    /**
-       push all general registers
-       (eax,ecx,edx,ebx,esp,ebp,esi,edi) 
-       (5 clks)
-    */
-    public void pushal() { /* 5 clks */
-    realloc();
-        insertByte(0x60);
-    }
 
     /** 
        Insert a popl(reg)
@@ -302,44 +245,29 @@ public final class BinaryCodeDynamicARM {
     /**
        pop stack into eflags register (4 clks)
     */
-    public void popfl() {
+    public void pop2() {
     realloc();
         insertByte(0x9d);
     }
-
-    /**
-       pop all general register
-    */
-    public void popal() {
-    realloc();
-        insertByte(0x61);
-    }
-
-    /** 
-      lock prefix
-     */
-  public void lock() {
-    insertByte(0xf0);
-  }
-
+    
     /**
        Integer Subtraction
      * @param src
      * @param des
      */
-    public void sub(Opr src, Reg des) {
+    public void isub(Opr src, Reg des) {
         realloc();
         insertByte(0x2b);
         insertModRM(des, src);
     }
 
-    public void sub(Reg src, Ref des) {
+    public void isub(Reg src, Ref des) {
         realloc();
         insertByte(0x29);
         insertModRM(src, des);
     }
 
-    public void sub(int immd, Opr des) {
+    public void isub(int immd, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x2D);
@@ -355,7 +283,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void sub(SymbolTableEntryBase entry, Opr des) {
+    public void isub(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x2D);
@@ -372,79 +300,15 @@ public final class BinaryCodeDynamicARM {
         insertConst4(entry);
     }
     }
-
-    /**
-       Integer Subtraction with Borrow
-     * @param src
-     * @param des
-     */
-    public void sbbl(Opr src, Reg des) {
-    realloc();
-    insertByte(0x1B);
-    insertModRM(des, src);
-    }
-
-    public void sbbl(Reg src, Ref des) {
-    realloc();
-    insertByte(0x19);
-    insertModRM(src, des);
-    }
     
     /**
        Integer Unsigned Multiplication of eax  (10 clk)
      * @param src
      */
-    public void mul(Opr src) {
+    public void imul(Opr src) {
     realloc();
     insertByte(0xF7);
     insertModRM(4, src);
-    }
-
-    /**
-       Integer Signed Multiplication (10 clk)
-     * @param src
-     * @param des
-     */
-    public void smull(Opr src, Reg des) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0xaf);
-    insertModRM(des, src);
-    }
-
-    /* imull(Reg src, Ref des) no x86-code */
-
-    public void smull(int immd, Reg des) {
-    realloc();
-    if (is8BitValue(immd)) {
-        insertByte(0x6b);
-        insertModRM(des, des);
-        insertByte(immd);
-    } else {
-        insertByte(0x69);
-        insertModRM(des, des);
-        insertConst4(immd);
-    }
-    }
-
-    public void smull(int immd, Opr src, Reg des) {
-    realloc();
-    if (is8BitValue(immd)) {
-        insertByte(0x6b);
-        insertModRM(des, src);
-        insertByte(immd);
-    } else {
-        insertByte(0x69);
-        insertModRM(des, src);
-        insertConst4(immd);
-    }
-    }
-
-    public void smull(SymbolTableEntryBase entry, Reg des) {
-        realloc();
-        insertByte(0x69);
-        insertModRM(des, des);
-        insertConst4(entry);
     }
 
     /** 
@@ -467,7 +331,7 @@ public final class BinaryCodeDynamicARM {
      * @param immd
      * @param des
      */
-    public void lsl(int immd, Opr des) {
+    public void ishl(int immd, Opr des) {
     realloc();
     if (immd == 1) {
         insertByte(0xd1);
@@ -483,7 +347,7 @@ public final class BinaryCodeDynamicARM {
        SHL/SAL Shift left by %cl (4 clks)
      * @param des
      */
-    public void lsl(Opr des) {
+    public void ishl(Opr des) {
     realloc();
     insertByte(0xd3);
     insertModRM(4, des);
@@ -495,7 +359,7 @@ public final class BinaryCodeDynamicARM {
      * @param des
      */
 
-    public void lsr(int immd, Opr des) {
+    public void ishr(int immd, Opr des) {
     realloc();
     if (immd == 1) {
         insertByte(0xd1);
@@ -507,7 +371,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void lsr(SymbolTableEntryBase entry, Opr des) {
+    public void ishr(SymbolTableEntryBase entry, Opr des) {
     realloc();
     insertByte(0xc1);
     insertModRM(5, des);
@@ -515,51 +379,11 @@ public final class BinaryCodeDynamicARM {
     }
 
     /**
-       SHL/SAL Shift left by %cl (4 clks)
-     * @param des
-     */
-
-    public void shrl(Opr des) {
-    realloc();
-    insertByte(0xd3);
-    insertModRM(5, des);
-    }
-
-    /**
-       SAR Shift right (signed) (1/3 clks)
-     * @param immd
-     * @param des
-     */
-
-    public void sarl(int immd, Opr des) {
-    realloc();
-    if (immd == 1) {
-        insertByte(0xd1);
-        insertModRM(7, des);
-    } else {
-        insertByte(0xc1);
-        insertModRM(7, des);
-        insertByte(immd);
-    }
-    }
-
-    /**
-       SAR Shift right by %cl (signed) (4 clks)
-     * @param des
-     */
-
-    public void sarl(Opr des) {
-    realloc();
-    insertByte(0xd3);
-    insertModRM(7, des);
-    }
-
-    /**
        DIV Signed Divide
      * @param src
      */
 
-    public void dvf(Opr src) {
+    public void idiv(Opr src) {
     realloc();
     insertByte(0xf7);
     insertModRM(7, src);
@@ -571,19 +395,19 @@ public final class BinaryCodeDynamicARM {
      * @param des
      */
 
-    public void add(Opr src, Reg des) {
+    public void iadd(Opr src, Reg des) {
     realloc();
     insertByte(0x03); 
     insertModRM(des, src);
     }
 
-    public void add(Reg src, Ref des) {
+    public void iadd(Reg src, Ref des) {
     realloc();
     insertByte(0x01);
     insertModRM(src, des);
     }
     
-    public void add(int immd, Opr des) {
+    public void iadd(int immd, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (immd == 1)) {
         insertByte(0x40 + des.value);
@@ -601,7 +425,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void add(SymbolTableEntryBase entry, Opr des) {
+    public void iadd(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x05);
@@ -617,19 +441,19 @@ public final class BinaryCodeDynamicARM {
        And (1/3 clks)
      */
 
-    public void and(Opr src, Reg des) {
+    public void iand(Opr src, Reg des) {
     realloc();
     insertByte(0x23); 
     insertModRM(des, src);
     }
 
-    public void and(Reg src, Ref des) {
+    public void iand(Reg src, Ref des) {
     realloc();
     insertByte(0x21);
     insertModRM(src, des);
     }
     
-    public void and(int immd, Opr des) {
+    public void iand(int immd, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x25);
@@ -641,7 +465,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void and(SymbolTableEntryBase entry, Opr des) {
+    public void iand(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x25);
@@ -657,19 +481,19 @@ public final class BinaryCodeDynamicARM {
        Or (1/3 clks)
      */
 
-    public void orr(Opr src, Reg des) {
+    public void ior(Opr src, Reg des) {
         realloc();
         insertByte(0x0b); 
         insertModRM(des, src);
     }
 
-    public void orr(Reg src, Ref des) {
+    public void ior(Reg src, Ref des) {
         realloc();
         insertByte(0x09);
         insertModRM(src, des);
     }
     
-    public void orr(int immd, Opr des) {
+    public void ior(int immd, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x0d);
@@ -681,7 +505,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void orr(SymbolTableEntryBase entry, Opr des) {
+    public void ior(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0x0d);
@@ -696,19 +520,19 @@ public final class BinaryCodeDynamicARM {
        Or (1/3 clks)
      */
 
-    public void xorl(Opr src, Reg des) {
+    public void ixor(Opr src, Reg des) {
     realloc();
     insertByte(0x33);
     insertModRM(des, src);
     }
 
-    public void xorl(Reg src, Ref des) {
+    public void ixor(Reg src, Ref des) {
     realloc();
     insertByte(0x31);
     insertModRM(src, des);
     }
     
-    public void xorl(int immd, Opr des) {
+    public void ixor(int immd, Opr des) {
     realloc();
     if ((des.tag==Opr.REG)&&(des.value==0)) {
         insertByte(0x35);
@@ -720,7 +544,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void xorl(SymbolTableEntryBase entry, Opr des) {
+    public void ixor(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag==Opr.REG)&&(des.value==0)) {
         insertByte(0x35);
@@ -746,7 +570,7 @@ public final class BinaryCodeDynamicARM {
        Neg (1/3 clks)
     */
 
-    public void neg(Opr opr) {
+    public void ineg(Opr opr) {
         realloc();
         insertByte(0xf7);
         insertModRM(3,opr);
@@ -784,7 +608,7 @@ public final class BinaryCodeDynamicARM {
         insertModRM(src,des);
     }
 
-    public void cmp(int immd, Opr des) {
+    public void lcmp(int immd, Opr des) {
     realloc();
     if ((des.tag==Opr.REG) && (des.value==0)) {
         insertByte(0x3D);
@@ -800,7 +624,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
     
-    public void cmp(SymbolTableEntryBase entry, Opr des) {
+    public void lcmp(SymbolTableEntryBase entry, Opr des) {
     realloc();
     if ((des.tag==Opr.REG) && (des.value==0)) {
         insertByte(0x3D);
@@ -810,23 +634,6 @@ public final class BinaryCodeDynamicARM {
         insertModRM(7,des);
         insertConst4(entry);
     }
-    }
-
-    /**
-     * @param des
-     */
-    public void sete(Opr des) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x94);
-    insertModRM(0,des);
-    }
-
-    public void setne(Opr des) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x95);
-    insertModRM(0,des);
     }
 
     public void intr(int nr) {
@@ -840,7 +647,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if equal
     */
 
-    public void je(int rel) {
+    public void ifeq(int rel) {
     realloc();
     if (is8BitValue(rel)) {
         insertByte(0x74);
@@ -852,7 +659,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void je(SymbolTableEntryBase entry) {
+    public void ifeq(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x84);
@@ -864,7 +671,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if not equal
      */
 
-    public void jne(int rel) {
+    public void ifne(int rel) {
     realloc();
     if (is8BitValue(rel)) {
         insertByte(0x75);
@@ -876,7 +683,7 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void jne(SymbolTableEntryBase entry) {
+    public void ifne(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x85);
@@ -896,7 +703,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if less
      */
 
-    public void jl(SymbolTableEntryBase entry) {
+    public void iflt(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x8c);
@@ -908,7 +715,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if greater or equal
      */
 
-    public void jge(SymbolTableEntryBase entry) {
+    public void ifge(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x8d);
@@ -920,7 +727,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if greater
      */
     
-    public void jg(SymbolTableEntryBase entry) {
+    public void ifgt(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x8f);
@@ -932,34 +739,10 @@ public final class BinaryCodeDynamicARM {
        Jump short/near if less or equal
      */
 
-    public void jle(SymbolTableEntryBase entry) {
+    public void ifle(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0x0f);
     insertByte(0x8e);
-    insertConst4(entry);
-    makeRelative(entry);
-    }
-
-    /**
-       Jump short/near if unsigned greater
-     */
-
-    public void ja(SymbolTableEntryBase entry) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x87);
-    insertConst4(entry);
-    makeRelative(entry);
-    }
-
-    /**
-       Jump short/near if unsigned greater or equal
-     */
-
-    public void jae(SymbolTableEntryBase entry) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x83);
     insertConst4(entry);
     makeRelative(entry);
     }
@@ -984,7 +767,7 @@ public final class BinaryCodeDynamicARM {
        Jump short/near 
      */
 
-    public void b(int rel) {
+    public void goto_(int rel) {
     realloc();
     if (is8BitValue(rel)) {
         /* short */
@@ -997,20 +780,20 @@ public final class BinaryCodeDynamicARM {
     }
     }
 
-    public void b(Opr des) {
+    public void goto_(Opr des) {
     realloc();
     insertByte(0xff);
     insertModRM(4,des);
     }
 
-    public void b(SymbolTableEntryBase entry) {
+    public void goto_(SymbolTableEntryBase entry) {
     realloc();
     insertByte(0xE9);
     insertConst4(entry);
     makeRelative(entry);
     }
 
-    public void b(Reg index,SymbolTableEntryBase[] tables) {
+    public void goto_(Reg index,SymbolTableEntryBase[] tables) {
     UnresolvedJump tableStart = new UnresolvedJump();
     realloc(50 + tables.length * 4);
 
@@ -1066,16 +849,6 @@ public final class BinaryCodeDynamicARM {
     }
 
     /**
-       Move with Zero-Extend (short) (3 clks)
-     */
-    public void movzwl(Opr src, Reg des) {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0xb7);
-    insertModRM(des, src);
-    }
-
-    /**
        No Operation (1 clks)
      */
 
@@ -1084,52 +857,18 @@ public final class BinaryCodeDynamicARM {
         insertByte(0x90);
     }
 
-    /**
-       write to model specific register (30-45 clks)
-
-       ecx  | register
-       =============================
-       0x00 | machine check address
-       0x01 | machine check type
-       =============================
-       0x10 | time stamp counter
-       0x11 | control and event select
-       0x12 | counter 0
-       0x13 | counter 1
-
-     */
-    
-    public void wrmsr() {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x30);
-    }
-
-    /**
-       read from model specific register (20-24 clks)
-
-       see wrmsr() for register selection
-     */
-
-    public void rdmsr() {
-    realloc();
-    insertByte(0x0f);
-    insertByte(0x32);
-    }
-
-
 
     /**
        test - logical compare (1/2 clks)
      */
 
-    public void test(Opr src, Reg des) {
+    public void if_icmpeq(Opr src, Reg des) {
     realloc();
     insertByte(0x85); 
     insertModRM(des, src);
     }
 
-    public void test(int immd, Opr des) {
+    public void if_icmpeq(int immd, Opr des) {
     realloc();
     if ((des.tag == Opr.REG) && (des.value == 0)) {
         insertByte(0xA9);
@@ -1329,7 +1068,7 @@ public final class BinaryCodeDynamicARM {
     }
     
     /**
-    add a start of an exception handler.
+     * add a start of an exception handler.
      * @param handler
      */
     public void addExceptionHandler(NCExceptionHandler handler) {

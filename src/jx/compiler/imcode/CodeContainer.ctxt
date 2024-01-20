@@ -66,7 +66,7 @@ comment37.params=depth\ forceInline
 comment37.target=void\ inlineMethods(int,\ boolean)
 comment38.params=newContainer\ slots\ opr\ retval\ bcPos
 comment38.target=graph.IMNode\ transformSmallMethodForInline(CodeContainer,\ int[],\ graph.IMOperant[],\ int,\ int)
-comment38.text=\n\ \ \ \ public\ IMNode\ inlineSmallMethod()\ {\n\tIMNode\ node\ \=\ imCodeStart;\n\tif\ (node\=\=null\ ||\ node.next\=\=null)\ {\n\t\ \ \ \ throw\ new\ Error("this\ is\ not\ a\ small\ method");\n\t}\n\treturn\ (IMNode)node.next;\n\ \ \ \ }\n
+comment38.text=\n\ \ \ \ public\ IMNode\ inlineSmallMethod()\ {\n\ \ \ \ IMNode\ node\ \=\ imCodeStart;\n\ \ \ \ if\ (node\=\=null\ ||\ node.next\=\=null)\ {\n\ \ \ \ \ \ \ \ throw\ new\ Error("this\ is\ not\ a\ small\ method");\n\ \ \ \ }\n\ \ \ \ return\ (IMNode)node.next;\n\ \ \ \ }\n
 comment39.params=newContainer\ slots\ opr\ retval\ bcPos
 comment39.target=void\ transformForInline(CodeContainer,\ int[],\ graph.IMOperant[],\ int,\ int)
 comment4.params=execEnv\ method

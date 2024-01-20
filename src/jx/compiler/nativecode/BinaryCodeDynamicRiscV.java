@@ -18,7 +18,7 @@ import jx.zero.Debug;
     is used to assemble the binary code. 
 */ 
 
-public final class BinaryCodeDynamicARM {
+public final class BinaryCodeDynamicRiscV {
 
     private final boolean doAlignJumpTargets = false;
 
@@ -53,7 +53,7 @@ public final class BinaryCodeDynamicARM {
     */ 
     private final ArrayList exceptionHandlers; 
 
-    public BinaryCodeDynamicARM() {
+    public BinaryCodeDynamicRiscV() {
         code = new byte[INITSIZE]; 
         ip = 0;
         symbolTable = new ArrayList(); 
@@ -185,7 +185,7 @@ public final class BinaryCodeDynamicARM {
        Insert call near indirect (reg/mem) (2 clks)
      * @param opr
      */
-    public void call(Opr opr) {
+    public void ecall(Opr opr) {
         realloc();
         insertByte(0xff);
         insertModRM(2, opr);
@@ -195,7 +195,7 @@ public final class BinaryCodeDynamicARM {
        Insert call near (Symbol) (1 clks)
      * @param entry
      */
-    public void call(SymbolTableEntryBase entry) {
+    public void ecall(SymbolTableEntryBase entry) {
         realloc();
         insertByte(0xe8); 
         entry.initNCIndexRelative(ip, 4, ip + 4); // size is always 4 bytes 
@@ -315,13 +315,6 @@ public final class BinaryCodeDynamicARM {
         insertByte(0x61);
     }
 
-    /** 
-      lock prefix
-     */
-  public void lock() {
-    insertByte(0xf0);
-  }
-
     /**
        Integer Subtraction
      * @param src
@@ -378,13 +371,13 @@ public final class BinaryCodeDynamicARM {
      * @param src
      * @param des
      */
-    public void sbbl(Opr src, Reg des) {
+    public void subw(Opr src, Reg des) {
     realloc();
     insertByte(0x1B);
     insertModRM(des, src);
     }
 
-    public void sbbl(Reg src, Ref des) {
+    public void subw(Reg src, Ref des) {
     realloc();
     insertByte(0x19);
     insertModRM(src, des);
