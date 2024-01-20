@@ -1,3 +1,4 @@
+
 package jx.compiler; 
 
 import jx.zero.Memory;
@@ -16,8 +17,8 @@ import java.util.Set;
  */
 public class ZipClasses {
     HashMap classes = new HashMap();
+    
     public ZipClasses(Memory m, boolean allowNative) throws Exception {
-
 	// tokenize zipfile into classfiles
 	ArrayList libdata = new ArrayList();
 	ZipFile zip = new ZipFile(m);
@@ -38,9 +39,11 @@ public class ZipClasses {
 	    }
 	}
     }
+    
     public ClassSource findclass(String className) {
 	return (ClassSource)classes.get(className);
     }
+    
     public Set elements() {
 	return classes.keySet();
     }
