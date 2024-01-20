@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=LogOutputStream
+comment0.text=\n\ TextAreaOutputStream\ creates\ an\ outputstream\ that\ will\ output\ to\ the\n\ given\ textarea.\ Useful\ in\ setting\ System.out\n
+comment1.params=destination
+comment1.target=LogOutputStream(javax.swing.JTextArea)
+comment2.params=buffer\ offset\ length
+comment2.target=void\ write(byte[],\ int,\ int)
+comment3.params=b
+comment3.target=void\ write(int)
+numComments=4

@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=OpenFileFilter
+comment1.params=extension
+comment1.target=OpenFileFilter(java.lang.String)
+comment2.params=extension\ typeDescription
+comment2.target=OpenFileFilter(java.lang.String,\ java.lang.String)
+comment3.params=f
+comment3.target=boolean\ accept(java.io.File)
+comment4.params=
+comment4.target=java.lang.String\ getDescription()
+numComments=5

@@ -12,31 +12,31 @@ import jx.compiler.nativecode.*;
 
 final public class IMMonitor extends IMUnaryOperator  {
     public IMMonitor(CodeContainer container, int bc, int bcpos) {
-	super(container);
-	bytecode     = bc;
-	bcPosition   = bcpos;
-	datatype     = -1; // Array
+    super(container);
+    bytecode     = bc;
+    bcPosition   = bcpos;
+    datatype     = -1; // Array
     }
     
     public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
         operant = stack.pop();
-	stack.store(bcPosition);
-	return this;
+        stack.store(bcPosition);
+        return this;
     }
 
     public String toString() {
-	if (bytecode == Opcodes.MONITORENTER) {
-	    return operant.toString() + ".enter()";
-	}
-	return operant.toString() + ".leave()";
+    if (bytecode == Opcodes.MONITORENTER) {
+        return operant.toString() + ".enter()";
+    }
+    return operant.toString() + ".leave()";
     }
 
     // IMMonitor
     public void translate(Reg result) throws CompileException {
-	if (bytecode == Opcodes.MONITORENTER) {
-	    execEnv.codeMonitorEnter(this, operant, bcPosition);
-	} else {
-	    execEnv.codeMonitorLeave(this, operant, bcPosition);
-	}
+    if (bytecode == Opcodes.MONITORENTER) {
+        execEnv.codeMonitorEnter(this, operant, bcPosition);
+    } else {
+        execEnv.codeMonitorLeave(this, operant, bcPosition);
+    }
     }
 }

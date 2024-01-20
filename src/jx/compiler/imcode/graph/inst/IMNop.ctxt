@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IMNop
+comment1.params=container\ bcpos
+comment1.target=IMNop(jx.compiler.imcode.CodeContainer,\ int)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=iCode\ depth\ forceInline
+comment3.target=jx.compiler.imcode.graph.IMNode\ inlineCode(jx.compiler.imcode.CodeVector,\ int,\ boolean)
+comment4.params=result
+comment4.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=5

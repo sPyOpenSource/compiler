@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IMMonitor
+comment1.params=container\ bc\ bcpos
+comment1.target=IMMonitor(jx.compiler.imcode.CodeContainer,\ int,\ int)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=result
+comment4.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=5
