@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 import jx.compiler.symbols.SymbolTableEntryBase; 
@@ -21,4 +22,5 @@ public class ExceptionHandlerSTEntry extends SymbolTableEntryBase {
     public String toGASFormat() {
 	return "0x"+Integer.toHexString(getValue());
     }
+    
 }

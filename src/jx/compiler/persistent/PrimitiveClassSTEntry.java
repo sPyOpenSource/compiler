@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 import java.io.*;  
@@ -48,4 +49,5 @@ public class PrimitiveClassSTEntry extends SymbolTableEntryBase {
 	super.readEntry(in);
 	type = in.readInt();
     }
+    
 }

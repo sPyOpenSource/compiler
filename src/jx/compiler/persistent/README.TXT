@@ -1,1 +1,1 @@
-Output file
+Output binary file
