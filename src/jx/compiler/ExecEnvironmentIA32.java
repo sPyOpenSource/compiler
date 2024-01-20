@@ -359,9 +359,9 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
 
 	// drift[0] += eax:edx
-	code.movl(Ref.ecx,Reg.esi);
-	code.addl(Reg.eax,Ref.esi);
-	code.adcl(Reg.edx,Ref.esi.disp(4));
+	code.movl(Ref.ecx, Reg.esi);
+	code.addl(Reg.eax, Ref.esi);
+	code.adcl(Reg.edx, Ref.esi.disp(4));
 
 	// restore return value
 	frame.pop(Reg.eax);
@@ -1880,7 +1880,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		code.je(createExceptionCall(-8,bcPosition));
 	}
 
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(objRef);
 	regs.freeIntRegister(objRef);
 
@@ -2035,14 +2035,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 								     methodRefCPEntry.getMemberName(),
 								     methodRefCPEntry.getMemberTypeDesc());
 	
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(target);
 	
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	
 	regs.clearActives();
-	codeStackCleanupLong(offset,result);
+	codeStackCleanupLong(offset, result);
 	
 	code.endBC();
     }
