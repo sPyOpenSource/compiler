@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=OutputReader
+comment0.text=\n\n\ @author\ spy\n
+comment1.params=jtextArea
+comment1.target=OutputReader(javax.swing.JTextArea)
+comment2.params=
+comment2.target=void\ run()
+numComments=3
