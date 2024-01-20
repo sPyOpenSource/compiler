@@ -1,66 +1,23 @@
+
 package jx.compiler;
 
 import jx.emulation.MemoryManagerImpl;
 import jx.zero.MemoryManager;
-import jx.zero.Memory;
 import jx.zero.Debug;
 
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
-import java.util.jar.JarFile;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import jx.compspec.MetaInfo;
 import jx.compspec.MetaReader;
 import static jx.compspec.StartBuilder.getCompilerOptions;
 
 public class CompileNative {
-
     static MemoryManager memMgr = new MemoryManagerImpl();
-
-    public static void readZipFile(String filename) {
-	try {
-            byte[] data;
-            try (RandomAccessFile file = new RandomAccessFile(filename, "r")) {
-                data = new byte[(int)file.length()];
-                file.readFully(data);
-            }
-            Memory m = memMgr.alloc(data.length);
-            m.copyFromByteArray(data, 0, 0, data.length);
-	} catch(IOException e) {
-	    Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, e);
-	}
-    }
-
-    public static Memory getZIP(String filename) {
-	try {
-            byte[] data;
-            try (RandomAccessFile file = new RandomAccessFile(filename, "r")) {
-                data = new byte[(int)file.length()];
-                file.readFully(data);
-            }
-	    Memory m = memMgr.alloc(data.length);
-	    m.copyFromByteArray(data, 0, 0, data.length);
-	    return m;
-	} catch(IOException e) {
-            Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, e);
-	    Debug.throwError("could not read classes.zip file: " + filename);
-	    return null;
-	}
-    }   
-
-    static ArrayList parsePath(String path) {
-	ArrayList paths = new ArrayList();
-	StringTokenizer tk = new StringTokenizer(path, ":");
-	while (tk.hasMoreTokens())
-	    paths.add(tk.nextToken());
-	return paths;
-    }
 
     public static void main(String[] args) throws Exception {
         String[] a = {"/home/spy/Source/jcore/libs"};
@@ -98,7 +55,7 @@ public class CompileNative {
 	System.out.println("Native code compiler version 0.7.10-" + StaticCompiler.version());
 
 	ExtendedDataOutputStream codeFile;
-	ExtendedDataOutputStream tableOut;       
+	ExtendedDataOutputStream tableOut;
 	if (opts.doDebug()) Debug.out.println("Compiling domain to " + opts.getOutputFile());       
 	if (opts.doDebug()) Debug.out.println("Writing linker output to " + opts.getLinkerOutputFile());	    
 	codeFile = new ExtendedDataOutputStream(new BufferedOutputStream(new FileOutputStream(opts.getOutputFile())));
@@ -107,21 +64,27 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	JarFile domClasses = new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar");
-        JarFile[] libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar")
-            };
+	URL domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
+        URL[] libClasses = new URL[0];
         if(path.endsWith("zero")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar");
-            libClasses = new JarFile[0];
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
         } else if(path.endsWith("init2")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/testOS/dist/testOS.jar");
-            libClasses = getZIPs(opts.getLibs());
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/testOS/dist/testOS.jar");
+            libClasses = new URL[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/"), 
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar")
+            };
         } else if(path.endsWith("ai")){
-            domClasses = new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar");
-            libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"),
-                new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar")
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar");
+            libClasses = new URL[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"),
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/")
+            };
+        } else if(path.endsWith("os")){
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/");
+            libClasses = new URL[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/")
             };
         }
 
@@ -158,26 +121,5 @@ public class CompileNative {
             tableIn1.close();
 	codeFile.close();
 	tableOut.close();
-    }
-
-    public static JarFile[] getZIPs(ArrayList libs) {
-	JarFile[] libClasses = null;
-        try {
-            libClasses = new JarFile[]{
-                new JarFile("/home/spy/Source/OS/jcore/Zero/dist/Zero.jar"), new JarFile("/home/spy/Source/OS/jcore/OS/dist/OS.jar"), new JarFile("/home/spy/Source/OS/jcore/AIZero/dist/AIZero.jar")
-            };
-        } catch (IOException ex) {
-            Logger.getLogger(CompileNative.class.getName()).log(Level.SEVERE, null, ex);
-        }
-	/*if (libs != null) {
-	    libClasses = new Memory[libs.size()];
-	    for(int i = 0; i < libs.size(); i++) {
-		//if (opts.doDebug()) Debug.out.println("Reading lib classes from "+(String)libs.elementAt(i));
-		libClasses[i] = getZIP((String)libs.get(i));
-	    }
-	} else {
-	    libClasses = new Memory[0];
-	}*/
-	return libClasses;
     }
 }
