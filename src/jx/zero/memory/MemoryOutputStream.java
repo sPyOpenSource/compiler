@@ -1,3 +1,4 @@
+
 package jx.zero.memory;
 
 import java.io.OutputStream;

@@ -32,18 +32,18 @@ public class Control {
 	    int t2 = 48;
 	    int t3 = 146;
 	    
-	    result = p.endCalibration(t1,t2,t3);	    
+	    result = p.endCalibration(t1, t2, t3);	    
 	} else {
 	    timing_adjust_boiled();
 	    timing_adjust_raw();
 	    
 	    p.startCalibration();
 	    
-	    for (int i=0;i<cal_rounds;i++) {
+	    for (int i = 0; i < cal_rounds; i++) {
 		timing_adjust_boiled();
 	    }
 	    
-	    for (int i=0;i<cal_rounds;i++) {
+	    for (int i = 0; i < cal_rounds; i++) {
 		timing_adjust_raw();
 	    }	   	    
 
@@ -51,14 +51,14 @@ public class Control {
 	    int t2 = p.getAverageCyclesOfMethod("jx.zero.timing.Control.timing_adjust_raw");
 	    int t3 = p.getAverageCyclesOfMethod("jx.zero.timing.Control.timing_adjust_boiled");
 	    
-	    result = p.endCalibration(t1,t2,t3);
+	    result = p.endCalibration(t1, t2, t3);
 	}
 	    
-	for (int i=0;i<cal_rounds+100;i++) {
+	for (int i = 0; i < cal_rounds + 100; i++) {
 	  timing_adjust_boiled();
 	}
 
-	for (int i=0;i<cal_rounds+100;i++) {
+	for (int i = 0; i < cal_rounds + 100; i++) {
 	  timing_adjust_raw();
 	}
 
@@ -73,4 +73,5 @@ public class Control {
 	Profiler p = (Profiler) InitialNaming.getInitialNaming().lookup("Profiler");
 	p.shell();
     }
+    
 }
