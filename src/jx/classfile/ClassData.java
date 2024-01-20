@@ -250,15 +250,26 @@ public class ClassData extends ClassSource {
 	return null;
     }
 
+    @Override
     public boolean isPublic()    {return ClassData.isPublic(accessFlags);}
+    @Override
     public boolean isPrivate()   {return ClassData.isPrivate(accessFlags);}
+    @Override
     public boolean isProtected() {return ClassData.isProtected(accessFlags);}
+    @Override
     public boolean isStatic()    {return ClassData.isStatic(accessFlags);}
+    @Override
     public boolean isFinal()     {return ClassData.isFinal(accessFlags);}
+    @Override
     public boolean isAbstract()  {return ClassData.isAbstract(accessFlags);}
+    @Override
     public boolean isNative()    {return ClassData.isNative(accessFlags);}
+    @Override
     public boolean isSynchronized() {return ClassData.isSynchronized(accessFlags);}
+    @Override
     public boolean isInterface() {return ClassData.isInterface(accessFlags);}
+    @Override
     public boolean isVolatile()  {return ClassData.isVolatile(accessFlags);}
+    @Override
     public boolean isTransient() {return ClassData.isTransient(accessFlags);}
 }
