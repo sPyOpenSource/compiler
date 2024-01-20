@@ -38,7 +38,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class testClass {
     @Test
-    public void test(){
+    public void testJar(){
         try {
             URL obj = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
             URLConnection con = obj.openConnection();
