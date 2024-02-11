@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 import jx.compiler.symbols.SymbolTableEntryBase; 

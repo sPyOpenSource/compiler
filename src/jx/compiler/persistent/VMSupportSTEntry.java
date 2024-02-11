@@ -7,7 +7,6 @@ import jx.compiler.execenv.ExtendedDataOutputStream;
 import jx.compiler.execenv.ExtendedDataInputStream;
 
 public class VMSupportSTEntry extends SymbolTableEntryBase {
-
     public static final String VM_CHECKCAST       = "vm_checkcast";
     public static final String VM_INSTANCEOF      = "vm_instanceof";
     public static final String VM_GETSTATICS_ADDR = "vm_getStaticsAddr";
