@@ -1,3 +1,4 @@
+
 package jx.collections;
 
 public interface Iterator {
