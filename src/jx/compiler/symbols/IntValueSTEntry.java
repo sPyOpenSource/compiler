@@ -1,3 +1,4 @@
+
 package jx.compiler.symbols; 
 
 import java.io.IOException;
@@ -7,9 +8,7 @@ import jx.compiler.execenv.ExtendedDataOutputStream;
 /** 
 
 */ 
-
 public abstract class IntValueSTEntry extends SymbolTableEntryBase {
-
     @Override
     public void apply(byte[] code, int codeBase) {
 	throw new Error("this is the wrong method to call!");

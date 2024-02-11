@@ -1,3 +1,4 @@
+
 package jx.compiler.symbols;
 
 import java.io.*;  
@@ -36,4 +37,5 @@ public class CurrentThreadPointerSTEntry extends SymbolTableEntryBase {
     public void readEntry(ExtendedDataInputStream in) throws IOException {
       super.readEntry(in);
     }
+    
 }

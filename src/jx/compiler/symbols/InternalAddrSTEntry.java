@@ -1,3 +1,4 @@
+
 package jx.compiler.symbols; 
 
 import jx.zero.Debug;
@@ -7,9 +8,7 @@ import java.io.IOException;
 /** 
    for jumps with target inside of this method 
 */ 
-
 public class InternalAddrSTEntry extends SymbolTableEntryBase {
-  
   protected int targetNCIndex=-1; 
     // this entry is resolved when targetNCIndex and nextInstrNCIndex are known
 
