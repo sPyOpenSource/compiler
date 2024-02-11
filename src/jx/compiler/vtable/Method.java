@@ -1,3 +1,4 @@
+
 package jx.compiler.vtable;
 
 import jx.classfile.MethodSource;
