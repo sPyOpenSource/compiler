@@ -1,3 +1,4 @@
+
 package jx.compiler.symbols;
 
 import java.io.IOException;
@@ -9,7 +10,6 @@ import jx.classfile.ExceptionHandlerData;
 import jx.classfile.constantpool.*;
 
 public class ExceptionTableSTEntry extends UnresolvedJump {
-
     ExceptionHandlerData handler;    
     String  className;
     int     stringID;

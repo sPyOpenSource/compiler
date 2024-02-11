@@ -1,5 +1,5 @@
-package jx.compiler.symbols;
 
+package jx.compiler.symbols;
 
 public class AllocMultiArraySTEntry extends SymbolTableEntryBase {
    
@@ -17,13 +17,14 @@ public class AllocMultiArraySTEntry extends SymbolTableEntryBase {
     }
     
     @Override
-  public void apply(byte[] code, int codeBase) {
-    //Debug.assert(isReadyForApply()); 
-    myApplyValue(code, codeBase, getValue()); 
-  }
+    public void apply(byte[] code, int codeBase) {
+        //Debug.assert(isReadyForApply()); 
+        myApplyValue(code, codeBase, getValue()); 
+    }
 
     @Override
     public String toGASFormat() {
 	return "0x"+Integer.toHexString(getValue());
     }
+    
 }
