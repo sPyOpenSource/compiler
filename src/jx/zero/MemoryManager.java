@@ -1,3 +1,4 @@
+
 package jx.zero;
 
 public interface MemoryManager extends Portal {

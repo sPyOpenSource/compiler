@@ -1,5 +1,5 @@
-package jx.zero;
 
+package jx.zero;
 
 public interface LowLevelScheduler extends FirstLevelIrqHandler{
 
@@ -18,4 +18,5 @@ public interface LowLevelScheduler extends FirstLevelIrqHandler{
             and is executed on its final CPU 
        Parameter: the IRQ Nr which this Scheduler should use */
 /* yes */    public void registered(int irq_nr);
+
 }

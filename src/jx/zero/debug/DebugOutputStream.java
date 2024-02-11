@@ -1,3 +1,4 @@
+
 package jx.zero.debug;
 
 import java.io.OutputStream;
@@ -11,12 +12,14 @@ public class DebugOutputStream extends OutputStream {
       /*debugChannel.write('X');*/
   }
 
+  @Override
   public void write(int b) throws IOException {
     debugChannel.write(b);
   }
     /**
      * atomically write this buffer
      */
+  @Override
   public void write(byte[] b, int off, int len) throws IOException {
     debugChannel.writeBuf(b,off,len);
   }
