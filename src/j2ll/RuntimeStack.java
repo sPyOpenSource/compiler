@@ -38,7 +38,6 @@ public class RuntimeStack {
         return push(new StackValue(StackValue.MODE_OBJREF, ord, type));
     }
 
-
     public String push(StackValue value) {
         String s = push_impl(value);
         if (value.getIR().equals(Internals.LONG) || value.getIR().equals(Internals.DOUBLE)) {
@@ -84,4 +83,5 @@ public class RuntimeStack {
     public int size() {
         return pos;
     }
+    
 }

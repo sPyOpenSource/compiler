@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -11,7 +12,6 @@ public class IrStore extends IrSentence {
         instType = STORE;
         stackSize = -1;
     }
-
 
     //store i32 %__tmpv17, i32* %c_3_18
     @Override

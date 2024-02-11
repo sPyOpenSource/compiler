@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -8,12 +9,10 @@ public class IrArith extends IrSentence {
     public String irtype;
     public IrVariable operand1, operand2;
 
-
     {
         instType = ARITH;
         stackSize = -1;
     }
-
 
     //%stack8 = add i32 %stack4, %stack7
     @Override

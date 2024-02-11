@@ -10,12 +10,10 @@ public class IrBitcast extends IrSentence {
     public IrVariable operand;
     public String irtype2;
 
-
     {
         instType = BITCAST;
         stackSize = 0;
     }
-
 
     //  %__cast_0 = bitcast %test_Test* %stack0 to %test_TestParent*
     @Override

@@ -92,4 +92,5 @@ public class AssistLLVM {
     static public String getAssistFuncDeclare() {
         return declares;
     }
+    
 }

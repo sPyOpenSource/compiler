@@ -1,14 +1,15 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
 import j2ll.graph.IrVariable;
 
 public class IrBranch2 extends IrSentence {
+    
     public String lab1;
     public String lab2;
     public String irType;
     public IrVariable operand;
-
 
     {
         instType = BR2;

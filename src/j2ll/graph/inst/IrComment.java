@@ -11,7 +11,6 @@ public class IrComment extends IrSentence {
         stackSize = 0;
     }
 
-
     @Override
     public void parse(String st) {
         comment = st;

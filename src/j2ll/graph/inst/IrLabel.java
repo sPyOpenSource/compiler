@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -10,7 +11,6 @@ public class IrLabel extends IrSentence {
         instType = LABEL;
         stackSize = 0;
     }
-
 
     @Override
     public void parse(String st) {
