@@ -217,14 +217,14 @@ public class ConstantPool {
     return (InterfaceMethodRefCPEntry)entry[index]; 
   }
 
-  /** 
-      only if the entries are loaded from a class file, 
-      you can use this method to access them. Otherwise, this 
-      class will throw an error. 
-      It is better to use the methods above for this task. 
+    /** 
+     * only if the entries are loaded from a class file, 
+     * you can use this method to access them. Otherwise, this 
+     * class will throw an error. 
+     * It is better to use the methods above for this task. 
      * @param index
      * @return 
-  */ 
+     */ 
   public ConstantPoolEntry entryAt(int index) {
       if (index == -1) {
 	  throw new Error("Attempt to access a dynamically generated CPEntry via an index.");
@@ -305,3 +305,14 @@ public class ConstantPool {
 // ueber Referenzen zugreifen. 
 // (Linkphase nach Laden des Pools to intern sind die Indices immer noch notw.) 
 // Problem: Zeilennummern 
+
+// Google tranlator
+/* Constant Pool must be reconstructable, i.e. you should be able to convert 
+it back to the format for execution
+
+Currently the ConstantPoolEntries are referenced via their indices.
+It would be more efficient if there were direct references to the CPoolEntries
+save. The CPoolEntries themselves would then also have to go to other CPoolEntries
+access via references.
+(Link phase after loading the pool to internally, the indices are still necessary.)
+Problem: line numbers */

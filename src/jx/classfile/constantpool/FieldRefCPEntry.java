@@ -20,9 +20,9 @@ public class FieldRefCPEntry extends ClassMemberCPEntry {
     super(classCPEntry, nameAndTypeCPEntry); 
   }
   
- 
   @Override
   public int getTag() {return CONSTANT_FIELDREF;}
 
   int getFieldOffset() {return fieldOffset;}
+  
 }
