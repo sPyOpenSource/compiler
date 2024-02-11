@@ -1,1 +1,1 @@
-specification
+compile specification
