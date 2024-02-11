@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -14,7 +15,6 @@ public class IrCall extends IrSentence {
         instType = CALL;
         stackSize = 0;
     }
-
 
     @Override
     public int getStackSize() {
@@ -54,7 +54,6 @@ public class IrCall extends IrSentence {
     public IrVariable getLeft() {
         return left;
     }
-
 
     @Override
     public void replaceVarName(IrVariable old, IrVariable newv) {

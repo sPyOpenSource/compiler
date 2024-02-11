@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -15,7 +16,6 @@ public class IrGetptr extends IrSentence {
         instType = GETPTR;
         stackSize = 0;
     }
-
 
     //%__tmp15 = getelementptr %test_Test , %test_Test* %stack19, i32 0, i32 3
     @Override

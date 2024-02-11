@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -11,7 +12,6 @@ public class IrAlloca extends IrSentence {
         instType = ALLOCA;
         stackSize = 1;
     }
-
 
     @Override
     public IrVariable getLeft() {

@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -11,7 +12,6 @@ public class IrLoad extends IrSentence {
         instType = LOAD;
         stackSize = 1;
     }
-
 
     //%__tmpv16 = load i32, i32* %c_3_18
     @Override

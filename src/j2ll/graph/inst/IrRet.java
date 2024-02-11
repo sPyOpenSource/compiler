@@ -1,3 +1,4 @@
+
 package j2ll.graph.inst;
 
 import j2ll.graph.IrSentence;
@@ -11,7 +12,6 @@ public class IrRet extends IrSentence {
         instType = RET;
         stackSize = 0;
     }
-
 
     //ret i32 %stack5
     //ret void
