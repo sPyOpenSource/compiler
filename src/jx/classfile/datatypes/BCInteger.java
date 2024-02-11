@@ -1,5 +1,6 @@
 
-package jx.classfile.datatypes; 
+package jx.classfile.datatypes;
+
 final public class BCInteger extends BCIntegerDatatype { 
   private final int value; 
   
