@@ -1,3 +1,4 @@
+
 package jx.zero;
 
 public interface InterceptInboundInfo extends Portal {
@@ -6,7 +7,7 @@ public interface InterceptInboundInfo extends Portal {
     VMMethod getMethod();
     VMObject getServiceObject();
     /**
-     * returns the first parameter of the intercepted method-call
+     * @return the first parameter of the intercepted method-call
      * (with succsessive calls of getNextParameter all parameters
      * can be observed )
      * @param result is filled with the corresponding information

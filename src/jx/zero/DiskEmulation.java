@@ -1,3 +1,4 @@
+
 package jx.zero;
 
 /**
@@ -5,6 +6,7 @@ package jx.zero;
  * @author Michael Golm
  */
 public interface DiskEmulation extends Portal {
+    
     /**
      * Get capacity of the block device.
      *

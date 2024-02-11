@@ -1,3 +1,4 @@
+
 package jx.zero;
 
 public interface Memory extends ReadOnlyMemory {
@@ -103,4 +104,5 @@ public interface Memory extends ReadOnlyMemory {
     public void fill32(int what, int offset, int length);
     public void clear();
     //public void fill8(byte what, int offset, int length);
+    
 }
