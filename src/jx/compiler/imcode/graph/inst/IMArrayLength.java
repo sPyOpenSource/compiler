@@ -14,7 +14,7 @@ final public class IMArrayLength extends IMOperator {
 
     private IMOperant array;
 
-    public IMArrayLength(CodeContainer container,int bc,int bcpos) {
+    public IMArrayLength(CodeContainer container, int bc, int bcpos) {
 	super(container);
 	bytecode     = bc;
 	bcPosition   = bcpos;
@@ -22,10 +22,10 @@ final public class IMArrayLength extends IMOperator {
     }
     
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
         array = stack.pop();
 	if (array.getDatatype()!=BCBasicDatatype.REFERENCE) 
-	    throw new CompileException("wrong datatype "+Integer.toString(array.getDatatype()));
+	    throw new CompileException("wrong datatype " + Integer.toString(array.getDatatype()));
 	//stack.store();
 	stack.push(this);
 	return null;
@@ -44,22 +44,22 @@ final public class IMArrayLength extends IMOperator {
     }
 
     @Override
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
 
-	array = (IMOperant)array.assignNewVars(newContainer,slots,opr,retval,bcPos);
+	array = (IMOperant)array.assignNewVars(newContainer, slots, opr, retval, bcPos);
 
 	return this;
     }
     
     @Override
     public String toString() {
-	return array.toString()+".length";
+	return array.toString() + ".length";
     }
 
     @Override
-    public int getNrRegs() { return array.getNrRegs()+1; }
+    public int getNrRegs() { return array.getNrRegs() + 1; }
 
     @Override
     public void getCollectVars(ArrayList vars) { array.getCollectVars(vars); }
@@ -72,9 +72,9 @@ final public class IMArrayLength extends IMOperator {
 	array.translate(arrayRef);
 
 	if (array.checkReference())
-	    execEnv.codeCheckReference(this,arrayRef,bcPosition);
+	    execEnv.codeCheckReference(this, arrayRef, bcPosition);
 
-	execEnv.codeGetArrayLength(this,arrayRef,result);
+	execEnv.codeGetArrayLength(this, arrayRef, result);
 
 	regs.freeIntRegister(arrayRef);
     }

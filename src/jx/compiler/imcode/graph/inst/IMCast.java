@@ -46,7 +46,7 @@ final  public class IMCast extends IMUnaryOperator {
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) {
 	operant = stack.pop();
 	stack.push(this);
 	return null;
@@ -74,24 +74,24 @@ final  public class IMCast extends IMUnaryOperator {
 	case 0: // LONG
 	case 1: // FLOAT
 	case 2: // DOUBLE
-	    execEnv.codeThrow(this,-11,bcPosition);
+	    execEnv.codeThrow(this, -11, bcPosition);
 	    //Debug.out.println(toReadableString());
 	    //throw new CompileException(getLineInfo()+": wrong cast called!");
 	    // l2<x>
 	case 3: // l2i
 	    if (!opts.isOption("long")) {
 		System.out.println("warn: long cast to int not supported use -x:long");
-		regs.allocIntRegister(result,BCBasicDatatype.INT);
-		code.xorl(result,result);
-		execEnv.codeThrow(this,-11,bcPosition);
+		regs.allocIntRegister(result, BCBasicDatatype.INT);
+		code.xorl(result, result);
+		execEnv.codeThrow(this, -11, bcPosition);
 		return;
 	    }
 
-	    if (result.any()) { regs.setAnyIntRegister(result,Reg.eax); }
+	    if (result.any()) { regs.setAnyIntRegister(result, Reg.eax); }
 
 	    Reg64 reg64 = Reg64.extendLowRegister(result);
 
-	    if (reg64!=null) {
+	    if (reg64 != null) {
 		operant.translate(reg64);
 		regs.freeIntRegister(reg64.high);
 		/* result == reg64.low */
@@ -99,14 +99,14 @@ final  public class IMCast extends IMUnaryOperator {
 		reg64 = regs.chooseLongRegister();
 		operant.translate(reg64);
 		regs.freeIntRegister(reg64.high);
-		regs.allocIntRegister(result,BCBasicDatatype.INT);
-		code.movl(reg64.low,result);
+		regs.allocIntRegister(result, BCBasicDatatype.INT);
+		code.movl(reg64.low, result);
 		regs.freeIntRegister(reg64.low);
 	    }
 	    break;
 	case 6: // f2i 
 	case 9: // d2i
-	    execEnv.codeThrow(this,-11,bcPosition);
+	    execEnv.codeThrow(this, -11, bcPosition);
 	    //throw new CompileException("cast d2i and f2i -- not implemented yet!");
 	    // i2<x>
 	case 12: // i2b

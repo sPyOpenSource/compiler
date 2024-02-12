@@ -18,7 +18,7 @@ final public class IMCaughtException extends IMOperant {
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) {
 	stack.push(this);
 	return null;
     }
@@ -34,7 +34,7 @@ final public class IMCaughtException extends IMOperant {
     // IMCaughtException
     @Override
     public void translate(Reg result) throws CompileException {
-	regs.allocIntRegister(result,datatype);
+	regs.allocIntRegister(result, datatype);
 	code.popl(result);
     }
 }

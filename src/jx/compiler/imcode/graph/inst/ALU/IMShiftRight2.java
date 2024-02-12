@@ -27,12 +27,12 @@ public class IMShiftRight2 extends IMBitOperator {
     public IMNode constant_folding() throws CompileException {
     super.constant_folding();
 
-    if (datatype==BCBasicDatatype.INT) {
+    if (datatype == BCBasicDatatype.INT) {
         if (rOpr.isConstant() && lOpr.isConstant()) {
         IMConstant lcOpr = lOpr.nodeToConstant();
         IMConstant rcOpr = rOpr.nodeToConstant();
         int value = 0;
-        if (opts.doVerbose("cf")) Debug.out.println("++ folding c>>>c "+toString());
+        if (opts.doVerbose("cf")) Debug.out.println("++ folding c>>>c " + toString());
         value = lcOpr.getIntValue() >>> rcOpr.getIntValue();
         lcOpr.setIntValue(value);
         return lcOpr;
@@ -50,12 +50,12 @@ public class IMShiftRight2 extends IMBitOperator {
     if (rOpr.isConstant()) {
         lOpr.translate(result);
         regs.writeIntRegister(result);
-        code.shrl(((IMConstant)rOpr).getIntValue(),result);
+        code.shrl(((IMConstant)rOpr).getIntValue(), result);
     } else {
         regECX = regs.getIntRegister(Reg.ecx);
         
         if (result.any()) 
-        regs.setAnyIntRegister(result,regs.chooseIntRegister(regECX));
+        regs.setAnyIntRegister(result, regs.chooseIntRegister(regECX));
         
         if (result.equals(Reg.ecx)) {
         reg = regs.chooseIntRegister(regECX);
@@ -68,8 +68,8 @@ public class IMShiftRight2 extends IMBitOperator {
         code.shrl(reg);
         
         regs.freeIntRegister(regECX);
-        regs.allocIntRegister(result,BCBasicDatatype.INT);
-        code.movl(reg,result);
+        regs.allocIntRegister(result, BCBasicDatatype.INT);
+        code.movl(reg, result);
         } else {
         lOpr.translate(result);
         rOpr.translate(regECX);
