@@ -3,7 +3,6 @@ package j2ll.utils;
 
 import j2ll.LocalVar;
 import j2ll.LocalVarTable;
-import j2ll.Resolver;
 import org.objectweb.asm.*;
 
 /**

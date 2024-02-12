@@ -9,6 +9,7 @@ import java.util.Stack;
 import java.util.StringJoiner;
 
 import static j2ll.Internals.*;
+import j2ll.utils.Resolver;
 import j2ll.utils.Util;
 
 /**

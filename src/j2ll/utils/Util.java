@@ -8,7 +8,6 @@ import java.util.StringJoiner;
 
 import static j2ll.Internals.*;
 import j2ll.JSignature;
-import j2ll.Resolver;
 import jx.classfile.ClassData;
 import jx.classfile.FieldData;
 
