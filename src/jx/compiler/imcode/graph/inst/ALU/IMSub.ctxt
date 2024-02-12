@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=IMSub
+comment1.params=container\ bc\ bcpos
+comment1.target=IMSub(jx.compiler.imcode.CodeContainer,\ int,\ int)
+comment2.params=container\ lOpr\ rOpr\ datatype\ bcpos
+comment2.target=IMSub(jx.compiler.imcode.CodeContainer,\ jx.compiler.imcode.graph.IMOperant,\ jx.compiler.imcode.graph.IMOperant,\ int,\ int)
+comment3.params=
+comment3.target=boolean\ isSub()
+comment4.params=
+comment4.target=boolean\ isSubOrAdd()
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment6.params=
+comment6.target=jx.compiler.imcode.graph.IMNode\ constant_folding()
+comment7.params=Opr\ c2
+comment7.target=jx.compiler.imcode.graph.IMOperant\ constant_folding2la(IMAdd,\ int)
+comment8.params=result
+comment8.target=void\ translate(jx.compiler.nativecode.Reg)
+comment9.params=result
+comment9.target=void\ translate(jx.compiler.nativecode.Reg64)
+numComments=10
