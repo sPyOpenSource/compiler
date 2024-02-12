@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ClassFinder
+comment1.params=className
+comment1.target=execenv.BCClass\ findClass(java.lang.String)
+comment2.params=className\ superName
+comment2.target=boolean\ isAssignableTo(java.lang.String,\ java.lang.String)
+comment2.text=\n\ @param\ className\n\ @param\ superName\n\ @return\ true\ if\ instances\ of\ "className"\ can\ be\ assigned\ to\n\ variables\ of\ type\ superName\n
+comment3.params=ifClass\ clClass
+comment3.target=boolean\ implementsInterface(execenv.BCClass,\ execenv.BCClass)
+numComments=4

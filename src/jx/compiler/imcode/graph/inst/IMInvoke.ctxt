@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=IMInvoke
+comment1.params=container\ bc\ bcpos\ cpEntry
+comment1.target=IMInvoke(jx.compiler.imcode.CodeContainer,\ int,\ int,\ jx.classfile.constantpool.MethodRefCPEntry)
+comment2.params=
+comment2.target=jx.classfile.constantpool.MethodRefCPEntry\ getMethodRefCPEntry()
+comment3.params=stack\ basicBlock
+comment3.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment4.params=iCode\ depth\ forceInline
+comment4.target=jx.compiler.imcode.graph.IMNode\ inlineCode(jx.compiler.imcode.CodeVector,\ int,\ boolean)
+comment5.params=
+comment5.target=boolean\ isInlineable()
+comment6.params=ivar\ newObj
+comment6.target=IMCompactNew\ getCompactNew(int,\ IMNew)
+comment7.params=result
+comment7.target=void\ translate(jx.compiler.nativecode.Reg)
+comment8.params=bcMethod\ inlineCode\ iCode\ depth
+comment8.target=jx.compiler.imcode.graph.IMNode\ inlineSmallMethod(jx.compiler.execenv.BCMethodWithCode,\ jx.compiler.imcode.CodeContainer,\ jx.compiler.imcode.CodeVector,\ int)
+comment9.params=bcMethod\ inlineCode\ iCode\ depth
+comment9.target=jx.compiler.imcode.graph.IMNode\ inline(jx.compiler.execenv.BCMethodWithCode,\ jx.compiler.imcode.CodeContainer,\ jx.compiler.imcode.CodeVector,\ int)
+numComments=10

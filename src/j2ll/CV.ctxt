@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=CV
 comment1.params=ps\ statistics
-comment1.target=CV(java.io.PrintStream,\ Statistics)
+comment1.target=CV(java.io.PrintStream,\ utils.Statistics)
 comment10.params=access\ name\ desc\ signature\ exceptions
 comment10.target=org.objectweb.asm.MethodVisitor\ visitMethod(int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String[])
 comment11.params=
@@ -9,7 +9,7 @@ comment11.target=void\ visitEnd()
 comment12.params=
 comment12.target=java.util.Set\ getStaticFields()
 comment2.params=
-comment2.target=Statistics\ getStatistics()
+comment2.target=utils.Statistics\ getStatistics()
 comment3.params=version\ access\ name\ signature\ superName\ interfaces
 comment3.target=void\ visit(int,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String[])
 comment4.params=source\ debug
