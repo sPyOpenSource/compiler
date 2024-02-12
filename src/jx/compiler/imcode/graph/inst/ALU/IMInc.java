@@ -1,4 +1,4 @@
-package jx.compiler.imcode.graph.inst; 
+package jx.compiler.imcode.graph.inst.ALU; 
 
 import jx.classfile.datatypes.*; 
 import jx.compiler.*;

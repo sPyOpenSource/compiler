@@ -2,7 +2,7 @@
 comment0.target=JSignature
 comment0.text=\n\ Java\ Signature.\ Example\:\ (IDJ)V\n
 comment1.params=resolver\ str
-comment1.target=JSignature(Resolver,\ java.lang.String)
+comment1.target=JSignature(utils.Resolver,\ java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getJavaArgs()
 comment3.params=

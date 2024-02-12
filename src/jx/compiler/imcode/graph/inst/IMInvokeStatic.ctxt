@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IMInvokeStatic
+comment1.params=container\ bc\ bcpos\ cpEntry
+comment1.target=IMInvokeStatic(jx.compiler.imcode.CodeContainer,\ int,\ int,\ jx.classfile.constantpool.MethodRefCPEntry)
+comment2.params=
+comment2.target=java.lang.String\ toString()
+comment3.params=result
+comment3.target=void\ translate(jx.compiler.nativecode.Reg)
+comment4.params=result
+comment4.target=void\ translate(jx.compiler.nativecode.Reg64)
+numComments=5
