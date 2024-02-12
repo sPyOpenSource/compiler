@@ -21,7 +21,7 @@ final public class IMCompactNew extends IMOperator {
     private final MethodRefCPEntry cpEntryMethod;
     private final IMOperant[]      args;
 
-    public IMCompactNew(CodeContainer container,int bc,IMNew newObj,IMInvoke initObj,IMOperant[] args) {
+    public IMCompactNew(CodeContainer container, int bc, IMNew newObj, IMInvoke initObj, IMOperant[] args) {
     super(container);
     bytecode     = -1;
     datatype     = BCBasicDatatype.REFERENCE;
@@ -35,10 +35,12 @@ final public class IMCompactNew extends IMOperator {
     varStackMap = initObj.getVarStackMap();
     }
 
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
+    @Override
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
     throw new Error("this method is not used!");
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
     for (int i = 0; i < args.length; i++) {
         args[i] = (IMOperant)args[i].constant_folding();
@@ -47,7 +49,8 @@ final public class IMCompactNew extends IMOperator {
     return this;
     }
 
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    @Override
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
     bcPosition = bcPos;
     init(newContainer);
 
@@ -58,34 +61,38 @@ final public class IMCompactNew extends IMOperator {
     return this;
     }
 
-    public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
+    @Override
+    public IMNode inlineCode(CodeVector iCode, int depth, boolean forceInline) throws CompileException {
     for (int i = 0; i < args.length; i++) {
         args[i] = (IMOperant)args[i].inlineCode(iCode, depth, forceInline);
     }
     return this;
     }
 
+    @Override
     public void getCollectVars(ArrayList vars) { 
         for (IMOperant arg : args) {
             arg.getCollectVars(vars);
         }
     }
 
+    @Override
     public String toString() {
-    String retString = "new "+cpEntry.getClassName();
+    String retString = "new " + cpEntry.getClassName();
 
     retString += "(";
     int i=0;
     while (i<args.length)  {
         retString += args[i].toString();
         i++;
-        if (i<args.length) retString+=",";
+        if (i < args.length) retString += ",";
     }
     return retString+")";
     }
 
     // IMCompactNew
+    @Override
     public void translate(Reg result) throws CompileException {    
-    execEnv.codeCompactNew(this,cpEntry,cpEntryMethod,args,result);    
+    execEnv.codeCompactNew(this, cpEntry, cpEntryMethod, args, result);    
     }
 }

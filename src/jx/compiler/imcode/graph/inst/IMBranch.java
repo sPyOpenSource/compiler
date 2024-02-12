@@ -18,12 +18,12 @@ public class IMBranch extends IMOperant {
     }
 
     @Override
-    public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {	
+    public IMNode inlineCode(CodeVector iCode, int depth, boolean forceInline) throws CompileException {	
 	return this;
     }
 
     @Override
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
 

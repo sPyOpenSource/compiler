@@ -53,9 +53,9 @@ final public class IMShiftRight extends IMBitOperator {
         regs.writeIntRegister(result);
         if (opts.isOption("shift_bug")) {    
             Debug.out.println("warn: use buggy shift");
-            code.shrl(rOpr.nodeToConstant().getIntValue(),result);
+            code.shrl(rOpr.nodeToConstant().getIntValue(), result);
         } else {
-            code.sarl(rOpr.nodeToConstant().getIntValue(),result);
+            code.sarl(rOpr.nodeToConstant().getIntValue(), result);
         }
     } else {
         regECX = regs.getIntRegister(Reg.ecx);
@@ -92,6 +92,6 @@ final public class IMShiftRight extends IMBitOperator {
     @Override
     public void translate(Reg64 result) throws CompileException {
     if (datatype!=BCBasicDatatype.LONG) throw new Error();
-    execEnv.codeLongShr(this,lOpr,rOpr,result,bcPosition);
+    execEnv.codeLongShr(this,lOpr, rOpr, result, bcPosition);
     }
 }

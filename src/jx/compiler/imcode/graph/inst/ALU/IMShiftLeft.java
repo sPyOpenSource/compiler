@@ -31,7 +31,7 @@ final public class IMShiftLeft extends IMBitOperator {
         if (rOpr.isConstant() && lOpr.isConstant()) {
         IMConstant lcOpr = lOpr.nodeToConstant();
         IMConstant rcOpr = rOpr.nodeToConstant();
-        if (opts.doVerbose("cf")) Debug.out.println("++ folding c<<c "+toString());
+        if (opts.doVerbose("cf")) Debug.out.println("++ folding c<<c " + toString());
         lcOpr.setIntValue(lcOpr.getIntValue() << rcOpr.getIntValue());
         return lcOpr;
         }
@@ -49,15 +49,15 @@ final public class IMShiftLeft extends IMBitOperator {
         lOpr.translate(result);
         regs.writeIntRegister(result);
             if (value==1) {
-        code.addl(result,result);
+        code.addl(result, result);
         } else {    
-            code.shll(value,result);
+            code.shll(value, result);
             }
     } else {
         regECX = regs.getIntRegister(Reg.ecx);
         
         if (result.any()) 
-        regs.setAnyIntRegister(result,regs.chooseIntRegister(regECX));
+        regs.setAnyIntRegister(result, regs.chooseIntRegister(regECX));
         
         if (result.equals(Reg.ecx)) {
         reg = regs.chooseIntRegister(regECX);
@@ -70,8 +70,8 @@ final public class IMShiftLeft extends IMBitOperator {
         code.shll(reg);
         
         regs.freeIntRegister(regECX);
-        regs.allocIntRegister(result,BCBasicDatatype.INT);
-        code.movl(reg,result);
+        regs.allocIntRegister(result, BCBasicDatatype.INT);
+        code.movl(reg, result);
         } else {
         lOpr.translate(result);
         rOpr.translate(regECX);
@@ -91,10 +91,10 @@ final public class IMShiftLeft extends IMBitOperator {
         IMConstant rcOpr = (IMConstant)rOpr;
         lOpr.translate(result);
         regs.writeLongRegister(result);
-        code.shld(rcOpr.getIntValue(),result.low,result.high);
-        code.shll(rcOpr.getIntValue(),result.low);
+        code.shld(rcOpr.getIntValue(), result.low, result.high);
+        code.shll(rcOpr.getIntValue(), result.low);
     } else {
-        execEnv.codeLongShl(this,lOpr,rOpr,result,bcPosition);
+        execEnv.codeLongShl(this, lOpr, rOpr, result, bcPosition);
     }
     }
 }

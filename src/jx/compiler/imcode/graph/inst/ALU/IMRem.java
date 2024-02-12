@@ -20,9 +20,10 @@ final  public class IMRem extends IMBinaryOperator {
     datatype = BCBasicDatatype.INT + (bc-Opcodes.IREM);
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException {
     IMOperant newNode = this;
-    int       value = 0;;
+    int       value = 0;
     
     if (rOpr.isOperator()) {
         rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();
@@ -60,19 +61,21 @@ final  public class IMRem extends IMBinaryOperator {
     }
 
 
+    @Override
     public String toString() {
     return "(" + lOpr.toString() + "%" + rOpr.toString() + ")";
     }
 
     // IMRem
+    @Override
     public void translate(Reg result) throws CompileException {
 
     Reg rEAX = regs.getIntRegister(Reg.eax);
     Reg rEDX = regs.getIntRegister(Reg.edx);
-    Reg divisor = regs.chooseIntRegister(rEAX,rEDX);
+    Reg divisor = regs.chooseIntRegister(rEAX, rEDX);
     
     if (rOpr.isRealConstant() && rOpr.nodeToConstant().getIntValue()==0) {
-        execEnv.codeThrow(this,-6,bcPosition);
+        execEnv.codeThrow(this, -6, bcPosition);
     } else {
         rOpr.translate(divisor);
         lOpr.translate(rEAX);
@@ -83,9 +86,9 @@ final  public class IMRem extends IMBinaryOperator {
         regs.writeIntRegister(rEAX);
     
         if (!rOpr.isConstant()) 
-        execEnv.codeCheckDivZero(this,divisor,bcPosition);
+        execEnv.codeCheckDivZero(this, divisor, bcPosition);
         
-        regs.allocIntRegister(rEDX,BCBasicDatatype.INT);
+        regs.allocIntRegister(rEDX, BCBasicDatatype.INT);
 
         code.cdq();
         code.idivl(divisor);
@@ -94,18 +97,19 @@ final  public class IMRem extends IMBinaryOperator {
         regs.freeIntRegister(rEDX);
         regs.freeIntRegister(rEAX);
     
-        regs.allocIntRegister(result,Reg.edx,BCBasicDatatype.INT);
+        regs.allocIntRegister(result, Reg.edx, BCBasicDatatype.INT);
     
         if (!result.equals(Reg.edx)) {
-        code.movl(rEDX,result);
+        code.movl(rEDX, result);
         }
 
         code.endBC();
     }
     }
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
-        if (datatype!=BCBasicDatatype.LONG) throw new Error();
-        execEnv.codeLongRem(this,lOpr,rOpr,result,bcPosition);
+        if (datatype != BCBasicDatatype.LONG) throw new Error();
+        execEnv.codeLongRem(this, lOpr, rOpr, result, bcPosition);
     }
 }
