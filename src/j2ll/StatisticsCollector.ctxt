@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=StatisticsCollector
-comment0.text=\n\ Statistics\ Collector\n
-comment1.params=statistics
-comment1.target=StatisticsCollector(Statistics)
-comment2.params=access\ name\ desc\ signature\ exceptions
-comment2.target=org.objectweb.asm.MethodVisitor\ visitMethod(int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String[])
-numComments=3

@@ -62,7 +62,7 @@ public class ClassHelper {
         }
     }
 
-    ClassData getClassFile(String className) {
+    public ClassData getClassFile(String className) {
         openClasses();
         try {
             return new ClassData(new DataInputStream(getClassFileStream(className)));

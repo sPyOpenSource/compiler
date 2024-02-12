@@ -9,6 +9,7 @@ import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static j2ll.Internals.*;
+import j2ll.utils.Util;
 
 /**
  *

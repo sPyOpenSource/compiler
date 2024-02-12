@@ -2,6 +2,9 @@
 package j2ll;
 
 import compiler.MyCompiler;
+import j2ll.utils.Statistics;
+import j2ll.utils.StatisticsCollector;
+import j2ll.utils.Util;
 import org.objectweb.asm.ClassReader;
 
 import java.io.*;

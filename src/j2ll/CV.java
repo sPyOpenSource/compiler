@@ -1,6 +1,8 @@
 
 package j2ll;
 
+import j2ll.utils.Statistics;
+import j2ll.utils.Util;
 import org.objectweb.asm.*;
 
 import java.io.PrintStream;
