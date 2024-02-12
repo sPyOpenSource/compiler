@@ -19,6 +19,7 @@ import jx.compiler.imcode.graph.inst.ALU.IMDiv;
 import jx.compiler.imcode.graph.inst.ALU.IMInc;
 import jx.compiler.imcode.graph.inst.ALU.IMMul;
 import jx.compiler.imcode.graph.inst.ALU.IMNeg;
+import jx.compiler.imcode.graph.inst.ALU.IMRem;
 import jx.compiler.imcode.graph.inst.ALU.IMSub;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;

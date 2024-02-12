@@ -8,6 +8,7 @@ import jx.compiler.imcode.graph.inst.*;
 import jx.compiler.imcode.graph.inst.ALU.IMBitAnd;
 import jx.compiler.imcode.graph.inst.ALU.IMBitOr;
 import jx.compiler.imcode.graph.inst.ALU.IMBitXor;
+import jx.compiler.imcode.graph.inst.ALU.IMShiftLeft;
 import jx.compiler.imcode.graph.inst.ALU.IMShiftRight;
 import jx.compiler.imcode.graph.inst.ALU.IMShiftRight2;
 
