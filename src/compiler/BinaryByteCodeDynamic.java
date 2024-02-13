@@ -14,9 +14,6 @@ import jx.compiler.symbols.*;
 import jx.zero.Debug;
 
 public final class BinaryByteCodeDynamic {
-
-    private final boolean doAlignJumpTargets = false;
-
     // not private, so that javac can do inlining 
     // not accessed by any other classes (they are used as if they were private)
     private byte[] code;
@@ -960,8 +957,7 @@ public final class BinaryByteCodeDynamic {
     (Call insertConst4() for corresponding jump instruction) 
      */
     public void addJumpTarget(UnresolvedJump jumpObject) {
-    if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
-    jumpObject.setTargetNCIndex(ip);
+        jumpObject.setTargetNCIndex(ip);
     }
 
     public void alignIP() {
