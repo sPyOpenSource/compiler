@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=DebugOutputStream
+comment1.params=debugChannel
+comment1.target=DebugOutputStream(DebugChannel)
+comment2.params=b
+comment2.target=void\ write(int)
+comment3.params=b\ off\ len
+comment3.target=void\ write(byte[],\ int,\ int)
+comment3.text=\n\ atomically\ write\ this\ buffer\n
+numComments=4

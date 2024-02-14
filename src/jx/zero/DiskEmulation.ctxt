@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=DiskEmulation
+comment0.text=\n\ Access\ to\ an\ emulated\ block\ device.\n\ @author\ Michael\ Golm\n
+comment1.params=
+comment1.target=int\ getCapacity()
+comment1.text=\n\ Get\ capacity\ of\ the\ block\ device.\n\n\ @return\ number\ of\ sectors\n
+comment2.params=
+comment2.target=int\ getSectorSize()
+comment2.text=\n\ Get\ the\ size\ of\ a\ sector\n\n\ @return\ size\ of\ one\ sector\ in\ bytes\n
+comment3.params=startSector\ numberOfSectors\ buf\ synchronous
+comment3.target=void\ readSectors(int,\ int,\ Memory,\ boolean)
+comment3.text=\n\ Read\ a\ range\ of\ sectors.\n\n\ @param\ startSector\ \ \ \ \ first\ sector\ to\ read\n\ @param\ numberOfSectors\ number\ of\ sectors\ to\ read\n\ @param\ buf\ \ \ \ \ \ \ \ \ \ \ \ \ target\ memory\ of\ transfer\n\ @param\ synchronous\ \ \ \ \ deprecated\n
+comment4.params=startSector\ numberOfSectors\ buf\ synchronous
+comment4.target=void\ writeSectors(int,\ int,\ Memory,\ boolean)
+comment4.text=\n\ Write\ a\ range\ of\ sectors.\n\n\ @param\ startSector\ \ \ \ \ first\ sector\ to\ write\n\ @param\ numberOfSectors\ number\ of\ sectors\ to\ write\n\ @param\ buf\ \ \ \ \ \ \ \ \ \ \ \ \ source\ memory\ of\ transfer\n\ @param\ synchronous\ \ \ \ \ deprecated\n
+numComments=5

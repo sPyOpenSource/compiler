@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=IMThrow
+comment1.params=container\ bc\ bcpos
+comment1.target=IMThrow(jx.compiler.imcode.CodeContainer,\ int,\ int)
+comment10.params=vars
+comment10.target=void\ getCollectVars(java.util.ArrayList)
+comment11.params=result
+comment11.target=void\ translate(jx.compiler.nativecode.Reg)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=opr
+comment3.target=void\ setOperant(jx.compiler.imcode.graph.IMOperant)
+comment4.params=
+comment4.target=jx.compiler.imcode.graph.IMOperant\ getOperant()
+comment5.params=iCode\ depth\ forceInline
+comment5.target=jx.compiler.imcode.graph.IMNode\ inlineCode(jx.compiler.imcode.CodeVector,\ int,\ boolean)
+comment6.params=
+comment6.target=jx.compiler.imcode.graph.IMNode\ constant_folding()
+comment7.params=newContainer\ slots\ opr\ retval\ bcPos
+comment7.target=jx.compiler.imcode.graph.IMNode\ assignNewVars(jx.compiler.imcode.CodeContainer,\ int[],\ jx.compiler.imcode.graph.IMOperant[],\ int,\ int)
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=int\ getNrRegs()
+numComments=12

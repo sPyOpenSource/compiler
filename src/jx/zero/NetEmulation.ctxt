@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=NetEmulation
+comment1.params=deviceName\ macaddr
+comment1.target=int\ open(java.lang.String,\ byte[])
+comment2.params=buffer
+comment2.target=int\ receive(Memory)
+comment2.text=\n\ @param\ buffer\ \n@return\ size\ of\ received\ data
+comment3.params=buffer\ offset\ size
+comment3.target=int\ send(Memory,\ int,\ int)
+comment4.params=
+comment4.target=int\ getMTU()
+comment5.params=
+comment5.target=byte[]\ getMACAddress()
+comment6.params=
+comment6.target=int\ close()
+numComments=7

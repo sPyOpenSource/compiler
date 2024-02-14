@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IMCall
+comment1.params=container\ bc\ bcpos\ label
+comment1.target=IMCall(jx.compiler.imcode.CodeContainer,\ int,\ int,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment2.params=
+comment2.target=jx.compiler.imcode.graph.IMBasicBlock[]\ getTargets()
+comment3.params=stack\ basicBlock
+comment3.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=result
+comment5.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=6

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=BCFloat
+comment1.params=value
+comment1.target=BCFloat(float)
+comment2.params=
+comment2.target=float\ value()
+comment3.params=
+comment3.target=double\ doubleValue()
+comment4.params=
+comment4.target=int\ type()
+comment5.params=
+comment5.target=int\ getBits()
+comment6.params=operator\ op2
+comment6.target=BCNumericDatatype\ combined(int,\ BCNumericDatatype)
+comment7.params=
+comment7.target=BCNumericDatatype\ negated()
+numComments=8

@@ -7,19 +7,9 @@ import java.io.PrintStream;
 import java.util.Collections;
 
 import jx.compiler.symbols.*;
-import jx.zero.Debug; 
-
-
-/** 
-    Parallel to this class there is a class 
-    nativeCode.Binarycode. 
-    In this version of the compiler, the second class 
-    is used as a mere container, while this class 
-    is used to assemble the binary code. 
-*/ 
+import jx.zero.Debug;
 
 public final class BinaryCodeDynamicARM {
-
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -258,13 +248,13 @@ public final class BinaryCodeDynamicARM {
     }
 
     public void push(Ref ref) {
-    realloc();
+        realloc();
         insertByte(0xff);
         insertModRM(6, ref);
     }
 
     public void push(int immd) {
-    realloc();
+        realloc();
         insertByte(0x68);
         insertConst4(immd);
     }
@@ -303,7 +293,7 @@ public final class BinaryCodeDynamicARM {
        pop stack into eflags register (4 clks)
     */
     public void popfl() {
-    realloc();
+        realloc();
         insertByte(0x9d);
     }
 
@@ -311,7 +301,7 @@ public final class BinaryCodeDynamicARM {
        pop all general register
     */
     public void popal() {
-    realloc();
+        realloc();
         insertByte(0x61);
     }
 
@@ -1457,5 +1447,4 @@ public final class BinaryCodeDynamicARM {
     public ArrayList getInstructionTable() {
     return instructionTable;
     }
-
 }

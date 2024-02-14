@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IMCaughtException
+comment1.params=container
+comment1.target=IMCaughtException(jx.compiler.imcode.CodeContainer)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=
+comment4.target=int\ getNrRegs()
+comment5.params=result
+comment5.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=6

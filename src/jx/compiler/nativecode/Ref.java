@@ -1,7 +1,6 @@
 /**
  * X86-Register Class
  */
-
 package jx.compiler.nativecode;
 
 import jx.compiler.symbols.SymbolTableEntryBase;
@@ -94,4 +93,5 @@ final public class Ref extends Opr implements Cloneable {
 	}
 	return nref;
     }
+    
 }
