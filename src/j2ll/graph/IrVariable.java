@@ -1,3 +1,4 @@
+
 package j2ll.graph;
 
 public class IrVariable {
@@ -16,8 +17,7 @@ public class IrVariable {
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof IrVariable) {
-            IrVariable irv = (IrVariable) o;
+        if (o instanceof IrVariable irv) {
             return irv.name.equals(this.name);
         }
         return false;

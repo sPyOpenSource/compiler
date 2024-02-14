@@ -21,9 +21,7 @@ public class IrBlock extends IrObject {
         func = irf;
     }
 
-
     void iteratorForward(IrBlock block, IrBlock stop, List<IrBlock> curPath, List<List<IrBlock>> allPaths) {
-
         if (count(curPath, this) > 1) { // while follow stream
             return;
         }
@@ -43,7 +41,6 @@ public class IrBlock extends IrObject {
     }
 
     void iteratorBackward(IrBlock block, IrBlock stop, List<IrBlock> curPath, List<List<IrBlock>> allPaths) {
-
         if (count(curPath, this) > 1) { // while follow stream
             return;
         }
@@ -74,8 +71,7 @@ public class IrBlock extends IrObject {
 
     void fintOuter() {
         for (IrObject irb : lines) {
-            if (irb instanceof IrSentence) {
-                IrSentence irs = (IrSentence) irb;
+            if (irb instanceof IrSentence irs) {
                 switch (irs.getInstType()) {
                     case IrSentence.RET: {
                         break;
@@ -121,8 +117,7 @@ public class IrBlock extends IrObject {
         Set<IrVariable> operands = new LinkedHashSet<>(); //right register var
 
         for (IrObject irb : lines) {
-            if (irb instanceof IrSentence) {
-                IrSentence irs = (IrSentence) irb;
+            if (irb instanceof IrSentence irs) {
                 switch (irs.getInstType()) {
                     case IrSentence.LOAD: {
                         IrLoad ir = (IrLoad) irs;
@@ -140,9 +135,7 @@ public class IrBlock extends IrObject {
                         IrGetptr ir = (IrGetptr) irs;
                         lefts.add(ir.left);
                         operands.add(ir.operandName);
-                    for (IrVariable argsName : ir.argsName) {
-                        operands.add(argsName);
-                    }
+                        operands.addAll(Arrays.asList(ir.argsName));
                         break;
                     }
                     case IrSentence.BR2: {
@@ -181,9 +174,7 @@ public class IrBlock extends IrObject {
                     case IrSentence.CALL: {
                         IrCall ir = (IrCall) irs;
                         if (ir.left != null) lefts.add(ir.left);
-                    for (IrVariable argsName : ir.argsName) {
-                        operands.add(argsName);
-                    }
+                        operands.addAll(Arrays.asList(ir.argsName));
                         break;
                     }
                     case IrSentence.BITCAST: {
@@ -284,8 +275,8 @@ public class IrBlock extends IrObject {
 
             //replace varname
             for (IrObject ti : lines) {
-                if (ti instanceof IrSentence) {
-                    IrSentence irs = ((IrSentence) ti);
+                if (ti instanceof IrSentence irSentence) {
+                    IrSentence irs = irSentence;
                     irs.replaceVarName(need, registerVar);
                 }
             }
@@ -299,10 +290,8 @@ public class IrBlock extends IrObject {
             for (Iterator<IrVariable> it = tmp.operandRemain.iterator(); it.hasNext(); ) {
                 IrVariable rems = it.next();
                 if (rems.type.equals(need.type)) {// match ed
-
                     for (IrObject ti : tmp.lines) {
-                        if (ti instanceof IrSentence) {
-                            IrSentence tis = (IrSentence) ti;
+                        if (ti instanceof IrSentence tis) {
                             if (tis.getLeft() == rems) {
                                 String s1 = "store " + need.type + " " + rems.name + ", " + need.type + "* " + stackVar.name +"  ;FIXED BRANCH BLOCK VAR";
                                 IrSentence store = IrSentence.parseInst(s1);
@@ -315,7 +304,6 @@ public class IrBlock extends IrObject {
                     }
                 }
             }
-
         }
         for (IrBlock irb : tmp.inner) {
             if (fixPreOfPre(irb, need, stackVar, path)) {
@@ -332,8 +320,8 @@ public class IrBlock extends IrObject {
 
     boolean need2remainPass(IrVariable need, IrBlock from) {
         for (IrObject b : func.blocks) {
-            if (b instanceof IrBlock) {
-                IrBlock ib = ((IrBlock) b);
+            if (b instanceof IrBlock irBlock) {
+                IrBlock ib = irBlock;
                 for (IrVariable var : ib.operandRemain) {
                     if (var.type.equals(need.type) && var.name.equals(need.name)) {
                         if (backwardArrive(from, ib)) {
@@ -380,5 +368,4 @@ public class IrBlock extends IrObject {
         }
         return ";" + index + "\n" + s;
     }
-
 }
