@@ -1,3 +1,4 @@
+
 package jx.compiler.imcode.graph;
 
 public class IMCodeVector {
@@ -6,30 +7,30 @@ public class IMCodeVector {
     private IMNode[] code;
 
     public IMCodeVector() {
-	size = 0;
-	code = new IMNode[5];
+    size = 0;
+    code = new IMNode[5];
     }
 
     public IMNode element(int i) {
-	return code[i];
+    return code[i];
     }
 
     public void add(IMNode aCode) {
-	if (aCode==null) return;
-	realloc(size);
-	code[size++] = aCode;
+    if (aCode == null) return;
+    realloc(size);
+    code[size++] = aCode;
     }
 
     public int size() {
-	return size;
+    return size;
     }
 
     private void realloc(int nSize) {
-	if (nSize>code.length) {
-	    IMNode[] newArray = new IMNode[code.length+5];
-            System.arraycopy(code, 0, newArray, 0, code.length);
-	    code = newArray;
-	}
+    if (nSize > code.length) {
+        IMNode[] newArray = new IMNode[code.length + 5];
+        System.arraycopy(code, 0, newArray, 0, code.length);
+        code = newArray;
+    }
     }
     
 }

@@ -11,13 +11,12 @@ import jx.compiler.imcode.graph.inst.IMConstant;
 import jx.compiler.nativecode.*;
 
 // ***** IMMul *****
-
 final  public class IMMul extends IMBinaryOperator {
-    public IMMul(CodeContainer container,int bc,int bcpos) {
+    public IMMul(CodeContainer container, int bc, int bcpos) {
     super(container);
     bytecode   = bc;
     bcPosition = bcpos;
-    datatype = BCBasicDatatype.INT + (bc-Opcodes.IMUL);
+    datatype   = BCBasicDatatype.INT + (bc-Opcodes.IMUL);
     }
 
     @Override
@@ -45,12 +44,11 @@ final  public class IMMul extends IMBinaryOperator {
     }
 
     if (datatype == BCBasicDatatype.INT) {
-
         // simpel case (c*c)
         if (lOpr.isConstant() && rOpr.isConstant()) {
-        if (opts.doVerbose("cf")) Debug.out.println("++ folding c*c "+toString());
+        if (opts.doVerbose("cf")) Debug.out.println("++ folding c*c " + toString());
         value = lOpr.nodeToConstant().getIntValue() * rOpr.nodeToConstant().getIntValue();
-        newNode = new IMConstant(container,-1,bcPosition,value);
+        newNode = new IMConstant(container, -1, bcPosition, value);
         return newNode;
         }
         
@@ -65,10 +63,10 @@ final  public class IMMul extends IMBinaryOperator {
         if (rOpr.isConstant()) {
         switch (rOpr.nodeToConstant().getIntValue()) {
         case 0:
-            if (opts.doVerbose("cf")) Debug.out.println("++ folding x*0 "+toString());
+            if (opts.doVerbose("cf")) Debug.out.println("++ folding x*0 " + toString());
             return rOpr;
         case 1:
-            if (opts.doVerbose("cf")) Debug.out.println("++ folding x*1 "+toString());
+            if (opts.doVerbose("cf")) Debug.out.println("++ folding x*1 " + toString());
             return lOpr;
         case 2:
         case 3:

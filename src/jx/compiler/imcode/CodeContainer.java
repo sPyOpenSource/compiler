@@ -87,7 +87,7 @@ public class CodeContainer implements NativeCodeContainer {
 
     public CodeContainer(ExecEnvironmentInterface execEnv,
              BCMethodWithCode method) {
-    this(execEnv,method,new StatisticInfo());
+    this(execEnv, method, new StatisticInfo());
     }
 
     public CodeContainer(ExecEnvironmentInterface execEnv,

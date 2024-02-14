@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=IMOperator
+comment1.params=container
+comment1.target=IMOperator(jx.compiler.imcode.CodeContainer)
+comment2.params=
+comment2.target=java.lang.String\ toString()
+numComments=3

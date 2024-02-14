@@ -13,18 +13,18 @@ final public class IMNodeList {
     }
 
     public void add(IMNode node) {
-    if (free<nodes.length) {
-        nodes[free++]=node;
+    if (free < nodes.length) {
+        nodes[free++] = node;
     } else {
         IMNode[] nnodes = new IMNode[nodes.length+block];
-        System.arraycopy(nodes,0,nnodes,0,nodes.length);
+        System.arraycopy(nodes, 0, nnodes, 0, nodes.length);
         nodes = nnodes;
-        nodes[free++]=node;
+        nodes[free++] = node;
     }
     }
 
     public IMNode at(int i) {
-        if (i>=free) throw new ArrayIndexOutOfBoundsException();
+        if (i >= free) throw new ArrayIndexOutOfBoundsException();
         return nodes[i];
     }
 
