@@ -59,8 +59,8 @@ public class IrFunction {
 
         //find graph path
         for (IrObject b : blocks) {
-            if (b instanceof IrBlock) {
-                IrBlock ib = ((IrBlock) b);
+            if (b instanceof IrBlock irBlock) {
+                IrBlock ib = irBlock;
                 if (first == null) first = ib;
 
                 ib.fintOuter();
@@ -88,8 +88,7 @@ public class IrFunction {
     public IrBlock findBlock(String lab) {
         boolean found = false;
         for (IrObject irb : blocks) {
-            if (irb instanceof IrSentence) {
-                IrSentence irs = (IrSentence) irb;
+            if (irb instanceof IrSentence irs) {
                 if (irs.getInstType() == IrSentence.LABEL) {
                     if (((IrLabel) irs).label.equals(lab)) {
                         found = true;
