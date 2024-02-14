@@ -13,29 +13,29 @@ import jx.compiler.nativecode.*;
 
 final  public class IMNeg extends IMUnaryOperator {
 
-    public IMNeg(CodeContainer container,int bc,int bcpos) {
+    public IMNeg(CodeContainer container, int bc, int bcpos) {
     super(container);
     bytecode   = bc;
     bcPosition = bcpos;
-    datatype = BCBasicDatatype.INT + (bc-Opcodes.INEG);
+    datatype   = BCBasicDatatype.INT + (bc-Opcodes.INEG);
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) {
     operant = stack.pop();
     stack.push(this);
     return null;
     }
 
     public IMNode constant_folding() throws CompileException {
-    int       value = 0;
+    int value = 0;
 
     super.constant_folding();
     
     if (datatype == BCBasicDatatype.INT) {
         // simpel case -(c) => -c
         if (operant.isConstant()) {
-        if (opts.doVerbose("cf")) Debug.out.println("++ folding -(c) "+toString());
+        if (opts.doVerbose("cf")) Debug.out.println("++ folding -(c) " + toString());
         IMConstant rcOpr = operant.nodeToConstant();
         rcOpr.setIntValue(-rcOpr.getIntValue());
         return rcOpr;
@@ -46,7 +46,7 @@ final  public class IMNeg extends IMUnaryOperator {
     }
 
     public String toString() {
-    return "-"+operant.toString();
+    return "-" + operant.toString();
     }
 
     // IMNeg
@@ -65,9 +65,10 @@ final  public class IMNeg extends IMUnaryOperator {
     regs.writeLongRegister(result);
 
     code.negl(result.low);
-    code.adcl(0,result.high);
+    code.adcl(0, result.high);
     code.negl(result.high);
 
     code.endBC();
     }
+    
 }

@@ -1,3 +1,4 @@
+
 package jx.compiler.imcode.graph.inst.ALU; 
 
 import jx.classfile.datatypes.*; 
@@ -13,7 +14,7 @@ final public class IMInc extends IMVarAccess  {
 
     private final int value;
 
-    public IMInc(CodeContainer container,int bc,int bcpos,int ivar,int value) {
+    public IMInc(CodeContainer container, int bc, int bcpos, int ivar, int value) {
     super(container);
 
     bytecode    = bc;
@@ -38,12 +39,12 @@ final public class IMInc extends IMVarAccess  {
     return this;
     }
 
-    public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
+    public IMNode assignNewVars(CodeContainer newContainer, int slots[], IMOperant opr[], int retval, int bcPos) throws CompileException {
     bcPosition = bcPos;
     init(newContainer);
     
     if (opr[ivar]!=null) {
-        throw new CompileException("Can`t propagate left operant! var.index="+ivar+" operant="+opr[ivar].toString());
+        throw new CompileException("Can`t propagate left operant! var.index=" + ivar + " operant=" + opr[ivar].toString());
     }
 
     ivar = slots[ivar];
@@ -52,9 +53,9 @@ final public class IMInc extends IMVarAccess  {
     }
 
     public String toString() {
-    if (value==1) return "vi"+Integer.toString(ivar)+"++";
-    if (value==-1) return "vi"+Integer.toString(ivar)+"--";
-    return "vi"+Integer.toString(ivar)+"+="+Integer.toString(value);
+    if (value == 1) return "vi" + Integer.toString(ivar) + "++";
+    if (value == -1) return "vi" + Integer.toString(ivar) + "--";
+    return "vi" + Integer.toString(ivar) + "+=" + Integer.toString(value);
     }
 
     public int getNrRegs() { return 1; }
@@ -83,4 +84,5 @@ final public class IMInc extends IMVarAccess  {
     regs.writeIntRegisterToSlot(ireg, lvar);
     regs.freeIntRegister(ireg);
     }
+    
 }

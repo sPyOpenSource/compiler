@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=IMVarAccess
+comment1.params=container
+comment1.target=IMVarAccess(jx.compiler.imcode.CodeContainer)
+comment2.params=
+comment2.target=jx.compiler.imcode.LocalVariable\ getLocalVariable()
+comment3.params=
+comment3.target=int\ getVarIndex()
+comment4.params=
+comment4.target=int\ getNrRegs()
+comment5.params=vars
+comment5.target=void\ getCollectVars(java.util.ArrayList)
+comment6.params=
+comment6.target=java.lang.String\ toSymbolname()
+comment7.params=
+comment7.target=boolean\ writeAccess()
+numComments=8

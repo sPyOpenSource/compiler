@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IMCodeVector
+comment1.params=
+comment1.target=IMCodeVector()
+comment2.params=i
+comment2.target=IMNode\ element(int)
+comment3.params=aCode
+comment3.target=void\ add(IMNode)
+comment4.params=
+comment4.target=int\ size()
+comment5.params=nSize
+comment5.target=void\ realloc(int)
+numComments=6
