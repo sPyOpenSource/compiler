@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=MemoryManager
+comment1.params=size
+comment1.target=Memory\ alloc(int)
+comment2.params=size\ bytes
+comment2.target=Memory\ allocAligned(int,\ int)
+comment2.text=\n\ Allocate\ memory\ that\ is\ aligned\ to\ "bytes".\n\ @param\ size\ size\ of\ memory\ block\n\ @param\ bytes\ alignment\ of\ memory\ block\n\ @return\ \n
+comment3.params=start\ size
+comment3.target=DeviceMemory\ allocDeviceMemory(int,\ int)
+comment4.params=
+comment4.target=int\ getTotalMemory()
+comment4.text=query\ global\ status\ information
+comment5.params=
+comment5.target=int\ getTotalFreeMemory()
+comment6.params=
+comment6.target=int\ getFreeHeapMemory()
+comment6.text=query\ domain\ specific\ status\ information
+numComments=7

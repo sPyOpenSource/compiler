@@ -9,13 +9,13 @@ import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
 import jx.zero.Debug;
 
-/** 
+/**
     Parallel to this class there is a class 
     nativeCode.Binarycode. 
     In this version of the compiler, the second class 
     is used as a mere container, while this class 
     is used to assemble the binary code. 
-*/ 
+ */
 
 public final class BinaryCodeIA32 {
     private final boolean doAlignJumpTargets = false;

@@ -19,7 +19,6 @@ import jx.zero.Debug;
 */ 
 
 public final class BinaryCodeDynamicRiscV {
-
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -1450,5 +1449,4 @@ public final class BinaryCodeDynamicRiscV {
     public ArrayList getInstructionTable() {
     return instructionTable;
     }
-
 }

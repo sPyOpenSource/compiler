@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=PortalInfo
+comment1.params=
+comment1.target=Domain\ getTargetDomain()
+comment2.params=
+comment2.target=int\ getServiceID()
+numComments=3

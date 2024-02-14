@@ -1,7 +1,6 @@
 /**
  * X86-Register Class
  */
-
 package jx.compiler.nativecode;
 
 import jx.compiler.imcode.*;
@@ -70,4 +69,5 @@ public class Opr implements Cloneable {
 	if (reg < 0) return "!any";
 	return "%e" + REGNAME[reg]; 
     }
+    
 }

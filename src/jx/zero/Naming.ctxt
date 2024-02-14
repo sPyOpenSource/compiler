@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Naming
+comment1.params=portal\ name
+comment1.target=void\ registerPortal(Portal,\ java.lang.String)
+comment2.params=name
+comment2.target=Portal\ lookup(java.lang.String)
+comment3.params=name
+comment3.target=Portal\ lookupOrWait(java.lang.String)
+numComments=4

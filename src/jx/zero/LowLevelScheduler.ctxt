@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=LowLevelScheduler
+comment1.params=
+comment1.target=void\ activate_currDomain()
+comment1.text=yes
+comment2.params=
+comment2.target=void\ activate_nextDomain()
+comment2.text=yes
+comment3.params=domain
+comment3.target=void\ registerDomain(Domain)
+comment3.text=yes
+comment4.params=domain
+comment4.target=void\ unregisterDomain(Domain)
+comment4.text=???
+comment5.params=
+comment5.target=void\ dump()
+comment5.text=???
+comment6.params=domain\ time
+comment6.target=void\ setTimeSlice(Domain,\ int)
+comment6.text=yes
+comment7.params=irq_nr
+comment7.target=void\ registered(int)
+comment7.text=yes
+numComments=8
