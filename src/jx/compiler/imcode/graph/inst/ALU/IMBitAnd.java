@@ -74,7 +74,7 @@ public class IMBitAnd extends IMBitOperator {
     code.startBC(bcPosition);
 
     regs.writeIntRegister(result);
-    code.andl(reg,result);
+    code.andl(reg, result);
 
     code.endBC();
 
@@ -92,8 +92,8 @@ public class IMBitAnd extends IMBitOperator {
     code.startBC(bcPosition);
 
     regs.writeLongRegister(result);
-    code.andl(reg.low,result.low);
-    code.andl(reg.high,reg.high);
+    code.andl(reg.low, result.low);
+    code.andl(reg.high, reg.high);
     
     code.endBC();
 

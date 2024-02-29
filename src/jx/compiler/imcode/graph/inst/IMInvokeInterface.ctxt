@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=IMInvokeInterface
+comment1.params=container\ bc\ bcpos\ cpEntry
+comment1.target=IMInvokeInterface(jx.compiler.imcode.CodeContainer,\ int,\ int,\ jx.classfile.constantpool.InterfaceMethodRefCPEntry)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=iCode\ depth\ forceInline
+comment3.target=jx.compiler.imcode.graph.IMNode\ inlineCode(jx.compiler.imcode.CodeVector,\ int,\ boolean)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=result
+comment5.target=void\ translate(jx.compiler.nativecode.Reg)
+comment6.params=result
+comment6.target=void\ translate(jx.compiler.nativecode.Reg64)
+numComments=7

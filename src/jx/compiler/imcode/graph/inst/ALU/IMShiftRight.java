@@ -91,7 +91,7 @@ final public class IMShiftRight extends IMBitOperator {
 
     @Override
     public void translate(Reg64 result) throws CompileException {
-    if (datatype!=BCBasicDatatype.LONG) throw new Error();
-    execEnv.codeLongShr(this,lOpr, rOpr, result, bcPosition);
+    if (datatype != BCBasicDatatype.LONG) throw new Error();
+    execEnv.codeLongShr(this, lOpr, rOpr, result, bcPosition);
     }
 }

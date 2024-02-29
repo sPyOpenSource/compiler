@@ -7,15 +7,15 @@ package j2ll;
 public class Internals {
 
     public static final String BOOLEAN = "i1";
-    public static final String BYTE = "i8";
-    public static final String CHAR = "i16";
-    public static final String SHORT = "i16";
-    public static final String INT = "i32";
-    public static final String LONG = "i64";
-    public static final String FLOAT = "float";
-    public static final String DOUBLE = "double";
+    public static final String BYTE    = "i8";
+    public static final String CHAR    = "i16";
+    public static final String SHORT   = "i16";
+    public static final String INT     = "i32";
+    public static final String LONG    = "i64";
+    public static final String FLOAT   = "float";
+    public static final String DOUBLE  = "double";
     public static final String POINTER = "i8*";
-    public static final String SLOT2 = "SLOT2";
+    public static final String SLOT2   = "SLOT2";
 
     public static int sizeOf(String javaType) {
         if ("Z".equals(javaType)) return 1;

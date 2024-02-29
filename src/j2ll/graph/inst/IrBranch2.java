@@ -20,7 +20,7 @@ public class IrBranch2 extends IrSentence {
     @Override
     public void parse(String st) {
 
-        String[] ss1 = split(st,"[ ,]{1,}");
+        String[] ss1 = split(st, "[ ,]{1,}");
         instName = ss1[0];
         irType = ss1[1];
         operand = new IrVariable(irType, ss1[2]);

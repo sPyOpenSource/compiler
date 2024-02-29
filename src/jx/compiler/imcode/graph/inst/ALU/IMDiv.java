@@ -111,7 +111,7 @@ final  public class IMDiv extends IMBinaryOperator {
         regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.INT);
     
         if (!result.equals(Reg.eax)) {
-        code.movl(rEAX,result);
+            code.movl(rEAX,result);
         }
 
         code.endBC();
