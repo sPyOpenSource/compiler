@@ -14,7 +14,6 @@ import jx.compiler.CompilerOptionsNative;
 import jx.compiler.CompileNative;
 
 class BuilderOptions extends CompilerOptionsNative {
-	
     public BuilderOptions(ArrayList libs, ArrayList jlns, String src, String jlnFile, String target, String env) {
         /* set defaults */
         doZeroDivChecks      = true;
@@ -40,7 +39,7 @@ class BuilderOptions extends CompilerOptionsNative {
         doFastStatics        = false;
         doPrintIMCode        = true;
         doStackTrace         = false;
-        doUsePackedArrays    = false; // old Compiler allways use 32 Bit
+        doUsePackedArrays    = false;     // old Compiler allways use 32 Bit
 
         replaceInterfaceWithClass = null; // substitute a classname for an interface name when loading
 
@@ -72,9 +71,9 @@ public class StartBuilder {
     private static final boolean opt_f = false; // force recompilation 
     private static final boolean opt_c = false; // make clean
     private static final boolean opt_n = false; // do nothing
-    private static boolean opt_fast  = false; // compile only the jll that has changed
-    private static boolean opt_new   = false; // compute transitive if-depends, impl-depends, and extends relations
-    private static boolean opt_debug = false; // verbose debug output
+    private static boolean opt_fast  = false;   // compile only the jll that has changed
+    private static boolean opt_new   = false;   // compute transitive if-depends, impl-depends, and extends relations
+    private static boolean opt_debug = false;   // verbose debug output
 
     private static boolean new_jcflags = false;
 

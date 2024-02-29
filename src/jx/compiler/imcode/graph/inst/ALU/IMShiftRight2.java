@@ -45,7 +45,7 @@ public class IMShiftRight2 extends IMBitOperator {
     // IMShiftRight2
     public void translate(Reg result) throws CompileException {
     
-    Reg reg,regECX;
+    Reg reg, regECX;
 
     if (rOpr.isConstant()) {
         lOpr.translate(result);
@@ -84,8 +84,8 @@ public class IMShiftRight2 extends IMBitOperator {
     }
    
     public void translate(Reg64 result) throws CompileException {
-    if (datatype!=BCBasicDatatype.LONG) throw new Error();
-    execEnv.codeLongUShr(this,lOpr,rOpr,result,bcPosition);
+    if (datatype != BCBasicDatatype.LONG) throw new Error();
+    execEnv.codeLongUShr(this, lOpr, rOpr, result, bcPosition);
     }
 
 }

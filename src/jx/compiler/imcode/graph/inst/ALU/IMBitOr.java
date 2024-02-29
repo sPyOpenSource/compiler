@@ -67,7 +67,7 @@ public class IMBitOr extends IMBitOperator {
     reg = regs.chooseIntRegister(result);
     rOpr.translate(reg);
     regs.writeIntRegister(result);
-    code.orl(reg,result);
+    code.orl(reg, result);
     regs.freeIntRegister(reg);
     }
 
@@ -83,8 +83,8 @@ public class IMBitOr extends IMBitOperator {
     code.startBC(bcPosition);
     
     regs.writeLongRegister(result);
-    code.orl(reg.low,result.low);
-    code.orl(reg.high,reg.high);
+    code.orl(reg.low, result.low);
+    code.orl(reg.high, reg.high);
 
     code.endBC();
 

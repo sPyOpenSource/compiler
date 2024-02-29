@@ -16,7 +16,7 @@ public class IrBranch1 extends IrSentence {
     @Override
     public void parse(String st) {
 
-        String[] ss = split(st,"%");
+        String[] ss = split(st, "%");
         instName = ss[0].trim();
 
         label = ss[1].trim();

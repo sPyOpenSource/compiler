@@ -107,7 +107,7 @@ public class CompilerOptions implements CompilerOptionsInterface {
     public CompilerOptions(ArrayList libs, String env) {
 	this();
 	setNeededLibs(libs);
-	enviroment  = env;
+	enviroment = env;
     }
 
     public String getTargetName() {
