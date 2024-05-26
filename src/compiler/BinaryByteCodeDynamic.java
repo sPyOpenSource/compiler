@@ -2,7 +2,6 @@ package compiler;
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
-import java.io.PrintStream;
 import java.util.Collections;
 
 import jx.compiler.nativecode.NCExceptionHandler;
@@ -55,33 +54,6 @@ public final class BinaryByteCodeDynamic {
         exceptionHandlers = new ArrayList(); 
     }
 
-    /** 
-    The methods in the frontend expect the compiled code
-    stored inside of a object of class nativecode.BinaryCode. 
-    Convert a object of preproc.BinaryCodePreproc into a object of 
-    nativecode.BinaryCode.
-    Note: Exceptionhandlers are not copied. 
-    */ 
-    /*
-    public jx.jit.nativecode.BinaryCode getOldBinaryCode() {
-
-    Enumeration enum = symbolTable.elements(); 
-    Vector unresolvedEntries = new Vector(); 
-    while(enum.hasMoreElements()) {
-        SymbolTableEntryBase entry = (SymbolTableEntryBase)enum.nextElement();
-        if (entry instanceof IntValueSTEntry) {
-        ((IntValueSTEntry)entry).applyValue(code);
-        //entry.apply(code, codeBase);
-        } else {
-        unresolvedEntries.addElement(entry); 
-        }
-    }
-    symbolTable = unresolvedEntries; 
-
-      return new jx.jit.nativecode.BinaryCode(code, ip, symbolTable); 
-    }
-    */
-
     public int getCurrentIP() { return ip; }
 
     public void realloc() {
@@ -99,12 +71,12 @@ public final class BinaryByteCodeDynamic {
             int newSize = code.length;
 
             if (code.length > requiredSpace && code.length < 8000) {
-            newSize += code.length;
+                newSize += code.length;
             } else {
-            newSize += requiredSpace;
+                newSize += requiredSpace;
             }
             byte[] newCode = new byte[newSize];
-                System.arraycopy(code, 0, newCode, 0, ip);
+            System.arraycopy(code, 0, newCode, 0, ip);
             code = newCode;
         }
     }
@@ -112,8 +84,8 @@ public final class BinaryByteCodeDynamic {
     // ***** Code Generation ***** 
     
     /** 
-    Insert a single byte
-    */ 
+     * Insert a single byte
+     */ 
     void insertByte(int value) {
         code[ip++] = (byte)value;
     }
@@ -127,8 +99,8 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Insert ModRM and SIB byte 
-    */
+     * Insert ModRM and SIB byte 
+     */
     private void insertModRM(int reg, Opr rm) {
     reg = reg & 0x07;
     rm.value  = rm.value & 0x07;
@@ -177,7 +149,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Insert call near indirect (reg/mem) (2 clks)
+     * Insert call near indirect (reg/mem) (2 clks)
      * @param opr
      */
     public void call(Opr opr) {
@@ -187,7 +159,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Insert call near (Symbol) (1 clks)
+     * Insert call near (Symbol) (1 clks)
      * @param entry
      */
     public void call(SymbolTableEntryBase entry) {
@@ -199,17 +171,17 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Insert return
-    */
+     * Insert return
+     */
     public void ret() {
     realloc();
         insertByte(0xa9);
     }
 
     /**
-       Insert a pushl(reg)
+     * Insert a pushl(reg)
      * @param reg
-    */
+     */
     public void push(Reg reg) {
         realloc();
         insertByte(0x50 + reg.value);
@@ -234,24 +206,24 @@ public final class BinaryByteCodeDynamic {
     }
 
     /** 
-       Insert a popl(reg)
+     * Insert a popl(reg)
      * @param reg
-    */
+     */
     public void pop(Reg reg) {
         realloc();
         insertByte(0x57);
     }
 
     /**
-       pop stack into eflags register (4 clks)
-    */
+     * pop stack into eflags register (4 clks)
+     */
     public void pop2() {
     realloc();
         insertByte(0x58);
     }
     
     /**
-       Integer Subtraction
+     * Integer Subtraction
      * @param src
      * @param des
      */
@@ -268,7 +240,7 @@ public final class BinaryByteCodeDynamic {
     }
     
     /**
-       Integer Unsigned Multiplication of eax  (10 clk)
+     * Integer Unsigned Multiplication of eax  (10 clk)
      * @param src
      */
     public void imul(Opr src) {
@@ -293,7 +265,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       SHL/SAL Shift left (1/3 clks)
+     * SHL/SAL Shift left (1/3 clks)
      * @param immd
      * @param des
      */
@@ -310,7 +282,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       SHL/SAL Shift left by %cl (4 clks)
+     * SHL/SAL Shift left by %cl (4 clks)
      * @param des
      */
     public void ishl(Opr des) {
@@ -320,7 +292,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       SHR Shift right (1/3 clks)
+     * SHR Shift right (1/3 clks)
      * @param immd
      * @param des
      */
@@ -345,7 +317,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       DIV Signed Divide
+     * DIV Signed Divide
      * @param src
      */
 
@@ -356,7 +328,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Add
+     * Add
      * @param src
      * @param des
      */
@@ -374,7 +346,7 @@ public final class BinaryByteCodeDynamic {
     }
  
     /**
-       And (1/3 clks)
+     * And (1/3 clks)
      */
 
     public void iand(Opr src, Reg des) {
@@ -390,7 +362,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Or (1/3 clks)
+     * Or (1/3 clks)
      */
 
     public void ior(Opr src, Reg des) {
@@ -406,7 +378,7 @@ public final class BinaryByteCodeDynamic {
     }
  
     /**
-       Or (1/3 clks)
+     * Or (1/3 clks)
      */
 
     public void ixor(Opr src, Reg des) {
@@ -422,7 +394,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Not (1/3 clks)
+     * Not (1/3 clks)
      */
 
     public void notl(Opr opr) {
@@ -432,8 +404,8 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Neg (1/3 clks)
-    */
+     * Neg (1/3 clks)
+     */
 
     public void ineg(Opr opr) {
         realloc();
@@ -442,8 +414,8 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Add with Carry
-    */
+     * Add with Carry
+     */
 
     public void adc(Opr src, Reg des) {
         realloc();
@@ -458,8 +430,8 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Compare Two Operands
-    */
+     * Compare Two Operands
+     */
 
     public void cmp(Opr src, Reg des) {
         realloc();
@@ -509,8 +481,8 @@ public final class BinaryByteCodeDynamic {
 
 
     /**
-       Jump short/near if equal
-    */
+     * Jump short/near if equal
+     */
 
     public void ifeq(int rel) {
     realloc();
@@ -533,7 +505,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Jump short/near if not equal
+     * Jump short/near if not equal
      */
 
     public void ifne(int rel) {
@@ -565,7 +537,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Jump short/near if less
+     * Jump short/near if less
      */
 
     public void iflt(SymbolTableEntryBase entry) {
@@ -577,7 +549,7 @@ public final class BinaryByteCodeDynamic {
     }
     
     /**
-       Jump short/near if greater or equal
+     * Jump short/near if greater or equal
      */
 
     public void ifge(SymbolTableEntryBase entry) {
@@ -589,7 +561,7 @@ public final class BinaryByteCodeDynamic {
     }
     
     /**
-       Jump short/near if greater
+     * Jump short/near if greater
      */
     
     public void ifgt(SymbolTableEntryBase entry) {
@@ -601,7 +573,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Jump short/near if less or equal
+     * Jump short/near if less or equal
      */
 
     public void ifle(SymbolTableEntryBase entry) {
@@ -613,7 +585,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Jump short/near if sign
+     * Jump short/near if sign
      */
 
     public void js(int rel) {
@@ -629,7 +601,7 @@ public final class BinaryByteCodeDynamic {
     }
   
     /**
-       Jump short/near 
+     * Jump short/near 
      */
 
     public void goto_(Opr des) {
@@ -646,7 +618,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       Move 32 Bit Data
+     * Move 32 Bit Data
      */
 
     public void mov(Opr src, Reg des) {
@@ -686,7 +658,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /**
-       No Operation (1 clks)
+     * No Operation (1 clks)
      */
 
     public void nop() {
@@ -696,7 +668,7 @@ public final class BinaryByteCodeDynamic {
 
 
     /**
-       test - logical compare (1/2 clks)
+     * test - logical compare (1/2 clks)
      */
 
     public void if_icmpeq(Opr src, Reg des) {
@@ -718,7 +690,7 @@ public final class BinaryByteCodeDynamic {
     }
 
     /** 
-    Insert a single byte constant 
+     * Insert a single byte constant 
      */ 
     public void insertConst1(int value) {
     realloc();
@@ -726,7 +698,7 @@ public final class BinaryByteCodeDynamic {
     }    
   
     /** 
-    Insert a four byte constant 
+     * Insert a four byte constant 
      */ 
     public void insertConst4(int value) {
     realloc();
@@ -873,25 +845,6 @@ public final class BinaryByteCodeDynamic {
     }
     symbolTable = unresolvedEntries;
     }
-
-    // ***** Building of Debug messages ****** 
-    
-    private static final String[] REGNAME = {
-    "ax", "cx", "dx", "bx", "sp", "bp", "si", "di"
-    };
-    
-    public static String regToString(int reg) {
-    return "%e" + REGNAME[reg];
-    }
-    
-    public static final int EAX = 0;
-    public static final int ECX = 1;
-    public static final int EDX = 2;
-    public static final int EBX = 3;
-    public static final int ESP = 4;
-    public static final int EBP = 5;
-    public static final int ESI = 6;
-    public static final int EDI = 7;
     
     // ***** Exceptions *****
     
@@ -960,36 +913,6 @@ public final class BinaryByteCodeDynamic {
     return getBinaryCodeAsAssembler(0, ip); 
     }
     
-    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-        //      instructions.addElement(currentInstruction);
-    }
-
-    public void printInstr(String instr, SymbolTableEntryBase arg1, String arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2, String arg3) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2, arg3);
-    //      instructions.addElement(currentInstruction);
-    }
-
-    public void printInstr(String instr) {
-    //      currentInstruction = new DisassInstr(ip, instr);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, String arg1, String arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, SymbolTableEntryBase arg1) {
-        //      currentInstruction = new DisassInstr(ip, instr, arg1);
-    //      instructions.addElement(currentInstruction);
-    }
-    
     public void printJumpTarget(UnresolvedJump entry) {
     //      currentInstruction = new DisassInstr(ip, entry);
     //      instructions.addElement(currentInstruction);
@@ -1005,19 +928,6 @@ public final class BinaryByteCodeDynamic {
     public void printHexInt(int value) {
     String hex = Long.toHexString(value & 0xffffffffL);         
     Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
-    }
-    
-
-    public void printInstructions() {
-    //    for(int i=0; i<instructions.size(); i++) {
-    //        Debug.out.println(instructions.elementAt(i));
-    //    }
-    }
-    
-    public void printGASInstructions(PrintStream out) {
-    //    for(int i=0; i<instructions.size(); i++) {
-    //        out.println(((DisassInstr)instructions.elementAt(i)).toGASFormat());
-    //    }
     }
     
     public void startBC(int bcPosition) {
