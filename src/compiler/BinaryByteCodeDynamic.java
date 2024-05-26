@@ -13,6 +13,9 @@ import jx.compiler.nativecode.Reg;
 import jx.compiler.symbols.*;
 import jx.zero.Debug;
 
+/*
+ * bytecode generator
+ */
 public final class BinaryByteCodeDynamic {
     // not private, so that javac can do inlining 
     // not accessed by any other classes (they are used as if they were private)
