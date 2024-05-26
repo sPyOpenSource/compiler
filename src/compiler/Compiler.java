@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * @author gust
  */
-public class MyCompiler {
+public class Compiler {
     public static String srcFileEncode = "utf-8";
 
     public static final String JAVA_EXT = ".java";
@@ -52,7 +52,7 @@ public class MyCompiler {
                 }
             }
         } catch (Exception ex) {
-            Logger.getLogger(MyCompiler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -97,7 +97,7 @@ public class MyCompiler {
             task.call();
             manager.close();
         } catch (IOException ex) {
-            Logger.getLogger(MyCompiler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Compiler.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

@@ -22,4 +22,9 @@ public class JUnitTest {
     public void testIR(){
         
     }
+    
+    @Test
+    public void testIA32(){
+        
+    }
 }

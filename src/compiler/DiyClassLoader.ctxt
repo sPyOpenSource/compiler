@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=DyClassLoader
+comment0.text=\n\n\ @author\ Gust\n
+comment1.params=
+comment1.target=DyClassLoader()
+comment1.text=\n\ \n
+comment2.params=s
+comment2.target=void\ addClassPath(java.lang.String)
+comment2.text=\n\ added\ class\ path\n\ @param\ s\n
+comment3.params=root\ path
+comment3.target=void\ find(java.lang.String,\ java.lang.String)
+comment4.params=file\ className
+comment4.target=java.lang.Class\ loadFromCustomRepository(java.io.File,\ java.lang.String)
+comment4.text=\n\ load\ from\ custom\ respository\n\ @param\ className\n\ @return\n
+comment5.params=className
+comment5.target=java.lang.Class\ loadFromSysAndCustomRepository(java.lang.String)
+comment5.text=\n\ \n\ @param\ className\n\ @return\n
+numComments=6

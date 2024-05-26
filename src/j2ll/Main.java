@@ -1,7 +1,7 @@
 
 package j2ll;
 
-import compiler.MyCompiler;
+import compiler.Compiler;
 import j2ll.utils.Statistics;
 import j2ll.utils.StatisticsCollector;
 import j2ll.utils.Util;
@@ -49,9 +49,9 @@ public class Main {
         if (!f.exists()) {
             f.mkdirs();
         }
-        compiler.MyCompiler.compile(srcPath, classesPath);
+        compiler.Compiler.compile(srcPath, classesPath);
         List<String> files = new ArrayList<>();
-        MyCompiler.find(classesPath, files, null, ".class");
+        Compiler.find(classesPath, files, null, ".class");
 
         Util.helper = new ClassHelper("", files.toArray(new String[files.size()]));
         Util.helper.openClasses();

@@ -213,7 +213,7 @@ public class Compiler extends javax.swing.JFrame {
                         .addComponent(Run)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(logOn)
-                        .addGap(0, 222, Short.MAX_VALUE)))
+                        .addGap(0, 200, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 

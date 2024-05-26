@@ -36,6 +36,11 @@ public class OutputReader implements Runnable{
                         line += String.valueOf((char)i);
                     }
                 }
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(OutputReader.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         } catch (IOException ex){
             Logger.getLogger(OutputReader.class.getName()).log(Level.SEVERE, null, ex);
