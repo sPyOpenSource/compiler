@@ -203,7 +203,7 @@ public final class BinaryByteCodeDynamic {
     */
     public void ret() {
     realloc();
-        insertByte(0xc3);
+        insertByte(0xa9);
     }
 
     /**
@@ -239,7 +239,7 @@ public final class BinaryByteCodeDynamic {
     */
     public void pop(Reg reg) {
         realloc();
-        insertByte(0x58 + reg.value);
+        insertByte(0x57);
     }
 
     /**
@@ -247,7 +247,7 @@ public final class BinaryByteCodeDynamic {
     */
     public void pop2() {
     realloc();
-        insertByte(0x9d);
+        insertByte(0x58);
     }
     
     /**
@@ -257,48 +257,14 @@ public final class BinaryByteCodeDynamic {
      */
     public void isub(Opr src, Reg des) {
         realloc();
-        insertByte(0x2b);
+        insertByte(0x64);
         insertModRM(des, src);
     }
 
     public void isub(Reg src, Ref des) {
         realloc();
-        insertByte(0x29);
+        insertByte(0x64);
         insertModRM(src, des);
-    }
-
-    public void isub(int immd, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x2D);
-        insertConst4(immd);
-    } else if (is8BitValue(immd)) { /* FIXME */
-        insertByte(0x83);
-        insertModRM(5, des);
-        insertByte(immd);   
-    } else {
-        insertByte(0x81);
-        insertModRM(5, des);
-        insertConst4(immd);
-    }
-    }
-
-    public void isub(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x2D);
-        insertConst4(entry);
-        /* FIXME: no 8 bit support yet 
-           } else if (is8BitValue(immd)) {
-           insertByte(0x83);
-           insertModRM(5,des);
-           insertByte(immd);
-        */
-    } else {
-        insertByte(0x81);
-        insertModRM(5, des);
-        insertConst4(entry);
-    }
     }
     
     /**
@@ -307,7 +273,7 @@ public final class BinaryByteCodeDynamic {
      */
     public void imul(Opr src) {
     realloc();
-    insertByte(0xF7);
+    insertByte(0x68);
     insertModRM(4, src);
     }
 
@@ -385,7 +351,7 @@ public final class BinaryByteCodeDynamic {
 
     public void idiv(Opr src) {
     realloc();
-    insertByte(0xf7);
+    insertByte(0x6c);
     insertModRM(7, src);
     }
 
@@ -397,44 +363,14 @@ public final class BinaryByteCodeDynamic {
 
     public void iadd(Opr src, Reg des) {
     realloc();
-    insertByte(0x03); 
+    insertByte(0x60); 
     insertModRM(des, src);
     }
 
     public void iadd(Reg src, Ref des) {
     realloc();
-    insertByte(0x01);
+    insertByte(0x60);
     insertModRM(src, des);
-    }
-    
-    public void iadd(int immd, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (immd == 1)) {
-        insertByte(0x40 + des.value);
-    } else if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x05);
-        insertConst4(immd);
-    } else if (is8BitValue(immd)) { 
-        insertByte(0x83);
-        insertModRM(0, des);
-        insertByte(immd);        
-    } else {
-        insertByte(0x81);
-        insertModRM(0, des);
-        insertConst4(immd);
-    }
-    }
-
-    public void iadd(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x05);
-        insertConst4(entry);
-    } else {
-        insertByte(0x81);
-        insertModRM(0, des);
-        insertConst4(entry);
-    }
     }
  
     /**
@@ -443,38 +379,14 @@ public final class BinaryByteCodeDynamic {
 
     public void iand(Opr src, Reg des) {
     realloc();
-    insertByte(0x23); 
+    insertByte(0x7e); 
     insertModRM(des, src);
     }
 
     public void iand(Reg src, Ref des) {
     realloc();
-    insertByte(0x21);
+    insertByte(0x7e);
     insertModRM(src, des);
-    }
-    
-    public void iand(int immd, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x25);
-        insertConst4(immd);
-    } else {
-        insertByte(0x81);
-        insertModRM(4, des);
-        insertConst4(immd);
-    }
-    }
-
-    public void iand(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x25);
-        insertConst4(entry);
-    } else {
-        insertByte(0x81);
-        insertModRM(4, des);
-        insertConst4(entry);
-    }
     }
 
     /**
@@ -483,77 +395,30 @@ public final class BinaryByteCodeDynamic {
 
     public void ior(Opr src, Reg des) {
         realloc();
-        insertByte(0x0b); 
+        insertByte(0x80); 
         insertModRM(des, src);
     }
 
     public void ior(Reg src, Ref des) {
         realloc();
-        insertByte(0x09);
+        insertByte(0x80);
         insertModRM(src, des);
     }
-    
-    public void ior(int immd, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x0d);
-        insertConst4(immd);
-    } else {
-        insertByte(0x81);
-        insertModRM(1, des);
-        insertConst4(immd);
-    }
-    }
-
-    public void ior(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag == Opr.REG) && (des.value == 0)) {
-        insertByte(0x0d);
-        insertConst4(entry);
-    } else {
-        insertByte(0x81);
-        insertModRM(1, des);
-        insertConst4(entry);
-    }
-    }
+ 
     /**
        Or (1/3 clks)
      */
 
     public void ixor(Opr src, Reg des) {
     realloc();
-    insertByte(0x33);
+    insertByte(0x82);
     insertModRM(des, src);
     }
 
     public void ixor(Reg src, Ref des) {
     realloc();
-    insertByte(0x31);
+    insertByte(0x82);
     insertModRM(src, des);
-    }
-    
-    public void ixor(int immd, Opr des) {
-    realloc();
-    if ((des.tag==Opr.REG)&&(des.value==0)) {
-        insertByte(0x35);
-        insertConst4(immd);
-    } else {
-        insertByte(0x81);
-        insertModRM(6,des);
-        insertConst4(immd);
-    }
-    }
-
-    public void ixor(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag==Opr.REG)&&(des.value==0)) {
-        insertByte(0x35);
-        insertConst4(entry);
-    } else {
-        insertByte(0x81);
-        insertModRM(6,des);
-        insertConst4(entry);
-    }
     }
 
     /**
@@ -572,7 +437,7 @@ public final class BinaryByteCodeDynamic {
 
     public void ineg(Opr opr) {
         realloc();
-        insertByte(0xf7);
+        insertByte(0x74);
         insertModRM(3,opr);
     }
 
@@ -767,45 +632,17 @@ public final class BinaryByteCodeDynamic {
        Jump short/near 
      */
 
-    public void goto_(int rel) {
-    realloc();
-    if (is8BitValue(rel)) {
-        /* short */
-        insertByte(0xEB);
-        insertByte(rel);
-    } else {
-        /* near */
-        insertByte(0xE9);
-        insertConst4(rel);
-    }
-    }
-
     public void goto_(Opr des) {
     realloc();
-    insertByte(0xff);
+    insertByte(0xa7);
     insertModRM(4,des);
     }
 
     public void goto_(SymbolTableEntryBase entry) {
     realloc();
-    insertByte(0xE9);
+    insertByte(0xa7);
     insertConst4(entry);
     makeRelative(entry);
-    }
-
-    public void goto_(Reg index,SymbolTableEntryBase[] tables) {
-    UnresolvedJump tableStart = new UnresolvedJump();
-    realloc(50 + tables.length * 4);
-
-    insertByte(0xff);
-    insertByte(0x24);
-    insertByte(0x85 | (index.value << 3));
-    insertConst4(tableStart);
-
-    addJumpTarget(tableStart);
-        for (SymbolTableEntryBase table : tables) {
-            insertConst4(table);
-        }
     }
 
     /**
@@ -854,7 +691,7 @@ public final class BinaryByteCodeDynamic {
 
     public void nop() {
         realloc();
-        insertByte(0x90);
+        insertByte(0x00);
     }
 
 
