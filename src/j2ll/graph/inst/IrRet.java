@@ -18,7 +18,6 @@ public class IrRet extends IrSentence {
     @Override
     public void parse(String st) {
         String[] ss = split(st,"[ ]{1,}");
-        //
         instName = ss[0];
         operandType = ss[1];
         operand = new IrVariable(operandType, ss.length > 2 ? ss[2] : "");

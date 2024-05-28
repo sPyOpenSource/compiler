@@ -5,11 +5,11 @@ import jx.classfile.constantpool.*;
 import jx.zero.Debug;
 
 /** 
-    All data about a class, that can be found 
-    in a class file. This is a rather passive class. 
-    It only reads the data from the class file and 
-    stores it. 
-*/ 
+ *  All data about a class, that can be found 
+ *  in a class file. This is a rather passive class. 
+ *  It only reads the data from the class file and 
+ *  stores it. 
+ */ 
 public class ClassData extends ClassSource {
     final static boolean debugRead = false;
 

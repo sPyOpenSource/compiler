@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import jx.classfile.constantpool.*;
 import jx.classfile.datatypes.*;
 import jx.zero.Debug;
