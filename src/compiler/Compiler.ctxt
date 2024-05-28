@@ -1,5 +1,5 @@
 #BlueJ class context
-comment0.target=MyCompiler
+comment0.target=Compiler
 comment0.text=\n\ @author\ gust\n
 comment1.params=srcPath\ outputPath
 comment1.target=void\ compile(java.lang.String,\ java.lang.String)

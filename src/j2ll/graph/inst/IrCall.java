@@ -21,8 +21,8 @@ public class IrCall extends IrSentence {
         return 0;
     }
 
-    //    %stack5 = call i32 @java_lang_String_indexOf_Ljava_lang_String_I(%java_lang_String* %stack0, %java_lang_String* %stack1, i32 %stack2)
-    //call  void @java_io_PrintStream_println_I(%java_io_PrintStream* %stack18, i32 %stack20)
+    // %stack5 = call i32 @java_lang_String_indexOf_Ljava_lang_String_I(%java_lang_String* %stack0, %java_lang_String* %stack1, i32 %stack2)
+    // call  void @java_io_PrintStream_println_I(%java_io_PrintStream* %stack18, i32 %stack20)
     @Override
     public void parse(String p) {
         String st = p;
