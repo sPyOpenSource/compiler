@@ -33,4 +33,5 @@ public class IMBranch extends IMOperant {
     public IMBasicBlock[] getTargets() {
 	return targets;
     }
+    
 }

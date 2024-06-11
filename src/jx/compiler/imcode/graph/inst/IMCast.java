@@ -3,7 +3,8 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
+
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
@@ -13,7 +14,6 @@ import jx.compiler.imcode.graph.IMUnaryOperator;
 import jx.compiler.nativecode.*;
 
 final  public class IMCast extends IMUnaryOperator {
-
     private int shortOpr;
 
     public IMCast(CodeContainer container, int bc, int bcpos) {	

@@ -741,7 +741,6 @@ public final class BinaryByteCodeDynamic {
     symbolTable.add(entry);
     }
 
-
     /**
        Intel Architecture Optimization. Reference Manual (chapter 2,page 11)
        "Pentium II and III processors have a cache line size of 32 byte.
@@ -866,10 +865,9 @@ public final class BinaryByteCodeDynamic {
     }
     
     /**
-    return an array of all exception handlers of this 
-    method. (these handlers contain the native code indices 
-    of the range start, range end and of the handler start 
-     * @return
+     * @return an array of all exception handlers of this 
+     * method. (these handlers contain the native code indices 
+     * of the range start, range end and of the handler start 
      */
     public NCExceptionHandler[] getExceptionHandlers() {
     NCExceptionHandler[] handlerArray = 
@@ -942,5 +940,4 @@ public final class BinaryByteCodeDynamic {
     public ArrayList getInstructionTable() {
     return instructionTable;
     }
-
 }

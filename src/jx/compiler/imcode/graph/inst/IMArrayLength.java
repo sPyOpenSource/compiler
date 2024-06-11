@@ -67,7 +67,6 @@ final public class IMArrayLength extends IMOperator {
     // IMArrayLength
     @Override
     public void translate(Reg result) throws CompileException {
-	
 	Reg arrayRef = regs.chooseIntRegister(result);	
 	array.translate(arrayRef);
 
@@ -78,4 +77,5 @@ final public class IMArrayLength extends IMOperator {
 
 	regs.freeIntRegister(arrayRef);
     }
+    
 }
