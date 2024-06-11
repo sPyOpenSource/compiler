@@ -17,6 +17,7 @@ final public class IMStackOperation extends IMNode {
 	bcPosition = bcpos;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	IMOperant opr1,opr2,opr3,opr4;
 
