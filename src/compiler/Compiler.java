@@ -26,7 +26,7 @@ public class Compiler {
     }
 
     /**
-     *  find files from root , file path save in paths, File save in files
+     * find files from root , file path save in paths, File save in files
      * @param root
      * @param paths
      * @param files

@@ -1,19 +1,18 @@
 
 package jx.compiler.imcode.graph.inst; 
 
+import java.util.ArrayList;
 import jx.classfile.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
+
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import java.util.ArrayList;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 
 // ***** IMConditionalBranch *****
-
 final  public class IMConditionalBranch extends IMBranch  {
-
     private IMOperant rOpr;
     private IMOperant lOpr;
     private UnresolvedJump jumpTarget;
@@ -29,6 +28,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 	targets[1] = label;
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	if (bytecode < Opcodes.IF_ICMPEQ ||
 	    bytecode == Opcodes.IFNULL   ||
@@ -46,6 +46,7 @@ final  public class IMConditionalBranch extends IMBranch  {
 	return this;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	if (rOpr!=null) rOpr = (IMOperant)rOpr.inlineCode(iCode, depth, forceInline);
 	lOpr = (IMOperant)lOpr.inlineCode(iCode, depth, forceInline);

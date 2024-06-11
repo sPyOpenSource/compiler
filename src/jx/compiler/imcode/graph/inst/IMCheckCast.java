@@ -50,4 +50,5 @@ final public class IMCheckCast extends IMUnaryOperator {
 	operant.translate(result);
 	execEnv.codeCheckCast(this, cpEntry, result, bcPosition);
     }
+    
 }

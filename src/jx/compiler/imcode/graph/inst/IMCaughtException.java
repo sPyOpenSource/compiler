@@ -37,4 +37,5 @@ final public class IMCaughtException extends IMOperant {
 	regs.allocIntRegister(result, datatype);
 	code.popl(result);
     }
+    
 }

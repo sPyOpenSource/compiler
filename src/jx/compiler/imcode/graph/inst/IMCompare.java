@@ -20,6 +20,7 @@ final  public class IMCompare extends IMBinaryOperator {
     datatype = BCBasicDatatype.INT;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
     if (rOpr.isOperator()) {
         rOpr = (IMOperant)((IMOperator)rOpr).constant_folding();
@@ -33,11 +34,13 @@ final  public class IMCompare extends IMBinaryOperator {
     return this;
     }
 
+    @Override
     public String toString() {
     return "compare("+lOpr.toString()+","+rOpr.toString()+")";
     }
 
     // IMCompare for long, float and double read spec
+    @Override
     public void translate(Reg result) throws CompileException {    
     if (opts.isOption("long") && bytecode == Opcodes.LCMP) {
         execEnv.codeLongCompare(this, lOpr, rOpr, result, bcPosition);
@@ -46,7 +49,9 @@ final  public class IMCompare extends IMBinaryOperator {
     execEnv.codeThrow(this,-11,bcPosition);
     }
 
+    @Override
     public void translate(Reg64 result) throws CompileException {
     throw new CompileException("long not supported by compare");
     }
+    
 }
