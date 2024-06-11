@@ -7,9 +7,7 @@ import jx.compiler.imcode.CodeVector;
 import jx.compiler.imcode.VirtualOperantenStack;
 
 // ***** IMBinaryOperator *****
-
 public class IMBinaryOperator extends IMOperator {
-
     protected IMOperant rOpr;
     protected IMOperant lOpr;    
 
@@ -93,7 +91,6 @@ public class IMBinaryOperator extends IMOperator {
 	}
 	return this;
     }
-
 
     @Override
     public int getNrRegs() { return lOpr.getNrRegs() + rOpr.getNrRegs(); }

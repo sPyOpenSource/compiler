@@ -48,4 +48,5 @@ public class IMOperant extends IMNode {
     public boolean checkArrayRange(IMOperant index) {
 	return true;
     }
+    
 }
