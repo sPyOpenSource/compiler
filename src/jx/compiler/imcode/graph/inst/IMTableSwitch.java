@@ -1,10 +1,11 @@
 package jx.compiler.imcode.graph.inst; 
 
-import jx.zero.Debug; 
+import java.util.ArrayList;
+import jx.zero.Debug;
+
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
-import java.util.ArrayList;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.*;
@@ -12,10 +13,10 @@ import jx.compiler.imcode.graph.*;
 // ***** IMTableSwitch *****
 
 final public class IMTableSwitch extends IMBranch  {
-    private IMBasicBlock doff;
-    private int low;
-    private int high;
-    private IMBasicBlock[] offsets;
+    private final IMBasicBlock doff;
+    private final int low;
+    private final int high;
+    private final IMBasicBlock[] offsets;
     private IMOperant operant;
 
     public IMTableSwitch(CodeContainer container, int bc, int bcpos,
@@ -36,6 +37,7 @@ final public class IMTableSwitch extends IMBranch  {
 	System.arraycopy(offsets, 0, targets, 1, offsets.length);
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
 	operant = stack.pop();
 	//stack.flush();
@@ -65,11 +67,14 @@ final public class IMTableSwitch extends IMBranch  {
 	return output + " : " + doff.toLabel();
     }
 
+    @Override
     public void getCollectVars(ArrayList vars) { operant.getCollectVars(vars); }
 
+    @Override
     public int getNrRegs() { return operant.getNrRegs(); }
     
     // IMTableSwitch
+    @Override
     public void translate(Reg result) throws CompileException {
 	operant.translate(result);
 

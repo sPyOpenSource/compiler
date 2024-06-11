@@ -1,12 +1,13 @@
 
 package jx.compiler.imcode.graph.inst; 
 
+import java.util.ArrayList;
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
 import jx.zero.Debug; 
+
 import jx.compiler.*;
 import jx.compiler.nativecode.*;
-import java.util.ArrayList;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 
@@ -24,6 +25,7 @@ final public class IMStoreArray extends IMOperant  {
 	datatype    = BCBasicDatatype.INT + (bc-Opcodes.IASTORE);
     }
 
+    @Override
     public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
 	//stack.store(bcPosition);
 	rvalue = stack.pop();
@@ -33,6 +35,7 @@ final public class IMStoreArray extends IMOperant  {
 	return this;
     }
 
+    @Override
     public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
 	aOpr   = (IMOperant)aOpr.inlineCode(iCode, depth, forceInline);
 	iOpr   = (IMOperant)iOpr.inlineCode(iCode, depth, forceInline);
@@ -40,6 +43,7 @@ final public class IMStoreArray extends IMOperant  {
 	return this;
     }
 
+    @Override
     public IMNode constant_folding() throws CompileException{
 	rvalue = (IMOperant)rvalue.constant_folding();
 	aOpr   = (IMOperant)aOpr.constant_folding();
@@ -47,6 +51,7 @@ final public class IMStoreArray extends IMOperant  {
 	return this;
     }
 
+    @Override
     public IMNode assignNewVars(CodeContainer newContainer,int slots[],IMOperant opr[],int retval,int bcPos) throws CompileException {
 	bcPosition = bcPos;
 	init(newContainer);
@@ -58,22 +63,25 @@ final public class IMStoreArray extends IMOperant  {
 	return this;
     }
 
+    @Override
     public String toString() {
 	return aOpr.toString()+"["
 	    +iOpr.toString()+"] = "
 	    +rvalue.toString();
     }
 
+    @Override
     public int getNrRegs() { return rvalue.getNrRegs() + aOpr.getNrRegs() + iOpr.getNrRegs(); }
 
+    @Override
     public void getCollectVars(ArrayList vars) { 
 	rvalue.getCollectVars(vars);
 	aOpr.getCollectVars(vars);
 	iOpr.getCollectVars(vars);
-	return;
     }
 
     // IMStoreArray
+    @Override
     public void translate(Reg result) throws CompileException {
 	rvalue.translate(result);
 	
@@ -109,6 +117,7 @@ final public class IMStoreArray extends IMOperant  {
     }
  
     // IMStoreArray
+    @Override
     public void translate(Reg64 result) throws CompileException {
 	Debug.out.println("warn: IMStoreArray.tanslateLong not impl");
 	/*
