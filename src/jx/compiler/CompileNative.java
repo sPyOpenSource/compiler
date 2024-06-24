@@ -24,27 +24,28 @@ public class CompileNative {
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
-        MetaInfo s = (MetaInfo)metas.get(0); // process this component
-	String libdir = "/home/spy/Source/jcore/isodir/code";
+        //MetaInfo s = (MetaInfo)metas.get(0); // process this component
+	String libdir = "./";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
-	String zipname = libdir + s.getComponentName() + ".zip";
-	String jllname = libdir + s.getComponentName() + ".jll";
+	String zipname = libdir + /*s.getComponentName()*/"zero" + ".zip";
+	String jllname = libdir + /*s.getComponentName()*/"zero" + ".jll";
 
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
         String[] neededLibs = new String[]{
-            "zero", "jdk0"
+            //"zero", "jdk0"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
         
-	String jlnname = libdir + s.getComponentName() + ".jln";
+	String jlnname = libdir + /*s.getComponentName()*/"zero" + ".jln";
         
         CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
-	compile("init2", opts);
+        compile("zero", opts);
+	//compile("init2", opts);
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
