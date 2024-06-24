@@ -5,6 +5,7 @@
 package jx.compspec;
 
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
@@ -119,17 +120,15 @@ public class StartBuilder {
 	String[] compdirs = MetaInfo.split(componentsDir, ':');
 
         byte[] barr;
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/Zero/META", "r")) {
-            barr = new byte[(int)f.length()];
-            f.readFully(barr);
+        try (InputStream f = new URL("https://github.com/sPyOpenSource/zero/raw/jar/META").openStream()) {
+            barr = f.readAllBytes();
         }
         MetaInfo zero = new MetaInfo("/home/spy/OS/jx/libs/zero", barr);
         zero.setNeededLibs(new ArrayList());
         metas.add(zero);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/OS/META", "r")) {
-            barr = new byte[(int)f.length()];
-            f.readFully(barr);
+        try (InputStream f = new URL("https://github.com/sPyOpenSource/os/raw/master/META").openStream()) {
+            barr = f.readAllBytes();
         }
         MetaInfo jdk0 = new MetaInfo("/home/spy/OS/jx/libs/jdk0", barr);
         ArrayList allLibs2 = new ArrayList();
@@ -137,9 +136,8 @@ public class StartBuilder {
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/AIZero/META", "r")) {
-            barr = new byte[(int)f.length()];
-            f.readFully(barr);
+        try (InputStream f = new URL("https://github.com/sPyOpenSource/AIZero/raw/master/META").openStream()) {
+            barr = f.readAllBytes();
         }
         MetaInfo ai = new MetaInfo("/home/spy/OS/jx/libs/ai", barr);
         ArrayList allLibs3 = new ArrayList();
@@ -148,9 +146,8 @@ public class StartBuilder {
         ai.setNeededLibs(allLibs3);
         metas.add(ai);
         
-        try (RandomAccessFile f = new RandomAccessFile("/home/spy/Source/OS/jcore/testOS/META", "r")) {
-            barr = new byte[(int)f.length()];
-            f.readFully(barr);
+        try (InputStream f = new URL("https://github.com/sPyOpenSource/testOS/META").openStream()) {
+            barr = f.readAllBytes();
         }
         MetaInfo meta = new MetaInfo("/home/spy/OS/jx/libs/init2", barr);
         ArrayList allLibs = new ArrayList();
@@ -186,7 +183,6 @@ public class StartBuilder {
 	System.out.println("*********** BUILD COMPLETED");
     }
 
-	
     static boolean build_zip(MetaInfo s) throws Exception {
 	String componentName = s.getComponentName();
 	String sd = s.getVar("SUBDIRS");
@@ -657,8 +653,11 @@ public class StartBuilder {
 	public void checkCreateClassLoader() { } 
         @Override
 	public void checkAccess(Thread g) { }
+        @Override
 	public void checkAccess(ThreadGroup g) { }
+        @Override
 	public void checkExec(String cmd) { }
+        @Override
 	public void checkLink(String lib) { }
 	public void checkRead(FileDescriptor fd) { }
 	public void checkRead(String file) { }
