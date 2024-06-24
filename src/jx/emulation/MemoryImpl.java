@@ -351,7 +351,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	    mappings.add(mapping);
 	    fillMapping(mapping);
 	    return o;
-	} catch(Exception e) {
+	} catch(ClassNotFoundException | IllegalAccessException | InstantiationException e) {
 	    e.printStackTrace();
 	    return null;
 	}
@@ -359,7 +359,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     private void fillMapping(Mapping mapping) {
 	try {
-	for(int i=0; i<mapping.fields.length; i++) {
+	for(int i = 0; i < mapping.fields.length; i++) {
 	    Field field = mapping.fields[i];
 	    Class fieldType = mapping.fields[i].getType();
 	    if (! fieldType.isPrimitive()) {
@@ -398,7 +398,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 		    } else if (fieldType.equals(Byte.TYPE)) {
 			mapping.fields[i].setByte(mapping.object, coreGet8(mapping.start + mapping.offsets[i]));
 		    }
-		} catch(Exception ex) {
+		} catch(IllegalAccessException | IllegalArgumentException ex) {
 		    ex.printStackTrace();
 		}
 	    }
@@ -409,18 +409,18 @@ public class MemoryImpl implements Memory, DeviceMemory {
 	}
     }
     public void fillMappings() {
-	for(int i=0; i<mappings.size(); i++) {
+	for(int i = 0; i < mappings.size(); i++) {
 	    Mapping mapping = (Mapping)mappings.get(i);
 	    fillMapping(mapping);
 	}
     }
 
     private void syncMapping(Mapping mapping) {
-	/*	for(int i=0; i<16; i++) {
+	/*for(int i=0; i<16; i++) {
 	    Debug.out.println("MEM:" +coreGet8(i)); 
-	    }*/
+	}*/
 	try {
-	for(int i=0; i<mapping.fields.length; i++) {
+	for(int i = 0; i < mapping.fields.length; i++) {
 	    Field field = mapping.fields[i];
 	    Class fieldType = mapping.fields[i].getType();
 	    if (! fieldType.isPrimitive()) {
@@ -459,7 +459,7 @@ public class MemoryImpl implements Memory, DeviceMemory {
 		    } else if (fieldType.equals(Byte.TYPE)) {
 			coreSet8(mapping.start + mapping.offsets[i], mapping.fields[i].getByte(mapping.object)); 
 		    }
-		} catch(Exception ex) {
+		} catch(IllegalAccessException | IllegalArgumentException ex) {
 		    ex.printStackTrace();
 		}
 	    }
@@ -570,7 +570,6 @@ public class MemoryImpl implements Memory, DeviceMemory {
 
     // represents a subrange of Memory
     class SubMemory extends MemoryImpl {
-
         @Override
 	protected  void coreCopy(int from, int to, int length) {
 	    super.coreCopy(from+start, to+start, length);
