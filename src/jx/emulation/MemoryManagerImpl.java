@@ -28,5 +28,4 @@ public class MemoryManagerImpl implements MemoryManager {
     /* query domain specific status information */
     @Override
     public int getFreeHeapMemory(){return 0;}
-
 }
