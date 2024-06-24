@@ -144,7 +144,7 @@ public class StaticCompiler implements ClassFinder {
             } else {
                 in = libZip[i];
             }
-            System.out.println(in.getPath().split("dist")[0]);
+            System.out.println(in.getFile());
             MetaInfo x = new MetaInfo(in.getPath().split("dist")[0] + "META");
             String sd = x.getVar("SUBDIRS");
             String[] sds = MetaInfo.split(sd);
