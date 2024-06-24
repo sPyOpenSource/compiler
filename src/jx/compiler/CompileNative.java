@@ -31,9 +31,7 @@ public class CompileNative {
 
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
-        String[] neededLibs = new String[]{
-            //"zero", "jdk0"
-        };
+        String[] neededLibs = new String[0];
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
@@ -43,14 +41,29 @@ public class CompileNative {
         
         CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
+        
+        zipname = libdir + "os.zip";
+	jllname = libdir + "os.jll";
+        jlnname = libdir + "os.jln";
         neededLibs = new String[]{
+            "zero"
+        };
+        for (String neededLib : neededLibs) {
+            libs.add(libdir + neededLib + ".zip");
+            jlns.add(libdir + neededLib + ".jln");
+        }
+        opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+	compile("os", opts);
+        
+        /*neededLibs = new String[]{
             "zero", "jdk0"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
-	compile("init2", opts);
+        opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+	compile("init2", opts);*/
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
@@ -72,17 +85,15 @@ public class CompileNative {
 
 	URL domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
         URL[] libClasses = new URL[0];
-        if(path.endsWith("zero")){
-            domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
-        } else if(path.endsWith("init2")){
-            domClasses = new URL("jar:https://github.com/sPyOpenSource/testOS/dist/testOS.jar");
+        if(path.endsWith("init2")){
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/testOS/dist/testOS.jar!/");
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar")
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar!/")
             };
         } else if(path.endsWith("ai")){
-            domClasses = new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar");
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/AIZero/dist/AIZero.jar!/");
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"),
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/")
