@@ -102,7 +102,7 @@ public class CompileNative {
 	URL domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
         URL[] libClasses = new URL[0];
         if(path.endsWith("init2")){
-            domClasses = new URL("jar:https://github.com/sPyOpenSource/applications/raw/master/dist/testOS.jar!/");
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/APP/dist/testOS.jar!/");
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/"), 
