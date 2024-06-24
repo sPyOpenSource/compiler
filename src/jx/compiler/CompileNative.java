@@ -12,19 +12,17 @@ import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
-import jx.compspec.MetaInfo;
-import jx.compspec.MetaReader;
 import static jx.compspec.StartBuilder.getCompilerOptions;
 
 public class CompileNative {
     static MemoryManager memMgr = new MemoryManagerImpl();
 
     public static void main(String[] args) throws Exception {
-        String[] a = {"/home/spy/Source/jcore/libs"};
+        /*String[] a = {"/home/spy/Source/jcore/libs"};
         MetaReader metaReader = new MetaReader(a);
         ArrayList metas = new ArrayList();
         metaReader.addMeta(metas, "init2");
-        //MetaInfo s = (MetaInfo)metas.get(0); // process this component
+        MetaInfo s = (MetaInfo)metas.get(0); // process this component*/
 	String libdir = "./";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
