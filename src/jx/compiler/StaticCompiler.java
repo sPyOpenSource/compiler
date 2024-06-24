@@ -78,7 +78,6 @@ public class StaticCompiler implements ClassFinder {
 			  CompilerOptions opts,
 			  IOSystem ioSystem
 			  ) throws Exception {
-
 	if (opts == null)
 	    this.options = new CompilerOptions();
 	else
