@@ -36,7 +36,6 @@ import jx.compspec.MetaInfo;
 import java.io.PrintStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.io.ByteArrayOutputStream;
 import java.net.JarURLConnection;
 import java.net.URL;
@@ -146,16 +145,9 @@ public class StaticCompiler implements ClassFinder {
                 in = libZip[i];
             }
             
-            String base = in.getPath().split("dist")[0];
-            String[] sds;
-            byte[] barr;
-            URL url = new URL("https://github.com/sPyOpenSource/zero/raw/jar/META");
-            InputStream f = url.openStream();
-            barr = f.readAllBytes();
-                
-            MetaInfo x = new MetaInfo("", barr);
+            MetaInfo x = new MetaInfo("https://github.com/sPyOpenSource/zero/raw/jar/META");
             String sd = x.getVar("SUBDIRS");
-            sds = MetaInfo.split(sd);
+            String[] sds = MetaInfo.split(sd);
             
             try {
                 JarURLConnection con = (JarURLConnection)in.openConnection();

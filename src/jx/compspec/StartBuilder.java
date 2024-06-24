@@ -119,37 +119,24 @@ public class StartBuilder {
 
 	String[] compdirs = MetaInfo.split(componentsDir, ':');
 
-        byte[] barr;
-        try (InputStream f = new URL("https://github.com/sPyOpenSource/zero/raw/jar/META").openStream()) {
-            barr = f.readAllBytes();
-        }
-        MetaInfo zero = new MetaInfo("/home/spy/OS/jx/libs/zero", barr);
+        MetaInfo zero = new MetaInfo("https://github.com/sPyOpenSource/zero/raw/jar/META");
         zero.setNeededLibs(new ArrayList());
         metas.add(zero);
         
-        try (InputStream f = new URL("https://github.com/sPyOpenSource/os/raw/master/META").openStream()) {
-            barr = f.readAllBytes();
-        }
-        MetaInfo jdk0 = new MetaInfo("/home/spy/OS/jx/libs/jdk0", barr);
+        MetaInfo jdk0 = new MetaInfo("https://github.com/sPyOpenSource/os/raw/master/META");
         ArrayList allLibs2 = new ArrayList();
         allLibs2.add("zero");
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
-        
-        try (InputStream f = new URL("https://github.com/sPyOpenSource/AIZero/raw/master/META").openStream()) {
-            barr = f.readAllBytes();
-        }
-        MetaInfo ai = new MetaInfo("/home/spy/OS/jx/libs/ai", barr);
+
+        MetaInfo ai = new MetaInfo("https://github.com/sPyOpenSource/AIZero/raw/master/META");
         ArrayList allLibs3 = new ArrayList();
         allLibs3.add("zero");
         allLibs3.add("jdk0");
         ai.setNeededLibs(allLibs3);
         metas.add(ai);
-        
-        try (InputStream f = new URL("https://github.com/sPyOpenSource/testOS/META").openStream()) {
-            barr = f.readAllBytes();
-        }
-        MetaInfo meta = new MetaInfo("/home/spy/OS/jx/libs/init2", barr);
+
+        MetaInfo meta = new MetaInfo("https://github.com/sPyOpenSource/testOS/META");
         ArrayList allLibs = new ArrayList();
         allLibs.add("zero");
         allLibs.add("jdk0");

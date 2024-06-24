@@ -1,8 +1,14 @@
 package jx.compspec;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import jx.zero.Debug;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 final public class MetaInfo {
     final static int MAXLINE = 5000;
@@ -37,7 +43,35 @@ final public class MetaInfo {
 	String val;
     }
 
-    //public MetaInfo(String filename, ReadOnlyMemory meta) {
+    public MetaInfo(String filename) {
+        try {
+            URL url = new URL(filename);
+            InputStream f = url.openStream();
+            meta = f.readAllBytes();
+            lineloop:
+            for(int j = 0; ; j++) {
+                Line line = nextLine();
+                if (line == null) return;
+                if (line.op == 1) {
+                    for(int i = 0; i < nvars; i++) {
+                        if (vars[i].equals(line.var)) {
+                            vals[i] += " " + line.val;
+                            continue lineloop;
+                        }
+                    }
+                    throw new Error("Var " + line.var + " not found (cannot perform += operation)");
+                }		
+                vars[nvars] = line.var;
+                vals[nvars] = line.val;
+                nvars++;
+            }
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(MetaInfo.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MetaInfo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public MetaInfo(String filename, byte[] meta) {
 	this.filename = filename;
 	this.meta = meta;
