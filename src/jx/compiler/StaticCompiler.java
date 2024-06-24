@@ -149,11 +149,10 @@ public class StaticCompiler implements ClassFinder {
             String base = in.getPath().split("dist")[0];
             String[] sds;
             byte[] barr;
-
-            try (RandomAccessFile f = new RandomAccessFile(base + "META", "r")) {
-                barr = new byte[(int)f.length()];
-                f.readFully(barr);
-            }    
+            URL url = new URL("https://github.com/sPyOpenSource/zero/raw/jar/META");
+            InputStream f = url.openStream();
+            barr = f.readAllBytes();
+                
             MetaInfo x = new MetaInfo("", barr);
             String sd = x.getVar("SUBDIRS");
             sds = MetaInfo.split(sd);
