@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/Users/xuyi/Source/OS/armOS/lib/jcore/Compiler/src/jx/compspec/StartBuilder.java</file>
+            <file>file:/Users/xuyi/Source/OS/armOS/lib/jcore/Compiler/src/jx/compiler/CompileNative.java</file>
+            <file>file:/Users/xuyi/Source/OS/armOS/lib/jcore/Compiler/src/jx/compiler/StaticCompiler.java</file>
+            <file>file:/Users/xuyi/Source/OS/armOS/lib/jcore/Compiler/src/jx/compspec/MetaInfo.java</file>
+        </group>
     </open-files>
 </project-private>
