@@ -43,7 +43,14 @@ public class CompileNative {
         
         CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
-	//compile("init2", opts);
+        neededLibs = new String[]{
+            "zero", "jdk0"
+        };
+        for (String neededLib : neededLibs) {
+            libs.add(libdir + neededLib + ".zip");
+            jlns.add(libdir + neededLib + ".jln");
+        }
+	compile("init2", opts);
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
