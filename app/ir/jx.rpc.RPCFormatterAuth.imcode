@@ -1,0 +1,64 @@
+class jx/rpc/RPCFormatterAuth {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(Ljx/rpc/RPCBuffer;Ljx/rpc/Auth;)V {
+  +START:   #1
+        writeInt@special(vR0,vR1.id);   [  i iR]
+        tswitch (vR1.id) B40 B51 B62 : B70;   
+  +B40:   #1
+        write@special(vR0,(jx/rpc/AuthNone)(vR1));   [  . RR]
+        goto +B70;   forward return[  . ..]
+  +B51:   #1
+        write@special(vR0,(jx/rpc/AuthUnix)(vR1));   [  . RR]
+        goto +B70;   forward return[  . ..]
+  +B62:   #1
+        write@special(vR0,(jx/rpc/AuthShort)(vR1));   [  . RR]
+  +B70:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 3 write
+ 
+ method read(Ljx/rpc/RPCBuffer;)Ljx/rpc/Auth; {
+  +START:   #1
+        vR1 = new jx/rpc/Auth();    [ RR  i][ RR  iR]
+        vR1.id = readInt@special(vR0);   
+        vR2 = 0;    
+        tswitch (vR1.id) B48 B56 B64 : B72;   
+  +B48:   #1
+        vR2 = read@special(vR0);    [RR RR  R.]
+        goto +B108;   [RR RR  ..]
+  +B56:   #1
+        vR2 = read@special(vR0);    [RR RR  R.]
+        goto +B108;   [RR RR  ..]
+  +B64:   #1
+        vR2 = read@special(vR0);    [RR RR  R.]
+        goto +B108;   [RR RR  ..]
+  -B72:   #1
+        b0 = err;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Unknown switch in RPC message").append@extra(vR1.id).toString@extra());   [RR RR iii. RR.] 
+        throw new java/lang/RuntimeException();   
+  +B108:   #3
+        vR2.id = vR1.id;   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 12 swaps 3 any 0 found 0 read
+ 
+ method length(Ljx/rpc/Auth;)I {
+  +START:   #1
+        vi1 = 0;    
+        vi1 = (vi1+lengthInt@special(vR0.id));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 1 length
+}

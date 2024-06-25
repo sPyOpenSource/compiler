@@ -1,0 +1,58 @@
+class java/util/PrimitiveIterator$OfDouble {
+ 
+ method forEachRemaining(Ljava/util/function/DoubleConsumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+  +B5:   #1
+        if vR0.hasNext()==0 goto B29;   
+  +B14:   #1
+        vR1.accept(vR0.nextDouble());   [   ??R] 
+        goto +B5;   [   ...]
+  +B29:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method next()Ljava/lang/Double; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 next
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        if (vR1 instanceof java/util/function/DoubleConsumer)==0 goto B20;   
+  +B7:   #1
+        vR0.forEachRemaining((java/util/function/DoubleConsumer)(vR1));   [ R  RR] 
+        goto +B42b0;   forward return[ R  ..]
+  +B20:   #1
+        requireNonNull@special(vR1);   [ R  R.]
+        b0 = vR0;    
+        requireNonNull@special(vR1);   [ R  R.]
+        <operant>;   
+        <operant>;   
+        <operant>;   
+        vR1.forEachRemaining(0);   [ R  ?R] 
+  +B42b0:   #1 reference
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 1 forEachRemaining
+ 
+ method forEachRemaining(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.forEachRemaining((java/util/function/DoubleConsumer)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 forEachRemaining
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.next();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+}

@@ -1,0 +1,233 @@
+class jx/scheduler/LinkedListCAS {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.first = 0;   
+        b1 = new jx/scheduler/LinkedListCAS$dummyObj(vR0);    [ ?R i. i.][ ?R i. iRR]
+        vR0.last = b1;   
+        vR0.enumerator = 0;   
+        vR0.anzElements = 0;   
+        vR0.debug = 0;   
+        vR0.cas = 0;   
+        vR0.ContainerPool = 0;   
+        vR0.ContainerPoolSize = 0;   
+        vR0.cas = vR0.cpuManager.getCAS("jx/scheduler/LinkedListCAS$dummyObj","c");   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 7 swaps 2 any 0 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.anzElements;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vR2 = vR0.first;    
+  +B11:   #1
+        if vR2==null goto B61;   
+  +B15:   #1
+        if vR2.content!=vR1 goto B53;   
+  +B23:   #1
+        out.print("LinkedList.add: Object
+   ");   [R R i. RR] 
+        vR0.cpuManager.dump("",vR1);   [R R ii RRR] 
+        out.println(" already in list.");   [R R iii. RR.] 
+        return 0;   
+  +B53:   #1
+        vR2 = vR2.next;    
+        goto +B11;   [R R .... ...]
+  +B61:   #1
+        if vR0.first!=null goto B94;   
+  +B68:   #1
+        vR0.last.c = vR0.getNewContainer@special(vR1);   
+        vR0.first = vR0.last.c;   
+        goto +B153;   [R R .... ...]
+  +B94:   #1
+        vR4 = vR0.getNewContainer@special(vR1);    [R R .... RR.] 
+  +B101:   #1
+        vR3 = vR0.last.c;    
+        if vR0.cas.casObject(vR0.last,vR3,vR4)==0 goto B101;   
+  +B128:   #1
+        if vR3!=null goto B142;   
+  -B132:   #1
+        throw new java/lang/Error("meiks err");   
+  +B142:   #1
+        vR3.next = vR0.last.c;   
+  +B153:   #1
+        vR0.anzElements = (vR0.anzElements+1);   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 11 swaps 4 any 3 found 0 add
+ 
+ method removeFirst()Ljava/lang/Object; {
+  +START:   #1
+        if vR0.first!=null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR1 = vR0.first;    
+        vR0.first = vR0.first.next;   
+        vR0.cas.casObject(vR0.last,vR1,0);   [R  i RRRR] 
+        vR2 = vR1.content;    
+        vR0.releaseContainer@special(vR1);   [RR  i RR..] 
+        vR0.anzElements = (vR0.anzElements-1);   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 1 any 0 found 0 removeFirst
+ 
+ method isEmpty()Z {
+  +START:   #1
+        if vR0.size@this()!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  .]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.indexOf@this(vR1)==-1 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ..]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 contains
+ 
+ method indexOf(Ljava/lang/Object;)I {
+  +START:   #1
+        vi2 = 0;    
+        vR3 = vR0.first;    
+  +B7:   #1
+        if vR3==null goto B32;   
+  +B11:   #1
+        if vR3.content!=vR1 goto B21;   
+  +B19:   #1
+        return vi2;   
+  +B21:   #1
+        vi2++;   
+        vR3 = vR3.next;    
+        goto +B7;   [iR   ]
+  +B32:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 2 found 0 indexOf
+ 
+ method get(I)Ljava/lang/Object; {
+  +START:   #1
+        vi2 = 0;    
+        vR3 = vR0.first;    
+  +B7:   #1
+        if vR3==null goto B32;   
+  +B11:   #1
+        b0 = vi2;    
+        vi2++;   
+        if b0!=vi1 goto B24;   
+  +B19:   #1
+        return vR3.content;   
+  +B24:   #1
+        vR3 = vR3.next;    
+        goto +B7;   [iR i  ]
+  +B32:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 4 found 0 get
+ 
+ method dump()V {
+  +START:   #1
+        if vR0.getFirst@this()!=null goto B18;   
+  +B7:   #1
+        out.println("       none");   [ RR i. RR] 
+        goto +B83;   forward return[ RR i. ..]
+  +B18:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("       ").append@extra(vR0.size@this()).append@extra(" elements").toString@extra());   [ RR ii.ii. RR..] 
+        vR1 = vR0.first;    
+  +B56:   #1
+        if vR1==null goto B83;   
+  +B60:   #1
+        vR0.cpuManager.dump("       ",vR1.content);   [R RR iR.... RRR.] 
+        vR1 = vR1.next;    
+        goto +B56;   [R RR iR.... ....]
+  +B83:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 15 swaps 6 any 1 found 0 dump
+ 
+ method getFirst()Ljava/lang/Object; {
+  +START:   #1
+        vR0.enumerator = vR0.first;   
+        if vR0.enumerator!=null goto B17;   
+  +B15:   #1
+        return 0;   
+  +B17:   #1
+        return vR0.enumerator.content;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 getFirst
+ 
+ method getNext()Ljava/lang/Object; {
+  +START:   #1
+        if vR0.enumerator==null goto B18;   
+  +B7:   #1
+        vR0.enumerator = vR0.enumerator.next;   
+  +B18:   #1
+        if vR0.enumerator!=null goto B27;   
+  +B25:   #1
+        return 0;   
+  +B27:   #1
+        return vR0.enumerator.content;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 getNext
+ 
+ method getNewContainer(Ljava/lang/Object;)Ljx/scheduler/LinkedListCAS$ObjectContainer; {
+  +START:   #1
+        vR2 = vR0.ContainerPool;    
+        if vR2!=null goto B29;   
+  +B9:   #1
+        vR0.ContainerPoolSize = (vR0.ContainerPoolSize+1);   
+        return new jx/scheduler/LinkedListCAS$ObjectContainer(vR0,vR1);   
+  +B29:   #1
+        vR0.ContainerPool = vR0.ContainerPool.next;   
+        vR2.content = vR1;   
+        vR2.next = 0;   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 0 any 1 found 0 getNewContainer
+ 
+ method releaseContainer(Ljx/scheduler/LinkedListCAS$ObjectContainer;)V {
+  +START:   #1
+        vR1.next = vR0.ContainerPool;   
+        vR0.ContainerPool = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 releaseContainer
+}

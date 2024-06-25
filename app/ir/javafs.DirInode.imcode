@@ -1,0 +1,1007 @@
+class javafs/DirInode {
+ 
+ method <init>(Ljavafs/FileSystem;Ljavafs/Super;ILjavafs/InodeData;Ljx/fs/buffercache/BufferCache;Ljavafs/InodeCache;Ljx/zero/Clock;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vi3,vR4,vR5,vR6,vR7);   [   RRRRiRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isSymlink()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isSymlink
+ 
+ method isFile()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isFile
+ 
+ method isDirectory()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method isWritable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isWritable
+ 
+ method isReadable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadable
+ 
+ method isExecutable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isExecutable
+ 
+ method readdirNames()[Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.readdirNames0@special();    [   R] 
+        vR2 = new java/lang/String()[vR1.size@extra()];    
+        vR1.copyInto(vR2);   [RR   RR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 readdirNames
+ 
+ method readdirNames0()Ljava/util/Vector; {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi4 = 0;    
+        vR6 = 0;    
+        vR8 = new jx/fs/buffercache/BufferHead()[16];    
+        vR10 = new java/util/Vector();    [ Ri  i.][ Ri  iR]
+        if vR0.i_released==0 goto B41;   
+  -B33:   #1
+        throw new jx/fs/NotExistException();   
+  +B41:   #1
+        if vR0.isDirectory@this()!=0 goto B122;   
+  -B48:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Inode ").append@extra(vR0.i_ino).append@extra(" (block ").append@extra(vR0.i_data.bh.getBlock()).append@extra(", offset ").append@extra(vR0.i_data.offset).append@extra(") != directory").toString@extra());   [ii?i?R?R?R RR iiii...iiii... RR......] 
+        throw new jx/fs/NoDirectoryInodeException();   
+  +B122:   #3
+        if vi1!=0 goto B489;   
+  +B126:   #1
+        if vi4>=vR0.i_data.i_size@extra() goto B489;   
+  +B138:   #1
+        vi3 = (vi4/vR0.i_sb.s_blocksize);    
+        b0 = vR0.bread@this(vi3,0);    [iiii?R?R?R RR .............. iiR.....] 
+        vR6 = b0;    
+        if b0!=null goto B216;   
+  +B161:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i.......][ RR .............. iR......]
+        b0.println(b1.append@extra("readDir: directory #").append@extra(vR0.i_ino).append@extra(" contains a hole at offset ").append@extra(vi4).toString@extra());   [iiii?R?R?R RR iiii.......... RR......] 
+        vi4 = (vi4+(vR0.i_sb.s_blocksize-vi2));    
+        goto +B122;   [iiii?R?R?R RR iiii.......... ........]
+  +B216:   #1
+        vi11 = 0;    
+        if vi11==0 goto B345;   
+  +B224:   #1
+        if vi2!=0 goto B345;   
+  +B228:   #1
+        vi5 = 0;    
+        vi12 = (16 >> ((vR0.i_sb.s_blocksize/1024)-1));    
+  +B249:   #1
+        if vi12<=0 goto B324;   
+  +B254:   #1
+        vi3++;   
+        vR7 = vR0.getBlk@this(vi3,0);    [iiiiiR?R?Rii RR .............. iiR.....] 
+        if vR7!=null goto B278;   
+  -B270:   #1
+        throw new java/lang/Error();   
+  +B278:   #1
+        if vR7.isUptodate()!=0 goto B307;   
+  +B286:   #1
+        if vR7.isLocked()!=0 goto B307;   
+  +B294:   #1
+        b1 = vi5;    
+        vi5++;   
+        vR8[b1] = vR7;   
+        goto +B318;   [iiiiiRRR?Rii Ri .............. ........]
+  +B307:   #2
+        vR0.bufferCache.brelse(vR7);   [iiiiiRRR?Rii Ri .............. RR......] 
+  +B318:   #1
+        vi12--;   
+        goto +B249;   [iiiiiRRR?Rii Ri .............. ........]
+  +B324:   #1
+        if vi5==0 goto B345;   
+  +B329:   #1
+        vi12 = 0;    
+  +B332:   #1
+        if vi12>=vi5 goto B345;   
+  +B339:   #1
+        vi12++;   
+        goto +B332;   [iiiiiRRR?Rii Ri .............. ........]
+  +B345:   #4
+        vR9 = new javafs/DirEntryData();    [ Ri .............. i.......][ Ri .............. iR......]
+  +B354:   #1
+        if vi1!=0 goto B473;   
+  +B358:   #1
+        if vi4>=vR0.i_data.i_size@extra() goto B473;   
+  +B370:   #1
+        if vi2>=vR0.i_sb.s_blocksize goto B473;   
+  +B381:   #1
+        vR9.init(vR6,vi2);   [iiiiiRRRRRii Ri .............. iRR.....] 
+        if vR0.checkDirEntry@this(vR9)!=0 goto B434;   
+  +B398:   #1
+        vi4 = ((vi4 & (vR0.i_sb.s_blocksize-1))+vR0.i_sb.s_blocksize);    
+        vR0.bufferCache.brelse(vR6);   [iiiiiRRRRRii Ri .............. RR......] 
+        return vR10;   
+  +B434:   #1
+        vi2 = (vi2+vR9.rec_len());    
+        if vR9.inode()==0 goto B460;   
+  +B450:   #1
+        vR10.addElement@extra(vR9.name());   [iiiiiRRRRRii Ri i............. RR......] 
+  +B460:   #1
+        vi4 = (vi4+vR9.rec_len());    
+        goto +B354;   [iiiiiRRRRRii Ri .............. ........]
+  +B473:   #3
+        vi2 = 0;    
+        vR0.bufferCache.brelse(vR6);   [iiiiiRRRRRii Ri .............. RR......] 
+        goto +B122;   [iiiiiRRRRRii Ri .............. ........]
+  +B489:   #2
+        if vR0.i_sb.isReadonly()!=0 goto B520;   
+  +B499:   #1
+        vR0.i_data.i_atime@extra(vR0.clock.getTimeInMillis());   [iiiiiRRRRRii Ri i............. iR......] 
+        vR0.setDirty@this(1);   [iiiiiRRRRRii Ri i............. iR......] 
+  +B520:   #1
+        return vR10;   
+  +END:   #1
+ }
+// Register: rd 70/70 wr 54 swaps 15 any 23 found 4 readdirNames0
+ 
+ method getInode(Ljava/lang/String;)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        if vR0.permission@this(1)!=0 goto B31;   
+  -B23:   #1
+        throw new jx/fs/PermissionException();   
+  +B31:   #1
+        vR2 = vR0.findDirEntry@this(vR1);    [ RR  RR] 
+        if vR2!=null goto B43;   
+  +B41:   #1
+        return 0;   
+  +B43:   #1
+        vR3 = vR0.inodeCache.iget(vR2.inode());    [R RR i iR] 
+        if vR3==null goto B74;   
+  +B59:   #1
+        vR0.bufferCache.brelse(vR2.bh);   [RR RR i RR] 
+        return vR3;   
+  +B74:   #1
+        vR4 = vR0.i_sb.getInodeData(vR2.inode());    [RR RR i iR] 
+        if vR4.i_size@extra()>=0 goto B111;   
+  -B95:   #1
+        out.println("getInode(): Inode zu gross (Ueberlauf)");   [RRR RR i. RR] 
+        throw new jx/fs/InodeIOException();   
+  +B111:   #1
+        if (vR4.i_mode@extra() & 61440)!=32768 goto B158;   
+  +B124:   #1
+        vR3 = new javafs/FileInode(vR0.fileSystem,vR0.i_sb,vR2.inode(),vR4,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR .. i.][ RR .. iRRRRiRRR]
+  +B158:   #1
+        if (vR4.i_mode@extra() & 61440)!=16384 goto B206;   
+  +B172:   #1
+        vR3 = new javafs/DirInode(vR0.fileSystem,vR0.i_sb,vR2.inode(),vR4,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR .. i........][ RR .. iRRRRiRRR]
+  +B206:   #1
+        if (vR4.i_mode@extra() & 61440)!=40960 goto B253;   
+  +B219:   #1
+        vR3 = new javafs/SymlinkInode(vR0.fileSystem,vR0.i_sb,vR2.inode(),vR4,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR .. i........][ RR .. iRRRRiRRR]
+  +B253:   #1
+        vR0.bufferCache.brelse(vR2.bh);   [RRR RR i. RR.......] 
+        if vR3!=null goto B310;   
+  -B270:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i........][ RR .. iR.......]
+        b0.println(b1.append@extra("getInode(): invalid inode type: ").append@extra((vR4.i_mode@extra() & 61440)).toString@extra());   [RRR RR iii. RR.......] 
+        throw new jx/fs/InodeIOException();   
+  +B310:   #1
+        vR3.setParent(vR0);   [RRR RR .... RR.......] 
+        vR0.inodeCache.addInode(vR3);   [RRR RR .... RR.......] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 49/49 wr 22 swaps 8 any 3 found 0 getInode
+ 
+ method mkdir(Ljava/lang/String;I)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        b0 = vR0.findDirEntry@this(vR1);    [ R  RR] 
+        vR6 = b0;    
+        if b0==null goto B48;   
+  -B26:   #1
+        vR0.bufferCache.brelse(vR6.bh);   [???R R i RR] 
+        throw new jx/fs/FileExistsException();   
+  +B48:   #1
+        if vR0.i_data.i_links_count@extra()<32000 goto B69;   
+  -B61:   #1
+        throw new jx/fs/InodeIOException();   
+  +B69:   #1
+        if vR0.permission@this(3)!=0 goto B85;   
+  -B77:   #1
+        throw new jx/fs/PermissionException();   
+  +B85:   #1
+        b0 = vR0.i_sb.newInode(vR0,16384);    [???R R . iRR] 
+        vR3 = b0;    
+        if b0!=null goto B109;   
+  -B101:   #1
+        throw new jx/fs/InodeIOException();   
+  +B109:   #1
+        if vR0.addDirEntry@this(vR1,vR3.i_ino)!=0 goto B146;   
+  -B121:   #1
+        vR3.i_data.i_links_count@extra(0);   [R??R R . iR.] 
+        vR3.setDirty@extra(1);   [R??R R . iR.] 
+        vR3.decUseCount@extra();   [R??R R . R..] 
+        throw new jx/fs/InodeIOException();   
+  +B146:   #1
+        vR0.i_data.i_links_count@extra((short)(vR0.i_data.i_links_count@extra()+1));   [R??R R i iR.] 
+        vR0.setDirty@this(1);   [R??R R i iR.] 
+        vR3.setParent(vR0);   [R??R R i RR.] 
+        vR3.i_data.i_size@extra(vR0.i_sb.s_blocksize);   [R??R R ii iR.] 
+        vR3.i_data.i_blocks@extra(0);   [R??R R ii iR.] 
+        vR5 = vR3.bread(0,1);    [R??R R ii iiR] 
+        if vR5!=null goto B241;   
+  -B208:   #1
+        out.println("dir_block == null");   [R?RR R i. RR.] 
+        vR0.i_data.i_links_count@extra(0);   [R?RR R i. iR.] 
+        vR3.setDirty@extra(1);   [R?RR R i. iR.] 
+        vR3.decUseCount@extra();   [R?RR R i. R..] 
+        throw new jx/fs/InodeIOException();   
+  +B241:   #1
+        vR6 = new javafs/DirEntryData(vR5,0);    [ R .. i..][ R .. iiRR]
+        vR6.inode(vR3.i_ino);   [R?RR R i. iR..] 
+        vR6.name_len(1);   [R?RR R i. iR..] 
+        vR6.rec_len(12);   [R?RR R i. iR..] 
+        vR6.name(".");   [R?RR R ii RR..] 
+        vR6.init(vR6.rec_len());   [R?RR R iii sR..] 
+        vR6.inode((javafs/DirInode)(vR0.parent).i_ino);   [R?RR R iiii iR..] 
+        vR6.rec_len((short)(vR3.i_sb.s_blocksize-12));   [R?RR R iiiii iR..] 
+        vR6.name_len(2);   [R?RR R iiiii iR..] 
+        vR6.name("..");   [R?RR R iiiiii RR..] 
+        vR3.i_data.i_links_count@extra(2);   [R?RR R iiiiii iR..] 
+        vR0.bufferCache.bdwrite(vR5);   [R?RR R iiiiii RR..] 
+        vR3.i_data.i_mode@extra((short)(16384 | (vi2 & 1023)));   [R?RR R iiiiiii iR..] 
+        if (vR0.i_data.i_mode@extra() & 1024)<=0 goto B405;   
+  +B386:   #1
+        vR3.i_data.i_mode@extra((short)(vR3.i_data.i_mode@extra() | 1024));   [R?RR R i...... iR..] 
+  +B405:   #1
+        vR3.setDirty@extra(1);   [R?RR R ....... iR..] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 53/53 wr 22 swaps 13 any 5 found 0 mkdir
+ 
+ method rmdir(Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vR4 = vR0.getInode@this(vR1);    [ RR  RR] 
+        if vR4.isDirectory()!=0 goto B47;   
+  -B32:   #1
+        vR4.decUseCount();   [??R RR  R.] 
+        throw new jx/fs/NoDirectoryInodeException();   
+  +B47:   #1
+        if vR0.permission@this(3)==0 goto B62;   
+  +B55:   #1
+        if vR0.checkSticky@this()!=0 goto B70;   
+  -B62:   #1
+        throw new jx/fs/PermissionException();   
+  +B70:   #1
+        vR5 = (javafs/DirInode)(vR4);    
+        if vR5.emptyDir()!=0 goto B98;   
+  -B85:   #1
+        vR5.decUseCount();   [??RR RR  R.] 
+        throw new jx/fs/DirNotEmptyException();   
+  +B98:   #1
+        vR3 = vR0.findDirEntry@this(vR1);    [??RR RR  RR] 
+        vR0.deleteDirEntry@this(vR3);   [?RRR RR  RR] 
+        if vR5.i_data.i_links_count@extra()==2 goto B158;   
+  +B121:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("rmdir: empty directory has links count != 2 (").append@extra(vR5.i_data.i_links_count@extra()).append@extra(")").toString@extra());   [?RRR RR ii.ii. RR..] 
+  +B158:   #1
+        vR5.i_data.i_links_count@extra(0);   [?RRR RR ...... iR..] 
+        vR5.i_data.i_size@extra(0);   [?RRR RR ...... iR..] 
+        vi2 = vR0.clock.getTimeInMillis();    [?RRR RR ...... R...] 
+        vR5.i_data.i_ctime@extra(vi2);   [iRRR RR ...... iR..] 
+        vR5.setDirty(1);   [iRRR RR ...... iR..] 
+        vR5.decUseCount();   [iRRR RR ...... R...] 
+        vR0.i_data.i_links_count@extra((short)(vR0.i_data.i_links_count@extra()-1));   [iRRR RR i..... iR..] 
+        vR0.i_data.i_ctime@extra(vi2);   [iRRR RR i..... iR..] 
+        vR0.i_data.i_mtime@extra(vi2);   [iRRR RR i..... iR..] 
+        vR0.setDirty@this(1);   [iRRR RR i..... iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 14 swaps 5 any 1 found 1 rmdir
+ 
+ method create(Ljava/lang/String;I)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        b0 = vR0.findDirEntry@this(vR1);    [ R  RR] 
+        vR4 = b0;    
+        if b0==null goto B56;   
+  -B26:   #1
+        vR0.bufferCache.brelse(vR4.bh);   [?R R i RR] 
+        out.println("File exists.");   [?R R ii. RR] 
+        throw new jx/fs/FileExistsException();   
+  +B56:   #1
+        if vR0.permission@this(3)!=0 goto B72;   
+  -B64:   #1
+        throw new jx/fs/PermissionException();   
+  +B72:   #1
+        b0 = vR0.i_sb.newInode(vR0,(32768 | vi2));    [?R R i.. iRR] 
+        vR3 = b0;    
+        if b0!=null goto B97;   
+  -B89:   #1
+        throw new jx/fs/InodeIOException();   
+  +B97:   #1
+        vR3.setParent(vR0);   [RR R ... RR.] 
+        vR3.setDirty@extra(1);   [RR R ... iR.] 
+        if vR0.addDirEntry@this(vR1,vR3.i_ino)!=0 goto B144;   
+  -B119:   #1
+        vR3.i_data.i_links_count@extra(0);   [RR R ... iR.] 
+        vR3.setDirty@extra(1);   [RR R ... iR.] 
+        vR3.decUseCount@extra();   [RR R ... R..] 
+        throw new jx/fs/InodeIOException();   
+  +B144:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 9 swaps 4 any 4 found 0 create
+ 
+ method unlink(Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vR3 = (javafs/InodeImpl)(vR0.getInode@this(vR1));    
+        if vR3.isDirectory()==0 goto B43;   
+  -B31:   #1
+        vR3.decUseCount@extra();   [?R RR . R.] 
+        throw new jx/fs/NoFileInodeException();   
+  +B43:   #1
+        if vR0.permission@this(3)==0 goto B58;   
+  +B51:   #1
+        if vR0.checkSticky@this()!=0 goto B66;   
+  -B58:   #1
+        throw new jx/fs/PermissionException();   
+  +B66:   #1
+        if vR3.i_data.i_links_count@extra()!=0 goto B127;   
+  +B76:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("unlink: Deleting nonexistent file (").append@extra(vR3.i_ino).append@extra("), ").append@extra(vR3.i_data.i_links_count@extra()).toString@extra());   [?R RR iiiii... RR...] 
+        vR3.i_data.i_links_count@extra(1);   [?R RR iiiii... iR...] 
+  +B127:   #1
+        vR2 = vR0.findDirEntry@this(vR1);    [?R RR ........ RR...] 
+        vR0.deleteDirEntry@this(vR2);   [RR RR ........ RR...] 
+        vi4 = vR0.clock.getTimeInMillis();    [RR RR ........ R....] 
+        vR0.i_data.i_ctime@extra(vi4);   [RRi RR ........ iR...] 
+        vR0.i_data.i_mtime@extra(vi4);   [RRi RR ........ iR...] 
+        vR0.setDirty@this(1);   [RRi RR ........ iR...] 
+        vR3.i_data.i_links_count@extra((short)(vR3.i_data.i_links_count@extra()-1));   [RRi RR i....... iR...] 
+        vR3.setDirty@extra(1);   [RRi RR i....... iR...] 
+        vR3.decUseCount@extra();   [RRi RR i....... R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 16 swaps 6 any 0 found 0 unlink
+ 
+ method symlink(Ljava/lang/String;Ljava/lang/String;)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vR4 = vR0.findDirEntry@this(vR2);    [ R  RR] 
+        if vR4==null goto B35;   
+  -B27:   #1
+        throw new jx/fs/FileExistsException();   
+  +B35:   #1
+        if vR0.permission@this(3)!=0 goto B51;   
+  -B43:   #1
+        throw new jx/fs/PermissionException();   
+  +B51:   #1
+        b0 = (javafs/SymlinkInode)(vR0.i_sb.newInode(vR0,41471));    
+        vR3 = b0;    
+        if b0!=null goto B77;   
+  -B69:   #1
+        throw new jx/fs/InodeIOException();   
+  +B77:   #1
+        vR3.setSymlink(vR1);   [RR R . RR.] 
+        vi5 = vR0.addDirEntry@this(vR2,vR3.i_ino);    [RR R i iRR] 
+        vR3.i_data.i_links_count@extra(2);   [RRi R i iR.] 
+        vR3.setDirty(1);   [RRi R i iR.] 
+        if vi5!=0 goto B119;   
+  -B111:   #1
+        throw new jx/fs/InodeIOException();   
+  +B119:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 1 any 4 found 0 symlink
+ 
+ method getSymlink()Ljava/lang/String; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoSymlinkInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSymlink
+ 
+ method rename(Ljava/lang/String;Ljx/fs/Inode;Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        if vR2!=null goto B21;   
+  +B19:   #1
+        vR2 = vR0;    
+  +B21:   #1
+        if (vR2 instanceof javafs/DirInode)!=0 goto B36;   
+  -B28:   #1
+        throw new jx/fs/PermissionException();   
+  +B36:   #1
+        vR6 = (javafs/DirInode)(vR2);    
+        if vR1.equals@extra(vR3)==0 goto B59;   
+  +B50:   #1
+        if vR2.equals(vR0)==0 goto B59;   
+  +B58:   #1
+        return;   
+  +B59:   #2
+        if vR0.permission@this(3)==0 goto B74;   
+  +B67:   #1
+        if vR0.checkSticky@this()!=0 goto B82;   
+  -B74:   #1
+        throw new jx/fs/PermissionException();   
+  +B82:   #1
+        vR5 = (javafs/InodeImpl)(vR0.getInode@this(vR1));    
+        vR6.renameAddInode(vR5,vR3);   [?RR R . RRR] 
+        vR4 = vR0.findDirEntry@this(vR1);    [?RR R . RR.] 
+        vR0.deleteDirEntry@this(vR4);   [RRR R . RR.] 
+        vi7 = vR0.clock.getTimeInMillis();    [RRR R . R..] 
+        vR5.i_data.i_ctime@extra(vi7);   [RRRi R . iR.] 
+        vR5.i_data.i_mtime@extra(vi7);   [RRRi R . iR.] 
+        vR5.setDirty@extra(1);   [RRRi R . iR.] 
+        if vR5.isDirectory()==0 goto B175;   
+  +B158:   #1
+        vR0.i_data.i_links_count@extra((short)(vR0.i_data.i_links_count@extra()-1));   [RRRi R i iR.] 
+  +B175:   #1
+        vR5.decUseCount@extra();   [RRRi R . R..] 
+        vR0.i_data.i_ctime@extra(vi7);   [RRRi R . iR.] 
+        vR0.i_data.i_mtime@extra(vi7);   [RRRi R . iR.] 
+        vR0.setDirty@this(1);   [RRRi R . iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 7 swaps 1 any 3 found 1 rename
+ 
+ method renameAddInode(Ljavafs/InodeImpl;Ljava/lang/String;)V {
+  +START:   #1
+        vR4 = 0;    
+  +B3:   #2
+        vR4 = (javafs/InodeImpl)(vR0.getInode@this(vR2));    
+  +B13:   #2
+        goto +B27;   [?R R . ..]
+  -H16<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR1.decUseCount@extra();   [RRR R . R.] 
+        throw vR5;   
+  +H25<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B27:   #1
+        if vR4==null goto B252;   
+  +B32:   #1
+        if vR0.permission@this(3)==0 goto B47;   
+  +B40:   #1
+        if vR0.checkSticky@this()!=0 goto B55;   
+  -B47:   #1
+        throw new jx/fs/PermissionException();   
+  +B55:   #2
+        if vR4.isDirectory()==0 goto B170;   
+  +B63:   #1
+        if vR1.isDirectory()==0 goto B109;   
+  +B70:   #1
+        vR5 = (javafs/DirInode)(vR4);    
+        if vR5.emptyDir()==0 goto B98;   
+  +B85:   #1
+        if vR0.i_data.i_links_count@extra()<=32000 goto B106;   
+  -B98:   #1
+        throw new jx/fs/PermissionException();   
+  +B106:   #1
+        goto +B117;   [?RR R . ..]
+  -B109:   #1
+        throw new jx/fs/PermissionException();   
+  +B117:   #1
+        vR5 = vR1;    
+  +B120:   #1
+        if vR5.equals(vR4)!=0 goto B159;   
+  +B130:   #1
+        if vR5.equals(vR5.getParent())==0 goto B146;   
+  +B143:   #1
+        goto +B167;   [?RR R . ..]
+  +B146:   #1
+        vR5 = (javafs/InodeImpl)(vR5.getParent());    
+        goto +B120;   [RRR R . ..]
+  -B159:   #1
+        throw new jx/fs/PermissionException();   
+  +B167:   #1
+        goto +B185;   [?RR R . ..]
+  +B170:   #1
+        if vR1.isDirectory()==0 goto B185;   
+  -B177:   #1
+        throw new jx/fs/PermissionException();   
+  +B185:   #3
+        goto +B202;   [?RR R . ..]
+  -H188<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR4.decUseCount@extra();   [RRR R . R.] 
+        vR1.decUseCount@extra();   [RRR R . R.] 
+        throw vR5;   
+  +B202:   #1
+        vR4.i_data.i_links_count@extra((short)(vR4.i_data.i_links_count@extra()-1));   [?RR R i iR] 
+        vR4.i_data.i_ctime@extra(vR0.clock.getTimeInMillis());   [?RR R ii iR] 
+        vR4.setDirty@extra(1);   [?RR R ii iR] 
+        vR4.decUseCount@extra();   [?RR R ii R.] 
+        goto +B268;   [?RR R ii ..]
+  +B252:   #1
+        if vR0.permission@this(3)!=0 goto B268;   
+  -B260:   #1
+        throw new jx/fs/PermissionException();   
+  +B268:   #3
+        vR3 = vR0.findDirEntry@this(vR2);    [?RR R .. RR] 
+  +B274:   #1
+        goto +B286;   [RRR R .. ..]
+  -H277<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR1.decUseCount@extra();   [RRR R .. R.] 
+        throw vR5;   
+  +B286:   #1
+        if vR3==null goto B300;   
+  +B290:   #1
+        vR0.deleteDirEntry@this(vR3);   [RRR R .. RR] 
+  +B295:   #1
+        goto +B300;   [RRR R .. ..]
+  +H298<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B300:   #2
+        vR0.addDirEntry@this(vR2,vR1.i_ino);   [RRR R i. iRR] 
+        vR0.i_data.i_ctime@extra(vR0.clock.getTimeInMillis());   [RRR R ii iR.] 
+        if vR1.isDirectory()==0 goto B350;   
+  +B333:   #1
+        vR0.i_data.i_links_count@extra((short)(vR0.i_data.i_links_count@extra()+1));   [RRR R i. iR.] 
+  +B350:   #1
+        vR0.setDirty@this(1);   [RRR R .. iR.] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+3 - 13 handler 16 type 68
+3 - 13 handler 25 type 139
+55 - 185 handler 188 type 60
+268 - 274 handler 277 type 68
+290 - 295 handler 298 type 139
+ }
+// Register: rd 43/43 wr 19 swaps 6 any 4 found 1 renameAddInode
+ 
+ method read(Ljx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoFileInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+ 
+ method read(ILjx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoFileInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+ 
+ method write(Ljx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoFileInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+ 
+ method write(ILjx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoFileInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+ 
+ method findDirEntry(Ljava/lang/String;)Ljavafs/DirEntryData; {
+  +START:   #1
+        vR2 = 0;    
+        if vR1.length@extra()<=255 goto B14;   
+  +B12:   #1
+        return 0;   
+  +B14:   #1
+        vR7 = new javafs/DirEntryData();    [ RR  i][ RR  iR]
+        vi3 = (vR0.i_data.i_size@extra()/vR0.i_sb.s_blocksize);    
+        if (vR0.i_data.i_size@extra()%vR0.i_sb.s_blocksize)==0 goto B60;   
+  +B57:   #1
+        vi3++;   
+  +B60:   #1
+        vi4 = 0;    
+  +B63:   #1
+        if vi4>=vi3 goto B284;   
+  +B69:   #1
+        vR2 = vR0.getBlk@this(vi4,0);    [Rii??R RR . iiR] 
+        if vR2!=null goto B122;   
+  +B81:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("findDirEntry: directory #").append@extra(vR0.i_ino).append@extra(" contains a hole at block ").append@extra(vi4).toString@extra());   [Rii??R RR iiii... RR...] 
+        goto +B278;   [Rii??R RR iiii... .....]
+  +B122:   #1
+        vR0.bufferCache.updateBuffer(vR2);   [Rii??R RR ....... RR...] 
+        vR7.init(vR2,0);   [Rii??R RR ....... iRR..] 
+        vi5 = 0;    
+  +B142:   #1
+        if vi5>=vR0.i_sb.s_blocksize goto B268;   
+  +B154:   #1
+        vR7.init(vi5);   [Riii?R RR ....... iR...] 
+        if (vi5+vR1.length@extra())>vR0.i_sb.s_blocksize goto B228;   
+  +B178:   #1
+        if vR1.compareTo@extra(vR7.name())!=0 goto B228;   
+  +B190:   #1
+        if vR7.inode()==0 goto B228;   
+  +B198:   #1
+        if vR0.checkDirEntry@this(vR7)!=0 goto B225;   
+  -B207:   #1
+        vR0.bufferCache.brelse(vR2);   [Riii?R RR ....... RR...] 
+        throw new jx/fs/InodeIOException();   
+  +B225:   #1
+        return vR7;   
+  +B228:   #3
+        vi6 = vR7.rec_len();    [Riii?R RR ....... R....] 
+        if vi6> 0 goto B258;   
+  -B240:   #1
+        vR0.bufferCache.brelse(vR2);   [RiiiiR RR ....... RR...] 
+        throw new jx/fs/InodeIOException();   
+  +B258:   #1
+        vi5 = (vi5+vi6);    
+        goto +B142;   [RiiiiR RR ....... .....]
+  +B268:   #1
+        vR0.bufferCache.brelse(vR2);   [RiiiiR RR ....... RR...] 
+  +B278:   #1
+        vi4++;   
+        goto +B63;   [Rii??R RR ....... .....]
+  +B284:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 23 swaps 5 any 8 found 1 findDirEntry
+ 
+ method addDirEntry(Ljava/lang/String;I)Z {
+  +START:   #1
+        if vR0.i_data.i_links_count@extra()==0 goto B27;   
+  +B10:   #1
+        if vR1.length@extra()==0 goto B27;   
+  +B17:   #1
+        if vR0.i_data.i_size@extra()!=0 goto B87;   
+  +B27:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("addDirEntry: 0").append@extra(vR1.length@extra()).append@extra(" ").append@extra(vR0.i_data.i_links_count@extra()).append@extra(" ").append@extra(vR0.i_data.i_size@extra()).toString@extra());   [ RR iii..ii..ii. RR.....] 
+        return 0;   
+  +B87:   #1
+        b0 = vR0.bread@this(0,0);    [ RR ............ iiR....] 
+        vR6 = b0;    
+        if b0!=null goto B109;   
+  +B99:   #1
+        out.println("addDirEntry: 1");   [???R RR i........... RR.....] 
+        return 0;   
+  +B109:   #1
+        vi5 = (short)((vR1.length@extra()+11) & -4);    
+        vi3 = 0;    
+        vi4 = 0;    
+        vR7 = new javafs/DirEntryData(vR6,0);    [ RR ............ i......][ RR ............ iiRR...]
+  +B139:   #1
+        if vi4<vR0.i_sb.s_blocksize goto B285;   
+  +B151:   #1
+        vi4 = 0;    
+        vR0.bufferCache.brelse(vR6);   [iiiRR RR ............ RR.....] 
+        b0 = vR0.bread@this((vi3/vR0.i_sb.s_blocksize),1);    [iiiRR RR i........... iiR....] 
+        vR6 = b0;    
+        if b0!=null goto B195;   
+  +B185:   #1
+        out.println("addDirEntry: 2");   [iiiRR RR i........... RR.....] 
+        return 0;   
+  +B195:   #1
+        if vR0.i_data.i_size@extra()>vi3 goto B277;   
+  +B206:   #1
+        if vR0.i_data.i_size@extra()!=0 goto B226;   
+  +B216:   #1
+        out.println("addDirEntry: 3");   [iiiRR RR i........... RR.....] 
+        return 0;   
+  +B226:   #1
+        vR7.init(vR6,0);   [iiiRR RR ............ iRR....] 
+        vR7.inode(0);   [iiiRR RR ............ iR.....] 
+        vR7.rec_len((short)vR0.i_sb.s_blocksize);   [iiiRR RR i........... iR.....] 
+        vR0.i_data.i_size@extra((vi3+vR0.i_sb.s_blocksize));   [iiiRR RR ii.......... iR.....] 
+        vR0.setDirty@this(1);   [iiiRR RR ii.......... iR.....] 
+        goto +B285;   [iiiRR RR ii.......... .......]
+  +B277:   #1
+        vR7.init(vR6,0);   [iiiRRiii RR ............ iRR....] 
+  +B285:   #2
+        if vR0.checkDirEntry@this(vR7)!=0 goto B315;   
+  +B294:   #1
+        vR0.bufferCache.brelse(vR6);   [iiiRR RR ............ RR.....] 
+        out.println("addDirEntry: 4");   [iiiRR RR i........... RR.....] 
+        return 0;   
+  +B315:   #1
+        if vR7.inode()==0 goto B356;   
+  +B323:   #1
+        if vR1.compareTo@extra(vR7.name())!=0 goto B356;   
+  +B335:   #1
+        vR0.bufferCache.brelse(vR6);   [iiiRR RR ............ RR.....] 
+        out.println("addDirEntry: 5");   [iiiRR RR i........... RR.....] 
+        return 0;   
+  +B356:   #2
+        if vR7.inode()!=0 goto B374;   
+  +B364:   #1
+        if vR7.rec_len()>=vi5 goto B396;   
+  +B374:   #1
+        if vR7.rec_len()<(((vR7.name_len()+11) & -4)+vi5) goto B548;   
+  +B396:   #1
+        if vR7.inode()<=0 goto B478;   
+  +B404:   #1
+        vi8 = vR7.rec_len();    [iiiRR RR ............ R......] 
+        vi9 = vR7.name_len();    [iiiRRi RR ............ R......] 
+        vi10 = vR7.offset;    
+        vR7.rec_len((short)((vR7.name_len()+11) & -4));   [iiiRRiii RR i........... iR.....] 
+        vR7.init((vi10+((vR7.name_len()+11) & -4)));   [iiiRRiii RR ii.......... iR.....] 
+        vR7.rec_len((short)(vi8-((vi9+11) & -4)));   [iiiRRiii RR iii......... iR.....] 
+  +B478:   #1
+        vR7.inode(vi2);   [iiiRRiii RR ............ iR.....] 
+        vR7.name_len((short)vR1.length@extra());   [iiiRRiii RR i........... iR.....] 
+        vR7.name(vR1);   [iiiRRiii RR i........... RR.....] 
+        vR0.i_data.i_mtime@extra(vR0.clock.getTimeInMillis());   [iiiRRiii RR ii.......... iR.....] 
+        vR0.i_data.i_ctime@extra(vR0.i_data.i_mtime@extra());   [iiiRRiii RR iii......... iR.....] 
+        vR0.setDirty@this(1);   [iiiRRiii RR iii......... iR.....] 
+        vR0.bufferCache.bdwrite(vR6);   [iiiRRiii RR iii......... RR.....] 
+        return 1;   
+  +B548:   #1
+        vi3 = (vi3+vR7.rec_len());    
+        vi4 = (vi4+vR7.rec_len());    
+        vR7.offset = vi4;   
+        goto +B139;   [iiiRRiii RR ............ .......]
+  +END:   #1
+ }
+// Register: rd 78/78 wr 51 swaps 22 any 7 found 3 addDirEntry
+ 
+ method deleteDirEntry(Ljavafs/DirEntryData;)V {
+  +START:   #1
+        vR5 = vR1.name();    [ R  R] 
+        vi3 = 0;    
+        vi4 = -1;    
+        vR2 = new javafs/DirEntryData(vR1.bh,0);    [ R  i][ R . iiRR]
+  +B24:   #1
+        if vi3>=vR0.i_sb.s_blocksize goto B141;   
+  +B35:   #1
+        if vR0.checkDirEntry@this(vR2)!=0 goto B46;   
+  +B43:   #1
+        goto -B141;   [RiiR R . ....]
+  +B46:   #1
+        if vR2.offset!=vR1.offset goto B118;   
+  +B57:   #1
+        if vi4==-1 goto B99;   
+  +B63:   #1
+        vR2.init(vi4);   [RiiR R . iR..] 
+        vR2.rec_len((short)(vR2.rec_len()+vR1.rec_len()));   [RiiR R i iR..] 
+        vR2.init((vR2.offset+vR2.rec_len()));   [RiiR R ii iR..] 
+        goto +B104;   [RiiR R ii ....]
+  +B99:   #1
+        vR1.inode(0);   [RiiR R .. iR..] 
+  +B104:   #1
+        vR0.bufferCache.bdwrite(vR1.bh);   [RiiR R i. RR..] 
+        return;   
+  +B118:   #1
+        vi3 = (vi3+vR2.rec_len());    
+        vR2.offset = (vR2.offset+vR2.rec_len());   
+        goto +B24;   [RiiR R .. ....]
+  -B141:   #2
+        vR0.bufferCache.brelse(vR1.bh);   [RiiR R i. RR..] 
+        throw new jx/fs/InodeNotFoundException();   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 12 swaps 4 any 3 found 1 deleteDirEntry
+ 
+ method emptyDir()Z {
+  +START:   #1
+        if vR0.i_data.i_size@extra()<24 goto B23;   
+  +B12:   #1
+        b0 = vR0.bread@this(0,0);    [ RR  iiR] 
+        vR2 = b0;    
+        if b0!=null goto B64;   
+  -B23:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("emptyDir: bad directory (dir #").append@extra(vR0.i_ino).append@extra(") - no data block").toString@extra());   [?R RR iiii.. RR..] 
+        throw new jx/fs/InodeIOException();   
+  +B64:   #1
+        vR3 = new javafs/DirEntryData(vR2,0);    [ RR ...... i...][ RR ...... iiRR]
+        if vR3.inode()!=vR0.i_ino goto B97;   
+  +B85:   #1
+        if vR3.name().equals@extra(".")!=0 goto B148;   
+  -B97:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra("emptyDir: bad directory (dir #").append@extra(vR0.i_ino).append@extra(") - no `.'").toString@extra());   [?RR RR iiii.. RR..] 
+        vR0.bufferCache.brelse(vR2);   [?RR RR iiii.. RR..] 
+        throw new jx/fs/InodeIOException();   
+  +B148:   #1
+        vi1 = vR3.rec_len();    [?RR RR ...... R...] 
+        vR3.init(vi1);   [iRR RR ...... iR..] 
+        if vR3.inode()==0 goto B177;   
+  +B165:   #1
+        if vR3.name().equals@extra("..")!=0 goto B228;   
+  -B177:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra("emptyDir: bad directory (dir #").append@extra(vR0.i_ino).append@extra(") - no `..'").toString@extra());   [iRR RR iiii.. RR..] 
+        vR0.bufferCache.brelse(vR2);   [iRR RR iiii.. RR..] 
+        throw new jx/fs/InodeIOException();   
+  +B228:   #1
+        vi1 = (vi1+vR3.rec_len());    
+        vR3.init(vi1);   [iRR RR ...... iR..] 
+  +B240:   #2
+        if vi1>=vR0.i_data.i_size@extra() goto B411;   
+  +B251:   #1
+        if vR2==null goto B266;   
+  +B255:   #1
+        if vi1<vR0.i_sb.s_blocksize goto B351;   
+  +B266:   #1
+        vR0.bufferCache.brelse(vR2);   [iRR RR ...... RR..] 
+        vR2 = vR0.bread@this((vi1/vR0.i_sb.s_blocksize),1);    [iRR RR i..... iiR.] 
+        if vR2!=null goto B345;   
+  +B295:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra("emptyDir: directory #").append@extra(vR0.i_ino).append@extra(" contains a hole at offset ").append@extra(vi1).toString@extra());   [iRR RR iiii... RR...] 
+        vi1 = (vi1+vR0.i_sb.s_blocksize);    
+        goto +B240;   [iRR RR iiii... .....]
+  +B345:   #1
+        vR3.init(vR2,0);   [iRR RR ....... iRR..] 
+  +B351:   #1
+        if vR0.checkDirEntry@this(vR3)!=0 goto B377;   
+  -B359:   #1
+        vR0.bufferCache.brelse(vR2);   [iRR RR ....... RR...] 
+        throw new jx/fs/InodeIOException();   
+  +B377:   #1
+        if vR3.inode()<=0 goto B396;   
+  +B384:   #1
+        vR0.bufferCache.brelse(vR2);   [iRR RR ....... RR...] 
+        return 0;   
+  +B396:   #1
+        vi1 = (vi1+vR3.rec_len());    
+        vR3.init(vi1);   [iRR RR ....... iR...] 
+        goto +B240;   [iRR RR ....... .....]
+  +B411:   #1
+        vR0.bufferCache.brelse(vR2);   [iRR RR ....... RR...] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 54/54 wr 51 swaps 19 any 9 found 3 emptyDir
+ 
+ method checkDirEntry(Ljavafs/DirEntryData;)Z {
+  +START:   #1
+        vR2 = new java/lang/String();    [ RR  i][ RR  iR]
+        if vR1.rec_len()>=12 goto B23;   
+  +B17:   #1
+        vR2 = "rec_len is smaller than minimal";    
+        goto +B103;   [R RR  ..]
+  +B23:   #1
+        if (vR1.rec_len()%4)==0 goto B38;   
+  +B32:   #1
+        vR2 = "rec_len % 4 != 0";    
+        goto +B103;   [R RR . ..]
+  +B38:   #1
+        if vR1.rec_len()>=((vR1.name_len()+11) & -4) goto B61;   
+  +B55:   #1
+        vR2 = "rec_len is too small for name_len";    
+        goto +B103;   [R RR . ..]
+  +B61:   #1
+        if (vR1.offset+vR1.rec_len())<=vR0.i_sb.s_blocksize goto B86;   
+  +B80:   #1
+        vR2 = "directory entry across blocks";    
+        goto +B103;   [R RR . ..]
+  +B86:   #1
+        if vR1.inode()<=vR0.i_sb.s_inodes_count goto B103;   
+  +B100:   #1
+        vR2 = "inode out of bounds";    
+  +B103:   #5
+        if vR2.length@extra()<=0 goto B255;   
+  +B110:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("bad entry in directory #").append@extra(vR0.i_ino).append@extra(": ").append@extra(vR2).append@extra(" - offset=").append@extra(vR1.offset).append@extra(", inode=").append@extra(vR1.inode()).append@extra(", rec_len=").append@extra(vR1.rec_len()).append@extra(", name_len=").append@extra(vR1.name_len()).toString@extra());   [R RR iii..ii..iiiii..ii..... RR...........] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii..ii..iiiii..ii..... i............][ RR iii..ii..iiiii..ii..... iR...........]
+        b0.println(b1.append@extra("rec_len=").append@extra(vR1.rec_len()).append@extra(", name_len=").append@extra(vR1.name_len()).append@extra(", vergleich=").append@extra(((vR1.name_len()+11) & -4)).toString@extra());   [R RR iiiiiiii.iiiii.iiii..ii. RR...........] 
+        return 0;   
+  +B255:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 50 swaps 21 any 0 found 0 checkDirEntry
+}

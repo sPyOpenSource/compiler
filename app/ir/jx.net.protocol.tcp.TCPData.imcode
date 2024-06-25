@@ -1,0 +1,47 @@
+class jx/net/protocol/tcp/TCPData {
+ 
+ method <init>(Ljx/net/IPData;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.sourceAddress = vR1.sourceAddress;   
+        vR0.destinationAddress = vR1.destinationAddress;   
+        vR0.mem = vR1.mem;   
+        vR0.offset = vR1.offset;   
+        vR0.size = vR1.size;   
+        vR0.retransmitCounter = 0;   
+        vR0.retransmitTimestamp = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getRetransmitCounter()I {
+  +START:   #1
+        return vR0.retransmitCounter;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRetransmitCounter
+ 
+ method setRetransmitCounter(I)V {
+  +START:   #1
+        vR0.retransmitCounter = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setRetransmitCounter
+ 
+ method getRetransmitTimestamp()I {
+  +START:   #1
+        return vR0.retransmitTimestamp;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRetransmitTimestamp
+ 
+ method setRetransmitTimestamp(I)V {
+  +START:   #1
+        vR0.retransmitTimestamp = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setRetransmitTimestamp
+}

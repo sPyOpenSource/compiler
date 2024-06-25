@@ -1,0 +1,33 @@
+class jx/framebuffer/MemoryFramebuffer {
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special((jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager")),vi1,vi2,vi3);   [  ii iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 2 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/DeviceMemory;III)V {
+  +START:   #1
+        vR0.<init>@special(vi2,vi3,vi4,0,0,0,vR1);   [   RiiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/MemoryManager;III)V {
+  +START:   #1
+        vR0.<init>@special(vi2,vi3,vi4,0,0,0,vR1.allocAligned(((vi3*vi2)*depthToBPP@special(vi4)),4));   [  ii RiiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 0 found 0 <init>
+ 
+ method framebufferType()Ljava/lang/String; {
+  +START:   #1
+        return "MemoryFramebuffer";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 framebufferType
+}

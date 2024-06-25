@@ -1,0 +1,66 @@
+class java/lang/reflect/InvocationTargetException {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.targetException = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Throwable;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.targetException = 0;   
+        vR0.targetException = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Throwable;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR2);   [   RR] 
+        vR0.targetException = 0;   
+        vR0.targetException = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getTargetException()Ljava/lang/Throwable; {
+  +START:   #1
+        return vR0.targetException;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTargetException
+ 
+ method printStackTrace()V {
+  +START:   #1
+        if vR0.targetException!=null goto B14;   
+  +B7:   #1
+        vR0.printStackTrace@special();   [   R] 
+        goto +B21;   forward return[   .]
+  +B14:   #1
+        vR0.targetException.printStackTrace();   [   R] 
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 printStackTrace
+ 
+ method printStackTrace(Ljava/io/PrintStream;)V {
+  +START:   #1
+        if vR0.targetException!=null goto B15;   
+  +B7:   #1
+        vR0.printStackTrace@special(vR1);   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B15:   #1
+        vR0.targetException.printStackTrace(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 printStackTrace
+}

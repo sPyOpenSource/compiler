@@ -1,0 +1,152 @@
+class metaxa/os/devices/net/WaitTimerGlobal {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.MediaStatus = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method instance()Lmetaxa/os/devices/net/WaitTimerGlobal; {
+  +START:   #1
+        if instance!=null goto B16;   
+  +B6:   #1
+        b0 = new metaxa/os/devices/net/WaitTimerGlobal();    [ R  i][ R  iR]
+        instance = b0;   
+  +B16:   #1
+        return instance;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 instance
+ 
+ method get_DCConverterEnabledState()Z {
+  +START:   #1
+        return vR0.DCConverterEnabledState;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_DCConverterEnabledState
+ 
+ method get_MediaStatus()S {
+  +START:   #1
+        return vR0.MediaStatus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_MediaStatus
+ 
+ method get_PhyResponding()Z {
+  +START:   #1
+        return vR0.PhyResponding;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_PhyResponding
+ 
+ method get_PhyStatus()S {
+  +START:   #1
+        return vR0.PhyStatus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_PhyStatus
+ 
+ method get_DownListPointer()I {
+  +START:   #1
+        return vR0.DownListPointer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_DownListPointer
+ 
+ method get_UpListPointer()I {
+  +START:   #1
+        return vR0.UpListPointer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_UpListPointer
+ 
+ method get_PortV()I {
+  +START:   #1
+        return vR0.portValue;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_PortV
+ 
+ method get_dmaControl()I {
+  +START:   #1
+        return vR0.dmaControl;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_dmaControl
+ 
+ method set_DCConverterEnabledState(Z)V {
+  +START:   #1
+        vR0.DCConverterEnabledState = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_DCConverterEnabledState
+ 
+ method set_MediaStatus(S)V {
+  +START:   #1
+        vR0.MediaStatus = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_MediaStatus
+ 
+ method set_PhyResponding(Z)V {
+  +START:   #1
+        vR0.PhyResponding = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_PhyResponding
+ 
+ method set_PhyStatus(S)V {
+  +START:   #1
+        vR0.PhyStatus = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_PhyStatus
+ 
+ method set_DownListPointer(I)V {
+  +START:   #1
+        vR0.DownListPointer = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_DownListPointer
+ 
+ method set_UpListPointer(I)V {
+  +START:   #1
+        vR0.UpListPointer = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_UpListPointer
+ 
+ method set_PortV(I)V {
+  +START:   #1
+        vR0.portValue = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_PortV
+ 
+ method set_dmaControl(I)V {
+  +START:   #1
+        vR0.dmaControl = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_dmaControl
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new metaxa/os/devices/net/WaitTimerGlobal();    [ R  i][ R  iR]
+        instance = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

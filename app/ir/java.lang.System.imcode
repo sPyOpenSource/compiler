@@ -1,0 +1,342 @@
+class java/lang/System {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V {
+  +START:   #1
+        if vR0!=vR2 goto B272;   
+  +B5:   #1
+        if vi3<=vi1 goto B272;   
+  +B10:   #1
+        if (vR0 instanceof [B)==0 goto B79;   
+  +B17:   #1
+        if (vR2 instanceof [B)==0 goto B79;   
+  +B24:   #1
+        vR5 = ([B)(vR0);    
+        vR6 = ([B)(vR2);    
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi7 = 0;    
+  +B49:   #1
+        if vi7>=vi4 goto B76;   
+  +B56:   #1
+        vi3--;   
+        vi1--;   
+        vR6[vi3] = vR5[vi1];   
+        vi7++;   
+        goto +B49;   [RRi R  ..]
+  +B76:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B79:   #2
+        if (vR0 instanceof [C)==0 goto B148;   
+  +B86:   #1
+        if (vR2 instanceof [C)==0 goto B148;   
+  +B93:   #1
+        vR5 = ([C)(vR0);    
+        vR6 = ([C)(vR2);    
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi7 = 0;    
+  +B118:   #1
+        if vi7>=vi4 goto B145;   
+  +B125:   #1
+        vi3--;   
+        vi1--;   
+        vR6[vi3] = vR5[vi1];   
+        vi7++;   
+        goto +B118;   [RRi R  ..]
+  +B145:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B148:   #2
+        if (vR0 instanceof [I)==0 goto B217;   
+  +B155:   #1
+        if (vR2 instanceof [I)==0 goto B217;   
+  +B162:   #1
+        vR5 = ([I)(vR0);    
+        vR6 = ([I)(vR2);    
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi7 = 0;    
+  +B187:   #1
+        if vi7>=vi4 goto B214;   
+  +B194:   #1
+        vi3--;   
+        vi1--;   
+        vR6[vi3] = vR5[vi1];   
+        vi7++;   
+        goto +B187;   [RRi R  ..]
+  +B214:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B217:   #2
+        vR5 = ([Ljava/lang/Object;)(vR0);    
+        vR6 = ([Ljava/lang/Object;)(vR2);    
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi7 = 0;    
+  +B242:   #1
+        if vi7>=vi4 goto B269;   
+  +B249:   #1
+        vi3--;   
+        vi1--;   
+        vR6[vi3] = vR5[vi1];   
+        vi7++;   
+        goto +B242;   [RRi R  ..]
+  +B269:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B272:   #2
+        if (vR0 instanceof [B)==0 goto B367;   
+  +B279:   #1
+        if (vR2 instanceof [B)==0 goto B367;   
+  +B286:   #1
+        vR5 = ([B)(vR0);    
+        vR6 = ([B)(vR2);    
+        if (vi3+vi4)<=vR6.length goto B316;   
+  -B308:   #1
+        throw new java/lang/Error();   
+  +B316:   #1
+        if (vi1+vi4)<=vR5.length goto B334;   
+  -B326:   #1
+        throw new java/lang/Error();   
+  +B334:   #1
+        vi7 = 0;    
+  +B337:   #1
+        if vi7>=vi4 goto B364;   
+  +B344:   #1
+        vR6[(vi3+vi7)] = vR5[(vi1+vi7)];   
+        vi7++;   
+        goto +B337;   [RRi R  ..]
+  +B364:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B367:   #2
+        if (vR0 instanceof [C)==0 goto B462;   
+  +B374:   #1
+        if (vR2 instanceof [C)==0 goto B462;   
+  +B381:   #1
+        vR5 = ([C)(vR0);    
+        vR6 = ([C)(vR2);    
+        if (vi3+vi4)<=vR6.length goto B411;   
+  -B403:   #1
+        throw new java/lang/Error();   
+  +B411:   #1
+        if (vi1+vi4)<=vR5.length goto B429;   
+  -B421:   #1
+        throw new java/lang/Error();   
+  +B429:   #1
+        vi7 = 0;    
+  +B432:   #1
+        if vi7>=vi4 goto B459;   
+  +B439:   #1
+        vR6[(vi3+vi7)] = vR5[(vi1+vi7)];   
+        vi7++;   
+        goto +B432;   [RRi R  ..]
+  +B459:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B462:   #2
+        if (vR0 instanceof [I)==0 goto B557;   
+  +B469:   #1
+        if (vR2 instanceof [I)==0 goto B557;   
+  +B476:   #1
+        vR5 = ([I)(vR0);    
+        vR6 = ([I)(vR2);    
+        if (vi3+vi4)<=vR6.length goto B506;   
+  -B498:   #1
+        throw new java/lang/Error();   
+  +B506:   #1
+        if (vi1+vi4)<=vR5.length goto B524;   
+  -B516:   #1
+        throw new java/lang/Error();   
+  +B524:   #1
+        vi7 = 0;    
+  +B527:   #1
+        if vi7>=vi4 goto B554;   
+  +B534:   #1
+        vR6[(vi3+vi7)] = vR5[(vi1+vi7)];   
+        vi7++;   
+        goto +B527;   [RRi R  ..]
+  +B554:   #1
+        goto +B675;   forward return[RRi R  ..]
+  +B557:   #2
+        if vR0.getClass@this().getName@extra().equals@extra("[[B")==0 goto B597;   
+  +B572:   #1
+        if vR2.getClass().getName@extra().equals@extra("[B")==0 goto B597;   
+  -B587:   #1
+        throw new java/lang/Error("CAST");   
+  +B597:   #2
+        vR5 = ([Ljava/lang/Object;)(vR0);    
+        vR6 = ([Ljava/lang/Object;)(vR2);    
+        if (vi3+vi4)<=vR6.length goto B627;   
+  -B619:   #1
+        throw new java/lang/Error();   
+  +B627:   #1
+        if (vi1+vi4)<=vR5.length goto B645;   
+  -B637:   #1
+        throw new java/lang/Error();   
+  +B645:   #1
+        vi7 = 0;    
+  +B648:   #1
+        if vi7>=vi4 goto B675;   
+  +B655:   #1
+        vR6[(vi3+vi7)] = vR5[(vi1+vi7)];   
+        vi7++;   
+        goto +B648;   [RRi R ... ...]
+  +B675:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 163/163 wr 55 swaps 2 any 58 found 16 arraycopy
+ 
+ method setProperties(Ljava/util/Properties;)V {
+  +START:   #1
+        properties = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setProperties
+ 
+ method getProperties()Ljava/util/Properties; {
+  +START:   #1
+        return properties;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getProperties
+ 
+ method getProperty(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        setDefaultProperties@special();   [   ]
+        return properties.getProperty(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getProperty
+ 
+ method getProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        setDefaultProperties@special();   [   ]
+        vR2 = properties.getProperty(vR0);    [  . RR] 
+        if vR2!=null goto B17;   
+  +B15:   #1
+        return vR1;   
+  +B17:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 getProperty
+ 
+ method currentTimeMillis()J {
+  +START:   #1
+        vi0 = clock.getTimeInMillis();    [  . R] 
+        return (long)vi0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 currentTimeMillis
+ 
+ method exit(I)V {
+  +START:   #1
+        vR1 = (jx/zero/DomainManager)(getInitialNaming@special().lookup("DomainManager"));    
+        vR1.terminateCaller();   [R  i. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 1 any 0 found 0 exit
+ 
+ method gc()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 gc
+ 
+ method load(Ljava/lang/String;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 load
+ 
+ method loadLibrary(Ljava/lang/String;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 loadLibrary
+ 
+ method identityHashCode(Ljava/lang/Object;)I {
+  +START:   #1
+        return 42;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 identityHashCode
+ 
+ method setDefaultProperties()V {
+  +START:   #1
+        if properties!=null goto B291;   
+  +B6:   #1
+        b0 = new java/util/Properties();    [ R  i][ R  iR]
+        properties = b0;   
+        properties.put("java.version","0.9");   [ R iR. RRR] 
+        properties.put("java.vendor","FAU Erlangen IMMD 4");   [ R iRiR. RRR] 
+        properties.put("java.vendor.url","http://www4.informatik.uni-erlangen.de");   [ R iRiRiR. RRR] 
+        properties.put("java.home","");   [ R iRiRiRiR. RRR] 
+        properties.put("java.vm.specification.version","0.9");   [ R iRiRiRiRiR. RRR] 
+        properties.put("java.vm.specification.vendor","FAU Erlangen IMMD 4");   [ R iRiRiRiRiRiR. RRR] 
+        properties.put("java.vm.specification.name","JXOS");   [ R iRiRiRiRiRiRiR. RRR] 
+        properties.put("java.vm.version","0.9");   [ R iRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.vm.vendor","FAU Erlangen IMMD4");   [ R iRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.vm.name","JXOS");   [ R iRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.specification.version","0.9");   [ R iRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.specification.vendor","FAU Erlangen IMMD4");   [ R iRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.specification.name","JXOS");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.class.version","0.9");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.class.path","");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("java.ext.dirs","");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("os.name","JXOS");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("os.arch","i586");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("os.version","0.01");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("file.separator","/");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("path.separator",":");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("line.separator","
+");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("user.name","golm");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("user.home","Martensstrasse 3");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+        properties.put("user.dir","/");   [ R iRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiRiR. RRR] 
+  +B291:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 76 swaps 25 any 0 found 1 setDefaultProperties
+ 
+ method getSecurityManager()Ljava/lang/SecurityManager; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSecurityManager
+ 
+ method nanoTime()J {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 nanoTime
+ 
+ method <clinit>()V {
+  +START:   #1
+        in = 0;   
+        b0 = new java/io/PrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(getInitialNaming@special().lookup("DebugChannel0")));    [ RRR . i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        err = out;   
+        properties = 0;   
+        clock = (jx/zero/Clock)(getInitialNaming@special().lookup("Clock"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 14 swaps 2 any 1 found 1 <clinit>
+}

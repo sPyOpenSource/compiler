@@ -1,0 +1,197 @@
+class java/lang/Throwable {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.suppressedExceptions = SUPPRESSED_SENTINEL;   
+        vR0.cause = vR0;   
+        vR0.message = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 1 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/Throwable;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.suppressedExceptions = SUPPRESSED_SENTINEL;   
+        vR0.cause = vR0;   
+        vR0.fillInStackTrace@special();   [   R] 
+        vR0.message = vR1;   
+        vR0.cause = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 1 <init>
+ 
+ method <init>(Ljava/lang/Throwable;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.suppressedExceptions = SUPPRESSED_SENTINEL;   
+        vR0.cause = vR0;   
+        vR0.fillInStackTrace@special();   [ RR  R] 
+        b0 = vR0;    
+        if vR1!=null goto B29;   
+  +B25b0:   #1 reference
+        b1 = 0;    
+        goto +B33b0b1;   [ RR  .]
+  +B29b0:   #1 reference
+        b1 = vR1.toString();    [ RR  R] 
+  +B33b0b1:   #1 reference reference
+        b0.message = b1;   
+        vR0.cause = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 3 swaps 0 any 2 found 1 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("");   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(": ").append@extra(vR0.message).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 8 swaps 3 any 0 found 0 toString
+ 
+ method getMessage()Ljava/lang/String; {
+  +START:   #1
+        return vR0.message;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMessage
+ 
+ method fillInStackTrace()V {
+  +START:   #1
+        vR1 = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));    
+        vR0.backtrace = new java/lang/StackTraceElement()[(vR1.getStackDepth()-0)];   
+        vi2 = 0;    
+  +B31:   #1
+        if vi2>=(vR0.backtrace.length-0) goto B133;   
+  +B42:   #1
+        b0 = vR0.backtrace;    
+        b2 = new java/lang/StackTraceElement();    [ R?R .. i.][ R?R .. iR]
+        b0[vi2] = b2;   
+        vR0.backtrace[vi2].className = vR1.getStackFrameClassName((vi2+0));   
+        vR0.backtrace[vi2].methodName = vR1.getStackFrameMethodName((vi2+0));   
+        vR0.backtrace[vi2].line = vR1.getStackFrameLine((vi2+0));   
+        vR0.backtrace[vi2].bytecode = vR1.getStackFrameBytecode((vi2+0));   
+        vi2++;   
+        goto +B31;   [Ri R?R iiii ..]
+  +B133:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 12 swaps 3 any 3 found 0 fillInStackTrace
+ 
+ method printStackTrace()V {
+  +START:   #1
+        if err==null goto B16;   
+  +B6:   #1
+        vR0.printStackTrace@this(err);   [  i RR] 
+        goto +B29;   forward return[  i ..]
+  +B16:   #1
+        if out==null goto B29;   
+  +B22:   #1
+        vR0.printStackTrace@this(out);   [  i RR] 
+  +B29:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 2 any 0 found 0 printStackTrace
+ 
+ method printStackTrace(Ljava/io/PrintStream;)V {
+  +START:   #1
+        if vR0.message==null goto B15;   
+  +B7:   #1
+        vR1.println(vR0.message);   [ ?R i RR] 
+  +B15:   #1
+        vi2 = 0;    
+  +B17:   #1
+        if vi2>=vR0.backtrace.length goto B64;   
+  +B26:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R . i.][ ?R . iR]
+        vR1.println(b1.append@extra(vi2).append@extra(" ").append@extra(vR0.backtrace[vi2]).toString@extra());   [i ?R iii.. RR..] 
+        vi2++;   
+        goto +B17;   [i ?R iii.. ....]
+  +B64:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 10 swaps 4 any 2 found 0 printStackTrace
+ 
+ method getLocalizedMessage()Ljava/lang/String; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLocalizedMessage
+ 
+ method initCause(Ljava/lang/Throwable;)Ljava/lang/Throwable; {
+  +START:   #1
+        if vR0.cause==vR0 goto B41;   
+  -B8:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Can't overwrite cause with ").append@extra(toString@special(vR1,"a null")).toString@extra(),vR0);   [ RRR iRii. RRR] 
+        throw b0;   
+  +B41:   #1
+        if vR1!=vR0 goto B57;   
+  -B46:   #1
+        throw new java/lang/IllegalArgumentException("Self-causation not permitted",vR0);   
+  +B57:   #1
+        vR0.cause = vR1;   
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 10 swaps 3 any 2 found 0 initCause
+ 
+ method addSuppressed(Ljava/lang/Throwable;)V {
+  +START:   #1
+        if vR1!=vR0 goto B16;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException("Self-suppression not permitted",vR1);   
+  +B16:   #1
+        if vR1!=null goto B30;   
+  -B20:   #1
+        throw new java/lang/NullPointerException("Cannot suppress a null exception.");   
+  +B30:   #1
+        if vR0.suppressedExceptions!=null goto B38;   
+  +B37:   #1
+        return;   
+  +B38:   #1
+        if vR0.suppressedExceptions!=SUPPRESSED_SENTINEL goto B60;   
+  +B48:   #1
+        b1 = new java/util/ArrayList(1);    [ RR . i...][ RR . iiR.]
+        vR0.suppressedExceptions = b1;   
+  +B60:   #1
+        vR0.suppressedExceptions.add(vR1);   [ RR . RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 5 swaps 0 any 2 found 0 addSuppressed
+ 
+ method getStackTrace()[Ljava/lang/StackTraceElement; {
+  +START:   #1
+        return vR0.backtrace;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStackTrace
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/ArrayList(0);    [ R  i][ R . iiR]
+        SUPPRESSED_SENTINEL = unmodifiableList@special(b0);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 <clinit>
+}

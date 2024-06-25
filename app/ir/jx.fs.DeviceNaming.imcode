@@ -1,0 +1,81 @@
+class jx/fs/DeviceNaming {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method deviceToName(I)Ljava/lang/String; {
+  +START:   #1
+        vR1 = 0;    
+        if vi0!=99 goto B11;   
+  +B8:   #1
+        return "hdemul";   
+  +B11:   #1
+        if (vi0 & 3)!=0 goto B20;   
+  +B17:   #1
+        vR1 = "hda";    
+  +B20:   #1
+        if (vi0 & 3)!=1 goto B30;   
+  +B27:   #1
+        vR1 = "hdc";    
+  +B30:   #1
+        if (vi0 & 3)!=2 goto B40;   
+  +B37:   #1
+        vR1 = "hdb";    
+  +B40:   #1
+        if (vi0 & 3)!=3 goto B50;   
+  +B47:   #1
+        vR1 = "hdd";    
+  +B50:   #1
+        vi2 = ((vi0 >> 4) & 15);    
+        if vi2<=0 goto B83;   
+  +B61:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR1).append@extra(valueOf@special(vi2)).toString@extra();    [Ri R .i. R..] [Ri R Ri. RR.] [Ri R RiR RRR] 
+  +B83:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 11 swaps 1 any 7 found 0 deviceToName
+ 
+ method nameToDevice(Ljava/lang/String;)I {
+  +START:   #1
+        vi1 = -1;    
+        vi2 = 0;    
+        if vR0.equals@extra("hdemul")==0 goto B16;   
+  +B13:   #1
+        return 99;   
+  +B16:   #1
+        if vR0.startsWith@extra("hda")==0 goto B27;   
+  +B25:   #1
+        vi1 = 0;    
+  +B27:   #1
+        if vR0.startsWith@extra("hdb")==0 goto B38;   
+  +B36:   #1
+        vi1 = 2;    
+  +B38:   #1
+        if vR0.startsWith@extra("hdc")==0 goto B49;   
+  +B47:   #1
+        vi1 = 1;    
+  +B49:   #1
+        if vR0.startsWith@extra("hdd")==0 goto B60;   
+  +B58:   #1
+        vi1 = 3;    
+  +B60:   #1
+        if vi1!=-1 goto B67;   
+  +B65:   #1
+        return -1;   
+  +B67:   #1
+        if vR0.length@extra()<=3 goto B85;   
+  +B75:   #1
+        vi2 = parseInt@special(vR0.substring@extra(3,4));    [ii  R R..]
+  +B85:   #1
+        return ((vi2 << 4) | vi1);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 9 swaps 5 any 1 found 0 nameToDevice
+}

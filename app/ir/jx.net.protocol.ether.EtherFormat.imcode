@@ -1,0 +1,119 @@
+class jx/net/protocol/ether/EtherFormat {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method insertDestAddress([B)V {
+  +START:   #1
+        vR0.writeBytes@this(0,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertDestAddress
+ 
+ method insertSourceAddress([B)V {
+  +START:   #1
+        vR0.writeBytes@this(6,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSourceAddress
+ 
+ method insertType(I)V {
+  +START:   #1
+        vR0.writeShort@this(12,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertType
+ 
+ method getDestAddress()[B {
+  +START:   #1
+        vR1 = new byte[6];    
+        vR0.readBytes@this(0,vR1);   [R   RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getDestAddress
+ 
+ method getSourceAddress()[B {
+  +START:   #1
+        vR1 = new byte[6];    
+        vR0.readBytes@this(6,vR1);   [R   RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSourceAddress
+ 
+ method getType()I {
+  +START:   #1
+        return vR0.readShort@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getType
+ 
+ method length()I {
+  +START:   #1
+        return requiresSpace@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 length
+ 
+ method requiresSpace()I {
+  +START:   #1
+        return 14;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requiresSpace
+ 
+ method destAddressEquals([B)Z {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=6 goto B76;   
+  +B8:   #1
+        if vR0.readByte@this(vi2)==vR1[vi2] goto B70;   
+  +B19:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Ether.addrCompare: position ").append@extra(vi2).append@extra("differs:").append@extra(vR0.readByte@this(vi2)).append@extra("!=").append@extra(vR1[vi2]).toString@extra());   [i RR iii..iii... RR.....] 
+        return 0;   
+  +B70:   #1
+        vi2++;   
+        goto +B2;   [i RR ........... .......]
+  +B76:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 16 swaps 6 any 2 found 0 destAddressEquals
+ 
+ method dump()V {
+  +START:   #1
+        out.println("Ether-Packet:");   [ RR i. RR] 
+        out.print("  Source: ");   [ RR ii. RR] 
+        xdump@special(vR0.getSourceAddress@this(),6);   [ RR iiR iR]
+        out.print("  Dest: ");   [ RR iiRi. RR] 
+        xdump@special(vR0.getDestAddress@this(),6);   [ RR iiRiR iR]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiRiR i.][ RR iiRiR iR]
+        b0.println(b1.append@extra("  Type: ").append@extra(vR0.getType@this()).toString@extra());   [ RR iiRiRiii. RR.] 
+        out.println("   First 32 bytes of data:");   [ RR iiRiRiiii. RR.] 
+        xdump@special(vR0.buf,(vR0.offset+requiresSpace@special()),32);   [ RR iiRiRiiiiiR iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 21 swaps 7 any 0 found 0 dump
+}

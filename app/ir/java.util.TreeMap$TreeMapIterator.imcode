@@ -1,0 +1,102 @@
+class java/util/TreeMap$TreeMapIterator {
+ 
+ method <init>(Ljava/util/TreeMap;Ljava/util/SortedMap;I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR4 = vR1;    
+        vR0._oMap = vR2;   
+        vR0._iType = vi3;   
+        vR0._iKnownMods = vR4._iModCount;   
+        vR0._oPrev = access$000@special();   
+        if vR0._oMap.isEmpty()==0 goto B60;   
+  +B50:   #1
+        vR0._oFirst = access$000@special();   
+        goto +B112;   forward return[R   .]
+  +B60:   #1
+        vR0._oFirst = treeSearch@special(vR4._oRoot,vR4._oComparator,vR0._oMap.firstKey());   
+        vR0._oLast = treeSearch@special(vR4._oRoot,vR4._oComparator,vR0._oMap.lastKey());   
+  +B112:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 11 swaps 0 any 1 found 0 <init>
+ 
+ method checkMod()V {
+  +START:   #1
+        if vR0._iKnownMods>=vR0.this$0._iModCount goto B22;   
+  -B14:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 checkMod
+ 
+ method hasNext()Z {
+  +START:   #1
+        vR0.checkMod@special();   [ i  R] 
+        if vR0._oFirst==access$000@special() goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i . .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        vR0.checkMod@special();   [ R  R] 
+        vR1 = vR0._oFirst;    
+        if vR1!=access$000@special() goto B24;   
+  -B16:   #1
+        throw new java/util/NoSuchElementException();   
+  +B24:   #1
+        if vR1!=vR0._oLast goto B42;   
+  +B32:   #1
+        vR0._oFirst = access$000@special();   
+        goto +B53;   [R R  ..]
+  +B42:   #1
+        vR0._oFirst = treeSuccessor@special(vR0._oFirst);   
+  +B53:   #1
+        vR0._oPrev = vR1;   
+        if vR0._iType!=1 goto B73;   
+  +B66:   #1
+        b0 = vR1.getKey();    [R R . R.] 
+        goto +B89b0;   forward return[R R . ..]
+  +B73:   #1
+        if vR0._iType!=2 goto B88;   
+  +B81:   #1
+        b0 = vR1.getValue();    [R R . R.] 
+        goto +B89b0;   forward return[R R . ..]
+  +B88:   #1
+        b0 = vR1;    
+  +B89b0:   #2 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 5 swaps 0 any 3 found 1 next
+ 
+ method remove()V {
+  +START:   #1
+        vR0.checkMod@special();   [ R  R] 
+        if vR0._oPrev!=access$000@special() goto B24;   
+  -B14:   #1
+        throw new java/lang/IllegalStateException("No previous call to next(), or remove() has already been called on this iteration.");   
+  +B24:   #1
+        vR1 = vR0._oPrev.getKey();    [ R . R..] 
+        if vR0._oMap.containsKey(vR1)==0 goto B66;   
+  +B45:   #1
+        vR0._oMap.remove(vR1);   [R R . RR.] 
+        vR0._iKnownMods = (vR0._iKnownMods+1);   
+  +B66:   #1
+        vR0._oPrev = access$000@special();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 0 found 0 remove
+}

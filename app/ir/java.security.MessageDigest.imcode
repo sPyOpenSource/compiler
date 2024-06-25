@@ -1,0 +1,249 @@
+class java/security/MessageDigest {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.algorithm = vR1;   
+        vR0.provider = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInstance(Ljava/lang/String;)Ljava/security/MessageDigest; {
+  +START:   #1
+        vR1 = getProviders@special();    [ RR  ]
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR1.length goto B57;   
+  +B12:   #1
+        b0 = vR1[vi2];    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR3 = b0.getProperty(b1.append@extra("MessageDigest.").append@extra(vR0).toString@extra());    [Ri RR ii. RR.] 
+        if vR3==null goto B51;   
+  +B42:   #1
+        return getInstance@special(vR3,vR0,vR1[vi2]);   
+  +B51:   #1
+        vi2++;   
+        goto +B6;   [RiR RR ... ...]
+  -B57:   #1
+        throw new java/security/NoSuchAlgorithmException(vR0);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 12 swaps 2 any 3 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/MessageDigest; {
+  +START:   #1
+        vR2 = getProvider@special(vR1);    [ RR  R]
+        if vR2!=null goto B18;   
+  -B9:   #1
+        throw new java/security/NoSuchProviderException(vR1);   
+  +B18:   #1
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        return getInstance@special(vR2.getProperty(b1.append@extra("MessageDigest.").append@extra(vR0).toString@extra()),vR0,vR2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 8 swaps 2 any 1 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/MessageDigest; {
+  +START:   #1
+        if vR0!=null goto B13;   
+  -B4:   #1
+        throw new java/security/NoSuchAlgorithmException(vR1);   
+  +B13:   #4
+        vR3 = (java/security/MessageDigest)(forName@special(vR0).newInstance@extra());    
+        vR3.algorithm = vR1;   
+        vR3.provider = vR2;   
+        b0 = vR3;    
+  +B35b0:   #3 reference
+        return b0;   
+  -H36<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/security/NoSuchAlgorithmException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra(vR1).append@extra(": Class not found.").toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  -H64<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/security/NoSuchAlgorithmException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra(vR1).append@extra(": Class instantiation failed.").toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  -H92<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/security/NoSuchAlgorithmException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra(vR1).append@extra(": Illegal Access").toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+13 - 35 handler 36 type 20
+13 - 35 handler 64 type 22
+13 - 35 handler 92 type 24
+ }
+// Register: rd 22/22 wr 29 swaps 6 any 5 found 0 getInstance
+ 
+ method getProvider()Ljava/security/Provider; {
+  +START:   #1
+        return vR0.provider;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProvider
+ 
+ method update(B)V {
+  +START:   #1
+        vR0.engineUpdate@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 update
+ 
+ method update([BII)V {
+  +START:   #1
+        vR0.engineUpdate@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 update
+ 
+ method update([B)V {
+  +START:   #1
+        vR0.engineUpdate@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 update
+ 
+ method digest()[B {
+  +START:   #1
+        b1 = vR0.engineDigest@this();    [ RR  R] 
+        b0 = b1;    
+        vR0.lastDigest = b1;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 digest
+ 
+ method digest([BII)I {
+  +START:   #1
+        return vR0.engineDigest@this(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 digest
+ 
+ method digest([B)[B {
+  +START:   #1
+        vR0.update@this(vR1);   [   RR] 
+        return vR0.digest@this();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 digest
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(" Message Digest <").append@extra(vR0.digestToString@special()).append@extra(">").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString
+ 
+ method isEqual([B[B)Z {
+  +START:   #1
+        if vR0.length==vR1.length goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vi2 = (vR0.length-1);    
+  +B14:   #1
+        if vi2< 0 goto B35;   
+  +B18:   #1
+        if vR0[vi2]==vR1[vi2] goto B29;   
+  +B27:   #1
+        return 0;   
+  +B29:   #1
+        vi2--;   
+        goto +B14;   [i   ]
+  +B35:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 isEqual
+ 
+ method reset()V {
+  +START:   #1
+        vR0.engineReset@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method getAlgorithm()Ljava/lang/String; {
+  +START:   #1
+        return vR0.algorithm;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlgorithm
+ 
+ method getDigestLength()I {
+  +START:   #1
+        return vR0.engineGetDigestLength@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDigestLength
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        if (vR0 instanceof java/lang/Cloneable)==0 goto B12;   
+  +B7:   #1
+        return vR0.clone@special();   
+  -B12:   #1
+        throw new java/lang/CloneNotSupportedException();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 clone
+ 
+ method digestToString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.lastDigest;    
+        if vR1!=null goto B12;   
+  +B9:   #1
+        return "incomplete";   
+  +B12:   #1
+        vR2 = new java/lang/StringBuffer();    [ Ri  i][ Ri  iR]
+        vi3 = vR1.length;    
+        vi4 = 0;    
+  +B26:   #1
+        if vi4>=vi3 goto B113;   
+  +B32:   #1
+        vi5 = vR1[vi4];    
+        vi6 = (byte)((vi5 & 255) >>> 4);    
+        vi7 = (byte)(vi5 & 15);    
+        b0 = vR2;    
+        if vi6<=9 goto B73;   
+  +B65b0:   #1 reference
+        b1 = (vi6+87);    
+        goto +B78b0b1;   [RRiiiii Ri  ..]
+  +B73b0:   #1 reference
+        b1 = (vi6+48);    
+  +B78b0b1:   #1 reference int
+        b0.append(b1);   [RRiiiii Ri  iR] 
+        b0 = vR2;    
+        if vi7<=9 goto B98;   
+  +B90b0:   #1 reference
+        b1 = (vi7+87);    
+        goto +B103b0b1;   [RRiiiii Ri  ..]
+  +B98b0:   #1 reference
+        b1 = (vi7+48);    
+  +B103b0b1:   #1 reference int
+        b0.append(b1);   [RRiiiii Ri  iR] 
+        vi4++;   
+        goto +B26;   [RRiiiii Ri  ..]
+  +B113:   #1
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 14 swaps 0 any 11 found 0 digestToString
+}

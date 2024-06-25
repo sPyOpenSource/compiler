@@ -1,0 +1,587 @@
+class javafs/FileInode {
+ 
+ method <init>(Ljavafs/FileSystem;Ljavafs/Super;ILjavafs/InodeData;Ljx/fs/buffercache/BufferCache;Ljavafs/InodeCache;Ljx/zero/Clock;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vi3,vR4,vR5,vR6,vR7);   [   RRRRiRRR] 
+        vR0.blockmask = (vR2.s_blocksize-1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isSymlink()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isSymlink
+ 
+ method isFile()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isFile
+ 
+ method isDirectory()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method isWritable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isWritable
+ 
+ method isReadable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadable
+ 
+ method isExecutable()Z {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isExecutable
+ 
+ method readdirNames()[Ljava/lang/String; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 readdirNames
+ 
+ method getInode(Ljava/lang/String;)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInode
+ 
+ method mkdir(Ljava/lang/String;I)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 mkdir
+ 
+ method rmdir(Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 rmdir
+ 
+ method create(Ljava/lang/String;I)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 create
+ 
+ method unlink(Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 unlink
+ 
+ method symlink(Ljava/lang/String;Ljava/lang/String;)Ljx/fs/Inode; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 symlink
+ 
+ method getSymlink()Ljava/lang/String; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoSymlinkInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSymlink
+ 
+ method rename(Ljava/lang/String;Ljx/fs/Inode;Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 rename
+ 
+ method read(ILjx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vi10 = vR0.i_data.i_size@extra();    [ R  R.] 
+        if vi1<=vi10 goto B32;   
+  +B30:   #1
+        return 0;   
+  +B32:   #1
+        if (vi1+vi4)<=vi10 goto B47;   
+  +B41:   #1
+        vi4 = (vi10-vi1);    
+  +B47:   #1
+        vi5 = (vi1/vR0.i_sb.s_blocksize);    
+        vi6 = (vi1 & vR0.blockmask);    
+        vi8 = (vR0.i_sb.s_blocksize-vi6);    
+        vi7 = 0;    
+  +B81:   #1
+        if vi8<=vi4 goto B92;   
+  +B88:   #1
+        vi8 = vi4;    
+  +B92:   #1
+        if vi8> 0 goto B100;   
+  +B97:   #1
+        goto +B203;   [iiii?i R  ..]
+  +B100:   #1
+        vR9 = vR0.getBlk@this(vi5,1);    [iiii?i R  iiR] 
+        if vR9!=null goto B125;   
+  +B114:   #1
+        if vi7!=0 goto B203;   
+  +B119:   #1
+        vi7 = -1;    
+        goto +B203;   [iiiiRi R  ...]
+  +B125:   #1
+        vR0.bufferCache.updateBuffer(vR9);   [iiiiRi R  RR.] 
+        vR9.getData().copyToMemory(vR2,vi6,vi3,vi8);   [iiiiRi R . iiiRR] [iiiiRi R R iiiRR] 
+        vi7 = (vi7+vi8);    
+        vi3 = (vi3+vi8);    
+        vi4 = (vi4-vi8);    
+        vR0.bufferCache.brelse(vR9);   [iiiiRi R . RR...] 
+        vi5++;   
+        vi6 = 0;    
+        vi8 = vR0.i_sb.s_blocksize;    
+        if vi4> 0 goto B81;   
+  +B203:   #3
+        vR0.i_data.i_atime@extra(vR0.clock.getTimeInMillis());   [iiii?i R i iR...] 
+        vR0.setDirty@this(1);   [iiii?i R i iR...] 
+        if vi7>=0 goto B237;   
+  -B229:   #1
+        throw new jx/fs/InodeIOException();   
+  +B237:   #1
+        return vi7;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 16 swaps 1 any 15 found 0 read
+ 
+ method read(Ljx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        if vi3!=0 goto B21;   
+  +B19:   #1
+        return 0;   
+  +B21:   #1
+        vi4 = vi2;    
+        if vi4<=(vi4+vi3) goto B41;   
+  -B33:   #1
+        throw new jx/fs/InodeIOException();   
+  +B41:   #1
+        if vR0.permission@this(4)!=0 goto B57;   
+  -B49:   #1
+        throw new jx/fs/PermissionException();   
+  +B57:   #1
+        vi5 = (vi4/vR0.i_sb.s_blocksize);    
+        vi6 = (vi4 & vR0.blockmask);    
+        vi8 = (vR0.i_sb.s_blocksize-vi6);    
+        vi7 = 0;    
+        vi9 = 0;    
+        vi11 = vR0.i_data.i_size@extra();    [iiiiii R  R.] 
+  +B105:   #1
+        if vi8<=vi3 goto B114;   
+  +B111:   #1
+        vi8 = vi3;    
+  +B114:   #1
+        if (vi4+vi8)<=vi11 goto B131;   
+  +B124:   #1
+        vi8 = (vi11-vi4);    
+  +B131:   #1
+        if vi8<=1024 goto B147;   
+  -B139:   #1
+        throw new java/lang/Error();   
+  +B147:   #1
+        if vi8> 0 goto B155;   
+  +B152:   #1
+        goto +B265;   [iiiiii?i R  ..]
+  +B155:   #1
+        vR10 = vR0.getBlk@this(vi5,1);    [iiiiii?i R  iiR] 
+        if vR10!=null goto B180;   
+  +B169:   #1
+        if vi7!=0 goto B265;   
+  +B174:   #1
+        vi7 = -1;    
+        goto +B265;   [iiiiiiRi R  ...]
+  +B180:   #1
+        vR0.bufferCache.updateBuffer(vR10);   [iiiiiiRi R  RR.] 
+        vR10.getData().copyToMemory(vR1,vi6,vi9,vi8);   [iiiiiiRi R . iiiRR] [iiiiiiRi R R iiiRR] 
+        vi4 = (vi4+vi8);    
+        vi7 = (vi7+vi8);    
+        vi9 = (vi9+vi8);    
+        vi3 = (vi3-vi8);    
+        vR0.bufferCache.brelse(vR10);   [iiiiiiRi R . RR...] 
+        vi5++;   
+        vi6 = 0;    
+        vi8 = vR0.i_sb.s_blocksize;    
+        if vi3> 0 goto B105;   
+  +B265:   #3
+        vR0.i_data.i_atime@extra(vR0.clock.getTimeInMillis());   [iiiiii?i R i iR...] 
+        vR0.setDirty@this(1);   [iiiiii?i R i iR...] 
+        if vi7>=0 goto B299;   
+  -B291:   #1
+        throw new jx/fs/InodeIOException();   
+  +B299:   #1
+        return vi7;   
+  +END:   #1
+ }
+// Register: rd 46/46 wr 19 swaps 1 any 19 found 1 read
+ 
+ method readWeak(II)Ljx/zero/ReadOnlyMemory; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        if vi2!=0 goto B21;   
+  +B19:   #1
+        return 0;   
+  +B21:   #1
+        vi3 = vi1;    
+        if vi3<=(vi3+vi2) goto B38;   
+  -B30:   #1
+        throw new jx/fs/InodeIOException();   
+  +B38:   #1
+        if vR0.permission@this(4)!=0 goto B54;   
+  -B46:   #1
+        throw new jx/fs/PermissionException();   
+  +B54:   #1
+        vi4 = (vi3/vR0.i_sb.s_blocksize);    
+        vi5 = (vi3 & vR0.blockmask);    
+        vi7 = (vR0.i_sb.s_blocksize-vi5);    
+        vi6 = 0;    
+        vi8 = 0;    
+        vi10 = vR0.i_data.i_size@extra();    [iiiiii R  R.] 
+  +B100:   #1
+        if vi7<=vi2 goto B109;   
+  +B106:   #1
+        vi7 = vi2;    
+  +B109:   #1
+        if (vi3+vi7)<=vi10 goto B124;   
+  +B118:   #1
+        vi7 = (vi10-vi3);    
+  +B124:   #1
+        if vi7<=1024 goto B140;   
+  -B132:   #1
+        throw new java/lang/Error();   
+  +B140:   #1
+        if vi7> 0 goto B148;   
+  +B145:   #1
+        goto +B238;   [iiiiii?i R  ..]
+  +B148:   #1
+        vR9 = vR0.getBlk@this(vi4,1);    [iiiiii?i R  iiR] 
+        if vR9!=null goto B173;   
+  +B162:   #1
+        if vi6!=0 goto B238;   
+  +B167:   #1
+        vi6 = -1;    
+        goto +B238;   [iiiiiiRi R  ...]
+  +B173:   #1
+        vR0.bufferCache.updateBuffer(vR9);   [iiiiiiRi R  RR.] 
+        vi3 = (vi3+vi7);    
+        vi6 = (vi6+vi7);    
+        vi8 = (vi8+vi7);    
+        vi2 = (vi2-vi7);    
+        vR0.bufferCache.brelse(vR9);   [iiiiiiRi R  RR.] 
+        vi4++;   
+        vi5 = 0;    
+        vi7 = vR0.i_sb.s_blocksize;    
+        if vi2> 0 goto B100;   
+  +B238:   #3
+        vR0.i_data.i_atime@extra(vR0.clock.getTimeInMillis());   [iiiiii?i R i iR.] 
+        vR0.setDirty@this(1);   [iiiiii?i R i iR.] 
+        if vi6>=0 goto B272;   
+  -B264:   #1
+        throw new jx/fs/InodeIOException();   
+  +B272:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 18 swaps 1 any 19 found 1 readWeak
+ 
+ method write([BII)I {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 write
+ 
+ method write(Ljx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vi12 = 0;    
+        if vi3!=0 goto B24;   
+  +B22:   #1
+        return 0;   
+  +B24:   #1
+        if vR0.permission@this(2)!=0 goto B40;   
+  -B32:   #1
+        throw new jx/fs/PermissionException();   
+  +B40:   #1
+        vi4 = vi2;    
+        if vi4<=(vi4+vi3) goto B89;   
+  -B52:   #1
+        b0 = new jx/fs/InodeIOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Overflow: pos=").append@extra(vi4).append@extra(", len=").append@extra(vi3).toString@extra());   [i???????i RRR iii... RR...] 
+        throw b0;   
+  +B89:   #1
+        vi5 = (vi4/vR0.i_sb.s_blocksize);    
+        vi6 = (vi4 & (vR0.i_sb.s_blocksize-1));    
+        vi9 = (vR0.i_sb.s_blocksize-vi6);    
+        vi8 = 0;    
+        vi7 = 0;    
+  +B133:   #1
+        vR10 = vR0.getBlk@this(vi5,1,0);    [iiiiii??i RRR ...... iiiR.] 
+        if vR10!=null goto B185;   
+  +B148:   #1
+        if vi8!=0 goto B399;   
+  +B153:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.println(b1.append@extra("getBlk returned null and written was 0; block=").append@extra(vi5).toString@extra());   [iiiiiiR?i RRR ii.... RR...] 
+        vi8 = -1;    
+        goto +B399;   [iiiiiiR?i RRR ii.... .....]
+  +B185:   #1
+        if vi9<=vi3 goto B194;   
+  +B191:   #1
+        vi9 = vi3;    
+  +B194:   #1
+        if vR10.isUptodate()!=0 goto B258;   
+  +B202:   #1
+        if vR10.isLocked()!=0 goto B258;   
+  +B210:   #1
+        if vi9!=vR0.i_sb.s_blocksize goto B258;   
+  +B222:   #1
+        vR10.lock();   [iiiiiiR?ii RRR ...... R....] 
+        vR10.getData().copyFromMemory(vR1,vi7,vi6,vi9);   [iiiiiiR?ii RRR ...... iiiRR] [iiiiiiR?ii RRR R..... iiiRR] 
+        vR10.markUptodate();   [iiiiiiR?ii RRR ...... R....] 
+        vR10.unlock();   [iiiiiiR?ii RRR ...... R....] 
+        goto +B287;   [iiiiiiR?ii RRR ...... .....]
+  +B258:   #3
+        vR0.bufferCache.updateBuffer(vR10);   [iiiiiiR?ii RRR ...... RR...] 
+        vR10.getData().copyFromMemory(vR1,vi7,vi6,vi9);   [iiiiiiR?ii RRR ...... iiiRR] [iiiiiiR?ii RRR R..... iiiRR] 
+  +B287:   #1
+        if vi9!=0 goto B313;   
+  -B292:   #1
+        vR0.bufferCache.brelse(vR10);   [iiiiiiR?ii RRR ...... RR...] 
+        throw new java/lang/Error("EFAULT");   
+  +B313:   #1
+        if (vi4+vi9)>=0 goto B335;   
+  +B321:   #1
+        vR0.bufferCache.bdwrite(vR10);   [iiiiiiR?ii RRR ...... RR...] 
+        goto +B399;   [iiiiiiR?ii RRR ...... .....]
+  +B335:   #1
+        vi4 = (vi4+vi9);    
+        vi8 = (vi8+vi9);    
+        vi7 = (vi7+vi9);    
+        vi3 = (vi3-vi9);    
+        vR0.bufferCache.bdwrite(vR10);   [iiiiiiR?ii RRR ...... RR...] 
+        if vi12<=0 goto B380;   
+  +B377:   #1
+        goto +B399;   [iiiiiiR?ii RRR ...... .....]
+  +B380:   #1
+        vi5++;   
+        vi6 = 0;    
+        vi9 = vR0.i_sb.s_blocksize;    
+        if vi3> 0 goto B133;   
+  +B399:   #4
+        if vi4<=vR0.i_data.i_size@extra() goto B420;   
+  +B411:   #1
+        vR0.i_data.i_size@extra(vi4);   [iiiiiiR?i RRR ...... iR...] 
+  +B420:   #1
+        vi13 = vR0.clock.getTimeInMillis();    [iiiiiiR?i RRR ...... R....] 
+        vR0.i_data.i_ctime@extra(vi13);   [iiiiiiR?ii RRR ...... iR...] 
+        vR0.i_data.i_mtime@extra(vi13);   [iiiiiiR?ii RRR ...... iR...] 
+        vR0.setDirty@this(1);   [iiiiiiR?ii RRR ...... iR...] 
+        if vi8>=0 goto B469;   
+  -B459:   #1
+        throw new jx/fs/InodeIOException("written<0");   
+  +B469:   #1
+        return vi8;   
+  +END:   #1
+ }
+// Register: rd 65/65 wr 37 swaps 5 any 21 found 2 write
+ 
+ method write(ILjx/zero/Memory;II)I {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  +B15:   #1
+        vi11 = 0;    
+        if vi4!=0 goto B25;   
+  +B23:   #1
+        return 0;   
+  +B25:   #1
+        if vR0.permission@this(2)!=0 goto B41;   
+  -B33:   #1
+        throw new jx/fs/PermissionException();   
+  +B41:   #1
+        if vi1<=(vi1+vi4) goto B86;   
+  -B49:   #1
+        b0 = new jx/fs/InodeIOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Overflow: pos=").append@extra(vi1).append@extra(", len=").append@extra(vi4).toString@extra());   [??????i RRR iii... RR...] 
+        throw b0;   
+  +B86:   #1
+        vi5 = (vi1/vR0.i_sb.s_blocksize);    
+        vi6 = (vi1 & (vR0.i_sb.s_blocksize-1));    
+        vi8 = (vR0.i_sb.s_blocksize-vi6);    
+        vi7 = 0;    
+        vi3 = 0;    
+  +B127:   #1
+        vR9 = vR0.getBlk@this(vi5,1,0);    [iiii??i RRR ...... iiiR.] 
+        if vR9!=null goto B179;   
+  +B142:   #1
+        if vi7!=0 goto B391;   
+  +B147:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.println(b1.append@extra("getBlk returned null and written was 0; block=").append@extra(vi5).toString@extra());   [iiiiR?i RRR ii.... RR...] 
+        vi7 = -1;    
+        goto +B391;   [iiiiR?i RRR ii.... .....]
+  +B179:   #1
+        if vi8<=vi4 goto B190;   
+  +B186:   #1
+        vi8 = vi4;    
+  +B190:   #1
+        if vR9.isUptodate()!=0 goto B253;   
+  +B198:   #1
+        if vR9.isLocked()!=0 goto B253;   
+  +B206:   #1
+        if vi8!=vR0.i_sb.s_blocksize goto B253;   
+  +B218:   #1
+        vR9.lock();   [iiiiR?ii RRR ...... R....] 
+        vR9.getData().copyFromMemory(vR2,vi3,vi6,vi8);   [iiiiR?ii RRR ...... iiiRR] [iiiiR?ii RRR R..... iiiRR] 
+        vR9.markUptodate();   [iiiiR?ii RRR ...... R....] 
+        vR9.unlock();   [iiiiR?ii RRR ...... R....] 
+        goto +B281;   [iiiiR?ii RRR ...... .....]
+  +B253:   #3
+        vR0.bufferCache.updateBuffer(vR9);   [iiiiR?ii RRR ...... RR...] 
+        vR9.getData().copyFromMemory(vR2,vi3,vi6,vi8);   [iiiiR?ii RRR ...... iiiRR] [iiiiR?ii RRR R..... iiiRR] 
+  +B281:   #1
+        if vi8!=0 goto B307;   
+  -B286:   #1
+        vR0.bufferCache.brelse(vR9);   [iiiiR?ii RRR ...... RR...] 
+        throw new java/lang/Error("EFAULT");   
+  +B307:   #1
+        if (vi1+vi8)>=0 goto B328;   
+  +B314:   #1
+        vR0.bufferCache.bdwrite(vR9);   [iiiiR?ii RRR ...... RR...] 
+        goto +B391;   [iiiiR?ii RRR ...... .....]
+  +B328:   #1
+        vi1 = (vi1+vi8);    
+        vi7 = (vi7+vi8);    
+        vi3 = (vi3+vi8);    
+        vi4 = (vi4-vi8);    
+        vR0.bufferCache.bdwrite(vR9);   [iiiiR?ii RRR ...... RR...] 
+        if vi11<=0 goto B371;   
+  +B368:   #1
+        goto +B391;   [iiiiR?ii RRR ...... .....]
+  +B371:   #1
+        vi5++;   
+        vi6 = 0;    
+        vi8 = vR0.i_sb.s_blocksize;    
+        if vi4> 0 goto B127;   
+  +B391:   #4
+        if vi1<=vR0.i_data.i_size@extra() goto B410;   
+  +B402:   #1
+        vR0.i_data.i_size@extra(vi1);   [iiiiR?i RRR ...... iR...] 
+  +B410:   #1
+        vi12 = vR0.clock.getTimeInMillis();    [iiiiR?i RRR ...... R....] 
+        vR0.i_data.i_ctime@extra(vi12);   [iiiiR?ii RRR ...... iR...] 
+        vR0.i_data.i_mtime@extra(vi12);   [iiiiR?ii RRR ...... iR...] 
+        vR0.setDirty@this(1);   [iiiiR?ii RRR ...... iR...] 
+        if vi7>=0 goto B459;   
+  -B449:   #1
+        throw new jx/fs/InodeIOException("written<0");   
+  +B459:   #1
+        return vi7;   
+  +END:   #1
+ }
+// Register: rd 64/64 wr 36 swaps 5 any 20 found 2 write
+}

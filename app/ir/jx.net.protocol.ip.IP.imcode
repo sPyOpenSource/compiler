@@ -1,0 +1,485 @@
+class jx/net/protocol/ip/IP {
+ 
+ method <init>(Ljx/net/PacketsConsumer;Ljx/net/PacketsProducer;Ljx/net/AddressResolution;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.ipid = 23;   
+        vR0.insertChecksum = 1;   
+        vR0.space = requiresSpace@special();   
+        b1 = new jx/net/dispatch/Dispatch(15);    [ ?R  i][ ?R . iiR]
+        vR0.dispatch = b1;   
+        vR0.dispatch.add(17,"UDP");   [ ?R i RiR] 
+        vR0.dispatch.add(6,"TCP");   [ ?R ii RiR] 
+        vR0.dispatch.add(1,"ICMP");   [ ?R iii RiR] 
+        vR0.dispatch.add(0,"IP");   [ ?R iiii RiR] 
+        vR0.dispatch.add(2,"IGMP");   [ ?R iiiii RiR] 
+        vR0.dispatch.add(3,"GGP");   [ ?R iiiiii RiR] 
+        vR0.dispatch.add(4,"IPIP");   [ ?R iiiiiii RiR] 
+        vR0.dispatch.add(8,"EGP");   [ ?R iiiiiiii RiR] 
+        vR0.dispatch.add(12,"PUP");   [ ?R iiiiiiiii RiR] 
+        vR0.dispatch.add(22,"IDP");   [ ?R iiiiiiiiii RiR] 
+        vR0.dispatch.add(29,"TP");   [ ?R iiiiiiiiiii RiR] 
+        vR0.dispatch.add(46,"RSVP");   [ ?R iiiiiiiiiiii RiR] 
+        vR0.dispatch.add(80,"EON");   [ ?R iiiiiiiiiiiii RiR] 
+        vR0.dispatch.add(98,"ENCAP");   [ ?R iiiiiiiiiiiiii RiR] 
+        vR0.dispatch.add(255,"RAW");   [ ?R iiiiiiiiiiiiiii RiR] 
+        vR0.init@special();   [ ?R iiiiiiiiiiiiiii R..] 
+        vR0.lowerProducer = vR2;   
+        vR0.lowerConsumer = vR1;   
+        vR2.registerConsumer(vR0,"IP");   [ ?R iiiiiiiiiiiiiiiR RRR] 
+        vR0.addressResolution = vR3;   
+        if vR0.addressResolution==null goto B243;   
+  +B232:   #1
+        vR0.addressResolution.register(vR0);   [ ?R ................ RR.] 
+  +B243:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 18 swaps 15 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/EtherProducer;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.ipid = 23;   
+        vR0.insertChecksum = 1;   
+        vR0.space = requiresSpace@special();   
+        b1 = new jx/net/dispatch/Dispatch(15);    [ ?R  i][ ?R . iiR]
+        vR0.dispatch = b1;   
+        vR0.dispatch.add(17,"UDP");   [ ?R i RiR] 
+        vR0.dispatch.add(6,"TCP");   [ ?R ii RiR] 
+        vR0.dispatch.add(1,"ICMP");   [ ?R iii RiR] 
+        vR0.dispatch.add(0,"IP");   [ ?R iiii RiR] 
+        vR0.dispatch.add(2,"IGMP");   [ ?R iiiii RiR] 
+        vR0.dispatch.add(3,"GGP");   [ ?R iiiiii RiR] 
+        vR0.dispatch.add(4,"IPIP");   [ ?R iiiiiii RiR] 
+        vR0.dispatch.add(8,"EGP");   [ ?R iiiiiiii RiR] 
+        vR0.dispatch.add(12,"PUP");   [ ?R iiiiiiiii RiR] 
+        vR0.dispatch.add(22,"IDP");   [ ?R iiiiiiiiii RiR] 
+        vR0.dispatch.add(29,"TP");   [ ?R iiiiiiiiiii RiR] 
+        vR0.dispatch.add(46,"RSVP");   [ ?R iiiiiiiiiiii RiR] 
+        vR0.dispatch.add(80,"EON");   [ ?R iiiiiiiiiiiii RiR] 
+        vR0.dispatch.add(98,"ENCAP");   [ ?R iiiiiiiiiiiiii RiR] 
+        vR0.dispatch.add(255,"RAW");   [ ?R iiiiiiiiiiiiiii RiR] 
+        vR0.init@special();   [ ?R iiiiiiiiiiiiiii R..] 
+        vR1.registerConsumerEther(vR0,"IP");   [ ?R iiiiiiiiiiiiiiii RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 18 swaps 16 any 0 found 0 <init>
+ 
+ method init()V {
+  +START:   #1
+        vR0.memMgr = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.event_rcv = vR0.cpuManager.createNewEvent("IPRcv");   
+        vR0.event_snd = vR0.cpuManager.createNewEvent("IPSnd");   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 4 any 0 found 0 init
+ 
+ method setAddressResolution(Ljx/net/AddressResolution;)V {
+  +START:   #1
+        vR0.addressResolution = vR1;   
+        if vR0.addressResolution==null goto B23;   
+  +B12:   #1
+        vR0.addressResolution.register(vR0);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setAddressResolution
+ 
+ method registerConsumer(Ljx/net/IPConsumer;Ljava/lang/String;)Z {
+  +START:   #1
+        if vR2.equals@extra("UDP")==0 goto B41;   
+  +B9:   #1
+        if vR0.myUDPConsumer==null goto B26;   
+  -B16:   #1
+        throw new java/lang/Error("UDP consumer already registered");   
+  +B26:   #1
+        vR0.myUDPConsumer = vR1;   
+        out.println("IP: Registered UDP consumer");   [ R i. RR.] 
+        return 1;   
+  +B41:   #1
+        if vR2.equals@extra("TCP")==0 goto B74;   
+  +B50:   #1
+        if vR0.myTCPConsumer==null goto B67;   
+  -B57:   #1
+        throw new java/lang/Error("TCP consumer already registered");   
+  +B67:   #1
+        vR0.myTCPConsumer = vR1;   
+        return 1;   
+  +B74:   #1
+        if vR2.equals@extra("ICMP")==0 goto B107;   
+  +B83:   #1
+        if vR0.myICMPConsumer==null goto B100;   
+  -B90:   #1
+        throw new java/lang/Error("ICMP consumer already registeered");   
+  +B100:   #1
+        vR0.myICMPConsumer = vR1;   
+        return 1;   
+  -B107:   #1
+        throw new java/lang/Error("Unknown consumer type");   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 9 swaps 4 any 0 found 0 registerConsumer
+ 
+ method registerIPConsumer(Ljx/net/IPConsumer;)Z {
+  +START:   #1
+        if vR0.ipConsumer==null goto B17;   
+  -B7:   #1
+        throw new java/lang/Error("ip consumer already registered");   
+  +B17:   #1
+        vR0.ipConsumer = vR1;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 registerIPConsumer
+ 
+ method unregisterIPConsumer(Ljx/net/IPConsumer;)Z {
+  +START:   #1
+        if vR0.ipConsumer!=null goto B17;   
+  -B7:   #1
+        throw new java/lang/Error("no consumer registered");   
+  +B17:   #1
+        if vR0.ipConsumer==vR1 goto B35;   
+  -B25:   #1
+        throw new java/lang/Error("this consumer is not registered");   
+  +B35:   #1
+        vR0.ipConsumer = 0;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 unregisterIPConsumer
+ 
+ method changeSourceAddress(Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.ownAddress = vR1;   
+        if vR0.addressResolution==null goto B22;   
+  +B12:   #1
+        vR0.addressResolution.notifyAddressChange(vR0);   [   RR] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 changeSourceAddress
+ 
+ method getOwnAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.ownAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOwnAddress
+ 
+ method getMTU()I {
+  +START:   #1
+        return vR0.lowerConsumer.getMTU();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMTU
+ 
+ method insertInMemPool(Ljx/zero/Memory;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.memPool.length goto B34;   
+  +B11:   #1
+        if vR0.memPool[vi2]!=null goto B28;   
+  +B20:   #1
+        vR0.memPool[vi2] = vR1;   
+        return;   
+  +B28:   #1
+        vi2++;   
+        goto +B2;   [i   ]
+  +B34:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 3 found 0 insertInMemPool
+ 
+ method getFromMemPool()Ljx/zero/Memory; {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.memPool.length goto B42;   
+  +B11:   #1
+        if vR0.memPool[vi1]==null goto B36;   
+  +B20:   #1
+        vR2 = vR0.memPool[vi1];    
+        vR0.memPool[vi1] = 0;   
+        return vR2;   
+  +B36:   #1
+        vi1++;   
+        goto +B2;   [iR R  ]
+  -B42:   #1
+        throw new java/lang/Error("NO MEMORY IN REASSEMBLY");   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 0 any 2 found 0 getFromMemPool
+ 
+ method getLargeMemory(I)Ljx/zero/Memory; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.largePool.length goto B49;   
+  +B11:   #1
+        if vR0.largePool[vi2]==null goto B43;   
+  +B20:   #1
+        vR3 = vR0.largePool[vi2];    
+        vR0.largePool[vi2] = 0;   
+        return vR3.getSubRange(0,vi1);   
+  +B43:   #1
+        vi2++;   
+        goto +B2;   [iR R  ...]
+  -B49:   #1
+        throw new java/lang/Error("NO MEMORY IN REASSEMBLY");   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 0 any 2 found 0 getLargeMemory
+ 
+ method processMemory(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 processMemory
+ 
+ method processEther(Ljx/net/EtherData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR0.cpuManager.recordEvent(vR0.event_rcv);    
+        vR2 = new jx/net/protocol/ip/IPFormat(vR1.mem,vR1.offset);    [ R  i][ R . iiRR]
+        vi3 = vR2.getProtocol();    [R R . R...] 
+        vi4 = vR2.getFlags();    [Ri R . R...] 
+        vi5 = (vR2.getFragmentOffset()*8);    
+        vi6 = vR2.getIdentification();    [Riii R . R...] 
+        vR7 = new jx/net/IPAddress(vR2.getSourceIPAddress());    [ R . i...][ R . iRR.]
+        vR8 = new jx/net/IPAddress(vR2.getDestIPAddress());    [ R . i...][ R . iRR.]
+        return vR0.dispatch@this(vi3,vR1,vR7,vR8);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 0 any 0 found 0 processEther
+ 
+ method dispatch(ILjx/net/EtherData;Ljx/net/IPAddress;Ljx/net/IPAddress;)Ljx/zero/Memory; {
+  +START:   #1
+        vR5 = new jx/net/IPData();    [ RR  i][ RR  iR]
+        vR5.sourceAddress = vR3;   
+        vR5.destinationAddress = vR4;   
+        lswitch (vi1) { 
+           1:B358
+           6:B174
+           17:B56
+           ::B425
+        };   
+  +B56:   #1
+        if vR0.myUDPConsumer==null goto B110;   
+  +B63:   #1
+        vR5.mem = vR2.mem;   
+        vR5.offset = (vR2.offset+requiresSpace@special());   
+        vR5.size = (vR2.size-requiresSpace@special());   
+        return vR0.myUDPConsumer.processIP(vR5);   
+  +B110:   #1
+        if vR0.myUDPConsumer==null goto B161;   
+  +B117:   #1
+        vR5.mem = vR2.mem.getSubRange(vR0.space,(vR2.mem.size()-vR0.space));   
+        return vR0.myUDPConsumer.processIP(vR5);   
+  +B161:   #1
+        out.println("  No UDP consumer for this IP packet.");   [RR RR i. RR.] 
+        return vR2.mem;   
+  +B174:   #1
+        if vR0.myTCPConsumer==null goto B276;   
+  +B181:   #1
+        vR5.mem = vR2.mem;   
+        vR5.offset = (vR2.offset+requiresSpace@special());   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("offset: ").append@extra(vR2.offset).toString@extra());   [R RR iii. RR.] 
+        vR6 = new jx/net/protocol/ip/IPFormat(vR2.mem,vR2.offset);    [ RR iii. i..][ RR iii. iiRR]
+        vR5.size = (vR6.getTotalLength()-vR6.getHeaderLength());   
+        return vR0.myTCPConsumer.processIP(vR5);   
+  +B276:   #1
+        if vR0.myTCPConsumer==null goto B345;   
+  +B283:   #1
+        vR6 = new jx/net/protocol/ip/IPFormat(vR2.mem,vR2.offset);    [ RR .... i...][ RR .... iiRR]
+        vR5.mem = vR2.mem.getSubRange((vR2.offset+requiresSpace@special()),(vR6.getTotalLength()-vR6.getHeaderLength()));   
+        return vR0.myTCPConsumer.processIP(vR5);   
+  +B345:   #1
+        out.println("  No TCP consumer for this IP packet.");   [RR RR i... RR..] 
+        return vR2.mem;   
+  +B358:   #1
+        if vR0.myICMPConsumer==null goto B412;   
+  +B365:   #1
+        vR5.mem = vR2.mem;   
+        vR5.offset = (vR2.offset+requiresSpace@special());   
+        vR5.size = (vR2.size-requiresSpace@special());   
+        return vR0.myICMPConsumer.processIP(vR5);   
+  +B412:   #1
+        out.println("  No ICMP consumer for this IP packet.");   [R RR i... RR..] 
+        return vR2.mem;   
+  +B425:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i...][ RR .... iR..]
+        b0.println(b1.append@extra("Unsupported protocol in IP packet: ").append@extra(vR0.dispatch.findName(vi1)).toString@extra());   [R RR iii. RR..] 
+        return vR2.mem;   
+  +END:   #1
+ }
+// Register: rd 70/70 wr 39 swaps 11 any 1 found 0 dispatch
+ 
+ method getTransmitter1(Ljx/net/PacketsConsumer1;Ljx/net/IPAddress;I)Ljx/net/PacketsConsumer1; {
+  +START:   #1
+        return new jx/net/protocol/ip/IP$1(vR0,vi3,vR2,vR1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getTransmitter1
+ 
+ method getTransmitter(Ljx/net/PacketsConsumer;Ljx/net/IPAddress;Ljava/lang/String;)Ljx/net/PacketsConsumer; {
+  +START:   #1
+        vi4 = vR0.dispatch.findID(vR3);    [   RR] 
+        return vR0.getTransmitter@this(vR1,vR2,vi4);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getTransmitter
+ 
+ method getTransmitter(Ljx/net/PacketsConsumer;Ljx/net/IPAddress;I)Ljx/net/PacketsConsumer; {
+  +START:   #1
+        return new jx/net/protocol/ip/IP$2(vR0,vR2,vi3,vR1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getTransmitter
+ 
+ method getReceiver()Ljx/buffer/separator/MemoryConsumer; {
+  +START:   #1
+        return new jx/net/protocol/ip/IP$3(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getReceiver
+ 
+ method addFragment(IIILjx/zero/Memory;)Ljx/net/protocol/ip/IP$ReAssembly; {
+  +START:   #1
+        vR5 = vR0.reass;    
+        vR6 = 0;    
+  +B9:   #1
+        if vR5==null goto B49;   
+  +B14:   #1
+        if vR5.fragID!=vi1 goto B35;   
+  +B23:   #1
+        vR5.addFragment(vi2,vi3,vR4);   [RR R  RiiR] 
+        return vR5;   
+  +B35:   #1
+        vR6 = vR5;    
+        vR5 = vR5.next;    
+        goto +B9;   [RR R  ....]
+  +B49:   #1
+        vR5 = new jx/net/protocol/ip/IP$ReAssembly(vR0);    [ R  i...][ R . iRR.]
+        if vR6!=null goto B73;   
+  +B64:   #1
+        vR0.reass = vR5;   
+        goto +B87;   [RR R . ....]
+  +B73:   #1
+        vR6.next = vR5;   
+        vR5.prev = vR6;   
+  +B87:   #1
+        vR5.fragID = vi1;   
+        vR5.addFragment(vi2,vi3,vR4);   [RR R . RiiR] 
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 6 swaps 0 any 3 found 0 addFragment
+ 
+ method checkComplete(Ljx/net/protocol/ip/IP$ReAssembly;)Z {
+  +START:   #1
+        vi2 = 0;    
+        vR3 = vR1.firstFragment;    
+  +B7:   #1
+        if vR3==null goto B80;   
+  +B11:   #1
+        if vR3.offset==vi2 goto B65;   
+  +B19:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR1.fragID).append@extra(" not complete. missing ").append@extra(vi2).append@extra(" ... ").append@extra(vR3.offset).toString@extra());   [iR RR iiiii.... RR....] 
+        return 0;   
+  +B65:   #1
+        vi2 = (vi2+vR3.size);    
+        vR3 = vR3.next;    
+        goto +B7;   [iR RR ......... ......]
+  +B80:   #1
+        if vi2==vR1.expectedSize goto B134;   
+  +B88:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ......... i.....][ RR ......... iR....]
+        b0.println(b1.append@extra(vR1.fragID).append@extra(" not complete. got size ").append@extra(vi2).append@extra(" but expected ").append@extra(vR1.expectedSize).toString@extra());   [iR RR iiiii.... RR....] 
+        return 0;   
+  +B134:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 28 swaps 12 any 3 found 0 checkComplete
+ 
+ method assemble(Ljx/net/protocol/ip/IP$ReAssembly;)Ljx/zero/Memory; {
+  +START:   #1
+        if vR1.prev!=null goto B18;   
+  +B7:   #1
+        vR0.reass = vR1.next;   
+        goto +B29;   [   ]
+  +B18:   #1
+        vR1.prev.next = vR1.next;   
+  +B29:   #1
+        vi2 = vR1.expectedSize;    
+        vR3 = vR0.getLargeMemory@this((vi2+vR0.space));    [i  i iR] 
+        vi4 = vR0.space;    
+        vR5 = vR1.firstFragment;    
+        vR3.copyFromMemory(vR5.data,0,0,(vR5.size+vR0.space));   [iRiR  iRi iiiRR] 
+        vR5 = vR5.next;    
+  +B88:   #1
+        if vR5==null goto B149;   
+  +B93:   #1
+        vR3.copyFromMemory(vR5.data,vR0.space,(vR5.offset+vR0.space),vR5.size);   [iRiR  iiii iiiRR] 
+        vR0.insertInMemPool@special(vR5.data);   [iRiR  iiiii RR...] 
+        vR5.data = 0;   
+        vR5 = vR5.next;    
+        goto +B88;   [iRiR  iiiii .....]
+  +B149:   #1
+        return vR3.getSubRange(vR0.space,(vR3.size()-vR0.space));   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 17 swaps 4 any 1 found 0 assemble
+ 
+ method access$000(Ljx/net/protocol/ip/IP;)I {
+  +START:   #1
+        return vR0.event_snd;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$108(Ljx/net/protocol/ip/IP;)I {
+  +START:   #1
+        b1 = vR0.ipid;    
+        b0 = b1;    
+        vR0.ipid = (b1+1);   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 access$108
+ 
+ method access$200(Ljx/net/protocol/ip/IP;)Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.ownAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method access$300(Ljx/net/protocol/ip/IP;)Z {
+  +START:   #1
+        return vR0.insertChecksum;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$300
+ 
+ method access$400(Ljx/net/protocol/ip/IP;)Ljx/net/PacketsConsumer; {
+  +START:   #1
+        return vR0.lowerConsumer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$400
+}

@@ -1,0 +1,58 @@
+class jx/framebuffer/InterlacedFramebuffer {
+ 
+ method <init>(Ljx/framebuffer/PackedFramebuffer;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.width(),((vR1.height()/2)+((vi2*vR1.height())%2)),vR1.depth(),(vR1.startAddress()+(vi2*vR1.scanlineOffset())),vR1.pixelOffset(),(vR1.scanlineOffset()*2),vR1.memObj());   [  iiiiiii RiiiiiiR] 
+        vR0.fieldno = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 17 swaps 4 any 0 found 2 <init>
+ 
+ method transformClippings([Ljx/framebuffer/ClippingRectangle;)[Ljx/framebuffer/ClippingRectangle; {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b0.println(b1.append@extra(vR0.framebufferType@this()).append@extra(": translating clippings: fieldno=").append@extra(vR0.fieldno).toString@extra());   [ RRR iii..i RR..] 
+        vi2 = vR1.length;    
+        vR3 = new jx/framebuffer/ClippingRectangle()[vi2];    
+        vi5 = 0;    
+  +B46:   #1
+        if vi5>=vi2 goto B222;   
+  +B52:   #1
+        vR4 = vR1[vi5];    
+        if (vR4.ymax-vR4.ymin)!=0 goto B132;   
+  +B72:   #1
+        if (vR4.ymax%2)!=vR0.fieldno goto B124;   
+  +B86:   #1
+        b2 = new jx/framebuffer/ClippingRectangle(vR4.xmin,(vR4.ymin/2),vR4.xmax,(vR4.ymax/2));    [ RRR ...... i...][ RRR ...... iiiiiR]
+        vR3[vi5] = b2;   
+        goto +B216;   [iRRi RRR ...... ......]
+  +B124:   #1
+        vR3[vi5] = 0;   
+        goto +B216;   [iRRi RRR ...... ......]
+  +B132:   #1
+        if vR0.fieldno!=0 goto B179;   
+  +B139:   #1
+        b2 = new jx/framebuffer/ClippingRectangle(vR4.xmin,((vR4.ymin+1)/2),vR4.xmax,(vR4.ymax/2));    [ RRR ...... i.....][ RRR ...... iiiiiR]
+        vR3[vi5] = b2;   
+        goto +B216;   [iRRi RRR ...... ......]
+  +B179:   #1
+        b2 = new jx/framebuffer/ClippingRectangle(vR4.xmin,(vR4.ymin/2),vR4.xmax,((vR4.ymax-1)/2));    [ RRR ...... i.....][ RRR ...... iiiiiR]
+        vR3[vi5] = b2;   
+  +B216:   #3
+        vi5++;   
+        goto +B46;   [iRRi RRR ...... ......]
+  +B222:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 43/43 wr 20 swaps 4 any 5 found 0 transformClippings
+ 
+ method framebufferType()Ljava/lang/String; {
+  +START:   #1
+        return "InterlacedFramebuffer";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 framebufferType
+}

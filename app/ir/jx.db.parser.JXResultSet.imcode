@@ -1,0 +1,34 @@
+class jx/db/parser/JXResultSet {
+ 
+ method <init>(Ljx/db/RelationScan;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.avail = 0;   
+        vR0.scan = vR1;   
+        vR0.avail = vR1.moveToFirst();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method next()Ljx/db/TupleReader; {
+  +START:   #1
+        if vR0.avail!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR1 = vR0.scan.getCurrent();    [   R] 
+        vR0.avail = vR0.scan.moveToNext();   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 next
+ 
+ method close()V {
+  +START:   #1
+        vR0.scan.close();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+}

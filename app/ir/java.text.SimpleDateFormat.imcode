@@ -1,0 +1,763 @@
+class java/text/SimpleDateFormat {
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR1.defaultReadObject();   [ ?R  R] 
+        if vR0.serialVersionOnStream>=1 goto B24;   
+  +B12:   #1
+        vR0.computeCenturyStart@special();   [ ?R  R] 
+        vR0.serialVersionOnStream = 1;   
+        goto +B32;   [ ?R  .]
+  +B24:   #1
+        vR0.set2DigitYearStart@this(vR0.defaultCenturyStart);   [ ?R i RR] 
+  +B32:   #1
+        b1 = new java/util/Vector();    [ ?R . i.][ ?R . iR]
+        vR0.tokens = b1;   
+        vR0.compileFormat@special(vR0.pattern);   [ ?R i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 2 any 0 found 0 readObject
+ 
+ method compileFormat(Ljava/lang/String;)V {
+  +START:   #1
+        vR5 = 0;    
+        vi6 = 0;    
+  +B6:   #1
+        if vi6>=vR1.length@extra() goto B250;   
+  +B15:   #1
+        vi2 = vR1.charAt@extra(vi6);    [???Ri RR  iR] 
+        vi4 = vR0.formatData.getLocalPatternChars().indexOf@extra(vi2);    [i??Ri RR . iR] [i??Ri RR R iR] 
+        if vi4!=-1 goto B193;   
+  +B41:   #1
+        vR5 = 0;    
+        if isLetter@special(vi2)==0 goto B71;   
+  +B51:   #1
+        b0 = vR0.tokens;    
+        b1 = new java/text/SimpleDateFormat$FieldSizePair(vR0,-1,0);    [ RR . i.][ RR . iiiRR]
+        b0.addElement@extra(b1);   [i?iRi RR . RR...] 
+        goto +B244;   [i?iRi RR . .....]
+  +B71:   #1
+        if vi2!=39 goto B175;   
+  +B77:   #1
+        vi3 = vR1.indexOf@extra(39,(vi6+1));    [i?iRi RR i iiR..] 
+        if vi3!=-1 goto B110;   
+  +B93:   #1
+        b0 = vR0.tokens;    
+        b1 = new java/text/SimpleDateFormat$FieldSizePair(vR0,-1,0);    [ RR . i....][ RR . iiiRR]
+        b0.addElement@extra(b1);   [iiiRi RR . RR...] 
+  +B110:   #1
+        if (vi3+1)>=vR1.length@extra() goto B153;   
+  +B120:   #1
+        if vR1.charAt@extra((vi3+1))!=39 goto B153;   
+  +B132:   #1
+        vR0.tokens.addElement@extra(vR1.substring@extra((vi6+1),(vi3+1)));   [iiiRi RR iii RR...] 
+        goto +B169;   [iiiRi RR iii .....]
+  +B153:   #2
+        vR0.tokens.addElement@extra(vR1.substring@extra((vi6+1),vi3));   [iiiRi RR ii. RR...] 
+  +B169:   #1
+        vi6 = vi3;    
+        goto +B244;   [iiiRi RR ... .....]
+  +B175:   #1
+        b0 = vR0.tokens;    
+        b1 = new java/lang/Character(vi2);    [ RR ... i....][ RR ... iiR..]
+        b0.addElement@extra(b1);   [iiiRi RR ... RR...] 
+        goto +B244;   [iiiRi RR ... .....]
+  +B193:   #1
+        if vR5==null goto B222;   
+  +B198:   #1
+        if vi4!=vR5.field goto B222;   
+  +B208:   #1
+        vR5.size = (vR5.size+1);   
+        goto +B244;   [iiiRi RR ... .....]
+  +B222:   #2
+        vR5 = new java/text/SimpleDateFormat$FieldSizePair(vR0,vi4,1);    [ RR ... i....][ RR ... iiiRR]
+        vR0.tokens.addElement@extra(vR5);   [iiiRi RR ... RR...] 
+  +B244:   #4
+        vi6++;   
+        goto +B6;   [i?iRi RR ... .....]
+  +B250:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 48/48 wr 28 swaps 6 any 9 found 1 compileFormat
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR2 = vR0.tokens.elements@extra();    [R R  R.] 
+  +B16:   #1
+        if vR2.hasMoreElements()==0 goto B42;   
+  +B25:   #1
+        vR1.append(vR2.nextElement().toString());   [RR R i RR] 
+        goto +B16;   [RR R i ..]
+  +B42:   #1
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 1 any 0 found 0 toString
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.serialVersionOnStream = 1;   
+        vR1 = getDefault@special();    [ ?R  .]
+        b1 = new java/util/GregorianCalendar(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.calendar = b1;   
+        vR0.computeCenturyStart@special();   [R ?R . R..] 
+        b1 = new java/util/Vector();    [ ?R . i..][ ?R . iR.]
+        vR0.tokens = b1;   
+        b1 = new java/text/DateFormatSymbols(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.formatData = b1;   
+        b1 = new java/lang/StringBuilder();    [ ?R . i..][ ?R . iR.]
+        vR0.pattern = b1.append@extra(vR0.formatData.dateFormats[2]).append@extra(32).append@extra(vR0.formatData.timeFormats[2]).toString@extra();   
+        vR0.compileFormat@special(vR0.pattern);   [R ?R iii.. RR..] 
+        vR0.numberFormat = getInstance@special(vR1);   
+        vR0.numberFormat.setGroupingUsed(0);   [R ?R iii.. iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 13 swaps 3 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,getDefault@special());   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.serialVersionOnStream = 1;   
+        b1 = new java/util/GregorianCalendar(vR2);    [ ?R  i][ ?R . iRR]
+        vR0.calendar = b1;   
+        vR0.computeCenturyStart@special();   [ ?R . R..] 
+        b1 = new java/util/Vector();    [ ?R . i..][ ?R . iR.]
+        vR0.tokens = b1;   
+        b1 = new java/text/DateFormatSymbols(vR2);    [ ?R . i..][ ?R . iRR]
+        vR0.formatData = b1;   
+        vR0.compileFormat@special(vR1);   [ ?R . RR.] 
+        vR0.pattern = vR1;   
+        vR0.numberFormat = getInstance@special(vR2);   
+        vR0.numberFormat.setGroupingUsed(0);   [ ?R . iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/text/DateFormatSymbols;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.serialVersionOnStream = 1;   
+        b1 = new java/util/GregorianCalendar();    [ ?R  i][ ?R  iR]
+        vR0.calendar = b1;   
+        vR0.computeCenturyStart@special();   [ ?R  R.] 
+        b1 = new java/util/Vector();    [ ?R  i.][ ?R  iR]
+        vR0.tokens = b1;   
+        vR0.formatData = vR2;   
+        vR0.compileFormat@special(vR1);   [ ?R  RR] 
+        vR0.pattern = vR1;   
+        vR0.numberFormat = getInstance@special();   
+        vR0.numberFormat.setGroupingUsed(0);   [ ?R  iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method toPattern()Ljava/lang/String; {
+  +START:   #1
+        return vR0.pattern;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toPattern
+ 
+ method toLocalizedPattern()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.formatData.getLocalPatternChars();    [   R] 
+        return vR0.applyLocalizedPattern@special(vR0.pattern,"GyMdkHmsSEDFwWahKz",vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 1 any 0 found 0 toLocalizedPattern
+ 
+ method applyPattern(Ljava/lang/String;)V {
+  +START:   #1
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.tokens = b1;   
+        vR0.compileFormat@special(vR1);   [ ?R  RR] 
+        vR0.pattern = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 applyPattern
+ 
+ method applyLocalizedPattern(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = vR0.formatData.getLocalPatternChars();    [   R] 
+        vR1 = vR0.applyLocalizedPattern@special(vR1,vR2,"GyMdkHmsSEDFwWahKz");    [R  i RRRR] 
+        vR0.applyPattern@this(vR1);   [R  i RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 1 any 0 found 0 applyLocalizedPattern
+ 
+ method applyLocalizedPattern(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi4 = vR1.length@extra();    [ i  R] 
+        vR5 = new java/lang/StringBuffer(vi4);    [ i  i][ i . iiR]
+        vi6 = 0;    
+        vi7 = 0;    
+  +B23:   #1
+        if vi7>=vi4 goto B97;   
+  +B30:   #1
+        vi8 = vR1.charAt@extra(vi7);    [iRii i . iR.] 
+        if vi8!=39 goto B57;   
+  +B45:   #1
+        if vi6!=0 goto B54;   
+  +B50:   #1
+        b0 = 1;    
+        goto +B55b0;   [iRiii i . ...]
+  +B54:   #1
+        b0 = 0;    
+  +B55b0:   #1 int
+        vi6 = b0;    
+  +B57:   #1
+        if vi6!=0 goto B83;   
+  +B62:   #1
+        vi9 = vR2.indexOf@extra(vi8);    [iRiii i . iR.] 
+        if vi9< 0 goto B83;   
+  +B75:   #1
+        vi8 = vR3.charAt@extra(vi9);    [iRiiii i . iR.] 
+  +B83:   #2
+        vR5.append(vi8);   [iRiiii i . iR.] 
+        vi7++;   
+        goto +B23;   [iRiiii i . ...]
+  +B97:   #1
+        return vR5.toString();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 11 swaps 0 any 7 found 0 applyLocalizedPattern
+ 
+ method get2DigitYearStart()Ljava/util/Date; {
+  +START:   #1
+        return vR0.defaultCenturyStart;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get2DigitYearStart
+ 
+ method set2DigitYearStart(Ljava/util/Date;)V {
+  +START:   #1
+        vR0.defaultCenturyStart = vR1;   
+        vR0.calendar.clear@extra();   [   R] 
+        vR0.calendar.setTime@extra(vR1);   [   RR] 
+        vi2 = vR0.calendar.get@extra(1);    [   iR] 
+        vR0.defaultCentury = (vi2-(vi2%100));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 1 set2DigitYearStart
+ 
+ method getDateFormatSymbols()Ljava/text/DateFormatSymbols; {
+  +START:   #1
+        return vR0.formatData;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDateFormatSymbols
+ 
+ method setDateFormatSymbols(Ljava/text/DateFormatSymbols;)V {
+  +START:   #1
+        vR0.formatData = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDateFormatSymbols
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if vR0.equals@special(vR1)!=0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        if (vR1 instanceof java/text/SimpleDateFormat)!=0 goto B25;   
+  +B23:   #1
+        return 0;   
+  +B25:   #1
+        vR2 = (java/text/SimpleDateFormat)(vR1);    
+        if vR0.toPattern@this().equals@extra(vR2.toPattern())!=0 goto B46;   
+  +B44:   #1
+        return 0;   
+  +B46:   #1
+        if vR0.get2DigitYearStart@this().equals(vR2.get2DigitYearStart())!=0 goto B62;   
+  +B60:   #1
+        return 0;   
+  +B62:   #1
+        if vR0.getDateFormatSymbols@this().equals(vR2.getDateFormatSymbols())!=0 goto B78;   
+  +B76:   #1
+        return 0;   
+  +B78:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 3 any 2 found 1 equals
+ 
+ method format(Ljava/util/Date;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        vR0.calendar.setTime@extra(vR1);   [ iii  RR] 
+        vR5 = vR0.tokens.elements@extra();    [ iii  R.] 
+  +B17:   #1
+        if vR5.hasMoreElements()==0 goto B791;   
+  +B27:   #1
+        vR6 = vR5.nextElement();    [?R iii  R.] 
+        if (vR6 instanceof java/text/SimpleDateFormat$FieldSizePair)==0 goto B778;   
+  +B44:   #1
+        vR7 = (java/text/SimpleDateFormat$FieldSizePair)(vR6);    
+        vi8 = vR2.length();    [?RRR iii  R.] 
+        tswitch (vR7.field) B148 B172 B224 B313 B334 B364 B386 B408 B430 B452 B511 B533 B555 B576 B597 B622 B652 B674 : B735;   
+  +B148:   #1
+        vR2.append(vR0.formatData.eras[vR0.calendar.get@extra(0)]);   [?RRRi iii i RR] 
+        goto +B745;   [?RRRi iii i ..]
+  +B172:   #1
+        vR4 = valueOf@special(vR0.calendar.get@extra(1));    [?RRRi iii i i.]
+        if vR7.size>=4 goto B214;   
+  +B194:   #1
+        vR2.append(vR4.substring@extra((vR4.length@extra()-2)));   [RRRRi iii ii RR] 
+        goto +B745;   [RRRRi iii ii ..]
+  +B214:   #1
+        vR2.append(vR4);   [RRRRi iii .. RR] 
+        goto +B745;   [RRRRi iii .. ..]
+  +B224:   #1
+        if vR7.size>=3 goto B256;   
+  +B233:   #1
+        vR0.withLeadingZeros@special((vR0.calendar.get@extra(2)+1),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B256:   #1
+        if vR7.size>=4 goto B289;   
+  +B265:   #1
+        vR2.append(vR0.formatData.shortMonths[vR0.calendar.get@extra(2)]);   [RRRRi iii i. RR..] 
+        goto +B745;   [RRRRi iii i. ....]
+  +B289:   #1
+        vR2.append(vR0.formatData.months[vR0.calendar.get@extra(2)]);   [RRRRi iii i. RR..] 
+        goto +B745;   [RRRRi iii i. ....]
+  +B313:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(5),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B334:   #1
+        vR0.withLeadingZeros@special((((vR0.calendar.get@extra(11)+23)%24)+1),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B364:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(11),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B386:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(12),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B408:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(13),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B430:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(14),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B452:   #1
+        if vR7.size>=4 goto B486;   
+  +B461:   #1
+        vR2.append(vR0.formatData.shortWeekdays[vR0.calendar.get@extra(7)]);   [RRRRi iii i. RR..] 
+        goto +B745;   [RRRRi iii i. ....]
+  +B486:   #1
+        vR2.append(vR0.formatData.weekdays[vR0.calendar.get@extra(7)]);   [RRRRi iii i. RR..] 
+        goto +B745;   [RRRRi iii i. ....]
+  +B511:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(6),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B533:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(8),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B555:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(3),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B576:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(4),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B597:   #1
+        vR2.append(vR0.formatData.ampms[vR0.calendar.get@extra(9)]);   [RRRRi iii i. RR..] 
+        goto +B745;   [RRRRi iii i. ....]
+  +B622:   #1
+        vR0.withLeadingZeros@special((((vR0.calendar.get@extra(10)+11)%12)+1),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B652:   #1
+        vR0.withLeadingZeros@special(vR0.calendar.get@extra(10),vR7.size,vR2);   [RRRRi iii ii RiiR] 
+        goto +B745;   [RRRRi iii ii ....]
+  +B674:   #1
+        vR9 = vR0.calendar.getTimeZone();    [RRRRi iii .. R...] 
+        if vR0.calendar.get@extra(16)==0 goto B699;   
+  +B695:   #1
+        b0 = 1;    
+        goto +B700b0;   [RRRRiR iii .. ....]
+  +B699:   #1
+        b0 = 0;    
+  +B700b0:   #1 int
+        vi10 = b0;    
+        b0 = vR9;    
+        b1 = vi10;    
+        if vR7.size<=3 goto B719;   
+  +B715b0b1:   #1 reference int
+        b2 = 1;    
+        goto +B720b0b1b2;   [RRRRiRi Rii .. ....]
+  +B719b0b1:   #1 reference int
+        b2 = 0;    
+  +B720b0b1b2:   #1 reference int int
+        vR11 = b0.getDisplayName@extra(b1,b2);    [RRRRiRi Rii .. iiR.] 
+        vR2.append(vR11);   [RRRRiRiR Rii .. RR..] 
+        goto +B745;   [RRRRiRiR Rii .. ....]
+  -B735:   #1
+        throw new java/lang/IllegalArgumentException("Illegal pattern character");   
+  +B745:   #22
+        if vR3==null goto B775;   
+  +B749:   #1
+        if vR7.field!=vR3.getField() goto B775;   
+  +B761:   #1
+        vR3.setBeginIndex(vi8);   [?RRRi Rii .. iR..] 
+        vR3.setEndIndex(vR2.length());   [?RRRi Rii i. iR..] 
+  +B775:   #2
+        goto +B788;   [?RRRi Rii .. ....]
+  +B778:   #1
+        vR2.append(vR6.toString());   [RRRRiRiR Rii i. RR..] 
+  +B788:   #1
+        goto +B17;   [?RRRi Rii .. ....]
+  +B791:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 104/104 wr 59 swaps 23 any 5 found 1 format
+ 
+ method withLeadingZeros(IILjava/lang/StringBuffer;)V {
+  +START:   #1
+        vR4 = valueOf@special(vi1);    [   i]
+        vi2 = (vi2-vR4.length@extra());    
+  +B14:   #1
+        if vi2<=0 goto B31;   
+  +B18:   #1
+        vR3.append(48);   [R   iR] 
+        vi2--;   
+        goto +B14;   [R   ..]
+  +B31:   #1
+        vR3.append(vR4);   [R   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 3 found 1 withLeadingZeros
+ 
+ method expect(Ljava/lang/String;Ljava/text/ParsePosition;C)Z {
+  +START:   #1
+        vi4 = vR2.getIndex();    [ i  R] 
+        if vi4>=vR1.length@extra() goto B29;   
+  +B15:   #1
+        if vR1.charAt@extra(vi4)!=vi3 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   [i i  ..]
+  +B29:   #2
+        b0 = 0;    
+  +B30b0:   #1 int
+        vi5 = b0;    
+        if vi5==0 goto B48;   
+  +B37:   #1
+        vR2.setIndex((vi4+1));   [ii i i iR] 
+        goto +B54;   forward return[ii i i ..]
+  +B48:   #1
+        vR2.setErrorIndex(vi4);   [ii i . iR] 
+  +B54:   #1
+        return vi5;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 1 any 3 found 1 expect
+ 
+ method parse(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/util/Date; {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = vR0.pattern.length@extra();    [i R  R] 
+        vR0.calendar.clear@extra();   [ii R  R] 
+        vi5 = 0;    
+        vi6 = -1;    
+        vi7 = 0;    
+  +B27:   #1
+        if vi3>=vi4 goto B1044;   
+  +B33:   #1
+        vi8 = vR0.pattern.charAt@extra(vi3);    [iiiii R  iR] 
+        if vi8!=39 goto B113;   
+  +B50:   #1
+        vi9 = vR2.getIndex();    [iiiiii R  R.] 
+        if vi3>=(vi4-1) goto B98;   
+  +B64:   #1
+        if vR0.pattern.charAt@extra((vi3+1))!=39 goto B98;   
+  +B79:   #1
+        if vR0.expect@special(vR1,vR2,vi8)!=0 goto B92;   
+  +B90:   #1
+        return 0;   
+  +B92:   #1
+        vi3++;   
+        goto +B1038;   [iiiiiii R . ....]
+  +B98:   #2
+        if vi6>=0 goto B107;   
+  +B103:   #1
+        b0 = vi3;    
+        goto +B108b0;   [iiiiiii i . ....]
+  +B107:   #1
+        b0 = -1;    
+  +B108b0:   #1 int
+        vi6 = b0;    
+        goto +B1038;   [iiiiiii i . ....]
+  +B113:   #1
+        if vi6!=-1 goto B147;   
+  +B119:   #1
+        if vi8<97 goto B133;   
+  +B126:   #1
+        if vi8<=122 goto B160;   
+  +B133:   #1
+        if vi8<65 goto B147;   
+  +B140:   #1
+        if vi8<=90 goto B160;   
+  +B147:   #2
+        if vR0.expect@special(vR1,vR2,vi8)!=0 goto B1038;   
+  +B158:   #1
+        return 0;   
+  +B160:   #2
+        vi9 = vi3;    
+  +B163:   #1
+        vi3++;   
+        if vi3>=vi4 goto B188;   
+  +B172:   #1
+        if vR0.pattern.charAt@extra(vi3)!=vi8 goto B188;   
+  +B185:   #1
+        goto +B163;   [iiiiiii i . ....]
+  +B188:   #2
+        vi10 = (vi3-vi9);    
+        vi3--;   
+        vi12 = 1;    
+        vR13 = 0;    
+        vi14 = 0;    
+        vi15 = 0;    
+        tswitch (vi8) B450 B464 B457 B840 B589 B840 B840 B575 B840 B514 B840 B840 B840 B840 B840 B617 B840 B840 B840 B508 B840 B840 B840 B840 B840 B840 B840 B840 B840 B624 B840 B840 B444 B840 B840 B840 B582 B840 B840 B596 B840 B603 B840 B840 B840 B840 B840 B610 B840 B840 B840 B502 B840 B560 B643 : B840;   
+  +B444:   #1
+        vi11 = 5;    
+        goto +B850;   [iiiiiiiiiiRiiiii i . ....]
+  +B450:   #1
+        vi11 = 6;    
+        goto +B850;   [iiiiiiiiiiRii i . ....]
+  +B457:   #1
+        vi11 = 8;    
+        goto +B850;   [iiiiiiiiiiRiiiii i . ....]
+  +B464:   #1
+        vi12 = 0;    
+        vi14 = 1;    
+        vi11 = 7;    
+        if vi10>3 goto B490;   
+  +B480:   #1
+        b0 = vR0.formatData.getShortWeekdays();    [iiiiiiiiiiRiiiii R . R...] 
+        goto +B497b0;   [iiiiiiiiiiRiiiii R . ....]
+  +B490:   #1
+        b0 = vR0.formatData.getWeekdays();    [iiiiiiiiiiRiiiii R . R...] 
+  +B497b0:   #1 reference
+        vR13 = b0;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B502:   #1
+        vi11 = 3;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B508:   #1
+        vi11 = 4;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B514:   #1
+        vi11 = 2;    
+        if vi10>2 goto B529;   
+  +B523:   #1
+        vi14 = -1;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B529:   #1
+        vi12 = 0;    
+        if vi10>3 goto B548;   
+  +B538:   #1
+        b0 = vR0.formatData.getShortMonths();    [iiiiiiiiiiRiiiii R . R...] 
+        goto +B555b0;   [iiiiiiiiiiRiiiii R . ....]
+  +B548:   #1
+        b0 = vR0.formatData.getMonths();    [iiiiiiiiiiRiiiii R . R...] 
+  +B555b0:   #1 reference
+        vR13 = b0;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B560:   #1
+        vi11 = 1;    
+        if vi10>2 goto B850;   
+  +B569:   #1
+        vi15 = 1;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B575:   #1
+        vi11 = 10;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B582:   #1
+        vi11 = 10;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B589:   #1
+        vi11 = 11;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B596:   #1
+        vi11 = 11;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B603:   #1
+        vi11 = 12;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B610:   #1
+        vi11 = 13;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B617:   #1
+        vi11 = 14;    
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B624:   #1
+        vi12 = 0;    
+        vi11 = 9;    
+        vR13 = vR0.formatData.getAmPmStrings();    [iiiiiiiiiiRiiiii R . R...] 
+        goto +B850;   [iiiiiiiiiiRiiiii R . ....]
+  +B643:   #1
+        vi12 = 0;    
+        vi11 = 16;    
+        vR16 = vR0.formatData.getZoneStrings();    [iiiiiiiiiiRiiiii R . R...] 
+        vi17 = vR16.length;    
+        vi18 = vR2.getIndex();    [iiiiiiiiiiRiiRii R . R...] 
+        vi19 = 0;    
+        vi20 = 0;    
+  +B676:   #1
+        if vi20>=vi17 goto B825;   
+  +B683:   #1
+        vR21 = vR16[vi20];    
+        vi22 = 1;    
+  +B693:   #1
+        if vi22>=vR21.length goto B724;   
+  +B701:   #1
+        if vR1.startsWith@extra(vR21[vi22],vi18)==0 goto B718;   
+  +B715:   #1
+        goto +B724;   [iiiiiiiiiiRiiRiiiiRi R . ....]
+  +B718:   #1
+        vi22++;   
+        goto +B693;   [iiiiiiiiiiRiiRiiiiRiRR R . ....]
+  +B724:   #2
+        if vi22==vR21.length goto B819;   
+  +B732:   #1
+        vi19 = 1;    
+        vi5 = 1;    
+        vR23 = getTimeZone@special(vR21[0]);    [iiiiiiiiiiRiiRiiiiRi R R R...]
+        vR0.calendar.setTimeZone(vR23);   [iiiiiiiiiiRiiRiiiiRiR R R RR..] 
+        vR0.calendar.set@extra(15,vR23.getRawOffset());   [iiiiiiiiiiRiiRiiiiRiR R Ri iiR.] 
+        vi14 = 0;    
+        if vi22<=2 goto B801;   
+  +B779:   #1
+        if (vR23 instanceof java/util/SimpleTimeZone)==0 goto B801;   
+  +B787:   #1
+        vR24 = (java/util/SimpleTimeZone)(vR23);    
+        vi14 = vR24.getDSTSavings();    [iiiiiiiiiiRiiRiiiiRiRR R .. R...] 
+  +B801:   #2
+        vR2.setIndex((vi18+vR21[vi22].length@extra()));   [iiiiiiiiiiRiiRiiiiRiRR R i. iR..] 
+        goto +B825;   [iiiiiiiiiiRiiRiiiiRiRR R i. ....]
+  +B819:   #1
+        vi20++;   
+        goto +B676;   [iiiiiiiiiiRiiRiiiiRiRR R .. ....]
+  +B825:   #2
+        if vi19!=0 goto B850;   
+  +B830:   #1
+        vR2.setErrorIndex(vR2.getIndex());   [iiiiiiiiiiRiiRiiiiRiRR R i. iR..] 
+        return 0;   
+  +B840:   #39
+        vR2.setErrorIndex(vR2.getIndex());   [iiiiiiii?iRii R i. iR..] 
+        return 0;   
+  +B850:   #19
+        vi17 = -1;    
+        if vi12==0 goto B916;   
+  +B858:   #1
+        vR0.numberFormat.setMinimumIntegerDigits(vi10);   [iiiiiiiiiiRii?i R .. iR..] 
+        if vi15==0 goto B878;   
+  +B872:   #1
+        vi17 = vR2.getIndex();    [iiiiiiiiiiRii?i R .. R...] 
+  +B878:   #1
+        vR18 = vR0.numberFormat.parse(vR1,vR2);    [iiiiiiiiiiRii?i R .. RRR.] 
+        if vR2==null goto B901;   
+  +B893:   #1
+        if (vR18 instanceof java/lang/Long)!=0 goto B903;   
+  +B901:   #1
+        return 0;   
+  +B903:   #1
+        vi16 = (vR18.intValue()+vi14);    
+        goto +B1004;   [iiiiiiiiiiRiiiiR R .. ....]
+  +B916:   #1
+        if vR13==null goto B1000;   
+  +B921:   #1
+        vi17 = vR2.getIndex();    [iiiiiiiiiiRiiiii R .. R...] 
+        vi18 = vi14;    
+  +B931:   #1
+        if vi18>=vR13.length goto B962;   
+  +B939:   #1
+        if vR1.startsWith@extra(vR13[vi18],vi17)==0 goto B956;   
+  +B953:   #1
+        goto +B962;   [iiiiiiiiiiRiiiii R .. ....]
+  +B956:   #1
+        vi18++;   
+        goto +B931;   [iiiiiiiiiiRiiiii R .. ....]
+  +B962:   #2
+        if vi18!=vR13.length goto B978;   
+  +B970:   #1
+        vR2.setErrorIndex(vi17);   [iiiiiiiiiiRiiiii R .. iR..] 
+        return 0;   
+  +B978:   #1
+        vR2.setIndex((vi17+vR13[vi18].length@extra()));   [iiiiiiiiiiRiiiii R i. iR..] 
+        vi16 = vi18;    
+        goto +B1004;   [iiiiiiiiiiRiiiii R i. ....]
+  +B1000:   #1
+        vi16 = vi14;    
+  +B1004:   #2
+        if vi15==0 goto B1027;   
+  +B1009:   #1
+        vi18 = (vR2.getIndex()-vi17);    
+        if vi18!=2 goto B1027;   
+  +B1024:   #1
+        vi7 = 1;    
+  +B1027:   #2
+        vR0.calendar.set@extra(vi11,vi16);   [iiiiiiiiiiRiiiii R .. iiR.] 
+  +B1038:   #3
+        vi3++;   
+        goto +B27;   [iiiiiii R .. ....]
+  +B1044:   #1
+        if vi7==0 goto B1104;   
+  +B1049:   #1
+        vi8 = (vR0.defaultCentury+vR0.calendar.get@extra(1));    
+        vR0.calendar.set@extra(1,vi8);   [iiiiiiiiiiRiiRiiiiRiRR R .. iiR.] 
+        if vR0.calendar.getTime@extra().compareTo(vR0.defaultCenturyStart)>=0 goto B1104;   
+  +B1091:   #1
+        vR0.calendar.set@extra(1,(vi8+100));   [iiiiiiiiiiRiiRiiiiRiRR R i. iiR.] 
+  +B1104:   #3
+        if vi5!=0 goto B1127;   
+  +B1109:   #1
+        vR0.calendar.clear@extra(16);   [iiiiiiiiiiRiiRiiiiRiRR R .. iR..] 
+        vR0.calendar.clear@extra(15);   [iiiiiiiiiiRiiRiiiiRiRR R .. iR..] 
+  +B1127:   #1
+        b0 = vR0.calendar.getTime@extra();    [iiiiiiiiiiRiiRiiiiRiRR R .. R...] 
+  +B1134b0:   #1 reference
+        return b0;   
+  +H1135<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        vR2.setErrorIndex(vR2.getIndex());   [iiiiiRiiiiRiiRiiiiRiRR R i. iR..] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+1104 - 1134 handler 1135 type 86
+ }
+// Register: rd 128/128 wr 66 swaps 11 any 47 found 3 parse
+ 
+ method computeCenturyStart()V {
+  +START:   #1
+        vi1 = vR0.calendar.get@extra(1);    [   iR] 
+        vR0.calendar.set@extra(1,(vi1-80));   [i  i iiR] 
+        vR0.set2DigitYearStart@this(vR0.calendar.getTime@extra());   [i  ii RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 0 found 0 computeCenturyStart
+}

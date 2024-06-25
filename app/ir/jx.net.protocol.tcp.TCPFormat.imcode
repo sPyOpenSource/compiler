@@ -1,0 +1,532 @@
+class jx/net/protocol/tcp/TCPFormat {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,0);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;Ljx/net/IPAddress;Ljx/net/IPAddress;)V {
+  -START:   #1
+        vR0.<init>@special(vR1,34);   [ R  iRR] 
+        vR0.optionsSet = 0;   
+        vR0.sourceAddress = vR2;   
+        vR0.destinationAddress = vR3;   
+        vR0.packetsize = vR1.size();   
+        throw new java/lang/Error("disabled, use no splitting methods");   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/IPData;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,0);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/IPData;Ljx/net/IPAddress;Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.mem,(vR1.offset+34));   [  ii iRR] 
+        vR0.optionsSet = 0;   
+        vR0.sourceAddress = vR2;   
+        vR0.destinationAddress = vR3;   
+        vR0.packetsize = vR1.size;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method insertSourcePort(I)V {
+  +START:   #1
+        vR0.writeUShort@this(0,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertSourcePort
+ 
+ method insertDestinationPort(I)V {
+  +START:   #1
+        vR0.writeUShort@this(2,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertDestinationPort
+ 
+ method insertSequenceNumber(I)V {
+  +START:   #1
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSequenceNumber
+ 
+ method insertAcknowledgmentNumber(I)V {
+  +START:   #1
+        vR0.writeInt@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertAcknowledgmentNumber
+ 
+ method computeHeaderLength()V {
+  +START:   #1
+        if vR0.optionsSet==0 goto B18;   
+  +B7:   #1
+        vR0.writeByte@this(12,96);   [   iiR] 
+        goto +B26;   forward return[   ...]
+  +B18:   #1
+        vR0.writeByte@this(12,80);   [   iiR] 
+  +B26:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 computeHeaderLength
+ 
+ method insertFlags(I)V {
+  +START:   #1
+        vR0.writeByte@this(13,(byte)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertFlags
+ 
+ method insertWindowSize(I)V {
+  +START:   #1
+        vR0.writeUShort@this(14,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertWindowSize
+ 
+ method insertChecksum()V {
+  +START:   #1
+        vR0.writeUShort@this(16,0);   [   iiR] 
+        vi1 = vR0.computeChecksum@special();    [   R..] 
+        vR0.writeUShort@this(16,vi1);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 insertChecksum
+ 
+ method buildShort(BB)S {
+  +START:   #1
+        return (short)(((vi1 & 255) << 8) | (vi2 & 255));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 buildShort
+ 
+ method computeChecksum()S {
+  +START:   #1
+        vR1 = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));    
+        vi2 = 0;    
+        vi3 = vR0.length@this();    [Ri iR i. R.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("len: ").append@extra(vi3).toString@extra());   [Rii RR iii. RR.] 
+        if (vi3%2)!=1 goto B57;   
+  +B53:   #1
+        b0 = 1;    
+        goto +B58b0;   [Rii iR .... ...]
+  +B57:   #1
+        b0 = 0;    
+  +B58b0:   #1 int
+        vi4 = b0;    
+        if vi4==0 goto B86;   
+  +B65:   #1
+        vi5 = (short)(vR0.readUnsignedByte@this((vi3-1)) << 8);    
+        vi2 = vR0.addUShort@special(vi2,vi5);    [Riiii iR i... iiR] 
+  +B86:   #1
+        vi3 = (vi3 >>> 1);    
+  +B90:   #1
+        b0 = vi3;    
+        vi3--;   
+        if b0<=0 goto B121;   
+  +B97:   #1
+        vi5 = (short)(vR0.readUnsignedShort@this((vi3*2)) & 65535);    
+        vi2 = vR0.addUShort@special(vi2,vi5);    [Riiii iR i... iiR] 
+        goto +B90;   [Riiii iR i... ...]
+  +B121:   #1
+        vR5 = vR0.sourceAddress.getBytes();    [Riiii iR .... R..] 
+        vi2 = vR0.addUShort@special(vi2,vR0.buildShort@special(vR5[0],vR5[1]));    [RiiiR iR ibi. siR] 
+        vi2 = vR0.addUShort@special(vi2,vR0.buildShort@special(vR5[2],vR5[3]));    [RiiiR iR ibiibi siR] 
+        vR5 = vR0.destinationAddress.getBytes();    [RiiiR iR ibiibi R..] 
+        vi2 = vR0.addUShort@special(vi2,vR0.buildShort@special(vR5[0],vR5[1]));    [RiiiR iR ibiibiibi siR] 
+        vi2 = vR0.addUShort@special(vi2,vR0.buildShort@special(vR5[2],vR5[3]));    [RiiiR iR ibiibiibiibi siR] 
+        vi2 = vR0.addUShort@special(vi2,6);    [RiiiR iR ibiibiibiibi iiR] 
+        vi2 = vR0.addUShort@special(vi2,vR0.buildShort@special((byte)((vR0.length@this() >> 8) & 255),(byte)(vR0.length@this() & 255)));    [RiiiR iR ibiibiibiibiiii siR] 
+        vi6 = ((vi2 ^ -1) & 65535);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ibiibiibiibiiii i..][ RR ibiibiibiibiiii iR.]
+        b0.println(b1.append@extra("computeChecksum: checksum = ").append@extra(toHexString@special(vi6)).toString@extra());   [RiiiRi RR ibiibiibiibiiiiiii. RR.] 
+        return (short)vi6;   
+  +END:   #1
+ }
+// Register: rd 45/45 wr 55 swaps 18 any 7 found 0 computeChecksum
+ 
+ method addUShort(SS)S {
+  +START:   #1
+        vi3 = ((vi1 & 65535)+(vi2 & 65535));    
+        if vi3<=65535 goto B21;   
+  +B16:   #1
+        vi3 = (vi3-65535);    
+  +B21:   #1
+        return (short)vi3;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 addUShort
+ 
+ method isChecksumValid()Z {
+  +START:   #1
+        if vR0.computeChecksum@special()!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  .]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isChecksumValid
+ 
+ method insertUrgentPointer(I)V {
+  +START:   #1
+        vR0.writeUShort@this(18,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertUrgentPointer
+ 
+ method insertOptions([B)V {
+  +START:   #1
+        vR0.optionsSet = 1;   
+        vR0.writeBytes@this(20,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 insertOptions
+ 
+ method insertData([B)V {
+  +START:   #1
+        vR0.writeBytes@this(vR0.getHeaderLength@this(),vR1);   [  i RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertData
+ 
+ method length()I {
+  +START:   #1
+        return vR0.packetsize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 length
+ 
+ method getSourcePort()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSourcePort
+ 
+ method getDestinationPort()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDestinationPort
+ 
+ method getSequenceNumber()I {
+  +START:   #1
+        return vR0.readInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSequenceNumber
+ 
+ method getAcknowledgmentNumber()I {
+  +START:   #1
+        return vR0.readInt@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAcknowledgmentNumber
+ 
+ method getHeaderLength()I {
+  +START:   #1
+        vi1 = (vR0.readByte@this(12) & 240);    
+        return (((vi1 >> 4) & 15)*4);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getHeaderLength
+ 
+ method getFlags()I {
+  +START:   #1
+        return (vR0.readByte@this(13) & 63);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method Flags2String()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        if vR0.isURGFlagSet@this()==0 goto B19;   
+  +B14b0:   #1 reference
+        b1 = "U";    
+        goto +B21b0b1;   [ RR  ..]
+  +B19b0:   #1 reference
+        b1 = "";    
+  +B21b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [ RR  RR] 
+        if vR0.isACKFlagSet@this()==0 goto B36;   
+  +B31b0:   #1 reference
+        b1 = "A";    
+        goto +B38b0b1;   [ RR  ..]
+  +B36b0:   #1 reference
+        b1 = "";    
+  +B38b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [ RR  RR] 
+        if vR0.isPSHFlagSet@this()==0 goto B53;   
+  +B48b0:   #1 reference
+        b1 = "P";    
+        goto +B55b0b1;   [ RR  ..]
+  +B53b0:   #1 reference
+        b1 = "";    
+  +B55b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [ RR  RR] 
+        if vR0.isRSTFlagSet@this()==0 goto B70;   
+  +B65b0:   #1 reference
+        b1 = "R";    
+        goto +B72b0b1;   [ RR  ..]
+  +B70b0:   #1 reference
+        b1 = "";    
+  +B72b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [ RR  RR] 
+        if vR0.isSYNFlagSet@this()==0 goto B87;   
+  +B82b0:   #1 reference
+        b1 = "S";    
+        goto +B89b0b1;   [ RR  ..]
+  +B87b0:   #1 reference
+        b1 = "";    
+  +B89b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [ RR  RR] 
+        if vR0.isFINFlagSet@this()==0 goto B104;   
+  +B99b0:   #1 reference
+        b1 = "F";    
+        goto +B106b0b1;   forward return[ RR  ..]
+  +B104b0:   #1 reference
+        b1 = "";    
+  +B106b0b1:   #1 reference reference
+        return b0.append@extra(b1).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 19 swaps 0 any 0 found 0 Flags2String
+ 
+ method getWindowSize()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(14);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWindowSize
+ 
+ method getChecksum()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getChecksum
+ 
+ method getUrgentPointer()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(18);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUrgentPointer
+ 
+ method getOptions()[B {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getOptions
+ 
+ method getData()[B {
+  +START:   #1
+        vR1 = new byte[(vR0.length@this()-vR0.getHeaderLength@this())];    
+        vR0.readBytes@this(vR0.getHeaderLength@this(),vR1);   [R  i RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 getData
+ 
+ method isURGFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 32)==0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[i i  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isURGFlagSet
+ 
+ method isACKFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 16)==0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[i i  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isACKFlagSet
+ 
+ method isPSHFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 8)==0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[i i  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isPSHFlagSet
+ 
+ method isRSTFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 4)==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[i i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isRSTFlagSet
+ 
+ method isSYNFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 2)==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[i i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isSYNFlagSet
+ 
+ method isFINFlagSet()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 1)==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[i i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isFINFlagSet
+ 
+ method areFlagsSet(I)Z {
+  +START:   #1
+        if (vR0.getFlags@this() & vi1)!=vi1 goto B27;   
+  +B10:   #1
+        if (vR0.getFlags@this() & vi1)!=vR0.getFlags@this() goto B27;   
+  +B23:   #1
+        b0 = 1;    
+        goto +B28b0;   forward return[ i . .]
+  +B27:   #2
+        b0 = 0;    
+  +B28b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 areFlagsSet
+ 
+ method dump()V {
+  +START:   #1
+        out.println("TCP-Packet:");   [ RRR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR i. i.][ RRR i. iR]
+        b0.println(b1.append@extra("	 src port      : ").append@extra(vR0.getSourcePort@this()).toString@extra());   [ RRR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiii. i..][ RRR iiii. iR.]
+        b0.println(b1.append@extra("	 dst port      : ").append@extra(vR0.getDestinationPort@this()).toString@extra());   [ RRR iiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiii. i..][ RRR iiiiiii. iR.]
+        b0.println(b1.append@extra("	 seq no        : 0x").append@extra(toHexString@special(vR0.getSequenceNumber@this())).toString@extra());   [ RRR iiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiii. i..][ RRR iiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 ack no        : 0x").append@extra(toHexString@special(vR0.getAcknowledgmentNumber@this())).toString@extra());   [ RRR iiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 header len    : ").append@extra(vR0.getHeaderLength@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 URG           : ").append@extra(vR0.isURGFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 ACK           : ").append@extra(vR0.isACKFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 PSH           : ").append@extra(vR0.isPSHFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 RST           : ").append@extra(vR0.isRSTFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 SYN           : ").append@extra(vR0.isSYNFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 FIN           : ").append@extra(vR0.isFINFlagSet@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 window size   : ").append@extra(vR0.getWindowSize@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 checksum      : 0x").append@extra(toHexString@special(vR0.getChecksum@this())).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("	 urgent ptr    : ").append@extra(vR0.getUrgentPointer@this()).toString@extra());   [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b1 = b1.append@extra("	 options       : ");    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii RR.] 
+        if vR0.optionsSet==0 goto B436;   
+  +B431b0b1:   #1 reference reference
+        b2 = "";    
+        goto +B438b0b1b2;   [ RRR ............................................... ...]
+  +B436b0b1:   #1 reference reference
+        b2 = "no options";    
+  +B438b0b1b2:   #1 reference reference reference
+        b0.println(b1.append@extra(b2).toString@extra());   [ RRR i.............................................. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR i.............................................. i..][ RRR i.............................................. iR.]
+        b0.println(b1.append@extra("	 segment len   : ").append@extra(vR0.length@this()).toString@extra());   [ RRR iiii........................................... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 50/50 wr 118 swaps 48 any 0 found 0 dump
+}

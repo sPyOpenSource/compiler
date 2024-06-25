@@ -1,0 +1,152 @@
+class java/security/KeyPairGenerator {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.algorithm = vR1;   
+        vR0.provider = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAlgorithm()Ljava/lang/String; {
+  +START:   #1
+        return vR0.algorithm;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlgorithm
+ 
+ method getInstance(Ljava/lang/String;)Ljava/security/KeyPairGenerator; {
+  +START:   #1
+        vR1 = getProviders@special();    [ RR  ]
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR1.length goto B57;   
+  +B12:   #1
+        b0 = vR1[vi2];    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR3 = b0.getProperty(b1.append@extra("KeyPairGenerator.").append@extra(vR0).toString@extra());    [Ri RR ii. RR.] 
+        if vR3==null goto B51;   
+  +B42:   #1
+        return getInstance@special(vR3,vR0,vR1[vi2]);   
+  +B51:   #1
+        vi2++;   
+        goto +B6;   [RiR RR ... ...]
+  -B57:   #1
+        throw new java/security/NoSuchAlgorithmException(vR0);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 12 swaps 2 any 3 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/KeyPairGenerator; {
+  +START:   #1
+        vR2 = getProvider@special(vR1);    [ RR  R]
+        if vR2!=null goto B17;   
+  -B9:   #1
+        throw new java/security/NoSuchProviderException();   
+  +B17:   #1
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        return getInstance@special(vR2.getProperty(b1.append@extra("KeyPairGenerator.").append@extra(vR0).toString@extra()),vR0,vR2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/KeyPairGenerator; {
+  +START:   #4
+        vR3 = forName@special(vR0).newInstance@extra();    [ R . R] [ R R R]
+        if (vR3 instanceof java/security/KeyPairGeneratorSpi)==0 goto B32;   
+  +B15:   #1
+        vR4 = new java/security/DummyKeyPairGenerator((java/security/KeyPairGeneratorSpi)(vR3),vR1);    [ R . i.][ R . iRRR]
+        goto +B44;   [RR R . ....]
+  +B32:   #1
+        vR4 = (java/security/KeyPairGenerator)(vR3);    
+        vR4.algorithm = vR1;   
+  +B44:   #1
+        vR4.provider = vR2;   
+        b0 = vR4;    
+  +B52b0:   #3 reference
+        return b0;   
+  -H53<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Class not found");   
+  -H64<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
+  -H75<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Illegal Access");   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 52 handler 53 type 23
+0 - 52 handler 64 type 25
+0 - 52 handler 75 type 27
+ }
+// Register: rd 16/16 wr 12 swaps 0 any 2 found 2 getInstance
+ 
+ method getProvider()Ljava/security/Provider; {
+  +START:   #1
+        return vR0.provider;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProvider
+ 
+ method initialize(I)V {
+  +START:   #1
+        b2 = new java/security/SecureRandom();    [ ??R  i][ ??R  iR]
+        vR0.initialize@this(vi1,b2);   [ ??R  RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 initialize
+ 
+ method initialize(ILjava/security/SecureRandom;)V {
+  +START:   #1
+        vR0.initialize@this(vi1,vR2);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 initialize
+ 
+ method initialize(Ljava/security/spec/AlgorithmParameterSpec;)V {
+  +START:   #1
+        b2 = new java/security/SecureRandom();    [ ??R  i][ ??R  iR]
+        vR0.initialize@this(vR1,b2);   [ ??R  RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 initialize
+ 
+ method initialize(Ljava/security/spec/AlgorithmParameterSpec;Ljava/security/SecureRandom;)V {
+  +START:   #1
+        vR0.initialize@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 initialize
+ 
+ method genKeyPair()Ljava/security/KeyPair; {
+  +START:   #2
+        b0 = getInstance@special("DSA","GNU").generateKeyPair();    [ RR .RR R.] [ RR RRR RR]
+  +B10b0:   #1 reference
+        return b0;   
+  +H11<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        b0 = err;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i.][ RR ... iR]
+        b0.println(b1.append@extra("genKeyPair failed: ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
+        vR1.printStackTrace();   [R RR ii. R..] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 11 type 38
+ }
+// Register: rd 4/4 wr 11 swaps 2 any 0 found 0 genKeyPair
+ 
+ method generateKeyPair()Ljava/security/KeyPair; {
+  +START:   #1
+        return vR0.generateKeyPair@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 generateKeyPair
+}

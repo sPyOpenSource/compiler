@@ -1,0 +1,25 @@
+class java/util/LinkedHashMap$LinkedEntryIterator {
+ 
+ method <init>(Ljava/util/LinkedHashMap;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method next()Ljava/util/Map$Entry; {
+  +START:   #1
+        return vR0.nextNode@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.next@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+}

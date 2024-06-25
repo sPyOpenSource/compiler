@@ -1,0 +1,166 @@
+class java/net/URLStreamHandler {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method parseURL(Ljava/net/URL;Ljava/lang/String;II)V {
+  +START:   #1
+        if vi4>=vi3 goto B7;   
+  +B6:   #1
+        return;   
+  +B7:   #1
+        if (vi4-vi3)>=2 goto B16;   
+  +B15:   #1
+        return;   
+  +B16:   #1
+        if vi3<=vR2.length@extra() goto B25;   
+  +B24:   #1
+        return;   
+  +B25:   #1
+        if vi4<=vR2.length@extra() goto B40;   
+  +B34:   #1
+        vi4 = vR2.length@extra();    [ R  R] 
+  +B40:   #1
+        vi4 = (vR2.length@extra()-vi4);    
+        vR2 = vR2.substring@extra(vi3);    [ R  iR] 
+        if vR2.startsWith@extra("//")!=0 goto B65;   
+  +B64:   #1
+        return;   
+  +B65:   #1
+        vR2 = vR2.substring@extra(2);    [ R . iR] 
+        vR5 = 0;    
+        vi6 = -1;    
+        vR7 = 0;    
+        vR8 = 0;    
+        vi9 = vR2.indexOf@extra("/");    [RiRR R i RR] 
+        vi10 = vR2.indexOf@extra(":");    [RiRRi R ii RR] 
+        if vi9<=(vR2.length@extra()-vi4) goto B112;   
+  +B111:   #1
+        return;   
+  +B112:   #1
+        if vi9!=-1 goto B127;   
+  +B118:   #1
+        vi9 = (vR2.length@extra()-vi4);    
+  +B127:   #1
+        if vi10==-1 goto B140;   
+  +B133:   #1
+        if vi10<=vi9 goto B152;   
+  +B140:   #1
+        vR5 = vR2.substring@extra(0,vi9);    [RiRRii R .. iiR] 
+        goto +B186;   [RiRRii R .. ...]
+  +B152:   #1
+        vR5 = vR2.substring@extra(0,vi10);    [RiRRii R .. iiR] 
+        vR11 = vR2.substring@extra((vi10+1),vi9);    [RiRRii R i. iiR] 
+  +B173:   #1
+        vi6 = parseInt@special(vR11);    [RiRRiiR R .. R..]
+  +B180:   #1
+        goto +B186;   [RiRRiiR R .. ...]
+  +H183<caught exception>:   #1 reference
+        vR12 = <caught exception>;    
+        return;   
+  +B186:   #2
+        if vi9>=(vR2.length@extra()-1) goto B209;   
+  +B197:   #1
+        vR2 = vR2.substring@extra((vi9+1));    [RiRRii R i. iR.] 
+        goto +B212;   [RiRRii R i. ...]
+  +B209:   #1
+        vR2 = "";    
+  +B212:   #1
+        if vi4!=0 goto B244;   
+  +B217:   #1
+        b0 = new java/lang/StringBuilder();    [ R .. i..][ R .. iR.]
+        vR7 = b0.append@extra("/").append@extra(vR2).toString@extra();    [RiRRii R i.. R..] [RiRRii R iR. RR.] [RiRRii R iRR RRR] 
+        vR8 = 0;    
+        goto +B317;   [RiRRii R i.. ...]
+  +B244:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        vR7 = b0.append@extra("/").append@extra(vR2.substring@extra(0,(vR2.length@extra()-vi4))).toString@extra();    [RiRRii R .iii. R..] [RiRRii R Riii. RR.] [RiRRii R RiiiR RRR] 
+        if vR2.charAt@extra((vR2.length@extra()-vi4))!=35 goto B314;   
+  +B292:   #1
+        vR8 = vR2.substring@extra(((vR2.length@extra()-vi4)+1),vR2.length@extra());    [RiRRii R ii... iiR] 
+        goto +B317;   [RiRRii R ii... ...]
+  +B314:   #1
+        vR8 = 0;    
+  +B317:   #2
+        if vR7==null goto B329;   
+  +B322:   #1
+        if vR7!="" goto B333;   
+  +B329:   #1
+        vR7 = "/";    
+  +B333:   #1
+        vR0.setURL@this(vR1,vR1.getProtocol@extra(),vR5,vi6,vR7,vR8);   [RiRRii R i.... RRiRRRR] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+173 - 180 handler 183 type 11
+ }
+// Register: rd 55/55 wr 43 swaps 12 any 12 found 4 parseURL
+ 
+ method toExternalForm(Ljava/net/URL;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = vR1.getProtocol@extra();    [ RR  R] 
+        vR3 = vR1.getHost@extra();    [R RR  R] 
+        vi4 = vR1.getPort@extra();    [RR RR  R] 
+        vR5 = vR1.getFile@extra();    [RRi RR  R] 
+        vR6 = vR1.getRef@extra();    [RRiR RR  R] 
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        if vR2==null goto B61;   
+  +B39b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b1 = b1.append@extra(vR2).append@extra("://").toString@extra();    [RRiRR RR i.. R..] [RRiRR RR iR. RR.] [RRiRR RR iRR RRR] 
+        goto +B63b0b1;   [RRiRR RR i.. ...]
+  +B61b0:   #1 reference
+        b1 = "";    
+  +B63b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [RRiRR RR ... RR.] 
+        if vR3==null goto B74;   
+  +B70b0:   #1 reference
+        b1 = vR3;    
+        goto +B76b0b1;   [RRiRR RR ... ...]
+  +B74b0:   #1 reference
+        b1 = "";    
+  +B76b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [RRiRR RR ... RR.] 
+        if vi4==-1 goto B108;   
+  +B85b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b1 = b1.append@extra(":").append@extra(vi4).toString@extra();    [RRiRR RR i.. R..] [RRiRR RR iR. iR.] [RRiRR RR iRR iRR] 
+        goto +B110b0b1;   [RRiRR RR i.. ...]
+  +B108b0:   #1 reference
+        b1 = "";    
+  +B110b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [RRiRR RR ... RR.] 
+        if vR5==null goto B123;   
+  +B118b0:   #1 reference
+        b1 = vR5;    
+        goto +B125b0b1;   [RRiRR RR ... ...]
+  +B123b0:   #1 reference
+        b1 = "/";    
+  +B125b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1);    [RRiRR RR ... RR.] 
+        if vR6==null goto B156;   
+  +B133b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b1 = b1.append@extra("#").append@extra(vR6).toString@extra();    [RRiRR RR i.. R..] [RRiRR RR iR. RR.] [RRiRR RR iRR RRR] 
+        goto +B158b0b1;   forward return[RRiRR RR i.. ...]
+  +B156b0:   #1 reference
+        b1 = "";    
+  +B158b0b1:   #1 reference reference
+        return b0.append@extra(b1).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 33 swaps 3 any 7 found 0 toExternalForm
+ 
+ method setURL(Ljava/net/URL;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR1.set@extra(vR2,vR3,vi4,vR5,vR6);   [   RRiRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setURL
+}

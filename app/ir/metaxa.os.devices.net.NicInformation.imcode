@@ -1,0 +1,26 @@
+class metaxa/os/devices/net/NicInformation {
+ 
+ method <init>(Ljx/devices/pci/PCIDevice;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.DelayStart = 1;   
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.mc_list = b1;   
+        vR0.DeviceName = new byte[8];   
+        vR0.PermanentAddress = new byte[6];   
+        vR0.StationAddress = new byte[6];   
+        b1 = new metaxa/os/devices/net/Resourcen();    [ ?R  i.][ ?R  iR]
+        vR0.Resources = b1;   
+        b1 = new metaxa/os/devices/net/NicStatistics();    [ ?R  i.][ ?R  iR]
+        vR0.Statistics = b1;   
+        b1 = new metaxa/os/devices/net/NicHardwareInformation();    [ ?R  i.][ ?R  iR]
+        vR0.Hardware = b1;   
+        b1 = new metaxa/os/devices/net/NicPciInformation(vR1);    [ ?R  i.][ ?R . iRR]
+        vR0.PCI = b1;   
+        b1 = new java/lang/Object();    [ ?R . i..][ ?R . iR.]
+        vR0.lock = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 7 swaps 0 any 0 found 0 <init>
+}

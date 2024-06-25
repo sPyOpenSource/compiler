@@ -1,0 +1,344 @@
+class java/text/DateFormat {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/text/DateFormat)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/text/DateFormat)(vR1);    
+        if vR0.calendar.equals(vR2.calendar)==0 goto B46;   
+  +B28:   #1
+        if vR0.numberFormat.equals(vR2.numberFormat)==0 goto B46;   
+  +B42:   #1
+        b0 = 1;    
+        goto +B47b0;   forward return[R i . ..]
+  +B46:   #2
+        b0 = 0;    
+  +B47b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 1 found 1 equals
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.clone@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clone
+ 
+ method format(Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        if (vR1 instanceof java/lang/Number)==0 goto B22;   
+  +B7:   #1
+        vR1 = new java/util/Date((java/lang/Number)(vR1).longValue());    [ R  i.][ R . ilR]
+  +B22:   #1
+        return vR0.format@this((java/util/Date)(vR1),vR2,vR3);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 2 format
+ 
+ method format(Ljava/util/Date;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer();    [ R??R  i][ R??R  iR]
+        b3 = new java/text/FieldPosition(2);    [ R??R  i.][ R??R . iiR]
+        vR0.format@this(vR1,vR2,b3);   [R R??R . RRRR] 
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 format
+ 
+ method getAvailableLocales()[Ljava/util/Locale; {
+  +START:   #1
+        vR0 = new java/util/Locale()[1];    
+        vR0[0] = US;   
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getAvailableLocales
+ 
+ method getCalendar()Ljava/util/Calendar; {
+  +START:   #1
+        return vR0.calendar;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCalendar
+ 
+ method computeInstance(ILjava/util/Locale;ZZ)Ljava/text/DateFormat; {
+  +START:   #1
+        return computeInstance@special(vi0,vi0,vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 computeInstance
+ 
+ method computeInstance(IILjava/util/Locale;ZZ)Ljava/text/DateFormat; {
+  +START:   #2
+        vR5 = getBundle@special("gnu.java.locale.LocaleInformation",vR2);    [ R R RR]
+  +B8:   #1
+        goto +B16;   [R R . ..]
+  +H11<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vR5 = 0;    
+  +B16:   #1
+        vR6 = 0;    
+        if vi3==0 goto B136;   
+  +B23:   #1
+        tswitch (vi0) B56 B67 B78 B89 : B100;   
+  +B56:   #1
+        vR7 = "fullDateFormat";    
+        vR8 = "EEEE MMMM d, yyyy G";    
+        goto +B108;   [RRRR R . ..]
+  +B67:   #1
+        vR7 = "longDateFormat";    
+        vR8 = "MMMM d, yyyy";    
+        goto +B108;   [RRRRR R . ..]
+  +B78:   #1
+        vR7 = "mediumDateFormat";    
+        vR8 = "d-MMM-yy";    
+        goto +B108;   [RRRRR R . ..]
+  +B89:   #1
+        vR7 = "shortDateFormat";    
+        vR8 = "M/d/yy";    
+        goto +B108;   [RRRRR R . ..]
+  -B100:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B108:   #5
+        if vR5!=null goto B118;   
+  +B113:   #1
+        b0 = vR8;    
+        goto +B125b0;   [RRRR R . ..]
+  +B118:   #1
+        b0 = vR5.getString@extra(vR7);    [RRRRR R . RR] 
+  +B125b0:   #1 reference
+        vR6 = b0;    
+  +B127:   #1
+        goto +B136;   [RRRR R . ..]
+  +H130<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        vR6 = vR8;    
+  +B136:   #2
+        if vi4==0 goto B310;   
+  +B141:   #1
+        if vR6!=null goto B153;   
+  +B146:   #1
+        vR6 = "";    
+        goto +B175;   [RRRR R . ..]
+  +B153:   #1
+        b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
+        vR6 = b0.append@extra(vR6).append@extra(" ").toString@extra();    [RRRRR R i.. R..] [RRRRR R iR. RR.] [RRRRR R iRR RRR] 
+  +B175:   #1
+        tswitch (vi1) B208 B219 B230 B241 : B252;   
+  +B208:   #1
+        vR7 = "fullTimeFormat";    
+        vR8 = "h:mm:ss;S 'o''clock' a z";    
+        goto +B260;   [RRRR R ... ...]
+  +B219:   #1
+        vR7 = "longTimeFormat";    
+        vR8 = "h:mm:ss a z";    
+        goto +B260;   [RRRRR R ... ...]
+  +B230:   #1
+        vR7 = "mediumTimeFormat";    
+        vR8 = "h:mm:ss a";    
+        goto +B260;   [RRRRR R ... ...]
+  +B241:   #1
+        vR7 = "shortTimeFormat";    
+        vR8 = "h:mm a";    
+        goto +B260;   [RRRRR R ... ...]
+  -B252:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B260:   #5
+        if vR5!=null goto B270;   
+  +B265:   #1
+        b0 = vR8;    
+        goto +B277b0;   [RRRR R ... ...]
+  +B270:   #1
+        b0 = vR5.getString@extra(vR7);    [RRRRR R ... RR.] 
+  +B277b0:   #1 reference
+        vR9 = b0;    
+  +B279:   #1
+        goto +B288;   [RRRRR R ... ...]
+  +H282<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        vR9 = vR8;    
+  +B288:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        vR6 = b0.append@extra(vR6).append@extra(vR9).toString@extra();    [RRRRR R ... R..] [RRRRR R R.. RR.] [RRRRR R RR. RRR] 
+  +B310:   #1
+        return new java/text/SimpleDateFormat(vR6,vR2);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 8 handler 11 type 23
+108 - 127 handler 130 type 23
+260 - 279 handler 282 type 23
+ }
+// Register: rd 20/20 wr 42 swaps 1 any 13 found 0 computeInstance
+ 
+ method getDateInstance()Ljava/text/DateFormat; {
+  +START:   #1
+        return getDateInstance@special(2,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDateInstance
+ 
+ method getDateInstance(I)Ljava/text/DateFormat; {
+  +START:   #1
+        return getDateInstance@special(vi0,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDateInstance
+ 
+ method getDateInstance(ILjava/util/Locale;)Ljava/text/DateFormat; {
+  +START:   #1
+        return computeInstance@special(vi0,vR1,1,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDateInstance
+ 
+ method getDateTimeInstance()Ljava/text/DateFormat; {
+  +START:   #1
+        return getDateTimeInstance@special(2,2,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDateTimeInstance
+ 
+ method getDateTimeInstance(II)Ljava/text/DateFormat; {
+  +START:   #1
+        return getDateTimeInstance@special(vi0,vi1,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDateTimeInstance
+ 
+ method getDateTimeInstance(IILjava/util/Locale;)Ljava/text/DateFormat; {
+  +START:   #1
+        return computeInstance@special(vi0,vi1,vR2,1,1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDateTimeInstance
+ 
+ method getInstance()Ljava/text/DateFormat; {
+  +START:   #1
+        return getDateTimeInstance@special(3,3,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getInstance
+ 
+ method getNumberFormat()Ljava/text/NumberFormat; {
+  +START:   #1
+        return vR0.numberFormat;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberFormat
+ 
+ method getTimeInstance()Ljava/text/DateFormat; {
+  +START:   #1
+        return getTimeInstance@special(2,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getTimeInstance
+ 
+ method getTimeInstance(I)Ljava/text/DateFormat; {
+  +START:   #1
+        return getTimeInstance@special(vi0,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getTimeInstance
+ 
+ method getTimeInstance(ILjava/util/Locale;)Ljava/text/DateFormat; {
+  +START:   #1
+        return computeInstance@special(vi0,vR1,0,1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTimeInstance
+ 
+ method getTimeZone()Ljava/util/TimeZone; {
+  +START:   #1
+        return vR0.calendar.getTimeZone();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTimeZone
+ 
+ method hashCode()I {
+  +START:   #1
+        vi1 = vR0.calendar.hashCode();    [   R] 
+        if vR0.numberFormat==null goto B25;   
+  +B15:   #1
+        vi1 = (vi1 ^ vR0.numberFormat.hashCode());    
+  +B25:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 1 found 1 hashCode
+ 
+ method isLenient()Z {
+  +START:   #1
+        return vR0.calendar.isLenient();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isLenient
+ 
+ method parse(Ljava/lang/String;)Ljava/util/Date; {
+  +START:   #1
+        vR2 = new java/text/ParsePosition(0);    [ R  i][ R . iiR]
+        vR3 = vR0.parse@this(vR1,vR2);    [R R . RRR] 
+        if vR3!=null goto B49;   
+  +B20:   #1
+        vi4 = vR2.getErrorIndex();    [RR R . R..] 
+        if vi4>=0 goto B37;   
+  +B31:   #1
+        vi4 = vR2.getIndex();    [RRi R . R..] 
+  -B37:   #1
+        throw new java/text/ParseException("invalid Date syntax",vi4);   
+  +B49:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 2 found 0 parse
+ 
+ method parseObject(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.parse@this(vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 parseObject
+ 
+ method setCalendar(Ljava/util/Calendar;)V {
+  +START:   #1
+        vR0.calendar = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCalendar
+ 
+ method setLenient(Z)V {
+  +START:   #1
+        vR0.calendar.setLenient(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLenient
+ 
+ method setNumberFormat(Ljava/text/NumberFormat;)V {
+  +START:   #1
+        vR0.numberFormat = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setNumberFormat
+ 
+ method setTimeZone(Ljava/util/TimeZone;)V {
+  +START:   #1
+        vR0.calendar.setTimeZone(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTimeZone
+}

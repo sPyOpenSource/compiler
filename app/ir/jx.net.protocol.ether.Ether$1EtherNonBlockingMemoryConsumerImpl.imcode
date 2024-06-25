@@ -1,0 +1,115 @@
+class jx/net/protocol/ether/Ether$1EtherNonBlockingMemoryConsumerImpl {
+ 
+ method <init>(Ljx/net/protocol/ether/Ether;Ljx/buffer/multithread/MultiThreadList;Ljx/buffer/multithread/MultiThreadList;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$usableBufs = vR2;   
+        vR0.val$filledBufs = vR3;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method processMemory(Ljx/zero/Memory;II)Ljx/zero/Memory; {
+  +START:   #1
+        out.println("Ether packet received");   [ R i. RR] 
+        vR4 = (jx/net/protocol/ether/Ether$PacketContainer)(vR0.val$usableBufs.nonblockingUndockFirstElement());    
+        if vR4!=null goto B60;   
+  +B25:   #1
+        out.println("jx.net.Ether: no buffer available, must drop a packet!");   [R R i. RR] 
+        vR4 = (jx/net/protocol/ether/Ether$PacketContainer)(vR0.val$filledBufs.nonblockingUndockFirstElement());    
+        if vR4!=null goto B60;   
+  -B50:   #1
+        throw new java/lang/Error("where are my buffers gone?");   
+  +B60:   #2
+        vR5 = vR4.getMem();    [R R .. R..] 
+        if access$300@special(vR0.this$0)==0 goto B88;   
+  +B77:   #1
+        vR4.setData(vR1,vi2,vi3);   [RR R .. iiRR] 
+        goto +B101;   [RR R .. ....]
+  +B88:   #1
+        vR4.setData(vR1.revoke(),vi2,vi3);   [RR R i. iiRR] 
+  +B101:   #1
+        vR0.val$filledBufs.appendElement(vR4);   [RR R .. RR..] 
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 12 swaps 3 any 2 found 0 processMemory
+ 
+ method EtherQueueConsumerThread()V {
+  +START:   #1
+        vi1 = access$200@special(vR0.this$0).createNewEvent("EtherRcv");    [ RR i.R RR] [ RR iRR RR]
+        access$200@special(vR0.this$0).recordEvent(vi1);    
+        vR2 = (jx/net/protocol/ether/Ether$PacketContainer)(vR0.val$filledBufs.undockFirstElement());    
+        vR3 = vR2.getMem();    [iR RR i.R R.] 
+        if access$300@special(vR0.this$0)!=0 goto B145;   
+  +B54:   #1
+        vR4 = new jx/net/protocol/ether/EtherFormat(vR3);    [ RR ... i.][ RR ... iRR]
+        out.println("Ether packet received.");   [iRRR RR i.. RR.] 
+        vR4.dump();   [iRRR RR i.. R..] 
+        vi5 = vR4.getType();    [iRRR RR i.. R..] 
+        vR6 = new jx/zero/Memory()[3];    
+        vR3.split3(requiresSpace@special(),(vR3.size()-requiresSpace@special()),vR6);   [iRRRiR RR iii RiiR] 
+        vR7 = vR6[1];    
+        vR3 = access$400@special(vR0.this$0).dispatch(vi5,vR7);    [iRRRiRR RR iii.R RiR.] [iRRRiRR RR iiiRR RiR.]
+        vR2.setMem(vR3.revoke());   [iRRRiRR RR iiiiR RR..] 
+        goto +B471;   forward return[iRRRiRR RR iiiiR ....]
+  +B145:   #1
+        vR4 = new jx/net/protocol/ether/EtherFormat(vR3,vR2.getOffset());    [ RR ..... i...][ RR ..... iiRR]
+        out.println("Ether packet received.");   [iRRRiRR RR i.... RR..] 
+        vR4.dump();   [iRRRiRR RR i.... R...] 
+        vi5 = vR4.getType();    [iRRRiRR RR i.... R...] 
+        vR6 = new jx/net/EtherData();    [ RR i.... i...][ RR i.... iR..]
+        vR6.srcAddress = vR4.getSourceAddress();   
+        vR6.dstAddress = vR4.getDestAddress();   
+        vR6.mem = vR3;   
+        vR6.offset = (vR2.getOffset()+requiresSpace@special());   
+        vR6.size = (vR2.getSize()-requiresSpace@special());   
+        lswitch (vi5) { 
+           2048:B276
+           2054:B323
+           32821:B385
+           ::B432
+        };   
+  +B276:   #1
+        if access$500@special(vR0.this$0)!=null goto B297;   
+  +B286:   #1
+        out.println("NO IP consumer");   [iRRRiRR RR i.... RR..] 
+        goto +B458;   [iRRRiRR RR i.... ....]
+  +B297:   #1
+        out.println("Ether: received IP packet");   [iRRRiRR RR i.... RR..] 
+        vR3 = access$500@special(vR0.this$0).processEther(vR6);    [iRRRiRR RR i.R.. RR..] [iRRRiRR RR iRR.. RR..]
+        goto +B458;   [iRRRiRR RR i.R.. ....]
+  +B323:   #1
+        if access$600@special(vR0.this$0)!=null goto B344;   
+  +B333:   #1
+        out.println("NO ARP consumer");   [iRRRiRR RR i.... RR..] 
+        goto +B458;   [iRRRiRR RR i.... ....]
+  +B344:   #1
+        out.println("Ether: received ARP packet");   [iRRRiRR RR i.... RR..] 
+        xdump@special(vR6.mem,vR6.offset,16);   [iRRRiRR RR iRi.. iiR.]
+        vR3 = access$600@special(vR0.this$0).processEther(vR6);    [iRRRiRR RR iRi.R RR..] [iRRRiRR RR iRiRR RR..]
+        goto +B458;   [iRRRiRR RR iRi.R ....]
+  +B385:   #1
+        if access$700@special(vR0.this$0)!=null goto B406;   
+  +B395:   #1
+        out.println("NO RARP consumer");   [iRRRiRR RR i.... RR..] 
+        goto +B458;   [iRRRiRR RR i.... ....]
+  +B406:   #1
+        out.println("Ether: received RARP packet");   [iRRRiRR RR i.... RR..] 
+        vR3 = access$700@special(vR0.this$0).processEther(vR6);    [iRRRiRR RR i.R.. RR..] [iRRRiRR RR iRR.. RR..]
+        goto +B458;   [iRRRiRR RR i.R.. ....]
+  +B432:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Unknown packet. ID=").append@extra(vi5).toString@extra());   [iRRRiRR RR ii... RR..] 
+  +B458:   #6
+        vR2.setMem(vR3);   [iRRRiRR RR ..... RR..] 
+        vR0.val$usableBufs.appendElement(vR2);   [iRRRiRR RR ..... RR..] 
+  +B471:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 47/47 wr 63 swaps 13 any 1 found 0 EtherQueueConsumerThread
+}

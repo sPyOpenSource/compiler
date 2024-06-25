@@ -1,0 +1,13 @@
+class java/io/ObjectStreamConstants {
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/io/SerializablePermission("enableSubstitution");    [ R  i][ R . iRR]
+        SUBSTITUTION_PERMISSION = b0;   
+        b0 = new java/io/SerializablePermission("enableSubclassImplementation");    [ R . i..][ R . iRR]
+        SUBCLASS_IMPLEMENTATION_PERMISSION = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 2 <clinit>
+}

@@ -1,0 +1,264 @@
+class java/util/TreeMap$SubTreeMap {
+ 
+ method <init>(Ljava/util/TreeMap;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0._oMinKey = vR2;   
+        vR0._oMaxKey = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method clear()V {
+  +START:   #1
+        vR2 = lowerBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [  RRRR RRRR]
+        vR3 = upperBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [?R  RRRRRRRR RRRR]
+        vR1 = vR3.getKey();    [?RR  RRRRRRRR R...] 
+  +B57:   #1
+        if vR2==access$000@special() goto B109;   
+  +B64:   #1
+        if vR3==access$000@special() goto B89;   
+  +B71:   #1
+        if compare@special(vR0.this$0._oComparator,vR2.getKey(),vR1)>=0 goto B109;   
+  +B89:   #1
+        vR0.this$0.remove(vR2.getKey());   [RRR  i....... RR..] 
+        vR2 = treeSuccessor@special(vR2);    [RRR  i....... R...]
+        goto +B57;   [RRR  i....... ....]
+  +B109:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 16 swaps 1 any 2 found 2 clear
+ 
+ method containsKey(Ljava/lang/Object;)Z {
+  +START:   #1
+        if keyInRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey,vR0._oMaxKey)==0 goto B37;   
+  +B22:   #1
+        if vR0.this$0.containsKey(vR1)==0 goto B37;   
+  +B33:   #1
+        b0 = 1;    
+        goto +B38b0;   forward return[ i ... ....]
+  +B37:   #2
+        b0 = 0;    
+  +B38b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 containsKey
+ 
+ method containsValue(Ljava/lang/Object;)Z {
+  +START:   #1
+        vR4 = lowerBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [  RRRR RRRR]
+        vR5 = upperBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [??R  RRRRRRRR RRRR]
+        vR3 = vR5.getKey();    [??RR  RRRRRRRR R...] 
+  +B60:   #1
+        if vR4==access$000@special() goto B129;   
+  +B68:   #1
+        if vR5==access$000@special() goto B95;   
+  +B76:   #1
+        if compare@special(vR0.this$0._oComparator,vR4.getKey(),vR3)>=0 goto B129;   
+  +B95:   #1
+        vR2 = vR4.getValue();    [?RRR  ........ R...] 
+        if vR1!=null goto B109;   
+  +B105:   #1
+        if vR2==null goto B117;   
+  +B109:   #1
+        if vR1.equals(vR2)==0 goto B119;   
+  +B117:   #1
+        return 1;   
+  +B119:   #1
+        vR4 = treeSuccessor@special(vR4);    [RRRR  ........ R...]
+        goto +B60;   [RRRR  ........ ....]
+  +B129:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 16 swaps 0 any 4 found 2 containsValue
+ 
+ method get(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        if keyInRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey,vR0._oMaxKey)==0 goto B31;   
+  +B22:   #1
+        return vR0.this$0.get(vR1);   
+  +B31:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 get
+ 
+ method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        if keyInRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey,vR0._oMaxKey)==0 goto B32;   
+  +B22:   #1
+        return vR0.this$0.put(vR1,vR2);   
+  -B32:   #1
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("insert an entry",vR0._oMinKey,vR0._oMaxKey));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 0 any 0 found 0 put
+ 
+ method putAll(Ljava/util/Map;)V {
+  +START:   #1
+        vR3 = vR1.entrySet().iterator();    [  . R] [  R R] 
+  +B12:   #1
+        if vR3.hasNext()==0 goto B51;   
+  +B21:   #1
+        vR2 = (java/util/Map$Entry)(vR3.next());    
+        vR0.put@this(vR2.getKey(),vR2.getValue());   [RR  iR RRR] 
+        goto +B12;   [RR  iR ...]
+  +B51:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 1 any 0 found 0 putAll
+ 
+ method remove(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        if keyInRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey,vR0._oMaxKey)==0 goto B31;   
+  +B22:   #1
+        return vR0.this$0.remove(vR1);   
+  -B31:   #1
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("remove an entry",vR0._oMinKey,vR0._oMaxKey));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 0 any 0 found 0 remove
+ 
+ method size()I {
+  +START:   #1
+        vi1 = 0;    
+        vR3 = lowerBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [i  RRRR RRRR]
+        vR4 = upperBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [i?R  RRRRRRRR RRRR]
+        vR2 = vR4.getKey();    [i?RR  RRRRRRRR R...] 
+  +B61:   #1
+        if vR3==access$000@special() goto B105;   
+  +B68:   #1
+        if vR4==access$000@special() goto B94;   
+  +B76:   #1
+        if compare@special(vR0.this$0._oComparator,vR3.getKey(),vR2)>=0 goto B105;   
+  +B94:   #1
+        vi1++;   
+        vR3 = treeSuccessor@special(vR3);    [iRRR  ........ R...]
+        goto +B61;   [iRRR  ........ ....]
+  +B105:   #2
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 17 swaps 0 any 3 found 2 size
+ 
+ method entrySet()Ljava/util/Set; {
+  +START:   #1
+        return new java/util/TreeMap$TreeMapSet(vR0.this$0,vR0,0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 entrySet
+ 
+ method keySet()Ljava/util/Set; {
+  +START:   #1
+        return new java/util/TreeMap$TreeMapSet(vR0.this$0,vR0,1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 keySet
+ 
+ method values()Ljava/util/Collection; {
+  +START:   #1
+        return new java/util/TreeMap$TreeMapCollection(vR0.this$0,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 values
+ 
+ method comparator()Ljava/util/Comparator; {
+  +START:   #1
+        return vR0.this$0._oComparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 comparator
+ 
+ method firstKey()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = lowerBound@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [ R RRRR RRRR]
+        if vR1==access$000@special() goto B40;   
+  +B33:   #1
+        b0 = vR1.getKey();    [R R .... R...] 
+        goto +B41b0;   forward return[R R .... ....]
+  +B40:   #1
+        b0 = 0;    
+  +B41b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 0 any 1 found 1 firstKey
+ 
+ method lastKey()Ljava/lang/Object; {
+  +START:   #1
+        if vR0._oMaxKey!=null goto B34;   
+  +B7:   #1
+        vR1 = treeMax@special(vR0.this$0._oRoot);    [ R R R]
+        if vR1==access$000@special() goto B32;   
+  +B25:   #1
+        b0 = vR1.getKey();    [R R . R] 
+        goto +B33b0;   forward return[R R . .]
+  +B32:   #1
+        b0 = 0;    
+  +B33b0:   #1 reference
+        return b0;   
+  +B34:   #1
+        vR1 = treeMaxConstrained@special(vR0.this$0._oRoot,vR0.this$0._oComparator,vR0._oMinKey,vR0._oMaxKey);    [R R RRRR RRRR]
+        if vR1==access$000@special() goto B77;   
+  +B67:   #1
+        b0 = treePredecessor@special(vR1).getKey();    [R R .... R...] [R R R... R...]
+        goto +B78b0;   forward return[R R .... ....]
+  +B77:   #1
+        b0 = 0;    
+  +B78b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 12 swaps 0 any 2 found 2 lastKey
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if compare@special(vR0.this$0._oComparator,vR1,vR2)>=0 goto B101;   
+  +B15:   #1
+        if keyInMinRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey)==0 goto B101;   
+  +B33:   #1
+        if keyInClosedMaxRange@special(vR0.this$0._oComparator,vR1,vR0._oMaxKey)==0 goto B101;   
+  +B51:   #1
+        if keyInMinRange@special(vR0.this$0._oComparator,vR2,vR0._oMinKey)==0 goto B101;   
+  +B69:   #1
+        if keyInClosedMaxRange@special(vR0.this$0._oComparator,vR2,vR0._oMaxKey)==0 goto B101;   
+  +B87:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0.this$0,vR1,vR2);   
+  -B101:   #5
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a subMap",vR0._oMinKey,vR0._oMaxKey));   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 14 swaps 0 any 0 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if keyInMinRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey)==0 goto B53;   
+  +B18:   #1
+        if keyInClosedMaxRange@special(vR0.this$0._oComparator,vR1,vR0._oMaxKey)==0 goto B53;   
+  +B36:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0.this$0,vR0._oMinKey,vR1);   
+  -B53:   #2
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a subMap",vR0._oMinKey,vR0._oMaxKey));   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 9 swaps 0 any 0 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if keyInMinRange@special(vR0.this$0._oComparator,vR1,vR0._oMinKey)==0 goto B53;   
+  +B18:   #1
+        if keyInClosedMaxRange@special(vR0.this$0._oComparator,vR1,vR0._oMaxKey)==0 goto B53;   
+  +B36:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0.this$0,vR1,vR0._oMaxKey);   
+  -B53:   #2
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a subMap",vR0._oMinKey,vR0._oMaxKey));   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 9 swaps 0 any 0 found 0 tailMap
+}

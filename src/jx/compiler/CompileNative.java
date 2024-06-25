@@ -10,7 +10,6 @@ import jx.compiler.execenv.IOSystem;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.jar.JarFile;
 
 import static jx.compspec.StartBuilder.getCompilerOptions;
 import jx.zero.Debug;

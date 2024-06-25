@@ -1,0 +1,91 @@
+class java/io/FileOutputStream {
+ 
+ method finalize()V {
+  +START:   #1
+        if vR0.fd==null goto B11;   
+  +B7:   #1
+        vR0.close@this();   [   R] 
+  +B11:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 finalize
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method getFD()Ljava/io/FileDescriptor; {
+  +START:   #1
+        if vR0.fd!=null goto B15;   
+  -B7:   #1
+        throw new java/io/IOException();   
+  +B15:   #1
+        return vR0.fd;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getFD
+ 
+ method write([BII)V {
+  +START:   #1
+        if vR0.fd!=null goto B15;   
+  -B7:   #1
+        throw new java/io/IOException();   
+  +B15:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+ 
+ method write([B)V {
+  +START:   #1
+        vR0.write@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 write
+ 
+ method write(I)V {
+  +START:   #1
+        vR2 = new byte[1];    
+        vR2[0] = (byte)(vi1 & 255);   
+        vR0.write@this(vR2);   [R   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 write
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/io/FileDescriptor();    [ RR  i][ RR  iR]
+        vR0.fd = b1;   
+        if vR0.fd.valid@extra()!=0 goto B33;   
+  -B25:   #1
+        throw new java/io/IOException();   
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/File;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getPath@extra());   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/FileDescriptor;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fd = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+}

@@ -1,0 +1,42 @@
+class metaxa/os/devices/net/RomInformation {
+ 
+ method <init>(BB)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.set_RomPresent@this(vi1);   [   iR] 
+        vR0.set_RomSize@this(vi2);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method set_RomPresent(B)V {
+  +START:   #1
+        vR0.RomPresent = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_RomPresent
+ 
+ method set_RomSize(B)V {
+  +START:   #1
+        vR0.RomSize = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_RomSize
+ 
+ method get_RomPresent()B {
+  +START:   #1
+        return vR0.RomPresent;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_RomPresent
+ 
+ method get_RomSize()B {
+  +START:   #1
+        return vR0.RomSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_RomSize
+}

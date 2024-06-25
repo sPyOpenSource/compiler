@@ -1,0 +1,301 @@
+class java/io/DataInputStream {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        b0 = vR0;    
+        if (vR1 instanceof java/io/PushbackInputStream)==0 goto B15;   
+  +B8b0:   #1 reference
+        b1 = (java/io/PushbackInputStream)(vR1);    
+        goto +B23b0b1;   [ RR  ..]
+  +B15b0:   #1 reference
+        b1 = new java/io/PushbackInputStream(vR1);    [ RR  i.][ RR . iRR]
+  +B23b0b1:   #1 reference reference
+        b0.<init>@special(b1);   [ RR . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 1 <init>
+ 
+ method UTFBits(B)I {
+  +START:   #1
+        if (vi0 & 192)==128 goto B19;   
+  -B11:   #1
+        throw new java/io/UTFDataFormatException();   
+  +B19:   #1
+        return (vi0 & 63);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 UTFBits
+ 
+ method readUTF(Ljava/io/DataInput;)Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.readUnsignedShort();    [ Ri  R] 
+        vR2 = new byte[vi1];    
+        vR0.readFully(vR2);   [iR Ri  RR] 
+        vR3 = new java/lang/StringBuilder(vi1);    [ Ri  i.][ Ri . iiR]
+        vi5 = 0;    
+  +B30:   #1
+        if vi5>=vi1 goto B275;   
+  +B36:   #1
+        b1 = vi5;    
+        vi5++;   
+        vi6 = (vR2[b1] & 255);    
+        tswitch ((vi6 >> 4)) B132 B132 B132 B132 B132 B132 B132 B132 B139 B139 B139 B139 B147 B147 B189 B248 : B256;   
+  +B132:   #8
+        vi4 = vi6;    
+        goto +B264;   [iRRiii Ri . ...]
+  -B139:   #4
+        throw new java/io/UTFDataFormatException();   
+  +B147:   #2
+        if vi5<vi1 goto B161;   
+  -B153:   #1
+        throw new java/io/UTFDataFormatException();   
+  +B161:   #1
+        b1 = vi5;    
+        vi5++;   
+        vi7 = UTFBits@special(vR2[b1]);    [iRRiii Ri b b..]
+        vi4 = (((vi6 & 31) << 6)+vi7);    
+        goto +B264;   [iRRiiii Ri b ...]
+  +B189:   #1
+        if vi1>=2 goto B202;   
+  -B194:   #1
+        throw new java/io/UTFDataFormatException();   
+  +B202:   #1
+        b1 = vi5;    
+        vi5++;   
+        vi8 = UTFBits@special(vR2[b1]);    [iRRiiii Ri b b..]
+        b1 = vi5;    
+        vi5++;   
+        vi9 = UTFBits@special(vR2[b1]);    [iRRiiiii Ri bb b..]
+        vi4 = ((((vi6 & 15) << 12)+(vi8 << 6))+vi9);    
+        goto +B264;   [iRRiiiiii Ri bb ...]
+  -B248:   #1
+        throw new java/io/UTFDataFormatException();   
+  -B256:   #1
+        throw new java/io/UTFDataFormatException();   
+  +B264:   #3
+        vR3.append@extra((char)vi4);   [iRRiii Ri i. iR.] 
+        goto +B30;   [iRRiii Ri i. ...]
+  +B275:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 24 swaps 1 any 15 found 0 readUTF
+ 
+ method unread0()V {
+  +START:   #1
+        (java/io/PushbackInputStream)(vR0.in).unread(last);   [  i. iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 unread0
+ 
+ method read0()I {
+  +START:   #1
+        vi1 = vR0.read@special();    [ R  R] 
+        if vi1>=0 goto B17;   
+  -B9:   #1
+        throw new java/io/EOFException();   
+  +B17:   #1
+        last = vi1;   
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 1 read0
+ 
+ method read([B)I {
+  +START:   #1
+        return vR0.read@special(vR1,0,vR1.length);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 read
+ 
+ method read([BII)I {
+  +START:   #1
+        return vR0.read@special(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+ 
+ method readFully([B)V {
+  +START:   #1
+        vR0.readFully@extra(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 readFully
+ 
+ method readFully([BII)V {
+  +START:   #2
+        if vi3<=0 goto B39;   
+  +B4:   #1
+        vi4 = vR0.read@extra(vR1,vi2,vi3);    [ R  iiRR] 
+        if vi4>=0 goto B26;   
+  -B18:   #1
+        throw new java/io/EOFException();   
+  +B26:   #1
+        vi2 = (vi2+vi4);    
+        vi3 = (vi3-vi4);    
+        goto +START;   [i R  ....]
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 4 found 0 readFully
+ 
+ method readBoolean()Z {
+  +START:   #1
+        if vR0.read0@special()==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  .]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 readBoolean
+ 
+ method readByte()B {
+  +START:   #1
+        return (byte)vR0.read0@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 readByte
+ 
+ method readUnsignedByte()I {
+  +START:   #1
+        return vR0.read0@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 readUnsignedByte
+ 
+ method readChar()C {
+  +START:   #1
+        vi1 = vR0.read0@special();    [   R] 
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        return (char)vi1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 1 readChar
+ 
+ method readShort()S {
+  +START:   #1
+        vi1 = vR0.read0@special();    [   R] 
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        return (short)vi1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 1 readShort
+ 
+ method readUnsignedShort()I {
+  +START:   #1
+        vi1 = vR0.read0@special();    [   R] 
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 1 readUnsignedShort
+ 
+ method readInt()I {
+  +START:   #1
+        vi1 = vR0.read0@special();    [   R] 
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        vi1 = (vi1 << 8);    
+        vi1 = (vi1+vR0.read0@special());    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 0 any 6 found 3 readInt
+ 
+ method readLong()J {
+  +START:   #1
+        vl1 = (long)vR0.read0@special();    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        vl1 = (vl1 << 8);    
+        vl1 = (vl1+(long)vR0.read0@special());    
+        return vl1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readLong
+ 
+ method readFloat()F {
+  +START:   #1
+        vi1 = vR0.readInt@extra();    [   R] 
+        return intBitsToFloat@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readFloat
+ 
+ method readDouble()D {
+  -START:   #1
+        throw new java/io/IOException("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readDouble
+ 
+ method readLine()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+  +B8:   #1
+        vi2 = vR0.read0@special();    [R R  R.] 
+        if vi2!=10 goto B22;   
+  +B19:   #1
+        goto +B56;   forward return[Ri R  ..]
+  +B22:   #1
+        if vi2!=13 goto B46;   
+  +B28:   #1
+        vi2 = vR0.read0@special();    [Ri R  R.] 
+        if vi2==10 goto B56;   
+  +B39:   #1
+        vR0.unread0@special();   [Ri R  R.] 
+        goto +B56;   forward return[Ri R  ..]
+  +B46:   #1
+        vR1.append@extra((char)vi2);   [Ri R i iR] 
+        goto +B8;   [Ri R i ..]
+  +B56:   #3
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 1 any 3 found 0 readLine
+ 
+ method readUTF()Ljava/lang/String; {
+  +START:   #1
+        return readUTF@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readUTF
+ 
+ method skipBytes(I)I {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vi1 goto B18;   
+  +B7:   #1
+        vR0.read0@special();   [i   R] 
+        vi2++;   
+        goto +B2;   [i   .]
+  +B18:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 skipBytes
+}

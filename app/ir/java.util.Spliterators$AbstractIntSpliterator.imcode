@@ -1,0 +1,150 @@
+class java/util/Spliterators$AbstractIntSpliterator {
+ 
+ method <init>(JI)V {
+  +START:   #1
+        vR0.<init>@special();   [ Ri  R] 
+        vR0.est = vl1;   
+        b0 = vR0;    
+        if (vi3 & 64)==0 goto B25;   
+  +B17b0:   #1 reference
+        b1 = (vi3 | 16384);    
+        goto +B26b0b1;   [i Ri  .]
+  +B25b0:   #1 reference
+        b1 = vi3;    
+  +B26b0b1:   #1 reference int
+        b0.characteristics = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 4 found 0 <init>
+ 
+ method forEachRemaining(Ljava/util/function/IntConsumer;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method tryAdvance(Ljava/util/function/Consumer;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 tryAdvance
+ 
+ method tryAdvance(Ljava/util/function/IntConsumer;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 tryAdvance
+ 
+ method getExactSizeIfKnown()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getExactSizeIfKnown
+ 
+ method hasCharacteristics(I)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hasCharacteristics
+ 
+ method getComparator()Ljava/util/Comparator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getComparator
+ 
+ method trySplit()Ljava/util/Spliterator$OfInt; {
+  +START:   #1
+        vR1 = new java/util/Spliterators$AbstractIntSpliterator$HoldingIntConsumer();    [ R  i][ R  iR]
+        vl2 = vR0.est;    
+        if compare(vl2,1)<=0 goto B142;   
+  +B19:   #1
+        if vR0.tryAdvance@this(vR1)==0 goto B142;   
+  +B27:   #1
+        vi4 = (vR0.batch+1024);    
+        if compare((long)vi4,vl2)<=0 goto B49;   
+  +B45:   #1
+        vi4 = (int)vl2;    
+  +B49:   #1
+        if vi4<=33554432 goto B60;   
+  +B56:   #1
+        vi4 = 33554432;    
+  +B60:   #1
+        vR5 = new int[vi4];    
+        vi6 = 0;    
+  +B69:   #1
+        vR5[vi6] = vR1.value;   
+        vi6++;   
+        if vi6>=vi4 goto B96;   
+  +B88:   #1
+        if vR0.tryAdvance@this(vR1)!=0 goto B69;   
+  +B96:   #1
+        vR0.batch = vi6;   
+        if compare(vR0.est,9223372036854775807)==0 goto B125;   
+  +B113:   #1
+        vR0.est = (vR0.est-(long)vi6);   
+  +B125:   #1
+        return new java/util/Spliterators$IntArraySpliterator(vR5,0,vi6,vR0.characteristics@this());   
+  +B142:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 8 swaps 0 any 3 found 0 trySplit
+ 
+ method estimateSize()J {
+  +START:   #1
+        return vR0.est;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 estimateSize
+ 
+ method characteristics()I {
+  +START:   #1
+        return vR0.characteristics;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 characteristics
+ 
+ method forEachRemaining(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.forEachRemaining@this((java/util/function/IntConsumer)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 forEachRemaining
+ 
+ method tryAdvance(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.tryAdvance@this((java/util/function/IntConsumer)(vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 tryAdvance
+ 
+ method trySplit()Ljava/util/Spliterator$OfPrimitive; {
+  +START:   #1
+        return vR0.trySplit@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+ 
+ method trySplit()Ljava/util/Spliterator; {
+  +START:   #1
+        return vR0.trySplit@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+}

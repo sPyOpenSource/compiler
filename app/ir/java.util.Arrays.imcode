@@ -1,0 +1,2208 @@
+class java/util/Arrays {
+ 
+ method copyOf([Ljava/lang/Object;I)[Ljava/lang/Object; {
+  +START:   #1
+        return copyOf@special(vR0,vi1,vR0.getClass@this());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyOf
+ 
+ method copyOf([CI)[C {
+  +START:   #1
+        vR2 = new char[vi1];    
+        arraycopy@special(vR0,0,vR2,0,min@special(vR0.length,vi1));   [R  ii iiRiR]
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 copyOf
+ 
+ method copyOf([Ljava/lang/Object;ILjava/lang/Class;)[Ljava/lang/Object; {
+  +START:   #1
+        if vR2!=[Ljava/lang/Object; goto B13;   
+  +B6:   #1
+        b0 = new java/lang/Object()[vi1];    
+        goto +B24b0;   [ R  ..]
+  +B13:   #1
+        b0 = ([Ljava/lang/Object;)(newInstance@special(vR2.getComponentType@extra(),vi1));    
+  +B24b0:   #1 reference
+        vR3 = b0;    
+        arraycopy@special(vR0,0,vR3,0,min@special(vR0.length,vi1));   [R R ii iiRiR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 0 any 2 found 0 copyOf
+ 
+ method stream([Ljava/lang/Object;)Ljava/util/stream/Stream; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 stream
+ 
+ method stream([I)Ljava/util/stream/IntStream; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 stream
+ 
+ method copyOfRange([Ljava/lang/Object;II)[Ljava/lang/Object; {
+  +START:   #1
+        return copyOfRange@special(vR0,vi1,vi2,vR0.getClass@this());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 copyOfRange
+ 
+ method copyOfRange([Ljava/lang/Object;IILjava/lang/Class;)[Ljava/lang/Object; {
+  +START:   #1
+        vi4 = (vi2-vi1);    
+        if vi4>=0 goto B41;   
+  -B10:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra(vi1).append@extra(" > ").append@extra(vi2).toString@extra());   [i RRR ii.. RR..] 
+        throw b0;   
+  +B41:   #1
+        if vR3!=[Ljava/lang/Object; goto B55;   
+  +B47:   #1
+        b0 = new java/lang/Object()[vi4];    
+        goto +B67b0;   [i RRR .... ....]
+  +B55:   #1
+        b0 = ([Ljava/lang/Object;)(newInstance@special(vR3.getComponentType@extra(),vi4));    
+  +B67b0:   #1 reference
+        vR5 = b0;    
+        arraycopy@special(vR0,vi1,vR5,0,min@special((vR0.length-vi1),vi4));   [iR RRR ii.. iiRiR]
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 16 swaps 2 any 5 found 0 copyOfRange
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method binarySearch([BB)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = (vR0.length-1);    
+        vi4 = 0;    
+  +B10:   #1
+        if vi2>vi3 goto B60;   
+  +B15:   #1
+        vi4 = ((vi2+vi3) >> 1);    
+        vi5 = vR0[vi4];    
+        if vi5!=vi1 goto B37;   
+  +B34:   #1
+        return vi4;   
+  +B37:   #1
+        if vi5<=vi1 goto B51;   
+  +B43:   #1
+        vi3 = (vi4-1);    
+        goto +B57;   [iiii   ]
+  +B51:   #1
+        vi4++;   
+        vi2 = vi4;    
+  +B57:   #1
+        goto +B10;   [iiii   ]
+  +B60:   #1
+        return (-vi4-1);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([CC)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = (vR0.length-1);    
+        vi4 = 0;    
+  +B10:   #1
+        if vi2>vi3 goto B60;   
+  +B15:   #1
+        vi4 = ((vi2+vi3) >> 1);    
+        vi5 = vR0[vi4];    
+        if vi5!=vi1 goto B37;   
+  +B34:   #1
+        return vi4;   
+  +B37:   #1
+        if vi5<=vi1 goto B51;   
+  +B43:   #1
+        vi3 = (vi4-1);    
+        goto +B57;   [iiii   ]
+  +B51:   #1
+        vi4++;   
+        vi2 = vi4;    
+  +B57:   #1
+        goto +B10;   [iiii   ]
+  +B60:   #1
+        return (-vi4-1);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([SS)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = (vR0.length-1);    
+        vi4 = 0;    
+  +B10:   #1
+        if vi2>vi3 goto B60;   
+  +B15:   #1
+        vi4 = ((vi2+vi3) >> 1);    
+        vi5 = vR0[vi4];    
+        if vi5!=vi1 goto B37;   
+  +B34:   #1
+        return vi4;   
+  +B37:   #1
+        if vi5<=vi1 goto B51;   
+  +B43:   #1
+        vi3 = (vi4-1);    
+        goto +B57;   [iiii   ]
+  +B51:   #1
+        vi4++;   
+        vi2 = vi4;    
+  +B57:   #1
+        goto +B10;   [iiii   ]
+  +B60:   #1
+        return (-vi4-1);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([II)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = (vR0.length-1);    
+        vi4 = 0;    
+  +B10:   #1
+        if vi2>vi3 goto B60;   
+  +B15:   #1
+        vi4 = ((vi2+vi3) >> 1);    
+        vi5 = vR0[vi4];    
+        if vi5!=vi1 goto B37;   
+  +B34:   #1
+        return vi4;   
+  +B37:   #1
+        if vi5<=vi1 goto B51;   
+  +B43:   #1
+        vi3 = (vi4-1);    
+        goto +B57;   [iiii   ]
+  +B51:   #1
+        vi4++;   
+        vi2 = vi4;    
+  +B57:   #1
+        goto +B10;   [iiii   ]
+  +B60:   #1
+        return (-vi4-1);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([JJ)I {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = (vR0.length-1);    
+        vi5 = 0;    
+  +B11:   #1
+        if vi3>vi4 goto B66;   
+  +B17:   #1
+        vi5 = ((vi3+vi4) >> 1);    
+        vl6 = vR0[vi5];    
+        if compare(vl6,vl1)!=0 goto B41;   
+  +B38:   #1
+        return vi5;   
+  +B41:   #1
+        if compare(vl6,vl1)<=0 goto B57;   
+  +B48:   #1
+        vi4 = (vi5-1);    
+        goto +B63;   [?iiil   .]
+  +B57:   #1
+        vi5++;   
+        vi3 = vi5;    
+  +B63:   #1
+        goto +B11;   [?iiil   .]
+  +B66:   #1
+        return (-vi5-1);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 0 any 5 found 0 binarySearch
+ 
+ method binarySearch([FF)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = (vR0.length-1);    
+        vi4 = 0;    
+  +B10:   #1
+        if vi2>vi3 goto B62;   
+  +B15:   #1
+        vi4 = ((vi2+vi3) >> 1);    
+        vi5 = compare@special(vR0[vi4],vl1);    [iii   ??]
+        if vi5!=0 goto B40;   
+  +B37:   #1
+        return vi4;   
+  +B40:   #1
+        if vi5<=0 goto B53;   
+  +B45:   #1
+        vi3 = (vi4-1);    
+        goto +B59;   [iiii   ..]
+  +B53:   #1
+        vi4++;   
+        vi2 = vi4;    
+  +B59:   #1
+        goto +B10;   [iiii   ..]
+  +B62:   #1
+        return (-vi4-1);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([DD)I {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = (vR0.length-1);    
+        vi5 = 0;    
+  +B11:   #1
+        if vi3>vi4 goto B66;   
+  +B17:   #1
+        vi5 = ((vi3+vi4) >> 1);    
+        vi6 = compare@special(vR0[vi5],vd1);    [?iii   ????]
+        if vi6!=0 goto B43;   
+  +B40:   #1
+        return vi5;   
+  +B43:   #1
+        if vi6<=0 goto B57;   
+  +B48:   #1
+        vi4 = (vi5-1);    
+        goto +B63;   [?iiii   ....]
+  +B57:   #1
+        vi5++;   
+        vi3 = vi5;    
+  +B63:   #1
+        goto +B11;   [?iiii   ....]
+  +B66:   #1
+        return (-vi5-1);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 0 any 7 found 0 binarySearch
+ 
+ method binarySearch([Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        return binarySearch@special(vR0,vR1,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 binarySearch
+ 
+ method binarySearch([Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPL");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 binarySearch
+ 
+ method equals([Z[Z)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B41;   
+  +B14:   #1
+        vi2 = 0;    
+  +B16:   #1
+        if vi2>=vR0.length goto B39;   
+  +B22:   #1
+        if vR0[vi2]==vR1[vi2] goto B33;   
+  +B31:   #1
+        return 0;   
+  +B33:   #1
+        vi2++;   
+        goto +B16;   [i   ]
+  +B39:   #1
+        return 1;   
+  +B41:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([B[B)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B37;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B35;   
+  +B24:   #1
+        if vR0[vi2]==vR1[vi2] goto B17;   
+  +B33:   #1
+        return 0;   
+  +B35:   #1
+        return 1;   
+  +B37:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([C[C)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 equals
+ 
+ method equals([S[S)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B37;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B35;   
+  +B24:   #1
+        if vR0[vi2]==vR1[vi2] goto B17;   
+  +B33:   #1
+        return 0;   
+  +B35:   #1
+        return 1;   
+  +B37:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([I[I)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B37;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B35;   
+  +B24:   #1
+        if vR0[vi2]==vR1[vi2] goto B17;   
+  +B33:   #1
+        return 0;   
+  +B35:   #1
+        return 1;   
+  +B37:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([J[J)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B38;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B36;   
+  +B24:   #1
+        if compare(vR0[vi2],vR1[vi2])==0 goto B17;   
+  +B34:   #1
+        return 0;   
+  +B36:   #1
+        return 1;   
+  +B38:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([F[F)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B40;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B38;   
+  +B24:   #1
+        if compare@special(vR0[vi2],vR1[vi2])==0 goto B17;   
+  +B36:   #1
+        return 0;   
+  +B38:   #1
+        return 1;   
+  +B40:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method equals([D[D)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0.length!=vR1.length goto B40;   
+  +B14:   #1
+        vi2 = vR0.length;    
+  +B17:   #1
+        vi2--;   
+        if vi2< 0 goto B38;   
+  +B24:   #1
+        if compare@special(vR0[vi2],vR1[vi2])==0 goto B17;   
+  +B36:   #1
+        return 0;   
+  +B38:   #1
+        return 1;   
+  +B40:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 equals
+ 
+ method fill([ZZ)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vi1);   [  i iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([ZIIZ)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vi3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method fill([BB)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vi1);   [  i iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([BIIB)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vi3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method fill([CC)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vi1);   [  i iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([CIIC)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vi3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method fill([SS)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vi1);   [  i iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([SIIS)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vi3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method fill([II)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vi1);   [  i iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([IIII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vi3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method fill([JJ)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vl1);   [  i ??iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([JIIJ)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi5 = vi1;    
+  +B16:   #1
+        if vi5>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi5] = vl3;   
+        vi5++;   
+        goto +B16;   [?i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 4 found 0 fill
+ 
+ method fill([FF)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vl1);   [  i ?iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([FIIF)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vl3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 4 found 0 fill
+ 
+ method fill([DD)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vd1);   [  i ??iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([DIID)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi5 = vi1;    
+  +B16:   #1
+        if vi5>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi5] = vd3;   
+        vi5++;   
+        goto +B16;   [?i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 4 found 0 fill
+ 
+ method fill([Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        fill@special(vR0,0,vR0.length,vR1);   [  i RiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill
+ 
+ method fill([Ljava/lang/Object;IILjava/lang/Object;)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        vi4 = vi1;    
+  +B16:   #1
+        if vi4>=vi2 goto B33;   
+  +B22:   #1
+        vR0[vi4] = vR3;   
+        vi4++;   
+        goto +B16;   [i R  ..]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 5 found 0 fill
+ 
+ method sort([B)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([BII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[B)I {
+  +START:   #1
+        if vR3[vi0]>=vR3[vi1] goto B39;   
+  +B9:   #1
+        if vR3[vi1]>=vR3[vi2] goto B22;   
+  +B18:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B22:   #1
+        if vR3[vi0]>=vR3[vi2] goto B35;   
+  +B31:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B35:   #1
+        b0 = vi0;    
+        goto +B66b0;   forward return[ i  ]
+  +B39:   #1
+        if vR3[vi1]<=vR3[vi2] goto B52;   
+  +B48:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B52:   #1
+        if vR3[vi0]<=vR3[vi2] goto B65;   
+  +B61:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B65:   #1
+        b0 = vi0;    
+  +B66b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[B)V {
+  +START:   #1
+        vi3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 1 found 0 swap
+ 
+ method vecswap(III[B)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method qsort([BII)V {
+  +START:   #1
+        if vi2>7 goto B61;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B60;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B54;   
+  +B25:   #1
+        if vR0[(vi4-1)]<=vR0[vi4] goto B54;   
+  +B38:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B54:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B60:   #1
+        return;   
+  +B61:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B143;   
+  +B81:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B143:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B174:   #2
+        if vi7>vi8 goto B217;   
+  +B181:   #1
+        b0 = (vR0[vi7]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0> 0 goto B217;   
+  +B195:   #1
+        if vi10!=0 goto B211;   
+  +B200:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B211:   #1
+        vi7++;   
+        goto +B174;   [iiiiiiii i ...... ....]
+  +B217:   #3
+        if vi8<vi7 goto B260;   
+  +B224:   #1
+        b0 = (vR0[vi8]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0< 0 goto B260;   
+  +B238:   #1
+        if vi10!=0 goto B254;   
+  +B243:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B254:   #1
+        vi8--;   
+        goto +B217;   [iiiiiiii i ...... ....]
+  +B260:   #2
+        if vi7<=vi8 goto B270;   
+  +B267:   #1
+        goto +B287;   [iiiiiiii i ...... ....]
+  +B270:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B174;   [iiiiiiiii i ...... ....]
+  +B287:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B365;   
+  +B358:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B365:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B391;   
+  +B378:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B391:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([C)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([CII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[C)I {
+  +START:   #1
+        if vR3[vi0]>=vR3[vi1] goto B39;   
+  +B9:   #1
+        if vR3[vi1]>=vR3[vi2] goto B22;   
+  +B18:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B22:   #1
+        if vR3[vi0]>=vR3[vi2] goto B35;   
+  +B31:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B35:   #1
+        b0 = vi0;    
+        goto +B66b0;   forward return[ i  ]
+  +B39:   #1
+        if vR3[vi1]<=vR3[vi2] goto B52;   
+  +B48:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B52:   #1
+        if vR3[vi0]<=vR3[vi2] goto B65;   
+  +B61:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B65:   #1
+        b0 = vi0;    
+  +B66b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[C)V {
+  +START:   #1
+        vi3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 1 found 0 swap
+ 
+ method vecswap(III[C)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method qsort([CII)V {
+  +START:   #1
+        if vi2>7 goto B61;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B60;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B54;   
+  +B25:   #1
+        if vR0[(vi4-1)]<=vR0[vi4] goto B54;   
+  +B38:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B54:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B60:   #1
+        return;   
+  +B61:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B143;   
+  +B81:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B143:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B174:   #2
+        if vi7>vi8 goto B217;   
+  +B181:   #1
+        b0 = (vR0[vi7]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0> 0 goto B217;   
+  +B195:   #1
+        if vi10!=0 goto B211;   
+  +B200:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B211:   #1
+        vi7++;   
+        goto +B174;   [iiiiiiii i ...... ....]
+  +B217:   #3
+        if vi8<vi7 goto B260;   
+  +B224:   #1
+        b0 = (vR0[vi8]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0< 0 goto B260;   
+  +B238:   #1
+        if vi10!=0 goto B254;   
+  +B243:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B254:   #1
+        vi8--;   
+        goto +B217;   [iiiiiiii i ...... ....]
+  +B260:   #2
+        if vi7<=vi8 goto B270;   
+  +B267:   #1
+        goto +B287;   [iiiiiiii i ...... ....]
+  +B270:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B174;   [iiiiiiiii i ...... ....]
+  +B287:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B365;   
+  +B358:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B365:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B391;   
+  +B378:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B391:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([S)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([SII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[S)I {
+  +START:   #1
+        if vR3[vi0]>=vR3[vi1] goto B39;   
+  +B9:   #1
+        if vR3[vi1]>=vR3[vi2] goto B22;   
+  +B18:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B22:   #1
+        if vR3[vi0]>=vR3[vi2] goto B35;   
+  +B31:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B35:   #1
+        b0 = vi0;    
+        goto +B66b0;   forward return[ i  ]
+  +B39:   #1
+        if vR3[vi1]<=vR3[vi2] goto B52;   
+  +B48:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B52:   #1
+        if vR3[vi0]<=vR3[vi2] goto B65;   
+  +B61:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B65:   #1
+        b0 = vi0;    
+  +B66b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[S)V {
+  +START:   #1
+        vi3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 1 found 0 swap
+ 
+ method vecswap(III[S)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method qsort([SII)V {
+  +START:   #1
+        if vi2>7 goto B61;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B60;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B54;   
+  +B25:   #1
+        if vR0[(vi4-1)]<=vR0[vi4] goto B54;   
+  +B38:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B54:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B60:   #1
+        return;   
+  +B61:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B143;   
+  +B81:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B143:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B174:   #2
+        if vi7>vi8 goto B217;   
+  +B181:   #1
+        b0 = (vR0[vi7]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0> 0 goto B217;   
+  +B195:   #1
+        if vi10!=0 goto B211;   
+  +B200:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B211:   #1
+        vi7++;   
+        goto +B174;   [iiiiiiii i ...... ....]
+  +B217:   #3
+        if vi8<vi7 goto B260;   
+  +B224:   #1
+        b0 = (vR0[vi8]-vR0[vi1]);    
+        vi10 = b0;    
+        if b0< 0 goto B260;   
+  +B238:   #1
+        if vi10!=0 goto B254;   
+  +B243:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B254:   #1
+        vi8--;   
+        goto +B217;   [iiiiiiii i ...... ....]
+  +B260:   #2
+        if vi7<=vi8 goto B270;   
+  +B267:   #1
+        goto +B287;   [iiiiiiii i ...... ....]
+  +B270:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B174;   [iiiiiiiii i ...... ....]
+  +B287:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B365;   
+  +B358:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B365:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B391;   
+  +B378:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B391:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([I)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([III)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[I)I {
+  +START:   #1
+        if vR3[vi0]>=vR3[vi1] goto B39;   
+  +B9:   #1
+        if vR3[vi1]>=vR3[vi2] goto B22;   
+  +B18:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B22:   #1
+        if vR3[vi0]>=vR3[vi2] goto B35;   
+  +B31:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B35:   #1
+        b0 = vi0;    
+        goto +B66b0;   forward return[ i  ]
+  +B39:   #1
+        if vR3[vi1]<=vR3[vi2] goto B52;   
+  +B48:   #1
+        b0 = vi1;    
+        goto +B66b0;   forward return[ i  ]
+  +B52:   #1
+        if vR3[vi0]<=vR3[vi2] goto B65;   
+  +B61:   #1
+        b0 = vi2;    
+        goto +B66b0;   forward return[ i  ]
+  +B65:   #1
+        b0 = vi0;    
+  +B66b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[I)V {
+  +START:   #1
+        vi3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 1 found 0 swap
+ 
+ method vecswap(III[I)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method compare(II)I {
+  +START:   #1
+        if vi0>=vi1 goto B9;   
+  +B5:   #1
+        b0 = -1;    
+        goto +B19b0;   forward return[ i  ]
+  +B9:   #1
+        if vi0!=vi1 goto B18;   
+  +B14:   #1
+        b0 = 0;    
+        goto +B19b0;   forward return[ i  ]
+  +B18:   #1
+        b0 = 1;    
+  +B19b0:   #2 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 compare
+ 
+ method qsort([III)V {
+  +START:   #1
+        if vi2>7 goto B61;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B60;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B54;   
+  +B25:   #1
+        if vR0[(vi4-1)]<=vR0[vi4] goto B54;   
+  +B38:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B54:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B60:   #1
+        return;   
+  +B61:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B143;   
+  +B81:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B143:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B174:   #2
+        if vi7>vi8 goto B219;   
+  +B181:   #1
+        b0 = compare@special(vR0[vi7],vR0[vi1]);    [iiiiiii i ii.... ii..]
+        vi10 = b0;    
+        if b0> 0 goto B219;   
+  +B197:   #1
+        if vi10!=0 goto B213;   
+  +B202:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B213:   #1
+        vi7++;   
+        goto +B174;   [iiiiiiii i ...... ....]
+  +B219:   #3
+        if vi8<vi7 goto B264;   
+  +B226:   #1
+        b0 = compare@special(vR0[vi8],vR0[vi1]);    [iiiiiiii i ii.... ii..]
+        vi10 = b0;    
+        if b0< 0 goto B264;   
+  +B242:   #1
+        if vi10!=0 goto B258;   
+  +B247:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B258:   #1
+        vi8--;   
+        goto +B219;   [iiiiiiii i ...... ....]
+  +B264:   #2
+        if vi7<=vi8 goto B274;   
+  +B271:   #1
+        goto +B291;   [iiiiiiii i ...... ....]
+  +B274:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B174;   [iiiiiiiii i ...... ....]
+  +B291:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B369;   
+  +B362:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B369:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B395;   
+  +B382:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B395:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 49 swaps 0 any 34 found 0 qsort
+ 
+ method sort([J)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([JII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[J)I {
+  +START:   #1
+        if compare(vR3[vi0],vR3[vi1])>=0 goto B42;   
+  +B10:   #1
+        if compare(vR3[vi1],vR3[vi2])>=0 goto B24;   
+  +B20:   #1
+        b0 = vi1;    
+        goto +B71b0;   forward return[ i  .]
+  +B24:   #1
+        if compare(vR3[vi0],vR3[vi2])>=0 goto B38;   
+  +B34:   #1
+        b0 = vi2;    
+        goto +B71b0;   forward return[ i  .]
+  +B38:   #1
+        b0 = vi0;    
+        goto +B71b0;   forward return[ i  .]
+  +B42:   #1
+        if compare(vR3[vi1],vR3[vi2])<=0 goto B56;   
+  +B52:   #1
+        b0 = vi1;    
+        goto +B71b0;   forward return[ i  .]
+  +B56:   #1
+        if compare(vR3[vi0],vR3[vi2])<=0 goto B70;   
+  +B66:   #1
+        b0 = vi2;    
+        goto +B71b0;   forward return[ i  .]
+  +B70:   #1
+        b0 = vi0;    
+  +B71b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[J)V {
+  +START:   #1
+        vl3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vl3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 swap
+ 
+ method vecswap(III[J)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method compare(JJ)I {
+  +START:   #1
+        if compare(vl0,vl2)>=0 goto B10;   
+  +B6:   #1
+        b0 = -1;    
+        goto +B21b0;   forward return[l i  .]
+  +B10:   #1
+        if compare(vl0,vl2)!=0 goto B20;   
+  +B16:   #1
+        b0 = 0;    
+        goto +B21b0;   forward return[l i  .]
+  +B20:   #1
+        b0 = 1;    
+  +B21b0:   #2 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compare
+ 
+ method qsort([JII)V {
+  +START:   #1
+        if vi2>7 goto B62;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B61;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B55;   
+  +B25:   #1
+        if compare(vR0[(vi4-1)],vR0[vi4])<=0 goto B55;   
+  +B39:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B55:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B61:   #1
+        return;   
+  +B62:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B144;   
+  +B82:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B144:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B175:   #2
+        if vi7>vi8 goto B220;   
+  +B182:   #1
+        b0 = compare@special(vR0[vi7],vR0[vi1]);    [iiiiiii i ...... ????]
+        vi10 = b0;    
+        if b0> 0 goto B220;   
+  +B198:   #1
+        if vi10!=0 goto B214;   
+  +B203:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B214:   #1
+        vi7++;   
+        goto +B175;   [iiiiiiii i ...... ....]
+  +B220:   #3
+        if vi8<vi7 goto B265;   
+  +B227:   #1
+        b0 = compare@special(vR0[vi8],vR0[vi1]);    [iiiiiiii i ...... ????]
+        vi10 = b0;    
+        if b0< 0 goto B265;   
+  +B243:   #1
+        if vi10!=0 goto B259;   
+  +B248:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B259:   #1
+        vi8--;   
+        goto +B220;   [iiiiiiii i ...... ....]
+  +B265:   #2
+        if vi7<=vi8 goto B275;   
+  +B272:   #1
+        goto +B292;   [iiiiiiii i ...... ....]
+  +B275:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B175;   [iiiiiiiii i ...... ....]
+  +B292:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B370;   
+  +B363:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B370:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B396;   
+  +B383:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B396:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([F)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([FII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[F)I {
+  +START:   #1
+        if compare@special(vR3[vi0],vR3[vi1])>=0 goto B48;   
+  +B12:   #1
+        if compare@special(vR3[vi1],vR3[vi2])>=0 goto B28;   
+  +B24:   #1
+        b0 = vi1;    
+        goto +B81b0;   forward return[ i  ..]
+  +B28:   #1
+        if compare@special(vR3[vi0],vR3[vi2])>=0 goto B44;   
+  +B40:   #1
+        b0 = vi2;    
+        goto +B81b0;   forward return[ i  ..]
+  +B44:   #1
+        b0 = vi0;    
+        goto +B81b0;   forward return[ i  ..]
+  +B48:   #1
+        if compare@special(vR3[vi1],vR3[vi2])<=0 goto B64;   
+  +B60:   #1
+        b0 = vi1;    
+        goto +B81b0;   forward return[ i  ..]
+  +B64:   #1
+        if compare@special(vR3[vi0],vR3[vi2])<=0 goto B80;   
+  +B76:   #1
+        b0 = vi2;    
+        goto +B81b0;   forward return[ i  ..]
+  +B80:   #1
+        b0 = vi0;    
+  +B81b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[F)V {
+  +START:   #1
+        vl3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vl3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 swap
+ 
+ method vecswap(III[F)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method qsort([FII)V {
+  +START:   #1
+        if vi2>7 goto B64;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B63;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B57;   
+  +B25:   #1
+        if compare@special(vR0[(vi4-1)],vR0[vi4])<=0 goto B57;   
+  +B41:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii]
+        vi4--;   
+        goto +B20;   [ii i i ...]
+  +B57:   #2
+        vi3++;   
+        goto +B10;   [ii i . ...]
+  +B63:   #1
+        return;   
+  +B64:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B146;   
+  +B84:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B146:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B177:   #2
+        if vi7>vi8 goto B222;   
+  +B184:   #1
+        b0 = compare@special(vR0[vi7],vR0[vi1]);    [iiiiiii i ...... ??..]
+        vi10 = b0;    
+        if b0> 0 goto B222;   
+  +B200:   #1
+        if vi10!=0 goto B216;   
+  +B205:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B216:   #1
+        vi7++;   
+        goto +B177;   [iiiiiiii i ...... ....]
+  +B222:   #3
+        if vi8<vi7 goto B267;   
+  +B229:   #1
+        b0 = compare@special(vR0[vi8],vR0[vi1]);    [iiiiiiii i ...... ??..]
+        vi10 = b0;    
+        if b0< 0 goto B267;   
+  +B245:   #1
+        if vi10!=0 goto B261;   
+  +B250:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B261:   #1
+        vi8--;   
+        goto +B222;   [iiiiiiii i ...... ....]
+  +B267:   #2
+        if vi7<=vi8 goto B277;   
+  +B274:   #1
+        goto +B294;   [iiiiiiii i ...... ....]
+  +B277:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B177;   [iiiiiiiii i ...... ....]
+  +B294:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B372;   
+  +B365:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B372:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B398;   
+  +B385:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B398:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([D)V {
+  +START:   #1
+        qsort@special(vR0,0,vR0.length);   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([DII)V {
+  +START:   #1
+        if vi1<=vi2 goto B13;   
+  -B5:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B13:   #1
+        qsort@special(vR0,vi1,(vi2-vi1));   [ R i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 sort
+ 
+ method med3(III[D)I {
+  +START:   #1
+        if compare@special(vR3[vi0],vR3[vi1])>=0 goto B48;   
+  +B12:   #1
+        if compare@special(vR3[vi1],vR3[vi2])>=0 goto B28;   
+  +B24:   #1
+        b0 = vi1;    
+        goto +B81b0;   forward return[ i  ....]
+  +B28:   #1
+        if compare@special(vR3[vi0],vR3[vi2])>=0 goto B44;   
+  +B40:   #1
+        b0 = vi2;    
+        goto +B81b0;   forward return[ i  ....]
+  +B44:   #1
+        b0 = vi0;    
+        goto +B81b0;   forward return[ i  ....]
+  +B48:   #1
+        if compare@special(vR3[vi1],vR3[vi2])<=0 goto B64;   
+  +B60:   #1
+        b0 = vi1;    
+        goto +B81b0;   forward return[ i  ....]
+  +B64:   #1
+        if compare@special(vR3[vi0],vR3[vi2])<=0 goto B80;   
+  +B76:   #1
+        b0 = vi2;    
+        goto +B81b0;   forward return[ i  ....]
+  +B80:   #1
+        b0 = vi0;    
+  +B81b0:   #5 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 6 swaps 0 any 6 found 0 med3
+ 
+ method swap(II[D)V {
+  +START:   #1
+        vd3 = vR2[vi0];    
+        vR2[vi0] = vR2[vi1];   
+        vR2[vi1] = vd3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 swap
+ 
+ method vecswap(III[D)V {
+  +START:   #2
+        if vi2<=0 goto B22;   
+  +B4:   #1
+        swap@special(vi0,vi1,vR3);   [   Rii]
+        vi0++;   
+        vi1++;   
+        vi2--;   
+        goto +START;   [   ...]
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 4 found 0 vecswap
+ 
+ method qsort([DII)V {
+  +START:   #1
+        if vi2>7 goto B64;   
+  +B6:   #1
+        vi3 = (vi1+1);    
+  +B10:   #1
+        if vi3>=(vi1+vi2) goto B63;   
+  +B17:   #1
+        vi4 = vi3;    
+  +B20:   #1
+        if vi4<=0 goto B57;   
+  +B25:   #1
+        if compare@special(vR0[(vi4-1)],vR0[vi4])<=0 goto B57;   
+  +B41:   #1
+        swap@special(vi4,(vi4-1),vR0);   [ii i i Rii.]
+        vi4--;   
+        goto +B20;   [ii i i ....]
+  +B57:   #2
+        vi3++;   
+        goto +B10;   [ii i . ....]
+  +B63:   #1
+        return;   
+  +B64:   #1
+        vi3 = (vi2/2);    
+        vi4 = vi1;    
+        vi5 = ((vi1+vi2)-1);    
+        if vi2<=40 goto B146;   
+  +B84:   #1
+        vi6 = (vi2/8);    
+        vi4 = med3@special(vi4,(vi4+vi6),((vi4+vi6)+vi6),vR0);    [iiii i ii Riii]
+        vi3 = med3@special((vi3-vi6),vi3,(vi3+vi6),vR0);    [iiii i iiii Riii]
+        vi5 = med3@special(((vi5-vi6)-vi6),(vi5-vi6),vi5,vR0);    [iiii i iiiiii Riii]
+  +B146:   #1
+        vi3 = med3@special(vi4,vi3,vi5,vR0);    [iiii i ...... Riii]
+        swap@special(vi1,vi3,vR0);   [iiii i ...... Rii.]
+        b0 = (vi1+1);    
+        vi7 = b0;    
+        vi6 = b0;    
+        vi9 = vi5;    
+        vi8 = vi5;    
+  +B177:   #2
+        if vi7>vi8 goto B222;   
+  +B184:   #1
+        b0 = compare@special(vR0[vi7],vR0[vi1]);    [iiiiiii i ...... ????]
+        vi10 = b0;    
+        if b0> 0 goto B222;   
+  +B200:   #1
+        if vi10!=0 goto B216;   
+  +B205:   #1
+        swap@special(vi6,vi7,vR0);   [iiiiiiii i ...... Rii.]
+        vi6++;   
+  +B216:   #1
+        vi7++;   
+        goto +B177;   [iiiiiiii i ...... ....]
+  +B222:   #3
+        if vi8<vi7 goto B267;   
+  +B229:   #1
+        b0 = compare@special(vR0[vi8],vR0[vi1]);    [iiiiiiii i ...... ????]
+        vi10 = b0;    
+        if b0< 0 goto B267;   
+  +B245:   #1
+        if vi10!=0 goto B261;   
+  +B250:   #1
+        swap@special(vi8,vi9,vR0);   [iiiiiiii i ...... Rii.]
+        vi9--;   
+  +B261:   #1
+        vi8--;   
+        goto +B222;   [iiiiiiii i ...... ....]
+  +B267:   #2
+        if vi7<=vi8 goto B277;   
+  +B274:   #1
+        goto +B294;   [iiiiiiii i ...... ....]
+  +B277:   #1
+        swap@special(vi7,vi8,vR0);   [iiiiiiiii i ...... Rii.]
+        vi7++;   
+        vi8--;   
+        goto +B177;   [iiiiiiiii i ...... ....]
+  +B294:   #1
+        vi11 = min@special((vi6-vi1),(vi7-vi6));    [iiiiiiii i ii.... ii..]
+        vecswap@special(vi1,(vi7-vi11),vi11,vR0);   [iiiiiiiii i iii... Riii]
+        vi11 = min@special((vi9-vi8),((vi5-vi9)-1));    [iiiiiiiii i iiiii. ii..]
+        vecswap@special(vi7,((vi5-vi11)+1),vi11,vR0);   [iiiiiiiii i iiiiii Riii]
+        vi11 = (vi7-vi6);    
+        if vi11<=1 goto B372;   
+  +B365:   #1
+        qsort@special(vR0,vi1,vi11);   [iiiiiiiii i ...... iiR.]
+  +B372:   #1
+        vi11 = (vi9-vi8);    
+        if vi11<=1 goto B398;   
+  +B385:   #1
+        qsort@special(vR0,((vi5-vi11)+1),vi11);   [iiiiiiiii i i..... iiR.]
+  +B398:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 45 swaps 0 any 34 found 0 qsort
+ 
+ method sort([Ljava/lang/Object;)V {
+  +START:   #1
+        sort@special(vR0,0,vR0.length,0);   [  i RiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([Ljava/lang/Object;Ljava/util/Comparator;)V {
+  +START:   #1
+        sort@special(vR0,0,vR0.length,vR1);   [  i RiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method sort([Ljava/lang/Object;II)V {
+  +START:   #1
+        sort@special(vR0,vi1,vi2,0);   [   RiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sort
+ 
+ method sort([Ljava/lang/Object;IILjava/util/Comparator;)V {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPL");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sort
+ 
+ method asList([Ljava/lang/Object;)Ljava/util/List; {
+  +START:   #1
+        return new java/util/Arrays$ArrayList(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 asList
+ 
+ method hashCode([J)I {
+  +START:   #1
+        if vR0!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vi1 = 1;    
+        vR2 = vR0;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B16:   #1
+        if vi4>=vi3 goto B53;   
+  +B22:   #1
+        vl5 = vR2[vi4];    
+        vi7 = (int)(vl5 ^ (vl5 >>> 32));    
+        vi1 = ((31*vi1)+vi7);    
+        vi4++;   
+        goto +B16;   [iRiil?i  i .]
+  +B53:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 0 any 5 found 0 hashCode
+ 
+ method hashCode([Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vi1 = 1;    
+        vR2 = vR0;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B16:   #1
+        if vi4>=vi3 goto B54;   
+  +B22:   #1
+        vR5 = vR2[vi4];    
+        b0 = (31*vi1);    
+        if vR5!=null goto B41;   
+  +B37b0:   #1 int
+        b1 = 0;    
+        goto +B46b0b1;   [iRiiR ii  ]
+  +B41b0:   #1 int
+        b1 = vR5.hashCode();    [iRiiR ii  R] 
+  +B46b0b1:   #1 int int
+        vi1 = (b0+b1);    
+        vi4++;   
+        goto +B16;   [iRiiR ii  .]
+  +B54:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 9 swaps 0 any 7 found 0 hashCode
+ 
+ method deepEquals([Ljava/lang/Object;[Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0==null goto B15;   
+  +B11:   #1
+        if vR1!=null goto B17;   
+  +B15:   #1
+        return 0;   
+  +B17:   #1
+        vi2 = vR0.length;    
+        if vR1.length==vi2 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #1
+        vi3 = 0;    
+  +B30:   #1
+        if vi3>=vi2 goto B84;   
+  +B35:   #1
+        vR4 = vR0[vi3];    
+        vR5 = vR1[vi3];    
+        if vR4!=vR5 goto B55;   
+  +B52:   #1
+        goto +B78;   [iiRR   ]
+  +B55:   #1
+        if vR4!=null goto B62;   
+  +B60:   #1
+        return 0;   
+  +B62:   #1
+        vi6 = deepEquals0@special(vR4,vR5);    [iiRR   RR]
+        if vi6!=0 goto B78;   
+  +B76:   #1
+        return 0;   
+  +B78:   #2
+        vi3++;   
+        goto +B30;   [iiRR   ..]
+  +B84:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 6 swaps 0 any 8 found 0 deepEquals
+ 
+ method deepEquals0(Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR0 instanceof [Ljava/lang/Object;)==0 goto B29;   
+  +B7:   #1
+        if (vR1 instanceof [Ljava/lang/Object;)==0 goto B29;   
+  +B14:   #1
+        vi2 = deepEquals@special(([Ljava/lang/Object;)(vR0),([Ljava/lang/Object;)(vR1));    [   RR]
+        goto +B267;   forward return[i   ..]
+  +B29:   #2
+        if (vR0 instanceof [B)==0 goto B58;   
+  +B36:   #1
+        if (vR1 instanceof [B)==0 goto B58;   
+  +B43:   #1
+        vi2 = equals@special(([B)(vR0),([B)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B58:   #2
+        if (vR0 instanceof [S)==0 goto B87;   
+  +B65:   #1
+        if (vR1 instanceof [S)==0 goto B87;   
+  +B72:   #1
+        vi2 = equals@special(([S)(vR0),([S)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B87:   #2
+        if (vR0 instanceof [I)==0 goto B116;   
+  +B94:   #1
+        if (vR1 instanceof [I)==0 goto B116;   
+  +B101:   #1
+        vi2 = equals@special(([I)(vR0),([I)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B116:   #2
+        if (vR0 instanceof [J)==0 goto B145;   
+  +B123:   #1
+        if (vR1 instanceof [J)==0 goto B145;   
+  +B130:   #1
+        vi2 = equals@special(([J)(vR0),([J)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B145:   #2
+        if (vR0 instanceof [C)==0 goto B174;   
+  +B152:   #1
+        if (vR1 instanceof [C)==0 goto B174;   
+  +B159:   #1
+        vi2 = equals@special(([C)(vR0),([C)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B174:   #2
+        if (vR0 instanceof [F)==0 goto B203;   
+  +B181:   #1
+        if (vR1 instanceof [F)==0 goto B203;   
+  +B188:   #1
+        vi2 = equals@special(([F)(vR0),([F)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B203:   #2
+        if (vR0 instanceof [D)==0 goto B232;   
+  +B210:   #1
+        if (vR1 instanceof [D)==0 goto B232;   
+  +B217:   #1
+        vi2 = equals@special(([D)(vR0),([D)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B232:   #2
+        if (vR0 instanceof [Z)==0 goto B261;   
+  +B239:   #1
+        if (vR1 instanceof [Z)==0 goto B261;   
+  +B246:   #1
+        vi2 = equals@special(([Z)(vR0),([Z)(vR1));    [i   RR]
+        goto +B267;   forward return[i   ..]
+  +B261:   #2
+        vi2 = vR0.equals@this(vR1);    [i   RR] 
+  +B267:   #9
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 65/65 wr 10 swaps 0 any 0 found 27 deepEquals0
+}

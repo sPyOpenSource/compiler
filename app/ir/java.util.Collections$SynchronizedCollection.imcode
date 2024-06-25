@@ -1,0 +1,322 @@
+class java/util/Collections$SynchronizedCollection {
+ 
+ method <init>(Ljava/util/Collection;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.c = (java/util/Collection)(requireNonNull@special(vR1));   
+        vR0.mutex = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 1 <init>
+ 
+ method <init>(Ljava/util/Collection;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.c = (java/util/Collection)(requireNonNull@special(vR1));   
+        vR0.mutex = requireNonNull@special(vR2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.c.size();    [R i  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.c.isEmpty();    [R b  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.contains(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 contains
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.c.toArray();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 toArray
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return vR0.c.iterator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 iterator
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.add(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 add
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.remove(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 remove
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.containsAll(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 containsAll
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.addAll(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 addAll
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.removeAll(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 removeAll
+ 
+ method retainAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.retainAll(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 retainAll
+ 
+ method clear()V {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        vR0.c.clear();   [R R  R] 
+        vR1.leave();   
+        goto +B26;   forward return[R R  .]
+  +H21<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B24:   #1
+        throw vR2;   
+  +B26:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 21 type 0
+21 - 24 handler 21 type 0
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 clear
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.c.toString();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H17<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B20:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 16 handler 17 type 0
+17 - 20 handler 17 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 toString
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        vR0.c.forEach(vR1);   [R R  RR] 
+        vR2.leave();   
+        goto +B27;   forward return[R R  ..]
+  +H22<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B25:   #1
+        throw vR3;   
+  +B27:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 22 type 0
+22 - 25 handler 22 type 0
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 forEach
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return vR0.c.spliterator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        vR1.defaultWriteObject();   [R R  R] 
+        vR2.leave();   
+        goto +B21;   forward return[R R  .]
+  +H16<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B19:   #1
+        throw vR3;   
+  +B21:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 13 handler 16 type 0
+16 - 19 handler 16 type 0
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 writeObject
+}

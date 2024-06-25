@@ -1,0 +1,185 @@
+class java/lang/reflect/Modifier {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString(I)Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+ 
+ method isPublic(I)Z {
+  +START:   #1
+        if (vi0 & 1)==0 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isPublic
+ 
+ method isPrivate(I)Z {
+  +START:   #1
+        if (vi0 & 2)==0 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isPrivate
+ 
+ method isProtected(I)Z {
+  +START:   #1
+        if (vi0 & 4)==0 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isProtected
+ 
+ method isStatic(I)Z {
+  +START:   #1
+        if (vi0 & 8)==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isStatic
+ 
+ method isFinal(I)Z {
+  +START:   #1
+        if (vi0 & 16)==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isFinal
+ 
+ method isSynchronized(I)Z {
+  +START:   #1
+        if (vi0 & 32)==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isSynchronized
+ 
+ method isVolatile(I)Z {
+  +START:   #1
+        if (vi0 & 64)==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isVolatile
+ 
+ method isTransient(I)Z {
+  +START:   #1
+        if (vi0 & 128)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isTransient
+ 
+ method isNative(I)Z {
+  +START:   #1
+        if (vi0 & 256)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isNative
+ 
+ method isInterface(I)Z {
+  +START:   #1
+        if (vi0 & 512)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isInterface
+ 
+ method isAbstract(I)Z {
+  +START:   #1
+        if (vi0 & 1024)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isAbstract
+ 
+ method isStrict(I)Z {
+  +START:   #1
+        if (vi0 & 2048)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isStrict
+}

@@ -1,0 +1,182 @@
+class jx/net/protocol/arp/ARPFormat {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method insertHardwareAddressSpace(S)V {
+  +START:   #1
+        vR0.writeShort@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHardwareAddressSpace
+ 
+ method insertProtocolAddressSpace(S)V {
+  +START:   #1
+        vR0.writeShort@this(2,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertProtocolAddressSpace
+ 
+ method insertHardwareAddressLen(B)V {
+  +START:   #1
+        vR0.writeByte@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHardwareAddressLen
+ 
+ method insertProtocolAddressLen(B)V {
+  +START:   #1
+        vR0.writeByte@this(5,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertProtocolAddressLen
+ 
+ method insertCommand(S)V {
+  +START:   #1
+        vR0.writeShort@this(6,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertCommand
+ 
+ method insertSenderHardwareAddress([B)V {
+  +START:   #1
+        vR0.writeBytes@this(8,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSenderHardwareAddress
+ 
+ method insertSenderProtocolAddress(Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.writeAddress@this(14,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSenderProtocolAddress
+ 
+ method insertTargetHardwareAddress([B)V {
+  +START:   #1
+        vR0.writeBytes@this(18,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertTargetHardwareAddress
+ 
+ method insertTargetProtocolAddress([B)V {
+  +START:   #1
+        vR0.writeBytes@this(24,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertTargetProtocolAddress
+ 
+ method getHardwareAddressSpace()S {
+  +START:   #1
+        return vR0.readShort@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHardwareAddressSpace
+ 
+ method getProtocolAddressSpace()S {
+  +START:   #1
+        return vR0.readShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProtocolAddressSpace
+ 
+ method insertHardwareAddressLen()B {
+  +START:   #1
+        return vR0.readByte@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHardwareAddressLen
+ 
+ method getProtocolAddressLen()B {
+  +START:   #1
+        return vR0.readByte@this(5);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProtocolAddressLen
+ 
+ method getCommand()S {
+  +START:   #1
+        return vR0.readShort@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCommand
+ 
+ method getSenderHardwareAddress()[B {
+  +START:   #1
+        vR1 = new byte[6];    
+        vR0.readBytes@this(8,vR1);   [R   RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSenderHardwareAddress
+ 
+ method getSenderProtocolAddress()[B {
+  +START:   #1
+        vR1 = new byte[4];    
+        vR0.readBytes@this(14,vR1);   [R   RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSenderProtocolAddress
+ 
+ method getTargetHardwareAddress()[B {
+  +START:   #1
+        vR1 = new byte[6];    
+        vR0.readBytes@this(18,vR1);   [R   RiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getTargetHardwareAddress
+ 
+ method getTargetProtocolAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.readAddress@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTargetProtocolAddress
+ 
+ method length()I {
+  +START:   #1
+        return requiresSpace@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 length
+ 
+ method requiresSpace()I {
+  +START:   #1
+        return 28;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requiresSpace
+ 
+ method dump()V {
+  +START:   #1
+        out.println("ARP-Packet:");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("   Command: ").append@extra(vR0.getCommand@this()).toString@extra());   [ RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("   HardwareAddressSpace: ").append@extra(vR0.getHardwareAddressSpace@this()).toString@extra());   [ RR iiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiii. i..][ RR iiiiiii. iR.]
+        b0.println(b1.append@extra("   ProtocolAddressSpace: ").append@extra(vR0.getProtocolAddressSpace@this()).toString@extra());   [ RR iiiiiiiiii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 23 swaps 10 any 0 found 0 dump
+}

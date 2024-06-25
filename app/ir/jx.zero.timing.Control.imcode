@@ -1,0 +1,104 @@
+class jx/zero/timing/Control {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method timing_empty_method()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 timing_empty_method
+ 
+ method notiming_empty_method()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 notiming_empty_method
+ 
+ method timing_adjust_raw()V {
+  +START:   #1
+        notiming_empty_method@special();   [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 timing_adjust_raw
+ 
+ method timing_adjust_boiled()V {
+  +START:   #1
+        timing_empty_method@special();   [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 timing_adjust_boiled
+ 
+ method calibrate_timing()Z {
+  +START:   #1
+        vR0 = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));    
+        timing_adjust_boiled@special();   [R  i. ..]
+        timing_adjust_raw@special();   [R  i. ..]
+        vR0.startCalibration();   [R  i. R.] 
+        vi2 = 0;    
+  +B28:   #1
+        if vi2>=1000 goto B44;   
+  +B35:   #1
+        timing_adjust_boiled@special();   [R?i  .. ..]
+        vi2++;   
+        goto +B28;   [R?i  .. ..]
+  +B44:   #1
+        vi2 = 0;    
+  +B46:   #1
+        if vi2>=1000 goto B62;   
+  +B53:   #1
+        timing_adjust_raw@special();   [R?i  .. ..]
+        vi2++;   
+        goto +B46;   [R?i  .. ..]
+  +B62:   #1
+        vi2 = vR0.getAverageCyclesOfMethod("jx.zero.timing.Control.timing_empty_method");    [R?i  i. RR] 
+        vi3 = vR0.getAverageCyclesOfMethod("jx.zero.timing.Control.timing_adjust_raw");    [R?i  ii RR] 
+        vi4 = vR0.getAverageCyclesOfMethod("jx.zero.timing.Control.timing_adjust_boiled");    [R?ii  iii RR] 
+        vi1 = vR0.endCalibration(vi2,vi3,vi4);    [R?iii  iii iiiR] 
+        vi2 = 0;    
+  +B103:   #1
+        if vi2>=1100 goto B119;   
+  +B110:   #1
+        timing_adjust_boiled@special();   [Riiii  ... ....]
+        vi2++;   
+        goto +B103;   [Riiii  ... ....]
+  +B119:   #1
+        vi2 = 0;    
+  +B121:   #1
+        if vi2>=1100 goto B137;   
+  +B128:   #1
+        timing_adjust_raw@special();   [Riiii  ... ....]
+        vi2++;   
+        goto +B121;   [Riiii  ... ....]
+  +B137:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 19 swaps 4 any 8 found 0 calibrate_timing
+ 
+ method startTiming()V {
+  +START:   #1
+        calibrate_timing@special();   [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 startTiming
+ 
+ method shell()V {
+  +START:   #1
+        vR0 = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));    
+        vR0.shell();   [R  i. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 1 any 0 found 0 shell
+}

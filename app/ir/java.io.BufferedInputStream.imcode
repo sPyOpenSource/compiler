@@ -1,0 +1,295 @@
+class java/io/BufferedInputStream {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,512);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/InputStream;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.markpos = -1;   
+        vR0.doing_reset = 0;   
+        vR0.primed = 0;   
+        vR0.buf = new byte[vi2];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method close()V {
+  +START:   #1
+        vR0.close@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+ 
+ method mark(I)V {
+  +START:   #1
+        if vR0.doing_reset==0 goto B144;   
+  +B7:   #1
+        if vR0.markbuf==null goto B144;   
+  +B14:   #1
+        vR2 = new byte[(vi1+vR0.buf.length)];    
+        if vR0.pos==vR0.count goto B57;   
+  +B35:   #1
+        arraycopy@special(vR0.buf,vR0.pos,vR2,0,(vR0.count-vR0.pos));   [R  Rii iiRiR]
+  +B57:   #1
+        vi3 = vi1;    
+        if (vR0.markbufcount-vR0.markbufpos)>vi1 goto B82;   
+  +B72:   #1
+        vi3 = (vR0.markbufcount-vR0.markbufpos);    
+  +B82:   #1
+        arraycopy@special(vR0.markbuf,vR0.markbufpos,vR2,(vR0.count-vR0.pos),vi3);   [Ri  Rii iiRiR]
+        vR0.primed = 0;   
+        vR0.markbuf = vR2;   
+        vR0.markbufpos = 0;   
+        vR0.markbufcount = (vi3+(vR0.count-vR0.pos));   
+        vR0.pos = 0;   
+        vR0.count = 0;   
+  +B144:   #2
+        if vi1>vR0.buf.length goto B237;   
+  +B153:   #1
+        if vi1<=(vR0.count-vR0.pos) goto B237;   
+  +B166:   #1
+        if vR0.pos==vR0.count goto B237;   
+  +B177:   #1
+        if vR0.doing_reset!=0 goto B237;   
+  +B184:   #1
+        vR2 = new byte[vR0.buf.length];    
+        arraycopy@special(vR0.buf,vR0.pos,vR2,0,(vR0.count-vR0.pos));   [Ri  Rii iiRiR]
+        vR0.buf = vR2;   
+        vR0.count = (vR0.count-vR0.pos);   
+        vR0.pos = 0;   
+  +B237:   #4
+        vR0.markpos = vR0.pos;   
+        vR0.marklimit = vi1;   
+        if vR0.in.markSupported()==0 goto B268;   
+  +B260:   #1
+        vR0.in.mark(vi1);   [Ri  ... iR...] 
+  +B268:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 55/55 wr 13 swaps 0 any 3 found 0 mark
+ 
+ method markSupported()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 markSupported
+ 
+ method reset()V {
+  +START:   #1
+        if vR0.markpos!=-1 goto B18;   
+  -B8:   #1
+        throw new java/io/IOException("Stream not marked");   
+  +B18:   #1
+        vR0.doing_reset = 0;   
+        if vR0.markbuf!=null goto B46;   
+  +B30:   #1
+        vR0.pos = vR0.markpos;   
+        vR0.markpos = -1;   
+        goto +B140;   forward return[ R . ...]
+  +B46:   #1
+        vR0.markpos = -1;   
+        if vR0.in.markSupported()==0 goto B115;   
+  +B61:   #1
+        vR0.in.reset();   [ R . R..] 
+        if vR0.markbuf==null goto B140;   
+  +B75:   #1
+        arraycopy@special(vR0.markbuf,0,vR0.buf,0,vR0.markbuf.length);   [ R RRi iiRiR]
+        vR0.pos = 0;   
+        vR0.count = vR0.markbuf.length;   
+        vR0.markbuf = 0;   
+        goto +B140;   forward return[ R RRi .....]
+  +B115:   #1
+        vR0.pos = 0;   
+        vR0.count = 0;   
+        vR0.markbufpos = 0;   
+        vR0.primed = 0;   
+        vR0.doing_reset = 1;   
+  +B140:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 4 swaps 0 any 0 found 0 reset
+ 
+ method available()I {
+  +START:   #1
+        return ((vR0.count-vR0.pos)+vR0.in.available());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 available
+ 
+ method skip(J)J {
+  +START:   #1
+        if compare(vl1,0)> 0 goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        if compare((long)(vR0.count-vR0.pos),vl1)< 0 goto B37;   
+  +B23:   #1
+        vR0.pos = (int)((long)vR0.pos+vl1);   
+        return vl1;   
+  +B37:   #1
+        vi3 = (vR0.count-vR0.pos);    
+        vR0.pos = 0;   
+        vR0.count = 0;   
+        vl4 = vR0.in.skip((vl1-(long)vi3));     
+        return ((long)vi3+vl4);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 skip
+ 
+ method read()I {
+  +START:   #1
+        if vR0.pos==vR0.count goto B18;   
+  +B11:   #1
+        if vR0.primed!=0 goto B36;   
+  +B18:   #1
+        vR0.refillBuffer@special(1);   [   iR] 
+        if vR0.pos!=vR0.count goto B36;   
+  +B34:   #1
+        return -1;   
+  +B36:   #2
+        vR0.pos = (vR0.pos+1);   
+        return (vR0.buf[(vR0.pos-1)] & 255);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 read
+ 
+ method read([BII)I {
+  +START:   #1
+        if vi3!=0 goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vi4 = vR0.read@this();    [   R] 
+        if vi4!=-1 goto B20;   
+  +B18:   #1
+        return -1;   
+  +B20:   #1
+        vR1[vi2] = (byte)vi4;   
+        vi5 = 1;    
+        if vi3!=vi5 goto B38;   
+  +B35:   #1
+        return vi5;   
+  +B38:   #3
+        if vi5==vi3 goto B205;   
+  +B44:   #1
+        if vR0.pos!=vR0.count goto B63;   
+  +B55:   #1
+        vR0.refillBuffer@special((vi3-vi5));   [ii  i iR] 
+  +B63:   #1
+        if vR0.pos!=vR0.count goto B84;   
+  +B74:   #1
+        if vi5!=0 goto B81;   
+  +B79:   #1
+        return -1;   
+  +B81:   #1
+        return vi5;   
+  +B84:   #2
+        if (vi3-vi5)>(vR0.count-vR0.pos) goto B145;   
+  +B100:   #1
+        arraycopy@special(vR0.buf,vR0.pos,vR1,(vi2+vi5),(vi3-vi5));   [ii  Riii iiRiR]
+        vR0.pos = (vR0.pos+(vi3-vi5));   
+        vi5 = (vi5+(vi3-vi5));    
+        goto +B38;   [ii  Riii .....]
+  +B145:   #1
+        arraycopy@special(vR0.buf,vR0.pos,vR1,(vi2+vi5),(vR0.count-vR0.pos));   [ii  Riii iiRiR]
+        vi5 = (vi5+(vR0.count-vR0.pos));    
+        vR0.pos = (vR0.pos+(vR0.count-vR0.pos));   
+        goto +B38;   [ii  Riii .....]
+  +B205:   #2
+        goto +B213;   forward return[ii  .... .....]
+  +H208<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return vi5;   
+  +B213:   #1
+        return vi5;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+38 - 80 handler 208 type 19
+81 - 83 handler 208 type 19
+84 - 205 handler 208 type 19
+ }
+// Register: rd 52/52 wr 13 swaps 1 any 8 found 1 read
+ 
+ method refillBuffer(I)V {
+  +START:   #1
+        vR0.primed = 1;   
+        if vR0.doing_reset==0 goto B133;   
+  +B12:   #1
+        if (vR0.markbufcount-vR0.markbufpos)>vR0.buf.length goto B83;   
+  +B29:   #1
+        arraycopy@special(vR0.markbuf,vR0.markbufpos,vR0.buf,0,(vR0.markbufcount-vR0.markbufpos));   [  RiRi iiRiR]
+        vR0.pos = 0;   
+        vR0.count = (vR0.markbufcount-vR0.markbufpos);   
+        vR0.markbuf = 0;   
+        vR0.doing_reset = 0;   
+        return;   
+  +B83:   #1
+        arraycopy@special(vR0.markbuf,vR0.markbufpos,vR0.buf,0,vR0.buf.length);   [  RiRi iiRiR]
+        vR0.pos = 0;   
+        vR0.count = vR0.buf.length;   
+        vR0.markbufpos = (vR0.markbufpos+vR0.buf.length);   
+        return;   
+  +B133:   #1
+        if vR0.markpos==-1 goto B235;   
+  +B141:   #1
+        if vR0.markbuf!=null goto B235;   
+  +B148:   #1
+        if vR0.in.markSupported()==0 goto B176;   
+  +B158:   #1
+        vR0.markbuf = new byte[(vR0.count-vR0.markpos)];   
+        goto +B192;   [  .... .....]
+  +B176:   #1
+        vR0.markbuf = new byte[(vR0.marklimit+vR0.buf.length)];   
+  +B192:   #1
+        arraycopy@special(vR0.buf,vR0.markpos,vR0.markbuf,0,(vR0.count-vR0.markpos));   [  RiRi iiRiR]
+        vR0.markbufpos = 0;   
+        vR0.markbufcount = (vR0.count-vR0.markpos);   
+  +B235:   #2
+        vi2 = vR0.in.read(vR0.buf);    [  i... RR...] 
+        if vi2!=-1 goto B263;   
+  +B252:   #1
+        vR0.pos = 0;   
+        vR0.count = 0;   
+        return;   
+  +B263:   #1
+        vR0.pos = 0;   
+        vR0.count = vi2;   
+        if vR0.markbuf==null goto B318;   
+  +B280:   #1
+        if vR0.markbufcount<(vR0.markbuf.length-vR0.buf.length) goto B318;   
+  +B298:   #1
+        if vR0.in.markSupported()!=0 goto B318;   
+  +B308:   #1
+        vR0.markbuf = 0;   
+        vR0.markpos = -1;   
+  +B318:   #3
+        if vR0.markbuf==null goto B392;   
+  +B325:   #1
+        if vR0.in.markSupported()!=0 goto B392;   
+  +B335:   #1
+        if vi2<=(vR0.markbuf.length-vR0.markbufcount) goto B363;   
+  +B349:   #1
+        vi3 = (vR0.markbuf.length-vR0.markbufcount);    
+        goto +B365;   [ii  .... .....]
+  +B363:   #1
+        vi3 = vi2;    
+  +B365:   #1
+        arraycopy@special(vR0.buf,0,vR0.markbuf,vR0.markbufcount,vi3);   [ii  RRi. iiRiR]
+        vR0.markbufcount = (vR0.markbufcount+vi3);   
+  +B392:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 19 swaps 1 any 3 found 0 refillBuffer
+}

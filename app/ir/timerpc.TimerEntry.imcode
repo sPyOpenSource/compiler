@@ -1,0 +1,130 @@
+class timerpc/TimerEntry {
+ 
+ method <init>(IILtimerpc/TimerManagerImpl;Ljx/timer/TimerHandler;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.expires = vi1;   
+        vR0.interval = vi2;   
+        vR0.arg = vR5;   
+        vR0.objref = vR4;   
+        vR0.next = 0;   
+        vR0.previous = 0;   
+        vR0.timerManager = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getExpiresFromNow()I {
+  +START:   #1
+        return (vR0.expires-vR0.timerManager.getCurrentTime());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getExpiresFromNow
+ 
+ method getInterval()I {
+  +START:   #1
+        return vR0.interval;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterval
+ 
+ method getTimerManager()Ljx/timer/TimerManager; {
+  +START:   #1
+        return vR0.timerManager;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTimerManager
+ 
+ method set_next(Ltimerpc/TimerEntry;)V {
+  +START:   #1
+        vR0.next = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_next
+ 
+ method set_previous(Ltimerpc/TimerEntry;)V {
+  +START:   #1
+        vR0.previous = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_previous
+ 
+ method get_expires()I {
+  +START:   #1
+        return vR0.expires;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_expires
+ 
+ method set_expires(I)V {
+  +START:   #1
+        vR0.expires = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_expires
+ 
+ method get_diffTime()I {
+  +START:   #1
+        return vR0.diffTime;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_diffTime
+ 
+ method get_next()Ltimerpc/TimerEntry; {
+  +START:   #1
+        return vR0.next;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_next
+ 
+ method get_previous()Ltimerpc/TimerEntry; {
+  +START:   #1
+        return vR0.previous;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_previous
+ 
+ method get_arg()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.arg;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_arg
+ 
+ method docall()V {
+  +START:   #1
+        vR0.objref.timer(vR0.arg);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 docall
+ 
+ method compare(Ljx/timer/TimerHandler;)Z {
+  +START:   #1
+        return vR0.objref.equals(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 compare
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = "************ TimerEntry ************
+";    
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR1).append@extra("expires: ").append@extra(vR0.expires).append@extra("
+arg: ").append@extra(vR0.arg).append@extra("
+objref: ").append@extra(vR0.objref).append@extra("
+TimerTyp: ").append@extra(vR0.objref.getClass().getName@extra()).toString@extra();    [R R .iiiiii..ii...... R.........] [R R Riiiiii..ii...... RR........] [R R Riiiiii.iii...... RRR.......] [R R Riiiiiiiiii...... RRRR......] [R R Riiiiiiiiiii..... RRRRR.....] [R R RiiiiiiiiiiiR.... RRRRRR....] [R R RiiiiiiiiiiiRR... RRRRRRR...] [R R RiiiiiiiiiiiRRR.. RRRRRRiR..] [R R RiiiiiiiiiiiRRRR. RRRRRRiRR.] [R R RiiiiiiiiiiiRRRRR RRRRRRiRRR] 
+        b0 = new java/lang/StringBuilder();    [ R .iiiiii..ii...... i.........][ R .iiiiii..ii...... iR........]
+        vR1 = b0.append@extra(vR1).append@extra("
+************* finished *************
+").toString@extra();    [R R iiiiiii..ii...... R.........] [R R iiiiiiiR.ii...... RR........] [R R iiiiiiiRRii...... RRR.......] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 26 swaps 12 any 0 found 0 toString
+}

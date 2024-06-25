@@ -1,0 +1,38 @@
+class java/lang/invoke/BoundMethodHandle$SpeciesData {
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/Class;)V {
+  -START:   #1
+        vR0.<init>@special();   [ R  R] 
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getterFunction(I)Ljava/lang/invoke/LambdaForm$NamedFunction; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getterFunction
+ 
+ method fieldCount()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fieldCount
+ 
+ method access$100(Ljava/lang/invoke/BoundMethodHandle$SpeciesData;)I {
+  +START:   #1
+        return vR0.fieldCount@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200(Ljava/lang/invoke/BoundMethodHandle$SpeciesData;)Ljava/lang/String; {
+  +START:   #1
+        return vR0.typeChars;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+}

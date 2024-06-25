@@ -1,0 +1,42 @@
+class java/text/Format {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method format(Ljava/lang/Object;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer("");    [ R  i][ R . iRR]
+        vR3 = new java/text/FieldPosition(0);    [ R . i..][ R . iiR]
+        vR0.format@this(vR1,vR2,vR3);   [RR R . RRRR] 
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 0 found 0 format
+ 
+ method parseObject(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        b2 = new java/text/ParsePosition(0);    [ ??R  i][ ??R . iiR]
+        return vR0.parseObject@this(vR1,b2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 parseObject
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 13
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+}

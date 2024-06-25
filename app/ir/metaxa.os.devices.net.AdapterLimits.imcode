@@ -1,0 +1,80 @@
+class metaxa/os/devices/net/AdapterLimits {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method FSH_CRC_APPEND_DISABLE()I {
+  +START:   #1
+        return bit_13@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_CRC_APPEND_DISABLE
+ 
+ method FSH_TX_INDICATE()I {
+  +START:   #1
+        return bit_15@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_TX_INDICATE
+ 
+ method FSH_DOWN_COMPLETE()I {
+  +START:   #1
+        return bit_16@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_DOWN_COMPLETE
+ 
+ method FSH_LAST_KEEP_ALIVE_PACKET()I {
+  +START:   #1
+        return bit_24@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_LAST_KEEP_ALIVE_PACKET
+ 
+ method FSH_ADD_IP_CHECKSUM()I {
+  +START:   #1
+        return bit_25@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_ADD_IP_CHECKSUM
+ 
+ method FSH_ADD_TCP_CHECKSUM()I {
+  +START:   #1
+        return bit_26@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_ADD_TCP_CHECKSUM
+ 
+ method FSH_ADD_UDP_CHECKSUM()I {
+  +START:   #1
+        return bit_27@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_ADD_UDP_CHECKSUM
+ 
+ method FSH_ROUND_UP_DEFEAT()I {
+  +START:   #1
+        return bit_28@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_ROUND_UP_DEFEAT
+ 
+ method FSH_DPD_EMPTY()I {
+  +START:   #1
+        return bit_29@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_DPD_EMPTY
+ 
+ method FSH_DOWN_INDICATE()I {
+  +START:   #1
+        return bit_31@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 FSH_DOWN_INDICATE
+}

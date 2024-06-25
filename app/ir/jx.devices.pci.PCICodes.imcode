@@ -1,0 +1,420 @@
+class jx/devices/pci/PCICodes {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method lookup(I)Ljava/lang/String; {
+  +START:   #1
+        return lookup@special(((vi0 & -65536) >> 16),((vi0 & 65535) >> 0));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 lookup
+ 
+ method lookup(II)Ljava/lang/String; {
+  +START:   #1
+        return lookup@special((short)vi0,(short)vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 lookup
+ 
+ method lookup(SS)Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=device_code.length goto B88;   
+  +B10:   #1
+        if device_code[vi2].deviceID!=vi0 goto B82;   
+  +B22:   #1
+        if device_code[vi2].vendorID!=vi1 goto B82;   
+  +B34:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Chip=").append@extra(device_code[vi2].chipNumber).append@extra(40).append@extra(device_code[vi2].description).append@extra(41).toString@extra();   
+  +B82:   #2
+        vi2++;   
+        goto +B2;   [i R ........ ......]
+  +B88:   #1
+        b0 = new java/lang/StringBuilder();    [ R ........ i.....][ R ........ iR....]
+        return b0.append@extra("device 0x").append@extra(toHexString@special(vi0)).append@extra(" / ").append@extra(lookupVendor@special(vi1)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 20 swaps 7 any 2 found 1 lookup
+ 
+ method lookupVendor(I)Ljava/lang/String; {
+  +START:   #1
+        return lookupVendor@special((short)vi0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lookupVendor
+ 
+ method lookupVendor(S)Ljava/lang/String; {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vendor_code.length goto B37;   
+  +B10:   #1
+        if vendor_code[vi1].vendorID!=vi0 goto B31;   
+  +B22:   #1
+        return vendor_code[vi1].vendor;   
+  +B31:   #1
+        vi1++;   
+        goto +B2;   [i R  .]
+  +B37:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("vendor 0x").append@extra(toHexString@special(vi0)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 2 any 2 found 1 lookupVendor
+ 
+ method lookupClass(I)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra("class 0x").append@extra(toHexString@special(vi0)).toString@extra();    [ R .ii. R..] [ R Rii. RR.] [ R RiiR RRR] 
+        vi2 = 0;    
+  +B25:   #1
+        if vi2>=baseclass_code.length goto B115;   
+  +B33:   #1
+        if baseclass_code[vi2].classID!=((vi0 & 16711680) >> 16) goto B109;   
+  +B51:   #1
+        vR1 = baseclass_code[vi2].className;    
+        vi3 = 0;    
+  +B62:   #1
+        if vi3>=class_code[vi2].length goto B109;   
+  +B72:   #1
+        if class_code[vi2][vi3].classID!=((vi0 & 65280) >> 8) goto B103;   
+  +B92:   #1
+        vR1 = class_code[vi2][vi3].className;    
+  +B103:   #1
+        vi3++;   
+        goto +B62;   [Rii R .... ...]
+  +B109:   #2
+        vi2++;   
+        goto +B25;   [Rii R .... ...]
+  +B115:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 12 swaps 2 any 4 found 2 lookupClass
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/devices/pci/PCIClassCode()[13];    
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(0,"pre PCI 2.0 device");    [ RR?RR?R  i.][ RR?RR?R . iRiR]
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(1,"Mass storage controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(2,"Network controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[2] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(3,"Display controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[3] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(4,"Multimedia device");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[4] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(5,"Memory Controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[5] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(6,"Bridge Device");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[6] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(7,"Simple communications controllers");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[7] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(8,"Base system peripherals");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[8] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(9,"Inupt devices");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[9] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(10,"Docking Stations");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[10] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(11,"Processors");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[11] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode(12,"Serial bus controllers");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[12] = b3;   
+        baseclass_code = b0;   
+        b0 = new [Ljx/devices/pci/PCIClassCode;()[13];    
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[1];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"VGA device");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[5];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"SCSI Controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"IDE controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"Floppy disk controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(3,"IPI controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(4,"RAID controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[4] = b6;   
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[4];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Ethernet controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"Token Ring network controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"FDDI network controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(3,"ATM network controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b1[2] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[2];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"VGA compatable controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"XGA controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b1[3] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[2];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Video device");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"Audio device");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b1[4] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[2];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"RAM controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"Flash memory controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b1[5] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[8];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Host/PCI bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"PCI/ISA bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"PCI/EISA bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(3,"PCI/Micro Channel bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(4,"PCI/PCI bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[4] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(5,"PCI/PCMCIA bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[5] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(6,"PCI/NuBus bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[6] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(7,"PCI/CardBus bridge");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[7] = b6;   
+        b1[6] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[2];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Serial controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"Parallel port");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b1[7] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[4];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"programmable interrupt controller (PIC)");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"DMA controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"system timer");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(3,"RTC controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b1[8] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[3];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Keyboard controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"Digitizer (pen)");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"Mouse controller");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b1[9] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[1];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Generic docking station");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b1[10] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[7];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"386");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"486");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"Pentium");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(16,"Alpha");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[4] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(32,"PowerPC");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[5] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(64,"Co-Processor");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[6] = b6;   
+        b1[11] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIClassCode()[4];    
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(0,"Firewire (IEEE 1394)");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[0] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(1,"ACCESS bus");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[1] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(2,"SSA (Serial Storage Architecture)");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[2] = b6;   
+        b4 = b3;    
+        b6 = new jx/devices/pci/PCIClassCode(3,"USB (Universal Serial Bus)");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b4[3] = b6;   
+        b1[12] = b3;   
+        class_code = b0;   
+        b0 = new jx/devices/pci/PCIVendorCode()[8];    
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(112,"Hauppauge Computer Works Inc.");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(32902,"Intel Corporation");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(4254,"Brooktree");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[2] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(4279,"3Com");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[3] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(4139,"Matrox");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[4] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(4130,"AMD");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[5] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(4358,"VIA Technologies Inc.");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[6] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIVendorCode(5549,"VMWare");    [ RR?RR?R . i...][ RR?RR?R . iRiR]
+        b1[7] = b3;   
+        vendor_code = b0;   
+        b0 = new jx/devices/pci/PCIDeviceCode()[22];    
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,28928,"82439TX","System Controller (MTXC)");    [ RR?RR?R . i...][ RR?RR?R . iRRiiR]
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,29072,"82443BX/ZX","440BX/ZX AGPset Host Bridge");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,29073,"82443BX/ZX","440BX/ZX AGPset PCI-to-PCI bridge");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[2] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,28944,"82371AB","PIIX4 ISA Bridge");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[3] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,28945,"82371AB","PIIX4 IDE Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[4] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,28946,"82371AB","PIIX4 USB Interface");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[5] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,28947,"82371AB","PIIX4 Power Management Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[6] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(32902,4649,"82557","Fast Ethernet LAN Controller (used on EEPRO/100B 10/100 Adapter)");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[7] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4279,36949,"3C905B","Fast Etherlink XL 10/100");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[8] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4139,1313,"MGA-G200","Millennium/Mystique G200 AGP (Eclipse/Calao)");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[9] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4139,1317,"MGA-G400/450","Millennium G400/450 (Toucan/Condor)");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[10] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4254,878,"bt878","Brooktree 878 Framegrabber/TV Card");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[11] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4254,2168,"bt878 Audio","Brooktree 878 Framegrabber/TV Card, audio function");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[12] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4254,848,"bt848","Brooktree 848 Framegrabber/TV Card");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[13] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(5549,1808,"VirtualSVGA","VirtualSVGA");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[14] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4130,8192,"Am79C970/1/3/5","PCnet PCI Ethernet Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[15] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,12433,"VT8633","CPU to PCI Bridge (Apollo Pro 266 chipset)");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[16] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,45201,"VT8633","PCI-to-PCI Bridge (AGP) (Apollo Pro266 chipset)");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[17] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,12404,"VT8233","PCI to ISA Bridge");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[18] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,1393,"VT82C586/596/686","PCI IDE Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[19] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,12344,"VT83C572","PCI USB Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[20] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/pci/PCIDeviceCode(4358,12377,"VT8233","AC97 Enhanced Audio Controller");    [ RR?RR?R . i.....][ RR?RR?R . iRRiiR]
+        b1[21] = b3;   
+        device_code = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 399/399 wr 294 swaps 0 any 202 found 4 <clinit>
+}

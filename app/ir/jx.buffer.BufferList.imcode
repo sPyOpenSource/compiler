@@ -1,0 +1,203 @@
+class jx/buffer/BufferList {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.size = 0;   
+        vR0.first = 0;   
+        vR0.last = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.size = 0;   
+        vR0.first = 0;   
+        vR0.last = 0;   
+        vR2 = vR1;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B27:   #1
+        if vi4>=vi3 goto B58;   
+  +B33:   #1
+        vR5 = vR2[vi4];    
+        b1 = new jx/buffer/BufferHead(vR5);    [ ?R  i][ ?R . iRR]
+        vR0.appendElement@this(b1);   [RiiR ?R . RR.] 
+        vi4++;   
+        goto +B27;   [RiiR ?R . ...]
+  +B58:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 7 swaps 0 any 3 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method appendElement(Ljx/buffer/BufferHead;)V {
+  +START:   #1
+        vR1.inlist = 1;   
+        vR1.prev = vR0.last;   
+        if vR0.last!=null goto B28;   
+  +B20:   #1
+        vR0.first = vR1;   
+        goto +B36;   [   ]
+  +B28:   #1
+        vR0.last.next = vR1;   
+  +B36:   #1
+        vR1.next = 0;   
+        vR0.last = vR1;   
+        vR0.size = (vR0.size+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 appendElement
+ 
+ method prependElement(Ljx/buffer/BufferHead;)V {
+  +START:   #1
+        if vR1.inlist==0 goto B17;   
+  -B7:   #1
+        throw new java/lang/Error("BH already in list");   
+  +B17:   #1
+        vR1.inlist = 1;   
+        vR1.next = vR0.first;   
+        if vR0.last!=null goto B50;   
+  +B37:   #1
+        vR0.last = vR1;   
+        vR0.first = vR1;   
+        goto +B58;   [ R . ...]
+  +B50:   #1
+        vR0.first.prev = vR1;   
+  +B58:   #1
+        vR1.prev = 0;   
+        vR0.first = vR1;   
+        vR0.size = (vR0.size+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 1 swaps 0 any 0 found 0 prependElement
+ 
+ method firstElement()Ljx/buffer/BufferHead; {
+  +START:   #1
+        return vR0.first;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 firstElement
+ 
+ method undockFirstElement()Ljx/buffer/BufferHead; {
+  +START:   #1
+        if vR0.first!=null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR1 = vR0.first;    
+        vR0.first = vR0.first.next;   
+        if vR0.first==null goto B40;   
+  +B32:   #1
+        vR0.first.prev = 0;   
+  +B40:   #1
+        vR1.next = 0;   
+        vR1.prev = 0;   
+        vR1.inlist = 0;   
+        vR0.size = (vR0.size-1);   
+        if vR0.size!=0 goto B82;   
+  +B72:   #1
+        vR0.first = 0;   
+        vR0.last = 0;   
+  +B82:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 1 swaps 0 any 0 found 0 undockFirstElement
+ 
+ method removeElement(Ljx/buffer/BufferHead;)V {
+  +START:   #1
+        if vR1.prev!=null goto B18;   
+  +B7:   #1
+        vR0.first = vR1.next;   
+        goto +B29;   [   ]
+  +B18:   #1
+        vR1.prev.next = vR1.next;   
+  +B29:   #1
+        if vR1.next!=null goto B47;   
+  +B36:   #1
+        vR0.last = vR1.prev;   
+        goto +B58;   [   ]
+  +B47:   #1
+        vR1.next.prev = vR1.prev;   
+  +B58:   #1
+        vR1.next = 0;   
+        vR1.prev = 0;   
+        vR1.inlist = 0;   
+        vR0.size = (vR0.size-1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 0 swaps 0 any 0 found 0 removeElement
+ 
+ method checkConsistency()V {
+  +START:   #1
+        vi1 = 0;    
+        vR3 = vR0.first;    
+  +B7:   #1
+        if vR3==null goto B107;   
+  +B11:   #1
+        if vR3.inlist!=0 goto B28;   
+  -B18:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B28:   #1
+        vi1++;   
+        if vi1<=vR0.size goto B49;   
+  -B39:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B49:   #1
+        if vi1!=vR0.size goto B75;   
+  +B57:   #1
+        if vR3==vR0.last goto B75;   
+  -B65:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B75:   #2
+        vR2 = vR3.next;    
+        if vR2==null goto B102;   
+  +B84:   #1
+        if vR2.prev==vR3 goto B102;   
+  -B92:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B102:   #2
+        vR3 = vR2;    
+        goto +B7;   [iRR RR . ...]
+  +B107:   #1
+        if vi1==vR0.size goto B178;   
+  -B115:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("Computetd size: ").append@extra(vi1).toString@extra());   [iRR RR ii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii. i..][ RR ii. iR.]
+        b0.println(b1.append@extra("size variable: ").append@extra(vR0.size).toString@extra());   [iRR RR iiiii. RR.] 
+        throw new java/lang/Error("inconsistent freelist");   
+  +B178:   #1
+        if vR0.first==null goto B205;   
+  +B185:   #1
+        if vR0.first.prev==null goto B205;   
+  -B195:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B205:   #2
+        if vR0.last==null goto B232;   
+  +B212:   #1
+        if vR0.last.next==null goto B232;   
+  -B222:   #1
+        throw new java/lang/Error("inconsistent freelist");   
+  +B232:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 25 swaps 5 any 8 found 0 checkConsistency
+}

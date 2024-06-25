@@ -1,0 +1,454 @@
+class java/util/Collections$SynchronizedNavigableMap {
+ 
+ method <init>(Ljava/util/NavigableMap;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.nm = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/NavigableMap;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.nm = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method lowerEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.lowerEntry(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 lowerEntry
+ 
+ method lowerKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.lowerKey(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 lowerKey
+ 
+ method floorEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.floorEntry(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 floorEntry
+ 
+ method floorKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.floorKey(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 floorKey
+ 
+ method ceilingEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.ceilingEntry(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 ceilingEntry
+ 
+ method ceilingKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.ceilingKey(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 ceilingKey
+ 
+ method higherEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.higherEntry(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 higherEntry
+ 
+ method higherKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.higherKey(vR1);    [R R  RR] 
+        vR2.leave();   
+        return b0;   
+  +H20<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B23:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 19 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 higherKey
+ 
+ method firstEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.firstEntry();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 firstEntry
+ 
+ method lastEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.lastEntry();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 lastEntry
+ 
+ method pollFirstEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.pollFirstEntry();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 pollFirstEntry
+ 
+ method pollLastEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.nm.pollLastEntry();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 pollLastEntry
+ 
+ method descendingMap()Ljava/util/NavigableMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.descendingMap(),vR0.mutex);    [ R  i][ R . iRRR]
+        vR1.leave();   
+        return b0;   
+  +H30<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B33:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 29 handler 30 type 0
+30 - 33 handler 30 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 descendingMap
+ 
+ method keySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        return vR0.navigableKeySet@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keySet
+ 
+ method navigableKeySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableSet(vR0.nm.navigableKeySet(),vR0.mutex);    [ R  i][ R . iRRR]
+        vR1.leave();   
+        return b0;   
+  +H30<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B33:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 29 handler 30 type 0
+30 - 33 handler 30 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 navigableKeySet
+ 
+ method descendingKeySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableSet(vR0.nm.descendingKeySet(),vR0.mutex);    [ R  i][ R . iRRR]
+        vR1.leave();   
+        return b0;   
+  +H30<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B33:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 29 handler 30 type 0
+30 - 33 handler 30 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 descendingKeySet
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR3 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.subMap(vR1,1,vR2,0),vR0.mutex);    [ R  i][ R . iRRR...]
+        vR3.leave();   
+        return b0;   
+  +H34<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B38:   #1
+        throw vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 33 handler 34 type 0
+34 - 38 handler 34 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.headMap(vR1,0),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR2.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B35:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 35 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.tailMap(vR1,1),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR2.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B35:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 35 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 tailMap
+ 
+ method subMap(Ljava/lang/Object;ZLjava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR5 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.subMap(vR1,vi2,vR3,vi4),vR0.mutex);    [ R  i][ R . iRRR...]
+        vR5.leave();   
+        return b0;   
+  +H37<caught exception>:   #2 reference
+        vR6 = <caught exception>;    
+        vR5.leave();   
+  -B42:   #1
+        throw vR6;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+8 - 36 handler 37 type 0
+37 - 42 handler 37 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR3 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.headMap(vR1,vi2),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR3.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B36:   #1
+        throw vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 36 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR3 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedNavigableMap(vR0.nm.tailMap(vR1,vi2),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR3.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B36:   #1
+        throw vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 36 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 tailMap
+ 
+ method keySet()Ljava/util/Set; {
+  +START:   #1
+        return vR0.keySet@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keySet
+}

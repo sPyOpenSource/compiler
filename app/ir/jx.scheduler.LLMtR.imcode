@@ -1,0 +1,312 @@
+class jx/scheduler/LLMtR {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?RRR  R] 
+        vR0.MyCPU = 0;   
+        vR0.TimeSlice_init = 0;   
+        vR0.left = 0;   
+        vR0.activeDomain = 0;   
+        vR0.ContainerPool = 0;   
+        vR0.ContainerPoolSize = 0;   
+        vR0.naming = getInitialNaming@special();   
+        vR0.irq = (jx/zero/IRQ)(vR0.naming.lookup("IRQ"));   
+        vR0.cpuManager = (jx/zero/CPUManager)(vR0.naming.lookup("CPUManager"));   
+        vR0.SMPcpuManager = (jx/zero/SMPCPUManager)(vR0.naming.lookup("SMPCPUManager"));   
+        vR0.LLschedulerSupport = (jx/zero/LLSchedulerSupport)(vR0.naming.lookup("LLSchedulerSupport"));   
+        vR1 = (jx/zero/debug/DebugChannel)(vR0.naming.lookup("DebugChannel0"));    
+        b1 = new jx/zero/debug/DebugPrintStream;    
+        b2 = b1;    
+        b3 = new jx/zero/debug/DebugOutputStream(vR1);    [ ?RRR iiiii. i.][ ?RRR iiiii. iRR]
+        b2.<init>@special(b3);   [R ?RRR iiiii. RR.] 
+        vR0.out = b1;   
+        out = vR0.out;   
+        b1 = new jx/scheduler/LinkedList();    [ ?RRR iiiii. i..][ ?RRR iiiii. iR.]
+        vR0.tokens = b1;   
+        vR0.TimeSlice_init = vR0.LLschedulerSupport.getDomainTimeslice();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 17 swaps 5 any 1 found 0 <init>
+ 
+ method registered(I)V {
+  +START:   #1
+        out.println("LLMtR init called");   [  i. RR] 
+        vR0.MyCPU = vR0.SMPcpuManager.getMyCPU();   
+        vR0.irq.installFirstLevelHandler(vi1,vR0);   [  i. RiR] 
+        vR0.irq.enableIRQ(vi1);   [  i. iR.] 
+        vR0.LLschedulerSupport.tuneTimer(vR0.TimeSlice_init);   [  ii iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 2 any 0 found 0 registered
+ 
+ method interrupt()V {
+  -START:   #1
+        vR0.LLschedulerSupport.preemptCurrentThread();   [ R  R] 
+        vR0.LLschedulerSupport.tuneTimer(0);   [ R  iR] 
+        vR0.Decision_Epoche@special();   [ R  R.] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 interrupt
+ 
+ method registerDomain(Ljx/zero/Domain;)V {
+  +START:   #1
+        out.print("LLMtR registerDomain:");   [  i. RR] 
+        vR0.LLschedulerSupport.printDomainName(vR1);   [  i. RR] 
+        out.println(" ");   [  ii. RR] 
+        vR0.cpuManager.dump("MtR:",vR1);   [  iii RRR] 
+        if vR1!=null goto B43;   
+  +B42:   #1
+        return;   
+  +B43:   #1
+        if vR0.tokens.contains(vR1)!=1 goto B84;   
+  +B55:   #1
+        out.print("Domain
+   ");   [  i.. RR.] 
+        vR0.cpuManager.dump("",vR1);   [  ii. RRR] 
+        out.println("      already registered.");   [  iii. RR.] 
+        return;   
+  +B84:   #1
+        vR2 = vR0.getNewContainer@special(vR1);    [  .... RR.] 
+        if vR0.tokens.isEmpty()==0 goto B105;   
+  +B100:   #1
+        vR0.activeDomain = vR2;   
+  +B105:   #1
+        vR0.tokens.add(vR2);   [R  .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 11 swaps 6 any 1 found 0 registerDomain
+ 
+ method unregisterDomain(Ljx/zero/Domain;)V {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 unregisterDomain
+ 
+ method setTimeSlice(Ljx/zero/Domain;I)V {
+  +START:   #1
+        out.println("LLMtR::setTimeSlice not supported");   [  i. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 setTimeSlice
+ 
+ method activate_currDomain()V {
+  -START:   #1
+        vR0.Decision_Epoche@special();   [ R  R] 
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 activate_currDomain
+ 
+ method activate_nextDomain()V {
+  +START:   #1
+        if vR0.tokens.size()!=1 goto B46;   
+  -B11:   #1
+        vR0.LLschedulerSupport.tuneTimer(vR0.activeDomain.DomainTimeSlice);   [ R i iR] 
+        vR0.LLschedulerSupport.activateIdleThread();   [ R i R.] 
+        throw new java/lang/Error("should never return!");   
+  -B46:   #1
+        vR0.Decision_Epoche@special();   [ R .. R..] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 0 found 0 activate_nextDomain
+ 
+ method dump()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra("DomainQueue for CPU: ").append@extra(vR0.SMPcpuManager.getMyCPU()).append@extra(":").toString@extra());   [ RR ii.ii. RR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii.ii. i...][ RR ii.ii. iR..]
+        b0.println(b1.append@extra("                     (ContainerPoolSize: ").append@extra(vR0.ContainerPoolSize).append@extra(")").toString@extra());   [ RR iiiiiiii.. RR..] 
+        vR0.dumpTokens@special();   [ RR iiiiiiii.. R...] 
+        out.println("");   [ RR iiiiiiiii. RR..] 
+        vR2 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getFirst());    
+  +B94:   #1
+        if vR2==null goto B153;   
+  +B98:   #1
+        vR1 = vR2.domain;    
+        out.print("Threads in Domain ");   [RR RR i......... RR..] 
+        vR0.LLschedulerSupport.printDomainName(vR1);   [RR RR i......... RR..] 
+        out.println("");   [RR RR ii........ RR..] 
+        vR0.LLschedulerSupport.dumpHLSched(vR1);   [RR RR ii........ RR..] 
+        vR2 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getNext());    
+        goto +B94;   [RR RR ii........ ....]
+  +B153:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 29 swaps 11 any 1 found 0 dump
+ 
+ method dumpTokens()V {
+  +START:   #1
+        vR1 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getFirst());    
+  +B11:   #1
+        if vR1==null goto B107;   
+  +B15:   #1
+        out.print("  (");   [R RR i. RR] 
+        vR0.LLschedulerSupport.printDomainName(vR1.domain);   [R RR ii RR] 
+        if vR0.LLschedulerSupport.isRunnable(vR1.domain)==0 goto B60;   
+  +B52:   #1
+        out.print("*");   [R RR i.. RR] 
+  +B60:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i.][ RR ... iR]
+        b0.print(b1.append@extra(",").append@extra(vR1.DomainTimeSlice).append@extra(")").toString@extra());   [R RR iiii.. RR..] 
+        vR1 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getNext());    
+        goto +B11;   [R RR iiii.. ....]
+  +B107:   #1
+        out.print("
+*******************************************************
+ ");   [R RR i..... RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 21 swaps 9 any 1 found 0 dumpTokens
+ 
+ method Decision_Epoche()V {
+  +START:   #1
+        vR0.left = vR0.LLschedulerSupport.readTimer();   
+        vR0.Update_Domain@special();   [   R] 
+        vR0.dump@this();   [   R] 
+        vR0.Run_a_Domain@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 Decision_Epoche
+ 
+ method Update_Domain()V {
+  +START:   #1
+        vi1 = (vR0.activeDomain.DomainTimeSlice-vR0.left);    
+        if vi1!=0 goto B18;   
+  +B17:   #1
+        return;   
+  +B18:   #1
+        if vR0.left> 0 goto B36;   
+  +B25:   #1
+        vR0.MoveToRear@special(vR0.activeDomain);   [i  i RR] 
+        goto +B67;   [i  i ..]
+  +B36:   #1
+        vR0.activeDomain.DomainTimeSlice = vR0.left;   
+        vR0.tokens.add(vR0.getNewContainer@special(vR0.activeDomain.domain,vi1));   [i  ii RR.] 
+  +B67:   #1
+        vR0.Combine_Elements@special((vR0.tokens.size()-1));   [i  i. iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 5 swaps 4 any 1 found 0 Update_Domain
+ 
+ method Run_a_Domain()V {
+  -START:   #1
+        vR0.left = 0;   
+        vR0.activeDomain = vR0.getFirstRunnable@special();   
+        vR0.LLschedulerSupport.tuneTimer(vR0.activeDomain.DomainTimeSlice);   [ R i iR] 
+        vR0.LLschedulerSupport.activateDomain(vR0.activeDomain.domain);   [ R ii RR] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 2 any 0 found 0 Run_a_Domain
+ 
+ method MoveToRear(Ljx/scheduler/LLMtR$DomainContainer;)V {
+  +START:   #1
+        vi2 = vR0.tokens.indexOf(vR1);    [ R  RR] 
+        if vi2!=-1 goto B24;   
+  -B14:   #1
+        throw new java/lang/Error("system error!");   
+  +B24:   #1
+        vR0.tokens.remove(vi2);   [i R . iR.] 
+        vR0.Combine_Elements@special(vi2);   [i R . iR.] 
+        vR0.tokens.add(vR1);   [i R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 1 found 0 MoveToRear
+ 
+ method Combine_Elements(I)V {
+  +START:   #1
+        if vi1>=1 goto B6;   
+  +B5:   #1
+        return;   
+  +B6:   #1
+        if vi1<vR0.tokens.size() goto B18;   
+  +B17:   #1
+        return;   
+  +B18:   #1
+        vR2 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.get((vi1-1)));    
+        vR3 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.get(vi1));    
+        if vR2.domain!=vR3.domain goto B95;   
+  +B55:   #1
+        vR2.DomainTimeSlice = (vR2.DomainTimeSlice+vR3.DomainTimeSlice);   
+        if vR0.activeDomain!=vR3 goto B81;   
+  +B76:   #1
+        vR0.activeDomain = vR2;   
+  +B81:   #1
+        vR0.tokens.remove(vi1);   [RR  .. iR] 
+        vR0.releaseContainer@special(vR3);   [RR  .. RR] 
+  +B95:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 5 swaps 1 any 2 found 1 Combine_Elements
+ 
+ method getFirstRunnable()Ljx/scheduler/LLMtR$DomainContainer; {
+  +START:   #1
+        vR1 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getFirst());    
+  +B11:   #1
+        if vR1==null goto B47;   
+  +B15:   #1
+        if vR0.LLschedulerSupport.isRunnable(vR1.domain)==0 goto B33;   
+  +B31:   #1
+        return vR1;   
+  +B33:   #1
+        vR1 = (jx/scheduler/LLMtR$DomainContainer)(vR0.tokens.getNext());    
+        goto +B11;   [R R . ..]
+  -B47:   #1
+        vR0.LLschedulerSupport.tuneTimer(vR0.activeDomain.DomainTimeSlice);   [R R i iR] 
+        vR0.LLschedulerSupport.activateIdleThread();   [R R i R.] 
+        throw new java/lang/Error("no domain is runnable");   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 2 any 1 found 0 getFirstRunnable
+ 
+ method getNewContainer(Ljx/zero/Domain;)Ljx/scheduler/LLMtR$DomainContainer; {
+  +START:   #1
+        return vR0.getNewContainer@special(vR1,vR0.TimeSlice_init);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getNewContainer
+ 
+ method getNewContainer(Ljx/zero/Domain;I)Ljx/scheduler/LLMtR$DomainContainer; {
+  +START:   #1
+        vR3 = vR0.ContainerPool;    
+        if vR3!=null goto B30;   
+  +B9:   #1
+        vR0.ContainerPoolSize = (vR0.ContainerPoolSize+1);   
+        return new jx/scheduler/LLMtR$DomainContainer(vR0,vR1,vi2);   
+  +B30:   #1
+        vR0.ContainerPool = vR0.ContainerPool.next;   
+        vR3.domain = vR1;   
+        vR3.DomainTimeSlice = vi2;   
+        vR3.next = 0;   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 2 swaps 0 any 1 found 0 getNewContainer
+ 
+ method releaseContainer(Ljx/scheduler/LLMtR$DomainContainer;)V {
+  +START:   #1
+        vR1.domain = 0;   
+        vR1.DomainTimeSlice = 0;   
+        vR1.next = vR0.ContainerPool;   
+        vR0.ContainerPool = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 releaseContainer
+}

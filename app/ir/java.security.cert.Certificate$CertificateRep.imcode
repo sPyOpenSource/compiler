@@ -1,0 +1,31 @@
+class java/security/cert/Certificate$CertificateRep {
+ 
+ method <init>(Ljava/lang/String;[B)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.type = vR1;   
+        vR0.data = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readResolve()Ljava/lang/Object; {
+  +START:   #2
+        b0 = new java/io/ObjectInputStream;    
+        b1 = b0;    
+        b2 = new java/io/ByteArrayInputStream(vR0.data);    [ RRR  i][ RRR . iRR]
+        b1.<init>@special(b2);   [ RRR . RR.] 
+        b0 = b0.readObject();    [ RRR . R..] 
+  +B21b0:   #1 reference
+        return b0;   
+  -H22<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        vR1.printStackTrace();   [R RRR . R..] 
+        throw new java/lang/RuntimeException(vR1.toString());   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 21 handler 22 type 9
+ }
+// Register: rd 10/10 wr 7 swaps 0 any 1 found 0 readResolve
+}

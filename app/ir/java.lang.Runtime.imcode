@@ -1,0 +1,132 @@
+class java/lang/Runtime {
+ 
+ method getRuntime()Ljava/lang/Runtime; {
+  +START:   #1
+        return runtime;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRuntime
+ 
+ method exit(I)V {
+  +START:   #1
+        vR0.exitInternal@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 exit
+ 
+ method exitInternal(I)V {
+  +START:   #2
+        goto +START;   [   ]
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 exitInternal
+ 
+ method exec([Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/Process; {
+  +START:   #1
+        vR0.exit@this(1);   [   iR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 exec
+ 
+ method exec([Ljava/lang/String;)Ljava/lang/Process; {
+  +START:   #1
+        return vR0.exec@this(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 exec
+ 
+ method exec(Ljava/lang/String;[Ljava/lang/String;)Ljava/lang/Process; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 exec
+ 
+ method exec(Ljava/lang/String;)Ljava/lang/Process; {
+  +START:   #1
+        return vR0.exec@this(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 exec
+ 
+ method load(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.exit@this(1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 load
+ 
+ method loadLibrary(Ljava/lang/String;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 loadLibrary
+ 
+ method freeMemory()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 freeMemory
+ 
+ method totalMemory()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 totalMemory
+ 
+ method gc()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 gc
+ 
+ method runFinalization()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 runFinalization
+ 
+ method traceInstructions(Z)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 traceInstructions
+ 
+ method traceMethodCalls(Z)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 traceMethodCalls
+ 
+ method getLocalizedInputStream(Ljava/io/InputStream;)Ljava/io/InputStream; {
+  +START:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocalizedInputStream
+ 
+ method getLocalizedOutputStream(Ljava/io/OutputStream;)Ljava/io/OutputStream; {
+  +START:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocalizedOutputStream
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

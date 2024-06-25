@@ -1,0 +1,71 @@
+class java/security/IdentityScope {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/security/IdentityScope;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSystemScope()Ljava/security/IdentityScope; {
+  +START:   #1
+        if systemScope!=null goto B6;   
+  +B6:   #1
+        return systemScope;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSystemScope
+ 
+ method setSystemScope(Ljava/security/IdentityScope;)V {
+  +START:   #1
+        vR1 = getSecurityManager@special();    [   ]
+        if vR1==null goto B14;   
+  +B8:   #1
+        vR1.checkSecurityAccess("setSystemScope");   [R  i RR] 
+  +B14:   #1
+        systemScope = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 1 found 1 setSystemScope
+ 
+ method getIdentity(Ljava/security/Principal;)Ljava/security/Identity; {
+  +START:   #1
+        return vR0.getIdentity@this(vR1.getName());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getIdentity
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getName@special()).append@extra(" ").append@extra(vR0.getScope@special().getName()).append@extra(" ").append@extra(vR0.size@this()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 12 swaps 5 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        systemScope = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

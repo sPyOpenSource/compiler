@@ -1,0 +1,283 @@
+class java/io/BufferedReader {
+ 
+ method <init>(Ljava/io/Reader;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,8192);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/Reader;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.lock);   [  i RR] 
+        vR0.markPos = -1;   
+        vR0.in = vR1;   
+        vR0.buffer = new char[vi2];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method markSupported()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 markSupported
+ 
+ method fill()I {
+  +START:   #1
+        vR0.checkStatus@special();   [   R] 
+        vi1 = 0;    
+        if vR0.pos<=vR0.limit goto B29;   
+  +B17:   #1
+        vi1 = 1;    
+        vR0.pos = (vR0.pos-1);   
+  +B29:   #1
+        if vR0.markPos< 0 goto B53;   
+  +B36:   #1
+        if vR0.limit!=vR0.buffer.length goto B53;   
+  +B48:   #1
+        vR0.markPos = -1;   
+  +B53:   #2
+        if vR0.markPos>=0 goto B70;   
+  +B60:   #1
+        vR0.limit = 0;   
+        vR0.pos = 0;   
+  +B70:   #1
+        vi2 = vR0.in.read(vR0.buffer,vR0.limit,(vR0.buffer.length-vR0.limit));    [i  iii iiRR] 
+        if vi2<=0 goto B110;   
+  +B100:   #1
+        vR0.limit = (vR0.limit+vi2);   
+  +B110:   #1
+        if vi1==0 goto B141;   
+  +B114:   #1
+        if vR0.buffer[vR0.pos]!=10 goto B141;   
+  +B128:   #1
+        vi2--;   
+        vR0.pos = (vR0.pos+1);   
+  +B141:   #2
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 6 swaps 1 any 3 found 0 fill
+ 
+ method lineEnd(I)I {
+  +START:   #1
+        vi2 = vR0.pos;    
+  +B5:   #1
+        if vi2>=vi1 goto B38;   
+  +B10:   #1
+        vi3 = vR0.buffer[vi2];    
+        if vi3==10 goto B38;   
+  +B23:   #1
+        if vi3!=13 goto B32;   
+  +B29:   #1
+        goto +B38;   forward return[ii   ]
+  +B32:   #1
+        vi2++;   
+        goto +B5;   [ii   ]
+  +B38:   #3
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 4 found 0 lineEnd
+ 
+ method readLine()Ljava/lang/String; {
+  +START:   #1
+        vR0.checkStatus@special();   [ R  R] 
+        if vR0.pos<=vR0.limit goto B42;   
+  +B15:   #1
+        vi1 = vR0.read@this();    [ R  R] 
+        if vi1>=0 goto B26;   
+  +B24:   #1
+        return 0;   
+  +B26:   #1
+        if vi1==10 goto B42;   
+  +B32:   #1
+        vR0.pos = (vR0.pos-1);   
+  +B42:   #2
+        vi1 = vR0.lineEnd@special(vR0.limit);    [i R i iR] 
+        if vi1>=vR0.limit goto B136;   
+  +B59:   #1
+        vR2 = new java/lang/String(vR0.buffer,vR0.pos,(vi1-vR0.pos));    [ R . i.][ R . iiiRR]
+        vR0.pos = (vi1+1);   
+        if vR0.buffer[vi1]!=13 goto B134;   
+  +B99:   #1
+        if vR0.pos==vR0.limit goto B124;   
+  +B110:   #1
+        if vR0.buffer[vR0.pos]!=10 goto B134;   
+  +B124:   #1
+        vR0.pos = (vR0.pos+1);   
+  +B134:   #2
+        return vR2;   
+  +B136:   #1
+        vR2 = new java/lang/StringBuilder(200);    [ R . i....][ R . iiR..]
+        vR0.pos = vi1;   
+        vi3 = 0;    
+  +B154:   #1
+        vi4 = vR0.read@this();    [iRi R . R....] 
+        if vi4>=0 goto B170;   
+  +B165:   #1
+        vi3 = 1;    
+        goto +B246;   [iRii R . .....]
+  +B170:   #1
+        if vi4==10 goto B184;   
+  +B177:   #1
+        if vi4!=13 goto B229;   
+  +B184:   #1
+        if vi4!=13 goto B246;   
+  +B191:   #1
+        if vR0.pos==vR0.limit goto B216;   
+  +B202:   #1
+        if vR0.buffer[vR0.pos]!=10 goto B246;   
+  +B216:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B246;   [iRii R . .....]
+  +B229:   #1
+        vi1 = vR0.lineEnd@special(vR0.limit);    [iRii R i iR...] 
+        vR0.pos = vi1;   
+        goto +B154;   [iRii R i .....]
+  +B246:   #4
+        if vR2.length@extra()!=0 goto B261;   
+  +B253:   #1
+        if vi3==0 goto B261;   
+  +B257:   #1
+        b0 = 0;    
+        goto +B265b0;   forward return[iRii R . .....]
+  +B261:   #2
+        b0 = vR2.toString@extra();    [iRii R . R....] 
+  +B265b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 50/50 wr 13 swaps 2 any 8 found 0 readLine
+ 
+ method skip(J)J {
+  +START:   #1
+        b0 = vR0.lock;    
+        vR3 = b0;    
+        b0.enter();   
+        vR0.checkStatus@special();   [?R R  R] 
+        if compare(vl1,0)> 0 goto B21;   
+  +B17:   #1
+        vR3.leave();   
+        return 0;   
+  +B21:   #1
+        if vR0.pos<=vR0.limit goto B56;   
+  +B32:   #1
+        b0 = vR0.read@this();    [?R i  R] 
+        vi4 = b0;    
+        if b0>=0 goto B46;   
+  +B42:   #1
+        vR3.leave();   
+        return 0;   
+  +B46:   #1
+        vR0.pos = (vR0.pos-1);   
+  +B56:   #1
+        vi5 = (vR0.limit-vR0.pos);    
+        if compare(vl1,(long)vi5)>=0 goto B91;   
+  +B75:   #1
+        vR0.pos = (int)((long)vR0.pos+vl1);   
+        vR3.leave();   
+        return vl1;   
+  +B91:   #1
+        vR0.pos = vR0.limit;   
+        vl6 = (vl1-(long)vi5);    
+        if compare(vl6,(long)vR0.buffer.length)<=0 goto B126;   
+  +B118:   #1
+        vR0.markPos = -1;   
+        goto +B183;   [?Riil i . .]
+  +B126:   #2
+        if compare(vl6,0)<=0 goto B183;   
+  +B133:   #1
+        vi5 = vR0.fill@special();    [?Riil i . R] 
+        if vi5> 0 goto B147;   
+  +B144:   #1
+        goto +B183;   [?Riil i . .]
+  +B147:   #1
+        if compare((long)vi5,vl6)<=0 goto B161;   
+  +B156:   #1
+        vi5 = (int)vl6;    
+  +B161:   #1
+        vR0.pos = (vR0.pos+vi5);   
+        vl6 = (vl6-(long)vi5);    
+        goto +B126;   [?Riil i . .]
+  +B183:   #3
+        b0 = (vl1-vl6);    
+        vR3.leave();   
+        return b0;   
+  +H190<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        vR3.leave();   
+  -B194:   #1
+        throw vR8;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 20 handler 190 type 0
+21 - 45 handler 190 type 0
+46 - 90 handler 190 type 0
+91 - 189 handler 190 type 0
+190 - 194 handler 190 type 0
+ }
+// Register: rd 23/23 wr 10 swaps 0 any 4 found 0 skip
+ 
+ method checkStatus()V {
+  +START:   #1
+        if vR0.in!=null goto B17;   
+  -B7:   #1
+        throw new java/io/IOException("Stream closed");   
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 checkStatus
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method read([CII)I {
+  +START:   #2
+        vR4 = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));    
+        vR5 = vR4.alloc(4096);    [R iR R. iR] 
+        vR6 = (jx/fs/FS)(waitUntilPortalAvailable@special(0,"FS"));    
+        vR7 = vR6.lookup("/index.html");    [RRR iR RRi RR] 
+        vi8 = vR7.getLength();    [RRRR iR RRi R.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR RRi i.][ RR RRi iR]
+        b0.println(b1.append@extra("l: ").append@extra(vi8).append@extra(" count: ").append@extra(vi3).toString@extra());   [RRRRi RR RRiiii... RR...] 
+        vR7.read(vR5,0,vi8);   [RRRRi RR RRiiii... iiRR.] 
+        vR9 = new byte[vi8];    
+        vR5.copyToByteArray(vR9,0,0,512);   [RRRRiR RR RRiiii... iiiRR] 
+        vi10 = 0;    
+  +B124:   #1
+        if vi10>=vi3 goto B158;   
+  +B130:   #1
+        vR1[vi10] = (char)vR9[(vi2+vi10)];   
+        out.print(vR1[vi10]);   [RRRRiRi RR i........ cR...] 
+        vi10++;   
+        goto +B124;   [RRRRiRi RR i........ .....]
+  +B158:   #1
+        b0 = vi3;    
+  +B159b0:   #1 int
+        return b0;   
+  +H160<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        out.println(vR4.getMessage());   [RRRRiRi iR i........ RR...] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 159 handler 160 type 48
+0 - 159 handler 160 type 49
+0 - 159 handler 160 type 50
+0 - 159 handler 160 type 51
+0 - 159 handler 160 type 52
+0 - 159 handler 160 type 53
+ }
+// Register: rd 23/23 wr 28 swaps 6 any 3 found 0 read
+}

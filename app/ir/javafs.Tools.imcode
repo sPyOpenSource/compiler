@@ -1,0 +1,969 @@
+class javafs/Tools {
+ 
+ method <init>(Ljx/bio/BlockIO;Ljx/fs/buffercache/BufferCache;Ljavafs/InodeCache;Ljx/zero/Clock;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.bufferCache = vR2;   
+        vR0.inodeCache = vR3;   
+        vR0.clock = vR4;   
+        vR0.idedevice = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method makeFS(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.makeFS@this(vR1,vi2,vR0.idedevice.getCapacity());   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 makeFS
+ 
+ method makeFS(Ljava/lang/String;II)V {
+  +START:   #4
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("makeFS: verwende ").append@extra((vi3/2048)).append@extra(" MB.").toString@extra());   [ RR iiii.. RR..] 
+        out.println("Initialisiere Dateisystem  ...");   [ RR iiiii. RR..] 
+        vR0.initializeFS@special(vR1,vi2,vi3);   [ RR iiiii. iiRR] 
+        out.println("Erzeuge Wurzelverzeichnis ...");   [ RR iiiiii. RR..] 
+        vR0.createRootDir@special();   [ RR iiiiii. R...] 
+        out.println("Schreibe Dateisystem ...");   [ RR iiiiiii. RR..] 
+        vR0.closeFS@special();   [ RR iiiiiii. R...] 
+  +B73:   #3
+        goto +B112;   forward return[ RR ........ ....]
+  +H76<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        out.println("Tools.makeFS(): IO-Fehler");   [R RR i....... RR..] 
+        goto +B112;   forward return[R RR i....... ....]
+  +H89<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        out.println("Tools.makeFS(): Platz fuer Filesystem nicht ausreichend");   [R RR i....... RR..] 
+        goto +B112;   forward return[R RR i....... ....]
+  +H102<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        out.println("Tools.makeFS(): Dateisystem zu gross dimensioniert (Ueberlauf)");   [R RR i....... RR..] 
+  +B112:   #3
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 73 handler 76 type 24
+0 - 73 handler 89 type 26
+0 - 73 handler 102 type 28
+ }
+// Register: rd 6/6 wr 24 swaps 10 any 0 found 0 makeFS
+ 
+ method createRootDir()V {
+  +START:   #1
+        vR3 = (javafs/GroupData)(vR0.desc_vector.firstElement@extra());    
+        vR3.bg_used_dirs_count((short)(vR3.bg_used_dirs_count()+1));   [??R RR i iR] 
+        vR5 = vR0.bufferCache.bread(vR3.bg_inode_table());    [??R RR ii iR] 
+        vR1 = new javafs/InodeData(vR5,vR0.sb_data.s_inode_size@extra());    [ RR ii i.][ RR ii. isRR]
+        vR1.clear();   [R?R?R RR ii. R...] 
+        vR1.i_mode@extra(16877);   [R?R?R RR ii. iR..] 
+        vR1.i_uid@extra(0);   [R?R?R RR ii. iR..] 
+        vR1.i_gid@extra(0);   [R?R?R RR ii. iR..] 
+        vR1.i_size@extra(vR0.block_size);   [R?R?R RR iii iR..] 
+        vR1.i_links_count@extra(2);   [R?R?R RR iii iR..] 
+        vR1.i_ctime@extra(0);   [R?R?R RR iii iR..] 
+        vR1.i_atime@extra(0);   [R?R?R RR iii iR..] 
+        vR1.i_mtime@extra(0);   [R?R?R RR iii iR..] 
+        vR1.i_dtime@extra(0);   [R?R?R RR iii iR..] 
+        vR1.i_blocks@extra((vR0.block_size/512));   [R?R?R RR iiii iR..] 
+        vi8 = 0;    
+  +B123:   #1
+        if vi8>=15 goto B143;   
+  +B130:   #1
+        vR1.i_block@extra(vi8,0);   [R?R?R??i RR .... iiR.] 
+        vi8++;   
+        goto +B123;   [R?R?R??i RR .... ....]
+  +B143:   #1
+        vR4 = new javafs/Bitmap(vR0.bufferCache,vR0.block_size,vR3.bg_block_bitmap());    [ RR .... i...][ RR .... iiiRR]
+        vR4.loadBitmap();   [R?RRR??i RR .... R....] 
+        vi7 = vR4.findFirstZeroBit();    [R?RRR??i RR .... R....] 
+        vR4.setBit(vi7);   [R?RRR?ii RR .... iR...] 
+        vR4.markBitmapDirty();   [R?RRR?ii RR .... R....] 
+        vR4.releaseBitmap();   [R?RRR?ii RR .... R....] 
+        vi7 = (vi7+vR0.sb_data.s_first_data_block@extra());    
+        b0 = vR0.bufferCache.getblk(vi7);    [R?RRR?ii RR .... iR...] 
+        vR6 = b0;    
+        if b0!=null goto B256;   
+  -B222:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i....][ RR .... iR...]
+        b0.println(b1.append@extra("cannot get block ").append@extra(vi7).toString@extra());   [R?RRRRii RR ii.. RR...] 
+        throw new javafs/BufferIOException();   
+  +B256:   #1
+        vR1.i_block@extra(0,vi7);   [R?RRRRii RR .... iiR..] 
+        vR6.clear();   [R?RRRRii RR .... R....] 
+        vR2 = new javafs/DirEntryData(vR6,0);    [ RR .... i....][ RR .... iiRR.]
+        vR2.inode(2);   [RRRRRRii RR .... iR...] 
+        vR2.name_len(1);   [RRRRRRii RR .... iR...] 
+        vR2.rec_len(12);   [RRRRRRii RR .... iR...] 
+        vR2.name(".");   [RRRRRRii RR i... RR...] 
+        vR2.init(vR2.rec_len());   [RRRRRRii RR ii.. sR...] 
+        vR2.inode(2);   [RRRRRRii RR ii.. iR...] 
+        vR2.rec_len((short)(vR0.block_size-12));   [RRRRRRii RR iii. iR...] 
+        vR2.name_len(2);   [RRRRRRii RR iii. iR...] 
+        vR2.name("..");   [RRRRRRii RR iiii RR...] 
+        vR3.bg_free_blocks_count((short)(vR3.bg_free_blocks_count()-1));   [RRRRRRii RR iiiii iR...] 
+        vR3.bh.markDirty();   [RRRRRRii RR iiiii R....] 
+        vR0.sb_data.s_free_blocks_count@extra((vR0.sb_data.s_free_blocks_count@extra()-1));   [RRRRRRii RR iiiiii iR...] 
+        vR0.bufferCache.bdwrite(vR5);   [RRRRRRii RR iiiiii RR...] 
+        vR0.bufferCache.bdwrite(vR6);   [RRRRRRii RR iiiiii RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 64/64 wr 31 swaps 12 any 5 found 1 createRootDir
+ 
+ method closeFS()V {
+  +START:   #1
+        vR0.inodeCache.syncInodes();   [   R] 
+        vi2 = 0;    
+  +B9:   #1
+        if vi2>=vR0.desc_blocks goto B60;   
+  +B17:   #1
+        vR1 = (javafs/GroupData)(vR0.desc_vector.elementAt((vi2*vR0.desc_per_block)));    
+        vR1.bh.markDirty();   [Ri  i. R.] 
+        vR0.bufferCache.brelse(vR1.bh);   [Ri  ii RR] 
+        vi2++;   
+        goto +B9;   [Ri  ii ..]
+  +B60:   #1
+        vR0.sb_data.s_wtime@extra(vR0.clock.getTimeInMillis());   [Ri  i. iR] 
+        vR0.sb_data.s_block_group_nr@extra(0);   [Ri  i. iR] 
+        vR0.sb_data.bh.markDirty();   [Ri  i. R.] 
+        vR0.bufferCache.brelse(vR0.sb_data.bh);   [Ri  ii RR] 
+        vR0.bufferCache.syncDevice(0);   [Ri  ii iR] 
+        vR0.inodeCache.syncInodes();   [Ri  ii R.] 
+        vR0.bufferCache.syncDevice(1);   [Ri  ii iR] 
+        vR0.inodeCache.invalidateInodes();   [Ri  ii R.] 
+        vR0.bufferCache.flushCache();   [Ri  ii R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 8 swaps 4 any 2 found 0 closeFS
+ 
+ method initializeFS(Ljava/lang/String;II)V {
+  +START:   #1
+        vR5 = 0;    
+        if vi2>=1024 goto B20;   
+  -B10:   #1
+        throw new java/lang/Error("blocksize < 1024");   
+  +B20:   #1
+        if (vi2%1024)==0 goto B46;   
+  +B28:   #1
+        out.println("Tools.initializeFS(): blocksize % 1024 != 0");   [?R RR i. RR.] 
+        vi2 = ((vi2/1024)*1024);    
+  +B46:   #1
+        if vi3>=0 goto B58;   
+  -B50:   #1
+        throw new javafs/TooBigException();   
+  +B58:   #1
+        vi16 = 0;    
+        vi17 = vi2;    
+  +B64:   #1
+        if vi17==1 goto B87;   
+  +B70:   #1
+        if vi17<=0 goto B87;   
+  +B75:   #1
+        vi17 = (vi17 >> 1);    
+        vi16++;   
+        goto +B64;   [?R??????????ii RR .. ...]
+  +B87:   #2
+        vi16+=-10;   
+        b1 = new java/util/Vector();    [ RR .. i..][ RR .. iR.]
+        vR0.desc_vector = b1;   
+        vR0.block_size = vi2;   
+        b0 = vR0.bufferCache.getblk(1);    [?R??????????ii RR .. iR.] 
+        vR4 = b0;    
+        if b0!=null goto B138;   
+  -B122:   #1
+        out.println("Tools: unable to read superblock");   [RR??????????ii RR i. RR.] 
+        throw new javafs/BufferIOException();   
+  +B138:   #1
+        b1 = new javafs/SuperBlockData(vR4);    [ RR .. i..][ RR .. iRR]
+        vR0.sb_data = b1;   
+        vR0.sb_data.s_rev_level@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_magic@extra(-4269);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_state@extra(1);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_log_block_size@extra(vi16);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_log_frag_size@extra(vi16);   [RR??????????ii RR .. iR.] 
+        if vi2!=1024 goto B213;   
+  +B202:   #1
+        vR0.sb_data.s_first_data_block@extra(1);   [RR??????????ii RR .. iR.] 
+        goto +B221;   [RR??????????ii RR .. ...]
+  +B213:   #1
+        vR0.sb_data.s_first_data_block@extra(0);   [RRR?Riiiiiiiiiii RR .. iR.] 
+  +B221:   #1
+        vR0.sb_data.s_mnt_count@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_max_mnt_count@extra(20);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_errors@extra(1);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_feature_compat@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_feature_incompat@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_feature_ro_compat@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_minor_rev_level@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_rev_level@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_first_ino@extra(11);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_inode_size@extra(128);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_lastcheck@extra(0);   [RR??????????ii RR .. iR.] 
+        vR0.sb_data.s_last_mounted@extra("/");   [RR??????????ii RR i. RR.] 
+        vR0.sb_data.s_checkinterval@extra(0);   [RR??????????ii RR i. iR.] 
+        vR0.sb_data.s_creator_os@extra(0);   [RR??????????ii RR i. iR.] 
+        vR0.sb_data.s_def_resuid@extra(0);   [RR??????????ii RR i. iR.] 
+        vR0.sb_data.s_def_resgid@extra(0);   [RR??????????ii RR i. iR.] 
+        vi18 = 0;    
+  +B357:   #1
+        if vi18>=16 goto B380;   
+  +B364:   #1
+        vR0.sb_data.s_uuid@extra(vi18,1);   [RR??????????iii RR .. iiR] 
+        vi18++;   
+        goto +B357;   [RR??????????iii RR .. ...]
+  +B380:   #1
+        vR0.sb_data.s_alg_usage_bitmap@extra(0);   [RR??????????iii RR .. iR.] 
+        vR0.sb_data.s_prealloc_blocks@extra(0);   [RR??????????iii RR .. iR.] 
+        vR0.sb_data.s_prealloc_dir_b@extra(0);   [RR??????????iii RR .. iR.] 
+        vR0.sb_data.s_blocks_per_group@extra((vR0.block_size*8));   [RR??????????iii RR i. iR.] 
+        vR0.sb_data.s_frags_per_group@extra(vR0.sb_data.s_blocks_per_group@extra());   [RR??????????iii RR ii iR.] 
+        vR0.sb_data.s_blocks_count@extra((vi3 >> (vi2/1024)));   [RR??????????iii RR iii iR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii i..][ RR iii iR.]
+        b0.println(b1.append@extra("  Erster Datenblock:  ").append@extra(vR0.sb_data.s_first_data_block@extra()).toString@extra());   [RR??????????iii RR iiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii. i..][ RR iiiiii. iR.]
+        b0.println(b1.append@extra("  Bloecke pro Gruppe: ").append@extra(vR0.sb_data.s_blocks_per_group@extra()).toString@extra());   [RR??????????iii RR iiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii. i..][ RR iiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Anzahl Bloecke:     ").append@extra(vR0.sb_data.s_blocks_count@extra()).toString@extra());   [RR??????????iii RR iiiiiiiiiiii. RR.] 
+        vR0.sb_data.s_r_blocks_count@extra(((vR0.sb_data.s_blocks_count@extra()*5)/100));   [RR??????????iii RR iiiiiiiiiiiii iR.] 
+  +B558:   #1
+        out.println("check 2");   [RR??????????iii RR i............ RR.] 
+        vR0.group_desc_count = ((((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())+vR0.sb_data.s_blocks_per_group@extra())-1)/vR0.sb_data.s_blocks_per_group@extra());   
+        if vR0.group_desc_count!=0 goto B618;   
+  -B610:   #1
+        throw new javafs/TooSmallException();   
+  +B618:   #1
+        vR0.desc_per_block = (vR0.block_size/32);   
+        vR0.desc_blocks = (((vR0.group_desc_count+vR0.desc_per_block)-1)/vR0.desc_per_block);   
+        vR0.sb_data.s_inodes_count@extra((vR0.sb_data.s_blocks_count@extra()/(4096/vR0.block_size)));   [RR??????????iii RR i............ iR.] 
+        if vR0.sb_data.s_inodes_count@extra()>=(vR0.sb_data.s_first_ino@extra()+1) goto B707;   
+  +B691:   #1
+        vR0.sb_data.s_inodes_count@extra((vR0.sb_data.s_first_ino@extra()+1));   [RR??????????iii RR i............ iR.] 
+  +B707:   #1
+        vR0.sb_data.s_inodes_per_group@extra((((vR0.sb_data.s_inodes_count@extra()+vR0.group_desc_count)-1)/vR0.group_desc_count));   [RR??????????iii RR i............ iR.] 
+        if vR0.sb_data.s_inodes_per_group@extra()<=(vR0.block_size*8) goto B764;   
+  +B750:   #1
+        vR0.sb_data.s_inodes_per_group@extra((vR0.block_size*8));   [RR??????????iii RR i............ iR.] 
+  +B764:   #1
+        vR0.inode_blocks_per_group = ((((vR0.sb_data.s_inodes_per_group@extra()*vR0.sb_data.s_inode_size@extra())+vR0.block_size)-1)/vR0.block_size);   
+        vR0.sb_data.s_inodes_per_group@extra(((vR0.inode_blocks_per_group*vR0.block_size)/vR0.sb_data.s_inode_size@extra()));   [RR??????????iii RR i............ iR.] 
+        vR0.sb_data.s_inodes_per_group@extra((vR0.sb_data.s_inodes_per_group@extra() & -8));   [RR??????????iii RR ii........... iR.] 
+        vR0.inode_blocks_per_group = ((((vR0.sb_data.s_inodes_per_group@extra()*vR0.sb_data.s_inode_size@extra())+vR0.block_size)-1)/vR0.block_size);   
+        vR0.sb_data.s_inodes_count@extra((vR0.sb_data.s_inodes_per_group@extra()*vR0.group_desc_count));   [RR??????????iii RR iii.......... iR.] 
+        vR0.sb_data.s_free_inodes_count@extra(vR0.sb_data.s_inodes_count@extra());   [RR??????????iii RR iiii......... iR.] 
+        vi11 = ((vR0.desc_blocks+3)+vR0.inode_blocks_per_group);    
+        vi12 = ((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra());    
+        if vR0.group_desc_count!=1 goto B966;   
+  +B946:   #1
+        if vi12<=0 goto B966;   
+  +B951:   #1
+        if vi12>=vi11 goto B966;   
+  -B958:   #1
+        throw new javafs/TooSmallException();   
+  +B966:   #3
+        if vi12<=0 goto B1001;   
+  +B971:   #1
+        if vi12>=(vi11+50) goto B1001;   
+  +B981:   #1
+        vR0.sb_data.s_blocks_count@extra((vR0.sb_data.s_blocks_count@extra()-vi12));   [RR?????ii???iii RR i............ iR.] 
+        goto +B558;   [RR?????ii???iii RR i............ ...]
+  +B1001:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............. i..][ RR ............. iR.]
+        b0.println(b1.append@extra("  Anzahl Gruppen:     ").append@extra(vR0.group_desc_count).toString@extra());   [RR?????ii???iii RR iii.......... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii.......... i..][ RR iii.......... iR.]
+        b0.println(b1.append@extra("  Inodes pro Gruppe:  ").append@extra(vR0.sb_data.s_inodes_per_group@extra()).toString@extra());   [RR?????ii???iii RR iiiiii....... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii....... i..][ RR iiiiii....... iR.]
+        b0.println(b1.append@extra("  Anzahl Inodes:      ").append@extra(vR0.sb_data.s_inodes_count@extra()).toString@extra());   [RR?????ii???iii RR iiiiiiiii.... RR.] 
+        vR0.sb_data.s_volume_name@extra(vR1);   [RR?????ii???iii RR iiiiiiiii.... RR.] 
+        out.print("erzeuge Gruppen ");   [RR?????ii???iii RR iiiiiiiiii... RR.] 
+        vi10 = vR0.sb_data.s_first_data_block@extra();    [RR?????ii???iii RR iiiiiiiiii... R..] 
+        vR0.sb_data.s_free_blocks_count@extra(0);   [RR????iii???iii RR iiiiiiiiii... iR.] 
+        vi13 = vR0.sb_data.s_first_data_block@extra();    [RR????iii???iii RR iiiiiiiiii... R..] 
+        vi14 = vR0.block_size;    
+        vi18 = 0;    
+  +B1142:   #1
+        if vi18>=vR0.group_desc_count goto B1628;   
+  +B1151:   #1
+        out.print(".");   [RR????iiiii?iii RR i............ RR.] 
+        if (vi14+32)<=vR0.block_size goto B1190;   
+  +B1171:   #1
+        vi13++;   
+        vi14 = 0;    
+        vR5 = vR0.bufferCache.getblk(vi13);    [RR????iiiii?iii RR ............. iR.] 
+  +B1190:   #1
+        vR6 = new javafs/GroupData(vR5,vi14);    [ RR ............. i..][ RR ............. iiRR]
+        if vi18!=(vR0.group_desc_count-1) goto B1256;   
+  +B1214:   #1
+        vi9 = ((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra());    
+        if vi9!=0 goto B1265;   
+  +B1244:   #1
+        vi9 = vR0.sb_data.s_blocks_per_group@extra();    [RRR??iiiiii?iii RR ............. R...] 
+        goto +B1265;   [RRR??iiiiii?iii RR ............. ....]
+  +B1256:   #1
+        vi9 = vR0.sb_data.s_blocks_per_group@extra();    [RRR?Riiiiii?iiii RR ............. R...] 
+  +B1265:   #2
+        vi9 = (vi9-((vR0.desc_blocks+3)+vR0.inode_blocks_per_group));    
+        vR0.sb_data.s_free_blocks_count@extra((vR0.sb_data.s_free_blocks_count@extra()+vi9));   [RRR??iiiiii?iii RR i............ iR..] 
+        vR6.bg_free_blocks_count((short)vi9);   [RRR??iiiiii?iii RR ii........... iR..] 
+        vR6.bg_free_inodes_count((short)vR0.sb_data.s_inodes_per_group@extra());   [RRR??iiiiii?iii RR iii.......... iR..] 
+        vR6.bg_used_dirs_count(0);   [RRR??iiiiii?iii RR iii.......... iR..] 
+        vR6.bg_block_bitmap(((vi10+1)+vR0.desc_blocks));   [RRR??iiiiii?iii RR iiii......... iR..] 
+        vR6.bg_inode_bitmap((((vi10+1)+vR0.desc_blocks)+1));   [RRR??iiiiii?iii RR iiiii........ iR..] 
+        vR6.bg_inode_table((((vi10+1)+vR0.desc_blocks)+2));   [RRR??iiiiii?iii RR iiiiii....... iR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii....... i...][ RR iiiiii....... iR..]
+        b0.println(b1.append@extra("  Gruppe ").append@extra(vi18).append@extra(" [block_bitmap: ").append@extra(vR6.bg_block_bitmap()).append@extra(", inode_bitmap: ").append@extra(vR6.bg_inode_bitmap()).append@extra(", inode_table: ").append@extra(vR6.bg_inode_table()).append@extra("]").toString@extra());   [RRR??iiiiii?iii RR iiiiiiii.ii..ii..iii... RR........] 
+        vR0.desc_vector.addElement@extra(vR6);   [RRR??iiiiii?iii RR iiiiiiii.ii..ii..iii... RR........] 
+        vR8 = new javafs/Bitmap(vR0.bufferCache,vR0.block_size,vR6.bg_block_bitmap());    [ RR iiiiiiii.ii..ii..iii... i.........][ RR iiiiiiii.ii..ii..iii... iiiRR.....]
+        vR8.loadBitmap();   [RRR?Riiiiii?iii RR iiiiiiii.ii..ii..iii... R.........] 
+        vR8.clearBitmap();   [RRR?Riiiiii?iii RR iiiiiiii.ii..ii..iii... R.........] 
+        vi19 = 0;    
+  +B1485:   #1
+        if vi19>=((vR0.desc_blocks+3)+vR0.inode_blocks_per_group) goto B1514;   
+  +B1501:   #1
+        vR8.setBit(vi19);   [RRR?Riiiiii?iiii RR ....................... iR........] 
+        vi19++;   
+        goto +B1485;   [RRR?Riiiiii?iiii RR ....................... ..........]
+  +B1514:   #1
+        vi19 = (((vi9+3)+vR0.desc_blocks)+vR0.inode_blocks_per_group);    
+  +B1530:   #1
+        if vi19>=vR0.sb_data.s_blocks_per_group@extra() goto B1555;   
+  +B1542:   #1
+        vR8.setBit(vi19);   [RRR?Riiiiii?iiii RR ....................... iR........] 
+        vi19++;   
+        goto +B1530;   [RRR?Riiiiii?iiii RR ....................... ..........]
+  +B1555:   #1
+        vR8.markBitmapDirty();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8.releaseBitmap();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8 = new javafs/Bitmap(vR0.bufferCache,vR0.block_size,vR6.bg_inode_bitmap());    [ RR ....................... i.........][ RR ....................... iiiRR.....]
+        vR8.loadBitmap();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8.clearBitmap();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8.markBitmapDirty();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8.releaseBitmap();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vi10 = (vi10+vR0.sb_data.s_blocks_per_group@extra());    
+        vi14+=32;   
+        vi18++;   
+        goto +B1142;   [RRR?Riiiiii?iiii RR ....................... ..........]
+  +B1628:   #1
+        out.println("");   [RRR?Riiiiii?iiii RR i...................... RR........] 
+        out.print("Initialisiere Inodes ");   [RRR?Riiiiii?iiii RR ii..................... RR........] 
+        vi18 = 0;    
+  +B1647:   #1
+        if vi18>=vR0.group_desc_count goto B1746;   
+  +B1656:   #1
+        vR6 = (javafs/GroupData)(vR0.desc_vector.elementAt(vi18));    
+        out.print(".");   [RRR?Riiiiii?iiii RR i...................... RR........] 
+        vi13 = vR6.bg_inode_table();    [RRR?Riiiiii?iiii RR i...................... R.........] 
+        vi19 = 0;    
+  +B1688:   #1
+        if vi19>=vR0.inode_blocks_per_group goto B1740;   
+  +B1697:   #1
+        vR5 = vR0.bufferCache.getblk((vi13+vi19));    [RRR?Riiiiii?iiii RR i...................... iR........] 
+        vR5.clear();   [RRR?Riiiiii?iiii RR i...................... R.........] 
+        vR5.markDirty();   [RRR?Riiiiii?iiii RR i...................... R.........] 
+        vR0.bufferCache.brelse(vR5);   [RRR?Riiiiii?iiii RR i...................... RR........] 
+        vi19++;   
+        goto +B1688;   [RRR?Riiiiii?iiii RR i...................... ..........]
+  +B1740:   #1
+        vi18++;   
+        goto +B1647;   [RRR?Riiiiii?iiii RR ....................... ..........]
+  +B1746:   #1
+        out.println("");   [RRR?Riiiiii?iiii RR i...................... RR........] 
+        vR6 = (javafs/GroupData)(vR0.desc_vector.firstElement@extra());    
+        vR8 = new javafs/Bitmap(vR0.bufferCache,vR0.block_size,vR6.bg_inode_bitmap());    [ RR i...................... i.........][ RR i...................... iiiRR.....]
+        vR8.loadBitmap();   [RRR?Riiiiii?iiii RR i...................... R.........] 
+        vi18 = 0;    
+  +B1796:   #1
+        if vi18>=(vR0.sb_data.s_first_ino@extra()-1) goto B1823;   
+  +B1810:   #1
+        vR8.setBit(vi18);   [RRR?Riiiiii?iiii RR ....................... iR........] 
+        vi18++;   
+        goto +B1796;   [RRR?Riiiiii?iiii RR ....................... ..........]
+  +B1823:   #1
+        vR8.markBitmapDirty();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR8.releaseBitmap();   [RRR?Riiiiii?iiii RR ....................... R.........] 
+        vR6.bg_free_inodes_count((short)((vR6.bg_free_inodes_count()-vR0.sb_data.s_first_ino@extra())+1));   [RRR?Riiiiii?iiii RR i...................... iR........] 
+        vR0.sb_data.s_free_inodes_count@extra(((vR0.sb_data.s_free_inodes_count@extra()-vR0.sb_data.s_first_ino@extra())+1));   [RRR?Riiiiii?iiii RR ii..................... iR........] 
+        vi10 = (vR0.sb_data.s_first_data_block@extra()+vR0.sb_data.s_blocks_per_group@extra());    
+        out.println("Schreibe Kopien auf Platte ...");   [RRR?Riiiiii?iiii RR iii.................... RR........] 
+        vi18 = 1;    
+  +B1906:   #1
+        if vi18>=vR0.group_desc_count goto B2109;   
+  +B1915:   #1
+        vi15 = vi18;    
+        if vi15<=65535 goto B1930;   
+  +B1926:   #1
+        vi15 = 65535;    
+  +B1930:   #1
+        vR5 = vR0.bufferCache.getblk(vi10);    [RRR?Riiiiiiiiiii RR ....................... iR........] 
+        vR0.sb_data.s_block_group_nr@extra((short)vi15);   [RRR?Riiiiiiiiiii RR i...................... iR........] 
+        vR0.sb_data.bh.getData().copyToMemory(vR5.getData(),0,0,1024);   [RRR?Riiiiiiiiiii RR ii..................... iiiRR.....] [RRR?Riiiiiiiiiii RR iiR.................... iiiRR.....] 
+        vR5.markDirty();   [RRR?Riiiiiiiiiii RR ii..................... R.........] 
+        vR0.bufferCache.brelse(vR5);   [RRR?Riiiiiiiiiii RR ii..................... RR........] 
+        vi19 = 0;    
+  +B1998:   #1
+        if vi19>=vR0.desc_blocks goto B2091;   
+  +B2007:   #1
+        vR5 = vR0.bufferCache.getblk(((vi10+1)+vi19));    [RRR?Riiiiiiiiiii RR i...................... iR........] 
+        vR6 = (javafs/GroupData)(vR0.desc_vector.elementAt((vi19*vR0.desc_per_block)));    
+        vR6.bh.getData().copyToMemory(vR5.getData(),0,0,vR0.block_size);   [RRR?Riiiiiiiiiii RR iiii................... iiiRR.....] [RRR?Riiiiiiiiiii RR iiiiR.................. iiiRR.....] 
+        vR5.markDirty();   [RRR?Riiiiiiiiiii RR iiii................... R.........] 
+        vR0.bufferCache.brelse(vR5);   [RRR?Riiiiiiiiiii RR iiii................... RR........] 
+        vi19++;   
+        goto +B1998;   [RRR?Riiiiiiiiiii RR iiii................... ..........]
+  +B2091:   #1
+        vi10 = (vi10+vR0.sb_data.s_blocks_per_group@extra());    
+        vi18++;   
+        goto +B1906;   [RRR?Riiiiiiiiiii RR ....................... ..........]
+  +B2109:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 310/310 wr 196 swaps 65 any 44 found 4 initializeFS
+ 
+ method checkFS(Ljx/zero/AnswerMachine;)V {
+  +START:   #1
+        vR14 = new java/util/Hashtable();    [ RR  i][ RR  iR]
+        vR17 = new java/util/Vector();    [ RR  i.][ RR  iR]
+        vR15 = new java/util/Vector();    [ RR  i.][ RR  iR]
+        vR16 = new java/util/Vector();    [ RR  i.][ RR  iR]
+        out.println("Pass 1: Checking inodes, blocks, and sizes");   [????????????RRRR RR i. RR] 
+        b0 = vR0.bufferCache.bread(1);    [????????????RRRR RR i. iR] 
+        vR13 = b0;    
+        if b0!=null goto B70;   
+  -B60:   #1
+        throw new java/lang/Error("unable to read superblock");   
+  +B70:   #1
+        vR12 = new javafs/SuperBlockData(vR13);    [ RR .. i..][ RR .. iRR]
+        vR0.block_size = 1024;   
+        vi18 = 0;    
+  +B91:   #1
+        if vi18>=vR12.s_log_block_size@extra() goto B117;   
+  +B101:   #1
+        vR0.block_size = (vR0.block_size*2);   
+        vi18++;   
+        goto +B91;   [??????????RRRRRRi RR .. ...]
+  +B117:   #1
+        vR18 = vR0.bufferCache.bread((vR12.s_first_data_block@extra()+1));    [??????????RRRRRRi RR i. iR.] 
+        vR3 = new javafs/Super(0,0,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR i. i..][ RR i. iRRRiRR]
+        vR2 = new java/util/Vector(vR3.s_groups_count);    [ RR i. i......][ RR i. iiR....]
+        vi19 = (vR3.s_blocksize/32);    
+        vi20 = (((vR3.s_groups_count+vi19)-1)/vi19);    
+        vi21 = 0;    
+  +B195:   #1
+        if vi21>=vi20 goto B281;   
+  +B202:   #1
+        vR18 = vR0.bufferCache.bread(((vR3.s_first_data_block+vi21)+1));    [RR????????RRRRRRRiii RR i. iR.....] 
+        vi22 = 0;    
+  +B225:   #1
+        if vi22>=vi19 goto B275;   
+  +B232:   #1
+        if ((vi21*vi19)+vi22)>=vR3.s_groups_count goto B275;   
+  +B247:   #1
+        vR4 = new javafs/GroupData(vR18,(vi22*32));    [ RR .. i......][ RR .. iiRR...]
+        vR2.addElement@extra(vR4);   [RRR???????RRRRRRRiiii RR .. RR.....] 
+        vi22++;   
+        goto +B225;   [RRR???????RRRRRRRiiii RR .. .......]
+  +B275:   #2
+        vi21++;   
+        goto +B195;   [RRR???????RRRRRRRiiii RR .. .......]
+  +B281:   #1
+        vi21 = 0;    
+  +B284:   #1
+        if vi21>=vR3.s_groups_count goto B986;   
+  +B293:   #1
+        vR4 = (javafs/GroupData)(vR2.elementAt(vi21));    
+        vR11 = new javafs/Bitmap(vR0.bufferCache,vR3.s_blocksize,vR4.bg_inode_bitmap());    [ RR .. i......][ RR .. iiiRR..]
+  +B326:   #1
+        vR11.loadBitmap();   [RRR??????RRRRRRRRiiii RR .. R......] 
+  +B331:   #1
+        goto +B337;   [RRR??????RRRRRRRRiiii RR .. .......]
+  +H334<caught exception>:   #1 reference
+        vR22 = <caught exception>;    
+        return;   
+  +B337:   #1
+        vR18 = 0;    
+        vi22 = 0;    
+  +B343:   #1
+        if vi22>=vR12.s_inodes_per_group@extra() goto B959;   
+  +B353:   #1
+        if vR11.testBit(vi22)!=1 goto B953;   
+  +B364:   #1
+        vi6 = (vi22*vR12.s_inode_size@extra());    
+        vi5 = (vR4.bg_inode_table()+(vi6/vR3.s_blocksize));    
+        vi6 = (vi6 & (vR3.s_blocksize-1));    
+        if vi6!=0 goto B434;   
+  +B405:   #1
+        if vR18==null goto B421;   
+  +B410:   #1
+        vR0.bufferCache.brelse(vR18);   [RRRii????RRRRRRRRiiii RR .. RR.....] 
+  +B421:   #1
+        vR18 = vR0.bufferCache.bread(vi5);    [RRRii????RRRRRRRRiiii RR .. iR.....] 
+  +B434:   #1
+        vR10 = new javafs/InodeData(vR18,vi6);    [ RR .. i......][ RR .. iiRR...]
+        vi8 = ((vi22+(vi21*vR12.s_inodes_per_group@extra()))+1);    
+        vi23 = (vR10.i_mode@extra() & 61440);    
+        if (vi23 & 16384)<=0 goto B547;   
+  +B481:   #1
+        if (vi23 & 40960)<=0 goto B547;   
+  +B489:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i......][ RR .. iR.....]
+        b0.println(b1.append@extra("Typ der Inode ").append@extra(vi8).append@extra(" nicht eindeutig, setze Verzeichnis").toString@extra());   [RRRii?i?RRRRRRRRRiiiii RR iii.. RR.....] 
+        vR10.i_mode@extra((short)((vR10.i_mode@extra() & 511) | 16384));   [RRRii?i?RRRRRRRRRiiiii RR iiii. iR.....] 
+        vR10.bh.markDirty();   [RRRii?i?RRRRRRRRRiiiii RR iiii. R......] 
+  +B547:   #2
+        if (vR10.i_mode@extra() & 61440)!=40960 goto B617;   
+  +B560:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i......][ RR ..... iR.....]
+        b0.println(b1.append@extra("Typ der Inode ").append@extra(vi8).append@extra(" nicht eindeutig, setze Datei").toString@extra());   [RRRii?i?RRRRRRRRRiiiii RR iii.. RR.....] 
+        vR10.i_mode@extra((short)((vR10.i_mode@extra() & 511) | 32768));   [RRRii?i?RRRRRRRRRiiiii RR iiii. iR.....] 
+        vR10.bh.markDirty();   [RRRii?i?RRRRRRRRRiiiii RR iiii. R......] 
+  +B617:   #1
+        if (vR10.i_mode@extra() & 61440)!=32768 goto B710;   
+  +B630:   #1
+        vi24 = vR0.computeIBlocks@special(vR10);    [RRRii?i?RRRRRRRRRiiiii RR ..... RR.....] 
+        if vR10.i_blocks@extra()==vi24 goto B710;   
+  +B648:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ..... i......][ RR ..... iR.....]
+        if vR1.ask(b1.append@extra("i_blocks was=").append@extra(vR10.i_blocks@extra()).append@extra(", expected=").append@extra(vi24).append@extra(". Correct?").toString@extra())==0 goto B710;   
+  +B695:   #1
+        vR10.i_blocks@extra(vi24);   [RRRii?i?RRRRRRRRRiiiiii RR ......... iR.....] 
+        vR10.bh.markDirty();   [RRRii?i?RRRRRRRRRiiiiii RR ......... R......] 
+  +B710:   #3
+        if (vR10.i_mode@extra() & 61440)!=16384 goto B738;   
+  +B724:   #1
+        b1 = new java/lang/Integer(vi8);    [ RR ......... i......][ RR ......... iiR....]
+        vR16.addElement@extra(b1);   [RRRii?i?RRRRRRRRRiiiiii RR ......... RR.....] 
+  +B738:   #1
+        vi24 = 0;    
+        vi25 = 0;    
+        vi26 = 0;    
+  +B747:   #1
+        if vi26>=12 goto B779;   
+  +B754:   #1
+        if vR10.i_block@extra(vi26)!=0 goto B767;   
+  +B764:   #1
+        goto +B779;   [RRRii?i?RRRRRRRRRiiiiiiii RR ......... .......]
+  +B767:   #1
+        vi24++;   
+        vi25++;   
+        vi26++;   
+        goto +B747;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +B779:   #2
+        vi26 = vR10.i_block@extra(12);    [RRRii?i?RRRRRRRRRiiiiiiii RR ......... iR.....] 
+        if vi24!=12 goto B953;   
+  +B795:   #1
+        if vi26==0 goto B953;   
+  +B800:   #1
+        vi24++;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ......... i......][ RR ......... iR.....]
+        b0.println(b1.append@extra("block ").append@extra(vi26).append@extra(", contains first indirect block list").toString@extra());   [RRRii?i?RRRRRRRRRiiiiiiii RR iii...... RR.....] 
+        vR27 = vR0.bufferCache.bread(vi26);    [RRRii?i?RRRRRRRRRiiiiiiii RR iii...... iR.....] 
+        vR28 = new javafs/BufferHeadAccess();    [ RR iii...... i......][ RR iii...... iR.....]
+        vR28.init@extra(vR27,0);   [RRRii?i?RRRRRRRRRiiiiiiiiRR RR iii...... iRR....] 
+        vi29 = 0;    
+  +B867:   #1
+        if vi29>=256 goto B942;   
+  +B875:   #1
+        vi30 = vR28.readInt@extra((vi29*4));    [RRRii?i?RRRRRRRRRiiiiiiiiRRi RR i........ iR.....] 
+        if vi30!=0 goto B894;   
+  +B891:   #1
+        goto +B942;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +B894:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ......... i......][ RR ......... iR.....]
+        b0.println(b1.append@extra("block ").append@extra(vi30).append@extra(", #").append@extra(vi25).toString@extra());   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR iii...... RR.....] 
+        vi24++;   
+        vi25++;   
+        vi29++;   
+        goto +B867;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR iii...... .......]
+  +B942:   #2
+        vR0.bufferCache.brelse(vR27);   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... RR.....] 
+  +B953:   #3
+        vi22++;   
+        goto +B343;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +B959:   #1
+        if vR18==null goto B975;   
+  +B964:   #1
+        vR0.bufferCache.brelse(vR18);   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... RR.....] 
+  +B975:   #1
+        vR11.releaseBitmap();   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... R......] 
+        vi21++;   
+        goto +B284;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +B986:   #2
+        vR3.checkBlockBitmaps(vR14);   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... RR.....] 
+        vR3.checkInodeBitmaps();   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... R......] 
+  +B996:   #1
+        goto +B1002;   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +H999<caught exception>:   #1 reference
+        vR21 = <caught exception>;    
+        return;   
+  +B1002:   #1
+        out.println("Pass 2: Checking directory structure");   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR i........ RR.....] 
+        vR0.repairDirectories@special(vR16,2,2,vR3);   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR i........ RiiRR..] 
+        out.println("Pass 3: Checking directory connectivity");   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ii....... RR.....] 
+        vR0.linkLostDirectories@special(vR16,vR3);   [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ii....... RRR....] 
+        if vR17.size@extra()<=0 goto B1218;   
+  +B1042:   #1
+        vi9 = vR17.size@extra();    [RRRii?i?RRRRRRRRRiiiiiiiiRRii RR ......... R......] 
+        vi21 = 0;    
+  +B1052:   #1
+        if vi21>=vi9 goto B1218;   
+  +B1059:   #1
+        vi5 = (java/lang/Integer)(vR17.firstElement@extra()).intValue();    [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... R......] 
+        vi22 = (java/lang/Integer)(vR15.firstElement@extra()).intValue();    [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... R......] 
+        vR10 = vR3.getInodeData(vi22);    [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... iR.....] 
+        vi23 = 0;    
+  +B1096:   #1
+        vi23 = vR3.newBlock@extra(vi5);    [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... iR.....] 
+  +B1104:   #1
+        goto +B1110;   [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... .......]
+  +H1107<caught exception>:   #1 reference
+        vR24 = <caught exception>;    
+        return;   
+  +B1110:   #1
+        vR24 = vR0.bufferCache.bread(vi5);    [RRRii?iiRRRRRRRRRiiiiiiiiRRii RR ......... iR.....] 
+        vR25 = vR0.bufferCache.getblk(vi5);    [RRRii?iiRRRRRRRRRiiiiiRiiRRii RR ......... iR.....] 
+        vR24.getData().copyToMemory(vR25.getData(),0,0,vR3.s_blocksize);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ii....... iiiRR..] [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR iiR...... iiiRR..] 
+        vR25.markDirty();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ii....... R......] 
+        vR0.bufferCache.brelse(vR24);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ii....... RR.....] 
+        vR0.bufferCache.brelse(vR25);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ii....... RR.....] 
+        vR0.bmapReplace@special(vR10,vi5,vR3.s_blocksize,vi23);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR iii...... iiiRR..] 
+        vR17.removeElementAt@extra(0);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR iii...... iR.....] 
+        vR15.removeElementAt@extra(0);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR iii...... iR.....] 
+        vi21++;   
+        goto +B1052;   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR iii...... .......]
+  +B1218:   #2
+        vR3.writeSuper();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        vR3.putSuper();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        vR0.inodeCache.syncInodes();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        vR0.bufferCache.syncDevice(0);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... iR.....] 
+        vR0.inodeCache.syncInodes();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        vR0.bufferCache.syncDevice(1);   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... iR.....] 
+        vR0.inodeCache.invalidateInodes();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        vR0.bufferCache.flushCache();   [RRRii?iiRRRRRRRRRiiiiiRRiRRii RR ......... R......] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+326 - 331 handler 334 type 24
+986 - 996 handler 999 type 24
+1096 - 1104 handler 1107 type 24
+ }
+// Register: rd 167/167 wr 137 swaps 28 any 35 found 6 checkFS
+ 
+ method computeIBlocks(Ljavafs/InodeData;)I {
+  +START:   #1
+        vi2 = ((vR1.i_size@extra()+1023)/1024);    
+        if vi2>=12 goto B23;   
+  +B19:   #1
+        return (vi2*2);   
+  +B23:   #1
+        vi2+=-12;   
+        if vi2>=256 goto B40;   
+  +B33:   #1
+        return ((vi2+12)*2);   
+  +B40:   #1
+        vi2+=65280;   
+        if vi2>=256 goto B61;   
+  +B53:   #1
+        return ((vi2+270)*2);   
+  -B61:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 5 found 0 computeIBlocks
+ 
+ method repairDirectories(Ljava/util/Vector;IILjavafs/Super;)V {
+  +START:   #1
+        b1 = new java/lang/Integer(vi2);    [ RR  i][ RR . iiR]
+        vR1.removeElement@extra(b1);   [ RR . RR.] 
+        vR5 = vR4.getInodeData(vi2);    [ RR . iR.] 
+        vR9 = new javafs/DirInode(vR4.fileSystem,vR4,vi2,vR5,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR . i..][ RR . iRRRRiRRR]
+        if vR5.i_block@extra(0)!=0 goto B119;   
+  +B61:   #1
+        vi15 = vR4.groupStart(vi2);    [R???R RR . iR.......] 
+        vi16 = 0;    
+  +B72:   #1
+        vi16 = vR4.newBlock@extra(vi15);    [R???R?????ii RR . iR.......] 
+  +B81:   #1
+        goto +B87;   [R???R?????ii RR . .........]
+  +H84<caught exception>:   #1 reference
+        vR17 = <caught exception>;    
+        return;   
+  +B87:   #1
+        vR5.i_block@extra(0,vi16);   [R???R?????ii RR . iiR......] 
+        vR5.i_size@extra(vR4.s_blocksize);   [R???R?????ii RR i iR.......] 
+        vR5.i_blocks@extra((vR4.s_blocksize/512));   [R???R?????ii RR ii iR.......] 
+  +B119:   #2
+        vR6 = vR9.findDirEntry(".");    [R???R?????ii RR i. RR.......] 
+        vR7 = vR9.findDirEntry("..");    [RR??R?????ii RR ii RR.......] 
+  +B137:   #1
+        goto +B143;   [RRR?R?????ii RR .. .........]
+  +H140<caught exception>:   #1 reference
+        vR15 = <caught exception>;    
+        return;   
+  +B143:   #1
+        if vR6==null goto B153;   
+  +B148:   #1
+        if vR7!=null goto B287;   
+  +B153:   #2
+        if vR6==null goto B165;   
+  +B158:   #1
+        vR9.deleteDirEntry(vR6);   [RRR?R?????ii RR .. RR.......] 
+  +B165:   #1
+        if vR7==null goto B177;   
+  +B170:   #1
+        vR9.deleteDirEntry(vR7);   [RRR?R?????ii RR .. RR.......] 
+  +B177:   #2
+        goto +B182;   [RRR?R?????ii RR .. .........]
+  +H180<caught exception>:   #1 reference
+        vR15 = <caught exception>;    
+  +B182:   #1
+        vR8 = vR9.bread(0,0);    [RRR?R?????ii RR .. iiR......] 
+        vi12 = 0;    
+        vi14 = 0;    
+  +B197:   #1
+        if vi12>=vR4.s_blocksize goto B252;   
+  +B207:   #1
+        if vi14!=0 goto B252;   
+  +B212:   #1
+        vR6 = new javafs/DirEntryData(vR8,vi12);    [ RR .. i........][ RR .. iiRR.....]
+        vR10 = vR6.name();    [RRRRR??i?iii RR .. R........] 
+        vi14 = vR6.inode();    [RRRRRR?i?iii RR .. R........] 
+        vi12 = (vi12+vR6.rec_len());    
+        goto +B197;   [RRRRRR?i?iii RR .. .........]
+  +B252:   #3
+        if vi14==0 goto B264;   
+  +B257:   #1
+        vR9.deleteDirEntry(vR6);   [RRRRRR?i?iii RR .. RR.......] 
+  +B264:   #2
+        goto +B269;   [RRRRRR?i?iii RR .. .........]
+  +H267<caught exception>:   #1 reference
+        vR15 = <caught exception>;    
+  +B269:   #1
+        vR9.addDirEntry(".",vi3);   [RRRRRR?i?iii RR i. iRR......] 
+        vR9.addDirEntry("..",vi3);   [RRRRRR?i?iii RR ii iRR......] 
+  +B287:   #1
+        vi13 = 0;    
+        vi12 = 0;    
+  +B293:   #1
+        if vi13>=vR5.i_size@extra() goto B433;   
+  +B303:   #1
+        vi11 = (vi13/vR4.s_blocksize);    
+        vR8 = vR9.bread(vi11,0);    [RRRRRRiiiiii RR .. iiR......] 
+        vR6 = new javafs/DirEntryData();    [ RR .. i........][ RR .. iR.......]
+  +B332:   #1
+        if vi12>=vR5.i_size@extra() goto B416;   
+  +B342:   #1
+        if vi12>=vR4.s_blocksize goto B416;   
+  +B352:   #1
+        vR6.init(vR8,vi12);   [RRRRRRiiiiii RR .. iRR......] 
+        b1 = new java/lang/Integer(vR6.inode());    [ RR .. i........][ RR .. iiR......]
+        if vR1.contains@extra(b1)==0 goto B393;   
+  +B380:   #1
+        vR0.repairDirectories@special(vR1,vR6.inode(),vi2,vR4);   [RRRRRRiiiiii RR i. RiiRR....] 
+  +B393:   #1
+        vi12 = (vi12+vR6.rec_len());    
+        vi13 = (vi13+vR6.rec_len());    
+        goto +B332;   [RRRRRRiiiiii RR .. .........]
+  +B416:   #2
+        vi12 = 0;    
+        vR0.bufferCache.brelse(vR8);   [RRRRRRiiiiii RR .. RR.......] 
+        goto +B293;   [RRRRRRiiiiii RR .. .........]
+  +B433:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+72 - 81 handler 84 type 24
+119 - 137 handler 140 type 237
+153 - 177 handler 180 type 239
+252 - 264 handler 267 type 239
+ }
+// Register: rd 70/70 wr 39 swaps 7 any 13 found 5 repairDirectories
+ 
+ method linkLostDirectories(Ljava/util/Vector;Ljavafs/Super;)V {
+  +START:   #1
+        if vR1.isEmpty@extra()==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR6 = vR2.getInodeData(2);    [ R  iR] 
+        vR7 = new javafs/DirInode(vR2.fileSystem,vR2,2,vR6,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ R  i.][ R . iRRRRiRRR]
+  +B44:   #2
+        vR3 = (javafs/DirInode)(vR7.getInode("lost+found"));    
+  +B55:   #2
+        goto +B84;   [R??RR R .. .........]
+  +H58<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+  +B60:   #1
+        vR3 = (javafs/DirInode)(vR7.mkdir("lost+found",0));    
+  +B72:   #1
+        goto +B78;   [RRRRRRRR R .. .........]
+  +H75<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        return;   
+  +B78:   #1
+        goto +B84;   [RRRRRRRR R .. .........]
+  +H81<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        return;   
+  +B84:   #2
+        vi8 = 0;    
+  +B87:   #1
+        if vi8>=vR1.size@extra() goto B199;   
+  +B96:   #1
+        b0 = new java/lang/StringBuilder();    [ R .. i........][ R .. iR.......]
+        vR9 = b0.append@extra("lostfile").append@extra(vi8).toString@extra();    [R??RRi R i.. R........] [R??RRi R iR. iR.......] [R??RRi R iRR iRR......] 
+        vR5 = new javafs/FileInode(vR2.fileSystem,vR2,(java/lang/Integer)(vR1.elementAt(vi8)).intValue(),0,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ R i.. i........][ R i.. iRRRRiRRR]
+  +B157:   #1
+        vR4 = vR3.findDirEntry(vR9);    [R?RRRiR R ... RR.......] 
+        if vR4==null goto B176;   
+  +B170:   #1
+        vR3.deleteDirEntry(vR4);   [RRRRRiR R ... RR.......] 
+  +B176:   #1
+        vR3.addDirEntry(vR9,vR5.i_ino);   [RRRRRiR R i.. iRR......] 
+  +B188:   #1
+        goto +B193;   [RRRRRiR R ... .........]
+  +H191<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+  +B193:   #1
+        vi8++;   
+        goto +B87;   [RRRRRiR R ... .........]
+  +B199:   #1
+        vR3.setDirty(1);   [RRRRRiR R ... iR.......] 
+        vR3.decUseCount();   [RRRRRiR R ... R........] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+44 - 55 handler 58 type 239
+60 - 72 handler 75 type 251
+44 - 55 handler 81 type 251
+157 - 188 handler 191 type 251
+ }
+// Register: rd 33/33 wr 26 swaps 4 any 3 found 1 linkLostDirectories
+ 
+ method blockBmap(Ljx/fs/buffercache/BufferHead;II)I {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vR5 = new javafs/InodeBlockData(vR1,(vi2*4));    [ R  i][ R . iiRR]
+        if vi3==0 goto B29;   
+  +B23:   #1
+        vR5.bd_entry@extra(vi3);   [?R R . iR..] 
+  +B29:   #1
+        vi4 = vR5.bd_entry@extra();    [?R R . R...] 
+        vR0.bufferCache.brelse(vR1);   [iR R . RR..] 
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 2 found 0 blockBmap
+ 
+ method inodeBmap(Ljavafs/InodeData;II)I {
+  +START:   #1
+        if vi3==0 goto B10;   
+  +B4:   #1
+        vR1.i_block@extra(vi2,vi3);   [   iiR] 
+  +B10:   #1
+        return vR1.i_block@extra(vi2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 1 found 0 inodeBmap
+ 
+ method bmapReplace(Ljavafs/InodeData;III)I {
+  +START:   #1
+        vi7 = (vi3/4);    
+        vi8 = 0;    
+        vi9 = vi7;    
+  +B12:   #1
+        if vi9==1 goto B35;   
+  +B18:   #1
+        if vi9<=0 goto B35;   
+  +B23:   #1
+        vi9 = (vi9 >> 1);    
+        vi8++;   
+        goto +B12;   [??iii   ]
+  +B35:   #2
+        if vi2>=0 goto B50;   
+  +B39:   #1
+        out.println("Inode.bmap(): block < 0");   [??iii  i. RR] 
+        return 0;   
+  +B50:   #1
+        if vi2<=(((vi7+12)+(1 << (vi8*2)))+((1 << (vi8*2)) << vi8)) goto B87;   
+  +B76:   #1
+        out.println("Inode.bmap(): block > big");   [??iii  i. RR] 
+        return 0;   
+  +B87:   #1
+        if vi2>=12 goto B102;   
+  +B93:   #1
+        return vR0.inodeBmap@special(vR1,vi2,vi4);   
+  +B102:   #1
+        vi2+=-12;   
+        if vi2>=vi7 goto B152;   
+  +B111:   #1
+        vi6 = vR0.inodeBmap@special(vR1,12,vi4);    [??iii  .. iiRR] 
+        if vi6> 0 goto B129;   
+  +B127:   #1
+        return 0;   
+  +B129:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [?iiii  .. iR..] 
+        return vR0.blockBmap@special(vR5,vi2,vi4);   
+  +B152:   #1
+        vi2 = (vi2-vi7);    
+        if vi2>=(1 << (vi8*2)) goto B247;   
+  +B167:   #1
+        vi6 = vR0.inodeBmap@special(vR1,13,vi4);    [Riiii  .. iiRR] 
+        if vi6> 0 goto B185;   
+  +B183:   #1
+        return 0;   
+  +B185:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [Riiii  .. iR..] 
+        vi6 = vR0.blockBmap@special(vR5,(vi2 >> vi8),vi4);    [Riiii  i. iiRR] 
+        if vi6> 0 goto B219;   
+  +B217:   #1
+        return 0;   
+  +B219:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [Riiii  .. iR..] 
+        return vR0.blockBmap@special(vR5,(vi2 & (vi7-1)),vi4);   
+  +B247:   #1
+        vi2 = (vi2-(1 << (vi8*2)));    
+        vi6 = vR0.inodeBmap@special(vR1,14,vi4);    [Riiii  .. iiRR] 
+        if vi6> 0 goto B274;   
+  +B272:   #1
+        return 0;   
+  +B274:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [Riiii  .. iR..] 
+        vi6 = vR0.blockBmap@special(vR5,(vi2 >> (vi8*2)),vi4);    [Riiii  i. iiRR] 
+        if vi6> 0 goto B310;   
+  +B308:   #1
+        return 0;   
+  +B310:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [Riiii  .. iR..] 
+        vi6 = vR0.blockBmap@special(vR5,((vi2 >> vi8) & (vi7-1)),vi4);    [Riiii  i. iiRR] 
+        if vi6> 0 goto B349;   
+  +B347:   #1
+        return 0;   
+  +B349:   #1
+        vR5 = vR0.bufferCache.bread(vi6);    [Riiii  .. iR..] 
+        return vR0.blockBmap@special(vR5,(vi2 & (vi7-1)),vi4);   
+  +END:   #1
+ }
+// Register: rd 55/55 wr 29 swaps 7 any 19 found 0 bmapReplace
+}

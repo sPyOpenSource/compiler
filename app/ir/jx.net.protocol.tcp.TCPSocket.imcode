@@ -1,0 +1,1272 @@
+class jx/net/protocol/tcp/TCPSocket {
+ 
+ method <init>(Ljx/net/protocol/tcp/TCP;ILjx/net/IPAddress;[Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vR3);   [   RiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/protocol/tcp/TCP;Ljx/net/IPSender;ILjx/net/IPAddress;[Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi3,vR4,vR5);   [   RRiRR] 
+        vR0.lowerLayer = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/protocol/tcp/TCP;ILjx/net/IPAddress;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.waitingThread = 0;   
+        vR0.timer = 0;   
+        vR0.bufs4newSocket = 0;   
+        vR0.newClientSocket = 0;   
+        vR0.tcp = vR1;   
+        vR0.localPort = vi2;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("Creating socket on local port ").append@extra(vR0.localPort).toString@extra());   [ RR iii. RR.] 
+        vR0.localIP = vR3;   
+        b1 = new jx/buffer/multithread/MultiThreadList();    [ RR iii. i..][ RR iii. iR.]
+        vR0.inputBufs = b1;   
+        b1 = new jx/buffer/multithread/MultiThreadList();    [ RR iii. i..][ RR iii. iR.]
+        vR0.listenQ = b1;   
+        b1 = new java/util/Vector();    [ RR iii. i..][ RR iii. iR.]
+        vR0.retransmitQueue = b1;   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.state = vR0.cpuManager.getAtomicVariable();   
+        vR0.state.set(CLOSED);   [ RR iiiii RR.] 
+        vR0.timerManager = (jx/timer/TimerManager)(lookup@special("TimerManager"));   
+        vR0.localWindowSize = 65535;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 16 swaps 5 any 0 found 0 <init>
+ 
+ method getInitialSequenceNumber()I {
+  +START:   #1
+        if vR0.timerManager!=null goto B27;   
+  +B7:   #1
+        out.println("Timerman is null");   [  i. RR] 
+        vR0.timerManager = (jx/timer/TimerManager)(lookup@special("TimerManager"));   
+  +B27:   #1
+        return vR0.timerManager.getTimeInMillis();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 getInitialSequenceNumber
+ 
+ method SocketState2String(Ljx/net/protocol/tcp/TCPSocketState;)Ljava/lang/String; {
+  +START:   #1
+        if vR0!=CLOSED goto B10;   
+  +B7:   #1
+        return "CLOSED";   
+  +B10:   #1
+        if vR0!=LISTEN goto B20;   
+  +B17:   #1
+        return "LISTEN";   
+  +B20:   #1
+        if vR0!=SYN_RCVD goto B30;   
+  +B27:   #1
+        return "SYN_RCVD";   
+  +B30:   #1
+        if vR0!=SYN_SENT goto B40;   
+  +B37:   #1
+        return "SYN_SENT";   
+  +B40:   #1
+        if vR0!=ESTABLISHED goto B50;   
+  +B47:   #1
+        return "ESTABLISHED";   
+  +B50:   #1
+        if vR0!=LAST_ACK goto B60;   
+  +B57:   #1
+        return "LAST_ACK";   
+  +B60:   #1
+        if vR0!=FIN_WAIT_1 goto B70;   
+  +B67:   #1
+        return "FIN_WAIT_1";   
+  +B70:   #1
+        if vR0!=FIN_WAIT_2 goto B80;   
+  +B77:   #1
+        return "FIN_WAIT_2";   
+  +B80:   #1
+        if vR0!=CLOSING goto B90;   
+  +B87:   #1
+        return "CLOSING";   
+  +B90:   #1
+        if vR0!=TIME_WAIT goto B100;   
+  +B97:   #1
+        return "TIME_WAIT";   
+  +B100:   #1
+        return "UNKNOWN";   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 0 swaps 0 any 10 found 10 SocketState2String
+ 
+ method setSocketState(Ljx/net/protocol/tcp/TCPSocketState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("State changed from ").append@extra(SocketState2String@special(vR0.getSocketState@this())).append@extra(" to ").append@extra(SocketState2String@special(vR1)).toString@extra());   [ RR iii..Rii. RR...] 
+        vR0.state.atomicUpdateUnblock(vR1,vR0.waitingThread);   [ RR iiii.Rii. RRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 13 swaps 6 any 0 found 0 setSocketState
+ 
+ method getSocketState()Ljx/net/protocol/tcp/TCPSocketState; {
+  +START:   #1
+        return (jx/net/protocol/tcp/TCPSocketState)(vR0.state.get());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSocketState
+ 
+ method setSequenceNumber(I)V {
+  +START:   #1
+        vR0.seq = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSequenceNumber
+ 
+ method setRemoteWindowSize(I)V {
+  +START:   #1
+        vR0.remoteWindowSize = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setRemoteWindowSize
+ 
+ method setAckNumber(I)V {
+  +START:   #1
+        vR0.ack = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setAckNumber
+ 
+ method registerRemoteIP(Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.remoteIP = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 registerRemoteIP
+ 
+ method registerRemotePort(I)V {
+  +START:   #1
+        vR0.remotePort = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 registerRemotePort
+ 
+ method sendHeaderOnlyPacket(I)V {
+  +START:   #1
+        vR0.sendHeaderOnlyPacket1@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 sendHeaderOnlyPacket
+ 
+ method sendHeaderOnlyPacket0(I)V {
+  +START:   #1
+        vR2 = (jx/net/IPData)(vR0.usableBufs.undockFirstElement());    
+        if vR2!=null goto B25;   
+  -B15:   #1
+        throw new java/lang/Error("no free Buffers");   
+  +B25:   #1
+        vR3 = vR2.mem;    
+        vR4 = new jx/zero/Memory()[2];    
+        vR3.split2(20,vR4);   [RRR R . RiR] 
+        vR3 = vR4[0];    
+        vR5 = new jx/net/protocol/tcp/TCPFormat(vR3,vR0.localIP,vR0.remoteIP);    [ R . i..][ R . iRRRR]
+        vR5.insertFlags(vi1);   [RRRR R . iR...] 
+        vR5.insertSourcePort(vR0.localPort);   [RRRR R i iR...] 
+        vR5.insertDestinationPort(vR0.remotePort);   [RRRR R ii iR...] 
+        vR5.insertAcknowledgmentNumber(vR0.ack);   [RRRR R iii iR...] 
+        vR5.insertSequenceNumber(vR0.seq);   [RRRR R iiii iR...] 
+        vR5.insertWindowSize(vR0.localWindowSize);   [RRRR R iiiii iR...] 
+        vR5.computeHeaderLength();   [RRRR R iiiii R....] 
+        vR5.insertChecksum();   [RRRR R iiiii R....] 
+        if vR5.areFlagsSet(16)!=0 goto B150;   
+  +B140:   #1
+        vR0.seq = (vR0.seq+1);   
+  +B150:   #1
+        vR2.mem = vR0.lowerLayer.send(vR3);   
+        vR0.usableBufs.appendElement(vR2);   [RRRR R ..... RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 13 swaps 5 any 1 found 0 sendHeaderOnlyPacket0
+ 
+ method sendHeaderOnlyPacket1(I)V {
+  +START:   #1
+        vR2 = new jx/net/IPData();    [ RR  i][ RR  iR]
+        vR2.mem = vR0.tcp.getTCPBuffer1();   
+        vR2.offset = 0;   
+        vR2.size = 24;   
+        vR3 = new jx/net/protocol/tcp/TCPFormat(vR2,vR0.localIP,vR0.remoteIP);    [ RR  i.][ RR . iRRRR]
+        vR3.insertFlags(vi1);   [RR RR . iR...] 
+        vR3.insertSourcePort(vR0.localPort);   [RR RR i iR...] 
+        vR3.insertDestinationPort(vR0.remotePort);   [RR RR ii iR...] 
+        vR3.insertAcknowledgmentNumber(vR0.ack);   [RR RR iii iR...] 
+        vR3.insertSequenceNumber(vR0.seq);   [RR RR iiii iR...] 
+        vR3.insertWindowSize(vR0.localWindowSize);   [RR RR iiiii iR...] 
+        b1 = new byte[4];    
+        b1[0] = 2;   
+        b1[1] = 4;   
+        b1[2] = 5;   
+        b1[3] = -76;   
+        vR3.insertOptions(b1);   [RR RR iiiii RR...] 
+        vR3.computeHeaderLength();   [RR RR iiiii R....] 
+        vR3.insertChecksum();   [RR RR iiiii R....] 
+        if vR3.areFlagsSet(16)!=0 goto B143;   
+  +B133:   #1
+        vR0.seq = (vR0.seq+1);   
+  +B143:   #1
+        vR4 = vR0.lowerLayer.send1(vR2.mem,34,vR2.size);    [RR RR ii... iiRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 12 swaps 6 any 0 found 0 sendHeaderOnlyPacket1
+ 
+ method insertConnectionReq(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        if vR0.listenQ.size()<10 goto B25;   
+  +B12:   #1
+        out.println("listenQ full droping connection request");   [  i. RR] 
+        return vR1.mem;   
+  +B25:   #1
+        vR0.listenQ.appendElement(vR1);   [  .. RR] 
+        return vR0.tcp.getTCPBuffer1();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 insertConnectionReq
+ 
+ method processTCPServer(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0.getSocketState@this();    [R RRR  R] 
+        vR4 = new jx/net/protocol/tcp/TCPFormat(vR1,vR1.destinationAddress,vR1.sourceAddress);    [ RRR  i][ RRR . iRRRR]
+        if vR4.areFlagsSet(2)==0 goto B55;   
+  +B34:   #1
+        if vR3==LISTEN goto B55;   
+  +B41:   #1
+        out.println("TCP: storing connection request");   [RRR RRR i. RR...] 
+        return vR0.insertConnectionReq@special(vR1);   
+  +B55:   #2
+        if vR3!=LISTEN goto B71;   
+  +B62:   #1
+        vR2 = vR0.listen@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B71:   #1
+        if vR3!=SYN_RCVD goto B87;   
+  +B78:   #1
+        vR2 = vR0.syn_rcvd@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B87:   #1
+        if vR3!=SYN_SENT goto B103;   
+  +B94:   #1
+        vR2 = vR0.syn_sent@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B103:   #1
+        if vR3!=FIN_WAIT_1 goto B119;   
+  +B110:   #1
+        vR2 = vR0.fin_wait_1@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B119:   #1
+        if vR3!=FIN_WAIT_2 goto B135;   
+  +B126:   #1
+        vR2 = vR0.fin_wait_2@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B135:   #1
+        if vR3!=LAST_ACK goto B151;   
+  +B142:   #1
+        vR2 = vR0.last_ack@special(vR1);    [RRR RRR .. RR...] 
+        goto +B204;   forward return[RRR RRR .. .....]
+  +B151:   #1
+        if vR3!=ESTABLISHED goto B174;   
+  +B158:   #1
+        vR2 = vR1.mem;    
+        out.println("server socket drops a packet");   [RRR RRR i. RR...] 
+        goto +B204;   forward return[RRR RRR i. .....]
+  -B174:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i....][ RRR .. iR...]
+        b1.<init>@special(b2.append@extra("unexpected state:").append@extra(SocketState2String@special(vR3)).toString@extra());   [RRR RRR iii. RR...] 
+        throw b0;   
+  +B204:   #7
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 23 swaps 5 any 9 found 8 processTCPServer
+ 
+ method processTCP(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0.getSocketState@this();    [R RRR  R] 
+        if vR3!=SYN_SENT goto B23;   
+  +B14:   #1
+        vR2 = vR0.syn_sent@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B23:   #1
+        if vR3!=ESTABLISHED goto B39;   
+  +B30:   #1
+        vR2 = vR0.established@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B39:   #1
+        if vR3!=FIN_WAIT_1 goto B55;   
+  +B46:   #1
+        vR2 = vR0.fin_wait_1@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B55:   #1
+        if vR3!=FIN_WAIT_2 goto B71;   
+  +B62:   #1
+        vR2 = vR0.fin_wait_2@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B71:   #1
+        if vR3!=LAST_ACK goto B87;   
+  +B78:   #1
+        vR2 = vR0.last_ack@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B87:   #1
+        if vR3!=CLOSING goto B103;   
+  +B94:   #1
+        vR2 = vR0.closing@special(vR1);    [RR RRR  RR] 
+        goto +B163;   forward return[RR RRR  ..]
+  +B103:   #1
+        if vR3!=TIME_WAIT goto B118;   
+  +B110:   #1
+        vR2 = vR1.mem;    
+        goto +B163;   forward return[RR RRR  ..]
+  +B118:   #1
+        if vR3!=CLOSED goto B133;   
+  +B125:   #1
+        vR2 = vR1.mem;    
+        goto +B163;   forward return[RR RRR  ..]
+  -B133:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("unexpected state:").append@extra(SocketState2String@special(vR3)).toString@extra());   [RR RRR iii. RR.] 
+        throw b0;   
+  +B163:   #8
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 18 swaps 3 any 9 found 8 processTCP
+ 
+ method processServerSocket()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra("ServerSocket on: ").append@extra(vR0.localIP).append@extra(":").append@extra(vR0.localPort).append@extra(" = ").append@extra(SocketState2String@special(vR0.getSocketState@this())).toString@extra());   [ RR iRiiiiii..... RR.....] 
+        if vR0.listenQ.size()<=1 goto B102;   
+  +B66:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............. i......][ RR ............. iR.....]
+        b0.print(b1.append@extra(" ").append@extra(vR0.listenQ.size()).append@extra(" waiting connections").toString@extra());   [ RR ii.ii........ RR.....] 
+  +B102:   #1
+        out.println("");   [ RR i............ RR.....] 
+        vR1 = vR0.getSocketState@this();    [ RR i............ R......] 
+        if vR1!=SYN_RCVD goto B144;   
+  +B122:   #1
+        if vR0.timeout@special(100)!=1 goto B144;   
+  +B132:   #1
+        vR0.sendHeaderOnlyPacket@special(4);   [R RR ............. iR.....] 
+        vR0.setSocketState@this(CLOSED);   [R RR i............ RR.....] 
+  +B144:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 29 swaps 13 any 1 found 1 processServerSocket
+ 
+ method processClientSocket()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.localIP).append@extra(":").append@extra(vR0.localPort).append@extra(" -> ").append@extra(vR0.remoteIP).append@extra(":").append@extra(vR0.remotePort).append@extra(" = ").append@extra(SocketState2String@special(vR0.getSocketState@this())).toString@extra());   [ RR iRiiiiii..ii..i.... RR........] 
+        vR1 = vR0.getSocketState@this();    [ RR iRiiiiii..ii..i.... R.........] 
+        if vR1!=ESTABLISHED goto B93;   
+  +B86:   #1
+        vR0.checkRetransmit@special();   [R RR ................... R.........] 
+        goto +B213;   forward return[R RR ................... ..........]
+  +B93:   #1
+        if vR1!=TIME_WAIT goto B107;   
+  +B100:   #1
+        vR0.time_wait@special();   [R RR ................... R.........] 
+        goto +B213;   forward return[R RR ................... ..........]
+  +B107:   #1
+        if vR1!=SYN_SENT goto B134;   
+  +B114:   #1
+        if vR0.timeout@special(100)!=1 goto B213;   
+  +B124:   #1
+        vR0.setSocketState@this(CLOSED);   [R RR i.................. RR........] 
+        goto +B213;   forward return[R RR i.................. ..........]
+  +B134:   #1
+        if vR1!=SYN_RCVD goto B166;   
+  +B141:   #1
+        if vR0.timeout@special(100)!=1 goto B213;   
+  +B151:   #1
+        vR0.sendHeaderOnlyPacket@special(4);   [R RR ................... iR........] 
+        vR0.setSocketState@this(CLOSED);   [R RR i.................. RR........] 
+        goto +B213;   forward return[R RR i.................. ..........]
+  +B166:   #1
+        if vR1!=FIN_WAIT_2 goto B198;   
+  +B173:   #1
+        if vR0.timeout@special(100)!=1 goto B213;   
+  +B183:   #1
+        vR0.sendHeaderOnlyPacket@special(4);   [R RR ................... iR........] 
+        vR0.setSocketState@this(CLOSED);   [R RR i.................. RR........] 
+        goto +B213;   forward return[R RR i.................. ..........]
+  +B198:   #1
+        if vR1!=CLOSED goto B213;   
+  +B205:   #1
+        vR0.tcp.unregisterSocket(vR0);   [R RR ................... RR........] 
+  +B213:   #9
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 26 swaps 17 any 6 found 6 processClientSocket
+ 
+ method open(Ljx/net/IPAddress;I)V {
+  +START:   #1
+        if vR0.getSocketState@this()==CLOSED goto B20;   
+  -B10:   #1
+        throw new java/lang/Error("open can only be called on closed sockets!");   
+  +B20:   #1
+        vR0.remoteIP = vR1;   
+        vR0.remotePort = vi2;   
+  +B30:   #1
+        if vR1!=null goto B44;   
+  -B34:   #1
+        throw new java/lang/Error("TCPSocket.open: no remote IP given");   
+  +B44:   #1
+        vR0.lowerLayer = vR0.tcp.getIPSender(vR1);   
+  +B56:   #1
+        goto +B70;   [ RRR . ...]
+  -H59<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        out.println("TCPSocket.open: IPSender reported invalid IPAddress");   [R RRR i. RR.] 
+        throw vR3;   
+  +B70:   #1
+        vR0.tcp.registerSocket(vR0);   [ RRR .. RR.] 
+        vR0.seq = vR0.getInitialSequenceNumber@special();   
+        vR0.sendHeaderOnlyPacket@special(2);   [ RRR .. iR.] 
+        out.println("TCPSocket.open: SYN-Packet sent");   [ RRR i. RR.] 
+        vR0.setSocketState@this(SYN_SENT);   [ RRR ii RR.] 
+        vR0.waitingThread = vR0.cpuManager.getCPUState();   
+        vR0.state.blockIfEqual(SYN_SENT);   [ RRR iii RR.] 
+        vR0.waitingThread = 0;   
+        if vR0.getSocketState@this()==ESTABLISHED goto B189;   
+  -B146:   #1
+        vR0.sendHeaderOnlyPacket@special(4);   [ RRR .... iR.] 
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Verbindung konnte nicht aufgebaut werden. (keine Reaktion auf SYN??)
+[TCPSocket.open: state(=").append@extra(SocketState2String@special(vR0.getSocketState@this())).append@extra(") != ESTABLISHED]").toString@extra());   [ RRR ii.Rii. RR..] 
+        throw b0;   
+  +B189:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+30 - 56 handler 59 type 141
+ }
+// Register: rd 29/29 wr 22 swaps 8 any 2 found 0 open
+ 
+ method close()V {
+  +START:   #1
+        vR1 = vR0.getSocketState@this();    [ RRR  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b0.println(b1.append@extra("TCPSocket.close called in state: ").append@extra(SocketState2String@special(vR1)).toString@extra());   [R RRR iii. RR.] 
+        if vR1==SYN_RCVD goto B47;   
+  +B40:   #1
+        if vR1!=ESTABLISHED goto B162;   
+  +B47:   #1
+        vR0.sendHeaderOnlyPacket@special(1);   [R RRR .... iR.] 
+        out.println("TCPSocket.close: FIN-Packet sent");   [R RRR i... RR.] 
+        vR0.setSocketState@this(FIN_WAIT_1);   [R RRR ii.. RR.] 
+        vR0.waitingThread = vR0.cpuManager.getCPUState();   
+        vR0.state.blockIfEqual(FIN_WAIT_1);   [R RRR iii. RR.] 
+        vR0.state.blockIfEqual(FIN_WAIT_2);   [R RRR iiii RR.] 
+        vR0.waitingThread = 0;   
+        if vR0.getSocketState@this()==CLOSED goto B278;   
+  -B119:   #1
+        vR0.sendHeaderOnlyPacket@special(4);   [R RRR ..... iR.] 
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i..][ RRR ..... iR.]
+        b1.<init>@special(b2.append@extra("Verbindung konnte nicht geschlossen werden.
+[TCPSocket.open: state(=").append@extra(SocketState2String@special(vR0.getSocketState@this())).append@extra(") != CLOSED]").toString@extra());   [R RRR ii.Rii. RR..] 
+        throw b0;   
+  +B162:   #1
+        if vR1==LISTEN goto B176;   
+  +B169:   #1
+        if vR1!=SYN_SENT goto B186;   
+  +B176:   #1
+        vR0.setSocketState@this(CLOSED);   [R RRR i...... RR..] 
+        goto +B278;   forward return[R RRR i...... ....]
+  +B186:   #1
+        if vR1==LAST_ACK goto B221;   
+  +B193:   #1
+        if vR1==FIN_WAIT_1 goto B221;   
+  +B200:   #1
+        if vR1==FIN_WAIT_2 goto B221;   
+  +B207:   #1
+        if vR1==CLOSING goto B221;   
+  +B214:   #1
+        if vR1!=TIME_WAIT goto B251;   
+  -B221:   #4
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ....... i...][ RRR ....... iR..]
+        b1.<init>@special(b2.append@extra(SocketState2String@special(vR1)).append@extra(": setSocketState(CLOSED); return;").toString@extra());   [R RRR ii.i... RR..] 
+        throw b0;   
+  +B251:   #1
+        if vR1==CLOSED goto B278;   
+  +B258:   #1
+        if vR1!=CLOSING goto B268;   
+  +B265:   #1
+        goto +B278;   forward return[R RRR ....... ....]
+  -B268:   #1
+        throw new java/lang/Error(" a terrible Error occured");   
+  +B278:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 46/46 wr 35 swaps 15 any 13 found 11 close
+ 
+ method accept([Ljx/zero/Memory;)Ljx/net/TCPSocket; {
+  +START:   #1
+        if vR0.getSocketState@this()==CLOSED goto B20;   
+  -B10:   #1
+        throw new java/lang/Error("Accept can only be called on closed sockets!");   
+  +B20:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b0.println(b1.append@extra("TCPSocket.accept: Called to accept connections on port ").append@extra(vR0.localPort).toString@extra());   [ RRR iii. RR.] 
+        vR0.setSocketState@this(LISTEN);   [ RRR iiii RR.] 
+        vR2 = (jx/net/IPData)(vR0.listenQ.nonblockingUndockFirstElement());    
+        if vR2==null goto B119;   
+  +B70:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ..... i..][ RRR ..... iR.]
+        b0.println(b1.append@extra("TCPSocket on port ").append@extra(vR0.localPort).append@extra(": using waiting connection from ").append@extra(vR2.sourceAddress).toString@extra());   [R RRR iiiii... RR...] 
+        vR2.mem = vR0.listen@special(vR2);   
+  +B119:   #1
+        vR0.bufs4newSocket = vR1;   
+        vR0.tcp.registerServerSocket(vR0);   [R RRR ........ RR...] 
+        vR0.waitingThread = vR0.cpuManager.getCPUState();   
+        vR0.state.blockIfEqual(LISTEN);   [R RRR i....... RR...] 
+        vR0.state.blockIfEqual(SYN_RCVD);   [R RRR ii...... RR...] 
+        vR0.waitingThread = 0;   
+        if vR0.getSocketState@this()==ESTABLISHED goto B222;   
+  -B184:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ........ i....][ RRR ........ iR...]
+        b1.<init>@special(b2.append@extra("TCPSocket.listen: state (=").append@extra(SocketState2String@special(vR0.getSocketState@this())).append@extra(") != ESTABLISHED").toString@extra());   [R RRR ii.Rii.. RR...] 
+        throw b0;   
+  +B222:   #1
+        if vR0.newClientSocket!=null goto B239;   
+  -B229:   #1
+        throw new java/lang/Error("no client Socket created!");   
+  +B239:   #1
+        vR2 = vR0.newClientSocket;    
+        vR0.newClientSocket = 0;   
+        vR0.setSocketState@this(CLOSED);   [R RRR i....... RR...] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 40 swaps 16 any 2 found 0 accept
+ 
+ method createClientSocket([Ljx/zero/Memory;)Ljx/net/protocol/tcp/TCPSocket; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPSocket(vR0.tcp,vR0.lowerLayer,vR0.localPort,vR0.localIP,vR1);    [ R  i][ R . iRRiRRR]
+        vR0.bufs4newSocket = 0;   
+        vR2.setSocketState(ESTABLISHED);   [R R i RR.....] 
+        vR2.setSequenceNumber(vR0.seq);   [R R ii iR.....] 
+        vR2.setAckNumber(vR0.ack);   [R R iii iR.....] 
+        vR2.setRemoteWindowSize(vR0.remoteWindowSize);   [R R iiii iR.....] 
+        vR2.registerRemoteIP(vR0.remoteIP);   [R R iiiii RR.....] 
+        vR2.registerRemotePort(vR0.remotePort);   [R R iiiiii iR.....] 
+        vR0.tcp.registerSocket(vR2);   [R R iiiiii RR.....] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 8 swaps 6 any 0 found 0 createClientSocket
+ 
+ method cleanUpRetransmitQueue(I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("cleanUpRetransmitQueue ack:").append@extra(vi1).append@extra(" Qlen").append@extra(vR0.retransmitQueue.size@extra()).toString@extra());   [ RR iiii... RR...] 
+        if vi1<=vR0.currentReceivedAck goto B56;   
+  +B48:   #1
+        vR0.currentReceivedAck = vi1;   
+        goto +B57;   [ RR ....... .....]
+  +B56:   #1
+        return;   
+  +B57:   #1
+        vi2 = 0;    
+  +B59:   #1
+        if vi2>=vR0.retransmitQueue.size@extra() goto B241;   
+  +B70:   #1
+        vR3 = (jx/net/protocol/tcp/TCPData)(vR0.retransmitQueue.elementAt(vi2));    
+        vR4 = new jx/net/protocol/tcp/TCPFormat(vR3);    [ RR ....... i....][ RR ....... iRR..]
+        if vR3.getRetransmitCounter()>5 goto B109;   
+  +B100:   #1
+        if vR4.getSequenceNumber()>=vi1 goto B202;   
+  +B109:   #1
+        if vR3.getRetransmitCounter()<=5 goto B154;   
+  +B117:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i....][ RR ....... iR...]
+        b0.println(b1.append@extra("ccleanUpRetransmitQueue: MAX_RETRANSMITS reached [").append@extra(vR4.getSequenceNumber()).append@extra("] --> removing packet from queue").toString@extra());   [iRR RR ii.ii.. RR...] 
+        goto +B188;   [iRR RR ii.ii.. .....]
+  +B154:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i....][ RR ....... iR...]
+        b0.println(b1.append@extra("cleanUpRetransmitQueue: [").append@extra(vR4.getSequenceNumber()).append@extra("] removing packet from queue").toString@extra());   [iRR RR ii.ii.. RR...] 
+  +B188:   #1
+        vR0.retransmitQueue.removeElementAt@extra(vi2);   [iRR RR ....... iR...] 
+        vi2--;   
+        goto +B235;   [iRR RR ....... .....]
+  +B202:   #1
+        if vR4.getSequenceNumber()<=vi1 goto B235;   
+  +B211:   #1
+        vi5 = (vR4.length()-vR4.getHeaderLength());    
+        vR0.remoteWindowSize = (vR0.remoteWindowSize-vi5);   
+  +B235:   #2
+        vi2++;   
+        goto +B59;   [iRR RR ....... .....]
+  +B241:   #1
+        vR0.dumpRetransmitQ@special();   [iRRi RR ....... R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 37 swaps 12 any 4 found 1 cleanUpRetransmitQueue
+ 
+ method dumpRetransmitQ()V {
+  +START:   #1
+        out.print("[");   [ RR i. RR] 
+        vi1 = 0;    
+  +B10:   #1
+        if vi1>=vR0.retransmitQueue.size@extra() goto B76;   
+  +B21:   #1
+        vR2 = (jx/net/protocol/tcp/TCPData)(vR0.retransmitQueue.elementAt(vi1));    
+        vR3 = new jx/net/protocol/tcp/TCPFormat(vR2);    [ RR .. i.][ RR .. iRR]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.print(b1.append@extra(vR3.getSequenceNumber()).append@extra(", ").toString@extra());   [iRR RR ii.i RR.] 
+        vi1++;   
+        goto +B10;   [iRR RR ii.i ...]
+  +B76:   #1
+        out.print("]
+");   [iRR RR i... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 17 swaps 5 any 2 found 1 dumpRetransmitQ
+ 
+ method forceRetransmit(I)V {
+  +START:   #1
+        vi2 = vR0.retransmitQueue.size@extra();    [ RR  R] 
+        vi3 = 0;    
+  +B10:   #1
+        if vi3>=vi2 goto B122;   
+  +B15:   #1
+        if vi3>=vR0.retransmitQueue.size@extra() goto B122;   
+  +B26:   #1
+        vR4 = (jx/net/protocol/tcp/TCPData)(vR0.retransmitQueue.elementAt(vi3));    
+        vR5 = new jx/net/protocol/tcp/TCPFormat(vR4);    [ RR . i.][ RR . iRR]
+        if vR5.getSequenceNumber()!=vi1 goto B116;   
+  +B59:   #1
+        vR6 = 0;    
+        if vR6==vR4 goto B79;   
+  -B69:   #1
+        throw new java/lang/Error("wrong element deleted from retransmit Q");   
+  +B79:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("forceRetransmit [").append@extra(vi1).append@extra("]").toString@extra());   [iiRRR RR iii.. RR..] 
+        vR0.retransmit@special(vR4);   [iiRRR RR iii.. RR..] 
+        return;   
+  +B116:   #1
+        vi3++;   
+        goto +B10;   [iiRRR RR ..... ....]
+  +B122:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 17 swaps 3 any 4 found 1 forceRetransmit
+ 
+ method checkRetransmit()V {
+  +START:   #1
+        vi1 = vR0.timerManager.getTimeInMillis();    [ R  R] 
+        if vR0.retransmitQueue.isEmpty@extra()==0 goto B21;   
+  +B20:   #1
+        return;   
+  +B21:   #1
+        vi2 = vR0.retransmitQueue.size@extra();    [i R  R] 
+        vi3 = 0;    
+  +B31:   #1
+        if vi3>=vi2 goto B131;   
+  +B36:   #1
+        if vi3>=vR0.retransmitQueue.size@extra() goto B131;   
+  +B47:   #1
+        vR4 = (jx/net/protocol/tcp/TCPData)(vR0.retransmitQueue.elementAt(vi3));    
+        vR5 = new jx/net/protocol/tcp/TCPFormat(vR4);    [ R . i.][ R . iRR]
+        if vR0.compareUnsigned@special(vR4.getRetransmitTimestamp(),vi1)> 0 goto B125;   
+  +B84:   #1
+        if vR4.getRetransmitCounter()>=5 goto B125;   
+  +B93:   #1
+        vR6 = 0;    
+        if vR6==vR4 goto B113;   
+  -B103:   #1
+        throw new java/lang/Error("wrong element deleted from retransmit Q");   
+  +B113:   #1
+        vi3--;   
+        vi2--;   
+        vR0.retransmit@special(vR4);   [iiiRRR R . RR.] 
+  +B125:   #2
+        vi3++;   
+        goto +B31;   [iiiRRR R . ...]
+  +B131:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 13 swaps 1 any 6 found 1 checkRetransmit
+ 
+ method retransmit(Ljx/net/protocol/tcp/TCPData;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b0.println(b1.append@extra("retransmit: queue length is ").append@extra(vR0.retransmitQueue.size@extra()).toString@extra());   [ RRR iii. RR.] 
+        if vR0.retransmitQueue.isEmpty@extra()==0 goto B42;   
+  +B41:   #1
+        return;   
+  +B42:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1);    [ RRR .... i..][ RRR .... iRR]
+        vi3 = (vR2.length()-vR2.getHeaderLength());    
+        if vR0.remoteWindowSize>=vi3 goto B78;   
+  +B69:   #1
+        out.println("retransmit: retransmitting aborted due to remote window size");   [Ri RRR i... RR.] 
+        return;   
+  +B78:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b0.println(b1.append@extra("retransmit: retransmitting packet [").append@extra(vR2.getSequenceNumber()).append@extra("]").toString@extra());   [Ri RRR ii.ii. RR..] 
+        vR1.setRetransmitCounter((vR1.getRetransmitCounter()+1));   [Ri RRR iiiii. iR..] 
+        vR1.setRetransmitTimestamp((vR1.getRetransmitTimestamp()+2000));   [Ri RRR iiiiii iR..] 
+        vR4 = 0;    
+        b0 = new jx/net/protocol/tcp/TCPData;    
+        b1 = b0;    
+        b2 = new jx/net/IPData();    [ RRR iiiiii i...][ RRR iiiiii iR..]
+        b1.<init>@special(b2);   [RiR RRR iiiiii RR..] 
+        vR4 = b0;    
+        vR4.mem = vR0.tcp.getTCPBuffer1();   
+        vR4.mem.copyFromMemory(vR1.mem,0,0,vR1.mem.size());   [RiR RRR iiiiiiii iiiRR] 
+        vR5 = vR0.lowerLayer.send1(vR1.mem,vR1.offset,vR1.size);    [RiR RRR iiiiiiiiiii iiRR.] 
+        vR0.remoteWindowSize = (vR0.remoteWindowSize-vi3);   
+        if vR4==null goto B245;   
+  +B228:   #1
+        vR1.mem = vR4.mem;   
+        vR0.retransmitQueue.addElement@extra(vR1);   [RiRR RRR ........... RR...] 
+  +B245:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 36 swaps 12 any 3 found 0 retransmit
+ 
+ method compareUnsigned(II)I {
+  +START:   #1
+        vi3 = 31;    
+  +B3:   #1
+        if vi3< 0 goto B47;   
+  +B7:   #1
+        vi4 = (byte)((vi1 >> vi3) & 1);    
+        vi5 = (byte)((vi2 >> vi3) & 1);    
+        if vi4<=vi5 goto B32;   
+  +B30:   #1
+        return 1;   
+  +B32:   #1
+        if vi4>=vi5 goto B41;   
+  +B39:   #1
+        return -1;   
+  +B41:   #1
+        vi3--;   
+        goto +B3;   [iii   ]
+  +B47:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 4 found 0 compareUnsigned
+ 
+ method listen(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        out.println("Accept received packet from input queue");   [ RR i. RR] 
+        vR0.registerRemoteIP@this(vR1.sourceAddress);   [ RR ii RR] 
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ RR ii i.][ RR ii. iRRRR]
+        if vR2.areFlagsSet(2)==0 goto B179;   
+  +B41:   #1
+        vR0.ack = (vR2.getSequenceNumber()+1);   
+        vR0.seq = vR0.getInitialSequenceNumber@special();   
+        vR0.remotePort = vR2.getSourcePort();   
+        vR0.remoteWindowSize = vR2.getWindowSize();   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
+        b0.println(b1.append@extra("TCPSocket.listen: SYN-Packet received from port ").append@extra(vR0.remotePort).toString@extra());   [R RR iii. RR...] 
+  +B103:   #1
+        if vR0.remoteIP!=null goto B120;   
+  -B110:   #1
+        throw new java/lang/Error("TCPSocket: no remote IP registered");   
+  +B120:   #1
+        vR0.lowerLayer = vR0.tcp.getIPSender(vR0.remoteIP);   
+  +B135:   #1
+        goto +B155;   [R RR .... .....]
+  -H138<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        out.println("TCPSocket.listen: Unknown IP Address reported by getIPSender()!");   [RR RR i... RR...] 
+        throw new java/lang/Error();   
+  +B155:   #1
+        vR0.sendHeaderOnlyPacket@special(18);   [R RR .... iR...] 
+        out.println("TCPSocket.listen: SYN/ACK-Packet sent");   [R RR i... RR...] 
+        vR0.setSocketState@this(SYN_RCVD);   [R RR ii.. RR...] 
+        goto +B187;   forward return[R RR ii.. .....]
+  +B179:   #1
+        out.println("TCPSocket.listen: unexpected Packet received");   [R RR i... RR...] 
+  +B187:   #1
+        return vR1.mem;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+103 - 135 handler 138 type 141
+ }
+// Register: rd 26/26 wr 22 swaps 10 any 0 found 0 listen
+ 
+ method syn_rcvd(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ R  i][ R . iRRRR]
+        if vR2.isRSTFlagSet()==0 goto B45;   
+  +B24:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B45;   
+  +B35:   #1
+        vR0.setSocketState@this(LISTEN);   [R R i RR...] 
+        goto +B105;   forward return[R R i .....]
+  +B45:   #2
+        if vR2.isACKFlagSet()==0 goto B93;   
+  +B52:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B93;   
+  +B63:   #1
+        out.println("TCPSocket.syn_rcvd: ACK-Packet received");   [R R i. RR...] 
+        vR0.newClientSocket = vR0.createClientSocket@special(vR0.bufs4newSocket);   
+        vR0.setSocketState@this(ESTABLISHED);   [R R iii RR...] 
+        goto +B105;   forward return[R R iii .....]
+  +B93:   #2
+        out.println("Syn_rcvd: unexpected Packet received");   [R R i.. RR...] 
+        vR2.dump();   [R R i.. R....] 
+  +B105:   #2
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 9 swaps 5 any 0 found 0 syn_rcvd
+ 
+ method syn_sent(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        out.println("In syn_sent()");   [ R i. RR] 
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ R i. i.][ R i. iRRRR]
+        if vR2.isRSTFlagSet()==0 goto B61;   
+  +B32:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B61;   
+  +B43:   #1
+        out.println("RST received: nobody is listening!");   [R R i. RR...] 
+        vR0.setSocketState@this(CLOSED);   [R R ii RR...] 
+        goto +B131;   forward return[R R ii .....]
+  +B61:   #2
+        if vR2.areFlagsSet(18)==0 goto B123;   
+  +B70:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B123;   
+  +B81:   #1
+        out.println("TCPSocket.syn_sent: SYN/ACK-Packet received");   [R R i. RR...] 
+        vR0.remoteWindowSize = vR2.getWindowSize();   
+        vR0.ack = (vR2.getSequenceNumber()+1);   
+        vR0.sendHeaderOnlyPacket@special(16);   [R R i. iR...] 
+        vR0.setSocketState@this(ESTABLISHED);   [R R ii RR...] 
+        goto +B131;   forward return[R R ii .....]
+  +B123:   #2
+        out.println("syn_sent: unexpected Packet received");   [R R i. RR...] 
+  +B131:   #2
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 12 swaps 6 any 0 found 0 syn_sent
+ 
+ method established(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1);    [ RR  i][ RR . iRR]
+        if vR2.isFINFlagSet()==0 goto B52;   
+  +B16:   #1
+        out.println("****Established, FIN-Paket");   [R RR i. RR.] 
+        vR0.ack = (vR0.ack+1);   
+        vR0.sendHeaderOnlyPacket@special(17);   [R RR i. iR.] 
+        vR0.setSocketState@this(LAST_ACK);   [R RR ii RR.] 
+        return vR1.mem;   
+  +B52:   #1
+        if vR2.isRSTFlagSet()==0 goto B89;   
+  +B59:   #1
+        out.println("****Established, RST-Paket");   [R RR i. RR.] 
+        vR0.ack = (vR0.ack+1);   
+        vR0.setSocketState@this(TIME_WAIT);   [R RR ii RR.] 
+        return vR1.mem;   
+  +B89:   #1
+        if vR2.getSequenceNumber()!=vR0.ack goto B267;   
+  +B100:   #1
+        out.print("****Established, normales Paket, richtige Reihenfolge");   [R RR i. RR.] 
+        if vR2.isACKFlagSet()==0 goto B215;   
+  +B115:   #1
+        out.print(", ACK");   [R RR i. RR.] 
+        if vR2.getAcknowledgmentNumber()>=vR0.currentReceivedAck goto B145;   
+  +B134:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B153;   
+  +B145:   #1
+        vR0.remoteWindowSize = vR2.getWindowSize();   
+  +B153:   #1
+        if vR2.getHeaderLength()!=vR2.length() goto B207;   
+  +B164:   #1
+        out.println(" sonst nix");   [R RR i. RR.] 
+        if vR2.getAcknowledgmentNumber()!=vR0.currentReceivedAck goto B194;   
+  +B183:   #1
+        vR0.forceRetransmit@special(vR0.currentReceivedAck);   [R RR i. iR.] 
+        goto +B202;   forward return[R RR i. ...]
+  +B194:   #1
+        vR0.cleanUpRetransmitQueue@special(vR2.getAcknowledgmentNumber());   [R RR i. iR.] 
+  +B202:   #1
+        return vR1.mem;   
+  +B207:   #1
+        vR0.cleanUpRetransmitQueue@special(vR2.getAcknowledgmentNumber());   [R RR i. iR.] 
+  +B215:   #1
+        out.println(", Datenpaket");   [R RR i. RR.] 
+        vR0.ack = (vR0.ack+(vR2.length()-vR2.getHeaderLength()));   
+        vR3 = 0;    
+        vR3 = vR0.tcp.getTCPBuffer1();    [RR RR i.. R..] 
+        vR0.inputBufs.appendElement(vR1);   [RR RR i.. RR.] 
+        vR0.sendHeaderOnlyPacket@special(16);   [RR RR i.. iR.] 
+        return vR3;   
+  +B267:   #1
+        if vR2.getSequenceNumber()>=vR0.ack goto B353;   
+  +B278:   #1
+        out.println("****Established, resent data -> verwerfen");   [RR RR i.. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i.. i..][ RR i.. iR.]
+        b0.println(b1.append@extra("                  ist:").append@extra(vR2.getSequenceNumber()).toString@extra());   [RR RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("                 soll:").append@extra(vR0.ack).toString@extra());   [RR RR iiiiiii. RR.] 
+        vR0.sendHeaderOnlyPacket@special(16);   [RR RR iiiiiii. iR.] 
+        return vR1.mem;   
+  +B353:   #1
+        out.println("****Established, out-of-order -> verwerfen");   [RR RR i....... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i....... i..][ RR i....... iR.]
+        b0.println(b1.append@extra("                  ist:").append@extra(vR2.getSequenceNumber()).toString@extra());   [RR RR iiii.... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii.... i..][ RR iiii.... iR.]
+        b0.println(b1.append@extra("                 soll:").append@extra(vR0.ack).toString@extra());   [RR RR iiiiiii. RR.] 
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 61/61 wr 56 swaps 25 any 0 found 0 established
+ 
+ method last_ack(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1);    [ R  i][ R . iRR]
+        if vR2.isACKFlagSet()==0 goto B37;   
+  +B16:   #1
+        if vR2.getAcknowledgmentNumber()!=vR0.seq goto B37;   
+  +B27:   #1
+        vR0.setSocketState@this(CLOSED);   [R R i RR.] 
+        goto +B45;   forward return[R R i ...]
+  +B37:   #2
+        out.println("last_ack: unexpected Packet received");   [R R i. RR.] 
+  +B45:   #1
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 2 any 0 found 0 last_ack
+ 
+ method fin_wait_1(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ R  i][ R . iRRRR]
+        if vR2.getAcknowledgmentNumber()==vR0.seq goto B39;   
+  +B28:   #1
+        out.println("fin_wait_1: rcvd packet with bad ack");   [R R i. RR...] 
+        goto +B135;   forward return[R R i. .....]
+  +B39:   #1
+        if vR2.areFlagsSet(17)==0 goto B74;   
+  +B48:   #1
+        vR0.ack = (vR0.ack+1);   
+        vR0.sendHeaderOnlyPacket@special(16);   [R R .. iR...] 
+        vR0.setSocketState@this(TIME_WAIT);   [R R i. RR...] 
+        goto +B135;   forward return[R R i. .....]
+  +B74:   #1
+        if vR2.areFlagsSet(1)==0 goto B108;   
+  +B82:   #1
+        vR0.ack = (vR0.ack+1);   
+        vR0.sendHeaderOnlyPacket@special(16);   [R R .. iR...] 
+        vR0.setSocketState@this(CLOSING);   [R R i. RR...] 
+        goto +B135;   forward return[R R i. .....]
+  +B108:   #1
+        if vR2.areFlagsSet(16)==0 goto B127;   
+  +B117:   #1
+        vR0.setSocketState@this(FIN_WAIT_2);   [R R i. RR...] 
+        goto +B135;   forward return[R R i. .....]
+  +B127:   #1
+        out.println("fin_wait_1: unexpected Packet received");   [R R i. RR...] 
+  +B135:   #4
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 9 swaps 5 any 0 found 0 fin_wait_1
+ 
+ method fin_wait_2(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ R  i][ R . iRRRR]
+        if vR2.areFlagsSet(1)==0 goto B51;   
+  +B25:   #1
+        vR0.ack = (vR0.ack+1);   
+        vR0.sendHeaderOnlyPacket@special(16);   [R R . iR...] 
+        vR0.setSocketState@this(TIME_WAIT);   [R R i RR...] 
+        goto +B59;   forward return[R R i .....]
+  +B51:   #1
+        out.println("fin_wait_2: unexpected Packet received");   [R R i. RR...] 
+  +B59:   #1
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 5 swaps 2 any 0 found 0 fin_wait_2
+ 
+ method closing(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        out.println("In closing()");   [ R i. RR] 
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1,vR0.localIP,vR0.remoteIP);    [ R i. i.][ R i. iRRRR]
+        if vR2.getAcknowledgmentNumber()==vR0.seq goto B47;   
+  +B36:   #1
+        out.println("closing: rcvd packet with bad ack");   [R R i. RR...] 
+        goto +B63;   forward return[R R i. .....]
+  +B47:   #1
+        if vR2.areFlagsSet(16)==0 goto B63;   
+  +B56:   #1
+        vR0.setSocketState@this(TIME_WAIT);   [R R i. RR...] 
+  +B63:   #2
+        return vR1.mem;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 3 any 0 found 0 closing
+ 
+ method time_wait()V {
+  +START:   #1
+        out.println("In Time_wait()");   [  i. RR] 
+        if vR0.timeout@special(100)!=1 goto B25;   
+  +B18:   #1
+        vR0.setSocketState@this(CLOSED);   [  i. RR] 
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 2 any 0 found 0 time_wait
+ 
+ method timeout(I)Z {
+  +START:   #1
+        vi2 = vR0.timerManager.getTimeInMillis();    [ RR  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("timeout: timer:").append@extra(vR0.timer).append@extra(" curtime:").append@extra(vi2).append@extra(" diff:").append@extra(vR0.compareUnsigned@special(vR0.timer,vi2)).toString@extra());   [i RR iiiiiii..... RR.....] 
+        if vR0.timer!=0 goto B80;   
+  +B71:   #1
+        vR0.timer = (vi2+vi1);   
+        return 0;   
+  +B80:   #1
+        if vR0.compareUnsigned@special(vR0.timer,vi2)> 0 goto B99;   
+  +B92:   #1
+        vR0.timer = 0;   
+        return 1;   
+  +B99:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 17 swaps 8 any 0 found 0 timeout
+ 
+ method send(B)V {
+  +START:   #1
+        vR2 = new byte[1];    
+        vR2[0] = vi1;   
+        vR0.send@this(vR2);   [R   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 send
+ 
+ method send([B)V {
+  +START:   #1
+        vR0.send1@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 send
+ 
+ method send0([B)V {
+  +START:   #1
+        if vR0.getSocketState@this()==ESTABLISHED goto B21;   
+  -B10:   #1
+        throw new java/io/IOException("send can only be called on open sockets");   
+  +B21:   #1
+        out.println("Entered send() method");   [ RR i. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i..][ RR i. iR.]
+        b0.println(b1.append@extra("local port ").append@extra(vR0.localPort).toString@extra());   [ RR iiii. RR.] 
+        vi2 = vR1.length;    
+        if vi2<=1400 goto B80;   
+  -B69:   #1
+        throw new java/lang/Error("Send: Byte array size exceeds 1400 Bytes");   
+  +B80:   #1
+        vR3 = (jx/net/IPData)(vR0.usableBufs.undockFirstElement());    
+        if vR3!=null goto B105;   
+  -B95:   #1
+        throw new java/lang/Error("no free Buffers");   
+  +B105:   #1
+        vR4 = vR3.mem;    
+        vR5 = new jx/zero/Memory()[2];    
+        vR4.split2((vi2+20),vR5);   [iRRR RR i.... RiR] 
+        vR4 = vR5[0];    
+        vR6 = new jx/net/protocol/tcp/TCPFormat(vR4,vR0.localIP,vR0.remoteIP);    [ RR i.... i..][ RR i.... iRRRR]
+        vR6.insertFlags(24);   [iRRRR RR i.... iR...] 
+        vR6.insertSourcePort(vR0.localPort);   [iRRRR RR ii... iR...] 
+        vR6.insertDestinationPort(vR0.remotePort);   [iRRRR RR iii.. iR...] 
+        vR6.insertAcknowledgmentNumber(vR0.ack);   [iRRRR RR iiii. iR...] 
+        vR6.insertSequenceNumber(vR0.seq);   [iRRRR RR iiiii iR...] 
+        vR6.insertWindowSize(vR0.localWindowSize);   [iRRRR RR iiiiii iR...] 
+        vR6.computeHeaderLength();   [iRRRR RR iiiiii R....] 
+        vR6.insertData(vR1);   [iRRRR RR iiiiii RR...] 
+        vR6.insertChecksum();   [iRRRR RR iiiiii R....] 
+        vR3.mem = vR0.lowerLayer.send(vR4);   
+        vR0.usableBufs.appendElement(vR3);   [iRRRR RR iiiiii RR...] 
+        vR0.seq = (vR0.seq+vi2);   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii i....][ RR iiiiii iR...]
+        b0.println(b1.append@extra("Sent: Seq after send is ").append@extra(vR0.seq).toString@extra());   [iRRRR RR iiiiiiiii. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 34 swaps 13 any 2 found 0 send0
+ 
+ method send1([B)V {
+  +START:   #1
+        if vR0.getSocketState@this()==ESTABLISHED goto B21;   
+  -B10:   #1
+        throw new java/io/IOException("send can only be called on open sockets");   
+  +B21:   #1
+        out.println("Entered send() method");   [ RR i. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i..][ RR i. iR.]
+        b0.println(b1.append@extra("local port ").append@extra(vR0.localPort).toString@extra());   [ RR iiii. RR.] 
+        vi2 = vR1.length;    
+        if vi2<=1400 goto B80;   
+  -B69:   #1
+        throw new java/lang/Error("Send: Byte array size exceeds 1400 Bytes");   
+  +B80:   #1
+        vR3 = new jx/net/IPData();    [ RR ..... i..][ RR ..... iR.]
+        vR3.mem = vR0.tcp.getTCPBuffer1();   
+        vR3.offset = 0;   
+        vR3.size = (vi2+20);   
+        vR4 = new jx/net/protocol/tcp/TCPFormat(vR3,vR0.localIP,vR0.remoteIP);    [ RR ..... i..][ RR ..... iRRRR]
+        vR3.offset = 34;   
+        vR4.insertFlags(24);   [iRR RR ..... iR...] 
+        vR4.insertSourcePort(vR0.localPort);   [iRR RR i.... iR...] 
+        vR4.insertDestinationPort(vR0.remotePort);   [iRR RR ii... iR...] 
+        vR4.insertAcknowledgmentNumber(vR0.ack);   [iRR RR iii.. iR...] 
+        vR4.insertSequenceNumber(vR0.seq);   [iRR RR iiii. iR...] 
+        vR4.insertWindowSize(vR0.localWindowSize);   [iRR RR iiiii iR...] 
+        vR4.computeHeaderLength();   [iRR RR iiiii R....] 
+        vR4.insertData(vR1);   [iRR RR iiiii RR...] 
+        vR4.insertChecksum();   [iRR RR iiiii R....] 
+  +B204:   #1
+        if vR0.remoteWindowSize>=vi2 goto B224;   
+  +B212:   #1
+        vR0.cpuManager.yield();   [iRR RR ..... R....] 
+        goto +B204;   [iRR RR ..... .....]
+  +B224:   #2
+        if vR0.retransmitQueue.size@extra()<=10 goto B248;   
+  +B236:   #1
+        vR0.cpuManager.yield();   [iRR RR ..... R....] 
+        goto +B224;   [iRR RR ..... .....]
+  +B248:   #1
+        vR5 = 0;    
+        vR5 = new jx/net/IPData();    [ RR ..... i....][ RR ..... iR...]
+        vR5.mem = vR0.tcp.getTCPBuffer1();   
+        vR5.mem.copyFromMemory(vR3.mem,0,0,vR3.mem.size());   [iRRR RR ii... iiiRR] 
+        vR6 = vR0.lowerLayer.send1(vR3.mem,vR3.offset,vR3.size);    [iRRR RR iiiii iiRR.] 
+        vR0.remoteWindowSize = (vR0.remoteWindowSize-vi2);   
+        vR0.seq = (vR0.seq+vi2);   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiii i....][ RR iiiii iR...]
+        b0.println(b1.append@extra("Sent: Seq is ").append@extra(vR0.seq).append@extra(" --> ").append@extra((vR0.seq+vi2)).toString@extra());   [iRRRR RR iiiiiiiiii... RR...] 
+        if vR5==null goto B436;   
+  +B390:   #1
+        vR3.mem = vR5.mem;   
+        vR7 = new jx/net/protocol/tcp/TCPData(vR3);    [ RR ............. i....][ RR ............. iRR..]
+        vR7.setRetransmitTimestamp((vR0.timerManager.getTimeInMillis()+2000));   [iRRRRR RR i............ iR...] 
+        vR0.retransmitQueue.addElement@extra(vR7);   [iRRRRR RR i............ RR...] 
+  +B436:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 67/67 wr 44 swaps 17 any 2 found 0 send1
+ 
+ method readFromInputBuffer()[B {
+  +START:   #1
+        out.println("In readFromInputBuffer()");   [ R i. RR] 
+        vR1 = (jx/net/IPData)(vR0.inputBufs.undockFirstElement());    
+        if vR1!=null goto B35;   
+  -B24:   #1
+        throw new java/lang/Error("input buffer ist empty");   
+  +B35:   #1
+        vR2 = new jx/net/protocol/tcp/TCPFormat(vR1);    [ R .. i..][ R .. iRR]
+        vR3 = vR2.getData();    [RR R .. R..] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 1 any 1 found 0 readFromInputBuffer
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i][ R  iR]
+        CLOSED = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        LISTEN = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        SYN_RCVD = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        SYN_SENT = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        ESTABLISHED = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        LAST_ACK = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        FIN_WAIT_1 = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        FIN_WAIT_2 = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        CLOSING = b0;   
+        b0 = new jx/net/protocol/tcp/TCPSocketState();    [ R  i.][ R  iR]
+        TIME_WAIT = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 10 swaps 0 any 0 found 10 <clinit>
+}

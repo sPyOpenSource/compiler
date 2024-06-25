@@ -1,0 +1,776 @@
+class java/util/ArrayList {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        if vi1<=0 goto B19;   
+  +B8:   #1
+        vR0.elementData = new java/lang/Object()[vi1];   
+        goto +B60;   forward return[ RRR  ..]
+  +B19:   #1
+        if vi1!=0 goto B33;   
+  +B23:   #1
+        vR0.elementData = EMPTY_ELEMENTDATA;   
+        goto +B60;   forward return[ RRR  ..]
+  -B33:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Illegal Capacity: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B60:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 2 any 3 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.elementData = DEFAULTCAPACITY_EMPTY_ELEMENTDATA;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Collection;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ii  R] 
+        vR0.elementData = vR1.toArray();   
+        b1 = vR0.elementData.length;    
+        b0 = b1;    
+        vR0.size = b1;   
+        if b0==0 goto B59;   
+  +B27:   #1
+        if vR0.elementData.getClass()==[Ljava/lang/Object; goto B66;   
+  +B39:   #1
+        vR0.elementData = copyOf@special(vR0.elementData,vR0.size,[Ljava/lang/Object;);   
+        goto +B66;   forward return[ ii RiR ...]
+  +B59:   #1
+        vR0.elementData = EMPTY_ELEMENTDATA;   
+  +B66:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 5 swaps 0 any 2 found 0 <init>
+ 
+ method trimToSize()V {
+  +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        if vR0.size>=vR0.elementData.length goto B50;   
+  +B22:   #1
+        b0 = vR0;    
+        if vR0.size!=0 goto B36;   
+  +B30b0:   #1 reference
+        b1 = EMPTY_ELEMENTDATA;    
+        goto +B47b0b1;   [ RR  .]
+  +B36b0:   #1 reference
+        b1 = copyOf@special(vR0.elementData,vR0.size);    [ RR Ri iR]
+  +B47b0b1:   #1 reference reference
+        b0.elementData = b1;   
+  +B50:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 5 swaps 0 any 1 found 0 trimToSize
+ 
+ method ensureCapacity(I)V {
+  +START:   #1
+        if vR0.elementData==DEFAULTCAPACITY_EMPTY_ELEMENTDATA goto B14;   
+  +B10:   #1
+        b0 = 0;    
+        goto +B16b0;   [ i . .]
+  +B14:   #1
+        b0 = 10;    
+  +B16b0:   #1 int
+        vi2 = b0;    
+        if vi1<=vi2 goto B27;   
+  +B22:   #1
+        vR0.ensureExplicitCapacity@special(vi1);   [i i . iR] 
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 0 ensureCapacity
+ 
+ method ensureCapacityInternal(I)V {
+  +START:   #1
+        if vR0.elementData!=DEFAULTCAPACITY_EMPTY_ELEMENTDATA goto B17;   
+  +B10:   #1
+        vi1 = max@special(10,vi1);    [  . ii]
+  +B17:   #1
+        vR0.ensureExplicitCapacity@special(vi1);   [  . iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 ensureCapacityInternal
+ 
+ method ensureExplicitCapacity(I)V {
+  +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        if (vi1-vR0.elementData.length)<=0 goto B25;   
+  +B20:   #1
+        vR0.grow@special(vi1);   [   iR] 
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 1 found 0 ensureExplicitCapacity
+ 
+ method grow(I)V {
+  +START:   #1
+        vi2 = vR0.elementData.length;    
+        vi3 = (vi2+(vi2 >> 1));    
+        if (vi3-vi1)>=0 goto B20;   
+  +B18:   #1
+        vi3 = vi1;    
+  +B20:   #1
+        if (vi3-2147483639)<=0 goto B32;   
+  +B27:   #1
+        vi3 = hugeCapacity@special(vi1);    [ii   i]
+  +B32:   #1
+        vR0.elementData = copyOf@special(vR0.elementData,vi3);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 4 found 1 grow
+ 
+ method hugeCapacity(I)I {
+  +START:   #1
+        if vi0>=0 goto B12;   
+  -B4:   #1
+        throw new java/lang/OutOfMemoryError();   
+  +B12:   #1
+        if vi0<=2147483639 goto B23;   
+  +B18:   #1
+        b0 = 2147483647;    
+        goto +B25b0;   forward return[ i  ..]
+  +B23:   #1
+        b0 = 2147483639;    
+  +B25b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 2 found 0 hugeCapacity
+ 
+ method size()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        if vR0.size!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.indexOf@this(vR1)< 0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ..]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 contains
+ 
+ method indexOf(Ljava/lang/Object;)I {
+  +START:   #1
+        if vR1!=null goto B34;   
+  +B4:   #1
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR0.size goto B31;   
+  +B14:   #1
+        if vR0.elementData[vi2]!=null goto B25;   
+  +B23:   #1
+        return vi2;   
+  +B25:   #1
+        vi2++;   
+        goto +B6;   [i   ]
+  +B31:   #1
+        goto +B65;   forward return[i   ]
+  +B34:   #1
+        vi2 = 0;    
+  +B36:   #1
+        if vi2>=vR0.size goto B65;   
+  +B44:   #1
+        if vR1.equals(vR0.elementData[vi2])==0 goto B59;   
+  +B57:   #1
+        return vi2;   
+  +B59:   #1
+        vi2++;   
+        goto +B36;   [i  . ..]
+  +B65:   #2
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 1 any 5 found 0 indexOf
+ 
+ method lastIndexOf(Ljava/lang/Object;)I {
+  +START:   #1
+        if vR1!=null goto B35;   
+  +B4:   #1
+        vi2 = (vR0.size-1);    
+  +B11:   #1
+        if vi2< 0 goto B32;   
+  +B15:   #1
+        if vR0.elementData[vi2]!=null goto B26;   
+  +B24:   #1
+        return vi2;   
+  +B26:   #1
+        vi2--;   
+        goto +B11;   [i   ]
+  +B32:   #1
+        goto +B67;   forward return[i   ]
+  +B35:   #1
+        vi2 = (vR0.size-1);    
+  +B42:   #1
+        if vi2< 0 goto B67;   
+  +B46:   #1
+        if vR1.equals(vR0.elementData[vi2])==0 goto B61;   
+  +B59:   #1
+        return vi2;   
+  +B61:   #1
+        vi2--;   
+        goto +B42;   [i  . ..]
+  +B67:   #2
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 1 any 5 found 0 lastIndexOf
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        vR1 = (java/util/ArrayList)(vR0.clone@special());    
+        vR1.elementData = copyOf@special(vR0.elementData,vR0.size);   
+        vR1.modCount = 0;   
+        b0 = vR1;    
+  +B29b0:   #1 reference
+        return b0;   
+  -H30<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/InternalError(vR1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 29 handler 30 type 34
+ }
+// Register: rd 10/10 wr 7 swaps 0 any 1 found 0 clone
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        return copyOf@special(vR0.elementData,vR0.size);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  +START:   #1
+        if vR1.length>=vR0.size goto B25;   
+  +B9:   #1
+        return copyOf@special(vR0.elementData,vR0.size,vR1.getClass());   
+  +B25:   #1
+        arraycopy@special(vR0.elementData,0,vR1,0,vR0.size);   [  Ri. iiRiR]
+        if vR1.length<=vR0.size goto B55;   
+  +B48:   #1
+        vR1[vR0.size] = 0;   
+  +B55:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 0 any 0 found 0 toArray
+ 
+ method elementData(I)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.elementData[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 elementData
+ 
+ method get(I)Ljava/lang/Object; {
+  +START:   #1
+        vR0.rangeCheck@special(vi1);   [   iR] 
+        return vR0.elementData@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 get
+ 
+ method set(ILjava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        vR0.rangeCheck@special(vi1);   [   iR] 
+        vR3 = vR0.elementData@this(vi1);    [   iR] 
+        vR0.elementData[vi1] = vR2;   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 set
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        vR0.ensureCapacityInternal@special((vR0.size+1));   [ Rii i iR] 
+        b0 = vR0.elementData;    
+        b2 = vR0.size;    
+        b1 = b2;    
+        vR0.size = (b2+1);   
+        b0[b1] = vR1;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 1 any 2 found 0 add
+ 
+ method add(ILjava/lang/Object;)V {
+  +START:   #1
+        vR0.rangeCheckForAdd@special(vi1);   [   iR] 
+        vR0.ensureCapacityInternal@special((vR0.size+1));   [  i iR] 
+        arraycopy@special(vR0.elementData,vi1,vR0.elementData,(vi1+1),(vR0.size-vi1));   [  iRRii iiRiR]
+        vR0.elementData[vi1] = vR2;   
+        vR0.size = (vR0.size+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 5 swaps 1 any 1 found 0 add
+ 
+ method remove(I)Ljava/lang/Object; {
+  +START:   #1
+        vR0.rangeCheck@special(vi1);   [ Rii  iR] 
+        vR0.modCount = (vR0.modCount+1);   
+        vR2 = vR0.elementData@this(vi1);    [ Rii  iR] 
+        vi3 = ((vR0.size-vi1)-1);    
+        if vi3<=0 goto B50;   
+  +B34:   #1
+        arraycopy@special(vR0.elementData,(vi1+1),vR0.elementData,vi1,vi3);   [Ri Rii RiR iiRiR]
+  +B50:   #1
+        b0 = vR0.elementData;    
+        b2 = (vR0.size-1);    
+        b1 = b2;    
+        vR0.size = b2;   
+        b0[b1] = 0;   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 8 swaps 0 any 2 found 0 remove
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B39;   
+  +B4:   #1
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR0.size goto B36;   
+  +B14:   #1
+        if vR0.elementData[vi2]!=null goto B30;   
+  +B23:   #1
+        vR0.fastRemove@special(vi2);   [i   iR] 
+        return 1;   
+  +B30:   #1
+        vi2++;   
+        goto +B6;   [i   ..]
+  +B36:   #1
+        goto +B75;   forward return[i   ..]
+  +B39:   #1
+        vi2 = 0;    
+  +B41:   #1
+        if vi2>=vR0.size goto B75;   
+  +B49:   #1
+        if vR1.equals(vR0.elementData[vi2])==0 goto B69;   
+  +B62:   #1
+        vR0.fastRemove@special(vi2);   [i  . iR] 
+        return 1;   
+  +B69:   #1
+        vi2++;   
+        goto +B41;   [i  . ..]
+  +B75:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 1 any 5 found 0 remove
+ 
+ method fastRemove(I)V {
+  +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        vi2 = ((vR0.size-vi1)-1);    
+        if vi2<=0 goto B39;   
+  +B23:   #1
+        arraycopy@special(vR0.elementData,(vi1+1),vR0.elementData,vi1,vi2);   [i Rii RiR iiRiR]
+  +B39:   #1
+        b0 = vR0.elementData;    
+        b2 = (vR0.size-1);    
+        b1 = b2;    
+        vR0.size = b2;   
+        b0[b1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 7 swaps 0 any 2 found 0 fastRemove
+ 
+ method clear()V {
+  +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        vi1 = 0;    
+  +B12:   #1
+        if vi1>=vR0.size goto B33;   
+  +B20:   #1
+        vR0.elementData[vi1] = 0;   
+        vi1++;   
+        goto +B12;   [i   ]
+  +B33:   #1
+        vR0.size = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 clear
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        vR2 = vR1.toArray();    [ i  R] 
+        vi3 = vR2.length;    
+        vR0.ensureCapacityInternal@special((vR0.size+vi3));   [Ri i i iR] 
+        arraycopy@special(vR2,0,vR0.elementData,vR0.size,vi3);   [Ri i iRi iiRiR]
+        vR0.size = (vR0.size+vi3);   
+        if vi3==0 goto B52;   
+  +B48:   #1
+        b0 = 1;    
+        goto +B53b0;   forward return[Ri i ... .....]
+  +B52:   #1
+        b0 = 0;    
+  +B53b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 6 swaps 1 any 1 found 0 addAll
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  +START:   #1
+        vR0.rangeCheckForAdd@special(vi1);   [ i  iR] 
+        vR3 = vR2.toArray();    [ i  R.] 
+        vi4 = vR3.length;    
+        vR0.ensureCapacityInternal@special((vR0.size+vi4));   [Ri i i iR] 
+        vi5 = (vR0.size-vi1);    
+        if vi5<=0 goto B58;   
+  +B40:   #1
+        arraycopy@special(vR0.elementData,vi1,vR0.elementData,(vi1+vi4),vi5);   [Rii i RRi iiRiR]
+  +B58:   #1
+        arraycopy@special(vR3,0,vR0.elementData,vi1,vi4);   [Rii i R.. iiRiR]
+        vR0.size = (vR0.size+vi4);   
+        if vi4==0 goto B90;   
+  +B86:   #1
+        b0 = 1;    
+        goto +B91b0;   forward return[Rii i ... .....]
+  +B90:   #1
+        b0 = 0;    
+  +B91b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 9 swaps 1 any 2 found 0 addAll
+ 
+ method removeRange(II)V {
+  +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        vi3 = (vR0.size-vi2);    
+        arraycopy@special(vR0.elementData,vi2,vR0.elementData,vi1,vi3);   [i  RR iiRiR]
+        vi4 = (vR0.size-(vi2-vi1));    
+        vi5 = vi4;    
+  +B45:   #1
+        if vi5>=vR0.size goto B68;   
+  +B54:   #1
+        vR0.elementData[vi5] = 0;   
+        vi5++;   
+        goto +B45;   [iii  .. .....]
+  +B68:   #1
+        vR0.size = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 6 swaps 0 any 3 found 0 removeRange
+ 
+ method rangeCheck(I)V {
+  +START:   #1
+        if vi1<vR0.size goto B21;   
+  -B8:   #1
+        throw new java/lang/IndexOutOfBoundsException(vR0.outOfBoundsMsg@special(vi1));   
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 rangeCheck
+ 
+ method rangeCheckForAdd(I)V {
+  +START:   #1
+        if vi1>vR0.size goto B12;   
+  +B8:   #1
+        if vi1>=0 goto B25;   
+  -B12:   #1
+        throw new java/lang/IndexOutOfBoundsException(vR0.outOfBoundsMsg@special(vi1));   
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 rangeCheckForAdd
+ 
+ method outOfBoundsMsg(I)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Index: ").append@extra(vi1).append@extra(", Size: ").append@extra(vR0.size).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 8 swaps 3 any 0 found 0 outOfBoundsMsg
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return vR0.batchRemove@special(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeAll
+ 
+ method retainAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return vR0.batchRemove@special(vR1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 retainAll
+ 
+ method batchRemove(Ljava/util/Collection;Z)Z {
+  +START:   #1
+        vR3 = vR0.elementData;    
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = 0;    
+  +B14:   #1
+        if vi4>=vR0.size goto B54;   
+  +B23:   #1
+        if vR1.contains(vR3[vi4])!=vi2 goto B48;   
+  +B37:   #1
+        b1 = vi5;    
+        vi5++;   
+        vR3[b1] = vR3[vi4];   
+  +B48:   #1
+        vi4++;   
+        goto +B14;   [Riii ?i . ..]
+  +B54:   #1
+        if vi4==vR0.size goto B91;   
+  +B63:   #1
+        arraycopy@special(vR3,vi4,vR3,vi5,(vR0.size-vi4));   [Riii ?i i iiRiR]
+        vi5 = (vi5+(vR0.size-vi4));    
+  +B91:   #1
+        if vi5==vR0.size goto B252;   
+  +B100:   #1
+        vi7 = vi5;    
+  +B104:   #1
+        if vi7>=vR0.size goto B124;   
+  +B113:   #1
+        vR3[vi7] = 0;   
+        vi7++;   
+        goto +B104;   [Riiii ?i . .....]
+  +B124:   #1
+        vR0.modCount = (vR0.modCount+(vR0.size-vi5));   
+        vR0.size = vi5;   
+        vi6 = 1;    
+        goto +B252;   forward return[Riiii ?i . .....]
+  +H152<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+  +B154:   #1
+        if vi4==vR0.size goto B191;   
+  +B163:   #1
+        arraycopy@special(vR3,vi4,vR3,vi5,(vR0.size-vi4));   [RiiiiR ?i i iiRiR]
+        vi5 = (vi5+(vR0.size-vi4));    
+  +B191:   #1
+        if vi5==vR0.size goto B249;   
+  +B200:   #1
+        vi9 = vi5;    
+  +B204:   #1
+        if vi9>=vR0.size goto B224;   
+  +B213:   #1
+        vR3[vi9] = 0;   
+        vi9++;   
+        goto +B204;   [RiiiiRi ?i . .....]
+  +B224:   #1
+        vR0.modCount = (vR0.modCount+(vR0.size-vi5));   
+        vR0.size = vi5;   
+        vi6 = 1;    
+  -B249:   #1
+        throw vR8;   
+  +B252:   #2
+        return vi6;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+14 - 54 handler 152 type 0
+152 - 154 handler 152 type 0
+ }
+// Register: rd 58/58 wr 17 swaps 1 any 16 found 0 batchRemove
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vi2 = vR0.modCount;    
+        vR1.defaultWriteObject();   [i R  R] 
+        vR1.writeInt(vR0.size);   [i R i iR] 
+        vi3 = 0;    
+  +B19:   #1
+        if vi3>=vR0.size goto B43;   
+  +B27:   #1
+        vR1.writeObject@extra(vR0.elementData[vi3]);   [ii R i RR] 
+        vi3++;   
+        goto +B19;   [ii R i ..]
+  +B43:   #1
+        if vR0.modCount==vi2 goto B59;   
+  -B51:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B59:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 2 any 2 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR0.elementData = EMPTY_ELEMENTDATA;   
+        vR1.defaultReadObject();   [   R] 
+        vR1.readInt();   [   R] 
+        if vR0.size<=0 goto B59;   
+  +B23:   #1
+        vR0.ensureCapacityInternal@special(vR0.size);   [  i iR] 
+        vR2 = vR0.elementData;    
+        vi3 = 0;    
+  +B38:   #1
+        if vi3>=vR0.size goto B59;   
+  +B46:   #1
+        vR2[vi3] = vR1.readObject();   
+        vi3++;   
+        goto +B38;   [Ri  . ..]
+  +B59:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 4 swaps 1 any 2 found 0 readObject
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new java/util/ArrayList$Itr(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method listIterator()Ljava/util/ListIterator; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method listIterator(I)Ljava/util/ListIterator; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method subList(II)Ljava/util/List; {
+  +START:   #1
+        subListRangeCheck@special(vi1,vi2,vR0.size);   [ R i iii]
+        return new java/util/ArrayList$SubList(vR0,vR0,0,vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 subList
+ 
+ method subListRangeCheck(III)V {
+  +START:   #1
+        if vi0>=0 goto B31;   
+  -B4:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("fromIndex = ").append@extra(vi0).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B31:   #1
+        if vi1<=vi2 goto B63;   
+  -B36:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("toIndex = ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B63:   #1
+        if vi0<=vi1 goto B109;   
+  -B68:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("fromIndex(").append@extra(vi0).append@extra(") > toIndex(").append@extra(vi1).append@extra(")").toString@extra());   [ RRR iiii.... RR....] 
+        throw b0;   
+  +B109:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 26 swaps 8 any 6 found 0 subListRangeCheck
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [ R  R]
+        vi2 = vR0.modCount;    
+        vR3 = vR0.elementData;    
+        vi4 = vR0.size;    
+        vi5 = 0;    
+  +B24:   #1
+        if vR0.modCount!=vi2 goto B55;   
+  +B32:   #1
+        if vi5>=vi4 goto B55;   
+  +B39:   #1
+        vR1.accept(vR3[vi5]);   [iRii R i RR] 
+        vi5++;   
+        goto +B24;   [iRii R i ..]
+  +B55:   #2
+        if vR0.modCount==vi2 goto B71;   
+  -B63:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B71:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 1 any 2 found 0 forEach
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return new java/util/ArrayList$ArrayListSpliterator(vR0,0,-1,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 spliterator
+ 
+ method access$100(Ljava/util/ArrayList;)I {
+  +START:   #1
+        return vR0.modCount;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200(Ljava/util/ArrayList;)I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method <clinit>()V {
+  +START:   #1
+        EMPTY_ELEMENTDATA = new java/lang/Object()[0];   
+        DEFAULTCAPACITY_EMPTY_ELEMENTDATA = new java/lang/Object()[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 <clinit>
+}
