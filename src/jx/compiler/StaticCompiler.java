@@ -66,7 +66,7 @@ public class StaticCompiler implements ClassFinder {
     // compile all classes that are in the zipfile
     public StaticCompiler(ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
-			  URL domainZip, 
+			  URL[] domainZip, 
 			  URL[] libZip,
 			  ExtendedDataInputStream tableIn[],
 			  CompilerOptions opts,
@@ -128,11 +128,11 @@ public class StaticCompiler implements ClassFinder {
 
 
 	// split zipfiles into classfiles
-	for(int i = -1; i < libZip.length; i++) {
+	for(int i = - domainZip.length; i < libZip.length; i++) {
 	    URL in;
             
-	    if (i == -1) {
-                in = domainZip;
+	    if (i < 0) {
+                in = domainZip[-1 * i - 1];
             } else {
                 in = libZip[i];
             }
@@ -175,7 +175,7 @@ public class StaticCompiler implements ClassFinder {
                                     //byte[] buffer = getBytesFromInputStream(is);
                                     //Memory m = memMgr.alloc(buffer.length);
                                     //m.copyFromByteArray(buffer, 0, 0, buffer.length);
-                                    if(i == -1){
+                                    if(i < 0){
                                         domdata.add(data);
                                         meta = x;
                                     } else {
