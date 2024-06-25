@@ -68,11 +68,11 @@ public class CompileNative {
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
 	compile("ai", opts);
         
-        /*zipname = libdir + "ai.zip";
-	jllname = libdir + "ai.jll";
-        jlnname = libdir + "ai.jln";
+        /*zipname = libdir + "if.zip";
+	jllname = libdir + "if.jll";
+        jlnname = libdir + "if.jln";
         neededLibs = new String[]{
-            "zero", "ai", "os"
+            "zero"//, "ai", "os"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
@@ -102,11 +102,11 @@ public class CompileNative {
 	URL domClasses = new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/");
         URL[] libClasses = new URL[0];
         if(path.endsWith("init2")){
-            domClasses = new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/APP/dist/testOS.jar!/");
+            domClasses = new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/");
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
+                //new URL("jar:https://github.com/sPyOpenSource/os/raw/binary/dist/OS.jar!/"), 
+                //new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
             };
         } else if(path.endsWith("ai")){
             domClasses = new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/");

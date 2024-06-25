@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import jx.compiler.CompileNative;
 import jx.compspec.StartBuilder;
 
 /**
@@ -231,9 +232,10 @@ public class CompilerApplication extends javax.swing.JFrame {
         class PrimeThread extends Thread {
             @Override
             public void run() {
-                String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
+                //String args = "-components COMPONENTS -compdir " + project.getAbsoluteFile().getParent() + "/isodir/code/";
                 try {
-                    StartBuilder.main(args.split(" "));
+                    //StartBuilder.main(args.split(" "));
+                    CompileNative.main(null);
                 } catch (Exception ex) {
                     Logger.getLogger(CompilerApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }

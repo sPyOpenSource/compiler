@@ -170,6 +170,9 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("jx/secmgr")) continue;
                         if (name.startsWith("AI/Models/BytecodeParser")) continue;
                         if (name.startsWith("AI/Models/ByteCode")) continue;
+                        /*if (name.startsWith("gnu/java/io/decode/Decoder")) continue;
+                        if (name.startsWith("gnu/java/io/encode/Encoder")) continue;
+                        if (name.startsWith("gnu/java/io/EncodingManager")) continue;*/
                         for(String s:sds){
                             if (name.startsWith(s + "/")){
                                 System.out.println(name); 
