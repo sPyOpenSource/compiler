@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IMBranch
+comment1.params=container
+comment1.target=IMBranch(jx.compiler.imcode.CodeContainer)
+comment2.params=iCode\ depth\ forceInline
+comment2.target=jx.compiler.imcode.graph.IMNode\ inlineCode(jx.compiler.imcode.CodeVector,\ int,\ boolean)
+comment3.params=newContainer\ slots\ opr\ retval\ bcPos
+comment3.target=jx.compiler.imcode.graph.IMNode\ assignNewVars(jx.compiler.imcode.CodeContainer,\ int[],\ jx.compiler.imcode.graph.IMOperant[],\ int,\ int)
+comment4.params=
+comment4.target=jx.compiler.imcode.graph.IMBasicBlock[]\ getTargets()
+numComments=5

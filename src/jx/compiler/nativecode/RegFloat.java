@@ -30,7 +30,7 @@ public RegFloat(int reg) {
     }
 
     public RegFloat getClone() {
-	RegFloat nreg = null;
+	RegFloat nreg;
 	try {
 	    nreg = (RegFloat)this.clone();
 	} catch (CloneNotSupportedException ex) {
@@ -48,6 +48,7 @@ public RegFloat(int reg) {
 	return value == -1;
     }
     
+@Override
     public void push(MethodStackFrame frame) {
 	frame.push(getDatatype(), this);
     }
@@ -57,6 +58,7 @@ public RegFloat(int reg) {
 	return BCBasicDatatype.FLOAT;
     }
     
+@Override
     public void free() {
 	if (this == any ) throw new Error("any");
 	if (this == xmm0 ) throw new Error("eax");

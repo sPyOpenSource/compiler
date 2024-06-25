@@ -181,7 +181,6 @@ public class MethodTypeDescriptor {
     return numArgs; 
   }
 
-
     /**
      * @return ****************************************/
     /* NEW INTERFACE */

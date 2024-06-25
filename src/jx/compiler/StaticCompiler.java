@@ -6,14 +6,13 @@
 
 package jx.compiler;
 
-import jx.classfile.constantpool.*; 
-import jx.classfile.*; 
+import jx.classfile.constantpool.*;
+import jx.classfile.*;
 
 import jx.zero.Debug;
-import jx.zero.Memory;
-
 import jx.collections.Iterator;
 import jx.collections.List;
+import jx.compspec.MetaInfo;
 
 import jx.compiler.persistent.*;
 import jx.compiler.vtable.MethodTableFactory;
@@ -29,14 +28,11 @@ import jx.compiler.execenv.IOSystem;
 import jx.compiler.execenv.NativeCodeContainer;
 import jx.compiler.execenv.BinaryCode;
 
-import static jx.compiler.CompileNative.memMgr;
-
-import jx.compspec.MetaInfo;
-
 import java.io.PrintStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
 import java.net.JarURLConnection;
 import java.net.URL;
 
@@ -55,7 +51,6 @@ public class StaticCompiler implements ClassFinder {
 
     ExecEnvironmentInterface execEnvNew;
 
-    PrintStream gasFile;
     CodeFile codeFile;
     ExtendedDataOutputStream out;
     ClassStore libClassStore;
@@ -69,8 +64,7 @@ public class StaticCompiler implements ClassFinder {
     MetaInfo meta;
 
     // compile all classes that are in the zipfile
-    public StaticCompiler(PrintStream gasFile, 
-			  ExtendedDataOutputStream out,
+    public StaticCompiler(ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
 			  URL domainZip, 
 			  URL[] libZip,
@@ -87,7 +81,6 @@ public class StaticCompiler implements ClassFinder {
 
 	this.execEnvNew = new ExecEnvironmentIA32(this, options);
 
-	this.gasFile = gasFile;
 	this.out = out;
 	this.tableOut = tableOut;
 	this.tableIn = tableIn;
@@ -102,7 +95,7 @@ public class StaticCompiler implements ClassFinder {
             // play a trick: java.lang.Object is automatically part of libclasstore
             // this removes domainzero dependencies from a certain lib
             ClassSource objectClassSource = new NativeClassSource("java/lang/Object", null);
-            BCClass objectClass = new BCClass(objectClassSource,"java/lang/Object");
+            BCClass objectClass = new BCClass(objectClassSource, "java/lang/Object");
             libClassStore.addClass("java/lang/Object", objectClass);
             predefinedClasses = new ClassInfo[1];
             ArrayList objectMtable = new ArrayList();
@@ -145,6 +138,7 @@ public class StaticCompiler implements ClassFinder {
             }
             System.out.println(in.getFile());
             MetaInfo x = new MetaInfo(in.getPath().split("dist")[0] + "META");
+
             String sd = x.getVar("SUBDIRS");
             String[] sds = MetaInfo.split(sd);
             
@@ -177,14 +171,15 @@ public class StaticCompiler implements ClassFinder {
                             if (name.startsWith(s + "/")){
                                 System.out.println(name); 
                                 try (InputStream is = jar.getInputStream(entry)) {
-                                    byte[] buffer = getBytesFromInputStream(is);
-                                    Memory m = memMgr.alloc(buffer.length);
-                                    m.copyFromByteArray(buffer, 0, 0, buffer.length);
+                                    ClassData data = new ClassData(new DataInputStream(is));
+                                    //byte[] buffer = getBytesFromInputStream(is);
+                                    //Memory m = memMgr.alloc(buffer.length);
+                                    //m.copyFromByteArray(buffer, 0, 0, buffer.length);
                                     if(i == -1){
-                                        domdata.add(new MemoryClassSource(m));
+                                        domdata.add(data);
                                         meta = x;
                                     } else {
-                                        libdata.add(new MemoryClassSource(m));
+                                        libdata.add(data);
                                     }
                                     continue main;
                                 }
@@ -218,41 +213,45 @@ public class StaticCompiler implements ClassFinder {
 
 	this.codeFile = new CodeFile(options, meta);
 
-        // parse classfiles into classes
-        if (opt_v) {
-            System.out.println("Adding classes from existing lib");
-        }
-        for(int i = 0; i < libdata.size(); i++) {
-            ClassSource classData = libdata.get(i);
-            String className = classData.getClassName();
-            
-            if (addPredefinedObject && className.equals("java/lang/Object")) continue;
-            
-            if (opt_v) System.out.println("Add class " + className);
-            
-            BCClass oldClass = findClass(className);
-            if (oldClass != null)
-                Debug.throwError("Duplicate class " + className);
-            BCClass clazz = new BCClass(classData, className);
-            libClassStore.addClass(className, clazz);
-        }
-        if (opt_v) System.out.println("Adding classes from lib");
-        for(int i = 0; i < domdata.size(); i++) {
-            ClassSource classData = domdata.get(i);
-            String className = classData.getClassName();
-            
-            if (addPredefinedObject && className.equals("java/lang/Object")) continue;
-            
-            if (opt_v) System.out.println("Add class " + className);
-            
-            BCClass oldClass = findClass(className);
-            if (oldClass != null) {
-                System.out.println("Duplicate class " + className);
-                Debug.throwError("Duplicate class " + className);
-            }
-            BCClass clazz = new BCClass(classData, className);
-            domClassStore.addClass(className, clazz);
-        }
+	// parse classfiles into classes
+	try {
+	    if (opt_v) System.out.println("Adding classes from existing lib");
+	    for(int i = 0; i < libdata.size(); i++) {
+		ClassSource classData = (ClassSource)libdata.get(i); 
+		String className = classData.getClassName();
+
+		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
+
+		if (opt_v) System.out.println("Add class " + className);
+
+		BCClass oldClass = findClass(className);
+		if (oldClass != null)
+		    Debug.throwError("Duplicate class " + className);
+		BCClass clazz = new BCClass(classData, className);
+		libClassStore.addClass(className, clazz);
+	    }
+	    if (opt_v) System.out.println("Adding classes from lib");
+
+	    for(int i = 0; i < domdata.size(); i++) {
+		ClassSource classData = (ClassSource)domdata.get(i); 
+		String className = classData.getClassName();
+
+		if (addPredefinedObject && className.equals("java/lang/Object")) continue;
+
+		if (opt_v) System.out.println("Add class " + className);
+
+		BCClass oldClass = findClass(className);
+		if (oldClass != null) {
+		    System.out.println("Duplicate class " + className);
+		    Debug.throwError("Duplicate class " + className);
+		}
+		BCClass clazz = new BCClass(classData, className);
+		domClassStore.addClass(className, clazz);
+	    }
+	} catch(Exception e) {
+            Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);
+	    Debug.throwError("Exception while reading classes.");
+	}
 
 	compileStatic();
     }
@@ -273,7 +272,7 @@ public class StaticCompiler implements ClassFinder {
 	method.indices.add(mtable.size() - 1);
     }
 
-    private void computeClassGraph() {
+    private void dependencyCheck() {
 	Enumeration classIterator = domClassStore.elements();
 	while(classIterator.hasMoreElements()) {
 	    BCClass aClass = (BCClass)classIterator.nextElement();
@@ -281,11 +280,10 @@ public class StaticCompiler implements ClassFinder {
 	    int numEntries = cp.getNumberOfEntries();
 	    for(int i = 0; i < numEntries; i++) {
 		ConstantPoolEntry e = cp.entryAt(i);
-		if (e instanceof ClassCPEntry) {
-		    ClassCPEntry ec = (ClassCPEntry)e;
+		if (e instanceof ClassCPEntry ec) {
 		    String className = ec.getClassName();
 		    if (className.charAt(0) == '[') {
-			//Debug.out.println("Skipping array class "+className);
+			//Debug.out.println("Skipping array class " + className);
 			continue;
 		    }
 		    if (findClass(className) == null) {
@@ -355,9 +353,6 @@ public class StaticCompiler implements ClassFinder {
 			
 	return new ClassStore(sorted);
     }
-    
-    private void createInterfaceMethodTables(ClassStore classStore) {
-    }
 
     private void compileToDomain(ClassStore classStore) {
 	Iterator iter = classStore.iterator();
@@ -379,7 +374,7 @@ public class StaticCompiler implements ClassFinder {
 	    PrintStream imOut = null;
 	    if (options.doPrintIMCode()) {
 		try {
-		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName() + ".imcode"));	
+		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName().replace("/", ".") + ".imcode"));	
 		} catch (java.io.IOException ex) {
 		    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    Debug.throwError(); 
@@ -412,13 +407,13 @@ public class StaticCompiler implements ClassFinder {
 		    continue;
 		}
 
-		if (! (m instanceof BCMethodWithCode)) continue;
+		if (!(m instanceof BCMethodWithCode)) continue;
 		BCMethodWithCode method = (BCMethodWithCode)m;
 		options.printVerbose("**  Compiling method " + method.getName());
 		
 		jx.compiler.imcode.CodeContainer imCode = new jx.compiler.imcode.CodeContainer(execEnvNew, method, stat);
 		imCode.init();
-		if (options.doInlining(aClass,method)) {
+		if (options.doInlining(aClass, method)) {
 		    if (options.doPrintIMCode())
 			imOut.println("// try to inline methods ");
 		    imCode.inlineMethods(4);
@@ -457,7 +452,6 @@ public class StaticCompiler implements ClassFinder {
     }
     
     private void createClassInfoForClass(BCClass aClass) throws CompileException {
-
 	if (aClass.getInfo() != null) return; // predefined classinfo
 	/* if (options.doDebug()) Debug.out.println("Creating classinfo for "+aClass.getClassName()); */
 
@@ -494,8 +488,7 @@ public class StaticCompiler implements ClassFinder {
     }
     
     private void compileStatic() throws Exception {
-	Iterator iter;
-	computeClassGraph();
+	dependencyCheck();
 	//Debug.out.println("**Finished class checking!");
 
 	createClassInfo(libClassStore);
@@ -508,12 +501,12 @@ public class StaticCompiler implements ClassFinder {
 	MethodTableFactory mtableFactory = new MethodTableFactory(domClassStore.classSourceIterator(), predefinedClasses, tableIn);
 	mtableFactory.process();
 
-	iter = libClassStore.iterator();
+	Iterator iter = libClassStore.iterator();
 	while(iter.hasNext()) {
 	    BCClass c = (BCClass) iter.next();
 	    BCClassInfo info = (BCClassInfo)c.getInfo();
 	    info.methodTable = mtableFactory.getMethodTable(c.getClassName());
-	    //Debug.out.println(" setting mtable for "+c.getClassName());
+	    //Debug.out.println(" setting mtable for " + c.getClassName());
 	    if (info.methodTable == null) Debug.throwError("No Methodtable for " + c.getClassName());
 	}
 
@@ -653,6 +646,6 @@ public class StaticCompiler implements ClassFinder {
     }
 
     public static String version() {
-	return "1";
+	return "2.5";
     }
 }

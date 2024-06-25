@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=TypeMap
+comment1.params=out\ map\ writeLen
+comment1.target=void\ writeMap(ExtendedDataOutputStream,\ boolean[],\ boolean)
+comment2.params=out\ map
+comment2.target=void\ writeMap(ExtendedDataOutputStream,\ int[])
+numComments=3

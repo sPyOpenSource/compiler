@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 import java.io.*;
@@ -66,4 +67,5 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
 	sigID   = stringTable.getIdentifier(methodSignature);	
 	validID  = true;
     }
+    
 }

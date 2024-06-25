@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Component
+comment1.params=
+comment1.target=java.lang.String\ getComponentName()
+comment2.params=
+comment2.target=java.lang.String[]\ getSubDirs()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=c
+comment4.target=boolean\ less(Component)
+numComments=5

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=RegFloat
+comment1.params=
+comment1.target=RegFloat()
+comment2.params=reg
+comment2.target=RegFloat(int)
+comment3.params=
+comment3.target=RegFloat\ getClone()
+comment4.params=
+comment4.target=boolean\ any()
+comment5.params=frame
+comment5.target=void\ push(jx.compiler.imcode.MethodStackFrame)
+comment6.params=
+comment6.target=int\ getDatatype()
+comment7.params=
+comment7.target=void\ free()
+numComments=8

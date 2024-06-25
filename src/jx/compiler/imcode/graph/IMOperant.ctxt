@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=IMOperant
+comment1.params=container
+comment1.target=IMOperant(jx.compiler.imcode.CodeContainer)
+comment10.params=index
+comment10.target=boolean\ checkArrayRange(int)
+comment11.params=index
+comment11.target=boolean\ checkArrayRange(IMOperant)
+comment2.params=
+comment2.target=boolean\ isAdd()
+comment3.params=
+comment3.target=boolean\ isSub()
+comment4.params=
+comment4.target=boolean\ isMul()
+comment5.params=
+comment5.target=boolean\ isDouble()
+comment6.params=
+comment6.target=IMOperant\ getLeftOperant()
+comment7.params=
+comment7.target=IMOperant\ getRightOperant()
+comment8.params=
+comment8.target=java.lang.String\ toString()
+comment9.params=
+comment9.target=boolean\ checkReference()
+numComments=12

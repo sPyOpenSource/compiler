@@ -1,0 +1,23 @@
+#BlueJ class context
+comment0.target=StaticFieldSTEntry
+comment1.params=
+comment1.target=StaticFieldSTEntry()
+comment10.params=stringTable
+comment10.target=void\ registerStrings(jx.compiler.symbols.StringTable)
+comment2.params=className\ offset
+comment2.target=StaticFieldSTEntry(java.lang.String,\ int)
+comment3.params=className\ kind\ offset
+comment3.target=StaticFieldSTEntry(java.lang.String,\ int,\ int)
+comment4.params=
+comment4.target=java.lang.String\ getDescription()
+comment5.params=
+comment5.target=int\ getValue()
+comment6.params=code\ codeBase
+comment6.target=void\ apply(byte[],\ int)
+comment7.params=
+comment7.target=java.lang.String\ toGASFormat()
+comment8.params=out
+comment8.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment9.params=in
+comment9.target=void\ readEntry(jx.compiler.execenv.ExtendedDataInputStream)
+numComments=11

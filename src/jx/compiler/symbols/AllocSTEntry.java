@@ -1,11 +1,11 @@
+
 package jx.compiler.symbols; 
 
 import jx.compiler.imcode.MethodStackFrame;
 
 /** 
 
-*/ 
-
+*/
 public class AllocSTEntry extends IntValueSTEntry {
 
     private final MethodStackFrame frame;
@@ -28,4 +28,5 @@ public class AllocSTEntry extends IntValueSTEntry {
     public int getValue() {
 	return frame.getStackFrameSize();
     }
+    
 }

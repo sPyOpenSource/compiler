@@ -18,7 +18,6 @@ public class CompilerOptionsNative extends CompilerOptions {
      * constructor to parse command line options
      * @param args
      */
-
     public CompilerOptionsNative(String[] args) {
 	parseArgs(args);
     }
@@ -237,7 +236,6 @@ public class CompilerOptionsNative extends CompilerOptions {
     }
 
     public void parseArgs(String[] args) {
-	
 	if (debug) {
 	    Debug.out.print("jc ");
             for (String arg : args)
@@ -259,7 +257,7 @@ public class CompilerOptionsNative extends CompilerOptions {
 	doFastMemoryAccess   = false;
 	doFastStatics        = false;
 	doNewCode            = true;
-	doPrintIMCode        = false;
+	doPrintIMCode        = true;
         doStackTrace         = false;	    
 	doUsePackedArrays    = false; // old Compiler allways use 32 Bit
 

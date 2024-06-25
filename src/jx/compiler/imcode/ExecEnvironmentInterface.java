@@ -1,3 +1,4 @@
+
 package jx.compiler.imcode;
 
 import jx.compiler.*;
@@ -6,6 +7,8 @@ import jx.compiler.symbols.*;
 import jx.compiler.execenv.*;
 
 import jx.classfile.constantpool.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 
 public interface ExecEnvironmentInterface {
    
@@ -127,4 +130,5 @@ public interface ExecEnvironmentInterface {
     
     public void codeStackMap(IMNode node,int InstructionPointer) throws CompileException;
     public UnresolvedJump createExceptionCall(int exception,int bcPosition);
+    
 }

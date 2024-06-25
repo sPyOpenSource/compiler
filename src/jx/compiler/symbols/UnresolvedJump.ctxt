@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=UnresolvedJump
+comment0.text=\ \n\ \ \ \ A\ class\ for\ internal\ jumps.\ The\ target\ \n\ \ \ \ is\ always\ inside\ the\ method.\ .\ \n
+comment1.params=pos
+comment1.target=void\ setBCPosition(int)
+comment2.params=nextInstrNCIndex\ immediateNCIndex
+comment2.target=void\ setJump(int,\ int)
+comment3.params=
+comment3.target=java.lang.String\ getDescription()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=
+comment5.target=java.lang.String\ toGASFormat()
+comment6.params=immediateNCIndex\ numBytes\ nextInstrNCIndex
+comment6.target=void\ initNCIndexRelative(int,\ int,\ int)
+comment7.params=immediateNCIndex\ numBytes
+comment7.target=void\ initNCIndexAbsolute(int,\ int)
+comment8.params=out
+comment8.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment9.params=
+comment9.target=void\ dump()
+numComments=10

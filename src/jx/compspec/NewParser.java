@@ -4,17 +4,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 class NewParser {
-    final static int MAXLINE = 256;
-    final static int NEWLINE = 0x0a;
+    final static int MAXLINE   = 256;
+    final static int NEWLINE   = 0x0a;
     final static int QUOTATION = 0x22;
-    final static int COMMA = 0x2c;
-    final static int SPACE = 0x20;
+    final static int COMMA     = 0x2c;
+    final static int SPACE     = 0x20;
     final static int SEPARATOR = COMMA;
-    final static int NUM_ZERO = 0x30;
-    final static int NUM_NINE = 0x39;
-    final static int COMMENT = 0x23;
-    final static int LPAREN = 0x5b;
-    final static int RPAREN = 0x5d;
+    final static int NUM_ZERO  = 0x30;
+    final static int NUM_NINE  = 0x39;
+    final static int COMMENT   = 0x23;
+    final static int LPAREN    = 0x5b;
+    final static int RPAREN    = 0x5d;
     int pos;
     int linenumber = 1;
     FileInputStream in ;
@@ -86,5 +86,4 @@ class NewParser {
 	v.toArray(ret);
 	return ret;
     }
-
 }

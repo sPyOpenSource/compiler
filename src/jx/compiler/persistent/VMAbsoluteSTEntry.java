@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 public class VMAbsoluteSTEntry extends VMSupportSTEntry {

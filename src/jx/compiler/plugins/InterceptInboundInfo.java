@@ -1,14 +1,13 @@
 package jx.compiler.plugins;
 
 import jx.zero.Debug;
-
 import jx.compiler.*;
-
 import jx.classfile.constantpool.*;
 
-import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 
 public class InterceptInboundInfo implements CompilerPlugin {
 

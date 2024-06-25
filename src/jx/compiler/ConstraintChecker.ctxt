@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ConstraintChecker
+comment1.params=
+comment1.target=ForbiddenInterfaceImplementedException()
+comment2.params=s
+comment2.target=ForbiddenInterfaceImplementedException(java.lang.String)
+comment3.params=classFactory
+comment3.target=void\ check(jx.collections.Iterator)
+numComments=4

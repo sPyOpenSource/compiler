@@ -1,3 +1,4 @@
+
 package jx.compiler;
 
 import jx.classfile.ClassSource;
@@ -43,9 +44,9 @@ public class ConstraintChecker {
 		continue;
 	    }
 	    String[] ifs = source.getInterfaceNames();
-            for (String if1 : ifs) {
-                if (Arrays.asList(forbiddenInterfaces).contains(if1)) {
-                    throw new ForbiddenInterfaceImplementedException("Class " + source.getClassName() + " is not allowed to implement " + if1);
+            for (String itf : ifs) {
+                if (Arrays.asList(forbiddenInterfaces).contains(itf)) {
+                    throw new ForbiddenInterfaceImplementedException("Class " + source.getClassName() + " is not allowed to implement " + itf);
                 }
             }
 	}

@@ -1,3 +1,4 @@
+
 package jx.zero.debug;
 
 import java.io.InputStream;
@@ -11,6 +12,7 @@ public class DebugInputStream extends InputStream {
 	this.channel = c;
     }
     
+    @Override
     public int read() throws IOException {
 	return channel.read();
     }

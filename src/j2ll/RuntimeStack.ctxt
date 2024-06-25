@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=RuntimeStack
+comment0.text=\n\ Stack\n
+comment1.params=
+comment1.target=RuntimeStack()
+comment10.params=
+comment10.target=int\ size()
+comment2.params=type
+comment2.target=java.lang.String\ push(java.lang.String)
+comment3.params=type
+comment3.target=java.lang.String\ push_impl(java.lang.String)
+comment4.params=type
+comment4.target=java.lang.String\ pushObjRef(java.lang.String)
+comment5.params=value
+comment5.target=java.lang.String\ push(StackValue)
+comment6.params=value
+comment6.target=java.lang.String\ push_impl(StackValue)
+comment7.params=
+comment7.target=StackValue\ pop()
+comment8.params=
+comment8.target=StackValue\ pop_impl()
+comment9.params=pos2top
+comment9.target=StackValue\ peek(int)
+numComments=11

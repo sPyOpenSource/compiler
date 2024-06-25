@@ -6,67 +6,18 @@ package jx.compspec;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jx.compiler.CompilerOptions;
-import jx.compiler.CompilerOptionsNative;
 import jx.compiler.CompileNative;
-
-class BuilderOptions extends CompilerOptionsNative {
-	
-    public BuilderOptions(ArrayList libs, ArrayList jlns, String src, String jlnFile, String target, String env) {
-        /* set defaults */
-        doZeroDivChecks      = true;
-        doNullChecks         = true;
-        doBoundsChecks       = true;  
-        doStackSizeCheck     = true;
-        doExceptions         = true;
-        doMemoryRangeChecks  = true;
-
-        /* -O ============== */
-        //doOptimize           = true;
-        //doFastStatics        = true;
-        //doOptSizeChecks      = true;
-        //doAlignCode          = true;
-        /* -O ============= */
-
-        //doInlining           = true;
-        //doCF                 = true;
-
-        doProfiling          = false;
-        doEventLoging        = false;
-        doFastMemoryAccess   = false;
-        doFastStatics        = false;
-        doPrintIMCode        = false;
-        doStackTrace         = false;
-        doUsePackedArrays    = false; // old Compiler allways use 32 Bit
-
-        replaceInterfaceWithClass = null; // substitute a classname for an interface name when loading
-
-        debug        = false;
-        makeLib      = true;
-        libPath      = null;
-
-        enviroment   = env;
-        zipClassFile = src;
-        zipLibFiles  = libs;
-        jlnLibFiles  = jlns;
-        jxdFileName  = target;
-        jlnFileName  = jlnFile;
-    }
-
-    //public boolean doDebug() {return true;}
-}
 
 public class StartBuilder {
     private static final boolean doDebug = true;
-    private static final boolean silent = true;
+    private static final boolean silent  = true;
 
     private static final ArrayList metas = new ArrayList(); // MetaInfo
 
-    static String compdir;
     static String buildDir;
 
     private static String components;
@@ -74,9 +25,9 @@ public class StartBuilder {
     private static final boolean opt_f = false; // force recompilation 
     private static final boolean opt_c = false; // make clean
     private static final boolean opt_n = false; // do nothing
-    private static boolean opt_fast = false; // compile only the jll that has changed
-    private static boolean opt_new = false; // compute transitive if-depends, impl-depends, and extends relations
-    private static boolean opt_debug = false; // verbose debug output
+    private static boolean opt_fast  = false;   // compile only the jll that has changed
+    private static boolean opt_new   = false;   // compute transitive if-depends, impl-depends, and extends relations
+    private static boolean opt_debug = false;   // verbose debug output
 
     private static boolean new_jcflags = false;
 
@@ -123,12 +74,14 @@ public class StartBuilder {
         metas.add(zero);
         
         MetaInfo jdk0 = new MetaInfo("https://github.com/sPyOpenSource/os/raw/master/META");
+
         ArrayList allLibs2 = new ArrayList();
         allLibs2.add("zero");
         jdk0.setNeededLibs(allLibs2);
         metas.add(jdk0);
 
         MetaInfo ai = new MetaInfo("https://github.com/sPyOpenSource/AIZero/raw/master/META");
+
         ArrayList allLibs3 = new ArrayList();
         allLibs3.add("zero");
         allLibs3.add("jdk0");
@@ -136,6 +89,7 @@ public class StartBuilder {
         metas.add(ai);
 
         MetaInfo meta = new MetaInfo("https://github.com/sPyOpenSource/testOS/META");
+
         ArrayList allLibs = new ArrayList();
         allLibs.add("zero");
         allLibs.add("jdk0");
@@ -146,7 +100,7 @@ public class StartBuilder {
 	buildDir = compdirs[0];
 	String jcFileName = "JC_CONFIG";
 	String addFileName = "ADD_TO_ZIP";
-	String codeFileName = "/home/spy/Source/OS/jcore/isodir/code/code.zip";
+	String codeFileName = "../Compiler/app/isodir/code/code.zip";
 	File jcFile = new File(jcFileName);
 	zipFileListFile = new File(addFileName);
 	File codeFile = new File(codeFileName);
@@ -167,66 +121,6 @@ public class StartBuilder {
 	//build_bootzip();
 
 	System.out.println("*********** BUILD COMPLETED");
-    }
-
-    static boolean build_zip(MetaInfo s) throws Exception {
-	String componentName = s.getComponentName();
-	String sd = s.getVar("SUBDIRS");
-	String[] sda = MetaInfo.split(sd);
-	
-	String filename = s.getFilename();
-	//System.out.println("FILE: " + filename);
-	String zipname = buildDir + "/" + componentName + ".zip";
-	File zipfile = new File(zipname);
-	long ziptime = -1;
-	if (zipfile.exists()) ziptime = zipfile.lastModified();
-	ArrayList todo = new ArrayList();
-	
-	boolean worktodo = false;
-	
-	String metafilename = "META";
-	File metafile = new File(filename + "/" + metafilename);
-	if (metafile.exists()) {
-	    todo.add(metafilename);
-	    if (ziptime == -1 || metafile.lastModified() > ziptime) worktodo = true;
-	}
-	
-        for (String sda1 : sda) {
-            String dirname = sda1;
-            String subdirname = filename + "/" + dirname + "/";
-            File subdir = new File(subdirname);
-            if (!subdir.exists()) throw new Error("Subdir " + subdirname + " does not exist.");
-            String dirlist[] = subdir.list();
-            for (String dirlist1 : dirlist) {
-                if (hasExtension(new String[] {".class"}, dirlist1)) {
-                    String classfilename = filename + "/" + dirname + "/" + dirlist1;
-                    File subfile = new File( classfilename);
-                    if (subfile.exists()) {
-                        todo.add(dirname + "/" + dirlist1);
-                        if (ziptime == -1 || subfile.lastModified() > ziptime) worktodo = true;
-                    }
-                }
-            }
-        }
-	
-	if (worktodo) {
-	    try {
-		FileOutputStream out = new FileOutputStream(zipname);
-                try (java.util.zip.ZipOutputStream zip = new java.util.zip.ZipOutputStream(out)) {
-                    zip.setMethod(java.util.zip.ZipOutputStream.STORED);
-                    for(int m = 0; m < todo.size(); m++) {
-                        String subfile = (String)todo.get(m);
-                        addZipEntry(zip, filename, subfile);
-                    }
-                }
-		return true;
-	    } catch(IOException ex) {
-		new File(zipname).delete();
-		throw ex;
-	    }
-	} else {
-	    return false;
-	}
     }
 
     /**
@@ -409,7 +303,6 @@ public class StartBuilder {
     }
 
     static public void build_jlls() {
-	boolean compiledAJll = false;
 	for(int i = 0; i < metas.size(); i++) {
 	    MetaInfo s = (MetaInfo)metas.get(i); // process this component
 	    if (!silent) System.out.print("* " + s.getComponentName() + "... ");
@@ -428,7 +321,6 @@ public class StartBuilder {
 		continue;
 	    }*/
 	    if (silent) System.out.print("* " + s.getComponentName() + "... ");
-	    compiledAJll = true;
 
 	    ArrayList libs = new ArrayList();
 	    ArrayList jlns = new ArrayList();
@@ -600,22 +492,6 @@ public class StartBuilder {
 	return false;
     }
 
-    static String j2c(String javafile) {
-	return javafile.substring(0, javafile.length() - 4) + "class";
-    }
-
-    static String packageToDir(String pack) {
-	char[] c = new char[pack.length()];
-	pack.getChars(0, c.length, c, 0);
-	for(int i = 0; i < c.length; i++)
-	    if (c[i] == '.') c[i] = '/';
-	return new String(c);
-    }
-    static String packageToClassName(String pack) {
-	int i = pack.lastIndexOf('.');
-	return pack.substring(i+1);
-    }
-
     static void setProperty(String k, String v) {
 	 java.util.Properties properties = System.getProperties();
 	 properties.remove(k);
@@ -629,101 +505,5 @@ public class StartBuilder {
 	    super("NoExit");
 	    this.status = status;
 	}
-    }
-    
-    static class NoExit extends java.lang.SecurityManager {
-	public NoExit() {
-	    
-	}
-        @Override
-	public void checkCreateClassLoader() { } 
-        @Override
-	public void checkAccess(Thread g) { }
-        @Override
-	public void checkAccess(ThreadGroup g) { }
-        @Override
-	public void checkExec(String cmd) { }
-        @Override
-	public void checkLink(String lib) { }
-	public void checkRead(FileDescriptor fd) { }
-	public void checkRead(String file) { }
-	public void checkRead(String file, Object context) { }
-	public void checkWrite(FileDescriptor fd) { }
-	public void checkWrite(String file) { }
-	public void checkDelete(String file) { }
-	public void checkConnect(String host, int port) { }
-	public void checkConnect(String host, int port, Object context) { }
-	public void checkListen(int port) { }
-	public void checkAccept(String host, int port) { }
-	public void checkMulticast(java.net.InetAddress maddr) { }
-	public void checkMulticast(java.net.InetAddress maddr, byte ttl) { }
-	public void checkPropertiesAccess() { }
-	public void checkPropertyAccess(String key) { }
-	public void checkPropertyAccess(String key, String def) { }
-	public boolean checkTopLevelWindow(Object window) { return true; }
-	public void checkPrintJobAccess() { }
-	public void checkSystemClipboardAccess() { }
-	public void checkAwtEventQueueAccess() { }
-	public void checkPackageAccess(String pkg) { }
-	public void checkPackageDefinition(String pkg) { }
-	public void checkSetFactory() { }
-	public void checkMemberAccess(Class clazz, int which) { }
-	public void checkSecurityAccess(String provider) { }
-	
-        @Override
-	public void checkExit(int status) {
-	    throw new NoExitException(status);
-	}
-        @Override
-	public void checkPermission(java.security.Permission perm) {
-	}
-    }
-}
-
-
-class Sort {
-    public static void swap(Object data[], int x, int y) {
-	Object t = data[x];
-	data[x] = data[y];
-	data[y] = t;
-    }
-
-    static boolean less(String a, String b) {
-	return a.compareTo(b)>0;
-    }
-
-    public static void quicksort(ArrayList a) {
-	String[] v = new String[a.size()];
-	a.toArray(v);
-	quicksort(v, 0, v.length-1);
-	a.clear();
-        a.addAll(Arrays.asList(v)); //System.out.println("S: "+v[i]);
-    }
-
-    public static void quicksort(String[] v) {
-	quicksort(v, 0, v.length-1);
-    }
-
-    static void quicksort(String[] a, int left, int right) {
-	int i = left;
-	int j = right;
-	if (left >= right) return;
-	String pivot = a[right];       
-	do {
-	    while(less(a[i], pivot))
-		i++;
-	    
-	    while(less(pivot, a[j]))
-		j--;
-	    
-	    if(i <= j) {
-		swap(a, i, j);
-		i++;
-		j--;
-	    }
-	} while (i < j);
-	
-	quicksort(a, left, j);
-	quicksort(a, i, right);
     }
 }

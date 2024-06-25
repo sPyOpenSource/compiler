@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=InternalAddrSTEntry
+comment0.text=\ \n\ \ \ for\ jumps\ with\ target\ inside\ of\ this\ method\ \n
+comment1.params=
+comment1.target=InternalAddrSTEntry()
+comment10.params=out
+comment10.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment11.params=
+comment11.target=void\ dump()
+comment2.params=
+comment2.target=java.lang.String\ getDescription()
+comment3.params=
+comment3.target=boolean\ isResolved()
+comment4.params=
+comment4.target=int\ getValue()
+comment5.params=
+comment5.target=boolean\ isValueRelativeToCodeBase()
+comment6.params=ncIndex
+comment6.target=void\ setTargetNCIndex(int)
+comment7.params=code\ codeBase
+comment7.target=void\ apply(byte[],\ int)
+comment8.params=code
+comment8.target=void\ applyRelative(byte[])
+comment9.params=code\ ncIndex\ value\ numBytes
+comment9.target=void\ insertInteger(byte[],\ int,\ int,\ int)
+numComments=12

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=BCClassInfo
+comment0.text=\n\ connected\ to\ BCClass\n\ contains\ information\ that\ is\ only\ interesting\n\ in\ this\ execution\ environment\n
+comment1.params=
+comment1.target=java.lang.String\ toString()
+numComments=2

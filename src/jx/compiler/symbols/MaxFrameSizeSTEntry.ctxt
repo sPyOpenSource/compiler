@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=MaxFrameSizeSTEntry
+comment0.text=\ \n\n
+comment1.params=frame
+comment1.target=MaxFrameSizeSTEntry(jx.compiler.imcode.MethodStackFrame)
+comment2.params=code\ codeBase
+comment2.target=void\ apply(byte[],\ int)
+comment3.params=code
+comment3.target=void\ applyValue(byte[])
+comment4.params=
+comment4.target=boolean\ isResolved()
+comment5.params=
+comment5.target=int\ getValue()
+numComments=6

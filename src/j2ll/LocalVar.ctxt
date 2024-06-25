@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=LocalVar
+comment0.text=\n\ Local\ Variable\n
+comment1.params=slot\ name\ signature
+comment1.target=LocalVar(int,\ java.lang.String,\ java.lang.String)
+numComments=2

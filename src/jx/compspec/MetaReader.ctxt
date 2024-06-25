@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=MetaReader
+comment1.params=compdirs
+comment1.target=MetaReader(java.lang.String[])
+comment2.params=v\ l
+comment2.target=void\ addMeta(java.util.ArrayList,\ java.lang.String)
+numComments=3

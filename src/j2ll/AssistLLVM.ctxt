@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=AssistLLVM
+comment1.params=outpath
+comment1.target=void\ genClinits(java.lang.String)
+comment2.params=s
+comment2.target=void\ addClinit(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getConstStringFuncName()
+comment4.params=
+comment4.target=java.lang.String\ getAssistFuncDeclare()
+numComments=5

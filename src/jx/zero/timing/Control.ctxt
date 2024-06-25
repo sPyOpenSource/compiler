@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=Control
+comment1.params=
+comment1.target=void\ timing_empty_method()
+comment2.params=
+comment2.target=void\ notiming_empty_method()
+comment3.params=
+comment3.target=void\ timing_adjust_raw()
+comment4.params=
+comment4.target=void\ timing_adjust_boiled()
+comment5.params=
+comment5.target=boolean\ calibrate_timing()
+comment6.params=
+comment6.target=void\ startTiming()
+comment7.params=
+comment7.target=void\ shell()
+numComments=8

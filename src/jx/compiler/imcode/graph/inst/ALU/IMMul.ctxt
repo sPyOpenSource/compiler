@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=IMMul
+comment1.params=container\ bc\ bcpos
+comment1.target=IMMul(jx.compiler.imcode.CodeContainer,\ int,\ int)
+comment2.params=
+comment2.target=boolean\ isMul()
+comment3.params=
+comment3.target=boolean\ isDivOrMult()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=
+comment5.target=jx.compiler.imcode.graph.IMNode\ constant_folding()
+comment6.params=result
+comment6.target=void\ translate(jx.compiler.nativecode.Reg)
+comment7.params=result
+comment7.target=void\ translate(jx.compiler.nativecode.Reg64)
+numComments=8

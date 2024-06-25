@@ -1,3 +1,4 @@
+
 package jx.compiler; 
 
 import jx.compiler.execenv.BCClass;
