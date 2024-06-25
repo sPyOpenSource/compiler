@@ -1,0 +1,98 @@
+class java/security/BasicPermission {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ RRR  RR] 
+        if vR1.indexOf@extra("*")==-1 goto B102;   
+  +B15:   #1
+        if vR1.endsWith@extra(".*")!=0 goto B60;   
+  +B24:   #1
+        if vR1.equals@extra("*")!=0 goto B60;   
+  -B33:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        b1.<init>@special(b2.append@extra("Bad wildcard: ").append@extra(vR1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B60:   #2
+        if vR1.indexOf@extra("*")==vR1.lastIndexOf@extra("*") goto B102;   
+  -B75:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("Bad wildcard: ").append@extra(vR1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B102:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 20 swaps 9 any 2 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method implies(Ljava/security/Permission;)Z {
+  +START:   #1
+        if (vR1 instanceof java/security/BasicPermission)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = vR1.getName();    [   R.] 
+        vR3 = vR0.getName@this();    [R   R.] 
+        if vR3.equals@extra(vR2)==0 goto B29;   
+  +B27:   #1
+        return 1;   
+  +B29:   #1
+        vi4 = (vR3.length@extra()-1);    
+        if vR3.charAt@extra(vi4)!=42 goto B64;   
+  +B48:   #1
+        if vR2.startsWith@extra(vR3.substring@extra(0,vi4))==0 goto B64;   
+  +B62:   #1
+        return 1;   
+  +B64:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 0 found 0 implies
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/security/BasicPermission)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        if vR0.getName@this().equals@extra((java/security/BasicPermission)(vR1).getName())!=0 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.getName@this().hashCode@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hashCode
+ 
+ method getActions()Ljava/lang/String; {
+  +START:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getActions
+ 
+ method newPermissionCollection()Ljava/security/PermissionCollection; {
+  +START:   #1
+        return new java/security/BasicPermission$1(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 newPermissionCollection
+}

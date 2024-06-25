@@ -1,0 +1,62 @@
+class java/util/Spliterators$EmptySpliterator$OfRef {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method tryAdvance(Ljava/util/function/Consumer;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 tryAdvance
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method getExactSizeIfKnown()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getExactSizeIfKnown
+ 
+ method hasCharacteristics(I)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hasCharacteristics
+ 
+ method getComparator()Ljava/util/Comparator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getComparator
+ 
+ method forEachRemaining(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.forEachRemaining@extra((java/util/function/Consumer)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 forEachRemaining
+ 
+ method tryAdvance(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.tryAdvance@extra((java/util/function/Consumer)(vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 tryAdvance
+}

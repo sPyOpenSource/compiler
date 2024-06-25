@@ -1,0 +1,1087 @@
+class java/util/GregorianCalendar {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(getDefault@special(),getDefault@special());   [  iR RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/TimeZone;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,getDefault@special());   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special(getDefault@special(),vR1);   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/TimeZone;Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR3 = getBundle@special("gnu/java/locale/Calendar",vR2);    [  R RR.]
+        vR0.gregorianCutover = (java/util/Date)(vR3.getObject@extra("gregorianCutOver")).getTime();   
+        vR0.time = currentTimeMillis@special();   
+        vR0.isTimeSet = 1;   
+        vR0.areFieldsSet = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.set@this(vi1,vi2,vi3);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.set@this(vi1,vi2,vi3,vi4,vi5);   [   iiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.set@this(vi1,vi2,vi3,vi4,vi5,vi6);   [   iiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setGregorianChange(Ljava/util/Date;)V {
+  +START:   #1
+        vR0.gregorianCutover = vR1.getTime();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setGregorianChange
+ 
+ method getGregorianChange(Ljava/util/Date;)Ljava/util/Date; {
+  +START:   #1
+        return new java/util/Date(vR0.gregorianCutover);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getGregorianChange
+ 
+ method isLeapYear(I)Z {
+  +START:   #1
+        if (vi1 & 3)==0 goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        vi2 = ((((vi1-1)*1461) >> 2)+-719105);    
+        if compare(((long)vi2*86400000),vR0.gregorianCutover)>=0 goto B37;   
+  +B35:   #1
+        return 1;   
+  +B37:   #1
+        if (vi1%100)!=0 goto B52;   
+  +B44:   #1
+        if (vi1%400)!=0 goto B56;   
+  +B52:   #1
+        b0 = 1;    
+        goto +B57b0;   forward return[i i  .]
+  +B56:   #1
+        b0 = 0;    
+  +B57b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 isLeapYear
+ 
+ method getLinearTime(III)J {
+  +START:   #1
+        vi4 = ((((vi1*1461) >> 2)+vi2)-719530);    
+        vl5 = (((long)vi4*86400000)+(long)vi3);    
+        if compare(vl5,vR0.gregorianCutover)< 0 goto B58;   
+  +B36:   #1
+        vl5 = (vl5+((long)(((vi1/400)-(vi1/100))+2)*86400000));    
+  +B58:   #1
+        return vl5;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getLinearTime
+ 
+ method getWeekDay(II)I {
+  +START:   #1
+        vi3 = (int)(vR0.getLinearTime@special(vi1,vi2,0)/86400000);    
+        vi4 = ((vi3+5)%7);    
+        if vi4> 0 goto B29;   
+  +B26:   #1
+        vi4+=7;   
+  +B29:   #1
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 2 found 0 getWeekDay
+ 
+ method getDayOfYear(I)[I {
+  +START:   #1
+        if vR0.isSet[2]==0 goto B258;   
+  +B9:   #1
+        if vR0.fields[2]<=1 goto B49;   
+  +B19:   #1
+        vi2 = (((vR0.fields[2]*153)-9)/5);    
+        if vR0.isLeapYear@this(vi1)==0 goto B59;   
+  +B43:   #1
+        vi2++;   
+        goto +B59;   [i RRiiiii  ..]
+  +B49:   #1
+        vi2 = (31*vR0.fields[2]);    
+  +B59:   #2
+        if vR0.isSet[5]==0 goto B87;   
+  +B68:   #1
+        b0 = new int[2];    
+        b0[0] = (vi2+vR0.fields[5]);   
+        b0[1] = 0;   
+        return b0;   
+  +B87:   #1
+        if vR0.isSet[4]==0 goto B180;   
+  +B96:   #1
+        if vR0.isSet[7]==0 goto B180;   
+  +B106:   #1
+        vi2++;   
+        vi3 = vR0.getWeekDay@special(vi1,vi2);    [i RRiiiii  iiR] 
+        b0 = new int[2];    
+        b1 = b0;    
+        b0[0] = vi2;   
+        b2 = 1;    
+        b3 = (vR0.fields[7]-vi3);    
+        b4 = 7;    
+        b5 = vR0.fields[4];    
+        if vR0.fields[7]>=vR0.getFirstDayOfWeek@this() goto B160;   
+  +B156b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = 0;    
+        goto +B161b0b1b2b3b4b5b6;   [ii RRiiiii . ...]
+  +B160b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = -1;    
+  +B161b0b1b2b3b4b5b6:   #1 reference reference int int int int int
+        b5 = (b5+b6);    
+        if vi3>=vR0.getFirstDayOfWeek@this() goto B174;   
+  +B170b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = -1;    
+        goto +B175b0b1b2b3b4b5b6;   [ii RRiiiii . ...]
+  +B174b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = 0;    
+  +B175b0b1b2b3b4b5b6:   #1 reference reference int int int int int
+        b1[b2] = (b3+(b4*(b5+b6)));   
+        return b0;   
+  +B180:   #2
+        if vR0.isSet[7]==0 goto B258;   
+  +B190:   #1
+        if vR0.isSet[8]==0 goto B258;   
+  +B200:   #1
+        vi2++;   
+        vi3 = vR0.getWeekDay@special(vi1,vi2);    [ii RRiiiii . iiR] 
+        b0 = new int[2];    
+        b1 = b0;    
+        b0[0] = vi2;   
+        b2 = 1;    
+        b3 = (vR0.fields[7]-vi3);    
+        b4 = 7;    
+        b5 = vR0.fields[8];    
+        if vR0.fields[7]>=vi3 goto B252;   
+  +B248b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = 0;    
+        goto +B253b0b1b2b3b4b5b6;   [ii RRiiiii . ...]
+  +B252b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = -1;    
+  +B253b0b1b2b3b4b5b6:   #1 reference reference int int int int int
+        b1[b2] = (b3+(b4*(b5+b6)));   
+        return b0;   
+  +B258:   #3
+        if vR0.isSet[6]==0 goto B286;   
+  +B268:   #1
+        b0 = new int[2];    
+        b0[0] = 0;   
+        b0[1] = vR0.fields[6];   
+        return b0;   
+  +B286:   #1
+        if vR0.isSet[7]==0 goto B381;   
+  +B296:   #1
+        if vR0.isSet[3]==0 goto B381;   
+  +B305:   #1
+        vi2 = vR0.getMinimalDaysInFirstWeek@this();    [ii RRiiiii . R..] 
+        vi3 = vR0.getWeekDay@special(vi1,vi2);    [ii RRiiiii . iiR] 
+        b0 = new int[2];    
+        b1 = b0;    
+        b0[0] = vi2;   
+        b2 = 1;    
+        b3 = (vR0.fields[7]-vi3);    
+        b4 = 7;    
+        b5 = vR0.fields[3];    
+        if vR0.fields[7]>=vR0.getFirstDayOfWeek@this() goto B361;   
+  +B357b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = 0;    
+        goto +B362b0b1b2b3b4b5b6;   [ii RRiiiii . ...]
+  +B361b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = -1;    
+  +B362b0b1b2b3b4b5b6:   #1 reference reference int int int int int
+        b5 = (b5+b6);    
+        if vi3>=vR0.getFirstDayOfWeek@this() goto B375;   
+  +B371b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = -1;    
+        goto +B376b0b1b2b3b4b5b6;   [ii RRiiiii . ...]
+  +B375b0b1b2b3b4b5:   #1 reference reference int int int int
+        b6 = 0;    
+  +B376b0b1b2b3b4b5b6:   #1 reference reference int int int int int
+        b1[b2] = (b3+(b4*(b5+b6)));   
+        return b0;   
+  +B381:   #2
+        b0 = new int[2];    
+        b0[0] = 1;   
+        b0[1] = 0;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 89/89 wr 33 swaps 0 any 17 found 2 getDayOfYear
+ 
+ method computeTime()V {
+  +START:   #1
+        if vR0.isSet[0]==0 goto B18;   
+  +B9:   #1
+        b0 = vR0.fields[0];    
+        goto +B19b0;   [ iii  ]
+  +B18:   #1
+        b0 = 1;    
+  +B19b0:   #1 int
+        vi1 = b0;    
+        if vR0.isSet[1]==0 goto B38;   
+  +B29:   #1
+        b0 = vR0.fields[1];    
+        goto +B41b0;   [i iii  ]
+  +B38:   #1
+        b0 = 1970;    
+  +B41b0:   #1 int
+        vi2 = b0;    
+        if vi1!=0 goto B50;   
+  +B46:   #1
+        vi2 = (1-vi2);    
+  +B50:   #1
+        vR3 = vR0.getDayOfYear@special(vi2);    [ii iii  iR] 
+        if vR0.isSet[11]==0 goto B76;   
+  +B66:   #1
+        b0 = vR0.fields[11];    
+        goto +B121b0;   [iiR iii  ..]
+  +B76:   #1
+        if vR0.isSet[10]==0 goto B120;   
+  +B86:   #1
+        if vR0.isSet[9]==0 goto B120;   
+  +B96:   #1
+        b0 = ((vR0.fields[9]*12)+(vR0.fields[10]%12));    
+        goto +B121b0;   [iiRiiiiiRiiiiii iii . ..]
+  +B120:   #2
+        b0 = 0;    
+  +B121b0:   #2 int
+        vi4 = b0;    
+        if vR0.isSet[12]==0 goto B143;   
+  +B133:   #1
+        b0 = vR0.fields[12];    
+        goto +B144b0;   [iiRi iii . ..]
+  +B143:   #1
+        b0 = 0;    
+  +B144b0:   #1 int
+        vi5 = b0;    
+        if vR0.isSet[13]==0 goto B166;   
+  +B156:   #1
+        b0 = vR0.fields[13];    
+        goto +B167b0;   [iiRii iii . ..]
+  +B166:   #1
+        b0 = 0;    
+  +B167b0:   #1 int
+        vi6 = b0;    
+        if vR0.isSet[14]==0 goto B189;   
+  +B179:   #1
+        b0 = vR0.fields[14];    
+        goto +B190b0;   [iiRiii iii . ..]
+  +B189:   #1
+        b0 = 0;    
+  +B190b0:   #1 int
+        vi7 = b0;    
+        if vR0.isLenient@this()==0 goto B254;   
+  +B199:   #1
+        vl9 = (((((((long)vi4*60)+(long)vi5)*60)+(long)vi6)*1000)+(long)vi7);    
+        vR3[1] = (int)((long)vR3[1]+(vl9/86400000));   
+        vi8 = (int)(vl9%86400000);    
+        goto +B334;   [iiRiiiiil iii i ..]
+  +B254:   #1
+        if vi4< 0 goto B303;   
+  +B259:   #1
+        if vi4>=24 goto B303;   
+  +B266:   #1
+        if vi5< 0 goto B303;   
+  +B271:   #1
+        if vi5>59 goto B303;   
+  +B278:   #1
+        if vi6< 0 goto B303;   
+  +B283:   #1
+        if vi6>59 goto B303;   
+  +B290:   #1
+        if vi7< 0 goto B303;   
+  +B295:   #1
+        if vi7<1000 goto B311;   
+  -B303:   #7
+        throw new java/lang/IllegalArgumentException();   
+  +B311:   #1
+        vi8 = ((((((vi4*60)+vi5)*60)+vi6)*1000)+vi7);    
+  +B334:   #1
+        vR0.time = vR0.getLinearTime@special(vi2,vR3[0],vi8);   
+        vR0.time = (vR0.time+((long)vR3[1]*86400000));   
+        vR9 = vR0.getTimeZone@this();    [iiRiiiiil iii . R.] 
+        if vR0.isSet[15]==0 goto B391;   
+  +B381:   #1
+        b0 = vR0.fields[15];    
+        goto +B398b0;   [iiRiiiiiR iii . ..]
+  +B391:   #1
+        b0 = vR0.getTimeZone@this().getRawOffset();    [iiRiiiiiRiiiiii iii . R.] [iiRiiiiiRiiiiii iii R R.] 
+  +B398b0:   #1 int
+        vi10 = b0;    
+        vi11 = (vR3[0]+vR3[1]);    
+        vi12 = (((vi11*5)+3)/153);    
+        vi13 = (((((vi11*5)+3)%153)+6)/5);    
+        vi14 = (((int)(vR0.time/86400000)+5)%7);    
+        if vi14> 0 goto B462;   
+  +B459:   #1
+        vi14+=7;   
+  +B462:   #1
+        if vR0.isSet[16]==0 goto B482;   
+  +B472:   #1
+        b0 = vR0.fields[16];    
+        goto +B521b0;   [iiRiiiiiRiiiii iii .. ..]
+  +B482:   #1
+        b0 = vR9;    
+        if vi2>=0 goto B492;   
+  +B488b0:   #1 reference
+        b1 = 0;    
+        goto +B493b0b1;   [iiRiiiiiRiiiiii Rii .. ..]
+  +B492b0:   #1 reference
+        b1 = 1;    
+  +B493b0b1:   #1 reference int
+        if vi2>=0 goto B503;   
+  +B497b0b1:   #1 reference int
+        b2 = (1-vi2);    
+        goto +B504b0b1b2;   [iiRiiiiiRiiiiii Rii .. ..]
+  +B503b0b1:   #1 reference int
+        b2 = vi2;    
+  +B504b0b1b2:   #1 reference int int
+        b0 = (b0.getOffset(b1,b2,vi12,vi13,vi14,vi8)-vR9.getRawOffset());    
+  +B521b0:   #1 int
+        vi15 = b0;    
+        vR0.time = (vR0.time-(long)(vi10+vi15));   
+        vR0.isTimeSet = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 68/68 wr 44 swaps 1 any 24 found 0 computeTime
+ 
+ method isLeapYear(IZ)Z {
+  +START:   #1
+        if (vi1 & 3)==0 goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        if vi2!=0 goto B14;   
+  +B12:   #1
+        return 1;   
+  +B14:   #1
+        if (vi1%100)!=0 goto B29;   
+  +B21:   #1
+        if (vi1%400)!=0 goto B33;   
+  +B29:   #1
+        b0 = 1;    
+        goto +B34b0;   forward return[ i  ]
+  +B33:   #1
+        b0 = 0;    
+  +B34b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 isLeapYear
+ 
+ method getLinearDay(IIZ)I {
+  +START:   #1
+        vi4 = ((((vi1*1461) >> 2)+vi2)-719530);    
+        if vi3==0 goto B35;   
+  +B18:   #1
+        vi4 = (vi4+(((vi1/400)-(vi1/100))+2));    
+  +B35:   #1
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 3 found 0 getLinearDay
+ 
+ method calculateDay(IZ)V {
+  +START:   #1
+        vi3 = ((vi1+5)%7);    
+        if vi3> 0 goto B14;   
+  +B11:   #1
+        vi3+=7;   
+  +B14:   #1
+        vR0.fields[7] = vi3;   
+        b0 = 1970;    
+        if vi2==0 goto B43;   
+  +B29b0:   #1 int
+        b1 = (((vi1-100)*400)/146097);    
+        goto +B53b0b1;   [i ii  ]
+  +B43b0:   #1 int
+        b1 = (((vi1-100)*4)/1461);    
+  +B53b0b1:   #1 int int
+        vi4 = (b0+b1);    
+        if vi1< 0 goto B63;   
+  +B60:   #1
+        vi4++;   
+  +B63:   #1
+        vi5 = vR0.getLinearDay@special(vi4,1,vi2);    [ii ii  iiiR] 
+        if vi1>=vi5 goto B92;   
+  +B79:   #1
+        vi4--;   
+        vi5 = vR0.getLinearDay@special(vi4,1,vi2);    [iii ii  iiiR] 
+  +B92:   #1
+        vi1 = (vi1-(vi5-1));    
+        vR0.fields[6] = vi1;   
+        if vi4> 0 goto B132;   
+  +B112:   #1
+        vR0.fields[0] = 0;   
+        vR0.fields[1] = (1-vi4);   
+        goto +B147;   [iii ii  ....]
+  +B132:   #1
+        vR0.fields[0] = 1;   
+        vR0.fields[1] = vi4;   
+  +B147:   #1
+        if vR0.isLeapYear@special(vi4,vi2)==0 goto B161;   
+  +B157:   #1
+        b0 = 1;    
+        goto +B162b0;   [iii ii  ....]
+  +B161:   #1
+        b0 = 0;    
+  +B162b0:   #1 int
+        vi6 = b0;    
+        if vi1>(vi6+59) goto B203;   
+  +B173:   #1
+        vR0.fields[2] = (vi1/32);   
+        vR0.fields[5] = (vi1-(31*vR0.fields[2]));   
+        goto +B242;   forward return[iiii ii  ....]
+  +B203:   #1
+        vi7 = (((vi1-vi6)*5)+8);    
+        vR0.fields[2] = (vi7/153);   
+        vR0.fields[5] = (((vi7%153)/5)+1);   
+  +B242:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 43/43 wr 13 swaps 0 any 17 found 0 calculateDay
+ 
+ method computeFields()V {
+  +START:   #1
+        if compare(vR0.time,vR0.gregorianCutover)< 0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   [ iRiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        vi1 = b0;    
+        vR2 = vR0.getTimeZone@this();    [i iRiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R  R] 
+        vR0.fields[15] = vR2.getRawOffset();   
+        vl3 = (vR0.time+(long)vR0.fields[15]);    
+        vi5 = (int)(vl3/86400000);    
+        vi6 = (int)(vl3%86400000);    
+        if vi6>=0 goto B79;   
+  +B69:   #1
+        vi6 = (vi6+86400000);    
+        vi5--;   
+  +B79:   #1
+        vR0.calculateDay@special(vi5,vi1);   [iRl?ii iRiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R .. iiR] 
+        vR0.fields[16] = (vR2.getOffset(vR0.fields[0],vR0.fields[1],vR0.fields[2],vR0.fields[5],vR0.fields[7],vi6)-vR0.fields[15]);   
+        vi6 = (vi6+vR0.fields[16]);    
+        if vi6<86400000 goto B174;   
+  +B157:   #1
+        vi6 = (vi6-86400000);    
+        vi5++;   
+        vR0.calculateDay@special(vi5,vi1);   [iRl?ii iRiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R ..... iiR....] 
+  +B174:   #1
+        vR0.fields[8] = ((vR0.fields[5]+6)/7);   
+        vi7 = (((vR0.fields[7]+7)-vR0.getFirstDayOfWeek@this())%7);    
+        vR0.fields[4] = (((vR0.fields[5]-vi7)+6)/7);   
+        vi8 = (((vR0.fields[6]-vi7)+6)/7);    
+        vi9 = vR0.getMinimalDaysInFirstWeek@this();    [iRl?iiii iRiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R ..... R......] 
+        vi10 = (((vR0.getWeekDay@special(vR0.fields[1],vi9)+7)-vR0.getFirstDayOfWeek@this())%7);    
+        if (vi9-vi10)>=1 goto B295;   
+  +B292:   #1
+        vi8++;   
+  +B295:   #1
+        vR0.fields[3] = vi8;   
+        vi11 = (vi6/3600000);    
+        b0 = vR0.fields;    
+        b1 = 9;    
+        if vi11>=12 goto B327;   
+  +B323b0b1:   #1 reference int
+        b2 = 0;    
+        goto +B328b0b1b2;   [iRl?iiiiiii RiiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R ..... .......]
+  +B327b0b1:   #1 reference int
+        b2 = 1;    
+  +B328b0b1b2:   #1 reference int int
+        b0[b1] = b2;   
+        vi12 = (vi11%12);    
+        b0 = vR0.fields;    
+        b1 = 10;    
+        if vi12!=0 goto B352;   
+  +B347b0b1:   #1 reference int
+        b2 = 12;    
+        goto +B354b0b1b2;   [iRl?iiiiiiii RiiR?R?R?R?R?R?R?R?R?R?R?R?R?R?R?R ..... .......]
+  +B352b0b1:   #1 reference int
+        b2 = vi12;    
+  +B354b0b1b2:   #1 reference int int
+        b0[b1] = b2;   
+        vR0.fields[11] = vi11;   
+        vi6 = (vi6%3600000);    
+        vR0.fields[12] = (vi6/60000);   
+        vi6 = (vi6%60000);    
+        vR0.fields[13] = (vi6/1000);   
+        vR0.fields[14] = (vi6%1000);   
+        b1 = vR0.isSet;    
+        b3 = vR0.isSet;    
+        b5 = vR0.isSet;    
+        b7 = vR0.isSet;    
+        b9 = vR0.isSet;    
+        b11 = vR0.isSet;    
+        b13 = vR0.isSet;    
+        b15 = vR0.isSet;    
+        b17 = vR0.isSet;    
+        b19 = vR0.isSet;    
+        b21 = vR0.isSet;    
+        b23 = vR0.isSet;    
+        b25 = vR0.isSet;    
+        b27 = vR0.isSet;    
+        b29 = vR0.isSet;    
+        b31 = vR0.isSet;    
+        b33 = vR0.isSet;    
+        b33[16] = 1;   
+        b31[15] = 1;   
+        b29[14] = 1;   
+        b27[13] = 1;   
+        b25[12] = 1;   
+        b23[11] = 1;   
+        b21[10] = 1;   
+        b19[9] = 1;   
+        b17[8] = 1;   
+        b15[7] = 1;   
+        b13[6] = 1;   
+        b11[5] = 1;   
+        b9[4] = 1;   
+        b7[3] = 1;   
+        b5[2] = 1;   
+        b3[1] = 1;   
+        b1[0] = 1;   
+        vR0.areFieldsSet = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 103/103 wr 53 swaps 3 any 17 found 0 computeFields
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/GregorianCalendar)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/util/GregorianCalendar)(vR1);    
+        if compare(vR2.getTimeInMillis(),vR0.getTimeInMillis@this())!=0 goto B30;   
+  +B26:   #1
+        b0 = 1;    
+        goto +B31b0;   forward return[R i  ..]
+  +B30:   #1
+        b0 = 0;    
+  +B31b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 1 equals
+ 
+ method add(II)V {
+  +START:   #1
+        tswitch (vi1) B80 B102 B241 B241 B207 B207 B207 B241 B275 B309 B309 B343 B377 B411 B441 B470 : B493;   
+  +B80:   #1
+        vR0.complete@this();   [ RRR  R] 
+        b0 = vR0.fields;    
+        b0[1] = (b0[1]+vi2);   
+        vR0.isTimeSet = 0;   
+        goto +B520;   forward return[ RRR  .]
+  +B102:   #1
+        vR0.complete@this();   [ RRR  R] 
+        vi3 = (vR0.fields[2]+vi2);    
+        b0 = vR0.fields;    
+        b0[1] = (b0[1]+(vi3/12));   
+        vR0.fields[2] = (vi3%12);   
+        if vR0.fields[2]>=0 goto B168;   
+  +B147:   #1
+        b0 = vR0.fields;    
+        b0[2] = (b0[2]+12);   
+        b0 = vR0.fields;    
+        b0[1] = (b0[1]-1);   
+  +B168:   #1
+        vR0.isTimeSet = 0;   
+        vi4 = vR0.getActualMaximum@this(5);    [i RRR . iR] 
+        if vR0.fields[5]<=vi4 goto B520;   
+  +B191:   #1
+        vR0.fields[5] = vi4;   
+        vR0.isTimeSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B207:   #3
+        if vR0.isTimeSet!=0 goto B218;   
+  +B214:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B218:   #1
+        vR0.time = (vR0.time+((long)vi2*86400000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B241:   #3
+        if vR0.isTimeSet!=0 goto B252;   
+  +B248:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B252:   #1
+        vR0.time = (vR0.time+((long)vi2*604800000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B275:   #1
+        if vR0.isTimeSet!=0 goto B286;   
+  +B282:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B286:   #1
+        vR0.time = (vR0.time+((long)vi2*43200000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B309:   #2
+        if vR0.isTimeSet!=0 goto B320;   
+  +B316:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B320:   #1
+        vR0.time = (vR0.time+((long)vi2*3600000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B343:   #1
+        if vR0.isTimeSet!=0 goto B354;   
+  +B350:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B354:   #1
+        vR0.time = (vR0.time+((long)vi2*60000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B377:   #1
+        if vR0.isTimeSet!=0 goto B388;   
+  +B384:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B388:   #1
+        vR0.time = (vR0.time+((long)vi2*1000));   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B411:   #1
+        if vR0.isTimeSet!=0 goto B422;   
+  +B418:   #1
+        vR0.computeTime@this();   [ii RRR . R.] 
+  +B422:   #1
+        vR0.time = (vR0.time+(long)vi2);   
+        vR0.areFieldsSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  +B441:   #1
+        vR0.complete@this();   [ii RRR . R.] 
+        b0 = vR0.fields;    
+        b0[15] = (b0[15]+vi2);   
+        vR0.time = (vR0.time-(long)vi2);   
+        goto +B520;   forward return[ii RRR . ..]
+  +B470:   #1
+        vR0.complete@this();   [ii RRR . R.] 
+        b0 = vR0.fields;    
+        b0[16] = (b0[16]+vi2);   
+        vR0.isTimeSet = 0;   
+        goto +B520;   forward return[ii RRR . ..]
+  -B493:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        b1.<init>@special(b2.append@extra("Unknown Calendar field: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B520:   #12
+        return;   
+  +END:   #1
+ }
+// Register: rd 67/67 wr 16 swaps 3 any 3 found 0 add
+ 
+ method roll(IZ)V {
+  +START:   #1
+        b0 = vR0;    
+        b1 = vi1;    
+        if vi2==0 goto B10;   
+  +B6b0b1:   #1 reference int
+        b2 = 1;    
+        goto +B11b0b1b2;   [ Rii  ]
+  +B10b0b1:   #1 reference int
+        b2 = -1;    
+  +B11b0b1b2:   #1 reference int int
+        b0.roll(b1,b2);   [ Rii  iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 3 found 0 roll
+ 
+ method cleanUpAfterRoll(II)V {
+  +START:   #1
+        tswitch (vi1) B76 B76 B76 B360 B203 B147 B298 B548 B251 B415 B441 B467 B501 B519 B537 : B548;   
+  +B76:   #3
+        if vR0.fields[5]<=vR0.getActualMaximum@this(5) goto B101;   
+  +B90:   #1
+        vR0.fields[5] = vR0.getActualMaximum@this(5);   
+  +B101:   #1
+        vR0.isTimeSet = 0;   
+        vR0.isSet[4] = 0;   
+        vR0.isSet[7] = 0;   
+        vR0.isSet[8] = 0;   
+        vR0.isSet[6] = 0;   
+        vR0.isSet[3] = 0;   
+        goto +B548;   forward return[  . ..]
+  +B147:   #1
+        vR0.isSet[4] = 0;   
+        vR0.isSet[7] = 0;   
+        vR0.isSet[8] = 0;   
+        vR0.isSet[6] = 0;   
+        vR0.isSet[3] = 0;   
+        vR0.time = (vR0.time+((long)vi2*86400000));   
+        goto +B548;   forward return[  . ..]
+  +B203:   #1
+        vR0.isSet[5] = 0;   
+        vR0.isSet[8] = 0;   
+        vR0.isSet[6] = 0;   
+        vR0.isSet[3] = 0;   
+        vR0.time = (vR0.time+((long)vi2*604800000));   
+        goto +B548;   forward return[  . ..]
+  +B251:   #1
+        vR0.isSet[5] = 0;   
+        vR0.isSet[4] = 0;   
+        vR0.isSet[6] = 0;   
+        vR0.isSet[3] = 0;   
+        vR0.time = (vR0.time+((long)vi2*604800000));   
+        goto +B548;   forward return[  . ..]
+  +B298:   #1
+        vR0.isSet[2] = 0;   
+        vR0.isSet[5] = 0;   
+        vR0.isSet[4] = 0;   
+        vR0.isSet[8] = 0;   
+        vR0.isSet[7] = 0;   
+        vR0.isSet[3] = 0;   
+        vR0.time = (vR0.time+((long)vi2*86400000));   
+        goto +B548;   forward return[  . ..]
+  +B360:   #1
+        vR0.isSet[2] = 0;   
+        vR0.isSet[5] = 0;   
+        vR0.isSet[4] = 0;   
+        vR0.isSet[8] = 0;   
+        vR0.isSet[6] = 0;   
+        vR0.time = (vR0.time+((long)vi2*604800000));   
+        goto +B548;   forward return[  . ..]
+  +B415:   #1
+        vR0.isSet[11] = 0;   
+        vR0.time = (vR0.time+((long)vi2*43200000));   
+        goto +B548;   forward return[  . ..]
+  +B441:   #1
+        vR0.isSet[11] = 0;   
+        vR0.time = (vR0.time+((long)vi2*3600000));   
+        goto +B548;   forward return[  . ..]
+  +B467:   #1
+        vR0.isSet[10] = 0;   
+        vR0.isSet[9] = 0;   
+        vR0.time = (vR0.time+((long)vi2*3600000));   
+        goto +B548;   forward return[  . ..]
+  +B501:   #1
+        vR0.time = (vR0.time+((long)vi2*60000));   
+        goto +B548;   forward return[  . ..]
+  +B519:   #1
+        vR0.time = (vR0.time+((long)vi2*1000));   
+        goto +B548;   forward return[  . ..]
+  +B537:   #1
+        vR0.time = (vR0.time+(long)vi2);   
+  +B548:   #13
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 1 swaps 0 any 1 found 0 cleanUpAfterRoll
+ 
+ method roll(II)V {
+  +START:   #1
+        lswitch (vi1) { 
+           7:B36
+           15:B43
+           16:B43
+           ::B53
+        };   
+  +B36:   #1
+        vR0.add@this(vi1,vi2);   [iiii R  iiR] 
+        return;   
+  -B43:   #2
+        throw new java/lang/IllegalArgumentException("Can't roll time zone");   
+  +B53:   #1
+        vR0.complete@this();   [ R . R..] 
+        vi3 = vR0.getActualMinimum@this(vi1);    [ R . iR.] 
+        vi4 = ((vR0.getActualMaximum@this(vi1)-vi3)+1);    
+        vi5 = vR0.fields[vi1];    
+        vi6 = (((((vi5-vi3)+vi4)+vi2)%vi4)+vi3);    
+        if vi6>=vi3 goto B111;   
+  +B104:   #1
+        vi6 = (vi6+vi4);    
+  +B111:   #1
+        vR0.fields[vi1] = vi6;   
+        vR0.cleanUpAfterRoll@this(vi1,(vi6-vi5));   [iiii R i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 7 swaps 1 any 4 found 1 roll
+ 
+ method getMinimum(I)I {
+  +START:   #1
+        return minimums[vi1];   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimum
+ 
+ method getMaximum(I)I {
+  +START:   #1
+        return maximums[vi1];   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaximum
+ 
+ method getGreatestMinimum(I)I {
+  +START:   #1
+        if vi1!=3 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        return minimums[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 getGreatestMinimum
+ 
+ method getLeastMaximum(I)I {
+  +START:   #1
+        tswitch (vi1) B40 B50 B43 B46 B52 B50 : B52;   
+  +B40:   #1
+        return 52;   
+  +B43:   #1
+        return 28;   
+  +B46:   #1
+        return 365;   
+  +B50:   #2
+        return 4;   
+  +B52:   #2
+        return maximums[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 getLeastMaximum
+ 
+ method getActualMinimum(I)I {
+  +START:   #1
+        if vi1!=3 goto B104;   
+  +B5:   #1
+        vi2 = vR0.getMinimalDaysInFirstWeek@this();    [ i  R] 
+        if vi2!=0 goto B16;   
+  +B14:   #1
+        return 1;   
+  +B16:   #1
+        if vR0.areFieldsSet==0 goto B41;   
+  +B23:   #1
+        if vR0.isSet[0]==0 goto B41;   
+  +B32:   #1
+        if vR0.isSet[1]!=0 goto B45;   
+  +B41:   #2
+        vR0.complete@this();   [i i  R] 
+  +B45:   #1
+        if vR0.fields[0]!=1 goto B64;   
+  +B55:   #1
+        b0 = vR0.fields[1];    
+        goto +B72b0;   [i i  .]
+  +B64:   #1
+        b0 = (1-vR0.fields[1]);    
+  +B72b0:   #1 int
+        vi3 = b0;    
+        vi4 = vR0.getWeekDay@special(vi3,vi2);    [ii i  iiR] 
+        if (((vi4+7)-vR0.getFirstDayOfWeek@this())%7)<(vi2-1) goto B102;   
+  +B100:   #1
+        return 1;   
+  +B102:   #1
+        return 0;   
+  +B104:   #1
+        return minimums[vi1];   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 7 swaps 0 any 3 found 0 getActualMinimum
+ 
+ method getActualMaximum(I)I {
+  +START:   #1
+        tswitch (vi1) B40 B405 B186 B304 B456 B379 : B456;   
+  +B40:   #1
+        if vR0.areFieldsSet==0 goto B65;   
+  +B47:   #1
+        if vR0.isSet[0]==0 goto B65;   
+  +B56:   #1
+        if vR0.isSet[1]!=0 goto B69;   
+  +B65:   #2
+        vR0.complete@this();   [ i  R] 
+  +B69:   #1
+        if vR0.fields[0]!=1 goto B88;   
+  +B79:   #1
+        b0 = vR0.fields[1];    
+        goto +B96b0;   [ i  .]
+  +B88:   #1
+        b0 = (1-vR0.fields[1]);    
+  +B96b0:   #1 int
+        vi2 = b0;    
+        if vR0.isLeapYear@this(vi2)==0 goto B111;   
+  +B105:   #1
+        b0 = 366;    
+        goto +B114b0;   [i i  ..]
+  +B111:   #1
+        b0 = 365;    
+  +B114b0:   #1 int
+        vi3 = b0;    
+        vi4 = vR0.getWeekDay@special(vi2,vi3);    [ii i  iiR] 
+        vi5 = (((vi3+6)-(((vi4+7)-vR0.getFirstDayOfWeek@this())%7))/7);    
+        vi6 = vR0.getMinimalDaysInFirstWeek@this();    [iiii i .... R..] 
+        vi7 = vR0.getWeekDay@special(vi2,vi6);    [iiiii i .... iiR] 
+        if (vi6-(((vi7+7)-vR0.getFirstDayOfWeek@this())%7))>=1 goto B186;   
+  +B181:   #1
+        return (vi5+1);   
+  +B186:   #2
+        if vR0.areFieldsSet==0 goto B202;   
+  +B193:   #1
+        if vR0.isSet[2]!=0 goto B206;   
+  +B202:   #1
+        vR0.complete@this();   [iiiiii i .... R..] 
+  +B206:   #1
+        vi2 = vR0.fields[2];    
+        if vi2!=1 goto B284;   
+  +B218:   #1
+        if vR0.isSet[1]==0 goto B236;   
+  +B227:   #1
+        if vR0.isSet[0]!=0 goto B240;   
+  +B236:   #1
+        vR0.complete@this();   [iiiiii i .... R..] 
+  +B240:   #1
+        if vR0.fields[0]!=1 goto B259;   
+  +B250:   #1
+        b0 = vR0.fields[1];    
+        goto +B267b0;   [iiiiii i .... ...]
+  +B259:   #1
+        b0 = (1-vR0.fields[1]);    
+  +B267b0:   #1 int
+        vi3 = b0;    
+        if vR0.isLeapYear@this(vi3)==0 goto B281;   
+  +B276:   #1
+        b0 = 29;    
+        goto +B283b0;   forward return[iiiiii i .... ...]
+  +B281:   #1
+        b0 = 28;    
+  +B283b0:   #1 int
+        return b0;   
+  +B284:   #1
+        if vi2>=7 goto B297;   
+  +B290:   #1
+        return (31-(vi2 & 1));   
+  +B297:   #1
+        return ((vi2 & 1)+30);   
+  +B304:   #1
+        if vR0.areFieldsSet==0 goto B329;   
+  +B311:   #1
+        if vR0.isSet[0]==0 goto B329;   
+  +B320:   #1
+        if vR0.isSet[1]!=0 goto B333;   
+  +B329:   #2
+        vR0.complete@this();   [iiiiii i .... R..] 
+  +B333:   #1
+        if vR0.fields[0]!=1 goto B352;   
+  +B343:   #1
+        b0 = vR0.fields[1];    
+        goto +B360b0;   [iiiiii i .... ...]
+  +B352:   #1
+        b0 = (1-vR0.fields[1]);    
+  +B360b0:   #1 int
+        vi2 = b0;    
+        if vR0.isLeapYear@this(vi2)==0 goto B375;   
+  +B369:   #1
+        b0 = 366;    
+        goto +B378b0;   forward return[iiiiii i .... ...]
+  +B375:   #1
+        b0 = 365;    
+  +B378b0:   #1 int
+        return b0;   
+  +B379:   #1
+        vi2 = vR0.getActualMaximum@this(5);    [iiiiii i .... iR.] 
+        return (((vi2-((vR0.fields[5]-1)%7))+6)/7);   
+  +B405:   #1
+        vi2 = vR0.getActualMaximum@this(5);    [iiiiii i .... iR.] 
+        vi3 = (((((vi2-vR0.fields[5])+vR0.fields[7])-1)%7)+1);    
+        return (((vi2+6)-(((vi3+7)-vR0.getFirstDayOfWeek@this())%7))/7);   
+  +B456:   #2
+        return maximums[vi1];   
+  +END:   #1
+ }
+// Register: rd 71/71 wr 28 swaps 2 any 8 found 1 getActualMaximum
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new int[17];    
+        b0[0] = 0;   
+        b0[1] = 1;   
+        b0[2] = 1;   
+        b0[3] = 0;   
+        b0[4] = 1;   
+        b0[5] = 1;   
+        b0[6] = 1;   
+        b0[7] = 1;   
+        b0[8] = 1;   
+        b0[9] = 0;   
+        b0[10] = 1;   
+        b0[11] = 0;   
+        b0[12] = 1;   
+        b0[13] = 1;   
+        b0[14] = 1;   
+        b0[15] = -43200000;   
+        b0[16] = 0;   
+        minimums = b0;   
+        b0 = new int[17];    
+        b0[0] = 1;   
+        b0[1] = 5000000;   
+        b0[2] = 12;   
+        b0[3] = 53;   
+        b0[4] = 5;   
+        b0[5] = 31;   
+        b0[6] = 366;   
+        b0[7] = 7;   
+        b0[8] = 5;   
+        b0[9] = 1;   
+        b0[10] = 12;   
+        b0[11] = 23;   
+        b0[12] = 59;   
+        b0[13] = 59;   
+        b0[14] = 999;   
+        b0[15] = 43200000;   
+        b0[16] = 43200000;   
+        maximums = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 2 swaps 0 any 0 found 2 <clinit>
+}

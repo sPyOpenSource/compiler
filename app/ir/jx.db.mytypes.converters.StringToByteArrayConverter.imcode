@@ -1,0 +1,37 @@
+class jx/db/mytypes/converters/StringToByteArrayConverter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method convert(Ljava/lang/Object;ILjava/lang/Object;II)V {
+  +START:   #1
+        vR6 = (java/lang/String)(vR1).getBytes@extra();    [   R.] 
+        if vR6.length>=vi5 goto B44;   
+  +B17:   #1
+        arraycopy@special(vR6,0,vR3,vi4,vR6.length);   [R  i iiRiR]
+        ([B)(vR3)[(vR6.length+vi4)] = 0;   
+        goto +B55;   forward return[R  i. .....]
+  +B44:   #1
+        arraycopy@special(vR6,0,vR3,vi4,vi5);   [R  .. iiRiR]
+  +B55:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 0 found 2 convert
+ 
+ method revert(Ljava/lang/Object;ILjava/lang/Object;II)V {
+  +START:   #1
+        vR6 = new byte[vi5];    
+        arraycopy@special(vR1,vi2,vR6,0,vR6.length);   [R R i iiRiR]
+        vR7 = new java/lang/String(vR6);    [ R i i....][ R i. iRR..]
+        (java/lang/StringBuffer)(vR3).append(vR7);   [RR R i. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 1 revert
+}

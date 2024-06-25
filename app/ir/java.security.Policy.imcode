@@ -1,0 +1,45 @@
+class java/security/Policy {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPolicy()Ljava/security/Policy; {
+  +START:   #1
+        vR0 = getSecurityManager@special();    [ ?R  ]
+        if vR0==null goto B21;   
+  +B8:   #1
+        b1 = new java/security/SecurityPermission("getPolicy");    [ ?R  i][ ?R . iRR]
+        vR0.checkPermission@this(b1);   [R ?R . RR.] 
+  +B21:   #1
+        return currentPolicy;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 getPolicy
+ 
+ method setPolicy(Ljava/security/Policy;)V {
+  +START:   #1
+        vR1 = getSecurityManager@special();    [ ?R  ]
+        if vR1==null goto B21;   
+  +B8:   #1
+        b1 = new java/security/SecurityPermission("setPolicy");    [ ?R  i][ ?R . iRR]
+        vR1.checkPermission(b1);   [R ?R . RR.] 
+  +B21:   #1
+        currentPolicy = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 1 found 1 setPolicy
+ 
+ method <clinit>()V {
+  +START:   #1
+        currentPolicy = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

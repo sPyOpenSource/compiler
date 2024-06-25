@@ -1,0 +1,173 @@
+class java/util/ArrayList$ArrayListSpliterator {
+ 
+ method <init>(Ljava/util/ArrayList;III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.list = vR1;   
+        vR0.index = vi2;   
+        vR0.fence = vi3;   
+        vR0.expectedModCount = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getExactSizeIfKnown()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getExactSizeIfKnown
+ 
+ method hasCharacteristics(I)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hasCharacteristics
+ 
+ method getComparator()Ljava/util/Comparator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getComparator
+ 
+ method getFence()I {
+  +START:   #1
+        b0 = vR0.fence;    
+        vi1 = b0;    
+        if b0>=0 goto B46;   
+  +B9:   #1
+        b0 = vR0.list;    
+        vR2 = b0;    
+        if b0!=null goto B28;   
+  +B18:   #1
+        vR0.fence = 0;   
+        vi1 = 0;    
+        goto +B46;   forward return[iR Ri  ]
+  +B28:   #1
+        vR0.expectedModCount = access$100@special(vR2);   
+        b1 = access$200@special(vR2);    [iR Ri  R]
+        b0 = b1;    
+        vR0.fence = b1;   
+        vi1 = b0;    
+  +B46:   #2
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 0 any 6 found 0 getFence
+ 
+ method trySplit()Ljava/util/ArrayList$ArrayListSpliterator; {
+  +START:   #1
+        vi1 = vR0.getFence@special();    [ RRR  R] 
+        vi2 = vR0.index;    
+        vi3 = ((vi2+vi1) >>> 1);    
+        if vi2<vi3 goto B25;   
+  +B21:   #1
+        b0 = 0;    
+        goto +B47b0;   forward return[iii RRR  .]
+  +B25:   #1
+        b0 = new java/util/ArrayList$ArrayListSpliterator;    
+        b1 = b0;    
+        b2 = vR0.list;    
+        vR0.index = vi3;   
+        b1.<init>@special(b2,vi2,vi3,vR0.expectedModCount);   [iii RRR i iiiRR] 
+  +B47b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 8 swaps 0 any 3 found 0 trySplit
+ 
+ method tryAdvance(Ljava/util/function/Consumer;)Z {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        vi2 = vR0.getFence@special();    [ R  R.] 
+        vi3 = vR0.index;    
+        if vi3>=vi2 goto B77;   
+  +B27:   #1
+        vR0.index = (vi3+1);   
+        vR4 = vR0.list.elementData[vi3];    
+        vR1.accept(vR4);   [iiR R  RR] 
+        if access$100@special(vR0.list)==vR0.expectedModCount goto B75;   
+  -B67:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B75:   #1
+        return 1;   
+  +B77:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 2 found 0 tryAdvance
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        b0 = vR0.list;    
+        vR5 = b0;    
+        if b0==null goto B121;   
+  +B22:   #1
+        b0 = vR5.elementData;    
+        vR6 = b0;    
+        if b0==null goto B121;   
+  +B33:   #1
+        b0 = vR0.fence;    
+        vi3 = b0;    
+        if b0>=0 goto B58;   
+  +B42:   #1
+        vi4 = access$100@special(vR5);    [?i?RR i  R.]
+        vi3 = access$200@special(vR5);    [?iiRR i  R.]
+        goto +B64;   [?iiRR i  ..]
+  +B58:   #1
+        vi4 = vR0.expectedModCount;    
+  +B64:   #1
+        b0 = vR0.index;    
+        vi2 = b0;    
+        if b0< 0 goto B121;   
+  +B73:   #1
+        vR0.index = vi3;   
+        if vi3>vR6.length goto B121;   
+  +B85:   #1
+        if vi2>=vi3 goto B110;   
+  +B90:   #1
+        vR7 = vR6[vi2];    
+        vR1.accept(vR7);   [iiiRRR i  RR] 
+        vi2++;   
+        goto +B85;   [iiiRRR i  ..]
+  +B110:   #1
+        if access$100@special(vR5)!=vi4 goto B121;   
+  +B120:   #1
+        return;   
+  -B121:   #5
+        throw new java/util/ConcurrentModificationException();   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 13 swaps 0 any 12 found 0 forEachRemaining
+ 
+ method estimateSize()J {
+  +START:   #1
+        return (long)(vR0.getFence@special()-vR0.index);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 estimateSize
+ 
+ method characteristics()I {
+  +START:   #1
+        return 16464;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 characteristics
+ 
+ method trySplit()Ljava/util/Spliterator; {
+  +START:   #1
+        return vR0.trySplit@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+}

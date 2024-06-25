@@ -1,0 +1,28 @@
+class java/lang/Long$LongCache {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <clinit>()V {
+  +START:   #1
+        cache = new java/lang/Long()[256];   
+        vi0 = 0;    
+  +B11:   #1
+        if vi0>=cache.length goto B43;   
+  +B19:   #1
+        b0 = cache;    
+        b2 = new java/lang/Long((long)(vi0-128));    [ R?R . i.][ R?R .. ilR]
+        b0[vi0] = b2;   
+        vi0++;   
+        goto +B11;   [i R?R .. ...]
+  +B43:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 0 any 3 found 1 <clinit>
+}

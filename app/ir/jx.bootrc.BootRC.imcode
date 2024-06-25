@@ -1,0 +1,539 @@
+class jx/bootrc/BootRC {
+ 
+ method <init>(Ljx/zero/ReadOnlyMemory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = new char[256];   
+        vR0.linenumber = 1;   
+        vR0.firstSection = 0;   
+        vR0.mem = vR1;   
+        vR0.parse@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method nextLine()Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [?i b i iR] 
+        vi1 = b0;    
+        if b0==10 goto B46;   
+  +B22:   #1
+        vR0.data[vi2] = (char)vi1;   
+        vR0.pos = (vR0.pos+1);   
+        vi2++;   
+        goto +B2;   [ii b . ..]
+  +B46:   #1
+        vR0.pos = (vR0.pos+1);   
+        vR0.linenumber = (vR0.linenumber+1);   
+        vR3 = new java/lang/String(vR0.data,0,vi2);    [ b . i.][ b . iiiRR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 7 swaps 1 any 4 found 0 nextLine
+ 
+ method readInParen()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [ R i iR] 
+        if vi1==91 goto B30;   
+  -B20:   #1
+        throw new java/lang/Error("readInParen (b != LPAREN)");   
+  +B30:   #1
+        vi2 = 0;    
+  +B32:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [ii b i iR.] 
+        vi1 = b0;    
+        if b0==93 goto B76;   
+  +B52:   #1
+        vR0.data[vi2] = (char)vi1;   
+        vR0.pos = (vR0.pos+1);   
+        vi2++;   
+        goto +B32;   [ii b . ...]
+  +B76:   #1
+        vR0.pos = (vR0.pos+1);   
+        return new java/lang/String(vR0.data,1,(vi2-1));   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 9 swaps 2 any 5 found 0 readInParen
+ 
+ method nextSection()Ljx/bootrc/Section; {
+  +START:   #1
+        if vR0.gotoNextSection@this()!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR1 = new jx/bootrc/Section();    [ R  i][ R  iR]
+        vR1.name = vR0.readInParen@this();   
+        if vR0.haveMoreTokens@this()!=0 goto B34;   
+  +B32:   #1
+        return 0;   
+  +B34:   #1
+        vR0.upToNextToken@this();   [R R  R.] 
+  +B39:   #1
+        vR2 = vR0.nextRecord@this();    [R R  R.] 
+        if vR2!=null goto B50;   
+  +B48:   #1
+        return vR1;   
+  +B50:   #1
+        vR1.add(vR2);   [RR R  RR] 
+        goto +B39;   [RR R  ..]
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 1 found 0 nextSection
+ 
+ method nextRecord()Ljx/bootrc/Record; {
+  +START:   #1
+        if vR0.gotoFirstTokenInLine@this()!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        if vR0.haveMoreTokens@this()!=0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #2
+        vR1 = new jx/bootrc/Record();    [ RR  i][ RR  iR]
+        vR1.domainName = vR0.nextStringToken@this();   
+        vR0.upToNextToken@this();   [R RR  R.] 
+        vR1.mainLib = vR0.nextStringToken@this();   
+        vR0.upToNextToken@this();   [R RR  R.] 
+        vR1.startClass = vR0.nextStringToken@this();   
+        vR0.upToNextToken@this();   [R RR  R.] 
+  +B65:   #2
+        if vR0.mem.get8(vR0.pos)!=32 goto B96;   
+  +B83:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B65;   [R RR . ..]
+  +B96:   #1
+        if vR0.mem.get8(vR0.pos)!=34 goto B130;   
+  +B114:   #1
+        vR1.schedulerClass = vR0.nextStringToken@this();   
+        vR0.upToNextToken@this();   [R RR . R.] 
+        goto +B135;   [R RR . ..]
+  +B130:   #1
+        vR1.schedulerClass = 0;   
+  +B135:   #2
+        goto +B144;   [R RR . ..]
+  +H138<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        vR1.schedulerClass = 0;   
+  +B144:   #1
+        vR1.heapSize = vR0.nextIntToken@this();   
+        vR2 = new java/lang/String()[100];    
+        vi3 = 0;    
+  +B160:   #1
+        if vR0.upToNextToken@this()==0 goto B180;   
+  +B167:   #1
+        vR2[vi3] = vR0.nextStringOrNullToken@this();   
+        vi3++;   
+        goto +B160;   [RRi RR . ..]
+  +B180:   #1
+        vR1.argv = new java/lang/String()[vi3];   
+        arraycopy@special(vR2,0,vR1.argv,0,vi3);   [RRi RR R iiRiR]
+        b0 = vR1;    
+  +B200b0:   #1 reference
+        return b0;   
+  -H201<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i....][ RR . iR...]
+        b0.println(b1.append@extra("Exception:").append@extra(vR1).toString@extra());   [RRi RR ii. RR...] 
+        throw new java/lang/Error();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+65 - 135 handler 138 type 32
+18 - 200 handler 201 type 38
+ }
+// Register: rd 36/36 wr 16 swaps 4 any 2 found 0 nextRecord
+ 
+ method nextStringOrNullToken()Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [?i bRi i iR] 
+        vi1 = b0;    
+        if b0!=32 goto B35;   
+  +B22:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B2;   [ii bRi . ..]
+  +B35:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [ii bRi i iR] 
+        vi1 = b0;    
+        if b0==34 goto B220;   
+  +B55:   #1
+        if vi1!=110 goto B184;   
+  +B61:   #1
+        vR0.pos = (vR0.pos+1);   
+        b0 = vR0.mem;    
+        b2 = vR0.pos;    
+        b1 = b2;    
+        vR0.pos = (b2+1);   
+        b0 = b0.get8(b1);    [ii bii . iR] 
+        vi1 = b0;    
+        if b0==117 goto B108;   
+  -B98:   #1
+        throw new java/lang/Error("no u");   
+  +B108:   #1
+        b0 = vR0.mem;    
+        b2 = vR0.pos;    
+        b1 = b2;    
+        vR0.pos = (b2+1);   
+        b0 = b0.get8(b1);    [ii bii . iR.] 
+        vi1 = b0;    
+        if b0==108 goto B145;   
+  -B135:   #1
+        throw new java/lang/Error("no l");   
+  +B145:   #1
+        b0 = vR0.mem;    
+        b2 = vR0.pos;    
+        b1 = b2;    
+        vR0.pos = (b2+1);   
+        b0 = b0.get8(b1);    [ii bii . iR.] 
+        vi1 = b0;    
+        if b0==108 goto B182;   
+  -B172:   #1
+        throw new java/lang/Error("no l");   
+  +B182:   #1
+        return 0;   
+  -B184:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi . i..][ RRi . iR.]
+        b0.println(b1.append@extra("Error parsing line ").append@extra(vR0.linenumber).toString@extra());   [ii RRi iii. RR.] 
+        throw new jx/bootrc/StringTokenException();   
+  +B220:   #1
+        vR0.pos = (vR0.pos+1);   
+  +B230:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [ii bRi i... iR.] 
+        vi1 = b0;    
+        if b0==34 goto B274;   
+  +B250:   #1
+        vR0.data[vi2] = (char)vi1;   
+        vR0.pos = (vR0.pos+1);   
+        vi2++;   
+        goto +B230;   [ii bRi .... ...]
+  +B274:   #1
+        vR0.pos = (vR0.pos+1);   
+        vR3 = new java/lang/String(vR0.data,0,vi2);    [ bRi .... i..][ bRi .... iiiRR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 64/64 wr 38 swaps 6 any 18 found 0 nextStringOrNullToken
+ 
+ method nextStringToken()Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [?i bR i iR] 
+        vi1 = b0;    
+        if b0!=32 goto B35;   
+  +B22:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B2;   [ii bR . ..]
+  +B35:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [ii bR i iR] 
+        vi1 = b0;    
+        if b0==34 goto B91;   
+  -B55:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("Error parsing line ").append@extra(vR0.linenumber).toString@extra());   [ii RR iii. RR.] 
+        throw new jx/bootrc/StringTokenException();   
+  +B91:   #1
+        vR0.pos = (vR0.pos+1);   
+  +B101:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [ii bR i... iR.] 
+        vi1 = b0;    
+        if b0==34 goto B145;   
+  +B121:   #1
+        vR0.data[vi2] = (char)vi1;   
+        vR0.pos = (vR0.pos+1);   
+        vi2++;   
+        goto +B101;   [ii bR .... ...]
+  +B145:   #1
+        vR0.pos = (vR0.pos+1);   
+        vR3 = new java/lang/String(vR0.data,0,vi2);    [ bR .... i..][ bR .... iiiRR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 20 swaps 6 any 8 found 0 nextStringToken
+ 
+ method nextIntToken()I {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        b0 = vR0.mem.get8(vR0.pos);    [?i bi i iR] 
+        vi1 = b0;    
+        if b0!=32 goto B35;   
+  +B22:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B2;   [ii bi . ..]
+  +B35:   #5
+        vi1 = vR0.mem.get8(vR0.pos);    [ii bi i iR] 
+        if vi1!=32 goto B68;   
+  +B55:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B35;   [ii bi . ..]
+  +B68:   #1
+        if vi1!=77 goto B153;   
+  +B74:   #1
+        vR0.pos = (vR0.pos+1);   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        goto +B35;   [ii Ri . ..]
+  +B153:   #1
+        if vi1!=107 goto B205;   
+  +B159:   #1
+        vR0.pos = (vR0.pos+1);   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        b0 = vR0.data;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 48;   
+        goto +B35;   [ii Ri . ..]
+  +B205:   #1
+        if vi1<48 goto B244;   
+  +B211:   #1
+        if vi1<=57 goto B220;   
+  +B217:   #1
+        goto +B244;   [ii Ri . ..]
+  +B220:   #1
+        vR0.data[vi2] = (char)vi1;   
+        vR0.pos = (vR0.pos+1);   
+        vi2++;   
+        goto +B35;   [iiR Ri . ..]
+  +B244:   #2
+        vR3 = new java/lang/String(vR0.data,0,vi2);    [ Ri . i.][ Ri . iiiRR]
+        return parseInt@special(vR3,10);   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 36 swaps 2 any 27 found 0 nextIntToken
+ 
+ method selectedConfig()Ljava/lang/String; {
+  +START:   #1
+        if vR0.gotoNextSection@this()!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        return vR0.readInParen@this();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 selectedConfig
+ 
+ method haveMoreTokens()Z {
+  +START:   #1
+        if vR0.pos<vR0.mem.size() goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [ i i iR] 
+        if vi1==91 goto B42;   
+  +B38:   #1
+        b0 = 1;    
+        goto +B43b0;   forward return[i i . ..]
+  +B42:   #1
+        b0 = 0;    
+  +B43b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 1 found 0 haveMoreTokens
+ 
+ method gotoFirstToken()V {
+  +START:   #2
+        if vR0.pos>=vR0.mem.size() goto B134;   
+  +B16:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [ R i iR] 
+        if vi1!=91 goto B46;   
+  -B36:   #1
+        throw new java/lang/Error("empty section not allowed");   
+  +B46:   #1
+        if vi1==35 goto B59;   
+  +B52:   #1
+        if vi1==10 goto B59;   
+  +B58:   #1
+        return;   
+  +B59:   #3
+        if vR0.pos>=vR0.mem.size() goto B121;   
+  +B75:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [i R i iR.] 
+        if vi1!=10 goto B108;   
+  +B95:   #1
+        vR0.linenumber = (vR0.linenumber+1);   
+        goto +B121;   [i R . ...]
+  +B108:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B59;   [i R . ...]
+  +B121:   #2
+        vR0.pos = (vR0.pos+1);   
+        goto +START;   [i R . ...]
+  +B134:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 7 swaps 2 any 4 found 0 gotoFirstToken
+ 
+ method gotoFirstTokenInLine()Z {
+  +START:   #2
+        if vR0.pos>=vR0.mem.size() goto B127;   
+  +B16:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [  i iR] 
+        if vi1!=91 goto B38;   
+  +B36:   #1
+        return 0;   
+  +B38:   #1
+        if vi1==35 goto B52;   
+  +B44:   #1
+        if vi1==10 goto B52;   
+  +B50:   #1
+        return 1;   
+  +B52:   #3
+        if vR0.pos>=vR0.mem.size() goto B114;   
+  +B68:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [i  i iR] 
+        if vi1!=10 goto B101;   
+  +B88:   #1
+        vR0.linenumber = (vR0.linenumber+1);   
+        goto +B114;   [i  . ..]
+  +B101:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B52;   [i  . ..]
+  +B114:   #2
+        vR0.pos = (vR0.pos+1);   
+        goto +START;   [i  . ..]
+  +B127:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 6 swaps 2 any 4 found 0 gotoFirstTokenInLine
+ 
+ method gotoNextSection()Z {
+  +START:   #2
+        if vR0.pos>=vR0.mem.size() goto B113;   
+  +B16:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [  i iR] 
+        if vi1!=91 goto B38;   
+  +B36:   #1
+        return 1;   
+  +B38:   #2
+        if vR0.pos>=vR0.mem.size() goto B100;   
+  +B54:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [i  i iR] 
+        if vi1!=10 goto B87;   
+  +B74:   #1
+        vR0.linenumber = (vR0.linenumber+1);   
+        goto +B100;   [i  . ..]
+  +B87:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +B38;   [i  . ..]
+  +B100:   #2
+        vR0.pos = (vR0.pos+1);   
+        goto +START;   [i  . ..]
+  +B113:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 6 swaps 2 any 2 found 0 gotoNextSection
+ 
+ method upToNextToken()Z {
+  +START:   #2
+        if vR0.pos>=vR0.mem.size() goto B89;   
+  +B16:   #1
+        vi1 = vR0.mem.get8(vR0.pos);    [  i iR] 
+        if vi1!=44 goto B48;   
+  +B36:   #1
+        vR0.pos = (vR0.pos+1);   
+        return 1;   
+  +B48:   #1
+        if vi1!=10 goto B76;   
+  +B54:   #1
+        vR0.pos = (vR0.pos+1);   
+        vR0.linenumber = (vR0.linenumber+1);   
+        return 0;   
+  +B76:   #1
+        vR0.pos = (vR0.pos+1);   
+        goto +START;   [i  . ..]
+  +B89:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 3 swaps 1 any 2 found 0 upToNextToken
+ 
+ method parse()V {
+  +START:   #1
+        vR3 = 0;    
+        vR0.startConfig = vR0.selectedConfig@this();   
+  +B10:   #2
+        b0 = vR0.nextSection@this();    [??R R  R] 
+        vR1 = b0;    
+        if b0==null goto B46;   
+  +B19:   #1
+        if vR0.firstSection!=null goto B36;   
+  +B26:   #1
+        vR0.firstSection = vR1;   
+        vR3 = vR1;    
+        goto +B10;   [R?R R  .]
+  +B36:   #1
+        vR3.next = vR1;   
+        vR3 = vR1;    
+        goto +B10;   [R?R R  .]
+  +B46:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 0 any 4 found 0 parse
+ 
+ method getSelectedName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.startConfig;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSelectedName
+ 
+ method getSelectedSection()Ljx/bootrc/Section; {
+  +START:   #1
+        vR1 = vR0.firstSection;    
+  +B5:   #1
+        if vR1==null goto B33;   
+  +B9:   #1
+        if vR1.name.equals@extra(vR0.startConfig)==0 goto B25;   
+  +B23:   #1
+        return vR1;   
+  +B25:   #1
+        vR1 = vR1.next;    
+        goto +B5;   [R R . ..]
+  -B33:   #1
+        throw new java/lang/Error("selected config not found");   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 1 found 0 getSelectedSection
+}

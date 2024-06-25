@@ -1,0 +1,62 @@
+class java/security/PermissionCollection {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isReadOnly()Z {
+  +START:   #1
+        return vR0.readOnly;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadOnly
+ 
+ method setReadOnly()V {
+  +START:   #1
+        vR0.readOnly = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setReadOnly
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append(b1.append@extra(vR0.toString@special()).append@extra(" (").append@extra(linesep).toString@extra());   [R RR iii..i RR..] 
+        vR2 = vR0.elements@this();    [R RR iii..i R...] 
+  +B48:   #1
+        if vR2.hasMoreElements()==0 goto B105;   
+  +B57:   #1
+        vR3 = vR2.nextElement();    [RR RR ...... R...] 
+        if (vR3 instanceof java/security/Permission)==0 goto B102;   
+  +B71:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        vR1.append(b1.append@extra((java/security/Permission)(vR3).toString()).append@extra(linesep).toString@extra());   [RRR RR ii.i.. RR..] 
+  +B102:   #1
+        goto +B48;   [RRR RR ...... ....]
+  +B105:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        vR1.append(b1.append@extra(")").append@extra(linesep).toString@extra());   [RRR RR iii... RR..] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 24 swaps 10 any 0 found 1 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        linesep = 0;   
+        vR0 = getProperty@special("line.separator");    [  R R]
+        if vR0!=null goto B14;   
+  +B14:   #1
+        vR0 = "
+";    
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 0 any 1 found 0 <clinit>
+}

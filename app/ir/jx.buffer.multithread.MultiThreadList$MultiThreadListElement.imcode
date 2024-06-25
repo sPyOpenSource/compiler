@@ -1,0 +1,15 @@
+class jx/buffer/multithread/MultiThreadList$MultiThreadListElement {
+ 
+ method <init>(Ljx/buffer/multithread/MultiThreadList;Ljava/lang/Object;Ljx/zero/CPUManager;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.data = vR2;   
+        vR0.next = vR3.getAtomicVariable();   
+        vR0.next.activateListMode();   [   R] 
+        vR0.next.set(0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+}

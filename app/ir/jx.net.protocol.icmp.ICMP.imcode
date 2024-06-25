@@ -1,0 +1,66 @@
+class jx/net/protocol/icmp/ICMP {
+ 
+ method <init>(Ljx/net/PacketsConsumer;Ljx/net/PacketsProducer;Ljx/net/NetInit;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.net = vR3;   
+        vR0.lowerProducer = vR2;   
+        vR0.lowerConsumer = vR1;   
+        vR2.registerConsumer(vR0,"ICMP");   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method register(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.ipLayer==null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR0.ipLayer = (jx/net/protocol/ip/IP)(vR1);   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 1 register
+ 
+ method processMemory(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        out.println("ICMP packet received: offset=");   [ RR i. RR] 
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR3 = new jx/net/protocol/icmp/ICMPFormat(vR1,34);    [ RR ii. i.][ RR ii. iiRR]
+        vi4 = vR3.getType();    [RR RR ii. R...] 
+        vi5 = vR3.getCode();    [RRi RR ii. R...] 
+        vi6 = vR3.getChecksum();    [RRii RR ii. R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii. i...][ RR ii. iR..]
+        b0.println(b1.append@extra("ICMP type: ").append@extra(vi4).append@extra(", code=").append@extra(vi5).append@extra(", checksum=").append@extra(vi6).toString@extra());   [RRiii RR iiiiii..... RR.....] 
+        if vi4!=8 goto B173;   
+  +B104:   #1
+        out.println("  ICMP ECHO RECEIVED. (ping)");   [RRiii RR i.......... RR.....] 
+  +B112:   #1
+        vR3.insertType(0);   [RRiii RR ........... iR.....] 
+        vR3.CalculateChecksum();   [RRiii RR ........... R......] 
+        vR0.sender = vR0.net.getIPSender(vR0.data.sourceAddress,1);   
+        out.println(vR1.size());   [RRiii RR ii......... iR.....] 
+        vR0.sender.send(vR3.getMemory());   [RRiii RR iii........ RR.....] 
+  +B168:   #1
+        goto +B173;   forward return[RRiii RR ........... .......]
+  +H171<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+  +B173:   #2
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+112 - 168 handler 171 type 41
+ }
+// Register: rd 18/18 wr 30 swaps 11 any 1 found 0 processMemory
+ 
+ method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR0.data = vR1;   
+        return vR0.processMemory@this(vR1.mem);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 processIP
+}

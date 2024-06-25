@@ -1,0 +1,168 @@
+class jx/devices/net/emulation/NetImpl {
+ 
+ method <init>(Ljx/zero/NetEmulation;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RiR  R] 
+        vR0.net = vR1;   
+        vR4 = new byte[6];    
+        vR5 = vR3.toCharArray@extra();    [R RiR  R.] 
+        vi6 = 0;    
+        vi7 = 0;    
+  +B27:   #1
+        if vi7>=vR5.length goto B210;   
+  +B35:   #1
+        vi8 = 0;    
+  +B38:   #1
+        if vi7>=vR5.length goto B189;   
+  +B46:   #1
+        if vR5[vi7]==58 goto B189;   
+  +B56:   #1
+        vi8 = (vi8 << 4);    
+        vi9 = vR5[vi7];    
+        if vi9<65 goto B99;   
+  +B76:   #1
+        if vi9>70 goto B99;   
+  +B83:   #1
+        vi8 = (vi8+((vi9-65)+10));    
+        goto +B183;   [RRiiii RiR  ..]
+  +B99:   #2
+        if vi9<97 goto B129;   
+  +B106:   #1
+        if vi9>102 goto B129;   
+  +B113:   #1
+        vi8 = (vi8+((vi9-97)+10));    
+        goto +B183;   [RRiiii RiR  ..]
+  +B129:   #2
+        if vi9<48 goto B156;   
+  +B136:   #1
+        if vi9>57 goto B156;   
+  +B143:   #1
+        vi8 = (vi8+(vi9-48));    
+        goto +B183;   [RRiiii RiR  ..]
+  -B156:   #2
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Parse error. No etheraddr:").append@extra(vR3).toString@extra());   [RRiiii RRR ii. RR.] 
+        throw b0;   
+  +B183:   #3
+        vi7++;   
+        goto +B38;   [RRiiii RRR ... ...]
+  +B189:   #2
+        b1 = vi6;    
+        vi6++;   
+        vR4[b1] = (byte)(vi8 & 255);   
+        vi7++;   
+        goto +B27;   [RRiiii RiR ... ...]
+  +B210:   #1
+        vR1.open(vR2,vR4);   [RRiiii RiR ... RRR] 
+        vR0.naming = getInitialNaming@special();   
+        vR0.memoryManager = (jx/zero/MemoryManager)(vR0.naming.lookup("MemoryManager"));   
+        vR0.buffer = vR0.memoryManager.alloc(vR1.getMTU());   
+        b0 = new jx/devices/net/emulation/NetImpl$1(vR0,"NetEmul-Eventloop");    [ RiR ii. i..][ RiR ii. iRRR]
+        b0.start();   [RRiiii RiR ii. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 47/47 wr 26 swaps 4 any 17 found 0 <init>
+ 
+ method eventloop()V {
+  +START:   #4
+        b0 = vR0.net.receive(vR0.buffer);    [ i i RR] 
+        vi1 = b0;    
+        if b0!=0 goto B24;   
+  +B18:   #1
+        yield@special();   [i i . ..]
+        goto +START;   [i i . ..]
+  +B24:   #1
+        if vR0.consumer==null goto START;   
+  +B31:   #1
+        vR2 = vR0.consumer.processMemory(vR0.buffer,0,vi1);    [i i i iiRR] 
+        vR0.buffer = vR2.revoke();   
+        goto +START;   [iR i i ....]
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 2 any 2 found 0 eventloop
+ 
+ method setReceiveMode(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setReceiveMode
+ 
+ method transmit1(Ljx/zero/Memory;II)Ljx/zero/Memory; {
+  +START:   #1
+        vR0.net.send(vR1,vi2,vi3);   [   iiRR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 transmit1
+ 
+ method transmit(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        if vR1.isValid()!=0 goto B19;   
+  -B9:   #1
+        throw new java/lang/Error("NetworkEmulation: I got an invalid memory!");   
+  +B19:   #1
+        vR0.net.send(vR1,0,vR1.size());   [ R i iiRR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 transmit
+ 
+ method getMACAddress()[B {
+  +START:   #1
+        return vR0.net.getMACAddress();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMACAddress
+ 
+ method getMTU()I {
+  +START:   #1
+        return vR0.net.getMTU();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMTU
+ 
+ method registerNonBlockingConsumer(Ljx/buffer/separator/NonBlockingMemoryConsumer;)Z {
+  +START:   #1
+        vR0.consumer = vR1;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 registerNonBlockingConsumer
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 open
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  +START:   #1
+        b0 = new jx/devices/DeviceConfigurationTemplate()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/net/NetworkConfigurationTemplate();    [ RR?R  i.][ RR?R  iR]
+        b1[0] = b3;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 getSupportedConfigurations
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method access$000(Ljx/devices/net/emulation/NetImpl;)V {
+  +START:   #1
+        vR0.eventloop@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+}

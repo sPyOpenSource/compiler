@@ -1,0 +1,399 @@
+class java/text/MessageFormat {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        err.println("-- MessageFormat replacement");   [ ?R i. RR] 
+        vR0.locale_d = getDefault@special();   
+        b1 = new java/util/Vector();    [ ?R i. i.][ ?R i. iR]
+        vR0.formats_d = b1;   
+        b1 = new java/util/Vector();    [ ?R i. i.][ ?R i. iR]
+        vR0.text_d = b1;   
+        b1 = new java/util/Vector();    [ ?R i. i.][ ?R i. iR]
+        vR0.elements_d = b1;   
+        vR0.applyPattern@this(vR1);   [ ?R i. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 1 any 0 found 0 <init>
+ 
+ method applyPattern(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+        b0 = vR0.formats_d;    
+        vR6 = b0;    
+        b0.enter();   
+        vR0.formats_d.removeAllElements@extra();   [iiiiR RR  R] 
+        vR6.leave();   
+        goto +B39;   [iiiiR RR  .]
+  +H31<caught exception>:   #2 reference
+        vR7 = <caught exception>;    
+        vR6.leave();   
+  -B36:   #1
+        throw vR7;   
+  +B39:   #1
+        vR0.text_d.removeAllElements@extra();   [iiiiR RR  R] 
+        vR0.elements_d.removeAllElements@extra();   [iiiiR RR  R] 
+        vR0.pattern_d = vR1;   
+        vi6 = 0;    
+  +B61:   #1
+        if vi6>=vR0.pattern_d.length@extra() goto B205;   
+  +B73:   #1
+        vi7 = vR0.pattern_d.charAt@extra(vi6);    [iiiii RR  iR] 
+        if vi7==92 goto B98;   
+  +B91:   #1
+        if vi7!=39 goto B104;   
+  +B98:   #1
+        vi6++;   
+        goto +B199;   [iiiiii RR  ..]
+  +B104:   #1
+        if vi7!=123 goto B126;   
+  +B111:   #1
+        vi4++;   
+        if vi4!=1 goto B199;   
+  +B120:   #1
+        vi2 = vi6;    
+        goto +B199;   [iiiiii RR  ..]
+  +B126:   #1
+        if vi7!=125 goto B199;   
+  +B133:   #1
+        vi4--;   
+        if vi4!=0 goto B199;   
+  +B141:   #1
+        vR8 = vR0.removeSingleQuotes@special(vR0.pattern_d.substring@extra(vi5,vi2));    [iiiiii RR i RR.] 
+        vR0.text_d.addElement@extra(vR8);   [iiiiiiR RR i RR.] 
+        b0 = vR0.elements_d;    
+        b1 = new java/text/MessageFormat$MessageElement(vR0,vR0.pattern_d.substring@extra((vi2+1),vi6));    [ RR i i..][ RR i.i iRRR]
+        b0.addElement@extra(b1);   [iiiiiiR RR i.i RR..] 
+        vi5 = (vi6+1);    
+  +B199:   #5
+        vi6++;   
+        goto +B61;   [iiiiii RR ... ....]
+  +B205:   #1
+        if vi5>=vR0.pattern_d.length@extra() goto B237;   
+  +B217:   #1
+        vR0.text_d.addElement@extra(vR0.removeSingleQuotes@special(vR0.pattern_d.substring@extra(vi5)));   [iiiiiiR RR ii. RR..] 
+  +B237:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+18 - 28 handler 31 type 0
+31 - 36 handler 31 type 0
+ }
+// Register: rd 40/40 wr 23 swaps 4 any 15 found 2 applyPattern
+ 
+ method removeSingleQuotes(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vi3 = vR1.length@extra();    [R R  R.] 
+        vi5 = 0;    
+  +B16:   #1
+        if vi5>=vi3 goto B77;   
+  +B22:   #1
+        vi4 = vR1.charAt@extra(vi5);    [Ri?i R  iR] 
+        if vi4!=39 goto B64;   
+  +B37:   #1
+        if vR1.charAt@extra((vi5+1))!=39 goto B56;   
+  +B50:   #1
+        vi5++;   
+        goto +B59;   [Riii R . ..]
+  +B56:   #2
+        goto +B71;   [Riii R . ..]
+  +B59:   #1
+        goto +B64;   [Riii R . ..]
+  +H62<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+  +B64:   #2
+        vR2.append@extra(vi4);   [Riii R . iR] 
+  +B71:   #1
+        vi5++;   
+        goto +B16;   [Riii R . ..]
+  +B77:   #1
+        return vR2.toString@extra();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+37 - 56 handler 62 type 25
+ }
+// Register: rd 11/11 wr 8 swaps 1 any 4 found 0 removeSingleQuotes
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = (java/text/MessageFormat)(vR0.clone@special());    
+        vR1.pattern_d = vR0.pattern_d;   
+        vR1.locale_d = (java/util/Locale)(vR0.locale_d.clone());   
+        vR1.formats_d = (java/util/Vector)(vR0.formats_d.clone());   
+        vR1.elements_d = (java/util/Vector)(vR0.elements_d.clone());   
+        vR1.text_d = (java/util/Vector)(vR0.text_d.clone());   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 6 swaps 0 any 0 found 0 clone
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=vR0 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if (vR1 instanceof java/text/MessageFormat)!=0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        vR2 = (java/text/MessageFormat)(vR1);    
+        if vR0.pattern_d.equals@extra(vR2.pattern_d)==0 goto B97;   
+  +B35:   #1
+        vR3 = vR2.getFormats();    [R R . R.] 
+        b0 = vR0.formats_d;    
+        vR4 = b0;    
+        b0.enter();   
+        if vR3.length==vR0.formats_d.size@extra() goto B65;   
+  +B60:   #1
+        vR4.leave();   
+        return 0;   
+  +B65:   #1
+        vi5 = 0;    
+  +B68:   #1
+        if vi5>=vR3.length goto B81;   
+  +B75:   #1
+        vi5++;   
+        goto +B68;   [RRRi R . ..]
+  +B81:   #1
+        vR4.leave();   
+        goto +B95;   forward return[RRRi R . ..]
+  +H87<caught exception>:   #2 reference
+        vR6 = <caught exception>;    
+        vR4.leave();   
+  -B92:   #1
+        throw vR6;   
+  +B95:   #1
+        return 1;   
+  +B97:   #1
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+48 - 64 handler 87 type 0
+65 - 84 handler 87 type 0
+87 - 92 handler 87 type 0
+ }
+// Register: rd 17/17 wr 9 swaps 1 any 5 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.hashCode@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method format(Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        return vR0.format@extra(([Ljava/lang/Object;)(vR1),vR2,vR3);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 format
+ 
+ method format([Ljava/lang/Object;Ljava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        vi4 = vR0.elements_d.size@extra();    [   R] 
+        vi5 = 0;    
+  +B12:   #1
+        if vi5>=vi4 goto B145;   
+  +B19:   #1
+        vR6 = (java/text/MessageFormat$MessageElement)(vR0.elements_d.elementAt(vi5));    
+        vR7 = 0;    
+        vR8 = vR1[vR6.argumentIndex];    
+        vR9 = 0;    
+        vR2.append(vR0.text_d.elementAt(vi5));   [iiRRRR  i RR] 
+  +B62:   #1
+        vR7 = (java/text/Format)(vR0.formats_d.elementAt(vi5));    
+  +B76:   #1
+        goto +B81;   [iiRRRR  . ..]
+  +H79<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+  +B81:   #1
+        if vR7!=null goto B96;   
+  +B86:   #1
+        vR9 = vR8.toString();    [iiRRRR  . R.] 
+        goto +B132;   [iiRRRR  . ..]
+  +B96:   #1
+        vR9 = vR7.format@extra(vR8);    [iiRRRR  . RR] 
+        if (vR7 instanceof java/text/ChoiceFormat)==0 goto B132;   
+  +B113:   #1
+        if vR9.indexOf@extra(123)==-1 goto B132;   
+  +B124:   #1
+        vR9 = format@special(vR9,vR1);    [iiRRRR  . RR]
+  +B132:   #3
+        vR2.append(vR9);   [iiRRRR  . RR] 
+        vi5++;   
+        goto +B12;   [iiRRRR  . ..]
+  +B145:   #2
+        vR2.append(vR0.text_d.elementAt(vi4));   [iiRRRR  i RR] 
+  +B159:   #1
+        goto +B164;   forward return[iiRRRR  . ..]
+  +H162<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B164:   #1
+        return vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+62 - 76 handler 79 type 43
+145 - 159 handler 162 type 43
+ }
+// Register: rd 21/21 wr 17 swaps 2 any 3 found 0 format
+ 
+ method format(Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/text/MessageFormat(vR0);    [ R??R  i][ R??R . iRR]
+        vR3 = new java/lang/StringBuffer();    [ R??R . i..][ R??R . iR.]
+        b3 = new java/text/FieldPosition(0);    [ R??R . i..][ R??R . iiR]
+        vR2.format@extra(vR1,vR3,b3);   [RR R??R . RRRR] 
+        return vR3.toString();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 0 any 0 found 0 format
+ 
+ method setFormats([Ljava/text/Format;)V {
+  +START:   #1
+        b0 = vR0.formats_d;    
+        vR2 = b0;    
+        b0.enter();   
+        if vR0.formats_d.size@extra()==0 goto B24;   
+  +B17:   #1
+        vR0.formats_d.removeAllElements@extra();   [R R  R] 
+  +B24:   #1
+        vi3 = 0;    
+  +B26:   #1
+        if vi3>=vR1.length goto B48;   
+  +B32:   #1
+        vR0.formats_d.addElement@extra(vR1[vi3]);   [Ri R i RR] 
+        vi3++;   
+        goto +B26;   [Ri R i ..]
+  +B48:   #1
+        vR2.leave();   
+        goto +B60;   forward return[Ri R . ..]
+  +H53<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR2.leave();   
+  -B57:   #1
+        throw vR4;   
+  +B60:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 50 handler 53 type 0
+53 - 57 handler 53 type 0
+ }
+// Register: rd 11/11 wr 6 swaps 1 any 3 found 0 setFormats
+ 
+ method setFormat(ILjava/text/Format;)V {
+  +START:   #1
+        b0 = vR0.formats_d;    
+        vR3 = b0;    
+        b0.enter();   
+        if vR0.formats_d.size@extra()>=vi1 goto B28;   
+  +B18:   #1
+        vR0.formats_d.setSize@extra((vi1+1));   [R R i iR] 
+  +B28:   #1
+        vR0.formats_d.setElementAt@extra(vR2,vi1);   [R R . iRR] 
+        vR3.leave();   
+        goto +B49;   forward return[R R . ...]
+  +H42<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B46:   #1
+        throw vR4;   
+  +B49:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 39 handler 42 type 0
+42 - 46 handler 42 type 0
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 1 found 0 setFormat
+ 
+ method getFormats()[Ljava/text/Format; {
+  +START:   #1
+        vR1 = 0;    
+        b0 = vR0.formats_d;    
+        vR2 = b0;    
+        b0.enter();   
+        vR1 = new java/text/Format()[vR0.formats_d.size@extra()];    
+        vR0.formats_d.copyInto(vR1);   [RR R  RR] 
+        vR2.leave();   
+        goto +B38;   forward return[RR R  ..]
+  +H33<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B36:   #1
+        throw vR3;   
+  +B38:   #1
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+9 - 30 handler 33 type 0
+33 - 36 handler 33 type 0
+ }
+// Register: rd 6/6 wr 5 swaps 0 any 1 found 0 getFormats
+ 
+ method setLocale(Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.locale_d = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLocale
+ 
+ method getLocale()Ljava/util/Locale; {
+  +START:   #1
+        return vR0.locale_d;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocale
+ 
+ method toPattern()Ljava/lang/String; {
+  +START:   #1
+        return vR0.pattern_d;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toPattern
+ 
+ method parse(Ljava/lang/String;Ljava/text/ParsePosition;)[Ljava/lang/Object; {
+  -START:   #1
+        vR3 = 0;    
+        throw new java/lang/RuntimeException("public Object[] parse(String source, ParsePosition status) is not implemented yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 parse
+ 
+ method parse(Ljava/lang/String;)[Ljava/lang/Object; {
+  +START:   #1
+        b2 = new java/text/ParsePosition(0);    [ ??R  i][ ??R . iiR]
+        return vR0.parse@this(vR1,b2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 parse
+ 
+ method parseObject(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Object; {
+  -START:   #1
+        vR3 = 0;    
+        throw new java/lang/RuntimeException("public Object parseObject(String text, ParsePosition status) is not implemented yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 parseObject
+ 
+ method access$000(Ljava/text/MessageFormat;)Ljava/util/Vector; {
+  +START:   #1
+        return vR0.formats_d;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljava/text/MessageFormat;)Ljava/util/Locale; {
+  +START:   #1
+        return vR0.locale_d;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+}

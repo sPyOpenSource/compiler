@@ -1,0 +1,315 @@
+class jx/net/IPAddress {
+ 
+ method toInetAddress()Ljava/net/InetAddress; {
+  +START:   #1
+        if vR0.inetAddress!=null goto B31;   
+  +B7:   #1
+        vR0.inetAddress = getByAddress@special(vR0.bytes);   
+  +B18:   #1
+        goto +B31;   forward return[ R . .]
+  -H21<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/RuntimeException(vR1);   
+  +B31:   #2
+        return vR0.inetAddress;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 21 type 4
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 toInetAddress
+ 
+ method getDefaultSubnetmask()Ljx/net/IPAddress; {
+  +START:   #1
+        if vR0.isAny@this()==0 goto B11;   
+  +B7:   #1
+        return DEFAULT_ANY_SUBNETMASK;   
+  +B11:   #1
+        if vR0.isClassA@this()==0 goto B22;   
+  +B18:   #1
+        return DEFAULT_CLASS_A_SUBNETMASK;   
+  +B22:   #1
+        if vR0.isClassB@this()==0 goto B33;   
+  +B29:   #1
+        return DEFAULT_CLASS_B_SUBNETMASK;   
+  +B33:   #1
+        if vR0.isClassC@this()==0 goto B44;   
+  +B40:   #1
+        return DEFAULT_CLASS_C_SUBNETMASK;   
+  +B44:   #1
+        if vR0.isClassD@this()==0 goto B55;   
+  +B51:   #1
+        return DEFAULT_CLASS_D_SUBNETMASK;   
+  -B55:   #1
+        throw new java/lang/IllegalArgumentException("Unknown address class");   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 getDefaultSubnetmask
+ 
+ method and(Ljx/net/IPAddress;)Ljx/net/IPAddress; {
+  +START:   #1
+        vR2 = new byte[4];    
+        vi3 = 0;    
+  +B6:   #1
+        if vi3>=4 goto B34;   
+  +B11:   #1
+        vR2[vi3] = (byte)(vR0.bytes[vi3] & vR1.bytes[vi3]);   
+        vi3++;   
+        goto +B6;   [Ri R  ..]
+  +B34:   #1
+        return new jx/net/IPAddress(vR2);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 2 found 0 and
+ 
+ method isClassA()Z {
+  +START:   #1
+        vi1 = (vR0.bytes[0] & 255);    
+        if vi1< 0 goto B25;   
+  +B15:   #1
+        if vi1>127 goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[i i  ]
+  +B25:   #2
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 isClassA
+ 
+ method isClassB()Z {
+  +START:   #1
+        vi1 = (vR0.bytes[0] & 255);    
+        if vi1<128 goto B29;   
+  +B18:   #1
+        if vi1>191 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   forward return[i i  ]
+  +B29:   #2
+        b0 = 0;    
+  +B30b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 isClassB
+ 
+ method isClassC()Z {
+  +START:   #1
+        vi1 = (vR0.bytes[0] & 255);    
+        if vi1<192 goto B29;   
+  +B18:   #1
+        if vi1>223 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   forward return[i i  ]
+  +B29:   #2
+        b0 = 0;    
+  +B30b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 isClassC
+ 
+ method isClassD()Z {
+  +START:   #1
+        vi1 = (vR0.bytes[0] & 255);    
+        if vi1<224 goto B29;   
+  +B18:   #1
+        if vi1>239 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   forward return[i i  ]
+  +B29:   #2
+        b0 = 0;    
+  +B30b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 isClassD
+ 
+ method isAny()Z {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=4 goto B24;   
+  +B7:   #1
+        if vR0.bytes[vi1]==0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        vi1++;   
+        goto +B2;   [i   ]
+  +B24:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 isAny
+ 
+ method <init>([B)V {
+  +START:   #1
+        vR0.<init>@special(vR1[0],vR1[1],vR1[2],vR1[3]);   [  ibbb bbbbR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(IIII)V {
+  +START:   #1
+        vR0.<init>@special(toIPAddr@special(vi1,vi2,vi3,vi4));   [  i iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(parseIPAddr@special(vR1));   [  i iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.addr = vi1;   
+        vR0.bytes = vR0.toBytes@special();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAddress()I {
+  +START:   #1
+        return vR0.addr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAddress
+ 
+ method toIPAddr(IIII)I {
+  +START:   #1
+        return (((((((vi3 & 255) << 8) | (vi2 & 255)) << 8) | (vi1 & 255)) << 8) | (vi0 & 255));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 toIPAddr
+ 
+ method parseIPAddr(Ljava/lang/String;)I {
+  +START:   #1
+        vR1 = new byte[4];    
+        vi2 = 0;    
+        vi3 = 0;    
+  +B8:   #1
+        if vi3>=3 goto B74;   
+  +B13:   #1
+        vi4 = vR0.indexOf@extra(".",vi2);    [Rii  i iRR] 
+        if vi4!=-1 goto B30;   
+  +B28:   #1
+        return -1;   
+  +B30:   #1
+        vR5 = vR0.substring@extra(vi2,vi4);    [Riii  . iiR] 
+        if vR5!=null goto B54;   
+  +B44:   #1
+        out.println("NO IP ADDRESS at IPAddress");   [RiiiR  i. RR.] 
+        return -1;   
+  +B54:   #1
+        vR1[vi3] = (byte)parseInt@special(vR5);   
+        vi2 = (vi4+1);    
+        vi3++;   
+        goto +B8;   [RiiiR  .. ...]
+  +B74:   #1
+        vR1[3] = (byte)parseInt@special(vR0.substring@extra(vi2,vR0.length@extra()));   
+        return toIPAddr@special(vR1[0],vR1[1],vR1[2],vR1[3]);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 16 swaps 3 any 5 found 0 parseIPAddr
+ 
+ method getHostName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.toString@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHostName
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vi2 = vR0.addr;    
+        vi3 = 0;    
+  +B15:   #1
+        if vi3>=4 goto B55;   
+  +B20:   #1
+        vR1.append@extra((vi2 & 255));   [Rii R i iR] 
+        vi2 = (vi2 >> 8);    
+        if (vi3+1)>=4 goto B49;   
+  +B42:   #1
+        vR1.append@extra(".");   [Rii R i RR] 
+  +B49:   #1
+        vi3++;   
+        goto +B15;   [Rii R . ..]
+  +B55:   #1
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 2 any 4 found 0 toString
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof jx/net/IPAddress)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        if (jx/net/IPAddress)(vR1).addr!=vR0.addr goto B27;   
+  +B23:   #1
+        b0 = 1;    
+        goto +B28b0;   forward return[ i  ..]
+  +B27:   #1
+        b0 = 0;    
+  +B28b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 1 equals
+ 
+ method getBytes()[B {
+  +START:   #1
+        return vR0.bytes;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytes
+ 
+ method toBytes()[B {
+  +START:   #1
+        vR1 = new byte[4];    
+        vR1[3] = (byte)((vR0.addr >> 24) & 255);   
+        vR1[2] = (byte)((vR0.addr >> 16) & 255);   
+        vR1[1] = (byte)((vR0.addr >> 8) & 255);   
+        vR1[0] = (byte)(vR0.addr & 255);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 toBytes
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/net/IPAddress("0.0.0.0");    [ R  i][ R . iRR]
+        ANY = b0;   
+        b0 = new jx/net/IPAddress("255.255.255.255");    [ R . i..][ R . iRR]
+        BROADCAST = b0;   
+        BROADCAST_ADDRESS = (java/net/Inet4Address)(BROADCAST.toInetAddress());   
+        b0 = new jx/net/IPAddress("0.0.0.0");    [ R . i..][ R . iRR]
+        DEFAULT_ANY_SUBNETMASK = b0;   
+        b0 = new jx/net/IPAddress("255.0.0.0");    [ R . i..][ R . iRR]
+        DEFAULT_CLASS_A_SUBNETMASK = b0;   
+        b0 = new jx/net/IPAddress("255.255.0.0");    [ R . i..][ R . iRR]
+        DEFAULT_CLASS_B_SUBNETMASK = b0;   
+        b0 = new jx/net/IPAddress("255.255.255.0");    [ R . i..][ R . iRR]
+        DEFAULT_CLASS_C_SUBNETMASK = b0;   
+        b0 = new jx/net/IPAddress("255.255.255.0");    [ R . i..][ R . iRR]
+        DEFAULT_CLASS_D_SUBNETMASK = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 17 swaps 0 any 0 found 7 <clinit>
+}

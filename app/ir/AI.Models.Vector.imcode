@@ -1,0 +1,41 @@
+class AI/Models/Vector {
+ 
+ method <init>(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.x = vR1;   
+        vR0.y = vR2;   
+        vR0.z = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setValues(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.x = vR1;   
+        vR0.y = vR2;   
+        vR0.z = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 setValues
+ 
+ method Compare(LAI/Models/Vector;)Z {
+  +START:   #1
+        if equals@special(vR1.x,vR0.x)==0 goto B46;   
+  +B14:   #1
+        if equals@special(vR1.y,vR0.y)==0 goto B46;   
+  +B28:   #1
+        if equals@special(vR1.z,vR0.z)==0 goto B46;   
+  +B42:   #1
+        b0 = 1;    
+        goto +B47b0;   forward return[ i .. ..]
+  +B46:   #3
+        b0 = 0;    
+  +B47b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 0 any 0 found 0 Compare
+}

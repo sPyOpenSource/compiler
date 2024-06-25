@@ -1,0 +1,193 @@
+class jx/framebuffer/PackedFramebufferImpl {
+ 
+ method <init>(IIIIIILjx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.width = vi1;   
+        vR0.height = vi2;   
+        vR0.depth = vi3;   
+        if vi4==0 goto B33;   
+  +B24:   #1
+        vR0.startAddress = vi4;   
+        goto +B44;   [   .]
+  +B33:   #1
+        vR0.startAddress = vR7.getStartAddress();   
+  +B44:   #1
+        if vi5==0 goto B58;   
+  +B49:   #1
+        vR0.pixelOffset = vi5;   
+        goto +B66;   [   .]
+  +B58:   #1
+        vR0.pixelOffset = depthToBPP@special(vi3);   
+  +B66:   #1
+        if vi6==0 goto B80;   
+  +B71:   #1
+        vR0.scanlineOffset = vi6;   
+        goto +B88;   [   .]
+  +B80:   #1
+        vR0.scanlineOffset = (vi5*vi1);   
+  +B88:   #1
+        vR0.memObj = vR7;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 0 swaps 0 any 3 found 0 <init>
+ 
+ method depthToBPP(I)I {
+  +START:   #1
+        lswitch (vi0) { 
+           8:B52
+           15:B54
+           16:B54
+           24:B56
+           32:B58
+           ::B60
+        };   
+  +B52:   #1
+        return 1;   
+  +B54:   #2
+        return 2;   
+  +B56:   #1
+        return 3;   
+  +B58:   #1
+        return 4;   
+  -B60:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("unsupported depth: ").append@extra(vi0).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 7 swaps 2 any 2 found 0 depthToBPP
+ 
+ method setNewStartAddress(I)V {
+  +START:   #1
+        vR0.startAddress = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setNewStartAddress
+ 
+ method width()I {
+  +START:   #1
+        return vR0.width;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 width
+ 
+ method height()I {
+  +START:   #1
+        return vR0.height;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 height
+ 
+ method depth()I {
+  +START:   #1
+        return vR0.depth;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 depth
+ 
+ method startAddress()I {
+  +START:   #1
+        return vR0.startAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 startAddress
+ 
+ method scanlineOffset()I {
+  +START:   #1
+        return vR0.scanlineOffset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 scanlineOffset
+ 
+ method pixelOffset()I {
+  +START:   #1
+        return vR0.pixelOffset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 pixelOffset
+ 
+ method memObj()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.memObj;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 memObj
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method toString(Ljx/framebuffer/PackedFramebuffer;)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR0.framebufferType()).append@extra("(").toString@extra();    [ R i..i R..] [ R iR.i RR.] [ R iRRi RRR] 
+        b0 = new java/lang/StringBuilder();    [ R i..i i..][ R i..i iR.]
+        vR1 = b0.append@extra(vR1).append@extra(vR0.width()).append@extra("x").append@extra(vR0.height()).append@extra("x").append@extra(vR0.depth()).toString@extra();    [R R i.iii..ii..i. R......] [R R iRiii..ii..i. iR.....] [R R iRiiiR.ii..i. iRR....] [R R iRiiiRRii..i. iRiR...] [R R iRiiiRRiiR.i. iRiRR..] [R R iRiiiRRiiRRi. iRiRiR.] [R R iRiiiRRiiRRiR iRiRiRR] 
+        b0 = new java/lang/StringBuilder();    [ R i.iii..ii..i. i......][ R i.iii..ii..i. iR.....]
+        vR1 = b0.append@extra(vR1).append@extra("@0x").append@extra(toHexString@special(vR0.startAddress())).toString@extra();    [R R i.iiiiiiii.i. R......] [R R iRiiiiiiii.i. RR.....] [R R iRiiiiiiiiRi. RRR....] [R R iRiiiiiiiiRiR RRRR...] 
+        b0 = new java/lang/StringBuilder();    [ R i.iiiiiiii.i. i......][ R i.iiiiiiii.i. iR.....]
+        vR1 = b0.append@extra(vR1).append@extra(" pOff=").append@extra(vR0.pixelOffset()).toString@extra();    [R R i.iiiiiiiiiii.. R......] [R R iRiiiiiiiiiii.. iR.....] [R R iRiiiiiiiiiiiR. iRR....] [R R iRiiiiiiiiiiiRR iRRR...] 
+        b0 = new java/lang/StringBuilder();    [ R i.iiiiiiiiiii.. i......][ R i.iiiiiiiiiii.. iR.....]
+        vR1 = b0.append@extra(vR1).append@extra(" sOff=").append@extra(vR0.scanlineOffset()).toString@extra();    [R R i.iiiiiiiiiiiii.. R......] [R R iRiiiiiiiiiiiii.. iR.....] [R R iRiiiiiiiiiiiiiR. iRR....] [R R iRiiiiiiiiiiiiiRR iRRR...] 
+        b0 = new java/lang/StringBuilder();    [ R i.iiiiiiiiiiiii.. i......][ R i.iiiiiiiiiiiii.. iR.....]
+        vR1 = b0.append@extra(vR1).append@extra(" memObj@0x").append@extra(toHexString@special(vR0.memObj().getStartAddress())).toString@extra();    [R R i.iiiiiiiiiiiiiiii.. R......] [R R iRiiiiiiiiiiiiiiii.. RR.....] [R R iRiiiiiiiiiiiiiiiiR. RRR....] [R R iRiiiiiiiiiiiiiiiiRR RRRR...] 
+        b0 = new java/lang/StringBuilder();    [ R i.iiiiiiiiiiiiiiii.. i......][ R i.iiiiiiiiiiiiiiii.. iR.....]
+        vR1 = b0.append@extra(vR1).append@extra(") ").toString@extra();    [R R iiiiiiiiiiiiiiiiii.. R......] [R R iiiiiiiiiiiiiiiiiiR. RR.....] [R R iiiiiiiiiiiiiiiiiiRR RRR....] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 55 swaps 16 any 0 found 0 toString
+ 
+ method clear()V {
+  +START:   #1
+        vi1 = (vR0.startAddress-vR0.memObj.getStartAddress());    
+        vi2 = 0;    
+  +B17:   #1
+        if vi2>=vR0.height goto B62;   
+  +B25:   #1
+        vR0.memObj.fill16(-1,(vi1/2),((vR0.width*vR0.pixelOffset)/2));   [ii  ii iiiR] 
+        vi1 = (vi1+vR0.scanlineOffset);    
+        vi2++;   
+        goto +B17;   [ii  ii ....]
+  +B62:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 2 any 3 found 0 clear
+ 
+ method framebufferType()Ljava/lang/String; {
+  +START:   #1
+        return "PackedFramebuffer";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 framebufferType
+ 
+ method toHexString(I)Ljava/lang/String; {
+  +START:   #1
+        return toHexString@special(vi0,8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toHexString
+ 
+ method toHexString(II)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer(toHexString@special(vi0));    [ R  i][ R . iRR]
+  +B12:   #1
+        if vR2.length()>=vi1 goto B31;   
+  +B20:   #1
+        vR2.insert(0,48);   [R R . iiR] 
+        goto +B12;   [R R . ...]
+  +B31:   #1
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 toHexString
+}

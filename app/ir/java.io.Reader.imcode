@@ -1,0 +1,71 @@
+class java/io/Reader {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.lock = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 <init>
+ 
+ method <init>(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.lock = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method read([C)I {
+  +START:   #1
+        return vR0.read@this(vR1,0,vR1.length);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 read
+ 
+ method read()I {
+  +START:   #1
+        vR1 = new char[1];    
+        vi2 = vR0.read@this(vR1,0,1);    [R i  iiRR] 
+        if vi2<=0 goto B22;   
+  +B16:   #1
+        b0 = vR1[0];    
+        goto +B23b0;   forward return[Ri c  ....]
+  +B22:   #1
+        b0 = -1;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 read
+ 
+ method markSupported()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 markSupported
+ 
+ method mark(I)V {
+  -START:   #1
+        throw new java/io/IOException("mark not supported");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 mark
+ 
+ method reset()V {
+  -START:   #1
+        throw new java/io/IOException("reset not supported");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reset
+ 
+ method ready()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 ready
+}

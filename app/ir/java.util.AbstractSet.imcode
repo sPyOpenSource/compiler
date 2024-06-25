@@ -1,0 +1,75 @@
+class java/util/AbstractSet {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=vR0 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if (vR1 instanceof java/util/Set)==0 goto B39;   
+  +B14:   #1
+        if (java/util/Set)(vR1).size()!=vR0.size@this() goto B39;   
+  +B30:   #1
+        return vR0.containsAll@this((java/util/Collection)(vR1));   
+  +B39:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 1 swaps 0 any 1 found 2 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        vR1 = vR0.iterator@this();    [   R] 
+        vi2 = vR0.size@this();    [R   R] 
+        vi3 = 0;    
+        vi4 = 0;    
+  +B15:   #1
+        if vi4>=vi2 goto B48;   
+  +B21:   #1
+        vR5 = vR1.next();    [Riii   R] 
+        if vR5==null goto B42;   
+  +B34:   #1
+        vi3 = (vi3+vR5.hashCode());    
+  +B42:   #1
+        vi4++;   
+        goto +B15;   [RiiiR   .]
+  +B48:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 0 any 4 found 1 hashCode
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        vi2 = 0;    
+        if vR0.size@this()<=vR1.size() goto B55;   
+  +B20:   #1
+        vR3 = vR1.iterator();    [i  . R] 
+  +B27:   #1
+        if vR3.hasNext()==0 goto B52;   
+  +B36:   #1
+        vi2 = (vi2 | vR0.remove@this(vR3.next()));    
+        goto +B27;   [iR  i ..]
+  +B52:   #1
+        goto +B72;   forward return[iR  . ..]
+  +B55:   #1
+        vR3 = vR0.iterator@this();    [iR  . R.] 
+  +B60:   #1
+        if vR3.hasNext()==0 goto B72;   
+  +B69:   #1
+        goto +B60;   [iR  . ..]
+  +B72:   #2
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 6 swaps 1 any 1 found 1 removeAll
+}

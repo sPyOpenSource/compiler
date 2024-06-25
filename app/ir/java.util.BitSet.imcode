@@ -1,0 +1,46 @@
+class java/util/BitSet {
+ 
+ method set(I)V {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set
+ 
+ method get(I)Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 get
+ 
+ method BitSet(I)V {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 BitSet
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        if vi1>=0 goto B35;   
+  -B8:   #1
+        b0 = new java/lang/NegativeArraySizeException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("nbits < 0: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 2 any 2 found 0 <init>
+ 
+ method nextClearBit(I)I {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 nextClearBit
+}

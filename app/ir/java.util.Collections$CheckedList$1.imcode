@@ -1,0 +1,78 @@
+class java/util/Collections$CheckedList$1 {
+ 
+ method <init>(Ljava/util/Collections$CheckedList;Ljava/util/ListIterator;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$i = vR2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        return vR0.val$i.hasNext();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.val$i.next();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+ 
+ method hasPrevious()Z {
+  +START:   #1
+        return vR0.val$i.hasPrevious();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasPrevious
+ 
+ method previous()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.val$i.previous();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 previous
+ 
+ method nextIndex()I {
+  +START:   #1
+        return vR0.val$i.nextIndex();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 nextIndex
+ 
+ method previousIndex()I {
+  +START:   #1
+        return vR0.val$i.previousIndex();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 previousIndex
+ 
+ method remove()V {
+  +START:   #1
+        vR0.val$i.remove();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method set(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.val$i.set(vR0.this$0.typeCheck(vR1));   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 set
+ 
+ method add(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.val$i.add(vR0.this$0.typeCheck(vR1));   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 add
+}

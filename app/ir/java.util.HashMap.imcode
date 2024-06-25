@@ -1,0 +1,872 @@
+class java/util/HashMap {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.buckets = new java/util/Bucket()[11];   
+        vR0.init@special(11);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IF)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        vR0.buckets = new java/util/Bucket()[11];   
+        if vi1< 0 goto B29;   
+  +B17:   #1
+        if compare(vl2,0)<=0 goto B29;   
+  +B23:   #1
+        if compare(vl2,1)<=0 goto B37;   
+  -B29:   #2
+        throw new java/lang/IllegalArgumentException();   
+  +B37:   #1
+        vR0.init@special(vi1);   [ R  iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        vR0.buckets = new java/util/Bucket()[11];   
+        if vi1>=0 goto B25;   
+  -B17:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B25:   #1
+        vR0.init@special(vi1);   [ R  iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(Ljava/util/Map;)V {
+  +START:   #1
+        vR0.<init>@special();   [ Ri  R] 
+        vR0.buckets = new java/util/Bucket()[11];   
+        vi2 = (vR1.size()*2);    
+        b0 = vR0;    
+        if vi2<=11 goto B33;   
+  +B29b0:   #1 reference
+        b1 = vi2;    
+        goto +B35b0b1;   [i Ri  ..]
+  +B33b0:   #1 reference
+        b1 = 11;    
+  +B35b0b1:   #1 reference int
+        b0.init@special(b1);   [i Ri  iR] 
+        vR0.putAll@this(vR1);   [i Ri  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 3 found 0 <init>
+ 
+ method reinitialize()V {
+  +START:   #1
+        vR0.table = 0;   
+        vR0.entrySet = 0;   
+        vR0.keySet = 0;   
+        vR0.values = 0;   
+        vR0.modCount = 0;   
+        vR0.threshold = 0;   
+        vR0.size = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 reinitialize
+ 
+ method tableSizeFor(I)I {
+  +START:   #1
+        vi1 = (vi0-1);    
+        vi1 = (vi1 | (vi1 >>> 1));    
+        vi1 = (vi1 | (vi1 >>> 2));    
+        vi1 = (vi1 | (vi1 >>> 4));    
+        vi1 = (vi1 | (vi1 >>> 8));    
+        vi1 = (vi1 | (vi1 >>> 16));    
+        if vi1>=0 goto B44;   
+  +B40:   #1
+        b0 = 1;    
+        goto +B58b0;   forward return[i i  ]
+  +B44:   #1
+        if vi1<1073741824 goto B55;   
+  +B50:   #1
+        b0 = 1073741824;    
+        goto +B58b0;   forward return[i i  ]
+  +B55:   #1
+        b0 = (vi1+1);    
+  +B58b0:   #2 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 7 swaps 0 any 9 found 5 tableSizeFor
+ 
+ method resize()[Ljava/util/HashMap$Node; {
+  +START:   #1
+        vR1 = vR0.table;    
+        if vR1!=null goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B15b0;   [R i  ]
+  +B13:   #1
+        b0 = vR1.length;    
+  +B15b0:   #1 int
+        vi2 = b0;    
+        vi3 = vR0.threshold;    
+        vi5 = 0;    
+        if vi2<=0 goto B67;   
+  +B28:   #1
+        if vi2<1073741824 goto B42;   
+  +B34:   #1
+        vR0.threshold = 2147483647;   
+        return vR1;   
+  +B42:   #1
+        b0 = (vi2 << 1);    
+        vi4 = b0;    
+        if b0>=1073741824 goto B85;   
+  +B53:   #1
+        if vi2<16 goto B85;   
+  +B59:   #1
+        vi5 = (vi3 << 1);    
+        goto +B85;   [Riiii i  ]
+  +B67:   #1
+        if vi3<=0 goto B77;   
+  +B71:   #1
+        vi4 = vi3;    
+        goto +B85;   [RiiiiRiRRRRRR i  ]
+  +B77:   #1
+        vi4 = 16;    
+        vi5 = 12;    
+  +B85:   #4
+        if vi5!=0 goto B125;   
+  +B90:   #1
+        vl6 = ((float)vi4*vR0.loadFactor);    
+        if vi4>=1073741824 goto B121;   
+  +B107:   #1
+        if compare(vl6,jx.classfile.datatypes.BCFloat@86f528f)>=0 goto B121;   
+  +B115:   #1
+        b0 = (int)vl6;    
+        goto +B123b0;   [Riiiil i  .]
+  +B121:   #2
+        b0 = 2147483647;    
+  +B123b0:   #1 int
+        vi5 = b0;    
+  +B125:   #1
+        vR0.threshold = vi5;   
+        vR6 = new java/util/HashMap$Node()[vi4];    
+        vR0.table = vR6;   
+        if vR1==null goto B353;   
+  +B148:   #1
+        vi7 = 0;    
+  +B151:   #1
+        if vi7>=vi2 goto B353;   
+  +B157:   #1
+        b0 = vR1[vi7];    
+        vR8 = b0;    
+        if b0==null goto B347;   
+  +B167:   #1
+        vR1[vi7] = 0;   
+        if vR8.next!=null goto B198;   
+  +B180:   #1
+        vR6[(vR8.hash & (vi4-1))] = vR8;   
+        goto +B347;   [RiiiiRiR R  ..]
+  +B198:   #1
+        if (vR8 instanceof java/util/HashMap$TreeNode)==0 goto B223;   
+  +B206:   #1
+        (java/util/HashMap$TreeNode)(vR8).split@extra(vR0,vR6,vi7,vi2);   [RiiiiRiR R  iiRRR.] 
+        goto +B347;   [RiiiiRiR R  ......]
+  +B223:   #1
+        vR9 = 0;    
+        vR10 = 0;    
+        vR11 = 0;    
+        vR12 = 0;    
+  +B235:   #1
+        vR13 = vR8.next;    
+        if (vR8.hash & vi2)!=0 goto B278;   
+  +B252:   #1
+        if vR10!=null goto B264;   
+  +B257:   #1
+        vR9 = vR8;    
+        goto +B271;   [RiiiiRiRRRRRR R  ......]
+  +B264:   #1
+        vR10.next = vR8;   
+  +B271:   #1
+        vR10 = vR8;    
+        goto +B301;   [RiiiiRiRRRRRR R  ......]
+  +B278:   #1
+        if vR12!=null goto B290;   
+  +B283:   #1
+        vR11 = vR8;    
+        goto +B297;   [RiiiiRiRRRRRR R  ......]
+  +B290:   #1
+        vR12.next = vR8;   
+  +B297:   #1
+        vR12 = vR8;    
+  +B301:   #1
+        vR8 = vR13;    
+        if vR13!=null goto B235;   
+  +B309:   #1
+        if vR10==null goto B327;   
+  +B314:   #1
+        vR10.next = 0;   
+        vR6[vi7] = vR9;   
+  +B327:   #1
+        if vR12==null goto B347;   
+  +B332:   #1
+        vR12.next = 0;   
+        vR6[(vi7+vi2)] = vR11;   
+  +B347:   #4
+        vi7++;   
+        goto +B151;   [RiiiiRiR R  ......]
+  +B353:   #2
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 70/70 wr 27 swaps 0 any 32 found 2 resize
+ 
+ method putVal(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.table;    
+        vR6 = b0;    
+        if b0==null goto B19;   
+  +B10:   #1
+        b0 = vR6.length;    
+        vi8 = b0;    
+        if b0!=0 goto B29;   
+  +B19:   #1
+        b0 = vR0.resize@extra();    [R?i Ri  R] 
+        vR6 = b0;    
+        vi8 = b0.length;    
+  +B29:   #1
+        b1 = ((vi8-1) & vi1);    
+        vi9 = b1;    
+        b0 = vR6[b1];    
+        vR7 = b0;    
+        if b0!=null goto B56;   
+  +B47:   #1
+        vR6[vi9] = 0;   
+        goto +B225;   [RRii Ri  .]
+  +B56:   #1
+        if vR7.hash!=vi1 goto B97;   
+  +B65:   #1
+        b0 = vR7.key;    
+        vR11 = b0;    
+        if b0==vR2 goto B90;   
+  +B77:   #1
+        if vR2==null goto B97;   
+  +B81:   #1
+        if vR2.equals(vR11)==0 goto B97;   
+  +B90:   #1
+        vR10 = vR7;    
+        goto +B194;   [RRiiRR Ri  ..]
+  +B97:   #3
+        if (vR7 instanceof java/util/HashMap$TreeNode)==0 goto B124;   
+  +B105:   #1
+        vR10 = (java/util/HashMap$TreeNode)(vR7).putTreeVal@extra(vR0,vR6,vi1,vR2,vR3);    [RRiiRRR Ri  RRiRRR.] 
+        goto +B194;   [RRiiRRR Ri  .......]
+  +B124:   #1
+        vi12 = 0;    
+  +B127:   #1
+        b0 = vR7.next;    
+        vR10 = b0;    
+        if b0!=null goto B147;   
+  +B138:   #1
+        vR7.next = 0;   
+        goto +B194;   [RRiiRRi Ri  .......]
+  +B147:   #1
+        if vR10.hash!=vi1 goto B184;   
+  +B156:   #1
+        b0 = vR10.key;    
+        vR11 = b0;    
+        if b0==vR2 goto B194;   
+  +B168:   #1
+        if vR2==null goto B184;   
+  +B172:   #1
+        if vR2.equals(vR11)==0 goto B184;   
+  +B181:   #1
+        goto +B194;   [RRiiRRi Ri  .......]
+  +B184:   #3
+        vR7 = vR10;    
+        vi12++;   
+        goto +B127;   [RRiiRRi Ri  .......]
+  +B194:   #5
+        if vR10==null goto B225;   
+  +B199:   #1
+        vR12 = vR10.value;    
+        if vi4==0 goto B216;   
+  +B211:   #1
+        if vR12!=null goto B222;   
+  +B216:   #1
+        vR10.value = vR3;   
+  +B222:   #1
+        return vR12;   
+  +B225:   #2
+        vR0.modCount = (vR0.modCount+1);   
+        b1 = (vR0.size+1);    
+        b0 = b1;    
+        vR0.size = b1;   
+        if b0<=vR0.threshold goto B258;   
+  +B253:   #1
+        vR0.resize@extra();   [RRii ii  R......] 
+  +B258:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 60/60 wr 25 swaps 0 any 25 found 1 putVal
+ 
+ method putMapEntries(Ljava/util/Map;Z)V {
+  +START:   #1
+        vi3 = vR1.size();    [ i  R] 
+        if vi3<=0 goto B153;   
+  +B11:   #1
+        if vR0.table!=null goto B68;   
+  +B18:   #1
+        vl4 = (((float)vi3/vR0.loadFactor)+1);    
+        if compare(vl4,jx.classfile.datatypes.BCFloat@86f528f)>=0 goto B43;   
+  +B37:   #1
+        b0 = (int)vl4;    
+        goto +B45b0;   [il i  .]
+  +B43:   #1
+        b0 = 1073741824;    
+  +B45b0:   #1 int
+        vi5 = b0;    
+        if vi5<=vR0.threshold goto B65;   
+  +B56:   #1
+        vR0.threshold = tableSizeFor@special(vi5);   
+  +B65:   #1
+        goto +B81;   [ili i  .]
+  +B68:   #1
+        if vi3<=vR0.threshold goto B81;   
+  +B76:   #1
+        vR0.resize@extra();   [iRRRR i  R] 
+  +B81:   #2
+        vR4 = vR1.entrySet().iterator();    [ili i . R] [ili i R R] 
+  +B94:   #1
+        if vR4.hasNext()==0 goto B153;   
+  +B104:   #1
+        vR5 = (java/util/Map$Entry)(vR4.next());    
+        vR6 = vR5.getKey();    [iRR i . R.] 
+        vR7 = vR5.getValue();    [iRRR i . R.] 
+        vR0.putVal@extra(hash@special(vR6),vR6,vR7,0,vi2);   [iRRRR i i iiRRiR] 
+        goto +B94;   [iRRRR i i ......]
+  +B153:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 10 swaps 1 any 4 found 0 putMapEntries
+ 
+ method getNode(ILjava/lang/Object;)Ljava/util/HashMap$Node; {
+  +START:   #1
+        b0 = vR0.table;    
+        vR3 = b0;    
+        if b0==null goto B146;   
+  +B9:   #1
+        b0 = vR3.length;    
+        vi6 = b0;    
+        if b0<=0 goto B146;   
+  +B17:   #1
+        b0 = vR3[((vi6-1) & vi1)];    
+        vR4 = b0;    
+        if b0==null goto B146;   
+  +B31:   #1
+        if vR4.hash!=vi1 goto B68;   
+  +B40:   #1
+        b0 = vR4.key;    
+        vR7 = b0;    
+        if b0==vR2 goto B65;   
+  +B52:   #1
+        if vR2==null goto B68;   
+  +B56:   #1
+        if vR2.equals(vR7)==0 goto B68;   
+  +B65:   #1
+        return vR4;   
+  +B68:   #3
+        b0 = vR4.next;    
+        vR5 = b0;    
+        if b0==null goto B146;   
+  +B79:   #1
+        if (vR4 instanceof java/util/HashMap$TreeNode)==0 goto B98;   
+  +B87:   #1
+        return (java/util/HashMap$TreeNode)(vR4).getTreeNode@extra(vi1,vR2);   
+  +B98:   #2
+        if vR5.hash!=vi1 goto B135;   
+  +B107:   #1
+        b0 = vR5.key;    
+        vR7 = b0;    
+        if b0==vR2 goto B132;   
+  +B119:   #1
+        if vR2==null goto B135;   
+  +B123:   #1
+        if vR2.equals(vR7)==0 goto B135;   
+  +B132:   #1
+        return vR5;   
+  +B135:   #3
+        b0 = vR5.next;    
+        vR5 = b0;    
+        if b0!=null goto B98;   
+  +B146:   #4
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 14 swaps 0 any 16 found 1 getNode
+ 
+ method removeNode(ILjava/lang/Object;Ljava/lang/Object;ZZ)Ljava/util/HashMap$Node; {
+  +START:   #1
+        b0 = vR0.table;    
+        vR6 = b0;    
+        if b0==null goto B283;   
+  +B10:   #1
+        b0 = vR6.length;    
+        vi8 = b0;    
+        if b0<=0 goto B283;   
+  +B19:   #1
+        b1 = ((vi8-1) & vi1);    
+        vi9 = b1;    
+        b0 = vR6[b1];    
+        vR7 = b0;    
+        if b0==null goto B283;   
+  +B37:   #1
+        vR10 = 0;    
+        if vR7.hash!=vi1 goto B81;   
+  +B49:   #1
+        b0 = vR7.key;    
+        vR12 = b0;    
+        if b0==vR2 goto B74;   
+  +B61:   #1
+        if vR2==null goto B81;   
+  +B65:   #1
+        if vR2.equals(vR12)==0 goto B81;   
+  +B74:   #1
+        vR10 = vR7;    
+        goto +B171;   [RRiiR?R Ri  ..]
+  +B81:   #3
+        b0 = vR7.next;    
+        vR11 = b0;    
+        if b0==null goto B171;   
+  +B92:   #1
+        if (vR7 instanceof java/util/HashMap$TreeNode)==0 goto B115;   
+  +B100:   #1
+        vR10 = (java/util/HashMap$TreeNode)(vR7).getTreeNode@extra(vi1,vR2);    [RRiiRRRR Ri  RiR.] 
+        goto +B171;   [RRiiRRRR Ri  ....]
+  +B115:   #2
+        if vR11.hash!=vi1 goto B156;   
+  +B124:   #1
+        b0 = vR11.key;    
+        vR12 = b0;    
+        if b0==vR2 goto B149;   
+  +B136:   #1
+        if vR2==null goto B156;   
+  +B140:   #1
+        if vR2.equals(vR12)==0 goto B156;   
+  +B149:   #1
+        vR10 = vR11;    
+        goto +B171;   [RRiiRRRR Ri  ....]
+  +B156:   #3
+        vR7 = vR11;    
+        b0 = vR11.next;    
+        vR11 = b0;    
+        if b0!=null goto B115;   
+  +B171:   #4
+        if vR10==null goto B283;   
+  +B176:   #1
+        if vi4==0 goto B206;   
+  +B181:   #1
+        b0 = vR10.value;    
+        vR13 = b0;    
+        if b0==vR3 goto B206;   
+  +B193:   #1
+        if vR3==null goto B283;   
+  +B197:   #1
+        if vR3.equals(vR13)==0 goto B283;   
+  +B206:   #2
+        if (vR10 instanceof java/util/HashMap$TreeNode)==0 goto B230;   
+  +B214:   #1
+        (java/util/HashMap$TreeNode)(vR10).removeTreeNode@extra(vR0,vR6,vi5);   [RRiiR?RR Ri  iRRR.] 
+        goto +B260;   [RRiiR?RR Ri  .....]
+  +B230:   #1
+        if vR10!=vR7 goto B250;   
+  +B237:   #1
+        vR6[vi9] = vR10.next;   
+        goto +B260;   [RRiiR?RR Ri  .....]
+  +B250:   #1
+        vR7.next = vR10.next;   
+  +B260:   #2
+        vR0.modCount = (vR0.modCount+1);   
+        vR0.size = (vR0.size-1);   
+        return vR10;   
+  +B283:   #6
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 64/64 wr 23 swaps 0 any 27 found 2 removeNode
+ 
+ method size()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        if vR0.size!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isEmpty
+ 
+ method clear()V {
+  +START:   #1
+        vR0.size = 0;   
+        vR0.modCount = (vR0.modCount+1);   
+        vR0.buckets = new java/util/Bucket()[vR0.capacity];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        vR2 = vR0.entrySet@this().iterator();    [ R . R] [ R R R] 
+        vR3 = new java/util/HashMap(vR0.capacity,vR0.loadFactor);    [ R . i][ R . iliR]
+  +B26:   #1
+        if vR2.hasNext()==0 goto B65;   
+  +B35:   #1
+        vR1 = (java/util/Map$Entry)(vR2.next());    
+        vR3.internalPut@special(vR1.getKey(),vR1.getValue());   [RRR R iR RRR.] 
+        goto +B26;   [RRR R iR ....]
+  +B65:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 9 swaps 1 any 0 found 0 clone
+ 
+ method keySet()Ljava/util/Set; {
+  +START:   #1
+        return new java/util/HashMap$HashMapSet(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 keySet
+ 
+ method entrySet()Ljava/util/Set; {
+  +START:   #1
+        return new java/util/HashMap$HashMapSet(vR0,2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 entrySet
+ 
+ method values()Ljava/util/Collection; {
+  +START:   #1
+        vR1 = vR0.values;    
+        if vR1!=null goto B23;   
+  +B9:   #1
+        vR1 = new java/util/HashMap$Values(vR0);    [ R  i][ R . iRR]
+        vR0.values = vR1;   
+  +B23:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 0 values
+ 
+ method hash(Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0!=null goto B8;   
+  +B4:   #1
+        b0 = 0;    
+        goto +B19b0;   forward return[ i  ]
+  +B8:   #1
+        b0 = vR0.hashCode@this();    [ i  R] 
+        vi1 = b0;    
+        b0 = (b0 ^ (vi1 >>> 16));    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 3 found 0 hash
+ 
+ method containsKey(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.internalGet@special(vR1)==null goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ..]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 containsKey
+ 
+ method containsValue(Ljava/lang/Object;)Z {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.capacity goto B37;   
+  +B10:   #1
+        vR3 = vR0.buckets[vi2];    
+        if vR3==null goto B31;   
+  +B21:   #1
+        if vR3.containsValue(vR1)==0 goto B31;   
+  +B29:   #1
+        return 1;   
+  +B31:   #2
+        vi2++;   
+        goto +B2;   [iR   ..]
+  +B37:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 3 found 0 containsValue
+ 
+ method get(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        vR2 = vR0.internalGet@special(vR1);    [ R  RR] 
+        if vR2!=null goto B14;   
+  +B10:   #1
+        b0 = 0;    
+        goto +B20b0;   forward return[R R  ..]
+  +B14:   #1
+        b0 = vR2.getValue();    [R R  R.] 
+  +B20b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 get
+ 
+ method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.internalPut@special(vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 put
+ 
+ method remove(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        vR4 = 0;    
+        if vR0.size<=0 goto B82;   
+  +B10:   #1
+        if vR1!=null goto B20;   
+  +B14:   #1
+        b0 = NULL_KEY;    
+        goto +B21b0;   [??R R  .]
+  +B20:   #1
+        b0 = vR1;    
+  +B21b0:   #1 reference
+        vi3 = hash@special(b0);    [??R R  R]
+        vR2 = vR0.buckets[vi3];    
+        if vR2==null goto B82;   
+  +B36:   #1
+        vR4 = vR2.removeByKey(vR1);    [RiR R  RR] 
+        if vR4==null goto B82;   
+  +B48:   #1
+        vR0.size = (vR0.size-1);   
+        vR0.modCount = (vR0.modCount+1);   
+        if vR2.first!=null goto B82;   
+  +B75:   #1
+        vR0.buckets[vi3] = 0;   
+  +B82:   #4
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 6 swaps 0 any 4 found 0 remove
+ 
+ method internalPut(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        out.println("key");   [ ii i. RR] 
+        vR7 = vR1;    
+        vR3 = new java/util/HashMap$HashMapEntry(vR7,vR2);    [ ii i. i.][ ii i. iRRR]
+        vi5 = hash@special(vR7);    [R???R ii i. R...]
+        vR4 = vR0.buckets[vi5];    
+        if vR4!=null goto B61;   
+  +B43:   #1
+        vR4 = new java/util/Bucket();    [ ii .. i...][ ii .. iR..]
+        vR0.buckets[vi5] = vR4;   
+  +B61:   #1
+        vR6 = vR4.add(vR3);    [RRi?R ii .. RR..] 
+        if vR6!=null goto B108;   
+  +B74:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        b1 = vR0.size;    
+        b0 = b1;    
+        vR0.size = (b1+1);   
+        if b0!=vR0.threshold goto B106;   
+  +B102:   #1
+        vR0.rehash@special();   [RRiRR ii .. R...] 
+  +B106:   #1
+        return 0;   
+  +B108:   #1
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 11 swaps 1 any 6 found 0 internalPut
+ 
+ method init(I)V {
+  +START:   #1
+        vR0.size = 0;   
+        vR0.modCount = 0;   
+        vR0.capacity = vi1;   
+        vR0.loadFactor = jx.classfile.datatypes.BCFloat@33e2bb87;   
+        vR0.threshold = 8;   
+        vR0.buckets = new java/util/Bucket()[vR0.capacity];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 init
+ 
+ method rehash()V {
+  +START:   #1
+        vR2 = vR0.buckets;    
+        vR0.modCount = (vR0.modCount+1);   
+        vR0.capacity = ((vR0.capacity*2)+1);   
+        vR0.size = 0;   
+        vR0.threshold = 11;   
+        vR0.buckets = new java/util/Bucket()[vR0.capacity];   
+        vi1 = 0;    
+  +B51:   #1
+        if vi1>=vR2.length goto B101;   
+  +B57:   #1
+        if vR2[vi1]==null goto B95;   
+  +B63:   #1
+        vR3 = vR2[vi1].first;    
+  +B70:   #1
+        if vR3==null goto B95;   
+  +B74:   #1
+        vR0.internalPut@special(vR3.getKey(),vR3.getValue());   [iRR  iR RRR] 
+        vR3 = vR3.next;    
+        goto +B70;   [iRR  iR ...]
+  +B95:   #2
+        vi1++;   
+        goto +B51;   [iRR  .. ...]
+  +B101:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 8 swaps 1 any 3 found 0 rehash
+ 
+ method internalGet(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        if vR0.size!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        b0 = vR0.buckets;    
+        if vR1!=null goto B23;   
+  +B17b0:   #1 reference
+        b1 = NULL_KEY;    
+        goto +B24b0b1;   [ RR  .]
+  +B23b0:   #1 reference
+        b1 = vR1;    
+  +B24b0b1:   #1 reference reference
+        vR2 = b0[hash@special(b1)];    
+        if vR2!=null goto B37;   
+  +B33:   #1
+        b0 = 0;    
+        goto +B42b0;   forward return[R RR  .]
+  +B37:   #1
+        b0 = vR2.getEntryByKey(vR1);    [R RR  RR] 
+  +B42b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 0 any 3 found 1 internalGet
+ 
+ method containsEntry(Ljava/util/Map$Entry;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vR2 = vR0.internalGet@special(vR1.getKey());    [ i i RR] 
+        if vR2==null goto B35;   
+  +B21:   #1
+        if vR2.equals(vR1)==0 goto B35;   
+  +B31:   #1
+        b0 = 1;    
+        goto +B36b0;   forward return[R i . ..]
+  +B35:   #2
+        b0 = 0;    
+  +B36b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 2 found 0 containsEntry
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vR1.defaultWriteObject();   [   R] 
+        vR1.writeInt(vR0.capacity);   [  i iR] 
+        vR1.writeInt(vR0.size);   [  ii iR] 
+        vR2 = vR0.entrySet@this().iterator();    [  ii. R.] [  iiR R.] 
+  +B30:   #1
+        if vR2.hasNext()==0 goto B72;   
+  +B39:   #1
+        vR3 = (java/util/Map$Entry)(vR2.next());    
+        vR1.writeObject@extra(vR3.getKey());   [RR  i.. RR] 
+        vR1.writeObject@extra(vR3.getValue());   [RR  ii. RR] 
+        goto +B30;   [RR  ii. ..]
+  +B72:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 4 any 0 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR1.defaultReadObject();   [   R] 
+        vR0.capacity = vR1.readInt();   
+        vi2 = vR1.readInt();    [   R] 
+        vR0.size = 0;   
+        vR0.modCount = 0;   
+        vR0.buckets = new java/util/Bucket()[vR0.capacity];   
+        vi3 = 0;    
+  +B40:   #1
+        if vi3>=vi2 goto B66;   
+  +B45:   #1
+        vR4 = 0;    
+        vR5 = 0;    
+        vR0.internalPut@special(vR4,vR5);   [iiRR   RRR] 
+        vi3++;   
+        goto +B40;   [iiRR   ...]
+  +B66:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 0 any 2 found 0 readObject
+ 
+ method access$000(Ljava/util/HashMap;Ljava/util/Map$Entry;)Z {
+  +START:   #1
+        return vR0.containsEntry@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljava/util/HashMap;)[Ljava/util/Bucket; {
+  +START:   #1
+        return vR0.buckets;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200()Ljava/util/HashMap$Null; {
+  +START:   #1
+        return NULL_KEY;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/HashMap$Null();    [ R  i][ R  iR]
+        NULL_KEY = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

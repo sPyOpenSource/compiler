@@ -1,0 +1,40 @@
+class java/util/Collections$ReverseComparator {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method compare(Ljava/lang/Comparable;Ljava/lang/Comparable;)I {
+  +START:   #1
+        return vR2.compareTo(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 compare
+ 
+ method readResolve()Ljava/lang/Object; {
+  +START:   #1
+        return reverseOrder@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readResolve
+ 
+ method compare(Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        return vR0.compare@this((java/lang/Comparable)(vR1),(java/lang/Comparable)(vR2));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 3 compare
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Collections$ReverseComparator();    [ R  i][ R  iR]
+        REVERSE_ORDER = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

@@ -1,0 +1,107 @@
+class jx/rexec/Decoder {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m = vR1;   
+        vR0.pos = vi2;   
+        vR0.len = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([BII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.core = vR1;   
+        vR0.pos = vi2;   
+        vR0.len = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readInt()I {
+  +START:   #1
+        if vR0.m==null goto B24;   
+  +B7:   #1
+        vi1 = vR0.m.getLittleEndian32(vR0.pos);    [  i iR] 
+        goto +B33;   [i  i ..]
+  +B24:   #1
+        vi1 = vR0.getLittleEndian32@this(vR0.pos);    [i  i iR] 
+  +B33:   #1
+        vR0.pos = (vR0.pos+4);   
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 0 found 0 readInt
+ 
+ method readString()Ljava/lang/String; {
+  +START:   #1
+        vR0.len = vR0.readInt@this();   
+        vR1 = new char[vR0.len];    
+        vi2 = 0;    
+  +B17:   #1
+        if vi2>=vR0.len goto B75;   
+  +B25:   #1
+        if vR0.m==null goto B54;   
+  +B32:   #1
+        vR1[vi2] = (char)vR0.m.get8((vR0.pos+vi2));   
+        goto +B69;   [Ri R i ..]
+  +B54:   #1
+        vR1[vi2] = (char)vR0.core[(vR0.pos+vi2)];   
+  +B69:   #1
+        vi2++;   
+        goto +B17;   [Ri R . ..]
+  +B75:   #1
+        vR0.pos = (vR0.pos+vR0.len);   
+        return new java/lang/String(vR1);   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 5 swaps 1 any 2 found 0 readString
+ 
+ method readData()Ljx/zero/Memory; {
+  +START:   #1
+        vi1 = vR0.readInt@this();    [ RR  R] 
+        vi2 = vR0.readInt@this();    [i RR  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("CHECKSUM:").append@extra(vi2).toString@extra());   [ii RR ii. RR.] 
+        vR3 = vR0.m.getSubRange(vR0.pos,vi1);    [ii RR iii iiR] 
+        vR0.pos = (vR0.pos+vi1);   
+        vi4 = 0;    
+        vi5 = 0;    
+  +B66:   #1
+        if vi5>=vi1 goto B99;   
+  +B72:   #1
+        vi6 = vR3.get8(vi5);    [iiRii RR ... iR.] 
+        vi4 = ((vi4 ^ vi6) & 255);    
+        vi5++;   
+        goto +B66;   [iiRiii RR ... ...]
+  +B99:   #1
+        if vi2==vi4 goto B115;   
+  -B105:   #1
+        throw new java/lang/Error("wrong checksum");   
+  +B115:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 16 swaps 3 any 4 found 0 readData
+ 
+ method getLittleEndian32(I)I {
+  +START:   #1
+        return (((((vR0.core[(vi1+3)] << 24) & -16777216) | ((vR0.core[(vi1+2)] << 16) & 16711680)) | ((vR0.core[(vi1+1)] << 8) & 65280)) | (vR0.core[(vi1+0)] & 255));   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 getLittleEndian32
+}

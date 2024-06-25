@@ -1,0 +1,202 @@
+class metaxa/os/devices/net/DpdListEntry {
+ 
+ method <init>(Ljx/zero/MemoryManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.DpdMemory = vR1.allocAligned(16,8);   
+        if vR0.DpdMemory!=null goto B34;   
+  +B25:   #1
+        out.println("ERROR: couldn't allocate memory for DpdListEntry!");   [  i. RR.] 
+        return;   
+  +B34:   #1
+        vR0.DPDPhysicalAddress = vR0.DpdMemory.getStartAddress();   
+        vR0.storeMem = 0;   
+        vR0.PacketLength = -1;   
+        vR0.addr = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method FrameStartHeader(I)V {
+  +START:   #1
+        vR0.DpdMemory.set32(1,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 FrameStartHeader
+ 
+ method StoreMem(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.storeMem = vR1;   
+        vR0.addr = (vR1.getStartAddress()+vi2);   
+        vR0.DpdMemory.set32(2,vR0.addr);   [  i iiR] 
+        vR0.DpdMemory.set32(3,(vi3 | -2147483648));   [  ii iiR] 
+        vR0.PacketLength = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 2 any 0 found 0 StoreMem
+ 
+ method StoreMem(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.storeMem = vR1;   
+        vR0.DpdMemory.set32(2,vR1.getStartAddress());   [  i iiR] 
+        vR0.addr = vR1.getStartAddress();   
+        vR0.DpdMemory.set32(3,(vR1.size() | -2147483648));   [  ii iiR] 
+        vR0.PacketLength = vR1.size();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 2 any 0 found 0 StoreMem
+ 
+ method Next(Lmetaxa/os/devices/net/DpdListEntry;)V {
+  +START:   #1
+        vR0.Next = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 Next
+ 
+ method Previous(Lmetaxa/os/devices/net/DpdListEntry;)V {
+  +START:   #1
+        vR0.Previous = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 Previous
+ 
+ method DownNextPointer(I)V {
+  +START:   #1
+        vR0.DpdMemory.set32(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 DownNextPointer
+ 
+ method clear_StoreMem()Z {
+  +START:   #1
+        vR0.storeMem = 0;   
+        vR0.DpdMemory.set32(2,0);   [   iiR] 
+        vR0.DpdMemory.set32(3,0);   [   iiR] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 clear_StoreMem
+ 
+ method FrameStartHeader()I {
+  +START:   #1
+        return vR0.DpdMemory.get32(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 FrameStartHeader
+ 
+ method DpdMemory()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.DpdMemory;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 DpdMemory
+ 
+ method StoreMem()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.storeMem;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 StoreMem
+ 
+ method Next()Lmetaxa/os/devices/net/DpdListEntry; {
+  +START:   #1
+        return vR0.Next;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 Next
+ 
+ method Previous()Lmetaxa/os/devices/net/DpdListEntry; {
+  +START:   #1
+        return vR0.Previous;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 Previous
+ 
+ method DPDPhysicalAddress()I {
+  +START:   #1
+        return vR0.DPDPhysicalAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 DPDPhysicalAddress
+ 
+ method PacketLength()I {
+  +START:   #1
+        return vR0.PacketLength;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 PacketLength
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        out.println("-------------DPD_Eintrag---------------");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("FrameStartHeader: ").append@extra(toHexString@special(vR0.DpdMemory.get32(1))).toString@extra());   [ RR iiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiii. i..][ RR iiiii. iR.]
+        b0.println(b1.append@extra("DPDPhysicalAddress: ").append@extra(toHexString@special(vR0.DPDPhysicalAddress)).toString@extra());   [ RR iiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii. i..][ RR iiiiiiiii. iR.]
+        b0.println(b1.append@extra("PacketLength: ").append@extra(toHexString@special(vR0.PacketLength)).toString@extra());   [ RR iiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiii. i..][ RR iiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("DownNextPointer: ").append@extra(toHexString@special(vR0.DpdMemory.get32(0))).toString@extra());   [ RR iiiiiiiiiiiiiiiii. RR.] 
+        out.println("------- Ende der internen Variablen ---------");   [ RR iiiiiiiiiiiiiiiiii. RR.] 
+        if vR0.DpdMemory==null goto B398;   
+  +B159:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ................... i..][ RR ................... iR.]
+        b0.println(b1.append@extra("DPDMem(0): ").append@extra(vR0.DpdMemory.get32(0)).toString@extra());   [ RR iii................ RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii................ i..][ RR iii................ iR.]
+        b0.println(b1.append@extra("DPDMem(4): ").append@extra(vR0.DpdMemory.get32(1)).toString@extra());   [ RR iiiiii............. RR.] 
+  +B227:   #1
+        vR1 = new metaxa/os/devices/net/BitPosition();    [ RR ................... i..][ RR ................... iR.]
+        if vR1.isSet(vR0.DpdMemory.get32(1),30)==0 goto B265;   
+  +B254:   #1
+        out.println("FEHLER: TYPE 1 FORMAT");   [R RR i.................. RR.] 
+        goto +B273;   [R RR i.................. ...]
+  +B265:   #1
+        out.println("ALLES OK: TYPE 0 FORMAT");   [R RR i.................. RR.] 
+  +B273:   #2
+        goto +B277;   [R RR ................... ...]
+  +H276<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+  +B277:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ................... i..][ RR ................... iR.]
+        b0.println(b1.append@extra("DPDMem(8): ").append@extra(vR0.DpdMemory.get32(2)).toString@extra());   [R RR iii................ RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii................ i..][ RR iii................ iR.]
+        b0.println(b1.append@extra("DPDMem(12): ").append@extra(vR0.DpdMemory.get32(3)).toString@extra());   [R RR iiiiii............. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii............. i..][ RR iiiiii............. iR.]
+        b0.println(b1.append@extra("StartAddresse DPDMem: ").append@extra(vR0.DpdMemory.getStartAddress()).append@extra("  Groesse: ").append@extra(vR0.DpdMemory.size()).toString@extra());   [R RR iiiiiiiii..ii...... RR...] 
+        goto +B406;   [R RR iiiiiiiii..ii...... .....]
+  +B398:   #1
+        out.println("DPDMem ist null!!!");   [R RR i.................. RR...] 
+  +B406:   #1
+        if vR0.storeMem==null goto B466;   
+  +B413:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ................... i....][ RR ................... iR...]
+        b0.println(b1.append@extra("storeMem -> Groesse: ").append@extra(vR0.storeMem.size()).append@extra("  StartAdresse: ").append@extra(vR0.storeMem.getStartAddress()).toString@extra());   [R RR iii..ii............ RR...] 
+        goto +B474;   [R RR iii..ii............ .....]
+  +B466:   #1
+        out.println("storeMem ist null!!!");   [R RR i.................. RR...] 
+  +B474:   #1
+        out.println("------------- ENDE -> DPD_Eintrag <- ENDE ---------------");   [R RR i.................. RR...] 
+        return "";   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+227 - 273 handler 276 type 37
+ }
+// Register: rd 36/36 wr 99 swaps 42 any 0 found 0 toString
+}

@@ -1,0 +1,1046 @@
+class java/util/TreeMap {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special((java/util/Comparator)(0));   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Comparator;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0._oRoot = NIL;   
+        vR0._iSize = 0;   
+        vR0._iModCount = 0;   
+        vR0._oComparator = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Map;)V {
+  +START:   #1
+        vR0.<init>@special((java/util/Comparator)(0));   [  i RR] 
+        vR0.putAll@this(vR1);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/SortedMap;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.comparator());   [ ?i i RR] 
+        vR2 = new java/util/Map$Entry()[vR1.size()];    
+        vR3 = vR1.entrySet().iterator();    [R ?i i. R.] [R ?i iR R.] 
+        vi4 = 0;    
+  +B35:   #1
+        if vR3.hasNext()==0 goto B63;   
+  +B44:   #1
+        b1 = vi4;    
+        vi4++;   
+        vR2[b1] = (java/util/Map$Entry)(vR3.next());   
+        goto +B35;   [RRi ?i .. ..]
+  +B63:   #1
+        vR0._iSize = vi4;   
+        vR0.putAllLinear@this(vR2);   [RRi ?i .. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 8 swaps 1 any 2 found 0 <init>
+ 
+ method clear()V {
+  +START:   #1
+        vR0._oRoot = NIL;   
+        vR0._iSize = 0;   
+        vR0._iModCount = (vR0._iModCount+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        vR1 = (java/util/TreeMap)(vR0.clone@special());    
+        vR1._oRoot = (java/util/TreeMap$RBNode)(vR0._oRoot.clone());   
+        vR1._iModCount = 0;   
+  +B27:   #1
+        goto +B43;   forward return[R R . ..]
+  -H30<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        throw new java/lang/InternalError(vR2.toString());   
+  +B43:   #1
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 27 handler 30 type 22
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 0 found 0 clone
+ 
+ method comparator()Ljava/util/Comparator; {
+  +START:   #1
+        return vR0._oComparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 comparator
+ 
+ method containsKey(Ljava/lang/Object;)Z {
+  +START:   #1
+        if treeSearch@special(vR0._oRoot,vR0._oComparator,vR1)==NIL goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i ... ...]
+  +B22:   #1
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 0 found 0 containsKey
+ 
+ method containsValue(Ljava/lang/Object;)Z {
+  +START:   #1
+        vR2 = treeMin@special(vR0._oRoot);    [  R R]
+  +B8:   #1
+        if vR2==NIL goto B46;   
+  +B15:   #1
+        vR3 = vR2.getValue();    [R  . R] 
+        if vR1!=null goto B28;   
+  +B24:   #1
+        if vR3==null goto B36;   
+  +B28:   #1
+        if vR1.equals(vR3)==0 goto B38;   
+  +B36:   #1
+        return 1;   
+  +B38:   #1
+        vR2 = treeSuccessor@special(vR2);    [RR  . R.]
+        goto +B8;   [RR  . ..]
+  +B46:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 3 found 1 containsValue
+ 
+ method firstKey()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 firstKey
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if keyInClosedMaxRange@special(vR0._oComparator,vR1,0)==0 goto B23;   
+  +B12:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0,0,vR1);   
+  -B23:   #1
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a headMap",0,0));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 headMap
+ 
+ method lastKey()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastKey
+ 
+ method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b1 = vR0._oComparator;    
+        b2 = new java/util/TreeMap$RBNode(vR1,vR2);    [ RRR  i][ RRR . iRRR]
+        vR3 = rbInsert@special(vR0,b1,b2);    [ RRR . RRR.]
+        if vR3!=NIL goto B35;   
+  +B25:   #1
+        vR0._iSize = (vR0._iSize+1);   
+  +B35:   #1
+        vR0._iModCount = (vR0._iModCount+1);   
+        if vR3!=NIL goto B56;   
+  +B52:   #1
+        b0 = 0;    
+        goto +B62b0;   forward return[R RRR . ....]
+  +B56:   #1
+        b0 = vR3.getValue();    [R RRR . R...] 
+  +B62b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 6 swaps 0 any 2 found 2 put
+ 
+ method putAll(Ljava/util/Map;)V {
+  +START:   #1
+        vR2 = vR1.entrySet().iterator();    [  . R] [  R R] 
+  +B12:   #1
+        if vR2.hasNext()==0 goto B51;   
+  +B21:   #1
+        vR3 = (java/util/Map$Entry)(vR2.next());    
+        vR0.put@this(vR3.getKey(),vR3.getValue());   [RR  iR RRR] 
+        goto +B12;   [RR  iR ...]
+  +B51:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 1 any 0 found 0 putAll
+ 
+ method size()I {
+  +START:   #1
+        return vR0._iSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if compare@special(vR0._oComparator,vR1,vR2)>=0 goto B23;   
+  +B12:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0,vR1,vR2);   
+  -B23:   #1
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a subMap",0,0));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 subMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        if keyInMinRange@special(vR0._oComparator,vR1,0)==0 goto B23;   
+  +B12:   #1
+        return new java/util/TreeMap$SubTreeMap(vR0,vR1,0);   
+  -B23:   #1
+        throw new java/lang/IllegalArgumentException(getArgumentError@special("create a tailMap",0,0));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 tailMap
+ 
+ method putAllLinear([Ljava/util/Map$Entry;)V {
+  +START:   #1
+        vd3 = pow@special((double)vR1.length,jx.classfile.datatypes.BCDouble@1f9af229);    
+        vi2 = (int)vd3;    
+        if compare(vd3,(double)vi2)!=0 goto B24;   
+  +B20:   #1
+        b0 = 1;    
+        goto +B25b0;   [id i  .]
+  +B24:   #1
+        b0 = 0;    
+  +B25b0:   #1 int
+        vi5 = b0;    
+        vR0._oRoot = buildTree@special(vR1,vi2,vi5,0,0,vR1.length);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 1 found 0 putAllLinear
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vR2 = treeMin@special(vR0._oRoot);    [  R R]
+        vR3 = vR1.putFields();    [R  R R] 
+        vR3.put("comparator",vR0._oComparator);   [RR  RiR RRR] 
+        vR1.writeFields();   [RR  RiR R..] 
+        vR1.writeInt(vR0._iSize);   [RR  RiRi iR.] 
+  +B35:   #1
+        if vR2==NIL goto B66;   
+  +B42:   #1
+        vR1.writeObject@extra(vR2.getKey());   [RR  i... RR.] 
+        vR1.writeObject@extra(vR2.getValue());   [RR  ii.. RR.] 
+        vR2 = treeSuccessor@special(vR2);    [RR  ii.. R..]
+        goto +B35;   [RR  ii.. ...]
+  +B66:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 4 any 1 found 1 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR4 = vR1.readFields();    [ ??R  R] 
+        vR0._oComparator = (java/util/Comparator)(vR4.get("comparator",0));   
+        vR0._iSize = vR1.readInt();   
+        vR0._iModCount = 0;   
+        vR3 = new java/util/Map$Entry()[vR0._iSize];    
+        vi2 = 0;    
+  +B44:   #1
+        if vi2>=vR0._iSize goto B76;   
+  +B52:   #1
+        b2 = new java/util/TreeMap$RBNode(vR1.readObject(),vR1.readObject());    [ ??R .. i..][ ??R .. iRRR]
+        vR3[vi2] = b2;   
+        vi2++;   
+        goto +B44;   [iRR ??R .. ....]
+  +B76:   #1
+        vR0.putAllLinear@this(vR3);   [iRR ??R .. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 8 swaps 1 any 3 found 0 readObject
+ 
+ method buildTree([Ljava/util/Map$Entry;IZIII)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        if vi4!=vi5 goto B11;   
+  +B7:   #1
+        return NIL;   
+  +B11:   #1
+        vi7 = ((vi5+vi4)/2);    
+        vR6 = new java/util/TreeMap$RBNode(vR0[vi7].getKey(),vR0[vi7].getValue());    [ Ri  i][ Ri . iRRR]
+        vR6._oLeft = buildTree@special(vR0,vi1,vi2,(vi3+1),vi4,vi7);   
+        vR6._oRight = buildTree@special(vR0,vi1,vi2,(vi3+1),(vi7+1),vi5);   
+        if vi2!=0 goto B123;   
+  +B89:   #1
+        if (vi1%2)!=1 goto B123;   
+  +B96:   #1
+        if vi3<(vi1-2) goto B123;   
+  +B103:   #1
+        b0 = vR6;    
+        if vi3!=(vi1-1) goto B116;   
+  +B112b0:   #1 reference
+        b1 = -1;    
+        goto +B117b0b1;   [Ri Ri ... ......]
+  +B116b0:   #1 reference
+        b1 = 1;    
+  +B117b0b1:   #1 reference int
+        b0._iColor = b1;   
+        goto +B140;   [Ri Ri ... ......]
+  +B123:   #3
+        b0 = vR6;    
+        if (vi3%2)!=1 goto B136;   
+  +B132b0:   #1 reference
+        b1 = -1;    
+        goto +B137b0b1;   [Ri Ri ... ......]
+  +B136b0:   #1 reference
+        b1 = 1;    
+  +B137b0b1:   #1 reference int
+        b0._iColor = b1;   
+  +B140:   #1
+        if vR6._oLeft==NIL goto B161;   
+  +B151:   #1
+        vR6._oLeft._oParent = vR6;   
+  +B161:   #1
+        if vR6._oRight==NIL goto B182;   
+  +B172:   #1
+        vR6._oRight._oParent = vR6;   
+  +B182:   #1
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 10 swaps 0 any 6 found 2 buildTree
+ 
+ method compare(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0!=null goto B17;   
+  +B4:   #1
+        b0 = (java/lang/Comparable)(vR1).compareTo(vR2);    [ i  RR.] 
+        goto +B25b0;   forward return[ i  ...]
+  +B17:   #1
+        b0 = vR0.compare(vR1,vR2);    [ i  RRR] 
+  +B25b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 1 compare
+ 
+ method keyInMinRange(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR2==null goto B13;   
+  +B4:   #1
+        if compare@special(vR0,vR2,vR1)> 0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[ i  ...]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 keyInMinRange
+ 
+ method keyInMaxRange(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR2==null goto B13;   
+  +B4:   #1
+        if compare@special(vR0,vR2,vR1)<=0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[ i  ...]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 keyInMaxRange
+ 
+ method keyInClosedMaxRange(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR2==null goto B13;   
+  +B4:   #1
+        if compare@special(vR0,vR2,vR1)< 0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[ i  ...]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 keyInClosedMaxRange
+ 
+ method keyInRange(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if keyInMinRange@special(vR0,vR1,vR2)==0 goto B22;   
+  +B9:   #1
+        if keyInMaxRange@special(vR0,vR1,vR3)==0 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  ...]
+  +B22:   #2
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 keyInRange
+ 
+ method keyInClosedRange(Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if keyInMinRange@special(vR0,vR1,vR2)==0 goto B22;   
+  +B9:   #1
+        if keyInClosedMaxRange@special(vR0,vR1,vR3)==0 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  ...]
+  +B22:   #2
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 keyInClosedRange
+ 
+ method treeSearch(Ljava/util/TreeMap$RBNode;Ljava/util/Comparator;Ljava/lang/Object;)Ljava/util/TreeMap$RBNode; {
+  +START:   #3
+        if vR0==NIL goto B43;   
+  +B7:   #1
+        vi3 = compare@special(vR1,vR2,vR0.getKey@this());    [  R RRR]
+        if vi3!=0 goto B23;   
+  +B21:   #1
+        return vR0;   
+  +B23:   #1
+        if vi3>=0 goto B35;   
+  +B27:   #1
+        vR0 = vR0._oLeft;    
+        goto +START;   [i  . ...]
+  +B35:   #1
+        vR0 = vR0._oRight;    
+        goto +START;   [i  . ...]
+  +B43:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 3 found 1 treeSearch
+ 
+ method treeMin(Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #2
+        if vR0._oLeft==NIL goto B18;   
+  +B10:   #1
+        vR0 = vR0._oLeft;    
+        goto +START;   [  . .]
+  +B18:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 treeMin
+ 
+ method treeMinConstrained(Ljava/util/TreeMap$RBNode;Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/TreeMap$RBNode; {
+  +START:   #2
+        vR5 = vR0;    
+        vi4 = compare@special(vR1,vR2,vR5.getKey());    [?R R R RRR]
+        if vi4!=0 goto B22;   
+  +B20:   #1
+        return vR0;   
+  +B22:   #1
+        if vi4>=0 goto B35;   
+  +B27:   #1
+        b0 = vR5._oLeft;    
+        goto +B40b0;   [iR R . ...]
+  +B35:   #1
+        b0 = vR5._oRight;    
+  +B40b0:   #1 reference
+        vR0 = b0;    
+        if vR0!=NIL goto START;   
+  +B48:   #1
+        if vi4<=0 goto B60;   
+  +B53:   #1
+        vR5 = treeSuccessor@special(vR5);    [iR R . R..]
+  +B60:   #1
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 6 found 1 treeMinConstrained
+ 
+ method treeMax(Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #2
+        if vR0._oRight==NIL goto B18;   
+  +B10:   #1
+        vR0 = vR0._oRight;    
+        goto +START;   [  . .]
+  +B18:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 treeMax
+ 
+ method treeMaxConstrained(Ljava/util/TreeMap$RBNode;Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/TreeMap$RBNode; {
+  +START:   #2
+        vR5 = vR0;    
+        vi4 = compare@special(vR1,vR3,vR5.getKey());    [?R R R RRR]
+        if vi4!=0 goto B22;   
+  +B20:   #1
+        return vR0;   
+  +B22:   #1
+        if vi4>=0 goto B35;   
+  +B27:   #1
+        b0 = vR5._oLeft;    
+        goto +B40b0;   [iR R . ...]
+  +B35:   #1
+        b0 = vR5._oRight;    
+  +B40b0:   #1 reference
+        vR0 = b0;    
+        if vR0!=NIL goto START;   
+  +B48:   #1
+        if vi4>=0 goto B60;   
+  +B53:   #1
+        vR5 = treePredecessor@special(vR5);    [iR R . R..]
+  +B60:   #1
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 6 found 1 treeMaxConstrained
+ 
+ method lowerBound(Ljava/util/TreeMap$RBNode;Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        if vR2==null goto B14;   
+  +B4:   #1
+        b0 = treeMinConstrained@special(vR0,vR1,vR2,vR3);    [ R  RRRR]
+        goto +B18b0;   forward return[ R  ....]
+  +B14:   #1
+        b0 = treeMin@special(vR0);    [ R  R...]
+  +B18b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 1 found 0 lowerBound
+ 
+ method upperBound(Ljava/util/TreeMap$RBNode;Ljava/util/Comparator;Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        if vR3==null goto B14;   
+  +B4:   #1
+        b0 = treeMaxConstrained@special(vR0,vR1,vR2,vR3);    [ R  RRRR]
+        goto +B17b0;   forward return[ R  ....]
+  +B14:   #1
+        b0 = NIL;    
+  +B17b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 1 found 0 upperBound
+ 
+ method treeSuccessor(Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        if vR0._oRight==NIL goto B18;   
+  +B10:   #1
+        return treeMin@special(vR0._oRight);   
+  +B18:   #1
+        vR1 = vR0._oParent;    
+  +B23:   #1
+        if vR1==NIL goto B48;   
+  +B30:   #1
+        if vR0!=vR1._oRight goto B48;   
+  +B38:   #1
+        vR0 = vR1;    
+        vR1 = vR1._oParent;    
+        goto +B23;   [R  . .]
+  +B48:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 3 found 1 treeSuccessor
+ 
+ method treePredecessor(Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        if vR0._oLeft==NIL goto B18;   
+  +B10:   #1
+        return treeMax@special(vR0._oLeft);   
+  +B18:   #1
+        vR1 = vR0._oParent;    
+  +B23:   #1
+        if vR1==NIL goto B48;   
+  +B30:   #1
+        if vR0!=vR1._oLeft goto B48;   
+  +B38:   #1
+        vR0 = vR1;    
+        vR1 = vR1._oParent;    
+        goto +B23;   [R  . .]
+  +B48:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 3 found 1 treePredecessor
+ 
+ method getArgumentError(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Attempt to ").append@extra(vR0).append@extra(" outside of range [").append@extra(vR1.toString()).append@extra(", ").append@extra(vR2.toString()).append@extra(").").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 14 swaps 6 any 0 found 0 getArgumentError
+ 
+ method treeInsert(Ljava/util/TreeMap;Ljava/util/Comparator;Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        vR4 = vR2.getKey();    [ R  R] 
+        vR5 = NIL;    
+        vR6 = vR0._oRoot;    
+  +B17:   #1
+        if vR6==NIL goto B107;   
+  +B25:   #1
+        vR5 = vR6;    
+        vi3 = compare@special(vR1,vR4,vR6.getKey());    [?RRR R R RRR]
+        if vi3!=0 goto B85;   
+  +B45:   #1
+        vR7 = new java/util/TreeMap$RBNode(vR6.getKey(),vR6.getValue());    [ R . i..][ R . iRRR]
+        vR6.key = vR2.key;   
+        vR6.value = vR2.value;   
+        return vR7;   
+  +B85:   #1
+        if vi3>=0 goto B97;   
+  +B89:   #1
+        b0 = vR6._oLeft;    
+        goto +B102b0;   [iRRRR R . ....]
+  +B97:   #1
+        b0 = vR6._oRight;    
+  +B102b0:   #1 reference
+        vR6 = b0;    
+        goto +B17;   [iRRRR R . ....]
+  +B107:   #1
+        vR2._oParent = vR5;   
+        if vR5!=NIL goto B129;   
+  +B121:   #1
+        vR0._oRoot = vR2;   
+        goto +B158;   forward return[iRRRR R . ....]
+  +B129:   #1
+        if compare@special(vR1,vR4,vR5.getKey())>=0 goto B152;   
+  +B143:   #1
+        vR5._oLeft = vR2;   
+        goto +B158;   forward return[iRRRR R . ....]
+  +B152:   #1
+        vR5._oRight = vR2;   
+  +B158:   #2
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 12 swaps 0 any 6 found 2 treeInsert
+ 
+ method leftRotate(Ljava/util/TreeMap;Ljava/util/TreeMap$RBNode;)V {
+  +START:   #1
+        vR2 = vR1._oRight;    
+        vR1._oRight = vR2._oLeft;   
+        if vR2._oLeft==NIL goto B31;   
+  +B23:   #1
+        vR2._oLeft._oParent = vR1;   
+  +B31:   #1
+        vR2._oParent = vR1._oParent;   
+        if vR1._oParent!=NIL goto B57;   
+  +B49:   #1
+        vR0._oRoot = vR2;   
+        goto +B87;   [R  . .]
+  +B57:   #1
+        if vR1!=vR1._oParent._oLeft goto B79;   
+  +B68:   #1
+        vR1._oParent._oLeft = vR2;   
+        goto +B87;   [R  . .]
+  +B79:   #1
+        vR1._oParent._oRight = vR2;   
+  +B87:   #2
+        vR2._oLeft = vR1;   
+        vR1._oParent = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 3 swaps 0 any 1 found 1 leftRotate
+ 
+ method rightRotate(Ljava/util/TreeMap;Ljava/util/TreeMap$RBNode;)V {
+  +START:   #1
+        vR2 = vR1._oLeft;    
+        vR1._oLeft = vR2._oRight;   
+        if vR2._oRight==NIL goto B31;   
+  +B23:   #1
+        vR2._oRight._oParent = vR1;   
+  +B31:   #1
+        vR2._oParent = vR1._oParent;   
+        if vR1._oParent!=NIL goto B57;   
+  +B49:   #1
+        vR0._oRoot = vR2;   
+        goto +B87;   [R  . .]
+  +B57:   #1
+        if vR1!=vR1._oParent._oRight goto B79;   
+  +B68:   #1
+        vR1._oParent._oRight = vR2;   
+        goto +B87;   [R  . .]
+  +B79:   #1
+        vR1._oParent._oLeft = vR2;   
+  +B87:   #2
+        vR2._oRight = vR1;   
+        vR1._oParent = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 3 swaps 0 any 1 found 1 rightRotate
+ 
+ method rbInsert(Ljava/util/TreeMap;Ljava/util/Comparator;Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        vR4 = treeInsert@special(vR0,vR1,vR2);    [   RRR]
+        if vR4!=NIL goto B287;   
+  +B16:   #1
+        vR2._iColor = -1;   
+  +B21:   #4
+        if vR2==vR0._oRoot goto B287;   
+  +B29:   #1
+        if vR2._oParent._iColor!=-1 goto B287;   
+  +B40:   #1
+        if vR2._oParent==vR2._oParent._oParent._oRight goto B172;   
+  +B57:   #1
+        vR3 = vR2._oParent._oParent._oRight;    
+        if vR3==NIL goto B118;   
+  +B75:   #1
+        if vR3._iColor!=-1 goto B118;   
+  +B83:   #1
+        vR2._oParent._iColor = 1;   
+        vR3._iColor = 1;   
+        vR2._oParent._oParent._iColor = -1;   
+        vR2 = vR2._oParent._oParent;    
+        goto +B21;   [RR   ...]
+  +B118:   #2
+        if vR2!=vR2._oParent._oRight goto B139;   
+  +B129:   #1
+        vR2 = vR2._oParent;    
+        leftRotate@special(vR0,vR2);   [RR   RR.]
+  +B139:   #1
+        vR2._oParent._iColor = 1;   
+        vR2._oParent._oParent._iColor = -1;   
+        rightRotate@special(vR0,vR2._oParent._oParent);   [RR  R RR.]
+        goto +B21;   [RR  R ...]
+  +B172:   #1
+        vR3 = vR2._oParent._oParent._oLeft;    
+        if vR3==NIL goto B233;   
+  +B190:   #1
+        if vR3._iColor!=-1 goto B233;   
+  +B198:   #1
+        vR2._oParent._iColor = 1;   
+        vR3._iColor = 1;   
+        vR2._oParent._oParent._iColor = -1;   
+        vR2 = vR2._oParent._oParent;    
+        goto +B21;   [RR  . ...]
+  +B233:   #2
+        if vR2!=vR2._oParent._oLeft goto B254;   
+  +B244:   #1
+        vR2 = vR2._oParent;    
+        rightRotate@special(vR0,vR2);   [RR  . RR.]
+  +B254:   #1
+        vR2._oParent._iColor = 1;   
+        vR2._oParent._oParent._iColor = -1;   
+        leftRotate@special(vR0,vR2._oParent._oParent);   [RR  R RR.]
+        goto +B21;   [RR  R ...]
+  +B287:   #3
+        vR0._oRoot._iColor = 1;   
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 9 swaps 0 any 6 found 5 rbInsert
+ 
+ method rbDelete(Ljava/util/TreeMap;Ljava/util/TreeMap$RBNode;)Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        vR4 = NIL;    
+        vR5 = vR1;    
+        if vR1._oLeft==NIL goto B28;   
+  +B18:   #1
+        if vR1._oRight!=NIL goto B32;   
+  +B28:   #1
+        b0 = vR1;    
+        goto +B36b0;   [??RR R . .]
+  +B32:   #1
+        b0 = treeSuccessor@special(vR1);    [RRRR R . R]
+  +B36b0:   #1 reference
+        vR2 = b0;    
+        if vR2._oLeft==NIL goto B54;   
+  +B47:   #1
+        b0 = vR2._oLeft;    
+        goto +B58b0;   [R?RR R . .]
+  +B54:   #1
+        b0 = vR2._oRight;    
+  +B58b0:   #1 reference
+        vR3 = b0;    
+        if vR2._oParent!=NIL goto B77;   
+  +B69:   #1
+        vR0._oRoot = vR3;   
+        goto +B107;   [RRRR R . .]
+  +B77:   #1
+        if vR2!=vR2._oParent._oLeft goto B99;   
+  +B88:   #1
+        vR2._oParent._oLeft = vR3;   
+        goto +B107;   [RRRR R . .]
+  +B99:   #1
+        vR2._oParent._oRight = vR3;   
+  +B107:   #2
+        if vR2==vR1 goto B145;   
+  +B112:   #1
+        vR5 = new java/util/TreeMap$RBNode(vR1.getKey(),vR1.getValue());    [ R . i][ R . iRRR]
+        vR1.key = vR2.key;   
+        vR1.value = vR2.value;   
+  +B145:   #1
+        if vR3==NIL goto B168;   
+  +B152:   #1
+        vR3._oParent = vR2._oParent;   
+        vR3._iColor = 1;   
+        goto +B184;   forward return[RRRR R . ....]
+  +B168:   #1
+        if vR2._iColor!=1 goto B184;   
+  +B176:   #1
+        rbDeleteFixup@special(vR0,vR2._oParent);   [RRRR R R RR..]
+  +B184:   #2
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 15 swaps 0 any 7 found 2 rbDelete
+ 
+ method rbDeleteFixup(Ljava/util/TreeMap;Ljava/util/TreeMap$RBNode;)V {
+  +START:   #1
+        vR2 = NIL;    
+  +B4:   #1
+        if vR1==NIL goto B295;   
+  +B11:   #1
+        if vR2!=vR1._oLeft goto B150;   
+  +B19:   #1
+        vR3 = vR1._oRight;    
+        if vR3._iColor!=-1 goto B52;   
+  +B32:   #1
+        vR3._iColor = 1;   
+        vR1._iColor = -1;   
+        leftRotate@special(vR0,vR1);   [RR   RR]
+        vR3 = vR1._oRight;    
+  +B52:   #1
+        if vR3._oLeft._iColor!=1 goto B89;   
+  +B63:   #1
+        if vR3._oRight._iColor!=1 goto B89;   
+  +B74:   #1
+        vR3._iColor = -1;   
+        vR2 = vR1;    
+        vR1 = vR1._oParent;    
+        goto +B281;   [RR   ..]
+  +B89:   #2
+        if vR3._oLeft._iColor!=-1 goto B123;   
+  +B100:   #1
+        vR3._oLeft._iColor = 1;   
+        vR3._iColor = -1;   
+        rightRotate@special(vR0,vR3);   [RR   RR]
+        vR3 = vR1._oRight;    
+  +B123:   #1
+        vR3._iColor = vR1._iColor;   
+        vR1._iColor = 1;   
+        vR3._oRight._iColor = 1;   
+        leftRotate@special(vR0,vR1);   [RR   RR]
+        return;   
+  +B150:   #1
+        vR3 = vR1._oLeft;    
+        if vR3._iColor!=-1 goto B183;   
+  +B163:   #1
+        vR3._iColor = 1;   
+        vR1._iColor = -1;   
+        rightRotate@special(vR0,vR1);   [RR   RR]
+        vR3 = vR1._oLeft;    
+  +B183:   #1
+        if vR3._oRight._iColor!=1 goto B220;   
+  +B194:   #1
+        if vR3._oLeft._iColor!=1 goto B220;   
+  +B205:   #1
+        vR3._iColor = -1;   
+        vR2 = vR1;    
+        vR1 = vR1._oParent;    
+        goto +B281;   [RR   ..]
+  +B220:   #2
+        if vR3._oRight._iColor!=-1 goto B254;   
+  +B231:   #1
+        vR3._oRight._iColor = 1;   
+        vR3._iColor = -1;   
+        leftRotate@special(vR0,vR3);   [RR   RR]
+        vR3 = vR1._oLeft;    
+  +B254:   #1
+        vR3._iColor = vR1._iColor;   
+        vR1._iColor = 1;   
+        vR3._oLeft._iColor = 1;   
+        rightRotate@special(vR0,vR1);   [RR   RR]
+        return;   
+  +B281:   #2
+        if vR2._iColor!=-1 goto B4;   
+  +B289:   #1
+        vR2._iColor = 1;   
+        return;   
+  +B295:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 42/42 wr 11 swaps 0 any 4 found 1 rbDeleteFixup
+ 
+ method entrySet()Ljava/util/Set; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 entrySet
+ 
+ method lowerEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lowerEntry
+ 
+ method lowerKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lowerKey
+ 
+ method floorEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 floorEntry
+ 
+ method floorKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 floorKey
+ 
+ method ceilingEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 ceilingEntry
+ 
+ method ceilingKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 ceilingKey
+ 
+ method higherEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 higherEntry
+ 
+ method higherKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 higherKey
+ 
+ method firstEntry()Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 firstEntry
+ 
+ method lastEntry()Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastEntry
+ 
+ method pollFirstEntry()Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 pollFirstEntry
+ 
+ method pollLastEntry()Ljava/util/Map$Entry; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 pollLastEntry
+ 
+ method descendingMap()Ljava/util/NavigableMap; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 descendingMap
+ 
+ method navigableKeySet()Ljava/util/NavigableSet; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 navigableKeySet
+ 
+ method descendingKeySet()Ljava/util/NavigableSet; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 descendingKeySet
+ 
+ method subMap(Ljava/lang/Object;ZLjava/lang/Object;Z)Ljava/util/NavigableMap; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 tailMap
+ 
+ method access$000()Ljava/util/TreeMap$RBNode; {
+  +START:   #1
+        return NIL;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/TreeMap$RBNode(0,0);    [ RR?R  i][ RR?R . iRRR]
+        NIL = b0;   
+        b0 = new java/io/ObjectStreamField()[1];    
+        b1 = b0;    
+        b3 = new java/io/ObjectStreamField("comparator",java/util/Comparator);    [ RR?R . i...][ RR?R . iRRR]
+        b1[0] = b3;   
+        serialPersistentFields = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 2 found 2 <clinit>
+}

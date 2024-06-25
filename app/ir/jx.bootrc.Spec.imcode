@@ -1,0 +1,60 @@
+class jx/bootrc/Spec {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.pairs = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getString(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = vR0.find@this(vR1);    [   RR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getString
+ 
+ method getInt(Ljava/lang/String;)I {
+  +START:   #1
+        vR2 = vR0.find@this(vR1);    [   RR] 
+        return parseInt@special(vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getInt
+ 
+ method getStringArray(Ljava/lang/String;)[Ljava/lang/String; {
+  +START:   #1
+        vR2 = vR0.find@this(vR1);    [   RR] 
+        vR3 = splitByChar@special(vR2,44);    [R   iR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getStringArray
+ 
+ method find(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.pairs.size@extra() goto B47;   
+  +B13:   #1
+        vR3 = (jx/bootrc/Pair)(vR0.pairs.elementAt(vi2));    
+        if vR3.name.equals@extra(vR1)==0 goto B41;   
+  +B36:   #1
+        return vR3.value;   
+  +B41:   #1
+        vi2++;   
+        goto +B2;   [iR RRR . ..]
+  -B47:   #1
+        b0 = new jx/bootrc/NameNotFoundException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        b1.<init>@special(b2.append@extra("Entry not found: "").append@extra(vR1).append@extra(""").toString@extra());   [iR RRR iii.. RR..] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 13 swaps 3 any 3 found 1 find
+}

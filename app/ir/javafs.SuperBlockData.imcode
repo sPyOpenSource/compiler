@@ -1,0 +1,648 @@
+class javafs/SuperBlockData {
+ 
+ method <init>(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.init@this(vR1,0);   [   iRR] 
+        vR0.length = 1024;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method s_inodes_count()I {
+  +START:   #1
+        return vR0.readInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_inodes_count
+ 
+ method s_inodes_count(I)V {
+  +START:   #1
+        vR0.writeInt@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_inodes_count
+ 
+ method s_blocks_count()I {
+  +START:   #1
+        return vR0.readInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_blocks_count
+ 
+ method s_blocks_count(I)V {
+  +START:   #1
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_blocks_count
+ 
+ method s_r_blocks_count()I {
+  +START:   #1
+        return vR0.readInt@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_r_blocks_count
+ 
+ method s_r_blocks_count(I)V {
+  +START:   #1
+        vR0.writeInt@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_r_blocks_count
+ 
+ method s_free_blocks_count()I {
+  +START:   #1
+        return vR0.readInt@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_free_blocks_count
+ 
+ method s_free_blocks_count(I)V {
+  +START:   #1
+        vR0.writeInt@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_free_blocks_count
+ 
+ method s_free_inodes_count()I {
+  +START:   #1
+        return vR0.readInt@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_free_inodes_count
+ 
+ method s_free_inodes_count(I)V {
+  +START:   #1
+        vR0.writeInt@this(16,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_free_inodes_count
+ 
+ method s_first_data_block()I {
+  +START:   #1
+        return vR0.readInt@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_first_data_block
+ 
+ method s_first_data_block(I)V {
+  +START:   #1
+        vR0.writeInt@this(20,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_first_data_block
+ 
+ method s_log_block_size()I {
+  +START:   #1
+        return vR0.readInt@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_log_block_size
+ 
+ method s_log_block_size(I)V {
+  +START:   #1
+        vR0.writeInt@this(24,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_log_block_size
+ 
+ method s_log_frag_size()I {
+  +START:   #1
+        return vR0.readInt@this(28);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_log_frag_size
+ 
+ method s_log_frag_size(I)V {
+  +START:   #1
+        vR0.writeInt@this(28,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_log_frag_size
+ 
+ method s_blocks_per_group()I {
+  +START:   #1
+        return vR0.readInt@this(32);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_blocks_per_group
+ 
+ method s_blocks_per_group(I)V {
+  +START:   #1
+        vR0.writeInt@this(32,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_blocks_per_group
+ 
+ method s_frags_per_group()I {
+  +START:   #1
+        return vR0.readInt@this(36);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_frags_per_group
+ 
+ method s_frags_per_group(I)V {
+  +START:   #1
+        vR0.writeInt@this(36,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_frags_per_group
+ 
+ method s_inodes_per_group()I {
+  +START:   #1
+        return vR0.readInt@this(40);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_inodes_per_group
+ 
+ method s_inodes_per_group(I)V {
+  +START:   #1
+        vR0.writeInt@this(40,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_inodes_per_group
+ 
+ method s_mtime()I {
+  +START:   #1
+        return vR0.readTime@this(44);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_mtime
+ 
+ method s_mtime(I)V {
+  +START:   #1
+        vR0.writeTime@this(44,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_mtime
+ 
+ method s_wtime()I {
+  +START:   #1
+        return vR0.readTime@this(48);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_wtime
+ 
+ method s_wtime(I)V {
+  +START:   #1
+        vR0.writeTime@this(48,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_wtime
+ 
+ method s_mnt_count()S {
+  +START:   #1
+        return vR0.readShort@this(52);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_mnt_count
+ 
+ method s_mnt_count(S)V {
+  +START:   #1
+        vR0.writeShort@this(52,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_mnt_count
+ 
+ method s_max_mnt_count()S {
+  +START:   #1
+        return vR0.readShort@this(54);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_max_mnt_count
+ 
+ method s_max_mnt_count(S)V {
+  +START:   #1
+        vR0.writeShort@this(54,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_max_mnt_count
+ 
+ method s_magic()S {
+  +START:   #1
+        return vR0.readShort@this(56);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_magic
+ 
+ method s_magic(S)V {
+  +START:   #1
+        vR0.writeShort@this(56,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_magic
+ 
+ method s_state()S {
+  +START:   #1
+        return vR0.readShort@this(58);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_state
+ 
+ method s_state(S)V {
+  +START:   #1
+        vR0.writeShort@this(58,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_state
+ 
+ method s_errors()S {
+  +START:   #1
+        return vR0.readShort@this(60);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_errors
+ 
+ method s_errors(S)V {
+  +START:   #1
+        vR0.writeShort@this(60,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_errors
+ 
+ method s_minor_rev_level()S {
+  +START:   #1
+        return vR0.readShort@this(62);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_minor_rev_level
+ 
+ method s_minor_rev_level(S)V {
+  +START:   #1
+        vR0.writeShort@this(62,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_minor_rev_level
+ 
+ method s_lastcheck()I {
+  +START:   #1
+        return vR0.readTime@this(64);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_lastcheck
+ 
+ method s_lastcheck(I)V {
+  +START:   #1
+        vR0.writeTime@this(64,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_lastcheck
+ 
+ method s_checkinterval()I {
+  +START:   #1
+        return vR0.readTime@this(68);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_checkinterval
+ 
+ method s_checkinterval(I)V {
+  +START:   #1
+        vR0.writeTime@this(68,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_checkinterval
+ 
+ method s_creator_os()I {
+  +START:   #1
+        return vR0.readInt@this(72);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_creator_os
+ 
+ method s_creator_os(I)V {
+  +START:   #1
+        vR0.writeInt@this(72,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_creator_os
+ 
+ method s_rev_level()I {
+  +START:   #1
+        return vR0.readInt@this(76);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_rev_level
+ 
+ method s_rev_level(I)V {
+  +START:   #1
+        vR0.writeInt@this(76,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_rev_level
+ 
+ method s_def_resuid()S {
+  +START:   #1
+        return vR0.readShort@this(80);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_def_resuid
+ 
+ method s_def_resuid(S)V {
+  +START:   #1
+        vR0.writeShort@this(80,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_def_resuid
+ 
+ method s_def_resgid()S {
+  +START:   #1
+        return vR0.readShort@this(82);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_def_resgid
+ 
+ method s_def_resgid(S)V {
+  +START:   #1
+        vR0.writeShort@this(82,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_def_resgid
+ 
+ method s_first_ino()I {
+  +START:   #1
+        return vR0.readInt@this(84);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_first_ino
+ 
+ method s_first_ino(I)V {
+  +START:   #1
+        vR0.writeInt@this(84,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_first_ino
+ 
+ method s_inode_size()S {
+  +START:   #1
+        if vR0.s_minor_rev_level@extra()<=0 goto B14;   
+  +B7:   #1
+        return vR0.readShort@this(88);   
+  +B14:   #1
+        return 128;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 s_inode_size
+ 
+ method s_inode_size(S)V {
+  +START:   #1
+        vR0.writeShort@this(88,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_inode_size
+ 
+ method s_block_group_nr()S {
+  +START:   #1
+        return vR0.readShort@this(90);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_block_group_nr
+ 
+ method s_block_group_nr(S)V {
+  +START:   #1
+        vR0.writeShort@this(90,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_block_group_nr
+ 
+ method s_feature_compat()I {
+  +START:   #1
+        return vR0.readInt@this(92);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_compat
+ 
+ method s_feature_compat(I)V {
+  +START:   #1
+        vR0.writeInt@this(92,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_compat
+ 
+ method s_feature_incompat()I {
+  +START:   #1
+        return vR0.readInt@this(96);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_incompat
+ 
+ method s_feature_incompat(I)V {
+  +START:   #1
+        vR0.writeInt@this(96,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_incompat
+ 
+ method s_feature_ro_compat()I {
+  +START:   #1
+        return vR0.readInt@this(100);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_ro_compat
+ 
+ method s_feature_ro_compat(I)V {
+  +START:   #1
+        vR0.writeInt@this(100,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_feature_ro_compat
+ 
+ method s_uuid(I)B {
+  +START:   #1
+        if vi1< 0 goto B19;   
+  +B4:   #1
+        if vi1>=16 goto B19;   
+  +B10:   #1
+        return vR0.readByte@this((vi1+104));   
+  +B19:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 2 found 0 s_uuid
+ 
+ method s_uuid(IB)V {
+  +START:   #1
+        if vi1< 0 goto B19;   
+  +B4:   #1
+        if vi1>=16 goto B19;   
+  +B10:   #1
+        vR0.writeByte@this((vi1+104),vi2);   [  i iiR] 
+  +B19:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 2 found 0 s_uuid
+ 
+ method s_volume_name()Ljava/lang/String; {
+  +START:   #1
+        return vR0.readString@this(120,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_volume_name
+ 
+ method s_volume_name(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.writeString@this(120,vR1,16);   [   iRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_volume_name
+ 
+ method s_last_mounted()Ljava/lang/String; {
+  +START:   #1
+        return vR0.readString@this(136,64);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_last_mounted
+ 
+ method s_last_mounted(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.writeString@this(136,vR1,64);   [   iRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_last_mounted
+ 
+ method s_alg_usage_bitmap()I {
+  +START:   #1
+        return vR0.readInt@this(200);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_alg_usage_bitmap
+ 
+ method s_alg_usage_bitmap(I)V {
+  +START:   #1
+        vR0.writeInt@this(200,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_alg_usage_bitmap
+ 
+ method s_prealloc_blocks()B {
+  +START:   #1
+        return vR0.readByte@this(204);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_prealloc_blocks
+ 
+ method s_prealloc_blocks(B)V {
+  +START:   #1
+        vR0.writeByte@this(204,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_prealloc_blocks
+ 
+ method s_prealloc_dir_b()B {
+  +START:   #1
+        return vR0.readByte@this(205);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_prealloc_dir_b
+ 
+ method s_prealloc_dir_b(B)V {
+  +START:   #1
+        vR0.writeByte@this(205,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 s_prealloc_dir_b
+ 
+ method dump()V {
+  +START:   #1
+        out.println("-- Superblock data --");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("  Inodes             : ").append@extra(vR0.s_inodes_count@extra()).toString@extra());   [ RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("  Blocks             : ").append@extra(vR0.s_blocks_count@extra()).toString@extra());   [ RR iiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiii. i..][ RR iiiiiii. iR.]
+        b0.println(b1.append@extra("  Reserved Blocks    : ").append@extra(vR0.s_r_blocks_count@extra()).toString@extra());   [ RR iiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiii. i..][ RR iiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Free Blocks        : ").append@extra(vR0.s_free_blocks_count@extra()).toString@extra());   [ RR iiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiii. i..][ RR iiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Free Inodes        : ").append@extra(vR0.s_free_inodes_count@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  First Data Block   : ").append@extra(vR0.s_first_data_block@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Log block size     : ").append@extra(vR0.s_log_block_size@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Blocks per group   : ").append@extra(vR0.s_blocks_per_group@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Inodes per group   : ").append@extra(vR0.s_inodes_per_group@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Mmount count       : ").append@extra(vR0.s_mnt_count@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Magic              : ").append@extra(vR0.s_magic@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  State              : ").append@extra(vR0.s_state@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Errors             : ").append@extra(vR0.s_errors@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("  Minor Revision     : ").append@extra(vR0.s_minor_rev_level@extra()).toString@extra());   [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        if vR0.s_minor_rev_level@extra()<=0 goto B435;   
+  +B407:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............................................ i..][ RR ............................................ iR.]
+        b0.println(b1.append@extra("  Inode size       : ").append@extra(vR0.s_inode_size@extra()).toString@extra());   [ RR iii......................................... RR.] 
+  +B435:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............................................ i..][ RR ............................................ iR.]
+        b0.println(b1.append@extra("  Last mounted       : ").append@extra(vR0.s_last_mounted@extra()).toString@extra());   [ RR iii......................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii......................................... i..][ RR iii......................................... iR.]
+        b0.println(b1.append@extra("  Volume name        : ").append@extra(vR0.s_volume_name@extra()).toString@extra());   [ RR iiiiii...................................... RR.] 
+        if vR0.s_magic@extra()==-4269 goto B511;   
+  -B501:   #1
+        throw new java/lang/Error("wrong ext2 magic");   
+  +B511:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 54/54 wr 122 swaps 52 any 0 found 0 dump
+}

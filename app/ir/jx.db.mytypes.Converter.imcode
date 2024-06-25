@@ -1,0 +1,193 @@
+class jx/db/mytypes/Converter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method bytesToInt([B)I {
+  +START:   #1
+        return bytesToInt@special(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 bytesToInt
+ 
+ method bytesToInt([BI)I {
+  +START:   #1
+        vi2 = ((((vR0[(vi1+0)] & 255) | ((vR0[(vi1+1)] << 8) & 65280)) | ((vR0[(vi1+2)] << 16) & 16711680)) | ((vR0[(vi1+3)] << 24) & -16777216));    
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 bytesToInt
+ 
+ method intToBytes(I[B)V {
+  +START:   #1
+        intToBytes@special(vi0,vR1,0);   [   iRi]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 intToBytes
+ 
+ method intToBytes(I[BI)V {
+  +START:   #1
+        vR1[(vi2+0)] = (byte)(vi0 & 255);   
+        vR1[(vi2+1)] = (byte)((vi0 & 65280) >> 8);   
+        vR1[(vi2+2)] = (byte)((vi0 & 16711680) >> 16);   
+        vR1[(vi2+3)] = (byte)((vi0 & -16777216) >> 24);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 intToBytes
+ 
+ method bytesToShort([B)I {
+  +START:   #1
+        return bytesToShort@special(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 bytesToShort
+ 
+ method bytesToShort([BI)I {
+  +START:   #1
+        vi2 = ((vR0[(vi1+0)] & 255) | ((vR0[(vi1+1)] << 8) & 65280));    
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 bytesToShort
+ 
+ method shortToBytes(I[B)V {
+  +START:   #1
+        shortToBytes@special(vi0,vR1,0);   [   iRi]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 shortToBytes
+ 
+ method shortToBytes(I[BI)V {
+  +START:   #1
+        vR1[(vi2+0)] = (byte)(vi0 & 255);   
+        vR1[(vi2+1)] = (byte)((vi0 & 65280) >> 8);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 shortToBytes
+ 
+ method moveBytes([B[B)V {
+  +START:   #1
+        vi2 = vR0.length;    
+        if vi2<=vR1.length goto B12;   
+  +B9:   #1
+        vi2 = vR1.length;    
+  +B12:   #1
+        moveBytes@special(vR0,0,vR1,0,vi2);   [i   iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 moveBytes
+ 
+ method moveBytes([BI[BII)V {
+  +START:   #1
+        arraycopy@special(vR2,vi3,vR0,vi1,vi4);   [   iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 moveBytes
+ 
+ method moveBytes([BIII)V {
+  +START:   #1
+        arraycopy@special(vR0,vi1,vR0,(vi1+vi3),(vi2-vi1));   [  ii iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 moveBytes
+ 
+ method stringToBytes(Ljava/lang/String;[B)V {
+  +START:   #1
+        stringToBytes@special(vR0,vR1,0,vR1.length);   [  i iiRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 stringToBytes
+ 
+ method stringToBytes(Ljava/lang/String;[BII)V {
+  +START:   #1
+        vR4 = 0;    
+  +B3:   #1
+        vR4 = vR0.getBytes@extra();    [R   R] 
+  +B9:   #1
+        goto +B19;   [R   .]
+  +H12<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR5.printStackTrace();   [RRii   R] 
+  +B19:   #1
+        vi5 = vR4.length;    
+        vi6 = vR4.length;    
+        if vi5<=vi3 goto B38;   
+  +B35:   #1
+        vi5 = vi3;    
+  +B38:   #1
+        if vi6>=vi3 goto B47;   
+  +B44:   #1
+        vi6 = vi3;    
+  +B47:   #1
+        vi7 = 0;    
+  +B50:   #1
+        if vi7>=vi5 goto B74;   
+  +B57:   #1
+        vR1[(vi7+vi2)] = vR4[vi7];   
+        vi7++;   
+        goto +B50;   [Riii   .]
+  +B74:   #1
+        vi7 = vi5;    
+  +B78:   #1
+        if vi7>=vi6 goto B99;   
+  +B85:   #1
+        vR1[(vi7+vi2)] = 32;   
+        vi7++;   
+        goto +B78;   [Riii   .]
+  +B99:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+3 - 9 handler 12 type 13
+ }
+// Register: rd 25/25 wr 11 swaps 0 any 9 found 0 stringToBytes
+ 
+ method bytesToString([B)Ljava/lang/String; {
+  +START:   #1
+        return bytesToString@special(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 bytesToString
+ 
+ method bytesToString([BI)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vi1;    
+  +B2:   #1
+        if vi2>=vR0.length goto B22;   
+  +B8:   #1
+        if vR0[vi2]==32 goto B22;   
+  +B16:   #1
+        vi2++;   
+        goto +B2;   [i R  ]
+  +B22:   #2
+        vR3 = new byte[(vi2-vi1)];    
+        moveBytes@special(vR3,0,vR0,vi1,vR3.length);   [iR R i iiRiR]
+        vR4 = 0;    
+  +B40:   #1
+        vR4 = new java/lang/String(vR3);    [ R . i....][ R . iRR..]
+  +B50:   #1
+        goto +B60;   forward return[iRR R . .....]
+  +H53<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR5.printStackTrace();   [iRRR R . R....] 
+  +B60:   #1
+        return vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+40 - 50 handler 53 type 13
+ }
+// Register: rd 13/13 wr 8 swaps 0 any 3 found 0 bytesToString
+}

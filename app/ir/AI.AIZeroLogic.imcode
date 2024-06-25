@@ -1,0 +1,57 @@
+class AI/AIZeroLogic {
+ 
+ method <init>(LAI/AIZeroMemory;)V {
+  +START:   #1
+        vR0.<init>@special("logic");   [  i RR] 
+        vR0.dt = jx.classfile.datatypes.BCDouble@6e514e3e;   
+        vR0.percentage = jx.classfile.datatypes.BCDouble@4254dddf;   
+        vR0.mem = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method Wait(D)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Wait
+ 
+ method getHash(Ljava/lang/String;I)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+  +B4:   #1
+        if vi3>=vR0.length@extra() goto B26;   
+  +B12:   #1
+        vi2 = (vi2+vR0.charAt@extra(vi3));    
+        vi3++;   
+        goto +B4;   [ii   ..]
+  +B26:   #1
+        return (((vi2*vR0.length@extra())%vi1)+100);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 3 found 4 getHash
+ 
+ method Wish(I)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Wish
+ 
+ method ChangeShort()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 ChangeShort
+ 
+ method run()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 run
+}

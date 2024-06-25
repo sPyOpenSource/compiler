@@ -1,0 +1,337 @@
+class java/util/TreeSet {
+ 
+ method <init>(Ljava/util/NavigableMap;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        b1 = new java/util/TreeMap();    [ ?R  i][ ?R  iR]
+        vR0.<init>@special(b1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Comparator;)V {
+  +START:   #1
+        b1 = new java/util/TreeMap(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.<init>@special(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Collection;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.addAll@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/SortedSet;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.comparator());   [  i RR] 
+        vR0.addAll@this(vR1);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return vR0.m.navigableKeySet().iterator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method descendingIterator()Ljava/util/Iterator; {
+  +START:   #1
+        return vR0.m.descendingKeySet().iterator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 descendingIterator
+ 
+ method descendingSet()Ljava/util/NavigableSet; {
+  +START:   #1
+        return new java/util/TreeSet(vR0.m.descendingMap());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 descendingSet
+ 
+ method size()I {
+  +START:   #1
+        return vR0.m.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.m.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.m.containsKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.m.put(vR1,PRESENT)!=null goto B20;   
+  +B16:   #1
+        b0 = 1;    
+        goto +B21b0;   forward return[ i . ...]
+  +B20:   #1
+        b0 = 0;    
+  +B21b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 add
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.m.remove(vR1)!=PRESENT goto B20;   
+  +B16:   #1
+        b0 = 1;    
+        goto +B21b0;   forward return[ i . ..]
+  +B20:   #1
+        b0 = 0;    
+  +B21b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 remove
+ 
+ method clear()V {
+  +START:   #1
+        vR0.m.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        if vR0.m.size()!=0 goto B89;   
+  +B12:   #1
+        if vR1.size()<=0 goto B89;   
+  +B21:   #1
+        if (vR1 instanceof java/util/SortedSet)==0 goto B89;   
+  +B28:   #1
+        if (vR0.m instanceof java/util/TreeMap)==0 goto B89;   
+  +B38:   #1
+        vR2 = (java/util/SortedSet)(vR1);    
+        vR3 = (java/util/TreeMap)(vR0.m);    
+        vR4 = vR2.comparator();    [RR  . R.] 
+        vR5 = vR3.comparator();    [RRR  . R.] 
+        if vR4==vR5 goto B87;   
+  +B72:   #1
+        if vR4==null goto B89;   
+  +B77:   #1
+        if vR4.equals(vR5)==0 goto B89;   
+  +B87:   #1
+        return 1;   
+  +B89:   #6
+        return vR0.addAll@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 5 swaps 0 any 3 found 1 addAll
+ 
+ method subSet(Ljava/lang/Object;ZLjava/lang/Object;Z)Ljava/util/NavigableSet; {
+  +START:   #1
+        return new java/util/TreeSet(vR0.m.subMap(vR1,vi2,vR3,vi4));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 subSet
+ 
+ method headSet(Ljava/lang/Object;Z)Ljava/util/NavigableSet; {
+  +START:   #1
+        return new java/util/TreeSet(vR0.m.headMap(vR1,vi2));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 headSet
+ 
+ method tailSet(Ljava/lang/Object;Z)Ljava/util/NavigableSet; {
+  +START:   #1
+        return new java/util/TreeSet(vR0.m.tailMap(vR1,vi2));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 tailSet
+ 
+ method subSet(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedSet; {
+  +START:   #1
+        return vR0.subSet@this(vR1,1,vR2,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 subSet
+ 
+ method headSet(Ljava/lang/Object;)Ljava/util/SortedSet; {
+  +START:   #1
+        return vR0.headSet@this(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 headSet
+ 
+ method tailSet(Ljava/lang/Object;)Ljava/util/SortedSet; {
+  +START:   #1
+        return vR0.tailSet@this(vR1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 tailSet
+ 
+ method comparator()Ljava/util/Comparator; {
+  +START:   #1
+        return vR0.m.comparator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 comparator
+ 
+ method first()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.firstKey();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 first
+ 
+ method last()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.lastKey();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 last
+ 
+ method lower(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.lowerKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lower
+ 
+ method floor(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.floorKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 floor
+ 
+ method ceiling(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.ceilingKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ceiling
+ 
+ method higher(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.higherKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 higher
+ 
+ method pollFirst()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = vR0.m.pollFirstEntry();    [ R  R] 
+        if vR1!=null goto B18;   
+  +B14:   #1
+        b0 = 0;    
+        goto +B24b0;   forward return[R R  .]
+  +B18:   #1
+        b0 = vR1.getKey();    [R R  R] 
+  +B24b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 pollFirst
+ 
+ method pollLast()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = vR0.m.pollLastEntry();    [ R  R] 
+        if vR1!=null goto B18;   
+  +B14:   #1
+        b0 = 0;    
+        goto +B24b0;   forward return[R R  .]
+  +B18:   #1
+        b0 = vR1.getKey();    [R R  R] 
+  +B24b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 pollLast
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        vR1 = (java/util/TreeSet)(vR0.clone@special());    
+  +B8:   #1
+        goto +B21;   [R RR . ..]
+  -H11<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        throw new java/lang/InternalError(vR2);   
+  +B21:   #1
+        b1 = new java/util/TreeMap(vR0.m);    [ RR . i..][ RR . iRR]
+        vR1.m = b1;   
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 8 handler 11 type 45
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 0 found 0 clone
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vR1.defaultWriteObject();   [   R] 
+        vR1.writeObject@extra(vR0.m.comparator());   [  i RR] 
+        vR1.writeInt(vR0.m.size());   [  ii iR] 
+        vR2 = vR0.m.keySet().iterator();    [  ii. R.] [  iiR R.] 
+  +B45:   #1
+        if vR2.hasNext()==0 goto B69;   
+  +B54:   #1
+        vR3 = vR2.next();    [R  ... R.] 
+        vR1.writeObject@extra(vR3);   [RR  ... RR] 
+        goto +B45;   [RR  ... ..]
+  +B69:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 2 any 0 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR1.defaultReadObject();   [ R  R] 
+        vR2 = (java/util/Comparator)(vR1.readObject());    
+        vR3 = new java/util/TreeMap(vR2);    [ R . i.][ R . iRR]
+        vR0.m = vR3;   
+        vi4 = vR1.readInt();    [RR R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 0 found 0 readObject
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spliterator
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/Object();    [ R  i][ R  iR]
+        PRESENT = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

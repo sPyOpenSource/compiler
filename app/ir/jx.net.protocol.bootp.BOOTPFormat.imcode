@@ -1,0 +1,237 @@
+class jx/net/protocol/bootp/BOOTPFormat {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,42);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(BIILjx/net/IPAddress;Lmetaxa/os/devices/net/EthernetAdress;Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR6);   [ RR  RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("request: ").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        vR0.insertHtype@this((byte)vR5.getType());   [ RR iii iR.] 
+        vR0.insertHlen@this(6);   [ RR iii iR.] 
+        vR0.insertCiaddr@this(vR4.getAddress());   [ RR iiii iR.] 
+        vR0.insertHwaddr@this(vR5.get_Addr());   [ RR iiiii RR.] 
+        out.print("client address: ");   [ RR iiiiii. RR.] 
+        xdump@special(vR5.get_Addr(),6);   [ RR iiiiiiR iR.]
+        vR0.insertXid@this(vi2);   [ RR iiiiiiR iR.] 
+        vR0.insertOp@this(vi1);   [ RR iiiiiiR iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 12 swaps 6 any 0 found 0 <init>
+ 
+ method insertOp(B)V {
+  +START:   #1
+        vR0.writeByte@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertOp
+ 
+ method insertHtype(B)V {
+  +START:   #1
+        vR0.writeByte@this(1,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHtype
+ 
+ method insertHlen(B)V {
+  +START:   #1
+        vR0.writeByte@this(2,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHlen
+ 
+ method insertHops(B)V {
+  +START:   #1
+        vR0.writeByte@this(3,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHops
+ 
+ method insertXid(I)V {
+  +START:   #1
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertXid
+ 
+ method insertSecs(S)V {
+  +START:   #1
+        vR0.writeShort@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSecs
+ 
+ method insertCiaddr(I)V {
+  +START:   #1
+        vR0.writeInt@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertCiaddr
+ 
+ method insertYiaddr(I)V {
+  +START:   #1
+        vR0.writeInt@this(16,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertYiaddr
+ 
+ method insertSiaddr(I)V {
+  +START:   #1
+        vR0.writeInt@this(20,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSiaddr
+ 
+ method insertGiaddr(I)V {
+  +START:   #1
+        vR0.writeInt@this(24,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertGiaddr
+ 
+ method insertHwaddr([B)V {
+  +START:   #1
+        vR0.writeBytes@this(28,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHwaddr
+ 
+ method insertSname([B)V {
+  +START:   #1
+        vR0.writeBytes@this(44,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSname
+ 
+ method insertFile([B)V {
+  +START:   #1
+        vR0.writeBytes@this(108,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertFile
+ 
+ method insertVend([B)V {
+  +START:   #1
+        vR0.writeBytes@this(236,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertVend
+ 
+ method getOpcode()I {
+  +START:   #1
+        return vR0.readByte@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOpcode
+ 
+ method getTransactionID()I {
+  +START:   #1
+        return vR0.readInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTransactionID
+ 
+ method getYiaddr()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.readAddress@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getYiaddr
+ 
+ method getClientIPAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.readAddress@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientIPAddress
+ 
+ method getServerIPAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.readAddress@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getServerIPAddress
+ 
+ method getGatewayIPAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.readAddress@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGatewayIPAddress
+ 
+ method getClientHwAddress()Lmetaxa/os/devices/net/EthernetAdress; {
+  +START:   #1
+        vR1 = new byte[6];    
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vR1.length goto B30;   
+  +B13:   #1
+        vR1[vi2] = vR0.readByte@this((vi2+28));   
+        vi2++;   
+        goto +B7;   [Ri R i ..]
+  +B30:   #2
+        b0 = new metaxa/os/devices/net/EthernetAdress(vR1);    [ R . i.][ R . iRR]
+  +B38b0:   #1 reference
+        return b0;   
+  +H39<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+30 - 38 handler 39 type 32
+ }
+// Register: rd 10/10 wr 7 swaps 1 any 2 found 0 getClientHwAddress
+ 
+ method length()I {
+  +START:   #1
+        return requiresSpace@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 length
+ 
+ method dump()V {
+  +START:   #1
+        out.println("BOOTP-Packet:");   [  i. RR] 
+        xdump1@special(vR0.buf,vR0.offset,48);   [  iRi iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 1 any 0 found 0 dump
+ 
+ method requiresSpace()I {
+  +START:   #1
+        return 300;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requiresSpace
+}

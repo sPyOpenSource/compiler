@@ -1,0 +1,107 @@
+class jx/buffer/multithread/Buffer2 {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(join@special(vR1));   [  i RR] 
+        vR0.offs = 0;   
+        if vR1==null goto B27;   
+  +B17:   #1
+        vR0.size = vR1.size();   
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 1 any 1 found 0 <init>
+ 
+ method getMem()Ljx/zero/Memory; {
+  -START:   #1
+        throw new java/lang/Error("subrange!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getMem
+ 
+ method getData()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.data.getSubRange(vR0.offs,vR0.size);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 getData
+ 
+ method setData(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.setData@this(vR1,0,vR1.size());   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setData
+ 
+ method setData(Ljx/zero/Memory;II)V {
+  +START:   #1
+        if vR1.size()!=1514 goto B20;   
+  +B12:   #1
+        vR0.data = vR1;   
+        goto +B30;   [   .]
+  +B20:   #1
+        vR0.data = vR1.joinAll();   
+  +B30:   #1
+        vR0.offs = vi2;   
+        vR0.size = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 setData
+ 
+ method copyDataFrom(Ljx/buffer/multithread/Buffer;)V {
+  +START:   #1
+        vR0.copyDataFrom@special(vR1);   [   RR] 
+        vR2 = (jx/buffer/multithread/Buffer2)(vR1);    
+        vR0.offs = vR2.offs;   
+        vR0.size = vR2.size;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 1 found 1 copyDataFrom
+ 
+ method getRawData()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRawData
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.offs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method join(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        if vR0!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vR1 = vR0.joinAll();    [ RR  R] 
+        if vR1.size()>=1514 goto B102;   
+  -B25:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("error: got=").append@extra(vR1.size()).append@extra(", need=1514").toString@extra());   [R RR ii.ii. RR..] 
+        vR2 = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));    
+        vR2.dump("setData x: ",vR1);   [RR RR iiiiii RRR.] 
+        vR2.dump("setData:m ",vR0);   [RR RR iiiiiii RRR.] 
+        throw new java/lang/Error("NEED LARGER MEMORY");   
+  +B102:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 17 swaps 7 any 1 found 0 join
+}

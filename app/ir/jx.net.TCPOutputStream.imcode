@@ -1,0 +1,56 @@
+class jx/net/TCPOutputStream {
+ 
+ method <init>(Ljx/net/TCPSocket;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.buffer = new byte[1024];   
+        vR0.buf_pos = 0;   
+        vR0.tcpSocket = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(I)V {
+  +START:   #1
+        b0 = vR0.buffer;    
+        b2 = vR0.buf_pos;    
+        b1 = b2;    
+        vR0.buf_pos = (b2+1);   
+        b0[b1] = (byte)vi1;   
+        if vR0.buf_pos<vR0.buffer.length goto B48;   
+  +B30:   #1
+        vR0.tcpSocket.send(vR0.buffer);   [ Rii i RR] 
+        vR0.buf_pos = 0;   
+  +B48:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 4 swaps 1 any 1 found 0 write
+ 
+ method flush()V {
+  +START:   #1
+        vi1 = vR0.buf_pos;    
+        vR2 = new byte[vi1];    
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vi1 goto B31;   
+  +B16:   #1
+        vR2[vi3] = vR0.buffer[vi3];   
+        vi3++;   
+        goto +B11;   [iRi   ..]
+  +B31:   #1
+        vR0.tcpSocket.send(vR2);   [iRi   RR] 
+        vR0.buf_pos = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 0 any 2 found 0 flush
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+}

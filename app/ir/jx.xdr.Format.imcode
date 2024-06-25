@@ -1,0 +1,350 @@
+class jx/xdr/Format {
+ 
+ method <init>([BI)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.init@this(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init([BI)V {
+  +START:   #1
+        vR0.buf = vR1;   
+        vR0.offset = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 init
+ 
+ method writeInt(Ljx/xdr/XDRBuffer;I)V {
+  +START:   #1
+        vR0.setByte(0,(byte)((vi1 >> 24) & 255));   [  i iiR] 
+        vR0.setByte(1,(byte)((vi1 >> 16) & 255));   [  ii iiR] 
+        vR0.setByte(2,(byte)((vi1 >> 8) & 255));   [  iii iiR] 
+        vR0.setByte(3,(byte)(vi1 & 255));   [  iiii iiR] 
+        vR0.advance(4);   [  iiii iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 4 any 0 found 0 writeInt
+ 
+ method writeShort(Ljx/xdr/XDRBuffer;I)V {
+  +START:   #1
+        vR0.setByte(0,(byte)((vi1 >> 8) & 255));   [  i iiR] 
+        vR0.setByte(1,(byte)(vi1 & 255));   [  ii iiR] 
+        vR0.advance(2);   [  ii iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 2 any 0 found 0 writeShort
+ 
+ method writeString(Ljx/xdr/XDRBuffer;Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = vR1.getBytes@extra();    [   R] 
+        writeByteArray@special(vR0,vR2);   [R   RR]
+        vi3 = vR1.length@extra();    [R   R.] 
+        if (vi3%4)==0 goto B32;   
+  +B21:   #1
+        vR0.advance((4-(vi3%4)));   [Ri  i iR] 
+  +B32:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 2 any 0 found 0 writeString
+ 
+ method readInt(Ljx/xdr/XDRBuffer;)I {
+  +START:   #1
+        vi1 = (vR0.getByte(3) & 255);    
+        vi1 = (vi1 | ((vR0.getByte(2) & 255) << 8));    
+        vi1 = (vi1 | ((vR0.getByte(1) & 255) << 16));    
+        vi1 = (vi1 | ((vR0.getByte(0) & 255) << 24));    
+        vR0.advance(4);   [i   iR] 
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 3 found 3 readInt
+ 
+ method readShort(Ljx/xdr/XDRBuffer;)S {
+  +START:   #1
+        vi1 = readByte@special(vR0,1);    [   iR]
+        vi1 = (vi1+(readByte@special(vR0,0) << 8));    
+        vR0.advance(2);   [i   iR] 
+        return (short)vi1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 1 readShort
+ 
+ method readByte(Ljx/xdr/XDRBuffer;)I {
+  +START:   #1
+        vi1 = readByte@special(vR0,0);    [   iR]
+        vR0.advance(1);   [i   iR] 
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 readByte
+ 
+ method writeByteArray(Ljx/xdr/XDRBuffer;[B)V {
+  +START:   #1
+        writeInt@special(vR0,vR1.length);   [  i iR]
+        vi2 = 0;    
+  +B8:   #1
+        if vi2>=vR1.length goto B30;   
+  +B14:   #1
+        vR0.setByte(vi2,vR1[vi2]);   [i  i biR] 
+        vi2++;   
+        goto +B8;   [i  i ...]
+  +B30:   #1
+        vR0.advance(vR1.length);   [i  i iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 2 any 2 found 0 writeByteArray
+ 
+ method writeFixByteArray(Ljx/xdr/XDRBuffer;[BI)V {
+  +START:   #1
+        if vR1.length==vi2 goto B18;   
+  +B6:   #1
+        out.println("error: fix byte len != array length");   [  i. RR] 
+        exit@special(1);   [  i. i.]
+  +B18:   #1
+        vi3 = 0;    
+  +B20:   #1
+        if vi3>=vi2 goto B41;   
+  +B25:   #1
+        vR0.setByte(vi3,vR1[vi3]);   [i  i. biR] 
+        vi3++;   
+        goto +B20;   [i  i. ...]
+  +B41:   #1
+        vR0.advance(vi2);   [i  .. iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 2 any 2 found 0 writeFixByteArray
+ 
+ method writeIntArray(Ljx/xdr/XDRBuffer;[I)V {
+  +START:   #1
+        writeInt@special(vR0,vR1.length);   [  i iR]
+        vi2 = 0;    
+  +B8:   #1
+        if vi2>=vR1.length goto B27;   
+  +B14:   #1
+        writeInt@special(vR0,vR1[vi2]);   [i  i iR]
+        vi2++;   
+        goto +B8;   [i  i ..]
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 2 found 0 writeIntArray
+ 
+ method writeShortArray(Ljx/xdr/XDRBuffer;[S)V {
+  +START:   #1
+        writeInt@special(vR0,vR1.length);   [  i iR]
+        vi2 = 0;    
+  +B8:   #1
+        if vi2>=vR1.length goto B27;   
+  +B14:   #1
+        writeShort@special(vR0,vR1[vi2]);   [i  s sR]
+        vi2++;   
+        goto +B8;   [i  s ..]
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 2 found 0 writeShortArray
+ 
+ method readBoolean(Ljx/xdr/XDRBuffer;)Z {
+  +START:   #1
+        vi1 = readInt@special(vR0);    [ i  R]
+        if vi1==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[i i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 1 found 0 readBoolean
+ 
+ method readIntArray(Ljx/xdr/XDRBuffer;)[I {
+  +START:   #1
+        vi1 = readInt@special(vR0);    [   R]
+        vR2 = new int[vi1];    
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vi1 goto B29;   
+  +B16:   #1
+        vR2[vi3] = readInt@special(vR0);   
+        vi3++;   
+        goto +B11;   [iRi   ..]
+  +B29:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 2 found 0 readIntArray
+ 
+ method readShortArray(Ljx/xdr/XDRBuffer;)[S {
+  +START:   #1
+        vi1 = readInt@special(vR0);    [   R]
+        vR2 = new short[vi1];    
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vi1 goto B29;   
+  +B16:   #1
+        vR2[vi3] = readShort@special(vR0);   
+        vi3++;   
+        goto +B11;   [iRi   ..]
+  +B29:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 2 found 0 readShortArray
+ 
+ method readByteArray(Ljx/xdr/XDRBuffer;)[B {
+  +START:   #1
+        vi1 = readInt@special(vR0);    [   R]
+        vR2 = new byte[vi1];    
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vi1 goto B32;   
+  +B16:   #1
+        vR2[vi3] = vR0.getByte(vi3);   
+        vi3++;   
+        goto +B11;   [iRi   ..]
+  +B32:   #1
+        vR0.advance(vi1);   [iRi   iR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 2 found 0 readByteArray
+ 
+ method readFixByteArray(Ljx/xdr/XDRBuffer;I)[B {
+  +START:   #1
+        vR2 = new byte[vi1];    
+        vi3 = 0;    
+  +B6:   #1
+        if vi3>=vi1 goto B25;   
+  +B11:   #1
+        vR2[vi3] = (byte)readByte@special(vR0);   
+        vi3++;   
+        goto +B6;   [Ri   ..]
+  +B25:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 0 readFixByteArray
+ 
+ method readString(Ljx/xdr/XDRBuffer;)Ljava/lang/String; {
+  +START:   #1
+        vi1 = readInt@special(vR0);    [ R  R]
+        if vi1<=1024 goto B22;   
+  -B12:   #1
+        throw new java/lang/Error("String too large");   
+  +B22:   #1
+        vR2 = new byte[vi1];    
+        vi3 = 0;    
+  +B28:   #1
+        if vi3>=vi1 goto B48;   
+  +B33:   #1
+        vR2[vi3] = (byte)readByte@special(vR0,vi3);   
+        vi3++;   
+        goto +B28;   [iRi R . ...]
+  +B48:   #1
+        vR0.advance(vi1);   [iRi R . iR.] 
+        vR0.advance(((4-(vi1%4))%4));   [iRi R i iR.] 
+        vR3 = new java/lang/String(vR2);    [ R i i..][ R i. iRR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 9 swaps 2 any 3 found 0 readString
+ 
+ method lengthByte(B)I {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 lengthByte
+ 
+ method lengthShort(S)I {
+  +START:   #1
+        return 2;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 lengthShort
+ 
+ method lengthInt(I)I {
+  +START:   #1
+        return 4;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 lengthInt
+ 
+ method lengthIntArray([I)I {
+  +START:   #1
+        return ((vR0.length*4)+4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lengthIntArray
+ 
+ method lengthShortArray([S)I {
+  +START:   #1
+        return ((vR0.length*2)+4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lengthShortArray
+ 
+ method lengthByteArray([B)I {
+  +START:   #1
+        return (vR0.length+4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lengthByteArray
+ 
+ method lengthFixByteArray([BI)I {
+  +START:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lengthFixByteArray
+ 
+ method lengthString(Ljava/lang/String;)I {
+  +START:   #1
+        vi1 = 4;    
+        vi2 = vR0.length@extra();    [i   R] 
+        vi1 = (vi1+vi2);    
+        if (vi2%4)==0 goto B25;   
+  +B17:   #1
+        vi1 = (vi1+(4-(vi2%4)));    
+  +B25:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 lengthString
+ 
+ method readByte(Ljx/xdr/XDRBuffer;I)I {
+  +START:   #1
+        vi2 = vR0.getByte(vi1);    [ i  iR] 
+        if vi2>=0 goto B20;   
+  +B12:   #1
+        b0 = (vi2+256);    
+        goto +B21b0;   forward return[i i  ..]
+  +B20:   #1
+        b0 = vi2;    
+  +B21b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 3 found 0 readByte
+}

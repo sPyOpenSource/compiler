@@ -1,0 +1,81 @@
+class jx/rpc/RPCFormatterRPCMessage {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(Ljx/rpc/RPCBuffer;Ljx/rpc/RPCMessage;)V {
+  +START:   #1
+        if vR1.msgType!=0 goto B74;   
+  +B7:   #1
+        writeInt@special(vR0,vR1.xid);   [  i iR]
+        writeInt@special(vR0,vR1.msgType);   [  ii iR]
+        lswitch (vR1.msgType) { 
+           0:B52
+           1:B63
+           ::B71
+        };   
+  +B52:   #1
+        write@special(vR0,(jx/rpc/RPCCall)(vR1));   [  .. RR]
+        goto +B71;   [  .. ..]
+  +B63:   #1
+        write@special(vR0,(jx/rpc/RPCReply)(vR1));   [  .. RR]
+  +B71:   #2
+        goto +B90;   forward return[  .. ..]
+  +B74:   #1
+        writeInt@special(vR0,vR1.xid);   [  i. iR]
+        writeInt@special(vR0,vR1.msgType);   [  ii iR]
+  +B90:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 0 found 2 write
+ 
+ method read(Ljx/rpc/RPCBuffer;)Ljx/rpc/RPCMessage; {
+  +START:   #1
+        vR1 = new jx/rpc/RPCMessage();    [ RR  i][ RR  iR]
+        vR1.xid = readInt@special(vR0);   
+        vR1.msgType = readInt@special(vR0);   
+        vR2 = 0;    
+        lswitch (vR1.msgType) { 
+           0:B56
+           1:B64
+           ::B72
+        };   
+  +B56:   #1
+        vR2 = read@special(vR0);    [RR RR  R.]
+        goto +B140;   [RR RR  ..]
+  +B64:   #1
+        vR2 = read@special(vR0);    [RR RR  R.]
+        goto +B140;   [RR RR  ..]
+  -B72:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Unknown switch in RPC message").append@extra(vR1.msgType).toString@extra());   [RR RR iii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        b0.println(b1.append@extra("          xid=").append@extra(vR1.xid).toString@extra());   [RR RR iiiiii. RR.] 
+        vR0.xdump@this();   [RR RR iiiiii. R..] 
+        throw new java/lang/RuntimeException();   
+  +B140:   #2
+        vR2.xid = vR1.xid;   
+        vR2.msgType = vR1.msgType;   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 18 swaps 6 any 0 found 0 read
+ 
+ method length(Ljx/rpc/RPCMessage;)I {
+  +START:   #1
+        vi1 = 0;    
+        vi1 = (vi1+lengthInt@special(vR0.xid));    
+        vi1 = (vi1+lengthInt@special(vR0.msgType));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 2 length
+}

@@ -1,0 +1,605 @@
+class java/util/Date {
+ 
+ method fixed_int(I)Ljava/lang/String; {
+  +START:   #1
+        if vi0<=10 goto B28;   
+  +B6:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        b0 = b0.append@extra("").append@extra(vi0).toString@extra();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
+        goto +B47b0;   forward return[ R i.. ...]
+  +B28:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        b0 = b0.append@extra("0").append@extra(vi0).toString@extra();    [ R i.. R..] [ R iR. iR.] [ R iRR iRR] 
+  +B47b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 10 swaps 2 any 1 found 0 fixed_int
+ 
+ method refresh_millis()V {
+  +START:   #1
+        if vR0.mvalid==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vi1 = (vR0.year+1900);    
+        vi2 = (vi1/400);    
+        vi3 = ((vi1%400)/100);    
+        vi4 = ((vi1%100)/4);    
+        vi5 = (vi1%4);    
+        if vi3!=0 goto B53;   
+  +B49:   #1
+        b0 = 1;    
+        goto +B54b0;   [iiiii iii  ]
+  +B53:   #1
+        b0 = 0;    
+  +B54b0:   #1 int
+        vi6 = b0;    
+        if vi6!=0 goto B66;   
+  +B61:   #1
+        if vi4<=0 goto B70;   
+  +B66:   #1
+        b0 = 1;    
+        goto +B71b0;   [iiiiii iii  ]
+  +B70:   #1
+        b0 = 0;    
+  +B71b0:   #1 int
+        vi7 = b0;    
+        if vi7==0 goto B87;   
+  +B78:   #1
+        if vi5!=0 goto B87;   
+  +B83:   #1
+        b0 = 1;    
+        goto +B88b0;   [iiiiiii iii  ]
+  +B87:   #2
+        b0 = 0;    
+  +B88b0:   #1 int
+        vi8 = b0;    
+        b0 = ((vi2*146097)+(vi3*36524));    
+        if vi6!=0 goto B108;   
+  +B104b0:   #1 int
+        b1 = 1;    
+        goto +B109b0b1;   [iiiiiiii iii  ]
+  +B108b0:   #1 int
+        b1 = 0;    
+  +B109b0b1:   #1 int int
+        b0 = ((b0+b1)+(vi4*1461));    
+        if vi6!=0 goto B131;   
+  +B122b0:   #1 int
+        if vi4<=0 goto B131;   
+  +B127b0:   #1 int
+        b1 = 1;    
+        goto +B132b0b1;   [iiiiiiii iii  ]
+  +B131b0:   #2 int
+        b1 = 0;    
+  +B132b0b1:   #1 int int
+        b0 = ((b0-b1)+(vi5*365));    
+        if vi7==0 goto B154;   
+  +B145b0:   #1 int
+        if vi5<=0 goto B154;   
+  +B150b0:   #1 int
+        b1 = 1;    
+        goto +B155b0b1;   [iiiiiiii iii  ]
+  +B154b0:   #2 int
+        b1 = 0;    
+  +B155b0b1:   #1 int int
+        vi9 = (b0+b1);    
+        vi10 = 0;    
+  +B161:   #1
+        if vi10>=vR0.month goto B204;   
+  +B170:   #1
+        b0 = vi9;    
+        b1 = daysInMonth[vi10];    
+        if vi8==0 goto B193;   
+  +B183b0b1:   #1 int int
+        if vi10!=1 goto B193;   
+  +B189b0b1:   #1 int int
+        b2 = 1;    
+        goto +B194b0b1b2;   [iiiiiiiiii iii  .]
+  +B193b0b1:   #2 int int
+        b2 = 0;    
+  +B194b0b1b2:   #1 int int int
+        vi9 = (b0+(b1+b2));    
+        vi10++;   
+        goto +B161;   [iiiiiiiiii iii  .]
+  +B204:   #1
+        vi9 = (vi9+(vR0.date-1));    
+        vR0.yday = vi9;   
+        vR0.day = ((vi9+6)%7);   
+        vi10 = ((vi9*24)+vR0.hrs);    
+        vi11 = ((vi10*60)+vR0.min);    
+        vi12 = ((vi11*60)+vR0.sec);    
+        b0 = vi12;    
+        b1 = (timezone*60);    
+        if vR0.isdst==0 goto B290;   
+  +B284b0b1:   #1 int int
+        b2 = 3600;    
+        goto +B291b0b1b2;   [iiiiiiiiiiii iii  .]
+  +B290b0b1:   #1 int int
+        b2 = 0;    
+  +B291b0b1b2:   #1 int int int
+        vi12 = (b0-(b1+b2));    
+        vR0.millis = (long)(vi12*1000);   
+        vR0.mvalid = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 32 swaps 0 any 29 found 0 refresh_millis
+ 
+ method refresh_components()V {
+  +START:   #1
+        if vR0.valid==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.refresh_millis@special();   [ iii  R] 
+        vi1 = ((int)(vR0.millis/1000)+(vR0.getTimezoneOffset@this()*60));    
+        vR0.sec = (vi1%60);   
+        vi1 = (vi1/60);    
+        vR0.min = (vi1%60);   
+        vi1 = (vi1/60);    
+        vR0.hrs = (vi1%24);   
+        vi1 = (vi1/24);    
+        vi2 = (vi1+719528);    
+        vR0.day = ((vi2+6)%7);   
+        vi3 = (vi2/146097);    
+        vi2 = (vi2-(vi3*146097));    
+        if vi2!=0 goto B105;   
+  +B101:   #1
+        b0 = 0;    
+        goto +B111b0;   [iii iii . .]
+  +B105:   #1
+        b0 = ((vi2-1)/36524);    
+  +B111b0:   #1 int
+        vi4 = b0;    
+        if vi4!=0 goto B122;   
+  +B118:   #1
+        b0 = 1;    
+        goto +B123b0;   [iiii iii . .]
+  +B122:   #1
+        b0 = 0;    
+  +B123b0:   #1 int
+        vi5 = b0;    
+        b0 = vi2;    
+        b1 = (vi4*36524);    
+        if vi5==0 goto B140;   
+  +B136b0b1:   #1 int int
+        b2 = 0;    
+        goto +B141b0b1b2;   [iiiii iii . .]
+  +B140b0b1:   #1 int int
+        b2 = 1;    
+  +B141b0b1b2:   #1 int int int
+        vi2 = (b0-(b1+b2));    
+        b0 = vi2;    
+        if vi5==0 goto B154;   
+  +B150b0:   #1 int
+        b1 = 0;    
+        goto +B155b0b1;   [iiiii iii . .]
+  +B154b0:   #1 int
+        b1 = 1;    
+  +B155b0b1:   #1 int int
+        vi6 = ((b0+b1)/1461);    
+        if vi5!=0 goto B172;   
+  +B167:   #1
+        if vi6<=0 goto B176;   
+  +B172:   #1
+        b0 = 1;    
+        goto +B177b0;   [iiiiii iii . .]
+  +B176:   #1
+        b0 = 0;    
+  +B177b0:   #1 int
+        vi7 = b0;    
+        b0 = vi2;    
+        b1 = (vi6*1461);    
+        if vi7==0 goto B195;   
+  +B191b0b1:   #1 int int
+        b2 = 0;    
+        goto +B196b0b1b2;   [iiiiiii iii . .]
+  +B195b0b1:   #1 int int
+        b2 = 1;    
+  +B196b0b1b2:   #1 int int int
+        vi2 = (b0-(b1-b2));    
+        if vi2!=0 goto B207;   
+  +B203:   #1
+        b0 = 0;    
+        goto +B223b0;   [iiiiiii iii . .]
+  +B207:   #1
+        b0 = vi2;    
+        if vi7==0 goto B217;   
+  +B213b0:   #1 int
+        b1 = 1;    
+        goto +B218b0b1;   [iiiiiiiiii iii . .]
+  +B217b0:   #1 int
+        b1 = 0;    
+  +B218b0b1:   #1 int int
+        b0 = ((b0-b1)/365);    
+  +B223b0:   #1 int
+        vi8 = b0;    
+        if vi7==0 goto B239;   
+  +B230:   #1
+        if vi8!=0 goto B239;   
+  +B235:   #1
+        b0 = 1;    
+        goto +B240b0;   [iiiiiiii iii . .]
+  +B239:   #2
+        b0 = 0;    
+  +B240b0:   #1 int
+        vi9 = b0;    
+        b0 = vi2;    
+        b1 = (vi8*365);    
+        if vi7==0 goto B263;   
+  +B254b0b1:   #1 int int
+        if vi8<=0 goto B263;   
+  +B259b0b1:   #1 int int
+        b2 = 1;    
+        goto +B264b0b1b2;   [iiiiiiiii iii . .]
+  +B263b0b1:   #2 int int
+        b2 = 0;    
+  +B264b0b1b2:   #1 int int int
+        vi2 = (b0-(b1+b2));    
+        vR0.year = (((((400*vi3)+(vi4*100))+(vi6*4))+vi8)-1900);   
+        vR0.yday = vi2;   
+        vi10 = 0;    
+  +B302:   #1
+        if vi10>=12 goto B354;   
+  +B309:   #1
+        vi1 = daysInMonth[vi10];    
+        if vi9==0 goto B330;   
+  +B321:   #1
+        if vi10!=1 goto B330;   
+  +B327:   #1
+        vi1++;   
+  +B330:   #2
+        if vi2>=vi1 goto B344;   
+  +B335:   #1
+        vR0.month = vi10;   
+        goto +B354;   [iiiiiiiiii iii . .]
+  +B344:   #1
+        vi2 = (vi2-vi1);    
+        vi10++;   
+        goto +B302;   [iiiiiiiiii iii . .]
+  +B354:   #2
+        vi2++;   
+        vR0.date = vi2;   
+        vR0.valid = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 82/82 wr 43 swaps 0 any 39 found 0 refresh_components
+ 
+ method invalidate()V {
+  +START:   #1
+        vR0.mvalid = 0;   
+        vR0.valid = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 invalidate
+ 
+ method parse(Ljava/lang/String;)J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 parse
+ 
+ method UTC(IIIIII)J {
+  +START:   #1
+        vR6 = new java/util/Date(vi0,vi1,vi2,vi3,vi4,vi5);    [ R  i][ R . iiiiiiiR]
+        vR6.isGMT = 1;   
+        return vR6.getTime();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 UTC
+ 
+ method hashCode()I {
+  +START:   #1
+        vR0.refresh_millis@special();   [   R] 
+        return (int)(vR0.millis ^ (vR0.millis >>> 32));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hashCode
+ 
+ method getTimezoneOffset()I {
+  +START:   #1
+        if vR0.isGMT==0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR0.refresh_millis@special();   [ ii  R] 
+        b0 = timezone;    
+        if vR0.isdst==0 goto B28;   
+  +B23b0:   #1 int
+        b1 = 60;    
+        goto +B29b0b1;   forward return[ ii  .]
+  +B28b0:   #1 int
+        b1 = 0;    
+  +B29b0b1:   #1 int int
+        return (b0+b1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getTimezoneOffset
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR0.refresh_components@special();   [ RRi  R] 
+        b0 = new java/lang/StringBuilder();    [ RRi  i][ RRi  iR]
+        b0 = b0.append@extra(days[vR0.day]).append@extra(" ").append@extra(months[vR0.month]).append@extra(" ").append@extra(fixed_int@special(vR0.date)).append@extra(" ").append@extra(fixed_int@special(vR0.hrs)).append@extra(":").append@extra(fixed_int@special(vR0.min)).append@extra(":").append@extra(fixed_int@special(vR0.sec)).append@extra(" ");    [ RRi i.iii..iii..iii..iii..ii..i RR...........] [ RRi iRiii..iii..iii..iii..ii..i RRR..........] [ RRi iRiiiR.iii..iii..iii..ii..i RRRR.........] [ RRi iRiiiRRiii..iii..iii..ii..i RRRRR........] [ RRi iRiiiRRiiiR.iii..iii..ii..i RRRRRR.......] [ RRi iRiiiRRiiiRRiii..iii..ii..i RRRRRRR......] [ RRi iRiiiRRiiiRRiiiR.iii..ii..i RRRRRRRR.....] [ RRi iRiiiRRiiiRRiiiRRiii..ii..i RRRRRRRRR....] [ RRi iRiiiRRiiiRRiiiRRiiiR.ii..i RRRRRRRRRR...] [ RRi iRiiiRRiiiRRiiiRRiiiRRii..i RRRRRRRRRRR..] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiR.i RRRRRRRRRRRR.] [ RRi iRiiiRRiiiRRiiiRRiiiRRiiRRi RRRRRRRRRRRRR] 
+        b1 = tzname;    
+        if vR0.isdst==0 goto B117;   
+  +B113b0b1:   #1 reference reference
+        b2 = 1;    
+        goto +B118b0b1b2;   forward return[ RRi ........................... .............]
+  +B117b0b1:   #1 reference reference
+        b2 = 0;    
+  +B118b0b1b2:   #1 reference reference int
+        return b0.append@extra(b1[b2]).append@extra(" ").append@extra((vR0.year+1900)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 37 swaps 15 any 0 found 0 toString
+ 
+ method toGMTString()Ljava/lang/String; {
+  +START:   #1
+        if vR0.isGMT!=0 goto B29;   
+  +B7:   #1
+        vR1 = new java/util/Date(vR0.millis);    [ R  i][ R . il_R]
+        vR1.isGMT = 1;   
+        return vR1.toGMTString();   
+  +B29:   #1
+        vR0.refresh_components@special();   [R R . R._.] 
+        b0 = new java/lang/StringBuilder();    [ R . i._.][ R . iR_.]
+        return b0.append@extra(vR0.date).append@extra(" ").append@extra(months[vR0.month]).append@extra(" ").append@extra((vR0.year+1900)).append@extra(" ").append@extra(fixed_int@special(vR0.hrs)).append@extra(":").append@extra(fixed_int@special(vR0.min)).append@extra(":").append@extra(fixed_int@special(vR0.sec)).append@extra(" GMT").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 30 swaps 12 any 0 found 0 toGMTString
+ 
+ method toLocaleString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.toString@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toLocaleString
+ 
+ method after(Ljava/util/Date;)Z {
+  +START:   #1
+        if compare(vR0.getTime@this(),vR1.getTime())<=0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[ i  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 after
+ 
+ method before(Ljava/util/Date;)Z {
+  +START:   #1
+        if compare(vR0.getTime@this(),vR1.getTime())>=0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[ i  .]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 before
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if compare(vR0.getTime@this(),(java/util/Date)(vR1).getTime())!=0 goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  .]
+  +B19:   #1
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 equals
+ 
+ method getTime()J {
+  +START:   #1
+        vR0.refresh_millis@special();   [   R] 
+        return vR0.millis;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTime
+ 
+ method getYear()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.year;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getYear
+ 
+ method getMonth()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.month;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getMonth
+ 
+ method getDate()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.date;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getDate
+ 
+ method getHours()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.hrs;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getHours
+ 
+ method getMinutes()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.min;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getMinutes
+ 
+ method getSeconds()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.sec;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getSeconds
+ 
+ method getDay()I {
+  +START:   #1
+        vR0.refresh_components@special();   [   R] 
+        return vR0.day;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getDay
+ 
+ method setTime(J)V {
+  +START:   #1
+        vR0.millis = vl1;   
+        vR0.valid = 0;   
+        vR0.mvalid = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTime
+ 
+ method setYear(I)V {
+  +START:   #1
+        vR0.year = vi1;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setYear
+ 
+ method setMonth(I)V {
+  +START:   #1
+        vR0.month = vi1;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setMonth
+ 
+ method setDate(I)V {
+  +START:   #1
+        vR0.date = vi1;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setDate
+ 
+ method setHours(I)V {
+  +START:   #1
+        vR0.hrs = vR0.hrs;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setHours
+ 
+ method setMinutes(I)V {
+  +START:   #1
+        vR0.min = vR0.min;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setMinutes
+ 
+ method setSeconds(I)V {
+  +START:   #1
+        vR0.sec = vR0.sec;   
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setSeconds
+ 
+ method <init>(IIIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.year = vi1;   
+        vR0.month = vi2;   
+        vR0.date = vi3;   
+        vR0.hrs = vi4;   
+        vR0.min = vi5;   
+        vR0.sec = vi6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIIII)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,vi4,vi5,0);   [   iiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,0,0,0);   [   iiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(J)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.millis = vl1;   
+        vR0.mvalid = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(parse@special(vR1));   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(currentTimeMillis@special());   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method compareTo(Ljava/util/Date;)I {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 compareTo
+ 
+ method <clinit>()V {
+  +START:   #1
+        days = 0;   
+        months = 0;   
+        daysInMonth = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 <clinit>
+}

@@ -1,0 +1,613 @@
+class java/lang/Integer {
+ 
+ method stringSize(I)I {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi0>sizeTable[vi1] goto B15;   
+  +B11:   #1
+        return (vi1+1);   
+  +B15:   #1
+        vi1++;   
+        goto +B2;   [i   .]
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 1 stringSize
+ 
+ method getChars(II[C)V {
+  +START:   #1
+        vi5 = vi1;    
+        vi6 = 0;    
+        if vi0>=0 goto B17;   
+  +B10:   #1
+        vi6 = 45;    
+        vi0 = -vi0;    
+  +B17:   #2
+        if vi0<65536 goto B75;   
+  +B23:   #1
+        vi3 = (vi0/100);    
+        vi4 = (vi0-(((vi3 << 6)+(vi3 << 5))+(vi3 << 2)));    
+        vi0 = vi3;    
+        vi5--;   
+        vR2[vi5] = DigitOnes[vi4];   
+        vi5--;   
+        vR2[vi5] = DigitTens[vi4];   
+        goto +B17;   [iiii   .]
+  +B75:   #2
+        vi3 = ((vi0*52429) >>> 19);    
+        vi4 = (vi0-((vi3 << 3)+(vi3 << 1)));    
+        vi5--;   
+        vR2[vi5] = digits[vi4];   
+        vi0 = vi3;    
+        if vi0!=0 goto B75;   
+  +B113:   #1
+        goto +B116;   [iiii   .]
+  +B116:   #1
+        if vi6==0 goto B130;   
+  +B121:   #1
+        vi5--;   
+        vR2[vi5] = vi6;   
+  +B130:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 13 swaps 0 any 16 found 0 getChars
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = parseInt@special(vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0.value);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        out.println("obj");   [ i i. RR] 
+        if vR1==null goto B39;   
+  +B12:   #1
+        if (vR1 instanceof java/lang/Integer)==0 goto B39;   
+  +B19:   #1
+        if vR0.value!=(java/lang/Integer)(vR1).value goto B37;   
+  +B33:   #1
+        b0 = 1;    
+        goto +B38b0;   forward return[ i .. ..]
+  +B37:   #1
+        b0 = 0;    
+  +B38b0:   #1 int
+        return b0;   
+  +B39:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 1 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method intValue()I {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 intValue
+ 
+ method longValue()J {
+  +START:   #1
+        return (long)vR0.value;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 longValue
+ 
+ method floatValue()F {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 floatValue
+ 
+ method doubleValue()D {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 doubleValue
+ 
+ method toString(I)Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vi0,10);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method toString(II)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuilder(10);    [ R  i][ R . iiR]
+        if vi0!=0 goto B26;   
+  +B14:   #1
+        vR2.append@extra(48);   [R R . iR.] 
+        return vR2.toString@extra();   
+  +B26:   #1
+        vi3 = 0;    
+        if vi0>=0 goto B37;   
+  +B32:   #1
+        vi3 = 1;    
+        vi0 = -vi0;    
+  +B37:   #2
+        if vi0<=0 goto B60;   
+  +B41:   #1
+        vR2.append@extra(forDigit@special((vi0%vi1),vi1));   [Ri R ii cR.] 
+        vi0 = (vi0/vi1);    
+        goto +B37;   [Ri R ii ...]
+  +B60:   #1
+        if vi3==0 goto B71;   
+  +B64:   #1
+        vR2.append@extra(45);   [Ri R .. iR.] 
+  +B71:   #1
+        vR2.reverse@extra();   [Ri R .. R..] 
+        return vR2.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 7 swaps 1 any 5 found 0 toString
+ 
+ method toUnsignedString(II)Ljava/lang/String; {
+  +START:   #1
+        if vi0!=0 goto B7;   
+  +B4:   #1
+        return "0";   
+  +B7:   #1
+        vR2 = "";    
+        vi3 = (1 << vi1);    
+        vi4 = (vi3-1);    
+  +B19:   #1
+        if vi0==0 goto B56;   
+  +B23:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR2 = b0.append@extra(forDigit@special((vi0 & vi4),vi3)).append@extra(vR2).toString@extra();    [Rii R ..ii R..] [Rii R R.ii RR.] [Rii R RRii RcR] 
+        vi0 = (vi0 >>> vi1);    
+        goto +B19;   [Rii R ..ii ...]
+  +B56:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 10 swaps 1 any 3 found 0 toUnsignedString
+ 
+ method toHexString(I)Ljava/lang/String; {
+  +START:   #1
+        return toUnsignedString@special(vi0,4);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toHexString
+ 
+ method toOctalString(I)Ljava/lang/String; {
+  +START:   #1
+        return toUnsignedString@special(vi0,3);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toOctalString
+ 
+ method toBinaryString(I)Ljava/lang/String; {
+  +START:   #1
+        return toUnsignedString@special(vi0,1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toBinaryString
+ 
+ method parseInt(Ljava/lang/String;)I {
+  +START:   #1
+        return parseInt@special(vR0,10);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 parseInt
+ 
+ method parseInt(Ljava/lang/String;I)I {
+  +START:   #1
+        if vR0==null goto B13;   
+  +B4:   #1
+        if vR0.equals@extra("")==0 goto B21;   
+  -B13:   #1
+        throw new java/lang/NumberFormatException();   
+  +B21:   #1
+        if vi1<2 goto B32;   
+  +B26:   #1
+        if vi1<=36 goto B40;   
+  -B32:   #1
+        throw new java/lang/NumberFormatException();   
+  +B40:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = 0;    
+        if vR0.charAt@extra(vi2)!=45 goto B63;   
+  +B57:   #1
+        vi4 = 1;    
+        vi2++;   
+  +B63:   #2
+        if vi2>=vR0.length@extra() goto B108;   
+  +B71:   #1
+        vi5 = digit@special(vR0.charAt@extra(vi2),vi1);    [iii i c ic]
+        if vi5>=0 goto B95;   
+  -B87:   #1
+        throw new java/lang/NumberFormatException();   
+  +B95:   #1
+        vi3 = ((vi3*vi1)-vi5);    
+        vi2++;   
+        goto +B63;   [iiii i . ..]
+  +B108:   #1
+        if vi4!=0 goto B127;   
+  +B113:   #1
+        if vi3>=-2147483647 goto B127;   
+  -B119:   #1
+        throw new java/lang/NumberFormatException();   
+  +B127:   #2
+        if vi4==0 goto B136;   
+  +B132:   #1
+        b0 = vi3;    
+        goto +B138b0;   forward return[iiii i . ..]
+  +B136:   #1
+        b0 = -vi3;    
+  +B138b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 11 swaps 1 any 13 found 1 parseInt
+ 
+ method decode(Ljava/lang/String;)Ljava/lang/Integer; {
+  +START:   #1
+        return valueOf@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 decode
+ 
+ method valueOf(Ljava/lang/String;)Ljava/lang/Integer; {
+  +START:   #1
+        return new java/lang/Integer(parseInt@special(vR0));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+ 
+ method valueOf(Ljava/lang/String;I)Ljava/lang/Integer; {
+  +START:   #1
+        return new java/lang/Integer(parseInt@special(vR0,vi1));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 valueOf
+ 
+ method getInteger(Ljava/lang/String;)Ljava/lang/Integer; {
+  +START:   #1
+        return getInteger@special(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInteger
+ 
+ method getInteger(Ljava/lang/String;I)Ljava/lang/Integer; {
+  +START:   #1
+        vR2 = getInteger@special(vR0,0);    [ R  RR]
+        if vR2!=null goto B21;   
+  +B10:   #1
+        b0 = new java/lang/Integer(vi1);    [ R  i.][ R . iiR]
+        goto +B22b0;   forward return[R R . ...]
+  +B21:   #1
+        b0 = vR2;    
+  +B22b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 2 found 0 getInteger
+ 
+ method getInteger(Ljava/lang/String;Ljava/lang/Integer;)Ljava/lang/Integer; {
+  +START:   #1
+        vR2 = getProperty@special(vR0);    [ R  R]
+        if vR2!=null goto B11;   
+  +B9:   #1
+        return vR1;   
+  +B11:   #1
+        if vR2.startsWith@extra("0x")==0 goto B31;   
+  +B20:   #1
+        return valueOf@special(vR2.substring@extra(2),16);   
+  +B31:   #1
+        if vR2.startsWith@extra("#")==0 goto B51;   
+  +B40:   #1
+        return valueOf@special(vR2.substring@extra(1),16);   
+  +B51:   #1
+        if vR2.startsWith@extra("0")==0 goto B71;   
+  +B60:   #1
+        return valueOf@special(vR2.substring@extra(1),8);   
+  +B71:   #2
+        b0 = valueOf@special(vR2,10);    [R R . iR]
+  +B77b0:   #1 reference
+        return b0;   
+  +H78<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 30 handler 78 type 31
+31 - 50 handler 78 type 31
+51 - 70 handler 78 type 31
+71 - 77 handler 78 type 31
+ }
+// Register: rd 10/10 wr 9 swaps 3 any 1 found 0 getInteger
+ 
+ method <clinit>()V {
+  +START:   #1
+        TYPE = getPrimitiveClass@special("int");   
+        b0 = new char[100];    
+        b0[0] = 48;   
+        b0[1] = 49;   
+        b0[2] = 50;   
+        b0[3] = 51;   
+        b0[4] = 52;   
+        b0[5] = 53;   
+        b0[6] = 54;   
+        b0[7] = 55;   
+        b0[8] = 56;   
+        b0[9] = 57;   
+        b0[10] = 48;   
+        b0[11] = 49;   
+        b0[12] = 50;   
+        b0[13] = 51;   
+        b0[14] = 52;   
+        b0[15] = 53;   
+        b0[16] = 54;   
+        b0[17] = 55;   
+        b0[18] = 56;   
+        b0[19] = 57;   
+        b0[20] = 48;   
+        b0[21] = 49;   
+        b0[22] = 50;   
+        b0[23] = 51;   
+        b0[24] = 52;   
+        b0[25] = 53;   
+        b0[26] = 54;   
+        b0[27] = 55;   
+        b0[28] = 56;   
+        b0[29] = 57;   
+        b0[30] = 48;   
+        b0[31] = 49;   
+        b0[32] = 50;   
+        b0[33] = 51;   
+        b0[34] = 52;   
+        b0[35] = 53;   
+        b0[36] = 54;   
+        b0[37] = 55;   
+        b0[38] = 56;   
+        b0[39] = 57;   
+        b0[40] = 48;   
+        b0[41] = 49;   
+        b0[42] = 50;   
+        b0[43] = 51;   
+        b0[44] = 52;   
+        b0[45] = 53;   
+        b0[46] = 54;   
+        b0[47] = 55;   
+        b0[48] = 56;   
+        b0[49] = 57;   
+        b0[50] = 48;   
+        b0[51] = 49;   
+        b0[52] = 50;   
+        b0[53] = 51;   
+        b0[54] = 52;   
+        b0[55] = 53;   
+        b0[56] = 54;   
+        b0[57] = 55;   
+        b0[58] = 56;   
+        b0[59] = 57;   
+        b0[60] = 48;   
+        b0[61] = 49;   
+        b0[62] = 50;   
+        b0[63] = 51;   
+        b0[64] = 52;   
+        b0[65] = 53;   
+        b0[66] = 54;   
+        b0[67] = 55;   
+        b0[68] = 56;   
+        b0[69] = 57;   
+        b0[70] = 48;   
+        b0[71] = 49;   
+        b0[72] = 50;   
+        b0[73] = 51;   
+        b0[74] = 52;   
+        b0[75] = 53;   
+        b0[76] = 54;   
+        b0[77] = 55;   
+        b0[78] = 56;   
+        b0[79] = 57;   
+        b0[80] = 48;   
+        b0[81] = 49;   
+        b0[82] = 50;   
+        b0[83] = 51;   
+        b0[84] = 52;   
+        b0[85] = 53;   
+        b0[86] = 54;   
+        b0[87] = 55;   
+        b0[88] = 56;   
+        b0[89] = 57;   
+        b0[90] = 48;   
+        b0[91] = 49;   
+        b0[92] = 50;   
+        b0[93] = 51;   
+        b0[94] = 52;   
+        b0[95] = 53;   
+        b0[96] = 54;   
+        b0[97] = 55;   
+        b0[98] = 56;   
+        b0[99] = 57;   
+        DigitOnes = b0;   
+        b0 = new char[100];    
+        b0[0] = 48;   
+        b0[1] = 48;   
+        b0[2] = 48;   
+        b0[3] = 48;   
+        b0[4] = 48;   
+        b0[5] = 48;   
+        b0[6] = 48;   
+        b0[7] = 48;   
+        b0[8] = 48;   
+        b0[9] = 48;   
+        b0[10] = 49;   
+        b0[11] = 49;   
+        b0[12] = 49;   
+        b0[13] = 49;   
+        b0[14] = 49;   
+        b0[15] = 49;   
+        b0[16] = 49;   
+        b0[17] = 49;   
+        b0[18] = 49;   
+        b0[19] = 49;   
+        b0[20] = 50;   
+        b0[21] = 50;   
+        b0[22] = 50;   
+        b0[23] = 50;   
+        b0[24] = 50;   
+        b0[25] = 50;   
+        b0[26] = 50;   
+        b0[27] = 50;   
+        b0[28] = 50;   
+        b0[29] = 50;   
+        b0[30] = 51;   
+        b0[31] = 51;   
+        b0[32] = 51;   
+        b0[33] = 51;   
+        b0[34] = 51;   
+        b0[35] = 51;   
+        b0[36] = 51;   
+        b0[37] = 51;   
+        b0[38] = 51;   
+        b0[39] = 51;   
+        b0[40] = 52;   
+        b0[41] = 52;   
+        b0[42] = 52;   
+        b0[43] = 52;   
+        b0[44] = 52;   
+        b0[45] = 52;   
+        b0[46] = 52;   
+        b0[47] = 52;   
+        b0[48] = 52;   
+        b0[49] = 52;   
+        b0[50] = 53;   
+        b0[51] = 53;   
+        b0[52] = 53;   
+        b0[53] = 53;   
+        b0[54] = 53;   
+        b0[55] = 53;   
+        b0[56] = 53;   
+        b0[57] = 53;   
+        b0[58] = 53;   
+        b0[59] = 53;   
+        b0[60] = 54;   
+        b0[61] = 54;   
+        b0[62] = 54;   
+        b0[63] = 54;   
+        b0[64] = 54;   
+        b0[65] = 54;   
+        b0[66] = 54;   
+        b0[67] = 54;   
+        b0[68] = 54;   
+        b0[69] = 54;   
+        b0[70] = 55;   
+        b0[71] = 55;   
+        b0[72] = 55;   
+        b0[73] = 55;   
+        b0[74] = 55;   
+        b0[75] = 55;   
+        b0[76] = 55;   
+        b0[77] = 55;   
+        b0[78] = 55;   
+        b0[79] = 55;   
+        b0[80] = 56;   
+        b0[81] = 56;   
+        b0[82] = 56;   
+        b0[83] = 56;   
+        b0[84] = 56;   
+        b0[85] = 56;   
+        b0[86] = 56;   
+        b0[87] = 56;   
+        b0[88] = 56;   
+        b0[89] = 56;   
+        b0[90] = 57;   
+        b0[91] = 57;   
+        b0[92] = 57;   
+        b0[93] = 57;   
+        b0[94] = 57;   
+        b0[95] = 57;   
+        b0[96] = 57;   
+        b0[97] = 57;   
+        b0[98] = 57;   
+        b0[99] = 57;   
+        DigitTens = b0;   
+        b0 = new char[36];    
+        b0[0] = 48;   
+        b0[1] = 49;   
+        b0[2] = 50;   
+        b0[3] = 51;   
+        b0[4] = 52;   
+        b0[5] = 53;   
+        b0[6] = 54;   
+        b0[7] = 55;   
+        b0[8] = 56;   
+        b0[9] = 57;   
+        b0[10] = 97;   
+        b0[11] = 98;   
+        b0[12] = 99;   
+        b0[13] = 100;   
+        b0[14] = 101;   
+        b0[15] = 102;   
+        b0[16] = 103;   
+        b0[17] = 104;   
+        b0[18] = 105;   
+        b0[19] = 106;   
+        b0[20] = 107;   
+        b0[21] = 108;   
+        b0[22] = 109;   
+        b0[23] = 110;   
+        b0[24] = 111;   
+        b0[25] = 112;   
+        b0[26] = 113;   
+        b0[27] = 114;   
+        b0[28] = 115;   
+        b0[29] = 116;   
+        b0[30] = 117;   
+        b0[31] = 118;   
+        b0[32] = 119;   
+        b0[33] = 120;   
+        b0[34] = 121;   
+        b0[35] = 122;   
+        digits = b0;   
+        b0 = new int[10];    
+        b0[0] = 9;   
+        b0[1] = 99;   
+        b0[2] = 999;   
+        b0[3] = 9999;   
+        b0[4] = 99999;   
+        b0[5] = 999999;   
+        b0[6] = 9999999;   
+        b0[7] = 99999999;   
+        b0[8] = 999999999;   
+        b0[9] = 2147483647;   
+        sizeTable = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 255/255 wr 6 swaps 0 any 0 found 4 <clinit>
+}

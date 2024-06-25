@@ -1,0 +1,60 @@
+class metaxa/os/devices/net/SoftwareInformation1 {
+ 
+ method <init>(BZZ)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.Reserved1 = 0;   
+        vR0.Reserved2 = 0;   
+        vR0.set_OptimizeFor@this(vi1);   [   iR] 
+        vR0.set_LinkBeatDisable@this(vi2);   [   iR] 
+        vR0.set_FullDuplexMode@this(vi3);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method set_OptimizeFor(B)V {
+  +START:   #1
+        vR0.OptimizeFor = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_OptimizeFor
+ 
+ method set_LinkBeatDisable(Z)V {
+  +START:   #1
+        vR0.LinkBeatDisable = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_LinkBeatDisable
+ 
+ method set_FullDuplexMode(Z)V {
+  +START:   #1
+        vR0.FullDuplexMode = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set_FullDuplexMode
+ 
+ method get_OptimizeFor()B {
+  +START:   #1
+        return vR0.OptimizeFor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_OptimizeFor
+ 
+ method get_LinkBeatDisable()Z {
+  +START:   #1
+        return vR0.LinkBeatDisable;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_LinkBeatDisable
+ 
+ method get_FullDuplexMode()Z {
+  +START:   #1
+        return vR0.FullDuplexMode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_FullDuplexMode
+}

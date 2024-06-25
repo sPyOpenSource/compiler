@@ -1,0 +1,102 @@
+class metaxa/os/devices/net/ManufacturingData {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.Day = 0;   
+        vR0.Month = 0;   
+        vR0.Year = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(BBB)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vi1<1 goto B36;   
+  +B9:   #1
+        if vi1>31 goto B36;   
+  +B15:   #1
+        if vi2<1 goto B36;   
+  +B20:   #1
+        if vi2>12 goto B36;   
+  +B26:   #1
+        if vi3< 0 goto B36;   
+  +B30:   #1
+        if vi3<=99 goto B52;   
+  -B36:   #5
+        out.println("ManufacturingData: falsche Parameter im Konstruktor!");   [ R i. RR] 
+        throw new metaxa/os/devices/net/WrongDate();   
+  +B52:   #1
+        vR0.Day = vi1;   
+        vR0.Month = vi2;   
+        vR0.Year = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 1 any 6 found 0 <init>
+ 
+ method set_Day(B)V {
+  +START:   #1
+        if vi1<1 goto B11;   
+  +B5:   #1
+        if vi1<=31 goto B19;   
+  -B11:   #1
+        throw new metaxa/os/devices/net/WrongDate();   
+  +B19:   #1
+        vR0.Day = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 2 found 0 set_Day
+ 
+ method set_Month(B)V {
+  +START:   #1
+        if vi1<1 goto B11;   
+  +B5:   #1
+        if vi1<=12 goto B19;   
+  -B11:   #1
+        throw new metaxa/os/devices/net/WrongDate();   
+  +B19:   #1
+        vR0.Month = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 2 found 0 set_Month
+ 
+ method set_Year(B)V {
+  +START:   #1
+        if vi1< 0 goto B10;   
+  +B4:   #1
+        if vi1<=99 goto B18;   
+  -B10:   #1
+        throw new metaxa/os/devices/net/WrongDate();   
+  +B18:   #1
+        vR0.Year = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 2 found 0 set_Year
+ 
+ method get_Day()B {
+  +START:   #1
+        return vR0.Day;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_Day
+ 
+ method get_Month()B {
+  +START:   #1
+        return vR0.Month;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_Month
+ 
+ method get_Year()B {
+  +START:   #1
+        return vR0.Year;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get_Year
+}

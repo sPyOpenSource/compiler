@@ -1,0 +1,40 @@
+class jx/buffer/BufferHead {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.inlist = 0;   
+        vR0.size = vi1;   
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR0.data = vR2.alloc(vi1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.inlist = 0;   
+        vR0.size = vR1.size();   
+        vR0.data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getData()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getData
+ 
+ method setData(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setData
+}

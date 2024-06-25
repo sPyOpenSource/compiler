@@ -1,0 +1,278 @@
+class java/util/Collections$CheckedNavigableMap {
+ 
+ method <init>(Ljava/util/NavigableMap;Ljava/lang/Class;Ljava/lang/Class;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3);   [   RRRR] 
+        vR0.nm = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method comparator()Ljava/util/Comparator; {
+  +START:   #1
+        return vR0.nm.comparator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 comparator
+ 
+ method firstKey()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.firstKey();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 firstKey
+ 
+ method lastKey()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.lastKey();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastKey
+ 
+ method lowerEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        vR2 = vR0.nm.lowerEntry(vR1);    [ R  RR] 
+        if 0==vR2 goto B31;   
+  +B16:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR2,vR0.valueType);    [ R  i.][ R . iRRR]
+        goto +B32b0;   forward return[R R . ....]
+  +B31:   #1
+        b0 = 0;    
+  +B32b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 lowerEntry
+ 
+ method lowerKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.lowerKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lowerKey
+ 
+ method floorEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        vR2 = vR0.nm.floorEntry(vR1);    [ R  RR] 
+        if 0==vR2 goto B31;   
+  +B16:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR2,vR0.valueType);    [ R  i.][ R . iRRR]
+        goto +B32b0;   forward return[R R . ....]
+  +B31:   #1
+        b0 = 0;    
+  +B32b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 floorEntry
+ 
+ method floorKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.floorKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 floorKey
+ 
+ method ceilingEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        vR2 = vR0.nm.ceilingEntry(vR1);    [ R  RR] 
+        if 0==vR2 goto B31;   
+  +B16:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR2,vR0.valueType);    [ R  i.][ R . iRRR]
+        goto +B32b0;   forward return[R R . ....]
+  +B31:   #1
+        b0 = 0;    
+  +B32b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 ceilingEntry
+ 
+ method ceilingKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.ceilingKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ceilingKey
+ 
+ method higherEntry(Ljava/lang/Object;)Ljava/util/Map$Entry; {
+  +START:   #1
+        vR2 = vR0.nm.higherEntry(vR1);    [ R  RR] 
+        if 0==vR2 goto B31;   
+  +B16:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR2,vR0.valueType);    [ R  i.][ R . iRRR]
+        goto +B32b0;   forward return[R R . ....]
+  +B31:   #1
+        b0 = 0;    
+  +B32b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 higherEntry
+ 
+ method higherKey(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nm.higherKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 higherKey
+ 
+ method firstEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        vR1 = vR0.nm.firstEntry();    [ R  R] 
+        if 0==vR1 goto B30;   
+  +B15:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR1,vR0.valueType);    [ R  i][ R . iRRR]
+        goto +B31b0;   forward return[R R . ....]
+  +B30:   #1
+        b0 = 0;    
+  +B31b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 firstEntry
+ 
+ method lastEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        vR1 = vR0.nm.lastEntry();    [ R  R] 
+        if 0==vR1 goto B30;   
+  +B15:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR1,vR0.valueType);    [ R  i][ R . iRRR]
+        goto +B31b0;   forward return[R R . ....]
+  +B30:   #1
+        b0 = 0;    
+  +B31b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 lastEntry
+ 
+ method pollFirstEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        vR1 = vR0.nm.pollFirstEntry();    [ R  R] 
+        if 0!=vR1 goto B19;   
+  +B15:   #1
+        b0 = 0;    
+        goto +B31b0;   forward return[R R  .]
+  +B19:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR1,vR0.valueType);    [ R  i][ R . iRRR]
+  +B31b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 pollFirstEntry
+ 
+ method pollLastEntry()Ljava/util/Map$Entry; {
+  +START:   #1
+        vR1 = vR0.nm.pollLastEntry();    [ R  R] 
+        if 0!=vR1 goto B19;   
+  +B15:   #1
+        b0 = 0;    
+        goto +B31b0;   forward return[R R  .]
+  +B19:   #1
+        b0 = new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR1,vR0.valueType);    [ R  i][ R . iRRR]
+  +B31b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 pollLastEntry
+ 
+ method descendingMap()Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.descendingMap(),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 descendingMap
+ 
+ method keySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        return vR0.navigableKeySet@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keySet
+ 
+ method navigableKeySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        return checkedNavigableSet@special(vR0.nm.navigableKeySet(),vR0.keyType);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 navigableKeySet
+ 
+ method descendingKeySet()Ljava/util/NavigableSet; {
+  +START:   #1
+        return checkedNavigableSet@special(vR0.nm.descendingKeySet(),vR0.keyType);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 descendingKeySet
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.subMap(vR1,1,vR2,0),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.headMap(vR1,0),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.tailMap(vR1,1),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 tailMap
+ 
+ method subMap(Ljava/lang/Object;ZLjava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.subMap(vR1,vi2,vR3,vi4),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.headMap(vR1,vi2),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;Z)Ljava/util/NavigableMap; {
+  +START:   #1
+        return checkedNavigableMap@special(vR0.nm.tailMap(vR1,vi2),vR0.keyType,vR0.valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 tailMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        return vR0.tailMap@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 tailMap
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        return vR0.headMap@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 headMap
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        return vR0.subMap@this(vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 subMap
+ 
+ method keySet()Ljava/util/Set; {
+  +START:   #1
+        return vR0.keySet@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keySet
+}

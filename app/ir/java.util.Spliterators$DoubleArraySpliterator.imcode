@@ -1,0 +1,203 @@
+class java/util/Spliterators$DoubleArraySpliterator {
+ 
+ method <init>([DI)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,vR1.length,vi2);   [  i iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>([DIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.array = vR1;   
+        vR0.index = vi2;   
+        vR0.fence = vi3;   
+        vR0.characteristics = ((vi4 | 64) | 16384);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getExactSizeIfKnown()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getExactSizeIfKnown
+ 
+ method hasCharacteristics(I)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hasCharacteristics
+ 
+ method trySplit()Ljava/util/Spliterator$OfDouble; {
+  +START:   #1
+        vi1 = vR0.index;    
+        vi2 = ((vi1+vR0.fence) >>> 1);    
+        if vi1<vi2 goto B23;   
+  +B19:   #1
+        b0 = 0;    
+        goto +B45b0;   forward return[ii RRR  ]
+  +B23:   #1
+        b0 = new java/util/Spliterators$DoubleArraySpliterator;    
+        b1 = b0;    
+        b2 = vR0.array;    
+        vR0.index = vi2;   
+        b1.<init>@special(b2,vi1,vi2,vR0.characteristics);   [ii RRR i iiiRR] 
+  +B45b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 7 swaps 0 any 3 found 0 trySplit
+ 
+ method forEachRemaining(Ljava/util/function/DoubleConsumer;)V {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        b0 = vR0.array;    
+        vR2 = b0;    
+        b0 = b0.length;    
+        b1 = vR0.fence;    
+        vi4 = b1;    
+        if b0<b1 goto B67;   
+  +B29:   #1
+        b0 = vR0.index;    
+        vi3 = b0;    
+        if b0< 0 goto B67;   
+  +B38:   #1
+        vR0.index = vi4;   
+        if vi3>=vi4 goto B67;   
+  +B49:   #1
+        vR1.accept(vR2[vi3]);   [Rii ii  ??R] 
+        vi3++;   
+        if vi3<vi4 goto B49;   
+  +B67:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 8 swaps 0 any 9 found 0 forEachRemaining
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        b0 = vR0.array;    
+        vR2 = b0;    
+        b0 = b0.length;    
+        b1 = vR0.fence;    
+        vi4 = b1;    
+        if b0<b1 goto B49;   
+  +B29:   #1
+        b0 = vR0.index;    
+        vi3 = b0;    
+        if b0< 0 goto B49;   
+  +B38:   #1
+        vR0.index = vi4;   
+        if vi3>=vi4 goto B49;   
+  +B49:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 7 swaps 0 any 7 found 0 forEachRemaining
+ 
+ method tryAdvance(Ljava/util/function/DoubleConsumer;)Z {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        if vR0.index< 0 goto B54;   
+  +B19:   #1
+        if vR0.index>=vR0.fence goto B54;   
+  +B30:   #1
+        b1 = vR0.array;    
+        b3 = vR0.index;    
+        b2 = b3;    
+        vR0.index = (b3+1);   
+        vR1.accept(b1[b2]);   [ RRii  ??R] 
+        return 1;   
+  +B54:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 2 found 0 tryAdvance
+ 
+ method tryAdvance(Ljava/util/function/Consumer;)Z {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        if vR0.index< 0 goto B32;   
+  +B19:   #1
+        if vR0.index>=vR0.fence goto B32;   
+  +B30:   #1
+        return 1;   
+  +B32:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 tryAdvance
+ 
+ method estimateSize()J {
+  +START:   #1
+        return (long)(vR0.fence-vR0.index);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 estimateSize
+ 
+ method characteristics()I {
+  +START:   #1
+        return vR0.characteristics;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 characteristics
+ 
+ method getComparator()Ljava/util/Comparator; {
+  +START:   #1
+        if vR0.hasCharacteristics@extra(4)==0 goto B10;   
+  +B8:   #1
+        return 0;   
+  -B10:   #1
+        throw new java/lang/IllegalStateException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getComparator
+ 
+ method forEachRemaining(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.forEachRemaining@extra((java/util/function/DoubleConsumer)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 forEachRemaining
+ 
+ method tryAdvance(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.tryAdvance@extra((java/util/function/DoubleConsumer)(vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 tryAdvance
+ 
+ method trySplit()Ljava/util/Spliterator$OfPrimitive; {
+  +START:   #1
+        return vR0.trySplit@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+ 
+ method trySplit()Ljava/util/Spliterator; {
+  +START:   #1
+        return vR0.trySplit@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+}

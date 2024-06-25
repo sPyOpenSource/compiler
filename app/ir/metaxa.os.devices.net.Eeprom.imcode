@@ -1,0 +1,155 @@
+class metaxa/os/devices/net/Eeprom {
+ 
+ method <init>(Ljx/zero/Ports;Ljx/timer/TimerManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new metaxa/os/devices/net/Befehl(vR1,vR2);    [ ?R  i][ ?R . iRRR]
+        vR0.befehle = b1;   
+        b1 = new metaxa/os/devices/net/BitPosition();    [ ?R . i...][ ?R . iR..]
+        vR0.bits = b1;   
+        b1 = new metaxa/os/devices/net/Register();    [ ?R . i...][ ?R . iR..]
+        vR0.register = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method CheckIfEEPROMBusy(Lmetaxa/os/devices/net/NicInformation;)Z {
+  +START:   #1
+        vi2 = 0;    
+        vi4 = 0;    
+  +B5:   #1
+        vi2 = vR0.befehle.NicReadPortShort(vR1,10);    [i?i i  iRR] 
+        sleep@special(0,10000);   [i?i i  ii.]
+        if (vi2 & EEPROM_BUSY_BIT)==0 goto B41;   
+  +B31:   #1
+        b0 = vi4;    
+        vi4++;   
+        if b0<100 goto B5;   
+  +B41:   #1
+        if (vi2 & EEPROM_BUSY_BIT)==0 goto B59;   
+  +B49:   #1
+        out.println("CheckIfEEPROMBusy: command timeout");   [i?i i i. RR.] 
+        return 0;   
+  +B59:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 1 any 5 found 2 CheckIfEEPROMBusy
+ 
+ method ReadEEPROM(Lmetaxa/os/devices/net/NicInformation;S)S {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        if vi2<=63 goto B33;   
+  +B11:   #1
+        vi3 = (short)(vi2 & 63);    
+        vi4 = (short)((vi2 & 960) << 2);    
+        vi2 = (short)(vi4 | vi3);    
+  +B33:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_0@special()));   [ii R i iRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B80;   
+  -B62:   #1
+        out.println("ReadEEPROM: EEPROM is busy
+");   [ii R i. RR.] 
+        throw new metaxa/os/devices/net/NicStatusFailure("ReadEEPROM: can�t access EEPROM, because it is busy");   
+  +B80:   #1
+        vR0.befehle.NicWritePortShort(vR1,10,(short)(vi2+128));   [ii R i. iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B123;   
+  -B105:   #1
+        out.println("ReadEEPROM: EEPROM is busy after command.");   [ii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("ReadEEPROM: the EEPROM is busy after the read command!");   
+  +B123:   #1
+        vi5 = vR0.befehle.NicReadPortShort(vR1,12);    [ii R .. iRR.] 
+        return vi5;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 15 swaps 4 any 1 found 0 ReadEEPROM
+ 
+ method WriteEEPROM(Lmetaxa/os/devices/net/NicInformation;SS)Z {
+  +START:   #1
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = vi2;    
+        if vi2<=63 goto B39;   
+  +B15:   #1
+        vi4 = (short)(vi2 & 63);    
+        vi5 = (short)((vi2 & 960) << 2);    
+        vi2 = (short)(vi5 | vi4);    
+  +B39:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_0@special()));   [iii R i iRR] 
+        vR0.befehle.NicWritePortShort(vR1,10,48);   [iii R i iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B98;   
+  -B80:   #1
+        out.println("WriteEEPROM: Write enable, EEPROM is busy");   [iii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("WriteEEPROM: Write enable, EEPROM is busy");   
+  +B98:   #1
+        vR0.befehle.NicWritePortShort(vR1,10,(short)(vi2+192));   [iii R i. iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B141;   
+  -B123:   #1
+        out.println("WriteEEPROM: Erase Register, EEPROM is busy
+");   [iii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("WriteEEPROM: Erase Register, EEPROM is busy");   
+  +B141:   #1
+        vR0.befehle.NicWritePortShort(vR1,12,vi3);   [iii R .. iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B179;   
+  -B161:   #1
+        out.println("WriteEEPROM: Write data, EEPROM is busy");   [iii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("WriteEEPROM: Write data, EEPROM is busy");   
+  +B179:   #1
+        vR0.befehle.NicWritePortShort(vR1,10,48);   [iii R .. iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B218;   
+  -B200:   #1
+        out.println("WriteEEPROM: EEPROM is busy
+");   [iii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("WriteEEPROM: EEPROM is busy");   
+  +B218:   #1
+        vR0.befehle.NicWritePortShort(vR1,10,(short)(vi2+64));   [iii R i. iiRR] 
+        if vR0.CheckIfEEPROMBusy@special(vR1)==1 goto B260;   
+  -B242:   #1
+        out.println("WriteEEPROM: Write register, EEPROM is busy");   [iii R i. RR..] 
+        throw new metaxa/os/devices/net/NicStatusFailure("WriteEEPROM: Write register, EEPROM is busy");   
+  +B260:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 25 swaps 8 any 2 found 0 WriteEEPROM
+ 
+ method CalculateEEPROMChecksum1(Lmetaxa/os/devices/net/NicInformation;)S {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_0@special()));   [ii  i iRR] 
+        vi4 = 0;    
+  +B27:   #1
+        if vi4>=32 goto B94;   
+  +B34:   #1
+        vi3 = vR0.ReadEEPROM@this(vR1,vi4);    [iii  . iRR] 
+  +B42:   #1
+        goto +B58;   [iii  . ...]
+  -H45<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        out.println("CalculateEEPROMChecksum1: Read from EEPROM failed
+");   [iiiR  i. RR.] 
+        throw vR5;   
+  +B58:   #1
+        vi2 = (short)(vi2 ^ (short)vR0.bits.lobyte(vi3));    
+        vi2 = (short)(vi2 ^ (short)vR0.bits.lobyte(vi3));    
+        vi4 = (short)(vi4+1);    
+        goto +B27;   [iii  .. ...]
+  +B94:   #1
+        return vi2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+34 - 42 handler 45 type 23
+ }
+// Register: rd 13/13 wr 12 swaps 2 any 1 found 2 CalculateEEPROMChecksum1
+ 
+ method <clinit>()V {
+  +START:   #1
+        EEPROM_BUSY_BIT = bit_15@special();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

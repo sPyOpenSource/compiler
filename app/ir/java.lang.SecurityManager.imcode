@@ -1,0 +1,340 @@
+class java/lang/SecurityManager {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInCheck()Z {
+  +START:   #1
+        return vR0.inCheck;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInCheck
+ 
+ method getClassContext()[Ljava/lang/Class; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getClassContext
+ 
+ method currentClassLoader()Ljava/lang/ClassLoader; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 currentClassLoader
+ 
+ method currentLoadedClass()Ljava/lang/Class; {
+  +START:   #1
+        vR1 = vR0.getClassContext@this();    [   R] 
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vR1.length goto B32;   
+  +B13:   #1
+        if vR1[vi2].getClassLoader@extra()==null goto B26;   
+  +B22:   #1
+        return vR1[vi2];   
+  +B26:   #1
+        vi2++;   
+        goto +B7;   [Ri   .]
+  +B32:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 currentLoadedClass
+ 
+ method classLoaderDepth()I {
+  +START:   #1
+        vR1 = vR0.getClassContext@this();    [   R] 
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vR1.length goto B30;   
+  +B13:   #1
+        if vR1[vi2].getClassLoader@extra()==null goto B24;   
+  +B22:   #1
+        return vi2;   
+  +B24:   #1
+        vi2++;   
+        goto +B7;   [Ri   .]
+  +B30:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 0 classLoaderDepth
+ 
+ method inClassLoader()Z {
+  +START:   #1
+        if vR0.classLoaderDepth@this()==-1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  .]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 inClassLoader
+ 
+ method classDepth(Ljava/lang/String;)I {
+  +START:   #1
+        vR2 = vR0.getClassContext@this();    [   R] 
+        vi3 = 0;    
+  +B7:   #1
+        if vi3>=vR2.length goto B34;   
+  +B13:   #1
+        if vR1.equals@extra(vR2[vi3].getName@extra())==0 goto B28;   
+  +B26:   #1
+        return vi3;   
+  +B28:   #1
+        vi3++;   
+        goto +B7;   [Ri  . ..]
+  +B34:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 2 found 0 classDepth
+ 
+ method inClass(Ljava/lang/String;)Z {
+  +START:   #1
+        if vR0.classDepth@this(vR1)==-1 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ..]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 inClass
+ 
+ method getSecurityContext()Ljava/lang/Object; {
+  +START:   #1
+        return new java/lang/SecurityContext(vR0.getClassContext@this());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSecurityContext
+ 
+ method checkCreateClassLoader()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot create new ClassLoaders.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkCreateClassLoader
+ 
+ method checkAccess(Ljava/lang/Thread;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot modify Threads.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkAccess
+ 
+ method checkAccess(Ljava/lang/ThreadGroup;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot modify ThreadGroups.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkAccess
+ 
+ method checkExit(I)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot exit JVM.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkExit
+ 
+ method checkExec(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot execute programs.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkExec
+ 
+ method checkLink(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot link native libraries.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkLink
+ 
+ method checkRead(Ljava/io/FileDescriptor;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot read files via file descriptors.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkRead
+ 
+ method checkRead(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot read files via file names.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkRead
+ 
+ method checkRead(Ljava/lang/String;Ljava/lang/Object;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot read files via file names.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkRead
+ 
+ method checkWrite(Ljava/io/FileDescriptor;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot write files via file descriptors.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkWrite
+ 
+ method checkWrite(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot write files via file names.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkWrite
+ 
+ method checkDelete(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot delete files.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkDelete
+ 
+ method checkConnect(Ljava/lang/String;I)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot make network connections.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkConnect
+ 
+ method checkConnect(Ljava/lang/String;ILjava/lang/Object;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot make network connections.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkConnect
+ 
+ method checkListen(I)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot listen for connections.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkListen
+ 
+ method checkAccept(Ljava/lang/String;I)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot accept connections.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkAccept
+ 
+ method checkMulticast(Ljava/net/InetAddress;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot read or write multicast.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkMulticast
+ 
+ method checkMulticast(Ljava/net/InetAddress;B)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot read or write multicast.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkMulticast
+ 
+ method checkPermission(Ljava/security/Permission;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Operation not allowed");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPermission
+ 
+ method checkPropertiesAccess()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access all system properties at once.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPropertiesAccess
+ 
+ method checkPropertyAccess(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access individual system properties.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPropertyAccess
+ 
+ method checkTopLevelWindow(Ljava/lang/Object;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 checkTopLevelWindow
+ 
+ method checkPrintJobAccess()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot create print jobs.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPrintJobAccess
+ 
+ method checkSystemClipboardAccess()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access the system clipboard.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkSystemClipboardAccess
+ 
+ method checkAwtEventQueueAccess()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access the AWT event queue.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkAwtEventQueueAccess
+ 
+ method checkPackageAccess(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access packages via the ClassLoader.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPackageAccess
+ 
+ method checkPackageDefinition(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot load classes into any packages via the ClassLoader.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkPackageDefinition
+ 
+ method checkSetFactory()V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot set the socket factory.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkSetFactory
+ 
+ method checkMemberAccess(Ljava/lang/Class;I)V {
+  -START:   #1
+        throw new java/lang/SecurityException("Cannot access members of classes.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkMemberAccess
+ 
+ method checkSecurityAccess(Ljava/lang/String;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 checkSecurityAccess
+ 
+ method getThreadGroup()Ljava/lang/ThreadGroup; {
+  +START:   #1
+        return currentThread@special().getThreadGroup@extra();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getThreadGroup
+}

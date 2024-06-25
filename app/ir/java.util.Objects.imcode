@@ -1,0 +1,162 @@
+class java/util/Objects {
+ 
+ method <init>()V {
+  -START:   #1
+        vR0.<init>@special();   [ R  R] 
+        throw new java/lang/AssertionError("No java.util.Objects instances for you!");   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0==vR1 goto B17;   
+  +B5:   #1
+        if vR0==null goto B21;   
+  +B9:   #1
+        if vR0.equals@this(vR1)==0 goto B21;   
+  +B17:   #1
+        b0 = 1;    
+        goto +B22b0;   forward return[ i  ..]
+  +B21:   #2
+        b0 = 0;    
+  +B22b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 equals
+ 
+ method deepEquals(Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0==null goto B15;   
+  +B11:   #1
+        if vR1!=null goto B17;   
+  +B15:   #1
+        return 0;   
+  +B17:   #1
+        return deepEquals0@special(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 3 found 0 deepEquals
+ 
+ method hashCode(Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0==null goto B11;   
+  +B4:   #1
+        b0 = vR0.hashCode@this();    [ i  R] 
+        goto +B12b0;   forward return[ i  .]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 hashCode
+ 
+ method hash([Ljava/lang/Object;)I {
+  +START:   #1
+        return hashCode@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hash
+ 
+ method toString(Ljava/lang/Object;)Ljava/lang/String; {
+  +START:   #1
+        return valueOf@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method toString(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        if vR0==null goto B11;   
+  +B4:   #1
+        b0 = vR0.toString@this();    [ R  R] 
+        goto +B12b0;   forward return[ R  .]
+  +B11:   #1
+        b0 = vR1;    
+  +B12b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 toString
+ 
+ method compare(Ljava/lang/Object;Ljava/lang/Object;Ljava/util/Comparator;)I {
+  +START:   #1
+        if vR0!=vR1 goto B9;   
+  +B5:   #1
+        b0 = 0;    
+        goto +B17b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vR2.compare(vR0,vR1);    [ i  RRR] 
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 compare
+ 
+ method requireNonNull(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        if vR0!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 requireNonNull
+ 
+ method requireNonNull(Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        if vR0!=null goto B13;   
+  -B4:   #1
+        throw new java/lang/NullPointerException(vR1);   
+  +B13:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 requireNonNull
+ 
+ method isNull(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=null goto B8;   
+  +B4:   #1
+        b0 = 1;    
+        goto +B9b0;   forward return[ i  ]
+  +B8:   #1
+        b0 = 0;    
+  +B9b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isNull
+ 
+ method nonNull(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0==null goto B8;   
+  +B4:   #1
+        b0 = 1;    
+        goto +B9b0;   forward return[ i  ]
+  +B8:   #1
+        b0 = 0;    
+  +B9b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 nonNull
+ 
+ method requireNonNull(Ljava/lang/Object;Ljava/util/function/Supplier;)Ljava/lang/Object; {
+  +START:   #1
+        if vR0!=null goto B21;   
+  -B4:   #1
+        throw new java/lang/NullPointerException((java/lang/String)(vR1.get()));   
+  +B21:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 requireNonNull
+}

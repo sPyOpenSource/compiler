@@ -1,0 +1,56 @@
+class metaxa/os/devices/net/EthernetAdress {
+ 
+ method getType()I {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getType
+ 
+ method <init>([B)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vR1.length==6 goto B19;   
+  -B11:   #1
+        throw new metaxa/os/devices/net/WrongEthernetAdressFormat();   
+  +B19:   #1
+        vR0.Addr = new byte[6];   
+        arraycopy@special(vR1,0,vR0.Addr,0,6);   [ R R iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method get_Addr()[B {
+  +START:   #1
+        vR1 = new byte[6];    
+        arraycopy@special(vR0.Addr,0,vR1,0,6);   [R  R iiRiR]
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 get_Addr
+ 
+ method get(I)B {
+  +START:   #1
+        return vR0.Addr[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 get
+ 
+ method print_Addr()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new metaxa/os/devices/net/BitPosition();    [ R  i][ R  iR]
+        b0 = new java/lang/StringBuilder();    [ R  i.][ R  iR]
+        return b0.append@extra("").append@extra(vR1.byte_to_unsigned(vR0.Addr[5])).append@extra(".").append@extra(vR1.byte_to_unsigned(vR0.Addr[4])).append@extra(".").append@extra(vR1.byte_to_unsigned(vR0.Addr[3])).append@extra(".").append@extra(vR1.byte_to_unsigned(vR0.Addr[2])).append@extra(".").append@extra(vR1.byte_to_unsigned(vR0.Addr[1])).append@extra(".").append@extra(vR1.byte_to_unsigned(vR0.Addr[0])).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 32 swaps 18 any 0 found 0 print_Addr
+ 
+ method writeTo(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR1.copyFromByteArray(vR0.Addr,0,vi2,6);   [  i iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 writeTo
+}

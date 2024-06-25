@@ -1,0 +1,45 @@
+class java/util/Collections$SynchronizedRandomAccessList {
+ 
+ method <init>(Ljava/util/List;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/List;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method subList(II)Ljava/util/List; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR3 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedRandomAccessList(vR0.list.subList(vi1,vi2),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR3.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B36:   #1
+        throw vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 36 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 subList
+ 
+ method writeReplace()Ljava/lang/Object; {
+  +START:   #1
+        return new java/util/Collections$SynchronizedList(vR0.list);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 writeReplace
+}

@@ -1,0 +1,28 @@
+class jx/zero/memory/MemoryOutputStream {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.buf = vR1;   
+        vR0.size = vR1.size();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(I)V {
+  +START:   #1
+        if vR0.pos!=vR0.size goto B21;   
+  -B11:   #1
+        throw new java/io/IOException("Memory overflow");   
+  +B21:   #1
+        b0 = vR0.buf;    
+        b2 = vR0.pos;    
+        b1 = b2;    
+        vR0.pos = (b2+1);   
+        b0.set8(b1,(byte)vi1);   [ Rii i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 1 found 0 write
+}

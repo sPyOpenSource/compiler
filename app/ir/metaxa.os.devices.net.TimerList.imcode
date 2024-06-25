@@ -1,0 +1,31 @@
+class metaxa/os/devices/net/TimerList {
+ 
+ method <init>(Lmetaxa/os/devices/net/TimerList;Lmetaxa/os/devices/net/TimerList;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.next = vR1;   
+        vR0.prev = vR2;   
+        vR0.expires = vi3;   
+        vR0.data = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = 0;    
+  +B2:   #1
+        vR1 = vR0.clone@special();    [R   R] 
+  +B7:   #1
+        goto +B11;   forward return[R   .]
+  +H10<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B11:   #1
+        return vR1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+2 - 7 handler 10 type 7
+ }
+// Register: rd 2/2 wr 3 swaps 0 any 0 found 0 clone
+}

@@ -1,0 +1,47 @@
+class java/io/OutputStream {
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method write([BII)V {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vi3 goto B25;   
+  +B9:   #1
+        vR0.write@this(vR1[(vi2+vi4)]);   [i  i bR] 
+        vi4++;   
+        goto +B3;   [i  i ..]
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 2 found 0 write
+ 
+ method write([B)V {
+  +START:   #1
+        vR0.write@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 write
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

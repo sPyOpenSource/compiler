@@ -1,0 +1,377 @@
+class javafs/InodeCache {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.max_inodes = 16384;   
+        vR0.nr_inodes = 0;   
+        b1 = new java/util/Vector(100);    [ ?R  i][ ?R . iiR]
+        vR0.inode_in_use = b1;   
+        b1 = new java/util/Vector(100);    [ ?R . i..][ ?R . iiR]
+        vR0.inode_dirty = b1;   
+        b1 = new java/util/Hashtable();    [ ?R . i..][ ?R . iR.]
+        vR0.inode_hashtable = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method showInodes()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("InodeCache enthaelt ").append@extra(vR0.inode_hashtable.size()).append@extra(" Elemente").toString@extra());   [ RR ii.ii. RR..] 
+        vR1 = vR0.inode_hashtable.elements();    [ RR ii.ii. R...] 
+  +B44:   #1
+        if vR1.hasMoreElements()==0 goto B183;   
+  +B53:   #1
+        vR2 = (javafs/InodeImpl)(vR1.nextElement());    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.print(b1.append@extra("inode ").append@extra(vR2.i_ino).append@extra(", hashkey ").append@extra(vR2.i_hashkey.hashCode()).toString@extra());   [RR RR iiiii... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiii... i....][ RR iiiii... iR...]
+        b0.print(b1.append@extra(" (count=").append@extra(vR2.i_count).append@extra(", i_blocks=").append@extra(vR2.i_data.i_blocks@extra()).append@extra(")").toString@extra());   [RR RR iiiiiii.iiii... RR....] 
+        if vR2.isDirty()==0 goto B172;   
+  +B161:   #1
+        out.println(", dirty");   [RR RR i.............. RR....] 
+        goto +B180;   [RR RR i.............. ......]
+  +B172:   #1
+        out.println(", clean");   [RR RR i.............. RR....] 
+  +B180:   #1
+        goto +B44;   [RR RR ............... ......]
+  +B183:   #1
+        vi2 = 0;    
+  +B185:   #1
+        if vi2>=vR0.inode_dirty.size@extra() goto B242;   
+  +B196:   #1
+        vR3 = (javafs/InodeImpl)(vR0.inode_dirty.elementAt(vi2));    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............... i.....][ RR ............... iR....]
+        b0.println(b1.append@extra("dirty-list: ").append@extra(vR3.i_ino).toString@extra());   [RiR RR iii............ RR....] 
+        vi2++;   
+        goto +B185;   [RiR RR iii............ ......]
+  +B242:   #1
+        vi2 = 0;    
+  +B244:   #1
+        if vi2>=vR0.inode_in_use.size@extra() goto B301;   
+  +B255:   #1
+        vR3 = (javafs/InodeImpl)(vR0.inode_in_use.elementAt(vi2));    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............... i.....][ RR ............... iR....]
+        b0.println(b1.append@extra("in-use-list: ").append@extra(vR3.i_ino).toString@extra());   [RiR RR iii............ RR....] 
+        vi2++;   
+        goto +B244;   [RiR RR iii............ ......]
+  +B301:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 34/34 wr 62 swaps 23 any 4 found 2 showInodes
+ 
+ method listDel(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        if vR1.i_list==null goto B21;   
+  +B7:   #1
+        vR1.i_list.removeElement@extra(vR1);   [   RR] 
+        vR1.i_list = 0;   
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 listDel
+ 
+ method listAdd(Ljavafs/InodeImpl;Ljava/util/Vector;)V {
+  +START:   #1
+        vR2.addElement@extra(vR1);   [   RR] 
+        vR1.i_list = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 listAdd
+ 
+ method markInodeDirty(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        if vR1.i_ishashed==0 goto B21;   
+  +B7:   #1
+        vR0.listDel@special(vR1);   [   RR] 
+        vR0.listAdd@special(vR1,vR0.inode_dirty);   [  i RRR] 
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 markInodeDirty
+ 
+ method waitOnInode(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 waitOnInode
+ 
+ method syncOne(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("InodeCache.syncOne(").append@extra(vR1.i_ino).append@extra(")").toString@extra());   [ RR iiii.. RR..] 
+        vR0.listDel@special(vR1);   [ RR iiii.. RR..] 
+        vR0.listAdd@special(vR1,vR0.inode_in_use);   [ RR iiiii. RRR.] 
+        vR1.setDirty@extra(0);   [ RR iiiii. iR..] 
+  +B52:   #2
+        vR1.writeInode@extra();   [ RR ...... R...] 
+  +B56:   #2
+        goto +B64;   forward return[ RR ...... ....]
+  +H59<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        goto +B64;   forward return[R RR ...... ....]
+  +H63<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B64:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+52 - 56 handler 59 type 54
+52 - 56 handler 63 type 55
+ }
+// Register: rd 8/8 wr 12 swaps 5 any 0 found 0 syncOne
+ 
+ method syncInodes()V {
+  +START:   #1
+        vR2 = vR0.inode_dirty;    
+        vi3 = 0;    
+  +B7:   #1
+        if vi3>=vR2.size@extra() goto B35;   
+  +B15:   #1
+        vR1 = (javafs/InodeImpl)(vR2.elementAt(vi3));    
+        vR0.syncOne@special(vR1);   [RRi  . RR] 
+        vi3++;   
+        goto +B7;   [RRi  . ..]
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 2 found 1 syncInodes
+ 
+ method writeInodeNow(Ljavafs/InodeImpl;)V {
+  +START:   #2
+        if vR1.isDirty()==0 goto B15;   
+  +B7:   #1
+        vR0.syncOne@special(vR1);   [   RR] 
+        goto +START;   [   ..]
+  +B15:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 writeInodeNow
+ 
+ method disposeList(Ljava/util/Vector;)V {
+  +START:   #1
+        vi3 = vR1.size@extra();    [   R] 
+        vi4 = 0;    
+  +B8:   #1
+        if vi4>=vi3 goto B62;   
+  +B14:   #1
+        vR2 = (javafs/InodeImpl)(vR1.firstElement@extra());    
+        vR0.waitOnInode@special(vR2);   [Rii  . RR] 
+        vR1.removeElementAt@extra(0);   [Rii  . iR] 
+        vR2.i_list = 0;   
+  +B37:   #1
+        vR2.putInode();   [Rii  . R.] 
+  +B41:   #1
+        goto +B46;   [Rii  . ..]
+  +H44<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B46:   #1
+        vR0.nr_inodes = (vR0.nr_inodes-1);   
+        vi4++;   
+        goto +B8;   [Rii  . ..]
+  +B62:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+37 - 41 handler 44 type 55
+ }
+// Register: rd 12/12 wr 6 swaps 0 any 2 found 0 disposeList
+ 
+ method invalidateList(Ljava/util/Vector;Ljava/util/Vector;)Z {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+  +B5:   #1
+        if vi3>=vR1.size@extra() goto B29;   
+  +B13:   #1
+        vR5 = (javafs/InodeImpl)(vR1.elementAt(vi3));    
+        vi3++;   
+        goto +B5;   [iiR  . ..]
+  +B29:   #1
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 1 invalidateList
+ 
+ method invalidateInodes()Z {
+  +START:   #1
+        vR2 = new java/util/Vector((vR0.inode_in_use.size@extra()+vR0.inode_dirty.size@extra()));    [ R  i][ R .. iiR]
+        vi1 = vR0.invalidateList@special(vR0.inode_in_use,vR2);    [?R R i. RRR] 
+        if vR0.invalidateList@special(vR0.inode_dirty,vR2)==0 goto B47;   
+  +B45:   #1
+        vi1 = 1;    
+  +B47:   #1
+        vR0.disposeList@special(vR2);   [iR R .. RR.] 
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 2 any 0 found 0 invalidateInodes
+ 
+ method freeInodes()Z {
+  +START:   #1
+        vR1 = new java/util/Vector();    [ i  i][ i  iR]
+        vi3 = 0;    
+  +B10:   #2
+        if vi3>=vR0.inode_in_use.size@extra() goto B64;   
+  +B21:   #1
+        vR2 = (javafs/InodeImpl)(vR0.inode_in_use.elementAt(vi3));    
+        if vR2.i_count==0 goto B46;   
+  +B40:   #1
+        vi3++;   
+        goto +B10;   [RRi i . ..]
+  +B46:   #1
+        vR0.listDel@special(vR2);   [RRi i . RR] 
+        vR0.removeInodeHash@special(vR2);   [RRi i . RR] 
+        vR1.addElement@extra(vR2);   [RRi i . RR] 
+        goto +B10;   [RRi i . ..]
+  +B64:   #1
+        vR0.disposeList@special(vR1);   [RRi i . RR] 
+        if vR1.size@extra()<=0 goto B80;   
+  +B76:   #1
+        b0 = 1;    
+        goto +B81b0;   forward return[RRi i . ..]
+  +B80:   #1
+        b0 = 0;    
+  +B81b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 2 found 1 freeInodes
+ 
+ method findInode(I)Ljavafs/InodeImpl; {
+  +START:   #1
+        b0 = vR0.inode_hashtable;    
+        b1 = new javafs/InodeHashKey(vi1);    [ RR  i][ RR . iiR]
+        vR2 = (javafs/InodeImpl)(b0.get(b1));    
+        if vR2==null goto B33;   
+  +B23:   #1
+        vR2.i_count = (vR2.i_count+1);   
+  +B33:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 5 swaps 0 any 1 found 0 findInode
+ 
+ method addInode(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        if vR0.nr_inodes<=16384 goto B26;   
+  +B10:   #1
+        if vR0.freeInodes@special()!=0 goto B26;   
+  +B17:   #1
+        vR0.syncInodes@this();   [   R] 
+        vR0.invalidateInodes@this();   [   R] 
+  +B26:   #2
+        vR0.listAdd@special(vR1,vR0.inode_in_use);   [  i RRR] 
+        vR0.insertInodeHash@special(vR1);   [  i RR.] 
+        vR1.i_count = 1;   
+        vR0.nr_inodes = (vR0.nr_inodes+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 1 swaps 1 any 0 found 0 addInode
+ 
+ method iget(I)Ljavafs/InodeImpl; {
+  +START:   #1
+        vR2 = vR0.findInode@special(vi1);    [   iR] 
+        if vR2==null goto B17;   
+  +B10:   #1
+        vR0.waitOnInode@special(vR2);   [R   RR] 
+        return vR2;   
+  +B17:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 iget
+ 
+ method insertInodeHash(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        b1 = new javafs/InodeHashKey(vR1.i_ino);    [ ?R  i][ ?R . iiR]
+        vR1.i_hashkey = b1;   
+        if vR0.inode_hashtable.put(vR1.i_hashkey,vR1)==null goto B38;   
+  +B30:   #1
+        out.println("Kollision!");   [ ?R i. RR.] 
+  +B38:   #1
+        vR1.i_ishashed = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 2 any 0 found 0 insertInodeHash
+ 
+ method removeInodeHash(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        if vR1.i_hashkey!=null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.inode_hashtable.remove(vR1.i_hashkey);   [  i RR] 
+        vR1.i_ishashed = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 removeInodeHash
+ 
+ method iput(Ljavafs/InodeImpl;)V {
+  +START:   #1
+        if vR1!=null goto B5;   
+  +B4:   #1
+        return;   
+  +B5:   #1
+        vR1.i_count = (vR1.i_count-1);   
+        if vR1.i_count!=0 goto B112;   
+  +B22:   #2
+        if vR1.i_nlinks@extra()!=0 goto B38;   
+  +B29:   #1
+        vR0.removeInodeHash@special(vR1);   [ RR  RR] 
+        vR1.deleteInode();   [ RR  R.] 
+  +B38:   #1
+        if vR1.i_ishashed!=0 goto B67;   
+  +B45:   #1
+        vR0.listDel@special(vR1);   [ RR  RR] 
+        vR1.putInode();   [ RR  R.] 
+        vR0.nr_inodes = (vR0.nr_inodes-1);   
+        goto +B88;   [ RR  ..]
+  +B67:   #1
+        if vR1.isDirty()!=0 goto B88;   
+  +B74:   #1
+        vR0.listDel@special(vR1);   [ RR  RR] 
+        vR0.listAdd@special(vR1,vR0.inode_in_use);   [ RR i RRR] 
+  +B88:   #4
+        goto +B112;   [ RR . ...]
+  +H91<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("Not Exist!");   [R RR i. RR.] 
+        goto +B112;   [R RR i. ...]
+  +H103<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("InodeIO!");   [R RR i. RR.] 
+  +B112:   #3
+        if vR1.i_count>=0 goto B169;   
+  -B119:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("iput: Fehler: inode ").append@extra(vR1.i_ino).append@extra(", i_count = ").append@extra(vR1.i_count).toString@extra());   [ RR iiiii... RR...] 
+        throw new java/lang/Error("inode refcount < 0");   
+  +B169:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+22 - 88 handler 91 type 55
+22 - 88 handler 103 type 54
+ }
+// Register: rd 22/22 wr 19 swaps 8 any 1 found 0 iput
+}

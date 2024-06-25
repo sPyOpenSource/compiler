@@ -1,0 +1,24 @@
+class jx/rpc/RPCCall {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIIILjx/rpc/Auth;Ljx/rpc/Auth;)V {
+  +START:   #1
+        vR0.<init>@special(vi1,0);   [   iiR] 
+        vR0.version = 2;   
+        vR0.prog = vi2;   
+        vR0.progVersion = vi3;   
+        vR0.proc = vi4;   
+        vR0.a = vR5;   
+        vR0.c = vR6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 <init>
+}

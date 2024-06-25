@@ -1,0 +1,44 @@
+class java/lang/ExceptionInInitializerError {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.initCause@this(0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Throwable;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.initCause@this(0);   [   RR] 
+        vR0.exception = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.initCause@this(0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getException()Ljava/lang/Throwable; {
+  +START:   #1
+        return vR0.exception;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getException
+ 
+ method getCause()Ljava/lang/Throwable; {
+  +START:   #1
+        return vR0.exception;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCause
+}

@@ -1,0 +1,42 @@
+class java/util/Collections$CheckedMap$CheckedEntrySet$1 {
+ 
+ method <init>(Ljava/util/Collections$CheckedMap$CheckedEntrySet;Ljava/util/Iterator;Ljava/lang/Class;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$i = vR2;   
+        vR0.val$valueType = vR3;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        return vR0.val$i.hasNext();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasNext
+ 
+ method remove()V {
+  +START:   #1
+        vR0.val$i.remove();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method next()Ljava/util/Map$Entry; {
+  +START:   #1
+        return checkedEntry@special((java/util/Map$Entry)(vR0.val$i.next()),vR0.val$valueType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 next
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.next@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+}

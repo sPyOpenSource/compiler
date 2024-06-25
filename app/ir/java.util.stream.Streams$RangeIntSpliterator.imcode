@@ -1,0 +1,88 @@
+class java/util/stream/Streams$RangeIntSpliterator {
+ 
+ method <init>(IIZ)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method trySplit()Ljava/util/Spliterator$OfInt; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 trySplit
+ 
+ method tryAdvance(Ljava/util/function/IntConsumer;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 tryAdvance
+ 
+ method tryAdvance(Ljava/util/function/Consumer;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 tryAdvance
+ 
+ method forEachRemaining(Ljava/util/function/IntConsumer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 forEachRemaining
+ 
+ method estimateSize()J {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 estimateSize
+ 
+ method characteristics()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 characteristics
+ 
+ method forEachRemaining(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.forEachRemaining@this((java/util/function/IntConsumer)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 forEachRemaining
+ 
+ method tryAdvance(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.tryAdvance@this((java/util/function/IntConsumer)(vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 tryAdvance
+ 
+ method trySplit()Ljava/util/Spliterator$OfPrimitive; {
+  +START:   #1
+        return vR0.trySplit@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+ 
+ method trySplit()Ljava/util/Spliterator; {
+  +START:   #1
+        return vR0.trySplit@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trySplit
+}

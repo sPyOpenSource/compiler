@@ -1,0 +1,38 @@
+class jx/synch/nonblocking2/MPSCQueue {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.cas_next = vR0.cpuManager.getCAS("jx/synch/nonblocking2/SPSCQueue$Node","next");   
+        vR0.cas_tail = vR0.cpuManager.getCAS("jx/synch/nonblocking2/SPSCQueue","tail");   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 <init>
+ 
+ method enqueue(Ljava/lang/Object;)V {
+  +START:   #1
+        vR2 = new jx/synch/nonblocking2/SPSCQueue$Node(vR0);    [ R  i][ R . iRR]
+        vR2.value = vR1;   
+  +B14:   #1
+        vR3 = vR0.tail;    
+        vR4 = vR3.next;    
+        if vR3!=vR0.tail goto B71;   
+  +B33:   #1
+        if vR4!=null goto B57;   
+  +B38:   #1
+        if vR0.cas_next.casObject(vR3,vR4,vR2)==0 goto B71;   
+  +B54:   #1
+        goto +B74;   [RRR R . ....]
+  +B57:   #1
+        vR0.cas_tail.casObject(vR0,vR3,vR4);   [RRR R . RRRR] 
+  +B71:   #2
+        goto +B14;   [RRR R . ....]
+  +B74:   #1
+        vR0.cas_tail.casObject(vR0,vR3,vR2);   [RRR R . RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 2 found 0 enqueue
+}

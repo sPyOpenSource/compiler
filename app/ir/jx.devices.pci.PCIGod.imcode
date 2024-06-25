@@ -1,0 +1,329 @@
+class jx/devices/pci/PCIGod {
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        out.println("Domain PCI speaking.");   [R R i. RR] 
+        vR2 = new jx/devices/pci/PCIGod(vR1);    [ R i. i.][ R i. iRR]
+        vR3 = vR1;    
+        vR4 = vR2;    
+        registerPortal@special(vR4,"PCIAccess");   [RRRR R iR RR.]
+        out.println("PCIAccess registered");   [RRRR R iRi. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 10 swaps 2 any 2 found 0 main
+ 
+ method <init>(Ljx/zero/Naming;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/util/Vector();    [ RR  i][ RR  iR]
+        vR0.devices = b1;   
+        vR0.naming = vR1;   
+        vR0.ports = (jx/zero/Ports)(lookup@special("Ports"));   
+        if vR0.ports!=null goto B40;   
+  +B39:   #1
+        return;   
+  +B40:   #1
+        if vR0.probePCI@special()!=0 goto B57;   
+  -B47:   #1
+        throw new java/lang/Error("no PCI Bus detected");   
+  +B57:   #1
+        vR0.scanBus@this();   [ RR .. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method probePCI()Z {
+  +START:   #1
+        vi1 = vR0.ports.inl_p(3320);    [   iR] 
+        if (vi1 & 2146435072)==0 goto B22;   
+  +B20:   #1
+        return 0;   
+  +B22:   #1
+        out.println("Success reading PCI configuration port");   [i  i. RR] 
+        vR0.ports.outl_p(3320,-2147483648);   [i  i. iiR] 
+        vR0.ports.outb_p(3323,0);   [i  i. iiR] 
+        vi2 = vR0.ports.inl_p(3320);    [i  i. iR.] 
+        vR0.ports.outl_p(3320,vi1);   [ii  i. iiR] 
+        if vi2==0 goto B112;   
+  +B87:   #1
+        out.println("now checking pci bus");   [ii  i. RR.] 
+        if vR0.lookForDevices@special()==0 goto B104;   
+  +B102:   #1
+        return 1;   
+  +B104:   #1
+        out.println("found no devices on this pci bus");   [ii  i. RR.] 
+  +B112:   #1
+        vR0.ports.outl_p(3320,-16777215);   [ii  .. iiR] 
+        vi2 = vR0.ports.inl_p(3320);    [ii  .. iR.] 
+        vR0.ports.outl_p(3320,vi1);   [ii  .. iiR] 
+        if (vi2 & -2147483647)!=-2147483648 goto B178;   
+  +B161:   #1
+        out.println("now checking pci bus #2");   [ii  i. RR.] 
+        if vR0.lookForDevices@special()==0 goto B178;   
+  +B176:   #1
+        return 1;   
+  +B178:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 11 swaps 4 any 3 found 0 probePCI
+ 
+ method lookForDevices()Z {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=32 goto B35;   
+  +B8:   #1
+        vi2 = vR0.readDeviceConfig@special(createAddress@special(0,vi1,0,0));    [i  i iR..] 
+        if vi2==-1 goto B27;   
+  +B25:   #1
+        return 1;   
+  +B27:   #1
+        vi1 = (byte)(vi1+1);    
+        goto +B2;   [ii  . ....]
+  +B35:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 2 found 0 lookForDevices
+ 
+ method scanBus()V {
+  +START:   #1
+        vi2 = 1;    
+        vi3 = 0;    
+  +B4:   #1
+        if vi3>=vi2 goto B222;   
+  +B9:   #1
+        vi4 = 0;    
+  +B12:   #1
+        if vi4>=32 goto B214;   
+  +B19:   #1
+        vi5 = 8;    
+        vi6 = 0;    
+  +B26:   #1
+        if vi6>=vi5 goto B204;   
+  +B33:   #1
+        vR7 = new jx/devices/pci/PCIAddress(vi3,vi4,vi6);    [ RR  i][ RR . iiiiR]
+        vi8 = vR0.readDeviceConfig@this(vR7,0);    [?iiiiiR RR . iRR..] 
+        if vi8!=-1 goto B65;   
+  +B62:   #1
+        goto +B204;   [?iiiiiRi RR . .....]
+  +B65:   #1
+        vR1 = new jx/devices/pci/PCIDevice(vR0,vR7);    [ RR . i....][ RR . iRRR.]
+        vi9 = vR1.getHeaderType();    [RiiiiiRi RR . R....] 
+        if vi6!=0 goto B99;   
+  +B87:   #1
+        if (vi9 & 128)!=0 goto B99;   
+  +B96:   #1
+        vi5 = 1;    
+  +B99:   #2
+        vi10 = vR1.getClassCode();    [RiiiiiRii RR . R....] 
+        vi11 = ((vi10 & 16711680) >> 16);    
+        if vi11==0 goto B198;   
+  +B120:   #1
+        if vi11!=255 goto B131;   
+  +B128:   #1
+        goto +B198;   [RiiiiiRiiii RR . .....]
+  +B131:   #1
+        if (vi10 & -256)!=394240 goto B190;   
+  +B142:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i....][ RR . iR...]
+        b0.println(b1.append@extra("PCI bridge found: bus=").append@extra(vi3).append@extra(", device=").append@extra(vi4).append@extra(", function=").append@extra(vi6).toString@extra());   [RiiiiiRiiii RR iiii..... RR.....] 
+        vi2++;   
+  +B190:   #1
+        vR0.devices.addElement@extra(vR1);   [RiiiiiRiiii RR ......... RR.....] 
+  +B198:   #2
+        vi6++;   
+        goto +B26;   [RiiiiiRiiii RR ......... .......]
+  +B204:   #2
+        vi4 = (byte)(vi4+1);    
+        goto +B12;   [?iiiiiRi RR ......... .......]
+  +B214:   #1
+        vi3 = (byte)(vi3+1);    
+        goto +B4;   [RiiiiiRiiii RR ......... .......]
+  +B222:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 27 swaps 5 any 12 found 0 scanBus
+ 
+ method dumpDevices()V {
+  +START:   #1
+        out.println("Devices:");   [ RR i. RR] 
+        vi1 = 0;    
+  +B10:   #1
+        if vi1>=vR0.devices.size@extra() goto B126;   
+  +B21:   #1
+        vR2 = (jx/devices/pci/PCIDevice)(vR0.devices.elementAt(vi1));    
+        vi3 = vR2.getInterruptLine();    [iR RR .. R.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra(vR2.getAddress().toString()).append@extra(":  (INT ").append@extra(vi3).append@extra(") Class: ").append@extra(lookupClass@special(vR2.getClassCode())).toString@extra());   [iRi RR iiiii....i RR....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiii....i i.....][ RR iiiii....i iR....]
+        b0.println(b1.append@extra("               ").append@extra(lookup@special(vR2.readConfig(0))).toString@extra());   [iRi RR iiiiiiiiii. RR....] 
+        vi1++;   
+        goto +B10;   [iRi RR iiiiiiiiii. ......]
+  +B126:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 29 swaps 9 any 2 found 1 dumpDevices
+ 
+ method createAddress(Ljx/devices/pci/PCIAddress;I)I {
+  +START:   #1
+        return createAddress@special(vR0.bus,vR0.device,vR0.function,vi1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 createAddress
+ 
+ method createAddress(IIII)I {
+  +START:   #1
+        if vi1<32 goto B14;   
+  +B6:   #1
+        out.println("device number out of range");   [  i. RR] 
+  +B14:   #1
+        return ((((-2147483648 | ((vi0 << 16) & 16711680)) | ((vi1 << 11) & 63488)) | ((vi2 << 8) & 1792)) | ((vi3 << 2) & 252));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 1 found 0 createAddress
+ 
+ method readDeviceConfig(I)I {
+  +START:   #1
+        vR0.ports.outl_p(3320,vi1);   [   iiR] 
+        vi2 = vR0.ports.inl_p(3324);    [   iR.] 
+        vR0.ports.outl_p(3320,0);   [i   iiR] 
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 readDeviceConfig
+ 
+ method writeDeviceConfig(II)V {
+  +START:   #1
+        vR0.ports.outl(3320,vi1);   [   iiR] 
+        vR0.ports.outl(3324,vi2);   [   iiR] 
+        vR0.ports.outl(3320,0);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 writeDeviceConfig
+ 
+ method getNumberOfDevices()I {
+  +START:   #1
+        return vR0.devices.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberOfDevices
+ 
+ method getDeviceAt(I)Ljx/devices/pci/PCIDevice; {
+  +START:   #1
+        return (jx/devices/pci/PCIDevice)(vR0.devices.elementAt(vi1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getDeviceAt
+ 
+ method getDevicesByID(SS)[Ljx/devices/pci/PCIDevice; {
+  +START:   #1
+        if vi1==65535 goto B14;   
+  +B6:   #1
+        if vi1==0 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   [ i  ]
+  +B14:   #2
+        b0 = 0;    
+  +B15b0:   #1 int
+        vi3 = b0;    
+        if vi2==65535 goto B30;   
+  +B22:   #1
+        if vi2==0 goto B30;   
+  +B26:   #1
+        b0 = 1;    
+        goto +B31b0;   [i i  ]
+  +B30:   #2
+        b0 = 0;    
+  +B31b0:   #1 int
+        vi4 = b0;    
+        vR6 = new java/util/Vector(vR0.devices.size@extra());    [ i  i][ i . iiR]
+        vi7 = 0;    
+  +B52:   #1
+        if vi7>=vR0.devices.size@extra() goto B124;   
+  +B64:   #1
+        vR5 = (jx/devices/pci/PCIDevice)(vR0.devices.elementAt(vi7));    
+        if vi3==0 goto B94;   
+  +B82:   #1
+        if vi1==vR5.getVendorID() goto B94;   
+  +B91:   #1
+        goto +B118;   [iiRRi i . ...]
+  +B94:   #2
+        if vi4==0 goto B111;   
+  +B99:   #1
+        if vi2==vR5.getDeviceID() goto B111;   
+  +B108:   #1
+        goto +B118;   [iiRRi i . ...]
+  +B111:   #2
+        vR6.addElement@extra(vR5);   [iiRRi i . RR.] 
+  +B118:   #2
+        vi7++;   
+        goto +B52;   [iiRRi i . ...]
+  +B124:   #1
+        return vR0.DevVecToArray@this(vR6);   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 10 swaps 0 any 12 found 3 getDevicesByID
+ 
+ method getDevicesByClass(II)[Ljx/devices/pci/PCIDevice; {
+  +START:   #1
+        vR4 = new java/util/Vector(vR0.devices.size@extra());    [ R  i][ R . iiR]
+        vi5 = 0;    
+  +B19:   #1
+        if vi5>=vR0.devices.size@extra() goto B66;   
+  +B31:   #1
+        vR3 = (jx/devices/pci/PCIDevice)(vR0.devices.elementAt(vi5));    
+        if (vR3.getClassCode() & vi1)!=vi2 goto B60;   
+  +B54:   #1
+        vR4.addElement@extra(vR3);   [RRi R . RR.] 
+  +B60:   #1
+        vi5++;   
+        goto +B19;   [RRi R . ...]
+  +B66:   #1
+        return vR0.DevVecToArray@this(vR4);   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 2 found 1 getDevicesByClass
+ 
+ method readDeviceConfig(Ljx/devices/pci/PCIAddress;I)I {
+  +START:   #1
+        return vR0.readDeviceConfig@special(createAddress@special(vR1,vi2));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 readDeviceConfig
+ 
+ method writeDeviceConfig(Ljx/devices/pci/PCIAddress;II)V {
+  +START:   #1
+        vR0.writeDeviceConfig@special(createAddress@special(vR1,vi2),vi3);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 writeDeviceConfig
+ 
+ method DevVecToArray(Ljava/util/Vector;)[Ljx/devices/pci/PCIDevice; {
+  +START:   #1
+        vR2 = new jx/devices/pci/PCIDevice()[vR1.size@extra()];    
+        vi3 = 0;    
+  +B10:   #1
+        if vi3>=vR2.length goto B33;   
+  +B16:   #1
+        vR2[vi3] = (jx/devices/pci/PCIDevice)(vR1.elementAt(vi3));   
+        vi3++;   
+        goto +B10;   [Ri  . ..]
+  +B33:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 2 found 0 DevVecToArray
+}
