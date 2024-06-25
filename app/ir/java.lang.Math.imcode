@@ -26,9 +26,9 @@ class java/lang/Math {
   +START:   #1
         vd2 = (vd0%1);    
         vd4 = (vd0-vd2);    
-        if compare(vd2,jx.classfile.datatypes.BCDouble@2ea73b59)!=0 goto B38;   
+        if compare(vd2,jx.classfile.datatypes.BCDouble@44be73c6)!=0 goto B38;   
   +B17:   #1
-        if compare((vd4%jx.classfile.datatypes.BCDouble@55a8480b),0)!=0 goto B33;   
+        if compare((vd4%jx.classfile.datatypes.BCDouble@1111cd5c),0)!=0 goto B33;   
   +B28:   #1
         b0 = vd4;    
         goto +B37b0;   forward return[?d?d d_  .]
@@ -37,15 +37,15 @@ class java/lang/Math {
   +B37b0:   #1 double
         return b0;   
   +B38:   #1
-        if compare(vd2,jx.classfile.datatypes.BCDouble@2ea73b59)>=0 goto B49;   
+        if compare(vd2,jx.classfile.datatypes.BCDouble@44be73c6)>=0 goto B49;   
   +B46:   #1
         return vd4;   
   +B49:   #1
-        if compare(vd2,jx.classfile.datatypes.BCDouble@2ea73b59)<=0 goto B62;   
+        if compare(vd2,jx.classfile.datatypes.BCDouble@44be73c6)<=0 goto B62;   
   +B57:   #1
         return (vd4+1);   
   +B62:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 rint
@@ -63,15 +63,15 @@ class java/lang/Math {
   +B7:   #1
         return 0;   
   +B9:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@7be2434b)> 0 goto B21;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@1410a3f6)> 0 goto B21;   
   +B17:   #1
         return -9223372036854775808;   
   +B21:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@6c88c29d)< 0 goto B33;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@2307d2f1)< 0 goto B33;   
   +B29:   #1
         return 9223372036854775807;   
   +B33:   #1
-        return (long)floor@special((vd0+jx.classfile.datatypes.BCDouble@2ea73b59));   
+        return (long)floor@special((vd0+jx.classfile.datatypes.BCDouble@44be73c6));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 round
@@ -262,15 +262,15 @@ class java/lang/Math {
   +B7:   #1
         if isNaN@special(vd2)==0 goto B18;   
   +B14:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B18:   #1
         if isInfinite@special(vd0)==0 goto B29;   
   +B25:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B29:   #1
         if compare(vd2,0)!=0 goto B39;   
   +B35:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B39:   #1
         if isInfinite@special(vd2)==0 goto B48;   
   +B46:   #1
@@ -284,7 +284,7 @@ class java/lang/Math {
  
  method exp(D)D {
   +START:   #1
-        return (1+(vd0*(1+(vd0*(jx.classfile.datatypes.BCDouble@2ea73b59+(vd0*(jx.classfile.datatypes.BCDouble@7b773717+(vd0*(jx.classfile.datatypes.BCDouble@3c30ba60+(vd0*(jx.classfile.datatypes.BCDouble@55a14eb6+(vd0*jx.classfile.datatypes.BCDouble@7f17e2b5))))))))))));   
+        return (1+(vd0*(1+(vd0*(jx.classfile.datatypes.BCDouble@44be73c6+(vd0*(jx.classfile.datatypes.BCDouble@3ce390e0+(vd0*(jx.classfile.datatypes.BCDouble@5be3534d+(vd0*(jx.classfile.datatypes.BCDouble@4afd44d4+(vd0*jx.classfile.datatypes.BCDouble@57f08720))))))))))));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 exp
@@ -298,25 +298,25 @@ class java/lang/Math {
  
  method sqrt(D)D {
   +START:   #1
-        return pow@special(vd0,jx.classfile.datatypes.BCDouble@2ea73b59);   
+        return pow@special(vd0,jx.classfile.datatypes.BCDouble@44be73c6);   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sqrt
  
  method sin(D)D {
   +START:   #1
-        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@3d1abdcf)%jx.classfile.datatypes.BCDouble@4c0e3b6)-jx.classfile.datatypes.BCDouble@3d1abdcf);    
+        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@77b469ae)%jx.classfile.datatypes.BCDouble@368c352e)-jx.classfile.datatypes.BCDouble@77b469ae);    
         vd2 = (vd0*vd0);    
-        return (vd0*(1-(vd2*(jx.classfile.datatypes.BCDouble@7b773717+(vd2*(jx.classfile.datatypes.BCDouble@55a14eb6-(vd2*jx.classfile.datatypes.BCDouble@5bcbc966)))))));   
+        return (vd0*(1-(vd2*(jx.classfile.datatypes.BCDouble@3ce390e0+(vd2*(jx.classfile.datatypes.BCDouble@4afd44d4-(vd2*jx.classfile.datatypes.BCDouble@16f71ccf)))))));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sin
  
  method cos(D)D {
   +START:   #1
-        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@3d1abdcf)%jx.classfile.datatypes.BCDouble@4c0e3b6)-jx.classfile.datatypes.BCDouble@3d1abdcf);    
+        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@77b469ae)%jx.classfile.datatypes.BCDouble@368c352e)-jx.classfile.datatypes.BCDouble@77b469ae);    
         vd2 = (vd0*vd0);    
-        return (1-(vd2*(jx.classfile.datatypes.BCDouble@2ea73b59+(vd2*(jx.classfile.datatypes.BCDouble@3c30ba60-(vd2*jx.classfile.datatypes.BCDouble@7f17e2b5))))));   
+        return (1-(vd2*(jx.classfile.datatypes.BCDouble@44be73c6+(vd2*(jx.classfile.datatypes.BCDouble@5be3534d-(vd2*jx.classfile.datatypes.BCDouble@57f08720))))));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 cos
@@ -332,11 +332,11 @@ class java/lang/Math {
   +START:   #1
         if compare(vd0,0)>=0 goto B10;   
   +B6:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B10:   #1
         if compare(vd0,0)!=0 goto B20;   
   +B16:   #1
-        return jx.classfile.datatypes.BCDouble@1b899ae0;   
+        return jx.classfile.datatypes.BCDouble@456d50b6;   
   +B20:   #1
         if compare(vd0,1)>=0 goto B34;   
   +B26:   #1
@@ -347,13 +347,13 @@ class java/lang/Math {
         return 0;   
   +B42:   #1
         vd2 = 0;    
-        vd4 = jx.classfile.datatypes.BCDouble@7395b89b;    
-        vd6 = jx.classfile.datatypes.BCDouble@4150da1b;    
+        vd4 = jx.classfile.datatypes.BCDouble@11c0b8ac;    
+        vd6 = jx.classfile.datatypes.BCDouble@3efb3392;    
         vi8 = 0;    
   +B57:   #1
         if vi8>=64 goto B121;   
   +B64:   #1
-        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@55a8480b);    
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1111cd5c);    
         vd9 = exp@special(vd6);    
         if compare(vd0,vd9)!=0 goto B91;   
   +B88:   #1
@@ -380,28 +380,28 @@ class java/lang/Math {
   +START:   #1
         if compare(vd0,1)<=0 goto B10;   
   +B6:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B10:   #1
         if compare(vd0,1)!=0 goto B20;   
   +B16:   #1
-        return jx.classfile.datatypes.BCDouble@704b380c;   
+        return jx.classfile.datatypes.BCDouble@4632daff;   
   +B20:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@754e4f9a)>=0 goto B32;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@688db792)>=0 goto B32;   
   +B28:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B32:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@754e4f9a)!=0 goto B44;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@688db792)!=0 goto B44;   
   +B40:   #1
-        return jx.classfile.datatypes.BCDouble@22c79549;   
+        return jx.classfile.datatypes.BCDouble@474ab2d5;   
   +B44:   #1
-        vd2 = jx.classfile.datatypes.BCDouble@22c79549;    
-        vd4 = jx.classfile.datatypes.BCDouble@704b380c;    
-        vd6 = jx.classfile.datatypes.BCDouble@4150da1b;    
+        vd2 = jx.classfile.datatypes.BCDouble@474ab2d5;    
+        vd4 = jx.classfile.datatypes.BCDouble@4632daff;    
+        vd6 = jx.classfile.datatypes.BCDouble@3efb3392;    
         vi8 = 0;    
   +B61:   #1
         if vi8>=64 goto B125;   
   +B68:   #1
-        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@55a8480b);    
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1111cd5c);    
         vd9 = sin@special(vd6);    
         if compare(vd0,vd9)!=0 goto B95;   
   +B92:   #1
@@ -428,28 +428,28 @@ class java/lang/Math {
   +START:   #1
         if compare(vd0,1)<=0 goto B10;   
   +B6:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B10:   #1
         if compare(vd0,1)!=0 goto B18;   
   +B16:   #1
         return 0;   
   +B18:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@754e4f9a)>=0 goto B30;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@688db792)>=0 goto B30;   
   +B26:   #1
-        return jx.classfile.datatypes.BCDouble@4150da1b;   
+        return jx.classfile.datatypes.BCDouble@3efb3392;   
   +B30:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@754e4f9a)!=0 goto B42;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@688db792)!=0 goto B42;   
   +B38:   #1
-        return jx.classfile.datatypes.BCDouble@3d1abdcf;   
+        return jx.classfile.datatypes.BCDouble@77b469ae;   
   +B42:   #1
         vd2 = 0;    
-        vd4 = jx.classfile.datatypes.BCDouble@3d1abdcf;    
-        vd6 = jx.classfile.datatypes.BCDouble@4150da1b;    
+        vd4 = jx.classfile.datatypes.BCDouble@77b469ae;    
+        vd6 = jx.classfile.datatypes.BCDouble@3efb3392;    
         vi8 = 0;    
   +B57:   #1
         if vi8>=64 goto B121;   
   +B64:   #1
-        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@55a8480b);    
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1111cd5c);    
         vd9 = cos@special(vd6);    
         if compare(vd0,vd9)!=0 goto B91;   
   +B88:   #1
@@ -474,22 +474,22 @@ class java/lang/Math {
  
  method atan(D)D {
   +START:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@7c48a0ea)!=0 goto B12;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@535b6748)!=0 goto B12;   
   +B8:   #1
-        return jx.classfile.datatypes.BCDouble@704b380c;   
+        return jx.classfile.datatypes.BCDouble@4632daff;   
   +B12:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@1b899ae0)!=0 goto B24;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@456d50b6)!=0 goto B24;   
   +B20:   #1
-        return jx.classfile.datatypes.BCDouble@22c79549;   
+        return jx.classfile.datatypes.BCDouble@474ab2d5;   
   +B24:   #1
-        vd2 = jx.classfile.datatypes.BCDouble@22c79549;    
-        vd4 = jx.classfile.datatypes.BCDouble@704b380c;    
-        vd6 = jx.classfile.datatypes.BCDouble@4150da1b;    
+        vd2 = jx.classfile.datatypes.BCDouble@474ab2d5;    
+        vd4 = jx.classfile.datatypes.BCDouble@4632daff;    
+        vd6 = jx.classfile.datatypes.BCDouble@3efb3392;    
         vi8 = 0;    
   +B41:   #1
         if vi8>=64 goto B105;   
   +B48:   #1
-        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@55a8480b);    
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1111cd5c);    
         vd9 = tan@special(vd6);    
         if compare(vd0,vd9)!=0 goto B75;   
   +B72:   #1
@@ -522,10 +522,10 @@ class java/lang/Math {
   +B19:   #1
         if compare(vd2,0)<=0 goto B34;   
   +B25:   #1
-        b0 = (vd4+jx.classfile.datatypes.BCDouble@3d1abdcf);    
+        b0 = (vd4+jx.classfile.datatypes.BCDouble@77b469ae);    
         goto +B40b0;   forward return[d?d d_  .]
   +B34:   #1
-        b0 = (vd4-jx.classfile.datatypes.BCDouble@3d1abdcf);    
+        b0 = (vd4-jx.classfile.datatypes.BCDouble@77b469ae);    
   +B40b0:   #2 double
         return b0;   
   +END:   #1

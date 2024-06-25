@@ -215,7 +215,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method putAllLinear([Ljava/util/Map$Entry;)V {
   +START:   #1
-        vd3 = pow@special((double)vR1.length,jx.classfile.datatypes.BCDouble@1f9af229);    
+        vd3 = pow@special((double)vR1.length,jx.classfile.datatypes.BCDouble@c1178fe);    
         vi2 = (int)vd3;    
         if compare(vd3,(double)vi2)!=0 goto B24;   
   +B20:   #1
