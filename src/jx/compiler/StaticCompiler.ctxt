@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=StaticCompiler
 comment1.params=out\ tableOut\ domainZip\ libZip\ tableIn\ opts\ ioSystem
-comment1.target=StaticCompiler(persistent.ExtendedDataOutputStream,\ persistent.ExtendedDataOutputStream,\ java.util.jar.JarFile,\ java.util.jar.JarFile[],\ persistent.ExtendedDataInputStream[],\ CompilerOptions,\ execenv.IOSystem)
+comment1.target=StaticCompiler(persistent.ExtendedDataOutputStream,\ persistent.ExtendedDataOutputStream,\ java.net.URL,\ java.net.URL[],\ persistent.ExtendedDataInputStream[],\ CompilerOptions,\ execenv.IOSystem)
 comment10.params=
 comment10.target=int\ getLocalVarSize()
 comment11.params=aClass
