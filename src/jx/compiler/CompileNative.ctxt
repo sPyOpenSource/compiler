@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=CompileNative
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=opts
+comment2.target=void\ compile(CompilerOptions)
+comment3.params=component\ opts
+comment3.target=void\ compile(java.lang.String,\ CompilerOptions)
+comment4.params=filename
+comment4.target=java.io.OutputStream\ getOutputStream(java.lang.String)
+comment5.params=path
+comment5.target=void\ set(java.lang.String)
+numComments=6

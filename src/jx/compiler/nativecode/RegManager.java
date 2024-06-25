@@ -31,10 +31,10 @@ public class RegManager {
     private int     numberOfSwaps;
 
     // all known int register
-    private Reg[]           regList;
+    private Reg[] regList;
     private RegFloat[] regFloatList;
     // all register objects active in register
-    private final RegList         active;
+    private final RegList active;
 
     private int uniID = 0;
 

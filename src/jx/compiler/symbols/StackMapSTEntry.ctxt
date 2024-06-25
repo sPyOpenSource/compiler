@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=StackMapSTEntry
+comment1.params=
+comment1.target=java.lang.String\ getDescription()
+comment2.params=
+comment2.target=boolean\ isResolved()
+comment3.params=
+comment3.target=int\ getValue()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=out
+comment5.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment6.params=
+comment6.target=boolean[]\ stackMap()
+comment7.params=map
+comment7.target=java.lang.String\ toString(boolean[])
+numComments=8

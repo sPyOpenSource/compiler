@@ -1,3 +1,4 @@
+
 package jx.classfile; 
 
 import java.io.*; 
@@ -69,9 +70,9 @@ public class FieldData {
 	@return a descriptive string for this field 
     */ 
     public String getDescription(ConstantPool cPool) {
-	return "" + accessFlags + ", " + 
-	    cPool.entryAt(fieldNameCPIndex).getDescription(cPool, true) + ", " +  
-	    cPool.entryAt(fieldTypeCPIndex).getDescription(cPool, true);
+	return /*"" + accessFlags + ", " + 
+	    cPool.entryAt(fieldNameCPIndex).getDescription(cPool, true) + ", " +*/
+	    cPool.entryAt(fieldTypeCPIndex).getDescription(cPool, true).substring(1);
     }
 
     public boolean isPublic() {return ClassData.isPublic(accessFlags);} 

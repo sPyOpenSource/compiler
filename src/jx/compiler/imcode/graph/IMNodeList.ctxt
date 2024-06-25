@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IMNodeList
+comment1.params=
+comment1.target=IMNodeList()
+comment2.params=node
+comment2.target=void\ add(IMNode)
+comment3.params=i
+comment3.target=IMNode\ at(int)
+comment4.params=
+comment4.target=int\ size()
+numComments=5

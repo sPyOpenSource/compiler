@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Mutex
+comment1.params=
+comment1.target=int\ lock()
+comment2.params=
+comment2.target=int\ trylock()
+comment3.params=
+comment3.target=int\ unlock()
+comment4.params=
+comment4.target=int\ destroy()
+numComments=5

@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=ZipClasses
+comment0.text=\n\ Represents\ all\ classes\ that\ are\ contained\ in\ a\ ZIP\ file\n
+comment1.params=m\ allowNative
+comment1.target=ZipClasses(jx.zero.Memory,\ boolean)
+comment2.params=className
+comment2.target=jx.classfile.ClassSource\ findclass(java.lang.String)
+comment3.params=
+comment3.target=java.util.Set\ elements()
+numComments=4

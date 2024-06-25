@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=BuilderOptions
+comment1.params=libs\ jlns\ src\ jlnFile\ target\ env
+comment1.target=BuilderOptions(java.util.ArrayList,\ java.util.ArrayList,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+numComments=2

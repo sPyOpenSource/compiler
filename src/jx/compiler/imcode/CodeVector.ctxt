@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=CodeVector
+comment1.params=
+comment1.target=CodeVector()
+comment2.params=i
+comment2.target=CodeContainer\ element(int)
+comment3.params=aCode
+comment3.target=void\ add(CodeContainer)
+comment4.params=vec
+comment4.target=void\ add(CodeVector)
+comment5.params=
+comment5.target=int\ size()
+comment6.params=nSize
+comment6.target=void\ realloc(int)
+numComments=7

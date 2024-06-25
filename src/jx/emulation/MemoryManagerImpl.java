@@ -4,6 +4,7 @@ import jx.zero.MemoryManager;
 import jx.zero.*;
 
 public class MemoryManagerImpl implements MemoryManager {
+    
     @Override
     public Memory alloc(int size) {
 	//Debug.out.println("Allocation request: "+size+" bytes.");

@@ -14,7 +14,6 @@ import jx.classfile.VerifyResult;
 */ 
 
 public class BCMethod {
-
   private boolean isSmallEnoughForInlining; 
   protected boolean isOverrideable; 
   protected boolean isStatic; 
@@ -35,11 +34,11 @@ public class BCMethod {
     this.methodSource = methodSource;
 
     isSmallEnoughForInlining = false;
-    if (methodSource!=null && 
-	methodSource.getNumInstr()>0 &&
-	methodSource.getNumInstr()<=MAX_INLINE_LENGTH) isSmallEnoughForInlining=true;
+    if (methodSource != null && 
+	methodSource.getNumInstr() > 0 &&
+	methodSource.getNumInstr() <= MAX_INLINE_LENGTH) isSmallEnoughForInlining = true;
 
-    isStatic = methodSource.isStatic(); 
+    isStatic = methodSource.isStatic();
 
     ClassSource classSource = methodSource.getDeclaringClassSource();
 
@@ -70,9 +69,9 @@ public class BCMethod {
     public boolean isNative() { return methodSource.isNative(); }
     public String getClassName() {return methodSource.getDeclaringClassSource().getClassName();}
 
-  @Override
+    @Override
     public String toString() {
-	return "BCMethod("+name+typeDescString+")";
+	return "BCMethod(" + name + typeDescString + ")";
     }
 
     public int[] getArgumentTypes() { return argumentTypes; }
@@ -83,7 +82,7 @@ public class BCMethod {
 
     public int getLineNumber(int bytecodePosition) {
 	LineAttributeData lineNumbers[] = methodSource.getLineNumberTable();
-	int line=0;
+	int line = 0;
 	if (lineNumbers != null) {
             for (LineAttributeData lineNumber : lineNumbers) {
                 if (bytecodePosition < lineNumber.startBytecodepos) {
@@ -95,7 +94,7 @@ public class BCMethod {
 	return -1;
     }
 
-    public VerifyResult  getVerifyResult(int type) {
+    public VerifyResult getVerifyResult(int type) {
 	return methodSource.getVerifyResult(type);
     }
 }

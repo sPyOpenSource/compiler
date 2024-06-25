@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=VMSupport
+comment1.params=e
+comment1.target=VMSupport(jx.compiler.ExecEnvironmentIA32)
+numComments=2

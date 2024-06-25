@@ -1,5 +1,5 @@
-package jx.compspec;
 
+package jx.compspec;
 
 public class Cleaner {
 
@@ -40,5 +40,6 @@ public class Cleaner {
 	}
 	*/
     }
+    
 }
 

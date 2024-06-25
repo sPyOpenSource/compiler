@@ -1,0 +1,131 @@
+class jx/zero/VMSupport {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method swapShortByteOrder(S)S {
+  +START:   #1
+        return (short)(((vi0 & 65280) >>> 8) | ((vi0 & 255) << 8));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 swapShortByteOrder
+ 
+ method swapIntByteOrder(I)I {
+  +START:   #1
+        vi1 = 0;    
+        vi1 = (vi1 | ((vi0 & 255) << 24));    
+        vi1 = (vi1 | ((vi0 & 65280) << 8));    
+        vi1 = (vi1 | ((vi0 & 16711680) >>> 8));    
+        vi1 = (vi1 | ((vi0 & -16777216) >>> 24));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 4 found 0 swapIntByteOrder
+ 
+ method arraycopy_byte_left([BI[BII)V {
+  +START:   #1
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi5 = 0;    
+  +B13:   #1
+        if vi5>=vi4 goto B38;   
+  +B20:   #1
+        vi3--;   
+        vi1--;   
+        vR2[vi3] = vR0[vi1];   
+        vi5++;   
+        goto +B13;   [i   ]
+  +B38:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 6 found 0 arraycopy_byte_left
+ 
+ method arraycopy_byte_right([BI[BII)V {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vi4 goto B28;   
+  +B10:   #1
+        vR2[(vi3+vi5)] = vR0[(vi1+vi5)];   
+        vi5++;   
+        goto +B3;   [i   ]
+  +B28:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 arraycopy_byte_right
+ 
+ method arraycopy_char_left([CI[CII)V {
+  +START:   #1
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi5 = 0;    
+  +B13:   #1
+        if vi5>=vi4 goto B38;   
+  +B20:   #1
+        vi3--;   
+        vi1--;   
+        vR2[vi3] = vR0[vi1];   
+        vi5++;   
+        goto +B13;   [i   ]
+  +B38:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 6 found 0 arraycopy_char_left
+ 
+ method arraycopy_char_right([CI[CII)V {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vi4 goto B28;   
+  +B10:   #1
+        vR2[(vi3+vi5)] = vR0[(vi1+vi5)];   
+        vi5++;   
+        goto +B3;   [i   ]
+  +B28:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 arraycopy_char_right
+ 
+ method arraycopy_left([Ljava/lang/Object;I[Ljava/lang/Object;II)V {
+  +START:   #1
+        vi1 = (vi1+vi4);    
+        vi3 = (vi3+vi4);    
+        vi5 = 0;    
+  +B13:   #1
+        if vi5>=vi4 goto B38;   
+  +B20:   #1
+        vi3--;   
+        vi1--;   
+        vR2[vi3] = vR0[vi1];   
+        vi5++;   
+        goto +B13;   [i   ]
+  +B38:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 6 found 0 arraycopy_left
+ 
+ method arraycopy_right([Ljava/lang/Object;I[Ljava/lang/Object;II)V {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vi4 goto B28;   
+  +B10:   #1
+        vR2[(vi3+vi5)] = vR0[(vi1+vi5)];   
+        vi5++;   
+        goto +B3;   [i   ]
+  +B28:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 arraycopy_right
+}

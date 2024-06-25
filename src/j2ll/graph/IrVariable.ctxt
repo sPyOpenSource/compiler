@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=IrVariable
+comment1.params=type\ name
+comment1.target=IrVariable(java.lang.String,\ java.lang.String)
+comment2.params=
+comment2.target=int\ hashCode()
+comment3.params=o
+comment3.target=boolean\ equals(java.lang.Object)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+numComments=5

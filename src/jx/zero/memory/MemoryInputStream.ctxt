@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=MemoryInputStream
+comment1.params=
+comment1.target=int\ available()
+comment2.params=
+comment2.target=void\ reset()
+comment3.params=
+comment3.target=int\ read()
+comment4.params=b\ off\ len
+comment4.target=int\ read(byte[],\ int,\ int)
+comment5.params=n
+comment5.target=long\ skip(long)
+comment6.params=m
+comment6.target=MemoryInputStream(jx.zero.ReadOnlyMemory)
+numComments=7

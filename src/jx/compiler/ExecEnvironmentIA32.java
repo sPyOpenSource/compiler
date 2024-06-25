@@ -10,17 +10,13 @@ import jx.zero.Debug;
 
 import jx.compiler.execenv.*;
 import jx.compiler.imcode.*;
+import jx.compiler.imcode.graph.*;
+import jx.compiler.imcode.graph.inst.IMConstant;
+import jx.compiler.imcode.graph.inst.IMReadLocalVariable;
 import jx.compiler.nativecode.*;
 import jx.compiler.symbols.*;
 import jx.compiler.persistent.*;
 import jx.compiler.plugins.CompilerPlugin;
-
-class ExceptionEntry {
-    int type;
-    int bcPosition;
-    UnresolvedJump jump;
-    UnresolvedJump back_jump;
-}
 
 /**
  *
@@ -40,7 +36,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	final private static int THROW_ArrayIndexOutOfBounds  = -10;
 	final private static int THROW_UnsupportedByteCode    = -11;
 	final private static int THROW_InvalidMemory          = -12;
-	final private static int THROW_MemoryExhaustedException  = -13;
+	final private static int THROW_MemoryExhaustedException = -13;
 
 	private CodeContainer    container;
 	private ConstantPool     cPool;
@@ -48,11 +44,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	private RegManager       regs;
 	private MethodStackFrame frame;
 	private BCMethod         method;
-	private final ClassFinder      classStore;
+	private final ClassFinder classStore;
 	private BCClass          bcClass;
-	private final CompilerOptions  opts;
-	private final ArrayList           exceptionStore;
-	private HashMap        plugins;
+	private final CompilerOptions opts;
+	private final ArrayList  exceptionStore;
+	private HashMap          plugins;
 
 	private final int arrayLengthOffset = 8;
 	private final int arrayDataStart    = 12;
@@ -110,19 +106,16 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
-	if (methodRefCPEntry==null) return null;
-
+	if (methodRefCPEntry == null) return null;
 
 	BCClass aClass = classStore.findClass(methodRefCPEntry.getClassName());
 	if (aClass != null) {
 	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
-	    BCMethod method;
 
 	    String name = methodRefCPEntry.getMemberName();
 	    String sig  = methodRefCPEntry.getMemberTypeDesc();
 
-            for (BCMethod method1 : info.methods) {
-                method = method1;
+            for (BCMethod method : info.methods) {
                 if (method.getName().equals(name) &&
                         method.getSignature().equals(sig)) {
                     return method;
@@ -213,7 +206,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         if (opts.doLogMethod(bcClass, method)) {
 	    jx.compiler.plugins.CPUManager.codeEvent(this, regs, code, new ProfileSTEntry(ProfileSTEntry.EVENT_AUTOID), -1);
-	}	
+	}
 
 	if (!opts.isOption("noClassInit")) {
             if (method.isStatic() || method.isConstructor()) {
@@ -222,13 +215,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
                 code.popl(Reg.ecx);
             }
 	}
-
     }
 
     @Override
     public void codeEpilog() throws CompileException {
-
-	if (opts.doProfile(bcClass,method)) {
+	if (opts.doProfile(bcClass, method)) {
 	    addTimerEP();
 	}
 
@@ -240,26 +231,26 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	if (checkStackFrame && opts.doParanoidChecks()) {
 	    // test if operanten stack is clean and framepointer is valid
-	    code.addl(frame.getAllocSTEntry(),Reg.esp);
+	    code.addl(frame.getAllocSTEntry(), Reg.esp);
 	    if (pushMethodDesc) code.popl(Reg.ecx);
-	    code.cmpl(Reg.esp,Reg.ebp);
-	    code.jne(createExceptionCall(-9,1));
+	    code.cmpl(Reg.esp, Reg.ebp);
+	    code.jne(createExceptionCall(-9, 1));
 	    // test if return address is valid
-	    code.movl(Ref.esp.disp(4),Reg.ecx);
-	    code.test(Reg.ecx,Reg.ecx);
-	    code.je(createExceptionCall(-9,3));
+	    code.movl(Ref.esp.disp(4), Reg.ecx);
+	    code.test(Reg.ecx, Reg.ecx);
+	    code.je(createExceptionCall(-9, 3));
 	}
 
 	// free c stack
-	code.movl(Reg.ebp,Reg.esp);
+	code.movl(Reg.ebp, Reg.esp);
 
 	if (opts.doTrace()) {
-	    frame.push(-1,Reg.eax);
-	    frame.push(-1,Reg.edx);
-	    int offset=frame.start();
-	    frame.push(-1,new MethodeDescSTEntry());
-	    frame.push(-1,Ref.ebp.disp(4));		    
-	    frame.push(-1,1);
+	    frame.push(-1, Reg.eax);
+	    frame.push(-1, Reg.edx);
+	    int offset = frame.start();
+	    frame.push(-1, new MethodeDescSTEntry());
+	    frame.push(-1, Ref.ebp.disp(4));		    
+	    frame.push(-1, 1);
 	    code.call(new ProfileSTEntry(ProfileSTEntry.PROFILE_TRACE));	
 	    frame.cleanup(offset);
 	    frame.pop(Reg.edx);
@@ -282,8 +273,8 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
     private void addTimerSP() {
 	// current methode_desc => stack
-	code.movl(new MethodeDescSTEntry(),Reg.ecx);
-	frame.push(-1,Reg.ecx);
+	code.movl(new MethodeDescSTEntry(), Reg.ecx);
+	frame.push(-1, Reg.ecx);
 
 	// caller (return addr) => stack
 	code.movl(Ref.ebp.disp(4), Reg.ecx);
@@ -322,17 +313,17 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  frame.pushfl();
 	  code.cli();
 	} else {
-	  frame.push(-1,0);
+	  frame.push(-1, 0);
 	}
 
 	code.rdtsc();
 	code.movl(2, Ref.ecx.disp(4));
 	
 	// timer 2 => stack
-	frame.push(-1,Reg.edx);
-	frame.push(-1,Reg.eax);	
+	frame.push(-1, Reg.edx);
+	frame.push(-1, Reg.eax);	
 
-	frame.push(-1,Reg.ecx);
+	frame.push(-1, Reg.ecx);
 
 	// call profile function
 	code.call(new ProfileSTEntry(ProfileSTEntry.PROFILE_CALL));	
@@ -340,13 +331,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	frame.pop(Reg.ecx);
 
 	code.rdtsc();
-        code.movl(0,Ref.ecx.disp(4));
+        code.movl(0, Ref.ecx.disp(4));
 
 	// eax:edx = t3 - t2
 	frame.pop(Reg.ebx);
-	code.subl(Reg.ebx,Reg.eax);
+	code.subl(Reg.ebx, Reg.eax);
 	frame.pop(Reg.ebx);
-	code.sbbl(Reg.ebx,Reg.edx);
+	code.sbbl(Reg.ebx, Reg.edx);
 
 	// cont irqs
 	if (false) {	  
@@ -356,9 +347,9 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	}
 
 	// drift[0] += eax:edx
-	code.movl(Ref.ecx,Reg.esi);
-	code.addl(Reg.eax,Ref.esi);
-	code.adcl(Reg.edx,Ref.esi.disp(4));
+	code.movl(Ref.ecx, Reg.esi);
+	code.addl(Reg.eax, Ref.esi);
+	code.adcl(Reg.edx, Ref.esi.disp(4));
 
 	// restore return value
 	frame.pop(Reg.eax);
@@ -369,87 +360,86 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     /** 
-	at least 2 clks
+     * at least 2 clks
      * @param node
      * @param reg
      * @param bcPosition
      * @throws jx.compiler.CompileException
-    */
+     */
 
     @Override
-    public void codeCheckReference(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckReference(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (opts.doNullChecks()) {	    
-	    code.test(reg,reg);
-	    code.je(createExceptionCall(-2,bcPosition));
+	    code.test(reg, reg);
+	    code.je(createExceptionCall(-2, bcPosition));
 	}
 	if (opts.doMagicChecks()) {
-	    code.cmpl(OBJECT_MAGIC,reg.rdisp(OBJECT_MAGIC_OFF));
-	    code.jne(createExceptionCall(-7,bcPosition));
+	    code.cmpl(OBJECT_MAGIC, reg.rdisp(OBJECT_MAGIC_OFF));
+	    code.jne(createExceptionCall(-7, bcPosition));
 	}
     }
 
     @Override
-    public void codeCheckMagic(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckMagic(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (doExtraMagic && opts.doMagicChecks() && opts.doParanoidChecks()) {
 	    UnresolvedJump jumpForward  = new UnresolvedJump();
 	    regs.readIntRegister(reg);
-	    code.test(reg,reg);
+	    code.test(reg, reg);
 	    code.je(jumpForward);
-	    code.cmpl(OBJECT_MAGIC,reg.rdisp(OBJECT_MAGIC_OFF));
-	    code.jne(createExceptionCall(-7,bcPosition));
+	    code.cmpl(OBJECT_MAGIC, reg.rdisp(OBJECT_MAGIC_OFF));
+	    code.jne(createExceptionCall(-7, bcPosition));
 	    code.addJumpTarget(jumpForward);
 	}
-    }   
+    }
 
     @Override
-    public void codeCheckDivZero(IMNode node,Reg reg,int bcPosition) throws CompileException {
+    public void codeCheckDivZero(IMNode node, Reg reg, int bcPosition) throws CompileException {
 	if (opts.doZeroDivChecks()) {	    
-	    code.test(reg,reg);
-	    code.je(createExceptionCall(-6,bcPosition));
+	    code.test(reg, reg);
+	    code.je(createExceptionCall(-6, bcPosition));
 	}
     }
 
     /**
-        at least 3-5 clks
+     * at least 3-5 clks
      * @param node
      * @param array
      * @param index
      * @param bcPosition
      * @throws jx.compiler.CompileException
-    */
-
+     */
     @Override
-    public void codeCheckArrayRange(IMNode node,Reg array,int index,int bcPosition) throws CompileException {
+    public void codeCheckArrayRange(IMNode node, Reg array, int index, int bcPosition) throws CompileException {
 	if (opts.doBoundsChecks()) {
 	    Reg len = regs.chooseIntRegister(array);
 
-	    codeGetArrayLength(node,array,len);
+	    codeGetArrayLength(node, array, len);
 	    regs.readIntRegister(len);
 
-	    code.cmpl(index,len);
-	    code.jae(createExceptionCall(THROW_ArrayIndexOutOfBounds,bcPosition));
+	    code.cmpl(index, len);
+	    code.jae(createExceptionCall(THROW_ArrayIndexOutOfBounds, bcPosition));
 	    regs.freeIntRegister(len);
 	}
     }
 
     @Override
-    public void codeCheckArrayRange(IMNode node,Reg array,Reg index,int bcPosition) throws CompileException {
+    public void codeCheckArrayRange(IMNode node, Reg array, Reg index, int bcPosition) throws CompileException {
 	if (opts.doBoundsChecks()) {
-	    Reg len = regs.chooseIntRegister(array,index);
+	    Reg len = regs.chooseIntRegister(array, index);
 
-	    codeGetArrayLength(node,array,len);
+	    codeGetArrayLength(node, array, len);
 	    regs.readIntRegister(index);
 	    regs.readIntRegister(len);
 
-	    code.cmpl(len,index);
-	    code.jae(createExceptionCall(THROW_ArrayIndexOutOfBounds,bcPosition));
+	    code.cmpl(len, index);
+	    code.jae(createExceptionCall(THROW_ArrayIndexOutOfBounds, bcPosition));
 
 	    regs.freeIntRegister(len);
 	}
     }
 
     @Override
-    public void codeNewObject(IMNode node,ClassCPEntry classCPEntry,Reg result) throws CompileException {
+    public void codeNewObject(IMNode node, ClassCPEntry classCPEntry, Reg result) throws CompileException {
 	code.startBC(node.getBCPosition());
 
 	regs.saveIntRegister();
@@ -458,7 +448,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	int ip = code.getCurrentIP();
 	code.call(new AllocObjectSTEntry());
 	regs.clearActives();
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	frame.pop(Reg.ecx);
 	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);	
 	if (result.value != 0) {
@@ -469,7 +459,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     @Override
-    public void codeCompactNew(IMNode node,ClassCPEntry classCPEntry,MethodRefCPEntry methodRefCPEntry,IMOperant[] args,Reg result) throws CompileException {
+    public void codeCompactNew(IMNode node, ClassCPEntry classCPEntry, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, Reg result) throws CompileException {
 	int ip;
 
 	code.startBC(node.getBCPosition());
@@ -478,13 +468,13 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	int offset = frame.start();
 
-	frame.push(BCBasicDatatype.INT,new ClassSTEntry(classCPEntry.getClassName()));
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
 	ip = code.getCurrentIP();
 	code.call(new AllocObjectSTEntry());
 	regs.clearActives();
 
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 
 	// code.popl(...); we will cleanup the operanten stack later !!
 	if (extraStackCleans && opts.doClearStack()) {
@@ -493,27 +483,27 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	// save object reference (eax to stack)
 	Reg objRef = regs.getIntRegister(Reg.eax);
-	regs.allocIntRegister(objRef,BCBasicDatatype.REFERENCE);
+	regs.allocIntRegister(objRef, BCBasicDatatype.REFERENCE);
 
-	if (args.length>0) {
+	if (args.length > 0) {
 	    regs.saveIntRegister();
-	    for (int i=(args.length-1);i>=0;i--) {
+	    for (int i = (args.length - 1); i >= 0; i--) {
 		int datatype = args[i].getDatatype();
 		if (args[i].isConstant()) {
-		    frame.push(datatype,((IMConstant)args[i]).getIntValue());
+		    frame.push(datatype, ((IMConstant)args[i]).getIntValue());
 		} else {
 		    Reg reg = regs.chooseIntRegister(null);
 		    args[i].translate(reg);
-		    frame.push(datatype,reg);
+		    frame.push(datatype, reg);
 		    regs.freeIntRegister(reg);
 		}
 	    }
 	}
 
 	regs.readIntRegister(objRef);
-	frame.push(BCBasicDatatype.REFERENCE,objRef);
+	frame.push(BCBasicDatatype.REFERENCE, objRef);
 
-	if (checkInitRefs && opts.doParanoidChecks()) codeCheckReference(node,objRef,-1);
+	if (checkInitRefs && opts.doParanoidChecks()) codeCheckReference(node, objRef, -1);
 	
 	regs.freeIntRegister(objRef);
 	regs.saveIntRegister();
@@ -524,18 +514,18 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	if (extraTrace && opts.doTrace()) {
 	    code.pushl(target);
 	    code.call(new ProfileSTEntry(ProfileSTEntry.PROFILE_TRACE));
-	    code.addl(4,Reg.esp);
+	    code.addl(4, Reg.esp);
 	}
 
-	ip=code.getCurrentIP();
+	ip = code.getCurrentIP();
 	code.call(target);
 
 	regs.clearActives();
 
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 
-	regs.allocIntRegister(result,BCBasicDatatype.REFERENCE);
+	regs.allocIntRegister(result, BCBasicDatatype.REFERENCE);
 	frame.pop(result);
 
 	frame.cleanup(offset);
@@ -544,7 +534,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
   
         @Override
-    public void codeNewArray(IMNode node,int type,IMOperant size,Reg result) throws CompileException {	
+    public void codeNewArray(IMNode node, int type, IMOperant size, Reg result) throws CompileException {	
 	Reg asize = regs.chooseIntRegister(null);
 
 	size.translate(asize);
@@ -554,24 +544,24 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	code.startBC(node.getBCPosition());
 
-	int offset=frame.start();
-	frame.push(BCBasicDatatype.INT,asize);
-	frame.push(BCBasicDatatype.INT,new PrimitiveClassSTEntry(type));
-	int ip=code.getCurrentIP();
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, asize);
+	frame.push(BCBasicDatatype.INT, new PrimitiveClassSTEntry(type));
+	int ip = code.getCurrentIP();
 	code.call(new AllocArraySTEntry());
 	regs.clearActives();
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	frame.cleanup(offset);
-	regs.allocIntRegister(result,Reg.eax,BCBasicDatatype.REFERENCE);
-	if (result.value!=0) {
-	    code.movl(Reg.eax,result);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);
+	if (result.value != 0) {
+	    code.movl(Reg.eax, result);
 	}
 
 	code.endBC();
     }
 
         @Override
-    public void codeNewObjectArray(IMNode node,ClassCPEntry classCPEntry,IMOperant size,Reg result) throws CompileException {
+    public void codeNewObjectArray(IMNode node, ClassCPEntry classCPEntry, IMOperant size, Reg result) throws CompileException {
 	Reg asize = regs.chooseIntRegister(null);
 
 	size.translate(asize);
@@ -581,17 +571,17 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	code.startBC(node.getBCPosition());
 
-	int offset=frame.start();
-	frame.push(BCBasicDatatype.INT,asize);
-	frame.push(BCBasicDatatype.INT,new ClassSTEntry(classCPEntry.getClassName()));
-	int ip=code.getCurrentIP();
+	int offset = frame.start();
+	frame.push(BCBasicDatatype.INT, asize);
+	frame.push(BCBasicDatatype.INT, new ClassSTEntry(classCPEntry.getClassName()));
+	int ip = code.getCurrentIP();
 	code.call(new AllocArraySTEntry());
 	regs.clearActives();
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	frame.cleanup(offset);
-	regs.allocIntRegister(result,Reg.eax,BCBasicDatatype.REFERENCE);
-	if (result.value!=0) {
-	    code.movl(Reg.eax,result);
+	regs.allocIntRegister(result, Reg.eax, BCBasicDatatype.REFERENCE);
+	if (result.value != 0) {
+	    code.movl(Reg.eax, result);
 	}
 
 	code.endBC();
@@ -641,30 +631,30 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    regs.allocIntRegister(result,datatype);
 
 	    if (opts.isOption("32BitArrays")) {
-		    code.movl(array.rdisp(arrayDataStart,index,4),result);
+		    code.movl(array.rdisp(arrayDataStart, index, 4), result);
 	    } else {
-			System.out.println("warn: use compact arrays");
+		System.out.println("warn: use compact arrays");
 		    switch (datatype) {
 			    case BCBasicDatatype.BYTE:
-				    code.movsbl(array.rdisp(arrayDataStart,index,1),result);
+				    code.movsbl(array.rdisp(arrayDataStart, index, 1), result);
 				    //code.movl(array.rdisp(arrayDataStart,index,1),result);
 				    //code.andl(0x000000ff,result);	
 				    break;
 			    case BCBasicDatatype.CHAR:
 				    if (opts.isOption("8BitChars")) {
-					    code.movsbl(array.rdisp(arrayDataStart,index,1),result);
+					    code.movsbl(array.rdisp(arrayDataStart, index, 1), result);
 					    //code.movl(array.rdisp(arrayDataStart,index,1),result);
 					    //code.andl(0x000000ff,result);	
 				    } else {
-					    code.movswl(array.rdisp(arrayDataStart,index,2),result);
+					    code.movswl(array.rdisp(arrayDataStart, index, 2), result);
 				    }
 				    break;
 			    case BCBasicDatatype.SHORT:
-				    code.movswl(array.rdisp(arrayDataStart,index,2),result);
+				    code.movswl(array.rdisp(arrayDataStart, index, 2), result);
 				    break;
 			    case BCBasicDatatype.INT:
 			    case BCBasicDatatype.REFERENCE:
-				    code.movl(array.rdisp(arrayDataStart,index,4),result);
+				    code.movl(array.rdisp(arrayDataStart, index, 4), result);
 				    break;
 			    default:
 				    throw new CompileException("not implemented yet!");
@@ -673,20 +663,20 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeGetArrayFieldLong(IMNode node,Reg array,int datatype,Reg index,Reg64 result,int bcPosition) throws CompileException {	
+    public void codeGetArrayFieldLong(IMNode node, Reg array, int datatype, Reg index, Reg64 result, int bcPosition) throws CompileException {	
 	    regs.readIntRegister(index);
 	    regs.readIntRegister(array);
 	    regs.allocLongRegister(result);
-	    code.movl(array.rdisp(arrayDataStart,index,8),result.low);
-	    code.movl(array.rdisp(arrayDataStart+4,index,8),result.high);
+	    code.movl(array.rdisp(arrayDataStart, index, 8), result.low);
+	    code.movl(array.rdisp(arrayDataStart + 4, index, 8), result.high);
     }
 
         @Override
-    public void codePutArrayField(IMNode node,Reg array,int datatype,int index,Reg value,int bcPosition) throws CompileException {
+    public void codePutArrayField(IMNode node, Reg array, int datatype, int index, Reg value, int bcPosition) throws CompileException {
 	    regs.readIntRegister(array);
 	    regs.readIntRegister(value);
 
-	    if (datatype==BCBasicDatatype.REFERENCE && opts.isOption("writeBarrier")) {
+	    if (datatype == BCBasicDatatype.REFERENCE && opts.isOption("writeBarrier")) {
 		    regs.saveIntRegister();
 
 		    int offset=frame.start();
@@ -703,7 +693,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    if (opts.isOption("32BitArrays")) {
 		    code.movl(value,array.rdisp(arrayDataStart+index*4));
 	    } else {
-			System.out.println("warn: use compact arrays");
+		System.out.println("warn: use compact arrays");
 		    switch (datatype) {
 			    case BCBasicDatatype.BYTE:
 				    if (!value.equals(Reg.eax)) {
@@ -779,7 +769,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    if (opts.isOption("32BitArrays")) {
 		    code.movl(value,array.rdisp(arrayDataStart, index, 4));
 	    } else {
-			System.out.println("warn: use compact arrays");
+		System.out.println("warn: use compact arrays");
 		    switch (datatype) {
 			    case BCBasicDatatype.BYTE:
 				    if (!value.equals(Reg.eax)) {
@@ -791,11 +781,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 					index=tmp;
                                       } 
 			              if (array.equals(Reg.eax)) {
-					Reg tmp = regs.chooseIntRegister(Reg.eax,value,index);
-					regs.allocIntRegister(tmp,-1);
-					code.movl(array,tmp);
+					Reg tmp = regs.chooseIntRegister(Reg.eax, value, index);
+					regs.allocIntRegister(tmp, -1);
+					code.movl(array, tmp);
 					regs.freeIntRegister(array); 
-					array=tmp;
+					array = tmp;
                                       } 
 				      Reg v = regs.getIntRegister(Reg.eax);	
 			              regs.allocIntRegister(v,-1);
@@ -827,8 +817,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeNewMultiArray(IMNode node,ClassCPEntry type,IMOperant[] oprs,Reg result) throws CompileException {	
-
-	int offset=frame.start();
+	int offset = frame.start();
 	
 	Reg asize = regs.chooseIntRegister(null);
             for (IMOperant opr : oprs) {
@@ -842,14 +831,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	regs.saveIntRegister();
 	frame.push(BCBasicDatatype.INT,oprs.length);
 	frame.push(BCBasicDatatype.INT,new ClassSTEntry(type.getClassName()));
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(new AllocMultiArraySTEntry());
 	regs.clearActives();
 	codeStackMap(node,ip);
 	frame.cleanup(offset);
 
 	regs.allocIntRegister(result,Reg.eax,BCBasicDatatype.REFERENCE);
-	if (result.value!=0) {
+	if (result.value != 0) {
 	    code.movl(Reg.eax,result);
 	}
 
@@ -864,7 +853,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeThrow(IMNode node,int exception,int bcPosition) throws CompileException {	
+    public void codeThrow(IMNode node, int exception, int bcPosition) throws CompileException {	
 	code.startBC(bcPosition);
 
 	regs.saveIntRegister();	
@@ -877,8 +866,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeThrow(IMNode node,IMOperant exception,int bcPosition) throws CompileException {
-	
+    public void codeThrow(IMNode node, IMOperant exception, int bcPosition) throws CompileException {
 	Reg exRef = regs.chooseIntRegister(null);
 	exception.translate(exRef);
 	regs.freeIntRegister(exRef);
@@ -895,14 +883,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
     
         @Override
-    public void codeCheckCast(IMNode node,ClassCPEntry classCPEntry,Reg objRef,int bcPosition) throws CompileException {
+    public void codeCheckCast(IMNode node, ClassCPEntry classCPEntry, Reg objRef, int bcPosition) throws CompileException {
 	code.startBC(bcPosition);
 
 	if (opts.isOption("noCheckCast")) return;
 
 	if (false && opts.doFastCheckCast()) {
 
-	  UnresolvedJump jumpForward  = new UnresolvedJump();
+	  UnresolvedJump jumpForward1  = new UnresolvedJump();
 	  UnresolvedJump jumpForward2 = new UnresolvedJump();
 
 	  //regs.saveIntRegister();
@@ -910,7 +898,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  /* null pointer test */
 	  regs.readIntRegister(objRef);	  
 	  code.test(objRef,objRef);
-	  code.je(jumpForward);
+	  code.je(jumpForward1);
 	  
 	  /* class is objclass */
 	  Reg vtable = regs.chooseIntRegister(objRef);
@@ -930,7 +918,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	  regs.readIntRegister(objRef);
 
-	  code.addJumpTarget(jumpForward);
+	  code.addJumpTarget(jumpForward1);
 	  code.addJumpTarget(jumpForward2);
 
 	} else {
@@ -949,11 +937,10 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeInstanceOf(IMNode node,ClassCPEntry classCPEntry,Reg objRef,Reg regEAX,int bcPosition) throws CompileException {
+    public void codeInstanceOf(IMNode node, ClassCPEntry classCPEntry, Reg objRef, Reg regEAX, int bcPosition) throws CompileException {
 	code.startBC(bcPosition);
 
 	if (opts.isOption("fast_instance_of")) { // BUGGY don`t use
-	    
 	  UnresolvedJump jumpForward = new UnresolvedJump();  
 
 	  regs.readIntRegister(objRef);
@@ -987,9 +974,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	      code.movl(Reg.eax, regEAX);
 	  }
 	  code.addJumpTarget(jumpForward);
-
 	} else {
-
 	    regs.saveIntRegister();
 
 	    int offset=frame.start();
@@ -1008,9 +993,9 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeMonitorEnter(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
+    public void codeMonitorEnter(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
 	System.out.println("-- monitor enter");
-	if (opts.monitorClass()!=null) {
+	if (opts.monitorClass() != null) {
 	    code.startBC(bcPosition);
 	    
 	    int datatype = obj.getDatatype();
@@ -1035,7 +1020,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    regs.clearActives();
 	    
 	    code.endBC();
-	    
 	} else {
 	    /* ignore monitorenter/exit */
 	    /*
@@ -1052,7 +1036,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeMonitorLeave(IMNode node,IMOperant obj,int bcPosition) throws CompileException {
+    public void codeMonitorLeave(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
 	System.out.println("-- monitor exit");
 	if (opts.monitorClass() != null) {
 	    code.startBC(bcPosition);
@@ -1204,7 +1188,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	regs.freeIntRegister(addr);
     }
 
-    public final static int MAP_MEM_OFFSET  = 4;
+    public final static int MAP_MEM_OFFSET = 4;
 
         @Override
     public void codePutField(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg objRef,Reg value,int bcPosition) throws CompileException {	
@@ -1280,7 +1264,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 		    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_PUTSFIELD32));
 		    frame.cleanup(foff);
 	    } else {
-
 		    Reg addr = regs.chooseIntRegister(value);
 		    codeGetStaticFieldAddr(node, className, offset, addr);
 		    regs.readIntRegister(value);
@@ -1314,7 +1297,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeLongMul(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException {
-
 	Reg64 reg = regs.getLongRegister(Reg64.eax);
 	lOpr.translate(reg);
 	int offset = frame.start();
@@ -1341,7 +1323,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeLongDiv(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException {
-
 	Reg64 reg = regs.getLongRegister(Reg64.eax);
 	lOpr.translate(reg);
 	int offset = frame.start();
@@ -1368,7 +1349,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeLongRem(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException {
-
 	Reg64 reg = regs.getLongRegister(Reg64.eax);
 	lOpr.translate(reg);
 	int offset = frame.start();
@@ -1395,8 +1375,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
     
         @Override
-    public void codeLongShr(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException {
-
+    public void codeLongShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
 	Reg64 reg64 = regs.getLongRegister(Reg64.eax);
 	lOpr.translate(reg64);
 	int offset = frame.start();
@@ -1423,7 +1402,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeLongShl(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg64 result,int bcPosition) throws CompileException {
-
 	Reg64 reg64 = regs.getLongRegister(Reg64.eax);
 	lOpr.translate(reg64);
 	int offset = frame.start();
@@ -1486,7 +1464,6 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
         @Override
     public void codeLongCompare(IMNode node,IMOperant lOpr,IMOperant rOpr,Reg result,int bcPosition) throws CompileException {
-
 	/** FIXME: wrong execution order ?!? **/
         if (opts.doVerbose("fixme")) Debug.out.println("fixme: wrong execution order");
 
@@ -1828,14 +1805,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    code.addl(4,Reg.esp);
 	}
 	
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(target);
 	
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	
 	regs.clearActives();
-	codeStackCleanup(offset,result,node.getDatatype());
+	codeStackCleanup(offset, result, node.getDatatype());
 	
 	code.endBC();
     }
@@ -1862,30 +1839,30 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.startBC(bcPosition);
 
 	if (obj.checkReference())
-		codeCheckReference(node,objRef,bcPosition);
+		codeCheckReference(node, objRef, bcPosition);
 
 	regs.saveOtherIntRegister(objRef);
 
 	// lookup vtable entry
-	Reg vtable = regs.chooseAndAllocIntRegister(objRef,-1);
-	code.movl(objRef.ref(),vtable);
-	code.movl(vtable.rdisp(index*4),objRef);
+	Reg vtable = regs.chooseAndAllocIntRegister(objRef, -1);
+	code.movl(objRef.ref(), vtable);
+	code.movl(vtable.rdisp(index * 4), objRef);
 	regs.freeIntRegister(vtable);
 
 	if (checkVtable && opts.doParanoidChecks()) {
-		code.test(objRef,objRef);
-		code.je(createExceptionCall(-8,bcPosition));
+		code.test(objRef, objRef);
+		code.je(createExceptionCall(-8, bcPosition));
 	}
 
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(objRef);
 	regs.freeIntRegister(objRef);
 
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	    
 	regs.clearActives();
-	codeStackCleanupLong(offset,result);       
+	codeStackCleanupLong(offset, result);       
 	
 	code.endBC();
     }
@@ -1913,14 +1890,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	DirectMethodCallSTEntry target = new DirectMethodCallSTEntry(methodRefCPEntry.getClassName(),
 								     methodRefCPEntry.getMemberName(),
 								     methodRefCPEntry.getMemberTypeDesc()); 
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(target);
 
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 
 	regs.clearActives();
-	codeStackCleanupLong(offset,result);
+	codeStackCleanupLong(offset, result);
 
 	code.endBC();
     }
@@ -1950,7 +1927,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	if (aClass == null) Debug.out.println("Can't find ClassInfo for "+className);
 	BCClassInfo info = (BCClassInfo) aClass.getInfo();
 
-	int index = info.methodTable.getIndex(methodName+interfaceRefCPEntry.getMemberTypeDesc());
+	int index = info.methodTable.getIndex(methodName + interfaceRefCPEntry.getMemberTypeDesc());
 	if (index == 0) {
 	    System.out.println("Interface method index = 0");
 	    info.methodTable.print();
@@ -1959,7 +1936,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	if (index < 0) {
 	    info.methodTable.print();
-	    throw new Error("method index ("+Integer.toString(index)+") ouf of range!");
+	    throw new Error("method index (" + Integer.toString(index) + ") ouf of range!");
 	}
 
 	Reg objRef;
@@ -1975,7 +1952,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	code.startBC(bcPosition);
 
 	if (obj.checkReference())
-	    codeCheckReference(node,objRef,bcPosition);
+	    codeCheckReference(node, objRef, bcPosition);
 	
 	regs.freeIntRegister(objRef);
 	regs.saveIntRegister();
@@ -1986,28 +1963,28 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    Reg ecx = regs.getIntRegister(Reg.ecx);
 	    vtable = regs.chooseIntRegister(ecx,objRef);
 	    code.movl(index, Reg.ecx);
-	    code.movl(objRef.ref(),vtable);
+	    code.movl(objRef.ref(), vtable);
 	    //code.movl(vtable.rdisp(index*4),objRef);
-	    code.movl(vtable.rdisp(0,ecx,4),objRef);
+	    code.movl(vtable.rdisp(0, ecx, 4), objRef);
 	} else {
 	    vtable = regs.chooseIntRegister(objRef);
-	    code.movl(objRef.ref(),vtable);
-	    code.movl(vtable.rdisp(index*4),objRef);
+	    code.movl(objRef.ref(), vtable);
+	    code.movl(vtable.rdisp(index * 4), objRef);
 	}
 
 	if (checkVtable && opts.doParanoidChecks()) {	    
-	    code.test(objRef,objRef);
-	    code.je(createExceptionCall(-8,bcPosition));
+	    code.test(objRef, objRef);
+	    code.je(createExceptionCall(-8, bcPosition));
 	}
 
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(objRef);
 
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 
 	regs.clearActives();
-	codeStackCleanupLong(offset,result);
+	codeStackCleanupLong(offset, result);
 
 	code.endBC();
     }
@@ -2020,7 +1997,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 				   Reg64            result,
 				   int              bcPosition) throws CompileException {
 
-	String className  = methodRefCPEntry.getClassName();
+	String className = methodRefCPEntry.getClassName();
 
 	int offset = codeStaticPushArgs(args);
 	
@@ -2032,14 +2009,14 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 								     methodRefCPEntry.getMemberName(),
 								     methodRefCPEntry.getMemberTypeDesc());
 	
-	int ip=code.getCurrentIP();
+	int ip = code.getCurrentIP();
 	code.call(target);
 	
 	node.addDebugInfo(frame.stackMapToString(node));
-	codeStackMap(node,ip);
+	codeStackMap(node, ip);
 	
 	regs.clearActives();
-	codeStackCleanupLong(offset,result);
+	codeStackCleanupLong(offset, result);
 	
 	code.endBC();
     }
@@ -2268,12 +2245,12 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     /** 
-	methods for exception managment
+     * methods for exception managment
      * @param exception
      * @param bcPosition
      * @param back
      * @return 
-    */
+     */
 
     public UnresolvedJump createExceptionCall(int exception,int bcPosition, UnresolvedJump back) {
 	ExceptionEntry entry = new ExceptionEntry();
@@ -2322,11 +2299,11 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
     /**
-       helper
+     * helper
      * @param node
      * @param InstructionPointer
      * @throws jx.compiler.CompileException
-    */
+     */
 
         @Override
     public void codeStackMap(IMNode node, int InstructionPointer) throws CompileException {

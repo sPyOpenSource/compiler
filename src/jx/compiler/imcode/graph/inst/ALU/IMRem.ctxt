@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=IMRem
+comment1.params=container\ bc\ bcpos
+comment1.target=IMRem(jx.compiler.imcode.CodeContainer,\ int,\ int)
+comment2.params=
+comment2.target=jx.compiler.imcode.graph.IMNode\ constant_folding()
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment4.params=result
+comment4.target=void\ translate(jx.compiler.nativecode.Reg)
+comment5.params=result
+comment5.target=void\ translate(jx.compiler.nativecode.Reg64)
+numComments=6

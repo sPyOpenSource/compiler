@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=IMReturnSubroutine
+comment1.params=container\ bc\ bcpos\ vIndex
+comment1.target=IMReturnSubroutine(jx.compiler.imcode.CodeContainer,\ int,\ int,\ int)
+comment2.params=stack\ basicBlock
+comment2.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment3.params=
+comment3.target=java.lang.String\ toSymbolname()
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=vars
+comment5.target=void\ getCollectVars(java.util.ArrayList)
+comment6.params=
+comment6.target=int\ getNrRegs()
+comment7.params=
+comment7.target=boolean\ writeAccess()
+comment8.params=result
+comment8.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=9

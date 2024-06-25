@@ -1,3 +1,4 @@
+
 package jx.compiler.persistent;
 
 import java.io.*;  
@@ -58,4 +59,5 @@ public class ClassSTEntry extends SymbolTableEntryBase {
 	stringID = stringTable.getIdentifier(className);
 	validID  = true;
     }
+    
 }

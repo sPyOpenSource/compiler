@@ -1,4 +1,6 @@
+
 package jx.compiler; 
+
 /** 
     Base class for all exception that happen during 
     compilation. 

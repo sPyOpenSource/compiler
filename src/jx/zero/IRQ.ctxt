@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=IRQ
+comment1.params=irq\ h
+comment1.target=void\ installFirstLevelHandler(int,\ FirstLevelIrqHandler)
+comment1.text=SMP\:\ installs\ the\ First\ Level\ Handler\ for\ the\ current\ CPU
+comment2.params=irq
+comment2.target=void\ enableIRQ(int)
+comment3.params=irq
+comment3.target=void\ disableIRQ(int)
+comment4.params=
+comment4.target=void\ enableAll()
+comment5.params=
+comment5.target=void\ disableAll()
+comment6.params=irq\ dest_cpu
+comment6.target=void\ set_destination(int,\ int)
+comment6.text=\ sets\ the\ destination\ Processor\ for\ an\ IRQ\ (-1\=all)\n\ @param\ irq\n@param\ dest_cpu
+numComments=7

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=InterceptOutboundInfo
+comment1.params=
+comment1.target=Domain\ getSourceDomain()
+comment2.params=
+comment2.target=Domain\ getTargetDomain()
+comment3.params=
+comment3.target=VMMethod\ getMethod()
+comment4.params=
+comment4.target=VMObject\ getServiceObject()
+comment5.params=
+comment5.target=VMObject[]\ getParameters()
+numComments=6

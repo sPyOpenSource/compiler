@@ -1,3 +1,15 @@
+v2.9 XW 17-10-2022
+clear up some code
+
+v2.8 XW 14-10-2022
+fixed: compiler for zero
+
+v2.7 XW 11-10-2022
+fixed: j2ll
+
+v2.6 XW 10-10-2022
+reordered: code
+
 v2.5 XW 12-06-2022
 improved: code
 added: CI

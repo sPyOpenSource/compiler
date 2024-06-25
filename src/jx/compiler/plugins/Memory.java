@@ -1,13 +1,14 @@
 package jx.compiler.plugins;
 
 import jx.compiler.*;
-
 import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
 
-import jx.compiler.imcode.*;
 import jx.compiler.nativecode.*;
 import jx.compiler.execenv.*;
+import jx.compiler.imcode.graph.inst.IMConstant;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 import jx.compiler.persistent.*;
 
 public class Memory implements CompilerPlugin {
@@ -18,7 +19,7 @@ public class Memory implements CompilerPlugin {
     public final static int DZ_OFFSET    = 12;  
     public final static  int VALID_OFFSET = 4;
 
-    private final static boolean fastConstants=true;
+    private final static boolean fastConstants = true;
 
     private final ExecEnvironmentIA32      e;
     private final CompilerOptionsInterface opts;

@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=ZipFile
+comment1.params=pos
+comment1.target=void\ seek(int)
+comment2.params=buf
+comment2.target=void\ read(byte[])
+comment3.params=zip
+comment3.target=ZipFile(jx.zero.ReadOnlyMemory)
+comment4.params=
+comment4.target=ZipEntry\ getNextEntry()
+comment5.params=b\ offset
+comment5.target=int\ makeword(byte[],\ int)
+comment6.params=b\ offset
+comment6.target=int\ makelong(byte[],\ int)
+comment7.params=b\ offset\ len
+comment7.target=java.lang.String\ makestring(byte[],\ int,\ int)
+numComments=8

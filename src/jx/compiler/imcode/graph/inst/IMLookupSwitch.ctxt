@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=IMLookupSwitch
+comment1.params=container\ bc\ bcpos\ doff\ npairs\ keys\ offsets
+comment1.target=IMLookupSwitch(jx.compiler.imcode.CodeContainer,\ int,\ int,\ jx.compiler.imcode.graph.IMBasicBlock,\ int,\ int[],\ jx.compiler.imcode.graph.IMBasicBlock[])
+comment2.params=
+comment2.target=jx.compiler.imcode.graph.IMNode\ constant_folding()
+comment3.params=stack\ basicBlock
+comment3.target=jx.compiler.imcode.graph.IMNode\ processStack(jx.compiler.imcode.VirtualOperantenStack,\ jx.compiler.imcode.graph.IMBasicBlock)
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment5.params=vars
+comment5.target=void\ getCollectVars(java.util.ArrayList)
+comment6.params=
+comment6.target=int\ getNrRegs()
+comment7.params=result
+comment7.target=void\ translate(jx.compiler.nativecode.Reg)
+numComments=8

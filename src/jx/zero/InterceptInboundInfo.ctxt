@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=InterceptInboundInfo
+comment1.params=
+comment1.target=Domain\ getSourceDomain()
+comment2.params=
+comment2.target=Domain\ getTargetDomain()
+comment3.params=
+comment3.target=VMMethod\ getMethod()
+comment4.params=
+comment4.target=VMObject\ getServiceObject()
+comment5.params=result
+comment5.target=boolean\ getFirstParameter(VMObject)
+comment5.text=\n\ @return\ the\ first\ parameter\ of\ the\ intercepted\ method-call\n\ (with\ succsessive\ calls\ of\ getNextParameter\ all\ parameters\n\ can\ be\ observed\ )\n\ @param\ result\ is\ filled\ with\ the\ corresponding\ information\n
+comment6.params=result
+comment6.target=boolean\ getNextParameter(VMObject)
+numComments=7

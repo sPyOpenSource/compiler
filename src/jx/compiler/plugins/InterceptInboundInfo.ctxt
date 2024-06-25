@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=InterceptInboundInfo
+comment1.params=e
+comment1.target=InterceptInboundInfo(jx.compiler.ExecEnvironmentIA32)
+numComments=2

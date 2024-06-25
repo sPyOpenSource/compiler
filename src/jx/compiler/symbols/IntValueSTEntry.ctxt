@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=IntValueSTEntry
+comment0.text=\ \n\n
+comment1.params=code\ codeBase
+comment1.target=void\ apply(byte[],\ int)
+comment10.params=
+comment10.target=java.lang.String\ getDescription()
+comment2.params=code
+comment2.target=void\ applyValue(byte[])
+comment3.params=
+comment3.target=boolean\ isResolved()
+comment4.params=
+comment4.target=boolean\ isRelative()
+comment5.params=
+comment5.target=int\ getValue()
+comment6.params=
+comment6.target=boolean\ isValueRelativeToCodeBase()
+comment7.params=immediateNCIndex\ numBytes\ nextInstrNCIndex
+comment7.target=void\ initNCIndexRelative(int,\ int,\ int)
+comment8.params=immediateNCIndex\ numBytes
+comment8.target=void\ initNCIndexAbsolute(int,\ int)
+comment9.params=out
+comment9.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+numComments=11

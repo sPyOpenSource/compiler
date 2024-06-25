@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=ExceptionTableSTEntry
+comment1.params=cPool\ handler
+comment1.target=ExceptionTableSTEntry(jx.classfile.constantpool.ConstantPool,\ jx.classfile.ExceptionHandlerData)
+comment2.params=
+comment2.target=java.lang.String\ getDescription()
+comment3.params=
+comment3.target=boolean\ isResolved()
+comment4.params=
+comment4.target=int\ getValue()
+comment5.params=code\ codeBase
+comment5.target=void\ apply(byte[],\ int)
+comment6.params=out
+comment6.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment7.params=stringTable
+comment7.target=void\ registerStrings(StringTable)
+numComments=8

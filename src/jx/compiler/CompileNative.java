@@ -3,7 +3,6 @@ package jx.compiler;
 
 import jx.emulation.MemoryManagerImpl;
 import jx.zero.MemoryManager;
-import jx.zero.Debug;
 
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
@@ -11,8 +10,10 @@ import jx.compiler.execenv.IOSystem;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.jar.JarFile;
 
 import static jx.compspec.StartBuilder.getCompilerOptions;
+import jx.zero.Debug;
 
 public class CompileNative {
     static MemoryManager memMgr = new MemoryManagerImpl();
@@ -32,6 +33,7 @@ public class CompileNative {
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
         String[] neededLibs = new String[0];
+
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
@@ -80,10 +82,11 @@ public class CompileNative {
         }
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
 	compile("init2", opts);
+
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
-	compile(null, opts);
+        compile(null, opts);
     }
 
     public static void compile(String path, CompilerOptions opts) throws Exception {
@@ -121,38 +124,39 @@ public class CompileNative {
             };
         }
 
-	ExtendedDataInputStream[] tableIn;
-	ArrayList links = opts.getLibsLinkerInfo();
-	if (links != null) {
-	   tableIn = new ExtendedDataInputStream[links.size()];
-	   for(int i = 0; i < links.size(); i++) {
-	       if (opts.doDebug()) Debug.out.println("Reading lib linkerinfo from " + (String)links.get(i));
-	       tableIn[i] = new ExtendedDataInputStream(new BufferedInputStream(new FileInputStream((String)links.get(i))));
-	   }
-	} else {
-	    tableIn = new ExtendedDataInputStream[0];
-	}
-	
-	IOSystem io = new IOSystem() {
-		private String path;
-                @Override
-		public OutputStream getOutputStream(String filename) throws IOException {
-		    return new FileOutputStream(path + "/" + filename);
-		}
-                @Override
-		public void set(String path) {this.path = path;}
-	    };
+        ExtendedDataInputStream[] tableIn;
+        ArrayList links = opts.getLibsLinkerInfo();
+        if (links != null) {
+           tableIn = new ExtendedDataInputStream[links.size()];
+           for(int i = 0; i < links.size(); i++) {
+               if (opts.doDebug()) Debug.out.println("Reading lib linkerinfo from " + (String)links.get(i));
+               tableIn[i] = new ExtendedDataInputStream(new BufferedInputStream(new FileInputStream((String)links.get(i))));
+           }
+        } else {
+            tableIn = new ExtendedDataInputStream[0];
+        }
+    
+        IOSystem io = new IOSystem() {
+            private String path;
+            @Override
+            public OutputStream getOutputStream(String filename) throws IOException {
+                return new FileOutputStream(path + "/" + filename);
+            }
+            @Override
+            public void set(String path) {this.path = path;}
+        };
 
-	io.set(path);
-	StaticCompiler compiler = new StaticCompiler(null, codeFile, tableOut,
-						     domClasses,
-						     libClasses, tableIn,
-						     opts, io);
+        io.set("./app/ir");
+        StaticCompiler compiler = new StaticCompiler(codeFile, tableOut,
+                                 domClasses,
+                                 libClasses, tableIn,
+                                 opts, io);
 
         // release resources
-        for (ExtendedDataInputStream tableIn1 : tableIn)
-            tableIn1.close();
-	codeFile.close();
-	tableOut.close();
+
+        for (ExtendedDataInputStream table : tableIn)
+            table.close();
+        codeFile.close();
+        tableOut.close();
     }
 }

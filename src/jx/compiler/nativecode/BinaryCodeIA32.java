@@ -1,31 +1,29 @@
-package jx.compiler.nativecode; 
+package jx.compiler.nativecode;
 
-import java.util.ArrayList; 
-import java.util.Enumeration; 
+import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Collections;
 import java.io.PrintStream;
 
 import jx.compiler.execenv.*;
 import jx.compiler.symbols.*;
-import jx.zero.Debug; 
+import jx.zero.Debug;
 
-/** 
+/**
     Parallel to this class there is a class 
     nativeCode.Binarycode. 
     In this version of the compiler, the second class 
     is used as a mere container, while this class 
     is used to assemble the binary code. 
-*/ 
+ */
 
 public final class BinaryCodeIA32 {
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
     // not accessed by any other classes (they are used as if they were private)
-    private byte[] code; 
+    private byte[] code;
     private int ip;
-
-    int numBytesMachinecode;
 
     // mapping from instruction addresses to bytecode
     ArrayList instructionTable = new ArrayList();
@@ -45,35 +43,35 @@ public final class BinaryCodeIA32 {
         allow the storing of compiled code between JVM invocations 
 	- actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private ArrayList symbolTable; 
+    private ArrayList symbolTable;
   
     /** 
 	contains the native exception handlers
     */ 
-    private final ArrayList exceptionHandlers; 
+    private final ArrayList exceptionHandlers;
 
     public BinaryCodeIA32() {
-	code = new byte[INITSIZE]; 
+	code = new byte[INITSIZE];
 	ip = 0;
-	symbolTable = new ArrayList(); 
-	exceptionHandlers = new ArrayList(); 
+	symbolTable = new ArrayList();
+	exceptionHandlers = new ArrayList();
     }
 
     /** 
-	The methods in the frontend expect the compiled code
-	stored inside of a object of class nativecode.BinaryCode. 
-	Convert a object of preproc.BinaryCodePreproc into a object of 
-	nativecode.BinaryCode.
-	Note: Exceptionhandlers are not copied. 
+     * The methods in the frontend expect the compiled code
+     * stored inside of a object of class nativecode.BinaryCode. 
+     * Convert a object of preproc.BinaryCodePreproc into a object of 
+     * nativecode.BinaryCode.
+     * Note: Exceptionhandlers are not copied. 
      * @return 
-    */ 
+     */
     public BinaryCode getOldBinaryCode() {
 	Enumeration enume = Collections.enumeration(symbolTable); 
 	ArrayList unresolvedEntries = new ArrayList(); 
 	while(enume.hasMoreElements()) {
 	    SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement();
-	    if (entry instanceof IntValueSTEntry) {
-		((IntValueSTEntry)entry).applyValue(code);
+	    if (entry instanceof IntValueSTEntry intValueSTEntry) {
+		intValueSTEntry.applyValue(code);
 	    } else {
 		unresolvedEntries.add(entry); 
 	    }
@@ -90,9 +88,9 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-	Realloc memory in the byte code array. 
-	After calling this method, there are at least 
-	'requiredSpace' free bytes in the array. 
+     * Realloc memory in the byte code array. 
+     * After calling this method, there are at least 
+     * 'requiredSpace' free bytes in the array. 
      * @param requiredSpace
      */ 
     public void realloc(int requiredSpace) {
@@ -111,6 +109,7 @@ public final class BinaryCodeIA32 {
     }
     
     // ***** Code Generation ***** 
+    
     /** Insert a single byte
     */ 
     void insertByte(int value) {
@@ -121,8 +120,8 @@ public final class BinaryCodeIA32 {
 	realloc();
 	// size is always 1 bytes
 	entry.initNCIndex(ip, 1);
-	symbolTable.add(entry); 
-	ip += 1; 
+	symbolTable.add(entry);
+	ip += 1;
     }
 
     void insertBytes(int a, int b) {
@@ -133,7 +132,6 @@ public final class BinaryCodeIA32 {
     /**
        Insert ModRM and SIB byte 
     */
-
     private void insertModRM(int reg, Opr rm) {
 	reg = reg & 0x07;
 	rm.value  = rm.value & 0x07;
@@ -182,9 +180,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Insert call near indirect (reg/mem) (2 clks)
+     * Insert call near indirect (reg/mem) (2 clks)
      * @param opr
-    */
+     */
     public void call(Opr opr) {
 	realloc();
 	insertByte(0xff);
@@ -192,9 +190,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Insert call near (Symbol) (1 clks)
+     * Insert call near (Symbol) (1 clks)
      * @param entry
-    */
+     */
     public void call(SymbolTableEntryBase entry) {
 	realloc();
 	insertByte(0xe8); 
@@ -259,9 +257,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       decrement byte value by 1 (1/3 clks)
+     * decrement byte value by 1 (1/3 clks)
      * @param opr
-    */
+     */
     public void decb(Opr opr) {
 	realloc();
 	insertByte(0xfe);
@@ -269,9 +267,9 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       decrement long value by 1 (1/3 clks)
+     * decrement long value by 1 (1/3 clks)
      * @param ref
-    */
+     */
     public void decl(Ref ref) {
 	realloc();
 	insertByte(0xff);
@@ -279,18 +277,18 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-       decrement register by 1 (1 clks)
+     * decrement register by 1 (1 clks)
      * @param reg
-    */
+     */
     public void decl(Reg reg) {
 	realloc();
 	insertByte(0x48 + reg.value);
     }
 
     /**
-       Insert a pushl(reg)
+     * Insert a pushl(reg)
      * @param reg
-    */
+     */
     public void pushl(Reg reg) {
 	realloc();
 	insertByte(0x50 + reg.value);
@@ -330,9 +328,9 @@ public final class BinaryCodeIA32 {
     }
 
     /** 
-       Insert a popl(reg)
+     * Insert a popl(reg)
      * @param reg
-    */
+     */
     public void popl(Reg reg) {
 	realloc();
 	insertByte(0x58+reg.value);
@@ -369,10 +367,10 @@ public final class BinaryCodeIA32 {
   }
 
 
-  /** 
-      spinlocks
+    /** 
+     * spinlocks
      * @param lock
-  */
+     */
   public void spin_lock(Ref lock) {
     realloc();
     lock();decb(lock);
@@ -389,10 +387,10 @@ public final class BinaryCodeIA32 {
   }
 
     /**
-       Integer Subtraction
+     * Integer Subtraction
      * @param src
      * @param des
-    */
+     */
     public void subl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x2b);
@@ -440,10 +438,10 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Integer Subtraction with Borrow
+     * Integer Subtraction with Borrow
      * @param src
      * @param des
-    */
+     */
     public void sbbl(Opr src, Reg des) {
 	realloc();
 	insertByte(0x1B);
@@ -708,16 +706,13 @@ public final class BinaryCodeIA32 {
 	}
     }
     
-    public void addsd(Opr src, Reg des){
-     
+    public void addsd(Opr src, Reg des){     
     }
   
     public void addsd(){
-     
     }
    
     public void addsd(SymbolTableEntryBase entry, Opr des){
-     
     }
     
     /**
@@ -1104,7 +1099,7 @@ public final class BinaryCodeIA32 {
 	makeRelative(entry);
     }
 
-   /**
+    /**
        Jump short/near if sign
     */
     public void js(int rel) {
@@ -1603,14 +1598,14 @@ public final class BinaryCodeIA32 {
     }
     
     /** 
-	Apply all resolveable symbol table entries.
-	(e.g. insert jump offsets ....)
-	After calling this method, the vector 'symbolTable' 
-	contains all symbol table entries that are not resolveable.
-	If you want to install the compiled code after calling this 
-	method, this vector should be empty. 
+     * Apply all resolveable symbol table entries.
+     * (e.g. insert jump offsets ....)
+     * After calling this method, the vector 'symbolTable' 
+     * contains all symbol table entries that are not resolveable.
+     * If you want to install the compiled code after calling this 
+     * method, this vector should be empty. 
      * @param codeBase
-    */ 
+     */ 
     public void resolve(int codeBase) {
 	Enumeration enume = Collections.enumeration(symbolTable); 
 	ArrayList unresolvedEntries = new ArrayList(); 
@@ -1793,7 +1788,7 @@ public final class BinaryCodeIA32 {
     }
     
     public void endBC() {
-	instructionTable.add(new int[] { bcIndex, startIP, ip});	
+	instructionTable.add(new int[] { bcIndex, startIP, ip });	
     }
     
     public ArrayList getInstructionTable() {

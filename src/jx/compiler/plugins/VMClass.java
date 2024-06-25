@@ -5,7 +5,8 @@ import jx.compiler.*;
 import jx.classfile.datatypes.*;
 import jx.classfile.constantpool.*;
 
-import jx.compiler.imcode.*;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 import jx.compiler.nativecode.*;
 import jx.compiler.persistent.*;
 

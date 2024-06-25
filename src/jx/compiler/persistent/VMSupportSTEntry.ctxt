@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=VMSupportSTEntry
+comment1.params=
+comment1.target=VMSupportSTEntry()
+comment2.params=name
+comment2.target=VMSupportSTEntry(java.lang.String)
+comment3.params=
+comment3.target=java.lang.String\ getDescription()
+comment4.params=code\ codeBase
+comment4.target=void\ apply(byte[],\ int)
+comment5.params=
+comment5.target=java.lang.String\ toGASFormat()
+comment6.params=out
+comment6.target=void\ writeSymTable(jx.compiler.execenv.ExtendedDataOutputStream)
+comment7.params=out
+comment7.target=void\ writeEntry(jx.compiler.execenv.ExtendedDataOutputStream)
+comment8.params=in
+comment8.target=void\ readEntry(jx.compiler.execenv.ExtendedDataInputStream)
+numComments=9

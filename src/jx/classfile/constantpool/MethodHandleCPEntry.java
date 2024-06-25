@@ -25,6 +25,7 @@ import java.io.IOException;
  *
  */
 public class MethodHandleCPEntry extends ConstantPoolEntry {
+    
     private ConstantPoolEntry reference;
 
     /** reference kind **/
