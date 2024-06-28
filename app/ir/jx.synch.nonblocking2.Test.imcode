@@ -50,7 +50,7 @@ class jx/synch/nonblocking2/Test {
         goto +START;   [R  .. ..]
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 18 handler 21 type 27
+0 - 18 handler 21 type 79
  }
 // Register: rd 2/2 wr 5 swaps 1 any 0 found 0 consume
 }

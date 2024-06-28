@@ -267,7 +267,7 @@ class java/util/ArrayList {
         throw new java/lang/InternalError(vR1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 29 handler 30 type 34
+0 - 29 handler 30 type 105
  }
 // Register: rd 10/10 wr 7 swaps 0 any 1 found 0 clone
  

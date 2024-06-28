@@ -115,7 +115,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR2.toString@extra();   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-37 - 56 handler 62 type 25
+37 - 56 handler 62 type 89
  }
 // Register: rd 11/11 wr 8 swaps 1 any 4 found 0 removeSingleQuotes
  
@@ -238,8 +238,8 @@ EXCEPTIONHANDLER-TABLE:
         return vR2;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-62 - 76 handler 79 type 43
-145 - 159 handler 162 type 43
+62 - 76 handler 79 type 140
+145 - 159 handler 162 type 140
  }
 // Register: rd 21/21 wr 17 swaps 2 any 3 found 0 format
  

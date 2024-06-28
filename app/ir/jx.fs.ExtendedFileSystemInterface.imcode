@@ -1,6 +1,6 @@
 class jx/fs/ExtendedFileSystemInterface {
  
- method <init>(Ljx/fs/FilesystemInterface;)V {
+ method <init>(Ljx/fs/FileSystemInterface;)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
         vR0.ifs = vR1;   
@@ -14,7 +14,7 @@ class jx/fs/ExtendedFileSystemInterface {
  method getExtFileSystemInterface(Ljava/lang/String;)Ljx/fs/ExtendedFileSystemInterface; {
   +START:   #1
         vR1 = getInitialNaming@special();    
-        vR2 = (jx/fs/FilesystemInterface)(waitUntilPortalAvailable@special(vR1,vR0));    
+        vR2 = (jx/fs/FileSystemInterface)(waitUntilPortalAvailable@special(vR1,vR0));    
         return new jx/fs/ExtendedFileSystemInterface(vR2);   
   +END:   #1
  }
@@ -128,8 +128,8 @@ class jx/fs/ExtendedFileSystemInterface {
         return vR6;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-47 - 84 handler 98 type 25
-85 - 95 handler 98 type 25
+47 - 84 handler 98 type 91
+85 - 95 handler 98 type 91
  }
 // Register: rd 21/21 wr 17 swaps 4 any 7 found 1 locate
  

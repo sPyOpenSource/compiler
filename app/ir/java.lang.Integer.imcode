@@ -342,10 +342,10 @@ class java/lang/Integer {
         return vR1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-11 - 30 handler 78 type 31
-31 - 50 handler 78 type 31
-51 - 70 handler 78 type 31
-71 - 77 handler 78 type 31
+11 - 30 handler 78 type 99
+31 - 50 handler 78 type 99
+51 - 70 handler 78 type 99
+71 - 77 handler 78 type 99
  }
 // Register: rd 10/10 wr 9 swaps 3 any 1 found 0 getInteger
  

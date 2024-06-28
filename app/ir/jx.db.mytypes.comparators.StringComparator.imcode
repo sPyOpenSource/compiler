@@ -33,7 +33,7 @@ class jx/db/mytypes/comparators/StringComparator {
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 34 handler 35 type 6
+0 - 34 handler 35 type 22
  }
 // Register: rd 11/11 wr 6 swaps 0 any 0 found 0 compare
 }

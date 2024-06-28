@@ -49,8 +49,8 @@ class java/util/Calendar {
         vR2 = 0;    
         vR3 = getBundle@special("gnu.java.locale.Calendar",vR1);    [R RR R RR]
         vR2 = vR3.getString@extra("calendarClass");    [RR RR Ri RR] 
-        if vR2==null goto B79;   
-  +B20:   #1
+        if vR2==null goto B84;   
+  +B20:   #2
         vR4 = forName@special(vR2);    [RR RR .. R.]
         if java/util/Calendar.isAssignableFrom@extra(vR4)==0 goto B74;   
   +B36:   #1
@@ -62,20 +62,27 @@ class java/util/Calendar {
         b1[0] = vR0;   
         b1[1] = vR1;   
         b0 = (java/util/Calendar)(b0.newInstance(b1));    
-  +B73b0:   #1 reference
+  +B73b0:   #2 reference
         return b0;   
   +B74:   #1
-        goto +B79;   [RRR RR .. ..]
+        goto +B84;   [RRR RR .. ..]
   +H77<caught exception>:   #1 reference
         vR4 = <caught exception>;    
-  +B79:   #2
+        goto +B84;   [RRR RR .. ..]
+  +H82<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B84:   #3
         return new java/util/GregorianCalendar(vR0,vR1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-20 - 73 handler 77 type 26
-20 - 73 handler 77 type 27
+20 - 73 handler 77 type 87
+20 - 73 handler 77 type 89
+20 - 73 handler 82 type 91
+20 - 73 handler 82 type 93
+20 - 73 handler 82 type 95
+20 - 73 handler 82 type 97
  }
-// Register: rd 17/17 wr 13 swaps 1 any 3 found 0 getInstance
+// Register: rd 17/17 wr 14 swaps 1 any 3 found 0 getInstance
  
  method getAvailableLocales()[Ljava/util/Locale; {
   +START:   #1
@@ -394,7 +401,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 37 handler 38 type 56
+0 - 37 handler 38 type 170
  }
 // Register: rd 10/10 wr 6 swaps 0 any 1 found 0 clone
  

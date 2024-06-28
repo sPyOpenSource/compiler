@@ -30,7 +30,7 @@ public class VirtualOperantenStack {
     }
 
     public IMOperant pop() {
-	Object nullPointer=null;
+	Object nullPointer = null;
 	if (ptr == 0) {
 	    System.err.println(" operanten stack underrun !! \n");
 	    nullPointer.toString();

@@ -40,8 +40,8 @@ class java/text/Collator {
         throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-20 - 34 handler 37 type 11
-68 - 90 handler 91 type 23
+20 - 34 handler 37 type 43
+68 - 90 handler 91 type 75
  }
 // Register: rd 20/20 wr 30 swaps 9 any 4 found 1 getInstance
  

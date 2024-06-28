@@ -141,7 +141,7 @@ class metaxa/os/devices/net/Eeprom {
         return vi2;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-34 - 42 handler 45 type 23
+34 - 42 handler 45 type 77
  }
 // Register: rd 13/13 wr 12 swaps 2 any 1 found 2 CalculateEEPROMChecksum1
  

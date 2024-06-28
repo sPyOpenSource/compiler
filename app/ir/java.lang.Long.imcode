@@ -299,10 +299,10 @@ class java/lang/Long {
         return vR1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-11 - 30 handler 78 type 29
-31 - 50 handler 78 type 29
-51 - 70 handler 78 type 29
-71 - 77 handler 78 type 29
+11 - 30 handler 78 type 80
+31 - 50 handler 78 type 80
+51 - 70 handler 78 type 80
+71 - 77 handler 78 type 80
  }
 // Register: rd 10/10 wr 9 swaps 3 any 1 found 0 getLong
  

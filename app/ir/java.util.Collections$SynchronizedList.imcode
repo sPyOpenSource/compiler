@@ -30,15 +30,15 @@ class java/util/Collections$SynchronizedList {
         b0 = vR0.list.equals(vR1);    [R b  RR] 
         vR2.leave();   
         return b0;   
-  +H25<caught exception>:   #2 reference
+  +H27<caught exception>:   #2 reference
         vR3 = <caught exception>;    
         vR2.leave();   
-  -B28:   #1
+  -B30:   #1
         throw vR3;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-14 - 24 handler 25 type 0
-25 - 28 handler 25 type 0
+14 - 26 handler 27 type 0
+27 - 30 handler 27 type 0
  }
 // Register: rd 7/7 wr 4 swaps 0 any 2 found 0 equals
  
@@ -50,15 +50,15 @@ EXCEPTIONHANDLER-TABLE:
         b0 = vR0.list.hashCode();    [R i  R] 
         vR1.leave();   
         return b0;   
-  +H17<caught exception>:   #2 reference
+  +H19<caught exception>:   #2 reference
         vR2 = <caught exception>;    
         vR1.leave();   
-  -B20:   #1
+  -B22:   #1
         throw vR2;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-7 - 16 handler 17 type 0
-17 - 20 handler 17 type 0
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
  }
 // Register: rd 5/5 wr 4 swaps 0 any 1 found 0 hashCode
  
@@ -253,4 +253,18 @@ EXCEPTIONHANDLER-TABLE:
   +END:   #1
  }
 // Register: rd 5/5 wr 3 swaps 0 any 1 found 0 readResolve
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
 }

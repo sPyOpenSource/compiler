@@ -87,7 +87,7 @@ class AI/AIZeroMemory {
  
  method addEmotion()V {
   +START:   #1
-        vR0.emotion = (vR0.emotion+jx.classfile.datatypes.BCDouble@4254dddf);   
+        vR0.emotion = (vR0.emotion+jx.classfile.datatypes.BCDouble@765f05af);   
         return;   
   +END:   #1
  }
@@ -95,7 +95,7 @@ class AI/AIZeroMemory {
  
  method minEmotion()V {
   +START:   #1
-        vR0.emotion = (vR0.emotion-jx.classfile.datatypes.BCDouble@4254dddf);   
+        vR0.emotion = (vR0.emotion-jx.classfile.datatypes.BCDouble@765f05af);   
         return;   
   +END:   #1
  }

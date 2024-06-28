@@ -54,7 +54,7 @@ class jx/fs/FilesystemImpl {
         return;   
   +B8:   #1
         vR0.fs.init(1);   [   iR] 
-        vR0.rInode = vR0.fs.getRootInode();   
+        vR0.rInode = vR0.fs.getRootNode();   
         vR0.umounted = 0;   
         return;   
   +END:   #1
@@ -93,8 +93,8 @@ class jx/fs/FilesystemImpl {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-18 - 34 handler 37 type 25
-5 - 64 handler 67 type 25
+18 - 34 handler 37 type 84
+5 - 64 handler 67 type 84
  }
 // Register: rd 14/14 wr 6 swaps 0 any 2 found 1 unmount
  
@@ -115,7 +115,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-7 - 11 handler 14 type 25
+7 - 11 handler 14 type 84
  }
 // Register: rd 5/5 wr 1 swaps 0 any 0 found 0 registerFSObj
  

@@ -159,4 +159,11 @@ class java/util/Collections$SetFromMap {
   +END:   #1
  }
 // Register: rd 3/3 wr 0 swaps 0 any 0 found 0 readObject
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
 }

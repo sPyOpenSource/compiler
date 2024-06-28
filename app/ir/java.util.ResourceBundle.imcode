@@ -45,7 +45,7 @@ class java/util/ResourceBundle {
         throw new java/util/MissingResourceException("Key not found",vR0.getClass@this().getName@extra(),vR1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-6 - 17 handler 21 type 6
+6 - 17 handler 21 type 20
  }
 // Register: rd 10/10 wr 7 swaps 0 any 4 found 0 getObject
  

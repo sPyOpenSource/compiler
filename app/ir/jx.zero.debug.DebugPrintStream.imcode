@@ -32,7 +32,7 @@ class jx/zero/debug/DebugPrintStream {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 7 handler 10 type 9
+0 - 7 handler 10 type 34
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 close
  
@@ -48,7 +48,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 7 handler 10 type 9
+0 - 7 handler 10 type 34
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 flush
  
@@ -70,7 +70,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 9
+0 - 8 handler 11 type 34
  }
 // Register: rd 5/5 wr 1 swaps 0 any 1 found 0 write
  
@@ -86,7 +86,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 10 handler 13 type 9
+0 - 10 handler 13 type 34
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 write
  

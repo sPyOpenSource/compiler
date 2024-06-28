@@ -36,7 +36,7 @@ class java/text/Format {
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 4 handler 5 type 13
+0 - 4 handler 5 type 40
  }
 // Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
 }

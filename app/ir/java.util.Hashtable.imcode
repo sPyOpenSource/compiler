@@ -323,7 +323,7 @@ class java/util/Hashtable {
  
  method <init>(I)V {
   +START:   #1
-        vR0.<init>@special(vi1,jx.classfile.datatypes.BCFloat@7d90a298);   [   ?iR] 
+        vR0.<init>@special(vi1,jx.classfile.datatypes.BCFloat@42b3b079);   [   ?iR] 
         return;   
   +END:   #1
  }

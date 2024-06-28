@@ -187,11 +187,11 @@ class jx/rpc/RPCBuffer {
  
  method init(Ljx/net/UDPData;)V {
   +START:   #1
-        vR0.buf = vR1.mem;   
+        vR0.buf = vR1.getMemory();   
         vR0.cont = 0;   
         vR0.offset = 0;   
-        vR0.sourceAddress = vR1.sourceAddress;   
-        vR0.sourcePort = vR1.sourcePort;   
+        vR0.sourceAddress = vR1.getSourceAddress();   
+        vR0.sourcePort = vR1.getSourcePort();   
         return;   
   +END:   #1
  }
@@ -199,12 +199,12 @@ class jx/rpc/RPCBuffer {
  
  method init(Ljx/net/UDPData;II)V {
   +START:   #1
-        vR0.buf = vR1.mem;   
+        vR0.buf = vR1.getMemory();   
         vR0.cont = 0;   
-        vR0.offset = vR1.offset;   
-        vR0.size = vR1.size;   
-        vR0.sourceAddress = vR1.sourceAddress;   
-        vR0.sourcePort = vR1.sourcePort;   
+        vR0.offset = vR1.getOffset();   
+        vR0.size = vR1.Size();   
+        vR0.sourceAddress = vR1.getSourceAddress();   
+        vR0.sourcePort = vR1.getSourcePort();   
         return;   
   +END:   #1
  }

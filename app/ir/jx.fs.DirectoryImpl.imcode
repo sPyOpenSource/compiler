@@ -1,6 +1,6 @@
 class jx/fs/DirectoryImpl {
  
- method <init>(Ljx/fs/FilesystemImpl;Ljx/fs/FileSystem;Ljx/fs/FSObjectImpl;Ljx/fs/Inode;)V {
+ method <init>(Ljx/fs/FilesystemImpl;Ljx/fs/FileSystem;Ljx/fs/FSObjectImpl;Ljx/fs/Node;)V {
   +START:   #1
         vR0.<init>@special(vR1,vR2,vR3,vR4);   [   RRRRR] 
         return;   
@@ -26,16 +26,16 @@ class jx/fs/DirectoryImpl {
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 11 handler 12 type 5
+0 - 11 handler 12 type 23
  }
 // Register: rd 3/3 wr 3 swaps 0 any 1 found 0 list
  
- method length()I {
+ method getLength()I {
   +START:   #1
         return 0;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 length
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLength
  
  method openRO(Ljava/lang/String;)Ljx/fs/FSObject; {
   +START:   #1
@@ -51,32 +51,11 @@ EXCEPTIONHANDLER-TABLE:
         b0 = vR0.fs_impl;    
         b1 = new jx/fs/ReadOnlyRegularFileImpl(vR0.fs_impl,vR0.fs,vR0,vR2);    [ RR . i.....][ RR . iRRRRR]
         return b0.registerFSObj(b1);   
-  +B79:   #2
-        b0 = 0;    
-  +B80b0:   #1 reference
-        return b0;   
-  +H81<caught exception>:   #1 reference
-        vR2 = <caught exception>;    
+  +B79:   #1
         return 0;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 44 handler 81 type 16
-0 - 44 handler 81 type 17
-0 - 44 handler 81 type 18
-0 - 44 handler 81 type 19
-0 - 44 handler 81 type 20
-45 - 78 handler 81 type 16
-45 - 78 handler 81 type 17
-45 - 78 handler 81 type 18
-45 - 78 handler 81 type 19
-45 - 78 handler 81 type 20
-79 - 80 handler 81 type 16
-79 - 80 handler 81 type 17
-79 - 80 handler 81 type 18
-79 - 80 handler 81 type 19
-79 - 80 handler 81 type 20
  }
-// Register: rd 20/20 wr 9 swaps 0 any 0 found 0 openRO
+// Register: rd 19/19 wr 7 swaps 0 any 0 found 0 openRO
  
  method openRW(Ljava/lang/String;)Ljx/fs/FSObject; {
   +START:   #1
@@ -92,51 +71,19 @@ EXCEPTIONHANDLER-TABLE:
         b0 = vR0.fs_impl;    
         b1 = new jx/fs/RegularFileImpl(vR0.fs_impl,vR0.fs,vR0,vR2);    [ RR . i.....][ RR . iRRRRR]
         return b0.registerFSObj(b1);   
-  +B79:   #2
-        b0 = 0;    
-  +B80b0:   #1 reference
-        return b0;   
-  +H81<caught exception>:   #1 reference
-        vR2 = <caught exception>;    
+  +B79:   #1
         return 0;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 44 handler 81 type 16
-0 - 44 handler 81 type 17
-0 - 44 handler 81 type 18
-0 - 44 handler 81 type 19
-0 - 44 handler 81 type 20
-45 - 78 handler 81 type 16
-45 - 78 handler 81 type 17
-45 - 78 handler 81 type 18
-45 - 78 handler 81 type 19
-45 - 78 handler 81 type 20
-79 - 80 handler 81 type 16
-79 - 80 handler 81 type 17
-79 - 80 handler 81 type 18
-79 - 80 handler 81 type 19
-79 - 80 handler 81 type 20
  }
-// Register: rd 20/20 wr 9 swaps 0 any 0 found 0 openRW
+// Register: rd 19/19 wr 7 swaps 0 any 0 found 0 openRW
  
  method create(Ljx/fs/Permission;Ljava/lang/String;)Ljx/fs/RegularFile; {
-  +START:   #2
+  +START:   #1
         vR3 = vR0.inode.create(vR2,420);    [ R  iRR] 
-        b0 = new jx/fs/RegularFileImpl(vR0.fs_impl,vR0.fs,vR0,vR3);    [ R  i..][ R . iRRRRR]
-  +B31b0:   #1 reference
-        return b0;   
-  +H32<caught exception>:   #1 reference
-        vR3 = <caught exception>;    
-        return 0;   
+        return new jx/fs/RegularFileImpl(vR0.fs_impl,vR0.fs,vR0,vR3);   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 31 handler 32 type 27
-0 - 31 handler 32 type 16
-0 - 31 handler 32 type 18
-0 - 31 handler 32 type 19
-0 - 31 handler 32 type 20
  }
-// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 create
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 create
  
  method link(Ljx/fs/Permission;Ljava/lang/String;Ljx/fs/FSObject;)Z {
   +START:   #1
@@ -166,4 +113,11 @@ EXCEPTIONHANDLER-TABLE:
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 finalize
+ 
+ method isValid()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValid
 }

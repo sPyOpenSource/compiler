@@ -11,15 +11,15 @@ class java/util/Collections$CheckedList {
  
  method equals(Ljava/lang/Object;)Z {
   +START:   #1
-        if vR1==vR0 goto B16;   
+        if vR1==vR0 goto B18;   
   +B5:   #1
-        if vR0.list.equals(vR1)==0 goto B20;   
-  +B16:   #1
+        if vR0.list.equals(vR1)==0 goto B22;   
+  +B18:   #1
         b0 = 1;    
-        goto +B21b0;   forward return[ i  ..]
-  +B20:   #1
+        goto +B23b0;   forward return[ i  ..]
+  +B22:   #1
         b0 = 0;    
-  +B21b0:   #1 int
+  +B23b0:   #1 int
         return b0;   
   +END:   #1
  }
@@ -104,4 +104,18 @@ class java/util/Collections$CheckedList {
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 sort
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
 }

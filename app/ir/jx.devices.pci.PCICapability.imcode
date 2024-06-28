@@ -43,19 +43,19 @@ class jx/devices/pci/PCICapability {
  
  method createCapability(Ljx/devices/pci/PCIDevice;I)Ljx/devices/pci/PCICapability; {
   +START:   #1
-        vi2 = vR0.readPackedConfig@this(vi1,255,0);    [ R  iiiR] 
-        tswitch (vi2) B44 B54 B64 B74 B84 : B94;   
-  +B44:   #1
+        vi2 = vR0.readPackedConfig(vi1,255,0);    [ R  iiiR] 
+        tswitch (vi2) B48 B58 B68 B78 B88 : B98;   
+  +B48:   #1
         return new jx/devices/pci/CapabilityPM(vR0,vi1);   
-  +B54:   #1
+  +B58:   #1
         return new jx/devices/pci/CapabilityAGP(vR0,vi1);   
-  +B64:   #1
+  +B68:   #1
         return new jx/devices/pci/CapabilityVPD(vR0,vi1);   
-  +B74:   #1
+  +B78:   #1
         return new jx/devices/pci/CapabilitySI(vR0,vi1);   
-  +B84:   #1
+  +B88:   #1
         return new jx/devices/pci/CapabilityVPD(vR0,vi1);   
-  +B94:   #1
+  +B98:   #1
         return new jx/devices/pci/PCICapability(vi2,vR0,vi1);   
   +END:   #1
  }

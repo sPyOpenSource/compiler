@@ -25,29 +25,29 @@ class jx/net/protocol/udp/UDP {
  method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
   +START:   #1
         vR0.cpuManager.recordEvent(vR0.event_rcv);    
-        vR2 = vR1.mem;    
-        vR3 = new jx/net/protocol/udp/UDPFormat(vR1.mem);    [ R  i][ R . iRR]
+        vR2 = vR1.getMemory();    [ R  R] 
+        vR3 = new jx/net/protocol/udp/UDPFormat(vR1.getMemory());    [ R  i][ R . iRR]
         vi4 = vR3.getDestPort();    [RR R . R..] 
         vi5 = vR3.getSourcePort();    [RRi R . R..] 
         vR0.checkPort@special(vi4);   [RRii R . iR.] 
         out.println(vi4);   [RRii R . iR.] 
         b0 = vR0.udpConsumerList[vi4];    
         vR7 = b0;    
-        if b0==null goto B150;   
-  +B69:   #1
+        if b0==null goto B166;   
+  +B73:   #1
         vi8 = vR3.length@extra();    [RRii?R R . R..] 
         out.println("UDPDATALEN: ");   [RRii?Ri R i. RR.] 
-        vR9 = vR1.mem.getSubRange(vi8,(vR1.mem.size()-vi8));    [RRii?Ri R ii iiR] 
-        vR10 = new jx/net/UDPData();    [ R ii i..][ R ii iR.]
-        vR10.mem = vR9;   
-        vR10.sourcePort = vi5;   
-        vR10.sourceAddress = vR1.sourceAddress;   
+        vR9 = vR1.getMemory().getSubRange(vi8,(vR1.getMemory().size()-vi8));    [RRii?Ri R ii. iiR] [RRii?Ri R iiR iiR] 
+        vR10 = new jx/net/UDPDataImpl();    [ R ii. i..][ R ii. iR.]
+        vR10.setMemory(vR9);   [RRii?RiRR R ii. RR.] 
+        vR10.setSourcePort(vi5);   [RRii?RiRR R ii. iR.] 
+        vR10.setSourceAddress(vR1.getSourceAddress());   [RRii?RiRR R iii RR.] 
         return vR7.processUDP(vR10);   
-  +B150:   #1
-        return vR1.mem;   
+  +B166:   #1
+        return vR1.getMemory();   
   +END:   #1
  }
-// Register: rd 22/22 wr 14 swaps 2 any 2 found 0 processIP
+// Register: rd 20/20 wr 17 swaps 3 any 2 found 0 processIP
  
  method registerUDPConsumer(Ljx/net/UDPConsumer;I)Z {
   +START:   #1

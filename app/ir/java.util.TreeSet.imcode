@@ -125,26 +125,26 @@ class java/util/TreeSet {
  
  method addAll(Ljava/util/Collection;)Z {
   +START:   #1
-        if vR0.m.size()!=0 goto B89;   
+        if vR0.m.size()!=0 goto B91;   
   +B12:   #1
-        if vR1.size()<=0 goto B89;   
+        if vR1.size()<=0 goto B91;   
   +B21:   #1
-        if (vR1 instanceof java/util/SortedSet)==0 goto B89;   
+        if (vR1 instanceof java/util/SortedSet)==0 goto B91;   
   +B28:   #1
-        if (vR0.m instanceof java/util/TreeMap)==0 goto B89;   
+        if (vR0.m instanceof java/util/TreeMap)==0 goto B91;   
   +B38:   #1
         vR2 = (java/util/SortedSet)(vR1);    
         vR3 = (java/util/TreeMap)(vR0.m);    
         vR4 = vR2.comparator();    [RR  . R.] 
         vR5 = vR3.comparator();    [RRR  . R.] 
-        if vR4==vR5 goto B87;   
+        if vR4==vR5 goto B89;   
   +B72:   #1
-        if vR4==null goto B89;   
+        if vR4==null goto B91;   
   +B77:   #1
-        if vR4.equals(vR5)==0 goto B89;   
-  +B87:   #1
+        if vR4.equals(vR5)==0 goto B91;   
+  +B89:   #1
         return 1;   
-  +B89:   #6
+  +B91:   #6
         return vR0.addAll@special(vR1);   
   +END:   #1
  }
@@ -285,7 +285,7 @@ class java/util/TreeSet {
         return vR1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 45
+0 - 8 handler 11 type 149
  }
 // Register: rd 9/9 wr 6 swaps 0 any 0 found 0 clone
  
@@ -325,6 +325,13 @@ EXCEPTIONHANDLER-TABLE:
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spliterator
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
  
  method <clinit>()V {
   +START:   #1

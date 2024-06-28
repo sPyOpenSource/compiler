@@ -38,7 +38,7 @@ class java/security/Permissions$1 {
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-30 - 51 handler 54 type 11
+30 - 51 handler 54 type 45
  }
 // Register: rd 10/10 wr 3 swaps 0 any 0 found 0 hasMoreElements
  

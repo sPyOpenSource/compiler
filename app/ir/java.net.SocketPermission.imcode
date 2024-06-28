@@ -233,7 +233,7 @@ class java/net/SocketPermission {
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-487 - 507 handler 510 type 32
+487 - 507 handler 510 type 97
  }
 // Register: rd 54/54 wr 74 swaps 31 any 7 found 1 implies
 }

@@ -85,7 +85,7 @@ class java/util/HashMap$HashMapIterator {
         return vR2;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-6 - 110 handler 113 type 20
+6 - 110 handler 113 type 70
  }
 // Register: rd 25/25 wr 11 swaps 0 any 3 found 0 next
  

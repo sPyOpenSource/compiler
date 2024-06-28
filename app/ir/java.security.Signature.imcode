@@ -72,9 +72,9 @@ class java/security/Signature {
         throw new java/security/NoSuchAlgorithmException("Illegal Access");   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 52 handler 53 type 24
-0 - 52 handler 64 type 26
-0 - 52 handler 75 type 28
+0 - 52 handler 53 type 77
+0 - 52 handler 64 type 81
+0 - 52 handler 75 type 85
  }
 // Register: rd 16/16 wr 12 swaps 0 any 2 found 2 getInstance
  

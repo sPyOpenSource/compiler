@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=InterfaceMethodTable
+comment1.params=className
+comment1.target=InterfaceMethodTable(java.lang.String)
+comment2.params=info\ itable\ classPool
+comment2.target=InterfaceMethodTable(ClassInfo,\ InterfaceMethodsTable,\ java.util.HashMap)
+comment3.params=nameAndType
+comment3.target=int\ getIndex(java.lang.String)
+comment4.params=m
+comment4.target=void\ addMethod(Method)
+comment5.params=m\ index
+comment5.target=void\ addMethodAt(Method,\ int)
+numComments=6

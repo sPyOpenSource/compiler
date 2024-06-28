@@ -74,7 +74,7 @@ class java/util/TreeMap {
         return vR1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 27 handler 30 type 22
+0 - 27 handler 30 type 78
  }
 // Register: rd 9/9 wr 5 swaps 0 any 0 found 0 clone
  
@@ -215,7 +215,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method putAllLinear([Ljava/util/Map$Entry;)V {
   +START:   #1
-        vd3 = pow@special((double)vR1.length,jx.classfile.datatypes.BCDouble@515e4348);    
+        vd3 = pow@special((double)vR1.length,jx.classfile.datatypes.BCDouble@7fc4780b);    
         vi2 = (int)vd3;    
         if compare(vd3,(double)vi2)!=0 goto B24;   
   +B20:   #1

@@ -53,9 +53,9 @@ class java/security/SecureRandom {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-126 - 148 handler 151 type 20
-126 - 148 handler 156 type 21
-126 - 148 handler 161 type 22
+126 - 148 handler 151 type 81
+126 - 148 handler 156 type 83
+126 - 148 handler 161 type 85
  }
 // Register: rd 26/26 wr 16 swaps 1 any 5 found 0 <init>
  
@@ -122,9 +122,9 @@ EXCEPTIONHANDLER-TABLE:
         throw new java/security/NoSuchAlgorithmException("Illegal Access");   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-69 - 90 handler 91 type 20
-69 - 90 handler 103 type 21
-69 - 90 handler 115 type 22
+69 - 90 handler 91 type 81
+69 - 90 handler 103 type 83
+69 - 90 handler 115 type 85
  }
 // Register: rd 19/19 wr 19 swaps 1 any 5 found 0 getInstance
  
@@ -156,9 +156,9 @@ EXCEPTIONHANDLER-TABLE:
         throw new java/security/NoSuchAlgorithmException("Illegal Access");   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-56 - 75 handler 76 type 20
-56 - 75 handler 88 type 21
-56 - 75 handler 100 type 22
+56 - 75 handler 76 type 81
+56 - 75 handler 88 type 83
+56 - 75 handler 100 type 85
  }
 // Register: rd 13/13 wr 15 swaps 1 any 2 found 0 getInstance
  

@@ -176,9 +176,9 @@ class java/text/DateFormat {
         return new java/text/SimpleDateFormat(vR6,vR2);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 23
-108 - 127 handler 130 type 23
-260 - 279 handler 282 type 23
+0 - 8 handler 11 type 75
+108 - 127 handler 130 type 75
+260 - 279 handler 282 type 75
  }
 // Register: rd 20/20 wr 42 swaps 1 any 13 found 0 computeInstance
  

@@ -561,13 +561,13 @@ class java/net/MimeTypeMapper {
         b0 = new java/util/Hashtable(150);    [ RR?R  i.][ RR?R . iiR]
         mime_types = b0;   
         vi0 = 0;    
-  +B1907:   #1
-        if vi0>=mime_strings.length goto B1942;   
-  +B1915:   #1
+  +B1986:   #1
+        if vi0>=mime_strings.length goto B2021;   
+  +B1994:   #1
         mime_types.put(mime_strings[vi0][1],mime_strings[vi0][0]);   [i RR?R iR. RRR] 
         vi0++;   
-        goto +B1907;   [i RR?R iR. ...]
-  +B1942:   #1
+        goto +B1986;   [i RR?R iR. ...]
+  +B2021:   #1
         return;   
   +END:   #1
  }

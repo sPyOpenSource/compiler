@@ -8,7 +8,7 @@ class java/util/function/IntUnaryOperator {
         <operant>;   
         <operant>;   
         <operant>;   
-        return -1;   
+        return 4;   
   +END:   #1
  }
 // Register: rd 2/2 wr 2 swaps 0 any 2 found 0 compose

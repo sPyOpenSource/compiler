@@ -1,2 +1,2 @@
-class jx/fs/FilesystemInterface {
+class jx/fs/FileSystemInterface {
 }

@@ -12,41 +12,35 @@ class jx/fs/FSInterfaceDomain {
         vR4 = vR1[0];    
         out.println("Domain FSInterfaceDomain speaking.");   [RRR RRR iii. RR.] 
         vR3.setThreadName("FSDomain-Main");   [RRR RRR iiii RR.] 
-        vR5 = (jx/bio/BlockIO)(waitUntilPortalAvailable@special(vR0,vR4));    
+        vR5 = (jx/devices/bio/BlockIO)(waitUntilPortalAvailable@special(vR0,vR4));    
         b0 = new jx/fs/FSInterfaceDomain(vR0,vR5);    [ RRR iiii. i..][ RRR iiii. iRRR]
         return;   
   +END:   #1
  }
 // Register: rd 17/17 wr 18 swaps 4 any 1 found 1 init
  
- method <init>(Ljx/zero/Naming;Ljx/bio/BlockIO;)V {
+ method <init>(Ljx/zero/Naming;Ljx/devices/bio/BlockIO;)V {
   +START:   #1
-        vR0.<init>@special();   [ RRR  R] 
+        vR0.<init>@special();   [ RR  R] 
   +B4:   #1
         vR0.naming = vR1;   
-        out.println("Create FileSystem on BlockIO");   [ RRR i. RR] 
+        out.println("Create FileSystem on BlockIO");   [ RR i. RR] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RRR i. i.][ RRR i. iR]
-        b0.println(b1.append@extra("Capacity: ").append@extra(vR2.getCapacity()).toString@extra());   [ RRR iiii. RR.] 
-        vR3 = new javafs/FileSystem();    [ RRR iiii. i..][ RRR iiii. iR.]
-        vR4 = new jx/fs/MyDummyClock();    [ RRR iiii. i..][ RRR iiii. iR.]
-        b2 = new buffercache/BufferCache(vR2,vR4,800,1000,100,1024);    [ RRR iiii. i..][ RRR iiii. iiiiiRRR]
-        vR3.init(vR2,b2,vR4);   [RR RRR iiii. RRRR....] 
-        vR3.build("TestFS",1024);   [RR RRR iiiii iRR.....] 
-        vR5 = new jx/fs/FilesystemImpl(vR3);    [ RRR iiiii i.......][ RRR iiiii. iRR.....]
-        out.println("FileSystem is ready !!!");   [RRR RRR iiiiii. RR......] 
-        vR1.registerPortal(vR5,"FSInterface");   [RRR RRR iiiiiii RRR.....] 
-  +B129:   #1
-        goto +B145;   forward return[RRR RRR ....... ........]
-  -H132<caught exception>:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("Capacity: ").append@extra(vR2.getCapacity()).toString@extra());   [ RR iiii. RR.] 
+        vR3 = new jx/fs/MyDummyClock();    [ RR iiii. i..][ RR iiii. iR.]
+        out.println("FileSystem is ready !!!");   [R RR iiiii. RR.] 
+  +B63:   #1
+        goto +B79;   forward return[R RR ...... ...]
+  -H66<caught exception>:   #1 reference
         vR3 = <caught exception>;    
-        vR3.printStackTrace();   [RRR RRR ....... R.......] 
+        vR3.printStackTrace();   [R RR ...... R..] 
         throw new java/lang/Error();   
-  +B145:   #1
+  +B79:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-4 - 129 handler 132 type 43
+4 - 63 handler 66 type 92
  }
-// Register: rd 16/16 wr 20 swaps 7 any 0 found 0 <init>
+// Register: rd 7/7 wr 13 swaps 5 any 0 found 0 <init>
 }

@@ -67,7 +67,7 @@ class java/io/PrintWriter {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 7 handler 10 type 12
+0 - 7 handler 10 type 37
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 flush
  
@@ -83,7 +83,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 7 handler 10 type 12
+0 - 7 handler 10 type 37
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 close
  
@@ -209,7 +209,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-7 - 33 handler 36 type 12
+7 - 33 handler 36 type 37
 7 - 44 handler 47 type 0
 47 - 50 handler 47 type 0
  }
@@ -434,7 +434,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 12
+0 - 8 handler 11 type 37
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 write
  
@@ -450,7 +450,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 10 handler 13 type 12
+0 - 10 handler 13 type 37
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 write
  
@@ -466,7 +466,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 10 handler 13 type 12
+0 - 10 handler 13 type 37
  }
 // Register: rd 2/2 wr 1 swaps 0 any 0 found 0 write
  

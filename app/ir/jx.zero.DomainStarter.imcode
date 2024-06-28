@@ -344,7 +344,7 @@ class jx/zero/DomainStarter {
         return vR23;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-300 - 312 handler 315 type 38
+300 - 312 handler 315 type 121
  }
 // Register: rd 55/55 wr 99 swaps 24 any 18 found 0 createDomain
  

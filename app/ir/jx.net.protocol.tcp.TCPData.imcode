@@ -3,11 +3,11 @@ class jx/net/protocol/tcp/TCPData {
  method <init>(Ljx/net/IPData;)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
-        vR0.sourceAddress = vR1.sourceAddress;   
-        vR0.destinationAddress = vR1.destinationAddress;   
-        vR0.mem = vR1.mem;   
-        vR0.offset = vR1.offset;   
-        vR0.size = vR1.size;   
+        vR0.sourceAddress = vR1.getSourceAddress();   
+        vR0.destinationAddress = vR1.getDestinationAddress();   
+        vR0.mem = vR1.getMemory();   
+        vR0.offset = vR1.getOffset();   
+        vR0.size = vR1.Size();   
         vR0.retransmitCounter = 0;   
         vR0.retransmitTimestamp = 0;   
         return;   

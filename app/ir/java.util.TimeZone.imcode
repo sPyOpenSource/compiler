@@ -77,11 +77,11 @@ class java/util/TimeZone {
         return vR0.getDefaultDisplayName@special(vi1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 46 handler 84 type 8
-47 - 54 handler 84 type 8
-55 - 66 handler 84 type 8
-67 - 74 handler 84 type 8
-75 - 81 handler 84 type 8
+0 - 46 handler 84 type 33
+47 - 54 handler 84 type 33
+55 - 66 handler 84 type 33
+67 - 74 handler 84 type 33
+75 - 81 handler 84 type 33
  }
 // Register: rd 18/18 wr 5 swaps 1 any 5 found 0 getDisplayName
  
@@ -171,7 +171,7 @@ EXCEPTIONHANDLER-TABLE:
         return getTimeZone@special("GMT");   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-96 - 224 handler 225 type 36
+96 - 224 handler 225 type 127
  }
 // Register: rd 31/31 wr 31 swaps 5 any 5 found 0 getTimeZone
  
@@ -228,7 +228,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 4 handler 5 type 43
+0 - 4 handler 5 type 144
  }
 // Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
  
@@ -702,10 +702,10 @@ EXCEPTIONHANDLER-TABLE:
         timezones.put("Pacific/Kiritimati",vR0);   [R R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RRR..........] 
         loadLibrary@special("javautil");   [R R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiR R............]
         vR0 = getProperty@special("user.timezone");    [R R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiRR R............]
-        if vR0!=null goto B5702;   
-  +B5699:   #1
+        if vR0!=null goto B5888;   
+  +B5885:   #1
         vR0 = "GMT";    
-  +B5702:   #1
+  +B5888:   #1
         defaultZone = getTimeZone@special(vR0);   
         return;   
   +END:   #1

@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Main
+comment0.text=\n\ Experimental\ VTable\ generator\n
+comment1.params=zipfilecontents\ args\ objectClass
+comment1.target=Main(jx.zero.Memory,\ java.lang.String[],\ ClassInfo)
+comment10.params=info
+comment10.target=void\ addOldClass(ClassInfo)
+comment11.params=in
+comment11.target=void\ deserialize(jx.compiler.persistent.ExtendedDataInputStream)
+comment2.params=classFinder\ all\ predefinedClasses\ oldTables\ objectClass
+comment2.target=Main(java.util.HashMap,\ java.util.ArrayList,\ ClassInfo[],\ jx.compiler.persistent.ExtendedDataInputStream[],\ ClassInfo)
+comment3.params=
+comment3.target=void\ process()
+comment3.text=\n\ deserialize\ method\ tables\ \n
+comment4.params=info\ rejectInterfaces\ rejectImplements\ enforcePutin
+comment4.target=boolean\ putIn(ClassInfo,\ boolean,\ boolean,\ boolean)
+comment5.params=info
+comment5.target=void\ addMTable(ClassInfo)
+comment6.params=info
+comment6.target=void\ createMTable(ClassInfo)
+comment7.params=info
+comment7.target=void\ printMTable(ClassInfo)
+comment8.params=className
+comment8.target=MethodTable\ getMethodTable(java.lang.String)
+comment9.params=out
+comment9.target=void\ serialize(jx.compiler.persistent.ExtendedDataOutputStream)
+numComments=12

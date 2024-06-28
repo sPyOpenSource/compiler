@@ -248,13 +248,13 @@ class jx/net/protocol/ip/IP {
  method processEther(Ljx/net/EtherData;)Ljx/zero/Memory; {
   +START:   #1
         vR0.cpuManager.recordEvent(vR0.event_rcv);    
-        vR2 = new jx/net/protocol/ip/IPFormat(vR1.mem,vR1.offset);    [ R  i][ R . iiRR]
+        vR2 = new jx/net/protocol/ip/IPFormat(vR1.getMemory(),vR1.getOffset());    [ R  i][ R . iiRR]
         vi3 = vR2.getProtocol();    [R R . R...] 
         vi4 = vR2.getFlags();    [Ri R . R...] 
         vi5 = (vR2.getFragmentOffset()*8);    
         vi6 = vR2.getIdentification();    [Riii R . R...] 
-        vR7 = new jx/net/IPAddress(vR2.getSourceIPAddress());    [ R . i...][ R . iRR.]
-        vR8 = new jx/net/IPAddress(vR2.getDestIPAddress());    [ R . i...][ R . iRR.]
+        vR7 = new jx/net/IPv4Address(vR2.getSourceIPAddress());    [ R . i...][ R . iRR.]
+        vR8 = new jx/net/IPv4Address(vR2.getDestIPAddress());    [ R . i...][ R . iRR.]
         return vR0.dispatch@this(vi3,vR1,vR7,vR8);   
   +END:   #1
  }
@@ -262,68 +262,68 @@ class jx/net/protocol/ip/IP {
  
  method dispatch(ILjx/net/EtherData;Ljx/net/IPAddress;Ljx/net/IPAddress;)Ljx/zero/Memory; {
   +START:   #1
-        vR5 = new jx/net/IPData();    [ RR  i][ RR  iR]
-        vR5.sourceAddress = vR3;   
-        vR5.destinationAddress = vR4;   
+        vR5 = new jx/net/IPDataImpl();    [ RR  i][ RR  iR]
+        vR5.setSourceAddress(vR3);   [R RR  RR] 
+        vR5.setDestinationAddress(vR4);   [R RR  RR] 
         lswitch (vi1) { 
-           1:B358
-           6:B174
-           17:B56
-           ::B425
+           1:B413
+           6:B199
+           17:B60
+           ::B495
         };   
-  +B56:   #1
-        if vR0.myUDPConsumer==null goto B110;   
-  +B63:   #1
-        vR5.mem = vR2.mem;   
-        vR5.offset = (vR2.offset+requiresSpace@special());   
-        vR5.size = (vR2.size-requiresSpace@special());   
+  +B60:   #1
+        if vR0.myUDPConsumer==null goto B126;   
+  +B67:   #1
+        vR5.setMemory(vR2.getMemory());   [RR RR i RR] 
+        vR5.setOffset((vR2.getOffset()+requiresSpace@special()));   [RR RR ii iR] 
+        vR5.setSize((vR2.Size()-requiresSpace@special()));   [RR RR iii iR] 
         return vR0.myUDPConsumer.processIP(vR5);   
-  +B110:   #1
-        if vR0.myUDPConsumer==null goto B161;   
-  +B117:   #1
-        vR5.mem = vR2.mem.getSubRange(vR0.space,(vR2.mem.size()-vR0.space));   
+  +B126:   #1
+        if vR0.myUDPConsumer==null goto B183;   
+  +B133:   #1
+        vR5.setMemory(vR2.getMemory().getSubRange(vR0.space,(vR2.getMemory().size()-vR0.space)));   [RR RR iii RR.] 
         return vR0.myUDPConsumer.processIP(vR5);   
-  +B161:   #1
-        out.println("  No UDP consumer for this IP packet.");   [RR RR i. RR.] 
-        return vR2.mem;   
-  +B174:   #1
-        if vR0.myTCPConsumer==null goto B276;   
-  +B181:   #1
-        vR5.mem = vR2.mem;   
-        vR5.offset = (vR2.offset+requiresSpace@special());   
+  +B183:   #1
+        out.println("  No UDP consumer for this IP packet.");   [RR RR i.. RR.] 
+        return vR2.getMemory();   
+  +B199:   #1
+        if vR0.myTCPConsumer==null goto B318;   
+  +B206:   #1
+        vR5.setMemory(vR2.getMemory());   [R RR i.. RR.] 
+        vR5.setOffset((vR2.getOffset()+requiresSpace@special()));   [R RR ii. iR.] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
-        b0.println(b1.append@extra("offset: ").append@extra(vR2.offset).toString@extra());   [R RR iii. RR.] 
-        vR6 = new jx/net/protocol/ip/IPFormat(vR2.mem,vR2.offset);    [ RR iii. i..][ RR iii. iiRR]
-        vR5.size = (vR6.getTotalLength()-vR6.getHeaderLength());   
+        b1 = new java/lang/StringBuilder();    [ RR ii. i..][ RR ii. iR.]
+        b0.println(b1.append@extra("offset: ").append@extra(vR2.getOffset()).toString@extra());   [R RR iiiii. RR.] 
+        vR6 = new jx/net/protocol/ip/IPFormat(vR2.getMemory(),vR2.getOffset());    [ RR iiiii. i..][ RR iiiii. iiRR]
+        vR5.setSize((vR6.getTotalLength()-vR6.getHeaderLength()));   [RR RR iiiiii iR..] 
         return vR0.myTCPConsumer.processIP(vR5);   
-  +B276:   #1
-        if vR0.myTCPConsumer==null goto B345;   
-  +B283:   #1
-        vR6 = new jx/net/protocol/ip/IPFormat(vR2.mem,vR2.offset);    [ RR .... i...][ RR .... iiRR]
-        vR5.mem = vR2.mem.getSubRange((vR2.offset+requiresSpace@special()),(vR6.getTotalLength()-vR6.getHeaderLength()));   
+  +B318:   #1
+        if vR0.myTCPConsumer==null goto B397;   
+  +B325:   #1
+        vR6 = new jx/net/protocol/ip/IPFormat(vR2.getMemory(),vR2.getOffset());    [ RR ...... i...][ RR ...... iiRR]
+        vR5.setMemory(vR2.getMemory().getSubRange((vR2.getOffset()+requiresSpace@special()),(vR6.getTotalLength()-vR6.getHeaderLength())));   [RR RR iii... RR..] 
         return vR0.myTCPConsumer.processIP(vR5);   
-  +B345:   #1
-        out.println("  No TCP consumer for this IP packet.");   [RR RR i... RR..] 
-        return vR2.mem;   
-  +B358:   #1
-        if vR0.myICMPConsumer==null goto B412;   
-  +B365:   #1
-        vR5.mem = vR2.mem;   
-        vR5.offset = (vR2.offset+requiresSpace@special());   
-        vR5.size = (vR2.size-requiresSpace@special());   
+  +B397:   #1
+        out.println("  No TCP consumer for this IP packet.");   [RR RR i..... RR..] 
+        return vR2.getMemory();   
+  +B413:   #1
+        if vR0.myICMPConsumer==null goto B479;   
+  +B420:   #1
+        vR5.setMemory(vR2.getMemory());   [R RR i..... RR..] 
+        vR5.setOffset((vR2.getOffset()+requiresSpace@special()));   [R RR ii.... iR..] 
+        vR5.setSize((vR2.Size()-requiresSpace@special()));   [R RR iii... iR..] 
         return vR0.myICMPConsumer.processIP(vR5);   
-  +B412:   #1
-        out.println("  No ICMP consumer for this IP packet.");   [R RR i... RR..] 
-        return vR2.mem;   
-  +B425:   #1
+  +B479:   #1
+        out.println("  No ICMP consumer for this IP packet.");   [R RR i..... RR..] 
+        return vR2.getMemory();   
+  +B495:   #1
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR .... i...][ RR .... iR..]
-        b0.println(b1.append@extra("Unsupported protocol in IP packet: ").append@extra(vR0.dispatch.findName(vi1)).toString@extra());   [R RR iii. RR..] 
-        return vR2.mem;   
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra("Unsupported protocol in IP packet: ").append@extra(vR0.dispatch.findName(vi1)).toString@extra());   [R RR iii... RR..] 
+        return vR2.getMemory();   
   +END:   #1
  }
-// Register: rd 70/70 wr 39 swaps 11 any 1 found 0 dispatch
+// Register: rd 68/68 wr 53 swaps 22 any 1 found 0 dispatch
  
  method getTransmitter1(Ljx/net/PacketsConsumer1;Ljx/net/IPAddress;I)Ljx/net/PacketsConsumer1; {
   +START:   #1
@@ -347,7 +347,7 @@ class jx/net/protocol/ip/IP {
  }
 // Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getTransmitter
  
- method getReceiver()Ljx/buffer/separator/MemoryConsumer; {
+ method getReceiver()Ljx/fs/buffer/separator/MemoryConsumer; {
   +START:   #1
         return new jx/net/protocol/ip/IP$3(vR0);   
   +END:   #1
@@ -391,26 +391,26 @@ class jx/net/protocol/ip/IP {
         vi2 = 0;    
         vR3 = vR1.firstFragment;    
   +B7:   #1
-        if vR3==null goto B80;   
+        if vR3==null goto B82;   
   +B11:   #1
-        if vR3.offset==vi2 goto B65;   
+        if vR3.offset==vi2 goto B67;   
   +B19:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
         b0.println(b1.append@extra(vR1.fragID).append@extra(" not complete. missing ").append@extra(vi2).append@extra(" ... ").append@extra(vR3.offset).toString@extra());   [iR RR iiiii.... RR....] 
         return 0;   
-  +B65:   #1
+  +B67:   #1
         vi2 = (vi2+vR3.size);    
         vR3 = vR3.next;    
         goto +B7;   [iR RR ......... ......]
-  +B80:   #1
-        if vi2==vR1.expectedSize goto B134;   
-  +B88:   #1
+  +B82:   #1
+        if vi2==vR1.expectedSize goto B138;   
+  +B90:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ......... i.....][ RR ......... iR....]
         b0.println(b1.append@extra(vR1.fragID).append@extra(" not complete. got size ").append@extra(vi2).append@extra(" but expected ").append@extra(vR1.expectedSize).toString@extra());   [iR RR iiiii.... RR....] 
         return 0;   
-  +B134:   #1
+  +B138:   #1
         return 1;   
   +END:   #1
  }

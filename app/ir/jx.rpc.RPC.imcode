@@ -70,7 +70,7 @@ class jx/rpc/RPC {
         throw new jx/rpc/RPCException(vR9.toString());   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 44 handler 45 type 44
+0 - 44 handler 45 type 146
  }
 // Register: rd 7/7 wr 4 swaps 0 any 0 found 0 call
  
@@ -109,7 +109,7 @@ EXCEPTIONHANDLER-TABLE:
         return b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-118 - 175 handler 178 type 44
+118 - 175 handler 178 type 146
  }
 // Register: rd 27/27 wr 23 swaps 7 any 0 found 0 callOnly
  
@@ -137,19 +137,19 @@ EXCEPTIONHANDLER-TABLE:
         b0 = vR0.waiters;    
         b1 = new java/lang/Integer(vi1);    [ RR ... i....][ RR ... iiR..]
         b0.put(b1,vR2);   [RRRRR RR ... RRR..] 
-        if vR2.buf!=null goto B156;   
+        if vR2.buf!=null goto B157;   
   +B137:   #1
-        if vR0.debug==0 goto B152;   
+        if vR0.debug==0 goto B153;   
   +B144:   #1
         out.println("blocking in waitForReply");   [RRRRR RR i.. RR...] 
-  +B152:   #1
+  +B153:   #1
         vR2.doWait();   [RRRRR RR ... R....] 
-  +B156:   #1
-        if vR0.debug==0 goto B187;   
-  +B163:   #1
+  +B157:   #1
+        if vR0.debug==0 goto B189;   
+  +B164:   #1
         out.println("inwait:");   [RRRRR RR i.. RR...] 
         xdump@special(vR2.buf,vR2.buf.size());   [RRRRR RR iiR iR...]
-  +B187:   #1
+  +B189:   #1
         vR3.buf = vR2.buf;   
         vR2.buf = 0;   
         vR3.waiter = vR2;   
@@ -169,91 +169,91 @@ EXCEPTIONHANDLER-TABLE:
  method run()V {
   +START:   #1
         vR0.cpuManager.setThreadName("RPC-Receiver");   [ RR i RR] 
-  +B11:   #1
-        if vR0.debug==0 goto B26;   
-  +B18:   #1
+  +B12:   #1
+        if vR0.debug==0 goto B28;   
+  +B19:   #1
         out.println("RPC receiver started.");   [ RR i. RR] 
-  +B26:   #1
+  +B28:   #1
         vR1 = vR0.net.getUDPBuffer();    [ RR .. R.] 
         vR2 = new jx/zero/Memory()[10];    
         vi3 = 0;    
-  +B44:   #1
-        if vi3>=10 goto B69;   
-  +B50:   #1
+  +B46:   #1
+        if vi3>=10 goto B71;   
+  +B52:   #1
         vR2[vi3] = vR0.net.getUDPBuffer(0);   
         vi3++;   
-        goto +B44;   [RRi RR .. ..]
-  +B69:   #1
+        goto +B46;   [RRi RR .. ..]
+  +B71:   #1
         vR0.receiver = vR0.net.getUDPReceiver(vR0.receivePort,vR2);   
-  +B87:   #3
+  +B89:   #3
         vR0.beforeReceive = 1;   
         vR3 = vR0.receiver.receive(vR1);    [RRi RR .. RR.] 
-        vR4 = new jx/rpc/RPCBuffer(vR3,vR3.offset,vR3.size);    [ RR .. i..][ RR .. iiiRR]
+        vR4 = new jx/rpc/RPCBuffer(vR3,vR3.getOffset(),vR3.Size());    [ RR .. i..][ RR .. iiiRR]
         vR5 = read@special(vR4);    [RRRR RR .. R....]
-        if (vR5 instanceof jx/rpc/RPCMsgSuccess)!=0 goto B165;   
-  +B136:   #1
+        if (vR5 instanceof jx/rpc/RPCMsgSuccess)!=0 goto B172;   
+  +B142:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR .. i....][ RR .. iR...]
         b0.println(b1.append@extra("RPC: ignore:").append@extra(vR5).toString@extra());   [RRRRR RR ii. RR...] 
-        goto +B87;   [RRRRR RR ii. .....]
-  +B165:   #1
+        goto +B89;   [RRRRR RR ii. .....]
+  +B172:   #1
         vR6 = (jx/rpc/RPCMsgSuccess)(vR5);    
         vR7 = new java/lang/Integer(vR6.xid);    [ RR ... i....][ RR ... iiR..]
-        if vR0.debug==0 goto B219;   
-  +B193:   #1
+        if vR0.debug==0 goto B227;   
+  +B200:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
         b0.println(b1.append@extra("RPC: received xid=").append@extra(vR7).toString@extra());   [RRRRRRR RR ii. RR...] 
-  +B219:   #1
+  +B227:   #1
         vR8 = (jx/rpc/Waiter)(vR0.waiters.get(vR7));    
-        if vR8!=null goto B333;   
-  +B238:   #1
-        if vR0.debug==0 goto B271;   
-  +B245:   #1
+        if vR8!=null goto B343;   
+  +B246:   #1
+        if vR0.debug==0 goto B280;   
+  +B253:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
         b0.println(b1.append@extra("RPC: No one is interested in this packet. xid=").append@extra(vR7).toString@extra());   [RRRRRRRR RR ii. RR...] 
-  +B271:   #1
-        if vR0.debug==0 goto B286;   
-  +B278:   #1
+  +B280:   #1
+        if vR0.debug==0 goto B296;   
+  +B287:   #1
         out.println("     Keeping it in buffer.");   [RRRRRRRR RR i.. RR...] 
-  +B286:   #1
+  +B296:   #1
         vR9 = (java/util/Vector)(vR0.buffers.get(vR7));    
-        if vR9!=null goto B326;   
-  +B305:   #1
+        if vR9!=null goto B336;   
+  +B315:   #1
         vR9 = new java/util/Vector();    [ RR ... i....][ RR ... iR...]
         vR0.buffers.put(vR7,vR9);   [RRRRRRRRR RR ... RRR..] 
-  +B326:   #1
+  +B336:   #1
         vR9.addElement@extra(vR4);   [RRRRRRRRR RR ... RR...] 
-  +B333:   #1
-        if vR8!=null goto B341;   
-  +B338:   #1
-        goto +B87;   [RRRRRRRRR RR ... .....]
-  +B341:   #1
-        if vR0.debug==0 goto B348;   
+  +B343:   #1
+        if vR8!=null goto B351;   
   +B348:   #1
-        if vR8.buf!=null goto B395;   
-  +B356:   #1
-        if vR0.debug==0 goto B371;   
-  +B363:   #1
+        goto +B89;   [RRRRRRRRR RR ... .....]
+  +B351:   #1
+        if vR0.debug==0 goto B358;   
+  +B358:   #1
+        if vR8.buf!=null goto B406;   
+  +B366:   #1
+        if vR0.debug==0 goto B382;   
+  +B373:   #1
         out.println("new buffer");   [RRRRRRRRR RR i.. RR...] 
-  +B371:   #1
+  +B382:   #1
         vR8.buf = vR0.net.getUDPBuffer(vR4.buf.size());   
-  +B395:   #1
+  +B406:   #1
         vR8.buf.copyFromMemory(vR4.buf,0,0,vR4.buf.size());   [RRRRRRRRR RR ii. iiiRR] 
-        if vR0.debug==0 goto B438;   
-  +B430:   #1
+        if vR0.debug==0 goto B450;   
+  +B441:   #1
         out.println("notify waiter");   [RRRRRRRRR RR i.. RR...] 
-  +B438:   #1
+  +B450:   #1
         vR8.unblock();   [RRRRRRRRR RR ... R....] 
-        goto +B87;   [RRRRRRRRR RR ... .....]
-  +H446<caught exception>:   #2 reference
+        goto +B89;   [RRRRRRRRR RR ... .....]
+  +H458<caught exception>:   #2 reference
         vR1 = <caught exception>;    
         out.println(vR1);   [RRRRRRRRR RR ... RR...] 
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-11 - 446 handler 446 type 44
+12 - 458 handler 458 type 146
  }
 // Register: rd 52/52 wr 50 swaps 14 any 6 found 1 run
  
@@ -284,11 +284,11 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         vR3 = vR1.receive(vR2.getMemory@extra());    [  i RR] 
         vR0.cpuManager.recordEvent(vR0.event_rcv);    
-        vR2.init(vR3,vR3.offset,vR3.size);   [R  iii iiRR] 
+        vR2.init(vR3,vR3.getOffset(),vR3.Size());   [R  iii iiRR] 
         return vR2;   
   +END:   #1
  }
-// Register: rd 6/6 wr 4 swaps 2 any 0 found 0 receive
+// Register: rd 7/7 wr 5 swaps 2 any 0 found 0 receive
  
  method replyOnly(ILjx/net/IPAddress;ILjx/rpc/RPCBuffer;)Ljx/rpc/RPCBuffer; {
   +START:   #1
@@ -307,7 +307,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR4;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-16 - 49 handler 52 type 44
+16 - 49 handler 52 type 146
  }
 // Register: rd 6/6 wr 6 swaps 1 any 0 found 0 replyOnly
  

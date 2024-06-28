@@ -97,7 +97,7 @@ class java/net/URLStreamHandler {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-173 - 180 handler 183 type 11
+173 - 180 handler 183 type 39
  }
 // Register: rd 55/55 wr 43 swaps 12 any 12 found 4 parseURL
  

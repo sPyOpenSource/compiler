@@ -68,7 +68,7 @@ class java/security/Signer {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-14 - 40 handler 43 type 13
+14 - 40 handler 43 type 47
  }
 // Register: rd 8/8 wr 4 swaps 2 any 1 found 0 setKeyPair
  

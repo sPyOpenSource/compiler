@@ -14,7 +14,7 @@ class java/util/Collections$UnmodifiableMap$UnmodifiableEntrySet {
         <operant>;   
         <operant>;   
         <operant>;   
-        return -1;   
+        return 4;   
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 1 found 0 entryConsumer

@@ -89,7 +89,7 @@ class java/security/Identity {
   +B8:   #1
         vR2.checkSecurityAccess("addIdentityCertificate");   [R R i RR] 
   +B14:   #1
-        if vR0.certificates.size@extra()<=0 goto B56;   
+        if vR0.certificates.isEmpty@extra()!=0 goto B56;   
   +B24:   #1
         if (java/security/Certificate)(vR0.certificates.firstElement@extra()).getPublicKey()==vR0.publicKey goto B56;   
   -B46:   #1

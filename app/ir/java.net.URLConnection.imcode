@@ -335,7 +335,7 @@ class java/net/URLConnection {
         return vi4;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-15 - 21 handler 24 type 49
+15 - 21 handler 24 type 159
  }
 // Register: rd 6/6 wr 4 swaps 0 any 2 found 0 getHeaderFieldInt
  
@@ -381,9 +381,9 @@ EXCEPTIONHANDLER-TABLE:
         throw new java/net/UnknownServiceException(vR1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-33 - 97 handler 98 type 66
-33 - 97 handler 102 type 67
-33 - 97 handler 106 type 68
+33 - 97 handler 98 type 207
+33 - 97 handler 102 type 209
+33 - 97 handler 106 type 211
  }
 // Register: rd 15/15 wr 19 swaps 2 any 2 found 1 getContent
  

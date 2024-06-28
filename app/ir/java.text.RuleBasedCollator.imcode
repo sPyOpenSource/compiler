@@ -293,16 +293,9 @@ class java/text/RuleBasedCollator {
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hashCode
  
  method clone()Ljava/lang/Object; {
-  +START:   #2
-        b0 = vR0.clone@special();    [ R  R] 
-  +B4b0:   #1 reference
-        return b0;   
-  +H5<caught exception>:   #1 reference
-        vR1 = <caught exception>;    
-        return 0;   
+  +START:   #1
+        return vR0.clone@special();   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 4 handler 5 type 59
  }
-// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clone
 }

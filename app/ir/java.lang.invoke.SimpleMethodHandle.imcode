@@ -16,11 +16,11 @@ class java/lang/invoke/SimpleMethodHandle {
 // Register: rd 3/3 wr 1 swaps 0 any 0 found 0 make
  
  method speciesData()Ljava/lang/invoke/BoundMethodHandle$SpeciesData; {
-  +START:   #1
-        return SPECIES_DATA;   
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 speciesData
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 speciesData
  
  method copyWith(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
@@ -37,13 +37,6 @@ class java/lang/invoke/SimpleMethodHandle {
   +END:   #1
  }
 // Register: rd 2/2 wr 6 swaps 2 any 0 found 0 internalProperties
- 
- method fieldCount()I {
-  +START:   #1
-        return 0;   
-  +END:   #1
- }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fieldCount
  
  method copyWithExtendL(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;Ljava/lang/Object;)Ljava/lang/invoke/BoundMethodHandle; {
   +START:   #1
@@ -87,11 +80,10 @@ class java/lang/invoke/SimpleMethodHandle {
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 internalProperties
  
- method <clinit>()V {
+ method copyWith(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/LambdaForm;)Ljava/lang/invoke/MethodHandle; {
   +START:   #1
-        SPECIES_DATA = EMPTY;   
-        return;   
+        return vR0.copyWith@extra(vR1,vR2);   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 copyWith
 }

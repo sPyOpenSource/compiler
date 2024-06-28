@@ -216,10 +216,10 @@ class jx/scheduler/LLMtR {
  method MoveToRear(Ljx/scheduler/LLMtR$DomainContainer;)V {
   +START:   #1
         vi2 = vR0.tokens.indexOf(vR1);    [ R  RR] 
-        if vi2!=-1 goto B24;   
+        if vi2!=-1 goto B25;   
   -B14:   #1
         throw new java/lang/Error("system error!");   
-  +B24:   #1
+  +B25:   #1
         vR0.tokens.remove(vi2);   [i R . iR.] 
         vR0.Combine_Elements@special(vi2);   [i R . iR.] 
         vR0.tokens.add(vR1);   [i R . RR.] 
