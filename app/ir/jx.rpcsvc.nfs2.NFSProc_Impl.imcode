@@ -1,0 +1,1059 @@
+class jx/rpcsvc/nfs2/NFSProc_Impl {
+ 
+ method <init>(Ljx/fs/FS;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.inodes = new jx/fs/Node()[1024];   
+        vR0.fireProfiler = 1;   
+        vR0.memMgr = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vR0.readbuffer = vR0.memMgr.alloc(4096);   
+        vR0.useAttrCache = 1;   
+        vR0.debugAttrCache = 0;   
+        vR0.attrCache_cacheMisses = 0;   
+        vR0.attrCache_cacheHits = 0;   
+        vR0.useLookupCache = 0;   
+        vR0.debugLookupCache = 0;   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.event_getattr_in = vR0.cpuManager.createNewEvent("NFSGetattrIn");   
+        vR0.event_getattr_out = vR0.cpuManager.createNewEvent("NFSGetattrOut");   
+        vR0.fs = vR1;   
+        vR2 = (jx/zero/Clock)(getInitialNaming@special().lookup("Clock"));    
+        vR0.epoch = vR2.getTicks_low();   
+        vR0.rootInode = 0;   
+  +B163:   #1
+        vR0.rootInode = vR1.lookup("/");   
+  +B175:   #1
+        goto +B187;   [R RR ...... ..]
+  -H178<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B187:   #1
+        vR0.profiler = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));   
+        b1 = new jx/rpcsvc/nfs2/LookupCache_2ndImpl(vR0.debugLookupCache);    [ RR i..... i.][ RR i..... ibR]
+        vR0.lookupCache = b1;   
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR i..... i..][ RR i..... iR.]
+        vR0.helperMFh = b1;   
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR i..... i..][ RR i..... iR.]
+        vR0.helperDirMFh = b1;   
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+163 - 175 handler 178 type 114
+ }
+// Register: rd 37/37 wr 21 swaps 7 any 0 found 0 <init>
+ 
+ method nullproc()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nullproc
+ 
+ method getattr(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/AttrStat; {
+  +START:   #1
+        vR0.cpuManager.recordEvent(vR0.event_getattr_in);    
+        if vR0.helperMFh!=null goto B31;   
+  +B20:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B31:   #1
+        if vR0.helperDirMFh!=null goto B49;   
+  +B38:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B49:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR i RR] 
+  +B60:   #7
+        vR2 = vR0.getFAttr@special(vR0.helperMFh);    [ RR i RR] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        b0 = new jx/rpcsvc/nfs2/AttrStatOK(vR2);    [ RR i i.][ RR i. iRR]
+  +B90b0:   #7 reference
+        return b0;   
+  +H91<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (InodeIOException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrIO();   
+  +H121<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (InodeNotFoundException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNoEnt();   
+  +H151<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (NoDirectoryInodeException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNotDir();   
+  +H181<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (NotExistException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNoEnt();   
+  +H211<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (PermissionException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrAcces();   
+  +H241<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (FSException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrIO();   
+  +H271<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("----------------------------> Exception (StaleHandleException) in GETATTR");   [R RR i. RR.] 
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrStale();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+60 - 90 handler 91 type 169
+60 - 90 handler 121 type 188
+60 - 90 handler 151 type 195
+60 - 90 handler 181 type 202
+60 - 90 handler 211 type 206
+60 - 90 handler 241 type 213
+60 - 90 handler 271 type 217
+ }
+// Register: rd 13/13 wr 28 swaps 9 any 0 found 0 getattr
+ 
+ method setattr(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/AttrStat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR i RR] 
+  +B47:   #7
+        vR3 = vR0.getNode@special(vR0.helperMFh);    [ RR i RR] 
+        vR4 = vR0.setAttr@special(vR3,vR0.helperMFh,vR2);    [R RR ii RRRR] 
+        b0 = new jx/rpcsvc/nfs2/AttrStatOK(vR4);    [ RR ii i...][ RR ii. iRR.]
+  +B77b0:   #7 reference
+        return b0;   
+  +H78<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrIO();   
+  +H101<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNoEnt();   
+  +H124<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNotDir();   
+  +H147<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrNoEnt();   
+  +H170<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrAcces();   
+  +H193<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrIO();   
+  +H216<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/AttrStatErrStale();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+47 - 77 handler 78 type 169
+47 - 77 handler 101 type 188
+47 - 77 handler 124 type 195
+47 - 77 handler 147 type 202
+47 - 77 handler 170 type 206
+47 - 77 handler 193 type 213
+47 - 77 handler 216 type 217
+ }
+// Register: rd 15/15 wr 16 swaps 3 any 0 found 0 setattr
+ 
+ method root()V {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 root
+ 
+ method lookup(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        if vR0.useLookupCache==0 goto B213;   
+  +B54:   #1
+        vR5 = vR0.lookupCache.getEntry(vR2.data,vR0.helperDirMFh.identifier);    [ RR ii iRR] 
+        if vR5!=null goto B185;   
+  +B81:   #1
+        vR4 = vR0.getNode@special(vR0.helperDirMFh);    [??R RR i. RR.] 
+        if vR4!=null goto B104;   
+  +B96:   #1
+        return new jx/rpcsvc/nfs2/DirOpResNoSuchFile();   
+  +B104:   #1
+        vR3 = vR4.lookup(vR2.data);    [?RR RR i. RR.] 
+        if vR3==null goto B153;   
+  +B120:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle(vR0.helperDirMFh.deviceIdentifier,vR3.getIdentifier(),vR3.getVersion());    [ RR .. i..][ RR .. iiiiR]
+        vR0.helperMFh = b1;   
+        goto +B158;   [RRR RR .. .....]
+  +B153:   #1
+        vR0.helperMFh = 0;   
+  +B158:   #1
+        vR0.lookupCache.addEntry(vR2.data,vR0.helperDirMFh.identifier,vR0.helperMFh);   [RRR RR iiR RiRR.] 
+        goto +B194;   [RRR RR iiR .....]
+  +B185:   #1
+        vR0.helperMFh = vR5.fh;   
+  +B194:   #1
+        if vR0.debugLookupCache==0 goto B277;   
+  +B201:   #1
+        vR0.lookupCache.printStatistics();   [RRR RR ... R....] 
+        goto +B277;   [RRR RR ... .....]
+  +B213:   #1
+        vR4 = vR0.getNode@special(vR0.helperDirMFh);    [RRR RR i.. RR...] 
+        vR3 = vR4.lookup(vR2.data);    [RRR RR ii. RR...] 
+        if vR3==null goto B272;   
+  +B239:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle(vR0.helperDirMFh.deviceIdentifier,vR3.getIdentifier(),vR3.getVersion());    [ RR ... i....][ RR ... iiiiR]
+        vR0.helperMFh = b1;   
+        goto +B277;   [RRR RR ... .....]
+  +B272:   #1
+        vR0.helperMFh = 0;   
+  +B277:   #3
+        if vR0.helperMFh!=null goto B292;   
+  +B284:   #1
+        return new jx/rpcsvc/nfs2/DirOpResNoSuchFile();   
+  +B292:   #8
+        b0 = new jx/rpcsvc/nfs2/DirOpResOK(vR0.helperMFh.getFHandle(),vR0.getFAttr@special(vR0.helperMFh));    [ RR ... i....][ RR .i. iRRR.]
+  +B314b0:   #7 reference
+        return b0;   
+  +H315<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrIO();   
+  +H325<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResNoSuchFile();   
+  +H335<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrNotDir();   
+  +H345<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrStale();   
+  +H355<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrAcces();   
+  +H365<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrIO();   
+  +H375<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrStale();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+47 - 103 handler 315 type 169
+104 - 291 handler 315 type 169
+292 - 314 handler 315 type 169
+47 - 103 handler 325 type 188
+104 - 291 handler 325 type 188
+292 - 314 handler 325 type 188
+47 - 103 handler 335 type 195
+104 - 291 handler 335 type 195
+292 - 314 handler 335 type 195
+47 - 103 handler 345 type 202
+104 - 291 handler 345 type 202
+292 - 314 handler 345 type 202
+47 - 103 handler 355 type 206
+104 - 291 handler 355 type 206
+292 - 314 handler 355 type 206
+47 - 103 handler 365 type 213
+104 - 291 handler 365 type 213
+292 - 314 handler 365 type 213
+47 - 103 handler 375 type 217
+104 - 291 handler 375 type 217
+292 - 314 handler 375 type 217
+ }
+// Register: rd 52/52 wr 31 swaps 8 any 4 found 0 lookup
+ 
+ method readlink(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/ReadLinkRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RRR  i][ RRR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RRR  i.][ RRR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RRR i RR] 
+        vR2 = vR0.getNode@special(vR0.helperMFh);    [ RRR ii RR] 
+        if vR2!=null goto B70;   
+  +B60:   #1
+        return new jx/rpcsvc/nfs2/ReadLinkResError(70);   
+  +B70:   #1
+        if vR2.isSymlink()!=0 goto B88;   
+  +B79:   #1
+        return new jx/rpcsvc/nfs2/ReadLinkResError(1);   
+  +B88:   #4
+        vR3 = vR2.getSymlink();    [R RRR .. R..] 
+        b0 = new jx/rpcsvc/nfs2/ReadLinkResOK;    
+        b1 = b0;    
+        b2 = new jx/rpcsvc/nfs2/DirPath(vR3);    [ RRR .. i..][ RRR .. iRR]
+        b1.<init>@special(b2);   [RR RRR .. RR.] 
+  +B110b0:   #3 reference
+        return b0;   
+  +H111<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/ReadLinkResError(2);   
+  +H121<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/ReadLinkResError(5);   
+  +H131<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/ReadLinkResErrStale();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+47 - 69 handler 111 type 202
+70 - 87 handler 111 type 202
+88 - 110 handler 111 type 202
+47 - 69 handler 121 type 213
+70 - 87 handler 121 type 213
+88 - 110 handler 121 type 213
+47 - 69 handler 131 type 217
+70 - 87 handler 131 type 217
+88 - 110 handler 131 type 217
+ }
+// Register: rd 23/23 wr 17 swaps 2 any 2 found 0 readlink
+ 
+ method read(Ljx/rpcsvc/nfs2/FHandle;III)Ljx/rpcsvc/nfs2/ReadRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RRRR  i][ RRRR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RRRR  i.][ RRRR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RRRR i RR] 
+        vR5 = vR0.getNode@special(vR0.helperMFh);    [ RRRR ii RR] 
+        if vR5!=null goto B70;   
+  +B62:   #1
+        return new jx/rpcsvc/nfs2/ReadResError();   
+  +B70:   #1
+        if vi3<=vR0.readbuffer.size() goto B91;   
+  +B83:   #1
+        return new jx/rpcsvc/nfs2/ReadResErrNoEnt();   
+  +B91:   #3
+        vi6 = vR5.read(vR0.readbuffer,vi2,vi3);    [R RRRR i. iiRR] 
+        vR7 = new byte[vi6];    
+        vR0.readbuffer.copyToByteArray(vR7,0,0,vi6);   [RiR RRRR i. iiiRR] 
+        b0 = new jx/rpcsvc/nfs2/ReadResOK;    
+        b1 = b0;    
+        b2 = vR0.getFAttr@special(vR0.helperMFh);    [RiR RRRR ii RR...] 
+        b3 = new jx/rpcsvc/nfs2/NFSData(vR7);    [ RRRR ii i....][ RRRR ii. iRR..]
+        b1.<init>@special(b2,b3);   [RiR RRRR ii. RRR..] 
+  +B151b0:   #2 reference
+        return b0;   
+  +H152<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/ReadResErrStale();   
+  +H175<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/ReadResError();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+47 - 69 handler 152 type 217
+70 - 90 handler 152 type 217
+91 - 151 handler 152 type 217
+47 - 69 handler 175 type 114
+70 - 90 handler 175 type 114
+91 - 151 handler 175 type 114
+ }
+// Register: rd 27/27 wr 16 swaps 4 any 3 found 1 read
+ 
+ method writeCache()V {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 writeCache
+ 
+ method write(Ljx/rpcsvc/nfs2/FHandle;IIILjx/rpcsvc/nfs2/NFSData;)Ljx/rpcsvc/nfs2/AttrStat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR i RR] 
+        vR6 = vR0.getNode@special(vR0.helperMFh);    [ RR ii RR] 
+        if vR6==null goto B179;   
+  +B62:   #1
+        vR7 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR8 = vR7.alloc(vR5.data.length);    [RR RR ii iR] 
+  +B92:   #1
+        vR9 = vR5.data;    
+        vR8.copyFromByteArray(vR9,0,0,vR9.length);   [RRRR RR i. iiiRR] 
+        vR6.write(vR8,vi3,vR9.length);   [RRRR RR ii iiRR.] 
+        vR6.setLastAccessed((vR6.lastAccessed()+10000));   [RRRR RR iii iR...] 
+        vR6.setLastModified((vR6.lastModified()+10000));   [RRRR RR iiii iR...] 
+  +B163:   #1
+        goto +B176;   [RRRR RR .... .....]
+  +H166<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/AttrStatError();   
+  +B176:   #1
+        goto +B187;   [RRRR RR .... .....]
+  +B179:   #1
+        return new jx/rpcsvc/nfs2/AttrStatError();   
+  +B187:   #3
+        vR0.attrCache_lastFhIdentifier = 0;   
+        vR0.attrCache_lastFAttr = 0;   
+        b0 = new jx/rpcsvc/nfs2/AttrStatOK(vR0.getFAttr@special(vR0.helperMFh));    [ RR .... i....][ RR .i.. iRR..]
+  +B212b0:   #2 reference
+        return b0;   
+  +H213<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/AttrStatErrStale();   
+  +H223<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/AttrStatError();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+92 - 163 handler 166 type 114
+47 - 175 handler 213 type 217
+176 - 186 handler 213 type 217
+187 - 212 handler 213 type 217
+47 - 175 handler 223 type 213
+176 - 186 handler 223 type 213
+187 - 212 handler 223 type 213
+ }
+// Register: rd 29/29 wr 22 swaps 9 any 1 found 0 write
+ 
+ method create(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        vR4 = vR0.getNode@special(vR0.helperDirMFh);    [ RR ii RR] 
+        if vR4!=null goto B70;   
+  +B62:   #1
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +B70:   #1
+        if vR4.isDirectory()==0 goto B193;   
+  +B80:   #1
+        vR5 = vR4.create(vR2.data,420);    [R RR i. iRR] 
+  +B96:   #1
+        goto +B114;   [RR RR .. ...]
+  +H99<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vR5 = vR4.lookup(vR2.data);    [RRR RR i. RR.] 
+  +B114:   #1
+        vR0.helperMFh.renew(vR0.helperDirMFh.deviceIdentifier,vR5.getIdentifier(),vR5.getVersion());   [RR RR iii iiiR] 
+        vR0.lookupCache.addEntry(vR2.data,vR0.helperDirMFh.identifier,vR0.helperMFh);   [RR RR iiiiiR RiRR] 
+        vR6 = vR0.getFAttr@special(vR0.helperMFh);    [RR RR iiiiiRi RR..] 
+        return new jx/rpcsvc/nfs2/DirOpResOK(vR0.helperMFh.getFHandle(),vR6);   
+  +B193:   #8
+        b0 = new jx/rpcsvc/nfs2/DirOpResError();    [ RR ........ i...][ RR ........ iR..]
+  +B200b0:   #7 reference
+        return b0;   
+  +H201<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/DirOpResErrStale();   
+  +H224<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrExist();   
+  +H234<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        out.println("NFS_CREATE: Inode existiert nicht.");   [RRR RR i....... RR..] 
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +H253<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrIO();   
+  +H263<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        out.println("NFS_CREATE: Verzeichnis-Inode existiert nicht.");   [RRR RR i....... RR..] 
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +H282<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        out.println("NFS_CREATE: Inode nicht gefunden.");   [RRR RR i....... RR..] 
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +H301<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+80 - 96 handler 99 type 114
+47 - 69 handler 201 type 217
+70 - 192 handler 201 type 217
+193 - 200 handler 201 type 217
+47 - 69 handler 224 type 395
+70 - 192 handler 224 type 395
+193 - 200 handler 224 type 395
+47 - 69 handler 234 type 202
+70 - 192 handler 234 type 202
+193 - 200 handler 234 type 202
+47 - 69 handler 253 type 169
+70 - 192 handler 253 type 169
+193 - 200 handler 253 type 169
+47 - 69 handler 263 type 195
+70 - 192 handler 263 type 195
+193 - 200 handler 263 type 195
+47 - 69 handler 282 type 188
+70 - 192 handler 282 type 188
+193 - 200 handler 282 type 188
+47 - 69 handler 301 type 213
+70 - 192 handler 301 type 213
+193 - 200 handler 301 type 213
+ }
+// Register: rd 32/32 wr 35 swaps 11 any 1 found 0 create
+ 
+ method remove(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        vR3 = vR0.getNode@special(vR0.helperDirMFh);    [ RR ii RR] 
+        if vR3!=null goto B69;   
+  +B60:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B69:   #1
+        if vR3.isDirectory()!=0 goto B87;   
+  +B78:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B87:   #3
+        vR3.unlink(vR2.data);   [R RR i. RR.] 
+        b0 = new jx/rpcsvc/nfs2/Stat(0);    [ RR i. i..][ RR i. iiR]
+  +B105b0:   #2 reference
+        return b0;   
+  +H106<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(70);   
+  +H118<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+47 - 68 handler 106 type 217
+69 - 86 handler 106 type 217
+87 - 105 handler 106 type 217
+47 - 68 handler 118 type 114
+69 - 86 handler 118 type 114
+87 - 105 handler 118 type 114
+ }
+// Register: rd 20/20 wr 14 swaps 3 any 1 found 0 remove
+ 
+ method rename(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR i RR] 
+        vR0.helperDirMFh.renew(vR3.data);   [ RR ii RR] 
+        vR5 = vR0.helperMFh;    
+        vR6 = vR0.helperDirMFh;    
+        vR7 = vR0.getNode@special(vR5);    [RR RR ii RR] 
+        vR8 = vR0.getNode@special(vR6);    [RRR RR ii RR] 
+        if vR7==null goto B96;   
+  +B91:   #1
+        if vR8!=null goto B105;   
+  +B96:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B105:   #1
+        if vR7.isDirectory()==0 goto B152;   
+  +B115:   #1
+        if vR8.isDirectory()==0 goto B152;   
+  +B125:   #1
+        vR7.rename(vR2.data,vR8,vR4.data);   [RRRR RR iR RRRR] 
+        return new jx/rpcsvc/nfs2/Stat(0);   
+  +B152:   #4
+        b0 = new jx/rpcsvc/nfs2/Stat(1);    [ RR ... i...][ RR ... iiR.]
+  +B160b0:   #2 reference
+        return b0;   
+  +H161<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(70);   
+  +H173<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+70 - 104 handler 161 type 217
+105 - 151 handler 161 type 217
+152 - 160 handler 161 type 217
+70 - 104 handler 173 type 114
+105 - 151 handler 173 type 114
+152 - 160 handler 173 type 114
+ }
+// Register: rd 27/27 wr 18 swaps 3 any 2 found 0 rename
+ 
+ method link(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 link
+ 
+ method symlink(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/DirPath;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/Stat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        vR5 = vR0.helperDirMFh;    
+        vR6 = vR0.getNode@special(vR5);    [R RR i RR] 
+        if vR6!=null goto B75;   
+  +B66:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B75:   #1
+        if vR6.isDirectory()!=0 goto B94;   
+  +B85:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B94:   #3
+        vR7 = vR6.symlink(vR3.data,vR2.data);    [RR RR iR RRR] 
+        vR0.helperMFh.renew(vR5.deviceIdentifier,vR7.getIdentifier(),vR7.getVersion());   [RRR RR iRiii iiiR] 
+        vR8 = vR0.helperMFh;    
+        vR9 = vR0.getFAttr@special(vR8);    [RRRR RR iRiii RR..] 
+        b0 = new jx/rpcsvc/nfs2/Stat(0);    [ RR iRiii i...][ RR iRiii. iiR.]
+  +B159b0:   #2 reference
+        return b0;   
+  +H160<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(70);   
+  +H172<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+53 - 74 handler 160 type 217
+75 - 93 handler 160 type 217
+94 - 159 handler 160 type 217
+53 - 74 handler 172 type 213
+75 - 93 handler 172 type 213
+94 - 159 handler 172 type 213
+ }
+// Register: rd 29/29 wr 23 swaps 4 any 1 found 0 symlink
+ 
+ method mkdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        vR4 = vR0.helperDirMFh;    
+        vR5 = vR0.getNode@special(vR4);    [R RR i RR] 
+        if vR5!=null goto B74;   
+  +B66:   #1
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +B74:   #1
+        if vR5.isDirectory()!=0 goto B92;   
+  +B84:   #1
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +B92:   #4
+        vR6 = vR5.mkdir(vR2.data,493);    [RR RR i iRR] 
+        vR0.helperMFh.renew(vR4.deviceIdentifier,vR6.getIdentifier(),vR6.getVersion());   [RRR RR iiii iiiR] 
+        vR7 = vR0.helperMFh;    
+        vR0.lookupCache.addEntry(vR2.data,vR4.identifier,vR7);   [RRRR RR iiiiii RiRR] 
+        vR8 = vR0.getFAttr@special(vR7);    [RRRR RR iiiiii RR..] 
+        b0 = new jx/rpcsvc/nfs2/DirOpResOK(vR7.getFHandle(),vR8);    [ RR iiiiii i...][ RR iiiiii. iRRR]
+  +B182b0:   #3 reference
+        return b0;   
+  +H183<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrStale();   
+  +H193<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResErrExist();   
+  +H203<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/DirOpResError();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+53 - 73 handler 183 type 217
+74 - 91 handler 183 type 217
+92 - 182 handler 183 type 217
+53 - 73 handler 193 type 395
+74 - 91 handler 193 type 395
+92 - 182 handler 193 type 395
+53 - 73 handler 203 type 213
+74 - 91 handler 203 type 213
+92 - 182 handler 203 type 213
+ }
+// Register: rd 29/29 wr 21 swaps 5 any 1 found 0 mkdir
+ 
+ method rmdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperDirMFh.renew(vR1.data);   [ RR i RR] 
+        vR3 = vR0.helperDirMFh;    
+        vR4 = vR0.getNode@special(vR3);    [R RR i RR] 
+        if vR4!=null goto B73;   
+  +B64:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B73:   #1
+        if vR4.isDirectory()!=0 goto B92;   
+  +B83:   #1
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +B92:   #3
+        vR4.rmdir(vR2.data);   [RR RR i RR.] 
+        b0 = new jx/rpcsvc/nfs2/Stat(0);    [ RR i i..][ RR i. iiR]
+  +B111b0:   #2 reference
+        return b0;   
+  +H112<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(70);   
+  +H124<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/Stat(1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+52 - 72 handler 112 type 217
+73 - 91 handler 112 type 217
+92 - 111 handler 112 type 217
+52 - 72 handler 124 type 114
+73 - 91 handler 124 type 114
+92 - 111 handler 124 type 114
+ }
+// Register: rd 20/20 wr 14 swaps 2 any 1 found 0 rmdir
+ 
+ method readdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/NFSCookie;I)Ljx/rpcsvc/nfs2/ReadDirRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR?RR  i][ RR?RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR?RR  i.][ RR?RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR?RR i RR] 
+        vR4 = vR0.helperMFh;    
+        vR5 = vR0.getNode@special(vR4);    [R RR?RR i RR] 
+        if vR5!=null goto B74;   
+  +B66:   #1
+        return new jx/rpcsvc/nfs2/ReadDirResError();   
+  +B74:   #1
+        if vR5.isDirectory()!=0 goto B92;   
+  +B84:   #1
+        return new jx/rpcsvc/nfs2/ReadDirResError();   
+  +B92:   #3
+        vR6 = vR5.readdirNames();    [RR RR?RR . R.] 
+        vR7 = 0;    
+        vR8 = vR6;    
+        vi9 = vR8.length;    
+        vi10 = 0;    
+  +B116:   #1
+        if vi10>=vi9 goto B204;   
+  +B123:   #1
+        vR11 = vR8[vi10];    
+        vi12 = vR5.getNode(vR11).getIdentifier();    [RRRRRiiR RR?RR . R.] [RRRRRiiR RR?RR R RR] 
+        b0 = new jx/rpcsvc/nfs2/Entry;    
+        b1 = b0;    
+        b3 = new jx/rpcsvc/nfs2/Name(vR11);    [ RR?RR . i.][ RR?RR . iRR]
+        b4 = new jx/rpcsvc/nfs2/NFSCookie(vi12);    [ RR?RR . i..][ RR?RR . iiR]
+        b1.<init>@special(vi12,b3,b4);   [RRRRRiiRi RR?RR . RRiR] 
+        vR13 = b0;    
+        if vR7==null goto B194;   
+  +B180:   #1
+        b1 = new jx/rpcsvc/nfs2/Entries(vR7);    [ RR?RR . i...][ RR?RR . iRR.]
+        vR13.next = b1;   
+  +B194:   #1
+        vR7 = vR13;    
+        vi10++;   
+        goto +B116;   [RRRRRiiRiR RR?RR . ....]
+  +B204:   #1
+        vR8 = new jx/rpcsvc/nfs2/Entries(vR7);    [ RR?RR . i...][ RR?RR . iRR.]
+        b0 = new jx/rpcsvc/nfs2/ReadDirResOK(vR8,1);    [ RR?RR . i...][ RR?RR . iiRR]
+  +B225b0:   #2 reference
+        return b0;   
+  +H226<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/ReadDirResErrStale();   
+  +H236<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        return new jx/rpcsvc/nfs2/ReadDirResError();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+53 - 73 handler 226 type 217
+74 - 91 handler 226 type 217
+92 - 225 handler 226 type 217
+53 - 73 handler 236 type 213
+74 - 91 handler 236 type 213
+92 - 225 handler 236 type 213
+ }
+// Register: rd 41/41 wr 30 swaps 1 any 8 found 0 readdir
+ 
+ method statfs(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/StatFSRes; {
+  +START:   #1
+        if vR0.helperMFh!=null goto B18;   
+  +B7:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i][ RR  iR]
+        vR0.helperMFh = b1;   
+  +B18:   #1
+        if vR0.helperDirMFh!=null goto B36;   
+  +B25:   #1
+        b1 = new jx/rpcsvc/nfs2/MappedFHandle();    [ RR  i.][ RR  iR]
+        vR0.helperDirMFh = b1;   
+  +B36:   #1
+        vR0.helperMFh.renew(vR1.data);   [ RR i RR] 
+        vR3 = vR0.helperMFh;    
+  +B52:   #7
+        vR2 = vR0.getNode@special(vR3);    [?R RR . RR] 
+        vR4 = vR2.getStatFS();    [RR RR . R.] 
+        vR5 = new jx/rpcsvc/nfs2/StatFSResOK();    [ RR . i.][ RR . iR]
+        vR5.tsize = 0;   
+        vR5.bsize = 0;   
+        vR5.blocks = 0;   
+        vR5.bfree = 0;   
+        vR5.bavail = 0;   
+        vR5.tsize = 8192;   
+        vR5.bavail = 60057800;   
+        b0 = vR5;    
+  +B138b0:   #7 reference
+        return b0;   
+  +H139<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrIO();   
+  +H162<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrNoEnt();   
+  +H185<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrNotDir();   
+  +H208<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrNoEnt();   
+  +H231<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrAcces();   
+  +H254<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrIO();   
+  +H277<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
+        return new jx/rpcsvc/nfs2/StatFSResErrStale();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+52 - 138 handler 139 type 169
+52 - 138 handler 162 type 188
+52 - 138 handler 185 type 195
+52 - 138 handler 208 type 202
+52 - 138 handler 231 type 206
+52 - 138 handler 254 type 213
+52 - 138 handler 277 type 217
+ }
+// Register: rd 20/20 wr 15 swaps 1 any 1 found 0 statfs
+ 
+ method getNode(Ljx/rpcsvc/nfs2/MappedFHandle;)Ljx/fs/Node; {
+  +START:   #1
+        b0 = vR0.fs;    
+        b1 = new java/lang/Integer(vR1.deviceIdentifier);    [ RR  i][ RR . iiR]
+        vR2 = b0.getNode(b1.intValue(),vR1.identifier);    [ RR ii iiR] 
+        if vR2.getVersion()==vR1.generation goto B49;   
+  -B41:   #1
+        throw new jx/rpcsvc/nfs2/StaleHandleException();   
+  +B49:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 1 any 0 found 0 getNode
+ 
+ method getFAttr(Ljx/rpcsvc/nfs2/MappedFHandle;)Ljx/rpcsvc/nfs2/FAttr; {
+  +START:   #1
+        if vR0.useAttrCache==0 goto B138;   
+  +B7:   #1
+        if vR1.identifier==vR0.attrCache_lastFhIdentifier goto B64;   
+  +B18:   #1
+        vR2 = vR0.getNode@special(vR1);    [ RR  RR] 
+        vR3 = vR0.getFAttr@special(vR2,vR1);    [R RR  RRR] 
+        vR0.attrCache_lastFhIdentifier = vR1.identifier;   
+        vR0.attrCache_lastFAttr = vR3;   
+        if vR0.debugAttrCache==0 goto B86;   
+  +B51:   #1
+        vR0.attrCache_cacheMisses = (vR0.attrCache_cacheMisses+1);   
+        goto +B86;   [RR RR  ...]
+  +B64:   #1
+        if vR0.debugAttrCache==0 goto B81;   
+  +B71:   #1
+        vR0.attrCache_cacheHits = (vR0.attrCache_cacheHits+1);   
+  +B81:   #1
+        vR3 = vR0.attrCache_lastFAttr;    
+  +B86:   #2
+        if vR0.debugAttrCache==0 goto B151;   
+  +B93:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("AttrCache: ").append@extra(vR0.attrCache_cacheHits).append@extra(",").append@extra(vR0.attrCache_cacheMisses).toString@extra());   [RR RR iiiii... RR...] 
+        goto +B151;   forward return[RR RR iiiii... .....]
+  +B138:   #1
+        vR2 = vR0.getNode@special(vR1);    [RR RR ........ RR...] 
+        vR3 = vR0.getFAttr@special(vR2,vR1);    [RR RR ........ RRR..] 
+  +B151:   #2
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 16 swaps 5 any 0 found 0 getFAttr
+ 
+ method getFAttr(Ljx/fs/Node;Ljx/rpcsvc/nfs2/MappedFHandle;)Ljx/rpcsvc/nfs2/FAttr; {
+  +START:   #2
+        vR3 = new jx/rpcsvc/nfs2/FAttr();    [ RR  i][ RR  iR]
+        b1 = new jx/rpcsvc/nfs2/FType();    [ RR  i.][ RR  iR]
+        vR3.type = b1;   
+        vR3.mode = 0;   
+        if vR1.isDirectory()==0 goto B53;   
+  +B33:   #1
+        vR3.type.ftype = 2;   
+        vR3.mode = (vR3.mode | 16384);   
+  +B53:   #1
+        if vR1.isFile()==0 goto B82;   
+  +B62:   #1
+        vR3.type.ftype = 1;   
+        vR3.mode = (vR3.mode | 32768);   
+  +B82:   #1
+        if vR1.isSymlink()==0 goto B111;   
+  +B91:   #1
+        vR3.type.ftype = 5;   
+        vR3.mode = (vR3.mode | 40960);   
+  +B111:   #1
+        if vR1.isWritable()==0 goto B153;   
+  +B120:   #1
+        vR3.mode = (vR3.mode | 128);   
+        vR3.mode = (vR3.mode | 16);   
+        vR3.mode = (vR3.mode | 2);   
+  +B153:   #1
+        if vR1.isReadable()==0 goto B195;   
+  +B162:   #1
+        vR3.mode = (vR3.mode | 256);   
+        vR3.mode = (vR3.mode | 32);   
+        vR3.mode = (vR3.mode | 4);   
+  +B195:   #1
+        if vR1.isExecutable()==0 goto B236;   
+  +B204:   #1
+        vR3.mode = (vR3.mode | 64);   
+        vR3.mode = (vR3.mode | 8);   
+        vR3.mode = (vR3.mode | 1);   
+  +B236:   #1
+        vR3.nlink = vR1.i_nlinks();   
+        vR3.uid = 500;   
+        vR3.gid = 600;   
+        vR3.size = vR1.getLength();   
+        vR1.getStatFS();   [R RR  R.] 
+        vR3.blocksize = 0;   
+        vR3.blocks = ((vR3.size+1024)/1024);   
+        vR3.fileid = vR1.getIdentifier();   
+        vR3.fsid = vR2.deviceIdentifier;   
+        vR3.rdev = 42;   
+        b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastAccessed(),0);    [ RR  i.][ RR . iiiR]
+        vR3.atime = b1;   
+        b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastChanged(),0);    [ RR . i...][ RR . iiiR]
+        vR3.ctime = b1;   
+        b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastModified(),0);    [ RR . i...][ RR . iiiR]
+        vR3.mtime = b1;   
+        b0 = vR3;    
+  +B377b0:   #1 reference
+        return b0;   
+  -H378<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/Error();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 377 handler 378 type 114
+ }
+// Register: rd 65/65 wr 10 swaps 0 any 1 found 0 getFAttr
+ 
+ method setAttr(Ljx/fs/Node;Ljx/rpcsvc/nfs2/MappedFHandle;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/FAttr; {
+  +START:   #1
+        if vR3.atime.seconds==-1 goto B24;   
+  +B11:   #1
+        vR1.setLastAccessed(vR3.atime.seconds);   [  i iR] 
+  +B24:   #1
+        if vR3.mtime.seconds==-1 goto B48;   
+  +B35:   #1
+        vR1.setLastModified(vR3.mtime.seconds);   [  i iR] 
+  +B48:   #1
+        return vR0.getFAttr@special(vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 2 any 0 found 0 setAttr
+}

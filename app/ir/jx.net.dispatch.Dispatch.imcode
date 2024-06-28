@@ -23,7 +23,7 @@ class jx/net/dispatch/Dispatch {
  }
 // Register: rd 11/11 wr 5 swaps 0 any 2 found 0 add
  
- method registerConsumer(Ljx/buffer/separator/MemoryConsumer;Ljava/lang/String;)Z {
+ method registerConsumer(Ljx/fs/buffer/separator/MemoryConsumer;Ljava/lang/String;)Z {
   +START:   #1
         vR3 = vR0.upperLayers;    
         vi4 = vR3.length;    

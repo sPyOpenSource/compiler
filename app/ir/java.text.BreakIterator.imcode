@@ -45,7 +45,7 @@ class java/text/BreakIterator {
         return new java/text/DefaultBreakIterator(vR1,1);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 40 handler 43 type 14
+0 - 40 handler 43 type 47
  }
 // Register: rd 13/13 wr 16 swaps 4 any 3 found 1 getWordInstance
  
@@ -80,7 +80,7 @@ EXCEPTIONHANDLER-TABLE:
         return new java/text/DefaultBreakIterator(vR1,0);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 40 handler 43 type 14
+0 - 40 handler 43 type 47
  }
 // Register: rd 13/13 wr 16 swaps 4 any 3 found 1 getSentenceInstance
  
@@ -115,7 +115,7 @@ EXCEPTIONHANDLER-TABLE:
         return new java/text/DefaultBreakIterator(vR1,0);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 40 handler 43 type 14
+0 - 40 handler 43 type 47
  }
 // Register: rd 13/13 wr 16 swaps 4 any 3 found 1 getLineInstance
  

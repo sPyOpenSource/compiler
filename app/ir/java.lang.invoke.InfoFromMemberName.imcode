@@ -77,22 +77,22 @@ class java/lang/invoke/InfoFromMemberName {
  
  method convertToMemberName(BLjava/lang/reflect/Member;)Ljava/lang/invoke/MemberName; {
   +START:   #1
-        if (vR1 instanceof java/lang/reflect/Method)==0 goto B30;   
+        if (vR1 instanceof java/lang/reflect/Method)==0 goto B32;   
   +B7:   #1
-        if vi0!=0 goto B15;   
-  +B11:   #1
+        if vi0!=7 goto B17;   
+  +B13:   #1
         b0 = 1;    
-        goto +B16b0;   [ i  ..]
-  +B15:   #1
+        goto +B18b0;   [ i  ..]
+  +B17:   #1
         b0 = 0;    
-  +B16b0:   #1 int
+  +B18b0:   #1 int
         vi2 = b0;    
         return new java/lang/invoke/MemberName((java/lang/reflect/Method)(vR1),vi2);   
-  +B30:   #1
-        if (vR1 instanceof java/lang/reflect/Constructor)==0 goto B49;   
-  +B37:   #1
+  +B32:   #1
+        if (vR1 instanceof java/lang/reflect/Constructor)==0 goto B51;   
+  +B39:   #1
         return new java/lang/invoke/MemberName((java/lang/reflect/Constructor)(vR1));   
-  -B49:   #1
+  -B51:   #1
         throw new java/lang/InternalError(vR1.getClass().getName@extra());   
   +END:   #1
  }

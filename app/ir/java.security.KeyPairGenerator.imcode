@@ -55,34 +55,28 @@ class java/security/KeyPairGenerator {
  method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/KeyPairGenerator; {
   +START:   #4
         vR3 = forName@special(vR0).newInstance@extra();    [ R . R] [ R R R]
-        if (vR3 instanceof java/security/KeyPairGeneratorSpi)==0 goto B32;   
-  +B15:   #1
-        vR4 = new java/security/DummyKeyPairGenerator((java/security/KeyPairGeneratorSpi)(vR3),vR1);    [ R . i.][ R . iRRR]
-        goto +B44;   [RR R . ....]
-  +B32:   #1
         vR4 = (java/security/KeyPairGenerator)(vR3);    
         vR4.algorithm = vR1;   
-  +B44:   #1
         vR4.provider = vR2;   
         b0 = vR4;    
-  +B52b0:   #3 reference
+  +B28b0:   #3 reference
         return b0;   
-  -H53<caught exception>:   #1 reference
+  -H29<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         throw new java/security/NoSuchAlgorithmException("Class not found");   
-  -H64<caught exception>:   #1 reference
+  -H40<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
-  -H75<caught exception>:   #1 reference
+  -H51<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         throw new java/security/NoSuchAlgorithmException("Illegal Access");   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 52 handler 53 type 23
-0 - 52 handler 64 type 25
-0 - 52 handler 75 type 27
+0 - 28 handler 29 type 68
+0 - 28 handler 40 type 72
+0 - 28 handler 51 type 76
  }
-// Register: rd 16/16 wr 12 swaps 0 any 2 found 2 getInstance
+// Register: rd 11/11 wr 10 swaps 0 any 2 found 1 getInstance
  
  method getProvider()Ljava/security/Provider; {
   +START:   #1
@@ -139,7 +133,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 10 handler 11 type 38
+0 - 10 handler 11 type 102
  }
 // Register: rd 4/4 wr 11 swaps 2 any 0 found 0 genKeyPair
  

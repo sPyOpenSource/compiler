@@ -60,7 +60,7 @@ class java/util/AbstractList {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-12 - 52 handler 55 type 10
+12 - 52 handler 55 type 43
  }
 // Register: rd 12/12 wr 8 swaps 0 any 4 found 0 ensureCapacity
  
@@ -76,7 +76,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method add(ILjava/lang/Object;)V {
   -START:   #1
-        throw new java/util/UnsupportedOperationException();   
+        throw new java/lang/UnsupportedOperationException();   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
@@ -162,7 +162,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method set(ILjava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/util/UnsupportedOperationException();   
+        throw new java/lang/UnsupportedOperationException();   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 set

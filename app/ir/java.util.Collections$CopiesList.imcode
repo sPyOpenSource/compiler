@@ -183,4 +183,11 @@ class java/util/Collections$CopiesList {
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
 }

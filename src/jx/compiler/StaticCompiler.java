@@ -155,7 +155,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("/SubList.class")) continue;
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
-                        if (name.endsWith("BlockIOFile.class")) continue;
+                        //if (name.endsWith("BlockIOFile.class")) continue;
                         if (name.endsWith("StringReader.class")) continue;
                         if (name.startsWith("jx/classfile")) continue;
                         if (name.startsWith("jx/classstore")) continue;

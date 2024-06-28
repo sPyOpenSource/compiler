@@ -1,0 +1,403 @@
+class jx/devices/pci/PCIDeviceImpl {
+ 
+ method <init>(Ljx/devices/pci/PCIAccess;Ljx/devices/pci/PCIAddress;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.haveCapabilities = 0;   
+        vR0.capabilities = 0;   
+        vR0.pcibus = vR1;   
+        vR0.pciaddress = vR2;   
+        vR0.setupCapabilities@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAddress()Ljx/devices/pci/PCIAddress; {
+  +START:   #1
+        return vR0.pciaddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAddress
+ 
+ method readConfig(I)I {
+  +START:   #1
+        return vR0.pcibus.readDeviceConfig(vR0.pciaddress,vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 readConfig
+ 
+ method writeConfig(II)V {
+  +START:   #1
+        vR0.pcibus.writeDeviceConfig(vR0.pciaddress,vi1,vi2);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 writeConfig
+ 
+ method readPackedConfig(III)I {
+  +START:   #1
+        return ((vR0.readConfig@this(vi1) & vi2) >> vi3);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 readPackedConfig
+ 
+ method readPackedConfig(II)I {
+  +START:   #1
+        return (vR0.readConfig@this(vi1) & vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 readPackedConfig
+ 
+ method writePackedConfig(IIII)V {
+  +START:   #1
+        vi5 = (vR0.readConfig@this(vi1) & (vi2 ^ -1));    
+        vR0.writeConfig@this(vi1,(vi5 | ((vi4 << vi3) & vi2)));   [i  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 1 any 0 found 0 writePackedConfig
+ 
+ method writePackedConfig(III)V {
+  +START:   #1
+        vi4 = (vR0.readConfig@this(vi1) & (vi2 ^ -1));    
+        vR0.writeConfig@this(vi1,(vi4 | (vi3 & vi2)));   [i  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 1 any 0 found 0 writePackedConfig
+ 
+ method getVendorID()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(0,65535,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVendorID
+ 
+ method getDeviceID()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(0,-65536,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeviceID
+ 
+ method getSubsystemVendorID()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(11,65535,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSubsystemVendorID
+ 
+ method getSubsystemID()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(11,-65536,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSubsystemID
+ 
+ method getCommand()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(1,65535,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCommand
+ 
+ method setCommand(S)V {
+  +START:   #1
+        vR0.writePackedConfig@this(1,65535,0,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCommand
+ 
+ method getStatus()S {
+  +START:   #1
+        return (short)vR0.readPackedConfig@this(1,-65536,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStatus
+ 
+ method clearStatus(I)V {
+  +START:   #1
+        vR0.writePackedConfig@this(1,-65536,16,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clearStatus
+ 
+ method getRevisionID()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(2,255,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRevisionID
+ 
+ method getClassCode()I {
+  +START:   #1
+        return vR0.readPackedConfig@this(2,-256,8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClassCode
+ 
+ method getHeaderType()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(3,16711680,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeaderType
+ 
+ method getCacheLineSize()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(3,255,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCacheLineSize
+ 
+ method setCachLineSize(B)V {
+  +START:   #1
+        vR0.writePackedConfig@this(3,255,0,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCachLineSize
+ 
+ method getLatencyTimer()I {
+  +START:   #1
+        return vR0.readPackedConfig@this(3,65280,8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLatencyTimer
+ 
+ method setLatencyTimer(B)V {
+  +START:   #1
+        vR0.writePackedConfig@this(3,65280,8,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLatencyTimer
+ 
+ method getBIST()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(3,-16777216,24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBIST
+ 
+ method setBIST(B)V {
+  +START:   #1
+        vR0.writePackedConfig@this(3,-16777216,24,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBIST
+ 
+ method getBaseAddress(I)I {
+  +START:   #1
+        return vR0.readConfig@this((vi1+4));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getBaseAddress
+ 
+ method setBaseAddress(II)V {
+  +START:   #1
+        vR0.writeConfig@this((vi1+4),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setBaseAddress
+ 
+ method getExpansionROMAddress()I {
+  +START:   #1
+        return vR0.readConfig@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getExpansionROMAddress
+ 
+ method setExpansionROMAddress(I)V {
+  +START:   #1
+        vR0.writeConfig@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setExpansionROMAddress
+ 
+ method getMaxLatency()I {
+  +START:   #1
+        return vR0.readPackedConfig@this(15,-16777216,24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaxLatency
+ 
+ method getMinGNT()I {
+  +START:   #1
+        return vR0.readPackedConfig@this(15,16711680,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinGNT
+ 
+ method getInterruptPin()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(15,65280,8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterruptPin
+ 
+ method getInterruptLine()B {
+  +START:   #1
+        return (byte)vR0.readPackedConfig@this(15,255,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterruptLine
+ 
+ method setInterruptLine(B)V {
+  +START:   #1
+        vR0.writePackedConfig@this(15,255,0,vi1);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setInterruptLine
+ 
+ method setupCapabilities()V {
+  +START:   #1
+        if (vR0.getStatus@this() & 16)!=0 goto B11;   
+  +B10:   #1
+        return;   
+  +B11:   #1
+        vi1 = (vR0.readPackedConfig@this(13,255,0)/4);    
+        if vi1!=0 goto B37;   
+  +B28:   #1
+        out.println("capability bit set, but no capability list (uhh??)");   [i  i. RR..] 
+        return;   
+  +B37:   #1
+        vR0.haveCapabilities = 1;   
+        vi2 = vR0.countCapabilities@special(vi1);    [i  .. iR..] 
+        vR0.capabilities = new jx/devices/pci/PCICapability()[vi2];   
+        vi6 = 0;    
+  +B59:   #1
+        if vi6>=vi2 goto B110;   
+  +B65:   #1
+        vi3 = vR0.readConfig@this(vi1);    [ii???i  .. iR..] 
+        vi4 = (vi3 & 255);    
+        vi5 = ((vi3 & 65280) >> 8);    
+        vR0.capabilities[vi6] = createCapability@special(vR0,vi1);   
+        vi1 = (vi5/4);    
+        vi6++;   
+        goto +B59;   [iiiiii  .. ....]
+  +B110:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 11 swaps 1 any 5 found 0 setupCapabilities
+ 
+ method countCapabilities(I)I {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi1==0 goto B24;   
+  +B6:   #1
+        vi2++;   
+        vi1 = (vR0.readPackedConfig@this(vi1,65280,8)/4);    
+        goto +B2;   [i  . ....]
+  +B24:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 2 found 0 countCapabilities
+ 
+ method haveCapabilities()Z {
+  +START:   #1
+        return vR0.haveCapabilities;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 haveCapabilities
+ 
+ method getCapabilities()[Ljx/devices/pci/PCICapability; {
+  +START:   #1
+        if vR0.haveCapabilities==0 goto B12;   
+  +B7:   #1
+        return vR0.capabilities;   
+  -B12:   #1
+        throw new java/lang/Error("no capabilities");   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getCapabilities
+ 
+ method getCapability(B)Ljx/devices/pci/PCICapability; {
+  +START:   #1
+        if vR0.haveCapabilities!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vi2 = 0;    
+  +B11:   #1
+        if vi2>=vR0.capabilities.length goto B46;   
+  +B20:   #1
+        if vR0.capabilities[vi2].getID()!=vi1 goto B40;   
+  +B33:   #1
+        return vR0.capabilities[vi2];   
+  +B40:   #1
+        vi2++;   
+        goto +B11;   [i   .]
+  +B46:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 getCapability
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.pciaddress.toString()).append@extra(": 0x").append@extra(toHexString@special(vR0.readConfig@this(0))).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 8 swaps 3 any 0 found 0 toString
+ 
+ method busmasterCapable()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 busmasterCapable
+ 
+ method enforceBusmaster()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 enforceBusmaster
+ 
+ method readIRQLine()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readIRQLine
+ 
+ method getChild(I)Ljx/devices/Device; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getChild
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSupportedConfigurations
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 open
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+}

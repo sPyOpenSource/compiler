@@ -16,7 +16,7 @@ class gnu/java/security/DefaultPermissionCollection {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-15 - 23 handler 26 type 7
+15 - 23 handler 26 type 26
  }
 // Register: rd 6/6 wr 3 swaps 0 any 0 found 0 <init>
  

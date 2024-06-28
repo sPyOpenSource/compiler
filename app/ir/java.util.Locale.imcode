@@ -565,7 +565,7 @@ class java/util/Locale {
         return vR0.language;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 16 handler 17 type 416
+0 - 16 handler 17 type 864
  }
 // Register: rd 4/4 wr 5 swaps 1 any 0 found 0 getDisplayLanguage
  
@@ -587,7 +587,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR0.country;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 16 handler 17 type 416
+0 - 16 handler 17 type 864
  }
 // Register: rd 4/4 wr 5 swaps 1 any 0 found 0 getDisplayCountry
  
@@ -661,7 +661,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 4 handler 5 type 437
+0 - 4 handler 5 type 918
  }
 // Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
  

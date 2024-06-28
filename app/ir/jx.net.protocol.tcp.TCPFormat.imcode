@@ -30,15 +30,15 @@ class jx/net/protocol/tcp/TCPFormat {
  
  method <init>(Ljx/net/IPData;Ljx/net/IPAddress;Ljx/net/IPAddress;)V {
   +START:   #1
-        vR0.<init>@special(vR1.mem,(vR1.offset+34));   [  ii iRR] 
+        vR0.<init>@special(vR1.getMemory(),(vR1.getOffset()+34));   [  ii iRR] 
         vR0.optionsSet = 0;   
         vR0.sourceAddress = vR2;   
         vR0.destinationAddress = vR3;   
-        vR0.packetsize = vR1.size;   
+        vR0.packetsize = vR1.Size();   
         return;   
   +END:   #1
  }
-// Register: rd 10/10 wr 2 swaps 1 any 0 found 0 <init>
+// Register: rd 11/11 wr 3 swaps 1 any 0 found 0 <init>
  
  method insertSourcePort(I)V {
   +START:   #1
@@ -514,13 +514,13 @@ class jx/net/protocol/tcp/TCPFormat {
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
         b1 = b1.append@extra("	 options       : ");    [ RRR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii RR.] 
-        if vR0.optionsSet==0 goto B436;   
-  +B431b0b1:   #1 reference reference
+        if vR0.optionsSet==0 goto B437;   
+  +B432b0b1:   #1 reference reference
         b2 = "";    
-        goto +B438b0b1b2;   [ RRR ............................................... ...]
-  +B436b0b1:   #1 reference reference
+        goto +B440b0b1b2;   [ RRR ............................................... ...]
+  +B437b0b1:   #1 reference reference
         b2 = "no options";    
-  +B438b0b1b2:   #1 reference reference reference
+  +B440b0b1b2:   #1 reference reference reference
         b0.println(b1.append@extra(b2).toString@extra());   [ RRR i.............................................. RR.] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRR i.............................................. i..][ RRR i.............................................. iR.]

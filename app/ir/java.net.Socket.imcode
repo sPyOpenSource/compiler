@@ -15,7 +15,7 @@ class java/net/Socket {
  
  method <init>(Ljava/lang/String;I)V {
   +START:   #1
-        b1 = new jx/net/IPAddress(vR1);    [ ?R  i][ ?R . iRR]
+        b1 = new jx/net/IPv4Address(vR1);    [ ?R  i][ ?R . iRR]
         vR0.<init>@special(b1,vi2);   [ ?R . iRR] 
         return;   
   +END:   #1
@@ -60,8 +60,8 @@ class java/net/Socket {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-87 - 98 handler 101 type 25
-87 - 98 handler 121 type 32
+87 - 98 handler 101 type 84
+87 - 98 handler 121 type 104
  }
 // Register: rd 30/30 wr 23 swaps 5 any 2 found 0 <init>
  

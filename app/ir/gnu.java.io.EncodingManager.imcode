@@ -41,7 +41,7 @@ class gnu/java/io/EncodingManager {
         throw new java/io/UnsupportedEncodingException(vR0);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-77 - 124 handler 125 type 21
+77 - 124 handler 125 type 70
  }
 // Register: rd 14/14 wr 24 swaps 3 any 4 found 0 findDecoderConstructor
  
@@ -78,7 +78,7 @@ EXCEPTIONHANDLER-TABLE:
         throw new java/io/UnsupportedEncodingException(vR0);   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-77 - 124 handler 125 type 21
+77 - 124 handler 125 type 70
  }
 // Register: rd 14/14 wr 24 swaps 3 any 4 found 0 findEncoderConstructor
  

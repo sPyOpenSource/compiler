@@ -172,4 +172,11 @@ class java/util/HashSet {
   +END:   #1
  }
 // Register: rd 12/12 wr 7 swaps 0 any 2 found 0 readObject
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
 }

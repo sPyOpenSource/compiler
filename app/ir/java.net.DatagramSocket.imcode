@@ -40,28 +40,21 @@ class java/net/DatagramSocket {
 // Register: rd 17/17 wr 18 swaps 6 any 1 found 0 receive
  
  method send(Ljava/net/DatagramPacket;)V {
-  +START:   #2
+  +START:   #1
         b1 = vR0.net;    
         b2 = vR0.port;    
-        b3 = new jx/net/IPAddress(vR1.addr.getAddress());    [ ?RiR  i][ ?RiR . iRR]
+        b3 = new jx/net/IPv4Address(vR1.addr.getAddress());    [ ?RiR  i][ ?RiR . iRR]
         vR0.sender = b1.getUDPSender(b2,b3,vR1.getPort@extra());   
         out.println("get udp sender");   [ ?RiR ii. RR..] 
-  +B43:   #1
-        goto +B47;   [ ?RiR ... ....]
-  +H46<caught exception>:   #1 reference
-        vR2 = <caught exception>;    
-  +B47:   #1
-        vi2 = requiresSpace@special();    [ ?RiR ... ....]
-        vR3 = vR0.net.getUDPBuffer(((vi2+vR1.length)+34));    [i ?RiR i.. iR..] 
-        vR3.copyFromByteArray(vR1.buff,0,(vi2+34),vR1.length);   [iR ?RiR iiii iiiRR] 
-        out.println("SENDING udp REQUEST...");   [iR ?RiR iiiii. RR...] 
-        vR3 = vR0.sender.send(vR3);    [iR ?RiR iiiii. RR...] 
+        vi2 = requiresSpace@special();    [ ?RiR ii. ....]
+        vR3 = vR0.net.getUDPBuffer(((vi2+vR1.length)+34));    [i ?RiR iii iR..] 
+        vR3.copyFromByteArray(vR1.buff,0,(vi2+34),vR1.length);   [iR ?RiR iiiiii iiiRR] 
+        out.println("SENDING udp REQUEST...");   [iR ?RiR iiiiiii. RR...] 
+        vR3 = vR0.sender.send(vR3);    [iR ?RiR iiiiiii. RR...] 
         return;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 43 handler 46 type 34
  }
-// Register: rd 19/19 wr 17 swaps 4 any 0 found 2 send
+// Register: rd 19/19 wr 16 swaps 4 any 0 found 2 send
  
  method getLocalPort()I {
   +START:   #1

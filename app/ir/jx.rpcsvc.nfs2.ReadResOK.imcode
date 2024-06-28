@@ -1,0 +1,20 @@
+class jx/rpcsvc/nfs2/ReadResOK {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/rpcsvc/nfs2/FAttr;Ljx/rpcsvc/nfs2/NFSData;)V {
+  +START:   #1
+        vR0.<init>@special(0);   [   iR] 
+        vR0.attributes = vR1;   
+        vR0.data = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+}

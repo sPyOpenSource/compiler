@@ -1,0 +1,178 @@
+class jx/formats/LittleEndianInputStream {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readShort()S {
+  +START:   #1
+        b0 = vR0.read@this();    [ i  R] 
+        vi2 = b0;    
+        if b0!=-1 goto B18;   
+  -B10:   #1
+        throw new java/io/EOFException();   
+  +B18:   #1
+        vi1 = (short)(vi2 & 255);    
+        b0 = vR0.read@this();    [ii i  R.] 
+        vi2 = b0;    
+        if b0!=-1 goto B43;   
+  -B35:   #1
+        throw new java/io/EOFException();   
+  +B43:   #1
+        vi1 = (short)(vi1 | ((vi2 & 255) << 8));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 0 any 4 found 0 readShort
+ 
+ method readInt()I {
+  +START:   #1
+        b0 = vR0.read@this();    [ i  R] 
+        vi2 = b0;    
+        if b0!=-1 goto B18;   
+  -B10:   #1
+        throw new java/io/EOFException();   
+  +B18:   #1
+        vi1 = (vi2 & 255);    
+        b0 = vR0.read@this();    [ii i  R.] 
+        vi2 = b0;    
+        if b0!=-1 goto B42;   
+  -B34:   #1
+        throw new java/io/EOFException();   
+  +B42:   #1
+        vi1 = (vi1 | ((vi2 & 255) << 8));    
+        b0 = vR0.read@this();    [ii i  R.] 
+        vi2 = b0;    
+        if b0!=-1 goto B71;   
+  -B63:   #1
+        throw new java/io/EOFException();   
+  +B71:   #1
+        vi1 = (vi1 | ((vi2 & 255) << 16));    
+        b0 = vR0.read@this();    [ii i  R.] 
+        vi2 = b0;    
+        if b0!=-1 goto B100;   
+  -B92:   #1
+        throw new java/io/EOFException();   
+  +B100:   #1
+        vi1 = (vi1 | ((vi2 & 255) << 24));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 12 swaps 0 any 12 found 0 readInt
+ 
+ method readLong()J {
+  +START:   #1
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B22;   
+  -B14:   #1
+        throw new java/io/EOFException();   
+  +B22:   #1
+        vl1 = (vl3 & 255);    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B50;   
+  -B42:   #1
+        throw new java/io/EOFException();   
+  +B50:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 8));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B83;   
+  -B75:   #1
+        throw new java/io/EOFException();   
+  +B83:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 16));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B116;   
+  -B108:   #1
+        throw new java/io/EOFException();   
+  +B116:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 24));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B149;   
+  -B141:   #1
+        throw new java/io/EOFException();   
+  +B149:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 32));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B182;   
+  -B174:   #1
+        throw new java/io/EOFException();   
+  +B182:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 40));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B215;   
+  -B207:   #1
+        throw new java/io/EOFException();   
+  +B215:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 48));    
+        b0 = (long)vR0.read@this();    
+        vl3 = b0;    
+        if compare(b0,-1)!=0 goto B248;   
+  -B240:   #1
+        throw new java/io/EOFException();   
+  +B248:   #1
+        vl1 = (vl1 | ((vl3 & 255) << 56));    
+        return vl1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readLong
+ 
+ method readByte()B {
+  +START:   #1
+        b0 = vR0.read@this();    [ i  R] 
+        vi1 = b0;    
+        if b0!=-1 goto B18;   
+  -B10:   #1
+        throw new java/io/EOFException();   
+  +B18:   #1
+        return (byte)(vi1 & 255);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 readByte
+ 
+ method readString()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.readInt@extra();    [ R  R] 
+        if vR0.str_buffer==null goto B21;   
+  +B12:   #1
+        if vR0.str_buffer.length>=vi1 goto B31;   
+  +B21:   #1
+        vR0.str_buffer = new char[(vi1+10)];   
+  +B31:   #1
+        vi2 = 0;    
+  +B33:   #1
+        if vi2>=vi1 goto B59;   
+  +B38:   #1
+        vR0.str_buffer[vi2] = (char)(vR0.read@this() & 255);   
+        vi2++;   
+        goto +B33;   [ii R  ..]
+  +B59:   #1
+        return new java/lang/String(vR0.str_buffer,0,vi1);   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 4 swaps 0 any 2 found 0 readString
+ 
+ method readString2ByteAligned()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.readString@extra();    [ R  R] 
+        if (vR1.length@extra() & 1)==0 goto B30;   
+  +B14:   #1
+        if vR0.read@this()!=-1 goto B30;   
+  -B22:   #1
+        throw new java/io/EOFException();   
+  +B30:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 readString2ByteAligned
+}

@@ -31,11 +31,7 @@ class java/io/File {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-80 - 95 handler 98 type 18
-80 - 95 handler 98 type 19
-80 - 95 handler 98 type 20
-80 - 95 handler 98 type 21
-80 - 95 handler 98 type 22
+80 - 95 handler 98 type 59
  }
 // Register: rd 20/20 wr 6 swaps 2 any 2 found 0 <init>
  
@@ -117,18 +113,11 @@ EXCEPTIONHANDLER-TABLE:
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canRead
  
  method isFile()Z {
-  +START:   #2
-        b0 = vR0.fsobj.isFile();    [ b  R] 
-  +B9b0:   #1 boolean
-        return b0;   
-  +H10<caught exception>:   #1 reference
-        vR1 = <caught exception>;    
-        return 0;   
+  +START:   #1
+        return vR0.fsobj.isFile();   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 9 handler 10 type 21
  }
-// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isFile
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isFile
  
  method isDirectory()Z {
   +START:   #2
@@ -140,7 +129,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 9 handler 10 type 21
+0 - 9 handler 10 type 59
  }
 // Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isDirectory
  
@@ -188,7 +177,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method length()I {
   +START:   #2
-        b0 = (jx/fs/RegularFile)(vR0.fsobj).length();    [ i . R.] 
+        b0 = (jx/fs/RegularFile)(vR0.fsobj).getLength();    [ i . R.] 
   +B12b0:   #1 int
         return b0;   
   +H13<caught exception>:   #1 reference
@@ -196,7 +185,7 @@ EXCEPTIONHANDLER-TABLE:
         return -1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 12 handler 13 type 43
+0 - 12 handler 13 type 59
  }
 // Register: rd 3/3 wr 3 swaps 0 any 0 found 0 length
  
@@ -232,7 +221,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 14 handler 15 type 43
+0 - 14 handler 15 type 59
  }
 // Register: rd 4/4 wr 4 swaps 0 any 0 found 0 list
  

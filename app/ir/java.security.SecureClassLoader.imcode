@@ -41,7 +41,7 @@ class java/security/SecureClassLoader {
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-17 - 26 handler 27 type 13
+17 - 26 handler 27 type 57
  }
 // Register: rd 4/4 wr 6 swaps 1 any 0 found 0 defineClass
  

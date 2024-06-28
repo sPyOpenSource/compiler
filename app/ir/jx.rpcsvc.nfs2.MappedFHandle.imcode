@@ -1,0 +1,121 @@
+class jx/rpcsvc/nfs2/MappedFHandle {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([B)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = vR1;   
+        vR0.identifier = vR0.readInt@this(0);   
+        vR0.deviceIdentifier = vR0.readInt@this(4);   
+        vR0.generation = vR0.readInt@this(8);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.deviceIdentifier = vi1;   
+        vR0.identifier = vi2;   
+        vR0.generation = vi3;   
+        vR0.data = new byte[32];   
+        vR0.writeInt@this(0,vi2);   [   iiR] 
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        vR0.writeInt@this(8,vi3);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/rpcsvc/nfs2/FHandle;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.data);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method renew(III)V {
+  +START:   #1
+        vR0.deviceIdentifier = vi1;   
+        vR0.identifier = vi2;   
+        vR0.generation = vi3;   
+        vR0.data = new byte[32];   
+        vR0.writeInt@this(0,vi2);   [   iiR] 
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        vR0.writeInt@this(8,vi3);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 renew
+ 
+ method renew([B)V {
+  +START:   #1
+        vR0.data = vR1;   
+        vR0.identifier = vR0.readInt@this(0);   
+        vR0.deviceIdentifier = vR0.readInt@this(4);   
+        vR0.generation = vR0.readInt@this(8);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 renew
+ 
+ method getData()[B {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getData
+ 
+ method getFHandle()Ljx/rpcsvc/nfs2/FHandle; {
+  +START:   #1
+        return new jx/rpcsvc/nfs2/FHandle(vR0.data);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getFHandle
+ 
+ method readInt(I)I {
+  +START:   #1
+        vi2 = 0;    
+        vi2 = (vi2+(vR0.unsignedByteToInt@this(vR0.readByte@this(vi1)) << 24));    
+        vi2 = (vi2+(vR0.unsignedByteToInt@this(vR0.readByte@this((vi1+1))) << 16));    
+        vi2 = (vi2+(vR0.unsignedByteToInt@this(vR0.readByte@this((vi1+2))) << 8));    
+        vi2 = (vi2+vR0.unsignedByteToInt@this(vR0.readByte@this((vi1+3))));    
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 12 swaps 7 any 4 found 4 readInt
+ 
+ method readByte(I)B {
+  +START:   #1
+        return vR0.data[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 readByte
+ 
+ method writeInt(II)V {
+  +START:   #1
+        vR0.data[(vi1+0)] = (byte)((vi2 >> 24) & 255);   
+        vR0.data[(vi1+1)] = (byte)((vi2 >> 16) & 255);   
+        vR0.data[(vi1+2)] = (byte)((vi2 >> 8) & 255);   
+        vR0.data[(vi1+3)] = (byte)(vi2 & 255);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 writeInt
+ 
+ method unsignedByteToInt(B)I {
+  +START:   #1
+        return (vi1 & 255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 unsignedByteToInt
+}

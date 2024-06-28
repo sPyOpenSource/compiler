@@ -1,6 +1,6 @@
 class metaxa/os/devices/net/D3C905 {
  
- method <init>(Ljx/devices/pci/PCIDevice;Ljx/zero/Ports;Ljx/zero/Clock;Ljx/zero/IRQ;Ljx/zero/MemoryManager;Ljx/timer/TimerManager;Ljx/zero/CPUManager;Ljx/buffer/separator/NonBlockingMemoryConsumer;[Ljx/zero/Memory;)V {
+ method <init>(Ljx/devices/pci/PCIDevice;Ljx/zero/Ports;Ljx/zero/Clock;Ljx/zero/IRQ;Ljx/zero/MemoryManager;Ljx/timer/TimerManager;Ljx/zero/CPUManager;Ljx/fs/buffer/separator/NonBlockingMemoryConsumer;[Ljx/zero/Memory;)V {
   +START:   #1
         vR0.<init>@special();   [ RR  R] 
         vR0.clock = vR3;   
@@ -33,76 +33,76 @@ class metaxa/os/devices/net/D3C905 {
         vR4.installFirstLevelHandler(vi10,vR0);   [i RR iiii. RiR.] 
         vR4.enableIRQ(vi10);   [i RR iiii. iR..] 
         vR0.count = 0;   
-  +B218:   #1
-        if vR0.count>=64 goto B301;   
-  +B227:   #1
+  +B220:   #1
+        if vR0.count>=64 goto B303;   
+  +B229:   #1
         b1 = new metaxa/os/devices/net/DpdListEntry(vR5);    [ RR ..... i...][ RR ..... iRR.]
         vR0.currentdpd = b1;   
-        if vR0.count!=0 goto B258;   
-  +B247:   #1
+        if vR0.count!=0 goto B260;   
+  +B249:   #1
         vR0.firstdpd = vR0.currentdpd;   
-        goto +B280;   [i RR ..... ....]
-  +B258:   #1
+        goto +B282;   [i RR ..... ....]
+  +B260:   #1
         vR0.previousdpd.Next(vR0.currentdpd);   [i RR i.... RR..] 
         vR0.currentdpd.Previous(vR0.previousdpd);   [i RR ii... RR..] 
-  +B280:   #1
+  +B282:   #1
         vR0.previousdpd = vR0.currentdpd;   
         vR0.count = (vR0.count+1);   
-        goto +B218;   [i RR ..... ....]
-  +B301:   #1
+        goto +B220;   [i RR ..... ....]
+  +B303:   #1
         vR0.firstdpd.Previous(vR0.currentdpd);   [i RR i.... RR..] 
         vR0.currentdpd.Next(vR0.firstdpd);   [i RR ii... RR..] 
         vR0.Adapter.HeadDPD = vR0.firstdpd;   
         vR0.Adapter.TailDPD = vR0.firstdpd;   
         vR0.count = 0;   
-  +B350:   #1
-        if vR0.count>=64 goto B447;   
-  +B359:   #1
+  +B352:   #1
+        if vR0.count>=64 goto B449;   
+  +B361:   #1
         b1 = new metaxa/os/devices/net/UpdListEntry(vR5);    [ RR ..... i...][ RR ..... iRR.]
         vR0.currentupd = b1;   
-        if vR0.count!=0 goto B390;   
-  +B379:   #1
+        if vR0.count!=0 goto B392;   
+  +B381:   #1
         vR0.firstupd = vR0.currentupd;   
-        goto +B426;   [i RR ..... ....]
-  +B390:   #1
+        goto +B428;   [i RR ..... ....]
+  +B392:   #1
         vR0.previousupd.Next(vR0.currentupd);   [i RR i.... RR..] 
         vR0.previousupd.UpNextPointer(vR0.currentupd.UPDPhysicalAddress());   [i RR ii... iR..] 
         vR0.currentupd.Previous(vR0.previousupd);   [i RR iii.. RR..] 
-  +B426:   #1
+  +B428:   #1
         vR0.previousupd = vR0.currentupd;   
         vR0.count = (vR0.count+1);   
-        goto +B350;   [i RR ..... ....]
-  +B447:   #1
+        goto +B352;   [i RR ..... ....]
+  +B449:   #1
         out.println("D3C905: Allocated buffers for upload:64");   [i RR i.... RR..] 
         vR0.currentupd.Next(vR0.firstupd);   [i RR ii... RR..] 
         vR0.currentupd.UpNextPointer(vR0.firstupd.UPDPhysicalAddress());   [i RR iii.. iR..] 
         vR0.firstupd.Previous(vR0.currentupd);   [i RR iiii. RR..] 
         vR0.Adapter.HeadUPD = vR0.firstupd;   
         vR0.count = 0;   
-  +B507:   #1
-        if vR0.count>=1 goto B639;   
-  +B515:   #1
+  +B509:   #1
+        if vR0.count>=1 goto B641;   
+  +B517:   #1
         b1 = new metaxa/os/devices/net/DpdListEntry(vR5);    [ RR ..... i...][ RR ..... iRR.]
         vR0.testhelpdpd = b1;   
-        if vR0.count!=0 goto B546;   
-  +B535:   #1
+        if vR0.count!=0 goto B548;   
+  +B537:   #1
         vR0.firsttestdpd = vR0.testhelpdpd;   
-        goto +B568;   [i RR ..... ....]
-  +B546:   #1
+        goto +B570;   [i RR ..... ....]
+  +B548:   #1
         vR0.previoustestdpd.Next(vR0.testhelpdpd);   [i RR i.... RR..] 
         vR0.testhelpdpd.Previous(vR0.previoustestdpd);   [i RR ii... RR..] 
-  +B568:   #1
+  +B570:   #1
         vR0.storage = vR5.alloc(1514);   
-        if vR0.storage!=null goto B607;   
-  -B589:   #1
+        if vR0.storage!=null goto B609;   
+  -B591:   #1
         out.println("D3C905: can't allocate memory for TestDPDs! - Terminating");   [i RR i.... RR..] 
         throw new metaxa/os/devices/net/D3C905Exception("Coudn't allocate memory!");   
-  +B607:   #1
+  +B609:   #1
         vR0.testhelpdpd.StoreMem(vR0.storage);   [i RR i.... RR..] 
         vR0.previoustestdpd = vR0.testhelpdpd;   
         vR0.count = (vR0.count+1);   
-        goto +B507;   [i RR i.... ....]
-  +B639:   #1
+        goto +B509;   [i RR i.... ....]
+  +B641:   #1
         vR0.firsttestdpd.Previous(vR0.testhelpdpd);   [i RR i.... RR..] 
         vR0.testhelpdpd.Next(vR0.firsttestdpd);   [i RR ii... RR..] 
         vR0.Adapter.TestDPD = vR0.firsttestdpd;   
@@ -138,47 +138,47 @@ class metaxa/os/devices/net/D3C905 {
   +START:   #1
         vR8 = 0;    
         vR0.befehl.NicCommandWait(vR0.Adapter,(short)((COMMAND_GLOBAL_RESET@special() | GLOBAL_RESET_MASK_TP_AUI_RESET@special()) | GLOBAL_RESET_MASK_ENDEC_RESET@special()));   [???????R RR ii iRR] 
-        if vR0.Adapter.Hardware.get_DeviceId()==36949 goto B162;   
-  +B57:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36868 goto B162;   
-  +B72:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36869 goto B162;   
-  +B87:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36870 goto B162;   
-  +B102:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36952 goto B162;   
-  +B117:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36874 goto B162;   
-  +B132:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==36954 goto B162;   
-  +B147:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()!=38912 goto B177;   
-  +B162:   #7
+        if vR0.Adapter.Hardware.get_DeviceId()==36949 goto B170;   
+  +B58:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36868 goto B170;   
+  +B74:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36869 goto B170;   
+  +B90:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36870 goto B170;   
+  +B106:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36952 goto B170;   
+  +B122:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36874 goto B170;   
+  +B138:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==36954 goto B170;   
+  +B154:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()!=38912 goto B185;   
+  +B170:   #7
         vR0.Adapter.Hardware.set_BitsInHashFilter(64);   [???????R RR .. iR.] 
-        goto +B201;   [???????R RR .. ...]
-  +B177:   #1
+        goto +B209;   [???????R RR .. ...]
+  +B185:   #1
         vR0.Adapter.Hardware.set_BitsInHashFilter(256);   [?iiiRRRRiiiiii RR .. iR.] 
         vR0.Adapter.Hardware.set_UDPChecksumErrDone(1);   [?iiiRRRRiiiiii RR .. iR.] 
-  +B201:   #1
+  +B209:   #1
         vR0.Adapter.Hardware.set_Status(0);   [???????R RR .. iR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [???????R RR .. iR.] 
         vi2 = 0;    
         vi11 = 10;    
         out.println("GetAdapterProperties: Select window 7 ");   [?i?????R??i RR i. RR.] 
         vi12 = 0;    
-  +B241:   #1
-        if vi12>=vi11 goto B311;   
-  +B248:   #1
+  +B251:   #1
+        if vi12>=vi11 goto B322;   
+  +B258:   #1
         vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_7@special()));   [?i?????R??ii RR ii iRR] 
         vi2 = vR0.befehl.NicReadPortShort(vR0.Adapter,INTSTATUS_COMMAND_REGISTER@special());    [?i?????R??ii RR iiii iRR] 
-        if (vi2 & REGISTER_WINDOW_MASK@special())==(REGISTER_WINDOW_7@special() << 13) goto B311;   
-  +B297:   #1
+        if (vi2 & REGISTER_WINDOW_MASK@special())==(REGISTER_WINDOW_7@special() << 13) goto B322;   
+  +B307:   #1
         out.print(".");   [?i?????R??ii RR i.... RR.] 
         vi12++;   
-        goto +B241;   [?i?????R??ii RR i.... ...]
-  +B311:   #2
-        if (vi2 & REGISTER_WINDOW_MASK@special())==(REGISTER_WINDOW_7@special() << 13) goto B417;   
-  -B325:   #1
+        goto +B251;   [?i?????R??ii RR i.... ...]
+  +B322:   #2
+        if (vi2 & REGISTER_WINDOW_MASK@special())==(REGISTER_WINDOW_7@special() << 13) goto B434;   
+  -B336:   #1
         out.println("GetAdapterProperties: Window selection failure");   [?i?????R??ii RR i.... RR.] 
         out.println("GetAdapterProperties: Out with error");   [?i?????R??ii RR ii... RR.] 
         b0 = out;    
@@ -188,246 +188,246 @@ class metaxa/os/devices/net/D3C905 {
         b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
         b0.println(b1.append@extra("expected intstatus & ").append@extra(REGISTER_WINDOW_MASK@special()).append@extra(": ").append@extra((REGISTER_WINDOW_7@special() << 13)).toString@extra());   [?i?????R??ii RR iiiiiii..ii. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: error in setting for register window 7");   
-  +B417:   #2
+  +B434:   #2
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,3);    [?i?????R??ii RR i........... iRR..] 
-  +B431:   #1
-        goto +B454;   [?i?i???R??ii RR ............ .....]
-  -H434<caught exception>:   #1 reference
+  +B448:   #1
+        goto +B473;   [?i?i???R??ii RR ............ .....]
+  -H451<caught exception>:   #1 reference
         vR12 = <caught exception>;    
         out.println("GetAdapterProperties: EEPROM read failed");   [?iiiRRRRiiiRiiR RR i........... RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: EEPROM read failed");   
-  +B454:   #2
+  +B473:   #2
         vi3 = vR0.eeprom.ReadEEPROM(vR0.Adapter,14);    [?i?i???R??ii RR i........... iRR..] 
-  +B468:   #1
-        goto +B484;   [?iii???R??ii RR ............ .....]
-  -H471<caught exception>:   #1 reference
+  +B487:   #1
+        goto +B504;   [?iii???R??ii RR ............ .....]
+  -H490<caught exception>:   #1 reference
         vR12 = <caught exception>;    
-        out.println("GetAdapterProperties: compatability read failed");   [?iiiRRRRiiiRii RR i........... RR...] 
+        out.println("GetAdapterProperties: compatability read failed");   [?iiiRRRRiiiRiiR RR i........... RR...] 
         throw vR12;   
-  +B484:   #1
+  +B504:   #1
         vR5 = new metaxa/os/devices/net/CompatabilityWord((byte)(vi3 & 255),(byte)(vi3 & 65280));    [ RR ............ i....][ RR ............ ibbR.]
-        if vR5.get_failurelevel()<=0 goto B538;   
-  -B512:   #1
+        if vR5.get_failurelevel()<=0 goto B562;   
+  -B533:   #1
         out.println("GetAdapterProperties: Incompatible failure level");   [?iiiR??R??ii RR i........... RR...] 
         out.println("GetAdapterProperties: Out with error
 ");   [?iiiR??R??ii RR ii.......... RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: NICs failure level bigger than the allowed one");   
-  +B538:   #1
-        if vR5.get_warninglevel()<=0 goto B554;   
-  +B546:   #1
+  +B562:   #1
+        if vR5.get_warninglevel()<=0 goto B579;   
+  +B570:   #1
         out.println("GetAdapterProperties: Wrong down compatability level");   [?iiiR??R??ii RR i........... RR...] 
-  +B554:   #2
+  +B579:   #2
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,13);    [?iiiR??R??ii RR i........... iRR..] 
-  +B569:   #1
-        goto +B592;   [?iiiR??R??ii RR ............ .....]
-  -H572<caught exception>:   #1 reference
+  +B594:   #1
+        goto +B619;   [?iiiR??R??ii RR ............ .....]
+  -H597<caught exception>:   #1 reference
         vR12 = <caught exception>;    
         out.println("GetAdapterProperties: EEPROM s/w info1 read failed");   [?iiiRRRRiiiRiiR RR i........... RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: EEPROM s/w info1 read failed");   
-  +B592:   #1
+  +B619:   #1
         vi12 = (byte)((vi4 & 48) >> 4);    
-  +B602:   #1
-        if vR0.bits.isSet(vi4,14)!=1 goto B621;   
-  +B617:   #1
+  +B629:   #1
+        if vR0.bits.isSet(vi4,14)!=1 goto B648;   
+  +B644:   #1
         b0 = 1;    
-        goto +B622b0;   [?iiiR??R??ii iR ............ .....]
-  +B621:   #1
+        goto +B649b0;   [?iiiR??R??ii iR ............ .....]
+  +B648:   #1
         b0 = 0;    
-  +B622b0:   #1 int
+  +B649b0:   #1 int
         vi13 = b0;    
-        if vR0.bits.isSet(vi4,15)!=1 goto B643;   
-  +B639:   #1
+        if vR0.bits.isSet(vi4,15)!=1 goto B670;   
+  +B666:   #1
         b0 = 1;    
-        goto +B644b0;   [?iiiR??R??iii iR ............ .....]
-  +B643:   #1
+        goto +B671b0;   [?iiiR??R??iii iR ............ .....]
+  +B670:   #1
         b0 = 0;    
-  +B644b0:   #1 int
+  +B671b0:   #1 int
         vi14 = b0;    
-  +B646:   #1
-        goto +B669;   [?iiiR??R??iiii iR ............ .....]
-  -H649<caught exception>:   #1 reference
+  +B673:   #1
+        goto +B698;   [?iiiR??R??iiii iR ............ .....]
+  -H676<caught exception>:   #1 reference
         vR15 = <caught exception>;    
         out.println("GetAdapterProperties:Error while checking for bits in softwareinformation read from EEPROM");   [?iiiRRRRiiiRiiR iR i........... RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: Error while checking for bits in softwareinformation read from EEPROM");   
-  +B669:   #1
+  +B698:   #1
         vR6 = new metaxa/os/devices/net/SoftwareInformation1(vi12,vi13,vi14);    [ iR ............ i....][ iR ............ iiiiR]
-        if vR6.get_LinkBeatDisable()==0 goto B703;   
-  +B692:   #1
+        if vR6.get_LinkBeatDisable()==0 goto B732;   
+  +B721:   #1
         vR0.Adapter.Hardware.set_LinkBeatDisable(1);   [?iiiRR?R??iiii iR ............ iR...] 
-  +B703:   #1
-        if vR0.Adapter.Hardware.get_DuplexCommandOverride()!=0 goto B749;   
-  +B716:   #1
-        if vR6.get_FullDuplexMode()==0 goto B738;   
-  +B724:   #1
+  +B732:   #1
+        if vR0.Adapter.Hardware.get_DuplexCommandOverride()!=0 goto B778;   
+  +B745:   #1
+        if vR6.get_FullDuplexMode()==0 goto B767;   
+  +B753:   #1
         vR0.Adapter.Hardware.set_FullDuplexEnable(1);   [?iiiRR?R??iiii iR ............ iR...] 
-        goto +B749;   [?iiiRR?R??iiii iR ............ .....]
-  +B738:   #1
+        goto +B778;   [?iiiRR?R??iiii iR ............ .....]
+  +B767:   #1
         vR0.Adapter.Hardware.set_FullDuplexEnable(0);   [?iiiRRRRiiiiii iR ............ iR...] 
-  +B749:   #2
-        tswitch (vR6.get_OptimizeFor()) B808 B780 B794 : B822;   
-  +B780:   #1
-        vR0.Adapter.Hardware.set_OptimizeForThroughput(1);   [?iiiRRRRiiiiii iR ............ iR...] 
-        goto +B832;   [?iiiRRRRiiiiii iR ............ .....]
-  +B794:   #1
-        vR0.Adapter.Hardware.set_OptimizeForCPU(1);   [?iiiRRRRiiiiii iR ............ iR...] 
-        goto +B832;   [?iiiRRRRiiiiii iR ............ .....]
+  +B778:   #2
+        tswitch (vR6.get_OptimizeFor()) B836 B808 B822 : B850;   
   +B808:   #1
+        vR0.Adapter.Hardware.set_OptimizeForThroughput(1);   [?iiiRRRRiiiiii iR ............ iR...] 
+        goto +B861;   [?iiiRRRRiiiiii iR ............ .....]
+  +B822:   #1
+        vR0.Adapter.Hardware.set_OptimizeForCPU(1);   [?iiiRRRRiiiiii iR ............ iR...] 
+        goto +B861;   [?iiiRRRRiiiiii iR ............ .....]
+  +B836:   #1
         vR0.Adapter.Hardware.set_OptimizeNormal(1);   [?iiiRR?R??iiii iR ............ iR...] 
-        goto +B832;   [?iiiRR?R??iiii iR ............ .....]
-  -B822:   #1
+        goto +B861;   [?iiiRR?R??iiii iR ............ .....]
+  -B850:   #1
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: Wrong optimization level");   
-  +B832:   #3
+  +B861:   #3
         vi4 = 0;    
-  +B835:   #1
+  +B864:   #1
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,16);    [?iiiRR?R??iiii iR i........... iRR..] 
-  +B850:   #1
-        goto +B873;   [?iiiRR?R??iiii iR ............ .....]
-  -H853<caught exception>:   #1 reference
+  +B879:   #1
+        goto +B904;   [?iiiRR?R??iiii iR ............ .....]
+  -H882<caught exception>:   #1 reference
         vR15 = <caught exception>;    
         out.println("GetAdapterProprties: EEPROM s/w capabilities read failed
 ");   [?iiiRRRRiiiRiiR iR i........... RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProprties: EEPROM s/w capabilities read failed
 ");   
-  +B873:   #2
+  +B904:   #2
         vR8 = new metaxa/os/devices/net/CapabilitiesWord(vR0.bits.isSet(vi4,0),vR0.bits.isSet(vi4,1),vR0.bits.isSet(vi4,2),vR0.bits.isSet(vi4,3),vR0.bits.isSet(vi4,4),vR0.bits.isSet(vi4,5),vR0.bits.isSet(vi4,6),vR0.bits.isSet(vi4,7),vR0.bits.isSet(vi4,8),vR0.bits.isSet(vi4,9),vR0.bits.isSet(vi4,10),vR0.bits.isSet(vi4,11),vR0.bits.isSet(vi4,12),vR0.bits.isSet(vi4,13));    [ iR ............ i....][ iR ............ ibbbbbbbbbbbbbbR.]
-  +B1030:   #1
-        goto +B1053;   [?iiiRR?R??iiii iR ............ .................]
-  -H1033<caught exception>:   #1 reference
+  +B1061:   #1
+        goto +B1086;   [?iiiRR?R??iiii iR ............ .................]
+  -H1064<caught exception>:   #1 reference
         vR15 = <caught exception>;    
         out.println("GetAdapterProperties: Error while checking for bits in capabilitesword read from EEPROM");   [?iiiRRRRiiiRiiR iR i........... RR...............] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: Error while checking for bits in capabilitesword read from EEPROM");   
-  +B1053:   #1
-        if vR8.get_SupportsPowerManagement()==0 goto B1080;   
-  +B1061:   #1
+  +B1086:   #1
+        if vR8.get_SupportsPowerManagement()==0 goto B1114;   
+  +B1094:   #1
         out.println("GetAdapterProperties: Adapter supports power management");   [?iiiRR?R??iiii iR i........... RR...............] 
         vR0.Adapter.Hardware.set_SupportsPowerManagement(1);   [?iiiRR?R??iiii iR i........... iR...............] 
-  +B1080:   #1
+  +B1114:   #1
         vi4 = 0;    
-  +B1083:   #1
+  +B1117:   #1
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,15);    [?iiiRR?R??iiii iR i........... iRR..............] 
-  +B1098:   #1
-        goto +B1129;   [?iiiRR?R??iiii iR ............ .................]
-  -H1101<caught exception>:   #1 reference
+  +B1132:   #1
+        goto +B1166;   [?iiiRR?R??iiii iR ............ .................]
+  -H1135<caught exception>:   #1 reference
         vR15 = <caught exception>;    
         out.println("GetAdapterProperties: ReadEEPROM , SWINFO2 failed");   [?iiiRRRRiiiRiiR iR i........... RR...............] 
         out.println("GetAdapterProperties: Out with error");   [?iiiRRRRiiiRiiR iR ii.......... RR...............] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: ReadEEPROM , SWINFO2 failed");   
-  +B1129:   #2
+  +B1166:   #2
         vR7 = new metaxa/os/devices/net/SoftwareInformation2(vR0.bits.isSet(vi4,1),vR0.bits.isSet(vi4,2),vR0.bits.isSet(vi4,3),vR0.bits.isSet(vi4,4),vR0.bits.isSet(vi4,5),vR0.bits.isSet(vi4,6),vR0.bits.isSet(vi4,7));    [ iR ............ i................][ iR ............ ibbbbbbbR........]
-  +B1210:   #1
-        goto +B1233;   [?iiiRRRR??iiii iR ............ .................]
-  -H1213<caught exception>:   #1 reference
+  +B1247:   #1
+        goto +B1272;   [?iiiRRRR??iiii iR ............ .................]
+  -H1250<caught exception>:   #1 reference
         vR15 = <caught exception>;    
-        out.println("GetAdapterProperties:Error while checking for bits in softwareinformation2 read from EEPROM");   [?iiiRRRRiiiRiiR iR i........... RR...............] 
+        out.println("GetAdapterProperties:Error while checking for bits in softwareinformation2 read from EEPROM");   [?iiiRRRRiiiiiiR iR i........... RR...............] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: Error while checking for bits in softwareinformation2 read from EEPROM");   
-  +B1233:   #1
-        if vR7.get_BroadcastRxErrDone()==0 goto B1252;   
-  +B1241:   #1
+  +B1272:   #1
+        if vR7.get_BroadcastRxErrDone()==0 goto B1291;   
+  +B1280:   #1
         vR0.Adapter.Hardware.set_BroadcastErrDone(1);   [?iiiRRRR??iiii iR ............ iR...............] 
-  +B1252:   #1
-        if vR7.get_MWIErrDone()==0 goto B1271;   
-  +B1260:   #1
+  +B1291:   #1
+        if vR7.get_MWIErrDone()==0 goto B1310;   
+  +B1299:   #1
         vR0.Adapter.Hardware.set_MWIErrDone(1);   [?iiiRRRR??iiii iR ............ iR...............] 
-  +B1271:   #1
-        if vR7.get_WOLConnectorPresent()==0 goto B1290;   
-  +B1279:   #1
+  +B1310:   #1
+        if vR7.get_WOLConnectorPresent()==0 goto B1329;   
+  +B1318:   #1
         vR0.Adapter.Hardware.set_WOLConnectorPresent(1);   [?iiiRRRR??iiii iR ............ iR...............] 
-  +B1290:   #1
-        if vR7.get_AutoResetToD0()==0 goto B1309;   
-  +B1298:   #1
+  +B1329:   #1
+        if vR7.get_AutoResetToD0()==0 goto B1348;   
+  +B1337:   #1
         vR0.Adapter.Hardware.set_AutoResetToD0(1);   [?iiiRRRR??iiii iR ............ iR...............] 
-  +B1309:   #1
+  +B1348:   #1
         vi4 = 0;    
-  +B1312:   #1
+  +B1351:   #1
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,10);    [?iiiRRRR??iiii iR i........... iRR..............] 
-  +B1327:   #1
-        goto +B1342;   [?iiiRRRR??iiii iR ............ .................]
-  -H1330<caught exception>:   #1 reference
+  +B1366:   #1
+        goto +B1382;   [?iiiRRRR??iiii iR ............ .................]
+  -H1369<caught exception>:   #1 reference
         vR15 = <caught exception>;    
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: EEPROM read word 0 failed");   
-  +B1342:   #1
+  +B1382:   #1
         vR0.Adapter.PermanentAddress[0] = vR0.bits.hibyte(vi4);   
         vR0.Adapter.PermanentAddress[1] = vR0.bits.lobyte(vi4);   
         vi4 = 0;    
-  +B1381:   #1
+  +B1421:   #1
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,11);    [?iiiRRRR??iiii iR i........... iRR..............] 
-  +B1396:   #1
-        goto +B1427;   [?iiiRRRR??iiii iR ............ .................]
-  -H1399<caught exception>:   #1 reference
+  +B1436:   #1
+        goto +B1470;   [?iiiRRRR??iiii iR ............ .................]
+  -H1439<caught exception>:   #1 reference
         vR15 = <caught exception>;    
-        out.println("GetAdapterProperties: EEPROM read word 1 failed");   [?iiiRRRRiiiRiiR iR i........... RR...............] 
-        out.println("GetAdapterProperties: Out with error");   [?iiiRRRRiiiRiiR iR ii.......... RR...............] 
+        out.println("GetAdapterProperties: EEPROM read word 1 failed");   [?iiiRRRRiiiiiiR iR i........... RR...............] 
+        out.println("GetAdapterProperties: Out with error");   [?iiiRRRRiiiiiiR iR ii.......... RR...............] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: EEPROM read word 1 failed");   
-  +B1427:   #1
+  +B1470:   #1
         vR0.Adapter.PermanentAddress[2] = vR0.bits.hibyte(vi4);   
         vR0.Adapter.PermanentAddress[3] = vR0.bits.lobyte(vi4);   
         vi4 = 0;    
-  +B1466:   #1
+  +B1509:   #1
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,12);    [?iiiRRRR??iiii iR i........... iRR..............] 
-  +B1481:   #1
-        goto +B1512;   [?iiiRRRR??iiii iR ............ .................]
-  -H1484<caught exception>:   #1 reference
+  +B1524:   #1
+        goto +B1558;   [?iiiRRRR??iiii iR ............ .................]
+  -H1527<caught exception>:   #1 reference
         vR15 = <caught exception>;    
-        out.println("GetAdapterProperties: EEPROM read word 2 failed");   [?iiiRRRRiiiRiiR iR i........... RR...............] 
-        out.println("GetAdapterProperties: Out with error");   [?iiiRRRRiiiRiiR iR ii.......... RR...............] 
+        out.println("GetAdapterProperties: EEPROM read word 2 failed");   [?iiiRRRRiiiiiiR iR i........... RR...............] 
+        out.println("GetAdapterProperties: Out with error");   [?iiiRRRRiiiiiiR iR ii.......... RR...............] 
         throw new metaxa/os/devices/net/NicStatusFailure("GetAdapterProperties: EEPROM read word 2 failed");   
-  +B1512:   #1
+  +B1558:   #1
         vR0.Adapter.PermanentAddress[4] = vR0.bits.hibyte(vi4);   
         vR0.Adapter.PermanentAddress[5] = vR0.bits.lobyte(vi4);   
         vi9 = (byte)(((((vR0.Adapter.StationAddress[0] | vR0.Adapter.StationAddress[1]) | vR0.Adapter.StationAddress[2]) | vR0.Adapter.StationAddress[3]) | vR0.Adapter.StationAddress[4]) | vR0.Adapter.StationAddress[5]);    
-        if vi9!=0 goto B1655;   
-  +B1615:   #1
+        if vi9!=0 goto B1701;   
+  +B1661:   #1
         vi10 = 0;    
-  +B1618:   #1
-        if vi10>=6 goto B1655;   
-  +B1625:   #1
+  +B1664:   #1
+        if vi10>=6 goto B1701;   
+  +B1671:   #1
         vR0.Adapter.StationAddress[vi10] = vR0.Adapter.PermanentAddress[vi10];   
         vi10 = (byte)(vi10+1);    
-        goto +B1618;   [?iiiRRRRiiiiii iR ............ .................]
-  +B1655:   #2
+        goto +B1664;   [?iiiRRRRiiiiii iR ............ .................]
+  +B1701:   #2
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-417 - 431 handler 434 type 122
-454 - 468 handler 471 type 122
-554 - 569 handler 572 type 122
-602 - 646 handler 649 type 139
-835 - 850 handler 853 type 122
-873 - 1030 handler 1033 type 139
-1083 - 1098 handler 1101 type 122
-1129 - 1210 handler 1213 type 139
-1312 - 1327 handler 1330 type 122
-1381 - 1396 handler 1399 type 122
-1466 - 1481 handler 1484 type 122
+434 - 448 handler 451 type 365
+473 - 487 handler 490 type 365
+579 - 594 handler 597 type 365
+629 - 673 handler 676 type 404
+864 - 879 handler 882 type 365
+904 - 1061 handler 1064 type 404
+1117 - 1132 handler 1135 type 365
+1166 - 1247 handler 1250 type 404
+1351 - 1366 handler 1369 type 365
+1421 - 1436 handler 1439 type 365
+1509 - 1524 handler 1527 type 365
  }
 // Register: rd 150/150 wr 139 swaps 39 any 8 found 2 GetAdapterProperties
  
  method BasicInitializeAdapter()Z {
   +START:   #1
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_TX_DISABLE@special())!=0 goto B49;   
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_TX_DISABLE@special())!=0 goto B52;   
   -B23:   #1
         out.println("BasicInitializeAdapter: COMMAND_TX_DISABLE failed");   [ RR i. RR.] 
         out.println("BasicInitializeAdapter: Out with error");   [ RR ii. RR.] 
         throw new metaxa/os/devices/net/NicStatusFailure("BasicInitializeAdapter: COMMAND_TX_DISABLE failed");   
-  +B49:   #1
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_TX_RESET@special() | TX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B107;   
-  -B81:   #1
+  +B52:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_TX_RESET@special() | TX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B113;   
+  -B84:   #1
         out.println("BasicInitializeAdapter: COMMAND_TX_RESET failed");   [ RR i.. RR.] 
         out.println("GetAdapterProperties: Out with error");   [ RR ii. RR.] 
         throw new metaxa/os/devices/net/NicStatusFailure("BasicInitializeAdapter: COMMAND_TX_RESET failed");   
-  +B107:   #1
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_RX_DISABLE@special())!=0 goto B156;   
-  -B130:   #1
+  +B113:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_RX_DISABLE@special())!=0 goto B165;   
+  -B136:   #1
         out.println("BasicInitializeAdapter: Rx disable failed");   [ RR i.. RR.] 
         out.println("BasicInitializeAdapter: Out with error");   [ RR ii. RR.] 
         throw new metaxa/os/devices/net/NicStatusFailure("BasicInitializeAdapter: Rx disable failed");   
-  +B156:   #1
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_RX_RESET@special() | RX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B214;   
-  -B188:   #1
+  +B165:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_RX_RESET@special() | RX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B226;   
+  -B197:   #1
         out.println("BasicInitializeAdapter: Rx reset failed");   [ RR i.. RR.] 
         out.println("BasicInitializeAdapter: Out with error");   [ RR ii. RR.] 
         throw new metaxa/os/devices/net/NicStatusFailure("BasicInitializeAdapter: Rx reset failed");   
-  +B214:   #1
+  +B226:   #1
         vR0.befehl.NicAcknowledgeAllInterrupt(vR0.Adapter);   [ RR i.. RR.] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_STATISTICS_DISABLE@special());   [ RR iii iRR] 
         vR0.befehl.NicCommand(vR0.Adapter,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_6@special()));   [ RR iiiii iRR] 
@@ -501,7 +501,7 @@ EXCEPTIONHANDLER-TABLE:
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_DOWN_UNSTALL@special());   [R???iiRR RR iiiiiii........ iRR.] 
         vR0.waitglobal.set_PortV(vR0.befehl.NicReadPortLong(vR0.Adapter,DOWN_LIST_POINTER_REGISTER@special()));   [R???iiRR RR iiiiiiiiii..... iR..] 
         udelay@special(10);   [R???iiRR RR iiiiiiiiii..... i...]
-        if vR0.waitglobal.get_PortV()!=vR7.DPDPhysicalAddress() goto B452;   
+        if vR0.waitglobal.get_PortV()!=vR7.DPDPhysicalAddress() goto B454;   
   +B319:   #1
         vR0.Adapter.WaitCases = 1;   
         vi4 = vR0.timerManager.getCurrentTimePlusMillis(1000);    [R???iiRR RR ............... iR..] 
@@ -511,61 +511,61 @@ EXCEPTIONHANDLER-TABLE:
         out.println("waiting 3 seconds");   [R??iiiRRR RR i.............. RR...] 
         vR0.timerManager.unblockInMillis(vR0.cpuManager.getCPUState(),3000);   [R??iiiRRR RR ii............. iRR..] 
         vR0.cpuManager.blockIfNotUnblocked();   [R??iiiRRR RR ii............. R....] 
-        if vR0.waitglobal.get_PortV()!=vR7.DPDPhysicalAddress() goto B452;   
-  -B436:   #1
+        if vR0.waitglobal.get_PortV()!=vR7.DPDPhysicalAddress() goto B454;   
+  -B437:   #1
         out.println("TestAdapter: Packet not picked up by the hardware");   [R??iiiRRR RR i.............. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B452:   #2
+  +B454:   #2
         vR0.waitglobal.set_PortV(vR0.befehl.NicReadPortLong(vR0.Adapter,UP_LIST_POINTER_REGISTER@special()));   [R??iiiRRR RR iii............ iR...] 
         udelay@special(10);   [R??iiiRRR RR iii............ i....]
-        if vR0.waitglobal.get_PortV()!=vR0.Adapter.HeadUPD.UPDPhysicalAddress() goto B608;   
-  +B498:   #1
+        if vR0.waitglobal.get_PortV()!=vR0.Adapter.HeadUPD.UPDPhysicalAddress() goto B610;   
+  +B500:   #1
         vR0.Adapter.WaitCases = 0;   
         vi4 = vR0.timerManager.getCurrentTimePlusMillis(4000);    [R??iiiRRR RR ............... iR...] 
         vR9 = new metaxa/os/devices/net/WaitTimerArg(vR0.Adapter,vR7,vi4);    [ RR ............... i....][ RR ............... iiRRR]
         vR0.timerManager.addMillisTimer(1000,vR8,vR9);   [R??iiiRRR RR ............... RRiR.] 
-  +B554:   #1
-        if vi4<=vR0.timerManager.getCurrentTime() goto B571;   
-  +B568:   #1
-        goto +B554;   [R??iiiRRR RR ............... .....]
-  +B571:   #1
-        if vR0.waitglobal.get_PortV()!=vR0.Adapter.HeadUPD.UPDPhysicalAddress() goto B608;   
-  -B591:   #1
+  +B556:   #1
+        if vi4<=vR0.timerManager.getCurrentTime() goto B573;   
+  +B570:   #1
+        goto +B556;   [R??iiiRRR RR ............... .....]
+  +B573:   #1
+        if vR0.waitglobal.get_PortV()!=vR0.Adapter.HeadUPD.UPDPhysicalAddress() goto B610;   
+  -B593:   #1
         out.println("TestAdapter: Packet not uploaded by adapter");   [R??iiiRRR RR i.............. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B608:   #2
+  +B610:   #2
         vR3 = vR0.Adapter.HeadUPD.StoreMem();    [R??iiiRRR RR ............... R....] 
         vi5 = 0;    
-  +B622:   #1
-        if vi5>=1514 goto B653;   
-  +B630:   #1
-        if vR3.get8(vi5)==(byte)vi5 goto B647;   
-  +B644:   #1
-        goto +B653;   [R?RiiiRRR RR ............... .....]
-  +B647:   #1
+  +B624:   #1
+        if vi5>=1514 goto B655;   
+  +B632:   #1
+        if vR3.get8(vi5)==(byte)vi5 goto B649;   
+  +B646:   #1
+        goto +B655;   [R?RiiiRRR RR ............... .....]
+  +B649:   #1
         vi5++;   
-        goto +B622;   [R?RiiiRRR RR ............... .....]
-  +B653:   #2
-        if 1514==vi5 goto B696;   
-  -B661:   #1
+        goto +B624;   [R?RiiiRRR RR ............... .....]
+  +B655:   #2
+        if 1514==vi5 goto B698;   
+  -B663:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ............... i....][ RR ............... iR...]
         b0.println(b1.append@extra("TestAdapter: Receive buffer contents not ok at count ").append@extra(vi5).toString@extra());   [R?RiiiRRR RR ii............. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B696:   #1
+  +B698:   #1
         vR0.Adapter.HeadUPD.UpPacketStatus(0);   [R?RiiiRRR RR ............... iR...] 
         vR0.befehl.NicWritePortLong(vR0.Adapter,UP_LIST_POINTER_REGISTER@special(),0);   [R?RiiiRRR RR ii............. iiRR.] 
         vR0.befehl.NicAcknowledgeAllInterrupt(vR0.Adapter);   [R?RiiiRRR RR iii............ RR...] 
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_TX_RESET@special() | TX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B782;   
-  -B765:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_TX_RESET@special() | TX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B784;   
+  -B767:   #1
         out.println("TestAdapter: Transmit reset failed");   [R?RiiiRRR RR i.............. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B782:   #1
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_RX_RESET@special() | RX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B821;   
-  -B804:   #1
+  +B784:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)(COMMAND_RX_RESET@special() | RX_RESET_MASK_NETWORK_RESET@special()))!=0 goto B823;   
+  -B806:   #1
         out.println("TestAdapter: Receiver reset failed");   [R?RiiiRRR RR i.............. RR...] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B821:   #1
+  +B823:   #1
         vi6 = (short)(vi6 & (bit_12@special() ^ -1));    
         vR0.befehl.NicWritePortShort(vR0.Adapter,NETWORK_DIAGNOSTICS_REGISTER@special(),vi6);   [R?RiiiRRR RR ii............. iiRR.] 
         return 1;   
@@ -580,16 +580,16 @@ EXCEPTIONHANDLER-TABLE:
         vi3 = (short)(vi3 | NETWORK_DIAGNOSTICS_UPPER_BYTES_ENABLE@special());    
         vR0.befehl.NicWritePortShort(vR0.Adapter,NETWORK_DIAGNOSTICS_REGISTER@special(),vi3);   [??i R iiiiii iiRR] 
         vi4 = vR0.befehl.NicReadPortLong(vR0.Adapter,DMA_CONTROL_REGISTER@special());    [??i R iiiiiiii iRR.] 
-        if 100000000!=vR0.Adapter.Hardware.get_LinkSpeed() goto B99;   
-  +B91:   #1
+        if 100000000!=vR0.Adapter.Hardware.get_LinkSpeed() goto B100;   
+  +B92:   #1
         vi4 = (vi4 | DMA_CONTROL_COUNTER_SPEED@special());    
-  +B99:   #1
+  +B100:   #1
         vR0.befehl.NicWritePortLong(vR0.Adapter,DMA_CONTROL_REGISTER@special(),vi4);   [??ii R ii....... iiRR] 
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_DOWN_STALL@special())!=0 goto B155;   
-  -B138:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_DOWN_STALL@special())!=0 goto B156;   
+  -B139:   #1
         out.println("StartAdapter: down stall failed");   [??ii R i........ RR..] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B155:   #1
+  +B156:   #1
         vR1 = vR0.Adapter.HeadDPD;    
         vR1.FrameStartHeader(FSH_DPD_EMPTY@special());   [R?ii R i........ iR..] 
         vR0.Adapter.HeadDPD = vR1.Next();   
@@ -597,11 +597,11 @@ EXCEPTIONHANDLER-TABLE:
         vR0.befehl.NicWritePortLong(vR0.Adapter,DOWN_LIST_POINTER_REGISTER@special(),vR1.DPDPhysicalAddress());   [R?ii R iiii..... iiRR] 
         vR0.befehl.NicWritePortByte(vR0.Adapter,DOWN_POLL_REGISTER@special(),(byte)vR0.Adapter.Resources.get_DownPollRate());   [R?ii R iiiiiii.. iiRR] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_DOWN_UNSTALL@special());   [R?ii R iiiiiiiii iRR.] 
-        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_UP_STALL@special())!=0 goto B294;   
-  -B277:   #1
+        if vR0.befehl.NicCommandWait(vR0.Adapter,(short)COMMAND_UP_STALL@special())!=0 goto B295;   
+  -B278:   #1
         out.println("StartAdapter: up stall failed");   [R?ii R i.......... RR..] 
         throw new metaxa/os/devices/net/NicStatusFailure();   
-  +B294:   #1
+  +B295:   #1
         vR0.befehl.NicWritePortLong(vR0.Adapter,UP_LIST_POINTER_REGISTER@special(),vR0.Adapter.HeadUPD.UPDPhysicalAddress());   [R?ii R iii........ iiRR] 
         vR0.befehl.NicWritePortByte(vR0.Adapter,UP_POLL_REGISTER@special(),8);   [R?ii R iiiii...... iiRR] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_UP_UNSTALL@special());   [R?ii R iiiiiii.... iRR.] 
@@ -611,12 +611,12 @@ EXCEPTIONHANDLER-TABLE:
         vR0.befehl.NicUnmaskAllInterrupt(vR0.Adapter);   [R?ii R iiiiiiiiiiii RR..] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_RX_ENABLE@special());   [R?ii R iiiiiiiiiiiiii iRR.] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_TX_ENABLE@special());   [R?ii R iiiiiiiiiiiiiiii iRR.] 
-        if vR0.Adapter.DelayStart!=1 goto B460;   
-  +B435:   #1
+        if vR0.Adapter.DelayStart!=1 goto B461;   
+  +B436:   #1
         out.println("D3C905: waiting 3 seconds ...");   [R?ii R i............... RR..] 
         sleep@special(3000,0);   [R?ii R i............... ii..]
         out.println("D3C905: back again");   [R?ii R ii.............. RR..] 
-  +B460:   #1
+  +B461:   #1
         vR0.befehl.NicCommand(vR0.Adapter,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_5@special()));   [R?ii R ii.............. iRR.] 
         vi5 = vR0.befehl.NicReadPortByte(vR0.Adapter,RX_FILTER_REGISTER@special());    [R?ii R iiii............ iRR.] 
         vi6 = 0;    
@@ -670,7 +670,7 @@ EXCEPTIONHANDLER-TABLE:
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-15 - 30 handler 33 type 122
+15 - 30 handler 33 type 365
  }
 // Register: rd 29/29 wr 26 swaps 7 any 5 found 2 SoftwareWork
  
@@ -729,9 +729,9 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-93 - 109 handler 112 type 122
-122 - 138 handler 141 type 122
-195 - 211 handler 214 type 122
+93 - 109 handler 112 type 365
+122 - 138 handler 141 type 365
+195 - 211 handler 214 type 365
  }
 // Register: rd 23/23 wr 30 swaps 12 any 1 found 1 ReStartAdapter
  
@@ -841,10 +841,10 @@ EXCEPTIONHANDLER-TABLE:
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 21 handler 25 type 122
-41 - 62 handler 66 type 122
-82 - 103 handler 107 type 122
-167 - 188 handler 192 type 122
+0 - 21 handler 25 type 365
+41 - 62 handler 66 type 365
+82 - 103 handler 107 type 365
+167 - 188 handler 192 type 365
  }
 // Register: rd 31/31 wr 33 swaps 10 any 0 found 0 NicOpen
  
@@ -1084,7 +1084,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-2 - 21 handler 24 type 365
+2 - 21 handler 24 type 1040
  }
 // Register: rd 5/5 wr 8 swaps 3 any 0 found 0 HurricaneEarlyRevision
  
@@ -1113,8 +1113,8 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-4 - 22 handler 25 type 365
-56 - 74 handler 77 type 365
+4 - 22 handler 25 type 1040
+56 - 74 handler 77 type 1040
  }
 // Register: rd 10/10 wr 12 swaps 4 any 0 found 0 FlowControl
  
@@ -1140,177 +1140,177 @@ EXCEPTIONHANDLER-TABLE:
         vR0.Adapter.Hardware.set_phys(3072);   [iiiiiRi RRR .. iR] 
         vR0.Adapter.Hardware.set_MIIReadCommand((short)(3072 | 24576));   [iiiiiRi RRR i. iR] 
         vR0.Adapter.Hardware.set_MIIWriteCommand((short)(3072 | 20482));   [iiiiiRi RRR ii iR] 
-        if vR0.Adapter.Hardware.get_DeviceId()!=36874 goto B166;   
-  +B150:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()!=36874 goto B167;   
+  +B151:   #1
         out.println("SetupMedia: 10BaseFL force Media Option ");   [iiiiiRi RRR i. RR] 
         vi1 = MEDIA_OPTIONS_10BASEFL_AVAILABLE@special();    [iiiiiRi RRR i. ..]
-        goto +B204;   [iiiiiRi RRR i. ..]
-  +B166:   #1
+        goto +B205;   [iiiiiRi RRR i. ..]
+  +B167:   #1
         vR0.befehl.NicCommand(vR0.Adapter,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_3@special()));   [iiiiiRi RRR ii iRR] 
         vi1 = vR0.befehl.NicReadPortShort(vR0.Adapter,MEDIA_OPTIONS_REGISTER@special());    [iiiiiRi RRR iiis sRR] 
-  +B204:   #2
+  +B205:   #2
         vi3 = vR0.eeprom.ReadEEPROM(vR0.Adapter,18);    [iiiiiRi RRR i... iRR] 
-  +B223:   #1
-        goto +B239;   [iiiiiRi RRR .... ...]
-  +H226<caught exception>:   #1 reference
+  +B224:   #1
+        goto +B240;   [iiiiiRi RRR .... ...]
+  +H227<caught exception>:   #1 reference
         vR8 = <caught exception>;    
         out.println("SetupMedia: InternalConfig 0 read failed");   [iiiiiRiR RRR i... RR.] 
         return 0;   
-  +B239:   #2
+  +B240:   #2
         vi4 = vR0.eeprom.ReadEEPROM(vR0.Adapter,19);    [iiiiiRi RRR i... iRR] 
-  +B259:   #1
-        goto +B275;   [iiiiiRi RRR .... ...]
-  +H262<caught exception>:   #1 reference
+  +B260:   #1
+        goto +B276;   [iiiiiRi RRR .... ...]
+  +H263<caught exception>:   #1 reference
         vR8 = <caught exception>;    
         out.println("SetupMedia: InternalConfig 1 read failed");   [iiiiiRiR RRR i... RR.] 
         return 0;   
-  +B275:   #1
+  +B276:   #1
         vi2 = (vi3 | (vi4 << 16));    
         vR0.befehl.NicCommand(vR0.Adapter,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_3@special()));   [iiiiiRi RRR ii.. iRR] 
-        if vi2==vR0.befehl.NicReadPortLong(vR0.Adapter,INTERNAL_CONFIG_REGISTER@special()) goto B339;   
-  +B324:   #1
+        if vi2==vR0.befehl.NicReadPortLong(vR0.Adapter,INTERNAL_CONFIG_REGISTER@special()) goto B340;   
+  +B325:   #1
         vR0.befehl.NicWritePortLong(vR0.Adapter,INTERNAL_CONFIG_REGISTER@special(),vi2);   [iiiiiRi RRR ii.. iiRR] 
-  +B339:   #1
-        if vR0.Adapter.Hardware.get_ConfigConnector()!=-1 goto B432;   
-  +B353:   #1
+  +B340:   #1
+        if vR0.Adapter.Hardware.get_ConfigConnector()!=-1 goto B433;   
+  +B354:   #1
         vR0.Adapter.Hardware.set_ConfigConnector((byte)((vi2 & INTERNAL_CONFIG_TRANSCEIVER_MASK@special()) >> 20));   [iiiiiRi RRR i... iR..] 
         vR0.Adapter.Hardware.set_Connector(vR0.Adapter.Hardware.get_ConfigConnector());   [iiiiiRi RRR ii.. bR..] 
-  +B392:   #1
-        goto +B408;   [iiiiiRi RRR .... ....]
-  +H395<caught exception>:   #1 reference
+  +B393:   #1
+        goto +B409;   [iiiiiRi RRR .... ....]
+  +H396<caught exception>:   #1 reference
         vR8 = <caught exception>;    
-        out.println("SetupMedia: tried to set a wrong Connector!");   [iiiiiRiR RRR i... RR..] 
+        out.println("SetupMedia: tried to set a wrong Connector!");   [iiiiiRiRR RRR i... RR..] 
         return 0;   
-  +B408:   #1
-        if (vi2 & INTERNAL_CONFIG_AUTO_SELECT@special())<=0 goto B427;   
-  +B416:   #1
+  +B409:   #1
+        if (vi2 & INTERNAL_CONFIG_AUTO_SELECT@special())<=0 goto B428;   
+  +B417:   #1
         vR0.Adapter.Hardware.set_AutoSelect(1);   [iiiiiRi RRR .... iR..] 
-  +B427:   #1
+  +B428:   #1
         vR0.ProcessMediaOverrides@special(vi1);   [iiiiiRi RRR .... iR..] 
-  +B432:   #1
-        if vR0.Adapter.Hardware.get_AutoSelect()==0 goto B481;   
-  +B445:   #1
+  +B433:   #1
+        if vR0.Adapter.Hardware.get_AutoSelect()==0 goto B482;   
+  +B446:   #1
         out.println("SetupMedia: Autoselect set");   [iiiiiRi RRR i... RR..] 
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_STATISTICS_DISABLE@special());   [iiiiiRi RRR iii. iRR.] 
         vR0.MainAutoSelectionRoutine@special(vi1);   [iiiiiRi RRR iii. iR..] 
-        goto +B649;   [iiiiiRi RRR iii. ....]
-  +B481:   #1
+        goto +B651;   [iiiiiRi RRR iii. ....]
+  +B482:   #1
         out.println("SetupMedia: Adapter in forced-mode configuration!");   [iiiiiRi RRR i... RR..] 
-        if vR0.Adapter.Hardware.get_Connector()==6 goto B520;   
-  +B505:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=8 goto B558;   
-  +B520:   #2
+        if vR0.Adapter.Hardware.get_Connector()==6 goto B521;   
+  +B506:   #1
+        if vR0.Adapter.Hardware.get_Connector()!=8 goto B559;   
+  +B521:   #2
         b0 = vR0.mii;    
         b1 = vR0.Adapter;    
         b2 = new metaxa/os/devices/net/ConnectorType(6);    [ RRR .... i...][ RRR .... iiR.]
         b0.ProgramMII(b1,b2);   [iiiiiRi RRR .... RRR.] 
-  +B541:   #1
-        goto +B614;   [iiiiiRi RRR .... ....]
-  +H544<caught exception>:   #1 reference
+  +B542:   #1
+        goto +B616;   [iiiiiRi RRR .... ....]
+  +H545<caught exception>:   #1 reference
         vR8 = <caught exception>;    
         out.println("SetupMedia: wrong ConnectorType");   [iiiiiRiR RRR i... RR..] 
-        goto +B614;   [iiiiiRiR RRR i... ....]
-  +B558:   #1
-        if vR0.Adapter.Hardware.get_Connector()==5 goto B586;   
-  +B572:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=4 goto B601;   
-  +B586:   #1
+        goto +B616;   [iiiiiRiR RRR i... ....]
+  +B559:   #1
+        if vR0.Adapter.Hardware.get_Connector()==5 goto B587;   
+  +B573:   #1
+        if vR0.Adapter.Hardware.get_Connector()!=4 goto B603;   
+  +B587:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [iiiiiRi RRR .... iR..] 
-        goto +B614;   [iiiiiRi RRR .... ....]
-  +B601:   #1
+        goto +B616;   [iiiiiRi RRR .... ....]
+  +B603:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [iiiiiRi RRR .... iR..] 
-  +B614:   #4
+  +B616:   #4
         b1 = new metaxa/os/devices/net/ConnectorType(vR0.Adapter.Hardware.get_Connector());    [ RRR .... i...][ RRR .... ibR.]
         vR0.SetupConnector@special(b1);   [iiiiiRi RRR .... RR..] 
-  +B635:   #1
-        goto +B649;   [iiiiiRi RRR .... ....]
-  +H638<caught exception>:   #1 reference
+  +B637:   #1
+        goto +B651;   [iiiiiRi RRR .... ....]
+  +H640<caught exception>:   #1 reference
         vR8 = <caught exception>;    
-        out.println("SetupMedia: unknown Connector in SetupConnector");   [iiiiiRiR RRR i... RR..] 
-  +B649:   #3
+        out.println("SetupMedia: unknown Connector in SetupConnector");   [iiiiiRiRR RRR i... RR..] 
+  +B651:   #3
         vi7 = vR0.GetLinkSpeed@special();    [iiiiiRi RRR .... R...] 
-  +B655:   #1
-        goto +B694;   [iiiiiRi RRR .... ....]
-  +H658<caught exception>:   #1 reference
+  +B657:   #1
+        goto +B696;   [iiiiiRi RRR .... ....]
+  +H660<caught exception>:   #1 reference
         vR8 = <caught exception>;    
-        out.println("SetupMedia: Unable to determine link speed!");   [iiiiiRiR RRR i... RR..] 
-  +B669:   #1
-        vR0.Adapter.Hardware.set_LinkState(2);   [iiiiiRiR RRR .... iR..] 
-  +B680:   #1
-        goto +B694;   [iiiiiRiR RRR .... ....]
-  +H683<caught exception>:   #1 reference
+        out.println("SetupMedia: Unable to determine link speed!");   [iiiiiRiRR RRR i... RR..] 
+  +B671:   #1
+        vR0.Adapter.Hardware.set_LinkState(2);   [iiiiiRiRR RRR .... iR..] 
+  +B682:   #1
+        goto +B696;   [iiiiiRiRR RRR .... ....]
+  +H685<caught exception>:   #1 reference
         vR9 = <caught exception>;    
         out.println("SetupMedia: tried to set an unknown LinkState");   [iiiiiRiRR RRR i... RR..] 
-  +B694:   #2
-        if vi7==0 goto B714;   
-  +B699:   #1
+  +B696:   #2
+        if vi7==0 goto B717;   
+  +B701:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [iiiiiRi RRR .... iR..] 
-        goto +B727;   [iiiiiRi RRR .... ....]
-  +B714:   #1
+        goto +B730;   [iiiiiRi RRR .... ....]
+  +B717:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [iiiiiRi RRR .... iR..] 
-  +B727:   #2
+  +B730:   #2
         vR0.Adapter.Hardware.set_LinkState(0);   [iiiiiRi RRR .... iR..] 
-  +B738:   #1
-        goto +B752;   [iiiiiRi RRR .... ....]
-  +H741<caught exception>:   #1 reference
+  +B741:   #1
+        goto +B755;   [iiiiiRi RRR .... ....]
+  +H744<caught exception>:   #1 reference
         vR8 = <caught exception>;    
         out.println("SetupMedia: tried to set an unknown LinkState");   [iiiiiRiR RRR i... RR..] 
-  +B752:   #1
+  +B755:   #1
         vR0.befehl.NicCommand(vR0.Adapter,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_3@special()));   [iiiiiRi RRR ii.. iRR.] 
         vi5 = vR0.befehl.NicReadPortShort(vR0.Adapter,MAC_CONTROL_REGISTER@special());    [iiiiiRi RRR iiis sRR.] 
-        if vR0.Adapter.Hardware.get_FullDuplexEnable()==0 goto B872;   
-  +B804:   #1
+        if vR0.Adapter.Hardware.get_FullDuplexEnable()==0 goto B875;   
+  +B807:   #1
         vi5 = (short)(vi5 | MAC_CONTROL_FULL_DUPLEX_ENABLE@special());    
         out.println("Changed link to full duplex");   [iiiiiRi RRR i... RR..] 
-        if vR0.Adapter.Hardware.get_FlowControlSupported()==0 goto B932;   
-  +B835:   #1
+        if vR0.Adapter.Hardware.get_FlowControlSupported()==0 goto B935;   
+  +B838:   #1
         out.println("SetupMedia: flow Control support is on!");   [iiiiiRi RRR i... RR..] 
         vi5 = (short)(vi5 | MAC_CONTROL_FLOW_CONTROL_ENABLE@special());    
         vR0.Adapter.Hardware.set_FlowControlEnable(1);   [iiiiiRi RRR i... iR..] 
         vR0.SetMulticastAddresses@special();   [iiiiiRi RRR i... R...] 
-        goto +B932;   [iiiiiRi RRR i... ....]
-  +B872:   #1
+        goto +B935;   [iiiiiRi RRR i... ....]
+  +B875:   #1
         vi5 = (short)(vi5 & (MAC_CONTROL_FULL_DUPLEX_ENABLE@special() ^ -1));    
         out.println("Changed link to half duplex");   [iiiiiRi RRR i... RR..] 
-        if vR0.Adapter.Hardware.get_FlowControlSupported()==0 goto B932;   
-  +B905:   #1
+        if vR0.Adapter.Hardware.get_FlowControlSupported()==0 goto B935;   
+  +B908:   #1
         vi5 = (short)(vi5 & (MAC_CONTROL_FLOW_CONTROL_ENABLE@special() ^ -1));    
         vR0.Adapter.Hardware.set_FlowControlEnable(0);   [iiiiiRi RRR .... iR..] 
         vR0.SetMulticastAddresses@special();   [iiiiiRi RRR .... R...] 
-  +B932:   #3
+  +B935:   #3
         vR0.befehl.NicWritePortShort(vR0.Adapter,MAC_CONTROL_REGISTER@special(),vi5);   [iiiiiRi RRR is.. isRR] 
-        if vR0.ResetAndEnableTransmitter@this()!=0 goto B966;   
-  +B955:   #1
+        if vR0.ResetAndEnableTransmitter@this()!=0 goto B969;   
+  +B958:   #1
         out.println("SetupMedia: Reset transmitter failed");   [iiiiiRi RRR i... RR..] 
         return 0;   
-  +B966:   #1
-        if vR0.ResetAndEnableReceiver@special()!=0 goto B984;   
-  +B973:   #1
+  +B969:   #1
+        if vR0.ResetAndEnableReceiver@special()!=0 goto B987;   
+  +B976:   #1
         out.println("SetupMedia: Reset receiver failed");   [iiiiiRi RRR i... RR..] 
         return 0;   
-  +B984:   #1
-        if vR0.Adapter.Hardware.get_AutoSelect()==0 goto B1046;   
-  +B997:   #1
-        if vR0.Adapter.Hardware.get_FlowControlEnable()==0 goto B1046;   
-  +B1010:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==37376 goto B1046;   
-  +B1026:   #1
-        if vR0.Adapter.Hardware.get_DeviceId()==38917 goto B1046;   
-  +B1042:   #1
+  +B987:   #1
+        if vR0.Adapter.Hardware.get_AutoSelect()==0 goto B1049;   
+  +B1000:   #1
+        if vR0.Adapter.Hardware.get_FlowControlEnable()==0 goto B1049;   
+  +B1013:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==37376 goto B1049;   
+  +B1029:   #1
+        if vR0.Adapter.Hardware.get_DeviceId()==38917 goto B1049;   
+  +B1045:   #1
         vR0.FlowControl@special();   [iiiiiRi RRR .... R...] 
-  +B1046:   #4
+  +B1049:   #4
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-35 - 57 handler 60 type 373
-204 - 223 handler 226 type 122
-239 - 259 handler 262 type 122
-353 - 392 handler 395 type 373
-520 - 541 handler 544 type 395
-614 - 635 handler 638 type 395
-649 - 655 handler 658 type 401
-669 - 680 handler 683 type 404
-727 - 738 handler 741 type 404
+35 - 57 handler 60 type 1060
+205 - 224 handler 227 type 365
+240 - 260 handler 263 type 365
+354 - 393 handler 396 type 1060
+521 - 542 handler 545 type 1118
+616 - 637 handler 640 type 1118
+651 - 657 handler 660 type 1132
+671 - 682 handler 685 type 1139
+730 - 741 handler 744 type 1139
  }
 // Register: rd 101/101 wr 103 swaps 32 any 4 found 7 SetupMedia
  
@@ -1349,20 +1349,20 @@ EXCEPTIONHANDLER-TABLE:
   +B37:   #1
         if (vi2 & 4)> 0 goto B68;   
   +B48:   #1
-        if vR0.Adapter.Hardware.get_LinkState()!=0 goto B236;   
+        if vR0.Adapter.Hardware.get_LinkState()!=0 goto B237;   
   +B61:   #1
         vR0.IndicateToOSLinkStateChange@special();   [ii  .. R..] 
-        goto +B236;   forward return[ii  .. ...]
+        goto +B237;   forward return[ii  .. ...]
   +B68:   #1
         if vR0.Adapter.Hardware.get_LinkState()==0 goto B85;   
   +B81:   #1
         vR0.IndicateToOSLinkStateChange@special();   [ii  .. R..] 
   +B85:   #1
-        if (vi2 & 8)<=0 goto B236;   
+        if (vi2 & 8)<=0 goto B237;   
   +B97:   #1
-        if (vi2 & 1)<=0 goto B236;   
+        if (vi2 & 1)<=0 goto B237;   
   +B108:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=8 goto B236;   
+        if vR0.Adapter.Hardware.get_Connector()!=8 goto B237;   
   +B123:   #1
         vi4 = vR0.Adapter.Hardware.get_LinkSpeed();    [ii  .. R..] 
         vi3 = vR0.Adapter.Hardware.get_FullDuplexEnable();    [ii?i  .. R..] 
@@ -1375,26 +1375,26 @@ EXCEPTIONHANDLER-TABLE:
         out.println("CheckTPLinkState: Unable to determine link speed!");   [iiiiR  i. RR.] 
         return;   
   +B166:   #1
-        if vi1==0 goto B185;   
+        if vi1==0 goto B186;   
   +B170:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [iiii  .. iR.] 
-        goto +B198;   [iiii  .. ...]
-  +B185:   #1
+        goto +B199;   [iiii  .. ...]
+  +B186:   #1
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [iiii  .. iR.] 
-  +B198:   #1
-        if vR0.Adapter.Hardware.get_LinkSpeed()==vi4 goto B217;   
-  +B213:   #1
+  +B199:   #1
+        if vR0.Adapter.Hardware.get_LinkSpeed()==vi4 goto B218;   
+  +B214:   #1
         vR0.SetupNewSpeed@special();   [iiii  .. R..] 
-  +B217:   #1
-        if vR0.Adapter.Hardware.get_FullDuplexEnable()==vi3 goto B236;   
-  +B231:   #1
+  +B218:   #1
+        if vR0.Adapter.Hardware.get_FullDuplexEnable()==vi3 goto B237;   
+  +B232:   #1
         vR0.SetupNewDuplex@special();   [iiii  .. R..] 
-  +B236:   #6
+  +B237:   #6
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-4 - 22 handler 25 type 365
-146 - 151 handler 154 type 401
+4 - 22 handler 25 type 1040
+146 - 151 handler 154 type 1132
  }
 // Register: rd 22/22 wr 13 swaps 3 any 4 found 0 CheckTPLinkState
  
@@ -1446,8 +1446,8 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-23 - 34 handler 37 type 404
-57 - 68 handler 71 type 404
+23 - 34 handler 37 type 1139
+57 - 68 handler 71 type 1139
  }
 // Register: rd 3/3 wr 10 swaps 4 any 0 found 0 IndicateToOSLinkStateChange
  
@@ -1533,10 +1533,10 @@ EXCEPTIONHANDLER-TABLE:
         return vi6;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 19 handler 22 type 365
-32 - 50 handler 53 type 365
-63 - 82 handler 85 type 365
-95 - 114 handler 117 type 365
+0 - 19 handler 22 type 1040
+32 - 50 handler 53 type 1040
+63 - 82 handler 85 type 1040
+95 - 114 handler 117 type 1040
  }
 // Register: rd 29/29 wr 14 swaps 4 any 10 found 0 GetLinkSpeed
  
@@ -1607,7 +1607,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-96 - 364 handler 367 type 373
+96 - 364 handler 367 type 1060
  }
 // Register: rd 44/44 wr 19 swaps 4 any 10 found 8 ProcessMediaOverrides
  
@@ -1692,13 +1692,13 @@ EXCEPTIONHANDLER-TABLE:
   +START:   #1
         vi1 = 0;    
         vi1 = vR0.befehl.NicReadPortLong(vR0.Adapter,DMA_CONTROL_REGISTER@special());    [i  ii iRR] 
-        if vR0.Adapter.Hardware.get_LinkSpeed()!=100000000 goto B41;   
-  +B32:   #1
+        if vR0.Adapter.Hardware.get_LinkSpeed()!=100000000 goto B42;   
+  +B33:   #1
         vi1 = (vi1 | DMA_CONTROL_COUNTER_SPEED@special());    
-        goto +B49;   [i  .. ...]
-  +B41:   #1
+        goto +B50;   [i  .. ...]
+  +B42:   #1
         vi1 = (vi1 & (DMA_CONTROL_COUNTER_SPEED@special() ^ -1));    
-  +B49:   #1
+  +B50:   #1
         vR0.befehl.NicWritePortLong(vR0.Adapter,DMA_CONTROL_REGISTER@special(),vi1);   [i  ii iiRR] 
         return;   
   +END:   #1
@@ -2002,152 +2002,152 @@ EXCEPTIONHANDLER-TABLE:
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR] 
   +B158:   #3
-        if (vi1 & MEDIA_OPTIONS_100BASEFX_AVAILABLE@special())<=0 goto B253;   
+        if (vi1 & MEDIA_OPTIONS_100BASEFX_AVAILABLE@special())<=0 goto B254;   
   +B166:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B253;   
+        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B254;   
   +B180:   #1
         out.println("MainAutoSelectionRoutine: Trying 100BFX");   [ RR i. RR] 
   +B189:   #2
         b1 = new metaxa/os/devices/net/ConnectorType(5);    [ RR .. i.][ RR .. iiR]
-        if vR0.TryLinkBeat@special(b1)==0 goto B227;   
+        if vR0.TryLinkBeat@special(b1)==0 goto B228;   
   +B204:   #1
         vR0.Adapter.Hardware.set_Connector(5);   [ RR .. iR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [ RR .. iR.] 
-  +B227:   #3
-        goto +B253;   [ RR .. ...]
-  +H230<caught exception>:   #1 reference
+  +B228:   #3
+        goto +B254;   [ RR .. ...]
+  +H231<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-        goto +B253;   [iR RR i. ...]
-  +H243<caught exception>:   #1 reference
+        goto +B254;   [iR RR i. ...]
+  +H244<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B253:   #4
-        if (vi1 & MEDIA_OPTIONS_10AUI_AVAILABLE@special())<=0 goto B394;   
-  +B261:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B394;   
-  +B275:   #1
+  +B254:   #4
+        if (vi1 & MEDIA_OPTIONS_10AUI_AVAILABLE@special())<=0 goto B395;   
+  +B262:   #1
+        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B395;   
+  +B276:   #1
         out.println("MainAutoSelectionRoutine: Trying 10AUI");   [ RR i. RR.] 
-  +B284:   #1
+  +B285:   #1
         b1 = new metaxa/os/devices/net/ConnectorType(1);    [ RR .. i..][ RR .. iiR]
         vR0.SetupConnector@special(b1);   [ RR .. RR.] 
-  +B296:   #1
-        goto +B309;   [ RR .. ...]
-  +H299<caught exception>:   #1 reference
+  +B297:   #1
+        goto +B310;   [ RR .. ...]
+  +H300<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B309:   #1
+  +B310:   #1
         vi2 = 0;    
-  +B311:   #1
-        if vi2>=3 goto B380;   
-  +B316:   #1
-        if vR0.TestPacket@special()==0 goto B372;   
-  +B323:   #1
+  +B312:   #1
+        if vi2>=3 goto B381;   
+  +B317:   #1
+        if vR0.TestPacket@special()==0 goto B373;   
+  +B324:   #1
         vR0.Adapter.Hardware.set_Connector(1);   [i RR .. iR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [i RR .. iR.] 
-  +B347:   #1
-        goto +B360;   [i RR .. ...]
-  +H350<caught exception>:   #1 reference
+  +B348:   #1
+        goto +B361;   [i RR .. ...]
+  +H351<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B360:   #1
+  +B361:   #1
         out.println("MainAutoSelectionRoutine: Found AUI");   [i RR i. RR.] 
-        goto +B380;   [i RR i. ...]
-  +B372:   #1
+        goto +B381;   [i RR i. ...]
+  +B373:   #1
         vi2 = (short)(vi2+1);    
-        goto +B311;   [i RR .. ...]
-  +B380:   #2
-        if vi2!=3 goto B394;   
-  +B385:   #1
+        goto +B312;   [i RR .. ...]
+  +B381:   #2
+        if vi2!=3 goto B395;   
+  +B386:   #1
         out.println("MainAutoSelectionRoutine: Unable to find AUI");   [i RR i. RR.] 
-  +B394:   #3
-        if (vi1 & MEDIA_OPTIONS_10BASE2_AVAILABLE@special())<=0 goto B560;   
-  +B402:   #1
-        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B560;   
-  +B416:   #1
+  +B395:   #3
+        if (vi1 & MEDIA_OPTIONS_10BASE2_AVAILABLE@special())<=0 goto B561;   
+  +B403:   #1
+        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B561;   
+  +B417:   #1
         out.println("MainAutoSelectionRoutine: Trying 10BASEB2");   [i RR i. RR.] 
-  +B425:   #1
+  +B426:   #1
         b1 = new metaxa/os/devices/net/ConnectorType(3);    [ RR .. i..][ RR .. iiR]
         vR0.SetupConnector@special(b1);   [i RR .. RR.] 
-  +B437:   #1
-        goto +B450;   [i RR .. ...]
-  +H440<caught exception>:   #1 reference
+  +B438:   #1
+        goto +B451;   [i RR .. ...]
+  +H441<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B450:   #1
+  +B451:   #1
         vi2 = 0;    
-  +B452:   #1
-        if vi2>=3 goto B521;   
-  +B457:   #1
-        if vR0.TestPacket@special()==0 goto B513;   
-  +B464:   #1
+  +B453:   #1
+        if vi2>=3 goto B522;   
+  +B458:   #1
+        if vR0.TestPacket@special()==0 goto B514;   
+  +B465:   #1
         vR0.Adapter.Hardware.set_Connector(3);   [i RR .. iR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [i RR .. iR.] 
-  +B488:   #1
-        goto +B501;   [i RR .. ...]
-  +H491<caught exception>:   #1 reference
+  +B489:   #1
+        goto +B502;   [i RR .. ...]
+  +H492<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B501:   #1
+  +B502:   #1
         out.println("MainAutoSelectionRoutine: Found 10Base2 ");   [i RR i. RR.] 
-        goto +B521;   [i RR i. ...]
-  +B513:   #1
+        goto +B522;   [i RR i. ...]
+  +B514:   #1
         vi2 = (short)(vi2+1);    
-        goto +B452;   [i RR .. ...]
-  +B521:   #2
-        if vi2!=3 goto B535;   
-  +B526:   #1
+        goto +B453;   [i RR .. ...]
+  +B522:   #2
+        if vi2!=3 goto B536;   
+  +B527:   #1
         out.println("MainAutoSelectionRoutine: Unable to find 10Base2");   [i RR i. RR.] 
-  +B535:   #1
+  +B536:   #1
         vR0.befehl.NicCommand(vR0.Adapter,COMMAND_DISABLE_DC_CONVERTER@special());   [i RR ii iRR] 
         vR0.CheckDCConverter@special(0);   [i RR ii iR.] 
-  +B560:   #2
-        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B688;   
-  +B574:   #1
+  +B561:   #2
+        if vR0.Adapter.Hardware.get_Connector()!=-1 goto B689;   
+  +B575:   #1
         vR0.Adapter.Hardware.set_Connector(vR0.Adapter.Hardware.get_ConfigConnector());   [i RR i. bR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [i RR i. iR.] 
-  +B607:   #1
-        goto +B620;   [i RR .. ...]
-  +H610<caught exception>:   #1 reference
+  +B608:   #1
+        goto +B621;   [i RR .. ...]
+  +H611<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i. RR.] 
-  +B620:   #1
+  +B621:   #1
         out.println("MainAutoSelectionRoutine: AutoSelection failed. Using default.");   [i RR i. RR.] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR i. i..][ RR i. iR.]
         b0.println(b1.append@extra("MainAutoSelectionRoutine: Connector: ").append@extra(vR0.Adapter.Hardware.get_Connector()).toString@extra());   [i RR iiii. RR.] 
-  +B664:   #1
+  +B665:   #1
         vR0.Adapter.Hardware.set_LinkState(2);   [i RR ..... iR.] 
-  +B675:   #1
-        goto +B688;   [i RR ..... ...]
-  +H678<caught exception>:   #1 reference
+  +B676:   #1
+        goto +B689;   [i RR ..... ...]
+  +H679<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong linkstate");   [iR RR i.... RR.] 
-  +B688:   #3
+  +B689:   #3
         b1 = new metaxa/os/devices/net/ConnectorType(vR0.Adapter.Hardware.get_Connector());    [ RR ..... i..][ RR ..... ibR]
         vR0.SetupConnector@special(b1);   [i RR ..... RR.] 
-  +B709:   #1
-        goto +B722;   forward return[i RR ..... ...]
-  +H712<caught exception>:   #1 reference
+  +B710:   #1
+        goto +B723;   forward return[i RR ..... ...]
+  +H713<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         out.println("MainAutoSelectionRoutine: wrong connector");   [iR RR i.... RR.] 
-  +B722:   #1
+  +B723:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 11 handler 14 type 373
-64 - 76 handler 79 type 373
-92 - 104 handler 107 type 373
-134 - 145 handler 148 type 373
-189 - 227 handler 230 type 373
-189 - 227 handler 243 type 395
-284 - 296 handler 299 type 395
-323 - 347 handler 350 type 373
-425 - 437 handler 440 type 395
-464 - 488 handler 491 type 373
-574 - 607 handler 610 type 373
-664 - 675 handler 678 type 404
-688 - 709 handler 712 type 395
+0 - 11 handler 14 type 1060
+64 - 76 handler 79 type 1060
+92 - 104 handler 107 type 1060
+134 - 145 handler 148 type 1060
+189 - 228 handler 231 type 1060
+189 - 228 handler 244 type 1118
+285 - 297 handler 300 type 1118
+324 - 348 handler 351 type 1060
+426 - 438 handler 441 type 1118
+465 - 489 handler 492 type 1060
+575 - 608 handler 611 type 1060
+665 - 676 handler 679 type 1139
+689 - 710 handler 713 type 1118
  }
 // Register: rd 63/63 wr 80 swaps 27 any 12 found 8 MainAutoSelectionRoutine
  
@@ -2274,7 +2274,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-56 - 70 handler 73 type 395
+56 - 70 handler 73 type 1118
  }
 // Register: rd 74/74 wr 56 swaps 13 any 7 found 9 SetupConnector
  
@@ -2298,9 +2298,9 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +B96:   #1
         vR0.waitglobal.set_PhyResponding(1);   [i  .. iR.] 
-        if (vR0.waitglobal.get_PhyStatus() & 8)<=0 goto B389;   
+        if (vR0.waitglobal.get_PhyStatus() & 8)<=0 goto B391;   
   +B122:   #1
-        if (vR0.waitglobal.get_PhyStatus() & 1)<=0 goto B389;   
+        if (vR0.waitglobal.get_PhyStatus() & 1)<=0 goto B391;   
   +B139:   #1
         if vR0.mii.CheckMIIConfiguration(vR0.Adapter,vi1)!=0 goto B156;   
   +B154:   #1
@@ -2317,7 +2317,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +B214:   #1
         vR0.waitglobal.set_PhyResponding(1);   [i  .. iR.] 
-        if (vR0.waitglobal.get_PhyStatus() & 4)<=0 goto B322;   
+        if (vR0.waitglobal.get_PhyStatus() & 4)<=0 goto B323;   
   +B239:   #1
         vi2 = vR0.GetLinkSpeed@special();    [i  .. R..] 
   +B244:   #1
@@ -2328,34 +2328,34 @@ EXCEPTIONHANDLER-TABLE:
         vR0.Adapter.Hardware.set_Status(2);   [iR  i. iR.] 
         return 0;   
   +B270:   #1
-        if vi2==0 goto B298;   
+        if vi2==0 goto B299;   
   +B274:   #1
         out.println("TryMII: Link speed set to 100");   [i  i. RR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [i  i. iR.] 
-        goto +B320;   forward return[i  i. ...]
-  +B298:   #1
+        goto +B321;   forward return[i  i. ...]
+  +B299:   #1
         out.println("TryMII: Link speed set to 10");   [i  i. RR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [i  i. iR.] 
-  +B320:   #1
+  +B321:   #1
         return 1;   
-  +B322:   #1
-        if (vR0.waitglobal.get_PhyStatus() & 57344)<=0 goto B365;   
-  +B341:   #1
+  +B323:   #1
+        if (vR0.waitglobal.get_PhyStatus() & 57344)<=0 goto B367;   
+  +B342:   #1
         out.println("TryMII: Link speed defaulted to 100 ");   [i  i. RR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(100000000);   [i  i. iR.] 
-        goto +B387;   forward return[i  i. ...]
-  +B365:   #1
+        goto +B389;   forward return[i  i. ...]
+  +B367:   #1
         out.println("TryMII: Link speed defaulted to 10");   [i  i. RR.] 
         vR0.Adapter.Hardware.set_LinkSpeed(10000000);   [i  i. iR.] 
-  +B387:   #1
+  +B389:   #1
         return 1;   
-  +B389:   #2
+  +B391:   #2
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-38 - 62 handler 65 type 365
-156 - 180 handler 183 type 365
-239 - 244 handler 247 type 401
+38 - 62 handler 65 type 1040
+156 - 180 handler 183 type 1040
+239 - 244 handler 247 type 1132
  }
 // Register: rd 28/28 wr 27 swaps 14 any 1 found 0 TryMII
  
@@ -2411,8 +2411,8 @@ EXCEPTIONHANDLER-TABLE:
         return vi3;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-15 - 27 handler 30 type 395
-168 - 176 handler 180 type 75
+15 - 27 handler 30 type 1118
+168 - 176 handler 180 type 243
  }
 // Register: rd 45/45 wr 41 swaps 9 any 3 found 3 TryLinkBeat
  
@@ -2575,7 +2575,7 @@ EXCEPTIONHANDLER-TABLE:
         return vi1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-201 - 209 handler 213 type 75
+201 - 209 handler 213 type 243
  }
 // Register: rd 100/100 wr 87 swaps 24 any 3 found 5 TestPacket
  
@@ -2978,7 +2978,7 @@ EXCEPTIONHANDLER-TABLE:
  }
 // Register: rd 29/29 wr 27 swaps 8 any 3 found 2 TestReceive
  
- method registerNonBlockingConsumer(Ljx/buffer/separator/NonBlockingMemoryConsumer;)Z {
+ method registerNonBlockingConsumer(Ljx/fs/buffer/separator/NonBlockingMemoryConsumer;)Z {
   +START:   #1
         if vR0.etherConsumer==null goto B18;   
   -B7:   #1

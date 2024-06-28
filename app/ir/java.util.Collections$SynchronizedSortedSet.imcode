@@ -137,4 +137,11 @@ EXCEPTIONHANDLER-TABLE:
 19 - 22 handler 19 type 0
  }
 // Register: rd 5/5 wr 4 swaps 0 any 1 found 0 last
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
 }

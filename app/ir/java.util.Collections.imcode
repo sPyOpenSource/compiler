@@ -1027,14 +1027,14 @@ class java/util/Collections {
  
  method nCopies(ILjava/lang/Object;)Ljava/util/List; {
   +START:   #1
-        if vi0>=0 goto B31;   
+        if vi0>=0 goto B32;   
   -B4:   #1
         b0 = new java/lang/IllegalArgumentException;    
         b1 = b0;    
         b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
         b1.<init>@special(b2.append@extra("List length = ").append@extra(vi0).toString@extra());   [ RRR ii. RR.] 
         throw b0;   
-  +B31:   #1
+  +B32:   #1
         return new java/util/Collections$CopiesList(vi0,vR1);   
   +END:   #1
  }

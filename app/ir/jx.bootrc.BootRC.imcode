@@ -142,8 +142,8 @@ class jx/bootrc/BootRC {
         throw new java/lang/Error();   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-65 - 135 handler 138 type 32
-18 - 200 handler 201 type 38
+65 - 135 handler 138 type 99
+18 - 200 handler 201 type 121
  }
 // Register: rd 36/36 wr 16 swaps 4 any 2 found 0 nextRecord
  

@@ -80,9 +80,9 @@ class java/security/MessageDigest {
         throw b0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-13 - 35 handler 36 type 20
-13 - 35 handler 64 type 22
-13 - 35 handler 92 type 24
+13 - 35 handler 36 type 68
+13 - 35 handler 64 type 72
+13 - 35 handler 92 type 76
  }
 // Register: rd 22/22 wr 29 swaps 6 any 5 found 0 getInstance
  

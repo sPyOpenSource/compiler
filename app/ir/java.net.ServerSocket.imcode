@@ -29,22 +29,12 @@ class java/net/ServerSocket {
   +B14:   #1
         vR1[vi2] = vR0.net.getTCPBuffer();   
         vi2++;   
-        goto +B8;   [Ri RR  ..]
-  +B32:   #2
-        b0 = new java/net/Socket(vR0.tcpSocket.accept(vR1));    [ RR  i.][ RR . iRR]
-  +B49b0:   #1 reference
-        return b0;   
-  -H50<caught exception>:   #1 reference
-        vR2 = <caught exception>;    
-        b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
-        b0.println(b1.append@extra("ServerSocket: TCPSocket reported IOException ").append@extra(vR2.getMessage()).toString@extra());   [RR RR iii. RR.] 
-        throw vR2;   
+        goto +B8;   [Ri R  ..]
+  +B32:   #1
+        return new java/net/Socket(vR0.tcpSocket.accept(vR1));   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-32 - 49 handler 50 type 17
  }
-// Register: rd 13/13 wr 13 swaps 3 any 2 found 0 accept
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 accept
  
  method close()V {
   +START:   #1

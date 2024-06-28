@@ -1,6 +1,6 @@
 class jx/fs/FSObjectImpl {
  
- method <init>(Ljx/fs/FilesystemImpl;Ljx/fs/FileSystem;Ljx/fs/FSObjectImpl;Ljx/fs/Inode;)V {
+ method <init>(Ljx/fs/FilesystemImpl;Ljx/fs/FileSystem;Ljx/fs/FSObjectImpl;Ljx/fs/Node;)V {
   +START:   #1
         vR0.<init>@special();   [ ?R  R] 
         vR0.perm = 0;   
@@ -33,7 +33,7 @@ class jx/fs/FSObjectImpl {
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sync
  
- method getFileSystem()Ljx/fs/FilesystemInterface; {
+ method getFileSystem()Ljx/fs/FileSystemInterface; {
   +START:   #1
         return vR0.fs_impl;   
   +END:   #1
@@ -81,16 +81,9 @@ class jx/fs/FSObjectImpl {
 // Register: rd 6/6 wr 2 swaps 0 any 0 found 0 getAttribute
  
  method hashCode()I {
-  +START:   #2
-        b0 = vR0.inode.getIdentifier();    [ i  R] 
-  +B9b0:   #1 int
-        return b0;   
-  +H10<caught exception>:   #1 reference
-        vR1 = <caught exception>;    
-        return vR0.hashCode@special();   
+  +START:   #1
+        return vR0.inode.getIdentifier();   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 9 handler 10 type 17
  }
-// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 hashCode
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
 }

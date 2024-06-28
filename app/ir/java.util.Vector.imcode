@@ -71,21 +71,20 @@ class java/util/Vector {
   -B8:   #1
         throw new java/lang/IndexOutOfBoundsException();   
   +B16:   #1
-        vR0.ensureCapacity@this((vR0.elementCount+1));   [ R i iR] 
         vi3 = vR0.elementCount;    
-  +B31:   #1
-        if vi3<=vi2 goto B56;   
-  +B36:   #1
+  +B21:   #1
+        if vi3<=vi2 goto B46;   
+  +B26:   #1
         vR0.elementData[vi3] = vR0.elementData[(vi3-1)];   
         vi3--;   
-        goto +B31;   [i R . ..]
-  +B56:   #1
+        goto +B21;   [i R  ..]
+  +B46:   #1
         vR0.elementData[vi2] = vR1;   
         vR0.elementCount = (vR0.elementCount+1);   
         return;   
   +END:   #1
  }
-// Register: rd 17/17 wr 3 swaps 1 any 4 found 0 insertElementAt
+// Register: rd 15/15 wr 2 swaps 0 any 4 found 0 insertElementAt
  
  method size()I {
   +START:   #1
@@ -320,22 +319,20 @@ class java/util/Vector {
         vR0.elementCount = b2;   
         b0[b1] = 0;   
         goto +START;   [ Rii  ]
-  +B28:   #1
-        vR0.ensureCapacity@this(vi1);   [ Rii  iR] 
-  +B33:   #1
-        if vR0.elementCount>=vi1 goto B61;   
-  +B41:   #1
+  +B28:   #2
+        if vR0.elementCount>=vi1 goto B56;   
+  +B36:   #1
         b0 = vR0.elementData;    
         b2 = vR0.elementCount;    
         b1 = b2;    
         vR0.elementCount = (b2+1);   
         b0[b1] = 0;   
-        goto +B33;   [ Rii  ..]
-  +B61:   #1
+        goto +B28;   [ Rii  ]
+  +B56:   #1
         return;   
   +END:   #1
  }
-// Register: rd 19/19 wr 6 swaps 0 any 2 found 0 setSize
+// Register: rd 18/18 wr 6 swaps 0 any 2 found 0 setSize
  
  method toString()Ljava/lang/String; {
   +START:   #1
@@ -425,4 +422,18 @@ class java/util/Vector {
   +END:   #1
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subList
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
 }

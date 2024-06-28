@@ -269,8 +269,8 @@ class jx/net/protocol/ip/IPFormat {
  
  method swapAddresses()V {
   +START:   #1
-        vR1 = new jx/net/IPAddress(vR0.getDestIPAddress@this());    [ R  i][ R . iRR]
-        vR2 = new jx/net/IPAddress(vR0.getSourceIPAddress@this());    [ R . i..][ R . iRR]
+        vR1 = new jx/net/IPv4Address(vR0.getDestIPAddress@this());    [ R  i][ R . iRR]
+        vR2 = new jx/net/IPv4Address(vR0.getSourceIPAddress@this());    [ R . i..][ R . iRR]
         vR0.insertDestAddress@this(vR2);   [RR R . RR.] 
         vR0.insertSourceAddress@this(vR1);   [RR R . RR.] 
         return;   
@@ -284,12 +284,12 @@ class jx/net/protocol/ip/IPFormat {
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRR i. i.][ RRR i. iR]
         b1 = b1.append@extra("   Source: ");    [ RRR ii RR] 
-        b2 = new jx/net/IPAddress(vR0.getSourceIPAddress@this());    [ RRR ii i.][ RRR ii. iRR]
+        b2 = new jx/net/IPv4Address(vR0.getSourceIPAddress@this());    [ RRR ii i.][ RRR ii. iRR]
         b0.println(b1.append@extra(b2).toString@extra());   [ RRR iii RR.] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRR iii i..][ RRR iii iR.]
         b1 = b1.append@extra("   Destination: ");    [ RRR iiii RR.] 
-        b2 = new jx/net/IPAddress(vR0.getDestIPAddress@this());    [ RRR iiii i..][ RRR iiii. iRR]
+        b2 = new jx/net/IPv4Address(vR0.getDestIPAddress@this());    [ RRR iiii i..][ RRR iiii. iRR]
         b0.println(b1.append@extra(b2).toString@extra());   [ RRR iiiii RR.] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRR iiiii i..][ RRR iiiii iR.]

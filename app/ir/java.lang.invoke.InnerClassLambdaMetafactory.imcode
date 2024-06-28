@@ -2,21 +2,11 @@ class java/lang/invoke/InnerClassLambdaMetafactory {
  
  method <init>(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/invoke/MethodType;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;Z[Ljava/lang/Class;[Ljava/lang/invoke/MethodType;)V {
   +START:   #1
-        vR0.<init>@special(vR1,vR2,vR3,vR4,vR5,vR6,vi7,vR8,vR9);   [ RR  RRiRRRRRRR] 
-        vR0.implMethodClassName = vR0.implDefiningClass.getName@extra().replace@extra(46,47);   
+        vR0.<init>@special(vR1,vR2,vR3,vR4,vR5,vR6,vi7,vR8,vR9);   [ ?R  RRiRRRRRRR] 
         vR0.implMethodName = vR0.implInfo.getName();   
         vR0.implMethodDesc = vR0.implMethodType.toMethodDescriptorString@extra();   
-        b0 = vR0;    
-        if vR0.implKind!=0 goto B76;   
-  +B69b0:   #1 reference
-        b1 = vR0.implDefiningClass;    
-        goto +B83b0b1;   [ RR . ..........]
-  +B76b0:   #1 reference
-        b1 = vR0.implMethodType.returnType@extra();    [ RR . R.........] 
-  +B83b0b1:   #1 reference reference
-        b0.implMethodReturnClass = b1;   
         vR0.constructorType = vR2.changeReturnType@extra(TYPE);   
-        b1 = new java/lang/StringBuilder();    [ RR i i.........][ RR i iR........]
+        b1 = new java/lang/StringBuilder();    [ ?R i i.........][ ?R i iR........]
         vR0.lambdaClassName = b1.append@extra(vR0.targetClass.getName@extra().replace@extra(46,47)).append@extra("$$Lambda$").toString@extra();   
         dumper = 0;   
         vR0.argNames = 0;   
@@ -24,7 +14,7 @@ class java/lang/invoke/InnerClassLambdaMetafactory {
         return;   
   +END:   #1
  }
-// Register: rd 21/21 wr 12 swaps 3 any 1 found 0 <init>
+// Register: rd 13/13 wr 8 swaps 3 any 0 found 0 <init>
  
  method buildCallSite()Ljava/lang/invoke/CallSite; {
   -START:   #1
@@ -34,58 +24,11 @@ class java/lang/invoke/InnerClassLambdaMetafactory {
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 buildCallSite
  
  method spinInnerClass()Ljava/lang/Class; {
-  +START:   #1
-        vR2 = vR0.samBase.getName@extra().replace@extra(46,47);    [ ii . iiR] [ ii R iiR] 
-        if vR0.isSerializable!=0 goto B38;   
-  +B22:   #1
-        if java/io/Serializable.isAssignableFrom@extra(vR0.samBase)==0 goto B38;   
-  +B34:   #1
-        b0 = 1;    
-        goto +B39b0;   [?R ii . ...]
-  +B38:   #2
-        b0 = 0;    
-  +B39b0:   #1 int
-        vi3 = b0;    
-        if vR0.markerInterfaces.length!=0 goto B60;   
-  +B48:   #1
-        b0 = new java/lang/String()[1];    
-        b0[0] = vR2;   
-        vR1 = b0;    
-        goto +B164;   [RRi Ri . ...]
-  +B60:   #1
-        vR4 = new java/util/LinkedHashSet((vR0.markerInterfaces.length+1));    [ Ri . i..][ Ri . iiR]
-        vR4.add(vR2);   [RRiR Ri . RR.] 
-        vR5 = vR0.markerInterfaces;    
-        vi6 = vR5.length;    
-        vi7 = 0;    
-  +B99:   #1
-        if vi7>=vi6 goto B164;   
-  +B106:   #1
-        vR8 = vR5[vi7];    
-        vR4.add(vR8.getName@extra().replace@extra(46,47));   [RRiRRiiR Ri i RR.] 
-        b0 = vi3;    
-        if vR0.isSerializable!=0 goto B155;   
-  +B141b0:   #1 int
-        if java/io/Serializable.isAssignableFrom@extra(vR8)==0 goto B155;   
-  +B151b0:   #1 int
-        b1 = 1;    
-        goto +B156b0b1;   [RRiRRiiR ii . ...]
-  +B155b0:   #2 int
-        b1 = 0;    
-  +B156b0b1:   #1 int int
-        vi3 = (b0 | b1);    
-        vi7++;   
-        goto +B99;   [RRiRRiiR ii . ...]
-  +B164:   #2
-        vR0.generateConstructor@special();   [RRi ii . R..] 
-        if vR0.invokedType.parameterCount@extra()==0 goto B182;   
-  +B178:   #1
-        vR0.generateFactory@special();   [RRi ii . R..] 
-  -B182:   #1
+  -START:   #1
         throw new java/lang/UnsupportedOperationException("Not supported yet.");   
   +END:   #1
  }
-// Register: rd 28/28 wr 20 swaps 2 any 7 found 0 spinInnerClass
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spinInnerClass
  
  method generateFactory()V {
   +START:   #1

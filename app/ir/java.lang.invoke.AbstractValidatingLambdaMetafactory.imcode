@@ -3,10 +3,6 @@ class java/lang/invoke/AbstractValidatingLambdaMetafactory {
  method <init>(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/invoke/MethodType;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;Z[Ljava/lang/Class;[Ljava/lang/invoke/MethodType;)V {
   +START:   #1
         vR0.<init>@special();   [ RiRR  R] 
-        if (vR1.lookupModes() & PRIVATE)!=0 goto B32;   
-  -B15:   #1
-        throw new java/lang/invoke/LambdaConversionException(format@special("Invalid caller: %s",vR1.lookupClass()));   
-  +B32:   #1
         vR0.targetClass = 0;   
         vR0.invokedType = vR2;   
         vR0.samBase = vR2.returnType@extra();   
@@ -16,17 +12,17 @@ class java/lang/invoke/AbstractValidatingLambdaMetafactory {
         vR0.implInfo = 0;   
         vR0.implKind = vR0.implInfo.getReferenceKind();   
         b0 = vR0;    
-        if vR0.implKind==0 goto B107;   
-  +B93b0:   #1 reference
-        if vR0.implKind==0 goto B107;   
-  +B100b0:   #1 reference
-        if vR0.implKind!=0 goto B111;   
-  +B107b0:   #2 reference
+        if vR0.implKind==0 goto B79;   
+  +B65b0:   #1 reference
+        if vR0.implKind==0 goto B79;   
+  +B72b0:   #1 reference
+        if vR0.implKind!=0 goto B83;   
+  +B79b0:   #2 reference
         b1 = 1;    
-        goto +B112b0b1;   [ RiRR ... ...]
-  +B111b0:   #1 reference
+        goto +B84b0b1;   [ RiRR  .]
+  +B83b0:   #1 reference
         b1 = 0;    
-  +B112b0b1:   #1 reference int
+  +B84b0b1:   #1 reference int
         b0.implIsInstanceMethod = b1;   
         vR0.implDefiningClass = vR0.implInfo.getDeclaringClass();   
         vR0.implMethodType = vR0.implInfo.getMethodType();   
@@ -34,40 +30,40 @@ class java/lang/invoke/AbstractValidatingLambdaMetafactory {
         vR0.isSerializable = vi7;   
         vR0.markerInterfaces = vR8;   
         vR0.additionalBridges = vR9;   
-        if vR0.samBase.isInterface@extra()!=0 goto B202;   
-  -B175:   #1
+        if vR0.samBase.isInterface@extra()!=0 goto B174;   
+  -B147:   #1
         b0 = new java/lang/invoke/LambdaConversionException;    
         b1 = b0;    
         b2 = "Functional interface %s is not an interface";    
         b3 = new java/lang/Object()[1];    
         b3[0] = vR0.samBase.getName@extra();   
-        b1.<init>@special(format@special(b2,b3));   [ RRRR i.. RR.] 
+        b1.<init>@special(format@special(b2,b3));   [ RRRR i RR] 
         throw b0;   
-  +B202:   #1
+  +B174:   #1
         vR10 = vR8;    
         vi11 = vR10.length;    
         vi12 = 0;    
-  +B214:   #1
-        if vi12>=vi11 goto B267;   
-  +B221:   #1
+  +B186:   #1
+        if vi12>=vi11 goto B239;   
+  +B193:   #1
         vR13 = vR10[vi12];    
-        if vR13.isInterface@extra()!=0 goto B261;   
-  -B236:   #1
+        if vR13.isInterface@extra()!=0 goto B233;   
+  -B208:   #1
         b0 = new java/lang/invoke/LambdaConversionException;    
         b1 = b0;    
         b2 = "Marker interface %s is not an interface";    
         b3 = new java/lang/Object()[1];    
         b3[0] = vR13.getName@extra();   
-        b1.<init>@special(format@special(b2,b3));   [RiiR RRRR i.. RR.] 
+        b1.<init>@special(format@special(b2,b3));   [RiiR RRRR i RR] 
         throw b0;   
-  +B261:   #1
+  +B233:   #1
         vi12++;   
-        goto +B214;   [RiiR RRRR ... ...]
-  +B267:   #1
+        goto +B186;   [RiiR RRRR . ..]
+  +B239:   #1
         return;   
   +END:   #1
  }
-// Register: rd 61/61 wr 22 swaps 2 any 6 found 0 <init>
+// Register: rd 56/56 wr 17 swaps 2 any 6 found 0 <init>
  
  method validateMetafactoryArgs()V {
   +START:   #1

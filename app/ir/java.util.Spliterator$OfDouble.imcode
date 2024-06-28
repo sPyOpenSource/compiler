@@ -15,34 +15,42 @@ class java/util/Spliterator$OfDouble {
   +B7:   #1
         return vR0.tryAdvance((java/util/function/DoubleConsumer)(vR1));   
   +B18:   #1
+        if ENABLED==0 goto B33;   
+  +B24:   #1
+        trip@special(vR0.getClass@this(),"{0} calling Spliterator.OfDouble.tryAdvance((DoubleConsumer) action::accept)");   [ R RR RR]
+  +B33:   #1
         b0 = vR0;    
-        requireNonNull@special(vR1);   [ R  R.]
+        requireNonNull@special(vR1);   [ R .. R.]
         <operant>;   
         <operant>;   
         <operant>;   
-        return vR1.tryAdvance(2);   
+        return vR1.tryAdvance(vl3);   
   +END:   #1
  }
-// Register: rd 6/6 wr 1 swaps 0 any 1 found 1 tryAdvance
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 1 tryAdvance
  
  method forEachRemaining(Ljava/util/function/Consumer;)V {
   +START:   #1
         if (vR1 instanceof java/util/function/DoubleConsumer)==0 goto B20;   
   +B7:   #1
         vR0.forEachRemaining((java/util/function/DoubleConsumer)(vR1));   [ R  RR] 
-        goto +B37b0;   forward return[ R  ..]
+        goto +B52b0;   forward return[ R  ..]
   +B20:   #1
+        if ENABLED==0 goto B35;   
+  +B26:   #1
+        trip@special(vR0.getClass@this(),"{0} calling Spliterator.OfDouble.forEachRemaining((DoubleConsumer) action::accept)");   [ R RR RR]
+  +B35:   #1
         b0 = vR0;    
-        requireNonNull@special(vR1);   [ R  R.]
+        requireNonNull@special(vR1);   [ R .. R.]
         <operant>;   
         <operant>;   
         <operant>;   
-        vR1.forEachRemaining(2);   [ R  iR] 
-  +B37b0:   #1 reference
+        vR1.forEachRemaining(vl3);   [?l R .. ??R] 
+  +B52b0:   #1 reference
         return;   
   +END:   #1
  }
-// Register: rd 6/6 wr 1 swaps 0 any 1 found 1 forEachRemaining
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 1 forEachRemaining
  
  method forEachRemaining(Ljava/lang/Object;)V {
   +START:   #1

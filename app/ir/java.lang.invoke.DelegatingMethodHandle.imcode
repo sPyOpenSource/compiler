@@ -75,10 +75,10 @@ class java/lang/invoke/DelegatingMethodHandle {
   +B7:   #1
         return vR0.internalForm@this();   
   +B12:   #1
-        return makeReinvokerForm@special(vR0,LF_DELEGATE,java/lang/invoke/DelegatingMethodHandle,NF_getTarget);   
+        return makeReinvokerForm@special(vR0,8,java/lang/invoke/DelegatingMethodHandle,NF_getTarget);   
   +END:   #1
  }
-// Register: rd 4/4 wr 5 swaps 0 any 0 found 0 chooseDelegatingForm
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 chooseDelegatingForm
  
  method makeReinvokerForm(Ljava/lang/invoke/MethodHandle;ILjava/lang/Object;Ljava/lang/invoke/LambdaForm$NamedFunction;)Ljava/lang/invoke/LambdaForm; {
   +START:   #1

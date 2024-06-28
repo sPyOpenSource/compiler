@@ -215,9 +215,9 @@ class java/io/BufferedInputStream {
         return vi5;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-38 - 80 handler 208 type 19
-81 - 83 handler 208 type 19
-84 - 205 handler 208 type 19
+38 - 80 handler 208 type 69
+81 - 83 handler 208 type 69
+84 - 205 handler 208 type 69
  }
 // Register: rd 52/52 wr 13 swaps 1 any 8 found 1 read
  

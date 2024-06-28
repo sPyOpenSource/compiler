@@ -35,31 +35,24 @@ class jx/net/protocol/icmp/ICMP {
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ii. i...][ RR ii. iR..]
         b0.println(b1.append@extra("ICMP type: ").append@extra(vi4).append@extra(", code=").append@extra(vi5).append@extra(", checksum=").append@extra(vi6).toString@extra());   [RRiii RR iiiiii..... RR.....] 
-        if vi4!=8 goto B173;   
+        if vi4!=8 goto B170;   
   +B104:   #1
         out.println("  ICMP ECHO RECEIVED. (ping)");   [RRiii RR i.......... RR.....] 
-  +B112:   #1
-        vR3.insertType(0);   [RRiii RR ........... iR.....] 
-        vR3.CalculateChecksum();   [RRiii RR ........... R......] 
-        vR0.sender = vR0.net.getIPSender(vR0.data.sourceAddress,1);   
-        out.println(vR1.size());   [RRiii RR ii......... iR.....] 
-        vR0.sender.send(vR3.getMemory());   [RRiii RR iii........ RR.....] 
-  +B168:   #1
-        goto +B173;   forward return[RRiii RR ........... .......]
-  +H171<caught exception>:   #1 reference
-        vR7 = <caught exception>;    
-  +B173:   #2
+        vR3.insertType(0);   [RRiii RR i.......... iR.....] 
+        vR3.CalculateChecksum();   [RRiii RR i.......... R......] 
+        vR0.sender = vR0.net.getIPSender(vR0.data.getSourceAddress(),1);   
+        out.println(vR1.size());   [RRiii RR iii........ iR.....] 
+        vR0.sender.send(vR3.getMemory());   [RRiii RR iiii....... RR.....] 
+  +B170:   #1
         return vR1;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-112 - 168 handler 171 type 41
  }
-// Register: rd 18/18 wr 30 swaps 11 any 1 found 0 processMemory
+// Register: rd 18/18 wr 29 swaps 11 any 1 found 0 processMemory
  
  method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
   +START:   #1
         vR0.data = vR1;   
-        return vR0.processMemory@this(vR1.mem);   
+        return vR0.processMemory@this(vR1.getMemory());   
   +END:   #1
  }
 // Register: rd 4/4 wr 1 swaps 1 any 0 found 0 processIP

@@ -27,7 +27,7 @@ class java/util/TreeMap$RBNode {
         throw new java/lang/InternalError(vR1.toString());   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 53 handler 54 type 11
+0 - 53 handler 54 type 36
  }
 // Register: rd 16/16 wr 7 swaps 0 any 1 found 2 clone
 }

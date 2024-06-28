@@ -1,0 +1,189 @@
+class jx/zero/classfile/datatypes/BCBasicDatatype {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method sizeInWords(I)I {
+  +START:   #1
+        lswitch (vi0) { 
+           1:B36
+           3:B36
+           10:B38
+           ::B40
+        };   
+  +B36:   #2
+        return 2;   
+  +B38:   #1
+        return 0;   
+  +B40:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 sizeInWords
+ 
+ method toChar(I)C {
+  +START:   #1
+        tswitch (vi0) B60 B63 B66 B69 B72 B75 B78 B81 B84 B90 B87 : B90;   
+  +B60:   #1
+        return 73;   
+  +B63:   #1
+        return 74;   
+  +B66:   #1
+        return 70;   
+  +B69:   #1
+        return 68;   
+  +B72:   #1
+        return 76;   
+  +B75:   #1
+        return 66;   
+  +B78:   #1
+        return 67;   
+  +B81:   #1
+        return 83;   
+  +B84:   #1
+        return 90;   
+  +B87:   #1
+        return 86;   
+  +B90:   #2
+        return 120;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 toChar
+ 
+ method toTypeDesc(I)Ljava/lang/String; {
+  +START:   #1
+        if vi0!=4 goto B8;   
+  +B5:   #1
+        return "Ljava/lang/Object";   
+  +B8:   #1
+        return valueOf@special(toChar@special(vi0));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 1 found 0 toTypeDesc
+ 
+ method isDouble(I)Z {
+  +START:   #1
+        if vi0==1 goto B10;   
+  +B5:   #1
+        if vi0!=3 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  ]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 2 found 0 isDouble
+ 
+ method sizeInByte(I)I {
+  +START:   #1
+        tswitch (vi0) B52 B54 B57 B59 B62 B64 B66 B68 B70 : B72;   
+  +B52:   #1
+        return 4;   
+  +B54:   #1
+        return 8;   
+  +B57:   #1
+        return 4;   
+  +B59:   #1
+        return 8;   
+  +B62:   #1
+        return 4;   
+  +B64:   #1
+        return 1;   
+  +B66:   #1
+        return 2;   
+  +B68:   #1
+        return 2;   
+  +B70:   #1
+        return 1;   
+  +B72:   #1
+        return 4;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 sizeInByte
+ 
+ method translateToIMType(I)I {
+  +START:   #1
+        if vi0<4 goto B13;   
+  +B5:   #1
+        if vi0>9 goto B13;   
+  +B11:   #1
+        return 0;   
+  +B13:   #2
+        return vi0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 2 found 0 translateToIMType
+ 
+ method sizeInWords()I {
+  +START:   #1
+        return sizeInWords@special(vR0.type@this());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sizeInWords
+ 
+ method toSymbol(I)Ljava/lang/String; {
+  +START:   #1
+        tswitch (vi0) B60 B63 B66 B69 B72 B75 B78 B81 B84 B90 B87 : B90;   
+  +B60:   #1
+        return "i";   
+  +B63:   #1
+        return "l";   
+  +B66:   #1
+        return "l";   
+  +B69:   #1
+        return "d";   
+  +B72:   #1
+        return "R";   
+  +B75:   #1
+        return "b";   
+  +B78:   #1
+        return "c";   
+  +B81:   #1
+        return "s";   
+  +B84:   #1
+        return "b";   
+  +B87:   #1
+        return "V";   
+  +B90:   #2
+        return "?";   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 toSymbol
+ 
+ method toString(I)Ljava/lang/String; {
+  +START:   #1
+        tswitch (vi0) B60 B63 B66 B69 B72 B75 B78 B81 B84 B90 B87 : B90;   
+  +B60:   #1
+        return "int";   
+  +B63:   #1
+        return "long";   
+  +B66:   #1
+        return "float";   
+  +B69:   #1
+        return "double";   
+  +B72:   #1
+        return "reference";   
+  +B75:   #1
+        return "byte";   
+  +B78:   #1
+        return "char";   
+  +B81:   #1
+        return "short";   
+  +B84:   #1
+        return "boolean";   
+  +B87:   #1
+        return "void";   
+  +B90:   #2
+        return "unknown";   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 toString
+}

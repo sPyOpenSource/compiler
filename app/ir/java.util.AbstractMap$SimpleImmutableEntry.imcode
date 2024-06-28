@@ -36,7 +36,7 @@ class java/util/AbstractMap$SimpleImmutableEntry {
  
  method setValue(Ljava/lang/Object;)Ljava/lang/Object; {
   -START:   #1
-        throw new java/util/UnsupportedOperationException();   
+        throw new java/lang/UnsupportedOperationException();   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setValue

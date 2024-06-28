@@ -3,7 +3,7 @@ class AI/AIZeroOutput {
  method <init>(LAI/AIZeroMemory;)V {
   +START:   #1
         vR0.<init>@special("output");   [  i RR] 
-        vR0.dt = jx.classfile.datatypes.BCDouble@1fc734d7;   
+        vR0.dt = jx.classfile.datatypes.BCDouble@62f68dff;   
         vR0.mem = vR1;   
         return;   
   +END:   #1

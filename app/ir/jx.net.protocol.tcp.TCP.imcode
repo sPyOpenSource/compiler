@@ -7,18 +7,18 @@ class jx/net/protocol/tcp/TCP {
         vR0.usableBufs = b1;   
         vi4 = 0;    
   +B18:   #1
-        if vi4>=50 goto B60;   
+        if vi4>=50 goto B62;   
   +B25:   #1
-        vR5 = new jx/net/IPData();    [ RR  i.][ RR  iR]
-        vR5.mem = vR2.getTCPBuffer();   
-        vR0.usableBufs.appendElement(vR5);   [iR RR  RR] 
+        vR5 = new jx/net/IPDataImpl();    [ RR  i.][ RR  iR]
+        vR5.setMemory(vR2.getTCPBuffer());   [iR RR i RR] 
+        vR0.usableBufs.appendElement(vR5);   [iR RR i RR] 
         vi4++;   
-        goto +B18;   [iR RR  ..]
-  +B60:   #1
-        b1 = new jx/buffer/multithread/MultiThreadList();    [ RR  i.][ RR  iR]
+        goto +B18;   [iR RR i ..]
+  +B62:   #1
+        b1 = new jx/buffer/multithread/MultiThreadList();    [ RR . i.][ RR . iR]
         vR0.filledBufs = b1;   
         vR0.net = vR2;   
-        b1 = new java/util/Vector();    [ RR  i.][ RR  iR]
+        b1 = new java/util/Vector();    [ RR . i.][ RR . iR]
         vR0.tcpSockets = b1;   
         vR0.tcpServerSockets = new jx/net/protocol/tcp/TCPSocket()[65536];   
         vR1.registerConsumer(vR0,"TCP");   [iR RR i RRR] 
@@ -28,7 +28,7 @@ class jx/net/protocol/tcp/TCP {
         return;   
   +END:   #1
  }
-// Register: rd 22/22 wr 14 swaps 2 any 2 found 0 <init>
+// Register: rd 22/22 wr 15 swaps 3 any 2 found 0 <init>
  
  method findSocket(Ljx/net/IPAddress;Ljx/net/IPAddress;II)Ljx/net/protocol/tcp/TCPSocket; {
   +START:   #1
@@ -142,28 +142,28 @@ class jx/net/protocol/tcp/TCP {
  
  method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
   +START:   #1
-        vR1.offset = 0;   
-        vR1.size = vR1.mem.size();   
-        out.println("IP packet received");   [ R i. RR] 
+        vR1.setOffset(0);   [ R  iR] 
+        vR1.setSize(vR1.getMemory().size());   [ R i iR] 
+        out.println("IP packet received");   [ R ii. RR] 
         vR2 = (jx/net/IPData)(vR0.usableBufs.nonblockingUndockFirstElement());    
-        if vR2!=null goto B74;   
-  +B41:   #1
-        out.println("jx.net.tcp: no buffer available, must drop a packet!");   [R R i. RR] 
+        if vR2!=null goto B80;   
+  +B47:   #1
+        out.println("jx.net.tcp: no buffer available, must drop a packet!");   [R R i.. RR] 
         vR2 = (jx/net/IPData)(vR0.filledBufs.nonblockingUndockFirstElement());    
-        if vR2!=null goto B74;   
-  -B64:   #1
+        if vR2!=null goto B80;   
+  -B70:   #1
         throw new java/lang/Error("where are my buffers gone?");   
-  +B74:   #2
-        vR3 = vR2.mem;    
-        vR0.filledBufs.appendElement(vR1);   [RR R .. RR.] 
-        if vR3!=null goto B101;   
-  -B91:   #1
+  +B80:   #2
+        vR3 = vR2.getMemory();    [R R ... R..] 
+        vR0.filledBufs.appendElement(vR1);   [RR R ... RR.] 
+        if vR3!=null goto B109;   
+  -B99:   #1
         throw new java/lang/Error("ret == null");   
-  +B101:   #1
+  +B109:   #1
         return vR3;   
   +END:   #1
  }
-// Register: rd 15/15 wr 11 swaps 2 any 3 found 0 processIP
+// Register: rd 15/15 wr 13 swaps 3 any 3 found 0 processIP
  
  method run()V {
   +START:   #2
@@ -186,16 +186,16 @@ Block on input queue released");   [R RR i..... RR..]
  
  method dispatch(Ljx/net/IPData;)Ljx/net/IPData; {
   +START:   #1
-        vR2 = vR1.sourceAddress;    
-        vR3 = vR1.destinationAddress;    
-        vR1.size = (vR1.size-38);   
-        if vR1.size!=26 goto B36;   
-  +B30:   #1
-        vR1.size = 24;   
-  +B36:   #1
+        vR2 = vR1.getSourceAddress();    [ RR  R] 
+        vR3 = vR1.getDestinationAddress();    [R RR  R] 
+        vR1.setSize((vR1.Size()-38));   [RR RR i iR] 
+        if vR1.Size()!=26 goto B48;   
+  +B40:   #1
+        vR1.setSize(24);   [RR RR . iR] 
+  +B48:   #1
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
-        b0.println(b1.append@extra("size: ").append@extra(vR1.size).toString@extra());   [RR RR iii. RR.] 
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("size: ").append@extra(vR1.Size()).toString@extra());   [RR RR iii. RR.] 
         vR4 = new jx/net/protocol/tcp/TCPFormat(vR1,vR2,vR3);    [ RR iii. i..][ RR iii. iRRRR]
         vi5 = vR4.getSourcePort();    [RRR RR iii. R....] 
         vi6 = vR4.getDestinationPort();    [RRRi RR iii. R....] 
@@ -204,63 +204,63 @@ Block on input queue released");   [R RR i..... RR..]
         b0.println(b1.append@extra("TCP-Packet received from ").append@extra(vR2).append@extra(".").append@extra(vi5).append@extra(" to ").append@extra(vR3).append@extra(".").append@extra(vi6).append@extra(" Flags:").append@extra(vR4.Flags2String()).toString@extra());   [RRRii RR iiiiiiii..i..i..... RR.........] 
         vR8 = vR4.getData();    [RRRii RR iiiiiiii..i..i..... R..........] 
         out.print("Data: ");   [RRRii?R RR iiiiiiiii.i..i..... RR.........] 
-        if vR8.length!=0 goto B189;   
-  +B178:   #1
+        if vR8.length!=0 goto B207;   
+  +B195:   #1
         out.print("none");   [RRRii?R RR i.................. RR.........] 
-        goto +B218;   [RRRii?R RR i.................. ...........]
-  +B189:   #1
+        goto +B236;   [RRRii?R RR i.................. ...........]
+  +B207:   #1
         vi9 = 0;    
-  +B192:   #1
-        if vi9>=vR8.length goto B218;   
-  +B200:   #1
+  +B210:   #1
+        if vi9>=vR8.length goto B236;   
+  +B218:   #1
         out.print((char)vR8[vi9]);   [RRRiiRRi RR i.................. bR.........] 
         vi9++;   
-        goto +B192;   [RRRiiRRi RR i.................. ...........]
-  +B218:   #2
+        goto +B210;   [RRRiiRRi RR i.................. ...........]
+  +B236:   #2
         out.println("");   [RRRii?R RR i.................. RR.........] 
         vR4.dump();   [RRRii?R RR i.................. R..........] 
-        if vR4.isChecksumValid()!=0 goto B252;   
-  +B239:   #1
+        if vR4.isChecksumValid()!=0 goto B272;   
+  +B258:   #1
         vR4.dump();   [RRRii?R RR ................... R..........] 
         out.println("TCP-Packet dropped due to invalid checksum");   [RRRii?R RR i.................. RR.........] 
-  +B252:   #1
+  +B272:   #1
         b0 = vR0.findSocket@special(vR2,vR3,vi5,vi6);    [RRRii?R RR ................... iiRRR......] 
         vR7 = b0;    
-        if b0==null goto B299;   
-  +B268:   #1
+        if b0==null goto B322;   
+  +B288:   #1
         out.println("TCP: dispatched to socket");   [RRRiiRR RR i.................. RR.........] 
-        vR8 = new jx/net/IPData();    [ RR i.................. i..........][ RR i.................. iR.........]
-        vR8.mem = vR7.processTCP(vR1);   
+        vR8 = new jx/net/IPDataImpl();    [ RR i.................. i..........][ RR i.................. iR.........]
+        vR8.setMemory(vR7.processTCP(vR1));   [RRRiiRR RR ii................. RR.........] 
         return vR8;   
-  +B299:   #1
+  +B322:   #1
         b0 = vR0.tcpServerSockets[vi6];    
         vR7 = b0;    
-        if b0==null goto B355;   
-  +B312:   #1
-        if vR3.equals(vR7.localIP)==0 goto B355;   
-  +B324:   #1
+        if b0==null goto B381;   
+  +B335:   #1
+        if vR3.equals(vR7.localIP)==0 goto B381;   
+  +B347:   #1
         out.println("TCP: dispatched to serversocket");   [RRRiiRR RR i.................. RR.........] 
-        vR8 = new jx/net/IPData();    [ RR i.................. i..........][ RR i.................. iR.........]
-        vR8.mem = vR7.processTCPServer(vR1);   
+        vR8 = new jx/net/IPDataImpl();    [ RR i.................. i..........][ RR i.................. iR.........]
+        vR8.setMemory(vR7.processTCPServer(vR1));   [RRRiiRR RR ii................. RR.........] 
         return vR8;   
-  +B355:   #2
+  +B381:   #2
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ................... i..........][ RR ................... iR.........]
         b0.println(b1.append@extra("SYN: ").append@extra(vR4.isSYNFlagSet()).toString@extra());   [RRRiiRR RR iii................ RR.........] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR iii................ i..........][ RR iii................ iR.........]
         b0.println(b1.append@extra("Port: ").append@extra(vi6).append@extra(" Socket: ").append@extra(vR0.tcpServerSockets[vi6]).toString@extra());   [RRRiiRR RR iiiiiii............ RR.........] 
-        if vR0.tcpServerSockets[vi6]==null goto B478;   
-  +B435:   #1
+        if vR0.tcpServerSockets[vi6]==null goto B509;   
+  +B464:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ................... i..........][ RR ................... iR.........]
         b0.println(b1.append@extra("IP ").append@extra(vR3).append@extra("localIP of Socket: ").append@extra(vR0.tcpServerSockets[vi6].localIP).toString@extra());   [RRRiiRR RR iiii............... RR.........] 
-  +B478:   #1
+  +B509:   #1
         out.println("TCP: unknown packet");   [RRRiiRR RR i.................. RR.........] 
         return vR1;   
   +END:   #1
  }
-// Register: rd 57/57 wr 85 swaps 34 any 6 found 0 dispatch
+// Register: rd 57/57 wr 88 swaps 37 any 6 found 0 dispatch
  
  method access$000(Ljx/net/protocol/tcp/TCP;)[Ljx/net/protocol/tcp/TCPSocket; {
   +START:   #1

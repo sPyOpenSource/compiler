@@ -1,0 +1,79 @@
+class jx/rpcsvc/nfs2/LookupCache_firstImpl {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Z)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.debug = vi1;   
+        vR0.cacheHits = 0;   
+        vR0.cacheMisses = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method addEntry(Ljava/lang/String;ILjx/rpcsvc/nfs2/MappedFHandle;)V {
+  +START:   #1
+        vR0.lastName = vR1;   
+        vR0.lastDirIdentifier = vi2;   
+        vR0.lastFh = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 addEntry
+ 
+ method getEntry(Ljava/lang/String;I)Ljx/rpcsvc/nfs2/LookupCache_Result; {
+  +START:   #1
+        if vi2!=vR0.lastDirIdentifier goto B19;   
+  +B8:   #1
+        if vR1.equals@extra(vR0.lastName)!=0 goto B38;   
+  +B19:   #1
+        if vR0.debug==0 goto B36;   
+  +B26:   #1
+        vR0.cacheMisses = (vR0.cacheMisses+1);   
+  +B36:   #1
+        return 0;   
+  +B38:   #1
+        if vR0.debug==0 goto B55;   
+  +B45:   #1
+        vR0.cacheHits = (vR0.cacheHits+1);   
+  +B55:   #1
+        return new jx/rpcsvc/nfs2/LookupCache_Result(vR0.lastFh);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 2 swaps 1 any 1 found 0 getEntry
+ 
+ method delEntry(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.lastName = 0;   
+        vR0.lastDirIdentifier = 0;   
+        vR0.lastFh = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 delEntry
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method printStatistics()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("LookupCache_firstImpl: ").append@extra(vR0.cacheHits).append@extra(",").append@extra(vR0.cacheMisses).toString@extra());   [ RR iiiii... RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 11 swaps 5 any 0 found 0 printStatistics
+}

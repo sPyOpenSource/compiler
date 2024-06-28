@@ -99,7 +99,7 @@ class jx/bootrc/BootRC2 {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-317 - 422 handler 425 type 50
+317 - 422 handler 425 type 147
  }
 // Register: rd 61/61 wr 50 swaps 11 any 9 found 1 <init>
  

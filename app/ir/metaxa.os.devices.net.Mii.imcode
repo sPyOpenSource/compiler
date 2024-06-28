@@ -223,9 +223,9 @@ class metaxa/os/devices/net/Mii {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-10 - 17 handler 20 type 24
-54 - 62 handler 65 type 24
-92 - 100 handler 103 type 24
+10 - 17 handler 20 type 90
+54 - 62 handler 65 type 90
+92 - 100 handler 103 type 90
  }
 // Register: rd 12/12 wr 20 swaps 4 any 5 found 0 CheckMIIAutoNegotiationStatus
  
@@ -362,11 +362,11 @@ EXCEPTIONHANDLER-TABLE:
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-25 - 33 handler 36 type 24
-64 - 72 handler 75 type 24
-324 - 337 handler 340 type 24
-486 - 494 handler 497 type 60
-511 - 519 handler 522 type 60
+25 - 33 handler 36 type 90
+64 - 72 handler 75 type 90
+324 - 337 handler 340 type 90
+486 - 494 handler 497 type 194
+511 - 519 handler 522 type 194
  }
 // Register: rd 53/53 wr 41 swaps 7 any 5 found 3 ConfigureMII
  
@@ -463,9 +463,9 @@ EXCEPTIONHANDLER-TABLE:
         return 1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 24
-31 - 39 handler 42 type 24
-90 - 98 handler 101 type 24
+0 - 8 handler 11 type 90
+31 - 39 handler 42 type 90
+90 - 98 handler 101 type 90
  }
 // Register: rd 38/38 wr 24 swaps 5 any 9 found 4 CheckMIIConfiguration
  
@@ -650,12 +650,12 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-15 - 23 handler 26 type 24
-30 - 38 handler 41 type 24
-51 - 63 handler 66 type 77
-68 - 76 handler 79 type 24
-83 - 91 handler 94 type 24
-98 - 107 handler 110 type 73
+15 - 23 handler 26 type 90
+30 - 38 handler 41 type 90
+51 - 63 handler 66 type 237
+68 - 76 handler 79 type 90
+83 - 91 handler 94 type 90
+98 - 107 handler 110 type 227
  }
 // Register: rd 37/37 wr 24 swaps 0 any 8 found 3 ProgramMII
 }

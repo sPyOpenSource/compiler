@@ -80,8 +80,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
-	compile("init2", opts);
-
+	//compile("init2", opts);
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
@@ -112,7 +111,8 @@ public class CompileNative {
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/ifOS/dist/ifOS.jar!/")
             };
         } else if(path.endsWith("ai")){
             domClasses = new URL[]{
@@ -120,7 +120,8 @@ public class CompileNative {
             };
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/")
             };
         } else if(path.endsWith("os")){
             domClasses = new URL[]{

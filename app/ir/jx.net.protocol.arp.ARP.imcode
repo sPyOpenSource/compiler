@@ -137,26 +137,26 @@ class jx/net/protocol/arp/ARP {
  
  method processEther(Ljx/net/EtherData;)Ljx/zero/Memory; {
   +START:   #1
-        vR2 = new jx/net/protocol/arp/ARPFormat(vR1.mem,vR1.offset);    [ RR  i][ RR . iiRR]
+        vR2 = new jx/net/protocol/arp/ARPFormat(vR1.getMemory(),vR1.getOffset());    [ RR  i][ RR . iiRR]
         vR0.cpuManager.recordEvent(vR0.event_rcv);    
-        if vR0.ownProtocolAddress!=null goto B49;   
-  +B36:   #1
+        if vR0.ownProtocolAddress!=null goto B55;   
+  +B40:   #1
         out.println("ARP: I don't know who I am");   [R RR i. RR..] 
-        return vR1.mem;   
-  +B49:   #1
-        if vR2.getCommand()!=1 goto B212;   
-  +B57:   #1
-        if vR2.getHardwareAddressSpace()!=1 goto B212;   
-  +B65:   #1
-        if vR2.getProtocolAddressSpace()!=2048 goto B212;   
-  +B75:   #1
+        return vR1.getMemory();   
+  +B55:   #1
+        if vR2.getCommand()!=1 goto B220;   
+  +B63:   #1
+        if vR2.getHardwareAddressSpace()!=1 goto B220;   
+  +B71:   #1
+        if vR2.getProtocolAddressSpace()!=2048 goto B220;   
+  +B81:   #1
         vR3 = vR2.getTargetProtocolAddress();    [R RR .. R...] 
-        if vR3.equals(vR0.ownProtocolAddress)==0 goto B209;   
-  +B91:   #1
+        if vR3.equals(vR0.ownProtocolAddress)==0 goto B217;   
+  +B97:   #1
         vR4 = vR2.getSenderHardwareAddress();    [RR RR .. R...] 
         vR5 = vR2.getSenderProtocolAddress();    [RRR RR .. R...] 
         vR2 = 0;    
-        vR6 = vR1.mem;    
+        vR6 = vR1.getMemory();    [RRRR RR .. R...] 
         vR7 = new jx/net/protocol/arp/ARPFormat(vR6,requiresSpace@special());    [ RR .. i...][ RR .. iiRR]
         vR7.insertHardwareAddressSpace(1);   [RRRRRR RR .. iR..] 
         vR7.insertProtocolAddressSpace(2048);   [RRRRRR RR .. iR..] 
@@ -168,23 +168,23 @@ class jx/net/protocol/arp/ARP {
         vR7.insertTargetHardwareAddress(vR4);   [RRRRRR RR ii RR..] 
         vR7.insertTargetProtocolAddress(vR5);   [RRRRRR RR ii RR..] 
         return vR0.ethernet.transmitSpecial(vR0.ownHardwareAddress,vR4,2054,vR6);   
-  +B209:   #1
-        goto +B284;   forward return[RRRRRR RR ... .....]
-  +B212:   #3
-        if vR2.getCommand()!=2 goto B256;   
-  +B220:   #1
-        if vR2.getHardwareAddressSpace()!=1 goto B256;   
+  +B217:   #1
+        goto +B292;   forward return[RRRRRR RR ... .....]
+  +B220:   #3
+        if vR2.getCommand()!=2 goto B264;   
   +B228:   #1
-        if vR2.getProtocolAddressSpace()!=2048 goto B256;   
-  +B238:   #1
+        if vR2.getHardwareAddressSpace()!=1 goto B264;   
+  +B236:   #1
+        if vR2.getProtocolAddressSpace()!=2048 goto B264;   
+  +B246:   #1
         vR0.arpCache.add(vR2.getSenderHardwareAddress(),vR2.getSenderProtocolAddress());   [RRRRRR RR iR. RRR..] 
-        goto +B284;   forward return[RRRRRR RR iR. .....]
-  +B256:   #3
+        goto +B292;   forward return[RRRRRR RR iR. .....]
+  +B264:   #3
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
         b0.println(b1.append@extra("Unknown ARP command:").append@extra(vR2.getCommand()).toString@extra());   [RRRRRR RR iii. RR...] 
-  +B284:   #2
-        return vR1.mem;   
+  +B292:   #2
+        return vR1.getMemory();   
   +END:   #1
  }
 // Register: rd 40/40 wr 25 swaps 9 any 0 found 0 processEther

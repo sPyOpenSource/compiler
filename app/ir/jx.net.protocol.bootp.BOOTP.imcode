@@ -19,9 +19,8 @@ class jx/net/protocol/bootp/BOOTP {
   +START:   #1
         vR1 = 0;    
         vR2 = 0;    
-  +B4:   #1
         b1 = vR0.net;    
-        b3 = new jx/net/IPAddress(255,255,255,255);    [ RRiR  i][ RRiR . iiiiiR]
+        b3 = new jx/net/IPv4Address(255,255,255,255);    [ RRiR  i][ RRiR . iiiiiR]
         vR0.sender = b1.getUDPSender(68,b3,67);   
         b1 = vR0.net;    
         b3 = new jx/zero/Memory()[4];    
@@ -31,12 +30,6 @@ class jx/net/protocol/bootp/BOOTP {
         b3[3] = vR0.net.getUDPBuffer(0);   
         vR0.receiver = b1.getUDPReceiver(68,b3);   
         vR0.buf = vR0.net.getUDPBuffer(300);   
-  +B127:   #1
-        goto +B141;   [RR RRiR . ......]
-  -H130<caught exception>:   #1 reference
-        vR3 = <caught exception>;    
-        throw new java/lang/Error("broadcast ip address unknown");   
-  +B141:   #1
         vR3 = new jx/net/protocol/bootp/BOOTPFormat(vR0.buf);    [ RRiR . i.....][ RRiR . iRR...]
         vR3.insertOp(1);   [RRR RRiR . iR....] 
         vR3.insertHtype(1);   [RRR RRiR . iR....] 
@@ -50,43 +43,40 @@ class jx/net/protocol/bootp/BOOTP {
         vR0.cpuManager.recordEvent(vR0.event_snd);    
         vR0.buf = vR0.sender.send(vR0.buf);   
         vR4 = vR0.buf;    
-        if vR4.isValid()!=0 goto B256;   
-  -B246:   #1
+        if vR4.isValid()!=0 goto B242;   
+  -B232:   #1
         throw new java/lang/Error("not valid?");   
-  +B256:   #1
+  +B242:   #1
         vR2 = vR0.receiver.receive(vR4,200);    [RRRR RiiR ... iRR...] 
-        if vR2!=null goto B330;   
-  +B275:   #1
-        if vR4.isValid()!=0 goto B295;   
-  -B285:   #1
+        if vR2!=null goto B316;   
+  +B261:   #1
+        if vR4.isValid()!=0 goto B281;   
+  -B271:   #1
         throw new java/lang/Error("not valid?");   
-  +B295:   #1
+  +B281:   #1
         vR4 = vR4.revoke();    [RRRR RiiR ... R.....] 
         vR0.buf = vR4;   
-        if vR4.isValid()!=0 goto B330;   
-  -B320:   #1
+        if vR4.isValid()!=0 goto B316;   
+  -B306:   #1
         throw new java/lang/Error("not valid?");   
-  +B330:   #2
+  +B316:   #2
         vR0.cpuManager.recordEvent(vR0.event_rec);    
-        if vR2!=null goto B355;   
-  +B347:   #1
+        if vR2!=null goto B341;   
+  +B333:   #1
         out.println("Timout waiting for bootp reply");   [RRRR RiiR i.. RR....] 
-  +B355:   #1
-        vR5 = new jx/net/protocol/bootp/BOOTPFormat(vR2.mem);    [ RiiR ... i.....][ RiiR ... iRR...]
+  +B341:   #1
+        vR5 = new jx/net/protocol/bootp/BOOTPFormat(vR2.getMemory());    [ RiiR ... i.....][ RiiR ... iRR...]
         return 0;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-4 - 127 handler 130 type 28
  }
-// Register: rd 51/51 wr 27 swaps 4 any 3 found 0 sendRequest
+// Register: rd 50/50 wr 25 swaps 4 any 3 found 0 sendRequest
  
  method sendRequest1()Ljx/net/IPAddress; {
   +START:   #1
         vR1 = 0;    
         vR2 = 0;    
-  +B4:   #1
         b1 = vR0.net;    
-        b3 = new jx/net/IPAddress(255,255,255,255);    [ RRiR  i][ RRiR . iiiiiR]
+        b3 = new jx/net/IPv4Address(255,255,255,255);    [ RRiR  i][ RRiR . iiiiiR]
         vR0.sender = b1.getUDPSender(68,b3,67);   
         b1 = vR0.net;    
         b3 = new jx/zero/Memory()[4];    
@@ -96,12 +86,6 @@ EXCEPTIONHANDLER-TABLE:
         b3[3] = vR0.net.getUDPBuffer();   
         vR0.receiver = b1.getUDPReceiver(68,b3);   
         vR0.buf = vR0.net.getUDPBuffer();   
-  +B120:   #1
-        goto +B134;   [RR RRiR . ......]
-  -H123<caught exception>:   #1 reference
-        vR3 = <caught exception>;    
-        throw new java/lang/Error("broadcast ip address unknown");   
-  +B134:   #1
         vR3 = new jx/net/protocol/bootp/BOOTPFormat(vR0.buf,42);    [ RRiR . i.....][ RRiR . iiRR..]
         vR3.insertOp(1);   [RRR RRiR . iR....] 
         vR3.insertHtype(1);   [RRR RRiR . iR....] 
@@ -116,14 +100,12 @@ EXCEPTIONHANDLER-TABLE:
         vR0.buf = vR0.sender.send1(vR0.buf,42,requiresSpace@special());   
         vR2 = vR0.receiver.receive(vR0.buf,200);    [RRR RiiR iiiii iRR...] 
         vR0.cpuManager.recordEvent(vR0.event_rec);    
-        if vR2!=null goto B272;   
-  +B264:   #1
+        if vR2!=null goto B258;   
+  +B250:   #1
         out.println("Timout waiting for bootp reply");   [RRR RiiR i.... RR....] 
-  +B272:   #1
+  +B258:   #1
         return 0;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-4 - 120 handler 123 type 28
  }
-// Register: rd 40/40 wr 23 swaps 5 any 2 found 0 sendRequest1
+// Register: rd 39/39 wr 21 swaps 5 any 2 found 0 sendRequest1
 }

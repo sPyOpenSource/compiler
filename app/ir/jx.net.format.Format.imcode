@@ -212,7 +212,7 @@ class jx/net/format/Format {
         vi2 = (vi2 | ((vR0.buf.get8(((vR0.offset+vi1)+1)) << 8) & 65280));    
         vi2 = (vi2 | ((vR0.buf.get8(((vR0.offset+vi1)+2)) << 16) & 16711680));    
         vi2 = (vi2 | ((vR0.buf.get8(((vR0.offset+vi1)+3)) << 24) & -16777216));    
-        return new jx/net/IPAddress(vi2);   
+        return new jx/net/IPv4Address(vi2);   
   +END:   #1
  }
 // Register: rd 20/20 wr 9 swaps 4 any 3 found 3 readAddress

@@ -123,7 +123,7 @@ class metaxa/os/devices/net/WaitTimer {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-367 - 376 handler 379 type 44
+367 - 376 handler 379 type 160
  }
 // Register: rd 67/67 wr 72 swaps 23 any 2 found 1 timer
  
