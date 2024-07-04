@@ -1,0 +1,116 @@
+class jx/console/VirtualConsoleImpl {
+ 
+ method <init>(Ljx/zero/MemoryManager;Ljx/console/ConsoleImpl;Ljx/devices/Screen;Ljx/devices/Keyboard;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cons = vR2;   
+        vR0.video = vR3.getVideoMemory();   
+        vR0.screen = vR3;   
+        vR0.keyboard = vR4;   
+        vR0.backup = vR1.alloc(4000);   
+        vR0.backup.fill16(3840,0,1920);   [ ?R  iiiR] 
+        b1 = new jx/console/ConsoleOutputStream(vR0);    [ ?R  i...][ ?R . iRR.]
+        vR0.out = b1;   
+        b1 = new jx/console/ConsoleOutputStream(vR0);    [ ?R . i...][ ?R . iRR.]
+        vR0.err = b1;   
+        b1 = new jx/console/ConsoleInputStream(vR0);    [ ?R . i...][ ?R . iRR.]
+        vR0.in = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 6 swaps 0 any 0 found 0 <init>
+ 
+ method putc(I)V {
+  +START:   #1
+        tswitch (vi1) B103 B123 B40 B142 B142 B95 : B142;   
+  +B40:   #1
+        if vR0.y!=24 goto B85;   
+  +B49:   #1
+        vR0.buffer.copy(160,0,3840);   [   iiiR] 
+        vR0.buffer.fill16(3840,1920,80);   [   iiiR] 
+        goto +B95;   [   ....]
+  +B85:   #1
+        vR0.y = (vR0.y+1);   
+  +B95:   #2
+        vR0.x = 0;   
+        goto +B219;   [   ....]
+  +B103:   #1
+        if vR0.x<=0 goto B219;   
+  +B110:   #1
+        vR0.x = (vR0.x-1);   
+        goto +B219;   [   ....]
+  +B123:   #2
+        vR0.putc@this(32);   [   iR..] 
+        if (vR0.x & 7)!=0 goto B123;   
+  +B139:   #1
+        goto +B219;   [   ....]
+  +B142:   #3
+        if vR0.x<80 goto B157;   
+  +B151:   #1
+        vR0.putc@this(10);   [   iR..] 
+  +B157:   #1
+        vR0.buffer.set8((((80*vR0.y)+vR0.x)*2),(byte)vi1);   [  i iiR.] 
+        vR0.buffer.set8(((((80*vR0.y)+vR0.x)*2)+1),15);   [  ii iiR.] 
+        vR0.x = (vR0.x+1);   
+  +B219:   #4
+        if vR0.active==0 goto B241;   
+  +B226:   #1
+        vR0.cons.moveCursorTo(vR0.x,vR0.y);   [  ii iiR.] 
+  +B241:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 4 swaps 3 any 1 found 0 putc
+ 
+ method getc()I {
+  +START:   #1
+        if vR0.active==0 goto B24;   
+  +B7:   #1
+        vi1 = vR0.keyboard.getc();    [   R] 
+        vR0.putc@this(vi1);   [i   iR] 
+        return vi1;   
+  +B24:   #2
+        goto +B24;   [i   ..]
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getc
+ 
+ method activate()V {
+  +START:   #1
+        vR0.active = 1;   
+        vR0.buffer = vR0.video;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 activate
+ 
+ method deactivate()V {
+  +START:   #1
+        vR0.active = 0;   
+        vR0.buffer = vR0.backup;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 deactivate
+ 
+ method getInputStream()Ljava/io/InputStream; {
+  +START:   #1
+        return vR0.in;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInputStream
+ 
+ method getOutputStream()Ljava/io/OutputStream; {
+  +START:   #1
+        return vR0.out;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOutputStream
+ 
+ method getErrorStream()Ljava/io/OutputStream; {
+  +START:   #1
+        return vR0.err;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getErrorStream
+}

@@ -1,0 +1,491 @@
+class bioide/Controller {
+ 
+ method <init>(Lbioide/IDEDeviceImpl;I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        vR0.index = vi2;   
+        if vi2!=0 goto B35;   
+  +B13:   #1
+        vR0.io_base = 496;   
+        vR0.irq_nr = 14;   
+        vR0.name = "ide0";   
+        goto +B54;   [ RRR  .]
+  +B35:   #1
+        vR0.io_base = 368;   
+        vR0.irq_nr = 15;   
+        vR0.name = "ide1";   
+  +B54:   #1
+        vR0.ctl_port = (vR0.io_base+518);   
+        vR0.present = 0;   
+        vR0.operation = 0;   
+        vR0.drives = new bioide/Drive()[1];   
+        vi3 = 0;    
+  +B86:   #1
+        if vi3>=1 goto B113;   
+  +B91:   #1
+        b0 = vR0.drives;    
+        b2 = new bioide/Drive(vR1,vR0,vi3);    [ RRR  i.][ RRR . iiRRR]
+        b0[vi3] = b2;   
+        vi3++;   
+        goto +B86;   [i RRR . .....]
+  +B113:   #1
+        b1 = new bioide/IDEIntrHandler(vR0);    [ RRR . i....][ RRR . iRR..]
+        vR0.handlerObj = b1;   
+        vR0.handler = vR0.handlerObj;   
+        b1 = new bioide/WaitTimer(vR0);    [ RRR . i....][ RRR . iRR..]
+        vR0.waittimer = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 9 swaps 0 any 4 found 0 <init>
+ 
+ method setFeatureReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+1),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setFeatureReg
+ 
+ method setCountReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+2),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setCountReg
+ 
+ method setSectorReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+3),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setSectorReg
+ 
+ method setLoCylReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+4),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setLoCylReg
+ 
+ method setHiCylReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+5),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setHiCylReg
+ 
+ method setLDHReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+6),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setLDHReg
+ 
+ method getLDHReg()B {
+  +START:   #1
+        return ports.inb((vR0.io_base+6));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 getLDHReg
+ 
+ method setCommandReg(B)V {
+  +START:   #1
+        ports.outb((vR0.io_base+7),vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setCommandReg
+ 
+ method setCTLReg(B)V {
+  +START:   #1
+        ports.outb(vR0.ctl_port,vi1);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setCTLReg
+ 
+ method statusBusy()Z {
+  +START:   #1
+        if (ports.inb((vR0.io_base+7)) & -128)<=0 goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i .. ..]
+  +B25:   #1
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 statusBusy
+ 
+ method getStatus()B {
+  +START:   #1
+        return ports.inb((vR0.io_base+7));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 getStatus
+ 
+ method inputData(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.inputData@this((vR0.io_base+0),vR1,vi2,vi3);   [  i iiRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 inputData
+ 
+ method outputData(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.outputData@this((vR0.io_base+0),vR1,vi2,vi3);   [  i iiRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 outputData
+ 
+ method waitFor(III)Z {
+  +START:   #1
+        vi4 = vR0.getStatus@this();    [   R] 
+        if (vi4 & (vi1 | vi2))!=vi1 goto B18;   
+  +B16:   #1
+        return 1;   
+  +B18:   #1
+        if (vi4 & -128)!=0 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #1
+        vi3 = (int)((long)vi3+(clock.getTicks()*10));    
+  +B45:   #1
+        if compare((clock.getTicks()*10),(long)vi3)>=0 goto B90;   
+  +B63:   #1
+        if (vR0.getStatus@this() & (vi1 | vi2))!=vi1 goto B77;   
+  +B75:   #1
+        return 1;   
+  +B77:   #1
+        sleepManager.mdelay(10);   [i  . iR] 
+        goto +B45;   [i  . ..]
+  +B90:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 2 found 0 waitFor
+ 
+ method setTimeout(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setTimeout
+ 
+ method stopTimeout()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 stopTimeout
+ 
+ method queueOperation(Lbioide/Operation;Z)V {
+  +START:   #2
+        if vR0.operation!=null goto B55;   
+  +B7:   #1
+        vR0.operation = vR1;   
+        cpuManager.dump("Controller.queueOperation this:",vR0);   [ R i. RRR] 
+        cpuManager.dump("Controller.queueOperation op:",vR0.operation);   [ R iiR. RRR] 
+        vR0.operation.startOperation();   [ R iiR. R..] 
+        out.println("queueOperation: nach startOperation");   [ R iiRi. RR.] 
+        goto +B116;   [ R iiRi. ...]
+  +B55:   #1
+        out.println("queueOperation: operation != null");   [ R i.... RR.] 
+        if vi2==0 goto B83;   
+  +B67:   #1
+        vR1.next = vR0.operation;   
+        vR0.operation = vR1;   
+        goto +B108;   [ R ..... ...]
+  +B83:   #1
+        vR3 = vR0.operation;    
+  +B88:   #1
+        if vR3.next==null goto B103;   
+  +B95:   #1
+        vR3 = vR3.next;    
+        goto +B88;   [R R ..... ...]
+  +B103:   #1
+        vR3.next = vR1;   
+  +B108:   #1
+        out.println("operation queued");   [ R i.... RR.] 
+  +B116:   #2
+        goto +B130;   forward return[ R ..... ...]
+  -H119<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/Error("IDEException");   
+  +B130:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 116 handler 119 type 158
+ }
+// Register: rd 16/16 wr 15 swaps 5 any 1 found 0 queueOperation
+ 
+ method nextOperation()V {
+  +START:   #1
+        if vR0.operation!=null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.operation = vR0.operation.next;   
+        if vR0.operation==null goto B61;   
+  +B26:   #1
+        out.println("nextOperation(): starting nextOperation");   [ R i. RR] 
+  +B34:   #1
+        vR0.operation.startOperation();   [ R .. R.] 
+  +B41:   #1
+        goto +B61;   forward return[ R .. ..]
+  -H44<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        out.println("IDEException in Controller!");   [R R i. RR] 
+        throw new java/lang/Error();   
+  +B61:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+34 - 41 handler 44 type 158
+ }
+// Register: rd 5/5 wr 5 swaps 2 any 0 found 0 nextOperation
+ 
+ method identify()Z {
+  +START:   #1
+        vi1 = ports.inb((vR0.io_base+4));    [ RR i. iR] 
+        vR0.setLoCylReg@this((byte)(vi1 ^ -1));   [i RR ii iR] 
+        b0 = vR0;    
+        if ports.inb((vR0.io_base+4))==vi1 goto B46;   
+  +B42b0:   #1 reference
+        b1 = 1;    
+        goto +B47b0b1;   [i Ri .... ..]
+  +B46b0:   #1 reference
+        b1 = 0;    
+  +B47b0b1:   #1 reference int
+        b0.present = b1;   
+        vi2 = 0;    
+  +B52:   #1
+        if vi2>=1 goto B95;   
+  +B57:   #1
+        vR3 = vR0.drives[vi2];    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b0.println(b1.append@extra("DRIVE: ").append@extra(vi2).toString@extra());   [iiR RR ii.. RR.] 
+        vi2++;   
+        goto +B52;   [iiR RR ii.. ...]
+  +B95:   #1
+        vi2 = 0;    
+  +B97:   #1
+        if vi2>=1 goto B170;   
+  +B102:   #1
+        vR3 = vR0.drives[vi2];    
+  +B109:   #1
+        vR3.identify();   [iiR RR .... R..] 
+        if vR3.present==0 goto B129;   
+  +B120:   #1
+        vR3.setup();   [iiR RR .... R..] 
+        vR0.present = 1;   
+  +B129:   #2
+        goto +B164;   [iiR RR .... ...]
+  +H132<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("DRIVE: ").append@extra(vi2).append@extra(" could not be identified+initialized").toString@extra());   [iiRR RR iii.. RR..] 
+  +B164:   #1
+        vi2++;   
+        goto +B97;   [iiR RR ..... ....]
+  +B170:   #1
+        return 1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+109 - 129 handler 132 type 158
+ }
+// Register: rd 24/24 wr 29 swaps 8 any 5 found 0 identify
+ 
+ method setup()V {
+  +START:   #1
+        cpuManager.waitUntilBlocked(vR0.handlerObj.irqCtx);   [  i. RR] 
+        irq.installFirstLevelHandler(vR0.irq_nr,vR0.handler);   [  iiR. RiR] 
+        irq.enableIRQ(vR0.irq_nr);   [  iiRi. iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 7 swaps 3 any 0 found 0 setup
+ 
+ method ideError(Lbioide/Drive;Ljava/lang/String;B)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR1.name).append@extra(" error: ").append@extra(vR2).toString@extra());   [ RR iii.. RR..] 
+        if vR0.operation!=null goto B40;   
+  +B39:   #1
+        return;   
+  +B40:   #1
+        if (vi3 & -127)!=1 goto B95;   
+  +B48:   #1
+        b0 = vR0.operation;    
+        b0.errors = (b0.errors | 3);   
+        if (ports.inb((vR0.io_base+1)) & -64)<=0 goto B95;   
+  +B81:   #1
+        b0 = vR0.operation;    
+        b0.errors = (b0.errors | 8);   
+  +B95:   #2
+        if (vi3 & -120)<=0 goto B115;   
+  +B102:   #1
+        b0 = vR0.operation;    
+        b0.errors = (b0.errors | 3);   
+  +B115:   #1
+        if vR0.operation.errors<8 goto B138;   
+  +B127:   #1
+        vR0.operation.endOperation(0);   [ RR ..... iR..] 
+        goto +B251;   forward return[ RR ..... ....]
+  +B138:   #1
+        if (vR0.operation.errors & 3)!=3 goto B238;   
+  +B151:   #1
+        b0 = vR0.operation;    
+        b0.errors = (b0.errors+1);   
+        vR5 = new bioide/ResetOperation(vR0,vR1,30000);    [ RR ..... i...][ RR ..... iiRRR]
+        vR0.queueOperation@this(vR5,1);   [?R RR ..... iRR..] 
+        vR0.setTimeout@this(0,50);   [?R RR ..... iiR..] 
+        if vR1.using_dma==0 goto B237;   
+  +B199:   #1
+        vR1.using_dma = 0;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i....][ RR ..... iR...]
+        b0.println(b1.append@extra("").append@extra(vR1.name).append@extra(": DMA deactivated").toString@extra());   [?R RR iiii.. RR...] 
+  +B237:   #1
+        return;   
+  +B238:   #1
+        b0 = vR0.operation;    
+        b0.errors = (b0.errors+1);   
+  +B251:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 26 swaps 7 any 2 found 0 ideError
+ 
+ method buildDMATable(Ljx/zero/Memory;I)Z {
+  +START:   #1
+        vi4 = 0;    
+        vi5 = vi2;    
+        vi7 = 0;    
+        vi3 = vR1.getStartAddress();    [?ii?i Ri  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("DMA startaddr ").append@extra(toHexString@special(vi3)).toString@extra());   [iii?i RR iii. RR.] 
+  +B45:   #1
+        if vi5<=0 goto B135;   
+  +B50:   #1
+        vi4++;   
+        if vi4<512 goto B63;   
+  +B61:   #1
+        return 0;   
+  +B63:   #1
+        vi6 = (65536-(vi3 & 65535));    
+        if vi6<=vi5 goto B85;   
+  +B81:   #1
+        vi6 = vi5;    
+  +B85:   #1
+        b0 = vR0.dmatable;    
+        b1 = vi7;    
+        vi7++;   
+        b0.set32(b1,vi3);   [iiiii Ri .... iiR] 
+        b0 = vR0.dmatable;    
+        b1 = vi7;    
+        vi7++;   
+        b0.set32(b1,(vi6 & 65535));   [iiiii Ri i... iiR] 
+        vi3 = (vi3+vi6);    
+        vi5 = (vi5-vi6);    
+        goto +B45;   [iiiii Ri i... ...]
+  +B135:   #1
+        if vi4<=0 goto B171;   
+  +B140:   #1
+        vi7--;   
+        vR0.dmatable.set32(vi7,(vR0.dmatable.get32(vi7) | -2147483648));   [iiiii Ri i... iiR] 
+        return 1;   
+  -B171:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 25 swaps 5 any 14 found 0 buildDMATable
+ 
+ method initTritonDma(I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra("    ").append@extra(vR0.name).append@extra(": BM-DMA (Basisadressen ").append@extra(toHexString@special(vi1)).append@extra("-").append@extra(toHexString@special((vi1+7))).append@extra(")").toString@extra());   [ RR ii.iii..iiii... RR......] 
+        vR0.dma_base = vi1;   
+        if vR0.dmatable!=null goto B131;   
+  +B76:   #1
+        vR0.dmatable = memoryManager.allocAligned(4096,4096);   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............... i.......][ RR ............... iR......]
+        b0.println(b1.append@extra("DMATABLE startaddr ").append@extra(toHexString@special(vR0.dmatable.getStartAddress())).toString@extra());   [ RR iiii........... RR......] 
+  +B131:   #1
+        out.println("");   [ RR i.............. RR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 29 swaps 12 any 0 found 0 initTritonDma
+ 
+ method inputData(ILjx/zero/Memory;II)V {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vi4 goto B39;   
+  +B10:   #1
+        vi6 = ports.inl(vi1);    [i  . iR] 
+        vR2.set32((vi5+vi3),vi6);   [ii  i iiR] 
+        vi5++;   
+        goto +B3;   [ii  i ...]
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 2 found 0 inputData
+ 
+ method outputData(ILjx/zero/Memory;II)V {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vi4 goto B39;   
+  +B10:   #1
+        vi6 = vR2.get32((vi5+vi3));    [i  i iR] 
+        ports.outl(vi1,vi6);   [ii  i. iiR] 
+        vi5++;   
+        goto +B3;   [ii  i. ...]
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 2 found 0 outputData
+ 
+ method isPresent()Z {
+  +START:   #1
+        return vR0.present;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isPresent
+ 
+ method getCurrentOperation()Lbioide/Operation; {
+  +START:   #1
+        cpuManager.dump("Controller:",vR0);   [  i. RRR] 
+        cpuManager.dump("Controller op:",vR0.operation);   [  iiR. RRR] 
+        return vR0.operation;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 5 swaps 2 any 0 found 0 getCurrentOperation
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+}

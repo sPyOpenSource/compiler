@@ -1,0 +1,88 @@
+class jx/netmanager/IPReceiver {
+ 
+ method <init>(Ljx/netmanager/NetInit;[Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.net = vR1;   
+        b1 = new jx/buffer/multithread/MultiThreadBufferList(vR2);    [ ?R i. i.][ ?R i. iRR]
+        vR0.usableBufs = b1;   
+        vR0.usableBufs.enableRecording("IP-available-queue");   [ ?R ii RR.] 
+        b1 = new jx/buffer/multithread/MultiThreadBufferList();    [ ?R ii i..][ ?R ii iR.]
+        vR0.filledBufs = b1;   
+        vR0.filledBufs.enableRecording("IP-receive-queue");   [ ?R iii RR.] 
+        b1 = new jx/netmanager/IPReceiver$1(vR0);    [ ?R iii i..][ ?R iii. iRR]
+        vR0.consumer = b1;   
+        vR1.ip.registerIPConsumer(vR0.consumer);   [ ?R iiii RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 11 swaps 4 any 0 found 0 <init>
+ 
+ method <init>(Ljx/netmanager/NetInit;[Ljx/zero/Memory;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.net = vR1;   
+        b1 = new jx/buffer/multithread/MultiThreadBufferList(vR2);    [ ?R i. i.][ ?R i. iRR]
+        vR0.usableBufs = b1;   
+        b1 = new jx/buffer/multithread/MultiThreadBufferList();    [ ?R i. i..][ ?R i. iR.]
+        vR0.filledBufs = b1;   
+        b1 = new jx/netmanager/IPReceiver$2(vR0,vR3);    [ ?R i. i..][ ?R i. iRRR]
+        vR0.consumer = b1;   
+        vR1.ip.registerConsumer(vR0.consumer,vR3);   [ ?R ii RRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 9 swaps 2 any 0 found 0 <init>
+ 
+ method receive(Ljx/zero/Memory;I)Ljx/net/IPData; {
+  +START:   #1
+        vR3 = (jx/zero/Clock)(getInitialNaming@special().lookup("Clock"));    
+        vR4 = 0;    
+        vR5 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR6 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR7 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR3.getCycles(vR6);   [RRRRR R i. RR] 
+  +B52:   #1
+        if vR4!=null goto B106;   
+  +B57:   #1
+        vR3.getCycles(vR5);   [RRRRR R .. RR] 
+        vR3.subtract(vR7,vR5,vR6);   [RRRRR R .. RRRR] 
+        if vR3.toMilliSec(vR7)<vi2 goto B91;   
+  +B89:   #1
+        return 0;   
+  +B91:   #1
+        vR4 = vR0.filledBufs.nonblockingUndockFirstElement();    [RRRRR R .. R...] 
+        yield@special();   [RRRRR R .. ....]
+        goto +B52;   [RRRRR R .. ....]
+  +B106:   #1
+        vR8 = (jx/net/IPData)(vR4.getMoreData());    
+        vR1 = vR1.revoke();    [RRRRRR R .. R...] 
+        vR4.setData(vR1);   [RRRRRR R .. RR..] 
+        vR0.usableBufs.appendElement(vR4);   [RRRRRR R .. RR..] 
+        return vR8;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 12 swaps 1 any 1 found 0 receive
+ 
+ method receive(Ljx/zero/Memory;)Ljx/net/IPData; {
+  +START:   #1
+        vR2 = vR0.filledBufs.undockFirstElement();    [   R] 
+        vR3 = (jx/net/IPData)(vR2.getMoreData());    
+        vR1 = vR1.revoke();    [RR  . R.] 
+        vR2.setData(vR1);   [RR  . RR] 
+        vR0.usableBufs.appendElement(vR2);   [RR  . RR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 receive
+ 
+ method close()V {
+  +START:   #1
+        vR0.net.ip.unregisterIPConsumer(vR0.consumer);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 close
+}

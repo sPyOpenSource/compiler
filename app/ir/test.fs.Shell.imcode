@@ -1,0 +1,548 @@
+class test/fs/Shell {
+ 
+ method <init>(Ljx/zero/Naming;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        b1 = new java/util/Hashtable();    [ RRR  i][ RRR  iR]
+        vR0.mountPartitions = b1;   
+        vR0.uout = out;   
+        b1 = new java/io/DataInputStream(in);    [ RRR  i.][ RRR . iRR]
+        vR0.in = b1;   
+        b1 = new java/util/Hashtable();    [ RRR . i..][ RRR . iR.]
+        vR0.mountPartitions = b1;   
+        vR3 = (jx/zero/debug/DebugChannel)(vR1.lookup("DebugChannel0"));    
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream(vR3);    [ RRR i. i..][ RRR i. iRR]
+        b1.<init>@special(b2);   [?R RRR i. RR.] 
+        vR4 = b0;    
+        out = vR4;   
+        vR0.uout.println("los gehts...");   [?RR RRR ii RR.] 
+        vR5 = 0;    
+  +B93:   #1
+        yield@special();   [?RRR RRR .. ...]
+        vR5 = vR1.lookup("IDE");    [?RRR RRR i. RR.] 
+        if vR5==null goto B93;   
+  +B111:   #1
+        vR6 = (jx/devices/bio/BlockIO)(vR5);    
+        b1 = new java/lang/StringBuilder();    [ RRR .. i..][ RRR .. iR.]
+        vR4.println(b1.append@extra("Kapazitaet: ").append@extra(vR6.getCapacity()).toString@extra());   [?RRRR RRR iii. RR.] 
+        vR7 = vR1.lookup("FS");    [?RRRR RRR iiii RR.] 
+        vR0.fs = (jx/fs/FS)(vR7);   
+        vR8 = vR1.lookup("JavaFS");    [?RRRRR RRR iiiii RR.] 
+        vR0.filesystem = (jx/fs/FileSystem)(vR8);   
+        vR0.uout.println("Welcome to the JavaFS-Shell");   [?RRRRRR RRR iiiiii RR.] 
+        vR0.uout.print("build/shell> ");   [?RRRRRR RRR iiiiiii RR.] 
+  +B204:   #1
+        vR2 = vR0.in.readLine@extra();    [?RRRRRR RRR ....... R..] 
+  +B212:   #1
+        goto +B220;   [RRRRRRR RRR ....... ...]
+  +H215<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        vR2 = "shell";    
+  +B220:   #1
+        vR9 = new test/fs/Parser(vR2);    [ RRR ....... i..][ RRR ....... iRR]
+        if vR9.getKommando().equals@extra("build")==0 goto B251;   
+  +B243:   #1
+        out.print("build started");   [RRRRRRRR RRR i...... RR.] 
+  +B251:   #1
+        vR0.filesystem.build("TestFS",1024);   [RRRRRRRR RRR i...... iRR] 
+        out.print("build finished");   [RRRRRRRR RRR ii..... RR.] 
+        vR0.fs.mountRoot(vR0.filesystem,0);   [RRRRRRRR RRR iii.... iRR] 
+        vR0.mountPartitions.put("hda8",vR0.filesystem);   [RRRRRRRR RRR iiiiR.. RRR] 
+        vR0.mainLoop@special();   [RRRRRRRR RRR iiiiR.. R..] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+204 - 212 handler 215 type 126
+ }
+// Register: rd 47/47 wr 44 swaps 16 any 4 found 4 <init>
+ 
+ method mainLoop()V {
+  +START:   #1
+        vR2 = new java/lang/String();    [ RR  i][ RR  iR]
+        vR0.uout.println("'help' lists all commands");   [?R RR i RR] 
+  +B17:   #35
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.print(b1.append@extra("").append@extra(vR0.fs.getCwdPath()).append@extra(" > ").toString@extra());   [?R RR ii.ii. RR..] 
+  +B56:   #1
+        vR2 = vR0.in.readLine@extra();    [?R RR ...... R...] 
+  +B64:   #1
+        goto +B72;   [?R RR ...... ....]
+  +H67<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        goto +B971;   [RRRRR RR ...... ....]
+  +B72:   #1
+        vR4 = new test/fs/Parser(vR2);    [ RR ...... i...][ RR ...... iRR.]
+        if vR4.isValid()!=0 goto B93;   
+  +B90:   #1
+        goto +B17;   [?R?R RR ...... ....]
+  +B93:   #1
+        vR1 = vR4.getKommando();    [?R?R RR ...... R...] 
+        vR3 = vR4.getArgumente();    [RR?R RR ...... R...] 
+        if vR1.equals@extra("help")==0 goto B297;   
+  +B114:   #1
+        vR0.uout.println("'cd Pfad'                           wechselt das aktuelle Verzeichnis");   [RRRR RR i..... RR..] 
+        vR0.uout.println("'ls', 'll'                          Verzeichnisinhalt ausgeben");   [RRRR RR ii.... RR..] 
+        vR0.uout.println("'mkdir Pfad'                        legt ein neues Verzeichnis an");   [RRRR RR iii... RR..] 
+        vR0.uout.println("'rmdir Pfad'                        loescht das angegebene Verzeichnis");   [RRRR RR iiii.. RR..] 
+        vR0.uout.println("'touch Pfad'                        legt eine neue Datei an");   [RRRR RR iiiii. RR..] 
+        vR0.uout.println("'rm Pfad'                           loescht die angegebene Datei");   [RRRR RR iiiiii RR..] 
+        vR0.uout.println("'read Pfad Offset AnzahlBytes'      liest aus der angegebenen Datei und gibt");   [RRRR RR iiiiiii RR..] 
+        vR0.uout.println("                                    die ersten und letzten 50 Byte aus");   [RRRR RR iiiiiiii RR..] 
+        vR0.uout.println("'write Pfad Offset AnzahlBytes'     schreibt in die angegebene Datei");   [RRRR RR iiiiiiiii RR..] 
+        vR0.uout.println("                                    (geschrieben wird der Pfadname)");   [RRRR RR iiiiiiiiii RR..] 
+        vR0.uout.println("'rename AlterPfad NeuerPfad'        benennt die angegebene Datei bzw. das");   [RRRR RR iiiiiiiiiii RR..] 
+        vR0.uout.println("                                    Verzeichnis um");   [RRRR RR iiiiiiiiiiii RR..] 
+        vR0.uout.println("'symlink Pfad SymlinkPfad'          legt einen symbolischen Link an");   [RRRR RR iiiiiiiiiiiii RR..] 
+        vR0.uout.println("'build Name Blockgroesse Partition' legt ein neues Dateisystem an ");   [RRRR RR iiiiiiiiiiiiii RR..] 
+        vR0.uout.println("                                    (z.B. build Test 1024 hda2)");   [RRRR RR iiiiiiiiiiiiiii RR..] 
+        vR0.uout.println("'mount DateiSystem Partition Pfad'  meldet das angegebene Dateisystem an und");   [RRRR RR iiiiiiiiiiiiiiii RR..] 
+        vR0.uout.println("                                    haengt es in den Verzeichnisbaum ein");   [RRRR RR iiiiiiiiiiiiiiiii RR..] 
+        vR0.uout.println("'unmount'                           meldet das angegebene Dateisystem ab");   [RRRR RR iiiiiiiiiiiiiiiiii RR..] 
+        vR0.uout.println("'benchmark1'                        fuehrt einen Performance-Test durch");   [RRRR RR iiiiiiiiiiiiiiiiiii RR..] 
+        vR0.uout.println("'quit', 'exit'                      beendet die Shell");   [RRRR RR iiiiiiiiiiiiiiiiiiii RR..] 
+        goto +B17;   [RRRR RR iiiiiiiiiiiiiiiiiiii ....]
+  +B297:   #1
+        if vR1.equals@extra("cd")==0 goto B334;   
+  +B306:   #1
+        if vR3.length==1 goto B324;   
+  +B312:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B324:   #1
+        vR0.cd@special(vR3[0]);   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B334:   #1
+        if vR1.equals@extra("ls")==0 goto B350;   
+  +B343:   #1
+        vR0.ls@special();   [RRRR RR .................... R...] 
+        goto +B17;   [RRRR RR .................... ....]
+  +B350:   #1
+        if vR1.equals@extra("ll")==0 goto B366;   
+  +B359:   #1
+        vR0.ll@special();   [RRRR RR .................... R...] 
+        goto +B17;   [RRRR RR .................... ....]
+  +B366:   #1
+        if vR1.equals@extra("mkdir")==0 goto B406;   
+  +B375:   #1
+        if vR3.length==1 goto B393;   
+  +B381:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B393:   #1
+        vR0.mkdir@special(vR3[0],493);   [RRRR RR i................... iRR.] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B406:   #1
+        if vR1.equals@extra("rmdir")==0 goto B443;   
+  +B415:   #1
+        if vR3.length==1 goto B433;   
+  +B421:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B433:   #1
+        vR0.rmdir@special(vR3[0]);   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B443:   #1
+        if vR1.equals@extra("touch")==0 goto B483;   
+  +B452:   #1
+        if vR3.length==1 goto B470;   
+  +B458:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B470:   #1
+        vR0.create@special(vR3[0],420);   [RRRR RR i................... iRR.] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B483:   #1
+        if vR1.equals@extra("rm")==0 goto B521;   
+  +B493:   #1
+        if vR3.length==1 goto B511;   
+  +B499:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B511:   #1
+        vR0.unlink@special(vR3[0]);   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B521:   #1
+        if vR1.equals@extra("read")==0 goto B571;   
+  +B531:   #1
+        if vR3.length==3 goto B549;   
+  +B537:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B549:   #1
+        vR0.read@special(vR3[0],parseInt@special(vR3[1]),parseInt@special(vR3[2]));   [RRRR RR iRiRi............... iiRR] 
+        goto +B17;   [RRRR RR iRiRi............... ....]
+  +B571:   #1
+        if vR1.equals@extra("write")==0 goto B621;   
+  +B581:   #1
+        if vR3.length==3 goto B599;   
+  +B587:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B599:   #1
+        vR0.write@special(vR3[0],parseInt@special(vR3[1]),parseInt@special(vR3[2]));   [RRRR RR iRiRi............... iiRR] 
+        goto +B17;   [RRRR RR iRiRi............... ....]
+  +B621:   #1
+        if vR1.equals@extra("rename")==0 goto B662;   
+  +B631:   #1
+        if vR3.length==2 goto B649;   
+  +B637:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B649:   #1
+        vR0.rename@special(vR3[0],vR3[1]);   [RRRR RR iR.................. RRR.] 
+        goto +B17;   [RRRR RR iR.................. ....]
+  +B662:   #1
+        if vR1.equals@extra("symlink")==0 goto B703;   
+  +B672:   #1
+        if vR3.length==2 goto B690;   
+  +B678:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B690:   #1
+        vR0.symlink@special(vR3[0],vR3[1]);   [RRRR RR iR.................. RRR.] 
+        goto +B17;   [RRRR RR iR.................. ....]
+  +B703:   #1
+        if vR1.equals@extra("build")==0 goto B752;   
+  +B712:   #1
+        if vR3.length==3 goto B730;   
+  +B718:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRR RR i................... RR..] 
+        goto +B17;   [RRRR RR i................... ....]
+  +B730:   #1
+        vR5 = 0;    
+        vR5.build(vR3[0],parseInt@special(vR3[1]));   [RRRRR RR iRi................. iRR.] 
+        goto +B17;   [RRRRR RR iRi................. ....]
+  +B752:   #1
+        if vR1.equals@extra("mount")==0 goto B796;   
+  +B762:   #1
+        if vR3.length==3 goto B780;   
+  +B768:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRRR RR i................... RR..] 
+        goto +B17;   [RRRRR RR i................... ....]
+  +B780:   #1
+        vR0.mount@special(vR3[0],vR3[1],vR3[2]);   [RRRRR RR iRR................. RRRR] 
+        goto +B17;   [RRRRR RR iRR................. ....]
+  +B796:   #1
+        if vR1.equals@extra("unmount")==0 goto B834;   
+  +B806:   #1
+        if vR3.length==1 goto B824;   
+  +B812:   #1
+        vR0.uout.println("wrong number of arguments");   [RRRRR RR i................... RR..] 
+        goto +B17;   [RRRRR RR i................... ....]
+  +B824:   #1
+        vR0.unmount@special(vR3[0]);   [RRRRR RR i................... RR..] 
+        goto +B17;   [RRRRR RR i................... ....]
+  +B834:   #1
+        if vR1.equals@extra("benchmark1")==0 goto B847;   
+  +B844:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B847:   #1
+        if vR1.equals@extra("quit")!=0 goto B971;   
+  +B857:   #1
+        if vR1.equals@extra("exit")==0 goto B870;   
+  +B867:   #1
+        goto +B971;   [RRRRR RR .................... ....]
+  +B870:   #1
+        if vR1.equals@extra("flush")==0 goto B883;   
+  +B880:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B883:   #1
+        if vR1.equals@extra("sync")==0 goto B896;   
+  +B893:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B896:   #1
+        if vR1.equals@extra("dinfo")==0 goto B909;   
+  +B906:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B909:   #1
+        if vR1.equals@extra("iinfo")==0 goto B922;   
+  +B919:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B922:   #1
+        if vR1.equals@extra("binfo")==0 goto B935;   
+  +B932:   #1
+        goto +B17;   [RRRRR RR .................... ....]
+  +B935:   #1
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR .................... i...][ RR .................... iR..]
+        b0.println(b1.append@extra("unknown command '").append@extra(vR1).append@extra("'").toString@extra());   [RRRRR RR iii................. RR..] 
+        goto +B17;   [RRRRR RR iii................. ....]
+  +B971:   #4
+        vR0.fs.cleanUp();   [RRRRR RR .................... R...] 
+  +B980:   #1
+        goto +B1013;   forward return[RRRRR RR .................... ....]
+  +H983<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR .................... i...][ RR .................... iR..]
+        b0.println(b1.append@extra("Cleanup Error!").append@extra(vR4).toString@extra());   [RRRRR RR ii.................. RR..] 
+  +B1013:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+56 - 64 handler 67 type 126
+971 - 980 handler 983 type 318
+ }
+// Register: rd 125/125 wr 119 swaps 79 any 0 found 0 mainLoop
+ 
+ method cd(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.fs.cd(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 cd
+ 
+ method ls()V {
+  +START:   #1
+        vR1 = 0;    
+        vR1 = vR0.fs.getCwdNode().readdirNames();    [R  . R] [R  R R] 
+        vR2 = vR1;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B25:   #1
+        if vi4>=vi3 goto B52;   
+  +B31:   #1
+        vR5 = vR2[vi4];    
+        vR0.uout.println(vR5);   [RRiiR  . RR] 
+        vi4++;   
+        goto +B25;   [RRiiR  . ..]
+  +B52:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 0 any 3 found 0 ls
+ 
+ method ll()V {
+  +START:   #1
+        vR1 = 0;    
+        vR2 = 0;    
+        vR1 = (jx/fs/InodeImpl)(vR0.fs.getCwdNode()).readdirNames();    [RR RR . R.] 
+        vi4 = 0;    
+  +B23:   #1
+        if vi4>=vR1.length goto B180;   
+  +B30:   #1
+        vR2 = vR1[vi4];    
+        vR0.uout.print(vR2);   [RR?i RR . RR] 
+        vR3 = (jx/fs/InodeImpl)((jx/fs/InodeImpl)(vR0.fs.getCwdNode()).lookup(vR2));    
+        if vR3.isDirectory()==0 goto B83;   
+  +B70:   #1
+        vR0.uout.print(" D");   [RRRi RR i RR.] 
+        goto +B140;   [RRRi RR i ...]
+  +B83:   #1
+        if vR3.isFile()==0 goto B103;   
+  +B90:   #1
+        vR0.uout.print(" F");   [RRRi RR i RR.] 
+        goto +B140;   [RRRi RR i ...]
+  +B103:   #1
+        if vR3.isSymlink()==0 goto B140;   
+  +B110:   #1
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.print(b1.append@extra(" -> ").append@extra(vR3.getSymlink()).toString@extra());   [RRRi RR iii. RR.] 
+  +B140:   #3
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra(" ").append@extra(vR3.getLength()).toString@extra());   [RRRi RR iii. RR.] 
+        vR3.decUseCount();   [RRRi RR iii. R..] 
+        vi4++;   
+        goto +B23;   [RRRi RR iii. ...]
+  +B180:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 28 swaps 8 any 2 found 0 ll
+ 
+ method mkdir(Ljava/lang/String;I)V {
+  +START:   #2
+        vR0.fs.mkdir(vR1,vi2);   [ RR  iRR] 
+  +B11:   #1
+        goto +B45;   forward return[ RR  ...]
+  +H14<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("Error: ").append@extra(vR3.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B45:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 14 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 mkdir
+ 
+ method rmdir(Ljava/lang/String;)V {
+  +START:   #2
+        vR0.fs.rmdir(vR1);   [ RR  RR] 
+  +B10:   #1
+        goto +B44;   forward return[ RR  ..]
+  +H13<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Error: ").append@extra(vR2.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B44:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 13 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 rmdir
+ 
+ method create(Ljava/lang/String;I)V {
+  +START:   #2
+        vR0.fs.create(vR1,vi2);   [ RR  iRR] 
+  +B11:   #1
+        goto +B45;   forward return[ RR  ...]
+  +H14<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("Error: ").append@extra(vR3.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B45:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 14 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 create
+ 
+ method unlink(Ljava/lang/String;)V {
+  +START:   #2
+        vR0.fs.unlink(vR1);   [ RR  RR] 
+  +B10:   #1
+        goto +B44;   forward return[ RR  ..]
+  +H13<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Error: ").append@extra(vR2.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B44:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 13 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 unlink
+ 
+ method read(Ljava/lang/String;II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 read
+ 
+ method write(Ljava/lang/String;II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 write
+ 
+ method rename(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #2
+        vR0.fs.rename(vR1,vR2);   [ RR  RRR] 
+  +B11:   #1
+        goto +B45;   forward return[ RR  ...]
+  +H14<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("Error: ").append@extra(vR3.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B45:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 14 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 rename
+ 
+ method symlink(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #2
+        vR0.fs.symlink(vR1,vR2);   [ RR  RRR] 
+  +B11:   #1
+        goto +B45;   forward return[ RR  ...]
+  +H14<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("Error: ").append@extra(vR3.getMessage()).toString@extra());   [R RR iii. RR.] 
+  +B45:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 14 type 318
+ }
+// Register: rd 5/5 wr 8 swaps 3 any 0 found 0 symlink
+ 
+ method mount(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR4 = b0.append@extra("metaxa.os.fs.").append@extra(vR1).append@extra(".FileSystem").toString@extra();    [ RR ii... R...] [ RR iiR.. RR..] [ RR iiRR. RRR.] [ RR iiRRR RRRR] 
+  +B28:   #3
+        vR6 = forName@special(vR4);    [R RR ..... R...]
+        vR5 = (jx/fs/FileSystem)(vR6.newInstance@extra());    
+  +B45:   #3
+        goto +B84;   [RRR RR ..... ....]
+  +H48<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        out.println("Dateisystem existiert nicht");   [RRR RR i.... RR..] 
+        return;   
+  +H60<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        out.println("Interner Fehler");   [RRR RR i.... RR..] 
+        return;   
+  +H72<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        out.println("Interner Fehler");   [RRR RR i.... RR..] 
+        return;   
+  +B84:   #2
+        vR0.fs.mount(vR5,vR3,0);   [RRR RR ..... iRRR] 
+        vR0.mountPartitions.put(vR2,vR5);   [RRR RR ..... RRR.] 
+  +B108:   #1
+        goto +B144;   forward return[RRR RR ..... ....]
+  +H111<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Error: ").append@extra(vR6.getMessage()).toString@extra());   [RRR RR iii.. RR..] 
+  +B144:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+28 - 45 handler 48 type 390
+28 - 45 handler 60 type 394
+28 - 45 handler 72 type 398
+84 - 108 handler 111 type 318
+ }
+// Register: rd 9/9 wr 27 swaps 8 any 0 found 0 mount
+ 
+ method unmount(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = (jx/fs/FileSystem)(vR0.mountPartitions.get(vR1));    
+        if vR2!=null goto B49;   
+  +B16:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("Auf der Partition ").append@extra(vR1).append@extra(" ist kein Dateisystem angemeldet").toString@extra());   [R RR iii.. RR..] 
+        return;   
+  +B49:   #2
+        vR0.fs.unmount(vR2);   [R RR ..... RR..] 
+  +B59:   #1
+        goto +B93;   forward return[R RR ..... ....]
+  +H62<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Error: ").append@extra(vR3.getMessage()).toString@extra());   [RR RR iii.. RR..] 
+  +B93:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+49 - 59 handler 62 type 318
+ }
+// Register: rd 10/10 wr 18 swaps 6 any 1 found 0 unmount
+}

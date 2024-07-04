@@ -1,0 +1,192 @@
+class test/fs/MyBigNumber {
+ 
+ method <init>([I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.v = new int[30];   
+        vR0.v = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.v = new int[30];   
+        vi2 = 0;    
+  +B14:   #1
+        vR0.v[vi2] = (vi1%10);   
+        vi2++;   
+        vi1 = (vi1/10);    
+        if vi1!=0 goto B14;   
+  +B36:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 <init>
+ 
+ method mul(I)Ltest/fs/MyBigNumber; {
+  +START:   #1
+        vR2 = new test/fs/MyBigNumber(0);    [ R  i][ R . iiR]
+        vi3 = 0;    
+        vi4 = 0;    
+  +B14:   #1
+        if vi4>=vR0.v.length goto B71;   
+  +B24:   #1
+        vR2.v[vi4] = ((vi1*vR0.v[vi4])+vi3);   
+        vi3 = (vR2.v[vi4]/10);    
+        b0 = vR2.v;    
+        b0[vi4] = (b0[vi4]%10);   
+        vi4++;   
+        goto +B14;   [Rii R . ...]
+  +B71:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 7 swaps 0 any 3 found 0 mul
+ 
+ method mul(II)Ltest/fs/MyBigNumber; {
+  +START:   #1
+        vR3 = new test/fs/MyBigNumber(0);    [ R  i][ R . iiR]
+        vi4 = 0;    
+        vi5 = 0;    
+  +B15:   #1
+        if vi5>=vR0.v.length goto B74;   
+  +B25:   #1
+        vR3.v[vi5] = ((vi1*vR0.v[vi5])+vi4);   
+        vi4 = (vR3.v[vi5]/10);    
+        b0 = vR3.v;    
+        b0[vi5] = (b0[vi5]%10);   
+        vi5++;   
+        goto +B15;   [Rii R . ...]
+  +B74:   #1
+        vR5 = new int[vR0.v.length];    
+        arraycopy@special(vR3.v,0,vR5,vi2,(vR0.v.length-vi2));   [RiR R Ri iiRiR]
+        vR3.v = vR5;   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 10 swaps 0 any 3 found 0 mul
+ 
+ method mul(Ltest/fs/MyBigNumber;)Ltest/fs/MyBigNumber; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.v.length goto B29;   
+  +B11:   #1
+        vR1 = vR1.mul(vR0.v[vi2],vi2);    [i  i iiR] 
+        vi2++;   
+        goto +B2;   [i  i ...]
+  +B29:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 2 found 0 mul
+ 
+ method div(Ltest/fs/MyBigNumber;)Ltest/fs/MyBigNumber; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 div
+ 
+ method div(I)Ltest/fs/MyBigNumber; {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vR5 = new int[vR0.v.length];    
+        vi2 = (vR0.v.length-1);    
+  +B22:   #1
+        if vi2< 0 goto B44;   
+  +B26:   #1
+        if vR0.v[vi2]==0 goto B38;   
+  +B35:   #1
+        goto +B44;   [iiiR R  ..]
+  +B38:   #1
+        vi2--;   
+        goto +B22;   [iiiR R  ..]
+  +B44:   #4
+        if vi2< 0 goto B75;   
+  +B48:   #1
+        vi3 = ((vi3*10)+vR0.v[vi2]);    
+        if (vi3/vi1)<=0 goto B69;   
+  +B66:   #1
+        goto +B75;   [iiiR R  ..]
+  +B69:   #1
+        vi2--;   
+        goto +B44;   [iiiR R  ..]
+  +B75:   #2
+        if (vi3/vi1)!=0 goto B84;   
+  +B81:   #1
+        goto +B110;   [iiiR R  ..]
+  +B84:   #1
+        vR5[vi2] = (vi3/vi1);   
+        vi4 = (vR5[vi2]*vi1);    
+        vi3 = (vi3-vi4);    
+        vi2--;   
+        goto +B44;   [iiiR R  ..]
+  +B110:   #1
+        return new test/fs/MyBigNumber(vR5);   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 11 swaps 0 any 7 found 0 div
+ 
+ method add(I)Ltest/fs/MyBigNumber; {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = "";    
+        vi2 = (vR0.v.length-1);    
+  +B11:   #1
+        if vi2< 0 goto B33;   
+  +B15:   #1
+        if vR0.v[vi2]==0 goto B27;   
+  +B24:   #1
+        goto +B33;   [Ri R  ]
+  +B27:   #1
+        vi2--;   
+        goto +B11;   [Ri R  ]
+  +B33:   #3
+        if vi2< 0 goto B67;   
+  +B37:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR1).append@extra(vR0.v[vi2]).toString@extra();    [Ri R i.. R..] [Ri R iR. iR.] [Ri R iRR iRR] 
+        vi2--;   
+        goto +B33;   [Ri R i.. ...]
+  +B67:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 9 swaps 1 any 4 found 0 toString
+ 
+ method toInt()I {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = (vR0.v.length-1);    
+  +B10:   #1
+        if vi2< 0 goto B32;   
+  +B14:   #1
+        if vR0.v[vi2]==0 goto B26;   
+  +B23:   #1
+        goto +B32;   [ii   ]
+  +B26:   #1
+        vi2--;   
+        goto +B10;   [ii   ]
+  +B32:   #3
+        if vi2< 0 goto B54;   
+  +B36:   #1
+        vi1 = ((vi1*10)+vR0.v[vi2]);    
+        vi2--;   
+        goto +B32;   [ii   ]
+  +B54:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 5 found 0 toInt
+}

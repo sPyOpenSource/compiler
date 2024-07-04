@@ -1,0 +1,59 @@
+class jx/fsshell/FSShell {
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/fsshell/FSShell(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 main
+ 
+ method <init>([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        vR2 = getInitialNaming@special();    
+        vR3 = (jx/streams/StreamProvider)(waitUntilPortalAvailable@special(vR2,vR1[0]));    
+        vR4 = vR3.getOutputStream();    [RR RRR R. R.] 
+        b0 = new java/io/PrintStream;    
+        b1 = b0;    
+        b2 = new jx/fsshell/FSShell$OutputStreamProxy(vR0,vR4);    [ RRR R. i.][ RRR R. iRRR]
+        b1.<init>@special(b2);   [RRR RRR R. RR..] 
+        vR5 = b0;    
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/fsshell/FSShell$OutputStreamProxy(vR0,vR4);    [ RRR R. i...][ RRR R. iRRR]
+        b1.<init>@special(b2);   [RRRR RRR R. RR..] 
+        out = b0;   
+        vR5.println("Hello World!");   [RRRR RRR Ri RR..] 
+        out.println("Debug-Hello World!");   [RRRR RRR Rii. RR..] 
+        vi6 = 0;    
+  +B84:   #1
+        if vi6>=8 goto B121;   
+  +B91:   #1
+        vi7 = 0;    
+  +B94:   #1
+        if vi7>=10 goto B115;   
+  +B101:   #1
+        out.print(vi7);   [RRRRii RRR .... iR..] 
+        vi7++;   
+        goto +B94;   [RRRRii RRR .... ....]
+  +B115:   #1
+        vi6++;   
+        goto +B84;   [RRRRii RRR .... ....]
+  +B121:   #1
+        out.println();   [RRRRii RRR .... R...] 
+        vR6 = (jx/timer/TimerManager)(waitUntilPortalAvailable@special(vR2,vR1[1]));    
+        vR7 = (jx/zero/CPUManager)(waitUntilPortalAvailable@special(vR2,"CPUManager"));    
+        vi8 = 0;    
+  +B153:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .... i...][ RRR .... iR..]
+        b0.println(b1.append@extra("Hello ").append@extra(vi8).toString@extra());   [RRRRRRi RRR ii.. RR..] 
+        vR6.unblockInMillis(vR7.getCPUState(),1000);   [RRRRRRi RRR iii. iRR.] 
+        vR7.block();   [RRRRRRi RRR iii. R...] 
+        vi8++;   
+        goto +B153;   [RRRRRRi RRR iii. ....]
+  +END:   #1
+ }
+// Register: rd 33/33 wr 38 swaps 5 any 8 found 1 <init>
+}

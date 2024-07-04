@@ -18,35 +18,24 @@ public class CompileNative {
     static MemoryManager memMgr = new MemoryManagerImpl();
 
     public static void main(String[] args) throws Exception {
-        /*String[] a = {"/home/spy/Source/jcore/libs"};
-        MetaReader metaReader = new MetaReader(a);
-        ArrayList metas = new ArrayList();
-        metaReader.addMeta(metas, "init2");
-        MetaInfo s = (MetaInfo)metas.get(0); // process this component*/
 	String libdir = "./";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
-	String zipname = libdir + /*s.getComponentName()*/"zero" + ".zip";
-	String jllname = libdir + /*s.getComponentName()*/"zero" + ".jll";
+	String zipname = libdir + "zero.zip";
+	String jllname = libdir + "zero.jll";
 
 	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
-        String[] neededLibs = new String[0];
-
-        for (String neededLib : neededLibs) {
-            libs.add(libdir + neededLib + ".zip");
-            jlns.add(libdir + neededLib + ".jln");
-        }
         
-	String jlnname = libdir + /*s.getComponentName()*/"zero" + ".jln";
+	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
         
-        zipname = libdir + "os.zip";
-	jllname = libdir + "os.jll";
-        jlnname = libdir + "os.jln";
-        neededLibs = new String[]{
+        zipname = libdir + "jdk.zip";
+	jllname = libdir + "jdk.jll";
+        jlnname = libdir + "jdk.jln";
+        String[] neededLibs = new String[]{
             "zero"
         };
         for (String neededLib : neededLibs) {
@@ -56,11 +45,11 @@ public class CompileNative {
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
 	compile("os", opts);
         
-        zipname = libdir + "aizero.zip";
-	jllname = libdir + "aizero.jll";
-        jlnname = libdir + "aizero.jln";
+        zipname = libdir + "ai.zip";
+	jllname = libdir + "ai.jll";
+        jlnname = libdir + "ai.jln";
         neededLibs = new String[]{
-            "zero", "os"
+            "zero", "jdk"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
@@ -69,18 +58,18 @@ public class CompileNative {
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
 	compile("ai", opts);
         
-        zipname = libdir + "if.zip";
-	jllname = libdir + "if.jll";
-        jlnname = libdir + "if.jln";
+        zipname = libdir + "init2.zip";
+	jllname = libdir + "init2.jll";
+        jlnname = libdir + "init2.jln";
         neededLibs = new String[]{
-            "zero", "aizero", "os"
+            "zero", "ai", "jdk"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
-	//compile("init2", opts);
+	compile("init2", opts);
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
@@ -112,7 +101,7 @@ public class CompileNative {
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/ifOS/dist/ifOS.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/")
             };
         } else if(path.endsWith("ai")){
             domClasses = new URL[]{

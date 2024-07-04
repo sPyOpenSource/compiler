@@ -1,0 +1,34 @@
+class bioide/PartitionData {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.os_indicator = vR1.get8((vi2+4));   
+        vR0.start_sector = vR1.getLittleEndian32((vi2+8));   
+        vR0.length_in_sectors = vR1.getLittleEndian32((vi2+12));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 3 any 0 found 0 <init>
+ 
+ method os_indicator()B {
+  +START:   #1
+        return vR0.os_indicator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 os_indicator
+ 
+ method start_sector()I {
+  +START:   #1
+        return vR0.start_sector;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 start_sector
+ 
+ method length_in_sectors()I {
+  +START:   #1
+        return vR0.length_in_sectors;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 length_in_sectors
+}

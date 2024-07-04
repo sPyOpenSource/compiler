@@ -1,0 +1,671 @@
+class jx/vis/IOZoneDiagram {
+ 
+ method usage()V {
+  +START:   #1
+        out.println("bars <mifout> <max reread throughput> <helping line interval> <iozone.log>");   [  i. RR] 
+        out.println("barsvar <mifout> <max reread throughput> <helping line interval> <iozone.log ...>");   [  ii. RR] 
+        out.println("compare <mifout> <max %> <helping line interval> [-binary|-text] <iozone.log ...> [-binary|-text] <iozone.log ...>");   [  iii. RR] 
+        out.println("    Throughput of iozone2.log relative to iozone1.log");   [  iiii. RR] 
+        out.println("compare_better <mifout> <min %> <max %> <helping line interval> [-binary|-text] <iozone.log ...> [-binary|-text] <iozone.log ...>");   [  iiiii. RR] 
+        out.println("    Same as compare but with 100% as base line");   [  iiiiii. RR] 
+        out.println("");   [  iiiiiii. RR] 
+        out.println("Use prefix "bin" to process binary log files.");   [  iiiiiiii. RR] 
+        out.println("Use "-recsizes" to print record sizes on the x-axis.");   [  iiiiiiiii. RR] 
+        out.println("Use "-deviation" to print record sizes on the x-axis.");   [  iiiiiiiiii. RR] 
+        out.println("Use "-max_deviation" to print the maximal standard deviation.");   [  iiiiiiiiiii. RR] 
+        out.println("Use "-verbose" for more blubber.");   [  iiiiiiiiiiii. RR] 
+        out.println("");   [  iiiiiiiiiiiii. RR] 
+        out.println("Examples:");   [  iiiiiiiiiiiiii. RR] 
+        out.println("bars myiozone.mif 700000 100000 myiozone.log");   [  iiiiiiiiiiiiiii. RR] 
+        out.println("binbars myiozone.mif 700000 100000  myiozone.log");   [  iiiiiiiiiiiiiiii. RR] 
+        out.println("binbarsvar myiozone.mif 700000 100000  myiozone0.log myiozone1.log myiozone2.log myiozone3.log");   [  iiiiiiiiiiiiiiiii. RR] 
+        out.println("compare myiozone.mif 120 10 -binary youriozone0.log youriozone1.log -text myiozone.log");   [  iiiiiiiiiiiiiiiiii. RR] 
+        out.println("compare_better myiozone.mif -20 50 10 -binary youriozone0.log youriozone1.log -binary myiozone.log");   [  iiiiiiiiiiiiiiiiiii. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 38 swaps 19 any 0 found 0 usage
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/vis/IOZoneDiagram(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 main
+ 
+ method <init>([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        b1 = new java/util/Vector();    [ RRR  i][ RRR  iR]
+        vR0.results = b1;   
+        vR0.opt_deviation = 0;   
+        vR0.opt_recordsizes = 0;   
+        vR0.opt_verbose = 0;   
+        vR0.opt_max_deviation = 0;   
+        vR0.compare = 0;   
+        vR0.binary = 0;   
+        vR0.better = 0;   
+        if vR1.length>=1 goto B60;   
+  +B56:   #1
+        usage@special();   [ RRR  ..]
+        return;   
+  +B60:   #1
+        vi4 = 0;    
+        vi5 = 0;    
+        vi7 = 1;    
+        if vR1[0].startsWith@extra("bin")==0 goto B95;   
+  +B80:   #1
+        vR0.binary = 1;   
+        vR1[0] = vR1[0].substring@extra(3);   
+  +B95:   #1
+        vi8 = 1;    
+  +B98:   #1
+        vR9 = vR1[vi8];    
+        vi10 = -1;    
+        lswitch (vR9.hashCode@extra()) { 
+           -1611261863:B188
+           -526858961:B156
+           -229353740:B172
+           1468161205:B204
+           ::B217
+        };   
+  +B156:   #1
+        if vR9.equals@extra("-recsizes")==0 goto B217;   
+  +B166:   #1
+        vi10 = 0;    
+        goto +B217;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B172:   #1
+        if vR9.equals@extra("-deviation")==0 goto B217;   
+  +B182:   #1
+        vi10 = 1;    
+        goto +B217;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B188:   #1
+        if vR9.equals@extra("-max_deviation")==0 goto B217;   
+  +B198:   #1
+        vi10 = 2;    
+        goto +B217;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B204:   #1
+        if vR9.equals@extra("-verbose")==0 goto B217;   
+  +B214:   #1
+        vi10 = 3;    
+  +B217:   #8
+        tswitch (vi10) B248 B256 B264 B272 : B280;   
+  +B248:   #1
+        vR0.opt_recordsizes = 1;   
+        goto +B283;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B256:   #1
+        vR0.opt_deviation = 1;   
+        goto +B283;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B264:   #1
+        vR0.opt_max_deviation = 1;   
+        goto +B283;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B272:   #1
+        vR0.opt_verbose = 1;   
+        goto +B283;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B280:   #1
+        goto +B289;   [??ii?iiRi RRR . ..]
+  +B283:   #4
+        vi8++;   
+        goto +B98;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B289:   #1
+        vR9 = vR1[0];    
+        vi10 = -1;    
+        lswitch (vR9.hashCode@extra()) { 
+           -333100953:B360
+           3016384:B344
+           249238154:B392
+           950484197:B376
+           ::B405
+        };   
+  +B344:   #1
+        if vR9.equals@extra("bars")==0 goto B405;   
+  +B354:   #1
+        vi10 = 0;    
+        goto +B405;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B360:   #1
+        if vR9.equals@extra("barsvar")==0 goto B405;   
+  +B370:   #1
+        vi10 = 1;    
+        goto +B405;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B376:   #1
+        if vR9.equals@extra("compare")==0 goto B405;   
+  +B386:   #1
+        vi10 = 2;    
+        goto +B405;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR . ..]
+  +B392:   #1
+        if vR9.equals@extra("compare_better")==0 goto B405;   
+  +B402:   #1
+        vi10 = 3;    
+  +B405:   #8
+        tswitch (vi10) B436 B518 B603 B603 : B1240;   
+  +B436:   #1
+        if vR1.length==5 goto B446;   
+  +B442:   #1
+        usage@special();   [??ii?iiRi RRR . ..]
+        return;   
+  +B446:   #1
+        b1 = vi8;    
+        vi8++;   
+        vR2 = vR1[b1];    
+        b1 = vi8;    
+        vi8++;   
+        vi3 = parseInt@special(vR1[b1]);    [R?ii?iiRi RiR R R.]
+        b1 = vi8;    
+        vi8++;   
+        vi6 = parseInt@special(vR1[b1]);    [Riii?iiRi RiR RR R.]
+        vi4 = -200000;    
+        vi7 = 1000;    
+        b0 = new java/io/DataInputStream;    
+        b1 = b0;    
+        b2 = new java/io/FileInputStream(vR1[4]);    [ RRR RR i.][ RRR RR. iRR]
+        b1.<init>@special(b2);   [RiiiiiiRi RRR RR. RR.] 
+        vR11 = b0;    
+        vR0.results = vR0.readIOZone@this(vR11);   
+        goto +B1244;   [RiiiiiiRiR RRR RR. ...]
+  +B518:   #1
+        vi7 = 1000;    
+        if vR1.length>=5 goto B533;   
+  +B529:   #1
+        usage@special();   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR ... ...]
+        return;   
+  +B533:   #1
+        b1 = vi8;    
+        vi8++;   
+        vR2 = vR1[b1];    
+        b1 = vi8;    
+        vi8++;   
+        vi3 = parseInt@special(vR1[b1]);    [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RiR R.. R..]
+        b1 = vi8;    
+        vi8++;   
+        vi6 = parseInt@special(vR1[b1]);    [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RiR RR. R..]
+        vR12 = new java/lang/String()[(vR1.length-vi8)];    
+        arraycopy@special(vR1,vi8,vR12,0,vR12.length);   [RiiiiiiRiiRiRRRiiRiiiiiiRiiRi RiR RRi iiRiR]
+        vR0.results = vR0.readDataSet@this(vR12,vR0.binary);   
+        goto +B1244;   [RiiiiiiRiiRiRRRiiRiiiiiiRiiRi RiR RRii .....]
+  +B603:   #2
+        vR0.compare = 1;   
+        if vR1[0].equals@extra("compare_better")==0 goto B624;   
+  +B619:   #1
+        vR0.better = 1;   
+  +B624:   #1
+        b1 = vi8;    
+        vi8++;   
+        vR2 = vR1[b1];    
+        if vR0.better==0 goto B655;   
+  +B639:   #1
+        b1 = vi8;    
+        vi8++;   
+        vi4 = parseInt@special(vR1[b1]);    [RiiiiiiRiiRiRRRiiRiiiiiiRiiRi RiR R... R....]
+        vi5 = 60;    
+  +B655:   #1
+        b1 = vi8;    
+        vi8++;   
+        vi3 = parseInt@special(vR1[b1]);    [RiiiiiiRiiRiRRRiiRiiiiiiRiiRi RiR R... R....]
+        b1 = vi8;    
+        vi8++;   
+        vi6 = parseInt@special(vR1[b1]);    [RiiiiiiRiiRiRRRiiRiiiiiiRiiRi RiR RR.. R....]
+        vi13 = -1;    
+        vi14 = 0;    
+        vi15 = -1;    
+        vi16 = 0;    
+        vi17 = vi8;    
+  +B694:   #1
+        if vi17>=vR1.length goto B778;   
+  +B701:   #1
+        if vR1[vi17].equals@extra("-binary")!=0 goto B725;   
+  +B713:   #1
+        if vR1[vi17].equals@extra("-text")==0 goto B772;   
+  +B725:   #1
+        if vi13!=-1 goto B753;   
+  +B731:   #1
+        vi13 = vi17;    
+        if vR1[vi17].equals@extra("-binary")==0 goto B772;   
+  +B747:   #1
+        vi14 = 1;    
+        goto +B772;   [RiiiiiiRiiRiiiiiiRiiiiiiRiiRi RiR .... .....]
+  +B753:   #1
+        vi15 = vi17;    
+        if vR1[vi17].equals@extra("-binary")==0 goto B772;   
+  +B769:   #1
+        vi16 = 1;    
+  +B772:   #4
+        vi17++;   
+        goto +B694;   [RiiiiiiRiiRiiiiiiRiiiiiiRiiRi RiR .... .....]
+  +B778:   #1
+        if vi13==-1 goto B797;   
+  +B784:   #1
+        if vi15==-1 goto B797;   
+  +B790:   #1
+        if vi13<=vi15 goto B807;   
+  -B797:   #2
+        throw new java/lang/Error("no first set or no second set");   
+  +B807:   #1
+        vR17 = new java/lang/String()[((vi15-vi13)-1)];    
+        arraycopy@special(vR1,(vi13+1),vR17,0,vR17.length);   [RiiiiiiRiiRiiiiRiRiiiiiiRiiRi RiR ii.. iiRiR]
+        vR18 = vR0.readDataSet@this(vR17,vi14);    [RiiiiiiRiiRiiiiRiRiiiiiiRiiRi RiR ii.. iRR..] 
+        vR19 = new java/lang/String()[((vR1.length-vi15)-1)];    
+        arraycopy@special(vR1,(vi15+1),vR19,0,vR19.length);   [RiiiiiiRiiRiiiiRRRiiiiiiRiiRi RiR iiii iiRiR]
+        vR20 = vR0.readDataSet@this(vR19,vi16);    [RiiiiiiRiiRiiiiRRRiiiiiiRiiRi RiR iiii iRR..] 
+        b1 = new java/util/Vector();    [ RRR iiii i....][ RRR iiii iR...]
+        vR0.results = b1;   
+        if vR18.size@extra()==vR20.size@extra() goto B913;   
+  -B903:   #1
+        throw new java/lang/Error("different result set sizes");   
+  +B913:   #1
+        vi21 = 0;    
+  +B916:   #1
+        if vi21>=vR18.size@extra() goto B1237;   
+  +B926:   #1
+        vR22 = (jx/vis/IOZoneDiagram$FileSize)(vR18.elementAt(vi21));    
+        vR23 = (jx/vis/IOZoneDiagram$FileSize)(vR20.elementAt(vi21));    
+        if vR22.results.size@extra()==vR23.results.size@extra() goto B979;   
+  -B969:   #1
+        throw new java/lang/Error("different result set sizes for one file size");   
+  +B979:   #1
+        vR24 = new jx/vis/IOZoneDiagram$FileSize(vR0);    [ RRR ..... i....][ RRR ..... iRR..]
+        b1 = new java/util/Vector();    [ RRR ..... i....][ RRR ..... iR...]
+        vR24.results = b1;   
+        vR24.filesize = vR22.filesize;   
+        vR0.results.addElement@extra(vR24);   [RiiiiiiRiiRiiiiRRRRiRRRiRiiRi RRR ..... RR...] 
+        vi25 = 0;    
+  +B1023:   #1
+        if vi25>=vR22.results.size@extra() goto B1231;   
+  +B1036:   #1
+        vR26 = (jx/vis/IOZoneDiagram$Result)(vR22.results.elementAt(vi25));    
+        vR27 = (jx/vis/IOZoneDiagram$Result)(vR23.results.elementAt(vi25));    
+        vR28 = new jx/vis/IOZoneDiagram$Result(vR0);    [ RRR ..... i....][ RRR ..... iRR..]
+        vR24.results.addElement@extra(vR28);   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ..... RR...] 
+        vR28.filesize = vR26.filesize;   
+        vR28.recordsize = vR26.recordsize;   
+        if vR0.better==0 goto B1145;   
+  +B1113:   #1
+        vR28.reread_compare = (float)(((double)(vR26.reread-vR27.reread)*jx.classfile.datatypes.BCDouble@33a2499c)/(double)vR27.reread);   
+        goto +B1168;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ..... .....]
+  +B1145:   #1
+        vR28.reread_compare = (float)(((double)vR27.reread*jx.classfile.datatypes.BCDouble@33a2499c)/(double)vR26.reread);   
+  +B1168:   #1
+        if vR0.opt_verbose==0 goto B1225;   
+  +B1175:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ..... i....][ RRR ..... iR...]
+        b0.println(b1.append@extra(vR26.reread).append@extra(" & ").append@extra(vR27.reread).append@extra(" -> ").append@extra(vR28.reread_compare).toString@extra());   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR iiiii.... RR....] 
+  +B1225:   #1
+        vi25++;   
+        goto +B1023;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ......... ......]
+  +B1231:   #1
+        vi21++;   
+        goto +B916;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ......... ......]
+  +B1237:   #1
+        goto +B1244;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ......... ......]
+  +B1240:   #1
+        usage@special();   [??ii?iiRi RRR ......... ......]
+        return;   
+  +B1244:   #3
+        if vR0.compare!=0 goto B1258;   
+  +B1251:   #1
+        if vR0.better!=0 goto B1258;   
+  +B1258:   #2
+        if vi5!=0 goto B1269;   
+  +B1263:   #1
+        vi5 = (vi3-vi4);    
+  +B1269:   #1
+        b0 = new jx/vis/mif/MIFVisualizer;    
+        b1 = b0;    
+        b2 = new java/io/FileOutputStream(vR2);    [ RRR ......... i.....][ RRR ......... iRR...]
+        b1.<init>@special(b2);   [RiiiiiiRiR RRR ......... RR....] 
+        vR9 = b0;    
+        vR9.init();   [RiiiiiiRiR RRR ......... R.....] 
+        vi10 = 50;    
+        vi11 = 700;    
+        vi12 = 10;    
+        vi13 = 500;    
+        vR14 = new jx/vis/ScalingVisualizer(vR9,50,10,1000,(vi5*1000),650,490,1,(-vi4*1000));    [ RRR ......... i.....][ RRR ......... iiiiiiiiiRR]
+        vi15 = vi4;    
+  +B1353:   #1
+        if vi15>=vi3 goto B1461;   
+  +B1359:   #1
+        vi16 = (((vi5*1000)*60)/1000);    
+        vi17 = ((vi15*1000)-(vi16/3));    
+        vi18 = (vi15/vi7);    
+        b1 = new java/lang/StringBuilder();    [ RRR ......... i..........][ RRR ......... iR.........]
+        vR14.drawText(b1.append@extra("").append@extra(vi18).toString@extra(),-5,vi17,vi16,2);   [RiiiiiiRiiiiRiiii RRR ii....... iiiiRR.....] 
+        vR14.drawThinLine(0,(vi15*1000),1000,(vi15*1000));   [RiiiiiiRiiiiRiiii RRR iiii..... iiiiR......] 
+        vi15 = (vi15+vi6);    
+        goto +B1353;   [RiiiiiiRiiiiRiiii RRR iiii..... ...........]
+  +B1461:   #1
+        vR14.drawLine(0,0,1000,0);   [RiiiiiiRiiiiRiiii RRR ......... iiiiR......] 
+        vR14.drawLine(0,(vi4*1000),0,(vi3*1000));   [RiiiiiiRiiiiRiiii RRR ii....... iiiiR......] 
+        vR14 = 0;    
+        vR15 = new jx/vis/ScalingVisualizer(vR9,50,10,1000,vi5,650,490,1,-vi4);    [ RRR ii....... i..........][ RRR ii....... iiiiiiiiiRR]
+        vR16 = new jx/vis/ScalingVisualizer(vR9,50,10,1000,1000,650,490,1,-vi4);    [ RRR ii....... i..........][ RRR ii....... iiiiiiiiiRR]
+        vi17 = 0;    
+        vi18 = 0;    
+  +B1564:   #1
+        if vi18>=vR0.results.size@extra() goto B1611;   
+  +B1576:   #1
+        vR19 = (jx/vis/IOZoneDiagram$FileSize)(vR0.results.elementAt(vi18));    
+        vi17 = (vi17+(vR19.results.size@extra()+1));    
+        vi18++;   
+        goto +B1564;   [RiiiiiiRiiiiRRRiiR RRR ......... ...........]
+  +B1611:   #1
+        vi18 = 1;    
+        b0 = new java/lang/String()[8];    
+        b0[0] = "0";   
+        b0[1] = "1";   
+        b0[2] = "2";   
+        b0[3] = "3";   
+        b0[4] = "4";   
+        b0[5] = "5";   
+        b0[6] = "6";   
+        b0[7] = "7";   
+        vR19 = b0;    
+        vi20 = 60;    
+        vi21 = -vi20;    
+        vi22 = 40;    
+        vi23 = -vi22;    
+        if vR0.opt_recordsizes==0 goto B1702;   
+  +B1695:   #1
+        vi21 = (vi21-vi22);    
+  +B1702:   #1
+        vi24 = -130;    
+        if vR0.opt_max_deviation==0 goto B1761;   
+  +B1714:   #1
+        b1 = new java/lang/StringBuilder();    [ RRR ......... i..........][ RRR ......... iR.........]
+        vR16.drawText(b1.append@extra("Maximal deviation: ").append@extra(vR0.max_deviation).append@extra("%").toString@extra(),300,900,vi20,1,0,1);   [RiiiiiiRiiiiRRRiiRiiiii RRR ii.i..... iiiiiiRR...] 
+  +B1761:   #1
+        vR16.drawText("filesize in KBytes",500,(vi21-vi20),vi20,3,0,1);   [RiiiiiiRiiiiRRRiiRiiiii RRR ii....... iiiiiiRR...] 
+        if vR0.compare==0 goto B1848;   
+  +B1791:   #1
+        if vR0.better==0 goto B1823;   
+  +B1798:   #1
+        vR16.drawText("improvement in percent",vi24,500,vi20,3,270,1);   [RiiiiiiRiiiiRRRiiRiiiii RRR i........ iiiiiiRR...] 
+        goto +B1870;   [RiiiiiiRiiiiRRRiiRiiiii RRR i........ ...........]
+  +B1823:   #1
+        vR16.drawText("achieved throughput in percent",vi24,500,vi20,3,270,1);   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR i........ iiiiiiRR...] 
+        goto +B1870;   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR i........ ...........]
+  +B1848:   #1
+        vR16.drawText("throughput in MBytes/sec",vi24,500,vi20,3,270,1);   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR i........ iiiiiiRR...] 
+  +B1870:   #2
+        vi25 = 0;    
+  +B1873:   #1
+        if vi25>=vR0.results.size@extra() goto B2227;   
+  +B1885:   #1
+        vR26 = (jx/vis/IOZoneDiagram$FileSize)(vR0.results.elementAt(vi25));    
+        vi27 = ((1000*vR26.results.size@extra())/vi17);    
+        b1 = new java/lang/StringBuilder();    [ RRR ......... i..........][ RRR ......... iR.........]
+        vR16.drawText(b1.append@extra("").append@extra(vR26.filesize).toString@extra(),(((1000*vi18)/vi17)+(vi27/2)),vi21,vi20,3);   [RiiiiiiRiiiiRRRiiRiiiiiiRi RRR iiii..... iiiiRR.....] 
+        vi28 = 0;    
+  +B1968:   #1
+        if vi28>=vR26.results.size@extra() goto B2218;   
+  +B1981:   #1
+        vR29 = (jx/vis/IOZoneDiagram$Result)(vR26.results.elementAt(vi28));    
+        if vR0.compare==0 goto B2040;   
+  +B2003:   #1
+        vR15.drawRect(((1000*vi18)/vi17),0,(1000/vi17),(int)vR29.reread_compare,vR19[vi28]);   [RiiiiiiRiiiiRRRiiRiiiiiiRiiR RRR iiRi..... RiiiiR.....] 
+        goto +B2073;   [RiiiiiiRiiiiRRRiiRiiiiiiRiiR RRR iiRi..... ...........]
+  +B2040:   #1
+        vR15.drawRect(((1000*vi18)/vi17),0,(1000/vi17),vR29.reread,vR19[vi28]);   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR iiiR..... RiiiiR.....] 
+  +B2073:   #1
+        if vR0.opt_recordsizes==0 goto B2135;   
+  +B2080:   #1
+        b1 = new java/lang/StringBuilder();    [ RRR ......... i..........][ RRR ......... iR.........]
+        vR16.drawText(b1.append@extra("").append@extra((vR29.recordsize/1024)).toString@extra(),(((1000*vi18)/vi17)+(500/vi17)),vi23,vi22,3);   [RiiiiiiRiiiiRRRiiRiiiiiiRiiR RRR iiii..... iiiiRR.....] 
+  +B2135:   #1
+        if vR0.opt_deviation==0 goto B2209;   
+  +B2142:   #1
+        if compare(vR29.deviation,0)==0 goto B2209;   
+  +B2152:   #1
+        vi30 = (((1000*vi18)/vi17)+(500/vi17));    
+        vR15.drawLine(vi30,(vR29.reread-(int)(vR29.deviation/2)),vi30,(vR29.reread+(int)(vR29.deviation/2)));   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR ii....... iiiiR......] 
+  +B2209:   #2
+        vi18++;   
+        vi28++;   
+        goto +B1968;   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR ......... ...........]
+  +B2218:   #1
+        vi18++;   
+        vi25++;   
+        goto +B1873;   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR ......... ...........]
+  +B2227:   #1
+        vR9.finish();   [RiiiiiiRiiiiRRRiiRiiiiiiRiiRi RRR ......... R..........] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 311/311 wr 211 swaps 45 any 59 found 7 <init>
+ 
+ method readIOZone(Ljava/io/InputStream;)Ljava/util/Vector; {
+  +START:   #1
+        if vR0.binary==0 goto B13;   
+  +B7:   #1
+        return vR0.readIOZoneBinary@this(vR1);   
+  +B13:   #1
+        return vR0.readIOZoneText@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 readIOZone
+ 
+ method readIOZoneText(Ljava/io/InputStream;)Ljava/util/Vector; {
+  +START:   #1
+        vR2 = new java/io/DataInputStream(vR1);    [ R  i][ R . iRR]
+        vR3 = new java/util/Vector();    [ R . i..][ R . iR.]
+        vi5 = 0;    
+        vR6 = 0;    
+  +B23:   #4
+        b0 = vR2.readLine@extra();    [RR?iR R . R..] 
+        vR4 = b0;    
+        if b0==null goto B245;   
+  +B33:   #1
+        vR4 = vR4.trim@extra();    [RRRiR R . R..] 
+        if vR4.length@extra()!=0 goto B51;   
+  +B48:   #1
+        goto +B23;   [RRRiR R . ...]
+  +B51:   #1
+        if vR4.startsWith@extra("# START IOZONE")==0 goto B71;   
+  +B62:   #1
+        if vR3.size@extra()<=0 goto B71;   
+  +B69:   #1
+        return vR3;   
+  +B71:   #2
+        if vR4.charAt@extra(0)!=35 goto B85;   
+  +B82:   #1
+        goto +B23;   [RRRiR R . ...]
+  +B85:   #1
+        if vR4.equals@extra("mbsec")==0 goto B99;   
+  +B96:   #1
+        goto +B23;   [RRRiR R . ...]
+  +B99:   #1
+        vR7 = new java/util/StringTokenizer(vR4);    [ R . i..][ R . iRR]
+        vR8 = new jx/vis/IOZoneDiagram$Result(vR0);    [ R . i..][ R . iRR]
+        vR8.filesize = parseInt@special(vR7.nextToken());   
+        vR8.recordsize = parseInt@special(vR7.nextToken());   
+        vi9 = parseInt@special(vR7.nextToken());    [RRRiRRR R RRR R..]
+        vi10 = parseInt@special(vR7.nextToken());    [RRRiRRRi R RRRR R..]
+        vi11 = parseInt@special(vR7.nextToken());    [RRRiRRRii R RRRRR R..]
+        vR8.reread = parseInt@special(vR7.nextToken());   
+        if vi5==vR8.filesize goto B232;   
+  +B199:   #1
+        vi5 = vR8.filesize;    
+        vR6 = new jx/vis/IOZoneDiagram$FileSize(vR0);    [ R ...... i..][ R ...... iRR]
+        vR6.filesize = vR8.filesize;   
+        vR3.addElement@extra(vR6);   [RRRiRRRiii R ...... RR.] 
+  +B232:   #1
+        vR6.results.addElement@extra(vR8);   [RRRiRRRiii R ...... RR.] 
+        goto +B23;   [RRRiRRRiii R ...... ...]
+  +B245:   #1
+        if vR3.isEmpty@extra()==0 goto B254;   
+  +B252:   #1
+        return 0;   
+  +B254:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 26 swaps 2 any 3 found 0 readIOZoneText
+ 
+ method readIOZoneBinary(Ljava/io/InputStream;)Ljava/util/Vector; {
+  +START:   #1
+        vR2 = new jx/formats/LittleEndianInputStream(vR1);    [ R  i][ R . iRR]
+        vi3 = vR2.readInt@extra();    [R R . R..] 
+        vi4 = vR2.readInt@extra();    [Ri R . R..] 
+        vi5 = vR2.readInt@extra();    [Rii R . R..] 
+        vi6 = vR2.readInt@extra();    [Riii R . R..] 
+        vR7 = new java/util/Vector();    [ R . i..][ R . iR.]
+        vR8 = 0;    
+        vi9 = 0;    
+        vi10 = vi3;    
+  +B50:   #1
+        if vi10>vi4 goto B178;   
+  +B57:   #1
+        vR8 = new jx/vis/IOZoneDiagram$FileSize(vR0);    [ R . i..][ R . iRR]
+        vR8.filesize = vi10;   
+        vR7.addElement@extra(vR8);   [RiiiiRRii R . RR.] 
+        vi11 = vi5;    
+  +B85:   #1
+        if vi11>vi6 goto B169;   
+  +B92:   #1
+        if vi11>(vi10*1024) goto B169;   
+  +B103:   #1
+        vR12 = new jx/vis/IOZoneDiagram$Result(vR0);    [ R . i..][ R . iRR]
+        vR12.filesize = vi10;   
+        vR12.recordsize = vi11;   
+        vR12.reread = (int)((((double)vi10*jx.classfile.datatypes.BCDouble@e72dba7)*jx.classfile.datatypes.BCDouble@e72dba7)/(double)vR2.readInt@extra());   
+        vR8.results.addElement@extra(vR12);   [RiiiiRRiiiR R .. RR.] 
+        vi11 = (vi11*2);    
+        goto +B85;   [RiiiiRRiiiR R .. ...]
+  +B169:   #2
+        vi10 = (vi10*2);    
+        goto +B50;   [RiiiiRRiiiR R .. ...]
+  +B178:   #1
+        return vR7;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 19 swaps 0 any 7 found 0 readIOZoneBinary
+ 
+ method readDataSet([Ljava/lang/String;Z)Ljava/util/Vector; {
+  +START:   #1
+        vR3 = new java/util/Vector();    [ RRR  i][ RRR  iR]
+        vi5 = 0;    
+        if vR0.opt_verbose==0 goto B27;   
+  +B18:   #1
+        out.println("---- ");   [R?i RRR i. RR] 
+  +B27:   #1
+        vR6 = vR1;    
+        vi7 = vR6.length;    
+        vi8 = 0;    
+  +B38:   #1
+        if vi8>=vi7 goto B144;   
+  +B45:   #1
+        vR9 = vR6[vi8];    
+        if vR0.opt_verbose==0 goto B86;   
+  +B59:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
+        b0.println(b1.append@extra("read ").append@extra(vR9).toString@extra());   [R?iRiiR RRR ii. RR.] 
+  +B86:   #1
+        b0 = new java/io/DataInputStream;    
+        b1 = b0;    
+        b2 = new java/io/FileInputStream(vR9);    [ RRR ... i..][ RRR ... iRR]
+        b1.<init>@special(b2);   [R?iRiiR RRR ... RR.] 
+        vR10 = b0;    
+        if vi2==0 goto B119;   
+  +B108:   #1
+        vR4 = vR0.readIOZoneBinary@this(vR10);    [R?iRiiRR RRR ... RR.] 
+        goto +B127;   [RRiRiiRR RRR ... ...]
+  +B119:   #1
+        vR4 = vR0.readIOZoneText@this(vR10);    [RRiRiiRR RRR ... RR.] 
+  +B127:   #1
+        vR10.close();   [RRiRiiRR RRR ... R..] 
+        vR3.addElement@extra(vR4);   [RRiRiiRR RRR ... RR.] 
+        vi8++;   
+        goto +B38;   [RRiRiiRR RRR ... ...]
+  +B144:   #1
+        vR6 = new java/util/Vector();    [ RRR ... i..][ RRR ... iR.]
+        vi7 = 0;    
+  +B156:   #1
+        if vi7>=(java/util/Vector)(vR3.elementAt(0)).size@extra() goto B754;   
+  +B172:   #1
+        vR8 = (jx/vis/IOZoneDiagram$FileSize)((java/util/Vector)(vR3.elementAt(0)).elementAt(vi7));    
+        vi9 = vR8.results.size@extra();    [RRiRiRRR RRR ... R..] 
+        vi10 = vR8.filesize;    
+        vR11 = new jx/vis/IOZoneDiagram$FileSize(vR0);    [ RRR ... i..][ RRR ... iRR]
+        vR11.filesize = vi10;   
+        vR6.addElement@extra(vR11);   [RRiRiRiiR RRR ... RR.] 
+        vi12 = 0;    
+  +B234:   #1
+        if vi12>=vi9 goto B748;   
+  +B241:   #1
+        vi13 = (jx/vis/IOZoneDiagram$Result)(vR8.results.elementAt(vi12)).recordsize;    
+        if vR0.opt_verbose==0 goto B304;   
+  +B266:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b0.print(b1.append@extra(vi10).append@extra(":").append@extra(vi13).append@extra(":").toString@extra());   [RRiRiRiiRii RRR iii... RR...] 
+  +B304:   #1
+        vR14 = new jx/vis/IOZoneDiagram$Result(vR0);    [ RRR ...... i....][ RRR ...... iRR..]
+        vi15 = 0;    
+  +B317:   #1
+        if vi15>=vR3.size@extra() goto B422;   
+  +B326:   #1
+        vR16 = (java/util/Vector)(vR3.elementAt(vi15));    
+        vR17 = (jx/vis/IOZoneDiagram$FileSize)(vR16.elementAt(vi7));    
+        vR18 = (jx/vis/IOZoneDiagram$Result)(vR17.results.elementAt(vi12));    
+        if vR0.opt_verbose==0 goto B401;   
+  +B371:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.print(b1.append@extra(" ").append@extra(vR18.reread).toString@extra());   [RRiRiRiiRiiRiRRR RRR iii... RR...] 
+  +B401:   #1
+        vR14.reread = (vR14.reread+vR18.reread);   
+        vi15++;   
+        goto +B317;   [RRiRiRiiRiiRiRRR RRR ...... .....]
+  +B422:   #1
+        vR14.reread = (vR14.reread/vR3.size@extra());   
+        vR14.filesize = vi10;   
+        vR14.recordsize = vi13;   
+        vR11.results.addElement@extra(vR14);   [RRiRiRiiRiiRiRRR RRR ...... RR...] 
+        if vR0.opt_verbose==0 goto B496;   
+  +B467:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.print(b1.append@extra(" -> ").append@extra(vR14.reread).toString@extra());   [RRiRiRiiRiiRiRRR RRR iii... RR...] 
+  +B496:   #1
+        vi15 = 0;    
+  +B499:   #1
+        if vi15>=vR3.size@extra() goto B621;   
+  +B508:   #1
+        vR16 = (java/util/Vector)(vR3.elementAt(vi15));    
+        vR17 = (jx/vis/IOZoneDiagram$FileSize)(vR16.elementAt(vi7));    
+        vR18 = (jx/vis/IOZoneDiagram$Result)(vR17.results.elementAt(vi12));    
+        vl19 = (float)(vR18.reread-vR14.reread);    
+        if vR0.opt_verbose==0 goto B594;   
+  +B567:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.print(b1.append@extra(" ").append@extra(vl19).toString@extra());   [RRiRiRiiRiiRiRRRl RRR ii.... RR...] 
+  +B594:   #1
+        vR14.variance = (vR14.variance+((vl19*vl19)/(float)vR3.size@extra()));   
+        vi15++;   
+        goto +B499;   [RRiRiRiiRiiRiRRRl RRR ...... .....]
+  +B621:   #1
+        vR14.deviation = (float)sqrt@special((double)vR14.variance);   
+        vd15 = ((double)(int)(((double)vR14.deviation*jx.classfile.datatypes.BCDouble@33c2bd)/(double)vR14.reread)/jx.classfile.datatypes.BCDouble@1dfd5f51);    
+        if compare(vd15,vR0.max_deviation)<=0 goto B677;   
+  +B671:   #1
+        vR0.max_deviation = vd15;   
+  +B677:   #1
+        if vR0.opt_verbose==0 goto B742;   
+  +B684:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.println(b1.append@extra(" -> ").append@extra(vR14.variance).append@extra(" -> ").append@extra(vR14.deviation).append@extra(" -> ").append@extra(vd15).append@extra("%").toString@extra());   [RRiRiRiiRiiRdRRRl RRR iii...i..i. RR.......] 
+  +B742:   #1
+        vi12++;   
+        goto +B234;   [RRiRiRiiRiiRdRRRl RRR ........... .........]
+  +B748:   #1
+        vi7++;   
+        goto +B156;   [RRiRiRiiRiiRdRRRl RRR ........... .........]
+  +B754:   #1
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 93/93 wr 100 swaps 19 any 14 found 3 readDataSet
+}

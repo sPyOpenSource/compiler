@@ -1,0 +1,62 @@
+class jx/netmanager/UDPSender {
+ 
+ method <init>(Ljx/netmanager/NetInit;ILjx/net/IPAddress;I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.localPort = vi2;   
+        vR0.remotePort = vi4;   
+        vR0.dst = vR3;   
+        vR6 = vR1.arp.lookup(vR3);    [   RR] 
+        vR7 = vR1.ether.getTransmitter(vR6,"IP");    [?R  i RRR] 
+        vR5 = vR1.ip.getTransmitter(vR7,vR3,"UDP");    [?RR  ii RRRR] 
+        vR0.udpSender = vR1.udp.getTransmitter(vR5,vi2,vi4);   
+        vR8 = vR1.ether.getTransmitter1(vR6,"IP");    [RRR  iii RRR.] 
+        vR9 = vR1.ip.getTransmitter1(vR8,vR3,17);    [RRRR  iii iRRR] 
+        vR0.udpSender1 = vR1.udp.getTransmitter1(vR9,vi2,vi4);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 3 any 0 found 0 <init>
+ 
+ method send1(Ljx/zero/Memory;II)Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.udpSender1.processMemory(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 send1
+ 
+ method send(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.udpSender.processMemory(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 send
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method getLocalPort()I {
+  +START:   #1
+        return vR0.localPort;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocalPort
+ 
+ method getRemotePort()I {
+  +START:   #1
+        return vR0.remotePort;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRemotePort
+ 
+ method getDestination()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.dst;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDestination
+}

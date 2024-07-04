@@ -1,0 +1,32 @@
+class jx/netmanager/IPReceiver$2 {
+ 
+ method <init>(Ljx/netmanager/IPReceiver;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$proto = vR2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("IPConsumer for proto ").append@extra(vR0.val$proto).append@extra(" called.").toString@extra());   [ RR iiii.. RR..] 
+        vR2 = vR0.this$0.usableBufs.nonblockingUndockFirstElement();    [ RR iiii.. R...] 
+        if vR2!=null goto B63;   
+  +B48:   #1
+        out.println("jx.netmanager.IPReceiver: no buffer available, must drop packet!");   [R RR i..... RR..] 
+        return vR1.getMemory();   
+  +B63:   #1
+        vR3 = vR2.getData();    [R RR ...... R...] 
+        vR2.setData(vR1.getMemory());   [RR RR i..... RR..] 
+        vR2.setMoreData(vR1);   [RR RR i..... RR..] 
+        vR0.this$0.filledBufs.appendElement(vR2);   [RR RR i..... RR..] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 14 swaps 6 any 1 found 0 processIP
+}
