@@ -88,9 +88,9 @@ class java/lang/Double {
  
  method isInfinite(D)Z {
   +START:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@6736fa8d)==0 goto B16;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@3b79fd76)==0 goto B16;   
   +B8:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@52815fa3)!=0 goto B20;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@48c76607)!=0 goto B20;   
   +B16:   #1
         b0 = 1;    
         goto +B21b0;   forward return[ i  .]
