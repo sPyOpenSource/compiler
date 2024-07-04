@@ -1,0 +1,41 @@
+class bioide/ResetOperation {
+ 
+ method <init>(Lbioide/Controller;Lbioide/Drive;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.poll_timeout = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method startOperation()V {
+  +START:   #1
+        vR0.controller.setCTLReg((byte)((vR0.drive.ctl | 4) | 2));   [  i iR] 
+        sleepManager.mdelay(10);   [  i. iR] 
+        vR0.controller.setCTLReg((byte)(vR0.drive.ctl | 2));   [  ii iR] 
+        sleepManager.mdelay(10);   [  ii. iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 2 any 0 found 0 startOperation
+ 
+ method handler()V {
+  +START:   #1
+        vR0.poll_timeout = (vR0.poll_timeout-50);   
+        if vR0.controller.statusBusy()==0 goto B47;   
+  +B21:   #1
+        if vR0.poll_timeout<=0 goto B39;   
+  +B28:   #1
+        vR0.controller.setTimeout(0,50);   [   iiR] 
+        return;   
+  +B39:   #1
+        out.println("Reset-Timeout");   [  i. RR.] 
+  +B47:   #1
+        vR0.poll_timeout = 0;   
+        vR0.controller.nextOperation();   [  .. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 1 any 0 found 0 handler
+}

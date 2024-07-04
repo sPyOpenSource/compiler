@@ -1,0 +1,31 @@
+class bioide/IDEIntrHandler$1 {
+ 
+ method <init>(Lbioide/IDEIntrHandler;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        b0 = cpuManager;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.setThreadName(b1.append@extra("IDE-2nd-IRQ ").append@extra(access$000@special(vR0.this$0).getName@extra()).toString@extra());   [ RR iiRi. RR.] 
+        vR0.this$0.irqCtx = cpuManager.getCPUState();   
+  +B51:   #1
+        if access$100@special(vR0.this$0)!=0 goto B72;   
+  +B61:   #1
+        cpuManager.block();   [ RR ..... R..] 
+        goto +B81;   [ RR ..... ...]
+  +B72:   #1
+        access$102@special(vR0.this$0,0);   [ RR R.... iR.]
+  +B81:   #1
+        vR0.this$0.interruptHandler();   [ RR ..... R..] 
+        goto +B51;   [ RR ..... ...]
+  +END:   #1
+ }
+// Register: rd 7/7 wr 13 swaps 3 any 0 found 0 run
+}

@@ -1,0 +1,56 @@
+class test/net/StartTest {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/net/NetInit)(waitUntilPortalAvailable@special(vR1,vR0[0]));    
+        vR3 = (jx/zero/MemoryManager)(waitUntilPortalAvailable@special(vR1,"MemoryManager"));    
+  +B25:   #1
+        b2 = new jx/net/IPv4Address("192.168.34.2");    [ R?R ... i.][ R?R ... iRR]
+        vR4 = vR2.getUDPSender(6665,b2,parseInt@special("9876"));    [RRR R?R Ri. iRiR] 
+        vR5 = vR3.alloc(1000);    [RRRR R?R Ri. iR..] 
+  +B61:   #1
+        vi6 = 42;    
+        vi7 = 50;    
+        vi8 = 0;    
+  +B72:   #1
+        if vi8>=10 goto B131;   
+  +B79:   #1
+        vi9 = 0;    
+  +B82:   #1
+        if vi9>=vi7 goto B110;   
+  +B89:   #1
+        vR5.set8((vi9+vi6),(byte)vi9);   [RRRRRiiii R?R ii. iiR.] 
+        vi9++;   
+        goto +B82;   [RRRRRiiii R?R ii. ....]
+  +B110:   #1
+        vR5 = vR4.send1(vR5,vi6,vi7);    [RRRRRiiii R?R ... iiRR] 
+        vi8++;   
+        goto +B72;   [RRRRRiiii R?R ... ....]
+  +B131:   #1
+        vi8 = 0;    
+  +B134:   #1
+        if vi8>=10 goto B150;   
+  +B141:   #1
+        yield@special();   [RRRRRiiii R?R ... ....]
+        vi8++;   
+        goto +B134;   [RRRRRiiii R?R ... ....]
+  +B150:   #1
+        goto +B61;   [RRRRRiiii R?R ... ....]
+  -H153<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        throw new java/lang/Error();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+25 - 153 handler 153 type 65
+ }
+// Register: rd 20/20 wr 23 swaps 1 any 6 found 1 main
+}

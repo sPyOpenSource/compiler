@@ -48,12 +48,21 @@ EXCEPTIONHANDLER-TABLE:
  
  method umnt(Ljx/rpcsvc/nfs2/DirPath;)V {
   +START:   #1
-        out.println("UNMOUNT AUFGERUFEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");   [  i. RR] 
-        vR0.fs.cleanUp();   [  i. R.] 
+        out.println("UNMOUNT AUFGERUFEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");   [ R i. RR] 
+  +B8:   #1
+        vR0.fs.cleanUp();   [ R .. R.] 
+  +B17:   #1
+        goto +B29;   forward return[ R .. ..]
+  -H20<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B29:   #1
         return;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+8 - 17 handler 20 type 81
  }
-// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 umnt
+// Register: rd 1/1 wr 3 swaps 1 any 0 found 0 umnt
  
  method umntall()V {
   +START:   #1

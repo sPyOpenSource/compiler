@@ -1,0 +1,44 @@
+class jx/fsshell/Main$1 {
+ 
+ method <init>(Ljx/fsshell/Main;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method command(Ljava/io/PrintStream;[Ljava/lang/String;)V {
+  +START:   #1
+        if vR2.length!=0 goto B21;   
+  +B5:   #1
+        vR3 = vR0.this$0.fs.getCwdNode();    [   R] 
+        goto +B37;   [R   .]
+  +B21:   #1
+        vR3 = vR0.this$0.fs.lookup(vR2[0]);    [RRRiiR  i RR] 
+  +B37:   #1
+        vR4 = vR3.readdirNames();    [R  . R.] 
+        vR5 = vR4;    
+        vi6 = vR5.length;    
+        vi7 = 0;    
+  +B57:   #1
+        if vi7>=vi6 goto B83;   
+  +B64:   #1
+        vR8 = vR5[vi7];    
+        vR1.println(vR8);   [RRRiiR  . RR] 
+        vi7++;   
+        goto +B57;   [RRRiiR  . ..]
+  +B83:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 1 any 3 found 0 command
+ 
+ method getInfo()Ljava/lang/String; {
+  +START:   #1
+        return "list directory";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInfo
+}

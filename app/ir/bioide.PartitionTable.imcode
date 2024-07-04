@@ -1,0 +1,265 @@
+class bioide/PartitionTable {
+ 
+ method <init>(Lbioide/Drive;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.drive = vR1;   
+        vR0.readPartitionTable@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPartitions()[Lbioide/PartitionEntry; {
+  +START:   #1
+        return vR0.partitions;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPartitions
+ 
+ method getPartitionSize(I)I {
+  +START:   #1
+        return vR0.partitions[vi1].size;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getPartitionSize
+ 
+ method readPartitionTable()V {
+  +START:   #1
+        out.println("READ PARTIONTABLE");   [ RR i. RR] 
+        vR1 = new java/util/Vector();    [ RR i. i.][ RR i. iR]
+        vi7 = 0;    
+        vi8 = 0;    
+        vR3 = new bioide/PartitionEntry(vR0.drive,0,vR0.drive.getCapacity(),0,-1);    [ RR i. i.][ RR i. iiiiiRR]
+        vR1.addElement@extra(vR3);   [R?R???ii RR i. RR.....] 
+        vR9 = memoryManager.allocAligned(512,8);    [R?R???ii RR i. iiR....] 
+        vR0.drive.readSectors(0,1,vR9,1);   [R?R???iiR RR i. iRiiR..] 
+        vR2 = new bioide/MBRData(vR9);    [ RR i. i......][ RR i. iRR....]
+        if vR2.magic()==43605 goto B155;   
+  -B95:   #1
+        out.println("readPartitionTable: Bootsector faulty");   [RRR???iiR RR i. RR.....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i......][ RR i. iR.....]
+        b0.println(b1.append@extra("  magic: ").append@extra(vR2.magic()).append@extra(", expected: ").append@extra(-21931).toString@extra());   [RRR???iiR RR iii..ii. RR.....] 
+        xdump@special(vR9);   [RRR???iiR RR iii..ii. R......]
+        throw new java/lang/Error();   
+  +B155:   #1
+        vi10 = 0;    
+  +B158:   #1
+        if vi10>=4 goto B261;   
+  +B164:   #1
+        vR11 = new bioide/PartitionData(vR9,((vi10*16)+446));    [ RR ........ i......][ RR ........ iiRR...]
+        if isExtended@special(vR11.os_indicator())!=0 goto B255;   
+  +B195:   #1
+        if vR11.os_indicator()==0 goto B255;   
+  +B203:   #1
+        if vR11.length_in_sectors()<=0 goto B255;   
+  +B211:   #1
+        vR3 = new bioide/PartitionEntry(vR0.drive,vR11.start_sector(),vR11.length_in_sectors(),1,vR11.os_indicator());    [ RR ........ i......][ RR ........ ibiiiRR]
+        vR1.addElement@extra(vR3);   [RRR???iiRiR RR ........ RR.....] 
+        out.println("found partition");   [RRR???iiRiR RR i....... RR.....] 
+        vi7++;   
+  +B255:   #3
+        vi10++;   
+        goto +B158;   [RRR???iiRiR RR ........ .......]
+  +B261:   #1
+        vi10 = 0;    
+  +B264:   #1
+        if vi10>=4 goto B737;   
+  +B270:   #1
+        vR11 = new bioide/PartitionData(vR9,((vi10*16)+446));    [ RR ........ i......][ RR ........ iiRR...]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i......][ RR ........ iR.....]
+        b0.println(b1.append@extra("entry ").append@extra(vi10).append@extra(": os = ").append@extra(osName@special(vR11.os_indicator())).append@extra(", length = ").append@extra(vR11.length_in_sectors()).toString@extra());   [RRR???iiRiR RR iii..biii... RR.....] 
+        if isExtended@special(vR11.os_indicator())==0 goto B731;   
+  +B356:   #1
+        if vR11.length_in_sectors()<=0 goto B731;   
+  +B364:   #1
+        vi4 = vR11.start_sector();    [RRR???iiRiR RR ............ R......] 
+        vi5 = vR11.start_sector();    [RRRi??iiRiR RR ............ R......] 
+        if vi5<=0 goto B437;   
+  +B383:   #1
+        vR3 = new bioide/PartitionEntry(vR0.drive,vi5,vR11.length_in_sectors(),0,vR11.os_indicator());    [ RR ............ i......][ RR ............ ibiiiRR]
+        vR1.addElement@extra(vR3);   [RRRii?iiRiR RR ............ RR.....] 
+        vi7++;   
+        vi12 = vi7;    
+  +B420:   #1
+        if vi12>=4 goto B437;   
+  +B426:   #1
+        vR1.addElement@extra(0);   [RRRii?iiRiRi RR ............ RR.....] 
+        vi12++;   
+        goto +B420;   [RRRii?iiRiRi RR ............ .......]
+  +B437:   #2
+        out.println("extended partition found");   [RRRii?iiRiRi RR i........... RR.....] 
+  +B445:   #1
+        if vi5<=0 goto B731;   
+  +B450:   #1
+        if vi8>=5 goto B731;   
+  +B456:   #1
+        vi6 = vi5;    
+        if vi5<vR0.drive.getCapacity() goto B475;   
+  +B472:   #1
+        goto +B731;   [RRRiiiiiRiRi RR ............ .......]
+  +B475:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............ i......][ RR ............ iR.....]
+        b0.println(b1.append@extra("loading block ").append@extra(vi5).toString@extra());   [RRRiiiiiRiRi RR ii.......... RR.....] 
+        vR0.drive.readSectors(vi5,1,vR9,1);   [RRRiiiiiRiRi RR ii.......... iRiiR..] 
+        vR2 = new bioide/MBRData(vR9);    [ RR ii.......... i......][ RR ii.......... iRR....]
+        if vR2.magic()==-21931 goto B537;   
+  +B534:   #1
+        goto +B731;   [RRRiiiiiRiRi RR ............ .......]
+  +B537:   #1
+        out.println("extended partition found");   [RRRiiiiiRiRi RR i........... RR.....] 
+        vi12 = 0;    
+  +B548:   #1
+        if vi12>=2 goto B654;   
+  +B554:   #1
+        vR11 = new bioide/PartitionData(vR9,((vi12*16)+446));    [ RR ............ i......][ RR ............ iiRR...]
+        if isExtended@special(vR11.os_indicator())!=0 goto B648;   
+  +B585:   #1
+        if vR11.os_indicator()==0 goto B648;   
+  +B593:   #1
+        if vR11.length_in_sectors()<=0 goto B648;   
+  +B601:   #1
+        vR3 = new bioide/PartitionEntry(vR0.drive,(vi5+vR11.start_sector()),vR11.length_in_sectors(),1,vR11.os_indicator());    [ RR ............ i......][ RR ............ ibiiiRR]
+        vR1.addElement@extra(vR3);   [RRRiiiiiRiRi RR ............ RR.....] 
+        out.println("found partition");   [RRRiiiiiRiRi RR i........... RR.....] 
+        vi8++;   
+  +B648:   #3
+        vi12++;   
+        goto +B548;   [RRRiiiiiRiRi RR ............ .......]
+  +B654:   #1
+        vi12 = 0;    
+  +B657:   #1
+        if vi12>=4 goto B721;   
+  +B663:   #1
+        vR11 = new bioide/PartitionData(vR9,((vi12*16)+446));    [ RR ............ i......][ RR ............ iiRR...]
+        if isExtended@special(vR11.os_indicator())==0 goto B715;   
+  +B694:   #1
+        if vR11.length_in_sectors()<=0 goto B715;   
+  +B702:   #1
+        vi5 = (vi4+vR11.start_sector());    
+        goto +B721;   [RRRiiiiiRiRi RR ............ .......]
+  +B715:   #2
+        vi12++;   
+        goto +B657;   [RRRiiiiiRiRi RR ............ .......]
+  +B721:   #2
+        if vi5!=vi6 goto B445;   
+  +B728:   #1
+        goto +B731;   [RRRiiiiiRiRi RR ............ .......]
+  +B731:   #7
+        vi10++;   
+        goto +B264;   [RRRiiiiiRiRi RR ............ .......]
+  +B737:   #1
+        vR0.partitions = new bioide/PartitionEntry()[vR1.size@extra()];   
+        vR1.copyInto(vR0.partitions);   [RRRiiiiiRiRi RR i........... RR.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 96/96 wr 90 swaps 19 any 21 found 3 readPartitionTable
+ 
+ method dump()V {
+  +START:   #1
+        out.println("Partitiontable:");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra(vR0.alignString@special("Number",11)).append@extra("   ").append@extra(vR0.alignString@special("Start",11)).append@extra("   ").append@extra(vR0.alignString@special("End",11)).append@extra("   ").append@extra(vR0.alignString@special("Size",11)).append@extra("   ").append@extra(vR0.alignString@special("OS",11)).toString@extra());   [ RR iiiiii..iii..iii..iii..i RR.........] 
+        vi1 = 1;    
+  +B101:   #1
+        if vi1>=vR0.partitions.length goto B261;   
+  +B110:   #1
+        vR2 = vR0.partitions[vi1];    
+        if vi1!=5 goto B130;   
+  +B122:   #1
+        out.print("< ");   [iR RR i....................... RR.........] 
+  +B130:   #1
+        if vR2==null goto B255;   
+  +B134:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........................ i..........][ RR ........................ iR.........]
+        b0.println(b1.append@extra(vR0.alignString@special(toString@special(vi1),11)).append@extra("   ").append@extra(vR0.alignString@special(toString@special(vR2.start),11)).append@extra("   ").append@extra(vR0.alignString@special(toString@special(((vR2.start+vR2.size)-1)),11)).append@extra("   ").append@extra(vR0.alignString@special(toString@special(vR2.size),11)).append@extra("   ").append@extra(vR0.alignString@special(osName@special((byte)vR2.os),11)).toString@extra());   [iR RR iiiii..iiii..iiii..iiii..ii RR.........] 
+  +B255:   #1
+        vi1++;   
+        goto +B101;   [iR RR ........................... ...........]
+  +B261:   #1
+        if vR0.partitions.length<=4 goto B278;   
+  +B270:   #1
+        out.print(">");   [iR RR i.......................... RR.........] 
+  +B278:   #1
+        out.println("");   [iR RR i.......................... RR.........] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 66 swaps 34 any 4 found 0 dump
+ 
+ method isExtended(B)Z {
+  +START:   #1
+        if vi0==5 goto B17;   
+  +B5:   #1
+        if vi0==-123 goto B17;   
+  +B11:   #1
+        if vi0!=15 goto B21;   
+  +B17:   #2
+        b0 = 1;    
+        goto +B22b0;   forward return[ i  ]
+  +B21:   #1
+        b0 = 0;    
+  +B22b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 3 found 0 isExtended
+ 
+ method osName(B)Ljava/lang/String; {
+  +START:   #1
+        lswitch (vi0) { 
+           -126:B80
+           -125:B77
+           -123:B74
+           0:B68
+           5:B71
+           11:B86
+           15:B83
+           ::B89
+        };   
+  +B68:   #1
+        return "unused";   
+  +B71:   #1
+        return "DOS extended";   
+  +B74:   #1
+        return "Linux extended";   
+  +B77:   #1
+        return "Linux";   
+  +B80:   #1
+        return "Linux Swap";   
+  +B83:   #1
+        return "Win95 extended";   
+  +B86:   #1
+        return "Win95 FAT32";   
+  +B89:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("unknown (").append@extra(vi0).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 6 swaps 2 any 1 found 0 osName
+ 
+ method alignString(Ljava/lang/String;I)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/String();    [ R  i][ R  iR]
+        vi4 = (vi2-vR1.length@extra());    
+        vi5 = 0;    
+  +B19:   #1
+        if vi5>=vi4 goto B52;   
+  +B26:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i.][ R  iR]
+        vR3 = b0.append@extra(vR3).append@extra(" ").toString@extra();    [Rii R i.. R..] [Rii R iR. RR.] [Rii R iRR RRR] 
+        vi5++;   
+        goto +B19;   [Rii R i.. ...]
+  +B52:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        return b0.append@extra(vR3).append@extra(vR1).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 12 swaps 1 any 3 found 1 alignString
+}

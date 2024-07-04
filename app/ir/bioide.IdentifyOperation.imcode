@@ -1,0 +1,153 @@
+class bioide/IdentifyOperation {
+ 
+ method <init>(Lbioide/DriveIdData;Lbioide/Controller;Lbioide/Drive;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR3);   [   RRR] 
+        vR0.id_data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method startOperation()V {
+  +START:   #1
+        vi1 = 0;    
+        vR0.controller.setLDHReg(vR0.drive.select);   [i RR i bR] 
+        sleepManager.mdelay(50);   [i RR i. iR] 
+        if vR0.controller.getLDHReg()==(255 & vR0.drive.select) goto B86;   
+  +B47:   #1
+        if vR0.drive.present!=0 goto B86;   
+  -B57:   #1
+        vR0.controller.setLDHReg(-96);   [i RR .. iR] 
+        sleepManager.mdelay(50);   [i RR .. iR] 
+        throw new bioide/IDEException("Drive not present");   
+  +B86:   #2
+        if (vR0.controller.getStatus() & -64)==64 goto B111;   
+  +B101:   #1
+        if vR0.drive.present==0 goto B193;   
+  +B111:   #1
+        if vR0.identifyCommand@special(-20)!=-1 goto B182;   
+  +B121:   #1
+        if vR0.identifyCommand@special(-95)!=-1 goto B182;   
+  +B131:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("").append@extra(vR0.drive.name).append@extra(": keine Antwort (Status = ").append@extra(vR0.controller.getStatus()).append@extra(")").toString@extra());   [i RR ii.iiii... RR....] 
+  +B182:   #2
+        vR0.controller.getStatus();   [i RR .......... R.....] 
+        goto +B226;   [i RR .......... ......]
+  +B193:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .......... i.....][ RR .......... iR....]
+        b0.println(b1.append@extra("Controller status: ").append@extra(vR0.controller.getStatus()).toString@extra());   [i RR iii....... RR....] 
+        vi1 = -1;    
+  +B226:   #1
+        if vR0.drive.unit()==0 goto B263;   
+  +B236:   #1
+        vR0.controller.setLDHReg(-96);   [i RR .......... iR....] 
+        sleepManager.mdelay(50);   [i RR .......... iR....] 
+        vR0.controller.getStatus();   [i RR .......... R.....] 
+  +B263:   #1
+        if vi1!=-1 goto B278;   
+  -B268:   #1
+        throw new bioide/IDEException("Error in identify");   
+  +B278:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 27 swaps 10 any 1 found 0 startOperation
+ 
+ method identifyCommand(B)I {
+  +START:   #1
+        sleepManager.mdelay(50);   [ RR . iR] 
+        vR0.controller.setCommandReg(vi1);   [ RR . iR] 
+        vi2 = 600;    
+  +B22:   #1
+        if vi2> 0 goto B28;   
+  +B26:   #1
+        return -1;   
+  +B28:   #1
+        sleepManager.mdelay(50);   [i RR . iR] 
+        vi2--;   
+        if vR0.controller.statusBusy()!=0 goto B22;   
+  +B51:   #1
+        sleepManager.mdelay(200);   [i RR . iR] 
+        vi4 = 0;    
+  +B65:   #1
+        if vi4>=10 goto B104;   
+  +B72:   #1
+        if (vR0.controller.getStatus() & -119)==8 goto B104;   
+  +B87:   #1
+        sleepManager.mdelay(200);   [i?i RR . iR] 
+        vi4++;   
+        goto +B65;   [i?i RR . ..]
+  +B104:   #2
+        if (vR0.controller.getStatus() & -119)==8 goto B130;   
+  +B119:   #1
+        vi4 = vR0.controller.getStatus();    [i?i RR . R.] 
+        return -1;   
+  +B130:   #1
+        vR0.controller.inputData(vR0.id_data.getData(),0,128);   [i?i RR i iiRR] 
+        vR0.controller.getStatus();   [i?i RR i R...] 
+        vR0.id_data.model(vR0.fixstring@special(vR0.id_data.model()));   [i?i RR iii RR..] 
+        if vi1!=-95 goto B400;   
+  +B180:   #1
+        vi4 = (byte)((vR0.id_data.config() >> 8) & 31);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0.print(b1.append@extra("").append@extra(vR0.drive.name).append@extra(": ").append@extra(vR0.id_data.model().trim@extra()).append@extra(", ATAPI ").toString@extra());   [i?i RR ii.iiii... RR....] 
+        lswitch (vi4) { 
+           0:B304
+           1:B326
+           5:B315
+           7:B337
+           33:B348
+           ::B359
+        };   
+  +B304:   #1
+        out.println("FLOPPY oder CDROM - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        goto +B390;   [i?i RR i......... ......]
+  +B315:   #1
+        out.println("CDROM - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        goto +B390;   [i?i RR i......... ......]
+  +B326:   #1
+        out.println("TAPE - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        goto +B390;   [i?i RR i......... ......]
+  +B337:   #1
+        out.println("OPTICAL DISK - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        goto +B390;   [i?i RR i......... ......]
+  +B348:   #1
+        out.println("SCSI DISK - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        goto +B390;   [i?i RR i......... ......]
+  +B359:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .......... i.....][ RR .......... iR....]
+        b0.println(b1.append@extra("unbekanntes Geraet (Typ ").append@extra(vi4).append@extra(")").toString@extra());   [i?i RR iii....... RR....] 
+  +B390:   #5
+        vR0.drive.present = 0;   
+        return -1;   
+  +B400:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 44 swaps 17 any 6 found 0 identifyCommand
+ 
+ method fixstring(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = vR1.getBytes@extra();    [ R  R] 
+        vi4 = (vR2.length & -2);    
+        vi5 = vi4;    
+  +B16:   #1
+        if vi5<=0 goto B53;   
+  +B21:   #1
+        vi3 = vR2[(vi5-2)];    
+        vR2[(vi5-2)] = vR2[(vi5-1)];   
+        vR2[(vi5-1)] = vi3;   
+        vi5+=-2;   
+        goto +B16;   [Riii R  .]
+  +B53:   #1
+        return new java/lang/String(vR2);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 6 swaps 0 any 4 found 0 fixstring
+}

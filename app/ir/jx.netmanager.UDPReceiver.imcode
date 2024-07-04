@@ -1,0 +1,102 @@
+class jx/netmanager/UDPReceiver {
+ 
+ method <init>(Ljx/netmanager/NetInit;I[Ljx/zero/Memory;Z)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.net = vR1;   
+        b1 = new jx/buffer/multithread/MultiThreadBufferList(vR3);    [ ?R i. i.][ ?R i. iRR]
+        vR0.usableBufs = b1;   
+        vR0.usableBufs.setListName("UDP-available-queue");   [ ?R ii RR.] 
+        vR0.usableBufs.enableRecording("UDP-available-queue");   [ ?R iii RR.] 
+        b1 = new jx/buffer/multithread/MultiThreadBufferList();    [ ?R iii i..][ ?R iii iR.]
+        vR0.filledBufs = b1;   
+        vR0.filledBufs.setListName("UDP-receive-queue");   [ ?R iiii RR.] 
+        vR0.filledBufs.enableRecording("UDP-receive-queue");   [ ?R iiiii RR.] 
+        vR0.filledBufs.requireMoredata(1);   [ ?R iiiii iR.] 
+        b1 = new jx/netmanager/UDPReceiver$1(vR0);    [ ?R iiiii i..][ ?R iiiii. iRR]
+        vR0.consumer = b1;   
+        vR1.udp.registerUDPConsumer(vR0.consumer,vi2);   [ ?R iiiiii iRR] 
+        vR0.port = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 13 swaps 6 any 0 found 0 <init>
+ 
+ method receive(Ljx/zero/Memory;I)Ljx/net/UDPData; {
+  +START:   #1
+        vR3 = (jx/zero/Clock)(getInitialNaming@special().lookup("Clock"));    
+        vR4 = 0;    
+        vR5 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR6 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR7 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR3.getCycles(vR6);   [RRRRR R i. RR] 
+  +B52:   #1
+        if vR4!=null goto B130;   
+  +B57:   #1
+        vR3.getCycles(vR5);   [RRRRR R .. RR] 
+        vR3.subtract(vR7,vR5,vR6);   [RRRRR R .. RRRR] 
+        if vR3.toMilliSec(vR7)<vi2 goto B112;   
+  +B89:   #1
+        vi8 = 0;    
+  +B92:   #1
+        if vi8>=(10*vi2) goto B110;   
+  +B101:   #1
+        yield@special();   [RRRRRi R .. ....]
+        vi8++;   
+        goto +B92;   [RRRRRi R .. ....]
+  +B110:   #1
+        return 0;   
+  +B112:   #1
+        vR4 = vR0.filledBufs.getLast().getData();    [RRRRRi R .. R...] [RRRRRi R R. R...] 
+        yield@special();   [RRRRRi R .. ....]
+        goto +B52;   [RRRRRi R .. ....]
+  +B130:   #1
+        vR1.copyFromMemory(vR4,0,0,vR4.size());   [RRRRRi R i. iiiRR] 
+        return new jx/net/UDPDataImpl();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 13 swaps 2 any 3 found 0 receive
+ 
+ method receive(Ljx/zero/Memory;)Ljx/net/UDPData; {
+  +START:   #1
+        vR2 = vR0.filledBufs.getLast().getData();    [ RR . R] [ RR R R] 
+  +B11:   #1
+        if vR2!=null goto B29;   
+  +B15:   #1
+        vR2 = vR0.filledBufs.getLast().getData();    [R RR . R] [R RR R R] 
+        goto +B11;   [R RR . .]
+  +B29:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        b0.println(b1.append@extra("size: ").append@extra(vR2.size()).toString@extra());   [R RR iii. RR.] 
+        vR1.copyFromMemory(vR2,0,0,vR2.size());   [R RR iiii iiiRR] 
+        out.println("copy finished");   [R RR iiiii. RR...] 
+        vR3 = 0;    
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 15 swaps 5 any 1 found 0 receive
+ 
+ method close()V {
+  +START:   #1
+        vR0.net.udp.unregisterUDPConsumer(vR0.consumer,vR0.port);   [  ii iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 close
+ 
+ method access$000(Ljx/netmanager/UDPReceiver;)Ljx/buffer/multithread/MultiThreadBufferList; {
+  +START:   #1
+        return vR0.usableBufs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljx/netmanager/UDPReceiver;)Ljx/buffer/multithread/MultiThreadBufferList; {
+  +START:   #1
+        return vR0.filledBufs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+}

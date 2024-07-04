@@ -1,0 +1,76 @@
+class test/fs/DummyClock {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getTimeInMillis()I {
+  +START:   #1
+        b1 = vR0.t;    
+        b0 = b1;    
+        vR0.t = (b1+1);   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 getTimeInMillis
+ 
+ method getTicks()J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTicks
+ 
+ method getTicks_low()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTicks_low
+ 
+ method getTicks_high()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTicks_high
+ 
+ method getCycles(Ljx/zero/CycleTime;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCycles
+ 
+ method subtract(Ljx/zero/CycleTime;Ljx/zero/CycleTime;Ljx/zero/CycleTime;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 subtract
+ 
+ method toMicroSec(Ljx/zero/CycleTime;)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toMicroSec
+ 
+ method toNanoSec(Ljx/zero/CycleTime;)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toNanoSec
+ 
+ method toMilliSec(Ljx/zero/CycleTime;)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toMilliSec
+}

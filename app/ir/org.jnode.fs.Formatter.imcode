@@ -1,0 +1,32 @@
+class org/jnode/fs/Formatter {
+ 
+ method <init>(Lorg/jnode/fs/FileSystemType;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.type = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFileSystemType()Lorg/jnode/fs/FileSystemType; {
+  +START:   #1
+        return vR0.type;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileSystemType
+ 
+ method clone()Lorg/jnode/fs/Formatter; {
+  +START:   #1
+        return (org/jnode/fs/Formatter)(vR0.clone@special());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 clone
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.clone@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clone
+}
