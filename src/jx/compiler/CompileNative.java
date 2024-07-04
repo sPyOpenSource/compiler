@@ -18,7 +18,7 @@ public class CompileNative {
     static MemoryManager memMgr = new MemoryManagerImpl();
 
     public static void main(String[] args) throws Exception {
-	String libdir = "./";
+	String libdir = "./app/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String zipname = libdir + "zero.zip";
@@ -56,13 +56,13 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
-	compile("ai", opts);
+	//compile("ai", opts);
         
         zipname = libdir + "init2.zip";
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
         neededLibs = new String[]{
-            "zero", "ai", "jdk"
+            "zero", "jdk"
         };
         for (String neededLib : neededLibs) {
             libs.add(libdir + neededLib + ".zip");
@@ -115,7 +115,8 @@ public class CompileNative {
         } else if(path.endsWith("os")){
             domClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/"),
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
             };
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/")
