@@ -21,54 +21,46 @@ public class CompileNative {
 	String libdir = "./app/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
-	String zipname = libdir + "zero.zip";
 	String jllname = libdir + "zero.jll";
 
-	ArrayList libs = new ArrayList();
 	ArrayList jlns = new ArrayList();
         
 	String jlnname = libdir + "zero.jln";
         
-        CompilerOptions opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+        CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
         
-        zipname = libdir + "jdk.zip";
 	jllname = libdir + "jdk.jll";
         jlnname = libdir + "jdk.jln";
         String[] neededLibs = new String[]{
             "zero"
         };
         for (String neededLib : neededLibs) {
-            libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
-        opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+        opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	compile("os", opts);
         
-        zipname = libdir + "ai.zip";
 	jllname = libdir + "ai.jll";
         jlnname = libdir + "ai.jln";
         neededLibs = new String[]{
             "zero", "jdk"
         };
         for (String neededLib : neededLibs) {
-            libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
-        opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+        opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	//compile("ai", opts);
         
-        zipname = libdir + "init2.zip";
-	jllname = libdir + "init2.jll";
-        jlnname = libdir + "init2.jln";
+	jllname = libdir + "init.jll";
+        jlnname = libdir + "init.jln";
         neededLibs = new String[]{
             "zero", "jdk"
         };
         for (String neededLib : neededLibs) {
-            libs.add(libdir + neededLib + ".zip");
             jlns.add(libdir + neededLib + ".jln");
         }
-        opts = getCompilerOptions(libs, jlns, zipname, jlnname, jllname, "JC_CONFIG");
+        opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	compile("init2", opts);
     }
 
