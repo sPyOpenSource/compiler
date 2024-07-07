@@ -57,18 +57,18 @@ class jx/fs/InodeImpl {
  
  method overlay(Ljx/fs/Node;Ljava/lang/String;)V {
   +START:   #1
-        if vR0.i_released==0 goto B8;   
-  +B7:   #1
-        return;   
-  +B8:   #1
-        if vR0.isDirectory@this()!=0 goto B16;   
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
   +B15:   #1
-        return;   
-  +B16:   #1
-        vR3 = vR0.lookup@this(vR2);    [   RR] 
-        vR3.decUseCount();   [R   R.] 
-        vR0.overlayNames.addElement@extra(vR2);   [R   RR] 
-        vR0.overlayInodes.addElement@extra(vR1);   [R   RR] 
+        if vR0.isDirectory@this()!=0 goto B30;   
+  -B22:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +B30:   #1
+        vR3 = vR0.lookup@this(vR2);    [ R  RR] 
+        vR3.decUseCount();   [R R  R.] 
+        vR0.overlayNames.addElement@extra(vR2);   [R R  RR] 
+        vR0.overlayInodes.addElement@extra(vR1);   [R R  RR] 
         return;   
   +END:   #1
  }
@@ -124,33 +124,41 @@ class jx/fs/InodeImpl {
  
  method lookup(Ljava/lang/String;)Ljx/fs/Node; {
   +START:   #1
-        if vR1.equals@extra(".")==0 goto B15;   
-  +B9:   #1
-        vR0.incUseCount@this();   [  . R.] 
-        return vR0;   
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
   +B15:   #1
-        if vR1.equals@extra("..")==0 goto B38;   
-  +B24:   #1
-        vR0.parent.incUseCount();   [  . R.] 
+        if vR0.isDirectory@this()!=0 goto B30;   
+  -B22:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +B30:   #1
+        if vR1.equals@extra(".")==0 goto B45;   
+  +B39:   #1
+        vR0.incUseCount@this();   [ R . R.] 
+        return vR0;   
+  +B45:   #1
+        if vR1.equals@extra("..")==0 goto B68;   
+  +B54:   #1
+        vR0.parent.incUseCount();   [ R . R.] 
         return vR0.parent;   
-  +B38:   #1
+  +B68:   #1
         vi2 = 0;    
-  +B40:   #1
-        if vi2>=vR0.overlayNames.size@extra() goto B95;   
-  +B51:   #1
-        if vR1.equals@extra((java/lang/String)(vR0.overlayNames.elementAt(vi2)))==0 goto B89;   
-  +B69:   #1
+  +B70:   #1
+        if vi2>=vR0.overlayNames.size@extra() goto B125;   
+  +B81:   #1
+        if vR1.equals@extra((java/lang/String)(vR0.overlayNames.elementAt(vi2)))==0 goto B119;   
+  +B99:   #1
         vR3 = (jx/fs/Node)(vR0.overlayInodes.elementAt(vi2));    
-        vR3.incUseCount();   [iR  . R.] 
+        vR3.incUseCount();   [iR R . R.] 
         return vR3;   
-  +B89:   #1
+  +B119:   #1
         vi2++;   
-        goto +B40;   [iR  . ..]
-  +B95:   #1
+        goto +B70;   [iR R . ..]
+  +B125:   #1
         return vR0.getNode@this(vR1);   
   +END:   #1
  }
-// Register: rd 18/18 wr 8 swaps 3 any 2 found 1 lookup
+// Register: rd 20/20 wr 8 swaps 3 any 2 found 1 lookup
  
  method readWeak(II)Ljx/zero/ReadOnlyMemory; {
   -START:   #1

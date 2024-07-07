@@ -323,10 +323,11 @@ EXCEPTIONHANDLER-TABLE:
         vR1 = (jx/fs/InodeImpl)(vR0.fs.getCwdNode()).readdirNames();    [RR RR . R.] 
         vi4 = 0;    
   +B23:   #1
-        if vi4>=vR1.length goto B180;   
+        if vi4>=vR1.length goto B195;   
   +B30:   #1
         vR2 = vR1[vi4];    
         vR0.uout.print(vR2);   [RR?i RR . RR] 
+  +B43:   #1
         vR3 = (jx/fs/InodeImpl)((jx/fs/InodeImpl)(vR0.fs.getCwdNode()).lookup(vR2));    
         if vR3.isDirectory()==0 goto B83;   
   +B70:   #1
@@ -348,13 +349,21 @@ EXCEPTIONHANDLER-TABLE:
         b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
         b0.println(b1.append@extra(" ").append@extra(vR3.getLength()).toString@extra());   [RRRi RR iii. RR.] 
         vR3.decUseCount();   [RRRi RR iii. R..] 
+  +B174:   #1
+        goto +B189;   [RRRi RR .... ...]
+  +H177<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR0.uout.println("Error");   [RRRiR RR i... RR.] 
+  +B189:   #1
         vi4++;   
-        goto +B23;   [RRRi RR iii. ...]
-  +B180:   #1
+        goto +B23;   [RRRi RR .... ...]
+  +B195:   #1
         return;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+43 - 174 handler 177 type 365
  }
-// Register: rd 25/25 wr 28 swaps 8 any 2 found 0 ll
+// Register: rd 26/26 wr 30 swaps 9 any 2 found 0 ll
  
  method mkdir(Ljava/lang/String;I)V {
   +START:   #2
@@ -513,9 +522,9 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-28 - 45 handler 48 type 390
-28 - 45 handler 60 type 394
-28 - 45 handler 72 type 398
+28 - 45 handler 48 type 394
+28 - 45 handler 60 type 398
+28 - 45 handler 72 type 402
 84 - 108 handler 111 type 318
  }
 // Register: rd 9/9 wr 27 swaps 8 any 0 found 0 mount
