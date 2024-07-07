@@ -132,7 +132,7 @@ class vfs/FSImpl {
         if vR1.equals@extra(".")==0 goto B14;   
   +B13:   #1
         return;   
-  +B14:   #6
+  +B14:   #7
         if vR1.equals@extra("..")==0 goto B35;   
   +B23:   #1
         vR2 = vR0.getPathName@extra(vR0.cwdPath);    [RR RR i RR] 
@@ -141,8 +141,8 @@ class vfs/FSImpl {
         vR2 = vR0.getAbsolutePath@special(vR1);    [RR RR . RR] 
   +B41:   #1
         vR3 = vR0.lookup@extra(vR2);    [RR RR . RR] 
-  +B47:   #5
-        goto +B215;   [RR RR . ..]
+  +B47:   #6
+        goto +B218;   [RR RR . ..]
   +H50<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
@@ -173,12 +173,15 @@ class vfs/FSImpl {
         b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
         b0.println(b1.append@extra("cd: Zugriff auf '").append@extra(vR1).append@extra("' nicht erlaubt").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +B215:   #1
+  +H215<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        return;   
+  +B218:   #1
         vR0.cwdPath = vR2;   
-        if vR0.cwdInode==null goto B236;   
-  +B227:   #1
+        if vR0.cwdInode==null goto B239;   
+  +B230:   #1
         vR0.cwdInode.decUseCount();   [RR RR ..... R...] 
-  +B236:   #1
+  +B239:   #1
         vR0.cwdInode = vR3;   
         return;   
   +END:   #1
@@ -193,8 +196,10 @@ EXCEPTIONHANDLER-TABLE:
 14 - 47 handler 149 type 182
 4 - 13 handler 182 type 186
 14 - 47 handler 182 type 186
+4 - 13 handler 215 type 192
+14 - 47 handler 215 type 192
  }
-// Register: rd 22/22 wr 53 swaps 18 any 0 found 0 cd
+// Register: rd 22/22 wr 54 swaps 18 any 0 found 0 cd
  
  method rename(Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #2
@@ -233,7 +238,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 147 handler 150 type 204
+0 - 147 handler 150 type 206
  }
 // Register: rd 22/22 wr 15 swaps 6 any 0 found 0 rename
  

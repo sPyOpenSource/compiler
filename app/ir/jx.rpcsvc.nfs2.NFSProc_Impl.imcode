@@ -926,59 +926,59 @@ EXCEPTIONHANDLER-TABLE:
         vR2 = vR0.getNode@special(vR3);    [?R RR . RR] 
         vR4 = vR2.getStatFS();    [RR RR . R.] 
         vR5 = new jx/rpcsvc/nfs2/StatFSResOK();    [ RR . i.][ RR . iR]
-        vR5.tsize = 0;   
-        vR5.bsize = 0;   
+        vR5.tsize = vR4.getSize();   
+        vR5.bsize = vR4.getBlockSize();   
         vR5.blocks = 0;   
         vR5.bfree = 0;   
         vR5.bavail = 0;   
         vR5.tsize = 8192;   
         vR5.bavail = 60057800;   
         b0 = vR5;    
-  +B138b0:   #8 reference
+  +B144b0:   #8 reference
         return b0;   
-  +H139<caught exception>:   #1 reference
+  +H145<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrIO();   
-  +H162<caught exception>:   #1 reference
+  +H168<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrNoEnt();   
-  +H185<caught exception>:   #1 reference
+  +H191<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrNotDir();   
-  +H208<caught exception>:   #1 reference
+  +H214<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrNoEnt();   
-  +H231<caught exception>:   #1 reference
+  +H237<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrAcces();   
-  +H254<caught exception>:   #1 reference
+  +H260<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrIO();   
-  +H277<caught exception>:   #1 reference
+  +H283<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         vR0.cpuManager.recordEvent(vR0.event_getattr_out);    
         return new jx/rpcsvc/nfs2/StatFSResErrStale();   
-  +H300<caught exception>:   #1 reference
+  +H306<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-52 - 138 handler 139 type 169
-52 - 138 handler 162 type 188
-52 - 138 handler 185 type 195
-52 - 138 handler 208 type 202
-52 - 138 handler 231 type 206
-52 - 138 handler 254 type 213
-52 - 138 handler 277 type 217
-52 - 138 handler 300 type 114
+52 - 144 handler 145 type 169
+52 - 144 handler 168 type 188
+52 - 144 handler 191 type 195
+52 - 144 handler 214 type 202
+52 - 144 handler 237 type 206
+52 - 144 handler 260 type 213
+52 - 144 handler 283 type 217
+52 - 144 handler 306 type 114
  }
-// Register: rd 20/20 wr 16 swaps 1 any 1 found 0 statfs
+// Register: rd 22/22 wr 16 swaps 1 any 1 found 0 statfs
  
  method getNode(Ljx/rpcsvc/nfs2/MappedFHandle;)Ljx/fs/Node; {
   +START:   #1
@@ -1071,29 +1071,28 @@ EXCEPTIONHANDLER-TABLE:
         vR3.uid = 500;   
         vR3.gid = 600;   
         vR3.size = vR1.getLength();   
-        vR1.getStatFS();   [R RR  R.] 
-        vR3.blocksize = 0;   
+        vR3.blocksize = vR1.getStatFS().getSize();   
         vR3.blocks = ((vR3.size+1024)/1024);   
         vR3.fileid = vR1.getIdentifier();   
         vR3.fsid = vR2.deviceIdentifier;   
         vR3.rdev = 42;   
-        b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastAccessed(),0);    [ RR  i.][ RR . iiiR]
+        b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastAccessed(),0);    [ RR . i.][ RR . iiiR]
         vR3.atime = b1;   
         b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastChanged(),0);    [ RR . i...][ RR . iiiR]
         vR3.ctime = b1;   
         b1 = new jx/rpcsvc/nfs2/Timeval(vR1.lastModified(),0);    [ RR . i...][ RR . iiiR]
         vR3.mtime = b1;   
         b0 = vR3;    
-  +B377b0:   #1 reference
+  +B380b0:   #1 reference
         return b0;   
-  -H378<caught exception>:   #1 reference
+  -H381<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         throw new java/lang/Error();   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 377 handler 378 type 114
+0 - 380 handler 381 type 114
  }
-// Register: rd 65/65 wr 10 swaps 0 any 1 found 0 getFAttr
+// Register: rd 65/65 wr 11 swaps 0 any 1 found 0 getFAttr
  
  method setAttr(Ljx/fs/Node;Ljx/rpcsvc/nfs2/MappedFHandle;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/FAttr; {
   +START:   #1
