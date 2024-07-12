@@ -1,0 +1,45 @@
+class java/awt/event/MouseAdapter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method mouseClicked(Ljava/awt/event/MouseEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseClicked
+ 
+ method mouseEntered(Ljava/awt/event/MouseEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(Ljava/awt/event/MouseEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseExited
+ 
+ method mousePressed(Ljava/awt/event/MouseEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(Ljava/awt/event/MouseEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseReleased
+}

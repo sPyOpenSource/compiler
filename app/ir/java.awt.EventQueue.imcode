@@ -1,0 +1,48 @@
+class java/awt/EventQueue {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new jx/buffer/multithread/MultiThreadList();    [ ?R  i][ ?R  iR]
+        vR0.list = b1;   
+        b1 = new java/awt/EventDispatchThread(vR0);    [ ?R  i.][ ?R . iRR]
+        vR0.dispatchThread = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 <init>
+ 
+ method getNextEvent()Ljava/awt/AWTEvent; {
+  +START:   #1
+        return (java/awt/AWTEvent)(vR0.list.undockFirstElement());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getNextEvent
+ 
+ method postEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        vR0.list.appendElement(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 postEvent
+ 
+ method dispatchEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        vR2 = vR1.getSource();    [   R] 
+        if (vR2 instanceof java/awt/Component)==0 goto B25;   
+  +B12:   #1
+        vR3 = (java/awt/Component)(vR2);    
+        vR3.dispatchEvent@extra(vR1);   [RR   RR] 
+        goto +B42;   forward return[RR   ..]
+  +B25:   #1
+        if (vR2 instanceof java/awt/MenuComponent)==0 goto B42;   
+  +B32:   #1
+        vR3 = (java/awt/MenuComponent)(vR2);    
+        vR3.dispatchEvent@extra(vR1);   [RR   RR] 
+  +B42:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 2 found 2 dispatchEvent
+}

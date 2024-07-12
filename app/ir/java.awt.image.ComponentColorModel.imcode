@@ -1,0 +1,373 @@
+class java/awt/image/ComponentColorModel {
+ 
+ method sum([I)I {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=vR0.length goto B22;   
+  +B10:   #1
+        vi1 = (vi1+vR0[vi2]);    
+        vi2++;   
+        goto +B4;   [ii   ]
+  +B22:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 3 found 0 sum
+ 
+ method <init>(Ljava/awt/color/ColorSpace;[IZZII)V {
+  +START:   #1
+        vR0.<init>@special(sum@special(vR2),vR2,vR1,vi3,vi4,vi5,vi6);   [  i iiiiRRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getRed(I)I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        return (int)vR0.getRGBFloat@special(vi1)[0];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getRed
+ 
+ method getGreen(I)I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        return (int)vR0.getRGBFloat@special(vi1)[0];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getGreen
+ 
+ method getBlue(I)I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        return (int)vR0.getRGBFloat@special(vi1)[0];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getBlue
+ 
+ method getAlpha(I)I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        vi2 = (8-vR0.getComponentSize@this(vR0.getNumColorComponents@this()));    
+        if vi2< 0 goto B36;   
+  +B32:   #1
+        return (vi1 << vi2);   
+  +B36:   #1
+        return (vi1 >> -vi2);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 1 any 1 found 0 getAlpha
+ 
+ method getRGB(I)I {
+  +START:   #1
+        vR2 = vR0.getRGBFloat@special(vi1);    [   iR] 
+        vi3 = vR0.getRGB@special(vR2);    [R   RR] 
+        if vR0.hasAlpha@this()==0 goto B30;   
+  +B19:   #1
+        vi3 = (vi3 | (vR0.getAlpha@this(vi1) << 24));    
+  +B30:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 1 getRGB
+ 
+ method getRGBFloat(I)[F {
+  +START:   #1
+        b0 = new float[1];    
+        b0[0] = (float)vi1;   
+        vR2 = b0;    
+        return vR0.cspace.toRGB(vR2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 1 found 0 getRGBFloat
+ 
+ method getRGBFloat(Ljava/lang/Object;)[F {
+  +START:   #1
+        vR2 = createBufferFromData@special(vR0.transferType,vR1,vR0.getNumComponents@this());    [  ii iRi]
+        vi3 = vR0.getNumColorComponents@this();    [R  ii R..] 
+        vR4 = new float[vi3];    
+        vi5 = 0;    
+  +B26:   #1
+        if vi5>=vi3 goto B65;   
+  +B32:   #1
+        vl6 = (float)((1 << vR0.getComponentSize@this(vi5))-1);    
+        vR4[vi5] = (vR2.getElemFloat(vi5)/vl6);   
+        vi5++;   
+        goto +B26;   [RiRil  .. ...]
+  +B65:   #1
+        vR5 = vR0.cspace.toRGB(vR4);    [RiRil  .. RR.] 
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 9 swaps 0 any 2 found 0 getRGBFloat
+ 
+ method getRed(Ljava/lang/Object;)I {
+  +START:   #1
+        return ((int)vR0.getRGBFloat@special(vR1)[0]*255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRed
+ 
+ method getGreen(Ljava/lang/Object;)I {
+  +START:   #1
+        return ((int)vR0.getRGBFloat@special(vR1)[1]*255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGreen
+ 
+ method getBlue(Ljava/lang/Object;)I {
+  +START:   #1
+        return ((int)vR0.getRGBFloat@special(vR1)[2]*255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBlue
+ 
+ method getAlpha(Ljava/lang/Object;)I {
+  +START:   #1
+        vR2 = createBufferFromData@special(vR0.transferType,vR1,vR0.getNumComponents@this());    [  ii iRi]
+        vi3 = (8-vR0.getComponentSize@this(vR0.getNumColorComponents@this()));    
+        vi4 = vR2.getElem(vR0.getNumColorComponents@this());    [Ri  iiii iR.] 
+        if vi3< 0 goto B44;   
+  +B39:   #1
+        return (vi4 << vi3);   
+  +B44:   #1
+        return (vi4 >> -vi3);   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 2 any 1 found 0 getAlpha
+ 
+ method getRGB([F)I {
+  +START:   #1
+        vi2 = ((((int)(vR1[0]*jx.classfile.datatypes.BCFloat@5717c37) << 16) | ((int)(vR1[1]*jx.classfile.datatypes.BCFloat@5717c37) << 8)) | ((int)(vR1[2]*jx.classfile.datatypes.BCFloat@5717c37) << 0));    
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 getRGB
+ 
+ method getRGB(Ljava/lang/Object;)I {
+  +START:   #1
+        vR2 = vR0.getRGBFloat@special(vR1);    [   RR] 
+        vi3 = vR0.getRGB@special(vR2);    [R   RR] 
+        if vR0.hasAlpha@this()==0 goto B30;   
+  +B19:   #1
+        vi3 = (vi3 | (vR0.getAlpha@this(vR1) << 24));    
+  +B30:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 1 getRGB
+ 
+ method getDataElements(ILjava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        b0 = new float[3];    
+        b0[0] = ((float)((vi1 >> 16) & 255)/jx.classfile.datatypes.BCFloat@5717c37);   
+        b0[1] = ((float)((vi1 >> 8) & 255)/jx.classfile.datatypes.BCFloat@5717c37);   
+        b0[2] = ((float)((vi1 >> 0) & 255)/jx.classfile.datatypes.BCFloat@5717c37);   
+        vR3 = b0;    
+        vR4 = vR0.cspace.fromRGB(vR3);    [R R  RR] 
+        vR5 = createBuffer@special(vR0.transferType,vR2,vR0.getNumComponents@this());    [RR R ii iRi]
+        vi6 = vR0.getNumColorComponents@this();    [RRR R ii R..] 
+        if vR0.hasAlpha@this()==0 goto B158;   
+  +B85:   #1
+        vl7 = ((float)((vi1 >> 24) & 255)/jx.classfile.datatypes.BCFloat@5717c37);    
+        if vR0.isAlphaPremultiplied@this()==0 goto B132;   
+  +B106:   #1
+        vi8 = 0;    
+  +B109:   #1
+        if vi8>=vi6 goto B132;   
+  +B116:   #1
+        vR4[vi8] = (vR4[vi8]*vl7);   
+        vi8++;   
+        goto +B109;   [RRRili R .. ...]
+  +B132:   #2
+        vl7 = (vl7*(float)(1 << (vR0.bits[vi6]-1)));    
+        vR5.setElemFloat(vi6,vl7);   [RRRili R .. ?iR] 
+  +B158:   #1
+        vi7 = 0;    
+  +B161:   #1
+        if vi7>=vi6 goto B203;   
+  +B168:   #1
+        vl8 = (vR4[vi7]*(float)(1 << (vR0.bits[vi7]-1)));    
+        vR5.setElemFloat(vi7,vl8);   [RRRiil R .. ?iR] 
+        vi7++;   
+        goto +B161;   [RRRiil R .. ...]
+  +B203:   #1
+        return getData@special(vR5);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 12 swaps 0 any 5 found 0 getDataElements
+ 
+ method getComponents(I[II)[I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        if vR2!=null goto B29;   
+  +B20:   #1
+        vR2 = new int[(vR0.getNumComponents@this()+vi3)];    
+  +B29:   #1
+        vR2[vi3] = vi1;   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 2 found 0 getComponents
+ 
+ method getComponents(Ljava/lang/Object;[II)[I {
+  +START:   #1
+        vR4 = createBuffer@special(vR0.transferType,vR1,vR0.getNumComponents@this());    [ ?i ii iRi]
+        vi5 = vR0.getNumComponents@this();    [R ?i ii R..] 
+        if vR2!=null goto B31;   
+  +B24:   #1
+        vR2 = new int[(vi5+vi3)];    
+  +B31:   #1
+        vi6 = 0;    
+  +B34:   #1
+        if vi6>=vi5 goto B60;   
+  +B41:   #1
+        b1 = vi3;    
+        vi3++;   
+        vR2[b1] = vR4.getElem(vi6);   
+        vi6++;   
+        goto +B34;   [Rii ?i .. ...]
+  +B60:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 10 swaps 0 any 5 found 0 getComponents
+ 
+ method getDataElement([II)I {
+  +START:   #1
+        if vR0.getNumComponents@this()<=1 goto B16;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B16:   #1
+        return vR1[vi2];   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getDataElement
+ 
+ method getDataElements([IILjava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        vR4 = createBuffer@special(vR0.transferType,vR3,vR0.getNumComponents@this());    [ ???i ii iRi]
+        vi5 = vR0.getNumComponents@this();    [R ???i ii R..] 
+        vi6 = 0;    
+  +B23:   #1
+        if vi6>=vi5 goto B49;   
+  +B30:   #1
+        b3 = vi2;    
+        vi2++;   
+        vR4.setElem(vi6,vR1[b3]);   [Rii ???i i. iiR] 
+        vi6++;   
+        goto +B23;   [Rii ???i i. ...]
+  +B49:   #1
+        return getData@special(vR4);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 1 any 4 found 0 getDataElements
+ 
+ method coerceData(Ljava/awt/image/WritableRaster;Z)Ljava/awt/image/ColorModel; {
+  +START:   #1
+        if vR0.isAlphaPremultiplied!=vi2 goto B10;   
+  +B8:   #1
+        return vR0;   
+  +B10:   #1
+        vR0.coerceData@special(vR1,vi2);   [ R  iRR] 
+        return new java/awt/image/ComponentColorModel(vR0.cspace,vR0.bits,vR0.hasAlpha@this(),vi2,vR0.transparency,vR0.transferType);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 1 swaps 0 any 0 found 0 coerceData
+ 
+ method isCompatibleRaster(Ljava/awt/image/Raster;)Z {
+  +START:   #1
+        return vR0.isCompatibleRaster@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isCompatibleRaster
+ 
+ method createCompatibleWritableRaster(II)Ljava/awt/image/WritableRaster; {
+  +START:   #1
+        vR3 = vR0.createCompatibleSampleModel@this(vi1,vi2);    [ R  iiR] 
+        vR4 = new java/awt/Point(0,0);    [ R  i..][ R . iiiR]
+        return createWritableRaster@special(vR3,vR4);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 0 any 0 found 0 createCompatibleWritableRaster
+ 
+ method createCompatibleSampleModel(II)Ljava/awt/image/SampleModel; {
+  +START:   #1
+        vi3 = vR0.getNumComponents@this();    [ R  R] 
+        vR4 = new int[vi3];    
+        vi5 = 0;    
+  +B13:   #1
+        if vi5>=vi3 goto B32;   
+  +B19:   #1
+        vR4[vi5] = vi5;   
+        vi5++;   
+        goto +B13;   [iRi R  ..]
+  +B32:   #1
+        return new java/awt/image/ComponentSampleModel(vR0.transferType,vi1,vi2,vi3,(vi3*vi1),vR4);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 0 any 3 found 1 createCompatibleSampleModel
+ 
+ method isCompatibleSampleModel(Ljava/awt/image/SampleModel;)Z {
+  +START:   #1
+        if (vR1 instanceof java/awt/image/ComponentSampleModel)==0 goto B19;   
+  +B7:   #1
+        if vR0.isCompatibleSampleModel@special(vR1)==0 goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  ..]
+  +B19:   #2
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isCompatibleSampleModel
+ 
+ method getAlphaRaster(Ljava/awt/image/WritableRaster;)Ljava/awt/image/WritableRaster; {
+  +START:   #1
+        if vR0.hasAlpha@this()!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = vR1.getSampleModel();    [ R  R] 
+        b0 = new int[1];    
+        b0[0] = (vR2.getNumBands@extra()-1);   
+        vR3 = b0;    
+        vR4 = vR2.createSubsetSampleModel(vR3);    [RR R  RR] 
+        vR5 = vR1.getDataBuffer();    [RRR R  R.] 
+        vR6 = new java/awt/Point(0,0);    [ R  i.][ R . iiiR]
+        return createWritableRaster@special(vR4,vR5,vR6);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 0 any 1 found 0 getAlphaRaster
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/awt/image/ComponentColorModel)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        return vR0.equals@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 equals
+}

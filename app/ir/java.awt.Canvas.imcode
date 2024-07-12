@@ -1,0 +1,32 @@
+class java/awt/Canvas {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.peer!=null goto B19;   
+  +B7:   #1
+        vR0.peer = vR0.getToolkit@this().createCanvas(vR0);   
+  +B19:   #1
+        vR0.addNotify@special();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 addNotify
+ 
+ method paint(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR1.setColor(vR0.getBackground@this());   [  i RR] 
+        vR2 = vR0.getSize@this();    [  i R.] 
+        vR1.fillRect(0,0,vR2.width,vR2.height);   [R  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 2 any 0 found 0 paint
+}

@@ -1,0 +1,34 @@
+class java/awt/event/FocusEvent {
+ 
+ method <init>(Ljava/awt/Component;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/Component;IZ)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        vR0.temporary = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isTemporary()Z {
+  +START:   #1
+        return vR0.temporary;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isTemporary
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(" source=").append@extra(vR0.getSource@this()).append@extra(" id=").append@extra(vR0.getID@this()).append@extra(" temporary=").append@extra(vR0.isTemporary@this()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 16 swaps 7 any 0 found 0 paramString
+}

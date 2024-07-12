@@ -156,7 +156,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.endsWith("AbstractSequentialList.class")) continue;
                         if (name.endsWith("SubList$1.class")) continue;
                         //if (name.endsWith("BlockIOFile.class")) continue;
-                        if (name.endsWith("StringReader.class")) continue;
+                        //if (name.endsWith("StringReader.class")) continue;
                         if (name.startsWith("jx/classfile")) continue;
                         if (name.startsWith("jx/classstore")) continue;
                         if (name.startsWith("jx/verifier")) continue;
@@ -164,6 +164,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("jx/secmgr")) continue;
                         if (name.startsWith("AI/Models/BytecodeParser")) continue;
                         if (name.startsWith("AI/Models/ByteCode")) continue;
+                        if (name.startsWith("jx/JFrameWM")) continue;
                         /*if (name.startsWith("gnu/java/io/decode/Decoder")) continue;
                         if (name.startsWith("gnu/java/io/encode/Encoder")) continue;
                         if (name.startsWith("gnu/java/io/EncodingManager")) continue;*/

@@ -1,0 +1,478 @@
+class java/awt/datatransfer/DataFlavor {
+ 
+ method tryToLoadClass(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/Class; {
+  +START:   #2
+        b0 = forName@special(vR0);    [ R  R]
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        if vR1==null goto B16;   
+  +B10:   #1
+        return vR1.loadClass(vR0);   
+  -B16:   #1
+        throw new java/lang/ClassNotFoundException(vR0);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 7
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 tryToLoadClass
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.mimeType = 0;   
+        vR0.representationClass = 0;   
+        vR0.humanPresentableName = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.representationClass = vR1;   
+        vR0.mimeType = vR2;   
+        if vR3==null goto B26;   
+  +B18:   #1
+        vR0.humanPresentableName = vR3;   
+        goto +B31;   forward return[   .]
+  +B26:   #1
+        vR0.humanPresentableName = vR2;   
+  +B31:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(Ljava/lang/Class;Ljava/lang/String;)V {
+  +START:   #1
+        b2 = new java/lang/StringBuilder();    [ ??R  i][ ??R  iR]
+        vR0.<init>@special(vR1,b2.append@extra("application/x-java-serialized-object; class=").append@extra(vR1.getName@extra()).toString@extra(),vR2);   [ ??R iii. RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 6 swaps 3 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V {
+  +START:   #1
+        vR0.<init>@special(getRepresentationClassFromMime@special(vR1,vR3),vR1,vR2);   [  i RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getRepresentationClassFromMime(Ljava/lang/String;Ljava/lang/ClassLoader;)Ljava/lang/Class; {
+  +START:   #1
+        vR2 = getParameter@special("class",vR0);    [ RRR R RR]
+        if vR2==null goto B48;   
+  +B11:   #1
+        b0 = tryToLoadClass@special(vR2,vR1);    [R RRR . RR]
+  +B16b0:   #1 reference
+        return b0;   
+  -H17<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        b1.<init>@special(b2.append@extra("classname: ").append@extra(vR3.getMessage()).toString@extra());   [RR RRR iii. RR.] 
+        throw b0;   
+  +B48:   #1
+        return java/io/InputStream;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 16 handler 17 type 7
+ }
+// Register: rd 7/7 wr 12 swaps 3 any 2 found 0 getRepresentationClassFromMime
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,0);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getMimeType()Ljava/lang/String; {
+  +START:   #1
+        return vR0.mimeType;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMimeType
+ 
+ method getRepresentationClass()Ljava/lang/Class; {
+  +START:   #1
+        return vR0.representationClass;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRepresentationClass
+ 
+ method getHumanPresentableName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.humanPresentableName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHumanPresentableName
+ 
+ method getPrimaryType()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.mimeType.indexOf@extra("/");    [  i RR] 
+        if vi1!=-1 goto B20;   
+  +B15:   #1
+        return vR0.mimeType;   
+  +B20:   #1
+        return vR0.mimeType.substring@extra(0,vi1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 1 found 0 getPrimaryType
+ 
+ method getSubType()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.mimeType.indexOf@extra("/");    [  i RR] 
+        if vi1!=-1 goto B18;   
+  +B15:   #1
+        return "";   
+  +B18:   #1
+        vR2 = vR0.mimeType.substring@extra((vi1+1));    [i  i iR] 
+        vi1 = vR2.indexOf@extra(" ");    [iR  ii RR] 
+        if vi1!=-1 goto B43;   
+  +B41:   #1
+        return vR2;   
+  +B43:   #1
+        return vR2.substring@extra(0,vi1);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 6 swaps 3 any 2 found 0 getSubType
+ 
+ method getParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vi2 = vR1.indexOf@extra(b1.append@extra(vR0).append@extra("=").toString@extra());    [ ?R ii. RR.] 
+        if vi2!=-1 goto B31;   
+  +B29:   #1
+        return 0;   
+  +B31:   #1
+        vR3 = vR1.substring@extra(((vi2+vR0.length@extra())+2));    [i ?R i.. iR.] 
+        vi2 = vR3.indexOf@extra(" ");    [iR ?R ii. RR.] 
+        if vi2!=-1 goto B58;   
+  +B56:   #1
+        return vR3;   
+  +B58:   #1
+        return vR3.substring@extra(0,vi2);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 10 swaps 4 any 2 found 1 getParameter
+ 
+ method getParameter(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        return getParameter@special(vR1,vR0.mimeType);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getParameter
+ 
+ method setHumanPresentableName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.humanPresentableName = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setHumanPresentableName
+ 
+ method isMimeTypeEqual(Ljava/lang/String;)Z {
+  +START:   #1
+        return vR0.mimeType.equals@extra(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isMimeTypeEqual
+ 
+ method isMimeTypeEqual(Ljava/awt/datatransfer/DataFlavor;)Z {
+  +START:   #1
+        return vR0.isMimeTypeEqual@this(vR1.getMimeType());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 isMimeTypeEqual
+ 
+ method isMimeTypeSerializedObject()Z {
+  +START:   #1
+        return vR0.mimeType.startsWith@extra("application/x-java-serialized-object");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 isMimeTypeSerializedObject
+ 
+ method isRepresentationClassInputStream()Z {
+  +START:   #1
+        return vR0.representationClass.getName@extra().equals@extra("java.io.InputStream");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 isRepresentationClassInputStream
+ 
+ method isRepresentationClassSerializable()Z {
+  +START:   #1
+        vR1 = vR0.representationClass.getInterfaces@extra();    [   R] 
+        vi2 = 0;    
+  +B10:   #1
+        if vi2>=vR1.length goto B38;   
+  +B16:   #1
+        if vR1[vi2].getName@extra().equals@extra("java.io.Serializable")==0 goto B32;   
+  +B30:   #1
+        return 1;   
+  +B32:   #1
+        vi2++;   
+        goto +B10;   [Ri  .. ..]
+  +B38:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 2 found 0 isRepresentationClassSerializable
+ 
+ method isRepresentationClassRemote()Z {
+  -START:   #1
+        throw new java/lang/RuntimeException("Not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isRepresentationClassRemote
+ 
+ method isFlavorSerializedObjectType()Z {
+  +START:   #1
+        return vR0.mimeType.startsWith@extra("application/x-java-serialized-object");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 isFlavorSerializedObjectType
+ 
+ method isFlavorRemoteObjectType()Z {
+  +START:   #1
+        return vR0.mimeType.startsWith@extra("application/x-java-remote-object");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 isFlavorRemoteObjectType
+ 
+ method isFlavorJavaFileListType()Z {
+  +START:   #1
+        if vR0.mimeType.equals@extra(javaFileListFlavor.mimeType)==0 goto B34;   
+  +B16:   #1
+        if vR0.representationClass.equals(javaFileListFlavor.representationClass)==0 goto B34;   
+  +B32:   #1
+        return 1;   
+  +B34:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 2 any 0 found 0 isFlavorJavaFileListType
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 7
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+ 
+ method equals(Ljava/awt/datatransfer/DataFlavor;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if vR0.mimeType.toLowerCase@extra().equals@extra(vR1.mimeType.toLowerCase@extra())!=0 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #1
+        if vR0.representationClass.equals(vR1.representationClass)!=0 goto B44;   
+  +B42:   #1
+        return 0;   
+  +B44:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 1 found 0 equals
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/awt/datatransfer/DataFlavor)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        return vR0.equals@this((java/awt/datatransfer/DataFlavor)(vR1));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 1 found 1 equals
+ 
+ method equals(Ljava/lang/String;)Z {
+  +START:   #1
+        return vR0.isMimeTypeEqual@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return (vR0.mimeType.toLowerCase@extra().hashCode@extra() ^ vR0.representationClass.hashCode());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 hashCode
+ 
+ method match(Ljava/awt/datatransfer/DataFlavor;)Z {
+  +START:   #1
+        return vR0.equals@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 match
+ 
+ method normalizeMimeTypeParameter(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR1).append@extra("=").append@extra(vR2).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 5 swaps 1 any 0 found 0 normalizeMimeTypeParameter
+ 
+ method normalizeMimeType(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 normalizeMimeType
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("DataFlavor[representationClass=").append@extra(vR0.representationClass.getName@extra()).append@extra(",mimeType=").append@extra(vR0.mimeType).append@extra("humanPresentableName=").append@extra(vR0.humanPresentableName).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 7 any 0 found 0 toString
+ 
+ method getTextPlainUnicodeFlavor()Ljava/awt/datatransfer/DataFlavor; {
+  +START:   #1
+        return plainTextFlavor;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTextPlainUnicodeFlavor
+ 
+ method getDefaultRepresentationClass()Ljava/lang/Class; {
+  +START:   #1
+        return java/io/InputStream;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDefaultRepresentationClass
+ 
+ method getDefaultRepresentationClassAsString()Ljava/lang/String; {
+  +START:   #1
+        return getDefaultRepresentationClass@special().getName@extra();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDefaultRepresentationClassAsString
+ 
+ method selectBestTextFlavor([Ljava/awt/datatransfer/DataFlavor;)Ljava/awt/datatransfer/DataFlavor; {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.length goto B119;   
+  +B8:   #1
+        vR2 = vR0[vi1];    
+        vR3 = vR2.representationClass;    
+        if java/io/Reader.isAssignableFrom@extra(vR3)!=0 goto B35;   
+  +B26:   #1
+        if java/lang/String.isAssignableFrom@extra(vR3)==0 goto B37;   
+  +B35:   #1
+        return vR2;   
+  +B37:   #1
+        if java/io/InputStream.isAssignableFrom@extra(vR3)==0 goto B113;   
+  +B46:   #1
+        if "text".equals@extra(vR2.getPrimaryType())==0 goto B113;   
+  +B58:   #1
+        vR4 = vR0[vi1].getParameter("charset");    [iRR RRRR i RR] 
+        if vR4!=null goto B77;   
+  +B73:   #1
+        vR4 = "us-ascii";    
+  +B77:   #1
+        vR5 = 0;    
+  +B80:   #1
+        b0 = new java/io/InputStreamReader;    
+        b1 = b0;    
+        b2 = new java/io/ByteArrayInputStream;    
+        b3 = b2;    
+        b3.<init>@special(new byte[0]);   [iRRRR RRRR i RR] 
+        b1.<init>@special(b2,vR4);   [iRRRR RRRR i RRR] 
+        vR5 = b0;    
+  +B101:   #1
+        goto +B106;   [iRRRR RRRR . ...]
+  +H104<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+  +B106:   #1
+        if vR5==null goto B113;   
+  +B111:   #1
+        return vR2;   
+  +B113:   #3
+        vi1++;   
+        goto +B2;   [iRRRR RRRR . ...]
+  +B119:   #1
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+80 - 101 handler 104 type 202
+ }
+// Register: rd 19/19 wr 16 swaps 3 any 7 found 0 selectBestTextFlavor
+ 
+ method getReaderForText(Ljava/awt/datatransfer/Transferable;)Ljava/io/Reader; {
+  +START:   #1
+        if vR1.isDataFlavorSupported(vR0)!=0 goto B19;   
+  -B10:   #1
+        throw new java/awt/datatransfer/UnsupportedFlavorException(vR0);   
+  +B19:   #1
+        if java/io/Reader.isAssignableFrom@extra(vR0.representationClass)==0 goto B42;   
+  +B31:   #1
+        return (java/io/Reader)(vR1.getTransferData(vR0));   
+  +B42:   #1
+        if java/lang/String.isAssignableFrom@extra(vR0.representationClass)==0 goto B72;   
+  +B54:   #1
+        return new java/io/StringReader((java/lang/String)(vR1.getTransferData(vR0)));   
+  +B72:   #1
+        if java/io/InputStream.isAssignableFrom@extra(vR0.representationClass)==0 goto B131;   
+  +B84:   #1
+        if "text".equals@extra(vR0.getPrimaryType@this())==0 goto B131;   
+  +B96:   #1
+        vR2 = (java/io/InputStream)(vR1.getTransferData(vR0));    
+        vR3 = vR0.getParameter@this("charset");    [R R i. RR.] 
+        if vR3!=null goto B121;   
+  +B118:   #1
+        vR3 = "us-ascii";    
+  +B121:   #1
+        return new java/io/InputStreamReader(vR2,vR3);   
+  -B131:   #2
+        throw new java/awt/datatransfer/UnsupportedFlavorException(vR0);   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 15 swaps 5 any 1 found 0 getReaderForText
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/awt/datatransfer/DataFlavor(java/io/InputStream,"text/plain; charset=unicode","plain unicode text");    [ R  i][ R . iRRRR]
+        plainTextFlavor = b0;   
+        b0 = new java/awt/datatransfer/DataFlavor(java/lang/String,"Java Unicode String");    [ R . i....][ R . iRRR.]
+        stringFlavor = b0;   
+        b0 = new java/awt/datatransfer/DataFlavor(java/util/List,"Java File List");    [ R . i....][ R . iRRR.]
+        javaFileListFlavor = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 0 found 3 <clinit>
+}

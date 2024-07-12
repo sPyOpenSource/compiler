@@ -1,0 +1,152 @@
+class java/awt/Frame {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("");   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.ownedWindows = b1;   
+        vR0.resizable = 1;   
+        vR0.title = "";   
+        vR0.title = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getTitle()Ljava/lang/String; {
+  +START:   #1
+        return vR0.title;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTitle
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.title = vR1;   
+        if vR0.peer==null goto B25;   
+  +B12:   #1
+        (java/awt/peer/FramePeer)(vR0.peer).setTitle(vR1);   [  . RR.] 
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 setTitle
+ 
+ method getMenuBar()Ljava/awt/MenuBar; {
+  +START:   #1
+        return vR0.menuBar;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMenuBar
+ 
+ method setMenuBar(Ljava/awt/MenuBar;)V {
+  +START:   #1
+        vR0.menuBar = vR1;   
+        if vR0.peer==null goto B25;   
+  +B12:   #1
+        (java/awt/peer/FramePeer)(vR0.peer).setMenuBar(vR1);   [  . RR.] 
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 setMenuBar
+ 
+ method isResizable()Z {
+  +START:   #1
+        return vR0.resizable;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isResizable
+ 
+ method setResizable(Z)V {
+  +START:   #1
+        vR0.resizable = vi1;   
+        if vR0.peer==null goto B25;   
+  +B12:   #1
+        (java/awt/peer/FramePeer)(vR0.peer).setResizable(vi1);   [  . iR.] 
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 setResizable
+ 
+ method getCursorType()I {
+  +START:   #1
+        return vR0.getCursor@this().getType();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getCursorType
+ 
+ method setCursor(I)V {
+  +START:   #1
+        b1 = new java/awt/Cursor(vi1);    [ ?R  i][ ?R . iiR]
+        vR0.setCursor@this(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 setCursor
+ 
+ method remove(Ljava/awt/MenuComponent;)V {
+  +START:   #1
+        vR0.menuBar.remove(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.peer!=null goto B19;   
+  +B7:   #1
+        vR0.peer = vR0.getToolkit@this().createFrame(vR0);   
+  +B19:   #1
+        if vR0.menuBar==null goto B43;   
+  +B26:   #1
+        if vR0.menuBar.getPeer()!=null goto B43;   
+  +B36:   #1
+        vR0.menuBar.addNotify();   [  . R.] 
+  +B43:   #2
+        vR0.addNotify@special();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 addNotify
+ 
+ method dispose()V {
+  +START:   #1
+        vR1 = vR0.ownedWindows.elements@extra();    [   R] 
+  +B8:   #1
+        if vR1.hasMoreElements()==0 goto B34;   
+  +B17:   #1
+        vR2 = (java/awt/Window)(vR1.nextElement());    
+        vR2.dispose();   [RR  . R.] 
+        goto +B8;   [RR  . ..]
+  +B34:   #1
+        vR0.dispose@special();   [RR  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 dispose
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.title;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 paramString
+ 
+ method getState()I {
+  +START:   #1
+        return vR0.state;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getState
+}

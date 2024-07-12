@@ -1,0 +1,76 @@
+class java/awt/datatransfer/SystemFlavorMap {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getNativesForFlavors([Ljava/awt/datatransfer/DataFlavor;)Ljava/util/Map; {
+  +START:   #1
+        return new java/util/HashMap();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getNativesForFlavors
+ 
+ method getFlavorsForNatives([Ljava/lang/String;)Ljava/util/Map; {
+  +START:   #1
+        return new java/util/HashMap();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFlavorsForNatives
+ 
+ method getDefaultFlavorMap()Ljava/awt/datatransfer/FlavorMap; {
+  +START:   #1
+        if defaultFlavorMap!=null goto B16;   
+  +B6:   #1
+        b0 = new java/awt/datatransfer/SystemFlavorMap();    [ R  i][ R  iR]
+        defaultFlavorMap = b0;   
+  +B16:   #1
+        return defaultFlavorMap;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 getDefaultFlavorMap
+ 
+ method encodeJavaMIMEType(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 encodeJavaMIMEType
+ 
+ method encodeDataFlavor(Ljava/awt/datatransfer/DataFlavor;)Ljava/lang/String; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 encodeDataFlavor
+ 
+ method isJavaMIMEType(Ljava/lang/String;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isJavaMIMEType
+ 
+ method decodeJavaMIMEType(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 decodeJavaMIMEType
+ 
+ method decodeDataFlavor(Ljava/lang/String;)Ljava/awt/datatransfer/DataFlavor; {
+  +START:   #1
+        vR1 = decodeJavaMIMEType@special(vR0);    [ R  R]
+        if vR1==null goto B18;   
+  +B9:   #1
+        return new java/awt/datatransfer/DataFlavor(vR1);   
+  +B18:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 decodeDataFlavor
+}

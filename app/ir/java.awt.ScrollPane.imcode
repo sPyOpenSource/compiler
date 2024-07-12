@@ -1,0 +1,279 @@
+class java/awt/ScrollPane {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        b1 = new java/awt/Point(0,0);    [ RRR  i][ RRR . iiiR]
+        vR0.scrollPosition = b1;   
+        vR0.scrollbarDisplayPolicy = vi1;   
+        if vi1==1 goto B63;   
+  +B27:   #1
+        if vi1==0 goto B63;   
+  +B31:   #1
+        if vi1==2 goto B63;   
+  -B36:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i...][ RRR . iR..]
+        b1.<init>@special(b2.append@extra("Bad scrollbarDisplayPolicy: ").append@extra(vi1).toString@extra());   [ RRR ii. RR..] 
+        throw b0;   
+  +B63:   #3
+        if vi1==2 goto B92;   
+  +B68:   #1
+        b1 = new java/awt/ScrollPaneAdjustable(0);    [ RRR ... i...][ RRR ... iiR.]
+        vR0.hAdjustable = b1;   
+        b1 = new java/awt/ScrollPaneAdjustable(1);    [ RRR ... i...][ RRR ... iiR.]
+        vR0.vAdjustable = b1;   
+  +B92:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 13 swaps 2 any 5 found 0 <init>
+ 
+ method getScrollbarDisplayPolicy()I {
+  +START:   #1
+        return vR0.scrollbarDisplayPolicy;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScrollbarDisplayPolicy
+ 
+ method getHAdjustable()Ljava/awt/Adjustable; {
+  +START:   #1
+        return vR0.hAdjustable;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHAdjustable
+ 
+ method getVAdjustable()Ljava/awt/Adjustable; {
+  +START:   #1
+        return vR0.vAdjustable;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVAdjustable
+ 
+ method getViewportSize()Ljava/awt/Dimension; {
+  +START:   #1
+        vR1 = vR0.getSize@this();    [   R] 
+        vR2 = vR0.getInsets@this();    [R   R] 
+        vR1.width = (vR1.width-(vR2.left+vR2.right));   
+        vR1.height = (vR1.height-(vR2.top+vR2.bottom));   
+        vR3 = (java/awt/ScrollPaneAdjustable)(vR0.getVAdjustable@this());    
+        vR4 = (java/awt/ScrollPaneAdjustable)(vR0.getHAdjustable@this());    
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 0 any 0 found 0 getViewportSize
+ 
+ method getHScrollbarHeight()I {
+  +START:   #1
+        vR1 = (java/awt/peer/ScrollPanePeer)(vR0.getPeer@this());    
+        if vR1==null goto B19;   
+  +B12:   #1
+        return vR1.getHScrollbarHeight();   
+  +B19:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 getHScrollbarHeight
+ 
+ method getVScrollbarWidth()I {
+  +START:   #1
+        vR1 = (java/awt/peer/ScrollPanePeer)(vR0.getPeer@this());    
+        if vR1==null goto B19;   
+  +B12:   #1
+        return vR1.getVScrollbarWidth();   
+  +B19:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 getVScrollbarWidth
+ 
+ method getScrollPosition()Ljava/awt/Point; {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vR3 = vR0.getVAdjustable@this();    [ii R  R] 
+        vR4 = vR0.getHAdjustable@this();    [iiR R  R] 
+        if vR3==null goto B26;   
+  +B19:   #1
+        vi2 = vR3.getValue();    [iiRR R  R] 
+  +B26:   #1
+        if vR4==null goto B39;   
+  +B31:   #1
+        vi1 = vR4.getValue();    [iiRR R  R] 
+  +B39:   #1
+        return new java/awt/Point(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 0 any 2 found 0 getScrollPosition
+ 
+ method setScrollPosition(Ljava/awt/Point;)V {
+  +START:   #1
+        vR0.setScrollPosition@this(vR1.x,vR1.y);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setScrollPosition
+ 
+ method setScrollPosition(II)V {
+  +START:   #1
+        vR3 = vR0.getHAdjustable@this();    [   R] 
+        vR4 = vR0.getVAdjustable@this();    [R   R] 
+        if vR3==null goto B22;   
+  +B15:   #1
+        vR3.setValue(vi1);   [RR   iR] 
+  +B22:   #1
+        if vR4==null goto B35;   
+  +B27:   #1
+        vR4.setValue(vi2);   [RR   iR] 
+  +B35:   #1
+        vR5 = (java/awt/peer/ScrollPanePeer)(vR0.getPeer@this());    
+        if vR5==null goto B58;   
+  +B49:   #1
+        vR5.setScrollPosition(vi1,vi2);   [RRR  . iiR] 
+  +B58:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 3 found 0 setScrollPosition
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.getPeer@this()==null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.setPeer@this(vR0.getToolkit@this().createScrollPane(vR0));   [  i RR] 
+        if vR0.hAdjustable==null goto B42;   
+  +B27:   #1
+        vR0.hAdjustable.parent = vR0;   
+        vR0.hAdjustable.addNotify();   [  . R.] 
+  +B42:   #1
+        if vR0.vAdjustable==null goto B64;   
+  +B49:   #1
+        vR0.vAdjustable.parent = vR0;   
+        vR0.vAdjustable.addNotify();   [  . R.] 
+  +B64:   #1
+        vR0.addNotify@special();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 2 swaps 1 any 0 found 2 addNotify
+ 
+ method removeNotify()V {
+  +START:   #1
+        if vR0.hAdjustable==null goto B14;   
+  +B7:   #1
+        vR0.hAdjustable.removeNotify();   [   R] 
+  +B14:   #1
+        if vR0.vAdjustable==null goto B28;   
+  +B21:   #1
+        vR0.vAdjustable.removeNotify();   [   R] 
+  +B28:   #1
+        vR0.removeNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 removeNotify
+ 
+ method addImpl(Ljava/awt/Component;Ljava/lang/Object;I)V {
+  +START:   #1
+        vR4 = vR0.getComponents@this();    [   R] 
+        if vR4==null goto B25;   
+  +B11:   #1
+        if vR4.length<=0 goto B25;   
+  +B17:   #1
+        vR0.remove@this(vR4[0]);   [R  i RR] 
+  +B25:   #2
+        vR0.addImpl@special(vR1,vR2,-1);   [R  . iRRR] 
+        vR0.doLayout@this();   [R  . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 1 any 1 found 0 addImpl
+ 
+ method doLayout()V {
+  +START:   #1
+        vR1 = vR0.getComponents@this();    [   R] 
+        if vR1==null goto B184;   
+  +B9:   #1
+        if vR1.length<=0 goto B184;   
+  +B14:   #1
+        vR2 = vR1[0].getPreferredSize();    [R   R] 
+        if vR0.scrollbarDisplayPolicy!=1 goto B91;   
+  +B29:   #1
+        vi3 = vR0.getVScrollbarWidth@this();    [RR   R] 
+        vi4 = vR0.getHScrollbarHeight@this();    [RRi   R] 
+        if (vR0.width-vi3)<=vR2.width goto B63;   
+  +B53:   #1
+        vR2.width = (vR0.width-vi3);   
+  +B63:   #1
+        if (vR0.height-vi4)<=vR2.height goto B88;   
+  +B77:   #1
+        vR2.height = (vR0.height-vi4);   
+  +B88:   #1
+        goto +B129;   [RRii   .]
+  +B91:   #1
+        if vR0.width<=vR2.width goto B110;   
+  +B102:   #1
+        vR2.width = vR0.width;   
+  +B110:   #1
+        if vR0.height<=vR2.height goto B129;   
+  +B121:   #1
+        vR2.height = vR0.height;   
+  +B129:   #2
+        vR1[0].resize(vR2);   [RRii   RR] 
+        vR3 = vR0.getScrollPosition@this();    [RRii   R.] 
+        if vR3.x<=vR2.width goto B160;   
+  +B152:   #1
+        vR3.x = vR2.width;   
+  +B160:   #1
+        if vR3.y<=vR2.height goto B179;   
+  +B171:   #1
+        vR3.y = vR2.height;   
+  +B179:   #1
+        vR0.setScrollPosition@this(vR3);   [RRRi   RR] 
+  +B184:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 5 swaps 0 any 1 found 0 doLayout
+ 
+ method layout()V {
+  +START:   #1
+        vR0.doLayout@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 layout
+ 
+ method setLayout(Ljava/awt/LayoutManager;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setLayout
+ 
+ method printComponents(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.printComponents@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 printComponents
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getClass@this().getName@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 paramString
+}

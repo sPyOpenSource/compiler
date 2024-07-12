@@ -1,0 +1,269 @@
+class java/awt/image/SinglePixelPackedSampleModel {
+ 
+ method <init>(III[I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,vi2,vR4);   [   RiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIII[I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,vR5.length);   [ R i iiiiR] 
+        vR0.scanlineStride = vi4;   
+        vR0.bitMasks = vR5;   
+        vR0.bitOffsets = new int[vR0.numBands];   
+        vR0.sampleSize = new int[vR0.numBands];   
+        vR6 = new gnu/java/awt/BitMaskExtent();    [ R i i....][ R i iR...]
+        vi7 = 0;    
+  +B54:   #1
+        if vi7>=vR0.numBands goto B104;   
+  +B63:   #1
+        vR6.setMask@extra((long)vR5[vi7]);   [Ri R . ??R..] 
+        vR0.sampleSize[vi7] = vR6.bitWidth;   
+        vR0.bitOffsets[vi7] = vR6.leastSignificantBit;   
+        vi7++;   
+        goto +B54;   [Ri R . .....]
+  +B104:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 4 swaps 1 any 2 found 0 <init>
+ 
+ method getNumDataElements()I {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getNumDataElements
+ 
+ method createCompatibleSampleModel(II)Ljava/awt/image/SampleModel; {
+  +START:   #1
+        return new java/awt/image/SinglePixelPackedSampleModel(vR0.dataType,vi1,vi2,vR0.bitMasks);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 createCompatibleSampleModel
+ 
+ method createDataBuffer()Ljava/awt/image/DataBuffer; {
+  +START:   #1
+        vi1 = (vR0.scanlineStride*vR0.height);    
+        return createBuffer@special(vR0.getDataType@this(),vi1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 createDataBuffer
+ 
+ method getSampleSize()[I {
+  +START:   #1
+        return vR0.sampleSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSampleSize
+ 
+ method getSampleSize(I)I {
+  +START:   #1
+        return vR0.sampleSize[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getSampleSize
+ 
+ method getOffset(II)I {
+  +START:   #1
+        return ((vR0.scanlineStride*vi2)+vi1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getBitOffsets()[I {
+  +START:   #1
+        return vR0.bitOffsets;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBitOffsets
+ 
+ method getBitMasks()[I {
+  +START:   #1
+        return vR0.bitMasks;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBitMasks
+ 
+ method getScanlineStride()I {
+  +START:   #1
+        return vR0.scanlineStride;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScanlineStride
+ 
+ method createSubsetSampleModel([I)Ljava/awt/image/SampleModel; {
+  +START:   #1
+        vi2 = vR1.length;    
+        vR3 = new int[vi2];    
+        vi4 = 0;    
+  +B10:   #1
+        if vi4>=vi2 goto B35;   
+  +B16:   #1
+        vR3[vi4] = vR0.bitMasks[vR1[vi4]];   
+        vi4++;   
+        goto +B10;   [iRi R  ..]
+  +B35:   #1
+        return new java/awt/image/SinglePixelPackedSampleModel(vR0.dataType,vR0.width,vR0.height,vR0.scanlineStride,vR3);   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 0 any 2 found 0 createSubsetSampleModel
+ 
+ method getDataElements(IILjava/lang/Object;Ljava/awt/image/DataBuffer;)Ljava/lang/Object; {
+  +START:   #1
+        vi5 = (((vR0.scanlineStride*vi2)+vi1)+vR4.getOffset());    
+        return getData@special(vR4,vi5,vR3,0,1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getDataElements
+ 
+ method getPixel(II[ILjava/awt/image/DataBuffer;)[I {
+  +START:   #1
+        vi5 = ((vR0.scanlineStride*vi2)+vi1);    
+        if vR3!=null goto B21;   
+  +B14:   #1
+        vR3 = new int[vR0.numBands];    
+  +B21:   #1
+        vi6 = vR4.getElem(vi5);    [i   iR] 
+        vi7 = 0;    
+  +B33:   #1
+        if vi7>=vR0.numBands goto B70;   
+  +B42:   #1
+        vR3[vi7] = ((vi6 & vR0.bitMasks[vi7]) >>> vR0.bitOffsets[vi7]);   
+        vi7++;   
+        goto +B33;   [iii   ..]
+  +B70:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 5 swaps 0 any 3 found 0 getPixel
+ 
+ method getPixels(IIII[ILjava/awt/image/DataBuffer;)[I {
+  +START:   #1
+        vi7 = ((vR0.scanlineStride*vi2)+vi1);    
+        if vR5!=null goto B28;   
+  +B15:   #1
+        vR5 = new int[((vR0.numBands*vi3)*vi4)];    
+  +B28:   #1
+        vi8 = 0;    
+        vi2 = 0;    
+  +B33:   #1
+        if vi2>=vi4 goto B127;   
+  +B39:   #1
+        vi9 = vi7;    
+        vi1 = 0;    
+  +B45:   #1
+        if vi1>=vi3 goto B112;   
+  +B50:   #1
+        b1 = vi9;    
+        vi9++;   
+        vi10 = vR6.getElem(b1);    [iii ?i  iR] 
+        vi11 = 0;    
+  +B65:   #1
+        if vi11>=vR0.numBands goto B106;   
+  +B74:   #1
+        b1 = vi8;    
+        vi8++;   
+        vR5[b1] = ((vi10 & vR0.bitMasks[vi11]) >>> vR0.bitOffsets[vi11]);   
+        vi11++;   
+        goto +B65;   [iiiii ?i  ..]
+  +B106:   #1
+        vi1++;   
+        goto +B45;   [iiiii ?i  ..]
+  +B112:   #1
+        vi7 = (vi7+vR0.scanlineStride);    
+        vi2++;   
+        goto +B33;   [iiiii ?i  ..]
+  +B127:   #1
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 16 swaps 0 any 13 found 0 getPixels
+ 
+ method getSample(IIILjava/awt/image/DataBuffer;)I {
+  +START:   #1
+        vi5 = ((vR0.scanlineStride*vi2)+vi1);    
+        vi6 = vR4.getElem(vi5);    [i   iR] 
+        return ((vi6 & vR0.bitMasks[vi3]) >>> vR0.bitOffsets[vi3]);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 0 found 0 getSample
+ 
+ method setDataElements(IILjava/lang/Object;Ljava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vi5 = (((vR0.scanlineStride*vi2)+vi1)+vR4.getOffset());    
+        vi6 = vR0.getTransferType@this();    [i RRR . R] 
+        if vR0.getTransferType@this()==vR4.getDataType() goto B82;   
+  -B34:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b1.<init>@special(b2.append@extra("transfer type (").append@extra(vR0.getTransferType@this()).append@extra("), does not match data buffer type (").append@extra(vR4.getDataType()).append@extra(").").toString@extra());   [ii RRR ii.ii..ii. RR....] 
+        throw b0;   
+  +B82:   #1
+        tswitch (vi6) B116 B142 B194 B168 : B194;   
+  +B116:   #1
+        vR7 = (java/awt/image/DataBufferByte)(vR4);    
+        vR8 = ([B)(vR3);    
+        vR7.getData()[vi5] = vR8[0];   
+        return;   
+  +B142:   #1
+        vR7 = (java/awt/image/DataBufferUShort)(vR4);    
+        vR8 = ([S)(vR3);    
+        vR7.getData()[vi5] = vR8[0];   
+        return;   
+  +B168:   #1
+        vR7 = (java/awt/image/DataBufferInt)(vR4);    
+        vR8 = ([I)(vR3);    
+        vR7.getData()[vi5] = vR8[0];   
+        return;   
+  -B194:   #3
+        throw new java/lang/InternalError();   
+  -H202<caught exception>:   #2 reference
+        vR7 = <caught exception>;    
+        b0 = new java/lang/StringBuilder();    [ RRR .......... i.....][ RRR .......... iR....]
+        vR8 = b0.append@extra("While writing data elements, x=").append@extra(vi1).append@extra(", y=").append@extra(vi2).append@extra(", width=").append@extra(vR0.width).append@extra(", height=").append@extra(vR0.height).append@extra(", scanlineStride=").append@extra(vR0.scanlineStride).append@extra(", offset=").append@extra(vi5).append@extra(", data.getSize()=").append@extra(vR4.getSize()).append@extra(", data.getOffset()=").append@extra(vR4.getOffset()).append@extra(": ").append@extra(vR7).toString@extra();    [iiRR RRR i...ii..iiiii..ii..ii..i..i..... R..................] [iiRR RRR iR..ii..iiiii..ii..ii..i..i..... RR.................] [iiRR RRR iRR.ii..iiiii..ii..ii..i..i..... RRR................] [iiRR RRR iRRRii..iiiii..ii..ii..i..i..... RRiR...............] [iiRR RRR iRRRiiR.iiiii..ii..ii..i..i..... RRiRR..............] [iiRR RRR iRRRiiRRiiiii..ii..ii..i..i..... RRiRiR.............] [iiRR RRR iRRRiiRRiiiii.iii..ii..i..i..... RRiRiRR............] [iiRR RRR iRRRiiRRiiiiiiiii..ii..i..i..... RRiRiRiR...........] [iiRR RRR iRRRiiRRiiiiiiiii.iii..i..i..... RRiRiRiRR..........] [iiRR RRR iRRRiiRRiiiiiiiiiiiii..i..i..... RRiRiRiRiR.........] [iiRR RRR iRRRiiRRiiiiiiiiiiiiii.i..i..... RRiRiRiRiRR........] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiii..i..... RRiRiRiRiRiR.......] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiii.i..... RRiRiRiRiRiRR......] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiii..... RRiRiRiRiRiRiR.....] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiiiR.... RRiRiRiRiRiRiRR....] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiiiRR... RRiRiRiRiRiRiRiR...] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiiiRRR.. RRiRiRiRiRiRiRiRR..] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiiiRRRR. RRiRiRiRiRiRiRiRiR.] [iiRR RRR iRRRiiRRiiiiiiiiiiiiiiiiiiiRRRRR RRiRiRiRiRiRiRiRiRR] 
+        throw new java/lang/ArrayIndexOutOfBoundsException(vR8);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+82 - 141 handler 202 type 132
+142 - 167 handler 202 type 132
+168 - 193 handler 202 type 132
+194 - 202 handler 202 type 132
+ }
+// Register: rd 48/48 wr 63 swaps 28 any 8 found 6 setDataElements
+ 
+ method setPixel(II[ILjava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vi5 = ((vR0.scanlineStride*vi2)+vi1);    
+        vi6 = 0;    
+        vi7 = 0;    
+  +B16:   #1
+        if vi7>=vR0.numBands goto B56;   
+  +B25:   #1
+        vi6 = (vi6 | ((vR3[vi7] << vR0.bitOffsets[vi7]) & vR0.bitMasks[vi7]));    
+        vi7++;   
+        goto +B16;   [iii   ]
+  +B56:   #1
+        vR4.setElem(vi5,vi6);   [iii   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 0 any 3 found 0 setPixel
+ 
+ method setSample(IIIILjava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vi6 = ((vR0.scanlineStride*vi2)+vi1);    
+        vi7 = vR5.getElem(vi6);    [i   iR] 
+        vi8 = vR0.bitMasks[vi3];    
+        vi7 = (vi7 & (vi8 ^ -1));    
+        vi7 = (vi7 | ((vi4 << vR0.bitOffsets[vi3]) & vi8));    
+        vR5.setElem(vi6,vi7);   [iii   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 0 any 2 found 0 setSample
+}

@@ -3,8 +3,8 @@ class AI/AIZeroLogic {
  method <init>(LAI/AIZeroMemory;)V {
   +START:   #1
         vR0.<init>@special("logic");   [  i RR] 
-        vR0.dt = jx.classfile.datatypes.BCDouble@2b72cb8a;   
-        vR0.percentage = jx.classfile.datatypes.BCDouble@7f8a9499;   
+        vR0.dt = jx.classfile.datatypes.BCDouble@4e31276e;   
+        vR0.percentage = jx.classfile.datatypes.BCDouble@1a72a540;   
         vR0.mem = vR1;   
         return;   
   +END:   #1

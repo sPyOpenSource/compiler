@@ -1,0 +1,60 @@
+class java/awt/CheckboxGroup {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSelectedCheckbox()Ljava/awt/Checkbox; {
+  +START:   #1
+        return vR0.selectedCheckbox;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSelectedCheckbox
+ 
+ method getCurrent()Ljava/awt/Checkbox; {
+  +START:   #1
+        return vR0.selectedCheckbox;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrent
+ 
+ method setSelectedCheckbox(Ljava/awt/Checkbox;)V {
+  +START:   #1
+        if vR0.selectedCheckbox==null goto B27;   
+  +B7:   #1
+        if vR0.selectedCheckbox.getCheckboxGroup()==vR0 goto B19;   
+  +B18:   #1
+        return;   
+  +B19:   #1
+        vR0.selectedCheckbox.setState(0);   [   iR] 
+  +B27:   #1
+        vR0.selectedCheckbox = vR1;   
+        if vR1==null goto B41;   
+  +B36:   #1
+        vR1.setState(1);   [   iR] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 1 found 0 setSelectedCheckbox
+ 
+ method setCurrent(Ljava/awt/Checkbox;)V {
+  +START:   #1
+        vR0.setSelectedCheckbox@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCurrent
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[selectedCheckbox=").append@extra(vR0.selectedCheckbox).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString
+}

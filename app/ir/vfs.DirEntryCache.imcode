@@ -92,23 +92,30 @@ class vfs/DirEntryCache {
         vR1 = vR0.dentry_hashtable.elements();    [   R] 
         vR2 = vR0.dentry_hashtable.keys();    [R   R] 
   +B16:   #1
-        if vR1.hasMoreElements()==0 goto B83;   
+        if vR1.hasMoreElements()==0 goto B88;   
   +B25:   #1
-        if vR2.hasMoreElements()==0 goto B83;   
+        if vR2.hasMoreElements()==0 goto B88;   
   +B34:   #1
         vR3 = (jx/fs/Node)(vR1.nextElement());    
         vR4 = (java/lang/String)(vR2.nextElement());    
         vR0.dentry_hashtable.remove(vR4);   [RRRR  . RR] 
+  +B65:   #1
         if vR3.isDirty()==0 goto B80;   
   +B74:   #1
         vR3.writeNode();   [RRRR  . R.] 
-  +B80:   #1
+  +B80:   #2
+        goto +B85;   [RRRR  . ..]
+  +H83<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B85:   #1
         goto +B16;   [RRRR  . ..]
-  +B83:   #2
+  +B88:   #2
         return;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+65 - 80 handler 83 type 75
  }
-// Register: rd 11/11 wr 6 swaps 0 any 0 found 0 syncEntries
+// Register: rd 11/11 wr 7 swaps 0 any 0 found 0 syncEntries
  
  method showDirEntries()V {
   +START:   #1

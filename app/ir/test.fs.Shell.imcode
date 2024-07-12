@@ -299,71 +299,93 @@ EXCEPTIONHANDLER-TABLE:
  method ls()V {
   +START:   #1
         vR1 = 0;    
-        vR1 = vR0.fs.getCwdNode().readdirNames();    [R  . R] [R  R R] 
+  +B2:   #1
+        vR1 = vR0.fs.getCwdNode().readdirNames();    [R RR . R] [R RR R R] 
+  +B17:   #1
+        goto +B51;   [R RR . .]
+  +H20<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        b0.println(b1.append@extra("Error: ").append@extra(vR2.getMessage()).toString@extra());   [RRiiR RR iii. RR.] 
+  +B51:   #1
         vR2 = vR1;    
         vi3 = vR2.length;    
         vi4 = 0;    
-  +B25:   #1
-        if vi4>=vi3 goto B52;   
-  +B31:   #1
+  +B59:   #1
+        if vi4>=vi3 goto B86;   
+  +B65:   #1
         vR5 = vR2[vi4];    
-        vR0.uout.println(vR5);   [RRiiR  . RR] 
+        vR0.uout.println(vR5);   [RRiiR RR .... RR.] 
         vi4++;   
-        goto +B25;   [RRiiR  . ..]
-  +B52:   #1
+        goto +B59;   [RRiiR RR .... ...]
+  +B86:   #1
         return;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+2 - 17 handler 20 type 318
  }
-// Register: rd 9/9 wr 8 swaps 0 any 3 found 0 ls
+// Register: rd 13/13 wr 16 swaps 3 any 3 found 0 ls
  
  method ll()V {
   +START:   #1
         vR1 = 0;    
         vR2 = 0;    
+  +B4:   #1
         vR1 = (jx/fs/InodeImpl)(vR0.fs.getCwdNode()).readdirNames();    [RR RR . R.] 
-        vi4 = 0;    
-  +B23:   #1
-        if vi4>=vR1.length goto B195;   
-  +B30:   #1
-        vR2 = vR1[vi4];    
-        vR0.uout.print(vR2);   [RR?i RR . RR] 
-  +B43:   #1
-        vR3 = (jx/fs/InodeImpl)((jx/fs/InodeImpl)(vR0.fs.getCwdNode()).lookup(vR2));    
-        if vR3.isDirectory()==0 goto B83;   
-  +B70:   #1
-        vR0.uout.print(" D");   [RRRi RR i RR.] 
-        goto +B140;   [RRRi RR i ...]
-  +B83:   #1
-        if vR3.isFile()==0 goto B103;   
-  +B90:   #1
-        vR0.uout.print(" F");   [RRRi RR i RR.] 
-        goto +B140;   [RRRi RR i ...]
-  +B103:   #1
-        if vR3.isSymlink()==0 goto B140;   
-  +B110:   #1
+  +B20:   #1
+        goto +B57;   [RR RR . ..]
+  +H23<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
         b0 = vR0.uout;    
-        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("Error: ").append@extra(vR4.getMessage()).toString@extra());   [RRRRR RR iii. RR.] 
+        return;   
+  +B57:   #1
+        vi4 = 0;    
+  +B60:   #1
+        if vi4>=vR1.length goto B232;   
+  +B67:   #1
+        vR2 = vR1[vi4];    
+        vR0.uout.print(vR2);   [RR?i RR .... RR.] 
+  +B80:   #1
+        vR3 = (jx/fs/InodeImpl)((jx/fs/InodeImpl)(vR0.fs.getCwdNode()).lookup(vR2));    
+        if vR3.isDirectory()==0 goto B120;   
+  +B107:   #1
+        vR0.uout.print(" D");   [RRRi RR i... RR.] 
+        goto +B177;   [RRRi RR i... ...]
+  +B120:   #1
+        if vR3.isFile()==0 goto B140;   
+  +B127:   #1
+        vR0.uout.print(" F");   [RRRi RR i... RR.] 
+        goto +B177;   [RRRi RR i... ...]
+  +B140:   #1
+        if vR3.isSymlink()==0 goto B177;   
+  +B147:   #1
+        b0 = vR0.uout;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
         b0.print(b1.append@extra(" -> ").append@extra(vR3.getSymlink()).toString@extra());   [RRRi RR iii. RR.] 
-  +B140:   #3
+  +B177:   #3
         b0 = vR0.uout;    
         b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
         b0.println(b1.append@extra(" ").append@extra(vR3.getLength()).toString@extra());   [RRRi RR iii. RR.] 
         vR3.decUseCount();   [RRRi RR iii. R..] 
-  +B174:   #1
-        goto +B189;   [RRRi RR .... ...]
-  +H177<caught exception>:   #1 reference
+  +B211:   #1
+        goto +B226;   [RRRi RR .... ...]
+  +H214<caught exception>:   #1 reference
         vR5 = <caught exception>;    
         vR0.uout.println("Error");   [RRRiR RR i... RR.] 
-  +B189:   #1
+  +B226:   #1
         vi4++;   
-        goto +B23;   [RRRi RR .... ...]
-  +B195:   #1
+        goto +B60;   [RRRi RR .... ...]
+  +B232:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-43 - 174 handler 177 type 365
+4 - 20 handler 23 type 341
+80 - 211 handler 214 type 341
  }
-// Register: rd 26/26 wr 30 swaps 9 any 2 found 0 ll
+// Register: rd 30/30 wr 38 swaps 12 any 2 found 0 ll
  
  method mkdir(Ljava/lang/String;I)V {
   +START:   #2
@@ -522,9 +544,9 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-28 - 45 handler 48 type 394
-28 - 45 handler 60 type 398
-28 - 45 handler 72 type 402
+28 - 45 handler 48 type 395
+28 - 45 handler 60 type 399
+28 - 45 handler 72 type 403
 84 - 108 handler 111 type 318
  }
 // Register: rd 9/9 wr 27 swaps 8 any 0 found 0 mount

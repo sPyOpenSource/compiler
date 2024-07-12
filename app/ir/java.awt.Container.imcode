@@ -1,0 +1,795 @@
+class java/awt/Container {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getComponentCount()I {
+  +START:   #1
+        return vR0.ncomponents;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getComponentCount
+ 
+ method countComponents()I {
+  +START:   #1
+        return vR0.ncomponents;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 countComponents
+ 
+ method getComponent(I)Ljava/awt/Component; {
+  +START:   #1
+        if vi1< 0 goto B12;   
+  +B4:   #1
+        if vi1<vR0.ncomponents goto B22;   
+  -B12:   #1
+        throw new java/lang/ArrayIndexOutOfBoundsException("no such component");   
+  +B22:   #1
+        return vR0.component[vi1];   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 2 found 0 getComponent
+ 
+ method getComponents()[Ljava/awt/Component; {
+  +START:   #1
+        vR1 = new java/awt/Component()[vR0.ncomponents];    
+        if vR0.ncomponents<=0 goto B29;   
+  +B15:   #1
+        arraycopy@special(vR0.component,0,vR1,0,vR0.ncomponents);   [R  Ri iiRiR]
+  +B29:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 0 found 0 getComponents
+ 
+ method getInsets()Ljava/awt/Insets; {
+  +START:   #1
+        if vR0.peer!=null goto B19;   
+  +B7:   #1
+        return new java/awt/Insets(0,0,0,0);   
+  +B19:   #1
+        return (java/awt/peer/ContainerPeer)(vR0.peer).getInsets();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 getInsets
+ 
+ method insets()Ljava/awt/Insets; {
+  +START:   #1
+        return vR0.getInsets@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insets
+ 
+ method add(Ljava/awt/Component;)Ljava/awt/Component; {
+  +START:   #1
+        vR0.addImpl@this(vR1,0,-1);   [   iRRR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 add
+ 
+ method add(Ljava/lang/String;Ljava/awt/Component;)Ljava/awt/Component; {
+  +START:   #1
+        vR0.addImpl@this(vR2,vR1,-1);   [   iRRR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 add
+ 
+ method add(Ljava/awt/Component;I)Ljava/awt/Component; {
+  +START:   #1
+        vR0.addImpl@this(vR1,0,vi2);   [   iRRR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 add
+ 
+ method add(Ljava/awt/Component;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.addImpl@this(vR1,vR2,-1);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 add
+ 
+ method add(Ljava/awt/Component;Ljava/lang/Object;I)V {
+  +START:   #1
+        vR0.addImpl@this(vR1,vR2,vi3);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 add
+ 
+ method addImpl(Ljava/awt/Component;Ljava/lang/Object;I)V {
+  +START:   #1
+        if vi3>vR0.ncomponents goto B42;   
+  +B8:   #1
+        if vi3>=0 goto B17;   
+  +B12:   #1
+        if vi3!=-1 goto B42;   
+  +B17:   #1
+        if (vR1 instanceof java/awt/Window)!=0 goto B42;   
+  +B24:   #1
+        if (vR1 instanceof java/awt/Container)==0 goto B50;   
+  +B31:   #1
+        if (java/awt/Container)(vR1).isAncestorOf(vR0)==0 goto B50;   
+  -B42:   #3
+        throw new java/lang/IllegalArgumentException();   
+  +B50:   #2
+        vR1.parent = vR0;   
+        if vR0.peer==null goto B81;   
+  +B62:   #1
+        vR1.addNotify();   [ Rii  R..] 
+        if vR1.isLightweight()==0 goto B81;   
+  +B73:   #1
+        vR0.enableEvents@this(vR1.eventMask);   [ Rii i iR.] 
+  +B81:   #2
+        vR0.invalidate@this();   [ Rii . R..] 
+        if vR0.component!=null goto B100;   
+  +B92:   #1
+        vR0.component = new java/awt/Component()[4];   
+  +B100:   #1
+        if vR0.ncomponents<vR0.component.length goto B149;   
+  +B112:   #1
+        vi4 = (vR0.component.length*2);    
+        vR5 = new java/awt/Component()[vi4];    
+        arraycopy@special(vR0.component,0,vR5,0,vR0.ncomponents);   [iR Rii Ri iiRiR]
+        vR0.component = vR5;   
+  +B149:   #1
+        if vi3!=-1 goto B174;   
+  +B154:   #1
+        b0 = vR0.component;    
+        b2 = vR0.ncomponents;    
+        b1 = b2;    
+        vR0.ncomponents = (b2+1);   
+        b0[b1] = vR1;   
+        goto +B212;   [iR Rii .. .....]
+  +B174:   #1
+        arraycopy@special(vR0.component,vi3,vR0.component,(vi3+1),(vR0.ncomponents-vi3));   [RR Rii RRii iiRiR]
+        vR0.component[vi3] = vR1;   
+        vR0.ncomponents = (vR0.ncomponents+1);   
+  +B212:   #1
+        if vR0.layoutMgr==null goto B254;   
+  +B219:   #1
+        if (vR2 instanceof java/lang/String)==0 goto B243;   
+  +B226:   #1
+        vR0.layoutMgr.addLayoutComponent((java/lang/String)(vR2),vR1);   [iR Rii .... RRR..] 
+        goto +B254;   [iR Rii .... .....]
+  +B243:   #1
+        vR0.layoutMgr.addLayoutComponent(0,vR1);   [RR Rii .... RRR..] 
+  +B254:   #2
+        vR4 = new java/awt/event/ContainerEvent(vR0,300,vR1);    [ Rii .... i....][ Rii .... iRiRR]
+        vR0.getToolkit@this().getSystemEventQueue@extra().postEvent(vR4);   [RR Rii .... RR...] [RR Rii R... RR...] [RR Rii RR.. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 55/55 wr 16 swaps 1 any 7 found 2 addImpl
+ 
+ method remove(I)V {
+  +START:   #1
+        vR2 = vR0.component[vi1];    
+        vR2.removeNotify();   [R Rii  R] 
+        arraycopy@special(vR0.component,(vi1+1),vR0.component,vi1,((vR0.ncomponents-vi1)-1));   [R Rii RiRi iiRiR]
+        b0 = vR0.component;    
+        b2 = (vR0.ncomponents-1);    
+        b1 = b2;    
+        vR0.ncomponents = b2;   
+        b0[b1] = 0;   
+        vR0.invalidate@this();   [R Rii RiRi R....] 
+        if vR0.layoutMgr==null goto B72;   
+  +B62:   #1
+        vR0.layoutMgr.removeLayoutComponent(vR2);   [R Rii .... RR...] 
+  +B72:   #1
+        vR3 = new java/awt/event/ContainerEvent(vR0,301,vR2);    [ Rii .... i....][ Rii .... iRiRR]
+        vR0.getToolkit@this().getSystemEventQueue@extra().postEvent(vR3);   [RR Rii .... RR...] [RR Rii R... RR...] [RR Rii RR.. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 12 swaps 0 any 1 found 0 remove
+ 
+ method remove(Ljava/awt/Component;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.ncomponents goto B34;   
+  +B10:   #1
+        if vR0.component[vi2]!=vR1 goto B28;   
+  +B20:   #1
+        vR0.remove@this(vi2);   [i   iR] 
+        goto +B34;   forward return[i   ..]
+  +B28:   #1
+        vi2++;   
+        goto +B2;   [i   ..]
+  +B34:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 2 found 0 remove
+ 
+ method removeAll()V {
+  +START:   #2
+        if vR0.ncomponents<=0 goto B15;   
+  +B7:   #1
+        vR0.remove@this(0);   [   iR] 
+        goto +START;   [   ..]
+  +B15:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 removeAll
+ 
+ method getLayout()Ljava/awt/LayoutManager; {
+  +START:   #1
+        return vR0.layoutMgr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLayout
+ 
+ method setLayout(Ljava/awt/LayoutManager;)V {
+  +START:   #1
+        vR0.layoutMgr = vR1;   
+        vR0.invalidate@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setLayout
+ 
+ method doLayout()V {
+  +START:   #1
+        if vR0.layoutMgr==null goto B17;   
+  +B7:   #1
+        vR0.layoutMgr.layoutContainer(vR0);   [   RR] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 doLayout
+ 
+ method layout()V {
+  +START:   #1
+        vR0.doLayout@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 layout
+ 
+ method invalidate()V {
+  +START:   #1
+        vR0.invalidate@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 invalidate
+ 
+ method validate()V {
+  +START:   #1
+        vR1 = vR0;    
+        vR0.enter();   
+        if vR0.isValid@this()!=0 goto B15;   
+  +B11:   #1
+        vR0.validateTree@this();   [R   R] 
+  +B15:   #1
+        vR1.leave();   
+        goto +B25;   forward return[R   .]
+  +H20<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B23:   #1
+        throw vR2;   
+  +B25:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 17 handler 20 type 0
+20 - 23 handler 20 type 0
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 validate
+ 
+ method validateTree()V {
+  +START:   #1
+        if vR0.valid==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR1 = 0;    
+        if vR0.peer==null goto B41;   
+  +B17:   #1
+        if (vR0.peer instanceof java/awt/peer/LightweightPeer)!=0 goto B41;   
+  +B27:   #1
+        vR1 = (java/awt/peer/ContainerPeer)(vR0.peer);    
+        vR1.beginValidate();   [R  . R.] 
+  +B41:   #2
+        vR0.doLayout@this();   [R  . R.] 
+        vi2 = 0;    
+  +B47:   #1
+        if vi2>=vR0.ncomponents goto B101;   
+  +B55:   #1
+        vR3 = vR0.component[vi2];    
+        if vR3.isValid()!=0 goto B95;   
+  +B69:   #1
+        if (vR3 instanceof java/awt/Container)==0 goto B86;   
+  +B76:   #1
+        (java/awt/Container)(vR3).validateTree();   [RiR  . R.] 
+        goto +B95;   [RiR  . ..]
+  +B86:   #1
+        vR0.component[vi2].validate();   [RiR  . R.] 
+  +B95:   #2
+        vi2++;   
+        goto +B47;   [RiR  . ..]
+  +B101:   #1
+        vR0.valid = 1;   
+        if vR1==null goto B116;   
+  +B110:   #1
+        vR1.endValidate();   [RiR  . R.] 
+  +B116:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 6 swaps 0 any 3 found 1 validateTree
+ 
+ method getPreferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        if vR0.layoutMgr==null goto B18;   
+  +B7:   #1
+        return vR0.layoutMgr.preferredLayoutSize(vR0);   
+  +B18:   #1
+        return vR0.getPreferredSize@special();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method preferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredSize
+ 
+ method getMinimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        if vR0.layoutMgr==null goto B18;   
+  +B7:   #1
+        return vR0.layoutMgr.minimumLayoutSize(vR0);   
+  +B18:   #1
+        return vR0.getMinimumSize@special();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getMinimumSize
+ 
+ method minimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMinimumSize@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 minimumSize
+ 
+ method getMaximumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMaximumSize@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaximumSize
+ 
+ method paint(Ljava/awt/Graphics;)V {
+  +START:   #1
+        if vR0.isShowing@this()!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.paint@special(vR1);   [   RR] 
+        vR0.visitChildren@special(vR1,INSTANCE,1);   [  i iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 paint
+ 
+ method visitChildren(Ljava/awt/Graphics;Ljava/awt/Container$GfxVisitor;Z)V {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vR0.ncomponents goto B67;   
+  +B12:   #1
+        vR5 = vR0.component[vi4];    
+        if vR5.isVisible()==0 goto B45;   
+  +B29:   #1
+        if vR5.isLightweight()!=0 goto B41;   
+  +B37:   #1
+        if vi3!=0 goto B45;   
+  +B41:   #1
+        b0 = 1;    
+        goto +B46b0;   [iR i  .]
+  +B45:   #2
+        b0 = 0;    
+  +B46b0:   #1 int
+        vi6 = b0;    
+        if vi6==0 goto B61;   
+  +B53:   #1
+        vR0.visitChild@special(vR1,vR2,vR5);   [iRi i  RRRR] 
+  +B61:   #1
+        vi4++;   
+        goto +B3;   [iRi i  ....]
+  +B67:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 5 found 0 visitChildren
+ 
+ method visitChild(Ljava/awt/Graphics;Ljava/awt/Container$GfxVisitor;Ljava/awt/Component;)V {
+  +START:   #1
+        vR4 = vR3.getBounds();    [   R] 
+        vR5 = vR1.getClipBounds().intersection(vR4);    [R  . RR] [R  R RR] 
+        vR6 = vR1.create();    [RR  . R.] 
+        vR6.setClip(vR5.x,vR5.y,vR5.width,vR5.height);   [RRR  iiii iiiiR] 
+        vR6.translate(vR4.x,vR4.y);   [RRR  iiiiii iiR..] 
+        vR2.visit(vR3,vR6);   [RRR  iiiiii RRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 2 any 0 found 0 visitChild
+ 
+ method update(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.update@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 update
+ 
+ method print(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.print@special(vR1);   [   RR] 
+        vR0.visitChildren@special(vR1,INSTANCE,1);   [  i iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 print
+ 
+ method paintComponents(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.paint@special(vR1);   [   RR] 
+        vR0.visitChildren@special(vR1,INSTANCE,1);   [  i iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 paintComponents
+ 
+ method printComponents(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.paint@special(vR1);   [   RR] 
+        vR0.visitChildren@special(vR1,INSTANCE,1);   [  i iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 printComponents
+ 
+ method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if vR1.id>301 goto B44;   
+  +B10:   #1
+        if vR1.id<300 goto B44;   
+  +B20:   #1
+        if vR0.containerListener!=null goto B36;   
+  +B27:   #1
+        if (vR0.eventMask & 2)==0 goto B44;   
+  +B36:   #1
+        vR0.processEvent@this(vR1);   [   RR] 
+        goto +B49;   forward return[   ..]
+  +B44:   #3
+        vR0.dispatchEventImpl@special(vR1);   [   RR] 
+  +B49:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+ 
+ method addContainerListener(Ljava/awt/event/ContainerListener;)V {
+  +START:   #1
+        vR0.containerListener = add@special(vR0.containerListener,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 addContainerListener
+ 
+ method removeContainerListener(Ljava/awt/event/ContainerListener;)V {
+  +START:   #1
+        vR0.containerListener = remove@special(vR0.containerListener,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 removeContainerListener
+ 
+ method processEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if (vR1 instanceof java/awt/event/ContainerEvent)==0 goto B18;   
+  +B7:   #1
+        vR0.processContainerEvent@this((java/awt/event/ContainerEvent)(vR1));   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B18:   #1
+        vR0.processEvent@special(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 processEvent
+ 
+ method processContainerEvent(Ljava/awt/event/ContainerEvent;)V {
+  +START:   #1
+        if vR0.containerListener!=null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        lswitch (vR1.id) { 
+           300:B40
+           301:B53
+           ::B63
+        };   
+  +B40:   #1
+        vR0.containerListener.componentAdded(vR1);   [   RR] 
+        goto +B63;   forward return[   ..]
+  +B53:   #1
+        vR0.containerListener.componentRemoved(vR1);   [   RR] 
+  +B63:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 processContainerEvent
+ 
+ method getComponentAt(II)Ljava/awt/Component; {
+  +START:   #1
+        if vR0.contains@this(vi1,vi2)!=0 goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        vi3 = 0;    
+  +B13:   #1
+        if vi3>=vR0.ncomponents goto B91;   
+  +B21:   #1
+        if vR0.component[vi3].isVisible()!=0 goto B36;   
+  +B33:   #1
+        goto +B85;   [i   ...]
+  +B36:   #1
+        vi4 = (vi1-vR0.component[vi3].x);    
+        vi5 = (vi2-vR0.component[vi3].y);    
+        if vR0.component[vi3].contains(vi4,vi5)==0 goto B85;   
+  +B78:   #1
+        return vR0.component[vi3];   
+  +B85:   #2
+        vi3++;   
+        goto +B13;   [i   ...]
+  +B91:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 4 swaps 0 any 4 found 0 getComponentAt
+ 
+ method locate(II)Ljava/awt/Component; {
+  +START:   #1
+        return vR0.getComponentAt@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 locate
+ 
+ method getComponentAt(Ljava/awt/Point;)Ljava/awt/Component; {
+  +START:   #1
+        return vR0.getComponentAt@this(vR1.x,vR1.y);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 getComponentAt
+ 
+ method findComponentAt(II)Ljava/awt/Component; {
+  +START:   #1
+        if vR0.contains@this(vi1,vi2)!=0 goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        vi3 = 0;    
+  +B13:   #1
+        if vi3>=vR0.ncomponents goto B136;   
+  +B21:   #1
+        if vR0.component[vi3].isVisible()!=0 goto B36;   
+  +B33:   #1
+        goto +B130;   [i   ...]
+  +B36:   #1
+        vi4 = (vi1-vR0.component[vi3].x);    
+        vi5 = (vi2-vR0.component[vi3].y);    
+        if (vR0.component[vi3] instanceof java/awt/Container)==0 goto B107;   
+  +B74:   #1
+        vR6 = (java/awt/Container)(vR0.component[vi3]);    
+        vR7 = vR6.findComponentAt(vi4,vi5);    [iiiR  . iiR] 
+        if vR7==null goto B104;   
+  +B101:   #1
+        return vR7;   
+  +B104:   #1
+        goto +B130;   [iiiRR  . ...]
+  +B107:   #1
+        if vR0.component[vi3].contains(vi4,vi5)==0 goto B130;   
+  +B123:   #1
+        return vR0.component[vi3];   
+  +B130:   #3
+        vi3++;   
+        goto +B13;   [i  . ...]
+  +B136:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 7 swaps 0 any 5 found 0 findComponentAt
+ 
+ method findComponentAt(Ljava/awt/Point;)Ljava/awt/Component; {
+  +START:   #1
+        return vR0.findComponentAt@this(vR1.x,vR1.y);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 findComponentAt
+ 
+ method addNotify()V {
+  +START:   #1
+        vR0.addNotifyContainerChildren@special();   [   R] 
+        vR0.addNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method addNotifyContainerChildren()V {
+  +START:   #1
+        vi1 = vR0.ncomponents;    
+  +B5:   #2
+        vi1--;   
+        if vi1< 0 goto B49;   
+  +B12:   #1
+        vR0.component[vi1].addNotify();   [i   R] 
+        if vR0.component[vi1].isLightweight()==0 goto B5;   
+  +B33:   #1
+        vR0.enableEvents@this(vR0.component[vi1].eventMask);   [i  i iR] 
+        goto +B5;   [i  i ..]
+  +B49:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 1 any 2 found 0 addNotifyContainerChildren
+ 
+ method removeNotify()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.ncomponents goto B25;   
+  +B10:   #1
+        vR0.component[vi1].removeNotify();   [i   R] 
+        vi1++;   
+        goto +B2;   [i   .]
+  +B25:   #1
+        vR0.removeNotify@special();   [i   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 2 found 0 removeNotify
+ 
+ method isAncestorOf(Ljava/awt/Component;)Z {
+  +START:   #2
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if vR1!=vR0 goto B13;   
+  +B11:   #1
+        return 1;   
+  +B13:   #1
+        vR1 = vR1.getParent();    [   R] 
+        goto +START;   [   .]
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 0 isAncestorOf
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.paramString@special();    [ R  R] 
+        if vR0.layoutMgr==null goto B46;   
+  +B12:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR1).append@extra(",").append@extra(vR0.layoutMgr.getClass().getName@extra()).toString@extra();    [R R .ii.. R...] [R R Rii.. RR..] [R R RiiR. RRR.] [R R RiiRR RRRR] 
+  +B46:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 2 any 0 found 0 paramString
+ 
+ method list(Ljava/io/PrintStream;I)V {
+  +START:   #1
+        vR0.list@special(vR1,vi2);   [   iRR] 
+        vi3 = 0;    
+  +B8:   #1
+        if vi3>=vR0.ncomponents goto B35;   
+  +B16:   #1
+        vR0.component[vi3].list(vR1,(vi2+2));   [i  i iRR] 
+        vi3++;   
+        goto +B8;   [i  i ...]
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 2 found 0 list
+ 
+ method list(Ljava/io/PrintWriter;I)V {
+  +START:   #1
+        vR0.list@special(vR1,vi2);   [   iRR] 
+        vi3 = 0;    
+  +B8:   #1
+        if vi3>=vR0.ncomponents goto B35;   
+  +B16:   #1
+        vR0.component[vi3].list(vR1,(vi2+2));   [i  i iRR] 
+        vi3++;   
+        goto +B8;   [i  i ...]
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 2 found 0 list
+ 
+ method findNextFocusComponent(Ljava/awt/Component;)Ljava/awt/Component; {
+  +START:   #1
+        if vR1==null goto B50;   
+  +B4:   #1
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR0.ncomponents goto B33;   
+  +B14:   #1
+        if vR0.component[vi2]!=vR1 goto B27;   
+  +B24:   #1
+        goto +B33;   [i   ]
+  +B27:   #1
+        vi2++;   
+        goto +B6;   [iiiR   ]
+  +B33:   #2
+        vi3 = vi2;    
+        if vi3!=0 goto B44;   
+  +B39:   #1
+        vi3 = vR0.ncomponents;    
+  +B44:   #1
+        vi2++;   
+        goto +B57;   [ii   ]
+  +B50:   #1
+        vi2 = 0;    
+        vi3 = vR0.ncomponents;    
+  +B57:   #1
+        vi4 = vi2;    
+  +B60:   #1
+        if vi4==vi3 goto B177;   
+  +B66:   #1
+        if vi4<vR0.ncomponents goto B109;   
+  +B75:   #1
+        if vR0.parent==null goto B100;   
+  +B82:   #1
+        vR5 = vR0.parent.findNextFocusComponent(vR0);    [iii   RR] 
+        if vR5==null goto B100;   
+  +B97:   #1
+        return vR5;   
+  +B100:   #2
+        vi4 = (vi4-vR0.ncomponents);    
+  +B109:   #1
+        if (vR0.component[vi4] instanceof java/awt/Container)==0 goto B150;   
+  +B122:   #1
+        vR5 = vR0.component[vi4];    
+        vR5 = vR5.findNextFocusComponent(0);    [iiiR   RR] 
+        if vR5==null goto B147;   
+  +B144:   #1
+        return vR5;   
+  +B147:   #1
+        goto +B171;   [iiiR   ..]
+  +B150:   #1
+        if vR0.component[vi4].isFocusTraversable()==0 goto B171;   
+  +B163:   #1
+        return vR0.component[vi4];   
+  +B171:   #2
+        vi4++;   
+        goto +B60;   [iiiR   ..]
+  +B177:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 13 swaps 0 any 13 found 0 findNextFocusComponent
+}
