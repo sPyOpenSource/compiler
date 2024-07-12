@@ -1,0 +1,31 @@
+class com/sun/net/ssl/TrustManagerFactory {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInstance(Ljava/lang/String;)Lcom/sun/net/ssl/TrustManagerFactory; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getInstance
+ 
+ method init(Ljava/security/KeyStore;)V {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 init
+ 
+ method getTrustManagers()[Lcom/sun/net/ssl/TrustManager; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getTrustManagers
+}

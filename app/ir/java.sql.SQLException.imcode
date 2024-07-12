@@ -1,0 +1,76 @@
+class java/sql/SQLException {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0,0,0);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,0);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,0);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.SQLState = vR2;   
+        vR0.vendorCode = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSQLState()Ljava/lang/String; {
+  +START:   #1
+        return vR0.SQLState;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSQLState
+ 
+ method getErrorCode()I {
+  +START:   #1
+        return vR0.vendorCode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getErrorCode
+ 
+ method getNextException()Ljava/sql/SQLException; {
+  +START:   #1
+        return vR0.next;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNextException
+ 
+ method setNextException(Ljava/sql/SQLException;)V {
+  +START:   #1
+        if vR1!=null goto B5;   
+  +B4:   #1
+        return;   
+  +B5:   #1
+        vR2 = vR0;    
+  +B7:   #1
+        if vR2.getNextException()==null goto B22;   
+  +B14:   #1
+        vR2 = vR2.getNextException();    [R   R] 
+        goto +B7;   [R   .]
+  +B22:   #1
+        vR2.next = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 2 found 0 setNextException
+}

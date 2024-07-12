@@ -1,0 +1,17 @@
+class jx/secmgr/BlockIOSecurityPolicy {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new jx/secmgr/Principal_impl("TCB",0);    [ RR  i][ RR . iiRR]
+        vR0.tcb = b1;   
+        vR0.naming = getInitialNaming@special();   
+        vR0.secMgr = (jx/zero/CentralSecurityManager)(vR0.naming.lookup("SecurityManager"));   
+        if vR0.secMgr!=null goto B60;   
+  -B50:   #1
+        throw new java/lang/Error("CentralSecurityManager not found");   
+  +B60:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 5 swaps 1 any 0 found 0 <init>
