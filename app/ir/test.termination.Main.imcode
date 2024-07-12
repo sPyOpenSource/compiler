@@ -1,0 +1,154 @@
+class test/termination/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        naming = getInitialNaming@special();   
+        memMgr = (jx/zero/MemoryManager)(naming.lookup("MemoryManager"));   
+        dm = (jx/zero/DomainManager)(naming.lookup("DomainManager"));   
+        vi1 = memMgr.getTotalFreeMemory();    [ RR ii. R.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii. i.][ RR ii. iR]
+        b0.println(b1.append@extra("Free memory before domain started: ").append@extra(vi1).toString@extra());   [i RR iiii. RR.] 
+        out.println("Starting test domain ...
+");   [i RR iiiii. RR.] 
+        vR2 = createDomain@special("Test1","test_termination.jll","test/termination/ChildDomain",2097152);    [i RR iiiiiRRR iRRR]
+        if vR2!=null goto B106;   
+  -B96:   #1
+        throw new java/lang/Error("Unable to create child domain
+");   
+  +B106:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i...][ RR ........ iR..]
+        b0.println(b1.append@extra("Free memory when domain running: ").append@extra(memMgr.getTotalFreeMemory()).toString@extra());   [iR RR iii..... RR..] 
+        dm.terminate(vR2);   [iR RR iii..... RR..] 
+        vi3 = memMgr.getTotalFreeMemory();    [iR RR iii..... R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii..... i...][ RR iii..... iR..]
+        b0.println(b1.append@extra("Free memory when domain terminated: ").append@extra(vi3).toString@extra());   [iRi RR iiiii... RR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiii... i...][ RR iiiii... iR..]
+        b0.println(b1.append@extra("    Difference: ").append@extra((vi1-vi3)).toString@extra());   [iRi RR iiiiiiii. RR..] 
+        createDomains@special();   [iRi RR iiiiiiii. ....]
+        createDomains2@special();   [iRi RR iiiiiiii. ....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 48 swaps 13 any 1 found 0 main
+ 
+ method createDomains()V {
+  +START:   #1
+        vi0 = memMgr.getTotalFreeMemory();    [ RRR . R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b0.println(b1.append@extra("Free memory before domain started: ").append@extra(vi0).toString@extra());   [i RRR ii. RR.] 
+        vi1 = 20;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ii. i..][ RRR ii. iR.]
+        b0.println(b1.append@extra("Starting ").append@extra(vi1).append@extra(" domains and terminating them...
+").toString@extra());   [ii RRR iiiii.. RR..] 
+        vR2 = new jx/zero/Domain()[vi1];    
+        vi3 = 0;    
+  +B74:   #1
+        if vi3>=vi1 goto B132;   
+  +B79:   #1
+        b2 = new java/lang/StringBuilder();    [ RRR ....... i...][ RRR ....... iR..]
+        vR2[vi3] = createDomain@special(b2.append@extra("TestChild").append@extra(vi3).toString@extra(),"test_termination.jll","test/termination/ChildDomain",102400);   
+        if vR2[vi3]!=null goto B126;   
+  -B116:   #1
+        throw new java/lang/Error("Unable to create child domain
+");   
+  +B126:   #1
+        vi3++;   
+        goto +B74;   [iiRi RRR ....... ....]
+  +B132:   #1
+        vi3 = 0;    
+  +B134:   #1
+        if vi3>=vi1 goto B156;   
+  +B139:   #1
+        dm.terminate(vR2[vi3]);   [iiRi RRR i...... RR..] 
+        vi3++;   
+        goto +B134;   [iiRi RRR i...... ....]
+  +B156:   #1
+        vi3 = memMgr.getTotalFreeMemory();    [iiRi RRR ....... R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ....... i...][ RRR ....... iR..]
+        b0.println(b1.append@extra("Free memory when domain terminated: ").append@extra(vi3).toString@extra());   [iiRi RRR ii..... RR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ii..... i...][ RRR ii..... iR..]
+        b0.println(b1.append@extra("    Difference: ").append@extra((vi0-vi3)).toString@extra());   [iiRi RRR iiiii.. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 46 swaps 12 any 4 found 0 createDomains
+ 
+ method createDomains2()V {
+  +START:   #1
+        vi0 = memMgr.getTotalFreeMemory();    [ RRR . R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b0.println(b1.append@extra("Free memory before domain started: ").append@extra(vi0).toString@extra());   [i RRR ii. RR.] 
+        vi1 = 100;    
+        vi2 = 100;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ii. i..][ RRR ii. iR.]
+        b0.println(b1.append@extra(vi2).append@extra(" times starting ").append@extra(vi1).append@extra(" domains and terminating them
+").toString@extra());   [iii RRR iiiii... RR...] 
+        vR3 = new jx/zero/Domain()[vi1];    
+        vi4 = 0;    
+  +B82:   #1
+        if vi4>=vi2 goto B214;   
+  +B88:   #1
+        vi5 = 0;    
+  +B91:   #1
+        if vi5>=vi1 goto B153;   
+  +B97:   #1
+        b2 = new java/lang/StringBuilder();    [ RRR ........ i....][ RRR ........ iR...]
+        vR3[vi5] = createDomain@special(b2.append@extra("TestChild").append@extra(vi5).toString@extra(),"test_termination.jll","test/termination/ChildDomain",102400);   
+        if vR3[vi5]!=null goto B147;   
+  -B137:   #1
+        throw new java/lang/Error("Unable to create child domain
+");   
+  +B147:   #1
+        vi5++;   
+        goto +B91;   [iiiRii RRR ........ .....]
+  +B153:   #1
+        vi5 = 0;    
+  +B156:   #1
+        if vi5>=1000 goto B173;   
+  +B164:   #1
+        yield@special();   [iiiRii RRR ........ .....]
+        vi5++;   
+        goto +B156;   [iiiRii RRR ........ .....]
+  +B173:   #1
+        vi5 = 0;    
+  +B176:   #1
+        if vi5>=vi1 goto B200;   
+  +B182:   #1
+        dm.terminate(vR3[vi5]);   [iiiRii RRR i....... RR...] 
+        vi5++;   
+        goto +B176;   [iiiRii RRR i....... .....]
+  +B200:   #1
+        out.print(".");   [iiiRii RRR i....... RR...] 
+        vi4++;   
+        goto +B82;   [iiiRii RRR i....... .....]
+  +B214:   #1
+        vi4 = memMgr.getTotalFreeMemory();    [iiiRii RRR ........ R....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i....][ RRR ........ iR...]
+        b0.println(b1.append@extra("Free memory when domain terminated: ").append@extra(vi4).toString@extra());   [iiiRii RRR ii...... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ii...... i....][ RRR ii...... iR...]
+        b0.println(b1.append@extra("    Difference: ").append@extra((vi0-vi4)).toString@extra());   [iiiRii RRR iiiii... RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 53 swaps 13 any 8 found 0 createDomains2
+}

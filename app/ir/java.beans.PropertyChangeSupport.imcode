@@ -1,0 +1,231 @@
+class java/beans/PropertyChangeSupport {
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.propertyListeners.isEmpty()==0 goto B15;   
+  +B11b0:   #1 reference
+        b1 = 0;    
+        goto +B19b0b1;   [ RR  .]
+  +B15b0:   #1 reference
+        b1 = vR0.propertyListeners;    
+  +B19b0b1:   #1 reference reference
+        b0.children = b1;   
+        vR1.defaultWriteObject();   [ RR  R] 
+        vR2 = vR0.listeners.elements@extra();    [ RR  R] 
+  +B34:   #1
+        if vR2.hasMoreElements()==0 goto B68;   
+  +B43:   #1
+        vR3 = (java/beans/PropertyChangeListener)(vR2.nextElement());    
+        if (vR3 instanceof java/io/Serializable)==0 goto B65;   
+  +B60:   #1
+        vR1.writeObject@extra(vR3);   [RR RR . RR] 
+  +B65:   #1
+        goto +B34;   [RR RR . ..]
+  +B68:   #1
+        vR1.writeObject@extra(0);   [RR RR . RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 1 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR1.defaultReadObject();   [ RR  R] 
+        b0 = vR0;    
+        if vR0.children!=null goto B22;   
+  +B12b0:   #1 reference
+        b1 = new java/util/Hashtable();    [ RR  i][ RR  iR]
+        goto +B26b0b1;   [ RR  ..]
+  +B22b0:   #1 reference
+        b1 = vR0.children;    
+  +B26b0b1:   #1 reference reference
+        b0.propertyListeners = b1;   
+  +B29:   #1
+        b0 = (java/beans/PropertyChangeListener)(vR1.readObject());    
+        vR2 = b0;    
+        if b0==null goto B49;   
+  +B41:   #1
+        vR0.addPropertyChangeListener@this(vR2);   [R RR . RR] 
+        goto +B29;   [R RR . ..]
+  +B49:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 6 swaps 0 any 3 found 0 readObject
+ 
+ method <init>(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Hashtable();    [ ?R  i][ ?R  iR]
+        vR0.propertyListeners = b1;   
+        b1 = new java/util/Vector();    [ ?R  i.][ ?R  iR]
+        vR0.listeners = b1;   
+        vR0.propertyChangeSupportSerializedDataVersion = 2;   
+        vR0.source = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method addPropertyChangeListener(Ljava/beans/PropertyChangeListener;)V {
+  +START:   #1
+        vR0.listeners.addElement@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addPropertyChangeListener
+ 
+ method addPropertyChangeListener(Ljava/lang/String;Ljava/beans/PropertyChangeListener;)V {
+  +START:   #1
+        b0 = vR0.propertyListeners;    
+        vR3 = b0;    
+        b0.enter();   
+        vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
+  +B20:   #1
+        vR4.addElement@extra(vR2);   [RR R . RR] 
+  +B26:   #1
+        goto +B57;   [RR R . ..]
+  +H29<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR4 = new java/util/Vector();    [ R . i.][ R . iR]
+        vR4.addElement@extra(vR2);   [RRRR R . RR] 
+        vR0.propertyListeners.put(vR1,vR4);   [RRRR R . RRR] 
+  +B57:   #1
+        vR3.leave();   
+        goto +B69;   forward return[RR R . ...]
+  +H62<caught exception>:   #2 reference
+        vR6 = <caught exception>;    
+        vR3.leave();   
+  -B66:   #1
+        throw vR6;   
+  +B69:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+20 - 26 handler 29 type 83
+7 - 59 handler 62 type 0
+62 - 66 handler 62 type 0
+ }
+// Register: rd 8/8 wr 7 swaps 0 any 1 found 0 addPropertyChangeListener
+ 
+ method removePropertyChangeListener(Ljava/beans/PropertyChangeListener;)V {
+  +START:   #1
+        vR0.listeners.removeElement@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removePropertyChangeListener
+ 
+ method removePropertyChangeListener(Ljava/lang/String;Ljava/beans/PropertyChangeListener;)V {
+  +START:   #1
+        b0 = vR0.propertyListeners;    
+        vR3 = b0;    
+        b0.enter();   
+        vR4 = (java/util/Vector)(vR0.propertyListeners.get(vR1));    
+  +B20:   #1
+        vR4.removeElement@extra(vR2);   [RR R . RR] 
+        if vR4.size@extra()!=0 goto B44;   
+  +B35:   #1
+        vR0.propertyListeners.remove(vR1);   [RR R . RR] 
+  +B44:   #2
+        goto +B49;   [RR R . ..]
+  +H47<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B49:   #1
+        vR3.leave();   
+        goto +B61;   forward return[RR R . ..]
+  +H54<caught exception>:   #2 reference
+        vR6 = <caught exception>;    
+        vR3.leave();   
+  -B58:   #1
+        throw vR6;   
+  +B61:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+20 - 44 handler 47 type 83
+7 - 51 handler 54 type 0
+54 - 58 handler 54 type 0
+ }
+// Register: rd 8/8 wr 6 swaps 0 any 1 found 0 removePropertyChangeListener
+ 
+ method firePropertyChange(Ljava/beans/PropertyChangeEvent;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.listeners.size@extra() goto B36;   
+  +B13:   #1
+        (java/beans/PropertyChangeListener)(vR0.listeners.elementAt(vi2)).propertyChange(vR1);   [i  . RR.] 
+        vi2++;   
+        goto +B2;   [i  . ...]
+  +B36:   #1
+        vR2 = (java/util/Vector)(vR0.propertyListeners.get(vR1.getPropertyName()));    
+        if vR2==null goto B85;   
+  +B55:   #1
+        vi3 = 0;    
+  +B57:   #1
+        if vi3>=vR2.size@extra() goto B85;   
+  +B65:   #1
+        (java/beans/PropertyChangeListener)(vR2.elementAt(vi3)).propertyChange(vR1);   [Ri  .. RR.] 
+        vi3++;   
+        goto +B57;   [Ri  .. ...]
+  +B85:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 11 swaps 1 any 5 found 2 firePropertyChange
+ 
+ method firePropertyChange(Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        b1 = new java/beans/PropertyChangeEvent(vR0.source,vR1,vR2,vR3);    [ ?R  i][ ?R . iRRRRR]
+        vR0.firePropertyChange@this(b1);   [ ?R . RR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 firePropertyChange
+ 
+ method firePropertyChange(Ljava/lang/String;ZZ)V {
+  +START:   #1
+        b1 = new java/beans/PropertyChangeEvent;    
+        b2 = b1;    
+        b3 = vR0.source;    
+        b5 = new java/lang/Boolean(vi2);    [ ?RRR?RR  i][ ?RRR?RR . iiR]
+        b6 = new java/lang/Boolean(vi3);    [ ?RRR?RR . i..][ ?RRR?RR . iiR]
+        b2.<init>@special(b3,vR1,b5,b6);   [ ?RRR?RR . RRRRR] 
+        vR0.firePropertyChange@this(b1);   [ ?RRR?RR . RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 1 found 0 firePropertyChange
+ 
+ method firePropertyChange(Ljava/lang/String;II)V {
+  +START:   #1
+        b1 = new java/beans/PropertyChangeEvent;    
+        b2 = b1;    
+        b3 = vR0.source;    
+        b5 = new java/lang/Integer(vi2);    [ ?RRR?RR  i][ ?RRR?RR . iiR]
+        b6 = new java/lang/Integer(vi3);    [ ?RRR?RR . i..][ ?RRR?RR . iiR]
+        b2.<init>@special(b3,vR1,b5,b6);   [ ?RRR?RR . RRRRR] 
+        vR0.firePropertyChange@this(b1);   [ ?RRR?RR . RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 1 found 0 firePropertyChange
+ 
+ method hasListeners(Ljava/lang/String;)Z {
+  +START:   #1
+        if vR0.listeners.size@extra()> 0 goto B21;   
+  +B10:   #1
+        if vR0.propertyListeners.get(vR1)==null goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i  ..]
+  +B25:   #1
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 hasListeners
+}

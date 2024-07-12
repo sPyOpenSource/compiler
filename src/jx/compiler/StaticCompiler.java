@@ -152,11 +152,7 @@ public class StaticCompiler implements ClassFinder {
                     JarEntry entry = entries.nextElement();
                     String name = entry.getName();
                     if (name.endsWith(".class")) {
-                        if (name.endsWith("/SubList.class")) continue;
-                        if (name.endsWith("AbstractSequentialList.class")) continue;
-                        if (name.endsWith("SubList$1.class")) continue;
-                        //if (name.endsWith("BlockIOFile.class")) continue;
-                        //if (name.endsWith("StringReader.class")) continue;
+                        if (name.startsWith("test/memobj")) continue;
                         if (name.startsWith("jx/classfile")) continue;
                         if (name.startsWith("jx/classstore")) continue;
                         if (name.startsWith("jx/verifier")) continue;
@@ -165,47 +161,24 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("AI/Models/BytecodeParser")) continue;
                         if (name.startsWith("AI/Models/ByteCode")) continue;
                         if (name.startsWith("jx/JFrameWM")) continue;
-                        /*if (name.startsWith("gnu/java/io/decode/Decoder")) continue;
-                        if (name.startsWith("gnu/java/io/encode/Encoder")) continue;
-                        if (name.startsWith("gnu/java/io/EncodingManager")) continue;*/
-                        for(String s:sds){
-                            if (name.startsWith(s + "/")){
-                                System.out.println(name); 
-                                try (InputStream is = jar.getInputStream(entry)) {
-                                    ClassData data = new ClassData(new DataInputStream(is));
-                                    //byte[] buffer = getBytesFromInputStream(is);
-                                    //Memory m = memMgr.alloc(buffer.length);
-                                    //m.copyFromByteArray(buffer, 0, 0, buffer.length);
-                                    if(i < 0){
-                                        domdata.add(data);
-                                        meta = x;
-                                    } else {
-                                        libdata.add(data);
-                                    }
-                                    continue main;
-                                }
+                        if (name.startsWith("java/nio")) continue;
+                        if (name.startsWith("java/math")) continue;
+                        if (name.startsWith("java/awt")) continue;
+                        if (name.startsWith("gnu/java/awt")) continue;
+                        if (name.startsWith("java/applet")) continue;
+                        if (name.startsWith("org/jnode/util")) continue;
+                        if (name.startsWith("test/portal/perf")) continue;
+                        System.out.println(name); 
+                        try (InputStream is = jar.getInputStream(entry)) {
+                            ClassData data = new ClassData(new DataInputStream(is));
+                            if(i < 0){
+                                domdata.add(data);
+                                meta = x;
+                            } else {
+                                libdata.add(data);
                             }
                         }
                     }
-                    /*
-                    if (entry.isDirectory())
-                        continue;
-                    //if (entry.getName().indexOf(".class")>0) {		    
-
-                    if (i == -1 && entry.getName().equals("META")) {
-                        ReadOnlyMemory mem = entry.getData();
-                        byte[] barr = new byte[mem.size()];
-                        mem.copyToByteArray(barr, 0, 0, mem.size());
-                        meta = new MetaInfo("", barr);
-                        continue;
-                    }
-
-                    if (!entry.getName().equals("libs.dep") &&
-                        !entry.getName().equals("META")) {
-                        //Debug.out.println("classfile "+entry.getName());
-                        if (i == -1) domdata.add(entry.getData());
-                        else libdata.add(entry.getData());
-                    }*/
                 }
             } catch (NullPointerException e){
                 Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, e);

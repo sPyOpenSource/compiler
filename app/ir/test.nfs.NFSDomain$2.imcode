@@ -1,0 +1,21 @@
+class test/nfs/NFSDomain$2 {
+ 
+ method <init>(Ltest/nfs/NFSDomain;Ljava/lang/String;Ljx/rpc/RPC;Ljx/rpcsvc/nfs2/NFSProc_Impl;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$rpc = vR3;   
+        vR0.val$nfsImpl = vR4;   
+        vR0.<init>@special(vR2);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        b0 = new test/nfs/NFSProc_Skel(vR0.val$rpc,2049,vR0.val$nfsImpl);    [ R  i][ R . iRiRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 run
+}

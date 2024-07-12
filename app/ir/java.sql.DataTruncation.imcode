@@ -1,0 +1,50 @@
+class java/sql/DataTruncation {
+ 
+ method <init>(IZZII)V {
+  +START:   #1
+        vR0.<init>@special("Data truncation","01004");   [  iR RRR] 
+        vR0.index = vi1;   
+        vR0.parameter = vi2;   
+        vR0.read = vi3;   
+        vR0.dataSize = vi4;   
+        vR0.transferSize = vi5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method getIndex()I {
+  +START:   #1
+        return vR0.index;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndex
+ 
+ method getParameter()Z {
+  +START:   #1
+        return vR0.parameter;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParameter
+ 
+ method getRead()Z {
+  +START:   #1
+        return vR0.read;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRead
+ 
+ method getDataSize()I {
+  +START:   #1
+        return vR0.dataSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataSize
+ 
+ method getTransferSize()I {
+  +START:   #1
+        return vR0.transferSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTransferSize
+}
