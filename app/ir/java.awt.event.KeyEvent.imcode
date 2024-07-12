@@ -1,0 +1,114 @@
+class java/awt/event/KeyEvent {
+ 
+ method getKeyText(I)Ljava/lang/String; {
+  +START:   #1
+        return "Unknown";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getKeyText
+ 
+ method getModifiersText(I)Ljava/lang/String; {
+  +START:   #1
+        return "Unknown";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getModifiersText
+ 
+ method <init>(Ljava/awt/Component;IIIC)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3);   [   iiRR] 
+        vR0.keyCode = vi4;   
+        vR0.keyChar = vi5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/Component;III)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3,vi4,0);   [   iiiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getKeyCode()I {
+  +START:   #1
+        return vR0.keyCode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getKeyCode
+ 
+ method setKeyCode(I)V {
+  +START:   #1
+        vR0.keyCode = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setKeyCode
+ 
+ method getKeyChar()C {
+  +START:   #1
+        return vR0.keyChar;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getKeyChar
+ 
+ method setKeyChar(C)V {
+  +START:   #1
+        vR0.keyChar = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setKeyChar
+ 
+ method setModifiers(I)V {
+  +START:   #1
+        vR0.modifiers = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setModifiers
+ 
+ method isActionKey()Z {
+  +START:   #1
+        lswitch (vR0.keyCode) { 
+           19:B184
+           33:B184
+           34:B184
+           35:B184
+           36:B184
+           112:B184
+           113:B184
+           114:B184
+           115:B184
+           116:B184
+           117:B184
+           118:B184
+           119:B184
+           120:B184
+           121:B184
+           122:B184
+           123:B184
+           144:B184
+           145:B184
+           154:B184
+           155:B184
+           ::B186
+        };   
+  +B184:   #21
+        return 1;   
+  +B186:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isActionKey
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra(" keyCode=").append@extra(vR0.getKeyCode@this()).append@extra(" modifiers=").append@extra(vR0.getModifiers@this()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 12 swaps 5 any 0 found 0 paramString
+}

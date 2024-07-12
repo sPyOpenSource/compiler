@@ -1,0 +1,100 @@
+class java/awt/Label {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("",0);   [  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.setAlignment@this(vi2);   [   iR] 
+        vR0.setText@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAlignment()I {
+  +START:   #1
+        return vR0.alignment;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlignment
+ 
+ method setAlignment(I)V {
+  +START:   #1
+        if vi1==1 goto B41;   
+  +B5:   #1
+        if vi1==0 goto B41;   
+  +B9:   #1
+        if vi1==2 goto B41;   
+  -B14:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("invalid alignment: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B41:   #3
+        vR0.alignment = vi1;   
+        if vR0.peer==null goto B68;   
+  +B53:   #1
+        vR2 = (java/awt/peer/LabelPeer)(vR0.peer);    
+        vR2.setAlignment(vi1);   [R RRR ... iR.] 
+  +B68:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 2 any 4 found 0 setAlignment
+ 
+ method getText()Ljava/lang/String; {
+  +START:   #1
+        return vR0.text;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getText
+ 
+ method setText(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.text = vR1;   
+        if vR0.peer==null goto B27;   
+  +B12:   #1
+        vR2 = (java/awt/peer/LabelPeer)(vR0.peer);    
+        vR2.setText(vR1);   [R  . RR] 
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 setText
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.peer!=null goto B19;   
+  +B7:   #1
+        vR0.peer = vR0.getToolkit@this().createLabel(vR0);   
+  +B19:   #1
+        vR0.addNotify@special();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 addNotify
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("text=").append@extra(vR0.getText@this()).append@extra(",alignment=").append@extra(vR0.getAlignment@this()).append@extra(",").append@extra(vR0.paramString@special()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 6 any 0 found 0 paramString
+}

@@ -1,0 +1,282 @@
+class java/awt/Window {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.warningString = 0;   
+        vR0.state = 0;   
+        vR0.windowSerializedDataVersion = 0;   
+        vR0.setVisible@this(0);   [ ?R  iR] 
+        b1 = new java/awt/BorderLayout();    [ ?R  i.][ ?R  iR]
+        vR0.setLayout@this(b1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/Frame;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/Window;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vR1!=null goto B18;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException("owner must not be null");   
+  +B18:   #1
+        vR0.parent = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 <init>
+ 
+ method finalize()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 finalize
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.peer!=null goto B19;   
+  +B7:   #1
+        vR0.peer = vR0.getToolkit@this().createWindow(vR0);   
+  +B19:   #1
+        vR0.addNotify@special();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 addNotify
+ 
+ method pack()V {
+  +START:   #1
+        if vR0.parent==null goto B24;   
+  +B7:   #1
+        if vR0.parent.isDisplayable()!=0 goto B24;   
+  +B17:   #1
+        vR0.parent.addNotify();   [   R] 
+  +B24:   #2
+        if vR0.peer!=null goto B35;   
+  +B31:   #1
+        vR0.addNotify@this();   [   R] 
+  +B35:   #1
+        vR0.setSize@this(vR0.getPreferredSize@this());   [  i RR] 
+        vR0.validate@this();   [  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 1 any 0 found 0 pack
+ 
+ method show()V {
+  +START:   #1
+        if vR0.peer!=null goto B11;   
+  +B7:   #1
+        vR0.addNotify@this();   [   R] 
+  +B11:   #1
+        vR0.show@special();   [   R] 
+        vR0.toFront@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 show
+ 
+ method hide()V {
+  +START:   #1
+        vR0.hide@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hide
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.hide@this();   [   R] 
+        vR1 = vR0.getOwnedWindows@this();    [   R] 
+        vR2 = vR1;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B17:   #1
+        if vi4>=vi3 goto B40;   
+  +B23:   #1
+        vR5 = vR2[vi4];    
+        vR5.dispose();   [RRiiR   R] 
+        vi4++;   
+        goto +B17;   [RRiiR   .]
+  +B40:   #1
+        vR0.removeNotify@this();   [RRiiR   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 6 swaps 0 any 3 found 0 dispose
+ 
+ method toBack()V {
+  +START:   #1
+        if vR0.peer==null goto B21;   
+  +B7:   #1
+        vR1 = (java/awt/peer/WindowPeer)(vR0.peer);    
+        vR1.toBack();   [R  . R.] 
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 toBack
+ 
+ method toFront()V {
+  +START:   #1
+        if vR0.peer==null goto B21;   
+  +B7:   #1
+        vR1 = (java/awt/peer/WindowPeer)(vR0.peer);    
+        vR1.toFront();   [R  . R.] 
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 toFront
+ 
+ method getToolkit()Ljava/awt/Toolkit; {
+  +START:   #1
+        return getDefaultToolkit@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getToolkit
+ 
+ method getWarningString()Ljava/lang/String; {
+  +START:   #1
+        vi1 = 1;    
+        if vi1!=0 goto B26;   
+  +B6:   #1
+        if vR0.warningString==null goto B18;   
+  +B13:   #1
+        return vR0.warningString;   
+  +B18:   #1
+        vR2 = getProperty@special("awt.appletWarning");    [i  R R]
+        return vR2;   
+  +B26:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 getWarningString
+ 
+ method setCursor(Ljava/awt/Cursor;)V {
+  +START:   #1
+        vR0.setCursor@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCursor
+ 
+ method getOwner()Ljava/awt/Window; {
+  +START:   #1
+        return (java/awt/Window)(vR0.parent);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getOwner
+ 
+ method getOwnedWindows()[Ljava/awt/Window; {
+  +START:   #1
+        return new java/awt/Window()[0];   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getOwnedWindows
+ 
+ method addWindowListener(Ljava/awt/event/WindowListener;)V {
+  +START:   #1
+        vR0.windowListener = add@special(vR0.windowListener,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 addWindowListener
+ 
+ method removeWindowListener(Ljava/awt/event/WindowListener;)V {
+  +START:   #1
+        vR0.windowListener = remove@special(vR0.windowListener,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 removeWindowListener
+ 
+ method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if vR1.id>206 goto B45;   
+  +B10:   #1
+        if vR1.id<200 goto B45;   
+  +B20:   #1
+        if vR0.windowListener!=null goto B37;   
+  +B27:   #1
+        if (vR0.eventMask & 64)==0 goto B45;   
+  +B37:   #1
+        vR0.processEvent@this(vR1);   [   RR] 
+        goto +B50;   forward return[   ..]
+  +B45:   #3
+        vR0.dispatchEventImpl@special(vR1);   [   RR] 
+  +B50:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+ 
+ method processEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if (vR1 instanceof java/awt/event/WindowEvent)==0 goto B18;   
+  +B7:   #1
+        vR0.processWindowEvent@this((java/awt/event/WindowEvent)(vR1));   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B18:   #1
+        vR0.processEvent@special(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 processEvent
+ 
+ method processWindowEvent(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        if vR0.windowListener==null goto B140;   
+  +B7:   #1
+        tswitch (vR1.getID()) B130 B78 B65 B117 B104 B52 B91 : B140;   
+  +B52:   #1
+        vR0.windowListener.windowActivated(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B65:   #1
+        vR0.windowListener.windowClosed(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B78:   #1
+        vR0.windowListener.windowClosing(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B91:   #1
+        vR0.windowListener.windowDeactivated(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B104:   #1
+        vR0.windowListener.windowDeiconified(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B117:   #1
+        vR0.windowListener.windowIconified(vR1);   [   RR] 
+        goto +B140;   forward return[   ..]
+  +B130:   #1
+        vR0.windowListener.windowOpened(vR1);   [   RR] 
+  +B140:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 processWindowEvent
+ 
+ method getFocusOwner()Ljava/awt/Component; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFocusOwner
+ 
+ method isShowing()Z {
+  +START:   #1
+        return vR0.isShowing@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isShowing
+}

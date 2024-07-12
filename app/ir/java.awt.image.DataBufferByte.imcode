@@ -1,0 +1,110 @@
+class java/awt/image/DataBufferByte {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special(0,vi1);   [   iiR] 
+        vR0.data = new byte[vi1];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special(0,vi1,vi2);   [   iiiR] 
+        vR0.bankData = new [[B[vi1][vi2];   
+        vR0.data = vR0.bankData[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([BI)V {
+  +START:   #1
+        vR0.<init>@special(0,vi2);   [   iiR] 
+        vR0.data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([BII)V {
+  +START:   #1
+        vR0.<init>@special(0,vi2,1,vi3);   [   iiiiR] 
+        vR0.data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([[BI)V {
+  +START:   #1
+        vR0.<init>@special(0,vi2,vR1.length);   [  i iiiR] 
+        vR0.bankData = vR1;   
+        vR0.data = vR0.bankData[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>([[BI[I)V {
+  +START:   #1
+        vR0.<init>@special(0,vi2,vR1.length,vR3);   [  i RiiiR] 
+        vR0.bankData = vR1;   
+        vR0.data = vR0.bankData[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getData()[B {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getData
+ 
+ method getData(I)[B {
+  +START:   #1
+        return vR0.bankData[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getData
+ 
+ method getBankData()[[B {
+  +START:   #1
+        return vR0.bankData;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBankData
+ 
+ method getElem(I)I {
+  +START:   #1
+        return (vR0.data[(vi1+vR0.offset)] & 255);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getElem
+ 
+ method getElem(II)I {
+  +START:   #1
+        return (vR0.bankData[vi1][(vi2+vR0.offsets[vi1])] & 255);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 getElem
+ 
+ method setElem(II)V {
+  +START:   #1
+        vR0.data[(vi1+vR0.offset)] = (byte)vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setElem
+ 
+ method setElem(III)V {
+  +START:   #1
+        vR0.bankData[vi1][(vi2+vR0.offsets[vi1])] = (byte)vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 setElem
+}

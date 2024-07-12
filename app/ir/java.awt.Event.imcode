@@ -1,0 +1,103 @@
+class java/awt/Event {
+ 
+ method <init>(Ljava/lang/Object;ILjava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.id = vi2;   
+        vR0.target = vR1;   
+        vR0.arg = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Object;IIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.target = vR1;   
+        vR0.id = vi2;   
+        vR0.x = vi3;   
+        vR0.y = vi4;   
+        vR0.key = vi5;   
+        vR0.modifiers = vi6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Object;IIIIILjava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3,vi4,vi5,vi6);   [   iiiiiRR] 
+        vR0.arg = vR7;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method controlDown()Z {
+  +START:   #1
+        if (vR0.modifiers & 2)!=0 goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 1;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 controlDown
+ 
+ method metaDown()Z {
+  +START:   #1
+        if (vR0.modifiers & 4)!=0 goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 1;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 metaDown
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("id=").append@extra(vR0.id).append@extra(",x=").append@extra(vR0.x).append@extra(",y=").append@extra(vR0.y).append@extra("target=").append@extra(vR0.target).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 17 swaps 11 any 0 found 0 paramString
+ 
+ method shiftDown()Z {
+  +START:   #1
+        if (vR0.modifiers & 1)!=0 goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 1;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 shiftDown
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[").append@extra(vR0.paramString@this()).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString
+ 
+ method translate(II)V {
+  +START:   #1
+        vR0.x = (vR0.x+vi1);   
+        vR0.y = (vR0.y+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 translate
+}

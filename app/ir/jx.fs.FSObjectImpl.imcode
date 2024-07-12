@@ -33,9 +33,9 @@ class jx/fs/FSObjectImpl {
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sync
  
- method getFileSystem()Ljx/fs/FileSystemInterface; {
+ method getFileSystem()Ljx/fs/FileSystem; {
   +START:   #1
-        return vR0.fs_impl;   
+        return vR0.fs;   
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileSystem

@@ -1,0 +1,107 @@
+class java/awt/Dimension {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/Dimension;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.width = vR1.width;   
+        vR0.height = vR1.height;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.width = vi1;   
+        vR0.height = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/awt/Dimension)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/awt/Dimension)(vR1);    
+        if vR0.height!=vR2.height goto B40;   
+  +B25:   #1
+        if vR0.width!=vR2.width goto B40;   
+  +B36:   #1
+        b0 = 1;    
+        goto +B41b0;   forward return[R i  ..]
+  +B40:   #2
+        b0 = 0;    
+  +B41b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 1 found 1 equals
+ 
+ method getSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getSize
+ 
+ method setSize(Ljava/awt/Dimension;)V {
+  +START:   #1
+        vR0.width = vR1.width;   
+        vR0.height = vR1.height;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setSize
+ 
+ method setSize(II)V {
+  +START:   #1
+        vR0.width = vi1;   
+        vR0.height = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setSize
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Dimension[w:").append@extra(vR0.width).append@extra(",h:").append@extra(vR0.height).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString
+ 
+ method getWidth()D {
+  +START:   #1
+        return (double)vR0.width;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()D {
+  +START:   #1
+        return (double)vR0.height;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method setSize(DD)V {
+  +START:   #1
+        vR0.width = (int)vd1;   
+        vR0.height = (int)vd3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setSize
+}
