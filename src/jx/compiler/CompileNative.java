@@ -30,8 +30,8 @@ public class CompileNative {
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
         
-	jllname = libdir + "jdk.jll";
-        jlnname = libdir + "jdk.jln";
+	jllname = libdir + "jdk0.jll";
+        jlnname = libdir + "jdk0.jln";
         String[] neededLibs = new String[]{
             "zero"
         };
@@ -52,8 +52,8 @@ public class CompileNative {
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	//compile("ai", opts);
         
-	jllname = libdir + "init.jll";
-        jlnname = libdir + "init.jln";
+	jllname = libdir + "init2.jll";
+        jlnname = libdir + "init2.jln";
         neededLibs = new String[]{
             "zero", "jdk"
         };
