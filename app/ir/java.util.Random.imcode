@@ -116,14 +116,14 @@ class java/util/Random {
  
  method nextFloat()F {
   +START:   #1
-        return ((float)vR0.next@this(24)/jx.classfile.datatypes.BCFloat@7ef27d7f);   
+        return ((float)vR0.next@this(24)/jx.classfile.datatypes.BCFloat@2b045231);   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextFloat
  
  method nextDouble()D {
   +START:   #1
-        return ((double)(((long)vR0.next@this(26) << 27)+(long)vR0.next@this(27))/jx.classfile.datatypes.BCDouble@490caf5f);   
+        return ((double)(((long)vR0.next@this(26) << 27)+(long)vR0.next@this(27))/jx.classfile.datatypes.BCDouble@e630ed);   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextDouble
@@ -135,12 +135,12 @@ class java/util/Random {
         vR0.haveNextNextGaussian = 0;   
         return vR0.nextNextGaussian;   
   +B17:   #2
-        vd1 = ((jx.classfile.datatypes.BCDouble@6337c201*vR0.nextDouble@this())-1);    
-        vd3 = ((jx.classfile.datatypes.BCDouble@6337c201*vR0.nextDouble@this())-1);    
+        vd1 = ((jx.classfile.datatypes.BCDouble@1ec6aae5*vR0.nextDouble@this())-1);    
+        vd3 = ((jx.classfile.datatypes.BCDouble@1ec6aae5*vR0.nextDouble@this())-1);    
         vd5 = ((vd1*vd1)+(vd3*vd3));    
         if compare(vd5,1)>=0 goto B17;   
   +B55:   #1
-        vd7 = sqrt@special(((jx.classfile.datatypes.BCDouble@5c669da8*log@special(vd5))/vd5));    
+        vd7 = sqrt@special(((jx.classfile.datatypes.BCDouble@24cba898*log@special(vd5))/vd5));    
         vR0.nextNextGaussian = (vd3*vd7);   
         vR0.haveNextNextGaussian = 1;   
         return (vd1*vd7);   
