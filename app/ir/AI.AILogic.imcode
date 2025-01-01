@@ -3,8 +3,8 @@ class AI/AILogic {
  method <init>(LAI/AIMemory;)V {
   +START:   #1
         vR0.<init>@special(vR1);   [   RR] 
-        vR0.threshold = jx.classfile.datatypes.BCDouble@55e8ec2f;   
-        vR0.filter = jx.classfile.datatypes.BCDouble@4f2613d1;   
+        vR0.threshold = jx.classfile.datatypes.BCDouble@2756c0a7;   
+        vR0.filter = jx.classfile.datatypes.BCDouble@350ec41e;   
         return;   
   +END:   #1
  }
