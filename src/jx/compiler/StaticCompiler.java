@@ -152,6 +152,8 @@ public class StaticCompiler implements ClassFinder {
                     JarEntry entry = entries.nextElement();
                     String name = entry.getName();
                     if (name.endsWith(".class")) {
+                        String path = name.split("\\.")[0] + ".java";
+                        sjc.frontend.sjava.J2JSON.J2J(path);
                         if (name.startsWith("test/memobj")) continue;
                         if (name.startsWith("jx/classfile")) continue;
                         if (name.startsWith("jx/classstore")) continue;
