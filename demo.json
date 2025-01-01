@@ -1,0 +1,17 @@
+{
+    "modifier": "public",
+    "name": " demo ",
+    "language": "java",
+    "type": "class",
+    "object": [{
+        "modifier": "public",
+        "name": "main",
+        "arguments": {
+            "name": "args",
+            "type": "String[]"
+        },
+        "state": "static",
+        "return": "void",
+        "object": ["System.out.println()"]
+    }]
+}

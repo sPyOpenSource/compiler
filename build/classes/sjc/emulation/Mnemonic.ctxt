@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=Mnemonic
+comment0.text=\n\ Class\ to\ represent\ a\ single\ instruction\ for\ disassembling.\ For\ being\ able\n\ to\ group\ several\ mnemonics\ to\ a\ method,\ this\ class\ also\ incorporates\ a\n\ linked\ list\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060613\ initial\ version\n\n
+comment1.params=insP\ m\ p\ isJD
+comment1.target=Mnemonic(int,\ java.lang.String,\ java.lang.String,\ boolean)
+comment1.text=\n\ Standard\ constructor\ initializing\ the\ values\n\ @param\ insP\ the\ instruction\ pointer\n\ @param\ m\ the\ mnemonic\ of\ this\ instruction\n\ @param\ isJD\ true\ if\ this\ instruction\ is\ destination\ of\ a\ jump\n
+comment2.params=mn
+comment2.target=void\ add(Mnemonic)
+comment2.text=\n\ Method\ to\ add\ a\ mnemonic\ to\ the\ end\ of\ this\ list\n\ @param\ mn\ the\ mnemonic\ to\ add\n
+numComments=3

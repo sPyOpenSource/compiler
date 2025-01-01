@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=OutputFactory
+comment0.text=\n\ OutputFactory\:\ creation\ of\ output\ dependent\ outputformatter\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 061219\ removed\ HexOut\ (now\ integrated\ into\ BootOut)\n\ \ version\ 061001\ added\ HexOut\n\ \ version\ 060620\ removed\ syminfo\ functionality\n\ \ version\ 060607\ initial\ version\n
+comment1.params=v
+comment1.target=void\ printKnownOutputFormats(sjc.osio.TextPrinter)
+comment2.params=name
+comment2.target=OutputFormat\ getOutputFormat(java.lang.String)
+numComments=3

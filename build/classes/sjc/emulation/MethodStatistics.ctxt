@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=MethodStatistics
+comment0.text=\n\ Class\ holding\ statistics\ about\ methods\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060621\ initial\ version\n\n
+comment1.params=mp\ fi\ li
+comment1.target=MethodStatistics(int,\ int,\ int)
+comment1.text=\n\ Standard\ construction\ initializing\ \n\ @param\ fi\ the\ first\ IP\ of\ this\ method\n\ @param\ li\ the\ last\ IP\ of\ this\ method\n
+comment2.params=i
+comment2.target=MethodStatistics\ getMethodStatistics(int)
+comment2.text=\n\ Method\ to\ get\ the\ statistics\ of\ method\ containing\ an\ instruction\ at\ the\n\ given\ position\n\ @param\ i\ the\ startIP\ of\ the\ instruction\ contained\ in\ the\ desired\ method\n\ @return\ the\ corresponding\ method\ statistics\ or\ null\n
+comment3.params=m
+comment3.target=void\ addMethodStatistic(MethodStatistics)
+comment3.text=\n\ Method\ to\ add\ a\ method\ statistic\ to\ the\ this\ binary\ tree\n\ @param\ m\ the\ method\ statistic\ to\ add\n
+comment4.params=
+comment4.target=void\ reset()
+comment4.text=\n\ Method\ to\ reset\ the\ statistics\n\n
+comment5.params=i\ curr
+comment5.target=MethodStatistics\ getMethodStatistics(int,\ MethodStatistics)
+comment5.text=\n\ Recursive\ method\ determining\ the\ method\ statistic\ containing\ the\ \n\ instruction\ at\ the\ given\ ip\n\ @param\ i\ the\ ip\ of\ the\ instruction\ contained\ by\ the\ desired\ method\n\ @param\ curr\ the\ currently\ examined\ method\n\ @return\ the\ corresponding\ method\ or\ null\n
+comment6.params=m\ curr
+comment6.target=void\ addMethodStatistic(MethodStatistics,\ MethodStatistics)
+comment6.text=\n\ Recursive\ method\ to\ insert\ a\ method\ statistic\ into\ this\ binary\ tree\n\ @param\ m\ the\ method\ statistic\ to\ insert\n\ @param\ curr\ the\ currently\ examined\ method\n
+numComments=7

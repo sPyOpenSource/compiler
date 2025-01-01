@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=LZW
+comment0.text=\n\ LZW\:\ simple\ and\ fast\ LZW-compression\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060817\ initial\ version\n
+comment1.params=source\ offset\ sourceSize\ hashBuffer\ paramBuf
+comment1.target=boolean\ getMatch(byte[],\ int,\ int,\ int[],\ int[])
+comment2.params=src\ sourceSize\ dst\ maxDestSize
+comment2.target=int\ compress(byte[],\ int,\ byte[],\ int)
+numComments=3

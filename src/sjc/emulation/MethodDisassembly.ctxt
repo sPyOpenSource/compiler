@@ -1,0 +1,25 @@
+#BlueJ class context
+comment0.target=MethodDisassembly
+comment0.text=\n\ Method\ representing\ a\ complete\ method\ disassembly.\ Organized\ as\ a\ binary\n\ tree\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060613\ initial\ version\n\n
+comment1.params=first\ mn
+comment1.target=MethodDisassembly(Mnemonic,\ java.lang.String)
+comment1.text=\n\ Standard\ constructor\ initializing\ the\ mnemonic\ of\ this\ element\n\ @param\ first\ the\ first\ mnemonic\ of\ the\ method\ disassembly\n\ @param\ mn\ the\ name\ of\ the\ corresponding\ method\n
+comment2.params=mn
+comment2.target=void\ addInstruction(Mnemonic)
+comment2.text=\n\ Method\ to\ add\ a\ single\ instruction\ to\ this\ methoddisassembly\n\ @param\ mn\ the\ mnemonic\ to\ add\n
+comment3.params=newMethod
+comment3.target=void\ add(MethodDisassembly)
+comment3.text=\n\ Method\ to\ add\ a\ MethodDisassemby\ to\ this\ binary\ tree\ \n\ @param\ newMethod\ the\ new\ MethodDisassemby\ to\ add\n
+comment4.params=iP
+comment4.target=MethodDisassembly\ getMethod(int)
+comment4.text=\n\ Method\ to\ obtain\ a\ method\ disassembly\ to\ a\ given\ instruction\ pointer\n\ @param\ iP\ the\ instruction\ pointer\ to\ look\ for\n\ @return\ the\ corresponding\ method\ disassembly\ or\ null\ if\ there\ is\ no\ such\n\ entry\ \n
+comment5.params=curr\ iP
+comment5.target=MethodDisassembly\ getMethod(MethodDisassembly,\ int)
+comment5.text=\n\ Recursive\ method\ to\ obtain\ a\ MethodDisassembly\ with\ the\ given\ instruction\n\ pointer\ \n\ @param\ curr\ the\ entry\ in\ the\ binary\ tree\ to\ examine\n\ @param\ iP\ the\ instruction\ pointer\ to\ look\ for\n\ @return\ the\ corresponding\ MethodDisassemby\ or\ null\ if\ there\ is\ no\ such\n\ entry\n
+comment6.params=current\ newMethod
+comment6.target=void\ add(MethodDisassembly,\ MethodDisassembly)
+comment6.text=\n\ Internal\ method\ to\ add\ a\ given\ entry\ to\ the\ binary\ tree.\ The\ order\ of\n\ insertion\ is\:\n\ \ \ (firstIP\ of\ current\ MethodDisassembly)\ >\ (lastIP\ of\ MethodDisassembly\ to\n\ \ \ \ \ \ insert)\ \=>\ insert\ in\ left\ branch\n\ \ \ (lastIP\ of\ current\ MethodDisassembly)\ <\ (firstIP\ of\ MethodDisassembly\ to\n\ \ \ \ \ \ insert)\ \=>\ insert\ in\ right\ branch\n\ If\ these\ bounds\ are\ violated\ (overlaping\ methods)\ nothing\ is\ done\n\ @param\ current\ the\ current\ examined\ element\ of\ the\ binary\ tree\n\ @param\ newMethod\ the\ new\ method\ to\ insert\n
+comment7.params=
+comment7.target=void\ print()
+comment7.text=\n\ Method\ to\ print\ the\ whole\ method\ -\ for\ debug\ purposes\ only\n
+numComments=8

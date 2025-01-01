@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=Condition
+comment0.text=\n\ Class\ representing\ a\ condition\ for\ a\ break\ condition\n\ \n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060608\ initial\ version\n\ \n
+comment1.params=emul
+comment1.target=boolean\ hit(Emulator)
+comment1.text=\n\ Method\ determining\ whether\ the\ current\ condition\ is\ a\ hit\n\ @param\ emul\ the\ emulator\ in\ which\ the\ condition\ is\ registered\n\ @return\ true\ if\ this\ is\ a\ hit,\ false\ otherwise\n
+comment2.params=address\ size\ type\ read
+comment2.target=boolean\ hit(int,\ int,\ boolean,\ boolean)
+comment2.text=\n\ Method\ called\ by\ the\ emulator,\ if\ a\ memory\ access\ occured\n\ @param\ address\ the\ address\ accessed\n\ @param\ size\ the\ size\ of\ data\ read\ from\ or\ written\ to\ the\ memory\n\ @param\ type\ the\ type\ of\ the\ memory\n\ @param\ read\ true\ for\ a\ read,\ false\ for\ a\ write\n\ @return\ true,\ if\ this\ is\ a\ hit,\ false\ otherwise\n
+comment3.params=emul
+comment3.target=void\ addToEmulator(Emulator)
+comment3.text=\n\ As\ there\ is\ an\ order\ of\ conditions\ different\ types\ of\ conditions\ are\n\ added\ to\ different\ lists\ in\ an\ emulator\ \n\ @param\ emul\ Emulator\ to\ which\ this\ condition\ is\ added\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\n\ @see\ Object\#toString()\n
+numComments=5

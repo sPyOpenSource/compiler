@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=TextScreen
+comment0.text=\n\ TextScreen\:\ interface\ for\ text-output\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 070114\ removed\ never\ used\ redraw()\n\ \ version\ 060609\ initial\ version\n
+comment1.params=x\ y\ c
+comment1.target=void\ setChar(int,\ int,\ char)
+comment2.params=x\ y\ col
+comment2.target=void\ setColor(int,\ int,\ byte)
+comment3.params=x\ y
+comment3.target=void\ redraw(int,\ int)
+numComments=4

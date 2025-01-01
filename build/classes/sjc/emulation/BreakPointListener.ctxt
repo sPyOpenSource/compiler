@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=BreakPointListener
+comment0.text=\n\ Listener\ being\ informed,\ if\ a\ breakpoint\ is\ reached\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060619\ intial\ version\n\n
+comment1.params=c
+comment1.target=void\ breakPointOccurred(Condition)
+comment1.text=\n\ Method\ called,\ if\ a\ breakpoint\ is\ reached\n\ @param\ c\ the\ condition\ that\ caused\ the\ break\n\n
+comment2.params=
+comment2.target=void\ proceedAfterStep()
+comment2.text=\n\ Method\ called\ to\ inform\ for\ example\ a\ GUI\ that\ in\ order\ to\ process\ a\ step\n\ over,\ the\ execution\ of\ the\ emulation\ has\ to\ be\ continued\ until\ a\ break-\n\ point\ occurs\ \ \n\n
+comment3.params=
+comment3.target=void\ endlessLoopDetected()
+comment3.text=\n\ Method\ called,\ whenenver\ the\ emulator\ detected\ an\ endless\ loop\n\n
+numComments=4

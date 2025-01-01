@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=BasicVGA
+comment0.text=\n\ Device\ driver\ for\ text\ VGA\ screen\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060608\ initial\ version\n\ \n
+comment1.params=out
+comment1.target=BasicVGA(TextScreen)
+comment2.params=address
+comment2.target=byte\ read8(int)
+comment3.params=address
+comment3.target=short\ read16(int)
+comment4.params=address
+comment4.target=int\ read32(int)
+comment5.params=address
+comment5.target=long\ read64(int)
+comment6.params=address\ v
+comment6.target=void\ write8(int,\ byte)
+comment7.params=address\ v
+comment7.target=void\ write16(int,\ short)
+comment8.params=address\ v
+comment8.target=void\ write32(int,\ int)
+comment9.params=address\ v
+comment9.target=void\ write64(int,\ long)
+numComments=10

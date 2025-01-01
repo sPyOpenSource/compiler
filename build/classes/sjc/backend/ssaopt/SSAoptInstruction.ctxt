@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=SSAoptInstruction
+comment0.text=\n\ SSAoptInstruction\:\ extended\ instruction\ for\ SSA\ optimizer\n\ \n\ @author\ F.\ Hercher\n\ @version\ 100923\ initial\ version\n
+comment1.params=maxInstrSize
+comment1.target=SSAoptInstruction(int)
+comment2.params=
+comment2.target=void\ cleanup()
+numComments=3

@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=RawSymbols
+comment0.text=\n\ RawSymbols\:\ generate\ output\ for\ all\ packages,\ units\ and\ methods;\ append\ byte\ stream\ to\ image\n\n\ @author\ S.\ Frenz\n\ @version\ 151031\ adopted\ changed\ TextBuffer\n\ \ version\ 110624\ adopted\ changed\ Context\n\ \ version\ 110608\ fixed\ langroot-extension\ check\n\ \ version\ 110607\ added\ option\ to\ change\ BootStrap\ class\n\ \ version\ 101226\ adopted\ changed\ SymbolInformer\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090718\ adopted\ move\ of\ modifier\ flags\ from\ Vrbl\ to\ AccVar\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080706\ adopted\ removal\ of\ printExts\n\ \ version\ 080701\ adopted\ move\ of\ TextBuffer\ to\ osio\n\ \ version\ 080614\ adopted\ changed\ Unit.searchVariables\n\ \ version\ 080118\ use\ of\ SymbolInformer.NOPARMREQ\n\ \ version\ 080115\ adopted\ changes\ in\ SymbolInformer.generateSymbols\n\ \ version\ 080114\ removed\ checkParameter\n\ \ version\ 070729\ removed\ creation\ of\ internal\ variable\ and\ inserted\ check\ of\ declaration\ instead\n\ \ version\ 070727\ adopted\ changed\ type\ of\ id\ from\ PureID\ to\ String\n\ \ version\ 070713\ initial\ version\n
+comment1.params=v
+comment1.target=void\ printValidParameters(sjc.osio.TextPrinter)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=parm\ v
+comment3.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment4.params=newUnits\ ictx
+comment4.target=boolean\ generateSymbols(sjc.compbase.UnitList,\ sjc.compbase.Context)
+comment5.params=pack
+comment5.target=void\ genPackSymbols(sjc.compbase.Pack)
+comment6.params=unit
+comment6.target=void\ genUnitSymbols(sjc.compbase.Unit)
+comment7.params=mthd
+comment7.target=void\ genMthdSymbols(sjc.compbase.Mthd)
+numComments=8

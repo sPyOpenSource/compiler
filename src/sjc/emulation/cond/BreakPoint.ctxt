@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=BreakPoint
+comment0.text=\n\ Class\ representing\ a\ standard\ breakpoint\ set\ by\ a\ user\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060620\ initial\ version\n\n
+comment1.params=iP
+comment1.target=BreakPoint(int)
+comment1.text=\n\ Standard\ constructor\ for\ this\ breakpoint\n\ @param\ iP\ the\ instruction\ pointer\n
+comment2.params=emul
+comment2.target=boolean\ hit(sjc.emulation.Emulator)
+comment2.text=\n\ @see\ Condition\#hit(Emulator)\n
+comment3.params=address\ size\ type\ read
+comment3.target=boolean\ hit(int,\ int,\ boolean,\ boolean)
+comment3.text=\n\ @see\ Condition\#hit(int,\ int,\ boolean,\ boolean)\n
+comment4.params=emul
+comment4.target=void\ addToEmulator(sjc.emulation.Emulator)
+comment4.text=\n\ @see\ Condition\#addToEmulator(Emulator)\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=\n\ @see\ Object\#toString()\n
+numComments=6

@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=ReflectionSymbols
+comment0.text=\n\ ReflectionSymbols\:\ Class\ converting\ the\ full\ Sun-Java-object\ parsetree\ into\ SJC-objects\n\ \n\ @author\ P.\ Schmidt,\ S.\ Frenz\n\ @version\ 120305\ removed\ unused\ variable\:\ converted\n\ \ version\ 110605\ added\ allowParents\ option\n\ \ version\ 110512\ added\ skipSJC\ option\n\ \ version\ 110412\ fixed\ names\ after\ migration\ to\ sjc\ package\n\ \ version\ 110411\ added\ check\ if\ unit\ not\ found,\ added\ support\ for\ renamed\ BootStrap-class\n\ \ version\ 101226\ adopted\ changed\ SymbolInformer\n\ \ version\ 100916\ added\ parameter\ for\ reduced\ symbol\ generation\n\ \ version\ 100826\ redesign\n\ \ version\ 100412\ made\ use\ of\ generic\ utility\ classes\ of\ jdk1.5\n\ \ version\ 100215\ replaced\ jdk1.6\ methods\ by\ jdk1.4\ correspondants\n\ \ version\ 091124\ added\ check\ for\ null-pointer\ for\ relation-information\ \n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091020\ fixed\ comment\n\ \ version\ 091009\ initial\ version\n
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment2.params=
+comment2.target=ReflectionSymbols()
+comment2.text=\n\ Standard\ constructor\ initializing\ all\ Collections\n
+comment3.params=newUnits\ ctx
+comment3.target=boolean\ generateSymbols(sjc.compbase.UnitList,\ sjc.compbase.Context)
+comment3.text=\n\ @see\ SymbolInformer\#generateSymbols(UnitList,\ Context)\n
+comment4.params=parm\ v
+comment4.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment4.text=\n\ @see\ SymbolInformer\#setParameter(String,\ TextPrinter)\n
+comment5.params=
+comment5.target=void\ resetLists()
+comment5.text=\n\ Method\ to\ reset\ the\ state\ of\ the\ SymbolInformer\n
+comment6.params=fullQualName
+comment6.target=sjc.compbase.Unit\ findUnitByName(java.lang.String)
+comment6.text=\n\ Method\ search\ a\ unit\ with\ the\ given\ full-qualified\ name\n\ @param\ fullQualName\ the\ canonical\ name\ of\ the\ class\ to\ find\n\ @return\ the\ SJC-unit\ corresponding\ to\ the\ given\ name\ or\ null,\ if\ there\ is\n\ no\ such\ class\n
+numComments=7

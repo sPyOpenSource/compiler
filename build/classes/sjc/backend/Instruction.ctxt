@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Instruction
+comment0.text=\n\ Instruction\:\ abstract\ placeholder\ for\ a\ single\ instruction\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 160818\ added\ asmText\n\ \ version\ 100805\ added\ cleanup\n\ \ version\ 091102\ added\ token\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090922\ integrated\ functionality\ of\ little\ endian\ instructions\ for\ simplicity\ reasons\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080525\ removed\ bPar\n\ \ version\ 070615\ removed\ realAddr\n\ \ version\ 070501\ changed\ refObj\ to\ refMthd\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 060720\ added\ third\ iPar\n\ \ version\ 060628\ added\ support\ for\ static\ compilation\n\ \ version\ 060607\ initial\ version\n
+comment1.params=maxInstrSize
+comment1.target=Instruction(int)
+comment2.params=
+comment2.target=void\ cleanup()
+comment3.params=off\ val
+comment3.target=void\ replaceShort(int,\ int)
+comment4.params=off\ val
+comment4.target=void\ replaceInt(int,\ int)
+comment5.params=off\ val
+comment5.target=void\ replaceLong(int,\ long)
+comment6.params=val
+comment6.target=void\ putByte(int)
+comment7.params=val
+comment7.target=void\ putShort(int)
+comment8.params=val
+comment8.target=void\ putInt(int)
+comment9.params=val
+comment9.target=void\ putLong(long)
+numComments=10

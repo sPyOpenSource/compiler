@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=SSAopt2amd
+comment0.text=\n\ SSAopt2amd\:\ AMD64\ dependent\ optimizer\ on\ SSA\ basis\n\ \n\ @author\ F.\ Hercher\n\ @version\ 100923\ initial\ version\n
+comment1.params=imem\ ilev\ ictx
+comment1.target=void\ doInit(sjc.memory.MemoryImage,\ int,\ sjc.compbase.Context)
+comment2.params=mthd
+comment2.target=void\ doPrepareMethod(sjc.compbase.Mthd)
+comment3.params=
+comment3.target=int\ doMethodSize()
+comment4.params=loc\ offset\ ptr\ ptrOff
+comment4.target=void\ doPutRef(java.lang.Object,\ int,\ java.lang.Object,\ int)
+comment5.params=loc\ offset\ ptr\ ptrOff
+comment5.target=void\ doPutCodeRef(java.lang.Object,\ int,\ java.lang.Object,\ int)
+comment6.params=generatingMthd\ loc\ offset
+comment6.target=void\ doCopyMethod(sjc.compbase.Mthd,\ java.lang.Object,\ int)
+comment7.params=
+comment7.target=void\ doEnumerate()
+comment8.params=
+comment8.target=void\ doFinalizeMethod()
+numComments=9

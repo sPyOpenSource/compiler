@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=MthdSymbols
+comment0.text=\n\ MthdSymbols\:\ generate\ output\ for\ method\ names\n\ \n\ @author\ S.\ Frenz\n\ @version\ 101226\ adopted\ changed\ SymbolInformer\n\ \ version\ 091218\ added\ support\ for\ chaining\ method\ blocks\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080701\ adopted\ move\ of\ TextBuffer\ to\ osio\n\ \ version\ 080118\ initial\ version\n
+comment1.params=v
+comment1.target=void\ printValidParameters(sjc.osio.TextPrinter)
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=parm\ v
+comment3.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment4.params=newUnits\ ictx
+comment4.target=boolean\ generateSymbols(sjc.compbase.UnitList,\ sjc.compbase.Context)
+numComments=5

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ExObjInit
+comment0.text=\n\ ExObjInit\:\ to\ be\ created\ object\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 151108\ added\ allocation\ debug\ hint\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100409\ adopted\ changed\ TypeRef\n\ \ version\ 100312\ adopted\ changed\ TypeRef\ and\ added\ support\ for\ flash\ objects\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091216\ removed\ unneeded\ variable\ next\n\ \ version\ 091210\ initial\ version\n
+comment1.params=requestedType\ fid\ il\ ic
+comment1.target=ExObjInit(sjc.compbase.TypeRef,\ int,\ int,\ int)
+comment2.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment2.target=boolean\ resolve(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ int,\ sjc.compbase.TypeRef,\ sjc.compbase.Context)
+comment3.params=ctx\ doFlash
+comment3.target=boolean\ generateObject(sjc.compbase.Context,\ boolean)
+comment4.params=
+comment4.target=java.lang.String\ getDebugValue()
+numComments=5

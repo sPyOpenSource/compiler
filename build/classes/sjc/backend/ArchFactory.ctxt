@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=ArchFactory
+comment0.text=\n\ ArchFactory\:\ creation\ of\ architecture\ dependend\ backend\n\ \n\ @author\ S.\ Frenz\n\ @version\ 160324\ added\ MyVCPU2\n\ \ version\ 150831\ added\ MyCPU\n\ \ version\ 100923\ added\ SSAopt2amd\n\ \ version\ 100805\ added\ ARM7\n\ \ version\ 100622\ removed\ filtering\ message\n\ \ version\ 100619\ added\ printParameter\ for\ ATmega\n\ \ version\ 100126\ removed\ ConstFilterArch\n\ \ version\ 100115\ added\ ConstFilterArch\ in\ combination\ with\ ia32\n\ \ version\ 090717\ removed\ SRB\n\ \ version\ 090207\ added\ copyright\ notice\ and\ removed\ SSAToNative\n\ \ version\ 081226\ added\ SRB\n\ \ version\ 080615\ fixed\ description\ for\ atmegaopt\n\ \ version\ 080210\ removed\ SSAOpti\n\ \ version\ 080204\ added\ SSAToAMD64,\ added\ parameter\ output\ of\ AMD64\n\ \ version\ 080123\ adopted\ changed\ SSAToNative\ structure\n\ \ version\ 071002\ added\ SSAToIA32\n\ \ version\ 070815\ added\ parameter\ output\ of\ IA32\n\ \ version\ 070725\ added\ ATmegaOpti\n\ \ version\ 061217\ removed\ SSANative\ and\ added\ ATmega\n\ \ version\ 061203\ added\ SSANative\n\ \ version\ 060720\ added\ IA32Opti\n\ \ version\ 060607\ initial\ version\n
+comment1.params=v
+comment1.target=void\ printKnownArchitectures(sjc.osio.TextPrinter)
+comment2.params=name\ currentArchitecture\ v
+comment2.target=Architecture\ getArchitecture(java.lang.String,\ Architecture,\ sjc.osio.TextPrinter)
+numComments=3

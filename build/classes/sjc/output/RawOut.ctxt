@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=RawOut
+comment0.text=\n\ RawOut\:\ just\ write\ the\ created\ image\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 110609\ added\ option\ to\ change\ output\ filename\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ structure\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070105\ removed\ prefixing\n\ \ version\ 060818\ adapted\ changed\ interface\n\ \ version\ 060607\ initial\ version\n
+comment1.params=v
+comment1.target=void\ printValidParameters(sjc.osio.TextPrinter)
+comment2.params=parm\ v
+comment2.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment3.params=iO\ errOut
+comment3.target=boolean\ checkParameter(sjc.osio.OsIO,\ sjc.osio.TextPrinter)
+comment4.params=img\ cimg\ cilen
+comment4.target=boolean\ writeOutput(sjc.memory.ImageContainer,\ sjc.memory.ImageContainer,\ int)
+numComments=5

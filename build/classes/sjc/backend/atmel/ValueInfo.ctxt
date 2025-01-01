@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=ValueInfo
+comment0.text=\n\ ValueInfo\:\ info\ about\ a\ register\ /\ register\ pair\ or\ an\ absolute\ value\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091005\ removed\ unneeded\ methods\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 081020\ added\ VI_MEMABS\n\ \ version\ 081017\ initial\ version\n
+comment1.params=it\ ii
+comment1.target=ValueInfo\ set(int,\ int)
+comment2.params=it\ ii\ im
+comment2.target=ValueInfo\ set(int,\ int,\ int)
+numComments=3

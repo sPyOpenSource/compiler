@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=BinWriter
+comment0.text=\n\ BinWriter\:\ interface\ to\ write\ binary\ data\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 100504\ added\ default\ implementation\ for\ setAddress\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ structure\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 060628\ changed\ signature\ of\ write\ to\ support\ offsets\n\ \ version\ 060613\ initial\ version\n
+comment1.params=fname
+comment1.target=boolean\ open(java.lang.String)
+comment2.params=
+comment2.target=void\ close()
+comment3.params=what\ offset\ len
+comment3.target=boolean\ write(byte[],\ int,\ int)
+comment4.params=addBytes
+comment4.target=boolean\ setSize(int)
+comment5.params=address
+comment5.target=boolean\ setAddress(int)
+numComments=6

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=SymbolInformer
+comment0.text=\n\ SymbolInformer\:\ interface\ to\ generate\ in-system\ symbols\n\ \n\ @author\ S.\ Frenz\n\ @version\ 101226\ added\ getName\n\ \ version\ 100411\ beautified\ warning\ message\ (annotation-\ instead\ of\ DEFINE-hint)\n\ \ version\ 091121\ added\ support\ for\ SymbolInformer\ chaining\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080701\ updated\ comment\n\ \ version\ 080614\ adopted\ changed\ Unit.searchVariable\n\ \ version\ 080118\ added\ NOPARMREQ\ and\ checkVrbl\n\ \ version\ 080115\ changed\ signature\ of\ generateSymbols\n\ \ version\ 080114\ removed\ checkParameters\n\ \ version\ 070729\ removed\ prepareUnits\n\ \ version\ 070711\ initial\ version\n
+comment1.params=
+comment1.target=java.lang.String\ getName()
+comment2.params=parm\ v
+comment2.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment3.params=newUnits\ ctx
+comment3.target=boolean\ generateSymbols(sjc.compbase.UnitList,\ sjc.compbase.Context)
+comment4.params=inUnit\ name
+comment4.target=int\ checkVrbl(sjc.compbase.Unit,\ java.lang.String)
+numComments=5

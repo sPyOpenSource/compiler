@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=OutputFormat
+comment0.text=\n\ OutputFormat\:\ basic\ interface\ to\ access\ an\ outputformat\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ structure\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070105\ removed\ prefixing\n\ \ version\ 060808\ changed\ signature\ to\ support\ CommBase\n\ \ version\ 060613\ adapted\ changed\ osio-package\n\ \ version\ 060607\ initial\ version\n
+comment1.params=parm\ v
+comment1.target=boolean\ setParameter(java.lang.String,\ sjc.osio.TextPrinter)
+comment2.params=comm\ v
+comment2.target=boolean\ checkParameter(sjc.osio.OsIO,\ sjc.osio.TextPrinter)
+comment3.params=img\ compressedImg\ compressedImgOrigLen
+comment3.target=boolean\ writeOutput(sjc.memory.ImageContainer,\ sjc.memory.ImageContainer,\ int)
+numComments=4

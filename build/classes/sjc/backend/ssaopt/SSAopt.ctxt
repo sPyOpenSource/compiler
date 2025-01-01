@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=SSAopt
+comment0.text=\n\ SSAopt\:\ backend\ independent\ optimizer\ on\ SSA\ basis\n\ \n\ @author\ F.\ Hercher\n\ @version\ 100923\ initial\ version\n
+comment1.params=Backend\ iRB
+comment1.target=SSAopt(SSAopt2bin,\ int)
+comment2.params=
+comment2.target=sjc.backend.Instruction\ createNewInstruction()
+comment2.text=\n\ overwrite\ createNewInstruction\n\ to\ force\ the\ use\ of\ SSAoptInstruction\n
+comment3.params=imem\ ilev\ ictx
+comment3.target=void\ init(sjc.memory.MemoryImage,\ int,\ sjc.compbase.Context)
+comment3.text=\n\ glue\ logic\ for\ init\n\ \n\ @param\ MemoryImage\ imem\n\ @param\ int\ ilev\ max\ inline\ level\n\ @param\ Context\ ictx\ \n
+comment4.params=mthd
+comment4.target=sjc.compbase.Mthd\ prepareMethodCoding(sjc.compbase.Mthd)
+comment4.text=\n\ glue\ logic\ for\ prepareMethodCoding\n\ \n\ @param\ Mthd\ mthd\ Method\ to\ be\ coded\n\ @return\ Mthd\ Method\ to\ be\ coded\n
+comment5.params=
+comment5.target=int\ getMethodSize()
+comment6.params=loc\ offset\ ptr\ ptrOff
+comment6.target=void\ putRef(java.lang.Object,\ int,\ java.lang.Object,\ int)
+comment7.params=loc\ offset\ ptr\ ptrOff
+comment7.target=void\ putCodeRef(java.lang.Object,\ int,\ java.lang.Object,\ int)
+comment8.params=generatingMthd\ loc\ offset
+comment8.target=void\ copyMethodCode(sjc.compbase.Mthd,\ java.lang.Object,\ int)
+comment9.params=
+comment9.target=void\ finalizeMethodCoding()
+comment9.text=\n\ add\ funny\ stuff\ here\n
+numComments=10

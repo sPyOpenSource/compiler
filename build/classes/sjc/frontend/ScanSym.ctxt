@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=ScanSym
+comment0.text=\n\ ScanSym\:\ a\ symbol\ used\ as\ transfer\ between\ Scanner\ and\ parsers\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091209\ moved\ to\ frontend\ package\n\ \ version\ 091102\ added\ sypos\ and\ syposE\n\ \ version\ 091018\ removed\ unneeded\ variables\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 060607\ initial\ version\n
+comment1.params=
+comment1.target=ScanSym()
+numComments=2

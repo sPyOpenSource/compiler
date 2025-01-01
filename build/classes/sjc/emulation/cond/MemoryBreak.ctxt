@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=MemoryBreak
+comment0.text=\n\ Class\ representing\ a\ breakpoint\ condition\ for\ memory\ access\n\ @author\ Patrick\ Schmidt\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060620\ initial\ version\ \n\n
+comment1.params=a\ t\ r
+comment1.target=MemoryBreak(int,\ boolean,\ boolean)
+comment1.text=\n\ Standard\ construction\ \n\ @param\ a\ the\ memory\ position\ to\ observe\n\ @param\ t\ the\ type\ of\ the\ memory\ to\ observe\n\ @param\ r\ flag\ to\ determine\ whether\ a\ read\ or\ write\ is\ observed\n
+comment2.params=emul
+comment2.target=void\ addToEmulator(sjc.emulation.Emulator)
+comment2.text=\n\ @see\ Condition\#addToEmulator(Emulator)\n
+comment3.params=address\ size\ t\ r
+comment3.target=boolean\ hit(int,\ int,\ boolean,\ boolean)
+comment3.text=\n\ @see\ Condition\#hit(int,\ int,\ boolean,\ boolean)\n
+comment4.params=emul
+comment4.target=boolean\ hit(sjc.emulation.Emulator)
+comment4.text=\n\ @see\ Condition\#hit(Emulator)\n
+comment5.params=
+comment5.target=java.lang.String\ toString()
+comment5.text=\n\ @see\ Object\#toString()\n
+numComments=6
