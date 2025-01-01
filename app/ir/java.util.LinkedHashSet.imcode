@@ -10,7 +10,7 @@ class java/util/LinkedHashSet {
  
  method <init>(I)V {
   +START:   #1
-        vR0.<init>@special(vi1,jx.classfile.datatypes.BCFloat@4e4b2e15,1);   [   i?iR] 
+        vR0.<init>@special(vi1,jx.classfile.datatypes.BCFloat@16b2bb0c,1);   [   i?iR] 
         return;   
   +END:   #1
  }
@@ -18,7 +18,7 @@ class java/util/LinkedHashSet {
  
  method <init>()V {
   +START:   #1
-        vR0.<init>@special(16,jx.classfile.datatypes.BCFloat@4e4b2e15,1);   [   i?iR] 
+        vR0.<init>@special(16,jx.classfile.datatypes.BCFloat@16b2bb0c,1);   [   i?iR] 
         return;   
   +END:   #1
  }
@@ -26,7 +26,7 @@ class java/util/LinkedHashSet {
  
  method <init>(Ljava/util/Collection;)V {
   +START:   #1
-        vR0.<init>@special(max@special((2*vR1.size()),11),jx.classfile.datatypes.BCFloat@4e4b2e15,1);   [  ii i?iR] 
+        vR0.<init>@special(max@special((2*vR1.size()),11),jx.classfile.datatypes.BCFloat@16b2bb0c,1);   [  ii i?iR] 
         vR0.addAll@this(vR1);   [  ii RR..] 
         return;   
   +END:   #1
