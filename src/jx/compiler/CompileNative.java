@@ -209,19 +209,6 @@ public class CompileNative {
             root.addFile(f2);
             ISO9660File f3 = new ISO9660File("app/isodir/boot/grub/grub.cfg");
             root.addFile(f3);
-            ISO9660Directory folder1 = new ISO9660Directory("x86_64-efi");
-            ISO9660Directory folder2 = new ISO9660Directory("boot");
-            ISO9660Directory folder3 = new ISO9660Directory("grub");
-
-            ISO9660File f4 = new ISO9660File("app/isodir/boot/grub/menu.lst");
-            root.addFile(f4);
-            ISO9660File f5 = new ISO9660File("app/legacycfg.mod");
-
-
-            root.addDirectory(folder2);
-            folder2.addDirectory(folder3);
-            folder3.addDirectory(folder1);
-            folder1.addFile(f5);
 
             // ISO9660 support
             System.out.println("ISO9660 support");
