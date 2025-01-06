@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.Map;
+
 import org.jnode.assembler.NativeStream;
 import org.jnode.build.AsmSourceInfo;
 import org.jnode.jnasm.assembler.Assembler;

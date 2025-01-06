@@ -25,18 +25,17 @@ import org.jnode.assembler.Label;
 import org.jnode.assembler.NativeStream;
 import org.jnode.assembler.UnresolvedObjectRefException;
 import org.jnode.assembler.x86.X86Assembler;
-import org.jnode.build.BuildException;
 
 /**
  * Build the boot image from an assembler compiled bootstrap (in ELF format)
  * combined with the precompiled Java classes.
  */
 public class ElfLinker {
-    private X86Assembler os;
+    private final X86Assembler os;
 
     private int start;
 
-    private int baseAddr;
+    private final int baseAddr;
 
     public ElfLinker(X86Assembler os) {
         this.os = os;
@@ -47,13 +46,12 @@ public class ElfLinker {
      * Load an ELF object file with a given name and link it into the native
      * stream.
      */
-    public void loadElfObject(String name) throws BuildException {
+    public void loadElfObject(String name) {
         Elf elf;
         try {
             elf = Elf.newFromFile(name);
             loadElfObject(elf);
         } catch (IOException ex) {
-            throw new BuildException(ex);
         }
     }
 
@@ -61,14 +59,14 @@ public class ElfLinker {
      * Load an ELF object file with a given name and link it into the native
      * stream.
      */
-    public void loadElfObject(Elf elf) throws BuildException {
+    public void loadElfObject(Elf elf) {
         if (!elf.isRel()) {
-            throw new BuildException("Elf object is not relocatable");
+            System.out.println("Elf object is not relocatable");
         }
 
         final Section text = elf.getSectionByName(".text");
         if (text == null) {
-            throw new BuildException(".text section not found");
+            System.out.println(".text section not found");
         }
 
         // Write the code
@@ -123,10 +121,9 @@ public class ElfLinker {
                     } else if ((relocType == Reloc.R_X86_64_64) && hasAddEnd) {
                         resolve_R_X86_64_64(addr, addend, symName, hasSymName);
                     } else {
-                        throw new BuildException("Unknown relocation type " + relocType);
+                        System.out.println("Unknown relocation type " + relocType);
                     }
                 } catch (UnresolvedObjectRefException ex) {
-                    throw new BuildException(ex);
                 }
             }
         }

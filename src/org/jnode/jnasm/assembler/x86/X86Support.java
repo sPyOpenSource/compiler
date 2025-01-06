@@ -25,12 +25,14 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.jnode.assembler.Label;
 import org.jnode.assembler.NativeStream;
 import org.jnode.assembler.x86.X86Assembler;
 import org.jnode.assembler.x86.X86BinaryAssembler;
 import org.jnode.assembler.x86.X86Constants;
 import org.jnode.assembler.x86.X86Register;
+
 import org.jnode.jnasm.assembler.Assembler;
 import org.jnode.jnasm.assembler.AssemblerModule;
 import org.jnode.jnasm.assembler.HardwareSupport;
@@ -50,7 +52,7 @@ public class X86Support extends HardwareSupport {
 
     public X86Support(Assembler assembler, List<Instruction> instructions,
                       Map<String, Label> labels, Map<String, Integer> constants) {
-        this.modules = new ArrayList<AssemblerModule>();
+        this.modules = new ArrayList<>();
         this.assembler = assembler;
         this.instructions = instructions;
         this.labels = labels;
@@ -81,11 +83,11 @@ public class X86Support extends HardwareSupport {
     }
 
     private void doAssembly() {
-        for (AssemblerModule asmMod : modules) {
+        modules.forEach((asmMod) -> {
             asmMod.setNativeStream(nativeStream);
-        }
+        });
 
-        for (Instruction ins : instructions) {
+        instructions.forEach((ins) -> {
             //handle prefixes
             int prefix = ins.getPrefix();
             if ((prefix & Instruction.LOCK_PREFIX) != 0) {
@@ -120,7 +122,7 @@ public class X86Support extends HardwareSupport {
                     }
                 }
             }
-        }
+        });
     }
 
     public void writeTo(OutputStream out) throws IOException {
@@ -153,18 +155,19 @@ public class X86Support extends HardwareSupport {
 
     public static int getOperandSize(Instruction ins) {
         String size = ins.getSizeInfo();
-        if (size == null) {
+        if (null == size) {
             return X86Constants.BITS32;
-        } else if ("byte".equals(size)) {
-            return X86Constants.BITS8;
-        } else if ("word".equals(size)) {
-            return X86Constants.BITS16;
-        } else if ("dword".equals(size)) {
-            return X86Constants.BITS32;
-        } else if ("qword".equals(size)) {
-            return X86Constants.BITS64;
-        } else {
-            throw new IllegalArgumentException("Unknown operand size: " + size);
+        } else switch (size) {
+            case "byte":
+                return X86Constants.BITS8;
+            case "word":
+                return X86Constants.BITS16;
+            case "dword":
+                return X86Constants.BITS32;
+            case "qword":
+                return X86Constants.BITS64;
+            default:
+                throw new IllegalArgumentException("Unknown operand size: " + size);
         }
     }
 

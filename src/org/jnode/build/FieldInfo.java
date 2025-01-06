@@ -139,17 +139,14 @@ public final class FieldInfo {
                     jdkFields[i] = null;
                     exact = false;
                 }
-            } catch (SecurityException ex) {
-                if (!f.isTransient()) {
-                    exact = false;
-                }
-                // Ignore
-            } catch (NoSuchFieldException ex) {
+            } catch (SecurityException | NoSuchFieldException ex) {
                 if (!f.isTransient()) {
                     exact = false;
                 }
                 // Ignore
             }
+            // Ignore
+            
         }
         return jdkFields;
     }
@@ -162,7 +159,7 @@ public final class FieldInfo {
     private static List<VmField> getStaticFields(VmType<?> jnodeType) {
         if (jnodeType != null) {
             final int all = jnodeType.getNoDeclaredFields();
-            final ArrayList<VmField> list = new ArrayList<VmField>(all);
+            final ArrayList<VmField> list = new ArrayList<>(all);
             for (int i = 0; i < all; i++) {
                 final VmField f = jnodeType.getDeclaredField(i);
                 if (f.isStatic()) {
@@ -171,7 +168,7 @@ public final class FieldInfo {
             }
             return list;
         } else {
-            return new ArrayList<VmField>(0);
+            return new ArrayList<>(0);
         }
     }
 
@@ -183,7 +180,7 @@ public final class FieldInfo {
     private static List<VmField> getInstanceFields(VmType<?> jnodeType) {
         if (jnodeType != null) {
             final int all = jnodeType.getNoDeclaredFields();
-            final ArrayList<VmField> list = new ArrayList<VmField>(all);
+            final ArrayList<VmField> list = new ArrayList<>(all);
             for (int i = 0; i < all; i++) {
                 final VmField f = jnodeType.getDeclaredField(i);
                 if (!f.isStatic()) {
@@ -192,7 +189,7 @@ public final class FieldInfo {
             }
             return list;
         } else {
-            return new ArrayList<VmField>(0);
+            return new ArrayList<>(0);
         }
     }
 }

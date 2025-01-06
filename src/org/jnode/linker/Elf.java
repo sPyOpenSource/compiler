@@ -162,7 +162,7 @@ public class Elf {
         e_shoff = 0;
         e_flags = 0;
         e_shstrndx = 0;
-        sections = new Vector<Section>();
+        sections = new Vector<>();
         if (e_type != ET_NONE) {
             // Section 0 should be NULL
             sections.addElement(Section.newNullInstance(this));

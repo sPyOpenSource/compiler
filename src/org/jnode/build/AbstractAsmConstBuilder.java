@@ -49,21 +49,7 @@ public abstract class AbstractAsmConstBuilder {
 
     private File destFile;
     private String classesURL;
-    private final ArrayList<ClassName> classes = new ArrayList<ClassName>();
-
-    /**
-     * Execute this task.
-     *
-     * @throws BuildException
-     */
-    public void execute() throws BuildException {
-        try {
-            doExecute();
-        } catch (Throwable ex) {
-            ex.printStackTrace();
-            throw new BuildException(ex);
-        }
-    }
+    private final ArrayList<ClassName> classes = new ArrayList<>();
 
     /**
      * Execute this task.
@@ -75,7 +61,7 @@ public abstract class AbstractAsmConstBuilder {
      * @throws InstantiationException
      */
     private void doExecute()
-        throws BuildException, ClassNotFoundException, IllegalAccessException, IOException, InstantiationException {
+        throws ClassNotFoundException, IllegalAccessException, IOException, InstantiationException {
 
         final BaseVmArchitecture arch = getArchitecture();
         String[] urls = classesURL.split(",");

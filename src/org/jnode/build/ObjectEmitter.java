@@ -27,7 +27,6 @@ import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.jnode.assembler.BootImageNativeStream;
 import org.jnode.assembler.Label;
 import org.jnode.assembler.NativeStream;
 import org.jnode.assembler.x86.X86BinaryAssembler;
@@ -49,13 +48,11 @@ public class ObjectEmitter {
 
     private final NativeStream os;
 
-    private final BootImageNativeStream bis;
-
     private final PrintWriter debugWriter;
 
     private final Set<String> legalInstanceClasses;
 
-    private final HashMap<String, FieldInfo> fieldInfos = new HashMap<String, FieldInfo>();
+    private final HashMap<String, FieldInfo> fieldInfos = new HashMap<>();
 
     /**
      * Construct a new ObjectEmitter.
@@ -69,7 +66,6 @@ public class ObjectEmitter {
                          Set<String> legalInstanceClasses) {
         this.loaderContext = b;
         this.os = os;
-        this.bis = (BootImageNativeStream) os;
         this.legalInstanceClasses = legalInstanceClasses;
         this.debugWriter = debug;
     }
@@ -78,10 +74,9 @@ public class ObjectEmitter {
      * Write the header and the contents of an object to the native stream.
      *
      * @param obj
-     * @throws BuildException
      * @throws ClassNotFoundException
      */
-    public final void emitObject(Object obj) throws BuildException,
+    public final void emitObject(Object obj) throws
         ClassNotFoundException {
         if (obj == null) {
             return;
@@ -91,7 +86,6 @@ public class ObjectEmitter {
         try {
             testForValidEmit(obj, cls.getName());
         } catch (JNodeClassNotFoundException ex) {
-            throw new BuildException(ex);
         }
 
         if (debugWriter != null) {
@@ -148,7 +142,6 @@ public class ObjectEmitter {
             try {
                 emitObject(cls, obj, (VmNormalClass<?>) vmClass);
             } catch (JNodeClassNotFoundException ex) {
-                throw new BuildException(ex);
             }
         }
         oInfo.markEnd();
@@ -162,10 +155,10 @@ public class ObjectEmitter {
      * Is it legal to emit the given object?
      *
      * @param object
-     * @throws BuildException Is if not valid to emit the given object into the boot image.
+     * @throws JNodeClassNotFoundException
      */
     public final void testForValidEmit(Object object, String location)
-        throws BuildException, JNodeClassNotFoundException {
+        throws JNodeClassNotFoundException {
         if (object == null) {
             return;
         } else if (object instanceof BootableObject) {
@@ -187,92 +180,30 @@ public class ObjectEmitter {
             try {
                 fieldInfo = getFieldInfo(object.getClass());
             } catch (ClassNotFoundException ex) {
-                throw new BuildException(ex);
             }
             if (!fieldInfo.isExact()) {
                 BootLogInstance.get().warn("Use of in-exact matching class (" + clsName + ") in bootimage at "
                     + location);
             }
             legalInstanceClasses.add(clsName);
-
-            /*
-             * final Class javaClass = object.getClass(); try { final
-             * VmClassType vmClass =
-             * (VmClassType)loaderContext.loadClass(javaClass.getName(), true);
-             * testClassCompatibility(javaClass, vmClass);
-             * System.out.println("Found compatible class " + clsName);
-             * legalInstanceClasses.add(clsName); } catch
-             * (ClassNotFoundException ex) { throw new BuildException("VmClass
-             * not found for " + clsName, ex);
-             */
-            // throw new BuildException("Cannot emit object of type " +
-            // clsName);
         }
     }
 
-    private void emitClass(Class<?> c) throws BuildException {
-        try {
-            if (!c.isPrimitive()) {
-                // This layout should match the order and type of fields
-                // in java.lang.Class
-
-                // vmClass
-                bis.writeObjectRef(loaderContext.loadClass(c.getName(), true));
-                // declaredConstructors
-                bis.writeObjectRef(null);
-                // declaredFields;
-                bis.writeObjectRef(null);
-                // declaredMethods;
-                bis.writeObjectRef(null);
-                // fields;
-                bis.writeObjectRef(null);
-                // methods;
-                bis.writeObjectRef(null);
-                // interfaces;
-                bis.writeObjectRef(null);
-                // constructors;
-                bis.writeObjectRef(null);
-                // defaultConstructor;
-                bis.writeObjectRef(null);
-                // name
-                bis.writeObjectRef(null);
-                // enumConstants
-                bis.writeObjectRef(null);
-                // enumConstantsDirectory
-                bis.writeObjectRef(null);
-                // annotationType
-                bis.writeObjectRef(null);
-
-                //see the fields of java.lang.Class
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-                bis.writeObjectRef(null);
-            }
-        } catch (ClassNotFoundException ex) {
-            throw new BuildException("emitting object: [" + c + "]", ex);
-        }
-    }
-
-    private void emitString(String s) throws BuildException {
+    private void emitString(String s) {
         // This layout should match the order and type of fields
         // in java.lang.String
-        bis.writeObjectRef(s.toCharArray()); // char[] value
         os.write32(0); // int offset
         os.write32(s.length()); // int count
         os.write32(s.hashCode()); // int cachedHashCode        
     }
 
-    private void emitInteger(Integer i) throws BuildException {
+    private void emitInteger(Integer i) {
         // This layout should match the order and type of fields
         // in java.lang.Integer
         os.write32(i); // int value
     }
 
-    private void emitLong(Long l) throws BuildException {
+    private void emitLong(Long l) {
         // This layout should match the order and type of fields
         // in java.lang.Long
         os.write64(l); // long value
@@ -321,28 +252,7 @@ public class ObjectEmitter {
             for (int i = 0; i < len; i++) {
                 os.write64(Double.doubleToRawLongBits(a[i]));
             }
-        } else {
-            final Object[] a = (Object[]) obj;
-            for (int i = 0; i < len; i++) {
-                bis.writeObjectRef(a[i]);
-            }
         }
-    }
-
-    /**
-     * Allocate and write and object of a given type.
-     *
-     * @param cls
-     * @param obj
-     * @param vmType
-     * @throws BuildException
-     * @throws ClassNotFoundException
-     * @throws JNodeClassNotFoundException
-     */
-    private void emitObject(Class<?> cls, Object obj, VmNormalClass<?> vmType) throws BuildException,
-        ClassNotFoundException, JNodeClassNotFoundException {
-        final int objectOffset = bis.allocate(vmType.getObjectSize());
-        storeObject(objectOffset, cls, obj, vmType);
     }
 
     /**
@@ -352,11 +262,10 @@ public class ObjectEmitter {
      * @param cls
      * @param obj
      * @param vmType
-     * @throws BuildException
      * @throws ClassNotFoundException
      * @throws JNodeClassNotFoundException
      */
-    private void storeObject(int offset, Class<?> cls, Object obj, VmClassType<?> vmType) throws BuildException,
+    private void storeObject(int offset, Class<?> cls, Object obj, VmClassType<?> vmType) throws
         ClassNotFoundException, JNodeClassNotFoundException {
         final Class<?> sCls = cls.getSuperclass();
         if (sCls != null) {
@@ -375,7 +284,6 @@ public class ObjectEmitter {
                 final int modifiers = jnodeField.getModifiers();
 
                 if ((modifiers & Modifier.STATIC) != 0) {
-                    throw new BuildException("Static field in instance list");
                 }
 
                 final int fldOffset = offset + ((VmInstanceField) jnodeField).getOffset();
@@ -396,7 +304,7 @@ public class ObjectEmitter {
                                 os.set32(fldOffset, 0);
                                 break;
                             default:
-                                throw new BuildException("Invalid typesize in: " + jnodeField);
+                                System.out.println("Invalid typesize in: " + jnodeField);
                         }
                     }
                     if (debugWriter != null) {
@@ -424,7 +332,7 @@ public class ObjectEmitter {
                     } else if (fType == double.class) {
                         os.set64(fldOffset, Double.doubleToLongBits(jdkField.getDouble(obj)));
                     } else {
-                        throw new BuildException("Unknown primitive class " + fType.getName());
+                        System.out.println("Unknown primitive class " + fType.getName());
                     }
                 } else if (jnodeField.isAddressType()) {
                     final Object value = jdkField.get(obj);
@@ -435,28 +343,20 @@ public class ObjectEmitter {
                         os.setWord(fldOffset, uobj.toLong());
                     } else if (value instanceof Label) {
                         final Label lbl = (Label) value;
-                        bis.setObjectRef(fldOffset, lbl);
                     } else {
-                        throw new BuildException("Cannot handle magic type " + value.getClass().getName());
+                        System.out.println("Cannot handle magic type " + value.getClass().getName());
                     }
                 } else {
                     Object value = jdkField.get(obj);
                     try {
                         testForValidEmit(value, cls.getName());
-                    } catch (BuildException ex) {
-                        throw new BuildException("Cannot emit field " + jdkField.getName() + " of class "
-                            + cls.getName(), ex);
                     } catch (JNodeClassNotFoundException ex) {
                         BootLogInstance.get().warn("JNode class not found " + ex.getMessage());
                         value = null;
                     }
-                    bis.setObjectRef(fldOffset, value);
                 }
             }
-        } catch (IllegalAccessException ex) {
-            throw new BuildException("emitting object: [" + obj + "]", ex);
-        } catch (SecurityException ex) {
-            throw new BuildException("emitting object: [" + obj + "]", ex);
+        } catch (IllegalAccessException | SecurityException ex) {
         }
     }
 

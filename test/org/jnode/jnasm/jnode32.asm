@@ -1,61 +1,13 @@
 
-
-
-
-
-
-
-
-               
-                 
-                 
- 	
- 			
-    
- 			
-
 MAX_STACK_TRACE_LENGTH		equ 30	
 
 bits 32
  
-
-
-
-
-
-
-
-
-
 configbase equ 0c000h
 
-      
-
-     
-      
-    
-    
-        
-     
-
-
-  
 	section .text
 
 kernel_begin:
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 F_CF        equ 0x00000001
 F_1         equ 0x00000002
@@ -80,20 +32,12 @@ F_VIF		equ	0x00080000
 F_VIP		equ	0x00100000	
 F_ID		equ	0x00200000	
 
-
-
-
-
 CR0_PE		equ 0x00000001	
 CR0_MP		equ 0x00000002	
 CR0_EM		equ 0x00000004	
 CR0_TS		equ 0x00000008	
 CR0_ET		equ 0x00000010	
 CR0_PG		equ 0x80000000	
-
-
-
-
 
 CR4_VME			equ 1 << 0	
 CR4_PVI			equ 1 << 1	
@@ -106,11 +50,6 @@ CR4_PGE			equ 1 << 7
 CR4_PCE			equ 1 << 8	
 CR4_OSFXSR		equ 1 << 9	
 CR4_OSXMMEXCPT	equ 1 << 10	
-
-
-
-
-
 
 MXCSR_IE		equ 1 << 0	
 MXCSR_DE		equ 1 << 1	
@@ -129,10 +68,6 @@ MXCSR_RC1		equ 1 << 13
 MXCSR_RC2		equ 1 << 14	
 MXCSR_FZ		equ 1 << 15	
 
-
-
-
-
 iPF_PRESENT		equ 0x00000001
 iPF_WRITE		equ 0x00000002
 iPF_USER		equ 0x00000004
@@ -147,10 +82,6 @@ iPF_AVAIL2		equ 0x00000800
 
 iPF_ADDRMASK	equ 0xFFFFF000
 iPF_FLAGSMASK	equ 0x00000FFF
-
-
-
-
 
 FEAT_FPU		equ 1 << 0
 FEAT_VME		equ 1 << 1
@@ -181,10 +112,6 @@ FEAT_SS			equ 1 << 27
 FEAT_HTT		equ 1 << 28
 FEAT_TM			equ 1 << 29
 FEAT_PBE		equ 1 << 31
-
-
-
-
 
 MBI_FLAGS		equ 0x00
 MBI_MEMLOWER	equ 0x04
@@ -238,98 +165,7 @@ MBF_MMAP		equ (1 << 6)
 MBF_VBE			equ (1 << 11)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-	 			
-	 	
-	 		
-	
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-
- 
-	 			
-	 	
-	 		
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-
-	
-
-
- 
- 
-
-
-
-
-
-
-
-
-
-  
-	
-	
-	
-	
-	
-	
-
-
-
- 
-
-
-
-
-
-
-
-
 SYSCALL_INT		equ 0x32
-
-  
-	
-	
-	
-	
-
-
 
 
 SC_DISABLE_PAGING	equ 0x00
@@ -340,53 +176,6 @@ SC_RESTORE_MSRS		equ 0x04
 SC_WRITE_MSR		equ 0x05
 
 SC_MAX				equ SC_WRITE_MSR
-
-
-
- 
-
-
-
-
-
-
-
-
-  
-  
-
-
-  
-	
-	
-	
-	
-	
-	
-	
-
-
-  
-	
-	
-	
-	
-
-	
-
-
-  
-	
-	
-	
-	
-	
-
-
- 
-
-
-
 
 
 Throwable_BACKTRACE_OFS equ 0
@@ -402,9 +191,6 @@ BootImageBuilder_INITIAL_SIZE equ 67108864
 BootImageBuilder_JUMP_MAIN_OFFSET32 equ 16
 BootImageBuilder_JUMP_MAIN_OFFSET64 equ 24
 BootImageBuilder_INITIALIZE_METHOD_OFFSET equ 8
-
-
-
 
 
 VmProcessor_THREADSWITCHINDICATOR_OFS equ 0
@@ -441,7 +227,6 @@ VmProcessor_TSI_SYSTEM_READY equ 2
 VmProcessor_TSI_SWITCH_ACTIVE equ 4
 VmProcessor_TSI_BLOCK_SWITCH equ 8
 VmProcessor_TSI_SWITCH_REQUESTED equ 3
-
 
 
 VmThread_JAVATHREAD_OFS equ 8
@@ -503,7 +288,6 @@ VmArray_LENGTH_OFFSET equ 0
 VmArray_DATA_OFFSET equ 1
 
 
-
 VmMethod_NATIVECODE_OFS equ 36
 VmMethod_ARGSLOTCOUNT_S2_OFS equ 28
 VmMethod_PARAMTYPES_OFS equ 40
@@ -523,7 +307,6 @@ VmMethod_RAWPARAMETERANNOTATIONS_OFS equ 84
 VmMethod_SIZE equ 88
 
 
-
 VmStatics_STATICS_OFS equ 4
 VmStatics_OBJECTS_OFS equ 8
 VmStatics_SLOTLENGTH_OFS equ 12
@@ -532,7 +315,6 @@ VmStatics_RESOLVER_OFS equ 16
 VmStatics_LOCKED_S1_OFS equ 1
 VmStatics_ALLOCATOR_OFS equ 20
 VmStatics_SIZE equ 24
-
 
 
 VmType_SUPERCLASS_OFS equ 16
@@ -566,11 +348,9 @@ VmType_MMTYPE_OFS equ 108
 VmType_SIZE equ 112
 
 
-
 MSR_ID_OFS equ 0
 MSR_VALUE_OFS equ 4
 MSR_SIZE equ 12
-
 
 
 VmX86Processor_IRQCOUNT_OFS equ 104
@@ -596,7 +376,6 @@ VmX86Processor_SIZE equ 172
 VmX86StackReader_METHOD_ID_OFFSET equ 0
 VmX86StackReader_PREVIOUS_OFFSET equ 1
 VmX86StackReader_RETURNADDRESS_OFFSET equ 2
-
 
 
 VmX86Thread_EAX_OFS equ 84
@@ -631,7 +410,6 @@ VmX86Thread_SIZE equ 188
 VmX86Thread_FXF_USED equ 1
 
 
-
 VmX86Thread64_R8_OFS equ 188
 VmX86Thread64_R9_OFS equ 192
 VmX86Thread64_R10_OFS equ 196
@@ -640,72 +418,6 @@ VmX86Thread64_R13_OFS equ 204
 VmX86Thread64_R14_OFS equ 208
 VmX86Thread64_R15_OFS equ 212
 VmX86Thread64_SIZE equ 216
-
-
- 
-
-
-
-
-
-
-
-  
-
-  
-	
-	
- 
-	
-
-	
-
-
-
-  
- 
-	
-	
-	
-	
-	
-
-
-
-  
- 
-	
-	
-	
-	
-
-
-
-
-  
- 
-	
-	
-	
-	
-
-
-
-
-  
- 
-	
-		
-
-
-  
-	
-
-
- 
-
-
-
 
 
 PF_DEFAULT		equ iPF_PRESENT|iPF_WRITE|iPF_USER
@@ -720,46 +432,7 @@ TSS_DS      equ 0x28
 CURPROC_FS  equ 0x33
 
 
-
-
-
-
-  
-
-	
-
-
-  
-	
-
-
-
-  
-	
-
-
-
- 		
-	  			
-
-	  			
-
-
-
-
-
-
-
-
-
-
     global sys_start
-
-
-
-
-
-
 
 
 sys_start:
@@ -904,25 +577,11 @@ check_a20:
 	
 	call kdb_init
 
-	
-	 
-	
-	
-	
-	
 		
 	push eax
 	mov eax,sys_version
 	call sys_print_str32
 	pop eax
-	
-
-	
-	
-	 
-	
-	
-	
 	
 		
 	push eax
@@ -931,63 +590,30 @@ check_a20:
 	pop eax
 	
 
-	 
-	
-	
-	
-	
-		
 	push eax
 	mov eax,[multiboot_info+MBI_FLAGS]
 	call sys_print_eax32
 	pop eax
 
 
-		 
-	
-	
-	
-	
-		
 	push eax
 	mov eax,newline_msg
 	call sys_print_str32
 	pop eax
 	
-
-
-
-	
 	call test_cpuid
 	 
-	
-	
-	
-	
-		
 	push eax
 	mov eax,cpu_ok_msg
 	call sys_print_str32
 	pop eax
 	
 
-
-	
 	call Lsetup_mm
-
-	
-	  
-	
-		
 	
 	
 	call Lsetup_idt
 
-     
-	
-	
-	
-	
 		
 	push eax
 	mov eax,sys_version
@@ -1000,20 +626,12 @@ check_a20:
 	call init_fpu
 	
 	call init_sse
-
-	 
-	
-	
-	
 	
 		
 	push eax
 	mov eax,before_start_vm_msg
 	call sys_print_str32
 	pop eax
-	
-
-
 	
 	mov ebx,Luser_esp
 	mov ecx,go_user_cs
@@ -1032,14 +650,8 @@ check_a20:
 	iret
 
 	
-	
-
 no_multiboot_loader:
      
-	
-	
-	
-	
 		
 	push eax
 	mov eax,no_multiboot_loader_msg
@@ -1065,19 +677,6 @@ go_user_cs:
 	
 	mov dword[fs:VmProcessor_KERNELSTACKEND_OFS], (kernel_stack + (VmThread_STACK_OVERFLOW_LIMIT_SLOTS * 4))
 	sti
-
-	
-	 
-		
-		
-		
-		
-		
-	
-
-	 
-		
-	
 
 	
 	xor ebp,ebp	
@@ -1153,15 +752,6 @@ vbe_mode_info:
 	times (VBEMODEINFO_SIZE) db 0
 
  
-
-
-
-
-
-
-
-
-
 init_fpu:
 	fninit
 	
@@ -1206,73 +796,9 @@ init_sse:
 no_sse:
 	ret	
 
-	
-
- 
-
-
-
-
-
-
-
 
 	bits 32
  
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
-	 			
-	 	
-	 		
-	
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-
- 
-	 			
-	 	
-	 		
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-	 			
-
-	
-
-
  
 cpu_features:	dd 0
 
@@ -1314,10 +840,6 @@ test_cpuid:
 
 no_cpuid:
 	 
-	
-	
-	
-	
 		
 	push eax
 	mov eax,no_cpuid_msg
@@ -1331,10 +853,6 @@ no_cpuid:
 	
 no_fpu_feat:	
 	 
-	
-	
-	
-	
 		
 	push eax
 	mov eax,no_fpu_feat_msg
@@ -1348,10 +866,6 @@ no_fpu_feat:
 	
 no_pse_feat:	
 	 
-	
-	
-	
-	
 		
 	push eax
 	mov eax,no_pse_feat_msg
@@ -1368,31 +882,8 @@ no_pse_feat_msg:	db 'Processor has no PSE support. halt...',0
 no_fpu_feat_msg:	db 'Processor has no FPU support. halt...',0
 	
  
-	
-	 
-	 
-	
-
- 	 		
-  
-
-
-
-
-
-
-
-
- 		
- 	
- 	
- 	
-    
 int_die_halted:	dd 0    
     
-
-
-
 
 OLD_SS      equ 72
 OLD_ESP     equ 68
@@ -1415,61 +906,6 @@ OLD_FS      equ 4
 OLD_GS      equ 0
 
  		
- 		
- 		
- 	
- 		
- 		
- 		
- 		
-
-  
-	
-	
-	
-	
-	
-	
-	
-    
-    
-    
-    
-    
-    
-    
-    
-    
-     
-		
-	
-    
-	
-	
-
-
-  
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
 inthandler:
     	push eax
 	push ecx

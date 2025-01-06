@@ -116,7 +116,7 @@ public class ScriptParser {
         }
     }
 
-    private final LinkedList<ParseContext> stack = new LinkedList<ParseContext>();
+    private final LinkedList<ParseContext> stack = new LinkedList<>();
     private final Configure configure;
     
     public ScriptParser(Configure configure) {

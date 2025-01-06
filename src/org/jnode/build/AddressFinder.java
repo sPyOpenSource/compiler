@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
-import org.jnode.build.x86.BootImageBuilder;
 
 /**
  * @author Ewout Prangsma (epr@users.sourceforge.net)

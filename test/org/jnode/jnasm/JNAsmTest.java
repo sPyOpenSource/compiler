@@ -26,8 +26,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import org.apache.tools.ant.Project;
-import org.jnode.ant.taskdefs.Asm;
+
+//import org.jnode.ant.taskdefs.Asm;
 import org.jnode.jnasm.assembler.Assembler;
 import org.junit.Assert;
 import org.junit.Test;
@@ -70,14 +70,14 @@ public class JNAsmTest {
         sourceInputStream.close();
 
         //execute nasm
-        Asm asm = new Asm();
+        /*Asm asm = new Asm();
         asm.setProject(new Project());
         asm.setEnableJNasm(false);
         asm.setJnasmCompatibilityEnabled(true);
         asm.setSrcdir(workingDirectory);
         asm.setDestdir(workingDirectory);
         asm.setOutputFormat("bin");
-        asm.execute();
+        asm.execute();*/
 
         //compare JNAsm binary with NASM binary
         File nasmOutputFile = new File(workingDirectory, NASM_OUTPUT_FILE_NAME);

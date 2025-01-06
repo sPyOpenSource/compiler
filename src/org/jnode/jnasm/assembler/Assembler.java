@@ -29,6 +29,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,9 +45,9 @@ public abstract class Assembler {
     private static final String PARSER_CLASS = "org.jnode.jnasm.assembler.gen.JNAsm";
     public static final boolean THROW = false;
     protected static final Object UNDEFINED = "UNDEFINED";
-    protected final List<Instruction> instructions = new ArrayList<Instruction>();
-    private final Map<String, Integer> constants = new HashMap<String, Integer>();
-    private final Map<String, Label> labels = new HashMap<String, Label>();
+    protected final List<Instruction> instructions = new ArrayList<>();
+    private final Map<String, Integer> constants = new HashMap<>();
+    private final Map<String, Label> labels = new HashMap<>();
     private int pass = 0;
     protected final HardwareSupport hwSupport;
     private final PseudoInstructions pseudo;
@@ -57,7 +58,7 @@ public abstract class Assembler {
             Class<?> clazz = Class.forName(PARSER_CLASS);
             Constructor<?> cons = clazz.getConstructor(new Class[]{InputStream.class});
             return (Assembler) cons.newInstance(in);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }
@@ -67,7 +68,7 @@ public abstract class Assembler {
             Class<?> clazz = Class.forName("org.jnode.jnasm.assembler.gen.JNAsm");
             Constructor<?> cons = clazz.getConstructor(new Class[]{Reader.class});
             return (Assembler) cons.newInstance(reader);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InstantiationException | NoSuchMethodException | SecurityException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
     }

@@ -36,7 +36,7 @@ public final class AsmSourceInfo {
     /**
      * Include directories.
      */
-    private final List<File> includeDirs = new ArrayList<File>();
+    private final List<File> includeDirs = new ArrayList<>();
 
     /**
      * Main source file.

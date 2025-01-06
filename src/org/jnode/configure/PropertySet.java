@@ -141,7 +141,7 @@ public class PropertySet {
     private final ConfigureScript script;
     private final FileAdapter adapter;
     private final LinkedHashMap<String, Property> properties =
-            new LinkedHashMap<String, Property>();
+            new LinkedHashMap<>();
 
     public PropertySet(ConfigureScript script, File file, File defaultFile, File templateFile,
             String fileFormat, char marker) throws ConfigureException {

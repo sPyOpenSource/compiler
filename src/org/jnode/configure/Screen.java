@@ -65,7 +65,7 @@ public class Screen {
     private final String guardProp;
     private final Value valueIs;
     private final Value valueIsNot;
-    private final List<Item> items = new ArrayList<Item>();
+    private final List<Item> items = new ArrayList<>();
 
     public Screen(String title, String guardProp, Value valueIs, Value valueIsNot) {
         this.title = title;

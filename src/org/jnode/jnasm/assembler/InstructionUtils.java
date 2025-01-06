@@ -40,7 +40,7 @@ public class InstructionUtils {
     }
 
     public static Map<String, Integer> getInstructionMap(Class<?> clazz) {
-        final Map<String, Integer> map = new HashMap<String, Integer>();
+        final Map<String, Integer> map = new HashMap<>();
         try {
             final Field[] fields = clazz.getDeclaredFields();
             for (int i = fields.length; i-- > 0;) {

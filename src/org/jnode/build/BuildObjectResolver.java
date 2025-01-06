@@ -33,9 +33,8 @@ public class BuildObjectResolver extends ObjectResolver {
     private final NativeStream os;
     //private final AbstractBootImageBuilder builder;
 
-    public BuildObjectResolver(NativeStream os, AbstractBootImageBuilder builder) {
+    public BuildObjectResolver(NativeStream os) {
         this.os = os;
-        //this.builder = builder;
     }
 
     /**
@@ -71,12 +70,9 @@ public class BuildObjectResolver extends ObjectResolver {
         try {
             if (!ref.isResolved()) {
                 throw new RuntimeException("Unresolved object " + object);
-                //builder.emitObject(os, object);
             }
             final long offset = os.getBaseAddr() + ref.getOffset();
             return offset;
-            //} catch (ClassNotFoundException ex) {
-            //throw new RuntimeException("Unresolved object ref", ex);
         } catch (UnresolvedObjectRefException ex) {
             throw new RuntimeException("Unresolved object ref", ex);
         }
