@@ -1,8 +1,8 @@
 
 package jx.collections;
 
-public interface Collection {
-    Iterator iterator();
-    void add(Object o);
+public interface Collection<E> {
+    Iterator<E> iterator();
+    void add(E o);
     int size();
 }

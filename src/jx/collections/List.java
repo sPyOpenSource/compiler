@@ -4,14 +4,14 @@ package jx.collections;
 import java.util.ArrayList;
 import java.util.Enumeration;
 
-public class List implements Collection {
-    ArrayList elements=new ArrayList();
+public class List<E> implements Collection<E> {
+    ArrayList<E> elements = new ArrayList<>();
 
     public List() {
     }
 
     @Override
-    public void add(Object o) {
+    public void add(E o) {
 	elements.add(o);
     }
 
@@ -21,7 +21,7 @@ public class List implements Collection {
     }
 
     @Override
-    public Iterator iterator() {
+    public Iterator<E> iterator() {
 	return new Iterator() {
 	    int counter;
             @Override
@@ -29,7 +29,7 @@ public class List implements Collection {
 		return counter < elements.size();
 	    }
             @Override
-	    public Object next() {
+	    public E next() {
 		return elements.get(counter++);
 	    }
 	};
@@ -43,7 +43,7 @@ public class List implements Collection {
 		return counter < elements.size();
 	    }
             @Override
-	    public Object nextElement() {
+	    public E nextElement() {
 		return elements.get(counter++);
 	    }
 	};

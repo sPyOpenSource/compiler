@@ -9,17 +9,17 @@ import jx.collections.Iterator;
 import jx.collections.List;
 
 public class ClassStore implements ClassFinder {
-    HashMap classes = new HashMap();
-    List classList = new List();
+    HashMap<String, BCClass> classes = new HashMap<>();
+    List<BCClass> classList = new List<>();
     //Hashtable registered = new Hashtable();
 
     public ClassStore() {
     }
 
     public ClassStore(List classList) {
-	Iterator iter = classList.iterator();
+	Iterator<BCClass> iter = classList.iterator();
 	while(iter.hasNext()) {
-	    BCClass c = (BCClass) iter.next();
+	    BCClass c = iter.next();
 	    addClass(c.getClassName(), c);
 	}
     }
@@ -60,14 +60,14 @@ public class ClassStore implements ClassFinder {
 
     public Iterator classSourceIterator() {
 	return new Iterator() {
-	    Iterator iter = classList.iterator();
+	    Iterator<BCClass> iter = classList.iterator();
             @Override
 	    public boolean hasNext() {
 		return iter.hasNext();
 	    }
             @Override
 	    public Object next() {
-		return ((BCClass)iter.next()).getClassSource();
+		return iter.next().getClassSource();
 	    }
 	};
     }
@@ -75,7 +75,7 @@ public class ClassStore implements ClassFinder {
     @Override
     public BCClass findClass(String className) {
 	//Debug.out.println("findClass");
-	BCClass ret = (BCClass)classes.get(className);
+	BCClass ret = classes.get(className);
 	if (ret == null) {
 	    //Debug.out.println("Cannot find class "+className);
 	}
