@@ -181,7 +181,7 @@ public class CodeFile {
 
         out.writeChecksum();
 
-        if (verbose) Debug.out.println("**********Finished saving!");
+        if (verbose) System.out.println("**********Finished saving!");
     }
 
     /**
@@ -193,7 +193,7 @@ public class CodeFile {
     public ArrayList read(ExtendedDataInputStream in) throws Exception {
         this.in = in;
 
-        ArrayList all = new ArrayList();
+        ArrayList<CompiledClass> all = new ArrayList<>();
     
         // 
         // read header
@@ -202,6 +202,12 @@ public class CodeFile {
             Debug.throwError("Wrong version");
         }
         String codeType = in.readString();
+        for(int i = 0; i < 168+11803; i++){
+            int c = in.read();
+            if(c == 13) continue;
+            System.out.print((char)c);
+        }
+        System.out.println("-------");
         int size = in.readInt();
         for(int i = 0; i < size; i++) {
             CompiledClass compiledClass = readHeaderFromFile();
@@ -212,7 +218,7 @@ public class CodeFile {
         // read code
         //
         for(int i = 0; i < size; i++) {
-            readCodeFromFile((CompiledClass)all.get(i));
+            readCodeFromFile(all.get(i));
         }    
         return all;
     }
@@ -260,13 +266,13 @@ public class CodeFile {
         if (saveHeader) { 
             if (verbose) Debug.out.println("***** Saving header class: " + aClass.getClassName());
             //out.writeString(aClass.getClassName());
-            strTable.writeStringID(out,aClass.getClassName());
+            strTable.writeStringID(out, aClass.getClassName());
             if (info.superClass != null) {
                 //out.writeString(info.superClass.getClassName());
-                strTable.writeStringID(out,info.superClass.getClassName());
+                strTable.writeStringID(out, info.superClass.getClassName());
             } else {
                 //out.writeString("");
-                strTable.writeStringID(out,"");
+                strTable.writeStringID(out, "");
             }
             if (aClass.isInterface())
                 out.writeInt(1); // isinterface
@@ -282,7 +288,7 @@ public class CodeFile {
             // fieldmap
             info.objectLayout.writeFieldMap(out);
             // fieldlist
-            info.objectLayout.writeFieldList(out,strTable);
+            info.objectLayout.writeFieldList(out, strTable);
             // statics
             out.writeInt(info.classLayout.wordsNeeded());
             info.classLayout.writeFieldMap(out);
@@ -292,7 +298,7 @@ public class CodeFile {
             if (aClass.isInterface()) {
                 out.writeInt(0); // no bytecode in an interface
             } else {
-                int bcsize=0;
+                int bcsize = 0;
                 for (BCMethod method : info.methods) {
                     if (method instanceof BCMethodWithCode b) {
                         bcsize += b.getByteCodeSize();
@@ -303,7 +309,7 @@ public class CodeFile {
                 out.writeInt(bcsize); 
             }
 
-            info.methodTable.serialize(out,strTable);
+            info.methodTable.serialize(out, strTable);
         }
         int len = info.nativeCode.length;
         for(int i = 0; i < len; i++) {
@@ -325,8 +331,6 @@ public class CodeFile {
         BinaryCode mc = null;
 
         try {
-            //out.writeString(methodName);
-            //out.writeString(methodType);
             strTable.writeStringID(out, methodName);
             strTable.writeStringID(out, methodType);
 
@@ -358,7 +362,7 @@ public class CodeFile {
             else
                 out.writeInt(0);
 
-            if (method.isAbstract() || nativeCode==null) { 
+            if (method.isAbstract() || nativeCode == null) { 
                 out.writeInt(0); // number of symbols
                 out.writeInt(0); // number of lineinfos
                 out.writeInt(0); // number of lineinfos
@@ -370,12 +374,12 @@ public class CodeFile {
                     SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
                     //Debug.out.println("* SymTableEntry:");
                     //entry.dump();
-                    if(! entry.isResolved()) {
+                    if(!entry.isResolved()) {
                         if ((entry instanceof UnresolvedJump)
                             && entry.isRelative()) {
-                            Debug.out.println("ERROR: relative Jump Entry not resolved: Class: "+className+", Method: "+method);
+                            Debug.out.println("ERROR: relative Jump Entry not resolved: Class: " + className + ", Method: " + method);
                             entry.dump();
-                            Debug.throwError("unresolved jump: "+entry);
+                            Debug.throwError("unresolved jump: " + entry);
                         }
                         numEntries++;
                     }
@@ -385,14 +389,14 @@ public class CodeFile {
                 while (elements.hasMoreElements()) {
                     SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement(); 
                     if(entry.isResolved()) {
-                        //Debug.out.println("Skipping resolved entry: "+entry);
+                        //System.out.println("Skipping resolved entry: "+entry);
                     } else {
                         //Debug.out.println("Wrinting to file: "+entry);
                         entry.writeEntry(out); 
                     }
                 }
                 // write  nativecode -> bytecode mapping
-                if (! opts.isOption("noBytecodeNumbers")) {
+                if (!opts.isOption("noBytecodeNumbers")) {
                     ArrayList lineTable = nativeCode.getInstructionTable();
                     out.writeInt(lineTable.size());
                     for(int k = 0; k < lineTable.size(); k++) {
@@ -454,49 +458,90 @@ public class CodeFile {
     }
 
     private CompiledClass readHeaderFromFile() throws Exception {
-        String className = in.readString();
-        String superName = in.readString();
+        Integer className = in.readInt();
+        System.out.println("name:"+className);
+        Integer superName = in.readInt();
         ///Debug.out.println(className + " - " +superName);
         int isInterface = in.readInt();
-        int numberOfMethods = in.readInt();
-        int vtableSize = in.readInt();
         int objectSize = in.readInt();
+        for(int i = 0; i < objectSize; i++) in.readInt();
+        //int vtableSize = in.readInt();
+        int numberOfMethods = in.readInt();
+        System.out.println("super:"+superName);
+        System.out.println("inteface:"+isInterface);
+        System.out.println("methods:"+numberOfMethods);
+        //System.out.println(vtableSize);
+        System.out.println("size:"+objectSize);
+        in.readInt();
+
         FieldLayout.readMap(in); // object map
         int classSize = in.readInt();
+        System.out.println("class:"+classSize);
+        for(int i = 0; i < classSize; i++) {
+            in.readInt();
+            in.readInt();
+            in.readInt();
+        }
+        in.readInt();
+
         FieldLayout.readMap(in); // statics map
         int numberOfBytecodes = in.readInt();
+        System.out.println("N:"+numberOfBytecodes);
+        //in.readInt();
+        int Type = in.readInt();
+        int Msize = in.readInt();
+        System.out.println("T:"+Type);
+        System.out.println("M:"+Msize);
+        for(int i = 0; i < Msize; i++){
+            in.readInt();
+            in.readInt();
+            in.readInt();
+            in.readInt();
+        }
+        System.out.println("-----------");
+
         //Debug.out.println("Ml " +numberOfMethods);    
         CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
         for(int i = 0; i < numberOfMethods; i++) {
             methods[i] = readMethodHeaderFromFile();
         }
-        CompiledClass compiledClass = new CompiledClass(className, superName, objectSize, classSize, methods);
+        CompiledClass compiledClass = new CompiledClass(className.toString(), superName.toString(), objectSize, classSize, methods);
         return compiledClass;
     }
 
     private CompiledMethod readMethodHeaderFromFile() throws Exception {
-        String methodName = in.readString();
-        String methodType = in.readString();
+        Integer methodName = in.readInt();
+        Integer methodType = in.readInt();
         //Debug.out.println("Method:"+methodName + " - " +methodType);
+        in.readInt();
         int numCodeBytes = in.readInt();
+        FieldLayout.readMap(in);
+                in.readInt();
+
         int vtableIndex = in.readInt(); // -1 means: no virtual method
         if (numCodeBytes > 0) { // not an abstract method
         }
+        in.readInt();
         int numSymbols = in.readInt(); // number of symbols
         SymbolTableEntryBase[] symbols = new SymbolTableEntryBase[numSymbols];
-        for(int i=0; i<numSymbols; i++) {
+        for(int i = 0; i < numSymbols; i++) {
             symbols[i] = SymbolTableEntryBase.readUnknownEntry(in);
         }
         int numLineInfo = in.readInt(); // number of lineinfos
         LineInfo[] lineTable = new LineInfo[numLineInfo];
-        for(int k=0; k<numLineInfo; k++) {
+        for(int k = 0; k < numLineInfo; k++) {
             LineInfo l = new LineInfo();
             l.bytecodePos = in.readInt();
             l.start = in.readInt();
             l.end = in.readInt();
             lineTable[k] = l;
         }
-        return new CompiledMethod(methodName, methodType, numCodeBytes, vtableIndex, symbols, lineTable);
+        int nl = in.readInt();
+        for(int i = 0; i < nl; i++){
+            in.readInt();
+            in.readInt();
+        }
+        return new CompiledMethod(methodName.toString(), methodType.toString(), numCodeBytes, vtableIndex, symbols, lineTable);
     }
 
     private void readCodeFromFile(CompiledClass compiledClass) throws IOException {
@@ -512,6 +557,6 @@ public class CodeFile {
         }
         byte[] code = new byte[method.numCodeBytes];
         method.setCode(code);
-        in.read(code,0,method.numCodeBytes);
+        in.read(code, 0, method.numCodeBytes);
     }
 }

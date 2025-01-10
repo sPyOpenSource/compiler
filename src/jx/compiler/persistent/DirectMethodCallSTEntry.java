@@ -55,9 +55,9 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
     @Override
     public void readEntry(ExtendedDataInputStream in) throws IOException {
 	super.readEntry(in);
-	className = in.readString();
-	methodName = in.readString();
-	methodSignature = in.readString();
+	classID = in.readInt();
+	methodID = in.readInt();
+	sigID = in.readInt();
     }    
 
     @Override

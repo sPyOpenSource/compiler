@@ -8,10 +8,10 @@ import java.io.IOException;
 
 public class StringTable {
 
-    ArrayList strings;
+    ArrayList<String> strings;
 
     public StringTable() {
-	strings = new ArrayList();
+	strings = new ArrayList<>();
 	//strings.addElement("STRING-TABLE:");
 	strings.add("java/lang/Object");
     }
@@ -22,8 +22,8 @@ public class StringTable {
 
     public int getIdentifier(String str) {
 	int i;
-	for (i=0;i<strings.size();i++) {
-	    String e = (String)strings.get(i);
+	for (i = 0; i < strings.size(); i++) {
+	    String e = strings.get(i);
 	    if (e.equals(str)) return i;
 	}
 	strings.add(str);
@@ -31,30 +31,30 @@ public class StringTable {
     }
 
     public String getString(int id) {
-	return (String)strings.get(id);
+	return strings.get(id);
     }
     
     public void writeStringTable(ExtendedDataOutputStream out) throws IOException {
 	int number = strings.size();
 	//out.writeInt(number+1);
 	out.writeInt(number);
-	for (int i=0;i<number;i++) {
-	    String str = (String)strings.get(i);
+	for (int i = 0; i < number; i++) {
+	    String str = strings.get(i);
 	    /*
 	    if (str.equals("STRING-TABLE:")) {
 		out.writeString("STRING-TABLE: size = "+number);
 		continue;
 	    } else {
 	    */
-	    out.writeString((String)strings.get(i));
+	    out.writeString(strings.get(i));
 	}
 	//out.writeString("END OF STRING-TABLE");
     }
 
     public void writeStringID(ExtendedDataOutputStream out, String str) throws IOException {
 	int number = strings.size();
-	for (int i=0;i<number;i++) {
-	    String e = (String)strings.get(i);
+	for (int i = 0; i < number; i++) {
+	    String e = strings.get(i);
 	    if (e.equals(str)) {
 		out.writeInt(i);
 		return;

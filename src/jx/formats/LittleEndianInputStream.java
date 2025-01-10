@@ -70,15 +70,15 @@ public class LittleEndianInputStream extends FilterInputStream {
     public final String readString() throws IOException {
 	int len = readInt();
 
-	if (str_buffer==null || str_buffer.length<len) {
-	    str_buffer = new char[len+10];
+	if (str_buffer == null || str_buffer.length < len) {
+	    str_buffer = new char[len + 10];
 	}
 
 	for (int i = 0; i < len; i++) {
 	    str_buffer[i] = (char) (read() & 0xff); 
 	}
 
-	return new String(str_buffer,0,len);
+	return new String(str_buffer, 0, len);
     }
     public final String readString2ByteAligned() throws IOException {
 	String s = readString();

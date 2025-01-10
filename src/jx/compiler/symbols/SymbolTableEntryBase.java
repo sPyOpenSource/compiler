@@ -218,7 +218,7 @@ public abstract class SymbolTableEntryBase {
 	String classname = this.getClass().getName();
 	int nr = 0;	
 	
-	for (int i=0;i<ENTRY_TYPES.length;i++) {
+	for (int i = 0; i < ENTRY_TYPES.length; i++) {
 	    if (ENTRY_TYPES[i].equals(classname)) {
 		nr = i;
 		break;
@@ -240,7 +240,6 @@ public abstract class SymbolTableEntryBase {
     }
     
     public void readEntry(ExtendedDataInputStream in) throws IOException {
-	
 	immediateNCIndex = in.readInt();
 	numBytes = in.readInt();
 	nextInstrNCIndex = in.readInt();
@@ -254,11 +253,12 @@ public abstract class SymbolTableEntryBase {
     public static SymbolTableEntryBase readUnknownEntry(ExtendedDataInputStream in)  throws Exception {
 	int nr = in.readInt();
 	//int nr = in.readShort();
-	String entryName = ENTRY_TYPES[nr];
-	Class entryClass = Class.forName(entryName);
-	SymbolTableEntryBase entryInstance = (SymbolTableEntryBase)entryClass.newInstance();
-	entryInstance.readEntry(in);
-	return entryInstance;
+        System.out.println(nr);
+        String entryName = ENTRY_TYPES[nr];
+        Class entryClass = Class.forName(entryName);
+        SymbolTableEntryBase entryInstance = (SymbolTableEntryBase)entryClass.newInstance();
+        entryInstance.readEntry(in);
+        return entryInstance;
     }
     
     /** 

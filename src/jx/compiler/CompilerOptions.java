@@ -265,8 +265,8 @@ public class CompilerOptions implements CompilerOptionsInterface {
 
     @Override
     public boolean isOption(String kind) {
-	if (optionList!=null) {
-	    for (int i=0;i<optionList.size();i++) {
+	if (optionList != null) {
+	    for (int i = 0; i < optionList.size(); i++) {
 		if (optionList.get(i).equals(kind)) return true;
 	    }
 	}

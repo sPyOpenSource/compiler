@@ -2,4 +2,6 @@
 comment0.target=VMClass
 comment1.params=e
 comment1.target=VMClass(jx.compiler.ExecEnvironmentIA32)
-numComments=2
+comment2.params=node\ regs\ code\ methodRefCPEntry\ obj\ args\ datatype\ result\ bcPosition
+comment2.target=boolean\ code(jx.compiler.imcode.graph.IMNode,\ jx.compiler.nativecode.RegManager,\ jx.compiler.nativecode.BinaryCodeIA32,\ jx.classfile.constantpool.ClassMemberCPEntry,\ jx.compiler.imcode.graph.IMOperant,\ jx.compiler.imcode.graph.IMOperant[],\ int,\ jx.compiler.nativecode.Reg,\ int)
+numComments=3

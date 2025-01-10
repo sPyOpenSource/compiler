@@ -46,7 +46,7 @@ public class CompileNative {
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
         
-	jllname = libdir + "jdk0.jll";
+	/*jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
         String[] neededLibs = new String[]{
             "zero"
@@ -78,7 +78,7 @@ public class CompileNative {
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	compile("init2", opts);
-        createISO();
+        createISO();*/
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
