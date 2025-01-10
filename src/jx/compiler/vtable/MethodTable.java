@@ -92,17 +92,11 @@ public class MethodTable {
 	out.writeInt(mtable.length);
         for (Method mtable1 : mtable) {
             if (mtable1 == null) {
-                //out.writeString("");
-                //out.writeString("");
-                //out.writeString("");
-                strTable.writeStringID(out,"");
-                strTable.writeStringID(out,"");
-                strTable.writeStringID(out,"");
+                strTable.writeStringID(out, "");
+                strTable.writeStringID(out, "");
+                strTable.writeStringID(out, "");
                 out.writeInt(0);
             } else {
-                //out.writeString(mtable[i].implementedIn.className);
-                //out.writeString(mtable[i].name);
-                //out.writeString(mtable[i].type);
                 strTable.writeStringID(out, mtable1.implementedIn.className);
                 strTable.writeStringID(out, mtable1.name);
                 strTable.writeStringID(out, mtable1.type);
@@ -137,7 +131,7 @@ public class MethodTable {
 	} else {
 	    methodTable = new MethodTable(info.className);
 	}
-	int len =  in.readInt();
+	int len = in.readInt();
 	Method[] mtable = new Method[len];
 	methodTable.mtable = mtable;
 	for(int i = 0; i < len; i++) {

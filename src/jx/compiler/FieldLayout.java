@@ -25,7 +25,7 @@ class FieldDescription {
 
 public final class FieldLayout {
     int numWords;
-    ArrayList fields = new ArrayList();
+    ArrayList<FieldDescription> fields = new ArrayList<>();
     HashMap fieldFinder = new HashMap();
 
     public FieldLayout() {
@@ -35,7 +35,7 @@ public final class FieldLayout {
     public void addFields(FieldLayout l) {
 	//System.out.println("Adding from superclass:");
 	for(int i = 0; i < l.fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)l.fields.get(i);
+	    FieldDescription field = l.fields.get(i);
 	    //System.out.println("  " + field.getFieldName() + " " + field.getFieldType());
 	    addField(new FieldDescription(field.getFieldName(), field.getFieldType(), numWords));
 	}
@@ -73,7 +73,7 @@ public final class FieldLayout {
 
     public void  dump() {
 	for(int i = 0; i < fields.size(); i++) {
-	    FieldDescription f = (FieldDescription)fields.get(i);
+	    FieldDescription f = fields.get(i);
 	    Debug.out.println("    " + f.getOffset() + " " + f.getFieldName() + " " + f.getFieldType());
 	}
     }
@@ -103,6 +103,7 @@ public final class FieldLayout {
 
     public static FieldLayout readMap(ExtendedDataInputStream in)  throws IOException {
 	int nBytes = in.readInt();
+        //System.out.println("Mapsize:"+nBytes);
 	for(int i = 0; i < nBytes; i++) {
 	    in.readByte();
 	}
@@ -111,7 +112,7 @@ public final class FieldLayout {
 
     public void registerStrings(StringTable strTable) {
 	for(int i = 0; i < fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)fields.get(i);
+	    FieldDescription field = fields.get(i);
 	    strTable.register(field.getFieldName());
 	    strTable.register(field.getFieldType());
 	}
@@ -120,7 +121,7 @@ public final class FieldLayout {
     public void writeFieldList(ExtendedDataOutputStream out, StringTable strTable)  throws IOException {
 	out.writeInt(fields.size());
 	for(int i = 0; i < fields.size(); i++) {
-	    FieldDescription field = (FieldDescription)fields.get(i);
+	    FieldDescription field = fields.get(i);
 	    //out.writeString(field.getFieldName());
 	    //out.writeString(field.getFieldType());
 	    strTable.writeStringID(out, field.getFieldName());

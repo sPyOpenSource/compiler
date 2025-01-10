@@ -1,6 +1,8 @@
 package jx.compiler.symbols;
 
 import java.io.IOException;
+import jx.compiler.FieldLayout;
+import jx.compiler.execenv.ExtendedDataInputStream;
 import jx.zero.Debug;
 
 import jx.compiler.imcode.MethodStackFrame;
@@ -10,15 +12,19 @@ import jx.compiler.execenv.TypeMap;
 
 public class StackMapSTEntry extends SymbolTableEntryBase {
 
-    private final MethodStackFrame frame;  
+    private MethodStackFrame frame;  
 
-    private final boolean[] lvars;
-    private final boolean[] vars;
-    private final boolean[] oprs;
-    private final int       immediateNCIndexPre;
-    private final IMNode    node;
+    private boolean[] lvars;
+    private boolean[] vars;
+    private boolean[] oprs;
+    private int       immediateNCIndexPre;
+    private IMNode    node;
 
-    public StackMapSTEntry(IMNode node,int preIP,MethodStackFrame frame) {
+    public StackMapSTEntry(){
+        
+    }
+    
+    public StackMapSTEntry(IMNode node, int preIP, MethodStackFrame frame) {
 	this.frame     = frame;
 	this.vars      = frame.getVarMap();
 	this.lvars     = node.getVarStackMap();
@@ -53,7 +59,15 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 	super.writeEntry(out);
 	out.writeInt(immediateNCIndexPre);      
 	TypeMap.writeMap(out, stackMap(), true);
-    }    
+    }
+    
+    @Override
+    public void readEntry(ExtendedDataInputStream in) throws IOException {
+        super.readEntry(in);
+        immediateNCIndexPre = in.readInt();
+        FieldLayout.readMap(in);
+        in.readInt();
+    }
 
     private boolean[] stackMap() {
 	int extraSpace = (frame.getExtraSpace()-4)/4;
@@ -67,15 +81,15 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 	    currStackMap[i] = false;
 	}
 
-	m=extraSpace;
+	m = extraSpace;
 	if (lvars!=null) {
             System.arraycopy(lvars, 0, currStackMap, m, lvars.length);
 	}
 
-	m+=lvarSize;
+	m += lvarSize;
         System.arraycopy(vars, 0, currStackMap, m, vars.length);
 
-	m+=varSize;
+	m += varSize;
         System.arraycopy(oprs, 0, currStackMap, m, oprs.length);
 
 	if (node.getCompilerOptions().isOption("dumpStackMaps")) {Debug.out.println(toString(currStackMap));}
@@ -85,8 +99,8 @@ public class StackMapSTEntry extends SymbolTableEntryBase {
 
     public String toString(boolean[] map) {
         String ret="StackMapSTEntry:"+node.getLineInfo();
-        for (int i=0;i<map.length;i++) {
-           if (map[i]) ret+="R"; else ret+=".";
+        for (int i = 0; i < map.length; i++) {
+           if (map[i]) ret += "R"; else ret += ".";
         } 
 	return ret + " " + node.toString();
     }

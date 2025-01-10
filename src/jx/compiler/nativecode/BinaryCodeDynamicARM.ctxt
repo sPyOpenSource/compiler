@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=BinaryCodeDynamicARM
-comment0.text=\ \n\ \ \ \ Parallel\ to\ this\ class\ there\ is\ a\ class\ \n\ \ \ \ nativeCode.Binarycode.\ \n\ \ \ \ In\ this\ version\ of\ the\ compiler,\ the\ second\ class\ \n\ \ \ \ is\ used\ as\ a\ mere\ container,\ while\ this\ class\ \n\ \ \ \ is\ used\ to\ assemble\ the\ binary\ code.\ \n
 comment1.params=
 comment1.target=BinaryCodeDynamicARM()
 comment10.params=entry

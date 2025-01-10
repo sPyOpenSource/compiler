@@ -81,13 +81,13 @@ public class VMSupportSTEntry extends SymbolTableEntryBase {
     }
 
     public static void writeSymTable(ExtendedDataOutputStream out) throws IOException {
-        out.writeInt(name_table_size+1);
+        out.writeInt(name_table_size + 1);
         out.writeString("vm_unsupported");
         VMSupportSTEntry curr = name_table;
         int i = 1;
         while (curr != null) {
             out.writeString(curr.name);
-            curr=curr.next;
+            curr = curr.next;
             i++;
         }
     }

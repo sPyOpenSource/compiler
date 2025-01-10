@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Collection
+comment1.params=
+comment1.target=Iterator\ iterator()
+comment2.params=o
+comment2.target=void\ add(java.lang.Object)
+comment3.params=
+comment3.target=int\ size()
+numComments=4

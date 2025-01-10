@@ -8,6 +8,7 @@ public class TypeMap {
   public static void writeMap(ExtendedDataOutputStream out, boolean[] map, boolean writeLen) throws IOException {
       int n_bytes = (map.length + 7) >> 3;
       int j = 0;
+      //System.out.println(n_bytes);
       out.writeInt(n_bytes);
       if (writeLen) out.writeInt(map.length);
       //Debug.out.println("--");
