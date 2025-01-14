@@ -123,7 +123,6 @@ public class MV extends MethodVisitor {
             cntSlot++;
             boolean doubleslot = false;
             for (LocalVar lv : lvs) {
-
                 // local var
                 out.add("    ");
                 out.add("%" + lv.name + " = alloca " + Util.javaSignature2irType(this.cv.getStatistics().getResolver(), lv.signature) + "\t\t; slot " + lv.slot + " = " + lv.signature);
@@ -150,12 +149,10 @@ public class MV extends MethodVisitor {
         //vars.activeByFrame(type, numLocal, local);
 
         switch (type) {
-            case org.objectweb.asm.Opcodes.F_APPEND: { //1
-
+            case org.objectweb.asm.Opcodes.F_APPEND: {//1
                 break;
             }
             case org.objectweb.asm.Opcodes.F_CHOP: {//2
-
                 break;
             }
             case org.objectweb.asm.Opcodes.F_FULL: {//0
@@ -884,20 +881,16 @@ public class MV extends MethodVisitor {
     @Override
     public void visitLdcInsn(Object o) {
         out.add("; ldc " + o);
-        if (o instanceof String) {
+        if (o instanceof String string) {
             // const
-            out.newString(cv, stack, (String) o);
-        } else if (o instanceof Integer) {
-            Integer value = (Integer) o;
+            out.newString(cv, stack, string);
+        } else if (o instanceof Integer value) {
             out.addImm(value, INT, stack);
-        } else if (o instanceof Long) {
-            Long value = (Long) o;
+        } else if (o instanceof Long value) {
             out.addImm(value, LONG, stack);
-        } else if (o instanceof Float) {
-            Float value = (Float) o;
+        } else if (o instanceof Float value) {
             out.addImm(value, FLOAT, stack);
-        } else if (o instanceof Double) {
-            Double value = (Double) o;
+        } else if (o instanceof Double value) {
             out.addImm(value, DOUBLE, stack);
         } else {
             out.add("; todo add const " + o);
@@ -906,7 +899,6 @@ public class MV extends MethodVisitor {
 
     @Override
     public void visitIincInsn(int slot, int value) {
-
         LocalVar var = this.vars.get(slot, curLabel);
         out.add("%__tmpv" + out.tmp + " = load i32, i32* %" + var.name);
         out.tmp++;
@@ -1115,7 +1107,6 @@ public class MV extends MethodVisitor {
     }
 
     void fixNoBr(String[] result) {
-
         // find all label but the preline not br , add br line before label line
         String preLine = null;
         for (int i = 0; i < result.length; i++) {

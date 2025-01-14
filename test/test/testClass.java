@@ -2,7 +2,6 @@ package test;
         
 import de.tu_darmstadt.informatik.rbg.hatlak.eltorito.impl.ElToritoConfig;
 import de.tu_darmstadt.informatik.rbg.hatlak.iso9660.ConfigException;
-import de.tu_darmstadt.informatik.rbg.hatlak.iso9660.ISO9660Directory;
 import de.tu_darmstadt.informatik.rbg.hatlak.iso9660.ISO9660File;
 import de.tu_darmstadt.informatik.rbg.hatlak.iso9660.ISO9660RootDirectory;
 import de.tu_darmstadt.informatik.rbg.hatlak.iso9660.impl.CreateISO;

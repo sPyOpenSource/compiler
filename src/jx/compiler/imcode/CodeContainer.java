@@ -339,9 +339,9 @@ public class CodeContainer implements NativeCodeContainer {
         if (current <= Opcodes.ASTORE) {
             int vi;
             if (hasWidePrefix)
-            vi = bcStream.readUnsignedShort();
+                vi = bcStream.readUnsignedShort();
             else
-            vi = bcStream.readUnsignedByte();
+                vi = bcStream.readUnsignedByte();
             opr = new IMStoreLocalVariable(this, current, ip, vi);
         } else {
             opr = new IMStoreLocalVariable(this, current, ip); 
@@ -675,7 +675,7 @@ public class CodeContainer implements NativeCodeContainer {
         int dim     = bcStream.readUnsignedByte();
         ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
         
-        IMNewMultiArray opr = new IMNewMultiArray(this,current,ip,cpEntry,dim);
+        IMNewMultiArray opr = new IMNewMultiArray(this, current, ip, cpEntry, dim);
 
         insertBCList(opr);
         continue;
@@ -724,7 +724,7 @@ public class CodeContainer implements NativeCodeContainer {
         numberOfBasicBlocks++;
         }
         node = node.bc_next;
-    }     
+    }
         
     // ===============================================
     // 3. Pass
@@ -1190,29 +1190,29 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     public void translate() throws CompileException {
-    IMNode node = imCodeStart;
+        IMNode node = imCodeStart;
 
-    //======================================
-    // translate all basic blocks
-    //======================================
+        //======================================
+        // translate all basic blocks
+        //======================================
 
-    execEnv.setCodeContainer(this);
-    
-    if (opts.isOption("fast_thisptr") &&
-        method.getName().equals("read")) {
-        Debug.out.println(method.getClassName());
-    }
+        execEnv.setCodeContainer(this);
 
-    while (node != null) {
-        if (node.isBasicBlock()) {
-        IMBasicBlock label = (IMBasicBlock)node;        
-        if (opts.doAlignCode() && label.isLoopEntry()) code.alignIP();
-        node.translate((Reg)null);
+        if (opts.isOption("fast_thisptr") &&
+            method.getName().equals("read")) {
+            Debug.out.println(method.getClassName());
         }
-        node = node.next;
-    }
 
-    if (opts.doAlignCode()) code.alignIP_16_Byte();
+        while (node != null) {
+            if (node.isBasicBlock()) {
+                IMBasicBlock label = (IMBasicBlock)node;        
+                if (opts.doAlignCode() && label.isLoopEntry()) code.alignIP();
+                node.translate((Reg)null);
+            }
+            node = node.next;
+        }
+
+        if (opts.doAlignCode()) code.alignIP_16_Byte();
     }
 
     public IMNode getTop() {
