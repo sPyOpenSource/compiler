@@ -16,25 +16,26 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import jx.classfile.ClassData;
+import jx.classfile.MethodData;
+import jx.classfile.constantpool.ConstantPool;
 
-import sjc.ui.SC;
-import org.json.JSONArray;
-import org.json.JSONException;
+import org.junit.Test;
 import org.json.JSONObject;
 
 /**
@@ -203,6 +204,34 @@ public class CompilerTest {
                 }
             } catch (Exception e){
             }
+        }
+    }
+    
+    @Test
+    public void testClass(){
+        try {
+            byte[] fileContent = Files.readAllBytes(Paths.get("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/VmCP.class"));
+            byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
+            int minor_version = fileContent[4] << 8 | fileContent[5];
+            int major_version = fileContent[6] << 8 | fileContent[7];
+            for(byte b:magic_number){
+                System.out.printf("%X",b);
+            }
+            System.out.println(minor_version);
+            System.out.println(major_version);
+            //VmCP cp = new VmCP((fileContent[8] & 0xff) << 8 | (fileContent[9] & 0xff), fileContent);
+
+            //System.out.println(cp.getLength());
+            File file = new File("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/VmCP.class");
+            InputStream is = new FileInputStream(file);
+            ClassData data = new ClassData(new DataInputStream(is));
+            ConstantPool cp = data.getConstantPool();
+            MethodData[] methods = data.getMethodData();
+            for(MethodData method:methods){
+                System.out.println(method.getName());
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CompilerTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

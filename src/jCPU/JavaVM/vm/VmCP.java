@@ -49,9 +49,16 @@ public final class VmCP {
      *
      * @param count
      */
-    protected VmCP(int count) {
+    public VmCP(int count, byte[] file) {
         this.cp = new Object[count];
         this.used = count;
+        for(int i = 0; i < count; i++){
+            System.out.println(file[10 + i]);
+            if(file[10 + i] == TYPE_METHODREF) i += 4;
+            if(file[10 + i] == TYPE_CLASSREF) i += 2;
+            if(file[10 + i] == TYPE_NAMEANDTYPE) i += 4;
+            if(file[10 + i] == TYPE_UTF8) i += 2 + (file[10 + i + 1] & 0xff) << 8 | (file[10 + i + 2] & 0xff);
+        }
     }
 
     /**
@@ -69,12 +76,12 @@ public final class VmCP {
      * @param index The index where to read
      * @return int
      */
-    /*public int getInt(int index) {
+    public int getInt(int index) {
         if (index == 0)
             return 0;
         else
-            return ((VmConstInt) get(index)).intValue();
-    }*/
+            return ((Integer) get(index));
+    }
 
     /**
      * Write an int into this CP
@@ -82,9 +89,9 @@ public final class VmCP {
      * @param index The index where to read
      * @param data  The int to write
      */
-    /*protected void setInt(int index, int data) {
-        set(index, new VmConstInt(data));
-    }*/
+    protected void setInt(int index, int data) {
+        set(index, data);
+    }
 
     /**
      * Read a long out of this CP
@@ -92,9 +99,9 @@ public final class VmCP {
      * @param index The index where to read
      * @return long
      */
-    /*public long getLong(int index) {
-        return ((VmConstLong) get(index)).longValue();
-    }*/
+    public long getLong(int index) {
+        return ((Long) get(index));
+    }
 
     /**
      * Write a long into this CP
@@ -102,9 +109,9 @@ public final class VmCP {
      * @param index The index where to read
      * @param data  The long to write
      */
-    /*protected void setLong(int index, long data) {
-        set(index, new VmConstLong(data));
-    }*/
+    protected void setLong(int index, long data) {
+        set(index, data);
+    }
 
     /**
      * Read a float out of this CP
@@ -112,9 +119,9 @@ public final class VmCP {
      * @param index The index where to read
      * @return float
      */
-    /*public float getFloat(int index) {
-        return ((VmConstFloat) get(index)).floatValue();
-    }*/
+    public float getFloat(int index) {
+        return ((Float) get(index));
+    }
 
     /**
      * Write a float into this CP
@@ -122,9 +129,9 @@ public final class VmCP {
      * @param index The index where to read
      * @param data  The float to write
      */
-    /*protected void setFloat(int index, float data) {
-        set(index, new VmConstFloat(data));
-    }*/
+    protected void setFloat(int index, float data) {
+        set(index, data);
+    }
 
     /**
      * Read a double out of this CP
@@ -142,9 +149,9 @@ public final class VmCP {
      * @param index The index where to read
      * @param data  The double to write
      */
-    /*protected void setDouble(int index, double data) {
-        set(index, new VmConstDouble(data));
-    }*/
+    protected void setDouble(int index, double data) {
+        set(index, data);
+    }
 
     protected String getUTF8(int index) {
         return (String) get(index);
