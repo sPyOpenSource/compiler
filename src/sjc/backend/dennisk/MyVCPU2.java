@@ -226,15 +226,18 @@ public class MyVCPU2 extends Architecture {
     unaAriCall[StdTypes.T_DBL]|=(1<<(Ops.A_MINUS-Ops.MSKBSE));
   }
   
+  @Override
   public boolean mayInline() { //MyVCPU2 does not support inlining
     return false;
   }
   
+  @Override
   public String checkBuildAssembler(Context preInitCtx) {
     asmTmpTextBuffer=new TextBuffer();
     return "vCPU2";
   }
   
+  @Override
   protected void attachMethodAssemblerText(Mthd generatingMthd, Instruction first) {
     printCode(asmTmpTextBuffer, first, null, true);
     generatingMthd.asmCode=asmTmpTextBuffer.toString();

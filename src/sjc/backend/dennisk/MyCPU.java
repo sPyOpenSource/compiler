@@ -43,7 +43,7 @@ import sjc.compbase.StdTypes;
  *  version 150831 initial version
  */
 public class MyCPU extends Architecture {
-  //basic concept:
+  //basic concept: JVM
   //  register A and Y are just dummies
   //  register X holds stack base
   //  RAM-locations 0xC0-0xD9 contain 26 general purpose registers
@@ -52,7 +52,7 @@ public class MyCPU extends Architecture {
   //  RAM-location  0xDE+0xDF contain the current instance
   
   //special "register"
-  public final static int RegBaseMark = 0xAFFECAFE; //this mask should never occur
+  public final static int RegBaseMark = 0xCAFEBABE; //this mask should never occur
   
   //definitions of memory mapped registers
   public final static int RegMax    = 31;
@@ -89,83 +89,97 @@ public class MyCPU extends Architecture {
   public final static int IT_DEFICA  = 4;
   public final static int IT_INLCODA = 5;
   
-  public final static int I_CLC      = 0x04 | PAR_NONE; //clear the carry flag
-  public final static int I_SEC      = 0x05 | PAR_NONE; //set the carry flag
-  public final static int I_CLA      = 0x2C | PAR_NONE; //clear Accu
-  public final static int I_CLY      = 0x2E | PAR_NONE; //clear Y-Register
-  public final static int I_LDAimm   = 0x30 | PAR_BYTE; //load Accu immediate
-  public final static int I_LDXimm   = 0x50 | PAR_BYTE; //load X-Register immediate
-  public final static int I_LDYimm   = 0x57 | PAR_BYTE; //load Y-Register immediate
-  public final static int I_LDAzp    = 0x31 | PAR_BYTE; //load content of RAM addressed by ZP (8bit) into Accu
-  public final static int I_LDAizpy  = 0x34 | PAR_BYTE; //load content of RAM indirectly addressed by 16bit pointer stored in zeropage plus Y into Accu
-  public final static int I_LDAabsx  = 0x35 | PAR_WORD; //load content of RAM addressed by abs (16bit) plus X into Accu
-  public final static int I_STAzp    = 0x41 | PAR_BYTE; //store Accu into RAM addressed by ZP (8bit)
-  public final static int I_STAabsx  = 0x45 | PAR_WORD; //store Accu into RAM addressed by abs (16bit) plus X
-  public final static int I_STAizpy  = 0x44 | PAR_BYTE; //store Accu into RAM indirectly addressed by 16bit pointer stored in zeropage plus Y
-  public final static int I_LDXzp    = 0x51 | PAR_BYTE; //load content of RAM addressed by ZP (8bit) into X-Register
-  public final static int I_STXzp    = 0x54 | PAR_BYTE; //store X-Register into RAM addressed by ZP (8bit)
-  public final static int I_LDYzp    = 0x58 | PAR_BYTE; //load content of RAM addressed by ZP (8bit) into Y-Register
-  public final static int I_STYzp    = 0x5B | PAR_BYTE; //store Y-Register into RAM addressed by ZP (8bit
-  public final static int I_LPA      = 0xEA | PAR_NONE; //load content of RAM addressed by X- and Y-Register into Accu and increment 16 bit pointer
-  public final static int I_SPA      = 0xFA | PAR_NONE; //store Accu into RAM addressed by X- and Y-Register and increment 16 bit pointer
-  public final static int I_MOVzpimm = 0x48 | PAR_BYTE | PAR_SECBYTE; //load data immediate to zeropage
-  public final static int I_MOVzpzp  = 0x47 | PAR_BYTE | PAR_SECBYTE; //copy content of RAM addressed by ZP2 (8bit) into RAM addressed by ZP1 (8bit)
-  public final static int I_PHA      = 0x08 | PAR_NONE; //push Accu to stack
-  public final static int I_PHX      = 0x09 | PAR_NONE; //push X-Register to stack
-  public final static int I_PUSHimm  = 0xBA | PAR_BYTE; //push immediate 8 bit data to stack
-  public final static int I_PUSHzp   = 0x9A | PAR_BYTE; //push content of RAM addressed by ZP (8bit) to stack
-  public final static int I_PUSAimm  = 0xCA | PAR_WORD; //push immediate 16 bit data to stack
-  public final static int I_PLA      = 0x0C | PAR_NONE; //load Accu from stack
-  public final static int I_PLX      = 0x0D | PAR_NONE; //load X-Register from stack
-  public final static int I_POPzp    = 0xAA | PAR_BYTE; //load data from stack and write it into RAM addressed by ZP (8bit)
-  public final static int I_INY      = 0x8B | PAR_NONE; //increment Y-Register
-  public final static int I_INCizpy  = 0x9D | PAR_BYTE; //increment the content of RAM indirectly addressed by 16 bit pointer stored in zeropage plus Y
-  public final static int I_DECizpy  = 0x9F | PAR_BYTE; //decrement the content of RAM indirectly addressed by 16 bit pointer stored in zeropage plus Y
-  public final static int I_DEC      = 0x9B | PAR_NONE; //decrement Accu
-  public final static int I_DEY      = 0xBB | PAR_NONE; //decrement Y-Register
-  public final static int I_TSX      = 0x26 | PAR_NONE; //transfer Stackpointer into X-Register
-  public final static int I_TAX      = 0x20 | PAR_NONE; //transfer Accu into X-Register
-  public final static int I_TAY      = 0x22 | PAR_NONE; //transfer Accu into Y-Register
-  public final static int I_TXA      = 0x21 | PAR_NONE; //transfer X-Register into Accu
-  public final static int I_TYA      = 0x23 | PAR_NONE; //transfer Y-Register into Accu
-  public final static int I_TXY      = 0x24 | PAR_NONE; //transfer X-Register into Y-Register
-  public final static int I_TYX      = 0x25 | PAR_NONE; //transfer Y-Register into X-Register
-  public final static int I_INS      = 0xDA | PAR_BYTE; //increment stackpointer by value
-  public final static int I_RTS      = 0x1F | PAR_NONE; //return from subroutine
-  public final static int I_ADCimm   = 0x80 | PAR_BYTE; //add immediate data to Accu
-  public final static int I_ADCzp    = 0x81 | PAR_BYTE; //add content of RAM addressed by ZP (8bit) to Accu
-  public final static int I_SBCimm   = 0x90 | PAR_BYTE; //subtract immediate data from Accu
-  public final static int I_SBCzp    = 0x91 | PAR_BYTE; //subtract content of RAM addressed by ZP (8bit) from Accu
-  public final static int I_ANDimm   = 0xD0 | PAR_BYTE; //logical AND with Accu and immediate data
-  public final static int I_ANDzp    = 0xD1 | PAR_BYTE; //logical AND with Accu and content of RAM addressed by ZP (8bit)
-  public final static int I_ORimm    = 0xE0 | PAR_BYTE; //logical OR with Accu and immediate data
-  public final static int I_ORzp     = 0xE1 | PAR_BYTE; //logical OR with Accu and content of RAM addressed by ZP (8bit)
-  public final static int I_EORimm   = 0xF0 | PAR_BYTE; //logical AND with Accu and immediate data
-  public final static int I_EORzp    = 0xF1 | PAR_BYTE; //logical exclusive OR with Accu and content of RAM addressed by ZP (8bit)
-  public final static int I_MULimm   = 0xA0 | PAR_BYTE; //multiply Accu with immediate data
-  public final static int I_MULzp    = 0xA1 | PAR_BYTE; //multiply Accu with content of RAM addressed by ZP (8bit)
-  public final static int I_SHL      = 0xCB | PAR_NONE; //shift left Accu, highest bit will be stored in carry
-  public final static int I_SHLzp    = 0xAC | PAR_BYTE; //shift left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
-  public final static int I_SHR      = 0xDB | PAR_NONE; //shift right Accu, lowest bit will be stored in carry
-  public final static int I_SHRzp    = 0xBC | PAR_BYTE; //shift right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
-  public final static int I_ROL      = 0xEB | PAR_NONE; //rotate left Accu, highest bit will be stored in carry
-  public final static int I_ROLzp    = 0xDC | PAR_BYTE; //rotate left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
-  public final static int I_ROR      = 0xFB | PAR_NONE; //rotate right Accu, lowest bit will be stored in carry
-  public final static int I_RORzp    = 0xEC | PAR_BYTE; //rotate right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
-  public final static int I_CMPimm   = 0x70 | PAR_BYTE; //compare Accu with immediate data
-  public final static int I_CMPzp    = 0x71 | PAR_BYTE; //compare Accu with content of RAM addressed by ZP (8bit)
-  public final static int I_CAY      = 0x69 | PAR_NONE; //compare Accu with Y-Register
-  public final static int I_BITzpimm = 0x5E | PAR_BYTE | PAR_SECBYTE; //logical AND with RAM (ZP = 8bit address) and immediate data
-  public final static int I_JSRmem   = 0x1B | PAR_WORD; //jump to indirectly addressed  subroutine, the pointer to the subroutine is stored in RAM
-  public final static int I_JSRimm   = 0x1A | PAR_WORD; //jump to direct addressed subroutine
-  public final static int I_JMPimm   = 0x10 | PAR_WORD; //jump to direct address
-  public final static int I_JNCimm   = 0x16 | PAR_WORD; //jump if carry clear
-  public final static int I_JNVimm   = 0x14 | PAR_WORD; //jump if sign clear
-  public final static int I_JNZimm   = 0x18 | PAR_WORD; //jump if zero clear
-  public final static int I_JPCimm   = 0x17 | PAR_WORD; //jump if carry set
-  public final static int I_JPVimm   = 0x15 | PAR_WORD; //jump if sign set
-  public final static int I_JPZimm   = 0x19 | PAR_WORD; //jump if zero set
-  public final static int I_DYJPimm  = 0x4A | PAR_WORD; //decrement Y and jump if Y is not zero 
+  public final static int I_CLC      = 0x04; //clear the carry flag
+  public final static int I_SEC      = 0x05; //set the carry flag
+  public final static int I_CLA      = 0x2C; //clear Accu
+  public final static int I_CLY      = 0x2E; //clear Y-Register
+  
+  public final static int I_LDAimm   = 0x2a; //load Accu immediate
+  public final static int I_LDXimm   = 0x2b; //load X-Register immediate
+  public final static int I_LDYimm   = 0x2c; //load Y-Register immediate
+  public final static int I_LDAzp    = 0x31; //load content of RAM addressed by ZP (8bit) into Accu
+  public final static int I_LDAizpy  = 0x34; //load content of RAM indirectly addressed by 16bit pointer stored in zeropage plus Y into Accu
+  public final static int I_LDAabsx  = 0x35; //load content of RAM addressed by abs (16bit) plus X into Accu
+  public final static int I_LDXzp    = 0x51; //load content of RAM addressed by ZP (8bit) into X-Register
+  public final static int I_LDYzp    = 0x58; //load content of RAM addressed by ZP (8bit) into Y-Register
+  public final static int I_LPA      = 0xEA; //load content of RAM addressed by X- and Y-Register into Accu and increment 16 bit pointer
+  public final static int I_MOVzpimm = 0x48; //load data immediate to zeropage
+  public final static int I_MOVzpzp  = 0x47; //copy content of RAM addressed by ZP2 (8bit) into RAM addressed by ZP1 (8bit)
+  public final static int I_PLA      = 0x0C; //load Accu from stack
+  public final static int I_PLX      = 0x0D; //load X-Register from stack
+  public final static int I_POPzp    = 0xAA; //load data from stack and write it into RAM addressed by ZP (8bit)
+  
+  public final static int I_STAzp    = 0x41; //store Accu into RAM addressed by ZP (8bit)
+  public final static int I_STAabsx  = 0x45; //store Accu into RAM addressed by abs (16bit) plus X
+  public final static int I_STAizpy  = 0x44; //store Accu into RAM indirectly addressed by 16bit pointer stored in zeropage plus Y
+  public final static int I_STXzp    = 0x54; //store X-Register into RAM addressed by ZP (8bit)
+  public final static int I_STYzp    = 0x5B; //store Y-Register into RAM addressed by ZP (8bit
+  public final static int I_SPA      = 0x3A; //store Accu into RAM addressed by X- and Y-Register and increment 16 bit pointer
+  
+  public final static int I_PHA      = 0x11; //push Accu to stack
+  public final static int I_PHX      = 0x09; //push X-Register to stack
+  public final static int I_PUSHimm  = 0xBA; //push immediate 8 bit data to stack
+  public final static int I_PUSHzp   = 0x9A; //push content of RAM addressed by ZP (8bit) to stack
+  public final static int I_PUSAimm  = 0xCA; //push immediate 16 bit data to stack
+  
+  public final static int I_INS      = 0xDA; //increment stackpointer by value
+  public final static int I_INY      = 0x8B; //increment Y-Register
+  public final static int I_INCizpy  = 0x84; //increment the content of RAM indirectly addressed by 16 bit pointer stored in zeropage plus Y
+  public final static int I_DECizpy  = 0x9F; //decrement the content of RAM indirectly addressed by 16 bit pointer stored in zeropage plus Y
+  public final static int I_DEC      = 0x9B; //decrement Accu
+  public final static int I_DEY      = 0xBB; //decrement Y-Register
+  
+  public final static int I_TSX      = 0x26; //transfer Stackpointer into X-Register
+  public final static int I_TAX      = 0x20; //transfer Accu into X-Register
+  public final static int I_TAY      = 0x22; //transfer Accu into Y-Register
+  public final static int I_TXA      = 0x21; //transfer X-Register into Accu
+  public final static int I_TYA      = 0x23; //transfer Y-Register into Accu
+  public final static int I_TXY      = 0x24; //transfer X-Register into Y-Register
+  public final static int I_TYX      = 0x25; //transfer Y-Register into X-Register
+  
+  public final static int I_RTS      = 0xB1; //return from subroutine
+  
+  public final static int I_ADCimm   = 0x60; //add immediate data to Accu
+  public final static int I_ADCzp    = 0x81; //add content of RAM addressed by ZP (8bit) to Accu
+  public final static int I_SBCimm   = 0x64; //subtract immediate data from Accu
+  public final static int I_SBCzp    = 0x91; //subtract content of RAM addressed by ZP (8bit) from Accu
+  
+  public final static int I_ANDimm   = 0x7E; //logical AND with Accu and immediate data
+  public final static int I_ANDzp    = 0xD1; //logical AND with Accu and content of RAM addressed by ZP (8bit)
+  public final static int I_ORimm    = 0x80; //logical OR with Accu and immediate data
+  public final static int I_ORzp     = 0xE1; //logical OR with Accu and content of RAM addressed by ZP (8bit)
+  public final static int I_EORimm   = 0x82; //logical AND with Accu and immediate data
+  public final static int I_EORzp    = 0xF1; //logical exclusive OR with Accu and content of RAM addressed by ZP (8bit)
+  public final static int I_BITzpimm = 0x5E; //logical AND with RAM (ZP = 8bit address) and immediate data
+
+  public final static int I_MULimm   = 0x68; //multiply Accu with immediate data
+  public final static int I_MULzp    = 0xA1; //multiply Accu with content of RAM addressed by ZP (8bit)
+  
+  public final static int I_SHL      = 0x78; //shift left Accu, highest bit will be stored in carry
+  public final static int I_SHLzp    = 0xAC; //shift left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
+  public final static int I_SHR      = 0x7A; //shift right Accu, lowest bit will be stored in carry
+  public final static int I_SHRzp    = 0xBC; //shift right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
+  
+  public final static int I_ROL      = 0xEB; //rotate left Accu, highest bit will be stored in carry
+  public final static int I_ROLzp    = 0xDC; //rotate left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
+  public final static int I_ROR      = 0xFB; //rotate right Accu, lowest bit will be stored in carry
+  public final static int I_RORzp    = 0xEC; //rotate right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
+  
+  public final static int I_CMPimm   = 0xA5; //compare Accu with immediate data
+  public final static int I_CMPzp    = 0x9F; //compare Accu with content of RAM addressed by ZP (8bit)
+  public final static int I_CAY      = 0x69; //compare Accu with Y-Register
+  
+  public final static int I_JSRmem   = 0xA8; //jump to indirectly addressed  subroutine, the pointer to the subroutine is stored in RAM
+  public final static int I_JSRimm   = 0xC9; //jump to direct addressed subroutine
+  public final static int I_JMPimm   = 0x10; //jump to direct address
+  public final static int I_JNCimm   = 0x16; //jump if carry clear
+  public final static int I_JNVimm   = 0x14; //jump if sign clear
+  public final static int I_JNZimm   = 0x18; //jump if zero clear
+  public final static int I_JPCimm   = 0x17; //jump if carry set
+  public final static int I_JPVimm   = 0x15; //jump if sign set
+  public final static int I_JPZimm   = 0x19; //jump if zero set
+  
+  public final static int I_DYJPimm  = 0x4A; //decrement Y and jump if Y is not zero 
   
   public final static int VAROFF_PARAM_NRM = 3;
   public final static int VAROFF_PARAM_INL = 1;
@@ -178,15 +192,15 @@ public class MyCPU extends Architecture {
   
   //initialization
   public MyCPU() {
-    relocBytes=2;
-    stackClearBits=0;
-    allocClearBits=1;
-    maxInstrCodeSize=3;
-    throwFrameSize=12;
-    throwFrameExcOff=10;
-    regClss=RegMaskCLSS;
-    regInst=RegMaskINST;
-    regBase=RegBaseMark;
+    relocBytes = 2;
+    stackClearBits = 0;
+    allocClearBits = 1;
+    maxInstrCodeSize = 3;
+    throwFrameSize = 12;
+    throwFrameExcOff = 10;
+    regClss = RegMaskCLSS;
+    regInst = RegMaskINST;
+    regBase = RegBaseMark;
     binAriCall[StdTypes.T_BYTE] |= (1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
     binAriCall[StdTypes.T_SHRT] |= (1<<Ops.A_MUL-Ops.MSKBSE)|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
     binAriCall[StdTypes.T_INT]  |= (1<<Ops.A_MUL-Ops.MSKBSE)|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
@@ -200,24 +214,26 @@ public class MyCPU extends Architecture {
   }
   
   //general memory and register management
+  @Override
   public void putRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putShort(loc, offset, (short)mem.getAddrAsInt(ptr, ptrOff));
   }
 
+  @Override
   public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putShort(loc, offset, (short)mem.getAddrAsInt(ptr, ptrOff));
   }
   
   protected int getZPAddrOfReg(int reg) {
-    return ZPAddrBase+reg;
+    return ZPAddrBase + reg;
   }
   
   private int bitSearch(int value, int hit) {
     int i, j;
-    for (i=0; i<=RegMax; i++) {
-      j=1<<i;
-      if ((value&j)!=0) {
-        if (--hit==0) return j;
+    for (i = 0; i <= RegMax; i++) {
+      j = 1 << i;
+      if ((value&j) != 0) {
+        if (--hit == 0) return j;
       }
     }
     //nothing found, sorry
@@ -226,9 +242,9 @@ public class MyCPU extends Architecture {
   
   private int getBitPos(int reg) {
     int i, j;
-    for (i=0; i<32; i++) { //also search "special registers"
-      j=1<<i;
-      if ((reg&j)!=0) return i;
+    for (i = 0; i < 32; i++) { //also search "special registers"
+      j = 1 << i;
+      if ((reg & j) != 0) return i;
     }
     return -1;
   }
@@ -267,12 +283,14 @@ public class MyCPU extends Architecture {
     return -1;
   }
   
+  @Override
   public int ensureFreeRegs(int ignoreReg1, int ignoreReg2, int keepReg1, int keepReg2) {
     int restore=storeReg(RegMaskGP&~(ignoreReg1|ignoreReg2));
     usedRegs=(keepReg1|keepReg2)&RegMaskGP;
     return restore;
   }
   
+  @Override
   public int prepareFreeReg(int avoidReg1, int avoidReg2, int reUseReg, int type) {
     int toStore, ret;
     //basereg can not be allocated
@@ -309,10 +327,12 @@ public class MyCPU extends Architecture {
     writtenRegs&=~regs;
   }
   
+  @Override
   public int allocReg() {
     return nextAllocReg;
   }
   
+  @Override
   public void deallocRestoreReg(int deallocRegs, int keepRegs, int restore) {
     deallocReg(deallocRegs&~(keepRegs|restore));
     restoreReg(restore);
@@ -341,6 +361,7 @@ public class MyCPU extends Architecture {
   }
   
   //method start, end and finalization
+  @Override
   public Mthd prepareMethodCoding(Mthd mthd) {
     Mthd lastMthd;
     writtenRegs=usedRegs=0;
@@ -353,6 +374,7 @@ public class MyCPU extends Architecture {
     return lastMthd;
   }
 
+  @Override
   public void codeProlog() {
     Instruction loopDest;
     int i;
@@ -392,6 +414,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void codeEpilog(Mthd outline) {
     if (outline!=null && curMthd.parSize==0 && curMthd.varSize==0) { //optimize inline methods without parameters and variables
       --curInlineLevel;
@@ -417,10 +440,12 @@ public class MyCPU extends Architecture {
     }
   }
   
+  @Override
   public void finalizeInstructions(Instruction first) {
     //nothing to do, all instructions are ready to be copied, only jumps/magics need to be fixed after address is known
   }
 
+  @Override
   public void finalizeInstructionAddresses(Mthd generatingMthd, Instruction first, Object loc, int offset) {
     int baseInlineCodeAddress=-1;
     Instruction now=first;
@@ -463,6 +488,7 @@ public class MyCPU extends Architecture {
   }
   
   //basic architecture implementation
+  @Override
   public void genLoadConstVal(int dst, int val, int type) {
     int reg, count, i;
     if (dst==regBase) {
@@ -476,6 +502,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genLoadConstDoubleOrLongVal(int dst, long val, boolean asDouble) {
     int reg, i, tempVal;
     if (dst==regBase) {
@@ -491,6 +518,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genLoadVarAddr(int dst, int src, Object loc, int off) {
     int pos=mem.getAddrAsInt(loc, off);
     int dst1, dst2;
@@ -534,6 +562,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genLoadVarVal(int dst, int src, Object loc, int off, int type) {
     int dstReg, count, i=0, pos=mem.getAddrAsInt(loc, off), src1, src2;
     count=getByteCount(type);
@@ -577,6 +606,7 @@ public class MyCPU extends Architecture {
     ins(I_PLX);
   }
 
+  @Override
   public void genConvertVal(int dst, int src, int toType, int fromType) {
     int countFrom, countTo, regDst, regSrc=0, i=1, temp;
     Instruction dest;
@@ -604,6 +634,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genDup(int dst, int src, int type) {
     int srcReg, dstReg, regCount, i;
     if (dst==src) return;
@@ -617,6 +648,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genPushConstVal(int val, int type) {
     int count, shortVal;
     count=getByteCount(type);
@@ -634,6 +666,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genPushConstDoubleOrLongVal(long val, boolean asDouble) {
     int count=8, shortVal;
     while (count>0) {
@@ -643,6 +676,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genPush(int src, int type) {
     int count, reg;
     count=getByteCount(type);
@@ -652,6 +686,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genPop(int dst, int type) {
     int count, reg, i=0;
     count=getByteCount(type);
@@ -862,6 +897,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genIncMem(int dst, int type) {
     int i, regCount, reg1, reg2;
     regCount=getByteCount(type);
@@ -946,6 +982,7 @@ public class MyCPU extends Architecture {
     ins(I_POPzp, ZPAddrInstHi);
   }
 
+  @Override
   public void genLoadInstContext(int src) {
     int src1, src2;
     if ((src1=getRegZPAddr(1, src, StdTypes.T_PTR, false))==-1
@@ -969,6 +1006,7 @@ public class MyCPU extends Architecture {
     ins(I_PLX);
   }
 
+  @Override
   public void genCall(int off, int clssReg, int parSize) {
     int cr1, cr2;
     if ((cr1=getRegZPAddr(1, clssReg, StdTypes.T_PTR, false))==-1
@@ -1003,6 +1041,7 @@ public class MyCPU extends Architecture {
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genCallIndexed(int intfReg, int off, int parSize) {
     int cr1, cr2;
     if ((cr1=getRegZPAddr(3, intfReg, StdTypes.T_DPTR, false))==-1
@@ -1424,6 +1463,7 @@ public class MyCPU extends Architecture {
   }
   
   //optimized storing and calculation
+  @Override
   public void genStoreVarVal(int objReg, Object loc, int off, int valReg, int type) {
     int valR, objR, count, i;
     count=getByteCount(type);
@@ -1463,6 +1503,7 @@ public class MyCPU extends Architecture {
     }
   }
   
+  @Override
   public void genStoreVarConstVal(int objReg, Object loc, int off, int val, int type) {
     int objR, count, i;
     count=getByteCount(type);
@@ -1665,6 +1706,7 @@ public class MyCPU extends Architecture {
     }
   }
   
+  @Override
   public void genBinOpConstDoubleOrLongRi(int dst, int src1, long val, int op, boolean asDouble) {
     int opType=op>>>16, opPar=op&0xFFFF;
     int dstR, srcR1, i, tmpVal, count;
@@ -1767,7 +1809,6 @@ public class MyCPU extends Architecture {
         return;
       default:
         fatalError("unsupported operation-type for genBinOpConstDoubleOrLongRi");
-        return;
     }
   }
   
