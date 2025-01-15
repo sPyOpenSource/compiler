@@ -214,7 +214,7 @@ public final class Util {
 
     public static int fieldIndexInClass(String className, String name) {
         try {
-            ClassData c = helper.getClassFile(className);
+            ClassData c = helper.getClassFile(className + ".class");
             int pos = 0;
             for (FieldData f : c.getFields()) {
                 if (name.equals(f.getName())) return pos;

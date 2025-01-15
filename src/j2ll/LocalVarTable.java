@@ -24,29 +24,29 @@ public final class LocalVarTable {
         labelsForUse.add(lab);
     }
 
-    public LocalVar get(int slot,String lab) {
+    public LocalVar get(int slot, String lab) {
 
-        List<LocalVar> list=getBySlot( slot);
+        List<LocalVar> list = getBySlot(slot);
         Collections.sort(list, new Comparator<>() {
             @Override
             public int compare(LocalVar o1, LocalVar o2) {
-                if(o1.endAt==o2.startAt){
-                    throw new RuntimeException("local var sort error,expect not overwrite.");
+                if(o1.endAt == o2.startAt){
+                    throw new RuntimeException("local var sort error, expect not overwrite.");
                 }
-                return o1.endAt-o2.startAt;
+                return o1.endAt - o2.startAt;
             }
         });
 
         int labIndex = labelsForUse.indexOf(lab);
         if(labIndex < 0){
-            throw new RuntimeException("can't found label: "+lab);
+            throw new RuntimeException("can't found label: " + lab);
         }
         for(LocalVar lv:list){
-            if(labIndex<lv.endAt){
+            if(labIndex < lv.endAt){
                 return lv;
             }
         }
-        throw new RuntimeException("can't found localvar by slot: "+slot);
+        throw new RuntimeException("can't found localvar by slot: " + slot);
     }
 
     public List<LocalVar> getAll() {
@@ -64,8 +64,8 @@ public final class LocalVarTable {
     }
 
     /**
-     * same slot would be more than 1 vars ,every var  have a rang in lab1 to lab2
-     * so a lab vist , check this lab range var
+     * same slot would be more than 1 vars, every var have a rang in lab1 to lab2
+     * so a lab vist, check this lab range var
      */
     public void parseRange(String name, String lab1, String lab2, int slot) {
         for (LocalVar lv : all) {

@@ -1,6 +1,7 @@
 
 package j2ll;
 
+import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +23,7 @@ import jx.classfile.ClassData;
 public class ClassHelper {
     private String path;
     private String[] classes;
-    private HashMap<String,InputStream> map = new HashMap<>();
+    private HashMap<String, byte[]> map = new HashMap<>();
     private JarFile[] files;
     
     public ClassHelper(String string, String[] toArray) {
@@ -34,9 +35,9 @@ public class ClassHelper {
         try {
             files = new JarFile[]{
                 new JarFile("../Zero/dist/Zero.jar"),
-                new JarFile("../OS/dist/OS.jar"),
-                new JarFile("../AIZero/dist/AIZero.jar"),
-                new JarFile("../test/ifOS/dist/ifOS.jar")
+                //new JarFile("../OS/dist/OS.jar"),
+                //new JarFile("../AIZero/dist/AIZero.jar"),
+                //new JarFile("../test/ifOS/dist/ifOS.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,7 +52,7 @@ public class ClassHelper {
                     JarEntry entry = entries.nextElement();
                     String name = entry.getName();
                     if (name.endsWith(".class")){
-                        map.put(name, file.getInputStream(entry));
+                        map.put(name, file.getInputStream(entry).readAllBytes());
                     }
                 }
             }
@@ -65,16 +66,15 @@ public class ClassHelper {
     public ClassData getClassFile(String className) {
         openClasses();
         try {
-            return new ClassData(new DataInputStream(getClassFileStream(className)));
+            return new ClassData(new DataInputStream(new ByteArrayInputStream(getClassFileStream(className))));
         } catch (IOException ex) {
             Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
     
-    InputStream getClassFileStream(String className){
-        InputStream is = map.get(className);
-        return is;
+    byte[] getClassFileStream(String className){
+        return map.get(className);
     }
     
     Set<String> getAllClass(){

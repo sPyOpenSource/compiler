@@ -106,6 +106,7 @@ abstract public class IrSentence extends IrObject {
                         || right.startsWith("inttoptr ")
                         || right.startsWith("sitofp ")
                         || right.startsWith("fptosi ")
+                        || right.startsWith("utrunc")
         ) {
             irs = new IrBitcast();
             irs.parse(s);
@@ -128,6 +129,7 @@ abstract public class IrSentence extends IrObject {
                         || right.startsWith("and")
                         || right.startsWith("lshr")
                         || right.startsWith("shl")
+                        || right.startsWith("or")
         ) {
             irs = new IrArith();
             System.out.println(s);
