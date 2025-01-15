@@ -68,8 +68,8 @@ public class Main {
         }
     }
 
-    public static void conv(InputStream is, String name, String llvmPath) throws IOException {
-        String outFileName = name.replaceAll(".class", "").replaceAll("/", ".") + ".ll";
+    public static void conv(byte[] is, String name, String llvmPath) throws IOException {
+        String outFileName = name.replaceAll(".class", ".ll").replaceAll("/", ".");
         System.out.println(outFileName);
         PrintStream ps = new PrintStream(new File(llvmPath, outFileName));
 
