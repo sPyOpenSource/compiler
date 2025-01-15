@@ -1,5 +1,6 @@
 package jx.classfile; 
 
+import jCPU.JavaVM.vm.AttributeInfo;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,7 +21,9 @@ public class MethodData extends MethodSource {
     private int accessFlags;
     int methodNameCPIndex;
     int methodTypeCPIndex;
-  
+    public int attributes_count;
+    public AttributeInfo[] attributes;
+    
     UTF8CPEntry methodNameCPEntry;
     UTF8CPEntry methodTypeCPEntry;
 
@@ -185,11 +188,13 @@ public class MethodData extends MethodSource {
 	methodTypeCPEntry = (UTF8CPEntry)cPool.entryAt(methodTypeCPIndex);
 
 	int numAttributes = input.readUnsignedShort();
-
+attributes_count = numAttributes;
+attributes = new AttributeInfo[numAttributes];
 	// System.out.println(getDescription(cPool));
       
-	for(int i = 0; i < numAttributes; i++)
-	    readAttribute(input, cPool);
+	for(int i = 0; i < numAttributes; i++){
+	    attributes[i] = readAttribute(input, cPool);
+        }
 
 	if (codeData == null) {
 	    if (isNative()) {
@@ -207,7 +212,7 @@ public class MethodData extends MethodSource {
 	}
     }
 
-    private void readAttribute(DataInput input, ConstantPool cPool)
+    private AttributeInfo readAttribute(DataInput input, ConstantPool cPool)
 	throws IOException {
 	int attrNameCPIndex = input.readUnsignedShort();
 	int numBytes = input.readInt();
@@ -219,6 +224,7 @@ public class MethodData extends MethodSource {
 	} else {
 	    input.skipBytes(numBytes);
         }
+        return new AttributeInfo(attrNameCPIndex, numBytes, null);
     }
 
     // reads the Exception  Method Attribute

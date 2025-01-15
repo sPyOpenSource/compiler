@@ -37,6 +37,9 @@ import jx.classfile.constantpool.ConstantPool;
 
 import org.junit.Test;
 import org.json.JSONObject;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodNode;
 
 /**
  *
@@ -224,11 +227,19 @@ public class CompilerTest {
             //System.out.println(cp.getLength());
             File file = new File("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/VmCP.class");
             InputStream is = new FileInputStream(file);
-            ClassData data = new ClassData(new DataInputStream(is));
+            /*ClassData data = new ClassData(new DataInputStream(is));
             ConstantPool cp = data.getConstantPool();
             MethodData[] methods = data.getMethodData();
             for(MethodData method:methods){
                 System.out.println(method.getName());
+            }*/
+            
+            ClassReader cr = new ClassReader(is);
+            ClassNode cn = new ClassNode();
+            cr.accept(cn, ClassReader.EXPAND_FRAMES);
+            System.out.println(cn.name);
+            for(MethodNode method: cn.methods){
+                System.out.println(method.name);
             }
         } catch (IOException ex) {
             Logger.getLogger(CompilerTest.class.getName()).log(Level.SEVERE, null, ex);

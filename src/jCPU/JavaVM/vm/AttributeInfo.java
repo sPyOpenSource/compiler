@@ -24,7 +24,9 @@ package jCPU.JavaVM.vm;
 public class AttributeInfo{
     public int attribute_name_index, attribute_length;
     public char[] info;
-    public AttributeInfo(){
-
+    public AttributeInfo(int name, int length, char[] info){
+        attribute_name_index = name;
+        attribute_length = length;
+        this.info = info;
     }
 }

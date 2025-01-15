@@ -17,11 +17,13 @@
  */
 package jCPU.JavaVM.vm;
 
+import jx.classfile.MethodData;
+
 /**
  *
  * @author xuyi
  */
 public class SimpleMethodPool{
     public int method_used;
-    public MethodInfo[] method;
+    public MethodData[] method;
 }
