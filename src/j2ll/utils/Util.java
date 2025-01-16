@@ -52,10 +52,10 @@ public final class Util {
             if (type.endsWith("*")) {
                 return type.substring(0, type.length() - 1);
             }else if(type.startsWith("%..")){
-                String s = "%"+type.substring(2)+"*";
+                String s = "%" + type.substring(2) + "*";
                 return s;
             } else {
-                throw new RuntimeException("detype error:"+type);
+                throw new RuntimeException("detype error:" + type);
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
@@ -197,7 +197,7 @@ public final class Util {
                 return s;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return className + " is unknown";
         }
     }

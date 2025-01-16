@@ -17,5 +17,5 @@ comment7.params=i
 comment7.target=java.util.List\ getBySlot(int)
 comment8.params=name\ lab1\ lab2\ slot
 comment8.target=void\ parseRange(java.lang.String,\ java.lang.String,\ java.lang.String,\ int)
-comment8.text=\n\ same\ slot\ would\ be\ more\ than\ 1\ vars\ ,every\ var\ \ have\ a\ rang\ in\ lab1\ to\ lab2\n\ so\ a\ lab\ vist\ ,\ check\ this\ lab\ range\ var\n
+comment8.text=\n\ same\ slot\ would\ be\ more\ than\ 1\ vars,\ every\ var\ have\ a\ rang\ in\ lab1\ to\ lab2\n\ so\ a\ lab\ vist,\ check\ this\ lab\ range\ var\n
 numComments=9

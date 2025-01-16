@@ -8,5 +8,5 @@ comment2.target=void\ javaSrc2class(java.lang.String,\ java.lang.String)
 comment3.params=llvmPath
 comment3.target=void\ class2ll(java.lang.String)
 comment4.params=is\ name\ llvmPath
-comment4.target=void\ conv(java.io.InputStream,\ java.lang.String,\ java.lang.String)
+comment4.target=void\ conv(byte[],\ java.lang.String,\ java.lang.String)
 numComments=5
