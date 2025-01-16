@@ -145,6 +145,7 @@ public class ClassData extends ClassSource {
 	int attrNameCPIndex = input.readUnsignedShort();
 	int numBytes = input.readInt();
 	String attrName = constantPool.getUTF8StringAt(attrNameCPIndex);
+        System.out.println(attrName);
 	if (attrName.equals("SourceFile")) {
 	    int sourceFileCPIndex = input.readUnsignedShort();
 	    sourceFile = constantPool.getUTF8StringAt(sourceFileCPIndex);

@@ -117,7 +117,7 @@ public class J2JSON {
             java = java.replace("[,{", "[{");
             java = java.replace(",,", ",");
             //java = java.replace(" ", "");
-            System.out.println(java);
+            //System.out.println(java);
             //System.out.println(java.length());
             JSONArray object = new JSONArray(java);
             //System.out.println(object.toString(4));
@@ -150,7 +150,7 @@ public class J2JSON {
                     name = name.replace("]'}", "]}");
                     name = name.replace("''", "'");
                     
-                    System.out.println(name);
+                    //System.out.println(name);
 
                     JSONObject newfunction = new JSONObject(name);
                     if(values.length > 1){
@@ -170,7 +170,7 @@ public class J2JSON {
             f.write(object.toString(4));
             f.close();
         } catch (IOException ex) {
-            System.out.format("I/O error: %s%n", ex);
+            //System.out.format("I/O error: %s%n", ex);
         }
     }
 }

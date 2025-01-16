@@ -32,9 +32,9 @@ import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.json.JSONObject;
+import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
-import org.objectweb.asm.tree.MethodNode;
 
 /**
  *
@@ -208,7 +208,7 @@ public class CompilerTest {
     @Test
     public void testClass(){
         try {
-            byte[] fileContent = Files.readAllBytes(Paths.get("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/VmCP.class"));
+            byte[] fileContent = Files.readAllBytes(Paths.get("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/AttributeInfo.class"));
             byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
             int minor_version = fileContent[4] << 8 | fileContent[5];
             int major_version = fileContent[6] << 8 | fileContent[7];
@@ -220,7 +220,7 @@ public class CompilerTest {
             //VmCP cp = new VmCP((fileContent[8] & 0xff) << 8 | (fileContent[9] & 0xff), fileContent);
 
             //System.out.println(cp.getLength());
-            File file = new File("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/VmCP.class");
+            File file = new File("/Users/xuyi/Source/OS/armOS/lib/jcore/AIZero/src/AI/Models/Vector.class");
             InputStream is = new FileInputStream(file);
             /*ClassData data = new ClassData(new DataInputStream(is));
             ConstantPool cp = data.getConstantPool();
@@ -228,13 +228,16 @@ public class CompilerTest {
             for(MethodData method:methods){
                 System.out.println(method.getName());
             }*/
-            
             ClassReader cr = new ClassReader(is);
             ClassNode cn = new ClassNode();
+            //Attribute[] attrs = new Attribute[]{new Attribute("SourceFile")};
             cr.accept(cn, ClassReader.EXPAND_FRAMES);
             System.out.println(cn.name);
-            for(MethodNode method: cn.methods){
+            /*for(MethodNode method: cn.methods){
                 System.out.println(method.name);
+            }*/
+            for(Attribute attr:cn.attrs){
+                System.out.println(attr.type);
             }
         } catch (IOException ex) {
             Logger.getLogger(CompilerTest.class.getName()).log(Level.SEVERE, null, ex);
