@@ -116,12 +116,12 @@ abstract public class IrSentence extends IrObject {
                         || right.startsWith("mul ")
                         || right.startsWith("div ")
                         || right.startsWith("rem ")
-                        || right.startsWith("sadd ")//
+                        || right.startsWith("sadd ")
                         || right.startsWith("ssub ")
                         || right.startsWith("smul ")
                         || right.startsWith("sdiv ")
                         || right.startsWith("srem ")
-                        || right.startsWith("fadd ")//
+                        || right.startsWith("fadd ")
                         || right.startsWith("fsub ")
                         || right.startsWith("fmul ")
                         || right.startsWith("fdiv ")

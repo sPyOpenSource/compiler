@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.objectweb.asm.Attribute;
+import org.objectweb.asm.tree.ClassNode;
 
 /**
  *
@@ -70,7 +72,7 @@ public class Main {
 
     public static void conv(byte[] is, String name, String llvmPath) throws IOException {
         String outFileName = name.replaceAll(".class", ".ll").replaceAll("/", ".");
-        System.out.println(outFileName);
+        //System.out.println(outFileName);
         PrintStream ps = new PrintStream(new File(llvmPath, outFileName));
 
         Statistics statistics = new Statistics();
@@ -79,9 +81,19 @@ public class Main {
 
         // read class
         ClassReader cr = new ClassReader(is);
-        cr.accept(sc, 0);
-
+        Attribute[] attrs = new Attribute[0];
+        cr.accept(sc, attrs, 0);
+/*for(Attribute attr:attrs){
+    System.out.println(attr.type);
+}*/
         cr.accept(cv, 0);
+        ClassNode cn = new ClassNode();
+        cr.accept(cn, ClassReader.EXPAND_FRAMES);
+        if(cn.attrs != null){
+            for(Attribute attr:cn.attrs){
+                System.out.println(attr.type);
+            }
+        }
         ps.flush();
     }
 

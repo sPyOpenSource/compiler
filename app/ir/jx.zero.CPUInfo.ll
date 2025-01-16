@@ -193,7 +193,7 @@ define i1 @jx_zero_CPUInfo_hasMTRR(%jx_zero_CPUInfo* %s0){
             %stack2 = load i32, i32* %_imm_1
             %stack3 = and i32 %stack1, %stack2
             %__tmpc2 = icmp eq i32 %stack3, 0
-            br i1 %__tmpc2, label %L1061804750, label %_if.else2
+            br i1 %__tmpc2, label %L1497973285, label %_if.else2
         _if.else2:
     ;1
             ; iconst_1
@@ -201,8 +201,8 @@ define i1 @jx_zero_CPUInfo_hasMTRR(%jx_zero_CPUInfo* %s0){
             store i32 1, i32* %_imm_3
             %stack4 = load i32, i32* %_imm_3
             store i32 %stack4, i32* %stack5_stack;FIXED BRANCH BLOCK VAR
-            br label %L1447689627
-        L1061804750:
+            br label %L1690287238
+        L1497973285:
     ;2
             ; type 3, local 0 [null], stack 0 [null, null]
             ; iconst_0
@@ -210,8 +210,8 @@ define i1 @jx_zero_CPUInfo_hasMTRR(%jx_zero_CPUInfo* %s0){
             store i32 0, i32* %_imm_4
             %stack5 = load i32, i32* %_imm_4
             store i32 %stack5, i32* %stack5_stack;FIXED BRANCH BLOCK VAR
-            br label %L1447689627
-        L1447689627:
+            br label %L1690287238
+        L1690287238:
     ;3
             %stack5_register = load i32, i32* %stack5_stack
             ; type 4, local 0 [null], stack 1 [1, null]

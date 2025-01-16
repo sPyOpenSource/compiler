@@ -106,7 +106,7 @@ define %jx_zero_CycleTime* @jx_zero_CycleTime_subtract_Ljx_zero_CycleTime_(%jx_z
             ; i32load 3
             %stack17 = load i32, i32* %l_2_8
             %__tmpc7 = icmp slt i32 %stack17, 0
-            br i1 %__tmpc7, label %L377942196, label %_if.else7
+            br i1 %__tmpc7, label %L1269006535, label %_if.else7
         _if.else7:
     ;1
             ; 
@@ -126,8 +126,8 @@ define %jx_zero_CycleTime* @jx_zero_CycleTime_subtract_Ljx_zero_CycleTime_(%jx_z
             ; putfield jx/zero/CycleTime high I ( %jx_zero_CycleTime* %stack18 := i32 %stack23 )
             %__tmp10 = getelementptr %jx_zero_CycleTime, %jx_zero_CycleTime* %stack18, i32 0, i32 1
             store i32 %stack23, i32* %__tmp10
-            br label %L62156248
-        L377942196:
+            br label %L1781018589
+        L1269006535:
     ;2
             ; type 1, local 2 [jx/zero/CycleTime, 1, null, null], stack 0 [null, null, null]
             ; %jx_zero_CycleTime*load 2
@@ -151,8 +151,8 @@ define %jx_zero_CycleTime* @jx_zero_CycleTime_subtract_Ljx_zero_CycleTime_(%jx_z
             ; putfield jx/zero/CycleTime high I ( %jx_zero_CycleTime* %stack24 := i32 %stack31 )
             %__tmp14 = getelementptr %jx_zero_CycleTime, %jx_zero_CycleTime* %stack24, i32 0, i32 1
             store i32 %stack31, i32* %__tmp14
-            br label %L62156248
-        L62156248:
+            br label %L1781018589
+        L1781018589:
     ;3
             ; type 3, local 0 [jx/zero/CycleTime, 1, null, null], stack 0 [null, null, null]
             ; %jx_zero_CycleTime*load 2

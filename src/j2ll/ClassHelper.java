@@ -5,7 +5,6 @@ import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -31,20 +30,21 @@ public class ClassHelper {
         classes = toArray;
     }
 
-    ClassHelper() {
+    public ClassHelper() {
         try {
             files = new JarFile[]{
                 new JarFile("../Zero/dist/Zero.jar"),
                 //new JarFile("../OS/dist/OS.jar"),
                 //new JarFile("../AIZero/dist/AIZero.jar"),
-                //new JarFile("../test/ifOS/dist/ifOS.jar")
+                //new JarFile("../test/ifOS/dist/ifOS.jar"),
+                //new JarFile("/Users/xuyi/Source/Java/lib/jSerialComm-2.7.0.jar")
             };
         } catch (IOException ex) {
             Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    void openClasses() {
+    public void openClasses() {
         try {
             for(JarFile file : files){
                 Enumeration<JarEntry> entries = file.entries();
@@ -57,9 +57,9 @@ public class ClassHelper {
                 }
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -67,17 +67,17 @@ public class ClassHelper {
         openClasses();
         try {
             return new ClassData(new DataInputStream(new ByteArrayInputStream(getClassFileStream(className))));
-        } catch (IOException ex) {
-            Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            //Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
     
-    byte[] getClassFileStream(String className){
+    public byte[] getClassFileStream(String className){
         return map.get(className);
     }
     
-    Set<String> getAllClass(){
+    public Set<String> getAllClass(){
         return map.keySet();
     }
 }
