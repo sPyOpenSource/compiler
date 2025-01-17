@@ -1,0 +1,128 @@
+class java/util/Arrays$ArrayList {
+ 
+ method <init>([Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vR1!=null goto B16;   
+  -B8:   #1
+        throw new java/lang/NullPointerException();   
+  +B16:   #1
+        vR0.a = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.a.length;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method set(ILjava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        vR3 = vR0.a[vi1];    
+        vR0.a[vi1] = vR2;   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 set
+ 
+ method indexOf(Ljava/lang/Object;)I {
+  +START:   #1
+        vR2 = vR0.a;    
+        if vR1!=null goto B34;   
+  +B9:   #1
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vR2.length goto B31;   
+  +B17:   #1
+        if vR2[vi3]!=null goto B25;   
+  +B23:   #1
+        return vi3;   
+  +B25:   #1
+        vi3++;   
+        goto +B11;   [Ri   ]
+  +B31:   #1
+        goto +B60;   forward return[Ri   ]
+  +B34:   #1
+        vi3 = 0;    
+  +B36:   #1
+        if vi3>=vR2.length goto B60;   
+  +B42:   #1
+        if vR1.equals(vR2[vi3])==0 goto B54;   
+  +B52:   #1
+        return vi3;   
+  +B54:   #1
+        vi3++;   
+        goto +B36;   [Ri  . ..]
+  +B60:   #2
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 1 any 5 found 0 indexOf
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        return ([Ljava/lang/Object;)(vR0.a.clone());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method get(I)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 get
+ 
+ method listIterator()Ljava/util/ListIterator; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method listIterator(I)Ljava/util/ListIterator; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method add(ILjava/lang/Object;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 add
+ 
+ method lastIndexOf(Ljava/lang/Object;)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastIndexOf
+ 
+ method subList(II)Ljava/util/List; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subList
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
+}

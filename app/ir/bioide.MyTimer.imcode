@@ -1,0 +1,19 @@
+class bioide/MyTimer {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method timer(Ljava/lang/Object;)V {
+  +START:   #1
+        vR2 = (bioide/MyTimerArg)(vR1);    
+        vR2.v.atomicUpdateUnblock(0,vR2.cpuState);   [R  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 1 found 1 timer
+}

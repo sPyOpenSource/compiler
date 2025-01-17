@@ -1,0 +1,181 @@
+class java/text/Collator {
+ 
+ method getInstance()Ljava/text/Collator; {
+  +START:   #1
+        return getInstance@special(getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getInstance
+ 
+ method getInstance(Ljava/util/Locale;)Ljava/text/Collator; {
+  +START:   #1
+        vR1 = collator_cache.get(vR0.getDisplayName@this());    [ RRR i. RR] 
+        if vR1==null goto B20;   
+  +B15:   #1
+        return (java/text/Collator)(vR1);   
+  +B20:   #2
+        vR3 = getBundle@special("gnu/java/locale/LocaleInformation",vR0);    [R RRR R. RR]
+        vR2 = vR3.getString@extra("collation_rules");    [R?R RRR Ri RR] 
+  +B34:   #1
+        goto +B68;   [RRR RRR .. ..]
+  -H37<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/lang/RuntimeException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
+        b1.<init>@special(b2.append@extra("Cannot find collation rules: ").append@extra(vR3.getMessage()).toString@extra());   [RRR RRR iii. RR.] 
+        throw b0;   
+  +B68:   #2
+        vR3 = new java/text/RuleBasedCollator(vR2);    [ RRR .... i..][ RRR .... iRR]
+        collator_cache.put(vR0.getDisplayName@this(),vR3);   [RRR RRR i... RRR] 
+        b0 = vR3;    
+  +B90b0:   #1 reference
+        return b0;   
+  -H91<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        b0 = new java/lang/RuntimeException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Cannot load collation rules: ").append@extra(vR3.getMessage()).toString@extra());   [RRR RRR iii. RR.] 
+        throw b0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+20 - 34 handler 37 type 43
+68 - 90 handler 91 type 75
+ }
+// Register: rd 20/20 wr 30 swaps 9 any 4 found 1 getInstance
+ 
+ method getAvailableLocales()[Ljava/util/Locale; {
+  +START:   #1
+        vR0 = new java/util/Locale()[1];    
+        vR0[0] = getDefault@special();   
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getAvailableLocales
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.strength = 2;   
+        vR0.decmp = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getStrength()I {
+  +START:   #1
+        return vR0.strength;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStrength
+ 
+ method setStrength(I)V {
+  +START:   #1
+        if vi1==0 goto B46;   
+  +B4:   #1
+        if vi1==1 goto B46;   
+  +B9:   #1
+        if vi1==2 goto B46;   
+  +B14:   #1
+        if vi1==3 goto B46;   
+  -B19:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid strength setting: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B46:   #4
+        vR0.strength = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 2 any 5 found 0 setStrength
+ 
+ method getDecomposition()I {
+  +START:   #1
+        return vR0.decmp;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDecomposition
+ 
+ method setDecomposition(I)V {
+  +START:   #1
+        if vi1==0 goto B41;   
+  +B4:   #1
+        if vi1==1 goto B41;   
+  +B9:   #1
+        if vi1==2 goto B41;   
+  -B14:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid decomposition setting: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B41:   #3
+        vR0.decmp = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 2 any 4 found 0 setDecomposition
+ 
+ method compare(Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        return vR0.compare@this((java/lang/String)(vR1),(java/lang/String)(vR2));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 3 compare
+ 
+ method equals(Ljava/lang/String;Ljava/lang/String;)Z {
+  +START:   #1
+        vi3 = vR0.compare@this(vR1,vR2);    [   RRR] 
+        if vi3!=0 goto B13;   
+  +B11:   #1
+        return 1;   
+  +B13:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 equals
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/text/Collator)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        vR2 = (java/text/Collator)(vR1);    
+        if vR2.getStrength()==vR0.getStrength@this() goto B33;   
+  +B31:   #1
+        return 0;   
+  +B33:   #1
+        if vR2.getDecomposition()==vR0.getDecomposition@this() goto B46;   
+  +B44:   #1
+        return 0;   
+  +B46:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 2 found 1 equals
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.clone@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clone
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Hashtable();    [ R  i][ R  iR]
+        collator_cache = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

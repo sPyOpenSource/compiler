@@ -1,0 +1,61 @@
+class jx/zero/LookupHelper {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method NEWwaitUntilPortalAvailable(Ljx/zero/Naming;Ljava/lang/String;)Ljx/zero/Portal; {
+  +START:   #1
+        return vR0.lookupOrWait(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 NEWwaitUntilPortalAvailable
+ 
+ method waitUntilPortalAvailable(Ljx/zero/Naming;Ljava/lang/String;)Ljx/zero/Portal; {
+  +START:   #1
+        vR2 = 0;    
+        if verbose==0 goto B33;   
+  +B8:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("Lookup ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
+  +B33:   #2
+        vR2 = lookup@special(vR1);    [R RR ... R..]
+        if vR2==null goto B45;   
+  +B42:   #1
+        goto +B70;   [R RR ... ...]
+  +B45:   #1
+        vi3 = 0;    
+  +B47:   #1
+        if vi3>=20 goto B67;   
+  +B53:   #1
+        cpuManager.yield();   [Ri RR ... R..] 
+        vi3++;   
+        goto +B47;   [Ri RR ... ...]
+  +B67:   #1
+        goto +B33;   [Ri RR ... ...]
+  +B70:   #1
+        if verbose==0 goto B101;   
+  +B76:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.println(b1.append@extra("    --> ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
+  +B101:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 17 swaps 4 any 3 found 0 waitUntilPortalAvailable
+ 
+ method <clinit>()V {
+  +START:   #1
+        verbose = 1;   
+        cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 5 swaps 1 any 0 found 0 <clinit>
+}

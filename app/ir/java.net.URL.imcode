@@ -1,0 +1,392 @@
+class java/net/URL {
+ 
+ method setURLStreamHandlerFactory(Ljava/net/URLStreamHandlerFactory;)V {
+  +START:   #1
+        if factory!=null goto B13;   
+  +B6:   #1
+        factory = vR0;   
+        goto +B23;   forward return[ R  .]
+  -B13:   #1
+        throw new java/lang/Error("URLStreamHandlerFactory alread set");   
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 1 setURLStreamHandlerFactory
+ 
+ method getProtocolHandler(Ljava/lang/String;)Ljava/net/URLStreamHandler; {
+  +START:   #1
+        if cache_handlers==0 goto B21;   
+  +B6:   #1
+        vR2 = (java/lang/Class)(ph_cache.get(vR0));    
+        if vR2==null goto B21;   
+  +B21:   #2
+        if factory==null goto B70;   
+  +B27:   #1
+        vR1 = factory.createURLStreamHandler(vR0);    [?R R . RR] 
+        if vR1!=null goto B50;   
+  -B41:   #1
+        throw new java/net/MalformedURLException(vR0);   
+  +B50:   #1
+        if cache_handlers==0 goto B68;   
+  +B56:   #1
+        ph_cache.put(vR0,vR1.getClass());   [RR R i. RRR] 
+  +B68:   #1
+        return vR1;   
+  +B70:   #1
+        vR2 = new java/util/StringTokenizer(ph_search_path,"|");    [ R .. i..][ R .. iRRR]
+  +B83:   #1
+        if vR2.hasMoreTokens()==0 goto B125;   
+  +B90:   #1
+        b0 = new java/lang/StringBuilder();    [ R .. i...][ R .. iR..]
+        vR3 = b0.append@extra(vR2.nextToken()).append@extra(".").append@extra(vR0).append@extra(".Handler").toString@extra();    [RR R ii....i R....] [RR R iiR...i RR...] [RR R iiRR..i RRR..] [RR R iiRRR.i RRRR.] [RR R iiRRRRi RRRRR] 
+        goto +B83;   [RRR R ii....i .....]
+  -B125:   #1
+        throw new java/net/MalformedURLException(vR0);   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 20 swaps 4 any 2 found 0 getProtocolHandler
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.toLowerCase@extra(),vR2,vi3,vR4,0);   [  i RRiRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.toLowerCase@extra(),vR2,-1,vR3,0);   [  i RRiRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/net/URLStreamHandler;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.port = -1;   
+        vR0.protocol = vR1.toLowerCase@extra();   
+        vR0.host = vR2;   
+        vR0.port = vi3;   
+        vR0.file = vR4;   
+        if vR5==null goto B71;   
+  +B38:   #1
+        vR6 = getSecurityManager@special();    [ ?R  .]
+        if vR6==null goto B62;   
+  +B48:   #1
+        b1 = new java/net/NetPermission("specifyStreamHandler");    [ ?R  i][ ?R . iRR]
+        vR6.checkPermission(b1);   [R ?R . RR.] 
+  +B62:   #1
+        vR0.ph = vR5;   
+        goto +B79;   [R ?R . ...]
+  +B71:   #1
+        vR0.ph = getProtocolHandler@special(vR1);   
+  +B79:   #1
+        vR0.hashCode = vR0.toString@extra().hashCode@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 4 swaps 0 any 2 found 0 <init>
+ 
+ method <init>(Ljava/net/URL;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,0);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/net/URL;Ljava/lang/String;Ljava/net/URLStreamHandler;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.port = -1;   
+        vi5 = -1;    
+        vi6 = vR2.indexOf@extra(":");    [?i RR i RR] 
+        vi7 = vR2.indexOf@extra("/");    [?ii RR ii RR] 
+        if vi6==-1 goto B70;   
+  +B34:   #1
+        if vi7==-1 goto B53;   
+  +B40:   #1
+        if vi7==-1 goto B70;   
+  +B46:   #1
+        if vi6>=vi7 goto B70;   
+  +B53:   #1
+        vR0.protocol = vR2.substring@extra(0,vi6);   
+        vi5 = (vi6+1);    
+  +B70:   #3
+        if vR0.protocol!=null goto B98;   
+  +B77:   #1
+        if vR1!=null goto B90;   
+  -B81:   #1
+        throw new java/net/MalformedURLException(vR2);   
+  +B90:   #1
+        vR0.protocol = vR1.getProtocol@extra();   
+  +B98:   #1
+        vR0.protocol = vR0.protocol.toLowerCase@extra();   
+        if vR1==null goto B167;   
+  +B113:   #1
+        if vR1.getProtocol@extra().toLowerCase@extra().equals@extra(vR0.protocol)==0 goto B167;   
+  +B130:   #1
+        vR0.host = vR1.getHost@extra();   
+        vR0.port = vR1.getPort@extra();   
+        vR0.file = vR1.getFile@extra();   
+        if vR0.file!=null goto B167;   
+  +B161:   #1
+        vR0.file = "";   
+  +B167:   #3
+        if vR3==null goto B203;   
+  +B171:   #1
+        vR8 = getSecurityManager@special();    [?iii RR ... ...]
+        if vR8==null goto B195;   
+  +B181:   #1
+        b1 = new java/net/NetPermission("specifyStreamHandler");    [ RR ... i..][ RR ... iRR]
+        vR8.checkPermission(b1);   [?iiiR RR ... RR.] 
+  +B195:   #1
+        vR0.ph = vR3;   
+        goto +B214;   [?iiiR RR ... ...]
+  +B203:   #1
+        vR0.ph = getProtocolHandler@special(vR0.protocol);   
+  +B214:   #1
+        if vi5!=-1 goto B223;   
+  +B220:   #1
+        vi5 = 0;    
+  +B223:   #1
+        vi4 = vR2.indexOf@extra("#");    [?iiiR RR i.. RR.] 
+        if vi4!=-1 goto B243;   
+  +B237:   #1
+        vi4 = vR2.length@extra();    [iiiiR RR ... R..] 
+  +B243:   #1
+        if vi4==vR2.length@extra() goto B264;   
+  +B252:   #1
+        vR0.ref = vR2.substring@extra((vi4+1));   
+  +B264:   #1
+        if vR1!=null goto B284;   
+  +B268:   #1
+        vR0.ph.parseURL(vR0,vR2,vi5,vi4);   [iiiiR RR ... iiRRR] 
+        goto +B384;   [iiiiR RR ... .....]
+  +B284:   #1
+        vi8 = vR0.file.lastIndexOf@extra("/");    [iiiiR RR i.. RR...] 
+        if vi8!=-1 goto B309;   
+  +B301:   #1
+        vR0.file = vR2;   
+        goto +B384;   [iiiii RR ... .....]
+  +B309:   #1
+        if vi8!=(vR0.file.length@extra()-1) goto B351;   
+  +B323:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
+        vR0.file = b1.append@extra(vR0.file).append@extra(vR2).toString@extra();   
+        goto +B384;   [iiiii RR i.. .....]
+  +B351:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ... i....][ RR ... iR...]
+        vR0.file = b1.append@extra(vR0.file.substring@extra(0,(vi8+1))).append@extra(vR2).toString@extra();   
+  +B384:   #3
+        vR0.hashCode = vR0.toString@extra().hashCode@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 68/68 wr 30 swaps 9 any 15 found 2 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(0,vR1);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method set(Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.protocol = vR1;   
+        vR0.host = vR2;   
+        vR0.port = vi3;   
+        vR0.file = vR4;   
+        vR0.ref = vR5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 set
+ 
+ method getProtocol()Ljava/lang/String; {
+  +START:   #1
+        return vR0.protocol;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProtocol
+ 
+ method getHost()Ljava/lang/String; {
+  +START:   #1
+        return vR0.host;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHost
+ 
+ method getPort()I {
+  +START:   #1
+        return vR0.port;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPort
+ 
+ method getFile()Ljava/lang/String; {
+  +START:   #1
+        return vR0.file;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFile
+ 
+ method getRef()Ljava/lang/String; {
+  +START:   #1
+        return vR0.ref;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRef
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/net/URL)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        vR2 = (java/net/URL)(vR1);    
+        if vR0.sameFile@extra(vR2)!=0 goto B30;   
+  +B28:   #1
+        return 0;   
+  +B30:   #1
+        vR3 = vR2.getRef@extra();    [R   R.] 
+        if vR3==null goto B61;   
+  +B39:   #1
+        if vR3.equals@extra(vR0.getRef@extra())!=0 goto B52;   
+  +B50:   #1
+        return 0;   
+  +B52:   #1
+        if vR0.getRef@extra()==null goto B61;   
+  +B59:   #1
+        return 0;   
+  +B61:   #2
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 1 any 3 found 1 equals
+ 
+ method sameFile(Ljava/net/URL;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        vR2 = vR1.getProtocol@extra();    [   R] 
+        if vR2==null goto B37;   
+  +B15:   #1
+        if vR2.equals@extra(vR0.getProtocol@extra())!=0 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #1
+        if vR0.getProtocol@extra()==null goto B37;   
+  +B35:   #1
+        return 0;   
+  +B37:   #2
+        vR2 = vR1.getHost@extra();    [R  . R.] 
+        if vR2==null goto B68;   
+  +B46:   #1
+        if vR2.equals@extra(vR0.getHost@extra())!=0 goto B59;   
+  +B57:   #1
+        return 0;   
+  +B59:   #1
+        if vR0.getHost@extra()==null goto B68;   
+  +B66:   #1
+        return 0;   
+  +B68:   #2
+        if vR1.getPort@extra()==vR0.getPort@extra() goto B81;   
+  +B79:   #1
+        return 0;   
+  +B81:   #1
+        vR2 = vR1.getFile@extra();    [R  . R.] 
+        if vR2==null goto B112;   
+  +B90:   #1
+        if vR2.equals@extra(vR0.getFile@extra())!=0 goto B103;   
+  +B101:   #1
+        return 0;   
+  +B103:   #1
+        if vR0.getFile@extra()==null goto B112;   
+  +B110:   #1
+        return 0;   
+  +B112:   #2
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 7 swaps 3 any 4 found 0 sameFile
+ 
+ method toExternalForm()Ljava/lang/String; {
+  +START:   #1
+        return vR0.ph.toExternalForm(vR0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toExternalForm
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.toExternalForm@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method openConnection()Ljava/net/URLConnection; {
+  +START:   #1
+        return vR0.ph.openConnection(vR0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 openConnection
+ 
+ method openStream()Ljava/io/InputStream; {
+  +START:   #1
+        return vR0.openConnection@extra().getInputStream();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 openStream
+ 
+ method getContent()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.openConnection@extra().getContent();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getContent
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.hashCode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Hashtable();    [ R  i][ R  iR]
+        ph_cache = b0;   
+        vR0 = 0;    
+        if vR0!=null goto B23;   
+  +B16:   #1
+        cache_handlers = 1;   
+        goto +B27;   [R R . ..]
+  +B23:   #1
+        cache_handlers = 0;   
+  +B27:   #1
+        ph_search_path = 0;   
+        if ph_search_path==null goto B64;   
+  +B37:   #1
+        b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
+        ph_search_path = b0.append@extra(ph_search_path).append@extra("|gnu.java.net.protocol").toString@extra();   
+        goto +B69;   forward return[R R i..i ...]
+  +B64:   #1
+        ph_search_path = "gnu.java.net.protocol";   
+  +B69:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 12 swaps 2 any 1 found 1 <clinit>
+}

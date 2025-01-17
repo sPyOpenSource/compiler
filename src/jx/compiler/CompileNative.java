@@ -46,7 +46,7 @@ public class CompileNative {
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
         compile("zero", opts);
         
-	/*jllname = libdir + "jdk0.jll";
+	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
         String[] neededLibs = new String[]{
             "zero"
@@ -78,7 +78,7 @@ public class CompileNative {
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	compile("init2", opts);
-        createISO();*/
+        createISO();
     }
 
     final public static void compile(CompilerOptions opts) throws Exception {
@@ -114,7 +114,7 @@ public class CompileNative {
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"), 
                 new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/")
             };
         } else if(path.endsWith("ai")){
             domClasses = new URL[]{
@@ -123,12 +123,12 @@ public class CompileNative {
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"),
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/")
             };
         } else if(path.endsWith("os")){
             domClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/ifOS/dist/ifOS.jar!/"),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/"),
                 new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
             };
             libClasses = new URL[]{

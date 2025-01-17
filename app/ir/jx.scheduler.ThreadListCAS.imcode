@@ -1,0 +1,31 @@
+class jx/scheduler/ThreadListCAS {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.HLschedulerSupport = (jx/zero/HLSchedulerSupport)(getInitialNaming@special().lookup("HLSchedulerSupport"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method dump()V {
+  +START:   #1
+        if vR0.getFirst@this()!=null goto B18;   
+  +B7:   #1
+        out.println("       none");   [  i. RR] 
+        goto +B51;   forward return[  i. ..]
+  +B18:   #1
+        vR1 = (jx/zero/CPUState)(vR0.getFirst@this());    
+  +B26:   #1
+        if vR1==null goto B51;   
+  +B30:   #1
+        vR0.HLschedulerSupport.dumpThread(vR1);   [R  .. RR] 
+        vR1 = (jx/zero/CPUState)(vR0.getNext@this());    
+        goto +B26;   [R  .. ..]
+  +B51:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 6 swaps 1 any 1 found 0 dump
+}

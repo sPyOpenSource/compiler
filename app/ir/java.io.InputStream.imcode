@@ -1,0 +1,98 @@
+class java/io/InputStream {
+ 
+ method available()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 available
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method markSupported()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 markSupported
+ 
+ method mark(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mark
+ 
+ method read([BII)I {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vi3 goto B47;   
+  +B9:   #1
+        vi5 = vR0.read@this();    [i i  R] 
+        if vi5>=0 goto B32;   
+  +B20:   #1
+        if vi4!=0 goto B29;   
+  +B25:   #1
+        b0 = -1;    
+        goto +B31b0;   forward return[ii i  .]
+  +B29:   #1
+        b0 = vi4;    
+  +B31b0:   #1 int
+        return b0;   
+  +B32:   #1
+        vR1[(vi2+vi4)] = (byte)vi5;   
+        vi4++;   
+        goto +B3;   [ii i  .]
+  +B47:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 4 swaps 0 any 5 found 0 read
+ 
+ method read([B)I {
+  +START:   #1
+        return vR0.read@this(vR1,0,vR1.length);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 read
+ 
+ method reset()V {
+  -START:   #1
+        throw new java/io/IOException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method skip(J)J {
+  +START:   #1
+        vi3 = 0;    
+  +B2:   #1
+        if compare((long)vi3,vl1)>=0 goto B29;   
+  +B9:   #1
+        vi4 = vR0.read@this();    [?i   R] 
+        if vi4>=0 goto B23;   
+  +B20:   #1
+        return (long)vi3;   
+  +B23:   #1
+        vi3++;   
+        goto +B2;   [?ii   .]
+  +B29:   #1
+        return vl1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 2 found 0 skip
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

@@ -1,0 +1,76 @@
+class java/util/Collections$UnmodifiableList$1 {
+ 
+ method <init>(Ljava/util/Collections$UnmodifiableList;I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$index = vi2;   
+        vR0.<init>@special();   [   R] 
+        vR0.i = vR0.this$0.list.listIterator(vR0.val$index);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        return vR0.i.hasNext();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.i.next();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+ 
+ method hasPrevious()Z {
+  +START:   #1
+        return vR0.i.hasPrevious();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasPrevious
+ 
+ method previous()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.i.previous();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 previous
+ 
+ method nextIndex()I {
+  +START:   #1
+        return vR0.i.nextIndex();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 nextIndex
+ 
+ method previousIndex()I {
+  +START:   #1
+        return vR0.i.previousIndex();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 previousIndex
+ 
+ method remove()V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method set(Ljava/lang/Object;)V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 set
+ 
+ method add(Ljava/lang/Object;)V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
+}

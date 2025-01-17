@@ -1,0 +1,254 @@
+class java/lang/Class {
+ 
+ method <init>(Ljx/zero/VMClass;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.vmclass = vR1;   
+        vR0.classLoader = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method forName(Ljava/lang/String;)Ljava/lang/Class; {
+  +START:   #1
+        vR1 = cpuManager.getClass(vR0);    [ R . RR] 
+        if vR1!=null goto B22;   
+  -B14:   #1
+        throw new java/lang/ClassNotFoundException();   
+  +B22:   #1
+        return new java/lang/Class(vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 1 found 0 forName
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        if vR0.isInterface@extra()==0 goto B19;   
+  +B14b0:   #1 reference
+        b1 = "interface ";    
+        goto +B21b0b1;   forward return[ RR  ..]
+  +B19b0:   #1 reference
+        b1 = "class ";    
+  +B21b0b1:   #1 reference reference
+        return b0.append@extra(b1).append@extra(vR0.getName@extra()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 6 swaps 1 any 0 found 0 toString
+ 
+ method getComponentType()Ljava/lang/Class; {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getComponentType
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.vmclass.getName();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method isInterface()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isInterface
+ 
+ method isInstance(Ljava/lang/Object;)Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isInstance
+ 
+ method getDeclaredMethods()[Ljava/lang/reflect/Method; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethods
+ 
+ method getSuperclass()Ljava/lang/Class; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSuperclass
+ 
+ method getInterfaces()[Ljava/lang/Class; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInterfaces
+ 
+ method getClassLoader()Ljava/lang/ClassLoader; {
+  +START:   #1
+        return vR0.classLoader;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClassLoader
+ 
+ method newInstance()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.vmclass.newInstance();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 newInstance
+ 
+ method getPrimitiveClass(Ljava/lang/String;)Ljava/lang/Class; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getPrimitiveClass
+ 
+ method isAssignableFrom(Ljava/lang/Class;)Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isAssignableFrom
+ 
+ method getConstructor([Ljava/lang/Class;)Ljava/lang/reflect/Constructor; {
+  +START:   #1
+        return new java/lang/reflect/Constructor(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getConstructor
+ 
+ method getDeclaredMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+ 
+ method isArray()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isArray
+ 
+ method isPrimitive()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isPrimitive
+ 
+ method getMethod(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getMethod
+ 
+ method getFields()[Ljava/lang/reflect/Field; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFields
+ 
+ method getField(Ljava/lang/String;)Ljava/lang/reflect/Field; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getField
+ 
+ method desiredAssertionStatus()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 desiredAssertionStatus
+ 
+ method cast(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 cast
+ 
+ method getModifiers()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getModifiers
+ 
+ method getDeclaredField(Ljava/lang/String;)Ljava/lang/reflect/Field; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredField
+ 
+ method getDeclaredClasses()Ljava/lang/Iterable; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredClasses
+ 
+ method asSubclass(Ljava/lang/Class;)Ljava/lang/Class; {
+  +START:   #1
+        if vR1.isAssignableFrom@extra(vR0)==0 goto B10;   
+  +B8:   #1
+        return vR0;   
+  -B10:   #1
+        throw new java/lang/ClassCastException(vR0.toString@extra());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 asSubclass
+ 
+ method getDeclaredMethod(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+ 
+ method getDeclaredMethod(Ljava/lang/String;Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/Class;Ljava/lang/Class;)Ljava/lang/invoke/MethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDeclaredMethod
+ 
+ method getSimpleName()Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSimpleName
+ 
+ method enumConstantDirectory()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 enumConstantDirectory
+ 
+ method getCanonicalName()Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getCanonicalName
+ 
+ method <clinit>()V {
+  +START:   #1
+        cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 1 any 0 found 0 <clinit>
+}

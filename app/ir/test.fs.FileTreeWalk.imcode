@@ -1,0 +1,124 @@
+class test/fs/FileTreeWalk {
+ 
+ method init(Ljx/zero/Naming;)V {
+  +START:   #2
+        if out!=null goto B36;   
+  +B6:   #1
+        vR1 = (jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0"));    
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream(vR1);    [ RRR i. i.][ RRR i. iRR]
+        b1.<init>@special(b2);   [R RRR i. RR.] 
+        out = b0;   
+  +B36:   #1
+        b0 = new test/fs/FileTreeWalk(vR0);    [ RRR .. i..][ RRR .. iRR]
+  +B45:   #1
+        goto +B57;   forward return[R RRR .. ...]
+  -H48<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B57:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 45 handler 48 type 33
+ }
+// Register: rd 11/11 wr 10 swaps 1 any 1 found 1 init
+ 
+ method <init>(Ljx/zero/Naming;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.naming = vR1;   
+        vR2 = (jx/fs/FS)(vR1.lookup("FS"));    
+        if vR2!=null goto B40;   
+  +B25:   #1
+        if out==null goto B39;   
+  +B31:   #1
+        out.println("FS not found!");   [R  i. RR] 
+  +B39:   #1
+        return;   
+  +B40:   #1
+        vR0.printDir@special(" ",vR2.getCwdNode());   [R  iR RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 3 any 1 found 0 <init>
+ 
+ method printDir(Ljava/lang/String;Ljx/fs/Node;)V {
+  +START:   #1
+        vR3 = 0;    
+        vR5 = vR2.readdirNames();    [R RR  R] 
+        vR6 = vR5;    
+        vi7 = vR6.length;    
+        vi8 = 0;    
+  +B22:   #1
+        if vi8>=vi7 goto B231;   
+  +B29:   #1
+        vR9 = vR6[vi8];    
+        vR3 = vR9;    
+        vR4 = vR2.lookup(vR3);    [R?RRiiR RR  RR] 
+        out.print(vR1);   [RRRRiiR RR . RR] 
+        if vR4.isDirectory()==0 goto B76;   
+  +B65:   #1
+        out.print(" D");   [RRRRiiR RR i. RR] 
+        goto +B115;   [RRRRiiR RR i. ..]
+  +B76:   #1
+        if vR4.isFile()==0 goto B97;   
+  +B86:   #1
+        out.print(" F");   [RRRRiiR RR i. RR] 
+        goto +B115;   [RRRRiiR RR i. ..]
+  +B97:   #1
+        if vR4.isSymlink()==0 goto B115;   
+  +B107:   #1
+        out.print(" L");   [RRRRiiR RR i. RR] 
+  +B115:   #3
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.print(b1.append@extra(" ").append@extra(vR4.getLength()).toString@extra());   [RRRRiiR RR iii. RR.] 
+        vR4.decUseCount();   [RRRRiiR RR iii. R..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        b0.print(b1.append@extra("  		").append@extra(vR3).toString@extra());   [RRRRiiR RR iiiii. RR.] 
+        if vR4.isSymlink()==0 goto B219;   
+  +B188:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i..][ RR ...... iR.]
+        b0.print(b1.append@extra(" -> ").append@extra(vR4.getSymlink()).toString@extra());   [RRRRiiR RR iii... RR.] 
+  +B219:   #1
+        out.println();   [RRRRiiR RR ...... R..] 
+        vi8++;   
+        goto +B22;   [RRRRiiR RR ...... ...]
+  +B231:   #1
+        vR6 = vR5;    
+        vi7 = vR6.length;    
+        vi8 = 0;    
+  +B243:   #1
+        if vi8>=vi7 goto B389;   
+  +B250:   #1
+        vR9 = vR6[vi8];    
+        vR3 = vR9;    
+        vR4 = vR2.lookup(vR3);    [RRRRiiR RR ...... RR.] 
+        if vR3.equals@extra(".")!=0 goto B376;   
+  +B278:   #1
+        if vR3.equals@extra("..")!=0 goto B376;   
+  +B287:   #1
+        if vR4.isDirectory()==0 goto B376;   
+  +B297:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i..][ RR ...... iR.]
+        b0.println(b1.append@extra(vR1).append@extra("-------------").toString@extra());   [RRRRiiR RR ii.... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii.... i..][ RR ii.... iR.]
+        b0.println(b1.append@extra(vR1).append@extra(vR3).append@extra(":").toString@extra());   [RRRRiiR RR iiii.. RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR iiii.. i...][ RR iiii.. iR..]
+        vR0.printDir@special(b1.append@extra(vR1).append@extra("  ").toString@extra(),vR4);   [RRRRiiR RR iiiiii. RRR.] 
+  +B376:   #3
+        vR4.decUseCount();   [RRRRiiR RR ....... R...] 
+        vi8++;   
+        goto +B243;   [RRRRiiR RR ....... ....]
+  +B389:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 42/42 wr 64 swaps 19 any 8 found 0 printDir
+}

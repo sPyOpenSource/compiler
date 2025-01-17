@@ -1,0 +1,140 @@
+class java/util/Collections$SynchronizedSortedMap {
+ 
+ method <init>(Ljava/util/SortedMap;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.sm = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/SortedMap;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.sm = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method comparator()Ljava/util/Comparator; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.sm.comparator();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 comparator
+ 
+ method subMap(Ljava/lang/Object;Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR3 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedSortedMap(vR0.sm.subMap(vR1,vR2),vR0.mutex);    [ R  i][ R . iRRR.]
+        vR3.leave();   
+        return b0;   
+  +H32<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B36:   #1
+        throw vR4;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 32 type 0
+32 - 36 handler 32 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 subMap
+ 
+ method headMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedSortedMap(vR0.sm.headMap(vR1),vR0.mutex);    [ R  i][ R . iRRR]
+        vR2.leave();   
+        return b0;   
+  +H31<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B34:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 30 handler 31 type 0
+31 - 34 handler 31 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 headMap
+ 
+ method tailMap(Ljava/lang/Object;)Ljava/util/SortedMap; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = new java/util/Collections$SynchronizedSortedMap(vR0.sm.tailMap(vR1),vR0.mutex);    [ R  i][ R . iRRR]
+        vR2.leave();   
+        return b0;   
+  +H31<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B34:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 30 handler 31 type 0
+31 - 34 handler 31 type 0
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 tailMap
+ 
+ method firstKey()Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.sm.firstKey();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 firstKey
+ 
+ method lastKey()Ljava/lang/Object; {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.sm.lastKey();    [R R  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 lastKey
+}

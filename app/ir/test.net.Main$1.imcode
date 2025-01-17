@@ -1,0 +1,47 @@
+class test/net/Main$1 {
+ 
+ method <init>(Ltest/net/Main;Ljx/devices/net/NetworkDevice;Ljx/timer/TimerManager;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$nic = vR2;   
+        vR0.val$timerManager = vR3;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method command(Ljava/io/PrintStream;[Ljava/lang/String;)V {
+  +START:   #2
+        vR3 = new jx/zero/Memory()[10];    
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vR3.length goto B41;   
+  +B16:   #1
+        vR3[vi4] = vR0.this$0.memMgr.alloc(1514);   
+        vi4++;   
+        goto +B9;   [Ri RR  ..]
+  +B41:   #1
+        b0 = vR0.this$0;    
+        b1 = new jx/netmanager/NetInit(vR0.val$nic,vR0.val$timerManager,vR3);    [ RR  i.][ RR . iRRRR]
+        b0.net = b1;   
+  +B64:   #1
+        goto +B78;   forward return[Ri RR . .....]
+  -H67<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/Error("Could not setup");   
+  +B78:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 64 handler 67 type 44
+ }
+// Register: rd 14/14 wr 8 swaps 0 any 2 found 0 command
+ 
+ method getInfo()Ljava/lang/String; {
+  +START:   #1
+        return "setup network";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInfo
+}

@@ -1,0 +1,68 @@
+class java/security/SecureClassLoader {
+ 
+ method <init>(Ljava/lang/ClassLoader;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR2 = getSecurityManager@special();    [   .]
+        if vR2==null goto B16;   
+  +B12:   #1
+        vR2.checkCreateClassLoader();   [R   R] 
+  +B16:   #1
+        vR0.parent = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR1 = getSecurityManager@special();    [   .]
+        if vR1==null goto B16;   
+  +B12:   #1
+        vR1.checkCreateClassLoader();   [R   R] 
+  +B16:   #1
+        vR0.parent = vR0.getClass@this().getClassLoader@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 <init>
+ 
+ method defineClass(Ljava/lang/String;[BIILjava/security/CodeSource;)Ljava/lang/Class; {
+  +START:   #1
+        vR6 = new java/security/ProtectionDomain(vR5,vR0.getPermissions@this(vR5));    [ R  i][ R . iRRR]
+  +B17:   #1
+        err.println("SecureClassLoader is broken because it is waiting got ClassLoader to be JDK 1.2 compatible");   [R R i. RR..] 
+        b0 = 0;    
+  +B26b0:   #1 reference
+        return b0;   
+  +H27<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+17 - 26 handler 27 type 57
+ }
+// Register: rd 4/4 wr 6 swaps 1 any 0 found 0 defineClass
+ 
+ method getPermissions(Ljava/security/CodeSource;)Ljava/security/PermissionCollection; {
+  +START:   #1
+        vR2 = getPolicy@special();    [   ]
+        return vR2.getPermissions(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPermissions
+ 
+ method loadClass(Ljava/lang/String;Z)Ljava/lang/Class; {
+  +START:   #1
+        vR3 = vR0.findLoadedClass@this(vR1);    [   RR] 
+        if vR3==null goto B19;   
+  +B10:   #1
+        vR0.parent.loadClass(vR1);   [R   RR] 
+  +B19:   #1
+        vR0.resolveClass@this(vR3);   [R   RR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 loadClass
+}

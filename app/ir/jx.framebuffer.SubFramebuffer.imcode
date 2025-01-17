@@ -1,0 +1,45 @@
+class jx/framebuffer/SubFramebuffer {
+ 
+ method <init>(Ljx/framebuffer/PackedFramebuffer;IIII)V {
+  +START:   #1
+        vR0.<init>@special(max@special(min@special((vR1.width()-vi2),vi4),0),max@special(min@special((vR1.height()-vi3),vi5),0),vR1.depth(),((vR1.startAddress()+(vi3*vR1.scanlineOffset()))+(vi2*vR1.pixelOffset())),vR1.pixelOffset(),vR1.scanlineOffset(),vR1.memObj());   [  iiiiiiiiiii RiiiiiiR] 
+        vR0.xoff = vi2;   
+        vR0.yoff = vi3;   
+        vR0.width = vi4;   
+        vR0.height = vi5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 19 swaps 6 any 0 found 2 <init>
+ 
+ method transformClippings([Ljx/framebuffer/ClippingRectangle;)[Ljx/framebuffer/ClippingRectangle; {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b0.println(b1.append@extra(vR0.framebufferType@this()).append@extra(": translating clippings: delta=(").append@extra(-vR0.xoff).append@extra(", ").append@extra(-vR0.yoff).append@extra(")").toString@extra());   [ RRR iiiiii.....i RR.....] 
+        vR2 = new jx/framebuffer/ClippingRectangle()[vR1.length];    
+        vi4 = 0;    
+  +B63:   #1
+        if vi4>=vR1.length goto B132;   
+  +B70:   #1
+        vR3 = vR1[vi4];    
+        if vR3==null goto B126;   
+  +B79:   #1
+        b2 = new jx/framebuffer/ClippingRectangle((vR3.xmin-vR0.xoff),(vR3.ymin-vR0.yoff),(vR3.xmax-vR0.xoff),(vR3.ymax-vR0.yoff));    [ RRR ............ i......][ RRR ............ iiiiiR.]
+        vR2[vi4] = b2;   
+  +B126:   #1
+        vi4++;   
+        goto +B63;   [RRi RRR ............ .......]
+  +B132:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 21 swaps 8 any 4 found 0 transformClippings
+ 
+ method framebufferType()Ljava/lang/String; {
+  +START:   #1
+        return "SubFramebuffer";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 framebufferType
+}

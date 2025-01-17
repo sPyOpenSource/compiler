@@ -1,0 +1,153 @@
+class java/security/CodeSource {
+ 
+ method <init>(Ljava/net/URL;[Ljava/security/cert/Certificate;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.location = vR1;   
+        vR0.certs = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLocation()Ljava/net/URL; {
+  +START:   #1
+        return vR0.location;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocation
+ 
+ method getCertificates()[Ljava/security/cert/Certificate; {
+  +START:   #1
+        return vR0.certs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCertificates
+ 
+ method implies(Ljava/security/CodeSource;)Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 implies
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/security/CodeSource)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        vR2 = (java/security/CodeSource)(vR1);    
+        vR3 = vR2.getCertificates@extra();    [R   R.] 
+        vR4 = vR0.getCertificates@extra();    [RR   R.] 
+        if vR4!=null goto B42;   
+  +B36:   #1
+        if vR3==null goto B42;   
+  +B40:   #1
+        return 0;   
+  +B42:   #2
+        if vR4==null goto B53;   
+  +B47:   #1
+        if vR3!=null goto B53;   
+  +B51:   #1
+        return 0;   
+  +B53:   #2
+        if vR4==null goto B128;   
+  +B58:   #1
+        if vR4.length==vR3.length goto B68;   
+  +B66:   #1
+        return 0;   
+  +B68:   #1
+        vi5 = 0;    
+  +B71:   #1
+        if vi5>=vR4.length goto B128;   
+  +B79:   #1
+        vi6 = 0;    
+  +B82:   #1
+        if vi6>=vR3.length goto B113;   
+  +B89:   #1
+        if vR4[vi5].equals(vR3[vi6])==0 goto B107;   
+  +B104:   #1
+        goto +B113;   [RRRii  . ..]
+  +B107:   #1
+        vi6++;   
+        goto +B82;   [RRRii  . ..]
+  +B113:   #2
+        if vi6!=vR3.length goto B122;   
+  +B120:   #1
+        return 0;   
+  +B122:   #1
+        vi5++;   
+        goto +B71;   [RRRii  . ..]
+  +B128:   #2
+        vR5 = vR2.getLocation@extra();    [RRRii  . R.] 
+        vR6 = vR0.getLocation@extra();    [RRRRi  . R.] 
+        if vR6!=null goto B152;   
+  +B145:   #1
+        if vR5==null goto B152;   
+  +B150:   #1
+        return 0;   
+  +B152:   #2
+        if vR6.equals@extra(vR5)!=0 goto B164;   
+  +B162:   #1
+        return 0;   
+  +B164:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 10 swaps 1 any 14 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        vR1 = vR0.getLocation@extra();    [   R] 
+        if vR1!=null goto B14;   
+  +B9:   #1
+        return identityHashCode@special(vR0);   
+  +B14:   #1
+        return vR1.hashCode@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 hashCode
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append(b1.append@extra(vR0.toString@special()).append@extra(" (").append@extra(linesep).toString@extra());   [R RR iii..i RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR iii..i i...][ RR iii..i iR..]
+        vR1.append(b1.append@extra("Location: ").append@extra(vR0.getLocation@extra()).append@extra(linesep).toString@extra());   [R RR iiiiii.ii. RR..] 
+        vR2 = vR0.getCertificates@extra();    [R RR iiiiii.ii. R...] 
+        if vR2!=null goto B114;   
+  +B85:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .......... i...][ RR .......... iR..]
+        vR1.append(b1.append@extra("<none>").append@extra(linesep).toString@extra());   [RR RR iii....... RR..] 
+        goto +B155;   [RR RR iii....... ....]
+  +B114:   #1
+        vi3 = 0;    
+  +B116:   #1
+        if vi3>=vR2.length goto B155;   
+  +B122:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .......... i...][ RR .......... iR..]
+        vR1.append(b1.append@extra(vR2[vi3]).append@extra(linesep).toString@extra());   [RRi RR iii....... RR..] 
+        vi3++;   
+        goto +B116;   [RRi RR iii....... ....]
+  +B155:   #2
+        b1 = new java/lang/StringBuilder();    [ RR .......... i...][ RR .......... iR..]
+        vR1.append(b1.append@extra(")").append@extra(linesep).toString@extra());   [RR RR iii....... RR..] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 39 swaps 17 any 3 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        linesep = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

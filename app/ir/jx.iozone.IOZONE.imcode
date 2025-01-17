@@ -1,0 +1,490 @@
+class jx/iozone/IOZONE {
+ 
+ method <init>(Ljx/fs/FS;IIII)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.cancel_store = 1;   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.clock = (jx/zero/Clock)(getInitialNaming@special().lookup("Clock"));   
+        b1 = new jx/zero/CycleTime();    [ RR ii. i.][ RR ii. iR]
+        vR0.starttimec = b1;   
+        b1 = new jx/zero/CycleTime();    [ RR ii. i.][ RR ii. iR]
+        vR0.endtimec = b1;   
+        b1 = new jx/zero/CycleTime();    [ RR ii. i.][ RR ii. iR]
+        vR0.diff = b1;   
+        vR0.outputThroughput = 1;   
+        vR0.doDumpBinary = 1;   
+        vR0.KILOBYTES_START = vi2;   
+        vR0.KILOBYTES_END = vi3;   
+        vR0.RECLEN_START = vi4;   
+        vR0.RECLEN_END = vi5;   
+        vi6 = 0;    
+        vi7 = vR0.KILOBYTES_START;    
+  +B117:   #1
+        if vi7>vR0.KILOBYTES_END goto B173;   
+  +B126:   #1
+        vi8 = vR0.RECLEN_START;    
+  +B132:   #1
+        if vi8>vR0.RECLEN_END goto B164;   
+  +B141:   #1
+        if vi8>(vi7*1024) goto B164;   
+  +B152:   #1
+        vi6++;   
+        vi8 = (vi8*2);    
+        goto +B132;   [iii RR ... ..]
+  +B164:   #2
+        vi7 = (vi7*2);    
+        goto +B117;   [iii RR ... ..]
+  +B173:   #1
+        vR0.rereadtime = new int[vi6];   
+        vR0.profiler = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));   
+        vR0.report_array = new int[20000];   
+        vR6 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR0.buffer = vR6.allocAligned((vi3*1024),32);   
+        vR0.max_x = 0;   
+        vR0.max_y = 0;   
+  +B250:   #1
+        vR0.fs = vR1;   
+        vR1.create("iozone.tmp",420);   [Rii RR i.. iRR] 
+  +B266:   #1
+        goto +B280;   [Rii RR ... ...]
+  +H269<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        out.println("ERROR");   [RRi RR i.. RR.] 
+        return;   
+  +B280:   #1
+        out.println(" read/write throughput in kbytes/sec");   [Rii RR i.. RR.] 
+        out.println("  file(kB)  rec(kB)   write rewrite    read  reread");   [Rii RR ii. RR.] 
+        vi7 = 0;    
+  +B299:   #1
+        if vi7>=50 goto B394;   
+  +B306:   #1
+        vR0.nreread = 0;   
+        out.println("# START IOZONE");   [Rii RR i.. RR.] 
+        out.println("mbsec");   [Rii RR ii. RR.] 
+        vR0.autoTest@special();   [Rii RR ii. R..] 
+        (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager")).yield();   [Rii RR iii.. R..] 
+  +B349:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ..... i..][ RR ..... iR.]
+        vR0.dumpBinary@special(b1.append@extra("IOZONE").append@extra(vi7).toString@extra());   [Rii RR ii... RR.] 
+  +B373:   #1
+        goto +B388;   [Rii RR ..... ...]
+  -H376<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        throw new java/lang/Error("BINARY DUMP");   
+  +B388:   #1
+        vi7++;   
+        goto +B299;   [Rii RR ..... ...]
+  +B394:   #1
+        out.println("# END IOZONE");   [Rii RR i.... RR.] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+250 - 266 handler 269 type 120
+349 - 373 handler 376 type 172
+ }
+// Register: rd 55/55 wr 50 swaps 15 any 8 found 0 <init>
+ 
+ method alignString(Ljava/lang/String;I)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/String();    [ R  i][ R  iR]
+        vi4 = (vi2-vR1.length@extra());    
+        vi5 = 0;    
+  +B19:   #1
+        if vi5>=vi4 goto B52;   
+  +B26:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i.][ R  iR]
+        vR3 = b0.append@extra(vR3).append@extra(" ").toString@extra();    [Rii R i.. R..] [Rii R iR. RR.] [Rii R iRR RRR] 
+        vi5++;   
+        goto +B19;   [Rii R i.. ...]
+  +B52:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        return b0.append@extra(vR3).append@extra(vR1).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 12 swaps 1 any 3 found 1 alignString
+ 
+ method autoTest()V {
+  +START:   #1
+        vi4 = vR0.KILOBYTES_START;    
+        vi5 = vR0.KILOBYTES_END;    
+        vi6 = vR0.RECLEN_START;    
+        vi7 = vR0.RECLEN_END;    
+        vi8 = 8192;    
+        vi10 = 0;    
+        vR12 = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));    
+        vi1 = vi4;    
+  +B50:   #1
+        if vi1>vi5 goto B237;   
+  +B56:   #1
+        if vi1<=vi8 goto B181;   
+  +B62:   #1
+        vi6 = 65536;    
+        vi9 = (vR0.RECLEN_START/1024);    
+        vi3 = vi6;    
+  +B79:   #1
+        if vi3==vR0.RECLEN_START goto B181;   
+  +B87:   #1
+        if vi9>(vi1*1024) goto B181;   
+  +B97:   #1
+        vR0.current_x = 0;   
+        vR0.storeValue@special(vi1);   [i?iiiiiiii?R  .. iR] 
+        vR0.storeValue@special(vi9);   [i?iiiiiiii?R  .. iR] 
+        vi11 = 0;    
+  +B116:   #1
+        if vi11>=20 goto B134;   
+  +B123:   #1
+        vR0.storeValue@special(0);   [i?iiiiiiiiiR  .. iR] 
+        vi11++;   
+        goto +B116;   [i?iiiiiiiiiR  .. ..]
+  +B134:   #1
+        vi9 = (vi9*2);    
+        vR0.current_y = (vR0.current_y+1);   
+        if vR0.current_y<=vR0.max_y goto B169;   
+  +B161:   #1
+        vR0.max_y = vR0.current_y;   
+  +B169:   #1
+        vR0.current_x = 0;   
+        vi3 = (vi3 >> 1);    
+        goto +B79;   [i?iiiiiiiiiR  .. ..]
+  +B181:   #3
+        vi2 = vi6;    
+  +B184:   #1
+        if vi2>vi7 goto B230;   
+  +B190:   #1
+        if vi2<=(vi1*1024) goto B202;   
+  +B199:   #1
+        goto +B230;   [iiiiiiiiiiiR  .. ..]
+  +B202:   #1
+        vR0.begin@special(vi1,vi2);   [iiiiiiiiiiiR  .. iiR] 
+        vR0.current_x = 0;   
+        vR0.current_y = (vR0.current_y+1);   
+        vi2 = (vi2*2);    
+        goto +B184;   [iiiiiiiiiiiR  .. ...]
+  +B230:   #2
+        vi1 = (vi1*2);    
+        goto +B50;   [iiiiiiiiiiiR  .. ...]
+  +B237:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 42/42 wr 19 swaps 1 any 15 found 0 autoTest
+ 
+ method begin(II)V {
+  +START:   #1
+        vR0.storeValue@special(vi1);   [ RR  iR] 
+        vR0.storeValue@special((vi2/1024));   [ RR i iR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i i.][ RR i iR]
+        b0.print(b1.append@extra("").append@extra(vR0.alignString@special(toString@special(vi1),11)).append@extra(vR0.alignString@special(toString@special((vi2/1024)),11)).append@extra("   ").toString@extra());   [ RR iii.iii.iii. RR...] 
+        vR0.writePerfTest@special(vi1,vi2);   [ RR iii.iii.iii. iiR..] 
+        vR0.readPerfTest@special(vi1,vi2);   [ RR iii.iii.iii. iiR..] 
+        out.println("");   [ RR iiiiiii.iii. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 17 swaps 9 any 0 found 0 begin
+ 
+ method readPerfTest(II)V {
+  +START:   #1
+        vR3 = new int[2];    
+        vR4 = new int[2];    
+        vR6 = new int[2];    
+        vi5 = ((vi1*1024)/vi2);    
+        vi7 = (vi5*vi2);    
+        vR8 = vR0.fs.lookup("iozone.tmp");    [RRiRi RRi R RR] 
+        if vR8!=null goto B48;   
+  +B47:   #1
+        return;   
+  +B48:   #2
+        vi9 = 0;    
+  +B51:   #1
+        if vi9>=2 goto B226;   
+  +B57:   #1
+        vR0.clock.getCycles(vR0.starttimec);   [RRiRiRi RRi i RR] 
+        if vi9!=1 goto B76;   
+  +B76:   #1
+        vi10 = 0;    
+  +B79:   #1
+        if vi10>=vi5 goto B109;   
+  +B86:   #1
+        vR8.read(vR0.buffer,(vi10*vi2),vi2);   [RRiRiRii RRi ii iiRR] 
+        vi10++;   
+        goto +B79;   [RRiRiRii RRi ii ....]
+  +B109:   #1
+        if vi9!=1 goto B115;   
+  +B115:   #1
+        vR0.clock.getCycles(vR0.endtimec);   [RRiRiRii RRi i. RR..] 
+        vR0.clock.subtract(vR0.diff,vR0.endtimec,vR0.starttimec);   [RRiRiRii RRi iiRR RRRR] 
+        vR3[vi9] = vR0.clock.toMicroSec(vR0.diff);   
+        if vR3[vi9]>=1000 goto B194;   
+  +B176:   #1
+        vR4[vi9] = vR0.clock.toNanoSec(vR0.diff);   
+  +B194:   #1
+        if vi9!=1 goto B220;   
+  +B200:   #1
+        b0 = vR0.rereadtime;    
+        b2 = vR0.nreread;    
+        b1 = b2;    
+        vR0.nreread = (b2+1);   
+        b0[b1] = vR3[vi9];   
+  +B220:   #1
+        vi9++;   
+        goto +B51;   [RRiRiRii Rii ..... ....]
+  +B226:   #1
+        vR8.decUseCount();   [RRiRiRii Rii ..... R...] 
+        vi9 = 0;    
+  +B236:   #1
+        if vi9>=2 goto B355;   
+  +B242:   #1
+        if vR3[vi9]>=3 goto B259;   
+  +B250:   #1
+        vR6[vi9] = -1;   
+        goto +B349;   [RRiRiRii Rii ..... ....]
+  +B259:   #1
+        if vR3[vi9]>=1000 goto B311;   
+  +B269:   #1
+        vR10 = new jx/iozone/MyBigNumber(vi7);    [ Rii ..... i...][ Rii ..... iiR.]
+        vR10 = vR10.mul(1024000).div(vR4[vi9]);    [RRiRiRiR Rii i.... iR..] [RRiRiRiR Rii iR... iiR.] 
+        vR6[vi9] = vR10.toInt();   
+        goto +B349;   [RRiRiRiR Rii i.... ....]
+  +B311:   #1
+        vR10 = new jx/iozone/MyBigNumber(vi7);    [ Rii ..... i...][ Rii ..... iiR.]
+        vR10 = vR10.mul(1024).div(vR3[vi9]);    [RRiRiRiR Rii i.... iR..] [RRiRiRiR Rii iR... iiR.] 
+        vR6[vi9] = vR10.toInt();   
+  +B349:   #2
+        vi9++;   
+        goto +B236;   [RRiRiRii Rii ..... ....]
+  +B355:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi ..... i...][ RRi ..... iR..]
+        b0.print(b1.append@extra("").append@extra(vR0.alignString@special(toString@special(vR6[0]),11)).append@extra(vR0.alignString@special(toString@special(vR6[1]),11)).toString@extra());   [RRiRiRiR RRi iiii.iiii. RR..] 
+        vR0.storeValue@special(vR6[0]);   [RRiRiRiR RRi iiiiiiiii. iR..] 
+        vR0.storeValue@special(vR6[1]);   [RRiRiRiR RRi iiiiiiiiii iR..] 
+  +B424:   #1
+        goto +B446;   forward return[RRiRiRiR RRi .......... ....]
+  -H427<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        out.println("EXCEPTION!");   [RRiRiRiR RRi i......... RR..] 
+        throw new java/lang/Error();   
+  +B446:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+29 - 47 handler 427 type 120
+48 - 424 handler 427 type 120
+ }
+// Register: rd 80/80 wr 53 swaps 17 any 12 found 0 readPerfTest
+ 
+ method writePerfTest(II)V {
+  +START:   #1
+        vR3 = new int[2];    
+        vR5 = new int[2];    
+        vi4 = ((vi1*1024)/vi2);    
+        vi6 = (vi4*vi2);    
+        vR7 = vR0.fs.lookup("iozone.tmp");    [RiRi RR R RR] 
+        if vR7!=null goto B43;   
+  +B42:   #1
+        return;   
+  +B43:   #2
+        vi8 = 0;    
+  +B46:   #1
+        if vi8>=2 goto B168;   
+  +B52:   #1
+        vR0.clock.getCycles(vR0.starttimec);   [RiRiRi RR i RR] 
+        vi9 = 0;    
+  +B68:   #1
+        if vi9>=vi4 goto B98;   
+  +B75:   #1
+        vR7.write(vR0.buffer,(vi9*vi2),vi2);   [RiRiRii RR ii iiRR] 
+        vi9++;   
+        goto +B68;   [RiRiRii RR ii ....]
+  +B98:   #1
+        vR0.clock.getCycles(vR0.endtimec);   [RiRiRii RR i. RR..] 
+        vR0.clock.subtract(vR0.diff,vR0.endtimec,vR0.starttimec);   [RiRiRii RR iiRR RRRR] 
+        vR3[vi8] = vR0.clock.toMicroSec(vR0.diff);   
+        if vR3[vi8]>=5 goto B162;   
+  +B157:   #1
+        vR3[vi8] = -1;   
+  +B162:   #1
+        vi8++;   
+        goto +B46;   [RiRiRii RR ..... ....]
+  +B168:   #1
+        vR7.decUseCount();   [RiRiRii RR ..... R...] 
+        vi8 = 0;    
+  +B178:   #1
+        if vi8>=2 goto B226;   
+  +B184:   #1
+        if vR3[vi8]==-1 goto B214;   
+  +B192:   #1
+        vR5[vi8] = (((vi6*128)/vR3[vi8])*8);   
+        goto +B220;   [RiRiRii RR ..... ....]
+  +B214:   #1
+        vR5[vi8] = -1;   
+  +B220:   #1
+        vi8++;   
+        goto +B178;   [RiRiRii RR ..... ....]
+  +B226:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.print(b1.append@extra("").append@extra(vR0.alignString@special(toString@special(vR5[0]),11)).append@extra(vR0.alignString@special(toString@special(vR5[1]),11)).toString@extra());   [RiRiRii RR iiii.iiii. RR..] 
+        vR0.storeValue@special(vR5[0]);   [RiRiRii RR iiiiiiiii. iR..] 
+        vR0.storeValue@special(vR5[1]);   [RiRiRii RR iiiiiiiiii iR..] 
+  +B295:   #1
+        goto +B308;   forward return[RiRiRii RR .......... ....]
+  -H298<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B308:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+24 - 42 handler 298 type 120
+43 - 295 handler 298 type 120
+ }
+// Register: rd 53/53 wr 36 swaps 13 any 8 found 0 writePerfTest
+ 
+ method storeValue(I)V {
+  +START:   #1
+        if vR0.cancel_store==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #2
+        vR0.report_array[((vR0.current_y*100)+vR0.current_x)] = vi1;   
+        vR0.current_x = (vR0.current_x+1);   
+        if vR0.current_x<=vR0.max_x goto B55;   
+  +B47:   #1
+        vR0.max_x = vR0.current_x;   
+  +B55:   #1
+        if vR0.current_y<=vR0.max_y goto B74;   
+  +B66:   #1
+        vR0.max_y = vR0.current_y;   
+  +B74:   #1
+        if vR0.max_x<100 goto B92;   
+  +B83:   #1
+        out.println("MAX_X too small");   [  i. RR] 
+  +B92:   #1
+        if vR0.max_y<200 goto B111;   
+  +B102:   #1
+        out.println("MAX_X too small");   [  i. RR] 
+  +B111:   #2
+        goto +B129;   forward return[  .. ..]
+  +H114<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("
+!!! Exception in storeValue caught !!!");   [R  i. RR] 
+        vR0.cancel_store = 1;   
+  +B129:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+8 - 111 handler 114 type 120
+ }
+// Register: rd 18/18 wr 7 swaps 3 any 1 found 0 storeValue
+ 
+ method dumpBinary(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR3 = vR2.alloc(4096);    [R RRi i. iR] 
+        vR4 = new jx/zero/memory/MemoryOutputStream(vR3);    [ RRi i. i.][ RRi i. iRR]
+        vR5 = new jx/formats/LittleEndianOutputStream(vR4);    [ RRi i. i..][ RRi i. iRR]
+        vR5.writeInt@extra(vR0.KILOBYTES_START);   [RRRR RRi ii iR.] 
+        vR5.writeInt@extra(vR0.KILOBYTES_END);   [RRRR RRi iii iR.] 
+        vR5.writeInt@extra(vR0.RECLEN_START);   [RRRR RRi iiii iR.] 
+        vR5.writeInt@extra(vR0.RECLEN_END);   [RRRR RRi iiiii iR.] 
+        vi6 = 0;    
+        vi7 = vR0.KILOBYTES_START;    
+  +B90:   #1
+        if vi7>vR0.KILOBYTES_END goto B158;   
+  +B99:   #1
+        vi8 = vR0.RECLEN_START;    
+  +B105:   #1
+        if vi8>vR0.RECLEN_END goto B149;   
+  +B114:   #1
+        if vi8>(vi7*1024) goto B149;   
+  +B125:   #1
+        b1 = vR0.rereadtime;    
+        b2 = vi6;    
+        vi6++;   
+        vR5.writeInt@extra(b1[b2]);   [RRRRiii RRi i.... iR.] 
+        vi8 = (vi8*2);    
+        goto +B105;   [RRRRiii RRi i.... ...]
+  +B149:   #2
+        vi7 = (vi7*2);    
+        goto +B90;   [RRRRiii RRi ..... ...]
+  +B158:   #1
+        if vi6==vR0.nreread goto B178;   
+  -B167:   #1
+        throw new java/lang/Error("???");   
+  +B178:   #1
+        vR7 = (jx/zero/DebugSupport)(getInitialNaming@special().lookup("DebugSupport"));    
+        vR7.sendBinary(vR1,vR3,(4*(vR0.nreread+4)));   [RRRRiRi RRi ii... iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 28 swaps 8 any 8 found 0 dumpBinary
+ 
+ method dumpReport(I)V {
+  +START:   #1
+        out.print("      ");   [ RR i. RR] 
+        vi2 = vR0.RECLEN_START;    
+  +B14:   #1
+        if vi2>(vR0.RECLEN_END/2) goto B67;   
+  +B24:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.print(b1.append@extra(""").append@extra((vi2/1024)).append@extra("" ").toString@extra());   [i RR iiii.. RR..] 
+        vi2 = (vi2*2);    
+        goto +B14;   [i RR iiii.. ....]
+  +B67:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra(""").append@extra((vR0.RECLEN_END/1024)).append@extra(""").toString@extra());   [i RR iiii.. RR..] 
+        vi4 = vR0.report_array[0];    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii.. i...][ RR iiii.. iR..]
+        b0.print(b1.append@extra(""").append@extra(vi4).append@extra("" ").toString@extra());   [i?i RR iiiiiii.. RR..] 
+        vi2 = -1;    
+  +B149:   #1
+        if vi2>=vR0.max_y goto B273;   
+  +B157:   #1
+        if vR0.report_array[((vi2+1)*100)]==vi4 goto B225;   
+  +B173:   #1
+        out.println();   [i?i RR ......... R...] 
+        vi4 = vR0.report_array[((vi2+1)*100)];    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ......... i...][ RR ......... iR..]
+        b0.print(b1.append@extra(""").append@extra(vi4).append@extra("" ").toString@extra());   [i?i RR iii...... RR..] 
+  +B225:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ......... i...][ RR ......... iR..]
+        b0.print(b1.append@extra(" ").append@extra(vR0.report_array[(((vi2+1)*100)+vi1)]).append@extra(" ").toString@extra());   [i?i RR iiii..... RR..] 
+        vi2++;   
+        goto +B149;   [i?i RR iiii..... ....]
+  +B273:   #1
+        out.println();   [i?i RR ......... R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 52 swaps 19 any 4 found 0 dumpReport
+ 
+ method dumpExcel()V {
+  +START:   #1
+        out.println();   [  . R] 
+        out.println(""Writer report"");   [  i. RR] 
+        vR0.dumpReport@special(2);   [  i. iR] 
+        out.println();   [  i. R.] 
+        out.println(""Re-writer report"");   [  ii. RR] 
+        vR0.dumpReport@special(3);   [  ii. iR] 
+        out.println();   [  ii. R.] 
+        out.println(""Reader report"");   [  iii. RR] 
+        vR0.dumpReport@special(4);   [  iii. iR] 
+        out.println();   [  iii. R.] 
+        out.println(""Re-Reader report"");   [  iiii. RR] 
+        vR0.dumpReport@special(5);   [  iiii. iR] 
+        out.println();   [  iiii. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 4 any 0 found 0 dumpExcel
+}

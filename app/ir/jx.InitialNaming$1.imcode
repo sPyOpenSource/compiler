@@ -1,0 +1,33 @@
+class jx/InitialNaming$1 {
+ 
+ method <init>(Ljx/InitialNaming;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method execCommand([Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = names.keys();    [  . R] 
+  +B7:   #1
+        if vR2.hasMoreElements()==0 goto B36;   
+  +B16:   #1
+        vR3 = (java/lang/String)(vR2.nextElement());    
+        out.println(vR3);   [RR  . RR] 
+        goto +B7;   [RR  . ..]
+  +B36:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 5 swaps 0 any 0 found 0 execCommand
+ 
+ method getHelp()Ljava/lang/String; {
+  +START:   #1
+        return "Dump contents of DomainInit name server";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getHelp
+}

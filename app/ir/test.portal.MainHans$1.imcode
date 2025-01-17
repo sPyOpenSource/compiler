@@ -1,0 +1,19 @@
+class test/portal/MainHans$1 {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #2
+        vR1 = new int[100000];    
+        yield@special();   [R   ..]
+        goto +START;   [R   ..]
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 run
+}

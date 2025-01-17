@@ -1,0 +1,101 @@
+class org/jnode/driver/net/lance/LanceFlags {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.name = vR1;   
+        vR0.chipName = "Unknown";   
+        vR0.fullDuplex = 0;   
+        vR0.autoSelectEnabled = 0;   
+        vR0.mustUnreset = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setForVersion(I)V {
+  +START:   #1
+        lswitch (vi1) { 
+           9248:B76
+           9264:B85
+           9761:B94
+           9763:B108
+           9764:B122
+           9765:B136
+           9766:B150
+           9767:B164
+           ::B178
+        };   
+  +B76:   #1
+        vR0.chipName = "PCnet/PCI 79C970";   
+        goto +B184;   forward return[   ]
+  +B85:   #1
+        vR0.chipName = "PCnet/PCI 79C970 or PCnet/32 79C965";   
+        goto +B184;   forward return[   ]
+  +B94:   #1
+        vR0.chipName = "PCnet/PCI II 79C970A";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B108:   #1
+        vR0.chipName = "PCnet/FAST 79C971";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B122:   #1
+        vR0.chipName = "PCnet/FAST+ 79C972";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B136:   #1
+        vR0.chipName = "PCnet/FAST III 79C973";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B150:   #1
+        vR0.chipName = "PCnet/Home 79C978";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B164:   #1
+        vR0.chipName = "PCnet/FAST III 79C970";   
+        vR0.fullDuplex = 1;   
+        goto +B184;   forward return[   ]
+  +B178:   #1
+        vR0.chipName = "no device !";   
+  +B184:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 0 swaps 0 any 1 found 0 setForVersion
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method getChipName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.chipName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getChipName
+ 
+ method isFullDuplex()Z {
+  +START:   #1
+        return vR0.fullDuplex;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isFullDuplex
+ 
+ method isAutoSelectEnabled()Z {
+  +START:   #1
+        return vR0.autoSelectEnabled;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isAutoSelectEnabled
+ 
+ method isMustUnreset()Z {
+  +START:   #1
+        return vR0.mustUnreset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isMustUnreset
+}

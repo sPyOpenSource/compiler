@@ -1,0 +1,116 @@
+class java/lang/Boolean {
+ 
+ method <init>(Z)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ Ri  R] 
+        b0 = vR0;    
+        if vR1==null goto B22;   
+  +B9b0:   #1 reference
+        if vR1.equalsIgnoreCase@extra("true")==0 goto B22;   
+  +B18b0:   #1 reference
+        b1 = 1;    
+        goto +B23b0b1;   [ Ri . ..]
+  +B22b0:   #2 reference
+        b1 = 0;    
+  +B23b0b1:   #1 reference int
+        b0.value = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 2 found 0 <init>
+ 
+ method booleanValue()Z {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 booleanValue
+ 
+ method valueOf(Ljava/lang/String;)Ljava/lang/Boolean; {
+  +START:   #1
+        return new java/lang/Boolean(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 valueOf
+ 
+ method hashCode()I {
+  +START:   #1
+        if vR0.value==0 goto B13;   
+  +B7:   #1
+        b0 = 1231;    
+        goto +B16b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 1237;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/lang/Boolean)==0 goto B25;   
+  +B7:   #1
+        if vR0.value!=(java/lang/Boolean)(vR1).value goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i . ..]
+  +B25:   #2
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 1 equals
+ 
+ method getBoolean(Ljava/lang/String;)Z {
+  +START:   #1
+        vR1 = getProperty@special(vR0);    [ i  R]
+        if vR1==null goto B22;   
+  +B9:   #1
+        if vR1.equalsIgnoreCase@extra("true")==0 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[R i . ..]
+  +B22:   #2
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 1 any 1 found 0 getBoolean
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0.value==0 goto B12;   
+  +B7:   #1
+        b0 = "true";    
+        goto +B14b0;   forward return[ R  ]
+  +B12:   #1
+        b0 = "false";    
+  +B14b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/Boolean(1);    [ R  i][ R . iiR]
+        TRUE = b0;   
+        b0 = new java/lang/Boolean(0);    [ R . i..][ R . iiR]
+        FALSE = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 2 <clinit>
+}

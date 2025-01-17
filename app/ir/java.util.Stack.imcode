@@ -1,0 +1,60 @@
+class java/util/Stack {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method pop()Ljava/lang/Object; {
+  +START:   #1
+        vi2 = vR0.size@this();    [   R] 
+        vR1 = vR0.peek@this();    [?i   R] 
+        vR0.removeElementAt@this((vi2-1));   [Ri  i iR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 0 found 0 pop
+ 
+ method peek()Ljava/lang/Object; {
+  +START:   #1
+        vi1 = vR0.size@this();    [ R  R] 
+        if vi1!=0 goto B17;   
+  -B9:   #1
+        throw new java/util/EmptyStackException();   
+  +B17:   #1
+        return vR0.elementAt@this((vi1-1));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 1 found 0 peek
+ 
+ method push(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 push
+ 
+ method Stack()V {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 Stack
+ 
+ method empty()Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 empty
+ 
+ method search(Ljava/lang/Object;)I {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 search
+}

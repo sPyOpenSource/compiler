@@ -1,0 +1,182 @@
+class java/util/HashSet {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap();    [ ?R  i][ ?R  iR]
+        vR0.map = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap(vi1);    [ ?R  i][ ?R . iiR]
+        vR0.map = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IF)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap(vi1,vl2);    [ ?R  i][ ?R . iliR]
+        vR0.map = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IFZ)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.map = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Collection;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap();    [ ?R  i][ ?R  iR]
+        vR0.map = b1;   
+        vR0.addAll@this(vR1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.map.containsKey(vR1)==0 goto B13;   
+  +B11:   #1
+        return 0;   
+  +B13:   #1
+        vR0.internalAdd@special(vR1);   [   RR] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 add
+ 
+ method clear()V {
+  +START:   #1
+        vR0.map.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        vR1 = vR0.iterator@this();    [ R  R] 
+        vR2 = new java/util/HashSet(vR0.map.capacity,vR0.map.loadFactor);    [ R  i][ R . iliR]
+  +B27:   #1
+        if vR1.hasNext()==0 goto B49;   
+  +B36:   #1
+        vR2.internalAdd@special(vR1.next());   [RR R i RR..] 
+        goto +B27;   [RR R i ....]
+  +B49:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 0 found 0 clone
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.map.containsKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.map.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return vR0.map.keySet().iterator();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.map.remove(vR1)==null goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 remove
+ 
+ method size()I {
+  +START:   #1
+        return vR0.map.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method internalAdd(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.map.put(vR1,TRUE);   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 internalAdd
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vR2 = vR0.iterator@this();    [   R] 
+        vR1.writeInt(vR0.map.capacity);   [R  i iR] 
+        vR1.writeFloat(vR0.map.loadFactor);   [R  i ?R] 
+        vR1.writeInt(vR0.size@this());   [R  ii iR] 
+  +B35:   #1
+        if vR2.hasNext()==0 goto B57;   
+  +B44:   #1
+        vR1.writeObject@extra(vR2.next());   [R  i. RR] 
+        goto +B35;   [R  i. ..]
+  +B57:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 3 any 0 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vi4 = vR1.readInt();    [ ?R  R] 
+        vl5 = vR1.readFloat();     
+        vi3 = vR1.readInt();    [??il ?R  R] 
+        b1 = new java/util/HashMap(vi4,vl5);    [ ?R  i][ ?R . iliR]
+        vR0.map = b1;   
+        vi2 = 0;    
+  +B34:   #1
+        if vi2>=vi3 goto B57;   
+  +B39:   #1
+        vR6 = vR1.readObject();    [iiil ?R . R...] 
+        vR0.internalAdd@special(vR6);   [iiilR ?R . RR..] 
+        vi2++;   
+        goto +B34;   [iiilR ?R . ....]
+  +B57:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 2 found 0 readObject
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+}

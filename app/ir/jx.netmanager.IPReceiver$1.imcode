@@ -1,0 +1,28 @@
+class jx/netmanager/IPReceiver$1 {
+ 
+ method <init>(Ljx/netmanager/IPReceiver;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = vR0.this$0.usableBufs.nonblockingUndockFirstElement();    [   R] 
+        if vR2!=null goto B30;   
+  +B15:   #1
+        out.println("jx.netmanager.IPReceiver: no buffer available, must drop packet!");   [R  i. RR] 
+        return vR1.getMemory();   
+  +B30:   #1
+        vR3 = vR2.getData();    [R  .. R.] 
+        vR2.setData(vR1.getMemory());   [RR  i. RR] 
+        vR2.setMoreData(vR1);   [RR  i. RR] 
+        vR0.this$0.filledBufs.appendElement(vR2);   [RR  i. RR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 2 any 1 found 0 processIP
+}

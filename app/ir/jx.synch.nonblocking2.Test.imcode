@@ -1,0 +1,56 @@
+class jx/synch/nonblocking2/Test {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        vR1 = (jx/zero/CPUManager)(vR0.lookup("CPUManager"));    
+        vR2 = new jx/synch/nonblocking2/MPSCQueue();    [ RRR ii. i..][ RRR ii. iR.]
+        b0 = new jx/synch/nonblocking2/Test$1(vR2);    [ RRR ii. i..][ RRR ii. iRR]
+        b0.start();   [RR RRR ii. R..] 
+        b0 = new jx/synch/nonblocking2/Test$2(vR2);    [ RRR ii. i..][ RRR ii. iRR]
+        b0.start();   [RR RRR ii. R..] 
+        produce@special(2,vR2);   [RR RRR ii. Ri.]
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 14 swaps 2 any 1 found 1 init
+ 
+ method produce(ILjx/synch/nonblocking2/Queue;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        vR3 = new jx/synch/nonblocking2/Test$ID(vi0,vi2);    [ R  i][ R . iiiR]
+        vR1.enqueue(vR3);   [iR R . RR..] 
+        vi2++;   
+        goto +B2;   [iR R . ....]
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 produce
+ 
+ method consume(Ljx/synch/nonblocking2/Queue;)V {
+  +START:   #4
+        vR1 = (jx/synch/nonblocking2/Test$ID)(vR0.dequeue());    
+        out.print("*");   [R  i. RR] 
+  +B18:   #1
+        goto +START;   [R  .. ..]
+  +H21<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        goto +START;   [R  .. ..]
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 18 handler 21 type 79
+ }
+// Register: rd 2/2 wr 5 swaps 1 any 0 found 0 consume
+}

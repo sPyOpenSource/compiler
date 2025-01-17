@@ -1,0 +1,138 @@
+class java/util/HashMap$HashMapSet {
+ 
+ method <init>(Ljava/util/HashMap;I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.setType = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method add(Ljava/lang/Object;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addAll
+ 
+ method clear()V {
+  +START:   #1
+        vR0.this$0.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.setType!=0 goto B16;   
+  +B7:   #1
+        return vR0.this$0.containsKey(vR1);   
+  +B16:   #1
+        if (vR1 instanceof java/util/Map$Entry)==0 goto B37;   
+  +B23:   #1
+        b0 = access$000@special(vR0.this$0,(java/util/Map$Entry)(vR1));    [ b R RR]
+        goto +B38b0;   forward return[ b R ..]
+  +B37:   #1
+        b0 = 0;    
+  +B38b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 0 found 1 contains
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.this$0.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.setType!=0 goto B24;   
+  +B7:   #1
+        if vR0.this$0.remove(vR1)==null goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  ..]
+  +B22:   #1
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +B24:   #1
+        if (vR1 instanceof java/util/Map$Entry)==0 goto B58;   
+  +B31:   #1
+        if vR0.this$0.remove((java/util/Map$Entry)(vR1).getKey())==null goto B54;   
+  +B50:   #1
+        b0 = 1;    
+        goto +B59b0;   forward return[ i . ..]
+  +B54:   #1
+        b0 = 0;    
+        goto +B59b0;   forward return[ i . ..]
+  +B58:   #1
+        b0 = 0;    
+  +B59b0:   #2 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 0 found 1 remove
+ 
+ method size()I {
+  +START:   #1
+        return vR0.this$0.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new java/util/HashMap$HashMapIterator(vR0.this$0,vR0.setType);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 containsAll
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 removeAll
+ 
+ method retainAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 retainAll
+ 
+ method toArray()[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+}

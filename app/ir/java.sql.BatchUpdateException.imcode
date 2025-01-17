@@ -1,0 +1,53 @@
+class java/sql/BatchUpdateException {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.updateCounts = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;[I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.updateCounts = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;[I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.updateCounts = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;I[I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vi3);   [   iRRR] 
+        vR0.updateCounts = vR4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getUpdateCounts()[I {
+  +START:   #1
+        return vR0.updateCounts;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateCounts
+}

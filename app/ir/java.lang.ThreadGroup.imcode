@@ -1,0 +1,787 @@
+class java/lang/ThreadGroup {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/ThreadGroup;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.name = vR2;   
+        vR0.maxPriority = vR1.maxPriority;   
+        vR0.daemon = vR1.daemon;   
+        vR0.parent = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method getParent()Ljava/lang/ThreadGroup; {
+  +START:   #1
+        return vR0.parent;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParent
+ 
+ method getMaxPriority()I {
+  +START:   #1
+        return vR0.maxPriority;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaxPriority
+ 
+ method isDaemon()Z {
+  +START:   #1
+        return vR0.daemon;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDaemon
+ 
+ method isDestroyed()Z {
+  +START:   #1
+        return vR0.destroyed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDestroyed
+ 
+ method setDaemon(Z)V {
+  +START:   #1
+        vR0.daemon = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDaemon
+ 
+ method parentOf(Ljava/lang/ThreadGroup;)Z {
+  +START:   #2
+        if vR1==null goto B19;   
+  +B4:   #1
+        if vR1!=vR0 goto B11;   
+  +B9:   #1
+        return 1;   
+  +B11:   #1
+        vR1 = vR1.parent;    
+        goto +START;   [   ]
+  +B19:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 0 parentOf
+ 
+ method activeCount()I {
+  +START:   #1
+        vR4 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B17;   
+  +B12:   #1
+        vR4.leave();   
+        return 0;   
+  +B17:   #1
+        vi1 = vR0.nthreads;    
+        vi2 = vR0.ngroups;    
+        if vR0.groups==null goto B53;   
+  +B34:   #1
+        vR3 = new java/lang/ThreadGroup()[vi2];    
+        arraycopy@special(vR0.groups,0,vR3,0,vi2);   [iiRR  R iiRiR]
+        goto +B55;   [iiRR  R .....]
+  +B53:   #1
+        vR3 = 0;    
+  +B55:   #1
+        vR4.leave();   
+        goto +B69;   [iiRR  . .....]
+  +H61<caught exception>:   #2 reference
+        vR5 = <caught exception>;    
+        vR4.leave();   
+  -B66:   #1
+        throw vR5;   
+  +B69:   #1
+        vi4 = 0;    
+  +B72:   #1
+        if vi4>=vi2 goto B94;   
+  +B78:   #1
+        vi1 = (vi1+vR3[vi4].activeCount());    
+        vi4++;   
+        goto +B72;   [iiRi  . .....]
+  +B94:   #1
+        return vi1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+5 - 16 handler 61 type 0
+17 - 58 handler 61 type 0
+61 - 66 handler 61 type 0
+ }
+// Register: rd 16/16 wr 10 swaps 0 any 4 found 1 activeCount
+ 
+ method enumerate([Ljava/lang/Thread;)I {
+  +START:   #1
+        return vR0.enumerate@special(vR1,0,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enumerate
+ 
+ method enumerate([Ljava/lang/Thread;Z)I {
+  +START:   #1
+        return vR0.enumerate@special(vR1,0,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enumerate
+ 
+ method enumerate([Ljava/lang/Thread;IZ)I {
+  +START:   #1
+        vi4 = 0;    
+        vR5 = 0;    
+        vR6 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B23;   
+  +B18:   #1
+        vR6.leave();   
+        return 0;   
+  +B23:   #1
+        vi7 = vR0.nthreads;    
+        if vi7<=(vR1.length-vi2) goto B44;   
+  +B38:   #1
+        vi7 = (vR1.length-vi2);    
+  +B44:   #1
+        if vi7<=0 goto B66;   
+  +B49:   #1
+        arraycopy@special(vR0.threads,0,vR1,vi2,vi7);   [iRRi  R iiRiR]
+        vi2 = (vi2+vi7);    
+  +B66:   #1
+        if vi3==0 goto B109;   
+  +B70:   #1
+        vi4 = vR0.ngroups;    
+        if vR0.groups==null goto B106;   
+  +B83:   #1
+        vR5 = new java/lang/ThreadGroup()[vi4];    
+        arraycopy@special(vR0.groups,0,vR5,0,vi4);   [iRRi  R iiRiR]
+        goto +B109;   [iRRi  R .....]
+  +B106:   #1
+        vR5 = 0;    
+  +B109:   #2
+        vR6.leave();   
+        goto +B123;   [iRRi  . .....]
+  +H115<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        vR6.leave();   
+  -B120:   #1
+        throw vR8;   
+  +B123:   #1
+        if vi3==0 goto B155;   
+  +B127:   #1
+        vi6 = 0;    
+  +B130:   #1
+        if vi6>=vi4 goto B155;   
+  +B137:   #1
+        vi2 = vR5[vi6].enumerate@special(vR1,vi2,1);    [iRii  . iiRR.] 
+        vi6++;   
+        goto +B130;   [iRii  . .....]
+  +B155:   #2
+        return vi2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 22 handler 115 type 0
+23 - 112 handler 115 type 0
+115 - 120 handler 115 type 0
+ }
+// Register: rd 25/25 wr 15 swaps 0 any 8 found 0 enumerate
+ 
+ method activeGroupCount()I {
+  +START:   #1
+        vR3 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B15;   
+  +B11:   #1
+        vR3.leave();   
+        return 0;   
+  +B15:   #1
+        vi1 = vR0.ngroups;    
+        if vR0.groups==null goto B46;   
+  +B27:   #1
+        vR2 = new java/lang/ThreadGroup()[vi1];    
+        arraycopy@special(vR0.groups,0,vR2,0,vi1);   [iRR  R iiRiR]
+        goto +B48;   [iRR  R .....]
+  +B46:   #1
+        vR2 = 0;    
+  +B48:   #1
+        vR3.leave();   
+        goto +B60;   [iRR  . .....]
+  +H53<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B57:   #1
+        throw vR4;   
+  +B60:   #1
+        vi3 = vi1;    
+        vi4 = 0;    
+  +B65:   #1
+        if vi4>=vi1 goto B87;   
+  +B71:   #1
+        vi3 = (vi3+vR2[vi4].activeGroupCount());    
+        vi4++;   
+        goto +B65;   [iRii  . .....]
+  +B87:   #1
+        return vi3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 14 handler 53 type 0
+15 - 50 handler 53 type 0
+53 - 57 handler 53 type 0
+ }
+// Register: rd 16/16 wr 10 swaps 0 any 5 found 1 activeGroupCount
+ 
+ method enumerate([Ljava/lang/ThreadGroup;)I {
+  +START:   #1
+        return vR0.enumerate@special(vR1,0,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enumerate
+ 
+ method enumerate([Ljava/lang/ThreadGroup;Z)I {
+  +START:   #1
+        return vR0.enumerate@special(vR1,0,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enumerate
+ 
+ method enumerate([Ljava/lang/ThreadGroup;IZ)I {
+  +START:   #1
+        vi4 = 0;    
+        vR5 = 0;    
+        vR6 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B23;   
+  +B18:   #1
+        vR6.leave();   
+        return 0;   
+  +B23:   #1
+        vi7 = vR0.ngroups;    
+        if vi7<=(vR1.length-vi2) goto B44;   
+  +B38:   #1
+        vi7 = (vR1.length-vi2);    
+  +B44:   #1
+        if vi7<=0 goto B66;   
+  +B49:   #1
+        arraycopy@special(vR0.groups,0,vR1,vi2,vi7);   [iRRi  R iiRiR]
+        vi2 = (vi2+vi7);    
+  +B66:   #1
+        if vi3==0 goto B109;   
+  +B70:   #1
+        vi4 = vR0.ngroups;    
+        if vR0.groups==null goto B106;   
+  +B83:   #1
+        vR5 = new java/lang/ThreadGroup()[vi4];    
+        arraycopy@special(vR0.groups,0,vR5,0,vi4);   [iRRi  R iiRiR]
+        goto +B109;   [iRRi  R .....]
+  +B106:   #1
+        vR5 = 0;    
+  +B109:   #2
+        vR6.leave();   
+        goto +B123;   [iRRi  . .....]
+  +H115<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        vR6.leave();   
+  -B120:   #1
+        throw vR8;   
+  +B123:   #1
+        if vi3==0 goto B155;   
+  +B127:   #1
+        vi6 = 0;    
+  +B130:   #1
+        if vi6>=vi4 goto B155;   
+  +B137:   #1
+        vi2 = vR5[vi6].enumerate@special(vR1,vi2,1);    [iRii  . iiRR.] 
+        vi6++;   
+        goto +B130;   [iRii  . .....]
+  +B155:   #2
+        return vi2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 22 handler 115 type 0
+23 - 112 handler 115 type 0
+115 - 120 handler 115 type 0
+ }
+// Register: rd 25/25 wr 15 swaps 0 any 8 found 0 enumerate
+ 
+ method stop()V {
+  +START:   #1
+        if vR0.stopOrSuspend@special(0)==0 goto B14;   
+  +B8:   #1
+        currentThread@special().stop@extra();   [  . R.] [  R ..]
+  +B14:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 stop
+ 
+ method suspend()V {
+  +START:   #1
+        if vR0.stopOrSuspend@special(1)==0 goto B14;   
+  +B8:   #1
+        currentThread@special().suspend@extra();   [  . R.] [  R ..]
+  +B14:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 suspend
+ 
+ method stopOrSuspend(Z)Z {
+  +START:   #1
+        vi2 = 0;    
+        vR3 = currentThread@special();    [i i  ]
+        vR5 = 0;    
+        vR6 = vR0;    
+        vR0.enter();   
+        vi7 = 0;    
+  +B17:   #1
+        if vi7>=vR0.nthreads goto B75;   
+  +B26:   #1
+        if vR0.threads[vi7]!=vR3 goto B42;   
+  +B37:   #1
+        vi2 = 1;    
+        goto +B69;   [iR?RRi i  ]
+  +B42:   #1
+        if vi1==0 goto B59;   
+  +B46:   #1
+        vR0.threads[vi7].suspend@extra();   [iR?RRi i  R] 
+        goto +B69;   [iR?RRi i  .]
+  +B59:   #1
+        vR0.threads[vi7].stop@extra();   [iR?RRi i  R] 
+  +B69:   #2
+        vi7++;   
+        goto +B17;   [iR?RRi i  .]
+  +B75:   #1
+        vi4 = vR0.ngroups;    
+        if vR0.groups==null goto B108;   
+  +B88:   #1
+        vR5 = new java/lang/ThreadGroup()[vi4];    
+        arraycopy@special(vR0.groups,0,vR5,0,vi4);   [iRiRRi i R iiRiR]
+  +B108:   #1
+        vR6.leave();   
+        goto +B122;   [iRiRRi i . .....]
+  +H114<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        vR6.leave();   
+  -B119:   #1
+        throw vR8;   
+  +B122:   #1
+        vi6 = 0;    
+  +B125:   #1
+        if vi6>=vi4 goto B160;   
+  +B132:   #1
+        if vR5[vi6].stopOrSuspend@special(vi1)!=0 goto B148;   
+  +B144:   #1
+        if vi2==0 goto B152;   
+  +B148:   #1
+        b0 = 1;    
+        goto +B153b0;   [iRiRii i . .....]
+  +B152:   #1
+        b0 = 0;    
+  +B153b0:   #1 int
+        vi2 = b0;    
+        vi6++;   
+        goto +B125;   [iRiRii i . .....]
+  +B160:   #1
+        return vi2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+14 - 111 handler 114 type 0
+114 - 119 handler 114 type 0
+ }
+// Register: rd 25/25 wr 14 swaps 0 any 8 found 0 stopOrSuspend
+ 
+ method resume()V {
+  +START:   #1
+        vR3 = vR0;    
+        vR0.enter();   
+        vi4 = 0;    
+  +B7:   #1
+        if vi4>=vR0.nthreads goto B32;   
+  +B16:   #1
+        vR0.threads[vi4].resume@extra();   [??Ri   R] 
+        vi4++;   
+        goto +B7;   [??Ri   .]
+  +B32:   #1
+        vi1 = vR0.ngroups;    
+        if vR0.groups==null goto B63;   
+  +B44:   #1
+        vR2 = new java/lang/ThreadGroup()[vi1];    
+        arraycopy@special(vR0.groups,0,vR2,0,vi1);   [iRRi  R iiRiR]
+        goto +B65;   [iRRi  R .....]
+  +B63:   #1
+        vR2 = 0;    
+  +B65:   #1
+        vR3.leave();   
+        goto +B77;   [iRRi  . .....]
+  +H70<caught exception>:   #2 reference
+        vR5 = <caught exception>;    
+        vR3.leave();   
+  -B74:   #1
+        throw vR5;   
+  +B77:   #1
+        vi3 = 0;    
+  +B79:   #1
+        if vi3>=vi1 goto B96;   
+  +B84:   #1
+        vR2[vi3].resume@extra();   [iRii  . R....] 
+        vi3++;   
+        goto +B79;   [iRii  . .....]
+  +B96:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 67 handler 70 type 0
+70 - 74 handler 70 type 0
+ }
+// Register: rd 16/16 wr 10 swaps 0 any 5 found 0 resume
+ 
+ method destroy()V {
+  +START:   #1
+        vR3 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed!=0 goto B18;   
+  +B11:   #1
+        if vR0.nthreads<=0 goto B26;   
+  -B18:   #1
+        throw new java/lang/IllegalThreadStateException();   
+  +B26:   #1
+        vi1 = vR0.ngroups;    
+        if vR0.groups==null goto B57;   
+  +B38:   #1
+        vR2 = new java/lang/ThreadGroup()[vi1];    
+        arraycopy@special(vR0.groups,0,vR2,0,vi1);   [iRR R R iiRiR]
+        goto +B59;   [iRR R R .....]
+  +B57:   #1
+        vR2 = 0;    
+  +B59:   #1
+        if vR0.parent==null goto B91;   
+  +B66:   #1
+        vR0.destroyed = 1;   
+        vR0.ngroups = 0;   
+        vR0.groups = 0;   
+        vR0.nthreads = 0;   
+        vR0.threads = 0;   
+  +B91:   #1
+        vR3.leave();   
+        goto +B103;   [iRR R . .....]
+  +H96<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR3.leave();   
+  -B100:   #1
+        throw vR4;   
+  +B103:   #1
+        vi3 = 0;    
+  +B105:   #1
+        if vi3>=vi1 goto B122;   
+  +B110:   #1
+        vR2[vi3].destroy@extra();   [iRi R . R....] 
+        vi3++;   
+        goto +B105;   [iRi R . .....]
+  +B122:   #1
+        if vR0.parent==null goto B137;   
+  +B129:   #1
+        vR0.parent.remove@special(vR0);   [iRi R . RR...] 
+  +B137:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 93 handler 96 type 0
+96 - 100 handler 96 type 0
+ }
+// Register: rd 21/21 wr 8 swaps 0 any 3 found 0 destroy
+ 
+ method add(Ljava/lang/ThreadGroup;)V {
+  +START:   #1
+        vR2 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B19;   
+  -B11:   #1
+        throw new java/lang/IllegalThreadStateException();   
+  +B19:   #1
+        if vR0.groups!=null goto B37;   
+  +B26:   #1
+        vR0.groups = new java/lang/ThreadGroup()[4];   
+        goto +B78;   [R R  ..]
+  +B37:   #1
+        if vR0.ngroups!=vR0.groups.length goto B78;   
+  +B49:   #1
+        vR3 = new java/lang/ThreadGroup()[(vR0.ngroups*2)];    
+        arraycopy@special(vR0.groups,0,vR3,0,vR0.ngroups);   [RR R Ri iiRiR]
+        vR0.groups = vR3;   
+  +B78:   #2
+        vR0.groups[vR0.ngroups] = vR1;   
+        vR0.ngroups = (vR0.ngroups+1);   
+        vR2.leave();   
+        goto +B110;   forward return[R R .. .....]
+  +H103<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR2.leave();   
+  -B107:   #1
+        throw vR4;   
+  +B110:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 100 handler 103 type 0
+103 - 107 handler 103 type 0
+ }
+// Register: rd 17/17 wr 5 swaps 0 any 2 found 0 add
+ 
+ method remove(Ljava/lang/ThreadGroup;)V {
+  +START:   #1
+        vR2 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B14;   
+  +B11:   #1
+        vR2.leave();   
+        return;   
+  +B14:   #1
+        vi3 = 0;    
+  +B16:   #1
+        if vi3>=vR0.ngroups goto B84;   
+  +B24:   #1
+        if vR0.groups[vi3]!=vR1 goto B78;   
+  +B34:   #1
+        vR0.ngroups = (vR0.ngroups-1);   
+        arraycopy@special(vR0.groups,(vi3+1),vR0.groups,vi3,(vR0.ngroups-vi3));   [Ri  RiRi iiRiR]
+        vR0.groups[vR0.ngroups] = 0;   
+        goto +B84;   [Ri  RiRi .....]
+  +B78:   #1
+        vi3++;   
+        goto +B16;   [Ri  .... .....]
+  +B84:   #2
+        if vR0.nthreads!=0 goto B95;   
+  +B91:   #1
+        vR0.notifyAll@this();   [Ri  .... .....] 
+  +B95:   #1
+        if vR0.daemon==0 goto B120;   
+  +B102:   #1
+        if vR0.nthreads!=0 goto B120;   
+  +B109:   #1
+        if vR0.ngroups!=0 goto B120;   
+  +B116:   #1
+        vR0.destroy@extra();   [Ri  .... R....] 
+  +B120:   #3
+        vR2.leave();   
+        goto +B132;   forward return[Ri  .... .....]
+  +H125<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR2.leave();   
+  -B129:   #1
+        throw vR4;   
+  +B132:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 13 handler 125 type 0
+14 - 122 handler 125 type 0
+125 - 129 handler 125 type 0
+ }
+// Register: rd 23/23 wr 8 swaps 0 any 3 found 0 remove
+ 
+ method add(Ljava/lang/Thread;)V {
+  +START:   #1
+        vR2 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B19;   
+  -B11:   #1
+        throw new java/lang/IllegalThreadStateException();   
+  +B19:   #1
+        if vR0.threads!=null goto B37;   
+  +B26:   #1
+        vR0.threads = new java/lang/Thread()[4];   
+        goto +B78;   [R R  ..]
+  +B37:   #1
+        if vR0.nthreads!=vR0.threads.length goto B78;   
+  +B49:   #1
+        vR3 = new java/lang/Thread()[(vR0.nthreads*2)];    
+        arraycopy@special(vR0.threads,0,vR3,0,vR0.nthreads);   [RR R Ri iiRiR]
+        vR0.threads = vR3;   
+  +B78:   #2
+        vR0.threads[vR0.nthreads] = vR1;   
+        vR0.nthreads = (vR0.nthreads+1);   
+        vR2.leave();   
+        goto +B110;   forward return[R R .. .....]
+  +H103<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR2.leave();   
+  -B107:   #1
+        throw vR4;   
+  +B110:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 100 handler 103 type 0
+103 - 107 handler 103 type 0
+ }
+// Register: rd 17/17 wr 5 swaps 0 any 2 found 0 add
+ 
+ method remove(Ljava/lang/Thread;)V {
+  +START:   #1
+        vR2 = vR0;    
+        vR0.enter();   
+        if vR0.destroyed==0 goto B14;   
+  +B11:   #1
+        vR2.leave();   
+        return;   
+  +B14:   #1
+        vi3 = 0;    
+  +B16:   #1
+        if vi3>=vR0.nthreads goto B81;   
+  +B24:   #1
+        if vR0.threads[vi3]!=vR1 goto B75;   
+  +B34:   #1
+        b0 = vR0.threads;    
+        b1 = (vi3+1);    
+        b2 = vR0.threads;    
+        b5 = (vR0.nthreads-1);    
+        b4 = b5;    
+        vR0.nthreads = b5;   
+        arraycopy@special(b0,b1,b2,vi3,(b4-vi3));   [Ri RiR?ii i iiRiR]
+        vR0.threads[vR0.nthreads] = 0;   
+        goto +B81;   [Ri RiR?ii i .....]
+  +B75:   #1
+        vi3++;   
+        goto +B16;   [Ri RiR?ii . .....]
+  +B81:   #2
+        if vR0.nthreads!=0 goto B92;   
+  +B88:   #1
+        vR0.notifyAll@this();   [Ri RiR?ii . .....] 
+  +B92:   #1
+        if vR0.daemon==0 goto B117;   
+  +B99:   #1
+        if vR0.nthreads!=0 goto B117;   
+  +B106:   #1
+        if vR0.ngroups!=0 goto B117;   
+  +B113:   #1
+        vR0.destroy@extra();   [Ri RiR?ii . R....] 
+  +B117:   #3
+        vR2.leave();   
+        goto +B129;   forward return[Ri RiR?ii . .....]
+  +H122<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+        vR2.leave();   
+  -B126:   #1
+        throw vR4;   
+  +B129:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 13 handler 122 type 0
+14 - 119 handler 122 type 0
+122 - 126 handler 122 type 0
+ }
+// Register: rd 28/28 wr 10 swaps 0 any 5 found 0 remove
+ 
+ method list()V {
+  +START:   #1
+        vR0.list@this(out,0);   [  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 list
+ 
+ method list(Ljava/io/PrintStream;I)V {
+  +START:   #1
+        vR5 = vR0;    
+        vR0.enter();   
+        vi6 = 0;    
+  +B8:   #1
+        if vi6>=vi2 goto B26;   
+  +B14:   #1
+        vR1.print(" ");   [??Ri  i RR] 
+        vi6++;   
+        goto +B8;   [??Ri  i ..]
+  +B26:   #1
+        vR1.println(vR0);   [??Ri  . RR] 
+        vi2+=4;   
+        vi6 = 0;    
+  +B37:   #1
+        if vi6>=vR0.nthreads goto B84;   
+  +B46:   #1
+        vi7 = 0;    
+  +B49:   #1
+        if vi7>=vi2 goto B67;   
+  +B55:   #1
+        vR1.print(" ");   [??Rii  i RR] 
+        vi7++;   
+        goto +B49;   [??Rii  i ..]
+  +B67:   #1
+        vR1.println(vR0.threads[vi6]);   [??Rii  i RR] 
+        vi6++;   
+        goto +B37;   [??Rii  i ..]
+  +B84:   #1
+        vi3 = vR0.ngroups;    
+        if vR0.groups==null goto B117;   
+  +B96:   #1
+        vR4 = new java/lang/ThreadGroup()[vi3];    
+        arraycopy@special(vR0.groups,0,vR4,0,vi3);   [iRRii  R iiRiR]
+        goto +B120;   [iRRii  R .....]
+  +B117:   #1
+        vR4 = 0;    
+  +B120:   #1
+        vR5.leave();   
+        goto +B134;   [iRRii  . .....]
+  +H126<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        vR5.leave();   
+  -B131:   #1
+        throw vR8;   
+  +B134:   #1
+        vi5 = 0;    
+  +B137:   #1
+        if vi5>=vi3 goto B159;   
+  +B143:   #1
+        vR4[vi5].list(vR1,vi2);   [iRiii  . iRR..] 
+        vi5++;   
+        goto +B137;   [iRiii  . .....]
+  +B159:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+5 - 123 handler 126 type 0
+126 - 131 handler 126 type 0
+ }
+// Register: rd 27/27 wr 18 swaps 3 any 10 found 0 list
+ 
+ method uncaughtException(Ljava/lang/Thread;Ljava/lang/Throwable;)V {
+  +START:   #1
+        if vR0.parent==null goto B19;   
+  +B7:   #1
+        vR0.parent.uncaughtException(vR1,vR2);   [   RRR] 
+        goto +B33;   forward return[   ...]
+  +B19:   #1
+        if (vR2 instanceof java/lang/ThreadDeath)!=0 goto B33;   
+  +B26:   #1
+        vR2.printStackTrace(err);   [  i RR.] 
+  +B33:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 uncaughtException
+ 
+ method allowThreadSuspension(Z)Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 allowThreadSuspension
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[name=").append@extra(vR0.getName@extra()).append@extra(",maxpri=").append@extra(vR0.maxPriority).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 14 swaps 6 any 0 found 0 toString
+}

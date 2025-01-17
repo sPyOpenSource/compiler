@@ -1,0 +1,115 @@
+class java/util/LinkedHashMap$LinkedEntrySet {
+ 
+ method <init>(Ljava/util/LinkedHashMap;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.this$0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method clear()V {
+  +START:   #1
+        vR0.this$0.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new java/util/LinkedHashMap$LinkedEntryIterator(vR0.this$0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/Map$Entry)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/util/Map$Entry)(vR1);    
+        vR3 = vR2.getKey();    [R i  R.] 
+        vR4 = vR0.this$0.getNode(hash@special(vR3),vR3);    [RR i i RiR] 
+        if vR4==null goto B53;   
+  +B40:   #1
+        if vR4.equals@extra(vR2)==0 goto B53;   
+  +B49:   #1
+        b0 = 1;    
+        goto +B54b0;   forward return[RRR i . ...]
+  +B53:   #2
+        b0 = 0;    
+  +B54b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 1 any 2 found 1 contains
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/Map$Entry)==0 goto B52;   
+  +B7:   #1
+        vR2 = (java/util/Map$Entry)(vR1);    
+        vR3 = vR2.getKey();    [R i  R.] 
+        vR4 = vR2.getValue();    [RR i  R.] 
+        if vR0.this$0.removeNode(hash@special(vR3),vR3,vR4,1,1)==null goto B50;   
+  +B46:   #1
+        b0 = 1;    
+        goto +B51b0;   forward return[RRR i . ......]
+  +B50:   #1
+        b0 = 0;    
+  +B51b0:   #1 int
+        return b0;   
+  +B52:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 1 any 1 found 1 remove
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return spliterator@special(vR0,81);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        vi2 = vR0.this$0.modCount;    
+        vR3 = vR0.this$0.head;    
+  +B28:   #1
+        if vR3==null goto B47;   
+  +B32:   #1
+        vR1.accept(vR3);   [iR R  RR] 
+        vR3 = vR3.after;    
+        goto +B28;   [iR R  ..]
+  +B47:   #1
+        if vR0.this$0.modCount==vi2 goto B66;   
+  -B58:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B66:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 forEach
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+}

@@ -1,0 +1,39 @@
+class jx/db/mytypes/comparators/StringComparator {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method compare([B[B)I {
+  +START:   #1
+        vi3 = vR1.length;    
+        if vi3<=vR2.length goto B12;   
+  +B9:   #1
+        vi3 = vR2.length;    
+  +B12:   #1
+        return vR0.compare@this(vR1,0,vR2,0,vi3);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 compare
+ 
+ method compare([BI[BII)I {
+  +START:   #2
+        vR6 = new java/lang/String(vR1,vi2,vi5);    [ i  i][ i . iiiRR]
+        vR7 = new java/lang/String(vR3,vi4,vi5);    [ i . i....][ i . iiiRR]
+        b0 = vR6.compareTo@extra(vR7);    [RR i . RR...] 
+  +B34b0:   #1 int
+        return b0;   
+  +H35<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vR6.printStackTrace();   [RR i . R....] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 34 handler 35 type 22
+ }
+// Register: rd 11/11 wr 6 swaps 0 any 0 found 0 compare
+}

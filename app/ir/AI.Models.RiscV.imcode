@@ -1,0 +1,914 @@
+class AI/Models/RiscV {
+ 
+ method cget_field1(IIII)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 cget_field1
+ 
+ method decode_compressed_q0(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vi2 = vR1.binary;    
+        vR1.funct3 = ((vi2 >> 13) & 7);   
+        vR1.rd = (((vi2 >> 2) & 7) | 8);   
+        vR1.rs2 = vR1.rd;   
+        tswitch (vR1.funct3) B88 B155 B242 B316 B585 B381 B446 B520 : B585;   
+  +B88:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vi3 = 2;    
+        vi4 = (((vR0.cget_field1@this(vi2,11,4,5) | vR0.cget_field1@this(vi2,7,6,9)) | vR0.cget_field1@this(vi2,6,2,2)) | vR0.cget_field1@this(vi2,5,3,3));    
+        if vi4!=0 goto B591;   
+  +B147:   #1
+        vR0.illegal_insn@special(vR1);   [iii  . RR...] 
+        goto +B591;   [iii  . .....]
+  +B155:   #1
+        if vR1.current_fs!=0 goto B167;   
+  +B162:   #1
+        vR0.illegal_insn@special(vR1);   [iii  . RR...] 
+  +B167:   #1
+        vR1.is_load = 1;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.f64_mask = 1;   
+        vR1.set_fs = 1;   
+        vR1.type = vR0.INS_TYPE_FP_LOAD;   
+        vi4 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,5,6,7));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B242:   #1
+        vR1.is_load = 1;   
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.bytes_to_rw = 4;   
+        vR1.type = vR0.INS_TYPE_LOAD;   
+        vi4 = ((vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,6,2,2)) | vR0.cget_field1@this(vi2,5,6,6));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B316:   #1
+        vR1.is_load = 1;   
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.type = vR0.INS_TYPE_LOAD;   
+        vi4 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,5,6,7));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B381:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.type = vR0.INS_TYPE_FP_STORE;   
+        vi4 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,5,6,7));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B446:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.bytes_to_rw = 4;   
+        vR1.type = vR0.INS_TYPE_STORE;   
+        vi4 = ((vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,6,2,2)) | vR0.cget_field1@this(vi2,5,6,6));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B520:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.type = vR0.INS_TYPE_STORE;   
+        vi4 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,5,6,7));    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        goto +B591;   [iii  . .....]
+  +B585:   #2
+        vR0.illegal_insn@special(vR1);   [i  . RR...] 
+        return;   
+  +B591:   #8
+        vR1.rs1 = vi3;   
+        vR1.imm = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 92/92 wr 25 swaps 0 any 7 found 0 decode_compressed_q0
+ 
+ method sextc(II)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sextc
+ 
+ method decode_compressed_q1(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = 0;    
+        vi7 = 0;    
+        vi2 = vR1.binary;    
+        vR1.funct3 = ((vi2 >> 13) & 7);   
+        vR1.rd = ((vi2 >> 7) & 31);   
+        vR1.rs1 = vR1.rd;   
+        tswitch (vR1.funct3) B96 B135 B174 B208 B351 B551 B670 B774 : B878;   
+  +B96:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vi7 = vR0.sextc@this((vR0.cget_field1@this(vi2,12,5,5) | vR0.cget_field1@this(vi2,2,0,4)),6);    [i?iiii  i iiR..] 
+        goto +B883;   [i?iiii  i .....]
+  +B135:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vi7 = vR0.sextc@this((vR0.cget_field1@this(vi2,12,5,5) | vR0.cget_field1@this(vi2,2,0,4)),6);    [i?iiii  i iiR..] 
+        goto +B883;   [i?iiii  i .....]
+  +B174:   #1
+        vR1.has_dest = 1;   
+        vi7 = vR0.sextc@this((vR0.cget_field1@this(vi2,12,5,5) | vR0.cget_field1@this(vi2,2,0,4)),6);    [i?iiii  i iiR..] 
+        goto +B883;   [i?iiii  i .....]
+  +B208:   #1
+        if vR1.rd!=2 goto B306;   
+  +B216:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vi3 = 2;    
+        vR1.rs1 = vi3;   
+        vi7 = vR0.sextc@this(((((vR0.cget_field1@this(vi2,12,9,9) | vR0.cget_field1@this(vi2,6,4,4)) | vR0.cget_field1@this(vi2,5,6,6)) | vR0.cget_field1@this(vi2,3,7,8)) | vR0.cget_field1@this(vi2,2,5,5)),10);    [iiiiii  i iiR..] 
+        if vi7!=0 goto B883;   
+  +B298:   #1
+        vR0.illegal_insn@special(vR1);   [iiiiii  . RR...] 
+        goto +B883;   [iiiiii  . .....]
+  +B306:   #1
+        if vR1.rd==0 goto B883;   
+  +B313:   #1
+        vR1.has_dest = 1;   
+        vi7 = vR0.sextc@this((vR0.cget_field1@this(vi2,12,17,17) | vR0.cget_field1@this(vi2,2,12,16)),18);    [iiiiii  i iiR..] 
+        goto +B883;   [iiiiii  i .....]
+  +B351:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vi5 = ((vi2 >> 10) & 3);    
+        vi3 = (((vi2 >> 7) & 7) | 8);    
+        vR1.rs1 = vi3;   
+        tswitch (vi5) B416 B416 B439 B468 : B548;   
+  +B416:   #2
+        vi7 = (vR0.cget_field1@this(vi2,12,5,5) | vR0.cget_field1@this(vi2,2,0,4));    
+        goto +B548;   [iiiiii  . .....]
+  +B439:   #1
+        vi7 = vR0.sextc@this((vR0.cget_field1@this(vi2,12,5,5) | vR0.cget_field1@this(vi2,2,0,4)),6);    [iiiiii  i iiR..] 
+        goto +B548;   [iiiiii  i .....]
+  +B468:   #1
+        vi4 = (((vi2 >> 2) & 7) | 8);    
+        vR1.has_src2 = 1;   
+        vi6 = (((vi2 >> 5) & 3) | ((vi2 >> 10) & 4));    
+        tswitch (vi6) B540 B540 B540 B540 B540 B540 : B543;   
+  +B540:   #6
+        goto +B548;   [iiiiii  . .....]
+  +B543:   #1
+        vR0.illegal_insn@special(vR1);   [iiiiii  . RR...] 
+  +B548:   #4
+        goto +B883;   [iiiiii  . .....]
+  +B551:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_UNCOND;   
+        vR1.type = vR0.INS_TYPE_JAL;   
+        vi7 = vR0.sextc@this((((((((vR0.cget_field1@this(vi2,12,11,11) | vR0.cget_field1@this(vi2,11,4,4)) | vR0.cget_field1@this(vi2,9,8,9)) | vR0.cget_field1@this(vi2,8,10,10)) | vR0.cget_field1@this(vi2,7,6,6)) | vR0.cget_field1@this(vi2,6,7,7)) | vR0.cget_field1@this(vi2,3,1,3)) | vR0.cget_field1@this(vi2,2,5,5)),12);    [iiiiii  i iiR..] 
+        goto +B883;   [iiiiii  i .....]
+  +B670:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_COND;   
+        vR1.type = vR0.INS_TYPE_COND_BRANCH;   
+        vR1.has_src1 = 1;   
+        vR1.rs1 = (((vi2 >> 7) & 7) | 8);   
+        vi4 = 0;    
+        vi7 = vR0.sextc@this(((((vR0.cget_field1@this(vi2,12,8,8) | vR0.cget_field1@this(vi2,10,3,4)) | vR0.cget_field1@this(vi2,5,6,7)) | vR0.cget_field1@this(vi2,3,1,2)) | vR0.cget_field1@this(vi2,2,5,5)),9);    [iiiiii  i iiR..] 
+        goto +B883;   [iiiiii  i .....]
+  +B774:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_COND;   
+        vR1.type = vR0.INS_TYPE_COND_BRANCH;   
+        vR1.has_src1 = 1;   
+        vR1.rs1 = (((vi2 >> 7) & 7) | 8);   
+        vi4 = 0;    
+        vi7 = vR0.sextc@this(((((vR0.cget_field1@this(vi2,12,8,8) | vR0.cget_field1@this(vi2,10,3,4)) | vR0.cget_field1@this(vi2,5,6,7)) | vR0.cget_field1@this(vi2,3,1,2)) | vR0.cget_field1@this(vi2,2,5,5)),9);    [iiiiii  i iiR..] 
+        goto +B883;   [iiiiii  i .....]
+  +B878:   #1
+        vR0.illegal_insn@special(vR1);   [i?iiii  . RR...] 
+  +B883:   #11
+        vR1.rs2 = vi4;   
+        vR1.imm = vi7;   
+        vR1.funct4 = vi5;   
+        vR1.funct5 = vi6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 134/134 wr 55 swaps 9 any 7 found 0 decode_compressed_q1
+ 
+ method illegal_insn(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vR1.exception = 1;   
+        vR1.exception_cause = vR0.SIM_ILLEGAL_OPCODE;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 illegal_insn
+ 
+ method decode_compressed_q2(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vi3 = 0;    
+        vi2 = vR1.binary;    
+        vR1.funct3 = ((vi2 >> 13) & 7);   
+        vR1.rd = ((vi2 >> 7) & 31);   
+        vR1.rs1 = vR1.rd;   
+        vR1.rs2 = ((vi2 >> 2) & 31);   
+        tswitch (vR1.funct3) B96 B132 B208 B273 B339 B522 B581 B639 : B698;   
+  +B96:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.rs1 = vR1.rd;   
+        vi3 = (vR0.cget_field1@this(vi2,12,5,5) | vR1.rs2);    
+        goto +B703;   [ii   .....]
+  +B132:   #1
+        vR1.is_load = 1;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.f64_mask = 1;   
+        vR1.set_fs = 1;   
+        vR1.type = vR0.INS_TYPE_FP_LOAD;   
+        vR1.rs1 = 2;   
+        vi3 = ((vR0.cget_field1@this(vi2,12,5,5) | (vR1.rs2 & 24)) | vR0.cget_field1@this(vi2,2,6,8));    
+        goto +B703;   [ii  . .....]
+  +B208:   #1
+        vR1.is_load = 1;   
+        vR1.bytes_to_rw = 4;   
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.type = vR0.INS_TYPE_LOAD;   
+        vR1.rs1 = 2;   
+        vi3 = ((vR0.cget_field1@this(vi2,12,5,5) | (vR1.rs2 & 28)) | vR0.cget_field1@this(vi2,2,6,7));    
+        goto +B703;   [ii  . .....]
+  +B273:   #1
+        vR1.is_load = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.type = vR0.INS_TYPE_LOAD;   
+        vR1.rs1 = 2;   
+        vi3 = ((vR0.cget_field1@this(vi2,12,5,5) | (vR1.rs2 & 24)) | vR0.cget_field1@this(vi2,2,6,8));    
+        goto +B703;   [ii  . .....]
+  +B339:   #1
+        if ((vi2 >> 12) & 1)!=0 goto B422;   
+  +B348:   #1
+        if vR1.rs2!=0 goto B409;   
+  +B355:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_UNCOND;   
+        vR1.type = vR0.INS_TYPE_JALR;   
+        vR1.has_src1 = 1;   
+        if vR1.rd!=0 goto B393;   
+  +B388:   #1
+        vR0.illegal_insn@special(vR1);   [ii  . RR...] 
+  +B393:   #1
+        if vR1.rs1!=1 goto B703;   
+  +B401:   #1
+        vR1.is_func_ret = 1;   
+        goto +B703;   [ii  . .....]
+  +B409:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src2 = 1;   
+        goto +B703;   [ii  . .....]
+  +B422:   #1
+        if vR1.rs2!=0 goto B504;   
+  +B429:   #1
+        if vR1.rd!=0 goto B460;   
+  +B436:   #1
+        vR1.exception = 1;   
+        vR1.exception_cause = vR0.SIM_COMPLEX_OPCODE;   
+        vR1.type = vR0.INS_TYPE_SYSTEM;   
+        goto +B703;   [ii  . .....]
+  +B460:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_UNCOND;   
+        vR1.type = vR0.INS_TYPE_JALR;   
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.rd = 1;   
+        vR1.is_func_call = 1;   
+        goto +B703;   [ii  . .....]
+  +B504:   #1
+        vR1.has_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        goto +B703;   [ii  . .....]
+  +B522:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.type = vR0.INS_TYPE_FP_STORE;   
+        vR1.rs1 = 2;   
+        vi3 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,7,6,8));    
+        goto +B703;   [ii  . .....]
+  +B581:   #1
+        vR1.is_store = 1;   
+        vR1.bytes_to_rw = 4;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.type = vR0.INS_TYPE_STORE;   
+        vR1.rs1 = 2;   
+        vi3 = (vR0.cget_field1@this(vi2,9,2,5) | vR0.cget_field1@this(vi2,7,6,7));    
+        goto +B703;   [ii  . .....]
+  +B639:   #1
+        vR1.is_store = 1;   
+        vR1.bytes_to_rw = 8;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.type = vR0.INS_TYPE_STORE;   
+        vR1.rs1 = 2;   
+        vi3 = (vR0.cget_field1@this(vi2,10,3,5) | vR0.cget_field1@this(vi2,7,6,8));    
+        goto +B703;   [ii  . .....]
+  +B698:   #1
+        vR0.illegal_insn@special(vR1);   [ii  . RR...] 
+  +B703:   #13
+        vR1.imm = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 117/117 wr 15 swaps 0 any 1 found 0 decode_compressed_q2
+ 
+ method decode_compressed_type(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vR1.quad = (vR1.binary & 3);   
+        tswitch (vR1.quad) B40 B48 B56 : B64;   
+  +B40:   #1
+        vR0.decode_compressed_q0@special(vR1);   [   RR] 
+        goto +B68;   forward return[   ..]
+  +B48:   #1
+        vR0.decode_compressed_q1@special(vR1);   [   RR] 
+        goto +B68;   forward return[   ..]
+  +B56:   #1
+        vR0.decode_compressed_q2@special(vR1);   [   RR] 
+        goto +B68;   forward return[   ..]
+  +B64:   #1
+        exit@special(1);   [   i.]
+  +B68:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 decode_compressed_type
+ 
+ method set_op_fu(LAI/Models/RiscV$RVInstruction;)V {
+  +START:   #1
+        vi3 = vR1.binary;    
+        vi4 = (vi3 >> 25);    
+        if vi4!=1 goto B107;   
+  +B17:   #1
+        vi2 = ((vi3 >> 12) & 7);    
+        tswitch (vi2) B72 B72 B72 B72 B91 B91 B91 B91 : B107;   
+  +B72:   #4
+        vR1.fu_type = vR0.FU_MUL;   
+        vR1.type = vR0.INS_TYPE_INT_MUL;   
+        goto +B107;   forward return[iii   ]
+  +B91:   #4
+        vR1.fu_type = vR0.FU_DIV;   
+        vR1.type = vR0.INS_TYPE_INT_DIV;   
+  +B107:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 3 swaps 0 any 4 found 0 set_op_fu
+ 
+ method chk_op_imm_exceptions(LAI/Models/RiscV$RVInstruction;I)I {
+  +START:   #1
+        vi3 = ((vR1.binary >> 12) & 7);    
+        lswitch (vi3) { 
+           1:B40
+           5:B55
+           ::B74
+        };   
+  +B40:   #1
+        if (vR1.imm & ((vi2-1) ^ -1))==0 goto B74;   
+  +B53:   #1
+        return -1;   
+  +B55:   #1
+        if (vR1.imm & (((vi2-1) | 1024) ^ -1))==0 goto B74;   
+  +B72:   #1
+        return -1;   
+  +B74:   #3
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 chk_op_imm_exceptions
+ 
+ method chk_op_exceptions(LAI/Models/RiscV$RVInstruction;)I {
+  +START:   #1
+        vi2 = (vR1.binary >> 25);    
+        if vi2==1 goto B22;   
+  +B13:   #1
+        if (vi2 & -33)==0 goto B22;   
+  +B20:   #1
+        return -1;   
+  +B22:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 2 found 0 chk_op_exceptions
+ 
+ method <init>(I[B)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.FU_ALU = 0;   
+        vR0.FU_MUL = 1;   
+        vR0.FU_DIV = 2;   
+        vR0.FU_FPU_ALU = 3;   
+        vR0.FU_FPU_FMA = 4;   
+        vR0.NUM_MAX_FU = 5;   
+        vR0.C_QUADRANT0 = 0;   
+        vR0.C_QUADRANT1 = 1;   
+        vR0.C_QUADRANT2 = 2;   
+        vR0.NUM_MAX_INS_TYPES = 17;   
+        vR0.INS_TYPE_LOAD = 0;   
+        vR0.INS_TYPE_STORE = 1;   
+        vR0.INS_TYPE_ATOMIC = 2;   
+        vR0.INS_TYPE_SYSTEM = 3;   
+        vR0.INS_TYPE_ARITMETIC = 4;   
+        vR0.INS_TYPE_COND_BRANCH = 5;   
+        vR0.INS_TYPE_JAL = 6;   
+        vR0.INS_TYPE_JALR = 7;   
+        vR0.INS_TYPE_INT_MUL = 8;   
+        vR0.INS_TYPE_INT_DIV = 9;   
+        vR0.INS_TYPE_FP_LOAD = 10;   
+        vR0.INS_TYPE_FP_STORE = 11;   
+        vR0.INS_TYPE_FP_ADD = 12;   
+        vR0.INS_TYPE_FP_MUL = 13;   
+        vR0.INS_TYPE_FP_FMA = 14;   
+        vR0.INS_TYPE_FP_DIV_SQRT = 15;   
+        vR0.INS_TYPE_FP_MISC = 16;   
+        vR0.INS_CLASS_INT = 17;   
+        vR0.INS_CLASS_FP = 18;   
+        vR0.SIM_ILLEGAL_OPCODE = 1;   
+        vR0.SIM_COMPLEX_OPCODE = 2;   
+        vR0.SIM_TIMEOUT_EXCEPTION = 3;   
+        vR0.SIM_MMU_EXCEPTION = 4;   
+        vR0.BRANCH_UNCOND = 0;   
+        vR0.BRANCH_COND = 1;   
+        vR0.BRANCH_FUNC_CALL = 2;   
+        vR0.BRANCH_FUNC_RET = 3;   
+        vR0.FLOAD_MASK = 7;   
+        vR0.FSTORE_MASK = 39;   
+        vR0.FMADD_MASK = 67;   
+        vR0.FMSUB_MASK = 71;   
+        vR0.FNMSUB_MASK = 75;   
+        vR0.FNMADD_MASK = 79;   
+        vR0.F_ARITHMETIC_MASK = 83;   
+        vR0.OP_IMM_MASK = 19;   
+        vR0.OP_IMM_32_MASK = 27;   
+        vR0.OP_MASK = 51;   
+        vR0.OP_MASK_32 = 59;   
+        vR0.LUI_MASK = 55;   
+        vR0.AUIPC_MASK = 23;   
+        vR0.JAL_MASK = 111;   
+        vR0.JALR_MASK = 103;   
+        vR0.BRANCH_MASK = 99;   
+        vR0.LOAD_MASK = 3;   
+        vR0.STORE_MASK = 35;   
+        vR0.FENCE_MASK = 15;   
+        vR0.CSR_MASK = 115;   
+        vR0.ATOMIC_MASK = 47;   
+        vR0.pc = vi1;   
+        vR0.opCode = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 63/63 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.FU_ALU = 0;   
+        vR0.FU_MUL = 1;   
+        vR0.FU_DIV = 2;   
+        vR0.FU_FPU_ALU = 3;   
+        vR0.FU_FPU_FMA = 4;   
+        vR0.NUM_MAX_FU = 5;   
+        vR0.C_QUADRANT0 = 0;   
+        vR0.C_QUADRANT1 = 1;   
+        vR0.C_QUADRANT2 = 2;   
+        vR0.NUM_MAX_INS_TYPES = 17;   
+        vR0.INS_TYPE_LOAD = 0;   
+        vR0.INS_TYPE_STORE = 1;   
+        vR0.INS_TYPE_ATOMIC = 2;   
+        vR0.INS_TYPE_SYSTEM = 3;   
+        vR0.INS_TYPE_ARITMETIC = 4;   
+        vR0.INS_TYPE_COND_BRANCH = 5;   
+        vR0.INS_TYPE_JAL = 6;   
+        vR0.INS_TYPE_JALR = 7;   
+        vR0.INS_TYPE_INT_MUL = 8;   
+        vR0.INS_TYPE_INT_DIV = 9;   
+        vR0.INS_TYPE_FP_LOAD = 10;   
+        vR0.INS_TYPE_FP_STORE = 11;   
+        vR0.INS_TYPE_FP_ADD = 12;   
+        vR0.INS_TYPE_FP_MUL = 13;   
+        vR0.INS_TYPE_FP_FMA = 14;   
+        vR0.INS_TYPE_FP_DIV_SQRT = 15;   
+        vR0.INS_TYPE_FP_MISC = 16;   
+        vR0.INS_CLASS_INT = 17;   
+        vR0.INS_CLASS_FP = 18;   
+        vR0.SIM_ILLEGAL_OPCODE = 1;   
+        vR0.SIM_COMPLEX_OPCODE = 2;   
+        vR0.SIM_TIMEOUT_EXCEPTION = 3;   
+        vR0.SIM_MMU_EXCEPTION = 4;   
+        vR0.BRANCH_UNCOND = 0;   
+        vR0.BRANCH_COND = 1;   
+        vR0.BRANCH_FUNC_CALL = 2;   
+        vR0.BRANCH_FUNC_RET = 3;   
+        vR0.FLOAD_MASK = 7;   
+        vR0.FSTORE_MASK = 39;   
+        vR0.FMADD_MASK = 67;   
+        vR0.FMSUB_MASK = 71;   
+        vR0.FNMSUB_MASK = 75;   
+        vR0.FNMADD_MASK = 79;   
+        vR0.F_ARITHMETIC_MASK = 83;   
+        vR0.OP_IMM_MASK = 19;   
+        vR0.OP_IMM_32_MASK = 27;   
+        vR0.OP_MASK = 51;   
+        vR0.OP_MASK_32 = 59;   
+        vR0.LUI_MASK = 55;   
+        vR0.AUIPC_MASK = 23;   
+        vR0.JAL_MASK = 111;   
+        vR0.JALR_MASK = 103;   
+        vR0.BRANCH_MASK = 99;   
+        vR0.LOAD_MASK = 3;   
+        vR0.STORE_MASK = 35;   
+        vR0.FENCE_MASK = 15;   
+        vR0.CSR_MASK = 115;   
+        vR0.ATOMIC_MASK = 47;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 59/59 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method decode_binary()LAI/Models/RiscV$RVInstruction; {
+  +START:   #1
+        vR1 = new AI/Models/RiscV$RVInstruction(vR0,(vR0.opCode[vR0.pc] | (vR0.opCode[(vR0.pc+1)] << 8)));    [ R  i][ R . iiRR]
+        vR0.pc = (vR0.pc+2);   
+        vi2 = vR1.binary;    
+        vR1.fu_type = vR0.FU_ALU;   
+        vR1.data_class = vR0.INS_CLASS_INT;   
+        vR1.type = vR0.INS_TYPE_ARITMETIC;   
+        if (vR1.binary & 3)==3 goto B90;   
+  +B82:   #1
+        vR0.decode_compressed_type@special(vR1);   [Ri R . RR..] 
+        goto +B1923;   [Ri R . ....]
+  +B90:   #1
+        vR1.major_opcode = (vi2 & 127);   
+        vR1.funct3 = ((vi2 >> 12) & 7);   
+        vR1.funct7 = ((vR1.binary & -33554432) >> 25);   
+        vR1.rd = ((vi2 >> 7) & 31);   
+        vR1.rs1 = ((vi2 >> 15) & 31);   
+        vR1.rs2 = ((vi2 >> 20) & 31);   
+        lswitch (vR1.major_opcode) { 
+           3:B340
+           7:B1294
+           15:B738
+           19:B488
+           23:B572
+           27:B488
+           35:B589
+           39:B1395
+           47:B1012
+           51:B541
+           55:B572
+           59:B541
+           67:B1505
+           71:B1595
+           75:B1685
+           79:B1775
+           83:B1865
+           99:B927
+           103:B859
+           111:B767
+           115:B709
+           ::B1923
+        };   
+  +B340:   #1
+        vR1.is_load = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_dest = 1;   
+        vR1.imm = (vi2 >> 20);   
+        vR1.type = vR0.INS_TYPE_LOAD;   
+        tswitch (vR1.funct3) B416 B424 B432 B440 B449 B462 B475 : B485;   
+  +B416:   #1
+        vR1.bytes_to_rw = 1;   
+        goto +B485;   [Ri R . ....]
+  +B424:   #1
+        vR1.bytes_to_rw = 2;   
+        goto +B485;   [Ri R . ....]
+  +B432:   #1
+        vR1.bytes_to_rw = 4;   
+        goto +B485;   [Ri R . ....]
+  +B440:   #1
+        vR1.bytes_to_rw = 8;   
+        goto +B485;   [Ri R . ....]
+  +B449:   #1
+        vR1.bytes_to_rw = 1;   
+        vR1.is_unsigned = 1;   
+        goto +B485;   [Ri R . ....]
+  +B462:   #1
+        vR1.bytes_to_rw = 2;   
+        vR1.is_unsigned = 1;   
+        goto +B485;   [Ri R . ....]
+  +B475:   #1
+        vR1.bytes_to_rw = 4;   
+        vR1.is_unsigned = 1;   
+  +B485:   #7
+        goto +B1923;   [Ri R . ....]
+  +B488:   #2
+        if vR1.major_opcode!=19 goto B510;   
+  +B497:   #1
+        if vR0.chk_op_imm_exceptions@special(vR1,64)==0 goto B520;   
+  +B507:   #1
+        goto +B520;   [Ri R . ....]
+  +B510:   #1
+        if vR0.chk_op_imm_exceptions@special(vR1,32)==0 goto B520;   
+  +B520:   #3
+        vR1.has_src1 = 1;   
+        vR1.has_dest = 1;   
+        vR1.imm = (vi2 >> 20);   
+        goto +B1923;   [Ri R . ....]
+  +B541:   #2
+        if vR0.chk_op_exceptions@special(vR1)==0 goto B549;   
+  +B549:   #1
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.has_dest = 1;   
+        vR0.set_op_fu@special(vR1);   [Rii R . RR..] 
+        goto +B1923;   [Rii R . ....]
+  +B572:   #2
+        vR1.has_dest = 1;   
+        vR1.imm = (vi2 & -4096);   
+        goto +B1923;   [Ri R . ....]
+  +B589:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.imm = (vR1.rd | ((vi2 >> 20) & 4064));   
+        vR1.imm = ((vR1.imm << 20) >> 20);   
+        vR1.type = vR0.INS_TYPE_STORE;   
+        tswitch (vR1.funct3) B676 B684 B692 B700 : B706;   
+  +B676:   #1
+        vR1.bytes_to_rw = 1;   
+        goto +B706;   [Ri R . ....]
+  +B684:   #1
+        vR1.bytes_to_rw = 2;   
+        goto +B706;   [Ri R . ....]
+  +B692:   #1
+        vR1.bytes_to_rw = 4;   
+        goto +B706;   [Ri R . ....]
+  +B700:   #1
+        vR1.bytes_to_rw = 8;   
+  +B706:   #4
+        goto +B1923;   [Ri R . ....]
+  +B709:   #1
+        vR1.is_system = 1;   
+        vR1.exception = 1;   
+        vR1.type = vR0.INS_TYPE_SYSTEM;   
+        vR1.exception_cause = vR0.SIM_COMPLEX_OPCODE;   
+        goto +B1923;   [Rii R . ....]
+  +B738:   #1
+        vR1.is_system = 1;   
+        vR1.exception = 1;   
+        vR1.type = vR0.INS_TYPE_SYSTEM;   
+        vR1.exception_cause = vR0.SIM_COMPLEX_OPCODE;   
+        goto +B1923;   [Ri R . ....]
+  +B767:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_UNCOND;   
+        vR1.has_dest = 1;   
+        vR1.imm = (((((vi2 >> 11) & 1048576) | ((vi2 >> 20) & 2046)) | ((vi2 >> 9) & 2048)) | (vi2 & 1044480));   
+        vR1.imm = ((vR1.imm << 11) >> 11);   
+        vR1.type = vR0.INS_TYPE_JAL;   
+        if vR1.rd!=1 goto B1923;   
+  +B851:   #1
+        vR1.is_func_call = 1;   
+        goto +B1923;   [Rii R . ....]
+  +B859:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_UNCOND;   
+        vR1.has_src1 = 1;   
+        vR1.has_dest = 1;   
+        vR1.imm = (vi2 >> 20);   
+        vR1.type = vR0.INS_TYPE_JALR;   
+        if vR1.rd!=1 goto B911;   
+  +B906:   #1
+        vR1.is_func_call = 1;   
+  +B911:   #1
+        if vR1.rs1!=1 goto B1923;   
+  +B919:   #1
+        vR1.is_func_ret = 1;   
+        goto +B1923;   [Rii R . ....]
+  +B927:   #1
+        vR1.is_branch = 1;   
+        vR1.branch_type = vR0.BRANCH_COND;   
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.imm = (((((vi2 >> 19) & 4096) | ((vi2 >> 20) & 2016)) | ((vi2 >> 7) & 30)) | ((vi2 << 4) & 2048));   
+        vR1.imm = ((vR1.imm << 19) >> 19);   
+        vR1.type = vR0.INS_TYPE_COND_BRANCH;   
+        goto +B1923;   [Rii R . ....]
+  +B1012:   #1
+        vR1.is_atomic = 1;   
+        vR1.has_dest = 1;   
+        vR1.type = vR0.INS_TYPE_ATOMIC;   
+        vi3 = ((vi2 >> 12) & 7);    
+        lswitch (vi3) { 
+           2:B1064
+           3:B1064
+           ::B1291
+        };   
+  +B1064:   #2
+        vi3 = (vR1.binary >> 27);    
+        tswitch (vi3) B1254 B1254 B1204 B1230 B1254 B1288 B1288 B1288 B1254 B1288 B1288 B1288 B1254 B1288 B1288 B1288 B1254 B1288 B1288 B1288 B1254 B1288 B1288 B1288 B1254 B1288 B1288 B1288 B1254 : B1288;   
+  +B1204:   #1
+        if vR1.rs2==0 goto B1211;   
+  +B1211:   #1
+        vR1.has_src1 = 1;   
+        vR1.is_atomic_load = 1;   
+        vR1.bytes_to_rw = 64;   
+        goto +B1923;   [Rii R . ....]
+  +B1230:   #1
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.is_atomic_store = 1;   
+        vR1.bytes_to_rw = 64;   
+        goto +B1923;   [Rii R . ....]
+  +B1254:   #9
+        vR1.has_src1 = 1;   
+        vR1.has_src2 = 1;   
+        vR1.is_atomic_operate = 1;   
+        vR1.is_atomic_load = 1;   
+        vR1.is_atomic_store = 1;   
+        vR1.bytes_to_rw = 64;   
+        goto +B1923;   [Rii R . ....]
+  +B1288:   #19
+        goto +B1923;   [Rii R . ....]
+  +B1291:   #1
+        goto +B1923;   [Rii R . ....]
+  +B1294:   #1
+        if vR1.current_fs!=0 goto B1301;   
+  +B1301:   #1
+        vR1.is_load = 1;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_src1 = 1;   
+        vR1.set_fs = 1;   
+        vR1.imm = (vi2 >> 20);   
+        vR1.type = vR0.INS_TYPE_FP_LOAD;   
+        lswitch (vR1.funct3) { 
+           2:B1368
+           3:B1381
+           ::B1392
+        };   
+  +B1368:   #1
+        vR1.bytes_to_rw = 4;   
+        vR1.f32_mask = 1;   
+        goto +B1392;   [Ri R . ....]
+  +B1381:   #1
+        vR1.bytes_to_rw = 8;   
+        vR1.f64_mask = 1;   
+  +B1392:   #2
+        goto +B1923;   [Ri R . ....]
+  +B1395:   #1
+        if vR1.current_fs!=0 goto B1402;   
+  +B1402:   #1
+        vR1.is_store = 1;   
+        vR1.has_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.imm = (vR1.rd | ((vi2 >> 20) & 4064));   
+        vR1.imm = ((vR1.imm << 20) >> 20);   
+        vR1.type = vR0.INS_TYPE_FP_STORE;   
+        lswitch (vR1.funct3) { 
+           2:B1488
+           3:B1496
+           ::B1502
+        };   
+  +B1488:   #1
+        vR1.bytes_to_rw = 4;   
+        goto +B1502;   [Ri R . ....]
+  +B1496:   #1
+        vR1.bytes_to_rw = 8;   
+  +B1502:   #2
+        goto +B1923;   [Ri R . ....]
+  +B1505:   #1
+        if vR1.current_fs==0 goto B1519;   
+  +B1512:   #1
+        if vR1.rm>=0 goto B1519;   
+  +B1519:   #2
+        vR1.data_class = vR0.INS_CLASS_FP;   
+        vR1.fu_type = vR0.FU_FPU_FMA;   
+        vR1.type = vR0.INS_TYPE_FP_FMA;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_fp_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.has_fp_src3 = 1;   
+        vR1.set_fs = 1;   
+        vR1.funct3 = ((vR1.binary >> 25) & 3);   
+        vR1.rs3 = (vR1.binary >> 27);   
+        goto +B1923;   [Rii R . ....]
+  +B1595:   #1
+        if vR1.current_fs==0 goto B1609;   
+  +B1602:   #1
+        if vR1.rm>=0 goto B1609;   
+  +B1609:   #2
+        vR1.data_class = vR0.INS_CLASS_FP;   
+        vR1.fu_type = vR0.FU_FPU_FMA;   
+        vR1.type = vR0.INS_TYPE_FP_FMA;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_fp_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.has_fp_src3 = 1;   
+        vR1.set_fs = 1;   
+        vR1.funct3 = ((vR1.binary >> 25) & 3);   
+        vR1.rs3 = (vR1.binary >> 27);   
+        goto +B1923;   [Rii R . ....]
+  +B1685:   #1
+        if vR1.current_fs==0 goto B1699;   
+  +B1692:   #1
+        if vR1.rm>=0 goto B1699;   
+  +B1699:   #2
+        vR1.data_class = vR0.INS_CLASS_FP;   
+        vR1.fu_type = vR0.FU_FPU_FMA;   
+        vR1.type = vR0.INS_TYPE_FP_FMA;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_fp_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.has_fp_src3 = 1;   
+        vR1.set_fs = 1;   
+        vR1.funct3 = ((vR1.binary >> 25) & 3);   
+        vR1.rs3 = (vR1.binary >> 27);   
+        goto +B1923;   [Rii R . ....]
+  +B1775:   #1
+        if vR1.current_fs==0 goto B1789;   
+  +B1782:   #1
+        if vR1.rm>=0 goto B1789;   
+  +B1789:   #2
+        vR1.data_class = vR0.INS_CLASS_FP;   
+        vR1.fu_type = vR0.FU_FPU_FMA;   
+        vR1.type = vR0.INS_TYPE_FP_FMA;   
+        vR1.has_fp_dest = 1;   
+        vR1.has_fp_src1 = 1;   
+        vR1.has_fp_src2 = 1;   
+        vR1.has_fp_src3 = 1;   
+        vR1.set_fs = 1;   
+        vR1.funct3 = ((vR1.binary >> 25) & 3);   
+        vR1.rs3 = (vR1.binary >> 27);   
+        goto +B1923;   [Rii R . ....]
+  +B1865:   #1
+        if vR1.current_fs!=0 goto B1872;   
+  +B1872:   #1
+        vR1.data_class = vR0.INS_CLASS_FP;   
+        vR1.fu_type = vR0.FU_FPU_ALU;   
+        vR1.rm = vR1.funct3;   
+        vR1.type = vR0.INS_TYPE_FP_MISC;   
+        lswitch (vR1.funct7) { 
+           ::B1920
+        };   
+  +B1920:   #1
+        goto +B1923;   [Rii R . ....]
+  +B1923:   #26
+        if vR1.create_str==0 goto B1935;   
+  +B1930:   #1
+        vR1.toString();   [Ri R . R...] 
+  +B1935:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 263/263 wr 5 swaps 0 any 3 found 0 decode_binary
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        out.println("* JUnitTest: testCPU()");   [ R i. RR] 
+        vR1 = 0;    
+        vR2 = new AI/Models/RiscV(0,vR1);    [ R i. i.][ R i. iRiR]
+        vR3 = new java/util/ArrayList();    [ R i. i...][ R i. iR..]
+        vi4 = 0;    
+  +B32:   #1
+        if vi4>=vR1.length goto B54;   
+  +B39:   #1
+        vR3.add(vR2.decode_binary());   [RRRi R i. RR..] 
+        vi4+=2;   
+        goto +B32;   [RRRi R i. ....]
+  +B54:   #1
+        vR4 = vR3.iterator();    [RRRi R .. R...] 
+  +B60:   #1
+        if vR4.hasNext()==0 goto B96;   
+  +B70:   #1
+        vR5 = (AI/Models/RiscV$RVInstruction)(vR4.next());    
+        out.println(vR5.toString());   [RRRRR R i. RR..] 
+        goto +B60;   [RRRRR R i. ....]
+  +B96:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 14 swaps 3 any 2 found 0 main
+}

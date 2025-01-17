@@ -1,0 +1,85 @@
+class jx/db/mytypes/TypeManagerImpl {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_aiTypeInfos = new [[I[2][2];   
+        vR0.m_aszNames = new java/lang/String()[2];   
+        vR0.m_aiTypeInfos[0][0] = 0;   
+        vR0.m_aiTypeInfos[0][1] = 4;   
+        vR0.m_aszNames[0] = "int";   
+        vR0.m_aiTypeInfos[1][0] = 1;   
+        vR0.m_aiTypeInfos[1][1] = -1;   
+        vR0.m_aszNames[1] = "str";   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getComparator(I)Ljx/db/types/DbComparator; {
+  +START:   #1
+        lswitch (vi1) { 
+           0:B28
+           1:B36
+           ::B44
+        };   
+  +B28:   #1
+        return new jx/db/mytypes/comparators/IntegerComparator();   
+  +B36:   #1
+        return new jx/db/mytypes/comparators/StringComparator();   
+  -B44:   #1
+        throw new jx/db/CodedException(vR0,0,"Unsupported datatype!");   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 getComparator
+ 
+ method getConverter(I)Ljx/db/types/DbConverter; {
+  +START:   #1
+        lswitch (vi1) { 
+           0:B28
+           1:B30
+           ::B38
+        };   
+  +B28:   #1
+        return 0;   
+  +B30:   #1
+        return new jx/db/mytypes/converters/StringToByteArrayConverter();   
+  -B38:   #1
+        b0 = new jx/db/CodedException;    
+        b1 = b0;    
+        b4 = new java/lang/StringBuilder();    [ RR??R  i.][ RR??R  iR]
+        b1.<init>@special(vR0,0,b4.append@extra("Unsupported data type! : ").append@extra(vi1).toString@extra());   [ RR??R ii. RiRR] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 7 swaps 2 any 2 found 0 getConverter
+ 
+ method getTypeInfos()[[I {
+  +START:   #1
+        return vR0.m_aiTypeInfos;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTypeInfos
+ 
+ method getTypeName(I)Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.m_aiTypeInfos.length goto B36;   
+  +B11:   #1
+        if vR0.m_aiTypeInfos[vi2][0]!=vi1 goto B30;   
+  +B23:   #1
+        return vR0.m_aszNames[vi2];   
+  +B30:   #1
+        vi2++;   
+        goto +B2;   [i RR??R  ]
+  -B36:   #1
+        b0 = new jx/db/CodedException;    
+        b1 = b0;    
+        b4 = new java/lang/StringBuilder();    [ RR??R  i][ RR??R  iR]
+        b1.<init>@special(vR0,0,b4.append@extra("Unsupported data type! : ").append@extra(vi1).toString@extra());   [i RR??R ii. RiRR] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 9 swaps 2 any 3 found 0 getTypeName
+}

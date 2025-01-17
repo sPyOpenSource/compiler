@@ -1,0 +1,66 @@
+class jx/vis/Events {
+ 
+ method <init>(Ljava/io/InputStream;Z)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        b0 = new jx/formats/LittleEndianInputStream;    
+        b1 = b0;    
+        b2 = new java/io/BufferedInputStream(vR1);    [ RRR  i][ RRR . iRR]
+        b1.<init>@special(b2);   [ RRR . RR.] 
+        vR3 = b0;    
+        vi5 = vR3.readInt@extra();    [R RRR . R..] 
+        vR0.types = new jx/vis/EventType()[vi5];   
+        vi4 = 0;    
+  +B38:   #1
+        if vi4>=vi5 goto B137;   
+  +B45:   #1
+        vR6 = vR3.readString2ByteAligned@extra();    [Rii RRR . R..] 
+        if vi2==0 goto B91;   
+  +B55:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b0.println(b1.append@extra("EVENT ").append@extra(vi4).append@extra(": ").append@extra(vR6).toString@extra());   [RiiR RRR iii... RR...] 
+  +B91:   #1
+        b0 = vR0.types;    
+        b2 = new jx/vis/EventType();    [ RRR ...... i....][ RRR ...... iR...]
+        b0[vi4] = b2;   
+        vR0.types[vi4].name = vR6;   
+        vR0.types[vi4].number = (vi4+1);   
+        vi4++;   
+        goto +B38;   [RiiR RRR ...... .....]
+  +B137:   #1
+        vR0.nevents = vR3.readInt@extra();   
+        vR0.all = new jx/vis/EventInfo()[vR0.nevents];   
+  +B156:   #1
+        vi4 = 0;    
+  +B159:   #1
+        if vi4>=vR0.nevents goto B299;   
+  +B168:   #1
+        vR6 = new jx/vis/EventInfo();    [ RRR ...... i....][ RRR ...... iR...]
+        vR6.timestamp = vR3.readLong@extra();   
+        vR6.number = vR3.readInt@extra();   
+        vR6.info1 = vR3.readInt@extra();   
+        vR6.info2 = vR3.readInt@extra();   
+        vR6.type = vR0.types[(vR6.number-1)];   
+        vR0.all[vi4] = vR6;   
+        if vi2==0 goto B293;   
+  +B243:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.println(b1.append@extra(vR6.timestamp).append@extra(" ").append@extra(vR6.number).append@extra(" ").append@extra(vR6.info1).toString@extra());   [RiiR RRR iiiii.... RR.....] 
+  +B293:   #1
+        vi4++;   
+        goto +B159;   [RiiR RRR ......... .......]
+  +B299:   #2
+        goto +B312;   forward return[RiiR RRR ......... .......]
+  +H302<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vR0.nevents = (vi4-1);   
+  +B312:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+156 - 299 handler 302 type 103
+ }
+// Register: rd 53/53 wr 36 swaps 8 any 10 found 0 <init>
+}

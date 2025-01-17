@@ -1,0 +1,37 @@
+class bioide/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = vR0[1];    
+        vi2 = parseInt@special(vR0[2]);    [R RR R R]
+        vR3 = new bioide/IDEDeviceImpl();    [ RR R i][ RR R iR]
+        out.println("*1");   [RiR RR Ri. RR] 
+        vR4 = vR3.getDrives();    [RiR RR Ri. R.] 
+        if vR0[3].equals@extra("full")==0 goto B53;   
+  +B44:   #1
+        vR5 = vR4[vi2];    
+        goto +B93;   [RiRRR RR ... ..]
+  +B53:   #1
+        vi6 = parseInt@special(vR0[3]);    [RiRRR RR R.. R.]
+        out.println("*2");   [RiRRRi RR Ri. RR] 
+        vR7 = vR4[vi2].getPartitions();    [RiRRRi RR Ri. R.] 
+        out.println("*3");   [RiRRRiR RR Rii. RR] 
+        vR5 = vR7[vi6];    
+  +B93:   #1
+        registerPortal@special(vR5,vR1);   [RiRRR RR .... RR]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b0.println(b1.append@extra("Block I/O device registered as ").append@extra(vR1).toString@extra());   [RiRRR RR ii.. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 23 swaps 6 any 0 found 0 main
+}

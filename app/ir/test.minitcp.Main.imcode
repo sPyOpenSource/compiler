@@ -1,0 +1,72 @@
+class test/minitcp/Main {
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new test/minitcp/Main(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 main
+ 
+ method <init>([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR2 = getInitialNaming@special();    
+        vR3 = "mini_tcp.jll";    
+        vR4 = "test/minitcp/MiniServerDomain";    
+        vi5 = 6144;    
+        vi6 = 6144;    
+        vi7 = 40960;    
+        vi8 = 9216;    
+        vR9 = new java/lang/Object()[1];    
+        vR10 = new java/lang/String()[0];    
+        vi11 = 9080;    
+        vR12 = new java/net/ServerSocket(vi11);    [ RR  i.][ RR . iiR]
+        vR13 = (jx/zero/DomainManager)(vR2.lookup("DomainManager"));    
+        vR14 = (jx/zero/MemoryManager)(vR2.lookup("MemoryManager"));    
+        vi15 = 0;    
+  +B91:   #1
+        if vi15>=100 goto B107;   
+  +B98:   #1
+        yield@special();   [RRRiiiiRRiRRRi RR ... ...]
+        vi15++;   
+        goto +B91;   [RRRiiiiRRiRRRi RR ... ...]
+  +B107:   #1
+        vi15 = vR14.getTotalFreeMemory();    [RRRiiiiRRiRRRi RR ... R..] 
+        vi16 = 0;    
+  +B119:   #1
+        vi16 = 0;    
+  +B122:   #1
+        if vi16>=10 goto B186;   
+  +B129:   #1
+        vR17 = vR12.accept();    [RRRiiiiRRiRRRii RR ... R..] 
+        vR9[0] = vR17;   
+        b0 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        createDomain@special(b0.append@extra("D").append@extra(vi16).toString@extra(),vR3,vR4,vi5,vi6,vi7,vi8,3,vR9);   [RRRiiiiRRiRRRiiR RR iR. RiiiiiRRR]
+        vi16++;   
+        goto +B122;   [RRRiiiiRRiRRRiiR RR iR. .........]
+  +B186:   #2
+        goto +B191;   [RRRiiiiRRiRRRiiR RR ... .........]
+  +H189<caught exception>:   #1 reference
+        vR17 = <caught exception>;    
+  +B191:   #1
+        yield@special();   [RRRiiiiRRiRRRiiR RR ... .........]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i........][ RR ... iR.......]
+        b0.println(b1.append@extra("Domains created: ").append@extra(vi16).toString@extra());   [RRRiiiiRRiRRRiiR RR ii. RR.......] 
+        vi17 = vR14.getTotalFreeMemory();    [RRRiiiiRRiRRRiiR RR ii. R........] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii. i........][ RR ii. iR.......]
+        b0.println(b1.append@extra("end ").append@extra(vi17).toString@extra());   [RRRiiiiRRiRRRiii RR iiii. RR.......] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i........][ RR iiii. iR.......]
+        b0.println(b1.append@extra("diff: ").append@extra((vi15-vi17)).toString@extra());   [RRRiiiiRRiRRRiii RR iiiiiii. RR.......] 
+  +B284:   #1
+        yield@special();   [RRRiiiiRRiRRRiii RR ........ .........]
+        goto +B284;   [RRRiiiiRRiRRRiii RR ........ .........]
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+119 - 186 handler 189 type 79
+ }
+// Register: rd 25/25 wr 46 swaps 10 any 5 found 0 <init>
+}

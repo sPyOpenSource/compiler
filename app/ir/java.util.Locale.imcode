@@ -1,0 +1,748 @@
+class java/util/Locale {
+ 
+ method convertLanguage(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        if vR1.equals@extra("")==0 goto B14;   
+  +B9:   #1
+        return vR1.intern@extra();   
+  +B14:   #1
+        vi2 = "iw,in,ji".indexOf@extra(vR1);    [  . RR] 
+        if vi2==-1 goto B39;   
+  +B26:   #1
+        return "he,id,yi".substring@extra(vi2,(vi2+2)).intern@extra();   
+  +B39:   #1
+        return vR1.intern@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 2 any 1 found 0 convertLanguage
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.language = vR0.convertLanguage@special(vR1);   
+        vR0.country = vR2.intern@extra();   
+        vR0.variant = vR3.intern@extra();   
+        vR0.hashcode = ((vR0.language.hashCode@extra() ^ vR0.country.hashCode@extra()) ^ vR0.variant.hashCode@extra());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,"");   [  i RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getDefault()Ljava/util/Locale; {
+  +START:   #1
+        return defaultLocale;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDefault
+ 
+ method setDefault(Ljava/util/Locale;)V {
+  +START:   #1
+        defaultLocale = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setDefault
+ 
+ method getAvailableLocales()[Ljava/util/Locale; {
+  +START:   #1
+        b0 = new java/util/Locale()[4];    
+        b0[0] = ENGLISH;   
+        b0[1] = FRENCH;   
+        b0[2] = GERMAN;   
+        b1 = b0;    
+        b3 = new java/util/Locale("ga","");    [ RR?R  i.][ RR?R . iRRR]
+        b1[3] = b3;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 getAvailableLocales
+ 
+ method getISOCountries()[Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/String()[239];    
+        b0[0] = "AF";   
+        b0[1] = "AL";   
+        b0[2] = "DZ";   
+        b0[3] = "AS";   
+        b0[4] = "AD";   
+        b0[5] = "AO";   
+        b0[6] = "AI";   
+        b0[7] = "AQ";   
+        b0[8] = "AG";   
+        b0[9] = "AR";   
+        b0[10] = "AM";   
+        b0[11] = "AW";   
+        b0[12] = "AU";   
+        b0[13] = "AT";   
+        b0[14] = "AZ";   
+        b0[15] = "BS";   
+        b0[16] = "BH";   
+        b0[17] = "BD";   
+        b0[18] = "BB";   
+        b0[19] = "BY";   
+        b0[20] = "BE";   
+        b0[21] = "BZ";   
+        b0[22] = "BJ";   
+        b0[23] = "BM";   
+        b0[24] = "BT";   
+        b0[25] = "BO";   
+        b0[26] = "BA";   
+        b0[27] = "BW";   
+        b0[28] = "BV";   
+        b0[29] = "BR";   
+        b0[30] = "IO";   
+        b0[31] = "BN";   
+        b0[32] = "BG";   
+        b0[33] = "BF";   
+        b0[34] = "BI";   
+        b0[35] = "KH";   
+        b0[36] = "CM";   
+        b0[37] = "CA";   
+        b0[38] = "CV";   
+        b0[39] = "KY";   
+        b0[40] = "CF";   
+        b0[41] = "TD";   
+        b0[42] = "CL";   
+        b0[43] = "CN";   
+        b0[44] = "CX";   
+        b0[45] = "CC";   
+        b0[46] = "CO";   
+        b0[47] = "KM";   
+        b0[48] = "CG";   
+        b0[49] = "CK";   
+        b0[50] = "CR";   
+        b0[51] = "CI";   
+        b0[52] = "HR";   
+        b0[53] = "CU";   
+        b0[54] = "CY";   
+        b0[55] = "CZ";   
+        b0[56] = "DK";   
+        b0[57] = "DJ";   
+        b0[58] = "DM";   
+        b0[59] = "DO";   
+        b0[60] = "TP";   
+        b0[61] = "EC";   
+        b0[62] = "EG";   
+        b0[63] = "SV";   
+        b0[64] = "GQ";   
+        b0[65] = "ER";   
+        b0[66] = "EE";   
+        b0[67] = "ET";   
+        b0[68] = "FK";   
+        b0[69] = "FO";   
+        b0[70] = "FJ";   
+        b0[71] = "FI";   
+        b0[72] = "FR";   
+        b0[73] = "FX";   
+        b0[74] = "GF";   
+        b0[75] = "PF";   
+        b0[76] = "TF";   
+        b0[77] = "GA";   
+        b0[78] = "GM";   
+        b0[79] = "GE";   
+        b0[80] = "DE";   
+        b0[81] = "GH";   
+        b0[82] = "GI";   
+        b0[83] = "GR";   
+        b0[84] = "GL";   
+        b0[85] = "GD";   
+        b0[86] = "GP";   
+        b0[87] = "GU";   
+        b0[88] = "GT";   
+        b0[89] = "GN";   
+        b0[90] = "GW";   
+        b0[91] = "GY";   
+        b0[92] = "HT";   
+        b0[93] = "HM";   
+        b0[94] = "HN";   
+        b0[95] = "HK";   
+        b0[96] = "HU";   
+        b0[97] = "IS";   
+        b0[98] = "IN";   
+        b0[99] = "ID";   
+        b0[100] = "IR";   
+        b0[101] = "IQ";   
+        b0[102] = "IE";   
+        b0[103] = "IL";   
+        b0[104] = "IT";   
+        b0[105] = "JM";   
+        b0[106] = "JP";   
+        b0[107] = "JO";   
+        b0[108] = "KZ";   
+        b0[109] = "KE";   
+        b0[110] = "KI";   
+        b0[111] = "KP";   
+        b0[112] = "KR";   
+        b0[113] = "KW";   
+        b0[114] = "KG";   
+        b0[115] = "LA";   
+        b0[116] = "LV";   
+        b0[117] = "LB";   
+        b0[118] = "LS";   
+        b0[119] = "LR";   
+        b0[120] = "LY";   
+        b0[121] = "LI";   
+        b0[122] = "LT";   
+        b0[123] = "LU";   
+        b0[124] = "MO";   
+        b0[125] = "MK";   
+        b0[126] = "MG";   
+        b0[127] = "MW";   
+        b0[128] = "MY";   
+        b0[129] = "MV";   
+        b0[130] = "ML";   
+        b0[131] = "MT";   
+        b0[132] = "MH";   
+        b0[133] = "MQ";   
+        b0[134] = "MR";   
+        b0[135] = "MU";   
+        b0[136] = "YT";   
+        b0[137] = "MX";   
+        b0[138] = "FM";   
+        b0[139] = "MD";   
+        b0[140] = "MC";   
+        b0[141] = "MN";   
+        b0[142] = "MS";   
+        b0[143] = "MA";   
+        b0[144] = "MZ";   
+        b0[145] = "MM";   
+        b0[146] = "NA";   
+        b0[147] = "NR";   
+        b0[148] = "NP";   
+        b0[149] = "NL";   
+        b0[150] = "AN";   
+        b0[151] = "NC";   
+        b0[152] = "NZ";   
+        b0[153] = "NI";   
+        b0[154] = "NE";   
+        b0[155] = "NG";   
+        b0[156] = "NU";   
+        b0[157] = "NF";   
+        b0[158] = "MP";   
+        b0[159] = "NO";   
+        b0[160] = "OM";   
+        b0[161] = "PK";   
+        b0[162] = "PW";   
+        b0[163] = "PA";   
+        b0[164] = "PG";   
+        b0[165] = "PY";   
+        b0[166] = "PE";   
+        b0[167] = "PH";   
+        b0[168] = "PN";   
+        b0[169] = "PL";   
+        b0[170] = "PT";   
+        b0[171] = "PR";   
+        b0[172] = "QA";   
+        b0[173] = "RE";   
+        b0[174] = "RO";   
+        b0[175] = "RU";   
+        b0[176] = "RW";   
+        b0[177] = "KN";   
+        b0[178] = "LC";   
+        b0[179] = "VC";   
+        b0[180] = "WS";   
+        b0[181] = "SM";   
+        b0[182] = "ST";   
+        b0[183] = "SA";   
+        b0[184] = "SN";   
+        b0[185] = "SC";   
+        b0[186] = "SL";   
+        b0[187] = "SG";   
+        b0[188] = "SK";   
+        b0[189] = "SI";   
+        b0[190] = "SB";   
+        b0[191] = "SO";   
+        b0[192] = "ZA";   
+        b0[193] = "GS";   
+        b0[194] = "ES";   
+        b0[195] = "LK";   
+        b0[196] = "SH";   
+        b0[197] = "PM";   
+        b0[198] = "SD";   
+        b0[199] = "SR";   
+        b0[200] = "SJ";   
+        b0[201] = "SZ";   
+        b0[202] = "SE";   
+        b0[203] = "CH";   
+        b0[204] = "SY";   
+        b0[205] = "TW";   
+        b0[206] = "TJ";   
+        b0[207] = "TZ";   
+        b0[208] = "TH";   
+        b0[209] = "TG";   
+        b0[210] = "TK";   
+        b0[211] = "TO";   
+        b0[212] = "TT";   
+        b0[213] = "TN";   
+        b0[214] = "TR";   
+        b0[215] = "TM";   
+        b0[216] = "TC";   
+        b0[217] = "TV";   
+        b0[218] = "UG";   
+        b0[219] = "UA";   
+        b0[220] = "AE";   
+        b0[221] = "GB";   
+        b0[222] = "US";   
+        b0[223] = "UM";   
+        b0[224] = "UY";   
+        b0[225] = "UZ";   
+        b0[226] = "VU";   
+        b0[227] = "VA";   
+        b0[228] = "VE";   
+        b0[229] = "VN";   
+        b0[230] = "VG";   
+        b0[231] = "VI";   
+        b0[232] = "WF";   
+        b0[233] = "EH";   
+        b0[234] = "YE";   
+        b0[235] = "YU";   
+        b0[236] = "ZR";   
+        b0[237] = "ZM";   
+        b0[238] = "ZW";   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 240/240 wr 1 swaps 0 any 0 found 0 getISOCountries
+ 
+ method getISOLanguages()[Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/String()[142];    
+        b0[0] = "aa";   
+        b0[1] = "ab";   
+        b0[2] = "af";   
+        b0[3] = "am";   
+        b0[4] = "ar";   
+        b0[5] = "as";   
+        b0[6] = "ay";   
+        b0[7] = "az";   
+        b0[8] = "ba";   
+        b0[9] = "be";   
+        b0[10] = "bg";   
+        b0[11] = "bh";   
+        b0[12] = "bi";   
+        b0[13] = "bn";   
+        b0[14] = "bo";   
+        b0[15] = "br";   
+        b0[16] = "ca";   
+        b0[17] = "co";   
+        b0[18] = "cs";   
+        b0[19] = "cy";   
+        b0[20] = "da";   
+        b0[21] = "de";   
+        b0[22] = "dz";   
+        b0[23] = "el";   
+        b0[24] = "en";   
+        b0[25] = "eo";   
+        b0[26] = "es";   
+        b0[27] = "et";   
+        b0[28] = "eu";   
+        b0[29] = "fa";   
+        b0[30] = "fi";   
+        b0[31] = "fj";   
+        b0[32] = "fo";   
+        b0[33] = "fr";   
+        b0[34] = "fy";   
+        b0[35] = "ga";   
+        b0[36] = "gd";   
+        b0[37] = "gl";   
+        b0[38] = "gn";   
+        b0[39] = "gu";   
+        b0[40] = "ha";   
+        b0[41] = "iw";   
+        b0[42] = "he";   
+        b0[43] = "hi";   
+        b0[44] = "hr";   
+        b0[45] = "hu";   
+        b0[46] = "hy";   
+        b0[47] = "ia";   
+        b0[48] = "in";   
+        b0[49] = "id";   
+        b0[50] = "ie";   
+        b0[51] = "ik";   
+        b0[52] = "is";   
+        b0[53] = "it";   
+        b0[54] = "iu";   
+        b0[55] = "ja";   
+        b0[56] = "jw";   
+        b0[57] = "ka";   
+        b0[58] = "kk";   
+        b0[59] = "kl";   
+        b0[60] = "km";   
+        b0[61] = "kn";   
+        b0[62] = "ko";   
+        b0[63] = "ks";   
+        b0[64] = "ku";   
+        b0[65] = "ky";   
+        b0[66] = "la";   
+        b0[67] = "ln";   
+        b0[68] = "lo";   
+        b0[69] = "lt";   
+        b0[70] = "lv";   
+        b0[71] = "mg";   
+        b0[72] = "mi";   
+        b0[73] = "mk";   
+        b0[74] = "ml";   
+        b0[75] = "mn";   
+        b0[76] = "mo";   
+        b0[77] = "mr";   
+        b0[78] = "ms";   
+        b0[79] = "mt";   
+        b0[80] = "my";   
+        b0[81] = "na";   
+        b0[82] = "ne";   
+        b0[83] = "nl";   
+        b0[84] = "no";   
+        b0[85] = "oc";   
+        b0[86] = "om";   
+        b0[87] = "or";   
+        b0[88] = "pa";   
+        b0[89] = "pl";   
+        b0[90] = "ps";   
+        b0[91] = "pt";   
+        b0[92] = "qu";   
+        b0[93] = "rm";   
+        b0[94] = "rn";   
+        b0[95] = "ro";   
+        b0[96] = "ru";   
+        b0[97] = "rw";   
+        b0[98] = "sa";   
+        b0[99] = "sd";   
+        b0[100] = "sg";   
+        b0[101] = "sh";   
+        b0[102] = "si";   
+        b0[103] = "sk";   
+        b0[104] = "sl";   
+        b0[105] = "sm";   
+        b0[106] = "sn";   
+        b0[107] = "so";   
+        b0[108] = "sq";   
+        b0[109] = "sr";   
+        b0[110] = "ss";   
+        b0[111] = "st";   
+        b0[112] = "su";   
+        b0[113] = "sv";   
+        b0[114] = "sw";   
+        b0[115] = "ta";   
+        b0[116] = "te";   
+        b0[117] = "tg";   
+        b0[118] = "th";   
+        b0[119] = "ti";   
+        b0[120] = "tk";   
+        b0[121] = "tl";   
+        b0[122] = "tn";   
+        b0[123] = "to";   
+        b0[124] = "tr";   
+        b0[125] = "ts";   
+        b0[126] = "tt";   
+        b0[127] = "tw";   
+        b0[128] = "ug";   
+        b0[129] = "uk";   
+        b0[130] = "ur";   
+        b0[131] = "uz";   
+        b0[132] = "vi";   
+        b0[133] = "vo";   
+        b0[134] = "wo";   
+        b0[135] = "xh";   
+        b0[136] = "ji";   
+        b0[137] = "yi";   
+        b0[138] = "yo";   
+        b0[139] = "za";   
+        b0[140] = "zh";   
+        b0[141] = "zu";   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 143/143 wr 1 swaps 0 any 0 found 0 getISOLanguages
+ 
+ method getLanguage()Ljava/lang/String; {
+  +START:   #1
+        return vR0.language;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLanguage
+ 
+ method getCountry()Ljava/lang/String; {
+  +START:   #1
+        return vR0.country;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCountry
+ 
+ method getVariant()Ljava/lang/String; {
+  +START:   #1
+        return vR0.variant;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVariant
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer(vR0.language);    [ R  i][ R . iRR]
+        vR2 = "";    
+        if vR0.language.length@extra()==0 goto B29;   
+  +B25:   #1
+        vR2 = "_";    
+  +B29:   #1
+        if vR0.country.length@extra()==0 goto B58;   
+  +B39:   #1
+        vR1.append(vR2);   [RR R . RR.] 
+        vR1.append(vR0.country);   [RR R i RR.] 
+        vR2 = "_";    
+  +B58:   #1
+        if vR0.variant.length@extra()==0 goto B83;   
+  +B68:   #1
+        vR1.append(vR2);   [RR R . RR.] 
+        vR1.append(vR0.variant);   [RR R i RR.] 
+  +B83:   #1
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 2 any 0 found 0 toString
+ 
+ method getISO3Language()Ljava/lang/String; {
+  +START:   #1
+        b0 = "aa,ab,af,am,ar,as,ay,az,ba,be,bg,bh,bi,bn,bo,br,ca,co,cs,cy,da,de,dz,el,en,eo,es,et,eu,fa,fi,fj,fo,fr,fy,ga,gd,gl,gn,gu,gv,ha,hi,hr,hu,hy,ia,ie,ik,id,is,it,iu,he,ja,yi,jw,ka,kk,kl,km,kn,ko,ks,ku,kw,ky,la,lb,ln,lo,lt,lv,mg,mi,mk,ml,mn,mo,mr,ms,mt,my,na,ne,nl,no,oc,om,or,pa,pl,ps,pt,qu,rm,rn,ro,ru,rw,sa,sd,se,sg,sh,si,sk,sl,sm,sn,so,sq,sr,ss,st,su,sv,sw,ta,te,tg,th,ti,tk,tl,tn,to,tr,ts,tt,tw,ug,uk,ur,uz,vi,vo,wo,xh,yo,za,zh,zu,";    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        vi1 = b0.indexOf@extra(b1.append@extra(vR0.language).append@extra(",").toString@extra());    [ RRR iii. RR.] 
+        if vi1==-1 goto B46;   
+  +B35:   #1
+        if vR0.language.length@extra()==2 goto B84;   
+  -B46:   #1
+        b0 = new java/util/MissingResourceException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Can't find ISO3 language for ").append@extra(vR0.language).toString@extra(),"java.util.Locale",vR0.language);   [i RRR iiiRR RRRR] 
+        throw b0;   
+  +B84:   #1
+        return "aarabkaframharaasmaymazebakbelbulbihbisbenbodbrecatcoscescymdandeudzoellengepospaesteusfasfinfijfaofrafrygaigdhglggrngujmaxhauhinhrvhunhyeinaileipkindislitaikuhebjpnyidjawkatkazkalkhmkankorkaskurcorkirlatltzlinlaolitlavmlgmrimkdmalmonmolmarmsamltmyanaunepnldnorociormoripanpolpusporquerohrunronruskinsansndsmisagsrpsinslkslvsmosnasomsqisrpsswsotsunsweswatamteltgkthatirtuktgltsntonturtsotattwiuigukrurduzbvievolwolxhoyorzhazhozul".substring@extra(vi1,(vi1+3));   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 19 swaps 7 any 2 found 0 getISO3Language
+ 
+ method getISO3Country()Ljava/lang/String; {
+  +START:   #1
+        b0 = "AF,AL,DZ,AS,AD,AO,AI,AQ,AG,AR,AM,AW,AU,AT,AZ,BS,BH,BD,BB,BY,BE,BZ,BJ,BM,BT,BO,BA,BW,BV,BR,IO,BN,BG,BF,BI,KH,CM,CA,CV,KY,CF,TD,CL,CN,CX,CC,CO,KM,CG,CD,CK,CR,CI,HR,CU,CY,CZ,DK,DJ,DM,DO,TP,EC,EG,SV,GQ,ER,EE,ET,FK,FO,FJ,FI,FR,FX,GF,PF,TF,GA,GM,GE,DE,GH,GI,GR,GL,GD,GP,GU,GT,GN,GW,GY,HT,HM,VA,HN,HK,HU,IS,IN,ID,IR,IQ,IE,IL,IT,JM,JP,JO,KZ,KE,KI,KP,KR,KW,KG,LA,LV,LB,LS,LR,LY,LI,LT,LU,MO,MK,MG,MW,MY,MV,ML,MT,MH,MQ,MR,MU,YT,MX,FM,MD,MC,MN,MS,MA,MZ,MM,NA,NR,NP,NL,AN,NC,NZ,NI,NE,NG,NU,NF,MP,NO,OM,PK,PW,PA,PG,PY,PE,PH,PN,PL,PT,PR,QA,RE,RO,RU,RW,KN,LC,VC,WS,SM,ST,SA,SN,SC,SL,SG,SK,SI,SB,SO,ZA,GS,ES,LK,SH,PM,SD,SR,SJ,SZ,SE,CH,SY,TW,TJ,TZ,TH,TG,TK,TO,TT,TN,TR,TM,TC,TV,UG,UA,AE,GB,US,UM,UY,UZ,VU,VE,VN,VG,VI,WF,EH,YE,YU,ZM,ZW,";    
+        b1 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        vi1 = b0.indexOf@extra(b1.append@extra(vR0.country).append@extra(",").toString@extra());    [ RRR iii. RR.] 
+        if vi1==-1 goto B46;   
+  +B35:   #1
+        if vR0.language.length@extra()==2 goto B84;   
+  -B46:   #1
+        b0 = new java/util/MissingResourceException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Can't find ISO3 country for ").append@extra(vR0.country).toString@extra(),"java.util.Locale",vR0.country);   [i RRR iiiRR RRRR] 
+        throw b0;   
+  +B84:   #1
+        return "AFGALBDZAASMANDAGOAIAATAATGARGARMABWAUSAUTAZEBHSBHRBGDBRBBLRBELBLZBENBMUBTNBOLBIHBWABVTBRAIOTBRNBGRBFABDIKHMCMRCANCPVCYMCAFTCDCHLCHNCXRCCKCOLCOMCOGCODCOKCRICIVHRVCUBCYPCZEDNKDJIDMADOMTMPECUEGYSLVGNQERIESTETHFLKFROFJIFINFRAFXXGUFPYFATFGABGMBGEODEUGHAGIBGRCGRLGRDGLPGUMGTMGINGNBGUYHTIHMDVATHNDHKGHUNISLINDIDNIRNIRQIRLISRITAJAMJPNJORKAZKENKIRPRKKORKWTKGZLAOLVALBNLSOLBRLBYLIELTULUXMACMKDMDGMWIMYSMDVMLIMLTMHLMTQMRTMUSMYTMEXFSMMDAMCOMNGMSRMARMOZMMRNAMNRUNPLNLDANTNCLNZLNICNERNGANIUNFKMNPNOROMNPAKPLWPANPNGPRYPERPHLPCNPOLPRTPRIQATREUROMRUSRWAKNALCAVCTWSMSMRSTPSAUSENSYCSLESGPSVKSVNSLBSOMZAFSGSESPLKASHNSPMSDNSURSJMSWZSWECHESYRTWNTJKTZATHATGOTKLTONTTOTUNTURTKMTCATUVUGAUKRAREGBRUSAUMIURYUZBVUTVENVNMVGBVIRWLFESHYEMYUGZMBZWE".substring@extra(vi1,(vi1+3));   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 19 swaps 7 any 2 found 0 getISO3Country
+ 
+ method getDisplayLanguage()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayLanguage@this(getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayLanguage
+ 
+ method getDisplayLanguage(Ljava/util/Locale;)Ljava/lang/String; {
+  +START:   #2
+        vR2 = getBundle@special("gnu.java.locale.iso639",vR1);    [ R R RR]
+        b0 = vR2.getString@extra(vR0.language);    [R R Ri RR] 
+  +B16b0:   #1 reference
+        return b0;   
+  +H17<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        return vR0.language;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 16 handler 17 type 864
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 getDisplayLanguage
+ 
+ method getDisplayCountry()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayCountry@this(getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayCountry
+ 
+ method getDisplayCountry(Ljava/util/Locale;)Ljava/lang/String; {
+  +START:   #2
+        vR2 = getBundle@special("gnu.java.locale.iso3166",vR1);    [ R R RR]
+        b0 = vR2.getString@extra(vR0.country);    [R R Ri RR] 
+  +B16b0:   #1 reference
+        return b0;   
+  +H17<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        return vR0.country;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 16 handler 17 type 864
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 getDisplayCountry
+ 
+ method getDisplayVariant()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayVariant@this(getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayVariant
+ 
+ method getDisplayVariant(Ljava/util/Locale;)Ljava/lang/String; {
+  +START:   #1
+        return vR0.variant;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDisplayVariant
+ 
+ method getDisplayName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayName@this(getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayName
+ 
+ method getDisplayName(Ljava/util/Locale;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer();    [ R?i  i][ R?i  iR]
+        vi3 = 0;    
+        b0 = new java/lang/String()[3];    
+        b0[0] = "";   
+        b0[1] = " (";   
+        b0[2] = ",";   
+        vR4 = b0;    
+        if vR0.language.length@extra()==0 goto B65;   
+  +B43:   #1
+        b2 = vi3;    
+        vi3++;   
+        vR2.append(vR4[b2]);   [RiR R?i i RR] 
+        vR2.append(vR0.getDisplayLanguage@this(vR1));   [RiR R?i ii RR] 
+  +B65:   #1
+        if vR0.country.length@extra()==0 goto B97;   
+  +B75:   #1
+        b2 = vi3;    
+        vi3++;   
+        vR2.append(vR4[b2]);   [RiR R?i i. RR] 
+        vR2.append(vR0.getDisplayCountry@this(vR1));   [RiR R?i ii RR] 
+  +B97:   #1
+        if vR0.variant.length@extra()==0 goto B129;   
+  +B107:   #1
+        b2 = vi3;    
+        vi3++;   
+        vR2.append(vR4[b2]);   [RiR R?i i. RR] 
+        vR2.append(vR0.getDisplayVariant@this(vR1));   [RiR R?i ii RR] 
+  +B129:   #1
+        if vi3<=1 goto B142;   
+  +B134:   #1
+        vR2.append(")");   [RiR R?i i. RR] 
+  +B142:   #1
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 17 swaps 7 any 8 found 0 getDisplayName
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 918
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.hashcode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if (vR1 instanceof java/util/Locale)!=0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        vR2 = (java/util/Locale)(vR1);    
+        if vR0.language.equals@extra(vR2.language)==0 goto B67;   
+  +B35:   #1
+        if vR0.country.equals@extra(vR2.country)==0 goto B67;   
+  +B49:   #1
+        if vR0.variant.equals@extra(vR2.variant)==0 goto B67;   
+  +B63:   #1
+        b0 = 1;    
+        goto +B68b0;   forward return[R i . ..]
+  +B67:   #3
+        b0 = 0;    
+  +B68b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 3 any 2 found 1 equals
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Locale("en","");    [ R  i][ R . iRRR]
+        ENGLISH = b0;   
+        b0 = new java/util/Locale("fr","");    [ R . i...][ R . iRRR]
+        FRENCH = b0;   
+        b0 = new java/util/Locale("de","");    [ R . i...][ R . iRRR]
+        GERMAN = b0;   
+        b0 = new java/util/Locale("it","");    [ R . i...][ R . iRRR]
+        ITALIAN = b0;   
+        b0 = new java/util/Locale("ja","");    [ R . i...][ R . iRRR]
+        JAPANESE = b0;   
+        b0 = new java/util/Locale("ko","");    [ R . i...][ R . iRRR]
+        KOREAN = b0;   
+        b0 = new java/util/Locale("zh","");    [ R . i...][ R . iRRR]
+        CHINESE = b0;   
+        b0 = new java/util/Locale("zh","CN");    [ R . i...][ R . iRRR]
+        SIMPLIFIED_CHINESE = b0;   
+        b0 = new java/util/Locale("zh","TW");    [ R . i...][ R . iRRR]
+        TRADITIONAL_CHINESE = b0;   
+        b0 = new java/util/Locale("fr","FR");    [ R . i...][ R . iRRR]
+        FRANCE = b0;   
+        b0 = new java/util/Locale("de","DE");    [ R . i...][ R . iRRR]
+        GERMANY = b0;   
+        b0 = new java/util/Locale("it","IT");    [ R . i...][ R . iRRR]
+        ITALY = b0;   
+        b0 = new java/util/Locale("ja","JP");    [ R . i...][ R . iRRR]
+        JAPAN = b0;   
+        b0 = new java/util/Locale("ko","KR");    [ R . i...][ R . iRRR]
+        KOREA = b0;   
+        CHINA = SIMPLIFIED_CHINESE;   
+        PRC = CHINA;   
+        TAIWAN = TRADITIONAL_CHINESE;   
+        b0 = new java/util/Locale("en","GB");    [ R . i...][ R . iRRR]
+        UK = b0;   
+        b0 = new java/util/Locale("en","US");    [ R . i...][ R . iRRR]
+        US = b0;   
+        b0 = new java/util/Locale("en","CA");    [ R . i...][ R . iRRR]
+        CANADA = b0;   
+        b0 = new java/util/Locale("fr","CA");    [ R . i...][ R . iRRR]
+        CANADA_FRENCH = b0;   
+        defaultLocale = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 58/58 wr 40 swaps 0 any 0 found 18 <clinit>
+}

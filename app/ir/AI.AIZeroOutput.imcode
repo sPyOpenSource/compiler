@@ -1,0 +1,33 @@
+class AI/AIZeroOutput {
+ 
+ method <init>(LAI/AIZeroMemory;)V {
+  +START:   #1
+        vR0.<init>@special("output");   [  i RR] 
+        vR0.dt = jx.classfile.datatypes.BCDouble@55cf0d14;   
+        vR0.mem = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method Send()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Send
+ 
+ method SaveMemory()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 SaveMemory
+ 
+ method run()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 run
+}

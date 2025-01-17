@@ -1,0 +1,179 @@
+class java/security/Security {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAlgorithmProperty(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAlgorithmProperty
+ 
+ method insertProviderAt(Ljava/security/Provider;I)I {
+  +START:   #1
+        vR2 = getSecurityManager@special();    [ ?R  ]
+        if vR2==null goto B34;   
+  +B8:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR2.checkSecurityAccess(b1.append@extra("insertProvider.").append@extra(vR0.getName@this()).toString@extra());   [R ?R iii. RR.] 
+  +B34:   #1
+        vi3 = 0;    
+  +B36:   #1
+        if vi3>=providerCount goto B74;   
+  +B43:   #1
+        if (java/security/Provider)(providers.elementAt(vi3)).getName().equals@extra(vR0.getName@this())==0 goto B68;   
+  +B66:   #1
+        return -1;   
+  +B68:   #1
+        vi3++;   
+        goto +B36;   [Ri ?R .... ...]
+  +B74:   #1
+        if vi1>=0 goto B80;   
+  +B78:   #1
+        vi1 = 0;    
+  +B80:   #1
+        if vi1<=providerCount goto B91;   
+  +B87:   #1
+        vi1 = providerCount;    
+  +B91:   #1
+        providers.insertElementAt@extra(vR0,vi1);   [Ri ?R .... iRR] 
+        providerCount = (providerCount+1);   
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 18 swaps 4 any 5 found 2 insertProviderAt
+ 
+ method addProvider(Ljava/security/Provider;)I {
+  +START:   #1
+        vR1 = getSecurityManager@special();    [ ?R  ]
+        if vR1==null goto B34;   
+  +B8:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR1.checkSecurityAccess(b1.append@extra("insertProvider.").append@extra(vR0.getName@this()).toString@extra());   [R ?R iii. RR.] 
+  +B34:   #1
+        vi2 = 0;    
+  +B36:   #1
+        if vi2>=providerCount goto B74;   
+  +B43:   #1
+        if (java/security/Provider)(providers.elementAt(vi2)).getName().equals@extra(vR0.getName@this())==0 goto B68;   
+  +B66:   #1
+        return -1;   
+  +B68:   #1
+        vi2++;   
+        goto +B36;   [Ri ?R .... ...]
+  +B74:   #1
+        providers.addElement@extra(vR0);   [Ri ?R .... RR.] 
+        providerCount = (providerCount+1);   
+        return (providerCount-1);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 16 swaps 4 any 3 found 1 addProvider
+ 
+ method removeProvider(Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getSecurityManager@special();    [ ?R  ]
+        if vR1==null goto B31;   
+  +B8:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR1.checkSecurityAccess(b1.append@extra("removeProvider.").append@extra(vR0).toString@extra());   [R ?R ii. RR.] 
+  +B31:   #1
+        vR2 = 0;    
+        vi3 = 0;    
+  +B35:   #1
+        if vi3>=providerCount goto B82;   
+  +B42:   #1
+        if (java/security/Provider)(providers.elementAt(vi3)).getName().equals@extra(vR0)==0 goto B76;   
+  +B62:   #1
+        vR2 = (java/security/Provider)(providers.elementAt(vi3));    
+        goto +B82;   [RRi ?R ... ...]
+  +B76:   #1
+        vi3++;   
+        goto +B35;   [RRi ?R ... ...]
+  +B82:   #2
+        if vR2==null goto B104;   
+  +B86:   #1
+        if providers.removeElement@extra(vR2)==0 goto B104;   
+  +B96:   #1
+        providerCount = (providerCount-1);   
+  +B104:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 18 swaps 2 any 4 found 1 removeProvider
+ 
+ method getProviders()[Ljava/security/Provider; {
+  +START:   #1
+        vR0 = new java/security/Provider()[providerCount];    
+        vi1 = 0;    
+  +B9:   #1
+        if vi1>=providerCount goto B35;   
+  +B16:   #1
+        vR0[vi1] = (java/security/Provider)(providers.elementAt(vi1));   
+        vi1++;   
+        goto +B9;   [Ri  . ..]
+  +B35:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 1 getProviders
+ 
+ method getProvider(Ljava/lang/String;)Ljava/security/Provider; {
+  +START:   #1
+        vR1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=providerCount goto B42;   
+  +B11:   #1
+        vR1 = (java/security/Provider)(providers.elementAt(vi2));    
+        if vR1.getName().equals@extra(vR0)==0 goto B36;   
+  +B33:   #1
+        goto +B42;   forward return[Ri  . ..]
+  +B36:   #1
+        vi2++;   
+        goto +B4;   [Ri  . ..]
+  +B42:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 0 any 2 found 1 getProvider
+ 
+ method getProperty(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vR1 = getSecurityManager@special();    [ ?R  ]
+        if vR1==null goto B31;   
+  +B8:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR1.checkSecurityAccess(b1.append@extra("getProperty.").append@extra(vR0).toString@extra());   [R ?R ii. RR.] 
+  +B31:   #1
+        return secprops.getProperty(vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 getProperty
+ 
+ method setProperty(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = getSecurityManager@special();    [ ?R  ]
+        if vR2==null goto B31;   
+  +B8:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR2.checkSecurityAccess(b1.append@extra("setProperty.").append@extra(vR0).toString@extra());   [R ?R ii. RR.] 
+  +B31:   #1
+        secprops.put(vR0,vR1);   [R ?R ... RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 setProperty
+ 
+ method <clinit>()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 <clinit>
+}

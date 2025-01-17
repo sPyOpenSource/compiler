@@ -1,0 +1,188 @@
+class org/jnode/net/ipv4/dhcp/DHCPMessage {
+ 
+ method <init>(Ljx/net/protocol/bootp/BOOTPFormat;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap();    [ ?R  i][ ?R  iR]
+        vR0.options = b1;   
+        vR0.header = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/net/protocol/bootp/BOOTPFormat;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.messageType = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        b1 = new jx/net/protocol/bootp/BOOTPFormat(vR1);    [ RR  i][ RR . iRR]
+        vR0.<init>@special(b1);   [ RR . RR.] 
+        vi2 = 282;    
+        vi3 = vR1.get8(vi2);    [i RR . iR.] 
+  +B24:   #1
+        if vi3==255 goto B141;   
+  +B31:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("opt: ").append@extra(vi3).toString@extra());   [ii RR ii. RR.] 
+        if vi3!=0 goto B66;   
+  +B60:   #1
+        vi2++;   
+        goto +B130;   [ii RR ... ...]
+  +B66:   #1
+        vi4 = vR1.get8((vi2+1));    [ii RR i.. iR.] 
+        vR5 = new byte[vi4];    
+        vi6 = 0;    
+  +B86:   #1
+        if vi6>=vi4 goto B116;   
+  +B93:   #1
+        vR5[vi6] = vR1.get8(((vi6+vi2)+2));   
+        vi6++;   
+        goto +B86;   [iiiRi RR i.. ...]
+  +B116:   #1
+        vR0.setOption@this(vi3,vR5);   [iiiRi RR ... RiR] 
+        vi2 = (vi2+(vi4+2));    
+  +B130:   #1
+        vi3 = vR1.get8(vi2);    [ii RR ... iR.] 
+        goto +B24;   [ii RR ... ...]
+  +B141:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 18 swaps 4 any 6 found 0 <init>
+ 
+ method getHeader()Ljx/net/protocol/bootp/BOOTPFormat; {
+  +START:   #1
+        return vR0.header;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeader
+ 
+ method setMessageType(I)V {
+  +START:   #1
+        vR0.messageType = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMessageType
+ 
+ method getMessageType()I {
+  +START:   #1
+        return vR0.messageType;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMessageType
+ 
+ method setOption(I[B)V {
+  +START:   #1
+        if vi1!=53 goto B16;   
+  +B6:   #1
+        vR0.messageType = vR2[0];   
+        goto +B39;   forward return[   ]
+  +B16:   #1
+        out.println("put");   [  i. RR] 
+        vR0.options.put(valueOf@special(vi1),vR2);   [  ii RRR] 
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 1 found 0 setOption
+ 
+ method setOption16(II)V {
+  +START:   #1
+        b0 = new byte[2];    
+        b0[0] = (byte)((vi2 >> 8) & 255);   
+        b0[1] = (byte)(vi2 & 255);   
+        vR3 = b0;    
+        vR0.setOption@this(vi1,vR3);   [R R  RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 1 found 0 setOption16
+ 
+ method setOption(ILjava/lang/String;)V {
+  +START:   #2
+        vR0.setOption@this(vi1,vR2.getBytes@extra("US-ASCII"));   [ R ii RiR] 
+  +B11:   #1
+        goto +B24;   forward return[ R .. ...]
+  -H14<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/RuntimeException(vR3);   
+  +B24:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 14 type 91
+ }
+// Register: rd 4/4 wr 4 swaps 2 any 0 found 0 setOption
+ 
+ method setOption(ILjava/net/Inet4Address;)V {
+  +START:   #1
+        vR0.setOption@this(vi1,vR2.getAddress@extra());   [  i RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setOption
+ 
+ method getOption(I)[B {
+  +START:   #1
+        if vi1!=53 goto B18;   
+  +B6:   #1
+        b0 = new byte[1];    
+        b0[0] = (byte)vR0.messageType;   
+        return b0;   
+  +B18:   #1
+        return ([B)(vR0.options.get(valueOf@special(vi1)));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 1 found 0 getOption
+ 
+ method toDatagramPacket()Ljava/net/DatagramPacket; {
+  +START:   #1
+        out.println("todata");   [ R i. RR] 
+        vR1 = vR0.header.getMemory();    [ R i. R.] 
+        vi2 = 236;    
+        vR1.set8((vi2+0),99);   [Ri R ii iiR] 
+        vR1.set8((vi2+1),-126);   [Ri R iii iiR] 
+        vR1.set8((vi2+2),83);   [Ri R iiii iiR] 
+        vR1.set8((vi2+3),99);   [Ri R iiiii iiR] 
+        vR1.set8((vi2+4),53);   [Ri R iiiiii iiR] 
+        vR1.set8((vi2+5),1);   [Ri R iiiiiii iiR] 
+        vR1.set8((vi2+6),(byte)vR0.messageType);   [Ri R iiiiiiiii iiR] 
+        vi3 = 7;    
+        vR4 = vR0.options.entrySet().iterator();    [Rii R iiiiiiiii. R..] [Rii R iiiiiiiiiR R..] 
+  +B119:   #1
+        if vR4.hasNext()==0 goto B223;   
+  +B129:   #1
+        vR5 = (java/util/Map$Entry)(vR4.next());    
+        vi6 = (java/lang/Integer)(vR5.getKey()).intValue();    [RiiRR R .......... R..] 
+        vR7 = ([B)(vR5.getValue());    
+        vR1.set8((vi3+vi2),(byte)vi6);   [RiiRRiR R ii........ iiR] 
+        vR1.set8(((vi3+1)+vi2),(byte)vR7.length);   [RiiRRiR R iiii...... iiR] 
+        vR1.copyFromByteArray(vR7,0,((vi3+2)+vi2),vR7.length);   [RiiRRiR R iiiiii.... iiiRR] 
+        vi3 = (vi3+(vR7.length+2));    
+        goto +B119;   [RiiRRiR R iiiiii.... .....]
+  +B223:   #1
+        vR1.set8((vi3+vi2),-1);   [RiiRRiR R i......... iiR..] 
+        vR4 = new byte[vR1.size()];    
+        vR1.copyToByteArray(vR4,0,0,vR4.length);   [RiiRRiR R ii........ iiiRR] 
+  +B256:   #1
+        b0 = new java/net/DatagramPacket(vR4,vR4.length,getByName@special("all"),67);    [ R .......... i....][ R .R........ iiRiRR]
+  +B275b0:   #1 reference
+        return b0;   
+  +H276<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+256 - 275 handler 276 type 175
+ }
+// Register: rd 48/48 wr 34 swaps 13 any 1 found 0 toDatagramPacket
+}

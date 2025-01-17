@@ -1,0 +1,24 @@
+class java/util/function/BiConsumer {
+ 
+ method andThen(Ljava/util/function/BiConsumer;)Ljava/util/function/BiConsumer; {
+  +START:   #1
+        requireNonNull@special(vR1);   [ RR  R]
+        b0 = vR0;    
+        b1 = vR1;    
+        <operant>;   
+        <operant>;   
+        <operant>;   
+        return 4;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 andThen
+ 
+ method lambda$andThen$0(Ljava/util/function/BiConsumer;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.accept(vR2,vR3);   [   RRR] 
+        vR1.accept(vR2,vR3);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 lambda$andThen$0
+}

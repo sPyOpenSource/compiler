@@ -1,0 +1,73 @@
+class jx/console/VirtualConsoleImplColor {
+ 
+ method <init>(Ljx/zero/MemoryManager;Ljx/console/ConsoleImpl;Ljx/devices/Screen;Ljx/devices/Keyboard;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3,vR4);   [   RRRRR] 
+        vR0.color = 15;   
+        vR0.light = 0;   
+        vR0.blink = 0;   
+        vR0.naming = getInitialNaming@special();   
+        vR0.SMPcpuManager = (jx/zero/SMPCPUManager)(vR0.naming.lookup("SMPCPUManager"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method putc(I)V {
+  +START:   #1
+        if vR0.SMPcpuManager.getNumCPUs()<=1 goto B49;   
+  +B13:   #1
+        if vR0.SMPcpuManager.getMyCPU()==vR0.SMPcpuManager.getCPU(0) goto B44;   
+  +B35:   #1
+        vR0.light = 8;   
+        goto +B49;   [  . ..]
+  +B44:   #1
+        vR0.light = 0;   
+  +B49:   #2
+        if vi1<65436 goto B73;   
+  +B55:   #1
+        if vi1>65443 goto B73;   
+  +B61:   #1
+        vR0.color = (byte)(vi1-65436);   
+        goto +B304;   [  . ..]
+  +B73:   #2
+        tswitch (vi1) B175 B195 B112 B214 B214 B167 : B214;   
+  +B112:   #1
+        if vR0.y!=24 goto B157;   
+  +B121:   #1
+        vR0.buffer.copy(160,0,3840);   [  . iiiR] 
+        vR0.buffer.fill16(3840,1920,80);   [  . iiiR] 
+        goto +B167;   [  . ....]
+  +B157:   #1
+        vR0.y = (vR0.y+1);   
+  +B167:   #2
+        vR0.x = 0;   
+        goto +B304;   [  . ....]
+  +B175:   #1
+        if vR0.x<=0 goto B304;   
+  +B182:   #1
+        vR0.x = (vR0.x-1);   
+        goto +B304;   [  . ....]
+  +B195:   #2
+        vR0.putc@this(32);   [  . iR..] 
+        if (vR0.x & 7)!=0 goto B195;   
+  +B211:   #1
+        goto +B304;   [  . ....]
+  +B214:   #3
+        if vR0.x<80 goto B229;   
+  +B223:   #1
+        vR0.putc@this(10);   [  . iR..] 
+  +B229:   #1
+        vR0.buffer.set8((((80*vR0.y)+vR0.x)*2),(byte)vi1);   [  i iiR.] 
+        vR0.buffer.set8(((((80*vR0.y)+vR0.x)*2)+1),(byte)((vR0.light+vR0.color)+vR0.blink));   [  iii iiR.] 
+        vR0.x = (vR0.x+1);   
+  +B304:   #5
+        if vR0.active==0 goto B326;   
+  +B311:   #1
+        vR0.cons.moveCursorTo(vR0.x,vR0.y);   [  ii. iiR.] 
+  +B326:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 6 swaps 3 any 3 found 0 putc
+}

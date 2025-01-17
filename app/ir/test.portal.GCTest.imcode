@@ -1,0 +1,32 @@
+class test/portal/GCTest {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));    
+        vR3 = (jx/zero/DomainManager)(vR1.lookup("DomainManager"));    
+        vR4 = new test/portal/GCDaddy();    [ R ii. i.][ R ii. iR]
+        vR1.registerPortal(vR4,"Daddy");   [RRRR R iii RRR] 
+        vR5 = createDomain@special("DomainHans","test_portal.jll","test/portal/MainHans",2097152);    [RRRR R iiiRRR iRRR]
+        vi6 = 0;    
+  +B63:   #1
+        if vi6>=5 goto B105;   
+  +B69:   #1
+        b0 = new java/lang/StringBuilder();    [ R ...... i...][ R ...... iR..]
+        createDomain@special(b0.append@extra("DomainAlice").append@extra(vi6).toString@extra(),"test_portal.jll","test/portal/MainAlice",1048576);   [RRRRRi R iRRR.. iRRR]
+        vi6++;   
+        goto +B63;   [RRRRRi R iRRR.. ....]
+  +B105:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 22 swaps 4 any 2 found 0 main
+}

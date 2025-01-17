@@ -1,0 +1,16 @@
+class java/util/Iterator {
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+  +B5:   #1
+        if vR0.hasNext()==0 goto B29;   
+  +B14:   #1
+        vR1.accept(vR0.next());   [  i RR] 
+        goto +B5;   [  i ..]
+  +B29:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 forEachRemaining
+}

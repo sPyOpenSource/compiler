@@ -1,0 +1,241 @@
+class jx/scheduler/HLRRobin_nonpreemptive {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?RRR  R] 
+        vR0.runnables = 0;   
+        vR0.portalThreads = 0;   
+        vR0.MyCPU = 0;   
+        vR0.active = 0;   
+        vR0.INTbyGC = 0;   
+        vR0.DomainName = "";   
+        vR0.debug = 0;   
+        vR0.domainZero = getInitialNaming@special();   
+        vR0.cpuManager = (jx/zero/CPUManager)(vR0.domainZero.lookup("CPUManager"));   
+        vR0.SMPcpuManager = (jx/zero/SMPCPUManager)(vR0.domainZero.lookup("SMPCPUManager"));   
+        vR0.HLschedulerSupport = (jx/zero/HLSchedulerSupport)(vR0.domainZero.lookup("HLSchedulerSupport"));   
+        vR1 = (jx/zero/debug/DebugChannel)(vR0.domainZero.lookup("DebugChannel0"));    
+        b1 = new jx/zero/debug/DebugPrintStream;    
+        b2 = b1;    
+        b3 = new jx/zero/debug/DebugOutputStream(vR1);    [ ?RRR iiii. i.][ ?RRR iiii. iRR]
+        b2.<init>@special(b3);   [R ?RRR iiii. RR.] 
+        vR0.out = b1;   
+        out = vR0.out;   
+        b1 = new jx/scheduler/ThreadList();    [ ?RRR iiii. i..][ ?RRR iiii. iR.]
+        vR0.runnables = b1;   
+        b1 = new jx/scheduler/ThreadList();    [ ?RRR iiii. i..][ ?RRR iiii. iR.]
+        vR0.portalThreads = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 16 swaps 4 any 1 found 0 <init>
+ 
+ method registered()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("HLRRobin_nonpreemptive registered called on CPU").append@extra(vR0.SMPcpuManager.getMyCPU()).toString@extra());   [ RR iii. RR.] 
+        vR0.MyCPU = vR0.SMPcpuManager.getMyCPU();   
+        vR0.active = 0;   
+        vR0.INTbyGC = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 registered
+ 
+ method Scheduler_interrupted()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Scheduler_interrupted
+ 
+ method Scheduler_preempted()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Scheduler_preempted
+ 
+ method interrupted(Ljx/zero/CPUState;)V {
+  -START:   #1
+        throw new java/lang/Error("should never be called!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 interrupted
+ 
+ method preempted(Ljx/zero/CPUState;)V {
+  +START:   #1
+        if vR0.active!=null goto B15;   
+  +B7:   #1
+        vR0.active = vR1;   
+        goto +B25;   forward return[ R  ]
+  -B15:   #1
+        throw new java/lang/Error("should never happen!");   
+  +B25:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 preempted
+ 
+ method yielded(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(vR0.toString@this()).append@extra("::yielded called").toString@extra());   [ RR ii.ii. RR..] 
+        vR0.runnables.add(vR1);   [ RR ii.ii. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 4 any 0 found 0 yielded
+ 
+ method unblocked(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(vR0.toString@this()).append@extra("::unblocked called").toString@extra());   [ RR ii.ii. RR..] 
+        vR0.runnables.add(vR1);   [ RR ii.ii. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 4 any 0 found 0 unblocked
+ 
+ method created(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(vR0.toString@this()).append@extra("::created called").toString@extra());   [ RR ii.ii. RR..] 
+        vR0.runnables.add(vR1);   [ RR ii.ii. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 4 any 0 found 0 created
+ 
+ method switchedTo(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(vR0.toString@this()).append@extra("::switchedTo called").toString@extra());   [ RR ii.ii. RR..] 
+        if vR1==vR0.active goto B82;   
+  +B43:   #1
+        if vR1.isPortalThread()==0 goto B73;   
+  +B52:   #1
+        vR0.runnables.remove(vR1);   [ RR ...... RR..] 
+        vR0.portalThreads.add(vR1);   [ RR ...... RR..] 
+        goto -B82;   [ RR ...... ....]
+  +B73:   #1
+        vR0.runnables.add(vR1);   [ RR ...... RR..] 
+  -B82:   #2
+        vR0.activated@this();   [ RR ...... R...] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 4 any 1 found 0 switchedTo
+ 
+ method blockedInService(Ljx/zero/CPUState;Ljx/zero/CPUStateLink;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": HLRRobin_nonpreemptive::blockedInService called").toString@extra());   [ RR iii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 blockedInService
+ 
+ method serviceCalled(Ljx/zero/CPUState;Ljx/zero/CPUStateLink;)Z {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": HLRRobin_nonpreemptive::serviceCalled called").toString@extra());   [ RR iii. RR.] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 serviceCalled
+ 
+ method startGCThread(Ljx/zero/CPUState;Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": HLRRobin_nonpreemptive::startGCThread called").toString@extra());   [ RR iii. RR.] 
+        if vR0.active==null goto B45;   
+  -B35:   #1
+        throw new java/lang/Error("schould not happen");   
+  +B45:   #1
+        vR0.INTbyGC = vR1;   
+        vR0.HLschedulerSupport.activateThread(vR2);   [ RR .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 3 any 0 found 0 startGCThread
+ 
+ method unblockedGCThread(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": HLRRobin_nonpreemptive::unblockedGCThread called").toString@extra());   [ RR iii. RR.] 
+        vR0.INTbyGC = vR0.active;   
+        vR0.active = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 unblockedGCThread
+ 
+ method destroyedGCThread(Ljx/zero/CPUState;)V {
+  +START:   #1
+        vR0.active = vR0.INTbyGC;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 destroyedGCThread
+ 
+ method activated()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(vR0.toString@this()).append@extra("::activated called").toString@extra());   [ RR ii.ii. RR..] 
+        if vR0.active==null goto B63;   
+  +B42:   #1
+        out.println("1");   [ RR i..... RR..] 
+        vR1 = vR0.active;    
+        vR0.active = 0;   
+        goto -B129;   [R RR i..... ....]
+  +B63:   #1
+        out.println("2");   [R RR i..... RR..] 
+        vR1 = (jx/zero/CPUState)(vR0.portalThreads.removeFirst());    
+        if vR1!=null goto B129;   
+  +B86:   #1
+        vR1 = (jx/zero/CPUState)(vR0.runnables.removeFirst());    
+        if vR1!=null goto B129;   
+  -B101:   #1
+        vR0.HLschedulerSupport.clearMyRunnableFlag();   [R RR ...... R...] 
+        vR0.HLschedulerSupport.yield();   [R RR ...... R...] 
+        throw new java/lang/Error("should never return!");   
+  -B129:   #3
+        vR0.HLschedulerSupport.activateThread(vR1);   [R RR ...... RR..] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 20 swaps 6 any 2 found 0 activated
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return " HLRRobin_nonpreemptive";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method dump()V {
+  +START:   #1
+        vR0.runnables.dump();   [   R] 
+        if vR0.active==null goto B35;   
+  +B14:   #1
+        out.println("activ:");   [  i. RR] 
+        vR0.HLschedulerSupport.dumpThread(vR0.active);   [  ii RR] 
+  +B35:   #1
+        out.println("  Portalthreads:");   [  i. RR] 
+        vR0.portalThreads.dump();   [  i. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 3 any 0 found 0 dump
+}

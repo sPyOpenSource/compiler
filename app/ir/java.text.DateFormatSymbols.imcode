@@ -1,0 +1,285 @@
+class java/text/DateFormatSymbols {
+ 
+ method formatsForKey(Ljava/util/ResourceBundle;Ljava/lang/String;)[Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/String()[formatPrefixes.length];    
+        vi4 = 0;    
+  +B11:   #1
+        if vi4>=formatPrefixes.length goto B57;   
+  +B20:   #1
+        b3 = new java/lang/StringBuilder();    [ ???R  i.][ ???R  iR]
+        vR3[vi4] = vR1.getString@extra(b3.append@extra(formatPrefixes[vi4]).append@extra(vR2).toString@extra());   
+        vi4++;   
+        goto +B11;   [Ri ???R i.i ...]
+  +B57:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 2 any 2 found 1 formatsForKey
+ 
+ method <init>(Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(getDefault@special());   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getAmPmStrings()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.ampms;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAmPmStrings
+ 
+ method getEras()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.eras;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEras
+ 
+ method getLocalPatternChars()Ljava/lang/String; {
+  +START:   #1
+        return vR0.localPatternChars;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocalPatternChars
+ 
+ method getMonths()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.months;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMonths
+ 
+ method getShortMonths()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortMonths;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortMonths
+ 
+ method getShortWeekdays()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortWeekdays;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortWeekdays
+ 
+ method getWeekdays()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.weekdays;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWeekdays
+ 
+ method getZoneStrings()[[Ljava/lang/String; {
+  +START:   #1
+        return vR0.zoneStrings;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getZoneStrings
+ 
+ method setAmPmStrings([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.ampms = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setAmPmStrings
+ 
+ method setEras([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.eras = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setEras
+ 
+ method setLocalPatternChars(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.localPatternChars = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLocalPatternChars
+ 
+ method setMonths([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.months = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMonths
+ 
+ method setShortMonths([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.shortMonths = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setShortMonths
+ 
+ method setShortWeekdays([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.shortWeekdays = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setShortWeekdays
+ 
+ method setWeekdays([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.weekdays = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setWeekdays
+ 
+ method setZoneStrings([[Ljava/lang/String;)V {
+  +START:   #1
+        vR0.zoneStrings = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setZoneStrings
+ 
+ method equals(Ljava/lang/Object;Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if vR0==null goto B15;   
+  +B11:   #1
+        if vR1!=null goto B17;   
+  +B15:   #1
+        return 0;   
+  +B17:   #1
+        if (vR0 instanceof [Ljava/lang/Object;)==0 goto B31;   
+  +B24:   #1
+        if (vR1 instanceof [Ljava/lang/Object;)!=0 goto B37;   
+  +B31:   #1
+        return vR0.equals@this(vR1);   
+  +B37:   #1
+        vR2 = ([Ljava/lang/Object;)(vR0);    
+        vR3 = ([Ljava/lang/Object;)(vR1);    
+        if vR2.length==vR3.length goto B56;   
+  +B54:   #1
+        return 0;   
+  +B56:   #1
+        vi4 = vR2.length;    
+  +B60:   #1
+        vi4--;   
+        if vi4< 0 goto B84;   
+  +B68:   #1
+        if equals@special(vR2[vi4],vR3[vi4])!=0 goto B60;   
+  +B82:   #1
+        return 0;   
+  +B84:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 6 swaps 0 any 7 found 2 equals
+ 
+ method hashCode(Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR0 instanceof [Ljava/lang/Object;)!=0 goto B18;   
+  +B13:   #1
+        return vR0.hashCode@this();   
+  +B18:   #1
+        vR1 = ([Ljava/lang/Object;)(vR0);    
+        vi2 = 0;    
+        vi3 = 0;    
+  +B27:   #1
+        if vi3>=vR1.length goto B49;   
+  +B33:   #1
+        vi2 = (37*hashCode@special(vR1[vi3]));    
+        vi3++;   
+        goto +B27;   [Rii  R ..]
+  +B49:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 6 swaps 0 any 4 found 1 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/text/DateFormatSymbols)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/text/DateFormatSymbols)(vR1);    
+        if equals@special(vR0.ampms,vR2.ampms)==0 goto B130;   
+  +B28:   #1
+        if equals@special(vR0.eras,vR2.eras)==0 goto B130;   
+  +B42:   #1
+        if equals@special(vR0.localPatternChars,vR2.localPatternChars)==0 goto B130;   
+  +B56:   #1
+        if equals@special(vR0.months,vR2.months)==0 goto B130;   
+  +B70:   #1
+        if equals@special(vR0.shortMonths,vR2.shortMonths)==0 goto B130;   
+  +B84:   #1
+        if equals@special(vR0.shortWeekdays,vR2.shortWeekdays)==0 goto B130;   
+  +B98:   #1
+        if equals@special(vR0.weekdays,vR2.weekdays)==0 goto B130;   
+  +B112:   #1
+        if equals@special(vR0.zoneStrings,vR2.zoneStrings)==0 goto B130;   
+  +B126:   #1
+        b0 = 1;    
+        goto +B131b0;   forward return[R i .. ..]
+  +B130:   #8
+        b0 = 0;    
+  +B131b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 18 swaps 0 any 1 found 1 equals
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 87
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+ 
+ method hashCode()I {
+  +START:   #1
+        return (((((((hashCode@special(vR0.ampms) ^ hashCode@special(vR0.eras)) ^ hashCode@special(vR0.localPatternChars)) ^ hashCode@special(vR0.months)) ^ hashCode@special(vR0.shortMonths)) ^ hashCode@special(vR0.shortWeekdays)) ^ hashCode@special(vR0.weekdays)) ^ hashCode@special(vR0.zoneStrings));   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 15 swaps 0 any 0 found 0 hashCode
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/String()[4];    
+        b0[0] = "full";   
+        b0[1] = "long";   
+        b0[2] = "medium";   
+        b0[3] = "short";   
+        formatPrefixes = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 1 <clinit>
+}

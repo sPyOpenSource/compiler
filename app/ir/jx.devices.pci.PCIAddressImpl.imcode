@@ -1,0 +1,69 @@
+class jx/devices/pci/PCIAddressImpl {
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.bus = vi1;   
+        vR0.device = vi2;   
+        vR0.function = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSubfunction(I)Ljx/devices/pci/PCIAddress; {
+  +START:   #1
+        return new jx/devices/pci/PCIAddressImpl(vR0.bus,vR0.device,vi1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getSubfunction
+ 
+ method equals(Ljx/devices/pci/PCIAddress;)Z {
+  +START:   #1
+        if vR0==vR1 goto B44;   
+  +B5:   #1
+        if vR0.bus!=vR1.getBus() goto B48;   
+  +B18:   #1
+        if vR0.device!=vR1.getDevice() goto B48;   
+  +B31:   #1
+        if vR0.function!=vR1.getFunction() goto B48;   
+  +B44:   #1
+        b0 = 1;    
+        goto +B49b0;   forward return[ i . .]
+  +B48:   #3
+        b0 = 0;    
+  +B49b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 1 found 0 equals
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("@PCI(").append@extra(vR0.bus).append@extra(",").append@extra(vR0.device).append@extra(",").append@extra(vR0.function).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 15 swaps 9 any 0 found 0 toString
+ 
+ method getBus()I {
+  +START:   #1
+        return vR0.bus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBus
+ 
+ method getDevice()I {
+  +START:   #1
+        return vR0.device;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDevice
+ 
+ method getFunction()I {
+  +START:   #1
+        return vR0.function;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFunction
+}

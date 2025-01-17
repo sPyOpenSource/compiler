@@ -1,0 +1,728 @@
+class jx/vis/ThreadActivityDiagram {
+ 
+ method usage()V {
+  +START:   #1
+        out.println("<switches.log> <mifout> [-sec] [-reltime] [-text] [-equalized] [-start <timestart>] [-end <timeend>] [-res <timeres>] [-verbose_switch]");   [  i. RR] 
+        out.println("-reltime: relative time; diagram time starts with 0");   [  ii. RR] 
+        out.println("-sec: time in seconds (default is milliseconds)");   [  iii. RR] 
+        out.println("-text: text input format");   [  iiii. RR] 
+        out.println("-equalized: Equidistand thread switches (ignores time)");   [  iiiii. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 10 swaps 5 any 0 found 0 usage
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/vis/ThreadActivityDiagram(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 main
+ 
+ method <init>([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/util/Vector();    [ RR  i][ RR  iR]
+        vR0.athreads = b1;   
+        b1 = new java/util/Vector();    [ RR  i.][ RR  iR]
+        vR0.aswitches = b1;   
+        vR0.opt_verbose_read = 0;   
+        vR0.opt_verbose_switch = 0;   
+        vR0.opt_equalized = 0;   
+        vR0.opt_text = 0;   
+        vR0.opt_optimized = 0;   
+        vR0.opt_reltime = 0;   
+        vR0.opt_sec = 0;   
+        vR0.readahead = 10;   
+        vR0.timerresolution = 100;   
+        vR0.MHZ = 500;   
+        if vR1.length!=0 goto B89;   
+  +B85:   #1
+        usage@special();   [ RR  ..]
+        return;   
+  +B89:   #1
+        vR2 = new java/io/FileInputStream(vR1[0]);    [ RR  i.][ RR . iRR]
+        vR3 = new java/io/FileOutputStream(vR1[1]);    [ RR . i..][ RR . iRR]
+        vl4 = -1;    
+        vl6 = -1;    
+        vl8 = -1;    
+        vi10 = 2;    
+  +B129:   #1
+        if vi10>=vR1.length goto B623;   
+  +B136:   #1
+        vR11 = vR1[vi10];    
+        vi12 = -1;    
+        lswitch (vR11.hashCode@extra()) { 
+           -2086864359:B353
+           1441166:B288
+           1453395:B304
+           1454340:B387
+           45115098:B336
+           45153073:B320
+           590356791:B370
+           1105485536:B240
+           1398069333:B272
+           1560187390:B256
+           ::B401
+        };   
+  +B240:   #1
+        if vR11.equals@extra("-verbose_read")==0 goto B401;   
+  +B250:   #1
+        vi12 = 0;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B256:   #1
+        if vR11.equals@extra("-verbose_switch")==0 goto B401;   
+  +B266:   #1
+        vi12 = 1;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B272:   #1
+        if vR11.equals@extra("-start")==0 goto B401;   
+  +B282:   #1
+        vi12 = 2;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B288:   #1
+        if vR11.equals@extra("-end")==0 goto B401;   
+  +B298:   #1
+        vi12 = 3;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B304:   #1
+        if vR11.equals@extra("-res")==0 goto B401;   
+  +B314:   #1
+        vi12 = 4;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B320:   #1
+        if vR11.equals@extra("-unit")==0 goto B401;   
+  +B330:   #1
+        vi12 = 5;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B336:   #1
+        if vR11.equals@extra("-text")==0 goto B401;   
+  +B346:   #1
+        vi12 = 6;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B353:   #1
+        if vR11.equals@extra("-reltime")==0 goto B401;   
+  +B363:   #1
+        vi12 = 7;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B370:   #1
+        if vR11.equals@extra("-equalized")==0 goto B401;   
+  +B380:   #1
+        vi12 = 8;    
+        goto +B401;   [RRl?l?l?iRiiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B387:   #1
+        if vR11.equals@extra("-sec")==0 goto B401;   
+  +B397:   #1
+        vi12 = 9;    
+  +B401:   #20
+        tswitch (vi12) B456 B464 B472 B492 B512 B534 B554 B562 B570 B578 : B586;   
+  +B456:   #1
+        vR0.opt_verbose_read = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B464:   #1
+        vR0.opt_verbose_switch = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B472:   #1
+        vi10++;   
+        vl4 = ((long)parseInt@special(vR1[vi10])*1000);    
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B492:   #1
+        vi10++;   
+        vl6 = ((long)parseInt@special(vR1[vi10])*1000);    
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B512:   #1
+        vi10++;   
+        vR0.opt_optimized = 1;   
+        vR0.timerresolution = parseInt@special(vR1[vi10]);   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR R ...]
+  +B534:   #1
+        vi10++;   
+        vl8 = ((long)parseInt@special(vR1[vi10])*1000);    
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B554:   #1
+        vR0.opt_text = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B562:   #1
+        vR0.opt_reltime = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B570:   #1
+        vR0.opt_equalized = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B578:   #1
+        vR0.opt_sec = 1;   
+        goto +B617;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR . ...]
+  +B586:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("Unknown option ignored: ").append@extra(vR1[vi10]).toString@extra());   [RRl?l?l?iRi RR iii. RR.] 
+        goto +B623;   [RRl?l?l?iRi RR iii. ...]
+  +B617:   #10
+        vi10++;   
+        goto +B129;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR .... ...]
+  +B623:   #2
+        if vR0.opt_reltime==0 goto B630;   
+  +B630:   #1
+        if vR0.opt_text==0 goto B645;   
+  +B637:   #1
+        vR0.readSwitchesText@this(vR2);   [RRl?l?l?iRi RR .... RR.] 
+        goto +B650;   [RRl?l?l?iRi RR .... ...]
+  +B645:   #1
+        vR0.readSwitchesBinary@this(vR2);   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR .... RR.] 
+  +B650:   #1
+        vR11 = new jx/vis/mif/MIFVisualizer(vR3);    [ RR .... i..][ RR .... iRR]
+        vR12 = new jx/vis/ThreadActivityDiagram$ThreadInfo()[vR0.threads.length];    
+        vi13 = 0;    
+        vi14 = 0;    
+  +B676:   #1
+        if vi14>=vR0.numberOfThreads goto B815;   
+  +B685:   #1
+        vR15 = 0;    
+        vi16 = 268435455;    
+        vi17 = 268435455;    
+        vi18 = -1;    
+        vi19 = 0;    
+  +B702:   #1
+        if vi19>=vR0.threads.length goto B784;   
+  +B712:   #1
+        vR20 = vR0.threads[vi19];    
+        if vR20==null goto B778;   
+  +B726:   #1
+        if vR20.domainID<vi16 goto B756;   
+  +B736:   #1
+        if vR20.domainID!=vi16 goto B778;   
+  +B746:   #1
+        if vR20.threadID>=vi17 goto B778;   
+  +B756:   #1
+        vi16 = vR20.domainID;    
+        vi17 = vR20.threadID;    
+        vR15 = vR20;    
+        vi18 = vi19;    
+  +B778:   #3
+        vi19++;   
+        goto +B702;   [RRl?l?l?iRRiiRiiiiR RR .... ...]
+  +B784:   #1
+        vR0.threads[vi18] = 0;   
+        vR15.number = vi14;   
+        b1 = vi13;    
+        vi13++;   
+        vR12[b1] = vR15;   
+        vi14++;   
+        goto +B676;   [RRl?l?l?iRRiiRiiiiR Ri .... ...]
+  +B815:   #1
+        vR0.threads = vR12;   
+        vR11.init();   [RRl?l?l?iRRiiRiiiiR Ri .... R..] 
+        vi14 = 150;    
+        vi15 = 800;    
+        vi16 = 10;    
+        vi17 = 500;    
+        vR11.drawLine(vi14,vi16,vi14,vi17);   [RRl?l?l?iRRiiiiiiiR Ri .... iiiiR] 
+        vR11.drawLine(vi14,vi17,vi15,vi17);   [RRl?l?l?iRRiiiiiiiR Ri .... iiiiR] 
+        vR18 = new jx/vis/ScalingVisualizer(vR11,vi14,vi16,1000,(vR0.numberOfThreads*10),(vi15-vi14),(vi17-vi16));    [ Ri .... i....][ Ri .... iiiiiiiRR]
+        vi19 = 0;    
+  +B915:   #1
+        if vi19>=(vR0.numberOfThreads*10) goto B1062;   
+  +B927:   #1
+        vR20 = vR0.threads[(vi19/10)];    
+        vR21 = "";    
+        if vR20.name==null goto B976;   
+  +B951:   #1
+        b0 = new java/lang/StringBuilder();    [ Ri .... i........][ Ri .... iR.......]
+        vR21 = b0.append@extra(vR20.name).append@extra(" ").toString@extra();    [RRl?l?l?iRRiiiiiRiRR Ri ii.. R........] [RRl?l?l?iRRiiiiiRiRR Ri iiR. RR.......] [RRl?l?l?iRRiiiiiRiRR Ri iiRR RRR......] 
+  +B976:   #1
+        b0 = new java/lang/StringBuilder();    [ Ri .... i........][ Ri .... iR.......]
+        vR21 = b0.append@extra(vR21).append@extra(vR20.domainID).append@extra(".").append@extra(vR20.threadID).toString@extra();    [RRl?l?l?iRRiiiiiRiRR Ri iii.... R........] [RRl?l?l?iRRiiiiiRiRR Ri iiiR... iR.......] [RRl?l?l?iRRiiiiiRiRR Ri iiiRR.. iRR......] [RRl?l?l?iRRiiiiiRiRR Ri iiiRRR. iRiR.....] [RRl?l?l?iRRiiiiiRiRR Ri iiiRRRR iRiRR....] 
+        vR18.drawText(vR21,-5,(vi19+9),10,2);   [RRl?l?l?iRRiiiiiRiRR Ri iiii... iiiiRR...] 
+        if (vi19%50)!=0 goto B1056;   
+  +B1041:   #1
+        vR18.drawThinLine(0,vi19,1000,vi19);   [RRl?l?l?iRRiiiiiRiRR Ri ....... iiiiR....] 
+  +B1056:   #1
+        vi19+=10;   
+        goto +B915;   [RRl?l?l?iRRiiiiiRiRR Ri ....... .........]
+  +B1062:   #1
+        if compare(vl4,-1)==0 goto B1086;   
+  +B1071:   #1
+        if compare(vl4,vR0.switches[0].timediff)>=0 goto B1097;   
+  +B1086:   #1
+        vl4 = vR0.switches[0].timediff;    
+  +B1097:   #1
+        if compare(vl6,-1)==0 goto B1116;   
+  +B1106:   #1
+        if compare(vl6,vR0.endTime)<=0 goto B1122;   
+  +B1116:   #1
+        vl6 = vR0.endTime;    
+  +B1122:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        b0.print(b1.append@extra("StartTime: ").append@extra(vl4).toString@extra());   [RRl?l?l?iRRiiiiiRiRR RR ii..... RR.......] 
+        if compare(vl4,vR0.switches[0].timediff)==0 goto B1201;   
+  +B1163:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        b0.print(b1.append@extra(" (was ").append@extra(vR0.switches[0].timediff).append@extra(")").toString@extra());   [RRl?l?l?iRRiiiiiRiRR RR iii.... RR.......] 
+  +B1201:   #1
+        out.println();   [RRl?l?l?iRRiiiiiRiRR RR ....... R........] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        b0.print(b1.append@extra("Endtime: ").append@extra(vl6).toString@extra());   [RRl?l?l?iRRiiiiiRiRR RR ii..... RR.......] 
+        if compare(vl6,vR0.endTime)==0 goto B1276;   
+  +B1243:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        b0.print(b1.append@extra(" (was ").append@extra(vR0.endTime).append@extra(")").toString@extra());   [RRl?l?l?iRRiiiiiRiRR RR iii.... RR.......] 
+  +B1276:   #1
+        out.println();   [RRl?l?l?iRRiiiiiRiRR RR ....... R........] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        b0.println(b1.append@extra("Diff: ").append@extra((vl6-vl4)).toString@extra());   [RRl?l?l?iRRiiiiiRiRR RR ii..... RR.......] 
+        vl20 = (vl6-vl4);    
+        if vR0.opt_equalized!=0 goto B1367;   
+  +B1325:   #1
+        vR19 = new jx/vis/ScalingVisualizerLong(vR11,(long)vi14,(long)vi16,vl20,(long)(vR0.numberOfThreads*10),(long)(vi15-vi14),(long)(vi17-vi16));    [ RR ....... i........][ RR ....... illllllRR]
+        goto +B1409;   [RRl?l?l?iRRiiiiiRRlR RR ....... .........]
+  +B1367:   #1
+        vR19 = new jx/vis/ScalingVisualizerLong(vR11,(long)vi14,(long)vi16,(long)vR0.nswitches,(long)(vR0.numberOfThreads*10),(long)(vi15-vi14),(long)(vi17-vi16));    [ RR ....... i........][ RR ....... illllllRR]
+  +B1409:   #1
+        out.print("Generating MIF:   0% ");   [RRl?l?l?iRRiiiiiRRlR RR i...... RR.......] 
+        vi22 = (vR0.nswitches/5);    
+        if vR0.opt_equalized==0 goto B1612;   
+  +B1432:   #1
+        vi23 = 0;    
+  +B1435:   #1
+        if vi23>=vR0.nswitches goto B1504;   
+  +B1444:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ....... i........][ RR ....... iR.......]
+        vR19.drawText(b1.append@extra("").append@extra(vi23).toString@extra(),(long)vi23,(long)((vR0.numberOfThreads*10)+10),5,3);   [RRl?l?l?iRRiiiiiRRlRii RR ii..... i??????RR] 
+        vi23 = (vi23+(vR0.nswitches/10));    
+        goto +B1435;   [RRl?l?l?iRRiiiiiRRlRii RR ii..... .........]
+  +B1504:   #1
+        vi23 = 0;    
+  +B1507:   #1
+        if vi23>=vR0.nswitches goto B1609;   
+  +B1516:   #1
+        vR24 = vR0.switches[vi23];    
+        vR19.drawRect((long)vi23,(long)(vR24.to.number*10),1,10,"5");   [RRl?l?l?iRRiiiiiRRlRiiR RR R...... R????????R] 
+        if (vi23%vi22)!=0 goto B1603;   
+  +B1562:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        b0.print(b1.append@extra("").append@extra(((vi23*100)/vR0.nswitches)).append@extra("%").toString@extra());   [RRl?l?l?iRRiiiiiRRlRiiR RR iiii... RR........] 
+  +B1603:   #1
+        vi23++;   
+        goto +B1507;   [RRl?l?l?iRRiiiiiRRlRiiR RR ....... ..........]
+  +B1609:   #1
+        goto +B2514;   [RRl?l?l?iRRiiiiiRRlRiiR RR ....... ..........]
+  +B1612:   #1
+        vR23 = new jx/vis/ScalingVisualizerLong(vR11,(long)vi14,(long)vi16,vl20,1000,(long)(vi15-vi14),(long)(vi17-vi16));    [ RR ....... i.........][ RR ....... illllllRR.]
+        if compare(vl8,-1)!=0 goto B1663;   
+  +B1655:   #1
+        vl8 = (vl20/10);    
+  +B1663:   #1
+        vl24 = 0;    
+  +B1666:   #1
+        if compare(vl24,vl20)>=0 goto B1922;   
+  +B1674:   #1
+        if vR0.opt_reltime==0 goto B1688;   
+  +B1681:   #1
+        vl27 = vl24;    
+        goto +B1695;   [RRl?l?l?iRRiiiiiRRlRiRl??l RR ....... ..........]
+  +B1688:   #1
+        vl27 = (vl24+vl4);    
+  +B1695:   #1
+        if vR0.opt_sec==0 goto B1713;   
+  +B1702:   #1
+        vl27 = (vl27/1000000000);    
+        goto +B1721;   [RRl?l?l?iRRiiiiiRRlRiRl??l RR ....... ..........]
+  +B1713:   #1
+        vl27 = (vl27/1000000);    
+  +B1721:   #1
+        if compare(vl27,1000)<=0 goto B1861;   
+  +B1730:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        vR26 = b0.append@extra((vl27/1000)).append@extra(",").toString@extra();    [RRl?l?l?iRRiiiiiRRlRiRl??l RR i...... R.........] [RRl?l?l?iRRiiiiiRRlRiRl??l RR iR..... RR........] [RRl?l?l?iRRiiiiiRRlRiRl??l RR iRR.... R??R......] 
+        vl29 = (vl27-((vl27/1000)*1000));    
+        if compare(vl29,100)>=0 goto B1804;   
+  +B1781:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        vR26 = b0.append@extra(vR26).append@extra("0").toString@extra();    [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR i...... R.........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iR..... RR........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iRR.... RRR.......] 
+  +B1804:   #1
+        if compare(vl29,10)>=0 goto B1836;   
+  +B1813:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        vR26 = b0.append@extra(vR26).append@extra("0").toString@extra();    [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR i...... R.........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iR..... RR........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iRR.... RRR.......] 
+  +B1836:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        vR26 = b0.append@extra(vR26).append@extra(vl29).toString@extra();    [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR ....... R.........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR R...... ??R.......] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR RR..... ??RR......] 
+        goto +B1883;   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR ....... ..........]
+  +B1861:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ....... i.........][ RR ....... iR........]
+        vR26 = b0.append@extra("").append@extra(vl27).toString@extra();    [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR i...... R.........] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iR..... ??R.......] [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR iRR.... ??RR......] 
+  +B1883:   #1
+        vR23.drawText(vR26,vl24,1040,30,3);   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR ....... i??????RR.] 
+        vR23.drawThinLine(vl24,0,vl24,1000);   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR ....... ????????R.] 
+        vl24 = (vl24+vl8);    
+        goto +B1666;   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR ....... ..........]
+  +B1922:   #1
+        if vR0.opt_sec==0 goto B1955;   
+  +B1929:   #1
+        vR23.drawText("Time in Seconds",(vl20/2),1070,30,3,0,1);   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR i...... iii??????RR] 
+        goto +B1978;   [RRl?l?l?iRRiiiiiRRlRiRl?Rl?l RR i...... ...........]
+  +B1955:   #1
+        vR23.drawText("Time in Milliseconds",(vl20/2),1070,30,3,0,1);   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR i...... iii??????RR] 
+  +B1978:   #1
+        vl25 = 0;    
+        vi24 = 0;    
+  +B1984:   #1
+        if vi24>=vR0.nswitches goto B2025;   
+  +B1993:   #1
+        if compare(vl25,vl4)< 0 goto B2004;   
+  +B2001:   #1
+        goto +B2025;   [RRl?l?l?iRRiiiiiRRlRiRilRl?l RR ....... ...........]
+  +B2004:   #1
+        vl25 = (vl25+vR0.switches[vi24].timediff);    
+        vi24++;   
+        goto +B1984;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ....... ...........]
+  +B2025:   #2
+        vl25 = 0;    
+        vR27 = vR0.switches[(vi24-1)].to;    
+  +B2042:   #1
+        if vi24>=vR0.nswitches goto B2505;   
+  +B2051:   #1
+        if compare(vl25,vl20)>=0 goto B2505;   
+  +B2059:   #1
+        vR28 = "5";    
+        if vR27==null goto B2370;   
+  +B2069:   #1
+        vi29 = (vi24+1);    
+        vl30 = vR0.switches[vi24].timediff;    
+        if vR0.opt_optimized==0 goto B2268;   
+  +B2094:   #1
+        if compare(vl30,(long)vR0.timerresolution)>=0 goto B2268;   
+  +B2105:   #1
+        vl32 = 0;    
+        vi34 = vi29;    
+  +B2112:   #1
+        if vi34>=(vi29+vR0.readahead) goto B2247;   
+  +B2124:   #1
+        if vi34>=(vR0.nswitches-1) goto B2247;   
+  +B2135:   #1
+        vl32 = (vl32+vR0.switches[vi34].timediff);    
+        if compare(vl32,(long)vR0.timerresolution)> 0 goto B2247;   
+  +B2161:   #1
+        if compare(vR0.switches[(vi34+1)].timediff,(long)vR0.timerresolution)<=0 goto B2185;   
+  +B2182:   #1
+        goto +B2247;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ....... ...........]
+  +B2185:   #1
+        if vR0.switches[vi34].to!=vR27 goto B2241;   
+  +B2200:   #1
+        vi29 = vi34;    
+        vR0.switches[vi34].to = 0;   
+        vl30 = (vl30+(vl32+vR0.switches[(vi34+1)].timediff));    
+        vl32 = 0;    
+        vi34++;   
+  +B2241:   #1
+        vi34++;   
+        goto +B2112;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ....... ...........]
+  +B2247:   #4
+        if compare(vl30,vR0.switches[vi24].timediff)==0 goto B2268;   
+  +B2263:   #1
+        vR28 = "0";    
+  +B2268:   #3
+        if compare((vl25+vl30),vl20)<=0 goto B2286;   
+  +B2279:   #1
+        vl30 = (vl20-vl25);    
+  +B2286:   #1
+        vR19.drawRect(vl25,(long)(vR27.number*10),vl30,10,vR28);   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ....... R????????R.] 
+        if vR0.opt_verbose_switch==0 goto B2367;   
+  +B2318:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i..........][ RR ....... iR.........]
+        b0.println(b1.append@extra(vR27.number).append@extra(":").append@extra(vl25).append@extra("..").append@extra((vl25+vl30)).toString@extra());   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR iiii.... RR.........] 
+  +B2367:   #1
+        goto +B2423;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ........ ...........]
+  +B2370:   #1
+        if vR0.opt_verbose_switch==0 goto B2423;   
+  +B2377:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i..........][ RR ........ iR.........]
+        b0.println(b1.append@extra("skip ").append@extra(vi24).append@extra("timediff=").append@extra(vR0.switches[vi24].timediff).toString@extra());   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR iii..... RR.........] 
+  +B2423:   #2
+        vl25 = (vl25+vR0.switches[vi24].timediff);    
+        vR27 = vR0.switches[vi24].to;    
+        if (vi24%vi22)!=0 goto B2499;   
+  +B2458:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i..........][ RR ........ iR.........]
+        b0.print(b1.append@extra("").append@extra(((vi24*100)/vR0.nswitches)).append@extra("%").toString@extra());   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR iiii.... RR.........] 
+  +B2499:   #1
+        vi24++;   
+        goto +B2042;   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR ........ ...........]
+  +B2505:   #2
+        out.println("100%");   [RRl?l?l?iRRiiiiiRRlRiRilRRRil?l?i RR i....... RR.........] 
+  +B2514:   #1
+        vR11.finish();   [RRl?l?l?iRRiiiiiRRlRiiR RR ........ R..........] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 214/214 wr 219 swaps 58 any 35 found 0 <init>
+ 
+ method readSwitchesBinary(Ljava/io/InputStream;)V {
+  +START:   #1
+        b0 = new jx/formats/LittleEndianInputStream;    
+        b1 = b0;    
+        b2 = new java/io/BufferedInputStream(vR1);    [ RRR  i][ RRR . iRR]
+        b1.<init>@special(b2);   [ RRR . RR.] 
+        vR2 = b0;    
+        vR0.endTime = 0;   
+        vi6 = vR2.readInt@extra();    [R RRR . R..] 
+        vR0.threads = new jx/vis/ThreadActivityDiagram$ThreadInfo()[vi6];   
+        vi5 = 0;    
+  +B39:   #1
+        if vi5>=vi6 goto B126;   
+  +B46:   #1
+        vi7 = vR2.readInt@extra();    [R??ii RRR . R..] 
+        vi8 = vR2.readInt@extra();    [R??iii RRR . R..] 
+        vR9 = vR2.readString2ByteAligned@extra();    [R??iiii RRR . R..] 
+        vR10 = new jx/vis/ThreadActivityDiagram$ThreadInfo(vR0);    [ RRR . i..][ RRR . iRR]
+        vR10.domainID = vi7;   
+        vR10.threadID = vi8;   
+        b2 = vR0.numberOfThreads;    
+        b1 = b2;    
+        vR0.numberOfThreads = (b2+1);   
+        vR10.number = b1;   
+        vR10.name = vR9;   
+        vR0.threads[vi5] = vR10;   
+        vi5++;   
+        goto +B39;   [R??iiiiRR Rii . ...]
+  +B126:   #2
+        vR0.nswitches = vR2.readInt@extra();   
+        vR0.switches = new jx/vis/ThreadActivityDiagram$Switch()[vR0.nswitches];   
+        if vR0.opt_verbose_read!=0 goto B161;   
+  +B152:   #1
+        out.print("Reading data:    0% ");   [R??iiiiRR Rii i. RR.] 
+  +B161:   #1
+        vi7 = (vR0.nswitches/5);    
+        vi5 = 0;    
+  +B172:   #1
+        if vi5>=vR0.nswitches goto B469;   
+  +B181:   #1
+        vl3 = vR2.readLong@extra();     
+        vl3 = ((vl3*1000)/(long)vR0.MHZ);    
+        vi8 = vR2.readInt@extra();    [Rl?iiiiRR Rii .. R..] 
+        vi9 = vR2.readInt@extra();    [Rl?iiiiRR Rii .. R..] 
+        vR10 = new jx/vis/ThreadActivityDiagram$Switch(vR0);    [ Rii .. i..][ Rii .. iRR]
+        vR10.timediff = vl3;   
+        if vR0.opt_verbose_read==0 goto B308;   
+  +B233:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi .. i..][ RRi .. iR.]
+        b0.println(b1.append@extra(vi5).append@extra(": ").append@extra(vl3).append@extra(", ").append@extra(vi8).append@extra(".").append@extra(vi9).toString@extra());   [Rl?iiiiiR RRi iiii...... RR.......] 
+        if vi9!=1 goto B308;   
+  -B291:   #1
+        out.println("GC");   [Rl?iiiiiR RRi i......... RR.......] 
+        throw new java/lang/Error();   
+  +B308:   #2
+        vR11 = vR0.threads;    
+        vi12 = vR11.length;    
+        vi13 = 0;    
+  +B322:   #1
+        if vi13>=vi12 goto B372;   
+  +B329:   #1
+        vR14 = vR11[vi13];    
+        if vi8!=vR14.domainID goto B366;   
+  +B346:   #1
+        if vi9!=vR14.threadID goto B366;   
+  +B356:   #1
+        vR10.to = vR14;   
+        goto +B372;   [Rl?iiiiiRRiiR RRi .......... .........]
+  +B366:   #2
+        vi13++;   
+        goto +B322;   [Rl?iiiiiRRiiR RRi .......... .........]
+  +B372:   #2
+        if vR10.to!=null goto B388;   
+  -B380:   #1
+        throw new java/lang/Error();   
+  +B388:   #1
+        vR0.endTime = (vR0.endTime+vl3);   
+        vR0.switches[vi5] = vR10;   
+        if vR0.opt_verbose_read!=0 goto B463;   
+  +B414:   #1
+        if (vi5%vi7)!=0 goto B463;   
+  +B422:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi .......... i........][ RRi .......... iR.......]
+        b0.print(b1.append@extra("").append@extra(((vi5*100)/vR0.nswitches)).append@extra("%").toString@extra());   [Rl?iiiiiRRiiR RRi iiii...... RR.......] 
+  +B463:   #2
+        vi5++;   
+        goto +B172;   [Rl?iiiiiRRiiR RRi .......... .........]
+  +B469:   #2
+        goto +B482;   [Rl?iiiiiRRiiR RRi .......... .........]
+  +H472<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        vR0.nswitches = (vi5-1);   
+  +B482:   #1
+        if vR0.opt_verbose_read!=0 goto B498;   
+  +B489:   #1
+        out.println("100%");   [Rl?iiiiiRRiiR RRi i......... RR.......] 
+  +B498:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+126 - 469 handler 472 type 342
+ }
+// Register: rd 76/76 wr 56 swaps 13 any 14 found 0 readSwitchesBinary
+ 
+ method readSwitchesText(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR2 = new java/io/DataInputStream(vR1);    [ RRi  i][ RRi . iRR]
+        vR3 = new java/util/Vector();    [ RRi . i..][ RRi . iR.]
+        vR4 = new java/util/Vector();    [ RRi . i..][ RRi . iR.]
+  +B26:   #1
+        b0 = vR2.readLine@extra();    [RRR RRi . R..] 
+        vR5 = b0;    
+        if b0==null goto B248;   
+  +B36:   #1
+        vR5 = vR5.trim@extra();    [RRRR RRi . R..] 
+        if vR5.length@extra()!=0 goto B54;   
+  +B51:   #1
+        goto +B248;   [RRRR RRi . ...]
+  +B54:   #1
+        vR6 = vR5.toCharArray@extra();    [RRRRRil?iiRR RRi . R..] 
+        vi7 = 0;    
+        vi8 = 0;    
+  +B67:   #1
+        if vi7>=vR6.length goto B107;   
+  +B75:   #1
+        if vR6[vi7]==46 goto B107;   
+  +B85:   #1
+        vi8 = (((vi8*10)+vR6[vi7])-48);    
+        vi7++;   
+        goto +B67;   [RRRRRii?iiRR RRi . ...]
+  +B107:   #2
+        vi9 = 0;    
+        vi7++;   
+  +B113:   #1
+        if vi7>=vR6.length goto B153;   
+  +B121:   #1
+        if vR6[vi7]==32 goto B153;   
+  +B131:   #1
+        vi9 = (((vi9*10)+vR6[vi7])-48);    
+        vi7++;   
+        goto +B113;   [RRRRRiiiiiRR RRi . ...]
+  +B153:   #2
+        vR10 = new jx/vis/ThreadActivityDiagram$ThreadInfo(vR0);    [ RRi . i..][ RRi . iRR]
+        vR10.domainID = vi8;   
+        vR10.threadID = vi9;   
+        b2 = vR0.numberOfThreads;    
+        b1 = b2;    
+        vR0.numberOfThreads = (b2+1);   
+        vR10.number = b1;   
+        if vi7!=vR6.length goto B210;   
+  +B201:   #1
+        vR10.name = 0;   
+        goto +B238;   [RRRRRiiiRiRR Rii . ...]
+  +B210:   #1
+        vi7++;   
+        b1 = new java/lang/String(vR6,vi7,(vR6.length-vi7));    [ RRi . i..][ RRi . iiiRR]
+        vR10.name = b1.trim@extra();   
+  +B238:   #1
+        vR4.addElement@extra(vR10);   [RRRRRiiiRiRR RRi . RR...] 
+        goto +B26;   [RRRRRiiiRiRR RRi . .....]
+  +B248:   #2
+        vR0.threads = new jx/vis/ThreadActivityDiagram$ThreadInfo()[vR4.size@extra()];   
+        vR4.copyInto(vR0.threads);   [RRRR RRi i RR...] 
+        vR4 = 0;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi i i....][ RRi i iR...]
+        b0.println(b1.append@extra(vR0.threads.length).append@extra(" threads.").toString@extra());   [RRRR RRi iiii. RR...] 
+        vR0.endTime = 0;   
+  +B307:   #3
+        b0 = vR2.readLine@extra();    [RRRR RRi ..... R....] 
+        vR5 = b0;    
+        if b0==null goto B629;   
+  +B317:   #1
+        vR5 = vR5.trim@extra();    [RRRR RRi ..... R....] 
+        if vR5.length@extra()!=0 goto B335;   
+  +B332:   #1
+        goto +B307;   [RRRR RRi ..... .....]
+  +B335:   #1
+        if vR5.charAt@extra(0)!=35 goto B349;   
+  +B346:   #1
+        goto +B307;   [RRRR RRi ..... .....]
+  +B349:   #1
+        vR6 = vR5.toCharArray@extra();    [RRRR RRi ..... R....] 
+        vi7 = 0;    
+        vl8 = 0;    
+  +B362:   #1
+        if vi7>=vR6.length goto B405;   
+  +B370:   #1
+        if vR6[vi7]==32 goto B405;   
+  +B380:   #1
+        vl8 = (((vl8*10)+(long)vR6[vi7])-48);    
+        vi7++;   
+        goto +B362;   [RRRRRil RRi ..... .....]
+  +B405:   #3
+        if vi7>=vR6.length goto B429;   
+  +B413:   #1
+        if vR6[vi7]!=32 goto B429;   
+  +B423:   #1
+        vi7++;   
+        goto +B405;   [RRRRRil RRi ..... .....]
+  +B429:   #2
+        vi10 = 0;    
+  +B432:   #1
+        if vi7>=vR6.length goto B472;   
+  +B440:   #1
+        if vR6[vi7]==46 goto B472;   
+  +B450:   #1
+        vi10 = (((vi10*10)+vR6[vi7])-48);    
+        vi7++;   
+        goto +B432;   [RRRRRil?i RRi ..... .....]
+  +B472:   #2
+        vi11 = 0;    
+        vi7++;   
+  +B478:   #1
+        if vi7>=vR6.length goto B518;   
+  +B486:   #1
+        if vR6[vi7]==32 goto B518;   
+  +B496:   #1
+        vi11 = (((vi11*10)+vR6[vi7])-48);    
+        vi7++;   
+        goto +B478;   [RRRRRil?ii RRi ..... .....]
+  +B518:   #2
+        vR12 = new jx/vis/ThreadActivityDiagram$Switch(vR0);    [ RRi ..... i....][ RRi ..... iRR..]
+        vR12.timediff = vl8;   
+        vi7 = 0;    
+  +B538:   #1
+        if vi7>=vR0.threads.length goto B593;   
+  +B548:   #1
+        vR13 = vR0.threads[vi7];    
+        if vi10!=vR13.domainID goto B587;   
+  +B567:   #1
+        if vi11!=vR13.threadID goto B587;   
+  +B577:   #1
+        vR12.to = vR13;   
+        goto +B593;   [RRRRRil?iiRR RRi ..... .....]
+  +B587:   #2
+        vi7++;   
+        goto +B538;   [RRRRRil?iiRR RRi ..... .....]
+  +B593:   #2
+        if vR12.to!=null goto B609;   
+  -B601:   #1
+        throw new java/lang/Error();   
+  +B609:   #1
+        vR0.endTime = (vR0.endTime+vl8);   
+        vR3.addElement@extra(vR12);   [RRRRRil?iiRR RRi ..... RR...] 
+        goto +B307;   [RRRRRil?iiRR RRi ..... .....]
+  +B629:   #1
+        vR0.switches = new jx/vis/ThreadActivityDiagram$Switch()[vR3.size@extra()];   
+        vR3.copyInto(vR0.switches);   [RRRRRil?iiRR RRi i.... RR...] 
+        vR0.nswitches = vR0.switches.length;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi i.... i....][ RRi i.... iR...]
+        b0.println(b1.append@extra(vR0.switches.length).append@extra(" switches.").toString@extra());   [RRRRRil?iiRR RRi iiii. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 114/114 wr 59 swaps 8 any 29 found 0 readSwitchesText
+}

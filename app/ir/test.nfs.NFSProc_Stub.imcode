@@ -1,0 +1,143 @@
+class test/nfs/NFSProc_Stub {
+ 
+ method <init>(Ljx/rpc/RPC;Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setAuth(Ljx/rpc/Auth;Ljx/rpc/Auth;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setAuth
+ 
+ method nullproc()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 nullproc
+ 
+ method getattr(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/AttrStat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getattr
+ 
+ method setattr(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/AttrStat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setattr
+ 
+ method root()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 root
+ 
+ method lookup(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lookup
+ 
+ method readlink(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/ReadLinkRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readlink
+ 
+ method read(Ljx/rpcsvc/nfs2/FHandle;III)Ljx/rpcsvc/nfs2/ReadRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 read
+ 
+ method writeCache()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 writeCache
+ 
+ method write(Ljx/rpcsvc/nfs2/FHandle;IIILjx/rpcsvc/nfs2/NFSData;)Ljx/rpcsvc/nfs2/AttrStat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 write
+ 
+ method create(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 create
+ 
+ method remove(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 remove
+ 
+ method rename(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 rename
+ 
+ method link(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 link
+ 
+ method symlink(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/DirPath;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 symlink
+ 
+ method mkdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;Ljx/rpcsvc/nfs2/SAttr;)Ljx/rpcsvc/nfs2/DirOpRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 mkdir
+ 
+ method rmdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/Name;)Ljx/rpcsvc/nfs2/Stat; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 rmdir
+ 
+ method readdir(Ljx/rpcsvc/nfs2/FHandle;Ljx/rpcsvc/nfs2/NFSCookie;I)Ljx/rpcsvc/nfs2/ReadDirRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readdir
+ 
+ method statfs(Ljx/rpcsvc/nfs2/FHandle;)Ljx/rpcsvc/nfs2/StatFSRes; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 statfs
+}

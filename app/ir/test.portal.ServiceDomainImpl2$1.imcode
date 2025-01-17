@@ -1,0 +1,33 @@
+class test/portal/ServiceDomainImpl2$1 {
+ 
+ method <init>(Ltest/portal/ServiceDomainImpl2;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(vR2);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+  +B4:   #2
+        b0 = vi2;    
+        vi2++;   
+        if b0<=100000 goto B26;   
+  +B13:   #1
+        vi2 = 0;    
+        vi3++;   
+        out.print("p");   [?ii i i. RR] 
+  +B26:   #1
+        if vi3!=100 goto B4;   
+  +B32:   #1
+        vi3 = 0;    
+        yield@special();   [?ii i .. ..]
+        goto +B4;   [?ii i .. ..]
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 1 any 5 found 0 run
+}

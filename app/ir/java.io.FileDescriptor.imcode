@@ -1,0 +1,48 @@
+class java/io/FileDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fd = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fd = -1;   
+        vR0.fd = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method valid()Z {
+  +START:   #1
+        if vR0.fd< 0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 valid
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/io/FileDescriptor(0);    [ R  i][ R . iiR]
+        in = b0;   
+        b0 = new java/io/FileDescriptor(1);    [ R . i..][ R . iiR]
+        out = b0;   
+        b0 = new java/io/FileDescriptor(2);    [ R . i..][ R . iiR]
+        err = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 0 found 3 <clinit>
+}

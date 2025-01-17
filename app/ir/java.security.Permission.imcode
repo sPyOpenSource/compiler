@@ -1,0 +1,41 @@
+class java/security/Permission {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.name = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method checkGuard(Ljava/lang/Object;)V {
+  +START:   #1
+        vR2 = getSecurityManager@special();    [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 checkGuard
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("'"").append@extra(vR0.getClass@this().getName@extra()).append@extra("" "").append@extra(vR0.getName@this()).append@extra("" "").append@extra(vR0.getActions@this()).append@extra("")'").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 16 swaps 7 any 0 found 0 toString
+ 
+ method newPermissionCollection()Ljava/security/PermissionCollection; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 newPermissionCollection
+}

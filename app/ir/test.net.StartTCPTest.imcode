@@ -1,0 +1,198 @@
+class test/net/StartTCPTest {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/net/NetInit)(waitUntilPortalAvailable@special(vR1,vR0[0]));    
+        vR3 = (jx/zero/MemoryManager)(waitUntilPortalAvailable@special(vR1,"MemoryManager"));    
+        vi4 = 4;    
+        if vR0.length!=2 goto B42;   
+  +B34:   #1
+        vi4 = parseInt@special(vR0[1]);    [RRRi RRR R.. R.]
+  +B42:   #1
+        if vi4!=1 goto B167;   
+  +B48:   #1
+        vR5 = new jx/zero/Memory()[100];    
+        vi6 = 0;    
+  +B58:   #1
+        if vi6>=vR5.length goto B83;   
+  +B66:   #1
+        vR5[vi6] = vR2.getTCPBuffer();   
+        vi6++;   
+        goto +B58;   [RRRiRi RRR ... ..]
+  +B83:   #1
+        b2 = new jx/net/IPv4Address("192.168.34.20");    [ RRR ... i.][ RRR ... iRR]
+        vR6 = vR2.getTCPSocket(6666,b2,vR5);    [RRRiRi RRR ... RRiR] 
+        b1 = new jx/net/IPv4Address("192.168.34.2");    [ RRR ... i...][ RRR ... iRR.]
+        vR6.open(b1,6666);   [RRRiRR RRR ... iRR.] 
+        vR7 = new byte[10];    
+        vi8 = 0;    
+  +B133:   #1
+        if vi8>=vR7.length goto B155;   
+  +B141:   #1
+        vR7[vi8] = (byte)vi8;   
+        vi8++;   
+        goto +B133;   [RRRiRRRi RRR ... ....]
+  +B155:   #1
+        vR6.send(vR7);   [RRRiRRRi RRR ... RR..] 
+        goto +B898;   forward return[RRRiRRRi RRR ... ....]
+  +B167:   #1
+        if vi4!=2 goto B273;   
+  +B173:   #1
+        b0 = new java/net/Socket;    
+        b1 = b0;    
+        b2 = new jx/net/IPv4Address("192.168.34.2");    [ RRR ... i...][ RRR ... iRR.]
+        b1.<init>@special(b2.toString(),6666);   [RRRiRRRi RRR i.. iRR.] 
+        vR5 = b0;    
+        out.println("new Socket created");   [RRRiRRRi RRR ii. RR..] 
+        vR6 = vR5.getOutputStream();    [RRRiRRRi RRR ii. R...] 
+        vi7 = 65;    
+  +B216:   #1
+        if vi7>=80 goto B236;   
+  +B223:   #1
+        vR6.write(vi7);   [RRRiRRii RRR ... iR..] 
+        vi7++;   
+        goto +B216;   [RRRiRRii RRR ... ....]
+  +B236:   #1
+        out.println("flushing");   [RRRiRRii RRR i.. RR..] 
+        vR6.flush();   [RRRiRRii RRR i.. R...] 
+        out.println("flushed->closing");   [RRRiRRii RRR ii. RR..] 
+        vR5.close();   [RRRiRRii RRR ii. R...] 
+        out.println("closed");   [RRRiRRii RRR iii. RR..] 
+        goto +B898;   forward return[RRRiRRii RRR iii. ....]
+  +B273:   #1
+        if vi4!=3 goto B397;   
+  +B279:   #1
+        vR5 = new jx/zero/Memory()[100];    
+        vi6 = 0;    
+  +B289:   #1
+        if vi6>=vR5.length goto B314;   
+  +B297:   #1
+        vR5[vi6] = vR2.getTCPBuffer();   
+        vi6++;   
+        goto +B289;   [RRRiRiii RRR .... ....]
+  +B314:   #1
+        b2 = new jx/net/IPv4Address("192.168.34.20");    [ RRR .... i...][ RRR .... iRR.]
+        vR6 = vR2.getTCPSocket(6666,b2,vR5);    [RRRiRiii RRR .... RRiR] 
+        vR7 = new jx/zero/Memory()[100];    
+        vi8 = 0;    
+  +B346:   #1
+        if vi8>=vR7.length goto B371;   
+  +B354:   #1
+        vR7[vi8] = vR2.getTCPBuffer();   
+        vi8++;   
+        goto +B346;   [RRRiRRRi RRR .... ....]
+  +B371:   #1
+        vR6.accept(vR7);   [RRRiRRRi RRR .... RR..] 
+  +B381:   #1
+        out.println(vR6.readFromInputBuffer());   [RRRiRRRi RRR i... RR..] 
+        goto +B381;   [RRRiRRRi RRR i... ....]
+  +B397:   #1
+        if vi4!=4 goto B439;   
+  +B403:   #1
+        vR5 = new java/net/ServerSocket(6666);    [ RRR .... i...][ RRR .... iiR.]
+  +B415:   #1
+        vR6 = vR5.accept();    [RRRiRRRi RRR .... R...] 
+        b0 = new test/net/StartTCPTest$1("receiver",vR6);    [ RRR .... i...][ RRR .... iRRR]
+        b0.start();   [RRRiRRRi RRR .... R...] 
+        goto +B415;   [RRRiRRRi RRR .... ....]
+  +B439:   #1
+        if vi4!=5 goto B510;   
+  +B445:   #1
+        vR5 = new java/net/ServerSocket(6666);    [ RRR .... i...][ RRR .... iiR.]
+        vR6 = vR5.accept();    [RRRiRRRi RRR .... R...] 
+        vR7 = vR6.getInputStream();    [RRRiRRRi RRR .... R...] 
+        vR8 = vR6.getOutputStream();    [RRRiRRRi RRR .... R...] 
+  +B478:   #1
+        vi9 = 65;    
+  +B482:   #1
+        if vi9>=90 goto B507;   
+  +B489:   #1
+        vR8.write(vi9);   [RRRiRRRRi RRR .... iR..] 
+        vR8.flush();   [RRRiRRRRi RRR .... R...] 
+        vi9++;   
+        goto +B482;   [RRRiRRRRi RRR .... ....]
+  +B507:   #1
+        goto +B478;   [RRRiRRRRi RRR .... ....]
+  +B510:   #1
+        if vi4!=6 goto B704;   
+  +B517:   #1
+        vR5 = new java/net/ServerSocket(6666);    [ RRR .... i...][ RRR .... iiR.]
+        vR6 = (jx/zero/MemoryManager)(vR1.lookup("MemoryManager"));    
+        vi7 = 0;    
+  +B545:   #1
+        if vi7>=10 goto B561;   
+  +B552:   #1
+        yield@special();   [RRRiRRiRi RRR .... ....]
+        vi7++;   
+        goto +B545;   [RRRiRRiRi RRR .... ....]
+  +B561:   #1
+        vi7 = vR6.getTotalFreeMemory();    [RRRiRRiRi RRR .... R...] 
+  +B570:   #1
+        vR8 = vR5.accept();    [RRRiRRiRi RRR .... R...] 
+        vi9 = vR6.getTotalFreeMemory();    [RRRiRRiRi RRR .... R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .... i...][ RRR .... iR..]
+        b0.println(b1.append@extra("free mem: ").append@extra(vi9).append@extra("; diff to start: ").append@extra((vi7-vi9)).toString@extra());   [RRRiRRiRi RRR iiii... RR...] 
+        out.println("accepted,... starting domain");   [RRRiRRiRi RRR iiiii.. RR...] 
+        vR10 = "Servlet";    
+        vR11 = "test_net.jll";    
+        vR12 = "test/net/TCPWorker";    
+        vR13 = 0;    
+        vi14 = 40000;    
+        vi15 = 10000;    
+        vi16 = 80000;    
+        vR17 = new java/lang/String()[0];    
+        b0 = new java/lang/Object()[1];    
+        b0[0] = vR8;   
+        vR18 = b0;    
+        vR19 = createDomain@special(vR10,vR11,vR12,vR13,vi14,vi15,vi16,vR17,vR18);    [RRRiRRiRiRRRRiiiRR RRR iiiii.. RRiiiRRRR]
+        goto +B570;   [RRRiRRiRiRRRRiiiRRR RRR iiiii.. .........]
+  +B704:   #1
+        if vi4!=7 goto B898;   
+  +B711:   #1
+        vR5 = new java/net/ServerSocket(6666);    [ RRR ....... i........][ RRR ....... iiR......]
+        vR6 = (jx/zero/MemoryManager)(vR1.lookup("MemoryManager"));    
+        vi7 = 0;    
+  +B739:   #1
+        if vi7>=10 goto B755;   
+  +B746:   #1
+        yield@special();   [RRRiRRiRiRRRRiiiRRR RRR ....... .........]
+        vi7++;   
+        goto +B739;   [RRRiRRiRiRRRRiiiRRR RRR ....... .........]
+  +B755:   #1
+        vi7 = vR6.getTotalFreeMemory();    [RRRiRRiRiRRRRiiiRRR RRR ....... R........] 
+  +B764:   #1
+        vR8 = vR5.accept();    [RRRiRRiRiRRRRiiiRRR RRR ....... R........] 
+        vi9 = vR6.getTotalFreeMemory();    [RRRiRRiRiRRRRiiiRRR RRR ....... R........] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ....... i........][ RRR ....... iR.......]
+        b0.println(b1.append@extra("free mem: ").append@extra(vi9).append@extra("; diff to start: ").append@extra((vi7-vi9)).toString@extra());   [RRRiRRiRiRRRRiiiRRR RRR iiii... RR.......] 
+        out.println("accepted,... starting domain");   [RRRiRRiRiRRRRiiiRRR RRR iiiii.. RR.......] 
+        vR10 = "Servlet";    
+        vR11 = "test_net.jll";    
+        vR12 = "test/net/TCPWorkerWriter";    
+        vR13 = 0;    
+        vi14 = 40000;    
+        vi15 = 10000;    
+        vi16 = 80000;    
+        vR17 = new java/lang/String()[0];    
+        b0 = new java/lang/Object()[1];    
+        b0[0] = vR8;   
+        vR18 = b0;    
+        vR19 = createDomain@special(vR10,vR11,vR12,vR13,vi14,vi15,vi16,vR17,vR18);    [RRRiRRiRiRRRRiiiRRR RRR iiiii.. RRiiiRRRR]
+        goto +B764;   [RRRiRRiRiRRRRiiiRRR RRR iiiii.. .........]
+  +B898:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 102/102 wr 118 swaps 18 any 29 found 0 main
+}

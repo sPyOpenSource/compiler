@@ -1,0 +1,34 @@
+class org/jnode/driver/net/lance/DescriptorRing {
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.mem = vR1;   
+        vR0.offset = vi2;   
+        vR0.length = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSize()I {
+  +START:   #1
+        return (vR0.length*16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.length;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method getAddressAs32()I {
+  +START:   #1
+        return (vR0.mem.getStartAddress()+vR0.offset);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getAddressAs32
+}

@@ -1,0 +1,42 @@
+class jx/net/protocol/tcp/TCP$1 {
+ 
+ method <init>(Ljx/net/protocol/tcp/TCP;Ljx/zero/CPUManager;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$cpuManager = vR2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        vR0.val$cpuManager.setThreadName("CyclicRetransmitCheck");   [  i RR] 
+  +B11:   #1
+        vR0.val$cpuManager.block();   [  . R.] 
+        vi1 = 0;    
+  +B22:   #1
+        if vi1>=65536 goto B58;   
+  +B28:   #1
+        if access$000@special(vR0.this$0)[vi1]==null goto B52;   
+  +B40:   #1
+        access$000@special(vR0.this$0)[vi1].processServerSocket();   [i  .R R.] 
+  +B52:   #1
+        vi1++;   
+        goto +B22;   [i  .. ..]
+  +B58:   #1
+        out.println("check all ClientSockets");   [i  i. RR] 
+        vR1 = access$100@special(vR0.this$0).elements@extra();    [i  i.R R.] [i  iRR R.]
+  +B77:   #1
+        if vR1.hasMoreElements()==0 goto B103;   
+  +B86:   #1
+        vR2 = (jx/net/protocol/tcp/TCPSocket)(vR1.nextElement());    
+        vR2.processClientSocket();   [RR  ... R.] 
+        goto +B77;   [RR  ... ..]
+  +B103:   #1
+        goto +B11;   [RR  ... ..]
+  +END:   #1
+ }
+// Register: rd 13/13 wr 13 swaps 2 any 2 found 0 run
+}

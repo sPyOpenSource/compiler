@@ -1,0 +1,47 @@
+class bioide/RecalibrateOperation {
+ 
+ method <init>(Lbioide/Controller;Lbioide/Drive;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method startOperation()V {
+  +START:   #1
+        vi3 = 0;    
+  +B2:   #1
+        vi3++;   
+        vi2 = 0;    
+        vR0.controller.setCTLReg(vR0.drive.ctl);   [?ii R i bR] 
+        vR0.controller.setCommandReg(16);   [?ii R i iR] 
+        vi1 = 200;    
+  +B34:   #1
+        if vi1> 0 goto B56;   
+  -B38:   #1
+        out.println("     Fehler beim Zuruecksetzen des Laufwerks (timeout)");   [iii R i. RR] 
+        throw new bioide/IDEException("Timeout in recalibrate");   
+  +B56:   #1
+        sleepManager.mdelay(50);   [iii R .. iR.] 
+        vi1--;   
+        if vR0.controller.statusBusy()!=0 goto B34;   
+  +B79:   #1
+        sleepManager.mdelay(400);   [iii R .. iR.] 
+        if (vR0.controller.getStatus() & -127)==0 goto B139;   
+  +B103:   #1
+        out.println("     Fehler beim Zuruecksetzen des Laufwerks");   [iii R i. RR.] 
+        vi2 = 1;    
+        if vi3<=5 goto B128;   
+  -B118:   #1
+        throw new bioide/IDEException("Bad status in recalibrate");   
+  +B128:   #1
+        sleepManager.mdelay(2000);   [iii R .. iR.] 
+  +B139:   #1
+        if vi2!=0 goto B2;   
+  +B143:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 14 swaps 3 any 5 found 0 startOperation
+}

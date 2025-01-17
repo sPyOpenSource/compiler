@@ -1,0 +1,159 @@
+class java/util/StringTokenizer {
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;Z)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.currentPosition = 0;   
+        vR0.str = vR1;   
+        vR0.maxPosition = vR1.length@extra();   
+        vR0.delimiters = vR2;   
+        vR0.retTokens = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,0);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1," 	
+",0);   [  i iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method skipDelimiters()V {
+  +START:   #2
+        if vR0.retTokens!=0 goto B52;   
+  +B7:   #1
+        if vR0.currentPosition>=vR0.maxPosition goto B52;   
+  +B18:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vR0.currentPosition))< 0 goto B52;   
+  +B39:   #1
+        vR0.currentPosition = (vR0.currentPosition+1);   
+        goto +START;   [  .. ..]
+  +B52:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 2 any 0 found 0 skipDelimiters
+ 
+ method hasMoreTokens()Z {
+  +START:   #1
+        vR0.skipDelimiters@special();   [ i  R] 
+        if vR0.currentPosition>=vR0.maxPosition goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  .]
+  +B19:   #1
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 hasMoreTokens
+ 
+ method nextToken()Ljava/lang/String; {
+  +START:   #1
+        vR0.skipDelimiters@special();   [ R  R] 
+        if vR0.currentPosition<vR0.maxPosition goto B23;   
+  -B15:   #1
+        throw new java/util/NoSuchElementException();   
+  +B23:   #1
+        vi1 = vR0.currentPosition;    
+  +B28:   #1
+        if vR0.currentPosition>=vR0.maxPosition goto B73;   
+  +B39:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vR0.currentPosition))>=0 goto B73;   
+  +B60:   #1
+        vR0.currentPosition = (vR0.currentPosition+1);   
+        goto +B28;   [i R .. ..]
+  +B73:   #2
+        if vR0.retTokens==0 goto B119;   
+  +B80:   #1
+        if vi1!=vR0.currentPosition goto B119;   
+  +B88:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vR0.currentPosition))< 0 goto B119;   
+  +B109:   #1
+        vR0.currentPosition = (vR0.currentPosition+1);   
+  +B119:   #3
+        return vR0.str.substring@extra(vi1,vR0.currentPosition);   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 6 swaps 5 any 1 found 0 nextToken
+ 
+ method nextToken(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vR0.delimiters = vR1;   
+        return vR0.nextToken@this();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 nextToken
+ 
+ method hasMoreElements()Z {
+  +START:   #1
+        return vR0.hasMoreTokens@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hasMoreElements
+ 
+ method nextElement()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.nextToken@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 nextElement
+ 
+ method countTokens()I {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = vR0.currentPosition;    
+  +B7:   #1
+        if vi2>=vR0.maxPosition goto B138;   
+  +B15:   #1
+        if vR0.retTokens!=0 goto B54;   
+  +B22:   #1
+        if vi2>=vR0.maxPosition goto B54;   
+  +B30:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vi2))< 0 goto B54;   
+  +B48:   #1
+        vi2++;   
+        goto +B15;   [ii  . ..]
+  +B54:   #3
+        if vi2<vR0.maxPosition goto B65;   
+  +B62:   #1
+        goto +B138;   forward return[ii  . ..]
+  +B65:   #1
+        vi3 = vi2;    
+  +B67:   #1
+        if vi2>=vR0.maxPosition goto B99;   
+  +B75:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vi2))>=0 goto B99;   
+  +B93:   #1
+        vi2++;   
+        goto +B67;   [iii  . ..]
+  +B99:   #2
+        if vR0.retTokens==0 goto B132;   
+  +B106:   #1
+        if vi3!=vi2 goto B132;   
+  +B111:   #1
+        if vR0.delimiters.indexOf@extra(vR0.str.charAt@extra(vi2))< 0 goto B132;   
+  +B129:   #1
+        vi2++;   
+  +B132:   #3
+        vi1++;   
+        goto +B7;   [iii  . ..]
+  +B138:   #2
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 10 swaps 3 any 10 found 0 countTokens
+}

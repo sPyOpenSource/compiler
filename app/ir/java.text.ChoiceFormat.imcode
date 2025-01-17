@@ -1,0 +1,227 @@
+class java/text/ChoiceFormat {
+ 
+ method nextDouble(DZ)D {
+  +START:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@68f4865)!=0 goto B10;   
+  +B8:   #1
+        return vd0;   
+  -B10:   #1
+        throw new java/lang/RuntimeException("Not Implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 nextDouble
+ 
+ method nextDouble(D)D {
+  +START:   #1
+        return nextDouble@special(vd0,1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextDouble
+ 
+ method previousDouble(D)D {
+  +START:   #1
+        return nextDouble@special(vd0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 previousDouble
+ 
+ method <init>([D[Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.choiceLimits = vR1;   
+        vR0.choiceFormats = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.applyPattern@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLimits()[D {
+  +START:   #1
+        return vR0.choiceLimits;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLimits
+ 
+ method getFormats()[Ljava/lang/Object; {
+  +START:   #1
+        return vR0.choiceFormats;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFormats
+ 
+ method setChoices([D[Ljava/lang/String;)V {
+  +START:   #1
+        vR0.choiceLimits = vR1;   
+        vR0.choiceFormats = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setChoices
+ 
+ method applyPattern(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = new java/util/StringTokenizer(vR1,"|");    [ RRR  i][ RRR . iRRR]
+        vR0.choiceLimits = new double[vR2.countTokens()];   
+        vR0.choiceFormats = new java/lang/String()[vR2.countTokens()];   
+        vi3 = 0;    
+  +B34:   #1
+        if vR2.hasMoreTokens()==0 goto B158;   
+  +B41:   #1
+        vR4 = new java/util/StringTokenizer(vR2.nextToken(),"#");    [ RRR . i...][ RRR . iRRR]
+        if vR4.countTokens()==2 goto B92;   
+  -B65:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i...][ RRR . iR..]
+        b1.<init>@special(b2.append@extra("Bad pattern: ").append@extra(vR1).toString@extra());   [RiR RRR ii. RR..] 
+        throw b0;   
+  +B92:   #2
+        vR0.choiceLimits[vi3] = valueOf@special(vR4.nextToken()).doubleValue@extra();   
+  +B109:   #1
+        goto +B141;   [RiR RRR ... ....]
+  -H112<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i...][ RRR ... iR..]
+        b1.<init>@special(b2.append@extra("Bad pattern: ").append@extra(vR1).toString@extra());   [RiRR RRR ii. RR..] 
+        throw b0;   
+  +B141:   #1
+        vR0.choiceFormats[vi3] = vR4.nextToken();   
+        vi3++;   
+        goto +B34;   [RiR RRR ... ....]
+  +B158:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+92 - 109 handler 112 type 81
+ }
+// Register: rd 22/22 wr 21 swaps 4 any 3 found 0 applyPattern
+ 
+ method toPattern()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        vi2 = 0;    
+  +B12:   #1
+        if vi2>=vR0.choiceLimits.length goto B83;   
+  +B21:   #1
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append(b1.append@extra(vR0.choiceLimits[vi2]).append@extra("#").append@extra(vR0.choiceFormats[vi2]).toString@extra());   [Ri RR iii.. RR...] 
+        if vi2==(vR0.choiceLimits.length-1) goto B77;   
+  +B70:   #1
+        vR1.append("|");   [Ri RR i.... RR...] 
+  +B77:   #1
+        vi2++;   
+        goto +B12;   [Ri RR ..... .....]
+  +B83:   #1
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 12 swaps 4 any 3 found 0 toPattern
+ 
+ method format(JLjava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        return vR0.format@this((double)vl1,vR3,vR4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 format
+ 
+ method format(DLjava/lang/StringBuffer;Ljava/text/FieldPosition;)Ljava/lang/StringBuffer; {
+  +START:   #1
+        vi5 = 0;    
+  +B3:   #1
+        if vi5>=vR0.choiceLimits.length goto B68;   
+  +B13:   #1
+        if compare(vd1,vR0.choiceLimits[vi5])>=0 goto B62;   
+  +B25:   #1
+        if vi5!=0 goto B45;   
+  +B30:   #1
+        vR3.append(vR0.choiceFormats[vi5]);   [?i  i RR] 
+        goto +B68;   [?i  i ..]
+  +B45:   #1
+        vR3.append(vR0.choiceFormats[(vi5-1)]);   [?i  i RR] 
+        goto +B68;   [?i  i ..]
+  +B62:   #1
+        vi5++;   
+        goto +B3;   [?i  . ..]
+  +B68:   #3
+        if vi5!=vR0.choiceLimits.length goto B95;   
+  +B78:   #1
+        vR3.append(vR0.choiceFormats[(vR0.choiceFormats.length-1)]);   [?i  i RR] 
+  +B95:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 3 any 4 found 0 format
+ 
+ method parse(Ljava/lang/String;Ljava/text/ParsePosition;)Ljava/lang/Number; {
+  +START:   #1
+        vR3 = vR1.substring@extra(vR2.getIndex());    [ R i iR] 
+        vi4 = 0;    
+  +B12:   #1
+        if vi4>=vR0.choiceFormats.length goto B76;   
+  +B22:   #1
+        if vR3.startsWith@extra(vR0.choiceFormats[vi4])==0 goto B70;   
+  +B36:   #1
+        vR2.setIndex((vR2.getIndex()+vR0.choiceFormats[vi4].length@extra()));   [Ri R i iR] 
+        return new java/lang/Double(vR0.choiceLimits[vi4]);   
+  +B70:   #1
+        vi4++;   
+        goto +B12;   [Ri R .. ...]
+  +B76:   #1
+        return new java/lang/Double(jx.classfile.datatypes.BCDouble@68f4865);   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 9 swaps 3 any 2 found 0 parse
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/text/ChoiceFormat)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        vR2 = (java/text/ChoiceFormat)(vR1);    
+        if vR2.choiceLimits.length==vR0.choiceLimits.length goto B35;   
+  +B33:   #1
+        return 0;   
+  +B35:   #1
+        vi3 = 0;    
+  +B37:   #1
+        if vi3>=vR0.choiceLimits.length goto B87;   
+  +B46:   #1
+        if compare(vR2.choiceLimits[vi3],vR0.choiceLimits[vi3])==0 goto B64;   
+  +B62:   #1
+        return 0;   
+  +B64:   #1
+        if vR2.choiceFormats[vi3]==vR0.choiceFormats[vi3] goto B81;   
+  +B79:   #1
+        return 0;   
+  +B81:   #1
+        vi3++;   
+        goto +B37;   [Ri   ..]
+  +B87:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 3 swaps 0 any 4 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return identityHashCode@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hashCode
+}

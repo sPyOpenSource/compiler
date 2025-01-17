@@ -1,0 +1,119 @@
+class test/gc/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));    
+        b1 = new test/gc/Main$1(vR2);    [ RR i. i.][ RR i. iRR]
+        vR3 = vR2.createCPUState(b1);    [RR RR i. RR.] 
+        vR2.start(vR3);   [RRR RR i. RR.] 
+        vR4 = new test/gc/X();    [ RR i. i..][ RR i. iR.]
+        vR5 = vR4;    
+  +B52:   #1
+        vR6 = new test/gc/X();    [ RR .. i..][ RR .. iR.]
+        vi7 = 0;    
+  +B64:   #1
+        if vi7>=40 goto B85;   
+  +B71:   #1
+        b0 = new test/gc/X();    [ RR .. i..][ RR .. iR.]
+        vi7++;   
+        goto +B64;   [RRRRRRi RR .. ...]
+  +B85:   #1
+        vR4.x = vR6;   
+        vR4 = vR6;    
+        vR2.yield();   [RRRRRRi RR .. R..] 
+        goto +B52;   [RRRRRRi RR .. ...]
+  +END:   #1
+ }
+// Register: rd 14/14 wr 14 swaps 1 any 4 found 0 main
+ 
+ method init(Ljx/zero/Naming;)V {
+  +START:   #1
+        vi1 = 45054;    
+        vR2 = new test/gc/X();    [ RR  i][ RR  iR]
+        vi3 = 43690;    
+        b0 = new test/gc/Main();    [ RR  i.][ RR  iR]
+        b1 = new test/gc/X();    [ RR  i.][ RR  iR]
+        b0.w0(b1,vR2);   [iRi RR  RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 0 any 0 found 0 init
+ 
+ method work0(Ltest/gc/X;Ltest/gc/X;)V {
+  +START:   #1
+        work1@special(vR1,1,2,3,4,5,vR0);   [   RiiiiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 work0
+ 
+ method work1(Ltest/gc/X;IIIIILtest/gc/X;)V {
+  +START:   #1
+        vi7 = 145;    
+        vi8 = 146;    
+        vi9 = 147;    
+        vR10 = new java/lang/Object();    [ R  i][ R  iR]
+        vi11 = 148;    
+        work@special(vR6);   [iiiRi R  R.]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 work1
+ 
+ method work(Ltest/gc/X;)V {
+  +START:   #1
+        vi1 = 66;    
+        vR2 = vR0;    
+  +B5:   #1
+        vi3 = 67;    
+        vR4 = new test/gc/X();    [ R  i][ R  iR]
+        b0 = new test/gc/X();    [ R  i.][ R  iR]
+        vR2.x = vR4;   
+        vR2 = vR4;    
+        goto +B5;   [iRiR R  ..]
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 2 found 0 work
+ 
+ method w0(Ltest/gc/X;Ltest/gc/X;)V {
+  +START:   #1
+        vR0.w1@this(vR2,1,2,3,4,5,vR1);   [   RiiiiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 w0
+ 
+ method w1(Ltest/gc/X;IIIIILtest/gc/X;)V {
+  +START:   #1
+        vi8 = 145;    
+        vi9 = 146;    
+        vi10 = 147;    
+        vR11 = new java/lang/Object();    [ R  i][ R  iR]
+        vi12 = 148;    
+        vR0.w@this(vR7);   [iiiRi R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 w1
+ 
+ method w(Ltest/gc/X;)V {
+  +START:   #1
+        vi2 = 66;    
+        vR3 = vR1;    
+  +B5:   #1
+        b0 = new test/gc/X();    [ R  i][ R  iR]
+        work0@special(b0,vR3);   [iR R  RR]
+        goto +B5;   [iR R  ..]
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 1 found 0 w
+}

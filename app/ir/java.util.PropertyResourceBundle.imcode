@@ -1,0 +1,31 @@
+class java/util/PropertyResourceBundle {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Properties();    [ ?R  i][ ?R  iR]
+        vR0.properties = b1;   
+        vR0.properties.load(vR1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method handleGetObject(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.properties.getProperty(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 handleGetObject
+ 
+ method getKeys()Ljava/util/Enumeration; {
+  +START:   #1
+        if vR0.parent==null goto B29;   
+  +B7:   #1
+        return new java/util/DoubleEnumeration(vR0.properties.propertyNames(),vR0.parent.getKeys());   
+  +B29:   #1
+        return vR0.properties.propertyNames();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getKeys
+}

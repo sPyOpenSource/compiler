@@ -1,0 +1,27 @@
+class jx/zero/debug/DebugOutputStream {
+ 
+ method <init>(Ljx/zero/debug/DebugChannel;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.debugChannel = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(I)V {
+  +START:   #1
+        vR0.debugChannel.write(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+ 
+ method write([BII)V {
+  +START:   #1
+        vR0.debugChannel.writeBuf(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+}

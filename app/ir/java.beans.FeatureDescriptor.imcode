@@ -1,0 +1,109 @@
+class java/beans/FeatureDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Hashtable();    [ ?R  i][ ?R  iR]
+        vR0.valueHash = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method setName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.name = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setName
+ 
+ method getDisplayName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.displayName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDisplayName
+ 
+ method setDisplayName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.displayName = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDisplayName
+ 
+ method getShortDescription()Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortDescription;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortDescription
+ 
+ method setShortDescription(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.shortDescription = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setShortDescription
+ 
+ method isExpert()Z {
+  +START:   #1
+        return vR0.expert;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isExpert
+ 
+ method setExpert(Z)V {
+  +START:   #1
+        vR0.expert = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setExpert
+ 
+ method isHidden()Z {
+  +START:   #1
+        return vR0.hidden;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isHidden
+ 
+ method setHidden(Z)V {
+  +START:   #1
+        vR0.hidden = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setHidden
+ 
+ method getValue(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.valueHash.get(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method setValue(Ljava/lang/String;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.valueHash.put(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setValue
+ 
+ method attributeNames()Ljava/util/Enumeration; {
+  +START:   #1
+        return vR0.valueHash.keys();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 attributeNames
+}

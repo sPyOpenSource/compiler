@@ -1,0 +1,102 @@
+class jx/screen/ScreenImpl {
+ 
+ method init(Ljx/zero/Naming;)V {
+  +START:   #1
+        b0 = new jx/screen/ScreenImpl(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 init
+ 
+ method <init>(Ljx/zero/Naming;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?RRR  R] 
+        vR0.naming = vR1;   
+        vR2 = (jx/zero/debug/DebugChannel)(vR1.lookup("DebugChannel0"));    
+        b1 = new jx/zero/debug/DebugPrintStream;    
+        b2 = b1;    
+        b3 = new jx/zero/debug/DebugOutputStream(vR2);    [ ?RRR i. i.][ ?RRR i. iRR]
+        b2.<init>@special(b3);   [R ?RRR i. RR.] 
+        vR0.out = b1;   
+        vR3 = (jx/zero/MemoryManager)(vR1.lookup("MemoryManager"));    
+        vR0.ports = (jx/zero/Ports)(vR1.lookup("Ports"));   
+        vR0.video = vR3.allocDeviceMemory(753664,4000);   
+        vR0.enableCursor@this(0,15);   [RR ?RRR iii. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 12 swaps 3 any 1 found 0 <init>
+ 
+ method getWidth()I {
+  +START:   #1
+        return 80;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()I {
+  +START:   #1
+        return 25;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method putAt(IIC)V {
+  +START:   #1
+        if vi1>=80 goto B20;   
+  +B6:   #1
+        if vi2>=25 goto B20;   
+  +B12:   #1
+        if vi1< 0 goto B20;   
+  +B16:   #1
+        if vi2>=0 goto B21;   
+  +B20:   #3
+        return;   
+  +B21:   #1
+        vR0.video.set8((((80*vi2)+vi1)*2),(byte)vi3);   [  ii iiR] 
+        vR0.video.set8(((((80*vi2)+vi1)*2)+1),15);   [  iii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 2 any 4 found 0 putAt
+ 
+ method moveCursorTo(II)V {
+  +START:   #1
+        vi3 = ((80*vi2)+vi1);    
+        vR0.ports.outb(980,14);   [i   iiR] 
+        vR0.ports.outb(981,(byte)((vi3 >> 8) & 255));   [i  i iiR] 
+        vR0.ports.outb(980,15);   [i  i iiR] 
+        vR0.ports.outb(981,(byte)(vi3 & 255));   [i  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 2 any 1 found 0 moveCursorTo
+ 
+ method enableCursor(II)V {
+  +START:   #1
+        vR0.ports.outb(980,10);   [   iiR] 
+        vR0.ports.outb(981,(byte)((vR0.ports.inb(981) & 192) | vi1));   [  i iiR] 
+        vR0.ports.outb(980,11);   [  i iiR] 
+        vR0.ports.outb(981,(byte)((vR0.ports.inb(981) & 224) | vi2));   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 2 any 0 found 0 enableCursor
+ 
+ method clear()V {
+  +START:   #1
+        vR0.video.fill16(3840,0,1920);   [   iiiR] 
+        vR0.y = 0;   
+        vR0.x = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method getVideoMemory()Ljx/zero/DeviceMemory; {
+  +START:   #1
+        return vR0.video;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVideoMemory
+}

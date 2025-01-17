@@ -1,0 +1,46 @@
+class java/net/ServerSocket {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.port = vi1;   
+        vR0.net = (jx/net/NetInit)(waitUntilPortalAvailable@special(getInitialNaming@special(),"NET"));   
+        vR2 = new jx/zero/Memory()[15];    
+        vi3 = 0;    
+  +B32:   #1
+        if vi3>=vR2.length goto B56;   
+  +B38:   #1
+        vR2[vi3] = vR0.net.getTCPBuffer();   
+        vi3++;   
+        goto +B32;   [Ri  ... ..]
+  +B56:   #1
+        vR0.tcpSocket = vR0.net.getTCPSocket(vi1,vR0.net.getLocalAddress(),vR2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 1 any 2 found 0 <init>
+ 
+ method accept()Ljava/net/Socket; {
+  +START:   #1
+        vR1 = new jx/zero/Memory()[15];    
+        vi2 = 0;    
+  +B8:   #1
+        if vi2>=vR1.length goto B32;   
+  +B14:   #1
+        vR1[vi2] = vR0.net.getTCPBuffer();   
+        vi2++;   
+        goto +B8;   [Ri R  ..]
+  +B32:   #1
+        return new java/net/Socket(vR0.tcpSocket.accept(vR1));   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 accept
+ 
+ method close()V {
+  +START:   #1
+        vR0.tcpSocket.close();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+}

@@ -1,0 +1,338 @@
+class jx/rdp/crypto/MD5 {
+ 
+ method engineGetDigestLength()I {
+  +START:   #1
+        return 16;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 engineGetDigestLength
+ 
+ method engineGetDataLength()I {
+  +START:   #1
+        return 64;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 engineGetDataLength
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("MD5");   [  i RR] 
+        vR0.java_init@special();   [  i R.] 
+        vR0.engineReset@extra();   [  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method java_init()V {
+  +START:   #1
+        vR0.digest = new int[4];   
+        vR0.data = new int[16];   
+        vR0.tmp = new byte[64];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 java_init
+ 
+ method <init>(Ljx/rdp/crypto/MD5;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = ([I)(vR1.data.clone());   
+        vR0.digest = ([I)(vR1.digest.clone());   
+        vR0.tmp = ([B)(vR1.tmp.clone());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 0 found 0 <init>
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        return new jx/rdp/crypto/MD5(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 clone
+ 
+ method engineReset()V {
+  +START:   #1
+        vR0.engineReset@special();   [   R] 
+        vR0.java_reset@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 engineReset
+ 
+ method java_reset()V {
+  +START:   #1
+        vR0.digest[0] = 1732584193;   
+        vR0.digest[1] = -271733879;   
+        vR0.digest[2] = -1732584194;   
+        vR0.digest[3] = 271733878;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 java_reset
+ 
+ method engineTransform([B)V {
+  +START:   #1
+        vR0.java_transform@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineTransform
+ 
+ method java_transform([B)V {
+  +START:   #1
+        byte2int@special(vR1,0,vR0.data,0,16);   [  R iiRiR]
+        vR0.transform@extra(vR0.data);   [  Ri RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 java_transform
+ 
+ method engineDigest([BI)[B {
+  +START:   #1
+        vR3 = vR0.java_digest@special(vR1,vi2);    [   iRR] 
+        vR0.engineReset@extra();   [R   R..] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 engineDigest
+ 
+ method java_digest([BI)[B {
+  +START:   #1
+        if vi2==0 goto B15;   
+  +B4:   #1
+        arraycopy@special(vR1,0,vR0.tmp,0,vi2);   [ Ri R iiRiR]
+  +B15:   #1
+        b0 = vR0.tmp;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = -128;   
+        if vi2<=56 goto B76;   
+  +B32:   #1
+        if vi2>=64 goto B51;   
+  +B38:   #1
+        b0 = vR0.tmp;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 0;   
+        goto +B32;   [ Ri . .....]
+  +B51:   #1
+        byte2int@special(vR0.tmp,0,vR0.data,0,16);   [ Ri RR iiRiR]
+        vR0.transform@extra(vR0.data);   [ Ri RRi RR...] 
+        vi2 = 0;    
+  +B76:   #2
+        if vi2>=56 goto B95;   
+  +B82:   #1
+        b0 = vR0.tmp;    
+        b1 = vi2;    
+        vi2++;   
+        b0[b1] = 0;   
+        goto +B76;   [ Ri ... .....]
+  +B95:   #1
+        byte2int@special(vR0.tmp,0,vR0.data,0,14);   [ Ri RR. iiRiR]
+        vi3 = vR0.bitcount@this();    [ Ri RR. R....] 
+        vR0.data[14] = vi3;   
+        vR0.data[15] = 0;   
+        vR0.transform@extra(vR0.data);   [i Ri RRi RR...] 
+        vR4 = new byte[16];    
+        vi5 = 0;    
+        vi6 = 0;    
+  +B151:   #1
+        if vi6>=4 goto B225;   
+  +B157:   #1
+        vi7 = vR0.digest[vi6];    
+        b1 = vi5;    
+        vi5++;   
+        vR4[b1] = (byte)vi7;   
+        b1 = vi5;    
+        vi5++;   
+        vR4[b1] = (byte)(vi7 >>> 8);   
+        b1 = vi5;    
+        vi5++;   
+        vR4[b1] = (byte)(vi7 >>> 16);   
+        b1 = vi5;    
+        vi5++;   
+        vR4[b1] = (byte)(vi7 >>> 24);   
+        vi6++;   
+        goto +B151;   [iRiii Ri ... .....]
+  +B225:   #1
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 31 swaps 2 any 21 found 0 java_digest
+ 
+ method F(III)I {
+  +START:   #1
+        return (vi2 ^ (vi0 & (vi1 ^ vi2)));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 1 F
+ 
+ method G(III)I {
+  +START:   #1
+        return (vi1 ^ (vi2 & (vi0 ^ vi1)));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 1 G
+ 
+ method H(III)I {
+  +START:   #1
+        return ((vi0 ^ vi1) ^ vi2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 H
+ 
+ method I(III)I {
+  +START:   #1
+        return (vi1 ^ (vi0 | (vi2 ^ -1)));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 I
+ 
+ method FF(IIIIIII)I {
+  +START:   #1
+        vi0 = (vi0+((vi4+vi6)+F@special(vi1,vi2,vi3)));    
+        vi0 = ((vi0 << vi5) | (vi0 >>> -vi5));    
+        return (vi0+vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 0 any 1 found 1 FF
+ 
+ method GG(IIIIIII)I {
+  +START:   #1
+        vi0 = (vi0+((vi4+vi6)+G@special(vi1,vi2,vi3)));    
+        vi0 = ((vi0 << vi5) | (vi0 >>> -vi5));    
+        return (vi0+vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 0 any 1 found 1 GG
+ 
+ method HH(IIIIIII)I {
+  +START:   #1
+        vi0 = (vi0+((vi4+vi6)+H@special(vi1,vi2,vi3)));    
+        vi0 = ((vi0 << vi5) | (vi0 >>> -vi5));    
+        return (vi0+vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 0 any 1 found 1 HH
+ 
+ method II(IIIIIII)I {
+  +START:   #1
+        vi0 = (vi0+((vi4+vi6)+I@special(vi1,vi2,vi3)));    
+        vi0 = ((vi0 << vi5) | (vi0 >>> -vi5));    
+        return (vi0+vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 0 any 1 found 1 II
+ 
+ method transform([I)V {
+  +START:   #1
+        vi2 = vR0.digest[0];    
+        vi3 = vR0.digest[1];    
+        vi4 = vR0.digest[2];    
+        vi5 = vR0.digest[3];    
+        vi2 = FF@special(vi2,vi3,vi4,vi5,vR1[0],7,-680876936);    [iiii R i iiiiiii]
+        vi5 = FF@special(vi5,vi2,vi3,vi4,vR1[1],12,-389564586);    [iiii R ii iiiiiii]
+        vi4 = FF@special(vi4,vi5,vi2,vi3,vR1[2],17,606105819);    [iiii R iii iiiiiii]
+        vi3 = FF@special(vi3,vi4,vi5,vi2,vR1[3],22,-1044525330);    [iiii R iiii iiiiiii]
+        vi2 = FF@special(vi2,vi3,vi4,vi5,vR1[4],7,-176418897);    [iiii R iiiii iiiiiii]
+        vi5 = FF@special(vi5,vi2,vi3,vi4,vR1[5],12,1200080426);    [iiii R iiiiii iiiiiii]
+        vi4 = FF@special(vi4,vi5,vi2,vi3,vR1[6],17,-1473231341);    [iiii R iiiiiii iiiiiii]
+        vi3 = FF@special(vi3,vi4,vi5,vi2,vR1[7],22,-45705983);    [iiii R iiiiiiii iiiiiii]
+        vi2 = FF@special(vi2,vi3,vi4,vi5,vR1[8],7,1770035416);    [iiii R iiiiiiiii iiiiiii]
+        vi5 = FF@special(vi5,vi2,vi3,vi4,vR1[9],12,-1958414417);    [iiii R iiiiiiiiii iiiiiii]
+        vi4 = FF@special(vi4,vi5,vi2,vi3,vR1[10],17,-42063);    [iiii R iiiiiiiiiii iiiiiii]
+        vi3 = FF@special(vi3,vi4,vi5,vi2,vR1[11],22,-1990404162);    [iiii R iiiiiiiiiiii iiiiiii]
+        vi2 = FF@special(vi2,vi3,vi4,vi5,vR1[12],7,1804603682);    [iiii R iiiiiiiiiiiii iiiiiii]
+        vi5 = FF@special(vi5,vi2,vi3,vi4,vR1[13],12,-40341101);    [iiii R iiiiiiiiiiiiii iiiiiii]
+        vi4 = FF@special(vi4,vi5,vi2,vi3,vR1[14],17,-1502002290);    [iiii R iiiiiiiiiiiiiii iiiiiii]
+        vi3 = FF@special(vi3,vi4,vi5,vi2,vR1[15],22,1236535329);    [iiii R iiiiiiiiiiiiiiii iiiiiii]
+        vi2 = GG@special(vi2,vi3,vi4,vi5,vR1[1],5,-165796510);    [iiii R iiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = GG@special(vi5,vi2,vi3,vi4,vR1[6],9,-1069501632);    [iiii R iiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = GG@special(vi4,vi5,vi2,vi3,vR1[11],14,643717713);    [iiii R iiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = GG@special(vi3,vi4,vi5,vi2,vR1[0],20,-373897302);    [iiii R iiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = GG@special(vi2,vi3,vi4,vi5,vR1[5],5,-701558691);    [iiii R iiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = GG@special(vi5,vi2,vi3,vi4,vR1[10],9,38016083);    [iiii R iiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = GG@special(vi4,vi5,vi2,vi3,vR1[15],14,-660478335);    [iiii R iiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = GG@special(vi3,vi4,vi5,vi2,vR1[4],20,-405537848);    [iiii R iiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = GG@special(vi2,vi3,vi4,vi5,vR1[9],5,568446438);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = GG@special(vi5,vi2,vi3,vi4,vR1[14],9,-1019803690);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = GG@special(vi4,vi5,vi2,vi3,vR1[3],14,-187363961);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = GG@special(vi3,vi4,vi5,vi2,vR1[8],20,1163531501);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = GG@special(vi2,vi3,vi4,vi5,vR1[13],5,-1444681467);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = GG@special(vi5,vi2,vi3,vi4,vR1[2],9,-51403784);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = GG@special(vi4,vi5,vi2,vi3,vR1[7],14,1735328473);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = GG@special(vi3,vi4,vi5,vi2,vR1[12],20,-1926607734);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = HH@special(vi2,vi3,vi4,vi5,vR1[5],4,-378558);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = HH@special(vi5,vi2,vi3,vi4,vR1[8],11,-2022574463);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = HH@special(vi4,vi5,vi2,vi3,vR1[11],16,1839030562);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = HH@special(vi3,vi4,vi5,vi2,vR1[14],23,-35309556);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = HH@special(vi2,vi3,vi4,vi5,vR1[1],4,-1530992060);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = HH@special(vi5,vi2,vi3,vi4,vR1[4],11,1272893353);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = HH@special(vi4,vi5,vi2,vi3,vR1[7],16,-155497632);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = HH@special(vi3,vi4,vi5,vi2,vR1[10],23,-1094730640);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = HH@special(vi2,vi3,vi4,vi5,vR1[13],4,681279174);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = HH@special(vi5,vi2,vi3,vi4,vR1[0],11,-358537222);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = HH@special(vi4,vi5,vi2,vi3,vR1[3],16,-722521979);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = HH@special(vi3,vi4,vi5,vi2,vR1[6],23,76029189);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = HH@special(vi2,vi3,vi4,vi5,vR1[9],4,-640364487);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = HH@special(vi5,vi2,vi3,vi4,vR1[12],11,-421815835);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = HH@special(vi4,vi5,vi2,vi3,vR1[15],16,530742520);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = HH@special(vi3,vi4,vi5,vi2,vR1[2],23,-995338651);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = II@special(vi2,vi3,vi4,vi5,vR1[0],6,-198630844);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = II@special(vi5,vi2,vi3,vi4,vR1[7],10,1126891415);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = II@special(vi4,vi5,vi2,vi3,vR1[14],15,-1416354905);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = II@special(vi3,vi4,vi5,vi2,vR1[5],21,-57434055);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = II@special(vi2,vi3,vi4,vi5,vR1[12],6,1700485571);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = II@special(vi5,vi2,vi3,vi4,vR1[3],10,-1894986606);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = II@special(vi4,vi5,vi2,vi3,vR1[10],15,-1051523);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = II@special(vi3,vi4,vi5,vi2,vR1[1],21,-2054922799);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = II@special(vi2,vi3,vi4,vi5,vR1[8],6,1873313359);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = II@special(vi5,vi2,vi3,vi4,vR1[15],10,-30611744);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = II@special(vi4,vi5,vi2,vi3,vR1[6],15,-1560198380);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = II@special(vi3,vi4,vi5,vi2,vR1[13],21,1309151649);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi2 = II@special(vi2,vi3,vi4,vi5,vR1[4],6,-145523070);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi5 = II@special(vi5,vi2,vi3,vi4,vR1[11],10,-1120210379);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi4 = II@special(vi4,vi5,vi2,vi3,vR1[2],15,718787259);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        vi3 = II@special(vi3,vi4,vi5,vi2,vR1[9],21,-343485551);    [iiii R iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiiii]
+        b0 = vR0.digest;    
+        b0[0] = (b0[0]+vi2);   
+        b0 = vR0.digest;    
+        b0[1] = (b0[1]+vi3);   
+        b0 = vR0.digest;    
+        b0[2] = (b0[2]+vi4);   
+        b0 = vR0.digest;    
+        b0[3] = (b0[3]+vi5);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 84/84 wr 136 swaps 0 any 0 found 0 transform
+ 
+ method byte2int([BI[III)V {
+  +START:   #2
+        b0 = vi4;    
+        vi4--;   
+        if b0<=0 goto B69;   
+  +B8:   #1
+        b1 = vi3;    
+        vi3++;   
+        b3 = vi1;    
+        vi1++;   
+        b2 = (vR0[b3] & 255);    
+        b4 = vi1;    
+        vi1++;   
+        b2 = (b2 | ((vR0[b4] & 255) << 8));    
+        b4 = vi1;    
+        vi1++;   
+        b2 = (b2 | ((vR0[b4] & 255) << 16));    
+        b4 = vi1;    
+        vi1++;   
+        vR2[b1] = (b2 | ((vR0[b4] & 255) << 24));   
+        goto +START;   [ iiiii  ]
+  +B69:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 15 swaps 0 any 16 found 0 byte2int
+}

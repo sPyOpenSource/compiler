@@ -1,0 +1,83 @@
+class java/io/PushbackInputStream {
+ 
+ method available()I {
+  +START:   #1
+        b0 = vR0.available@special();    [ ii  R] 
+        if vR0.pushBack< 0 goto B15;   
+  +B11b0:   #1 int
+        b1 = 1;    
+        goto +B16b0b1;   forward return[ ii  .]
+  +B15b0:   #1 int
+        b1 = 0;    
+  +B16b0b1:   #1 int int
+        return (b0+b1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 available
+ 
+ method markSupported()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 markSupported
+ 
+ method read()I {
+  +START:   #1
+        if vR0.pushBack< 0 goto B20;   
+  +B7:   #1
+        vi1 = vR0.pushBack;    
+        vR0.pushBack = -1;   
+        goto +B25;   forward return[i   ]
+  +B20:   #1
+        vi1 = vR0.read@special();    [i   R] 
+  +B25:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 read
+ 
+ method read([BII)I {
+  +START:   #1
+        if vR0.pushBack< 0 goto B26;   
+  +B7:   #1
+        vR1[vi2] = (byte)vR0.pushBack;   
+        vR0.pushBack = -1;   
+        vi2++;   
+        vi3--;   
+  +B26:   #1
+        return vR0.read@special(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 read
+ 
+ method unread(I)V {
+  +START:   #1
+        if vR0.pushBack< 0 goto B15;   
+  -B7:   #1
+        throw new java/io/IOException();   
+  +B15:   #1
+        vR0.pushBack = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 unread
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.pushBack = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/InputStream;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.pushBack = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+}

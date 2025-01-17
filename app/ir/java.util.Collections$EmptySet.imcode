@@ -1,0 +1,101 @@
+class java/util/Collections$EmptySet {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return emptyIterator@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 iterator
+ 
+ method size()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        return vR1.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 containsAll
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        return new java/lang/Object()[0];   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  +START:   #1
+        if vR1.length<=0 goto B9;   
+  +B5:   #1
+        vR1[0] = 0;   
+  +B9:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 toArray
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEach
+ 
+ method removeIf(Ljava/util/function/Predicate;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 removeIf
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return emptySpliterator@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method readResolve()Ljava/lang/Object; {
+  +START:   #1
+        return EMPTY_SET;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readResolve
+ 
+ method <init>(Ljava/util/Collections$1;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

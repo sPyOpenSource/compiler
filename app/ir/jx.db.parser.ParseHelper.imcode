@@ -1,0 +1,120 @@
+class jx/db/parser/ParseHelper {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.stringToParse = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method expectToken(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR0.stringToParse.indexOf@extra(40);    [ iRR  iR] 
+        vi3 = vR0.stringToParse.indexOf@extra(41);    [i iRR  iR] 
+        vi4 = vR0.stringToParse.indexOf@extra(32);    [ii iRR  iR] 
+        if vi2!=-1 goto B39;   
+  +B36:   #1
+        vi2 = 268435455;    
+  +B39:   #1
+        if vi3!=-1 goto B47;   
+  +B44:   #1
+        vi3 = 268435455;    
+  +B47:   #1
+        if vi4!=-1 goto B57;   
+  +B53:   #1
+        vi4 = 268435455;    
+  +B57:   #1
+        if vi2>=vi3 goto B66;   
+  +B62:   #1
+        b0 = vi2;    
+        goto +B67b0;   [iii iRR  ..]
+  +B66:   #1
+        b0 = vi3;    
+  +B67b0:   #1 int
+        vi5 = b0;    
+        if vi5>=vi4 goto B81;   
+  +B76:   #1
+        b0 = vi5;    
+        goto +B83b0;   [iiii iRR  ..]
+  +B81:   #1
+        b0 = vi4;    
+  +B83b0:   #1 int
+        vi5 = b0;    
+        vR6 = vR0.stringToParse.substring@extra(0,vi5);    [iiii iRR  iiR] 
+        vR0.stringToParse = vR0.stringToParse.substring@extra(vi5).trim@extra();   
+        if vR6.equals@extra(vR1)!=0 goto B157;   
+  -B122:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("Error parsing SQL string "").append@extra(vR0.stringToParse).append@extra(""").toString@extra());   [iiiiR RRR iiii.. RR..] 
+        throw b0;   
+  +B157:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 21 swaps 4 any 12 found 0 expectToken
+ 
+ method nextToken()Ljava/lang/String; {
+  +START:   #1
+        if vR0.stringToParse!=null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vi1 = vR0.stringToParse.indexOf@extra(32);    [   iR] 
+        if vi1!=-1 goto B36;   
+  +B24:   #1
+        vR2 = vR0.stringToParse;    
+        vR0.stringToParse = 0;   
+        return vR2;   
+  +B36:   #1
+        vR2 = vR0.stringToParse.substring@extra(0,vi1);    [iR   iiR] 
+        vR0.stringToParse = vR0.stringToParse.substring@extra(vi1).trim@extra();   
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 1 found 0 nextToken
+ 
+ method expectParens()V {
+  +START:   #1
+        if vR0.stringToParse.startsWith@extra("(")==0 goto B24;   
+  +B12:   #1
+        if vR0.stringToParse.endsWith@extra(")")!=0 goto B34;   
+  -B24:   #1
+        throw new jx/db/parser/ParseException("Missing paranthesis.");   
+  +B34:   #1
+        vR0.stringToParse = vR0.stringToParse.substring@extra(1,(vR0.stringToParse.length@extra()-1));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 3 any 0 found 0 expectParens
+ 
+ method splitByComma()[Ljava/lang/String; {
+  +START:   #1
+        vi1 = 0;    
+        vR2 = new java/util/Vector();    [ R  i][ R  iR]
+  +B10:   #1
+        if vi1!=0 goto B77;   
+  +B14:   #1
+        vi3 = vR0.stringToParse.indexOf@extra(44);    [iR R  iR] 
+        if vi3!=-1 goto B40;   
+  +B29:   #1
+        vi1 = 1;    
+        vR4 = vR0.stringToParse;    
+        goto +B68;   [iRiR R  ..]
+  +B40:   #1
+        vR4 = vR0.stringToParse.substring@extra(0,vi3);    [iRiR R  iiR] 
+        vR0.stringToParse = vR0.stringToParse.substring@extra((vi3+1)).trim@extra();   
+  +B68:   #1
+        vR2.addElement@extra(vR4);   [iRiR R .. RR.] 
+        goto +B10;   [iRiR R .. ...]
+  +B77:   #1
+        vR3 = new java/lang/String()[vR2.size@extra()];    
+        vR2.copyInto(vR3);   [iRRR R .. RR.] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 1 any 2 found 0 splitByComma
+}

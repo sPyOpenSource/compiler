@@ -1,0 +1,25 @@
+class AI/Models/JVM$MethodInfo {
+ 
+ method <init>(LAI/Models/JVM;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method access$000(LAI/Models/JVM$MethodInfo;)I {
+  +START:   #1
+        return vR0.name_index;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$200(LAI/Models/JVM$MethodInfo;)[LAI/Models/JVM$AttributeInfo; {
+  +START:   #1
+        return vR0.attributes;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+}

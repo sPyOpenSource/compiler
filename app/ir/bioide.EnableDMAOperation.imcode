@@ -1,0 +1,125 @@
+class bioide/EnableDMAOperation {
+ 
+ method <init>(Lbioide/Controller;Lbioide/Drive;Z)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.ultraDmaSupported = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method startOperation()V {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi3 = -1;    
+        vR4 = vR0.drive.id_data;    
+        if (vR4.field_valid() & 2)<=0 goto B121;   
+  +B25:   #1
+        if (vR4.dma_mword() & 7)<=0 goto B121;   
+  +B36:   #1
+        vi3 = 0;    
+        vi2 = -1;    
+        if ((vR4.dma_mword() >> 8) & 1)<=0 goto B55;   
+  +B53:   #1
+        vi2 = 0;    
+  +B55:   #1
+        if ((vR4.dma_mword() >> 8) & 2)<=0 goto B70;   
+  +B68:   #1
+        vi2 = 1;    
+  +B70:   #1
+        if ((vR4.dma_mword() >> 8) & 4)<=0 goto B85;   
+  +B83:   #1
+        vi2 = 2;    
+  +B85:   #1
+        if (vR4.dma_mword() & 1)<=0 goto B97;   
+  +B95:   #1
+        vi1 = 0;    
+  +B97:   #1
+        if (vR4.dma_mword() & 2)<=0 goto B109;   
+  +B107:   #1
+        vi1 = 1;    
+  +B109:   #1
+        if (vR4.dma_mword() & 4)<=0 goto B121;   
+  +B119:   #1
+        vi1 = 2;    
+  +B121:   #3
+        if (vR4.field_valid() & 4)<=0 goto B234;   
+  +B131:   #1
+        if (vR4.dma_ultra() & 7)<=0 goto B234;   
+  +B142:   #1
+        if vR0.ultraDmaSupported==0 goto B234;   
+  +B149:   #1
+        vi3 = 1;    
+        vi2 = -1;    
+        if ((vR4.dma_ultra() >> 8) & 1)<=0 goto B168;   
+  +B166:   #1
+        vi2 = 0;    
+  +B168:   #1
+        if ((vR4.dma_ultra() >> 8) & 2)<=0 goto B183;   
+  +B181:   #1
+        vi2 = 1;    
+  +B183:   #1
+        if ((vR4.dma_ultra() >> 8) & 4)<=0 goto B198;   
+  +B196:   #1
+        vi2 = 2;    
+  +B198:   #1
+        if (vR4.dma_ultra() & 1)<=0 goto B210;   
+  +B208:   #1
+        vi1 = 0;    
+  +B210:   #1
+        if (vR4.dma_ultra() & 2)<=0 goto B222;   
+  +B220:   #1
+        vi1 = 1;    
+  +B222:   #1
+        if (vR4.dma_ultra() & 3)<=0 goto B234;   
+  +B232:   #1
+        vi1 = 2;    
+  +B234:   #4
+        if vi3!=-1 goto B247;   
+  -B239:   #1
+        throw new bioide/DMAUnavailableException();   
+  +B247:   #1
+        if vi2==vi1 goto B402;   
+  +B252:   #1
+        vR0.controller.setCTLReg(vR0.drive.ctl);   [iiiR RR i bR] 
+        vR0.controller.setFeatureReg(3);   [iiiR RR i iR] 
+        vR0.controller.setCountReg((byte)((32 << vi3) | (vi1 & 3)));   [iiiR RR ii iR] 
+        vR0.controller.setCommandReg(-17);   [iiiR RR ii iR] 
+        vi5 = 100;    
+        out.println("---");   [iiiRi RR iii. RR] 
+  +B311:   #1
+        if vi5> 0 goto B332;   
+  -B316:   #1
+        out.println("     Fehler beim Setzen des Transfermodus (timeout), keine DMA-Unterstuetzung");   [iiiRi RR i... RR] 
+        throw new bioide/DMAUnavailableException();   
+  +B332:   #1
+        sleepManager.mdelay(50);   [iiiRi RR .... iR] 
+        out.println("*");   [iiiRi RR i... RR] 
+        vi5--;   
+        if vR0.controller.statusBusy()!=0 goto B311;   
+  +B363:   #1
+        sleepManager.mdelay(50);   [iiiRi RR .... iR] 
+        if (vR0.controller.getStatus() & -127)==0 goto B402;   
+  -B386:   #1
+        out.println("     Fehler beim Setzen des Transfermodus, keine DMA-Unterstuetzung");   [iiiRi RR i... RR] 
+        throw new bioide/DMAUnavailableException();   
+  +B402:   #2
+        if vi3!=1 goto B440;   
+  +B407:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b0.println(b1.append@extra("     Ultra-DMA (Modus ").append@extra(vi1).append@extra(")").toString@extra());   [iiiRi RR iii.. RR..] 
+        goto +B470;   [iiiRi RR iii.. ....]
+  +B440:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("     Multiword-DMA (Modus ").append@extra(vi1).append@extra(")").toString@extra());   [iiiRi RR iii.. RR..] 
+  +B470:   #1
+        vR0.drive.using_dma = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 37 swaps 12 any 5 found 0 startOperation
+}

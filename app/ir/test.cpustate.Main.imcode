@@ -1,0 +1,25 @@
+class test/cpustate/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));    
+        vR3 = vR2.getCPUState();    [RR R i. R.] 
+        b0 = new test/cpustate/Main$1(vR2,vR3);    [ R i. i.][ R i. iRRR]
+        b0.start();   [RRR R i. R...] 
+  +B35:   #1
+        vR2.block();   [RRR R .. R...] 
+        out.print("2");   [RRR R i. RR..] 
+        goto +B35;   [RRR R i. ....]
+  +END:   #1
+ }
+// Register: rd 8/8 wr 9 swaps 2 any 0 found 0 main
+}

@@ -1,0 +1,339 @@
+class jx/zero/debug/Dump {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method xdump([BI)V {
+  +START:   #1
+        if vi1<=vR0.length goto B9;   
+  +B6:   #1
+        vi1 = vR0.length;    
+  +B9:   #1
+        vi2 = 0;    
+  +B11:   #1
+        if vi2>=vi1 goto B72;   
+  +B16:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra(" ").append@extra(byteToHex@special(vR0[vi2])).append@extra(" ").toString@extra());   [i RR ii.bii. RR..] 
+        if ((vi2+1)%8)!=0 goto B66;   
+  +B60:   #1
+        out.println();   [i RR ....... R...] 
+  +B66:   #1
+        vi2++;   
+        goto +B11;   [i RR ....... ....]
+  +B72:   #1
+        if vi1>=32 goto B84;   
+  +B78:   #1
+        out.println();   [i RR ....... R...] 
+  +B84:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 15 swaps 4 any 4 found 0 xdump
+ 
+ method xdump(Ljx/zero/ReadOnlyMemory;I)V {
+  +START:   #1
+        if vi1<=vR0.size() goto B17;   
+  +B10:   #1
+        vi1 = vR0.size();    [ RR  R] 
+  +B17:   #1
+        vi2 = 0;    
+  +B19:   #1
+        if vi2>=vi1 goto B84;   
+  +B24:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra(" ").append@extra(byteToHex@special(vR0.get8(vi2))).append@extra(" ").toString@extra());   [i RR ii.bii. RR..] 
+        if ((vi2+1)%8)!=0 goto B78;   
+  +B72:   #1
+        out.println();   [i RR ....... R...] 
+  +B78:   #1
+        vi2++;   
+        goto +B19;   [i RR ....... ....]
+  +B84:   #1
+        if vi1>=32 goto B96;   
+  +B90:   #1
+        out.println();   [i RR ....... R...] 
+  +B96:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 15 swaps 4 any 4 found 1 xdump
+ 
+ method xdump(Ljava/io/PrintStream;[BI)V {
+  +START:   #1
+        if vi2<=vR1.length goto B9;   
+  +B6:   #1
+        vi2 = vR1.length;    
+  +B9:   #1
+        vi3 = 0;    
+  +B11:   #1
+        if vi3>=vi2 goto B68;   
+  +B16:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R  i][ ?R  iR]
+        vR0.print@this(b1.append@extra(" ").append@extra(byteToHex@special(vR1[vi3])).append@extra(" ").toString@extra());   [i ?R ii.bii. RR..] 
+        if ((vi3+1)%8)!=0 goto B62;   
+  +B58:   #1
+        vR0.println@this();   [i ?R ....... R...] 
+  +B62:   #1
+        vi3++;   
+        goto +B11;   [i ?R ....... ....]
+  +B68:   #1
+        if vi2>=32 goto B78;   
+  +B74:   #1
+        vR0.println@this();   [i ?R ....... R...] 
+  +B78:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 12 swaps 4 any 4 found 0 xdump
+ 
+ method xdump1([BI)V {
+  +START:   #1
+        if vi1<=vR0.length goto B9;   
+  +B6:   #1
+        vi1 = vR0.length;    
+  +B9:   #1
+        vR2 = new java/lang/StringBuffer();    [ RR  i][ RR  iR]
+        vi3 = 0;    
+  +B19:   #1
+        if vi3>=vi1 goto B114;   
+  +B24:   #1
+        out.print(byteToHex@special(vR0[vi3]));   [Ri RR bi. RR] 
+        vR2.append(byteToAscii@special(vR0[vi3]));   [Ri RR bibi cR] 
+        if ((vi3+1)%4)!=0 goto B63;   
+  +B55:   #1
+        out.print(" ");   [Ri RR i... RR] 
+  +B63:   #1
+        if ((vi3+1)%16)!=0 goto B108;   
+  +B72:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b0.println(b1.append@extra("   ").append@extra(vR2.toString()).toString@extra());   [Ri RR iii. RR.] 
+        vR2 = new java/lang/StringBuffer();    [ RR iii. i..][ RR iii. iR.]
+  +B108:   #1
+        vi3++;   
+        goto +B19;   [Ri RR .... ...]
+  +B114:   #1
+        if vi1>=32 goto B126;   
+  +B120:   #1
+        out.println();   [Ri RR .... R..] 
+  +B126:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 20 swaps 6 any 4 found 0 xdump1
+ 
+ method xdump1(Ljx/zero/ReadOnlyMemory;II)V {
+  +START:   #1
+        if (vi1+vi2)<=vR0.size() goto B19;   
+  +B12:   #1
+        vi2 = vR0.size();    [ RR . R] 
+  +B19:   #1
+        vR3 = new java/lang/StringBuffer();    [ RR . i][ RR . iR]
+        vi4 = vi1;    
+  +B30:   #1
+        if vi4>=(vi2+vi1) goto B140;   
+  +B38:   #1
+        out.print(byteToHex@special(vR0.get8(vi4)));   [Ri RR bi. RR] 
+        vR3.append(byteToAscii@special(vR0.get8(vi4)));   [Ri RR bibi cR] 
+        if ((vi4+1)%4)!=0 goto B88;   
+  +B80:   #1
+        out.print(" ");   [Ri RR i... RR] 
+  +B88:   #1
+        if ((vi4+1)%16)!=0 goto B134;   
+  +B98:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b0.println(b1.append@extra("   ").append@extra(vR3.toString()).toString@extra());   [Ri RR iii. RR.] 
+        vR3 = new java/lang/StringBuffer();    [ RR iii. i..][ RR iii. iR.]
+  +B134:   #1
+        vi4++;   
+        goto +B30;   [Ri RR .... ...]
+  +B140:   #1
+        if vi2>=32 goto B152;   
+  +B146:   #1
+        out.println();   [Ri RR .... R..] 
+  +B152:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 21 swaps 6 any 5 found 0 xdump1
+ 
+ method xdump(Ljava/io/PrintStream;Ljx/zero/ReadOnlyMemory;II)V {
+  +START:   #1
+        if (vi2+vi3)<=vR1.size() goto B19;   
+  +B12:   #1
+        vi3 = vR1.size();    [ RR . R] 
+  +B19:   #1
+        vR4 = new java/lang/StringBuffer();    [ RR . i][ RR . iR]
+        vi5 = vi2;    
+  +B31:   #1
+        if vi5>=(vi3+vi2) goto B138;   
+  +B39:   #1
+        vR0.print@this(byteToHex@special(vR1.get8(vi5)));   [Ri RR bi RR] 
+        vR4.append(byteToAscii@special(vR1.get8(vi5)));   [Ri RR bibi cR] 
+        if ((vi5+1)%4)!=0 goto B86;   
+  +B80:   #1
+        vR0.print@this(" ");   [Ri RR i... RR] 
+  +B86:   #1
+        if ((vi5+1)%16)!=0 goto B132;   
+  +B96:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        vR0.println@this(b1.append@extra("   ").append@extra(vR4.toString()).toString@extra());   [Ri RR iii. RR.] 
+        vR4 = new java/lang/StringBuffer();    [ RR iii. i..][ RR iii. iR.]
+  +B132:   #1
+        vi5++;   
+        goto +B31;   [Ri RR .... ...]
+  +B138:   #1
+        if vi3>=32 goto B148;   
+  +B144:   #1
+        vR0.println@this();   [Ri RR .... R..] 
+  +B148:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 17 swaps 6 any 5 found 0 xdump
+ 
+ method xdump([BII)V {
+  +START:   #1
+        if (vi1+vi2)<=vR0.length goto B13;   
+  +B8:   #1
+        vi2 = (vR0.length-vi1);    
+  +B13:   #1
+        vi3 = 0;    
+  +B15:   #1
+        if vi3>=vi2 goto B78;   
+  +B20:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra(" ").append@extra(byteToHex@special(vR0[(vi1+vi3)])).append@extra(" ").toString@extra());   [i RR ii.bii. RR..] 
+        if ((vi3+1)%8)!=0 goto B72;   
+  +B66:   #1
+        out.println();   [i RR ....... R...] 
+  +B72:   #1
+        vi3++;   
+        goto +B15;   [i RR ....... ....]
+  +B78:   #1
+        if vi2>=32 goto B90;   
+  +B84:   #1
+        out.println();   [i RR ....... R...] 
+  +B90:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 15 swaps 4 any 4 found 0 xdump
+ 
+ method xdump(Ljx/zero/ReadOnlyMemory;)V {
+  +START:   #1
+        xdump@special(vR0,0,vR0.size());   [  i iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 xdump
+ 
+ method xdump(Ljx/zero/ReadOnlyMemory;II)V {
+  +START:   #1
+        if (vi1+vi2)<=vR0.size() goto B21;   
+  +B12:   #1
+        vi2 = (vR0.size()-vi1);    
+  +B21:   #1
+        vi3 = 0;    
+  +B23:   #1
+        if vi3>=vi2 goto B90;   
+  +B28:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        b0.print(b1.append@extra(" ").append@extra(byteToHex@special(vR0.get8((vi1+vi3)))).append@extra(" ").toString@extra());   [i RR iii.bii. RR..] 
+        if ((vi3+1)%8)!=0 goto B84;   
+  +B78:   #1
+        out.println();   [i RR ........ R...] 
+  +B84:   #1
+        vi3++;   
+        goto +B23;   [i RR ........ ....]
+  +B90:   #1
+        if vi2>=32 goto B102;   
+  +B96:   #1
+        out.println();   [i RR ........ R...] 
+  +B102:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 17 swaps 5 any 4 found 0 xdump
+ 
+ method toHex(I)Ljava/lang/String; {
+  +START:   #1
+        if vi0>9 goto B26;   
+  +B6:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        return b0.append@extra("").append@extra(vi0).toString@extra();   
+  +B26:   #1
+        tswitch (vi0) B64 B67 B70 B73 B76 B79 : B82;   
+  +B64:   #1
+        return "a";   
+  +B67:   #1
+        return "b";   
+  +B70:   #1
+        return "c";   
+  +B73:   #1
+        return "d";   
+  +B76:   #1
+        return "e";   
+  +B79:   #1
+        return "f";   
+  +B82:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.println(b1.append@extra("Format error: ").append@extra(vi0).toString@extra());   [ RR ii. RR.] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 10 swaps 3 any 2 found 0 toHex
+ 
+ method byteToHex(B)Ljava/lang/String; {
+  +START:   #1
+        vi1 = vi0;    
+        if vi1>=0 goto B12;   
+  +B8:   #1
+        vi1+=256;   
+  +B12:   #1
+        vi2 = (vi1 & 15);    
+        vi3 = ((vi1 & 240) >> 4);    
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(toHex@special(vi3)).append@extra(toHex@special(vi2)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 9 swaps 2 any 5 found 0 byteToHex
+ 
+ method byteToAscii(B)C {
+  +START:   #1
+        vi1 = vi0;    
+        if vi1>=0 goto B12;   
+  +B8:   #1
+        vi1+=256;   
+  +B12:   #1
+        if vi1<65 goto B24;   
+  +B18:   #1
+        if vi1<=90 goto B48;   
+  +B24:   #1
+        if vi1<97 goto B36;   
+  +B30:   #1
+        if vi1<=122 goto B48;   
+  +B36:   #1
+        if vi1<48 goto B51;   
+  +B42:   #1
+        if vi1>57 goto B51;   
+  +B48:   #2
+        return (char)vi1;   
+  +B51:   #2
+        return 46;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 9 found 0 byteToAscii
+}

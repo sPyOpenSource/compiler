@@ -1,0 +1,323 @@
+class jx/rdp/orders/Text2Order {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.flags = 0;   
+        vR0.mixmode = 0;   
+        vR0.fgcolor = 0;   
+        vR0.bgcolor = 0;   
+        vR0.x = 0;   
+        vR0.y = 0;   
+        vR0.unknown = 0;   
+        vR0.font = 0;   
+        vR0.clipleft = 0;   
+        vR0.cliptop = 0;   
+        vR0.clipright = 0;   
+        vR0.clipbottom = 0;   
+        vR0.boxleft = 0;   
+        vR0.boxtop = 0;   
+        vR0.boxright = 0;   
+        vR0.boxbottom = 0;   
+        vR0.length = 0;   
+        vR0.text = new byte[256];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFont()I {
+  +START:   #1
+        return vR0.font;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFont
+ 
+ method getClipLeft()I {
+  +START:   #1
+        return vR0.clipleft;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClipLeft
+ 
+ method getClipRight()I {
+  +START:   #1
+        return vR0.clipright;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClipRight
+ 
+ method getClipTop()I {
+  +START:   #1
+        return vR0.cliptop;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClipTop
+ 
+ method getClipBottom()I {
+  +START:   #1
+        return vR0.clipbottom;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClipBottom
+ 
+ method getBoxLeft()I {
+  +START:   #1
+        return vR0.boxleft;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBoxLeft
+ 
+ method getBoxRight()I {
+  +START:   #1
+        return vR0.boxright;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBoxRight
+ 
+ method getBoxTop()I {
+  +START:   #1
+        return vR0.boxtop;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBoxTop
+ 
+ method getBoxBottom()I {
+  +START:   #1
+        return vR0.boxbottom;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBoxBottom
+ 
+ method getX()I {
+  +START:   #1
+        return vR0.x;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getX
+ 
+ method getUnknown()I {
+  +START:   #1
+        return vR0.unknown;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUnknown
+ 
+ method getY()I {
+  +START:   #1
+        return vR0.y;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getY
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.flags;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getMixmode()I {
+  +START:   #1
+        return vR0.mixmode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMixmode
+ 
+ method getForegroundColor()I {
+  +START:   #1
+        return vR0.fgcolor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getForegroundColor
+ 
+ method getBackgroundColor()I {
+  +START:   #1
+        return vR0.bgcolor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBackgroundColor
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.length;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method getText()[B {
+  +START:   #1
+        return vR0.text;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getText
+ 
+ method setFont(I)V {
+  +START:   #1
+        vR0.font = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFont
+ 
+ method setX(I)V {
+  +START:   #1
+        vR0.x = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setX
+ 
+ method setUnknown(I)V {
+  +START:   #1
+        vR0.unknown = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setUnknown
+ 
+ method setY(I)V {
+  +START:   #1
+        vR0.y = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setY
+ 
+ method setMixmode(I)V {
+  +START:   #1
+        vR0.mixmode = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMixmode
+ 
+ method setFlags(I)V {
+  +START:   #1
+        vR0.flags = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFlags
+ 
+ method setForegroundColor(I)V {
+  +START:   #1
+        vR0.fgcolor = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setForegroundColor
+ 
+ method setBackgroundColor(I)V {
+  +START:   #1
+        vR0.bgcolor = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBackgroundColor
+ 
+ method setClipLeft(I)V {
+  +START:   #1
+        vR0.clipleft = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setClipLeft
+ 
+ method setClipRight(I)V {
+  +START:   #1
+        vR0.clipright = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setClipRight
+ 
+ method setClipTop(I)V {
+  +START:   #1
+        vR0.cliptop = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setClipTop
+ 
+ method setClipBottom(I)V {
+  +START:   #1
+        vR0.clipbottom = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setClipBottom
+ 
+ method setBoxLeft(I)V {
+  +START:   #1
+        vR0.boxleft = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBoxLeft
+ 
+ method setBoxRight(I)V {
+  +START:   #1
+        vR0.boxright = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBoxRight
+ 
+ method setBoxTop(I)V {
+  +START:   #1
+        vR0.boxtop = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBoxTop
+ 
+ method setBoxBottom(I)V {
+  +START:   #1
+        vR0.boxbottom = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBoxBottom
+ 
+ method setText([B)V {
+  +START:   #1
+        vR0.text = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setText
+ 
+ method setLength(I)V {
+  +START:   #1
+        vR0.length = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLength
+ 
+ method reset()V {
+  +START:   #1
+        vR0.font = 0;   
+        vR0.flags = 0;   
+        vR0.mixmode = 0;   
+        vR0.unknown = 0;   
+        vR0.fgcolor = 0;   
+        vR0.bgcolor = 0;   
+        vR0.clipleft = 0;   
+        vR0.cliptop = 0;   
+        vR0.clipright = 0;   
+        vR0.clipbottom = 0;   
+        vR0.boxleft = 0;   
+        vR0.boxtop = 0;   
+        vR0.boxright = 0;   
+        vR0.boxbottom = 0;   
+        vR0.x = 0;   
+        vR0.y = 0;   
+        vR0.length = 0;   
+        vR0.text = new byte[256];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 0 swaps 0 any 0 found 0 reset
+}

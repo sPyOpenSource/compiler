@@ -1,0 +1,18 @@
+class java/beans/PropertyVetoException {
+ 
+ method <init>(Ljava/lang/String;Ljava/beans/PropertyChangeEvent;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.evt = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPropertyChangeEvent()Ljava/beans/PropertyChangeEvent; {
+  +START:   #1
+        return vR0.evt;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPropertyChangeEvent
+}

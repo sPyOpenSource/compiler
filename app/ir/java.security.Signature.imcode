@@ -1,0 +1,256 @@
+class java/security/Signature {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.state = 1;   
+        vR0.algorithm = vR1;   
+        vR0.state = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInstance(Ljava/lang/String;)Ljava/security/Signature; {
+  +START:   #1
+        vR1 = getProviders@special();    [ RR  ]
+        vi2 = 0;    
+  +B6:   #1
+        if vi2>=vR1.length goto B57;   
+  +B12:   #1
+        b0 = vR1[vi2];    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR3 = b0.getProperty(b1.append@extra("Signature.").append@extra(vR0).toString@extra());    [Ri RR ii. RR.] 
+        if vR3==null goto B51;   
+  +B42:   #1
+        return getInstance@special(vR3,vR0,vR1[vi2]);   
+  +B51:   #1
+        vi2++;   
+        goto +B6;   [RiR RR ... ...]
+  -B57:   #1
+        throw new java/security/NoSuchAlgorithmException(vR0);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 12 swaps 2 any 3 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;)Ljava/security/Signature; {
+  +START:   #1
+        vR2 = getProvider@special(vR1);    [ RR  R]
+        if vR2!=null goto B17;   
+  -B9:   #1
+        throw new java/security/NoSuchProviderException();   
+  +B17:   #1
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        return getInstance@special(vR2.getProperty(b1.append@extra("Signature.").append@extra(vR0).toString@extra()),vR0,vR2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 2 any 1 found 0 getInstance
+ 
+ method getInstance(Ljava/lang/String;Ljava/lang/String;Ljava/security/Provider;)Ljava/security/Signature; {
+  +START:   #4
+        vR3 = forName@special(vR0).newInstance@extra();    [ R . R] [ R R R]
+        if (vR3 instanceof java/security/SignatureSpi)==0 goto B32;   
+  +B15:   #1
+        vR4 = new java/security/DummySignature((java/security/SignatureSpi)(vR3),vR1);    [ R . i.][ R . iRRR]
+        goto +B44;   [RR R . ....]
+  +B32:   #1
+        vR4 = (java/security/Signature)(vR3);    
+        vR4.algorithm = vR1;   
+  +B44:   #1
+        vR4.provider = vR2;   
+        b0 = vR4;    
+  +B52b0:   #3 reference
+        return b0;   
+  -H53<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Class not found");   
+  -H64<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Class instantiation failed");   
+  -H75<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/security/NoSuchAlgorithmException("Illegal Access");   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 52 handler 53 type 77
+0 - 52 handler 64 type 81
+0 - 52 handler 75 type 85
+ }
+// Register: rd 16/16 wr 12 swaps 0 any 2 found 2 getInstance
+ 
+ method getProvider()Ljava/security/Provider; {
+  +START:   #1
+        return vR0.provider;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProvider
+ 
+ method initVerify(Ljava/security/PublicKey;)V {
+  +START:   #1
+        vR0.state = 3;   
+        vR0.engineInitVerify@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 initVerify
+ 
+ method initVerify(Ljava/security/cert/Certificate;)V {
+  +START:   #1
+        vR0.state = 3;   
+        if vR1.getType@extra().equals@extra("X509")==0 goto B47;   
+  +B17:   #1
+        vR2 = (java/security/cert/X509Certificate)(vR1);    
+        vR3 = vR2.getKeyUsage();    [R R .. R.] 
+        if vR3==null goto B47;   
+  +B31:   #1
+        if vR3[0]!=0 goto B47;   
+  -B37:   #1
+        throw new java/security/InvalidKeyException("KeyUsage of this Certificate indicates it cannot be used for digital signing");   
+  +B47:   #3
+        vR0.initVerify@extra(vR1.getPublicKey());   [RR R i. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 2 any 2 found 1 initVerify
+ 
+ method initSign(Ljava/security/PrivateKey;)V {
+  +START:   #1
+        vR0.state = 2;   
+        vR0.engineInitSign@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 initSign
+ 
+ method initSign(Ljava/security/PrivateKey;Ljava/security/SecureRandom;)V {
+  +START:   #1
+        vR0.state = 2;   
+        vR0.engineInitSign@this(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 initSign
+ 
+ method sign()[B {
+  +START:   #1
+        if vR0.state!=2 goto B18;   
+  +B8:   #1
+        vR0.state = 1;   
+        return vR0.engineSign@this();   
+  -B18:   #1
+        throw new java/security/SignatureException();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 sign
+ 
+ method sign([BII)I {
+  +START:   #1
+        if vR0.state!=2 goto B21;   
+  +B8:   #1
+        vR0.state = 1;   
+        return vR0.engineSign@this(vR1,vi2,vi3);   
+  -B21:   #1
+        throw new java/security/SignatureException();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 sign
+ 
+ method verify([B)Z {
+  +START:   #1
+        if vR0.state!=3 goto B19;   
+  +B8:   #1
+        vR0.state = 1;   
+        return vR0.engineVerify@this(vR1);   
+  -B19:   #1
+        throw new java/security/SignatureException();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 verify
+ 
+ method update(B)V {
+  +START:   #1
+        if vR0.state==1 goto B16;   
+  +B8:   #1
+        vR0.engineUpdate@this(vi1);   [ R  iR] 
+        goto +B24;   forward return[ R  ..]
+  -B16:   #1
+        throw new java/security/SignatureException();   
+  +B24:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 update
+ 
+ method update([B)V {
+  +START:   #1
+        if vR0.state==1 goto B19;   
+  +B8:   #1
+        vR0.engineUpdate@this(vR1,0,vR1.length);   [ R i iiRR] 
+        goto +B27;   forward return[ R i ....]
+  -B19:   #1
+        throw new java/security/SignatureException();   
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 update
+ 
+ method update([BII)V {
+  +START:   #1
+        if vR0.state==1 goto B18;   
+  +B8:   #1
+        vR0.engineUpdate@this(vR1,vi2,vi3);   [ R  iiRR] 
+        goto +B26;   forward return[ R  ....]
+  -B18:   #1
+        throw new java/security/SignatureException();   
+  +B26:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 update
+ 
+ method getAlgorithm()Ljava/lang/String; {
+  +START:   #1
+        return vR0.algorithm;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlgorithm
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.algorithm).append@extra(" Signature").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 5 swaps 2 any 0 found 0 toString
+ 
+ method setParameter(Ljava/lang/String;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.engineSetParameter@this(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setParameter
+ 
+ method setParameter(Ljava/security/spec/AlgorithmParameterSpec;)V {
+  +START:   #1
+        vR0.engineSetParameter@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setParameter
+ 
+ method getParameter(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.engineGetParameter@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParameter
+ 
+ method clone()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/CloneNotSupportedException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 clone
+}
