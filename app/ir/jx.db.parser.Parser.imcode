@@ -1,0 +1,180 @@
+class jx/db/parser/Parser {
+ 
+ method <init>(Ljx/db/Database;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.db = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method executeUpdate(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.execute@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 executeUpdate
+ 
+ method executeQuery(Ljava/lang/String;)Ljx/db/parser/JXResultSet; {
+  +START:   #1
+        return vR0.execute@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 executeQuery
+ 
+ method execute(Ljava/lang/String;)Ljx/db/parser/JXResultSet; {
+  +START:   #1
+        vR2 = new jx/db/parser/ParseHelper(vR1.trim@extra());    [ RRR  i][ RRR . iRR]
+        vR3 = vR2.nextToken();    [R RRR . R..] 
+        if vR3.equals@extra("CREATE")==0 goto B682;   
+  +B26:   #1
+        vR4 = vR2.nextToken();    [RR RRR . R..] 
+        if vR4.equals@extra("TABLE")==0 goto B371;   
+  +B42:   #1
+        vR5 = vR2.nextToken();    [RRR RRR . R..] 
+        out.println("create:");   [RRRR RRR i. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR i. i..][ RRR i. iR.]
+        b0.println(b1.append@extra("   name:").append@extra(vR5).toString@extra());   [RRRR RRR iii. RR.] 
+        vR2.expectParens();   [RRRR RRR iii. R..] 
+        vR6 = vR2.splitByComma();    [RRRR RRR iii. R..] 
+        vR7 = new java/lang/String()[vR6.length];    
+        vR8 = new int[vR6.length];    
+        vR9 = new int[vR6.length];    
+        vi10 = 0;    
+  +B117:   #1
+        if vi10>=vR6.length goto B350;   
+  +B125:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b0.println(b1.append@extra("arg: ").append@extra(vR6[vi10]).toString@extra());   [RRRRRRRRi RRR iii. RR.] 
+        vR11 = new jx/db/parser/ParseHelper(vR6[vi10]);    [ RRR iii. i..][ RRR iii. iRR]
+        vR7[vi10] = vR11.nextToken();   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iii. i..][ RRR iii. iR.]
+        b0.println(b1.append@extra("Name: ").append@extra(vR7[vi10]).toString@extra());   [RRRRRRRRiR RRR iiiiii. RR.] 
+        vR12 = vR11.nextToken().toLowerCase@extra();    [RRRRRRRRiR RRR iiiiii. R..] [RRRRRRRRiR RRR iiiiiiR R..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiii. i..][ RRR iiiiii. iR.]
+        b0.println(b1.append@extra("Type: ").append@extra(vR12).toString@extra());   [RRRRRRRRiRR RRR iiiiiiii. RR.] 
+        if vR12.equals@extra("int")==0 goto B268;   
+  +B253:   #1
+        vR8[vi10] = 0;   
+        vR9[vi10] = 4;   
+        goto +B344;   [RRRRRRRRiRR RRR ......... ...]
+  +B268:   #1
+        if vR12.equals@extra("char")==0 goto B311;   
+  -B278:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i..][ RRR ......... iR.]
+        b1.<init>@special(b2.append@extra("Unsupported SQL data type "").append@extra(vR12).append@extra(""").toString@extra());   [RRRRRRRRiRR RRR iii...... RR..] 
+        throw b0;   
+  -B311:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i...][ RRR ......... iR..]
+        b1.<init>@special(b2.append@extra("Unknown SQL data type "").append@extra(vR12).append@extra(""").toString@extra());   [RRRRRRRRiRR RRR iii...... RR..] 
+        throw b0;   
+  +B344:   #1
+        vi10++;   
+        goto +B117;   [RRRRRRRRiRR RRR ......... ....]
+  +B350:   #1
+        vR10 = vR0.db.createTable(vR5,vR7,vR9,vR8);    [RRRRRRRRiRR RRR ......... RRRRR] 
+        return 0;   
+  +B371:   #1
+        if vR4.equals@extra("INDEX")==0 goto B414;   
+  -B381:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i....][ RRR ......... iR...]
+        b1.<init>@special(b2.append@extra("Unknown SQL-CREATE subcommand "").append@extra(vR4).append@extra(""").toString@extra());   [RRRRRRRRRRR RRR iii...... RR...] 
+        throw b0;   
+  +B414:   #1
+        if vR4.equals@extra("UNIQUE")==0 goto B649;   
+  +B424:   #1
+        vR2.expectToken("INDEX");   [RRRRRRRRRRR RRR i........ RR...] 
+        vR5 = vR2.nextToken();    [RRRRRRRRRRR RRR i........ R....] 
+        vR2.expectToken("ON");   [RRRRRRRRRRR RRR ii....... RR...] 
+        vR6 = vR2.nextToken();    [RRRRRRRRRRR RRR ii....... R....] 
+        vR2.expectParens();   [RRRRRRRRRRR RRR ii....... R....] 
+        vR7 = vR2.splitByComma();    [RRRRRRRRRRR RRR ii....... R....] 
+        vR8 = vR0.db.getTable(vR6);    [RRRRRRRRRRR RRR ii....... RR...] 
+        vR9 = new int[vR7.length];    
+        vR10 = vR8.getTupleDescriptor();    [RRRRRRRRRRR RRR ii....... R....] 
+        vi11 = vR10.getCount();    [RRRRRRRRRRR RRR ii....... R....] 
+        vi12 = 0;    
+  +B499:   #1
+        if vi12>=vR7.length goto B634;   
+  +B507:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ......... i....][ RRR ......... iR...]
+        b0.println(b1.append@extra("index:").append@extra(vR7[vi12]).toString@extra());   [RRRRRRRRRii RRR iii...... RR...] 
+        vR9[vi12] = -1;   
+        vi13 = 0;    
+  +B545:   #1
+        if vi13>=vi11 goto B588;   
+  +B552:   #1
+        if vR10.getName(vi13).equals@extra(vR7[vi12])==0 goto B582;   
+  +B572:   #1
+        vR9[vi12] = vi13;   
+        goto +B588;   [RRRRRRRRRiii RRR ......... .....]
+  +B582:   #1
+        vi13++;   
+        goto +B545;   [RRRRRRRRRiii RRR ......... .....]
+  +B588:   #2
+        if vR9[vi12]!=-1 goto B628;   
+  -B597:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i....][ RRR ......... iR...]
+        b1.<init>@special(b2.append@extra("column name unknown: ").append@extra(vR7[vi12]).toString@extra());   [RRRRRRRRRiii RRR iii...... RR...] 
+        throw b0;   
+  +B628:   #1
+        vi12++;   
+        goto +B499;   [RRRRRRRRRiii RRR ......... .....]
+  +B634:   #1
+        vR12 = vR8.createIndex(1,1,vR9);    [RRRRRRRRRiii RRR ......... RiiR.] 
+        return 0;   
+  -B649:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i....][ RRR ......... iR...]
+        b1.<init>@special(b2.append@extra("Unknown SQL-CREATE subcommand "").append@extra(vR4).append@extra(""").toString@extra());   [RRRRRRRRRiRi RRR iii...... RR...] 
+        throw b0;   
+  +B682:   #1
+        if vR3.equals@extra("SELECT")==0 goto B693;   
+  +B691:   #1
+        return 0;   
+  +B693:   #1
+        if vR3.equals@extra("INSERT")==0 goto B795;   
+  +B702:   #1
+        vR2.expectToken("INTO");   [RRRRRRRRRiRi RRR i........ RR...] 
+        vR4 = vR2.nextToken();    [RRRRRRRRRiRi RRR i........ R....] 
+        vR2.expectToken("VALUES");   [RRRRRRRRRiRi RRR ii....... RR...] 
+        vR2.expectParens();   [RRRRRRRRRiRi RRR ii....... R....] 
+        vR5 = vR2.splitByComma();    [RRRRRRRRRiRi RRR ii....... R....] 
+        vR6 = vR0.db.getTable(vR4);    [RRRRRRRRRiRi RRR ii....... RR...] 
+        vR7 = vR6.createTuple();    [RRRRRRRRRiRi RRR ii....... R....] 
+        vi8 = 0;    
+  +B755:   #1
+        if vi8>=vR5.length goto B786;   
+  +B763:   #1
+        vR7.setField(vi8,parseInt@special(vR5[vi8]));   [RRRRRRiRRiRi RRR Ri....... iiR..] 
+        vi8++;   
+        goto +B755;   [RRRRRRiRRiRi RRR Ri....... .....]
+  +B786:   #1
+        vR7.close();   [RRRRRRiRRiRi RRR ......... R....] 
+        return 0;   
+  -B795:   #1
+        b0 = new jx/db/parser/ParseException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ......... i....][ RRR ......... iR...]
+        b1.<init>@special(b2.append@extra("Unknown SQL command "").append@extra(vR3).append@extra(""").toString@extra());   [RRRRRRiRRiRi RRR iii...... RR...] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 116/116 wr 138 swaps 46 any 15 found 0 execute
+}

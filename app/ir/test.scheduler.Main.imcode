@@ -1,0 +1,33 @@
+class test/scheduler/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = "DomainA";    
+        b1 = "test_scheduler";    
+        b2 = "test/scheduler/TargetDomain_Impl";    
+        b4 = new java/lang/String()[1];    
+        b4[0] = "domain1";   
+        b5 = new int[1];    
+        b5[0] = 10;   
+        createDomain@special(b0,b1,b2,1048576,b4,b5);   [ RRR?RR  RRiRRR]
+        b0 = "DomainB";    
+        b1 = "test_scheduler";    
+        b2 = "test/scheduler/TargetDomain_Impl";    
+        b4 = new java/lang/String()[1];    
+        b4[0] = "domain2";   
+        b5 = new int[1];    
+        b5[0] = 5;   
+        createDomain@special(b0,b1,b2,1048576,b4,b5);   [ RRR?RR  RRiRRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 10 swaps 0 any 0 found 0 main
+}

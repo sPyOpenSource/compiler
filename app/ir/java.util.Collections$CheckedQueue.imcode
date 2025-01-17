@@ -1,0 +1,76 @@
+class java/util/Collections$CheckedQueue {
+ 
+ method <init>(Ljava/util/Queue;Ljava/lang/Class;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.queue = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method element()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.queue.element();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 element
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1==vR0 goto B18;   
+  +B5:   #1
+        if vR0.c.equals(vR1)==0 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  ..]
+  +B22:   #1
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.c.hashCode();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method peek()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.queue.peek();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 peek
+ 
+ method poll()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.queue.poll();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 poll
+ 
+ method remove()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.queue.remove();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method offer(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.queue.offer(vR0.typeCheck@this(vR1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 offer
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
+}

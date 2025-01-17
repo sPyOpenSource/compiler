@@ -1,0 +1,69 @@
+class java/util/Collections$SynchronizedSet {
+ 
+ method <init>(Ljava/util/Set;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Set;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0!=vR1 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        b0 = vR0.mutex;    
+        vR2 = b0;    
+        b0.enter();   
+        b0 = vR0.c.equals(vR1);    [R b  RR] 
+        vR2.leave();   
+        return b0;   
+  +H27<caught exception>:   #2 reference
+        vR3 = <caught exception>;    
+        vR2.leave();   
+  -B30:   #1
+        throw vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+14 - 26 handler 27 type 0
+27 - 30 handler 27 type 0
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 2 found 0 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        b0 = vR0.mutex;    
+        vR1 = b0;    
+        b0.enter();   
+        b0 = vR0.c.hashCode();    [R i  R] 
+        vR1.leave();   
+        return b0;   
+  +H19<caught exception>:   #2 reference
+        vR2 = <caught exception>;    
+        vR1.leave();   
+  -B22:   #1
+        throw vR2;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 18 handler 19 type 0
+19 - 22 handler 19 type 0
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 1 found 0 hashCode
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+}

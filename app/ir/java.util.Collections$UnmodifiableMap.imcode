@@ -1,0 +1,205 @@
+class java/util/Collections$UnmodifiableMap {
+ 
+ method <init>(Ljava/util/Map;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vR1!=null goto B16;   
+  -B8:   #1
+        throw new java/lang/NullPointerException();   
+  +B16:   #1
+        vR0.m = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.m.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.m.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method containsKey(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.m.containsKey(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 containsKey
+ 
+ method containsValue(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.m.containsValue(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 containsValue
+ 
+ method get(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m.get(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 put
+ 
+ method remove(Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method putAll(Ljava/util/Map;)V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 putAll
+ 
+ method clear()V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method keySet()Ljava/util/Set; {
+  +START:   #1
+        if vR0.keySet!=null goto B23;   
+  +B7:   #1
+        vR0.keySet = unmodifiableSet@special(vR0.m.keySet());   
+  +B23:   #1
+        return vR0.keySet;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 keySet
+ 
+ method entrySet()Ljava/util/Set; {
+  +START:   #1
+        if vR0.entrySet!=null goto B27;   
+  +B7:   #1
+        b1 = new java/util/Collections$UnmodifiableMap$UnmodifiableEntrySet(vR0.m.entrySet());    [ ?R  i][ ?R . iRR]
+        vR0.entrySet = b1;   
+  +B27:   #1
+        return vR0.entrySet;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 entrySet
+ 
+ method values()Ljava/util/Collection; {
+  +START:   #1
+        if vR0.values!=null goto B23;   
+  +B7:   #1
+        vR0.values = unmodifiableCollection@special(vR0.m.values());   
+  +B23:   #1
+        return vR0.values;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 values
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1==vR0 goto B18;   
+  +B5:   #1
+        if vR0.m.equals(vR1)==0 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  ..]
+  +B22:   #1
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.m.hashCode();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.m.toString();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method replaceAll(Ljava/util/function/BiFunction;)V {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 replaceAll
+ 
+ method putIfAbsent(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 putIfAbsent
+ 
+ method remove(Ljava/lang/Object;Ljava/lang/Object;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method replace(Ljava/lang/Object;Ljava/lang/Object;Ljava/lang/Object;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 replace
+ 
+ method replace(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 replace
+ 
+ method computeIfAbsent(Ljava/lang/Object;Ljava/util/function/Function;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 computeIfAbsent
+ 
+ method computeIfPresent(Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 computeIfPresent
+ 
+ method compute(Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 compute
+ 
+ method merge(Ljava/lang/Object;Ljava/lang/Object;Ljava/util/function/BiFunction;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 merge
+}

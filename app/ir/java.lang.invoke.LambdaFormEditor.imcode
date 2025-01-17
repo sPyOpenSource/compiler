@@ -1,0 +1,87 @@
+class java/lang/invoke/LambdaFormEditor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method spreadArgumentsForm(ILjava/lang/Class;I)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spreadArgumentsForm
+ 
+ method collectArgumentArrayForm(ILjava/lang/invoke/MethodHandle;)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 collectArgumentArrayForm
+ 
+ method collectArgumentsForm(ILjava/lang/invoke/MethodType;)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 collectArgumentsForm
+ 
+ method bindArgumentL(Ljava/lang/invoke/BoundMethodHandle;ILjava/lang/Object;)Ljava/lang/invoke/BoundMethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindArgumentL
+ 
+ method bindArgumentI(Ljava/lang/invoke/BoundMethodHandle;II)Ljava/lang/invoke/BoundMethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindArgumentI
+ 
+ method bindArgumentJ(Ljava/lang/invoke/BoundMethodHandle;IJ)Ljava/lang/invoke/BoundMethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindArgumentJ
+ 
+ method bindArgumentF(Ljava/lang/invoke/BoundMethodHandle;IF)Ljava/lang/invoke/BoundMethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindArgumentF
+ 
+ method bindArgumentD(Ljava/lang/invoke/BoundMethodHandle;ID)Ljava/lang/invoke/BoundMethodHandle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bindArgumentD
+ 
+ method dupArgumentForm(II)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 dupArgumentForm
+ 
+ method permuteArgumentsForm(I[I)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 permuteArgumentsForm
+ 
+ method foldArgumentsForm(IZLjava/lang/invoke/MethodType;)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 foldArgumentsForm
+}

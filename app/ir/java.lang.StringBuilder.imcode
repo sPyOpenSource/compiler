@@ -1,0 +1,452 @@
+class java/lang/StringBuilder {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(16);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special((vR1.length@extra()+16));   [  i iR] 
+        vR0.append@extra(vR1);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method append(Ljava/lang/String;)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vR1);   [   RR] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/Object;)Ljava/lang/StringBuilder; {
+  +START:   #1
+        return vR0.append@extra(valueOf@special(vR1));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 append
+ 
+ method append(I)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vi1);   [   iR] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(F)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vl1);   [   ?R] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(D)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vd1);   [   ??R] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Z)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vi1);   [   iR] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(J)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vl1);   [   ??R] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(C)Ljava/lang/StringBuilder; {
+  +START:   #1
+        vR0.append@special(vi1);   [   iR] 
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 append
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return new java/lang/String(vR0.value,0,vR0.count);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 toString
+ 
+ method reverse()Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.reverse@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 reverse
+ 
+ method lastIndexOf(Ljava/lang/String;I)I {
+  +START:   #1
+        return vR0.lastIndexOf@special(vR1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastIndexOf
+ 
+ method lastIndexOf(Ljava/lang/String;)I {
+  +START:   #1
+        return vR0.lastIndexOf@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastIndexOf
+ 
+ method indexOf(Ljava/lang/String;I)I {
+  +START:   #1
+        return vR0.indexOf@special(vR1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 indexOf
+ 
+ method indexOf(Ljava/lang/String;)I {
+  +START:   #1
+        return vR0.indexOf@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 indexOf
+ 
+ method insert(ID)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vd2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(IF)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vl2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(IJ)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vl2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(II)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(IC)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(IZ)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(ILjava/lang/CharSequence;II)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2,vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(ILjava/lang/CharSequence;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(I[C)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(ILjava/lang/String;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(ILjava/lang/Object;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method insert(I[CII)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.insert@special(vi1,vR2,vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insert
+ 
+ method substring(II)Ljava/lang/String; {
+  +START:   #1
+        return vR0.substring@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 substring
+ 
+ method subSequence(II)Ljava/lang/CharSequence; {
+  +START:   #1
+        return vR0.subSequence@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 subSequence
+ 
+ method substring(I)Ljava/lang/String; {
+  +START:   #1
+        return vR0.substring@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 substring
+ 
+ method replace(IILjava/lang/String;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.replace@special(vi1,vi2,vR3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 replace
+ 
+ method deleteCharAt(I)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.deleteCharAt@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 deleteCharAt
+ 
+ method appendCodePoint(I)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.appendCodePoint@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 appendCodePoint
+ 
+ method delete(II)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.delete@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 delete
+ 
+ method append(D)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vd1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(F)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vl1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(J)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vl1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(I)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(C)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Z)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append([CII)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@special(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append([C)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/CharSequence;II)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@special(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/CharSequence;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/StringBuffer;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@special(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/String;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method append(Ljava/lang/Object;)Ljava/lang/AbstractStringBuilder; {
+  +START:   #1
+        return vR0.append@extra(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+ 
+ method setCharAt(IC)V {
+  +START:   #1
+        vR0.setCharAt@special(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCharAt
+ 
+ method getChars(II[CI)V {
+  +START:   #1
+        vR0.getChars@special(vi1,vi2,vR3,vi4);   [   iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getChars
+ 
+ method offsetByCodePoints(II)I {
+  +START:   #1
+        return vR0.offsetByCodePoints@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 offsetByCodePoints
+ 
+ method codePointCount(II)I {
+  +START:   #1
+        return vR0.codePointCount@special(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 codePointCount
+ 
+ method codePointBefore(I)I {
+  +START:   #1
+        return vR0.codePointBefore@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 codePointBefore
+ 
+ method codePointAt(I)I {
+  +START:   #1
+        return vR0.codePointAt@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 codePointAt
+ 
+ method charAt(I)C {
+  +START:   #1
+        return vR0.charAt@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 charAt
+ 
+ method setLength(I)V {
+  +START:   #1
+        vR0.setLength@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLength
+ 
+ method trimToSize()V {
+  +START:   #1
+        vR0.trimToSize@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 trimToSize
+ 
+ method ensureCapacity(I)V {
+  +START:   #1
+        vR0.ensureCapacity@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ensureCapacity
+ 
+ method capacity()I {
+  +START:   #1
+        return vR0.capacity@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 capacity
+ 
+ method length()I {
+  +START:   #1
+        return vR0.length@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 length
+ 
+ method append(C)Ljava/lang/Appendable; {
+  +START:   #1
+        return vR0.append@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 append
+}

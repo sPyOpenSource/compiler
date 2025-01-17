@@ -1,0 +1,60 @@
+class jx/fs/RegularFileImpl {
+ 
+ method <init>(Ljx/fs/FilesystemImpl;Ljx/fs/FileSystem;Ljx/fs/FSObjectImpl;Ljx/fs/Node;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3,vR4);   [   RRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method read(ILjx/zero/Memory;II)I {
+  +START:   #1
+        return vR0.inode.read(vi1,vR2,vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+ 
+ method write(ILjx/zero/Memory;II)I {
+  +START:   #1
+        return vR0.inode.write(vi1,vR2,vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 write
+ 
+ method append(Ljx/zero/Memory;II)I {
+  +START:   #1
+        return vR0.inode.write(vR0.getLength@extra(),vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 append
+ 
+ method setLength(J)V {
+  -START:   #1
+        throw new java/lang/Error("not implemented yet");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLength
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.inode.getLength();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method finalize()V {
+  +START:   #1
+        vR0.inode.decUseCount();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 finalize
+ 
+ method isValid()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValid
+}

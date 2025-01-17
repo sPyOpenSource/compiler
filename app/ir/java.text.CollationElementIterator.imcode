@@ -1,0 +1,143 @@
+class java/text/CollationElementIterator {
+ 
+ method primaryOrder(I)I {
+  +START:   #1
+        return (int)(((long)vi0 & 4294901760) >> 16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 primaryOrder
+ 
+ method secondaryOrder(I)I {
+  +START:   #1
+        return ((vi0 & 65280) >> 8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 secondaryOrder
+ 
+ method tertiaryOrder(I)I {
+  +START:   #1
+        return (vi0 & 255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 tertiaryOrder
+ 
+ method <init>(Ljava/text/RuleBasedCollator;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.rbc = vR1;   
+        vR0.str = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setText(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.str = vR1;   
+        vR0.pos = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setText
+ 
+ method setText(Ljava/text/CharacterIterator;)V {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer("");    [ R  i][ R . iRR]
+        vi3 = vR1.first();    [R R . R..] 
+  +B17:   #1
+        if vi3==65535 goto B39;   
+  +B23:   #1
+        vR2.append(vi3);   [Ri R . iR.] 
+        vi3 = vR1.next();    [Ri R . R..] 
+        goto +B17;   [Ri R . ...]
+  +B39:   #1
+        vR0.setText@extra(vR2.toString());   [Ri R i RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 1 any 1 found 0 setText
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.pos;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method setOffset(I)V {
+  +START:   #1
+        if vi1>=0 goto B31;   
+  -B4:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Negative offset: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B31:   #1
+        if vR0.str.length@extra()<=0 goto B72;   
+  +B41:   #1
+        if vi1<=0 goto B72;   
+  -B45:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("Offset too large: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B72:   #2
+        if vi1<=(vR0.str.length@extra()-1) goto B112;   
+  -B85:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("Offset too large: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B112:   #1
+        vR0.pos = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 21 swaps 6 any 6 found 1 setOffset
+ 
+ method getMaxExpansion(I)I {
+  +START:   #1
+        return 5;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMaxExpansion
+ 
+ method reset()V {
+  +START:   #1
+        vR0.pos = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method next()I {
+  +START:   #1
+        vR0.pos = (vR0.pos+1);   
+        if vR0.pos!=vR0.str.length@extra() goto B26;   
+  +B24:   #1
+        return -1;   
+  +B26:   #1
+        b0 = new java/lang/StringBuilder();    [ R . i][ R . iR]
+        vR1 = b0.append@extra(vR0.str.charAt@extra(vR0.pos)).append@extra("").toString@extra();    [ R ii..i R..] [ R iiR.i RR.] [ R iiRRi RcR] 
+        return vR0.rbc.getCollationElementValue(vR1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 3 any 0 found 0 next
+ 
+ method previous()I {
+  +START:   #1
+        vR0.pos = (vR0.pos-1);   
+        if vR0.pos>=0 goto B19;   
+  +B17:   #1
+        return -1;   
+  +B19:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR1 = b0.append@extra(vR0.str.charAt@extra(vR0.pos)).append@extra("").toString@extra();    [ R ii..i R..] [ R iiR.i RR.] [ R iiRRi RcR] 
+        return vR0.rbc.getCollationElementValue(vR1);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 previous
+}

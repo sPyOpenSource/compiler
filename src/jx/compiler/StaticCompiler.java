@@ -160,14 +160,14 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("jx/verifier")) continue;
                         if (name.startsWith("jx/emulation")) continue;
                         if (name.startsWith("jx/secmgr")) continue;
+                        if (name.startsWith("jx/JFrameWM")) continue;
                         if (name.startsWith("AI/Models/BytecodeParser")) continue;
                         if (name.startsWith("AI/Models/ByteCode")) continue;
-                        if (name.startsWith("jx/JFrameWM")) continue;
                         if (name.startsWith("java/nio")) continue;
                         if (name.startsWith("java/math")) continue;
                         if (name.startsWith("java/awt")) continue;
-                        if (name.startsWith("gnu/java/awt")) continue;
                         if (name.startsWith("java/applet")) continue;
+                        if (name.startsWith("gnu/java/awt")) continue;
                         if (name.startsWith("org/jnode/util")) continue;
                         if (name.startsWith("test/portal/perf")) continue;
                         System.out.println(name); 

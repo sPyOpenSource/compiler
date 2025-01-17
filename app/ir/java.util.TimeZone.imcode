@@ -1,0 +1,249 @@
+class java/util/TimeZone {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getID()Ljava/lang/String; {
+  +START:   #1
+        return vR0.ID;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getID
+ 
+ method setID(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.ID = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setID
+ 
+ method getDisplayName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayName@this(0,1,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayName
+ 
+ method getDisplayName(Ljava/util/Locale;)Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayName@this(0,1,vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDisplayName
+ 
+ method getDisplayName(ZI)Ljava/lang/String; {
+  +START:   #1
+        return vR0.getDisplayName@this(vi1,vi2,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 getDisplayName
+ 
+ method getDisplayName(ZILjava/util/Locale;)Ljava/lang/String; {
+  +START:   #1
+        vR4 = 0;    
+        vi5 = 0;    
+  +B6:   #1
+        if vi5>=vR4.length goto B81;   
+  +B14:   #1
+        if vR4[vi5][0].equals@extra(vR0.getID@this())==0 goto B75;   
+  +B31:   #1
+        if vi1!=0 goto B55;   
+  +B35:   #1
+        if vi2!=0 goto B47;   
+  +B39:   #1
+        return vR4[vi5][2];   
+  +B47:   #1
+        return vR4[vi5][1];   
+  +B55:   #1
+        if vi2!=0 goto B67;   
+  +B59:   #1
+        return vR4[vi5][4];   
+  +B67:   #1
+        return vR4[vi5][3];   
+  +B75:   #2
+        vi5++;   
+        goto +B6;   [Ri  . ..]
+  +B81:   #2
+        goto +B86;   forward return[Ri  . ..]
+  +H84<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B86:   #1
+        return vR0.getDefaultDisplayName@special(vi1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 46 handler 84 type 33
+47 - 54 handler 84 type 33
+55 - 66 handler 84 type 33
+67 - 74 handler 84 type 33
+75 - 81 handler 84 type 33
+ }
+// Register: rd 18/18 wr 5 swaps 1 any 5 found 0 getDisplayName
+ 
+ method getDefaultDisplayName(Z)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR0.getRawOffset@this();    [ Ri  R] 
+        if vi1==0 goto B26;   
+  +B9:   #1
+        if (vR0 instanceof java/util/SimpleTimeZone)==0 goto B26;   
+  +B16:   #1
+        vi2 = (vi2+(java/util/SimpleTimeZone)(vR0).getDSTSavings());    
+  +B26:   #2
+        vR3 = new java/lang/StringBuffer(9);    [ Ri  i.][ Ri . iiR]
+        vR3.append("GMT");   [iR Ri i RR.] 
+        b0 = vR3;    
+        if vi2< 0 goto B53;   
+  +B48b0:   #1 reference
+        b1 = 43;    
+        goto +B55b0b1;   [iR Ri . ...]
+  +B53b0:   #1 reference
+        b1 = 45;    
+  +B55b0b1:   #1 reference int
+        b0.append(b1);   [iR Ri . iR.] 
+        vi2 = (abs@special(vi2)/60000);    
+        vi4 = (vi2/60);    
+        vi5 = (vi2%60);    
+        vR3.append((char)((vi4/10)+48)).append((char)((vi4%10)+48));   [iRii Ri ii. iR.] [iRii Ri iiR iiR] 
+        vR3.append(58);   [iRii Ri ii. iR.] 
+        vR3.append((char)((vi5/10)+48)).append((char)((vi5%10)+48));   [iRii Ri iii.i iR.] [iRii Ri iiiii iiR] 
+        return vR3.toString();   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 16 swaps 6 any 4 found 2 getDefaultDisplayName
+ 
+ method getTimeZone(Ljava/lang/String;)Ljava/util/TimeZone; {
+  +START:   #1
+        vR1 = (java/util/TimeZone)(timezones.get(vR0));    
+        if vR1==null goto B52;   
+  +B15:   #1
+        if vR1.getID().equals@extra(vR0)==0 goto B28;   
+  +B26:   #1
+        return vR1;   
+  +B28:   #1
+        vR1 = (java/util/TimeZone)(vR1.clone());    
+        vR1.setID(vR0);   [R R . RR] 
+        timezones.put(vR0,vR1);   [R R . RRR] 
+        return vR1;   
+  +B52:   #1
+        if vR0.startsWith@extra("GMT")==0 goto B227;   
+  +B61:   #1
+        vi2 = 3;    
+        vi3 = 1;    
+        if vR0.charAt@extra(vi2)!=45 goto B83;   
+  +B75:   #1
+        vi3 = -1;    
+        vi2++;   
+        goto +B96;   [Rii R . ...]
+  +B83:   #1
+        if vR0.charAt@extra(vi2)!=43 goto B96;   
+  +B93:   #1
+        vi2++;   
+  +B96:   #3
+        vR6 = vR0.substring@extra(vi2);    [Rii R . iR.] 
+        vi7 = vR6.indexOf@extra(":");    [Rii??R R i RR.] 
+        if vi7==-1 goto B148;   
+  +B118:   #1
+        vi4 = parseInt@special(vR6.substring@extra(0,vi7));    [Rii??Ri R R R..]
+        vi5 = parseInt@special(vR6.substring@extra((vi7+1)));    [Riii?Ri R RiR R..]
+        goto +B203;   [RiiiiRi R RiR ...]
+  +B148:   #1
+        vi8 = vR6.length@extra();    [RiiiiRi R ... R..] 
+        if vi8>2 goto B174;   
+  +B161:   #1
+        vi4 = parseInt@special(vR6);    [RiiiiRii R ... R..]
+        vi5 = 0;    
+        goto +B203;   [RiiiiRii R ... ...]
+  +B174:   #1
+        vi4 = parseInt@special(vR6.substring@extra(0,(vi8-2)));    [RiiiiRii R iR. R..]
+        vi5 = parseInt@special(vR6.substring@extra((vi8-2)));    [RiiiiRii R iRiR R..]
+  +B203:   #2
+        b0 = new java/util/SimpleTimeZone((((vi4*3600000)+(vi5*60000))*vi3),vR0);    [ R .... i..][ R .... iRiR]
+  +B224b0:   #1 reference
+        return b0;   
+  +H225<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B227:   #1
+        return getTimeZone@special("GMT");   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+96 - 224 handler 225 type 127
+ }
+// Register: rd 31/31 wr 31 swaps 5 any 5 found 0 getTimeZone
+ 
+ method getAvailableIDs(I)[Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getAvailableIDs
+ 
+ method getAvailableIDs()[Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getAvailableIDs
+ 
+ method getDefault()Ljava/util/TimeZone; {
+  +START:   #1
+        return defaultZone;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDefault
+ 
+ method setDefault(Ljava/util/TimeZone;)V {
+  +START:   #1
+        defaultZone = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setDefault
+ 
+ method hasSameRules(Ljava/util/TimeZone;)Z {
+  +START:   #1
+        if vR1.getRawOffset()!=vR0.getRawOffset@this() goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i . .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 hasSameRules
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 144
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Hashtable();    [ R  i][ R  iR]
+        timezones = b0;   
+        loadLibrary@special("javautil");   [ R R R.]
+        vR0 = 0;    
+        if vR0!=null goto B24;   
+  +B21:   #1
+        vR0 = "GMT";    
+  +B24:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 4 swaps 0 any 1 found 1 <clinit>
+}

@@ -1,0 +1,999 @@
+class java/util/HashMap$TreeNode {
+ 
+ method <init>(ILjava/lang/Object;Ljava/lang/Object;Ljava/util/HashMap$Node;)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vR2,vR3,vR4);   [   RRRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method root()Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        vR1 = vR0;    
+  +B2:   #1
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B13;   
+  +B11:   #1
+        return vR1;   
+  +B13:   #1
+        vR1 = vR2;    
+        goto +B2;   [RR R  ]
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 4 found 0 root
+ 
+ method moveRootToFront([Ljava/util/HashMap$Node;Ljava/util/HashMap$TreeNode;)V {
+  +START:   #1
+        if vR1==null goto B123;   
+  +B4:   #1
+        if vR0==null goto B123;   
+  +B8:   #1
+        b0 = vR0.length;    
+        vi2 = b0;    
+        if b0<=0 goto B123;   
+  +B15:   #1
+        vi3 = ((vi2-1) & vR1.hash);    
+        vR4 = (java/util/HashMap$TreeNode)(vR0[vi3]);    
+        if vR1==vR4 goto B102;   
+  +B38:   #1
+        vR0[vi3] = vR1;   
+        vR6 = vR1.prev;    
+        b0 = vR1.next;    
+        vR5 = b0;    
+        if b0==null goto B68;   
+  +B58:   #1
+        (java/util/HashMap$TreeNode)(vR5).prev = vR6;   
+  +B68:   #1
+        if vR6==null goto B80;   
+  +B73:   #1
+        vR6.next = vR5;   
+  +B80:   #1
+        if vR4==null goto B91;   
+  +B85:   #1
+        vR4.prev = vR1;   
+  +B91:   #1
+        vR1.next = vR4;   
+        vR1.prev = 0;   
+  +B102:   #1
+        if $assertionsDisabled!=0 goto B123;   
+  +B108:   #1
+        if checkInvariants@special(vR1)!=0 goto B123;   
+  -B115:   #1
+        throw new java/lang/AssertionError();   
+  +B123:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 8 swaps 0 any 11 found 2 moveRootToFront
+ 
+ method find(ILjava/lang/Object;Ljava/lang/Class;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        vR4 = vR0;    
+  +B3:   #1
+        vR8 = vR4.left;    
+        vR9 = vR4.right;    
+        b0 = vR4.hash;    
+        vi5 = b0;    
+        if b0<=vi1 goto B36;   
+  +B29:   #1
+        vR4 = vR8;    
+        goto +B122;   [Ri??RR i  ]
+  +B36:   #1
+        if vi5>=vi1 goto B49;   
+  +B42:   #1
+        vR4 = vR9;    
+        goto +B122;   [Ri??RR i  ]
+  +B49:   #1
+        b0 = vR4.key;    
+        vR7 = b0;    
+        if b0==vR2 goto B74;   
+  +B61:   #1
+        if vR2==null goto B77;   
+  +B65:   #1
+        if vR2.equals(vR7)==0 goto B77;   
+  +B74:   #1
+        return vR4;   
+  +B77:   #2
+        if vR8!=null goto B89;   
+  +B82:   #1
+        vR4 = vR9;    
+        goto +B122;   [Ri?RRR R  ..]
+  +B89:   #1
+        if vR9!=null goto B101;   
+  +B94:   #1
+        vR4 = vR8;    
+        goto +B122;   [Ri?RRR R  ..]
+  +B101:   #1
+        b0 = vR9.find@extra(vi1,vR2,vR3);    [Ri?RRR R  RRiR] 
+        vR10 = b0;    
+        if b0==null goto B118;   
+  +B115:   #1
+        return vR10;   
+  +B118:   #1
+        vR4 = vR8;    
+  +B122:   #4
+        if vR4!=null goto B3;   
+  +B127:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 14 swaps 0 any 17 found 0 find
+ 
+ method getTreeNode(ILjava/lang/Object;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        if vR0.parent==null goto B14;   
+  +B7:   #1
+        b0 = vR0.root@extra();    [ R  R] 
+        goto +B15b0;   forward return[ R  .]
+  +B14:   #1
+        b0 = vR0;    
+  +B15b0:   #1 reference
+        return b0.find@extra(vi1,vR2,0);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 getTreeNode
+ 
+ method tieBreakOrder(Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        if vR0==null goto B30;   
+  +B4:   #1
+        if vR1==null goto B30;   
+  +B8:   #1
+        b0 = vR0.getClass@this().getName@extra().compareTo@extra(vR1.getClass().getName@extra());    [ i i.. RR] [ i iR. RR] [ i iRR RR] 
+        vi2 = b0;    
+        if b0!=0 goto B47;   
+  +B30:   #2
+        if identityHashCode@special(vR0)>identityHashCode@special(vR1) goto B45;   
+  +B41:   #1
+        b0 = -1;    
+        goto +B46b0;   [i i ... ..]
+  +B45:   #1
+        b0 = 1;    
+  +B46b0:   #1 int
+        vi2 = b0;    
+  +B47:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 1 any 5 found 0 tieBreakOrder
+ 
+ method treeify([Ljava/util/HashMap$Node;)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0;    
+  +B4:   #1
+        if vR3==null goto B109;   
+  +B8:   #1
+        vR4 = (java/util/HashMap$TreeNode)(vR3.next);    
+        vR3.right = 0;   
+        vR3.left = 0;   
+        if vR2!=null goto B46;   
+  +B31:   #1
+        vR3.parent = 0;   
+        vR3.red = 0;   
+        vR2 = vR3;    
+        goto +B103;   [RRR i . ..]
+  +B46:   #1
+        vR5 = vR3.key;    
+        vi6 = vR3.hash;    
+        vR7 = 0;    
+        vR8 = vR2;    
+  +B64:   #1
+        vR11 = vR8.key;    
+        b0 = vR8.hash;    
+        vi10 = b0;    
+        if b0<=vi6 goto B90;   
+  +B84:   #1
+        vi9 = -1;    
+        goto +B100;   [RRRRiRRiiR i . ..]
+  +B90:   #1
+        if vi10>=vi6 goto B100;   
+  +B97:   #1
+        vi9 = 1;    
+  +B100:   #2
+        goto +B64;   [RRRRiRRiiR i . ..]
+  +B103:   #1
+        vR3 = vR4;    
+        goto +B4;   [RRR i . ..]
+  +B109:   #1
+        moveRootToFront@special(vR1,vR2);   [RRRRiRRiiR i . RR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 13 swaps 0 any 9 found 0 treeify
+ 
+ method untreeify(Ljava/util/HashMap;)Ljava/util/HashMap$Node; {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = 0;    
+        vR4 = vR0;    
+  +B7:   #1
+        if vR4==null goto B44;   
+  +B12:   #1
+        vR5 = 0;    
+        if vR3!=null goto B25;   
+  +B19:   #1
+        vR2 = vR5;    
+        goto +B31;   [RRRR   ]
+  +B25:   #1
+        vR3.next = vR5;   
+  +B31:   #1
+        vR3 = vR5;    
+        vR4 = vR4.next;    
+        goto +B7;   [RRRR   ]
+  +B44:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 0 any 5 found 0 untreeify
+ 
+ method putTreeVal(Ljava/util/HashMap;[Ljava/util/HashMap$Node;ILjava/lang/Object;Ljava/lang/Object;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        vR6 = 0;    
+        vi7 = 0;    
+        if vR0.parent==null goto B20;   
+  +B13:   #1
+        b0 = vR0.root@extra();    [Ri R  R] 
+        goto +B21b0;   [Ri R  .]
+  +B20:   #1
+        b0 = vR0;    
+  +B21b0:   #1 reference
+        vR8 = b0;    
+        vR9 = vR8;    
+  +B27:   #1
+        b0 = vR9.hash;    
+        vi11 = b0;    
+        if b0<=vi3 goto B45;   
+  +B39:   #1
+        vi10 = -1;    
+        goto +B88;   [RiRRii i  .]
+  +B45:   #1
+        if vi11>=vi3 goto B57;   
+  +B51:   #1
+        vi10 = 1;    
+        goto +B88;   [RiRRii i  .]
+  +B57:   #1
+        b0 = vR9.key;    
+        vR12 = b0;    
+        if b0==vR4 goto B85;   
+  +B70:   #1
+        if vR4==null goto B88;   
+  +B75:   #1
+        if vR4.equals(vR12)==0 goto B88;   
+  +B85:   #1
+        return vR9;   
+  +B88:   #4
+        goto +B27;   [RiRRii R  ..]
+  +END:   #1
+ }
+// Register: rd 18/18 wr 10 swaps 0 any 9 found 0 putTreeVal
+ 
+ method removeTreeNode(Ljava/util/HashMap;[Ljava/util/HashMap$Node;Z)V {
+  +START:   #1
+        if vR2==null goto B12;   
+  +B4:   #1
+        b0 = vR2.length;    
+        vi4 = b0;    
+        if b0!=0 goto B13;   
+  +B12:   #1
+        return;   
+  +B13:   #1
+        vi5 = ((vi4-1) & vR0.hash);    
+        vR6 = (java/util/HashMap$TreeNode)(vR2[vi5]);    
+        vR7 = vR6;    
+        vR9 = (java/util/HashMap$TreeNode)(vR0.next);    
+        vR10 = vR0.prev;    
+        if vR10!=null goto B69;   
+  +B57:   #1
+        vR6 = vR9;    
+        vR2[vi5] = vR9;   
+        goto +B76;   [iiRR?RR iR . ..]
+  +B69:   #1
+        vR10.next = vR9;   
+  +B76:   #1
+        if vR9==null goto B88;   
+  +B81:   #1
+        vR9.prev = vR10;   
+  +B88:   #1
+        if vR6!=null goto B94;   
+  +B93:   #1
+        return;   
+  +B94:   #1
+        if vR7.parent==null goto B109;   
+  +B102:   #1
+        vR7 = vR7.root@extra();    [iiRR?RR iR . R.] 
+  +B109:   #1
+        if vR7==null goto B141;   
+  +B114:   #1
+        if vR7.right==null goto B141;   
+  +B122:   #1
+        b0 = vR7.left;    
+        vR8 = b0;    
+        if b0==null goto B141;   
+  +B133:   #1
+        if vR8.left!=null goto B152;   
+  +B141:   #3
+        vR2[vi5] = vR6.untreeify@extra(vR1);   
+        return;   
+  +B152:   #1
+        vR11 = vR0;    
+        vR12 = vR0.left;    
+        vR13 = vR0.right;    
+        if vR12==null goto B430;   
+  +B172:   #1
+        if vR13==null goto B430;   
+  +B177:   #1
+        vR15 = vR13;    
+  +B181:   #1
+        b0 = vR15.left;    
+        vR16 = b0;    
+        if b0==null goto B199;   
+  +B192:   #1
+        vR15 = vR16;    
+        goto +B181;   [iiRRRRRRRR?RR RR . ..]
+  +B199:   #1
+        vi17 = vR15.red;    
+        vR15.red = vR11.red;   
+        vR11.red = vi17;   
+        vR18 = vR15.right;    
+        vR19 = vR11.parent;    
+        if vR15!=vR13 goto B261;   
+  +B244:   #1
+        vR11.parent = vR15;   
+        vR15.right = vR11;   
+        goto +B324;   [iiRRRRRRRR?RRiRR RR . ..]
+  +B261:   #1
+        vR20 = vR15.parent;    
+        vR11.parent = vR20;   
+        if vR20==null goto B306;   
+  +B279:   #1
+        if vR15!=vR20.left goto B299;   
+  +B289:   #1
+        vR20.left = vR11;   
+        goto +B306;   [iiRRRRRRRRRRRiRRR RR . ..]
+  +B299:   #1
+        vR20.right = vR11;   
+  +B306:   #2
+        vR15.right = vR13;   
+        if vR13==null goto B324;   
+  +B317:   #1
+        vR13.parent = vR15;   
+  +B324:   #2
+        vR11.left = 0;   
+        vR11.right = vR18;   
+        if vR18==null goto B348;   
+  +B341:   #1
+        vR18.parent = vR11;   
+  +B348:   #1
+        vR15.left = vR12;   
+        if vR12==null goto B366;   
+  +B359:   #1
+        vR12.parent = vR15;   
+  +B366:   #1
+        vR15.parent = vR19;   
+        if vR19!=null goto B384;   
+  +B377:   #1
+        vR7 = vR15;    
+        goto +B411;   [iiRRRRRRRR?RRiRR RR . ..]
+  +B384:   #1
+        if vR11!=vR19.left goto B404;   
+  +B394:   #1
+        vR19.left = vR15;   
+        goto +B411;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B404:   #1
+        vR19.right = vR15;   
+  +B411:   #2
+        if vR18==null goto B423;   
+  +B416:   #1
+        vR14 = vR18;    
+        goto +B427;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B423:   #1
+        vR14 = vR11;    
+  +B427:   #1
+        goto +B458;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B430:   #2
+        if vR12==null goto B442;   
+  +B435:   #1
+        vR14 = vR12;    
+        goto +B458;   [iiRRRRRRRRRRRiRRR RR . ..]
+  +B442:   #1
+        if vR13==null goto B454;   
+  +B447:   #1
+        vR14 = vR13;    
+        goto +B458;   [iiRRRRRRRRRRRiRRR RR . ..]
+  +B454:   #1
+        vR14 = vR11;    
+  +B458:   #3
+        if vR14==vR11 goto B535;   
+  +B465:   #1
+        b1 = vR11.parent;    
+        b0 = b1;    
+        vR14.parent = b1;   
+        vR15 = b0;    
+        if vR15!=null goto B490;   
+  +B483:   #1
+        vR7 = vR14;    
+        goto +B517;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B490:   #1
+        if vR11!=vR15.left goto B510;   
+  +B500:   #1
+        vR15.left = vR14;   
+        goto +B517;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B510:   #1
+        vR15.right = vR14;   
+  +B517:   #2
+        vR11.parent = 0;   
+        vR11.right = 0;   
+        vR11.left = 0;   
+  +B535:   #1
+        if vR11.red==0 goto B548;   
+  +B543:   #1
+        b0 = vR7;    
+        goto +B555b0;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B548:   #1
+        b0 = balanceDeletion@special(vR7,vR14);    [iiRRRRRRRRRRRiRR RR . RR]
+  +B555b0:   #1 reference
+        vR15 = b0;    
+        if vR14!=vR11 goto B617;   
+  +B564:   #1
+        vR16 = vR11.parent;    
+        vR11.parent = 0;   
+        if vR16==null goto B617;   
+  +B582:   #1
+        if vR11!=vR16.left goto B601;   
+  +B592:   #1
+        vR16.left = 0;   
+        goto +B617;   [iiRRRRRRRRRRRiRR RR . ..]
+  +B601:   #1
+        if vR11!=vR16.right goto B617;   
+  +B611:   #1
+        vR16.right = 0;   
+  +B617:   #4
+        if vi3==0 goto B627;   
+  +B621:   #1
+        moveRootToFront@special(vR2,vR15);   [iiRRRRRRRRRRRiRR RR . RR]
+  +B627:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 135/135 wr 38 swaps 0 any 50 found 0 removeTreeNode
+ 
+ method split(Ljava/util/HashMap;[Ljava/util/HashMap$Node;II)V {
+  +START:   #1
+        vR5 = vR0;    
+        vR6 = 0;    
+        vR7 = 0;    
+        vR8 = 0;    
+        vR9 = 0;    
+        vi10 = 0;    
+        vi11 = 0;    
+        vR12 = vR5;    
+  +B25:   #1
+        if vR12==null goto B131;   
+  +B30:   #1
+        vR13 = (java/util/HashMap$TreeNode)(vR12.next);    
+        vR12.next = 0;   
+        if (vR12.hash & vi4)!=0 goto B92;   
+  +B57:   #1
+        vR12.prev = vR7;   
+        if vR7!=null goto B75;   
+  +B68:   #1
+        vR6 = vR12;    
+        goto +B82;   [RRRRRiiRR  . ..]
+  +B75:   #1
+        vR7.next = vR12;   
+  +B82:   #1
+        vR7 = vR12;    
+        vi10++;   
+        goto +B124;   [RRRRRiiRR  . ..]
+  +B92:   #1
+        vR12.prev = vR9;   
+        if vR9!=null goto B110;   
+  +B103:   #1
+        vR8 = vR12;    
+        goto +B117;   [RRRRRiiRR  . ..]
+  +B110:   #1
+        vR9.next = vR12;   
+  +B117:   #1
+        vR9 = vR12;    
+        vi11++;   
+  +B124:   #1
+        vR12 = vR13;    
+        goto +B25;   [RRRRRiiRR  . ..]
+  +B131:   #1
+        if vR6==null goto B171;   
+  +B136:   #1
+        if vi10>6 goto B155;   
+  +B143:   #1
+        vR2[vi3] = vR6.untreeify@extra(vR1);   
+        goto +B171;   [RRRRRiiRR  . ..]
+  +B155:   #1
+        vR2[vi3] = vR6;   
+        if vR8==null goto B171;   
+  +B165:   #1
+        vR6.treeify@extra(vR2);   [RRRRRiiRR  . RR] 
+  +B171:   #3
+        if vR8==null goto B217;   
+  +B176:   #1
+        if vi11>6 goto B198;   
+  +B183:   #1
+        vR2[(vi3+vi4)] = vR8.untreeify@extra(vR1);   
+        goto +B217;   forward return[RRRRRiiRR  . ..]
+  +B198:   #1
+        vR2[(vi3+vi4)] = vR8;   
+        if vR6==null goto B217;   
+  +B211:   #1
+        vR8.treeify@extra(vR2);   [RRRRRiiRR  . RR] 
+  +B217:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 47/47 wr 17 swaps 0 any 20 found 0 split
+ 
+ method rotateLeft(Ljava/util/HashMap$TreeNode;Ljava/util/HashMap$TreeNode;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        if vR1==null goto B89;   
+  +B4:   #1
+        b0 = vR1.right;    
+        vR2 = b0;    
+        if b0==null goto B89;   
+  +B13:   #1
+        b1 = vR2.left;    
+        b0 = b1;    
+        vR1.right = b1;   
+        vR4 = b0;    
+        if b0==null goto B34;   
+  +B28:   #1
+        vR4.parent = vR1;   
+  +B34:   #1
+        b1 = vR1.parent;    
+        b0 = b1;    
+        vR2.parent = b1;   
+        vR3 = b0;    
+        if b0!=null goto B58;   
+  +B48:   #1
+        vR0 = vR2;    
+        vR2.red = 0;   
+        goto +B79;   [RRR RR  ]
+  +B58:   #1
+        if vR3.left!=vR1 goto B74;   
+  +B66:   #1
+        vR3.left = vR2;   
+        goto +B79;   [RRR RR  ]
+  +B74:   #1
+        vR3.right = vR2;   
+  +B79:   #2
+        vR2.left = vR1;   
+        vR1.parent = vR2;   
+  +B89:   #2
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 9 swaps 0 any 10 found 0 rotateLeft
+ 
+ method rotateRight(Ljava/util/HashMap$TreeNode;Ljava/util/HashMap$TreeNode;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        if vR1==null goto B89;   
+  +B4:   #1
+        b0 = vR1.left;    
+        vR2 = b0;    
+        if b0==null goto B89;   
+  +B13:   #1
+        b1 = vR2.right;    
+        b0 = b1;    
+        vR1.left = b1;   
+        vR4 = b0;    
+        if b0==null goto B34;   
+  +B28:   #1
+        vR4.parent = vR1;   
+  +B34:   #1
+        b1 = vR1.parent;    
+        b0 = b1;    
+        vR2.parent = b1;   
+        vR3 = b0;    
+        if b0!=null goto B58;   
+  +B48:   #1
+        vR0 = vR2;    
+        vR2.red = 0;   
+        goto +B79;   [RRR RR  ]
+  +B58:   #1
+        if vR3.right!=vR1 goto B74;   
+  +B66:   #1
+        vR3.right = vR2;   
+        goto +B79;   [RRR RR  ]
+  +B74:   #1
+        vR3.left = vR2;   
+  +B79:   #2
+        vR2.right = vR1;   
+        vR1.parent = vR2;   
+  +B89:   #2
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 9 swaps 0 any 10 found 0 rotateRight
+ 
+ method balanceInsertion(Ljava/util/HashMap$TreeNode;Ljava/util/HashMap$TreeNode;)Ljava/util/HashMap$TreeNode; {
+  +START:   #1
+        vR1.red = 1;   
+  +B5:   #8
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B21;   
+  +B14:   #1
+        vR1.red = 0;   
+        return vR1;   
+  +B21:   #1
+        if vR2.red==0 goto B37;   
+  +B28:   #1
+        b0 = vR2.parent;    
+        vR3 = b0;    
+        if b0!=null goto B39;   
+  +B37:   #1
+        return vR0;   
+  +B39:   #1
+        b1 = vR3.left;    
+        vR4 = b1;    
+        if vR2!=b1 goto B150;   
+  +B50:   #1
+        b0 = vR3.right;    
+        vR5 = b0;    
+        if b0==null goto B89;   
+  +B60:   #1
+        if vR5.red==0 goto B89;   
+  +B68:   #1
+        vR5.red = 0;   
+        vR2.red = 0;   
+        vR3.red = 1;   
+        vR1 = vR3;    
+        goto +B5;   [RRRR RR  ]
+  +B89:   #2
+        if vR1!=vR2.right goto B123;   
+  +B97:   #1
+        vR1 = vR2;    
+        vR0 = rotateLeft@special(vR0,vR2);    [RRRR RR  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B118;   
+  +B114:   #1
+        b0 = 0;    
+        goto +B122b0;   [RRRR RR  ..]
+  +B118:   #1
+        b0 = vR2.parent;    
+  +B122b0:   #1 reference
+        vR3 = b0;    
+  +B123:   #1
+        if vR2==null goto B5;   
+  +B127:   #1
+        vR2.red = 0;   
+        if vR3==null goto B5;   
+  +B136:   #1
+        vR3.red = 1;   
+        vR0 = rotateRight@special(vR0,vR3);    [RRRR RR  RR]
+        goto +B5;   [RRRR RR  ..]
+  +B150:   #1
+        if vR4==null goto B184;   
+  +B155:   #1
+        if vR4.red==0 goto B184;   
+  +B163:   #1
+        vR4.red = 0;   
+        vR2.red = 0;   
+        vR3.red = 1;   
+        vR1 = vR3;    
+        goto +B5;   [RRRR RR  ..]
+  +B184:   #2
+        if vR1!=vR2.left goto B218;   
+  +B192:   #1
+        vR1 = vR2;    
+        vR0 = rotateRight@special(vR0,vR2);    [RRRR RR  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B213;   
+  +B209:   #1
+        b0 = 0;    
+        goto +B217b0;   [RRRR RR  ..]
+  +B213:   #1
+        b0 = vR2.parent;    
+  +B217b0:   #1 reference
+        vR3 = b0;    
+  +B218:   #1
+        if vR2==null goto B5;   
+  +B222:   #1
+        vR2.red = 0;   
+        if vR3==null goto B5;   
+  +B231:   #1
+        vR3.red = 1;   
+        vR0 = rotateLeft@special(vR0,vR3);    [RRRR RR  RR]
+        goto +B5;   [RRRR RR  ..]
+  +END:   #1
+ }
+// Register: rd 53/53 wr 26 swaps 0 any 25 found 0 balanceInsertion
+ 
+ method balanceDeletion(Ljava/util/HashMap$TreeNode;Ljava/util/HashMap$TreeNode;)Ljava/util/HashMap$TreeNode; {
+  +START:   #5
+        if vR1==null goto B9;   
+  +B4:   #1
+        if vR1!=vR0 goto B11;   
+  +B9:   #1
+        return vR0;   
+  +B11:   #1
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B27;   
+  +B20:   #1
+        vR1.red = 0;   
+        return vR1;   
+  +B27:   #1
+        if vR1.red==0 goto B41;   
+  +B34:   #1
+        vR1.red = 0;   
+        return vR0;   
+  +B41:   #1
+        b0 = vR2.left;    
+        vR3 = b0;    
+        if b0!=vR1 goto B281;   
+  +B51:   #1
+        b0 = vR2.right;    
+        vR4 = b0;    
+        if b0==null goto B105;   
+  +B61:   #1
+        if vR4.red==0 goto B105;   
+  +B69:   #1
+        vR4.red = 0;   
+        vR2.red = 1;   
+        vR0 = rotateLeft@special(vR0,vR2);    [RRR Rb  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B99;   
+  +B95:   #1
+        b0 = 0;    
+        goto +B103b0;   [RRR Rb  ..]
+  +B99:   #1
+        b0 = vR2.right;    
+  +B103b0:   #1 reference
+        vR4 = b0;    
+  +B105:   #2
+        if vR4!=null goto B115;   
+  +B110:   #1
+        vR1 = vR2;    
+        goto +START;   [RRR Rb  ..]
+  +B115:   #1
+        vR5 = vR4.left;    
+        vR6 = vR4.right;    
+        if vR6==null goto B142;   
+  +B134:   #1
+        if vR6.red!=0 goto B166;   
+  +B142:   #1
+        if vR5==null goto B155;   
+  +B147:   #1
+        if vR5.red!=0 goto B166;   
+  +B155:   #1
+        vR4.red = 1;   
+        vR1 = vR2;    
+        goto +B278;   [RRRRR Rb  ..]
+  +B166:   #2
+        if vR6==null goto B179;   
+  +B171:   #1
+        if vR6.red!=0 goto B222;   
+  +B179:   #1
+        if vR5==null goto B190;   
+  +B184:   #1
+        vR5.red = 0;   
+  +B190:   #1
+        vR4.red = 1;   
+        vR0 = rotateRight@special(vR0,vR4);    [RRRRR Rb  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B216;   
+  +B212:   #1
+        b0 = 0;    
+        goto +B220b0;   [RRRRR Rb  ..]
+  +B216:   #1
+        b0 = vR2.right;    
+  +B220b0:   #1 reference
+        vR4 = b0;    
+  +B222:   #1
+        if vR4==null goto B261;   
+  +B227:   #1
+        b0 = vR4;    
+        if vR2!=null goto B237;   
+  +B233b0:   #1 reference
+        b1 = 0;    
+        goto +B241b0b1;   [RRRRR Ri  ..]
+  +B237b0:   #1 reference
+        b1 = vR2.red;    
+  +B241b0b1:   #1 reference boolean
+        b0.red = b1;   
+        b0 = vR4.right;    
+        vR6 = b0;    
+        if b0==null goto B261;   
+  +B255:   #1
+        vR6.red = 0;   
+  +B261:   #2
+        if vR2==null goto B276;   
+  +B265:   #1
+        vR2.red = 0;   
+        vR0 = rotateLeft@special(vR0,vR2);    [RRRRR Rb  RR]
+  +B276:   #1
+        vR1 = vR0;    
+  +B278:   #1
+        goto +START;   [RRRRR Rb  ..]
+  +B281:   #1
+        if vR3==null goto B326;   
+  +B285:   #1
+        if vR3.red==0 goto B326;   
+  +B292:   #1
+        vR3.red = 0;   
+        vR2.red = 1;   
+        vR0 = rotateRight@special(vR0,vR2);    [RRRRR Rb  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B321;   
+  +B317:   #1
+        b0 = 0;    
+        goto +B325b0;   [RRRRR Rb  ..]
+  +B321:   #1
+        b0 = vR2.left;    
+  +B325b0:   #1 reference
+        vR3 = b0;    
+  +B326:   #2
+        if vR3!=null goto B335;   
+  +B330:   #1
+        vR1 = vR2;    
+        goto +START;   [RRRRR Rb  ..]
+  +B335:   #1
+        vR5 = vR3.left;    
+        vR6 = vR3.right;    
+        if vR5==null goto B360;   
+  +B352:   #1
+        if vR5.red!=0 goto B383;   
+  +B360:   #1
+        if vR6==null goto B373;   
+  +B365:   #1
+        if vR6.red!=0 goto B383;   
+  +B373:   #1
+        vR3.red = 1;   
+        vR1 = vR2;    
+        goto +B489;   [RRRRR Rb  ..]
+  +B383:   #2
+        if vR5==null goto B396;   
+  +B388:   #1
+        if vR5.red!=0 goto B436;   
+  +B396:   #1
+        if vR6==null goto B407;   
+  +B401:   #1
+        vR6.red = 0;   
+  +B407:   #1
+        vR3.red = 1;   
+        vR0 = rotateLeft@special(vR0,vR3);    [RRRRR Rb  RR]
+        b0 = vR1.parent;    
+        vR2 = b0;    
+        if b0!=null goto B431;   
+  +B427:   #1
+        b0 = 0;    
+        goto +B435b0;   [RRRRR Rb  ..]
+  +B431:   #1
+        b0 = vR2.left;    
+  +B435b0:   #1 reference
+        vR3 = b0;    
+  +B436:   #1
+        if vR3==null goto B472;   
+  +B440:   #1
+        b0 = vR3;    
+        if vR2!=null goto B449;   
+  +B445b0:   #1 reference
+        b1 = 0;    
+        goto +B453b0b1;   [RRRRR Ri  ..]
+  +B449b0:   #1 reference
+        b1 = vR2.red;    
+  +B453b0b1:   #1 reference boolean
+        b0.red = b1;   
+        b0 = vR3.left;    
+        vR5 = b0;    
+        if b0==null goto B472;   
+  +B466:   #1
+        vR5.red = 0;   
+  +B472:   #2
+        if vR2==null goto B487;   
+  +B476:   #1
+        vR2.red = 0;   
+        vR0 = rotateRight@special(vR0,vR2);    [RRRRR Rb  RR]
+  +B487:   #1
+        vR1 = vR0;    
+  +B489:   #1
+        goto +START;   [RRRRR Rb  ..]
+  +END:   #1
+ }
+// Register: rd 102/102 wr 52 swaps 0 any 49 found 0 balanceDeletion
+ 
+ method checkInvariants(Ljava/util/HashMap$TreeNode;)Z {
+  +START:   #1
+        vR1 = vR0.parent;    
+        vR2 = vR0.left;    
+        vR3 = vR0.right;    
+        vR4 = vR0.prev;    
+        vR5 = (java/util/HashMap$TreeNode)(vR0.next);    
+        if vR4==null goto B46;   
+  +B35:   #1
+        if vR4.next==vR0 goto B46;   
+  +B44:   #1
+        return 0;   
+  +B46:   #2
+        if vR5==null goto B62;   
+  +B51:   #1
+        if vR5.prev==vR0 goto B62;   
+  +B60:   #1
+        return 0;   
+  +B62:   #2
+        if vR1==null goto B84;   
+  +B66:   #1
+        if vR0==vR1.left goto B84;   
+  +B74:   #1
+        if vR0==vR1.right goto B84;   
+  +B82:   #1
+        return 0;   
+  +B84:   #3
+        if vR2==null goto B109;   
+  +B88:   #1
+        if vR2.parent!=vR0 goto B107;   
+  +B96:   #1
+        if vR2.hash<=vR0.hash goto B109;   
+  +B107:   #1
+        return 0;   
+  +B109:   #2
+        if vR3==null goto B134;   
+  +B113:   #1
+        if vR3.parent!=vR0 goto B132;   
+  +B121:   #1
+        if vR3.hash>=vR0.hash goto B134;   
+  +B132:   #1
+        return 0;   
+  +B134:   #2
+        if vR0.red==0 goto B165;   
+  +B141:   #1
+        if vR2==null goto B165;   
+  +B145:   #1
+        if vR2.red==0 goto B165;   
+  +B152:   #1
+        if vR3==null goto B165;   
+  +B156:   #1
+        if vR3.red==0 goto B165;   
+  +B163:   #1
+        return 0;   
+  +B165:   #5
+        if vR2==null goto B178;   
+  +B169:   #1
+        if checkInvariants@special(vR2)!=0 goto B178;   
+  +B176:   #1
+        return 0;   
+  +B178:   #2
+        if vR3==null goto B189;   
+  +B182:   #1
+        if checkInvariants@special(vR3)==0 goto B193;   
+  +B189:   #1
+        b0 = 1;    
+        goto +B194b0;   forward return[RRRRR i . ..]
+  +B193:   #1
+        b0 = 0;    
+  +B194b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 7 swaps 0 any 11 found 0 checkInvariants
+ 
+ method <clinit>()V {
+  +START:   #1
+        if java/util/HashMap.desiredAssertionStatus@extra()!=0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   [ i  .]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        $assertionsDisabled = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

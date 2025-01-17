@@ -1,0 +1,145 @@
+class vfs/DirEntryCache {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.max_dentries = 1024;   
+        b1 = new java/util/Hashtable();    [ ?R  i][ ?R  iR]
+        vR0.dentry_hashtable = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method instance()Lvfs/DirEntryCache; {
+  +START:   #1
+        return instance;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 instance
+ 
+ method addEntry(Ljava/lang/String;Ljx/fs/Node;)V {
+  +START:   #1
+        if vR0.dentry_hashtable.size()<1024 goto B17;   
+  +B13:   #1
+        vR0.invalidateEntries@this();   [   R] 
+  +B17:   #1
+        vR0.dentry_hashtable.put(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 addEntry
+ 
+ method getEntry(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        vR2 = (jx/fs/Node)(vR0.dentry_hashtable.get(vR1));    
+        if vR2==null goto B22;   
+  +B16:   #1
+        vR2.incUseCount();   [R  . R.] 
+  +B22:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 getEntry
+ 
+ method removeEntry(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = (jx/fs/Node)(vR0.dentry_hashtable.remove(vR1));    
+        if vR2!=null goto B17;   
+  +B16:   #1
+        return;   
+  +B17:   #1
+        vR2.decUseCount();   [R  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 removeEntry
+ 
+ method moveEntry(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR3 = (jx/fs/Node)(vR0.dentry_hashtable.remove(vR1));    
+        if vR3==null goto B26;   
+  +B16:   #1
+        vR0.dentry_hashtable.put(vR2,vR3);   [R  . RRR] 
+  +B26:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 moveEntry
+ 
+ method invalidateEntries()V {
+  +START:   #1
+        vR1 = vR0.dentry_hashtable.elements();    [   R] 
+        vR2 = vR0.dentry_hashtable.keys();    [R   R] 
+  +B16:   #1
+        if vR1.hasMoreElements()==0 goto B74;   
+  +B25:   #1
+        if vR2.hasMoreElements()==0 goto B74;   
+  +B34:   #1
+        vR3 = (jx/fs/Node)(vR1.nextElement());    
+        vR4 = (java/lang/String)(vR2.nextElement());    
+        vR0.dentry_hashtable.remove(vR4);   [RRRR  . RR] 
+        vR3.decUseCount();   [RRRR  . R.] 
+        goto +B16;   [RRRR  . ..]
+  +B74:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 0 any 0 found 0 invalidateEntries
+ 
+ method syncEntries()V {
+  +START:   #1
+        vR1 = vR0.dentry_hashtable.elements();    [   R] 
+        vR2 = vR0.dentry_hashtable.keys();    [R   R] 
+  +B16:   #1
+        if vR1.hasMoreElements()==0 goto B88;   
+  +B25:   #1
+        if vR2.hasMoreElements()==0 goto B88;   
+  +B34:   #1
+        vR3 = (jx/fs/Node)(vR1.nextElement());    
+        vR4 = (java/lang/String)(vR2.nextElement());    
+        vR0.dentry_hashtable.remove(vR4);   [RRRR  . RR] 
+  +B65:   #1
+        if vR3.isDirty()==0 goto B80;   
+  +B74:   #1
+        vR3.writeNode();   [RRRR  . R.] 
+  +B80:   #2
+        goto +B85;   [RRRR  . ..]
+  +H83<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B85:   #1
+        goto +B16;   [RRRR  . ..]
+  +B88:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+65 - 80 handler 83 type 75
+ }
+// Register: rd 11/11 wr 7 swaps 0 any 0 found 0 syncEntries
+ 
+ method showDirEntries()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("DirEntryCache enthaelt ").append@extra(vR0.dentry_hashtable.size()).append@extra(" Elemente").toString@extra());   [ RR ii.ii. RR..] 
+        vR1 = vR0.dentry_hashtable.keys();    [ RR ii.ii. R...] 
+  +B44:   #1
+        if vR1.hasMoreElements()==0 goto B71;   
+  +B53:   #1
+        out.println((java/lang/String)(vR1.nextElement()));   [R RR i..... RR..] 
+        goto +B44;   [R RR i..... ....]
+  +B71:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 13 swaps 5 any 0 found 0 showDirEntries
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new vfs/DirEntryCache();    [ R  i][ R  iR]
+        instance = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

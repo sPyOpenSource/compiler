@@ -1,0 +1,18 @@
+class jx/rpc/RPCMsgSuccess {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(ILjx/rpc/Auth;)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vR2,0);   [   iRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

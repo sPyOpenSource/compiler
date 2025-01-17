@@ -1,0 +1,266 @@
+class org/jnode/driver/net/lance/LanceCore {
+ 
+ method <init>(Lorg/jnode/driver/net/lance/LanceDriver;Ljx/devices/pci/PCIDevice;Lorg/jnode/driver/net/lance/LanceFlags;Ljx/zero/IRQ;Ljx/zero/Ports;Ljx/zero/MemoryManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.driver = vR1;   
+        vR0.flags = vR3;   
+        vi7 = vR2.getInterruptLine();    [ ?R  R] 
+        vR0.iobase = (vR2.getBaseAddress(0)-1);   
+        vR0.irq = vR4;   
+        vR0.irq.installFirstLevelHandler(vi7,vR0);   [i ?R  RiR] 
+        vR0.irq.enableIRQ(vi7);   [i ?R  iR.] 
+        vR0.ioResource = vR5;   
+        vR0.io = vR0.getIOAccess@special();   
+        vR0.setFlags@special();   [i ?R  R..] 
+        vR0.hwAddress = vR0.loadHWAddress@special();   
+        b1 = new org/jnode/driver/net/lance/BufferManager(vR6,4,4,3,vR0.hwAddress,0);    [ ?R  i..][ ?R . ilRiiiRR]
+        vR0.bufferManager = b1;   
+        vR2.setCommand((short)(4 | vR2.getCommand()));   [i ?R i iR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 5 swaps 1 any 0 found 0 <init>
+ 
+ method getIOAccess()Lorg/jnode/driver/net/lance/IOAccess; {
+  +START:   #1
+        vR0.ioResource.inw((vR0.iobase+20));   [ R i iR] 
+        vR0.ioResource.outw((vR0.iobase+18),0);   [ R ii iiR] 
+        if vR0.ioResource.inw((vR0.iobase+16))!=4 goto B109;   
+  +B54:   #1
+        vR0.ioResource.outw((vR0.iobase+18),88);   [ R i.. iiR] 
+        if vR0.ioResource.inw((vR0.iobase+18))!=88 goto B109;   
+  +B93:   #1
+        return new org/jnode/driver/net/lance/WordIOAccess(vR0.ioResource,vR0.iobase);   
+  +B109:   #2
+        vR0.ioResource.inl((vR0.iobase+24));   [ R i.. iR..] 
+        vR0.ioResource.outl((vR0.iobase+20),0);   [ R ii. iiR.] 
+        if vR0.ioResource.inl((vR0.iobase+16))!=4 goto B221;   
+  +B163:   #1
+        vR0.ioResource.outl((vR0.iobase+20),88);   [ R i.. iiR.] 
+        if (vR0.ioResource.inl((vR0.iobase+20)) & 65535)!=88 goto B221;   
+  +B205:   #1
+        return new org/jnode/driver/net/lance/DWordIOAccess(vR0.ioResource,vR0.iobase);   
+  +B221:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 12 swaps 10 any 0 found 0 getIOAccess
+ 
+ method initialize()V {
+  +START:   #1
+        vR0.io.setBCR(20,258);   [   iiR] 
+        vR0.io.reset();   [   R..] 
+        vi1 = vR0.bufferManager.getInitDataAddressAs32Bit@extra();    [   R..] 
+        vR0.io.setCSR(1,(vi1 & 65535));   [i  i iiR] 
+        vR0.io.setCSR(2,((vi1 >> 16) & 65535));   [i  ii iiR] 
+        vR0.io.setCSR(0,65);   [i  ii iiR] 
+        vR0.io.setCSR(4,(vR0.io.getCSR(4) | 3072));   [i  iii iiR] 
+        vR0.io.setCSR(0,66);   [i  iii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 3 any 0 found 0 initialize
+ 
+ method disable()V {
+  +START:   #1
+        vR0.io.reset();   [   R] 
+        vR0.io.setCSR(0,4);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 disable
+ 
+ method release()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 release
+ 
+ method getHwAddress()Lmetaxa/os/devices/net/EthernetAdress; {
+  +START:   #1
+        return vR0.hwAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHwAddress
+ 
+ method loadHWAddress()Lmetaxa/os/devices/net/EthernetAdress; {
+  +START:   #1
+        vR1 = new byte[6];    
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vR1.length goto B39;   
+  +B13:   #1
+        vR1[vi2] = vR0.ioResource.inb(((vR0.iobase+0)+vi2));   
+        vi2++;   
+        goto +B7;   [Ri R i ..]
+  +B39:   #2
+        b0 = new metaxa/os/devices/net/EthernetAdress(vR1);    [ R . i.][ R . iRR]
+  +B47b0:   #1 reference
+        return b0;   
+  +H48<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println(vR2.getMessage());   [RR R i. RR.] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+39 - 47 handler 48 type 140
+ }
+// Register: rd 12/12 wr 9 swaps 2 any 2 found 0 loadHWAddress
+ 
+ method setFlags()V {
+  +START:   #1
+        vi1 = (vR0.io.getCSR(88) | (vR0.io.getCSR(89) << 16));    
+        vi1 = ((vi1 >> 12) & 65535);    
+        vR0.flags.setForVersion(vi1);   [i  . iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 setFlags
+ 
+ method transmit(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.hwAddress.writeTo(vR1,6);   [   iRR] 
+        vR0.bufferManager.transmit(vR1);   [   RR.] 
+        vR0.io.setCSR(0,72);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 transmit
+ 
+ method interrupt()V {
+  +START:   #2
+        if (vR0.io.getCSR(0) & 128)==0 goto B300;   
+  +B15:   #1
+        vi1 = vR0.io.getCSR(0);    [   iR] 
+        vi2 = vR0.io.getCSR(4);    [i   iR] 
+        vi3 = vR0.io.getCSR(5);    [ii   iR] 
+        if (vi1 & 256)!=256 goto B61;   
+  +B53:   #1
+        out.println("AMD am79c973 INIT DONE");   [iii  i. RR] 
+  +B61:   #1
+        if (vi1 & 512)!=512 goto B80;   
+  +B72:   #1
+        out.println("SENT");   [iii  i. RR] 
+  +B80:   #1
+        vR0.io.setCSR(0,vi1);   [iii  .. iiR] 
+        vR0.io.setCSR(4,vi2);   [iii  .. iiR] 
+        vR0.io.setCSR(5,vi3);   [iii  .. iiR] 
+        if (vi1 & 256)==0 goto B136;   
+  +B115:   #1
+        vR0.io.setCSR(15,0);   [iii  .. iiR] 
+        vR0.io.setCSR(0,322);   [iii  .. iiR] 
+  +B136:   #1
+        if (vi1 & 512)==0 goto B144;   
+  +B144:   #1
+        if (vi1 & 1024)==0 goto B164;   
+  +B152:   #1
+        out.println("Receive Interrupt");   [iii  i. RR.] 
+        vR0.rxProcess@special();   [iii  i. R..] 
+  +B164:   #1
+        if (vi1 & 32768)==0 goto B203;   
+  +B171:   #1
+        if (vi1 & 2048)==0 goto B179;   
+  +B179:   #1
+        if (vi1 & 4096)==0 goto B187;   
+  +B187:   #1
+        if (vi1 & 8192)==0 goto B195;   
+  +B195:   #1
+        if (vi1 & 16384)==0 goto B203;   
+  +B203:   #2
+        if (vi2 & 512)!=512 goto B214;   
+  +B214:   #1
+        if (vi2 & 64)!=64 goto B223;   
+  +B223:   #1
+        if (vi2 & 32)!=32 goto B232;   
+  +B232:   #1
+        if (vi2 & 8)!=8 goto B241;   
+  +B241:   #1
+        if (vi2 & 2)!=2 goto B248;   
+  +B248:   #1
+        if (vi2 & 2)!=2 goto B255;   
+  +B255:   #1
+        if (vi3 & 2048)!=2048 goto B266;   
+  +B266:   #1
+        if (vi3 & 512)!=512 goto B277;   
+  +B277:   #1
+        if (vi3 & 128)!=128 goto B288;   
+  +B288:   #1
+        if (vi3 & 16)!=16 goto B297;   
+  +B297:   #1
+        goto +START;   [iii  .. ...]
+  +B300:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 9 swaps 3 any 20 found 0 interrupt
+ 
+ method rxProcess()V {
+  +START:   #3
+        b0 = vR0.bufferManager.getPacket();    [ R  R] 
+        vR1 = b0;    
+        if b0==null goto B27;   
+  +B12:   #1
+        if vR1==null goto START;   
+  +B16:   #1
+        vR0.driver.onReceive(vR1);   [R R  RR] 
+        goto +START;   [R R  ..]
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 rxProcess
+ 
+ method dumpDebugInfo()V {
+  +START:   #1
+        vR0.io.setCSR(0,4);   [ RR  iiR] 
+        b0 = new int[27];    
+        b0[0] = 0;   
+        b0[1] = 1;   
+        b0[2] = 2;   
+        b0[3] = 3;   
+        b0[4] = 4;   
+        b0[5] = 5;   
+        b0[6] = 8;   
+        b0[7] = 9;   
+        b0[8] = 10;   
+        b0[9] = 11;   
+        b0[10] = 12;   
+        b0[11] = 13;   
+        b0[12] = 14;   
+        b0[13] = 15;   
+        b0[14] = 24;   
+        b0[15] = 25;   
+        b0[16] = 30;   
+        b0[17] = 31;   
+        b0[18] = 58;   
+        b0[19] = 76;   
+        b0[20] = 77;   
+        b0[21] = 80;   
+        b0[22] = 82;   
+        b0[23] = 88;   
+        b0[24] = 89;   
+        b0[25] = 112;   
+        b0[26] = 124;   
+        vR1 = b0;    
+        vR2 = vR1;    
+        vi3 = vR2.length;    
+        vi4 = 0;    
+  +B172:   #1
+        if vi4>=vi3 goto B237;   
+  +B178:   #1
+        vi5 = vR2[vi4];    
+        vi6 = vR0.io.getCSR(vi5);    [RRiii RR  iR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("CSR").append@extra(vi5).append@extra(" : ").append@extra(vi6).toString@extra());   [RRiiii RR iii... RR...] 
+        vi4++;   
+        goto +B172;   [RRiiii RR iii... .....]
+  +B237:   #1
+        vR0.io.setCSR(0,2);   [RRiiii RR ...... iiR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 17 swaps 3 any 4 found 0 dumpDebugInfo
+}

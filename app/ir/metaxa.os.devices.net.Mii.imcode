@@ -1,0 +1,661 @@
+class metaxa/os/devices/net/Mii {
+ 
+ method <init>(Ljx/zero/Ports;Ljx/timer/TimerManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.ports = vR1;   
+        vR0.timerManager = vR2;   
+        b1 = new metaxa/os/devices/net/Befehl(vR1,vR2);    [ ?R  i][ ?R . iRRR]
+        vR0.befehle = b1;   
+        vR0.waitglobal = instance@special();   
+        b1 = new metaxa/os/devices/net/Eeprom(vR1,vR2);    [ ?R . i...][ ?R . iRRR]
+        vR0.eeprom = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method SendMIIPhyPreamble(Lmetaxa/os/devices/net/NicInformation;)V {
+  +START:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_4@special()));   [  i iRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [  ii iiRR] 
+        vi2 = 0;    
+  +B29:   #1
+        if vi2>=32 goto B89;   
+  +B35:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),6);   [i  i. iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),7);   [i  ii iiRR] 
+        udelay@special(1);   [i  ii i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [i  iii iiRR] 
+        udelay@special(1);   [i  iii i...]
+        vi2 = (byte)(vi2+1);    
+        goto +B29;   [i  iii ....]
+  +B89:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 5 any 1 found 0 SendMIIPhyPreamble
+ 
+ method ReadMIIPhy(Lmetaxa/os/devices/net/NicInformation;S)S {
+  +START:   #1
+        vi3 = 0;    
+        vi6 = 0;    
+        vi4 = vR1.Hardware.get_MIIReadCommand();    [i??i R  R] 
+        vR0.SendMIIPhyPreamble@special(vR1);   [ii?i R  RR] 
+        vi4 = (short)(vi4 | ((vi2 & 31) << 2));    
+        vi5 = 32768;    
+  +B35:   #1
+        if vi5<=2 goto B147;   
+  +B41:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_4@special()));   [iiii R i iRR] 
+        if (vi4 & vi5)<1 goto B94;   
+  +B65:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),6);   [iiii R i iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),7);   [iiii R ii iiRR] 
+        goto +B118;   [iiii R ii ....]
+  +B94:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [iiii R i. iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),5);   [iiii R ii iiRR] 
+  +B118:   #1
+        udelay@special(1);   [iiii R .. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [iiii R i. iiRR] 
+        udelay@special(1);   [iiii R i. i...]
+        vi5 = (vi5 >> 1);    
+        goto +B35;   [iiii R i. ....]
+  +B147:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiii R i. iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),1);   [iiii R ii iiRR] 
+        udelay@special(1);   [iiii R ii i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiii R iii iiRR] 
+        udelay@special(1);   [iiii R iii i...]
+        vi3 = vR0.befehle.NicReadPortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special());    [iiii R iiii iRR.] 
+        if (vi3 & 2)==0 goto B217;   
+  -B209:   #1
+        throw new metaxa/os/devices/net/ReadMIIException();   
+  +B217:   #1
+        vi5 = 32768;    
+  +B221:   #1
+        if vi5<=0 goto B321;   
+  +B226:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_4@special()));   [iiii R i... iRR.] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),1);   [iiii R ii.. iiRR] 
+        udelay@special(1);   [iiii R ii.. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiii R iii. iiRR] 
+        udelay@special(1);   [iiii R iii. i...]
+        vi3 = vR0.befehle.NicReadPortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special());    [iiii R iiii iRR.] 
+        if (vi3 & 2)==0 goto B302;   
+  +B291:   #1
+        vi6 = (short)(vi6 | vi5);    
+        goto +B312;   [iiii R .... ....]
+  +B302:   #1
+        vi6 = (short)(vi6 & (vi5 ^ -1));    
+  +B312:   #1
+        vi5 = (vi5 >> 1);    
+        goto +B221;   [iiii R .... ....]
+  +B321:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiii R i... iiRR] 
+        vi5 = 0;    
+  +B336:   #1
+        if vi5>=2 goto B380;   
+  +B342:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),1);   [iiii R i... iiRR] 
+        udelay@special(1);   [iiii R i... i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiii R ii.. iiRR] 
+        udelay@special(1);   [iiii R ii.. i...]
+        vi5++;   
+        goto +B336;   [iiii R ii.. ....]
+  +B380:   #1
+        return vi6;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 31 swaps 17 any 9 found 0 ReadMIIPhy
+ 
+ method WriteMIIPhy(Lmetaxa/os/devices/net/NicInformation;SS)V {
+  +START:   #1
+        vR6 = new short[2];    
+        vR6[0] = vR1.Hardware.get_MIIWriteCommand();   
+        vR6[1] = 0;   
+        vR0.SendMIIPhyPreamble@special(vR1);   [??R   RR] 
+        vR6[0] = (short)(vR6[0] | ((vi2 & 31) << 2));   
+        vR6[1] = vi3;   
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_4@special()));   [??R  i iRR] 
+        vi5 = 0;    
+  +B63:   #1
+        if vi5>=2 goto B177;   
+  +B69:   #1
+        vi4 = 32768;    
+  +B73:   #1
+        if vi4<=0 goto B171;   
+  +B78:   #1
+        if (vR6[vi5] & vi4)==0 goto B118;   
+  +B89:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),6);   [iiR  i iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),7);   [iiR  ii iiRR] 
+        goto +B142;   [iiR  ii ....]
+  +B118:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [iiR  i. iiRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),5);   [iiR  ii iiRR] 
+  +B142:   #1
+        udelay@special(1);   [iiR  .. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),4);   [iiR  i. iiRR] 
+        udelay@special(1);   [iiR  i. i...]
+        vi4 = (vi4 >> 1);    
+        goto +B73;   [iiR  i. ....]
+  +B171:   #1
+        vi5++;   
+        goto +B63;   [iiR  .. ....]
+  +B177:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiR  i. iiRR] 
+        vi4 = 0;    
+  +B192:   #1
+        if vi4>=2 goto B236;   
+  +B198:   #1
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),1);   [iiR  i. iiRR] 
+        udelay@special(1);   [iiR  i. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iiR  ii iiRR] 
+        udelay@special(1);   [iiR  ii i...]
+        vi4++;   
+        goto +B192;   [iiR  ii ....]
+  +B236:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 16 swaps 9 any 7 found 0 WriteMIIPhy
+ 
+ method CheckMIIAutoNegotiationStatus(Lmetaxa/os/devices/net/NicInformation;)V {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+        vi2 = 1;    
+  +B10:   #1
+        vi3 = vR0.ReadMIIPhy@this(vR1,1);    [iiii   iRR] 
+  +B17:   #1
+        goto +B24;   [iiii   ...]
+  +H20<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vi2 = 0;    
+  +B24:   #1
+        if vi2!=0 goto B45;   
+  +B28:   #1
+        out.println("CheckMIIAutoNegotiationStatus: Phy not responding (1) ");   [iiii  i. RR.] 
+        vR1.Hardware.set_Status(2);   [iiii  i. iR.] 
+        return;   
+  +B45:   #1
+        if (vi3 & 4)==0 goto B52;   
+  +B51:   #1
+        return;   
+  +B52:   #1
+        vi2 = 1;    
+  +B54:   #1
+        vi4 = vR0.ReadMIIPhy@this(vR1,4);    [iiii  .. iRR] 
+  +B62:   #1
+        goto +B69;   [iiii  .. ...]
+  +H65<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vi2 = 0;    
+  +B69:   #1
+        if vi2!=0 goto B90;   
+  +B73:   #1
+        out.println("CheckMIIAutoNegotiationStatus: Phy not responding (2) ");   [iiii  i. RR.] 
+        vR1.Hardware.set_Status(2);   [iiii  i. iR.] 
+        return;   
+  +B90:   #1
+        vi2 = 1;    
+  +B92:   #1
+        vi5 = vR0.ReadMIIPhy@this(vR1,5);    [iiii  .. iRR] 
+  +B100:   #1
+        goto +B107;   [iiii  .. ...]
+  +H103<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        vi2 = 0;    
+  +B107:   #1
+        if vi2!=0 goto B128;   
+  +B111:   #1
+        out.println("CheckMIIAutoNegotiationStatus: Phy not responding (3) ");   [iiii  i. RR.] 
+        vR1.Hardware.set_Status(2);   [iiii  i. iR.] 
+        return;   
+  +B128:   #1
+        if (vi4 & 2016)==(vi5 & 2016) goto B151;   
+  +B143:   #1
+        out.println("CheckMIIAutoNegotiationStatus: Incompatible configuration ");   [iiii  i. RR.] 
+  +B151:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+10 - 17 handler 20 type 90
+54 - 62 handler 65 type 90
+92 - 100 handler 103 type 90
+ }
+// Register: rd 12/12 wr 20 swaps 4 any 5 found 0 CheckMIIAutoNegotiationStatus
+ 
+ method ConfigureMII(Lmetaxa/os/devices/net/NicInformation;S)Z {
+  +START:   #1
+        vi4 = 0;    
+        vi5 = 0;    
+        vR7 = new metaxa/os/devices/net/WaitTimer(vR0.ports,vR0.timerManager);    [ R  i][ R . iRRR]
+        vi3 = 1;    
+  +B25:   #1
+        vi4 = vR0.ReadMIIPhy@this(vR1,0);    [iii?R R . iRR.] 
+  +B33:   #1
+        goto +B40;   [iii?R R . ....]
+  +H36<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        vi3 = 0;    
+  +B40:   #1
+        if vi3!=0 goto B62;   
+  +B44:   #1
+        out.println("ConfigureMII: Phy not responding (1) ");   [iii?R R i. RR..] 
+        vR1.Hardware.set_Status(2);   [iii?R R i. iR..] 
+        return 0;   
+  +B62:   #1
+        vi3 = 1;    
+  +B64:   #1
+        vi5 = vR0.ReadMIIPhy@this(vR1,4);    [iii?R R .. iRR.] 
+  +B72:   #1
+        goto +B79;   [iii?R R .. ....]
+  +H75<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        vi3 = 0;    
+  +B79:   #1
+        if vi3!=0 goto B101;   
+  +B83:   #1
+        out.println("ConfigureMII: Phy not responding (2) ");   [iii?R R i. RR..] 
+        vR1.Hardware.set_Status(2);   [iii?R R i. iR..] 
+        return 0;   
+  +B101:   #1
+        vi5 = (short)(vi5 & -481);    
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B132;   
+  +B120:   #1
+        vi4 = (short)(vi4 | 256);    
+        goto +B141;   [iii?R R .. ....]
+  +B132:   #1
+        vi4 = (short)(vi4 & -257);    
+  +B141:   #1
+        if vR1.Hardware.get_FlowControlSupported()==0 goto B163;   
+  +B151:   #1
+        vi5 = (short)(vi5 | 1024);    
+        goto +B172;   [iii?R R .. ....]
+  +B163:   #1
+        vi5 = (short)(vi5 & -1025);    
+  +B172:   #1
+        if (vi2 & MEDIA_OPTIONS_100BASETX_AVAILABLE@special())==0 goto B233;   
+  +B180:   #1
+        if vR1.Hardware.get_AutoSelect()==0 goto B202;   
+  +B190:   #1
+        vi5 = (short)(vi5 | 384);    
+        goto +B233;   [iii?R R .. ....]
+  +B202:   #1
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B224;   
+  +B212:   #1
+        vi5 = (short)(vi5 | 256);    
+        goto +B233;   [iiiiRR R .. ....]
+  +B224:   #1
+        vi5 = (short)(vi5 | 128);    
+  +B233:   #3
+        if (vi2 & MEDIA_OPTIONS_10BASET_AVAILABLE@special())==0 goto B291;   
+  +B241:   #1
+        if vR1.Hardware.get_AutoSelect()==0 goto B262;   
+  +B251:   #1
+        vi5 = (short)(vi5 | 96);    
+        goto +B291;   [iii?R R .. ....]
+  +B262:   #1
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B283;   
+  +B272:   #1
+        vi5 = (short)(vi5 | 64);    
+        goto +B291;   [iiiiRR R .. ....]
+  +B283:   #1
+        vi5 = (short)(vi5 | 32);    
+  +B291:   #3
+        vi4 = (short)(vi4 | 4608);    
+        vR0.WriteMIIPhy@this(vR1,4,vi5);   [iii?R R .. iiRR] 
+        vR0.WriteMIIPhy@this(vR1,0,vi4);   [iii?R R .. iiRR] 
+        vR0.waitglobal.set_PhyResponding(1);   [iii?R R .. iR..] 
+  +B324:   #1
+        vR0.waitglobal.set_PhyStatus(vR0.ReadMIIPhy@this(vR1,1));   [iii?R R i. sR..] 
+  +B337:   #1
+        goto +B350;   [iii?R R .. ....]
+  +H340<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        vR0.waitglobal.set_PhyResponding(0);   [iiiiRR R .. iR..] 
+  +B350:   #1
+        udelay@special(1000);   [iii?R R .. i...]
+        if vR0.waitglobal.get_PhyResponding()!=0 goto B384;   
+  +B366:   #1
+        out.println("ConfigureMII: Phy not responding (3) ");   [iii?R R i. RR..] 
+        vR1.Hardware.set_Status(2);   [iii?R R i. iR..] 
+        return 0;   
+  +B384:   #1
+        if (vR0.waitglobal.get_PhyStatus() & 32)!=0 goto B511;   
+  +B397:   #1
+        vR1.WaitCases = 3;   
+        vi6 = (vR0.timerManager.getCurrentTime()+40);    
+        vR8 = new metaxa/os/devices/net/WaitTimerArg(vR1,vR1.TestDPD,vi6);    [ R .. i...][ R .. iiRRR]
+        vR0.timerManager.addMillisTimer(10,vR7,vR8);   [iiiiRR R .. RRiR.] 
+  +B448:   #1
+        if vi6<=vR0.timerManager.getCurrentTime() goto B465;   
+  +B462:   #1
+        goto +B448;   [iiiiRR R .. .....]
+  +B465:   #1
+        if (vR0.waitglobal.get_PhyStatus() & 32)!=0 goto B511;   
+  +B478:   #1
+        out.println("ConfigureMII: Autonegotiation not done ");   [iiiiRR R i. RR...] 
+  +B486:   #1
+        vR1.Hardware.set_LinkState(2);   [iiiiRR R .. iR...] 
+  +B494:   #1
+        goto +B509;   forward return[iiiiRR R .. .....]
+  +H497<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        out.println("ConfigureMII: wrong LinkState set! (1)");   [iiiiRRR R i. RR...] 
+        return 0;   
+  +B509:   #1
+        return 0;   
+  +B511:   #3
+        vR1.Hardware.set_LinkState(0);   [iiiiRR R .. iR...] 
+  +B519:   #1
+        goto +B534;   forward return[iiiiRR R .. .....]
+  +H522<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        out.println("ConfigureMII: wrong Linkstate set! (2)");   [iiiiRR R i. RR...] 
+        return 0;   
+  +B534:   #1
+        return 1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+25 - 33 handler 36 type 90
+64 - 72 handler 75 type 90
+324 - 337 handler 340 type 90
+486 - 494 handler 497 type 194
+511 - 519 handler 522 type 194
+ }
+// Register: rd 53/53 wr 41 swaps 7 any 5 found 3 ConfigureMII
+ 
+ method CheckMIIConfiguration(Lmetaxa/os/devices/net/NicInformation;S)Z {
+  +START:   #2
+        vi4 = vR0.ReadMIIPhy@this(vR1,0);    [   iRR] 
+  +B8:   #1
+        goto +B31;   [?i   ...]
+  +H11<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        out.println("CheckMIIConfiguration: Phy not responding (1) ");   [?iiiiR  i. RR.] 
+        vR1.Hardware.set_Status(2);   [?iiiiR  i. iR.] 
+        return 0;   
+  +B31:   #2
+        vi5 = vR0.ReadMIIPhy@this(vR1,1);    [?i  .. iRR] 
+  +B39:   #1
+        goto +B62;   [?ii  .. ...]
+  +H42<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        out.println("CheckMIIConfiguration: Phy not responding (2) ");   [?iiiiR  i. RR.] 
+        vR1.Hardware.set_Status(2);   [?iiiiR  i. iR.] 
+        return 0;   
+  +B62:   #1
+        if (vi4 & 4096)<=0 goto B79;   
+  +B71:   #1
+        if (vi5 & 32)> 0 goto B90;   
+  +B79:   #1
+        if vR0.ConfigureMII@special(vR1,vi2)!=0 goto B90;   
+  +B88:   #1
+        return 0;   
+  +B90:   #3
+        vi6 = vR0.ReadMIIPhy@this(vR1,4);    [?ii  .. iRR] 
+  +B98:   #1
+        goto +B121;   [?iii  .. ...]
+  +H101<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        out.println("CheckMIIConfiguration: Phy not responding (3) ");   [?iiiiR  i. RR.] 
+        vR1.Hardware.set_Status(2);   [?iiiiR  i. iR.] 
+        return 0;   
+  +B121:   #1
+        vi7 = 0;    
+        if (vi2 & MEDIA_OPTIONS_100BASETX_AVAILABLE@special())<=0 goto B185;   
+  +B132:   #1
+        if vR1.Hardware.get_AutoSelect()==0 goto B154;   
+  +B142:   #1
+        vi7 = (short)(vi7 | 384);    
+        goto +B185;   [?iiii  .. ...]
+  +B154:   #1
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B176;   
+  +B164:   #1
+        vi7 = (short)(vi7 | 256);    
+        goto +B185;   [?iiii  .. ...]
+  +B176:   #1
+        vi7 = (short)(vi7 | 128);    
+  +B185:   #3
+        if (vi2 & MEDIA_OPTIONS_10BASET_AVAILABLE@special())<=0 goto B243;   
+  +B193:   #1
+        if vR1.Hardware.get_AutoSelect()==0 goto B214;   
+  +B203:   #1
+        vi7 = (short)(vi7 | 96);    
+        goto +B243;   [?iiii  .. ...]
+  +B214:   #1
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B235;   
+  +B224:   #1
+        vi7 = (short)(vi7 | 64);    
+        goto +B243;   [?iiii  .. ...]
+  +B235:   #1
+        vi7 = (short)(vi7 | 32);    
+  +B243:   #3
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B272;   
+  +B253:   #1
+        if vR1.Hardware.get_FlowControlSupported()==0 goto B272;   
+  +B263:   #1
+        vi7 = (short)(vi7 | 1024);    
+  +B272:   #2
+        if (vi6 & 2016)!=vi7 goto B285;   
+  +B283:   #1
+        return 1;   
+  +B285:   #1
+        if (vi2 & MEDIA_OPTIONS_100BASETX_AVAILABLE@special())<=0 goto B323;   
+  +B293:   #1
+        if (vi6 & 384)==(vi7 & 384) goto B323;   
+  +B308:   #1
+        out.println("CheckMIIConfiguration: Re-Initiating autonegotiation...");   [?iiii  i. RR.] 
+        return vR0.ConfigureMII@special(vR1,vi2);   
+  +B323:   #2
+        if (vi2 & MEDIA_OPTIONS_10BASET_AVAILABLE@special())<=0 goto B359;   
+  +B331:   #1
+        if (vi6 & 96)==(vi7 & 96) goto B359;   
+  +B344:   #1
+        out.println("CheckMIIConfiguration: Re-Initiating autonegotiation...");   [?iiii  i. RR.] 
+        return vR0.ConfigureMII@special(vR1,vi2);   
+  +B359:   #2
+        return 1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 8 handler 11 type 90
+31 - 39 handler 42 type 90
+90 - 98 handler 101 type 90
+ }
+// Register: rd 38/38 wr 24 swaps 5 any 9 found 4 CheckMIIConfiguration
+ 
+ method FindMIIPhy(Lmetaxa/os/devices/net/NicInformation;)Z {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_3@special()));   [ii  i iRR] 
+        vi2 = vR0.befehle.NicReadPortShort(vR1,MEDIA_OPTIONS_REGISTER@special());    [ii  ii sRR] 
+        if (vi2 & MEDIA_OPTIONS_MII_AVAILABLE@special())!=0 goto B47;   
+  +B39:   #1
+        if (vi2 & MEDIA_OPTIONS_100BASET4_AVAILABLE@special())==0 goto B148;   
+  +B47:   #1
+        vR0.befehle.NicCommand(vR1,(COMMAND_SELECT_REGISTER_WINDOW@special() | REGISTER_WINDOW_4@special()));   [ii  i. iRR] 
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [ii  ii iiRR] 
+        vi4 = 0;    
+  +B77:   #1
+        if vi4>=32 goto B126;   
+  +B84:   #1
+        udelay@special(1);   [iii  .. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),1);   [iii  i. iiRR] 
+        udelay@special(1);   [iii  i. i...]
+        vR0.befehle.NicWritePortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special(),0);   [iii  ii iiRR] 
+        vi4 = (byte)(vi4+1);    
+        goto +B77;   [iii  ii ....]
+  +B126:   #1
+        vi3 = vR0.befehle.NicReadPortShort(vR1,PHYSICAL_MANAGEMENT_REGISTER@special());    [iii  i. iRR.] 
+        if (vi3 & 2)==0 goto B146;   
+  +B144:   #1
+        return 1;   
+  +B146:   #1
+        return 0;   
+  +B148:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 15 swaps 7 any 4 found 2 FindMIIPhy
+ 
+ method MIIMediaOverride(Lmetaxa/os/devices/net/NicInformation;S)S {
+  +START:   #1
+        vi3 = 0;    
+        lswitch (vR1.Hardware.get_MediaOverride()) { 
+           1:B36
+           4:B81
+           ::B126
+        };   
+  +B36:   #1
+        if (vi2 & 4096)==0 goto B60;   
+  +B44:   #1
+        if vR1.Hardware.get_FullDuplexEnable()!=1 goto B60;   
+  +B55:   #1
+        vi3 = 2;    
+        goto +B126;   forward return[i R  .]
+  +B60:   #2
+        if (vi2 & 2048)==0 goto B73;   
+  +B68:   #1
+        vi3 = 2;    
+        goto +B126;   forward return[i R  .]
+  -B73:   #1
+        throw new metaxa/os/devices/net/MIIMediaOverrideException();   
+  +B81:   #1
+        if (vi2 & 16384)==0 goto B105;   
+  +B89:   #1
+        if vR1.Hardware.get_FullDuplexEnable()!=1 goto B105;   
+  +B100:   #1
+        vi3 = 3;    
+        goto +B126;   forward return[i R  ..]
+  +B105:   #2
+        if (vi2 & 8192)==0 goto B118;   
+  +B113:   #1
+        vi3 = 3;    
+        goto +B126;   forward return[i R  ..]
+  -B118:   #1
+        throw new metaxa/os/devices/net/MIIMediaOverrideException();   
+  +B126:   #5
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 4 found 0 MIIMediaOverride
+ 
+ method ProgramMII(Lmetaxa/os/devices/net/NicInformation;Lmetaxa/os/devices/net/ConnectorType;)Z {
+  +START:   #1
+        vi7 = 0;    
+        if vR0.FindMIIPhy@this(vR1)!=0 goto B13;   
+  +B11:   #1
+        return 0;   
+  +B13:   #1
+        vi3 = 1;    
+  +B15:   #1
+        vi4 = vR0.ReadMIIPhy@this(vR1,0);    [i???i   iRR] 
+  +B23:   #1
+        goto +B30;   [ii??i   ...]
+  +H26<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        vi3 = 0;    
+  +B30:   #2
+        vi5 = vR0.ReadMIIPhy@this(vR1,1);    [ii??i   iRR] 
+  +B38:   #1
+        goto +B45;   [iii?i   ...]
+  +H41<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        vi3 = 0;    
+  +B45:   #1
+        if vi3!=0 goto B51;   
+  +B49:   #1
+        return 0;   
+  +B51:   #2
+        vi7 = vR0.eeprom.ReadEEPROM(vR1,21);    [iii?i   iRR] 
+  +B63:   #1
+        goto +B68;   [iii?i   ...]
+  +H66<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+  +B68:   #2
+        vi8 = vR0.ReadMIIPhy@this(vR1,1);    [iii?i   iRR] 
+  +B76:   #1
+        goto +B83;   [iii?ii   ...]
+  +H79<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        return 0;   
+  +B83:   #2
+        vi4 = vR0.ReadMIIPhy@this(vR1,0);    [iii?ii   iRR] 
+  +B91:   #1
+        goto +B98;   [iii?ii   ...]
+  +H94<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        return 0;   
+  +B98:   #2
+        vi7 = vR0.MIIMediaOverride@special(vR1,vi8);    [iii?ii   iRR] 
+  +B107:   #1
+        goto +B114;   [iii?ii   ...]
+  +H110<caught exception>:   #1 reference
+        vR10 = <caught exception>;    
+        return 0;   
+  +B114:   #1
+        if vR1.Hardware.get_FullDuplexEnable()==0 goto B136;   
+  +B124:   #1
+        vi4 = (short)(vi4 | 256);    
+        goto +B145;   [iii?ii   ...]
+  +B136:   #1
+        vi4 = (short)(vi4 & -257);    
+  +B145:   #1
+        vi4 = (short)(vi4 & -4097);    
+        if (vi7 & 15)==3 goto B172;   
+  +B163:   #1
+        if (vi7 & 15)!=5 goto B231;   
+  +B172:   #1
+        vi4 = (short)(vi4 | 8192);    
+        vR0.WriteMIIPhy@this(vR1,0,vi4);   [iii?ii   iiRR] 
+        vi9 = (vR0.timerManager.getCurrentTime()+60);    
+  +B203:   #1
+        if vi9<=vR0.timerManager.getCurrentTime() goto B220;   
+  +B217:   #1
+        goto +B203;   [iii?iii   ....]
+  +B220:   #1
+        vR1.Hardware.set_LinkSpeed(100000000);   [iii?iii   iR..] 
+        return 1;   
+  +B231:   #1
+        if (vi7 & 15)==2 goto B249;   
+  +B240:   #1
+        if (vi7 & 15)!=4 goto B308;   
+  +B249:   #1
+        vi4 = (short)(vi4 & -8193);    
+        vR0.WriteMIIPhy@this(vR1,0,vi4);   [iii?iii   iiRR] 
+        vi9 = (vR0.timerManager.getCurrentTime()+60);    
+  +B280:   #1
+        if vi9<=vR0.timerManager.getCurrentTime() goto B297;   
+  +B294:   #1
+        goto +B280;   [iii?iii   ....]
+  +B297:   #1
+        vR1.Hardware.set_LinkSpeed(10000000);   [iii?iii   iR..] 
+        return 1;   
+  +B308:   #1
+        vi4 = (short)(vi4 & -8193);    
+        vR0.WriteMIIPhy@this(vR1,0,vi4);   [iii?iii   iiRR] 
+        vi9 = (vR0.timerManager.getCurrentTime()+60);    
+  +B339:   #1
+        if vi9<=vR0.timerManager.getCurrentTime() goto B356;   
+  +B353:   #1
+        goto +B339;   [iii?iii   ....]
+  +B356:   #1
+        vR1.Hardware.set_LinkSpeed(10000000);   [iii?iii   iR..] 
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+15 - 23 handler 26 type 90
+30 - 38 handler 41 type 90
+51 - 63 handler 66 type 237
+68 - 76 handler 79 type 90
+83 - 91 handler 94 type 90
+98 - 107 handler 110 type 227
+ }
+// Register: rd 37/37 wr 24 swaps 0 any 8 found 3 ProgramMII
+}

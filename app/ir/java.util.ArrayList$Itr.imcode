@@ -1,0 +1,122 @@
+class java/util/ArrayList$Itr {
+ 
+ method <init>(Ljava/util/ArrayList;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.lastRet = -1;   
+        vR0.expectedModCount = access$100@special(vR0.this$0);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        if vR0.cursor==access$200@special(vR0.this$0) goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i .. .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        vR0.checkForComodification@extra();   [ R  R] 
+        vi1 = vR0.cursor;    
+        if vi1<access$200@special(vR0.this$0) goto B28;   
+  -B20:   #1
+        throw new java/util/NoSuchElementException();   
+  +B28:   #1
+        vR2 = vR0.this$0.elementData;    
+        if vi1<vR2.length goto B50;   
+  -B42:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B50:   #1
+        vR0.cursor = (vi1+1);   
+        vR0.lastRet = vi1;   
+        return vR2[vi1];   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 3 swaps 0 any 2 found 1 next
+ 
+ method remove()V {
+  +START:   #1
+        if vR0.lastRet>=0 goto B15;   
+  -B7:   #1
+        throw new java/lang/IllegalStateException();   
+  +B15:   #1
+        vR0.checkForComodification@extra();   [ R  R.] 
+  +B19:   #1
+        vR0.this$0.remove(vR0.lastRet);   [ R i iR] 
+        vR0.cursor = vR0.lastRet;   
+        vR0.lastRet = -1;   
+        vR0.expectedModCount = access$100@special(vR0.this$0);   
+  +B55:   #1
+        goto +B67;   forward return[ R .. ..]
+  -H58<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/util/ConcurrentModificationException();   
+  +B67:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+19 - 55 handler 58 type 55
+ }
+// Register: rd 9/9 wr 3 swaps 1 any 0 found 0 remove
+ 
+ method forEachRemaining(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [ R?i  R]
+        vi2 = access$200@special(vR0.this$0);    [ R?i R R]
+        vi3 = vR0.cursor;    
+        if vi3<vi2 goto B24;   
+  +B23:   #1
+        return;   
+  +B24:   #1
+        vR4 = vR0.this$0.elementData;    
+        if vi3<vR4.length goto B48;   
+  -B40:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B48:   #2
+        if vi3==vi2 goto B83;   
+  +B53:   #1
+        if access$100@special(vR0.this$0)!=vR0.expectedModCount goto B83;   
+  +B67:   #1
+        b2 = vi3;    
+        vi3++;   
+        vR1.accept(vR4[b2]);   [iiR R?i i RR] 
+        goto +B48;   [iiR R?i i ..]
+  +B83:   #2
+        vR0.cursor = vi3;   
+        vR0.lastRet = (vi3-1);   
+        vR0.checkForComodification@extra();   [iiR R?i . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 8 swaps 1 any 5 found 0 forEachRemaining
+ 
+ method checkForComodification()V {
+  +START:   #1
+        if access$100@special(vR0.this$0)==vR0.expectedModCount goto B22;   
+  -B14:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 checkForComodification
+ 
+ method <init>(Ljava/util/ArrayList;Ljava/util/ArrayList$1;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

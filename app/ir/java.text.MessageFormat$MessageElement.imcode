@@ -1,0 +1,173 @@
+class java/text/MessageFormat$MessageElement {
+ 
+ method <init>(Ljava/text/MessageFormat;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vi3 = 0;    
+        vi4 = vR2.indexOf@extra(44);    [i   iR] 
+        if vi4!=-1 goto B44;   
+  +B25:   #1
+        vR0.argumentIndex = valueOf@special(vR2).intValue();   
+        vR0.type = 5;   
+        goto +B196;   [ii  . ..]
+  +B44:   #1
+        vR0.argumentIndex = valueOf@special(vR2.substring@extra(vi3,vi4)).intValue();   
+        vi3 = (vi4+1);    
+        vi4 = vR2.indexOf@extra(44,vi3);    [ii  .R iiR] 
+        vR5 = 0;    
+        if vi4==-1 goto B108;   
+  +B84:   #1
+        vR5 = vR2.substring@extra(vi3,vi4);    [iiR  .. iiR] 
+        vR0.style = vR2.substring@extra((vi4+1));   
+        goto +B115;   [iiR  i. ...]
+  +B108:   #1
+        vR5 = vR2.substring@extra(vi3);    [iiR  .. iR.] 
+  +B115:   #1
+        if vR5.equals@extra("time")==0 goto B133;   
+  +B125:   #1
+        vR0.type = 1;   
+        goto +B192;   [iiR  .. ...]
+  +B133:   #1
+        if vR5.equals@extra("date")==0 goto B151;   
+  +B143:   #1
+        vR0.type = 2;   
+        goto +B192;   [iiR  .. ...]
+  +B151:   #1
+        if vR5.equals@extra("number")==0 goto B169;   
+  +B161:   #1
+        vR0.type = 3;   
+        goto +B192;   [iiR  .. ...]
+  +B169:   #1
+        if vR5.equals@extra("choice")==0 goto B187;   
+  +B179:   #1
+        vR0.type = 4;   
+        goto +B192;   [iiR  .. ...]
+  +B187:   #1
+        vR0.type = 5;   
+  +B192:   #4
+        vR0.createFormat@special();   [iiR  .. R..] 
+  +B196:   #1
+        access$000@special(vR1).addElement@extra(vR0.format);   [ii  i. RR.] [ii  iR RR.]
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 17 swaps 6 any 3 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("index = ").append@extra(vR0.argumentIndex).append@extra(", type = ").append@extra(vR0.type).append@extra(", style = ").append@extra(vR0.style).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 7 any 0 found 0 toString
+ 
+ method createFormat()V {
+  +START:   #1
+        tswitch (vR0.type) B40 B40 B47 B54 B61 : B69;   
+  +B40:   #2
+        vR0.createDateTimeFormat@special();   [ R  R] 
+        goto +B79;   forward return[ R  .]
+  +B47:   #1
+        vR0.createNumberFormat@special();   [ R  R] 
+        goto +B79;   forward return[ R  .]
+  +B54:   #1
+        vR0.createChoiceFormat@special();   [ R  R] 
+        goto +B79;   forward return[ R  .]
+  +B61:   #1
+        vR0.format = 0;   
+        goto +B79;   forward return[ R  .]
+  -B69:   #1
+        throw new java/lang/RuntimeException("Unreachable reached.");   
+  +B79:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 createFormat
+ 
+ method createDateTimeFormat()V {
+  +START:   #1
+        vi1 = 2;    
+        if vR0.style==null goto B74;   
+  +B9:   #1
+        if vR0.style.equals@extra("short")==0 goto B26;   
+  +B21:   #1
+        vi1 = 3;    
+        goto +B74;   [i ?R . ..]
+  +B26:   #1
+        if vR0.style.equals@extra("medium")==0 goto B43;   
+  +B38:   #1
+        vi1 = 2;    
+        goto +B74;   [i ?R . ..]
+  +B43:   #1
+        if vR0.style.equals@extra("long")==0 goto B60;   
+  +B55:   #1
+        vi1 = 1;    
+        goto +B74;   [i ?R . ..]
+  +B60:   #1
+        if vR0.style.equals@extra("full")==0 goto B74;   
+  +B72:   #1
+        vi1 = 0;    
+  +B74:   #5
+        if vi1!=2 goto B111;   
+  +B79:   #1
+        if vR0.style==null goto B111;   
+  +B86:   #1
+        b1 = new java/text/SimpleDateFormat(vR0.style,access$100@special(vR0.this$0));    [ ?R . i.][ ?R .R iRRR]
+        vR0.format = b1;   
+        goto +B152;   forward return[i ?R .R ....]
+  +B111:   #2
+        if vR0.type!=1 goto B137;   
+  +B119:   #1
+        vR0.format = getTimeInstance@special(vi1,access$100@special(vR0.this$0));   
+        goto +B152;   forward return[i ?R RR ....]
+  +B137:   #1
+        vR0.format = getDateInstance@special(vi1,access$100@special(vR0.this$0));   
+  +B152:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 12 swaps 4 any 1 found 0 createDateTimeFormat
+ 
+ method createNumberFormat()V {
+  +START:   #1
+        if vR0.style==null goto B131;   
+  +B7:   #1
+        if vR0.style.equals@extra("currency")==0 goto B36;   
+  +B19:   #1
+        vR0.format = getCurrencyInstance@special(access$100@special(vR0.this$0));   
+        goto +B145;   forward return[  RR ..]
+  +B36:   #1
+        if vR0.style.equals@extra("percent")==0 goto B65;   
+  +B48:   #1
+        vR0.format = getPercentInstance@special(access$100@special(vR0.this$0));   
+        goto +B145;   forward return[  RR ..]
+  +B65:   #1
+        if vR0.style.equals@extra("integer")==0 goto B101;   
+  +B77:   #1
+        vR1 = getInstance@special(access$100@special(vR0.this$0));    [  RR R.]
+        vR1.setMaximumFractionDigits(0);   [R  RR iR] 
+        vR0.format = vR1;   
+        goto +B145;   forward return[R  RR ..]
+  +B101:   #1
+        vR1 = (java/text/DecimalFormat)(getInstance@special(access$100@special(vR0.this$0)));    
+        vR1.applyPattern(vR0.style);   [R  RRi RR] 
+        vR0.format = vR1;   
+        goto +B145;   forward return[R  RRi ..]
+  +B131:   #1
+        vR0.format = getInstance@special(access$100@special(vR0.this$0));   
+  +B145:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 17 swaps 4 any 0 found 0 createNumberFormat
+ 
+ method createChoiceFormat()V {
+  +START:   #1
+        b1 = new java/text/ChoiceFormat(vR0.style);    [ ?R  i][ ?R . iRR]
+        vR0.format = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 createChoiceFormat
+}

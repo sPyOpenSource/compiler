@@ -1,0 +1,57 @@
+class jx/net/protocol/ip/IP$1 {
+ 
+ method <init>(Ljx/net/protocol/ip/IP;ILjx/net/IPAddress;Ljx/net/PacketsConsumer1;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$id = vi2;   
+        vR0.val$dst = vR3;   
+        vR0.val$lowerConsumer = vR4;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method processMemory(Ljx/zero/Memory;II)Ljx/zero/Memory; {
+  +START:   #1
+        vR0.this$0.cpuManager.recordEvent(access$000@special(vR0.this$0));    
+        vR4 = vR1;    
+        vi2 = (vi2-requiresSpace@special());    
+        vR5 = new jx/net/protocol/ip/IPFormat(vR4,vi2);    [ R  i][ R . iiRR]
+        out.println(vi2);   [RR R . iR..] 
+        vR5.insertHeaderLength();   [RR R . R...] 
+        vR5.insertTypeOfService(0);   [RR R . iR..] 
+        vR5.insertTotalLength((vi3+requiresSpace@special()));   [RR R i iR..] 
+        vR5.insertIdentification(access$108@special(vR0.this$0));   [RR R iRi iR..] 
+        vR5.insertFragmentOffset(0);   [RR R iRi iR..] 
+        vR5.insertTimeToLive(64);   [RR R iRi iR..] 
+        vR5.insertProtocol(vR0.val$id);   [RR R iRii iR..] 
+        if access$200@special(vR0.this$0)==null goto B124;   
+  +B112:   #1
+        vR5.insertSourceAddress(access$200@special(vR0.this$0));   [RR R Ri... RR..] 
+  +B124:   #1
+        vR5.insertDestAddress(vR0.val$dst);   [RR R i.... RR..] 
+        if access$300@special(vR0.this$0)==0 goto B148;   
+  +B143:   #1
+        vR5.insertChecksum();   [RR R ..... R...] 
+  +B148:   #1
+        vR6 = vR0.val$lowerConsumer.processMemory(vR4,vi2,(requiresSpace@special()+vi3));    [RR R i.... iiRR] 
+        return vR6;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 16 swaps 6 any 2 found 2 processMemory
+ 
+ method requiresSpace()I {
+  +START:   #1
+        return requiresSpace@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requiresSpace
+ 
+ method getMTU()I {
+  +START:   #1
+        return 1000;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMTU
+}

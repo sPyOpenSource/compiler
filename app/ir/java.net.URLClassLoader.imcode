@@ -1,0 +1,24 @@
+class java/net/URLClassLoader {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method newInstance([Ljava/net/URL;Ljava/lang/ClassLoader;)Ljava/net/URLClassLoader; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 newInstance
+ 
+ method getURLs()[Ljava/net/URL; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getURLs
+}

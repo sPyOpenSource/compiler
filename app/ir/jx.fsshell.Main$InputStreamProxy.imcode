@@ -1,0 +1,32 @@
+class jx/fsshell/Main$InputStreamProxy {
+ 
+ method <init>(Ljx/fsshell/Main;Ljx/streams/InputStreamPortal;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.o = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method read()I {
+  +START:   #1
+        vi1 = vR0.o.read();    [ RR  R] 
+  +B10:   #1
+        if vi1!=255 goto B58;   
+  +B17:   #1
+        out.println("PROXY: control sequence");   [i RR i. RR] 
+        vR0.o.read();   [i RR i. R.] 
+        vR0.o.read();   [i RR i. R.] 
+        vi1 = vR0.o.read();    [i RR i. R.] 
+        goto +B10;   [i RR i. ..]
+  +B58:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("PROXY: read: ").append@extra(vi1).toString@extra());   [i RR ii. RR.] 
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 10 swaps 3 any 1 found 0 read
+}

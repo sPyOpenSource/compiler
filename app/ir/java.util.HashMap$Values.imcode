@@ -1,0 +1,84 @@
+class java/util/HashMap$Values {
+ 
+ method <init>(Ljava/util/HashMap;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method size()I {
+  +START:   #1
+        return vR0.this$0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method clear()V {
+  +START:   #1
+        vR0.this$0.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 iterator
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.this$0.containsValue(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        if vR1!=null goto B12;   
+  -B4:   #1
+        throw new java/lang/NullPointerException();   
+  +B12:   #1
+        if vR0.this$0.size<=0 goto B109;   
+  +B22:   #1
+        b0 = vR0.this$0.table;    
+        vR2 = b0;    
+        if b0==null goto B109;   
+  +B34:   #1
+        vi3 = vR0.this$0.modCount;    
+        vi4 = 0;    
+  +B45:   #1
+        if vi4>=vR2.length goto B90;   
+  +B52:   #1
+        vR5 = vR2[vi4];    
+  +B58:   #1
+        if vR5==null goto B84;   
+  +B63:   #1
+        vR1.accept(vR5.value);   [RiiR R i RR] 
+        vR5 = vR5.next;    
+        goto +B58;   [RiiR R i ..]
+  +B84:   #1
+        vi4++;   
+        goto +B45;   [RiiR R . ..]
+  +B90:   #1
+        if vR0.this$0.modCount==vi3 goto B109;   
+  -B101:   #1
+        throw new java/util/ConcurrentModificationException();   
+  +B109:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 8 swaps 1 any 6 found 0 forEach
+}

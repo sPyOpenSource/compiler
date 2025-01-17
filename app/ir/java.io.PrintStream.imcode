@@ -1,0 +1,254 @@
+class java/io/PrintStream {
+ 
+ method <init>(Ljava/io/OutputStream;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.error = 0;   
+        vR0.autoflush = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method checkError()Z {
+  +START:   #1
+        return vR0.error;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 checkError
+ 
+ method close()V {
+  +START:   #2
+        vR0.out.close();   [   R] 
+  +B7:   #1
+        goto +B16;   forward return[   .]
+  +H10<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        vR0.error = 1;   
+  +B16:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 7 handler 10 type 26
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 close
+ 
+ method flush()V {
+  +START:   #2
+        vR0.out.flush();   [   R] 
+  +B7:   #1
+        goto +B16;   forward return[   .]
+  +H10<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        vR0.error = 1;   
+  +B16:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 7 handler 10 type 26
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 flush
+ 
+ method write(I)V {
+  +START:   #2
+        vR0.out.write(vi1);   [   iR] 
+  +B8:   #1
+        goto +B17;   [   ..]
+  +H11<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        vR0.error = 1;   
+  +B17:   #1
+        if vi1!=10 goto B27;   
+  +B23:   #1
+        vR0.flush@this();   [   R.] 
+  +B27:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 8 handler 11 type 26
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 write
+ 
+ method write([BII)V {
+  +START:   #2
+        vR0.out.write(vR1,vi2,vi3);   [   iiRR] 
+  +B10:   #1
+        goto +B20;   [   ....]
+  +H13<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.error = 1;   
+  +B20:   #1
+        vi4 = 0;    
+  +B23:   #1
+        if vi4>=vR1.length goto B55;   
+  +B30:   #1
+        if vR1[vi4]==10 goto B42;   
+  +B39:   #1
+        goto +B49;   [i   ....]
+  +B42:   #1
+        vR0.flush@this();   [i   R...] 
+        goto +B55;   forward return[i   ....]
+  +B49:   #1
+        vi4++;   
+        goto +B23;   [i   ....]
+  +B55:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 13 type 26
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 write
+ 
+ method print([C)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR1.length goto B21;   
+  +B8:   #1
+        vR0.write@this(vR1[vi2]);   [i  i cR] 
+        vi2++;   
+        goto +B2;   [i  i ..]
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 2 found 0 print
+ 
+ method print(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR1.length@extra();    [   R] 
+        vR3 = new byte[vi2];    
+        vR1.getBytes@extra(0,vi2,vR3,0);   [iR   iRiiR] 
+        vR0.write@this(vR3,0,vi2);   [iR   iiRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 print
+ 
+ method print(Z)V {
+  +START:   #1
+        b0 = vR0;    
+        if vi1==0 goto B10;   
+  +B5b0:   #1 reference
+        b1 = "true";    
+        goto +B12b0b1;   [ RR  ]
+  +B10b0:   #1 reference
+        b1 = "false";    
+  +B12b0b1:   #1 reference reference
+        b0.print(b1);   [ RR  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 print
+ 
+ method print(C)V {
+  +START:   #1
+        vR0.write@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 print
+ 
+ method print(I)V {
+  +START:   #1
+        vR0.print@this(toString@special(vi1));   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 print
+ 
+ method print(J)V {
+  +START:   #1
+        vR0.print@this(toString@special(vl1));   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 print
+ 
+ method print(Ljava/lang/Object;)V {
+  +START:   #1
+        b0 = vR0;    
+        if vR1!=null goto B10;   
+  +B5b0:   #1 reference
+        b1 = "null";    
+        goto +B14b0b1;   [ RR  ]
+  +B10b0:   #1 reference
+        b1 = vR1.toString();    [ RR  R] 
+  +B14b0b1:   #1 reference reference
+        b0.print(b1);   [ RR  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 print
+ 
+ method println()V {
+  +START:   #1
+        vR0.write@this(10);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println([C)V {
+  +START:   #1
+        vR0.print@this(vR1);   [   RR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.print@this(vR1);   [   RR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(Z)V {
+  +START:   #1
+        vR0.print@this(vi1);   [   iR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(C)V {
+  +START:   #1
+        vR0.print@this(vi1);   [   iR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(I)V {
+  +START:   #1
+        vR0.print@this(vi1);   [   iR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(J)V {
+  +START:   #1
+        vR0.print@this(vl1);   [   ??R] 
+        vR0.println@this();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+ 
+ method println(Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.print@this(vR1);   [   RR] 
+        vR0.println@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 println
+}

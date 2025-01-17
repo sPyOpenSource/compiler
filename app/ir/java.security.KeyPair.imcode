@@ -1,0 +1,26 @@
+class java/security/KeyPair {
+ 
+ method <init>(Ljava/security/PublicKey;Ljava/security/PrivateKey;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.publicKey = vR1;   
+        vR0.privateKey = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPublic()Ljava/security/PublicKey; {
+  +START:   #1
+        return vR0.publicKey;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPublic
+ 
+ method getPrivate()Ljava/security/PrivateKey; {
+  +START:   #1
+        return vR0.privateKey;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPrivate
+}

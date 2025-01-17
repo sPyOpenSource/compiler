@@ -1,0 +1,206 @@
+class java/util/Collections$EmptyList {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return emptyIterator@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 iterator
+ 
+ method listIterator()Ljava/util/ListIterator; {
+  +START:   #1
+        return emptyListIterator@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 listIterator
+ 
+ method size()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        return vR1.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 containsAll
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        return new java/lang/Object()[0];   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  +START:   #1
+        if vR1.length<=0 goto B9;   
+  +B5:   #1
+        vR1[0] = 0;   
+  +B9:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 toArray
+ 
+ method get(I)Ljava/lang/Object; {
+  -START:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Index: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 7 swaps 2 any 1 found 0 get
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/List)==0 goto B23;   
+  +B7:   #1
+        if (java/util/List)(vR1).isEmpty()==0 goto B23;   
+  +B19:   #1
+        b0 = 1;    
+        goto +B24b0;   forward return[ i  ..]
+  +B23:   #2
+        b0 = 0;    
+  +B24b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 1 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method removeIf(Ljava/util/function/Predicate;)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 removeIf
+ 
+ method replaceAll(Ljava/util/function/UnaryOperator;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 replaceAll
+ 
+ method sort(Ljava/util/Comparator;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sort
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEach
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return emptySpliterator@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method readResolve()Ljava/lang/Object; {
+  +START:   #1
+        return EMPTY_LIST;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 readResolve
+ 
+ method listIterator(I)Ljava/util/ListIterator; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method add(ILjava/lang/Object;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 add
+ 
+ method indexOf(Ljava/lang/Object;)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 indexOf
+ 
+ method lastIndexOf(Ljava/lang/Object;)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastIndexOf
+ 
+ method set(ILjava/lang/Object;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set
+ 
+ method subList(II)Ljava/util/List; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 subList
+ 
+ method addAll(ILjava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
+ 
+ method <init>(Ljava/util/Collections$1;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

@@ -1,0 +1,53 @@
+class jx/fsshell/Main$4 {
+ 
+ method <init>(Ljx/fsshell/Main;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method command(Ljava/io/PrintStream;[Ljava/lang/String;)V {
+  +START:   #1
+        vR3 = vR0.this$0.fs.lookup(vR2[0]);    [ i i RR] 
+        vi4 = vR3.getLength();    [R i i R.] 
+        vi5 = 0;    
+  +B27:   #1
+        if vi4<=0 goto B119;   
+  +B32:   #1
+        if vi4>=4096 goto B45;   
+  +B40:   #1
+        b0 = vi4;    
+        goto +B48b0;   [Rii i . ..]
+  +B45:   #1
+        b0 = 4096;    
+  +B48b0:   #1 int
+        vi6 = b0;    
+        vR3.read(vR0.this$0.buffer,vi5,vi6);   [Riii i i iiRR] 
+        vi7 = 0;    
+  +B71:   #1
+        if vi7>=vi6 goto B102;   
+  +B78:   #1
+        vR1.write(vR0.this$0.buffer.get8(vi7));   [Riiii i i bR..] 
+        vi7++;   
+        goto +B71;   [Riiii i i ....]
+  +B102:   #1
+        vi4 = (vi4-vi6);    
+        vi5 = (vi5+vi6);    
+        goto +B27;   [Riiii i . ....]
+  +B119:   #1
+        vR1.flush();   [Riiii i . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 12 swaps 3 any 8 found 0 command
+ 
+ method getInfo()Ljava/lang/String; {
+  +START:   #1
+        return "print file on standard output";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInfo
+}

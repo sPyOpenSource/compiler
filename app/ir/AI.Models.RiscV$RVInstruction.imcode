@@ -1,0 +1,19 @@
+class AI/Models/RiscV$RVInstruction {
+ 
+ method <init>(LAI/Models/RiscV;I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.binary = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0.major_opcode);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+}

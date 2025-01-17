@@ -1,0 +1,38 @@
+class jx/zip/ZipEntry {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isDirectory()Z {
+  +START:   #1
+        return vR0.isDirectory;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.filename;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.uncompressed_size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getData()Ljx/zero/ReadOnlyMemory; {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getData
+}

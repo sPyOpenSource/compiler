@@ -1,0 +1,39 @@
+class jx/rpc/RPCFormatterRPCMsgRejectMismatch {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method write(Ljx/rpc/RPCBuffer;Ljx/rpc/RPCMsgRejectMismatch;)V {
+  +START:   #1
+        writeInt@special(vR0,vR1.low);   [  i iR]
+        writeInt@special(vR0,vR1.high);   [  ii iR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 write
+ 
+ method read(Ljx/rpc/RPCBuffer;)Ljx/rpc/RPCMsgRejectMismatch; {
+  +START:   #1
+        vR1 = new jx/rpc/RPCMsgRejectMismatch();    [ R  i][ R  iR]
+        vR1.low = readInt@special(vR0);   
+        vR1.high = readInt@special(vR0);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 read
+ 
+ method length(Ljx/rpc/RPCMsgRejectMismatch;)I {
+  +START:   #1
+        vi1 = 0;    
+        vi1 = (vi1+lengthInt@special(vR0.low));    
+        vi1 = (vi1+lengthInt@special(vR0.high));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 2 length
+}

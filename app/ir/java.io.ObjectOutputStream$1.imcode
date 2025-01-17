@@ -1,0 +1,238 @@
+class java/io/ObjectOutputStream$1 {
+ 
+ method <init>(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.prim_field_data = new byte[access$000@special(vR0.this$0).primFieldSize];   
+        vR0.objs = new java/lang/Object()[access$000@special(vR0.this$0).objectFieldCount];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method put(Ljava/lang/String;Z)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ Rii .R RR] [ Rii RR RR]
+        vR0.checkType@special(vR3,90);   [R Rii .R iRR] 
+        b0 = vR0.prim_field_data;    
+        b1 = vR3.getOffset();    [R Rii .R R..] 
+        if vi2==0 goto B35;   
+  +B31b0b1:   #1 reference int
+        b2 = 1;    
+        goto +B36b0b1b2;   [R Rii .. ...]
+  +B35b0b1:   #1 reference int
+        b2 = 0;    
+  +B36b0b1b2:   #1 reference int int
+        b0[b1] = (byte)b2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 6 swaps 0 any 1 found 0 put
+ 
+ method put(Ljava/lang/String;B)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [  .R RR] [  RR RR]
+        vR0.checkType@special(vR3,66);   [R  .R iRR] 
+        vR0.prim_field_data[vR3.getOffset()] = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 1 found 1 put
+ 
+ method put(Ljava/lang/String;C)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR3,67);   [R Ri .R iRR] 
+        vi4 = vR3.getOffset();    [R Ri .R R..] 
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi2 >>> 8);   
+        vR0.prim_field_data[vi4] = (byte)vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 2 found 0 put
+ 
+ method put(Ljava/lang/String;D)V {
+  +START:   #1
+        vR4 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR4,68);   [?R Ri .R iRR] 
+        vi5 = vR4.getOffset();    [?R Ri .R R..] 
+        vl6 = doubleToLongBits@special(vd2);    
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 52);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 48);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 40);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 32);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 24);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 16);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl6 >>> 8);   
+        vR0.prim_field_data[vi5] = (byte)(int)vl6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 33 swaps 0 any 14 found 0 put
+ 
+ method put(Ljava/lang/String;F)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR3,70);   [R Ri .R iRR] 
+        vi4 = vR3.getOffset();    [R Ri .R R..] 
+        vi5 = floatToIntBits@special(vl2);    [Ri Ri .R ?..]
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi5 >>> 24);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi5 >>> 16);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi5 >>> 8);   
+        vR0.prim_field_data[vi4] = (byte)vi5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 14 swaps 0 any 6 found 0 put
+ 
+ method put(Ljava/lang/String;I)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR3,73);   [R Ri .R iRR] 
+        vi4 = vR3.getOffset();    [R Ri .R R..] 
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi2 >>> 24);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi2 >>> 16);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi2 >>> 8);   
+        vR0.prim_field_data[vi4] = (byte)vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 13 swaps 0 any 6 found 0 put
+ 
+ method put(Ljava/lang/String;J)V {
+  +START:   #1
+        vR4 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR4,74);   [?R Ri .R iRR] 
+        vi5 = vR4.getOffset();    [?R Ri .R R..] 
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 52);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 48);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 40);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 32);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 24);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 16);   
+        b0 = vR0.prim_field_data;    
+        b1 = vi5;    
+        vi5++;   
+        b0[b1] = (byte)(int)(vl2 >>> 8);   
+        vR0.prim_field_data[vi5] = (byte)(int)vl2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 33 swaps 0 any 14 found 0 put
+ 
+ method put(Ljava/lang/String;S)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ Ri .R RR] [ Ri RR RR]
+        vR0.checkType@special(vR3,83);   [R Ri .R iRR] 
+        vi4 = vR3.getOffset();    [R Ri .R R..] 
+        b0 = vR0.prim_field_data;    
+        b1 = vi4;    
+        vi4++;   
+        b0[b1] = (byte)(vi2 >>> 8);   
+        vR0.prim_field_data[vi4] = (byte)vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 2 found 0 put
+ 
+ method put(Ljava/lang/String;Ljava/lang/Object;)V {
+  +START:   #1
+        vR3 = access$000@special(vR0.this$0).getField(vR1);    [ R .R RR] [ R RR RR]
+        if vR2==null goto B38;   
+  +B16:   #1
+        if vR3.getType().isAssignableFrom@extra(vR2.getClass())!=0 goto B38;   
+  -B30:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B38:   #2
+        vR0.objs[vR3.getOffset()] = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 1 any 2 found 1 put
+ 
+ method write(Ljava/io/ObjectOutput;)V {
+  +START:   #1
+        access$100@special(vR0.this$0,0);   [  R iR]
+        vR1.write(vR0.prim_field_data);   [  Ri RR] 
+        vi2 = 0;    
+  +B20:   #1
+        if vi2>=vR0.objs.length goto B47;   
+  +B29:   #1
+        vR1.writeObject(vR0.objs[vi2]);   [i  i. RR] 
+        vi2++;   
+        goto +B20;   [i  i. ..]
+  +B47:   #1
+        access$100@special(vR0.this$0,1);   [i  R. iR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 2 any 2 found 0 write
+ 
+ method checkType(Ljava/io/ObjectStreamField;C)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 checkType
+}

@@ -1,0 +1,34 @@
+class jx/iozone/IOZoneBench {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.length==5 goto B16;   
+  -B6:   #1
+        throw new java/lang/Error("wrong args");   
+  +B16:   #1
+        vi1 = parseInt@special(vR0[1]);    [ R R R..]
+        vi2 = parseInt@special(vR0[2]);    [i R RR R..]
+        vi3 = parseInt@special(vR0[3]);    [ii R RRR R..]
+        vi4 = parseInt@special(vR0[4]);    [iii R RRRR R..]
+        vR5 = getInitialNaming@special();    
+        vR6 = vR0[0];    
+        vR7 = (jx/fs/FS)(waitUntilPortalAvailable@special(vR5,vR6));    
+        b0 = new jx/iozone/IOZONE(vR7,vi1,vi2,vi3,vi4);    [ R RRRR. i..][ R RRRR. iiiiiRR]
+        vR8 = (jx/fs/FileSystem)(vR5.lookup("JavaFS"));    
+        if vR8==null goto B108;   
+  +B101:   #1
+        vR8.release();   [iiiiRRRR R ...... R......] 
+  +B108:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 18 swaps 1 any 1 found 0 main
+}

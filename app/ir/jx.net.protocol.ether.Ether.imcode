@@ -1,0 +1,221 @@
+class jx/net/protocol/ether/Ether {
+ 
+ method <init>(Ljx/devices/net/NetworkDevice;[B)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new byte[6];    
+        b1[0] = -1;   
+        b1[1] = -1;   
+        b1[2] = -1;   
+        b1[3] = -1;   
+        b1[4] = -1;   
+        b1[5] = -1;   
+        vR0.ETHER_BCAST = b1;   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.avoidSplitting = 1;   
+        b1 = new jx/net/dispatch/Dispatch(3);    [ ?R i. i.][ ?R i. iiR]
+        vR0.dispatch = b1;   
+        vR0.dispatch.add(2048,"IP");   [ ?R ii RiR] 
+        vR0.dispatch.add(2054,"ARP");   [ ?R iii RiR] 
+        vR0.dispatch.add(32821,"RARP");   [ ?R iiii RiR] 
+        vR0.dev = vR1;   
+        vR0.ownHardwareAddress = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 9 swaps 4 any 0 found 0 <init>
+ 
+ method getMTU()I {
+  +START:   #1
+        return vR0.dev.getMTU();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMTU
+ 
+ method getMacAddress()[B {
+  +START:   #1
+        return vR0.ownHardwareAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMacAddress
+ 
+ method registerConsumerEther(Ljx/net/EtherConsumer;Ljava/lang/String;)Z {
+  +START:   #1
+        vR3 = vR2;    
+        vi4 = -1;    
+        lswitch (vR3.hashCode@extra()) { 
+           2343:B44
+           65087:B59
+           2507949:B74
+           ::B86
+        };   
+  +B44:   #1
+        if vR3.equals@extra("IP")==0 goto B86;   
+  +B53:   #1
+        vi4 = 0;    
+        goto +B86;   [Ri RRR . ..]
+  +B59:   #1
+        if vR3.equals@extra("ARP")==0 goto B86;   
+  +B68:   #1
+        vi4 = 1;    
+        goto +B86;   [Ri RRR . ..]
+  +B74:   #1
+        if vR3.equals@extra("RARP")==0 goto B86;   
+  +B83:   #1
+        vi4 = 2;    
+  +B86:   #6
+        tswitch (vi4) B116 B132 B140 : B148;   
+  +B116:   #1
+        vR0.myIPConsumer = vR1;   
+        out.println("Ether: Registered IP consumer");   [Ri RRR i. RR] 
+        goto +B175;   [Ri RRR i. ..]
+  +B132:   #1
+        vR0.myARPConsumer = vR1;   
+        goto +B175;   [Ri RRR .. ..]
+  +B140:   #1
+        vR0.myRARPConsumer = vR1;   
+        goto +B175;   [Ri RRR .. ..]
+  -B148:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
+        b1.<init>@special(b2.append@extra("Unknown protocol ").append@extra(vR2).toString@extra());   [Ri RRR ii. RR.] 
+        throw b0;   
+  +B175:   #3
+        vR0.avoidSplitting = 1;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 14 swaps 6 any 3 found 0 registerConsumerEther
+ 
+ method registerConsumer(Ljx/fs/buffer/separator/MemoryConsumer;Ljava/lang/String;)Z {
+  +START:   #1
+        return vR0.dispatch.registerConsumer(vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 registerConsumer
+ 
+ method getTransmitter1([BLjava/lang/String;)Ljx/net/PacketsConsumer1; {
+  +START:   #1
+        vi3 = vR0.dispatch.findID(vR2);    [ R  RR] 
+        return new jx/net/protocol/ether/Ether$1(vR0,vR1,vi3);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getTransmitter1
+ 
+ method getTransmitter([BLjava/lang/String;)Ljx/net/PacketsConsumer; {
+  +START:   #1
+        vi3 = vR0.dispatch.findID(vR2);    [ R  RR] 
+        return new jx/net/protocol/ether/Ether$2(vR0,vR1,vi3);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getTransmitter
+ 
+ method getNonBlockingReceiver([Ljx/zero/Memory;)Ljx/fs/buffer/separator/NonBlockingMemoryConsumer; {
+  +START:   #1
+        vR2 = new jx/buffer/multithread/MultiThreadList();    [ RR  i][ RR  iR]
+        vR2.setListName("usableBufs");   [R RR i RR] 
+        vR3 = vR1;    
+        vi4 = vR3.length;    
+        vi5 = 0;    
+  +B23:   #1
+        if vi5>=vi4 goto B56;   
+  +B30:   #1
+        vR6 = vR3[vi5];    
+        b1 = new jx/net/protocol/ether/Ether$PacketContainer(vR0,vR6);    [ RR . i.][ RR . iRRR]
+        vR2.appendElement(b1);   [RRiiR RR . RR..] 
+        vi5++;   
+        goto +B23;   [RRiiR RR . ....]
+  +B56:   #1
+        vR3 = new jx/buffer/multithread/MultiThreadList();    [ RR . i...][ RR . iR..]
+        vR3.setListName("filledBufs");   [RRiiR RR i RR..] 
+        if vR1!=null goto B84;   
+  -B74:   #1
+        throw new java/lang/Error("non-buffer ether processing disabled");   
+  +B84:   #1
+        return new jx/net/protocol/ether/Ether$1EtherNonBlockingMemoryConsumerImpl(vR0,vR2,vR3);   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 13 swaps 2 any 4 found 0 getNonBlockingReceiver
+ 
+ method getBroadcastAddr()[B {
+  +START:   #1
+        return vR0.ETHER_BCAST;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBroadcastAddr
+ 
+ method transmitARPBroadcast(Ljx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.transmitSpecial@this(vR0.ownHardwareAddress,vR0.ETHER_BCAST,vR0.dispatch.findID("ARP"),vR1);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 6 swaps 2 any 0 found 0 transmitARPBroadcast
+ 
+ method transmitSpecial([B[BILjx/zero/Memory;)Ljx/zero/Memory; {
+  +START:   #1
+        vR5 = new jx/net/protocol/ether/EtherFormat(vR4);    [ R  i][ R . iRR]
+        vR5.insertDestAddress(vR2);   [R R . RR.] 
+        vR5.insertSourceAddress(vR1);   [R R . RR.] 
+        vR5.insertType(vi3);   [R R . iR.] 
+        return vR0.dev.transmit(vR4);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 transmitSpecial
+ 
+ method access$000(Ljx/net/protocol/ether/Ether;)[B {
+  +START:   #1
+        return vR0.ownHardwareAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljx/net/protocol/ether/Ether;)Ljx/devices/net/NetworkDevice; {
+  +START:   #1
+        return vR0.dev;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200(Ljx/net/protocol/ether/Ether;)Ljx/zero/CPUManager; {
+  +START:   #1
+        return vR0.cpuManager;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method access$300(Ljx/net/protocol/ether/Ether;)Z {
+  +START:   #1
+        return vR0.avoidSplitting;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$300
+ 
+ method access$400(Ljx/net/protocol/ether/Ether;)Ljx/net/dispatch/Dispatch; {
+  +START:   #1
+        return vR0.dispatch;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$400
+ 
+ method access$500(Ljx/net/protocol/ether/Ether;)Ljx/net/EtherConsumer; {
+  +START:   #1
+        return vR0.myIPConsumer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$500
+ 
+ method access$600(Ljx/net/protocol/ether/Ether;)Ljx/net/EtherConsumer; {
+  +START:   #1
+        return vR0.myARPConsumer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$600
+ 
+ method access$700(Ljx/net/protocol/ether/Ether;)Ljx/net/EtherConsumer; {
+  +START:   #1
+        return vR0.myRARPConsumer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$700
+}

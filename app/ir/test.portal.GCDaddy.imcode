@@ -1,0 +1,40 @@
+class test/portal/GCDaddy {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method longRunning()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 longRunning
+ 
+ method inc()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=1000 goto B21;   
+  +B9:   #1
+        vR2 = new java/lang/Object()[100];    
+        vi1++;   
+        goto +B2;   [iR   ..]
+  +B21:   #1
+        vR0.c = (vR0.c+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 inc
+ 
+ method getCount()I {
+  +START:   #1
+        return vR0.c;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCount
+}

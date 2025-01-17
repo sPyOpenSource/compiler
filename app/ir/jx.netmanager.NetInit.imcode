@@ -1,0 +1,289 @@
+class jx/netmanager/NetInit {
+ 
+ method <init>(Ljx/devices/net/NetworkDevice;Ljx/timer/TimerManager;[Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3,0);   [   RRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/net/NetworkDevice;Ljx/timer/TimerManager;[Ljx/zero/Memory;Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRRR  R] 
+        vR0.memMgr = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        b1 = new jx/net/protocol/ether/Ether(vR1,vR1.getMACAddress());    [ RRRR ii. i.][ RRRR ii. iRRR]
+        vR0.ether = b1;   
+        vR1.registerNonBlockingConsumer(vR0.ether.getNonBlockingReceiver(vR3));   [ RRRR iii RR..] 
+        b1 = new jx/net/protocol/arp/ARP(vR0.ether,0,vR2,0);    [ RRRR iii i...][ RRRR iii. iiRRRR]
+        vR0.arp = b1;   
+        out.println("NetInit: init IP");   [ RRRR iiii. RR....] 
+        b1 = new jx/net/protocol/ip/IP(vR0.ether);    [ RRRR iiii. i.....][ RRRR iiii. iRR...]
+        vR0.ip = b1;   
+        b1 = new jx/net/protocol/icmp/ICMP(0,vR0.ether,vR0);    [ RRRR iiii. i.....][ RRRR iiii. iRRRR.]
+        vR0.icmp = b1;   
+        vR0.icmp.register(vR0.ip);   [ RRRR iiiii RR....] 
+        b1 = new jx/net/protocol/udp/UDP(vR0.ip);    [ RRRR iiiii i.....][ RRRR iiiii. iRR...]
+        vR0.udp = b1;   
+        b1 = new jx/net/protocol/tcp/TCP(vR0.ip,vR0,vR2);    [ RRRR iiiii. i.....][ RRRR iiiii. iRRRR.]
+        vR0.tcp = b1;   
+        if vR0.ether.registerConsumerEther(vR0.arp,"ARP")!=0 goto B205;   
+  -B189:   #1
+        out.println("ARP: couldn't register at etherLayer!!");   [ RRRR i...... RR....] 
+        throw new java/lang/Error();   
+  +B205:   #1
+        out.println("NetInit: Waiting 3 seconds...");   [ RRRR i...... RR....] 
+        vi5 = 0;    
+  +B216:   #1
+        if vi5>=3000 goto B239;   
+  +B224:   #1
+        vR0.cpuManager.yield();   [i RRRR ....... R.....] 
+        vi5++;   
+        goto +B216;   [i RRRR ....... ......]
+  +B239:   #1
+        vR0.localAddress = vR4;   
+        vR1.open(0);   [i RRRR ....... RR....] 
+        if vR0.localAddress!=null goto B545;   
+  +B259:   #1
+        vR5 = new org/jnode/net/ipv4/dhcp/DHCPClient(vR0,vR0.ether.getMacAddress());    [ RRRR ....... i.....][ RRRR ....... iRRR..]
+        vR6 = new jx/net/protocol/bootp/BOOTPFormat(vR0.getUDPBuffer@this(300),0);    [ RRRR ....... i.....][ RRRR ....... iiRR..]
+        vR6.insertOp(1);   [RR RRRR ....... iR....] 
+        vR6.insertHtype(1);   [RR RRRR ....... iR....] 
+        vR6.insertHlen(6);   [RR RRRR ....... iR....] 
+        vi7 = 2000;    
+        vR6.insertXid(vi7);   [RRi RRRR ....... iR....] 
+        vR6.insertHwaddr(vR0.ether.getMacAddress());   [RRi RRRR i...... RR....] 
+        vR8 = vR5.createRequestPacket(vR6);    [RRi RRRR i...... RR....] 
+        getInitialNaming@special().registerPortal(vR0,"NIC");   [RRiR RRRR ii..... RRR...] 
+        vR9 = new java/net/DatagramSocket(68);    [ RRRR ii..... i.....][ RRRR ii..... iiR...]
+        vi10 = 0;    
+  +B370:   #1
+        if vi10>=5 goto B545;   
+  +B376:   #1
+        vR9.send(vR8);   [RRiRRi RRRR ....... RR....] 
+        out.println("sended");   [RRiRRi RRRR i...... RR....] 
+        vR11 = new byte[1024];    
+        vR12 = new java/net/DatagramPacket(vR11,vR11.length);    [ RRRR i...... i.....][ RRRR i...... iiRR..]
+        vR9.setSoTimeout(200);   [RRiRRiRR RRRR i...... iR....] 
+  +B420:   #1
+        vR9.receive(vR12);   [RRiRRiRR RRRR ....... RR....] 
+  +B427:   #1
+        goto +B468;   [RRiRRiRR RRRR ....... ......]
+  +H430<caught exception>:   #1 reference
+        vR13 = <caught exception>;    
+        b1 = new jx/net/IPv4Address;    
+        b2 = b1;    
+        b3 = new byte[4];    
+        b3[0] = -64;   
+        b3[1] = -88;   
+        b3[2] = 1;   
+        b3[3] = 90;   
+        b2.<init>@special(b3);   [RRiRRiRRR RRRR ....... RR....] 
+        vR0.localAddress = b1;   
+        goto +B539;   [RRiRRiRRR RRRR ....... ......]
+  +B468:   #1
+        out.println("received");   [RRiRRiRR RRRR i...... RR....] 
+        vR13 = vR0.getUDPBuffer@this(380);    [RRiRRiRR RRRR i...... iR....] 
+        vR13.copyFromByteArray(vR12.getData@extra(),0,42,((vR13.size()-34)-8));   [RRiRRiRRR RRRR iii.... iiiRR.] 
+        out.println("finished");   [RRiRRiRRR RRRR iiii... RR....] 
+        vR0.localAddress = vR5.processResponse(vi7,vR13,vR9);   
+        goto +B545;   [RRiRRiRRR RRRR iiii... ......]
+  +B539:   #1
+        vi10++;   
+        goto +B370;   [RRiRRiRRR RRRR ....... ......]
+  +B545:   #3
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRRR ....... i.....][ RRRR ....... iR....]
+        b0.println(b1.append@extra("IP address: ").append@extra(vR0.localAddress.toString()).toString@extra());   [RRiRRiRRR RRRR iii.... RR....] 
+        vR0.ip.changeSourceAddress(vR0.localAddress);   [RRiRRiRRR RRRR iiii... RR....] 
+        vR0.arp.register(vR0.ip);   [RRiRRiRRR RRRR iiiii.. RR....] 
+        vR0.ip.setAddressResolution(vR0.arp);   [RRiRRiRRR RRRR iiiiii. RR....] 
+        vR0.ether.registerConsumer(vR0.ip,"IP");   [RRiRRiRRR RRRR iiiiiiiR RRR...] 
+        vR0.ip.registerConsumer(vR0.icmp,"ICMP");   [RRiRRiRRR RRRR iiiiiiiRiR RRR...] 
+        vR0.ether.registerConsumer(vR0.arp,"ARP");   [RRiRRiRRR RRRR iiiiiiiRiRiR RRR...] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+420 - 427 handler 430 type 216
+ }
+// Register: rd 99/99 wr 75 swaps 23 any 5 found 0 <init>
+ 
+ method getTCP()Ljx/net/protocol/tcp/TCP; {
+  +START:   #1
+        return vR0.tcp;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTCP
+ 
+ method getTCPSocket(ILjx/net/IPAddress;[Ljx/zero/Memory;)Ljx/net/TCPSocket; {
+  +START:   #1
+        return new jx/net/protocol/tcp/TCPSocket(vR0.tcp,vi1,vR2,vR3);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getTCPSocket
+ 
+ method getUDPReceiver(I[Ljx/zero/Memory;)Ljx/net/UDPReceiver; {
+  +START:   #1
+        return new jx/netmanager/UDPReceiver(vR0,vi1,vR2,0);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getUDPReceiver
+ 
+ method getUDPSender(ILjx/net/IPAddress;I)Ljx/net/UDPSender; {
+  +START:   #2
+        b0 = new jx/netmanager/UDPSender(vR0,vi1,vR2,vi3);    [ R  i][ R . iiRiRR]
+  +B11b0:   #1 reference
+        return b0;   
+  +H12<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 11 handler 12 type 292
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 getUDPSender
+ 
+ method getIPReceiver([Ljx/zero/Memory;)Ljx/net/IPReceiver; {
+  +START:   #1
+        return new jx/netmanager/IPReceiver(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getIPReceiver
+ 
+ method getIPReceiver([Ljx/zero/Memory;Ljava/lang/String;)Ljx/net/IPReceiver; {
+  +START:   #1
+        return new jx/netmanager/IPReceiver(vR0,vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getIPReceiver
+ 
+ method getIPSender(Ljx/net/IPAddress;I)Ljx/net/IPSender; {
+  +START:   #2
+        b0 = new jx/netmanager/IPSender(vR0,vR1,vi2);    [ R  i][ R . iiRRR]
+  +B10b0:   #1 reference
+        return b0;   
+  +H11<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 11 type 292
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 0 found 0 getIPSender
+ 
+ method getTCPBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.memMgr.alloc(1514);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTCPBuffer
+ 
+ method getUDPBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.memMgr.alloc(1514);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUDPBuffer
+ 
+ method getTCPBuffer(I)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = vR0.getIPBuffer@this((vi1+20));    [  i iR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 getTCPBuffer
+ 
+ method getUDPBuffer(I)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = vR0.memMgr.alloc(vi1);    [   iR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getUDPBuffer
+ 
+ method getIPBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.getIPBuffer@this(1480);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIPBuffer
+ 
+ method getIPBuffer(I)Ljx/zero/Memory; {
+  +START:   #1
+        vR2 = vR0.memMgr.alloc(1514);    [   iR] 
+        vR3 = new jx/zero/Memory()[3];    
+        vR2.split3(34,vi1,vR3);   [RR   RiiR] 
+        vR4 = new jx/zero/Memory()[2];    
+        vR3[0].split2(14,vR4);   [RRR   RiR.] 
+        return vR3[1];   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 getIPBuffer
+ 
+ method getLocalAddress()Ljx/net/IPAddress; {
+  +START:   #1
+        return vR0.localAddress;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocalAddress
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = (jx/zero/MemoryManager)(vR0.lookup("MemoryManager"));    
+        vR3 = (jx/timer/TimerManager)(waitUntilPortalAvailable@special(vR0,"TimerManager"));    
+        vR4 = (jx/devices/pci/PCIAccess)(waitUntilPortalAvailable@special(vR0,"PCIAccess"));    
+        vR4.dumpDevices();   [RRR RR?R iRR. R.] 
+        out.println("scanning PCIBus for network devices...");   [RRR RR?R iRRi. RR] 
+        b0 = new jx/net/devices/lance/LanceFinder()[1];    
+        b1 = b0;    
+        b3 = new jx/net/devices/lance/LanceFinder();    [ RR?R iRRi. i.][ RR?R iRRi. iR]
+        b1[0] = b3;   
+        vR5 = b0;    
+        vR6 = 0;    
+        vR7 = vR5;    
+        vi8 = vR7.length;    
+        vi9 = 0;    
+  +B82:   #1
+        if vi9>=vi8 goto B130;   
+  +B89:   #1
+        vR10 = vR7[vi9];    
+        vR6 = ([Ljx/devices/net/NetworkDevice;)(vR10.find(new java/lang/String()[0]));    
+        if vR6==null goto B124;   
+  +B115:   #1
+        if vR6.length==0 goto B124;   
+  +B121:   #1
+        goto +B130;   [RRRRRRiiR RR?R ..... ..]
+  +B124:   #2
+        vi9++;   
+        goto +B82;   [RRRRRRRii RR?R ..... ..]
+  +B130:   #2
+        vR7 = vR6[0];    
+        vR7.setReceiveMode(1);   [RRRRRRiiR RR?R ..... iR] 
+        out.print("Ethernet address: ");   [RRRRRRiiR RR?R i.... RR] 
+        xdump@special(vR7.getMACAddress(),6);   [RRRRRRiiR RR?R iR... iR]
+  +B165:   #1
+        vR9 = new jx/zero/Memory()[30];    
+        vi10 = 0;    
+  +B175:   #1
+        if vi10>=vR9.length goto B203;   
+  +B183:   #1
+        vR9[vi10] = vR2.alloc(1514);   
+        vi10++;   
+        goto +B175;   [RRRRRRiRi RR?R ..... ..]
+  +B203:   #1
+        vR8 = new jx/netmanager/NetInit(vR7,vR3,vR9);    [ RR?R ..... i.][ RR?R ..... iRRRR]
+        registerPortal@special(vR8,vR1[0]);   [RRRRRRRRi RR?R R.... RR...]
+  +B225:   #1
+        goto +B241;   forward return[RRRRRRRRi RR?R ..... .....]
+  -H228<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        throw new java/lang/Error("Could not setup");   
+  +B241:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+165 - 225 handler 228 type 370
+ }
+// Register: rd 35/35 wr 36 swaps 4 any 9 found 0 init
+}

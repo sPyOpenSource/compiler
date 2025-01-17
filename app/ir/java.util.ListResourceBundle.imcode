@@ -1,0 +1,37 @@
+class java/util/ListResourceBundle {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method handleGetObject(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        vR2 = vR0.getContents@this();    [   R] 
+        vi3 = 0;    
+  +B7:   #1
+        if vi3>=vR2.length goto B37;   
+  +B13:   #1
+        if vR1.equals@extra(vR2[vi3][0])==0 goto B31;   
+  +B25:   #1
+        return vR2[vi3][1];   
+  +B31:   #1
+        vi3++;   
+        goto +B7;   [Ri  . ..]
+  +B37:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 1 any 2 found 0 handleGetObject
+ 
+ method getKeys()Ljava/util/Enumeration; {
+  +START:   #1
+        vR1 = vR0.getContents@this();    [ R  R] 
+        return new java/util/ListResourceBundle$1(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 getKeys
+}

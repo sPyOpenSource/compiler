@@ -1,0 +1,23 @@
+class jx/bio/ro/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = vR0[0];    
+        vR3 = vR0[1];    
+        vR4 = (jx/devices/bio/BlockIO)(waitUntilPortalAvailable@special(vR1,vR2));    
+        vR5 = new jx/bio/ro/Main$BioRO(vR4);    [ R . i.][ R . iRR]
+        vR1.registerPortal(vR5,vR3);   [RRRRR R . RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 0 any 0 found 0 main
+}

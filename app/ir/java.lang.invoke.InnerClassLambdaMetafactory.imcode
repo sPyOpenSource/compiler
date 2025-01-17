@@ -1,0 +1,113 @@
+class java/lang/invoke/InnerClassLambdaMetafactory {
+ 
+ method <init>(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/invoke/MethodType;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;Z[Ljava/lang/Class;[Ljava/lang/invoke/MethodType;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3,vR4,vR5,vR6,vi7,vR8,vR9);   [ ?R  RRiRRRRRRR] 
+        vR0.implMethodName = vR0.implInfo.getName();   
+        vR0.implMethodDesc = vR0.implMethodType.toMethodDescriptorString@extra();   
+        vR0.constructorType = vR2.changeReturnType@extra(TYPE);   
+        b1 = new java/lang/StringBuilder();    [ ?R i i.........][ ?R i iR........]
+        vR0.lambdaClassName = b1.append@extra(vR0.targetClass.getName@extra().replace@extra(46,47)).append@extra("$$Lambda$").toString@extra();   
+        dumper = 0;   
+        vR0.argNames = 0;   
+        vR0.argDescs = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 3 any 0 found 0 <init>
+ 
+ method buildCallSite()Ljava/lang/invoke/CallSite; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 buildCallSite
+ 
+ method spinInnerClass()Ljava/lang/Class; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spinInnerClass
+ 
+ method generateFactory()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 generateFactory
+ 
+ method generateConstructor()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 generateConstructor
+ 
+ method generateSerializationFriendlyMethods()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 generateSerializationFriendlyMethods
+ 
+ method generateSerializationHostileMethods()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 generateSerializationHostileMethods
+ 
+ method getParameterSize(Ljava/lang/Class;)I {
+  +START:   #1
+        if vR0!=TYPE goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        if vR0==TYPE goto B23;   
+  +B16:   #1
+        if vR0!=TYPE goto B25;   
+  +B23:   #1
+        return 2;   
+  +B25:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 3 found 3 getParameterSize
+ 
+ method getOpcodeOffset(Ljava/lang/Class;)I {
+  +START:   #1
+        if vR0.isPrimitive@extra()==0 goto B36;   
+  +B7:   #1
+        if vR0!=TYPE goto B16;   
+  +B14:   #1
+        return 1;   
+  +B16:   #1
+        if vR0!=TYPE goto B25;   
+  +B23:   #1
+        return 2;   
+  +B25:   #1
+        if vR0!=TYPE goto B34;   
+  +B32:   #1
+        return 3;   
+  +B34:   #1
+        return 0;   
+  +B36:   #1
+        return 4;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 3 found 3 getOpcodeOffset
+ 
+ method <clinit>()V {
+  +START:   #1
+        DESCR_CTOR_SERIALIZED_LAMBDA = 0;   
+        DESCR_CTOR_NOT_SERIALIZABLE_EXCEPTION = 0;   
+        b0 = new java/lang/String()[1];    
+        b0[0] = "java/io/NotSerializableException";   
+        SER_HOSTILE_EXCEPTIONS = b0;   
+        EMPTY_STRING_ARRAY = new java/lang/String()[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 1 <clinit>
+}

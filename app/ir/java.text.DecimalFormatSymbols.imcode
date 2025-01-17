@@ -1,0 +1,318 @@
+class java/text/DecimalFormatSymbols {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(getDefault@special());   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.serialVersionOnStream = 1;   
+        vR2 = getBundle@special("gnu/java/locale/LocaleInformation",vR1);    [  R RR]
+        vR0.currencySymbol = vR2.getString@extra("currencySymbol");   
+        vR0.intlCurrencySymbol = vR2.getString@extra("intlCurrencySymbol");   
+        vR0.decimalSeparator = vR2.getString@extra("decimalSeparator").charAt@extra(0);   
+        vR0.digit = vR2.getString@extra("digit").charAt@extra(0);   
+        vR0.exponential = vR2.getString@extra("exponential").charAt@extra(0);   
+        vR0.groupingSeparator = vR2.getString@extra("groupingSeparator").charAt@extra(0);   
+        vR0.infinity = vR2.getString@extra("infinity");   
+        vR0.NaN = vR2.getString@extra("NaN");   
+        vR0.minusSign = vR2.getString@extra("minusSign").charAt@extra(0);   
+        vR0.monetarySeparator = vR2.getString@extra("monetarySeparator").charAt@extra(0);   
+        vR0.patternSeparator = vR2.getString@extra("patternSeparator").charAt@extra(0);   
+        vR0.percent = vR2.getString@extra("percent").charAt@extra(0);   
+        vR0.perMill = vR2.getString@extra("perMill").charAt@extra(0);   
+        vR0.zeroDigit = vR2.getString@extra("zeroDigit").charAt@extra(0);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 26 swaps 14 any 0 found 0 <init>
+ 
+ method getCurrencySymbol()Ljava/lang/String; {
+  +START:   #1
+        return vR0.currencySymbol;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrencySymbol
+ 
+ method setCurrencySymbol(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.currencySymbol = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCurrencySymbol
+ 
+ method getInternationalCurrencySymbol()Ljava/lang/String; {
+  +START:   #1
+        return vR0.intlCurrencySymbol;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInternationalCurrencySymbol
+ 
+ method setInternationalCurrencySymbol(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.intlCurrencySymbol = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setInternationalCurrencySymbol
+ 
+ method getDecimalSeparator()C {
+  +START:   #1
+        return vR0.decimalSeparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDecimalSeparator
+ 
+ method setDecimalSeparator(C)V {
+  +START:   #1
+        vR0.decimalSeparator = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDecimalSeparator
+ 
+ method getDigit()C {
+  +START:   #1
+        return vR0.digit;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDigit
+ 
+ method setDigit(C)V {
+  +START:   #1
+        vR0.digit = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDigit
+ 
+ method getGroupingSeparator()C {
+  +START:   #1
+        return vR0.groupingSeparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGroupingSeparator
+ 
+ method setGroupingSeparator(C)V {
+  +START:   #1
+        vR0.groupingSeparator = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setGroupingSeparator
+ 
+ method getInfinity()Ljava/lang/String; {
+  +START:   #1
+        return vR0.infinity;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInfinity
+ 
+ method setInfinity(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.infinity = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setInfinity
+ 
+ method getNaN()Ljava/lang/String; {
+  +START:   #1
+        return vR0.NaN;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNaN
+ 
+ method setNaN(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.NaN = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setNaN
+ 
+ method getMinusSign()C {
+  +START:   #1
+        return vR0.minusSign;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinusSign
+ 
+ method setMinusSign(C)V {
+  +START:   #1
+        vR0.minusSign = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMinusSign
+ 
+ method getMonetaryDecimalSeparator()C {
+  +START:   #1
+        return vR0.monetarySeparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMonetaryDecimalSeparator
+ 
+ method setMonetaryDecimalSeparator(C)V {
+  +START:   #1
+        vR0.monetarySeparator = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMonetaryDecimalSeparator
+ 
+ method getPatternSeparator()C {
+  +START:   #1
+        return vR0.patternSeparator;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPatternSeparator
+ 
+ method setPatternSeparator(C)V {
+  +START:   #1
+        vR0.patternSeparator = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setPatternSeparator
+ 
+ method getPercent()C {
+  +START:   #1
+        return vR0.percent;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPercent
+ 
+ method setPercent(C)V {
+  +START:   #1
+        vR0.percent = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setPercent
+ 
+ method getPerMill()C {
+  +START:   #1
+        return vR0.perMill;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPerMill
+ 
+ method setPerMill(C)V {
+  +START:   #1
+        vR0.perMill = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setPerMill
+ 
+ method getZeroDigit()C {
+  +START:   #1
+        return vR0.zeroDigit;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getZeroDigit
+ 
+ method setZeroDigit(C)V {
+  +START:   #1
+        vR0.zeroDigit = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setZeroDigit
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        b0 = vR0.clone@special();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 104
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clone
+ 
+ method hashCode()I {
+  +START:   #1
+        return identityHashCode@special(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/text/DecimalFormatSymbols)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        vR2 = (java/text/DecimalFormatSymbols)(vR1);    
+        if vR2.getZeroDigit@extra()==vR0.getZeroDigit@extra() goto B33;   
+  +B31:   #1
+        return 0;   
+  +B33:   #1
+        if vR2.getGroupingSeparator@extra()==vR0.getGroupingSeparator@extra() goto B46;   
+  +B44:   #1
+        return 0;   
+  +B46:   #1
+        if vR2.getDecimalSeparator@extra()==vR0.getDecimalSeparator@extra() goto B59;   
+  +B57:   #1
+        return 0;   
+  +B59:   #1
+        if vR2.getPerMill@extra()==vR0.getPerMill@extra() goto B72;   
+  +B70:   #1
+        return 0;   
+  +B72:   #1
+        if vR2.getPercent@extra()==vR0.getPercent@extra() goto B85;   
+  +B83:   #1
+        return 0;   
+  +B85:   #1
+        if vR2.getDigit@extra()==vR0.getDigit@extra() goto B98;   
+  +B96:   #1
+        return 0;   
+  +B98:   #1
+        if vR2.getPatternSeparator@extra()==vR0.getPatternSeparator@extra() goto B111;   
+  +B109:   #1
+        return 0;   
+  +B111:   #1
+        if vR2.getInfinity@extra().equals@extra(vR0.getInfinity@extra())!=0 goto B127;   
+  +B125:   #1
+        return 0;   
+  +B127:   #1
+        if vR2.getNaN@extra().equals@extra(vR0.getNaN@extra())!=0 goto B143;   
+  +B141:   #1
+        return 0;   
+  +B143:   #1
+        if vR2.getMinusSign@extra()==vR0.getMinusSign@extra() goto B156;   
+  +B154:   #1
+        return 0;   
+  +B156:   #1
+        if vR2.getCurrencySymbol@extra().equals@extra(vR0.getCurrencySymbol@extra())!=0 goto B172;   
+  +B170:   #1
+        return 0;   
+  +B172:   #1
+        if vR2.getInternationalCurrencySymbol@extra().equals@extra(vR0.getInternationalCurrencySymbol@extra())!=0 goto B188;   
+  +B186:   #1
+        return 0;   
+  +B188:   #1
+        if vR0.getMonetaryDecimalSeparator@extra()==vR0.getMonetaryDecimalSeparator@extra() goto B201;   
+  +B199:   #1
+        return 0;   
+  +B201:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 18 swaps 4 any 2 found 1 equals
+}

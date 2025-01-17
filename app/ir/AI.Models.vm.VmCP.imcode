@@ -1,0 +1,45 @@
+class AI/Models/vm/VmCP {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getConstFieldRef(I)LAI/Models/vm/VmConstFieldRef; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getConstFieldRef
+ 
+ method getConstMethodRef(I)LAI/Models/vm/VmConstMethodRef; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getConstMethodRef
+ 
+ method getConstIMethodRef(I)LAI/Models/vm/VmConstIMethodRef; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getConstIMethodRef
+ 
+ method getConstClass(I)LAI/Models/vm/VmConstClass; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getConstClass
+ 
+ method getDouble(I)D {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDouble
+}

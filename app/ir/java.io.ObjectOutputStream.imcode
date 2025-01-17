@@ -1,0 +1,606 @@
+class java/io/ObjectOutputStream {
+ 
+ method <init>(Ljava/io/OutputStream;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/io/DataOutputStream(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.realOutput = b1;   
+        vR0.blockData = new byte[1024];   
+        vR0.blockDataCount = 0;   
+        b1 = new java/io/DataOutputStream(vR0);    [ ?R . i..][ ?R . iRR]
+        vR0.blockDataOutput = b1;   
+        vR0.setBlockDataMode@special(1);   [ ?R . iR.] 
+        vR0.replacementEnabled = 0;   
+        vR0.isSerializing = 0;   
+        vR0.nextOID = 8257536;   
+        b1 = new java/util/Hashtable();    [ ?R . i..][ ?R . iR.]
+        vR0.OIDLookupTable = b1;   
+        vR0.protocolVersion = defaultProtocolVersion;   
+        vR0.useSubclassMethod = 0;   
+        vR0.writeStreamHeader@this();   [ ?R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method writeObject(Ljava/lang/Object;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 writeObject
+ 
+ method defaultWriteObject()V {
+  +START:   #1
+        vR0.markFieldsWritten@special();   [   R] 
+        vR0.writeFields@special(vR0.currentObject,vR0.currentObjectStreamClass.fields,0);   [  iR iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 defaultWriteObject
+ 
+ method markFieldsWritten()V {
+  +START:   #1
+        if vR0.currentObject==null goto B14;   
+  +B7:   #1
+        if vR0.currentObjectStreamClass!=null goto B24;   
+  -B14:   #1
+        throw new java/io/NotActiveException("defaultWriteObject called by non-active class and/or object");   
+  +B24:   #1
+        if vR0.fieldsAlreadyWritten==0 goto B41;   
+  -B31:   #1
+        throw new java/io/IOException("Only one of putFields and defaultWriteObject may be called, and it may only be called once");   
+  +B41:   #1
+        vR0.fieldsAlreadyWritten = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 markFieldsWritten
+ 
+ method reset()V {
+  +START:   #1
+        vR0.reset@special(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method reset(Z)V {
+  +START:   #1
+        if vi1!=0 goto B30;   
+  +B4:   #1
+        if vR0.isSerializing==0 goto B21;   
+  -B11:   #1
+        throw new java/io/IOException("Reset called while serialization in progress");   
+  +B21:   #1
+        vR0.realOutput.writeByte@extra(121);   [ R . iR.] 
+  +B30:   #1
+        vR0.clearHandles@special();   [ R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 reset
+ 
+ method useProtocolVersion(I)V {
+  +START:   #1
+        if vi1==1 goto B20;   
+  +B5:   #1
+        if vi1==2 goto B20;   
+  -B10:   #1
+        throw new java/io/IOException("Invalid protocol version requested.");   
+  +B20:   #2
+        vR0.protocolVersion = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 useProtocolVersion
+ 
+ method setDefaultProtocolVersion(I)V {
+  +START:   #1
+        if vi0==1 goto B20;   
+  +B5:   #1
+        if vi0==2 goto B20;   
+  -B10:   #1
+        throw new java/io/IOException("Invalid protocol version requested.");   
+  +B20:   #2
+        defaultProtocolVersion = vi0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 1 setDefaultProtocolVersion
+ 
+ method annotateClass(Ljava/lang/Class;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 annotateClass
+ 
+ method replaceObject(Ljava/lang/Object;)Ljava/lang/Object; {
+  +START:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 replaceObject
+ 
+ method enableReplaceObject(Z)Z {
+  +START:   #1
+        if vi1==0 goto B24;   
+  +B4:   #1
+        if vR0.getClass@this().getClassLoader@extra()==null goto B24;   
+  -B14:   #1
+        throw new java/lang/SecurityException("Untrusted ObjectOutputStream subclass attempted to enable object replacement");   
+  +B24:   #2
+        vi2 = vR0.replacementEnabled;    
+        vR0.replacementEnabled = vi1;   
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 0 enableReplaceObject
+ 
+ method writeStreamHeader()V {
+  +START:   #1
+        vR0.realOutput.writeShort@extra(-21267);   [   iR] 
+        vR0.realOutput.writeShort@extra(5);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 writeStreamHeader
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method writeObjectOverride(Ljava/lang/Object;)V {
+  -START:   #1
+        throw new java/io/NotActiveException("Subclass of ObjectOutputStream must implement writeObjectOverride");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 writeObjectOverride
+ 
+ method write(I)V {
+  +START:   #1
+        if vR0.writeDataAsBlocks==0 goto B42;   
+  +B7:   #1
+        if vR0.blockDataCount!=1024 goto B21;   
+  +B17:   #1
+        vR0.drain@this();   [ Rii  R] 
+  +B21:   #1
+        b0 = vR0.blockData;    
+        b2 = vR0.blockDataCount;    
+        b1 = b2;    
+        vR0.blockDataCount = (b2+1);   
+        b0[b1] = (byte)vi1;   
+        goto +B50;   forward return[ Rii  .]
+  +B42:   #1
+        vR0.realOutput.write(vi1);   [ Rii  iR] 
+  +B50:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 3 swaps 0 any 1 found 0 write
+ 
+ method write([B)V {
+  +START:   #1
+        vR0.write@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 write
+ 
+ method write([BII)V {
+  +START:   #1
+        if vR0.writeDataAsBlocks==0 goto B80;   
+  +B7:   #1
+        if vi3>=0 goto B19;   
+  -B11:   #1
+        throw new java/lang/IndexOutOfBoundsException();   
+  +B19:   #1
+        if (vR0.blockDataCount+vi3)>=1024 goto B58;   
+  +B31:   #1
+        arraycopy@special(vR1,vi2,vR0.blockData,vR0.blockDataCount,vi3);   [ R Ri iiRiR]
+        vR0.blockDataCount = (vR0.blockDataCount+vi3);   
+        goto +B90;   forward return[ R Ri .....]
+  +B58:   #1
+        vR0.drain@this();   [ R .. R....] 
+        vR0.writeBlockDataHeader@special(vi3);   [ R .. iR...] 
+        vR0.realOutput.write(vR1,vi2,vi3);   [ R .. iiRR.] 
+        goto +B90;   forward return[ R .. .....]
+  +B80:   #1
+        vR0.realOutput.write(vR1,vi2,vi3);   [ R .. iiRR.] 
+  +B90:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 0 any 1 found 0 write
+ 
+ method flush()V {
+  +START:   #1
+        vR0.drain@this();   [   R] 
+        vR0.realOutput.flush();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method drain()V {
+  +START:   #1
+        if vR0.blockDataCount!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.writeBlockDataHeader@special(vR0.blockDataCount);   [  i iR] 
+        vR0.realOutput.write(vR0.blockData,0,vR0.blockDataCount);   [  iii iiRR] 
+        vR0.blockDataCount = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 2 any 0 found 0 drain
+ 
+ method close()V {
+  +START:   #1
+        vR0.drain@this();   [   R] 
+        vR0.realOutput.close();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 close
+ 
+ method writeBoolean(Z)V {
+  +START:   #1
+        vR0.dataOutput.writeBoolean@extra(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeBoolean
+ 
+ method writeByte(I)V {
+  +START:   #1
+        vR0.dataOutput.writeByte@extra(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeByte
+ 
+ method writeShort(I)V {
+  +START:   #1
+        vR0.dataOutput.writeShort@extra(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeShort
+ 
+ method writeChar(I)V {
+  +START:   #1
+        vR0.dataOutput.writeChar@extra(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeChar
+ 
+ method writeInt(I)V {
+  +START:   #1
+        vR0.dataOutput.writeInt@extra(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeInt
+ 
+ method writeLong(J)V {
+  +START:   #1
+        vR0.dataOutput.writeLong@extra(vl1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeLong
+ 
+ method writeFloat(F)V {
+  +START:   #1
+        vR0.dataOutput.writeFloat@extra(vl1);   [   ?R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeFloat
+ 
+ method writeDouble(D)V {
+  +START:   #1
+        vR0.dataOutput.writeDouble@extra(vd1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeDouble
+ 
+ method writeBytes(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.dataOutput.writeBytes@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeBytes
+ 
+ method writeChars(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.dataOutput.writeChars@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeChars
+ 
+ method writeUTF(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.dataOutput.writeUTF@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 writeUTF
+ 
+ method putFields()Ljava/io/ObjectOutputStream$PutField; {
+  +START:   #1
+        vR0.markFieldsWritten@special();   [ ?R  R] 
+        b1 = new java/io/ObjectOutputStream$1(vR0);    [ ?R  i][ ?R . iRR]
+        vR0.currentPutField = b1;   
+        return vR0.currentPutField;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 putFields
+ 
+ method writeFields()V {
+  +START:   #1
+        if vR0.currentPutField!=null goto B17;   
+  -B7:   #1
+        throw new java/io/NotActiveException("writeFields can only be called after putFields has been called");   
+  +B17:   #1
+        vR0.currentPutField.write(vR0);   [ R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 writeFields
+ 
+ method writeBlockDataHeader(I)V {
+  +START:   #1
+        if vi1>=256 goto B27;   
+  +B7:   #1
+        vR0.realOutput.writeByte@extra(119);   [   iR] 
+        vR0.realOutput.write(vi1);   [   iR] 
+        goto +B44;   forward return[   ..]
+  +B27:   #1
+        vR0.realOutput.writeByte@extra(122);   [   iR] 
+        vR0.realOutput.writeInt@extra(vi1);   [   iR] 
+  +B44:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 1 found 0 writeBlockDataHeader
+ 
+ method findHandle(Ljava/lang/Object;)Ljava/lang/Integer; {
+  +START:   #1
+        b0 = vR0.OIDLookupTable;    
+        b1 = new java/io/ObjectIdentityWrapper(vR1);    [ RR  i][ RR . iRR]
+        return (java/lang/Integer)(b0.get(b1));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 findHandle
+ 
+ method assignNewHandle(Ljava/lang/Object;)I {
+  +START:   #1
+        b0 = vR0.OIDLookupTable;    
+        b1 = new java/io/ObjectIdentityWrapper(vR1);    [ RRR  i][ RRR . iRR]
+        b2 = new java/lang/Integer(vR0.nextOID);    [ RRR . i..][ RRR . iiR]
+        b0.put(b1,b2);   [ RRR . RRR] 
+        b1 = vR0.nextOID;    
+        b0 = b1;    
+        vR0.nextOID = (b1+1);   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 7 swaps 0 any 1 found 0 assignNewHandle
+ 
+ method clearHandles()V {
+  +START:   #1
+        vR0.nextOID = 8257536;   
+        vR0.OIDLookupTable.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 clearHandles
+ 
+ method writeArraySizeAndElements(Ljava/lang/Object;Ljava/lang/Class;)V {
+  +START:   #1
+        vi3 = getLength@special(vR1);    [   R]
+        if vR2.isPrimitive@extra()==0 goto B406;   
+  +B12:   #1
+        if vR2!=TYPE goto B61;   
+  +B19:   #1
+        vR4 = ([Z)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iR   iR] 
+        vi5 = 0;    
+  +B36:   #1
+        if vi5>=vi3 goto B60;   
+  +B42:   #1
+        vR0.realOutput.writeBoolean@extra(vR4[vi5]);   [iRi  i bR] 
+        vi5++;   
+        goto +B36;   [iRi  i ..]
+  +B60:   #1
+        return;   
+  +B61:   #1
+        if vR2!=TYPE goto B110;   
+  +B68:   #1
+        vR4 = ([B)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR] 
+        vi5 = 0;    
+  +B85:   #1
+        if vi5>=vi3 goto B109;   
+  +B91:   #1
+        vR0.realOutput.writeByte@extra(vR4[vi5]);   [iRi  i bR] 
+        vi5++;   
+        goto +B85;   [iRi  i ..]
+  +B109:   #1
+        return;   
+  +B110:   #1
+        if vR2!=TYPE goto B159;   
+  +B117:   #1
+        vR4 = ([C)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR] 
+        vi5 = 0;    
+  +B134:   #1
+        if vi5>=vi3 goto B158;   
+  +B140:   #1
+        vR0.realOutput.writeChar@extra(vR4[vi5]);   [iRi  i cR] 
+        vi5++;   
+        goto +B134;   [iRi  i ..]
+  +B158:   #1
+        return;   
+  +B159:   #1
+        if vR2!=TYPE goto B208;   
+  +B166:   #1
+        vR4 = ([D)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR] 
+        vi5 = 0;    
+  +B183:   #1
+        if vi5>=vi3 goto B207;   
+  +B189:   #1
+        vR0.realOutput.writeDouble@extra(vR4[vi5]);   [iRi  . ??R] 
+        vi5++;   
+        goto +B183;   [iRi  . ...]
+  +B207:   #1
+        return;   
+  +B208:   #1
+        if vR2!=TYPE goto B257;   
+  +B215:   #1
+        vR4 = ([F)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR.] 
+        vi5 = 0;    
+  +B232:   #1
+        if vi5>=vi3 goto B256;   
+  +B238:   #1
+        vR0.realOutput.writeFloat@extra(vR4[vi5]);   [iRi  . ?R.] 
+        vi5++;   
+        goto +B232;   [iRi  . ...]
+  +B256:   #1
+        return;   
+  +B257:   #1
+        if vR2!=TYPE goto B306;   
+  +B264:   #1
+        vR4 = ([I)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR.] 
+        vi5 = 0;    
+  +B281:   #1
+        if vi5>=vi3 goto B305;   
+  +B287:   #1
+        vR0.realOutput.writeInt@extra(vR4[vi5]);   [iRi  i iR.] 
+        vi5++;   
+        goto +B281;   [iRi  i ...]
+  +B305:   #1
+        return;   
+  +B306:   #1
+        if vR2!=TYPE goto B355;   
+  +B313:   #1
+        vR4 = ([J)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR.] 
+        vi5 = 0;    
+  +B330:   #1
+        if vi5>=vi3 goto B354;   
+  +B336:   #1
+        vR0.realOutput.writeLong@extra(vR4[vi5]);   [iRi  . ??R] 
+        vi5++;   
+        goto +B330;   [iRi  . ...]
+  +B354:   #1
+        return;   
+  +B355:   #1
+        if vR2!=TYPE goto B444;   
+  +B362:   #1
+        vR4 = ([S)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR.] 
+        vi5 = 0;    
+  +B379:   #1
+        if vi5>=vi3 goto B403;   
+  +B385:   #1
+        vR0.realOutput.writeShort@extra(vR4[vi5]);   [iRi  i sR.] 
+        vi5++;   
+        goto +B379;   [iRi  i ...]
+  +B403:   #1
+        goto +B444;   forward return[iRi  . ...]
+  +B406:   #1
+        vR4 = ([Ljava/lang/Object;)(vR1);    
+        vR0.realOutput.writeInt@extra(vi3);   [iRi  . iR.] 
+        vi5 = 0;    
+  +B423:   #1
+        if vi5>=vi3 goto B444;   
+  +B429:   #1
+        vR0.writeObject@extra(vR4[vi5]);   [iRi  i RR.] 
+        vi5++;   
+        goto +B423;   [iRi  i ...]
+  +B444:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 92/92 wr 34 swaps 6 any 35 found 17 writeArraySizeAndElements
+ 
+ method writeFields(Ljava/lang/Object;[Ljava/io/ObjectStreamField;Z)V {
+  +START:   #1
+        if vi3==0 goto B15;   
+  +B4:   #1
+        vR0.setBlockDataMode@special(1);   [   iR] 
+        vR0.setBlockDataMode@special(0);   [   iR] 
+        return;   
+  +B15:   #1
+        vR6 = vR2;    
+        vi7 = vR6.length;    
+        vi8 = 0;    
+  +B26:   #1
+        if vi8>=vi7 goto B60;   
+  +B33:   #1
+        vR9 = vR6[vi8];    
+        vR4 = vR9.getName();    [??RiiR   R.] 
+        vR5 = vR9.getType();    [R?RiiR   R.] 
+        vi8++;   
+        goto +B26;   [RRRiiR   ..]
+  +B60:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 4 found 0 writeFields
+ 
+ method setBlockDataMode(Z)V {
+  +START:   #1
+        vR0.writeDataAsBlocks = vi1;   
+        if vi1==0 goto B20;   
+  +B9:   #1
+        vR0.dataOutput = vR0.blockDataOutput;   
+        goto +B28;   forward return[   ]
+  +B20:   #1
+        vR0.dataOutput = vR0.realOutput;   
+  +B28:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 1 found 0 setBlockDataMode
+ 
+ method access$000(Ljava/io/ObjectOutputStream;)Ljava/io/ObjectStreamClass; {
+  +START:   #1
+        return vR0.currentObjectStreamClass;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljava/io/ObjectOutputStream;Z)V {
+  +START:   #1
+        vR0.setBlockDataMode@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method <clinit>()V {
+  +START:   #1
+        defaultProtocolVersion = 1;   
+        loadLibrary@special("javaio");   [  R R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 <clinit>
+}

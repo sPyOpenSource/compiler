@@ -1,0 +1,88 @@
+class org/jnode/net/ipv4/dhcp/AbstractDHCPClient {
+ 
+ method <init>(Ljx/net/NetInit;[B)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method createRequestPacket(Ljx/net/protocol/bootp/BOOTPFormat;)Ljava/net/DatagramPacket; {
+  +START:   #1
+        vR2 = new org/jnode/net/ipv4/dhcp/DHCPMessage(vR1,1);    [ R  i][ R . iiRR]
+        return vR2.toDatagramPacket();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 createRequestPacket
+ 
+ method processResponse(ILjx/zero/Memory;Ljava/net/DatagramSocket;)Ljx/net/IPAddress; {
+  +START:   #1
+        vR4 = new org/jnode/net/ipv4/dhcp/DHCPMessage(vR2);    [ R  i][ R . iRR]
+        vR5 = vR4.getHeader();    [R R . R..] 
+        out.println("opcode");   [RR R i. RR.] 
+        if vR5.getOpcode()==2 goto B36;   
+  +B34:   #1
+        return 0;   
+  +B36:   #1
+        if vR5.getTransactionID()==vi1 goto B47;   
+  +B45:   #1
+        return 0;   
+  +B47:   #1
+        tswitch (vR4.getMessageType()) B88 B251 B251 B243 B251 : B251;   
+  +B88:   #1
+        out.println("serverid");   [RR R i. RR.] 
+        vR6 = vR4.getOption(54);    [RR R i. iR.] 
+        vR7 = vR5.getYiaddr().getBytes();    [RRR R i. R..] [RRR R iR R..] 
+        out.println("hdr");   [RRRR R ii. RR.] 
+        vR8 = vR5.getYiaddr();    [RRRR R ii. R..] 
+        vR5 = new jx/net/protocol/bootp/BOOTPFormat(1,vi1,0,vR5.getClientIPAddress(),vR5.getClientHwAddress(),vR0.net.getUDPBuffer(500));    [ R ii. i..][ R ii. iRRRiiiR]
+        out.println("msg");   [RRRRR R iii. RR......] 
+        vR4 = new org/jnode/net/ipv4/dhcp/DHCPMessage(vR5,3);    [ R iii. i.......][ R iii. iiRR....]
+        vR4.setOption(50,vR7);   [RRRRR R iii. RiR.....] 
+        vR4.setOption(54,vR6);   [RRRRR R iii. RiR.....] 
+        out.println("offer");   [RRRRR R iiii. RR......] 
+        vR9 = vR4.toDatagramPacket();    [RRRRR R iiii. R.......] 
+        vR9.setAddress@extra(BROADCAST_ADDRESS);   [RRRRRR R iiiii RR......] 
+        vR9.setPort@extra(67);   [RRRRRR R iiiii iR......] 
+        vR3.send(vR9);   [RRRRRR R iiiii RR......] 
+        return vR8;   
+  +B243:   #1
+        vR0.doConfigure@this(vR4);   [RRRRRR R ..... RR......] 
+        return 0;   
+  +B251:   #4
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 23 swaps 6 any 0 found 0 processResponse
+ 
+ method doConfigure(Lorg/jnode/net/ipv4/dhcp/DHCPMessage;)V {
+  +START:   #1
+        vR2 = vR1.getHeader();    [ R  R] 
+        vR3 = vR2.getServerIPAddress();    [R R  R] 
+        vR4 = vR3.and(vR3.getDefaultSubnetmask());    [RR R i RR] 
+        if vR2.getGatewayIPAddress().toInetAddress().isAnyLocalAddress()==0 goto B39;   
+  +B39:   #1
+        vR5 = vR1.getOption(3);    [RRR R ... iR] 
+        if vR5==null goto B69;   
+  +B51:   #1
+        if vR5.length<4 goto B69;   
+  +B58:   #1
+        vR6 = new jx/net/IPv4Address(vR5);    [ R ... i.][ R ... iRR]
+  +B69:   #2
+        vR6 = vR1.getOption(6);    [RRRRR R ... iR.] 
+        if vR6==null goto B110;   
+  +B82:   #1
+        vi7 = 0;    
+  +B85:   #1
+        if vi7>=vR6.length goto B110;   
+  +B93:   #1
+        vR8 = new jx/net/IPv4Address(vR6);    [ R ... i..][ R ... iRR]
+        vi7+=4;   
+        goto +B85;   [RRRRRiR R ... ...]
+  +B110:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 14 swaps 1 any 4 found 0 doConfigure
+}

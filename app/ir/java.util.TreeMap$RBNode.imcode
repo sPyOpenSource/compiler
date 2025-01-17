@@ -1,0 +1,33 @@
+class java/util/TreeMap$RBNode {
+ 
+ method <init>(Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0._oLeft = access$000@special();   
+        vR0._oRight = access$000@special();   
+        vR0._oParent = access$000@special();   
+        vR0._iColor = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        vR1 = (java/util/TreeMap$RBNode)(vR0.clone@special());    
+        vR1._oLeft = (java/util/TreeMap$RBNode)(vR0._oLeft.clone());   
+        vR1._oLeft._oParent = vR1;   
+        vR1._oRight = (java/util/TreeMap$RBNode)(vR0._oRight.clone());   
+        vR1._oRight._oParent = vR1;   
+        b0 = vR1;    
+  +B53b0:   #1 reference
+        return b0;   
+  -H54<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/InternalError(vR1.toString());   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 53 handler 54 type 36
+ }
+// Register: rd 16/16 wr 7 swaps 0 any 1 found 2 clone
+}

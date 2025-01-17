@@ -1,0 +1,374 @@
+class metaxa/os/devices/net/ComInit {
+ 
+ method udelay(I)V {
+  +START:   #1
+        sleepManager.udelay(vi0);   [  . iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 udelay
+ 
+ method sleep(II)V {
+  +START:   #1
+        sleepManager.mdelay(vi0);   [  . iR] 
+        sleepManager.udelay(vi1);   [  . iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 sleep
+ 
+ method <init>(Ljx/timer/TimerManager;Ljx/zero/timer/SleepManager;Ljx/buffer/separator/MemoryConsumer;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/util/Vector();    [ RR  i][ RR  iR]
+        vR0.foundNics = b1;   
+        vR4 = getInitialNaming@special();    
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.ports = (jx/zero/Ports)(vR4.lookup("Ports"));   
+        vR0.clock = (jx/zero/Clock)(vR4.lookup("Clock"));   
+        vR0.irq = (jx/zero/IRQ)(vR4.lookup("IRQ"));   
+        vR0.memMgr = (jx/zero/MemoryManager)(vR4.lookup("MemoryManager"));   
+        b0 = new jx/timerpc/SleepManagerImpl();    [ RR iiiii. i.][ RR iiiii. iR]
+        sleepManager = b0;   
+        vR0.timerManager = vR1;   
+        vR0.etherConsumer = vR3;   
+        if vR3==null goto B137;   
+  -B127:   #1
+        throw new java/lang/Error("not expected");   
+  +B137:   #1
+        out = out;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 16 swaps 5 any 1 found 1 <init>
+ 
+ method find([Ljava/lang/String;)[Ljx/devices/Device; {
+  +START:   #1
+        out.println("lookup PCI Access Point...");   [  i. RR] 
+        vi3 = 0;    
+  +B10:   #1
+        vR2 = (jx/devices/pci/PCIAccess)(getInitialNaming@special().lookup("PCIAccess"));    
+        if vR2!=null goto B54;   
+  +B28:   #1
+        if (vi3%20)!=0 goto B45;   
+  +B35:   #1
+        vi3 = 0;    
+        out.println("NetInit still waiting for PCI");   [Ri  i. RR] 
+  +B45:   #1
+        vi3++;   
+        yield@special();   [Ri  .. ..]
+        goto +B10;   [Ri  .. ..]
+  +B54:   #1
+        return vR0.findDevice@this(vR2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 11 swaps 3 any 2 found 0 find
+ 
+ method findDevice(Ljx/devices/pci/PCIAccess;)[Lmetaxa/os/devices/net/D3C905; {
+  +START:   #1
+        vi2 = -1;    
+        vi3 = -1;    
+        vR4 = vR1.getDevicesByClass(16711680,131072);    [ii RRR  iiR] 
+        if vR4==null goto B27;   
+  +B21:   #1
+        if vR4.length!=0 goto B37;   
+  +B27:   #1
+        out.println("3COM probe(): no network devices of any vendor found! ");   [iiR RRR i. RR.] 
+        return 0;   
+  +B37:   #1
+        vR5 = vR4;    
+        vi6 = vR5.length;    
+        vi7 = 0;    
+  +B49:   #1
+        if vi7>=vi6 goto B438;   
+  +B56:   #1
+        vR8 = vR5[vi7];    
+        vi2 = (vR8.getDeviceID() & 65535);    
+        vi3 = (vR8.getVendorID() & 65535);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .. i..][ RRR .. iR.]
+        b0.println(b1.append@extra("Vendor=").append@extra(toHexString@special(vi3)).append@extra(", Device=").append@extra(toHexString@special(vi2)).toString@extra());   [iiRRiiR RRR iii..ii. RR...] 
+        if vi3!=4279 goto B432;   
+  +B132:   #1
+        lswitch (vi2) { 
+           36868:B264
+           36869:B284
+           36870:B304
+           36874:B324
+           36949:B224
+           36952:B244
+           36954:B344
+           37376:B364
+           38912:B384
+           38917:B404
+           ::B424
+        };   
+  +B224:   #1
+        out.println("10/100 Base-TX NIC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B244:   #1
+        out.println("10/100 COMBO Deluxe board found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B264:   #1
+        out.println("10Base-T TPO NIC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B284:   #1
+        out.println("10Base-T/10Base-2/AUI Combo found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B304:   #1
+        out.println("10Base-T/10Base-2/TPC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B324:   #1
+        out.println("10Base-FL NIC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B344:   #1
+        out.println("100Base-Fx NIC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B364:   #1
+        out.println("Tornado NIC found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B384:   #1
+        out.println("10/100 Base-TX NIC(Python-H) found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B404:   #1
+        out.println("10/100 Base-TX NIC(Python-T) found");   [iiRRiiR RRR i....... RR...] 
+        vR0.foundNics.addElement@extra(vR8);   [iiRRiiR RRR i....... RR...] 
+        goto +B432;   [iiRRiiR RRR i....... .....]
+  +B424:   #1
+        out.println("ERROR: Unsupported NIC found");   [iiRRiiR RRR i....... RR...] 
+  +B432:   #11
+        vi7++;   
+        goto +B49;   [iiRRiiR RRR ........ .....]
+  +B438:   #1
+        vR5 = new metaxa/os/devices/net/D3C905()[vR0.foundNics.size@extra()];    
+        vi6 = 0;    
+  +B453:   #1
+        if vi6>=vR0.foundNics.size@extra() goto B652;   
+  +B465:   #1
+        vR7 = new jx/zero/Memory()[10];    
+        vi8 = 0;    
+  +B475:   #1
+        if vi8>=vR7.length goto B506;   
+  +B483:   #1
+        vR7[vi8] = vR0.memMgr.alloc(1514);   
+        vi8++;   
+        goto +B475;   [iiRRiRi RRR ........ .....]
+  +B506:   #1
+        b2 = new metaxa/os/devices/net/D3C905((jx/devices/pci/PCIDevice)(vR0.foundNics.elementAt(vi6)),vR0.ports,vR0.clock,vR0.irq,vR0.memMgr,vR0.timerManager,vR0.cpuManager,0,vR7);    [ RRR ........ i....][ RRR ........ iRRRRRRRRRR]
+        vR5[vi6] = b2;   
+  +B557:   #1
+        goto +B578;   [iiRRiRi RRR ........ ...........]
+  -H560<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        out.println("ComInit: FATAL ERROR - couldn't instantiate a driver!");   [iiRRiRi RRR i....... RR.........] 
+        throw new java/lang/Error();   
+  +B578:   #1
+        if vR0.doBasicConfig@special((jx/devices/pci/PCIDevice)(vR0.foundNics.elementAt(vi6)),vR1,vR5[vi6])!=0 goto B646;   
+  +B603:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i..........][ RRR ........ iR.........]
+        b0.println(b1.append@extra("Basic configuration of NIC ").append@extra((jx/devices/pci/PCIDevice)(vR0.foundNics.elementAt(vi6))).append@extra(" failed!!").toString@extra());   [iiRRiRi RRR ii.ii... RR.........] 
+        return 0;   
+  +B646:   #1
+        vi6++;   
+        goto +B453;   [iiRRiRi RRR ........ ...........]
+  +B652:   #1
+        return vR5;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+465 - 557 handler 560 type 218
+ }
+// Register: rd 60/60 wr 68 swaps 23 any 11 found 1 findDevice
+ 
+ method doBasicConfig(Ljx/devices/pci/PCIDevice;Ljx/devices/pci/PCIAccess;Lmetaxa/os/devices/net/D3C905;)Z {
+  +START:   #1
+        vi4 = -1;    
+        vi5 = -1;    
+        vi6 = -1;    
+        vi7 = 0;    
+        vi8 = -1;    
+        vi9 = -1;    
+        vR11 = vR3.NicInfo();    [iiiiii RR  R] 
+        vR12 = vR1.getAddress();    [iiiiii?R RR  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("DOBasicConfig: ").append@extra(vR1).toString@extra());   [iiiiii?RR RR ii. RR.] 
+        if vR11!=null goto B70;   
+  +B62:   #1
+        out.println("ERROR - nicinfo ist null!");   [iiiiii?RR RR i.. RR.] 
+  +B70:   #1
+        vi13 = vR2.readDeviceConfig(vR12,1);    [iiiiii?RR RR ... iRR] 
+        if (vi13 & 256)!=1 goto B102;   
+  +B91:   #1
+        out.println("SERRRRRRR");   [iiiiii?RRi RR i.. RR.] 
+        goto +B110;   [iiiiii?RRi RR i.. ...]
+  +B102:   #1
+        out.println("NO NO NO NO SERRRRRRR");   [iiiiii?RRiiiiiiR RR i.. RR.] 
+  +B110:   #1
+        if (vi13 & 4)==0 goto B151;   
+  +B117:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.println(b1.append@extra("Busmastering for NIC ").append@extra(vR1).append@extra(" already enabled by the Bios!").toString@extra());   [iiiiii?RRi RR iii.. RR..] 
+        goto +B307;   [iiiiii?RRi RR iii.. ....]
+  +B151:   #1
+        if vR1.busmasterCapable()!=1 goto B275;   
+  +B161:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Bustmastering for NIC ").append@extra(vR1).append@extra(" not enabled, though device is capable of busmastering.").toString@extra());   [iiiiii?RRiiiiiiR RR iii.. RR..] 
+        out.println("Trying to enforce it!");   [iiiiii?RRiiiiiiR RR iiii. RR..] 
+        if vR1.enforceBusmaster()!=1 goto B241;   
+  +B212:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Busmastering enforced for NIC ").append@extra(vR1).toString@extra());   [iiiiii?RRiiiiiiR RR ii... RR..] 
+        goto +B307;   [iiiiii?RRiiiiiiR RR ii... ....]
+  +B241:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Enforcing Busmastering for NIC ").append@extra(vR1).append@extra(" failed!!").toString@extra());   [iiiiii?RRiiiiiiR RR iii.. RR..] 
+        goto +B307;   [iiiiii?RRiiiiiiR RR iii.. ....]
+  +B275:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" doesn't support busmastering!").toString@extra());   [iiiiii?RRiiiiiiR RR iii.. RR..] 
+  +B307:   #3
+        vi4 = vR1.readIRQLine();    [iiiiii?RRi RR ..... R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" at IRQline ").append@extra(vi4).toString@extra());   [iiiiii?RRi RR iii... RR...] 
+        vi5 = vR1.getBaseAddress(0);    [iiiiii?RRi RR iii... iR...] 
+        vi5 = (vi5 & -4);    
+        vi6 = vR1.getBaseAddress(1);    [iiiiii?RRi RR iii... iR...] 
+        vi6 = (vi6 & -16);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii... i....][ RR iii... iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has IOBase ").append@extra(toHexString@special(vi5)).toString@extra());   [iiiiii?RRi RR iiiiiii... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiii... i....][ RR iiiiiii... iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has MemBase ").append@extra(toHexString@special(vi6)).toString@extra());   [iiiiii?RRi RR iiiiiiiiiii... RR...] 
+        if vi5!=0 goto B487;   
+  +B469:   #1
+        out.println("The system has not assigned an I/O address for the NIC. I/O Adress will be assigned!");   [iiiiii?RRi RR i............. RR...] 
+        vR0.setupIOBase@special(4,20480,vR1);   [iiiiii?RRi RR i............. RiiR.] 
+  +B487:   #1
+        vi14 = vR1.getRevisionID();    [iiiiii?RRi RR .............. R....] 
+        vi15 = (byte)(vi14 & 255);    
+        vi16 = (vi15 & 224);    
+        vi17 = (vi15 & 31);    
+        tswitch (vi16) B552 B617 B747 B682 : B747;   
+  +B552:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has 40-0502-00x ASIC").toString@extra());   [iiiiii?RRiiiiiiR RR iii........... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii........... i....][ RR iii........... iR...]
+        b0.println(b1.append@extra("Revision is: ").append@extra((28 & vi17)).toString@extra());   [iiiiii?RRiiiiiiR RR iiiiii........ RR...] 
+        goto +B779;   [iiiiii?RRiiiiiiR RR iiiiii........ .....]
+  +B617:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has 40-0483-00x ASIC").toString@extra());   [iiiiii?RRiiiiiiR RR iii........... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii........... i....][ RR iii........... iR...]
+        b0.println(b1.append@extra("Revision is: ").append@extra((28 & vi17)).toString@extra());   [iiiiii?RRiiiiiiR RR iiiiii........ RR...] 
+        goto +B779;   [iiiiii?RRiiiiiiR RR iiiiii........ .....]
+  +B682:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has 40-0476-001 ASIC").toString@extra());   [iiiiii?RRiiiiiiR RR iii........... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii........... i....][ RR iii........... iR...]
+        b0.println(b1.append@extra("Revision is: ").append@extra((28 & vi17)).toString@extra());   [iiiiii?RRiiiiiiR RR iiiiii........ RR...] 
+        goto +B779;   [iiiiii?RRiiiiiiR RR iiiiii........ .....]
+  +B747:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" uses unknown ASIC ?").toString@extra());   [iiiiii?RRiiiii RR iii........... RR...] 
+  +B779:   #3
+        vi8 = vR1.getCacheLineSize();    [iiiiii?RRiiiii RR .............. R....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("NIC ").append@extra(vR1).append@extra(" has cacheLineSize of: ").append@extra(vi8).toString@extra());   [iiiiii?RRiiiii RR iii........... RR...] 
+        if vi8!=4 goto B858;   
+  +B830:   #1
+        if vi8!=8 goto B858;   
+  +B837:   #1
+        if vi8!=16 goto B858;   
+  +B844:   #1
+        if vi8!=32 goto B858;   
+  +B851:   #1
+        if vi8==64 goto B867;   
+  +B858:   #4
+        out.println("Unsupported cacheLineSize - treated as 0!");   [iiiiii?RRiiiii RR i............. RR...] 
+  +B867:   #1
+        vi9 = vR1.getLatencyTimer();    [iiiiii?RRiiiii RR .............. R....] 
+        if vi9>=32 goto B926;   
+  +B882:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("The latency is very low (").append@extra(vi9).append@extra(") - setting to 32!").toString@extra());   [iiiiii?RRiiiii RR iii........... RR...] 
+        vR1.setLatencyTimer(32);   [iiiiii?RRiiiii RR iii........... iR...] 
+        goto +B953;   [iiiiii?RRiiiii RR iii........... .....]
+  +B926:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("The latency is ").append@extra(vi9).toString@extra());   [iiiiii?RRiiiiiiR RR ii............ RR...] 
+  +B953:   #1
+        vi18 = 32768;    
+        vR1.writeConfig(56,vi18);   [iiiiii?RRiiiiii RR .............. iiR..] 
+        vR1.setBaseAddress(0,vi5);   [iiiiii?RRiiiiii RR .............. iiR..] 
+        vR11.irq = vi4;   
+        vR11.IoBaseAddress = vi5;   
+        vR11.MemBaseAddress = vi6;   
+        vR11.Hardware.set_CacheLineSize((byte)(vi8*4));   [iiiiii?RRiiiiii RR i............. iR...] 
+        vR19 = new metaxa/os/devices/net/Befehl(vR0.ports,vR0.timerManager);    [ RR i............. i....][ RR i............. iRRR.]
+        if (vR11.Hardware.get_CacheLineSize()%16)==0 goto B1061;   
+  +B1042:   #1
+        out.println("doBasicConfig: CachelineSize modulo 0x10 not null - setting to 0x20 !");   [iiiiii?RRiiiiiiR RR i............. RR...] 
+        vR11.Hardware.set_CacheLineSize(32);   [iiiiii?RRiiiiiiR RR i............. iR...] 
+  +B1061:   #1
+        vR11.Hardware.set_DeviceId(vR1.getDeviceID());   [iiiiii?RRiiiiiiR RR i............. sR...] 
+        vR11.Hardware.set_RevisionId((byte)vi14);   [iiiiii?RRiiiiiiR RR ii............ iR...] 
+        out.println("Enable FlowControl by default");   [iiiiii?RRiiiiiiR RR iii........... RR...] 
+        vR11.Hardware.set_FlowControlSupported(1);   [iiiiii?RRiiiiiiR RR iii........... iR...] 
+        vR11.Hardware.set_FlowControlEnable(1);   [iiiiii?RRiiiiiiR RR iii........... iR...] 
+        out.println("DownPollRate setting to 8 by default");   [iiiiii?RRiiiiiiR RR iiii.......... RR...] 
+        vR11.Resources.set_DownPollRate(8);   [iiiiii?RRiiiiiiR RR iiii.......... iR...] 
+        vR11.DelayStart = 0;   
+        vR11.Hardware.set_MediaOverride(0);   [iiiiii?RRiiiiiiR RR iiii.......... iR...] 
+        vR11.Resources.set_SendCount(64);   [iiiiii?RRiiiiiiR RR iiii.......... iR...] 
+        vR11.Resources.set_ReceiveCount(64);   [iiiiii?RRiiiiiiR RR iiii.......... iR...] 
+        vR11.Hardware.set_MediaOverride(7);   [iiiiii?RRiiiiiiR RR iiii.......... iR...] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 98/98 wr 188 swaps 68 any 15 found 0 doBasicConfig
+ 
+ method setupIOBase(IILjx/devices/pci/PCIDevice;)V {
+  +START:   #1
+        vi4 = vR3.readConfig(vi1);    [ RR  iR] 
+        vi5 = (vi2 & -127);    
+        vR3.writeConfig(vi1,vi5);   [ii RR  iiR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("setupIOBase: changed I/O-Base from ").append@extra(vi4).append@extra(" to ").append@extra(vi5).append@extra("(").append@extra(vi2).append@extra(")").toString@extra());   [ii RR iiii.i..... RR......] 
+        vi6 = vR3.readConfig(vi1);    [ii RR iiii.i..... iR......] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii.i..... i.......][ RR iiii.i..... iR......]
+        b0.println(b1.append@extra("setupIOBase: CHECK REGISTERVALUE: ").append@extra(vi6).toString@extra());   [iii RR iiiiiii.... RR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 23 swaps 9 any 1 found 0 setupIOBase
+}

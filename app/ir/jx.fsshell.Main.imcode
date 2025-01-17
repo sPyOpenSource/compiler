@@ -1,0 +1,78 @@
+class jx/fsshell/Main {
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;[Ljava/lang/Object;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        out.println("jx.fsshell.Main");   [ RRR ii. RR.] 
+        vR3 = 0;    
+  +B38:   #1
+        vR3 = (jx/streams/StreamProvider)(vR2[0]);    
+        vR4 = (jx/fs/FS)(vR2[1]);    
+        b0 = new jx/fsshell/Main(vR3,vR4);    [ RRR ... i..][ RRR ... iRRR]
+  +B64:   #1
+        goto +B95;   [RR RRR ... ....]
+  +H67<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ... i...][ RRR ... iR..]
+        b0.println(b1.append@extra("FSShell: Exception ").append@extra(vR4).toString@extra());   [RR RRR ii. RR..] 
+  +B95:   #1
+        vR3.close();   [RR RRR ... R...] 
+        vR4 = (jx/zero/DomainManager)(vR0.lookup("DomainManager"));    
+        vR4.terminateCaller();   [RR RRR i.. R...] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+38 - 64 handler 67 type 43
+ }
+// Register: rd 21/21 wr 25 swaps 5 any 1 found 1 init
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        if vR0.length==2 goto B20;   
+  -B10:   #1
+        throw new java/lang/Error("Need name of stream provider as first argument and FS as second arg");   
+  +B20:   #1
+        vR2 = (jx/streams/StreamProvider)(waitUntilPortalAvailable@special(vR1,vR0[0]));    
+        b0 = new jx/fsshell/Main(vR2,0);    [ R R. i..][ R R. iRRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 0 any 0 found 0 main
+ 
+ method <init>(Ljx/streams/StreamProvider;Ljx/fs/FS;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRRR  R] 
+        vR0.cwd = "/";   
+        vR0.fs = vR2;   
+        b0 = new jx/shell/Shell;    
+        b1 = b0;    
+        b2 = new jx/fsshell/Main$OutputStreamProxy(vR0,vR1.getOutputStream());    [ RRRR  i][ RRRR . iRRR]
+        b3 = new jx/fsshell/Main$InputStreamProxy(vR0,vR1.getInputStream());    [ RRRR . i...][ RRRR . iRRR]
+        b1.<init>@special(b2,b3);   [ RRRR . RRR.] 
+        vR3 = b0;    
+        vR0.memoryManager = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vR0.buffer = vR0.memoryManager.alloc(4096);   
+        b1 = "ls";    
+        b2 = new jx/fsshell/Main$1(vR0);    [ RRRR i. i...][ RRRR i. iRR.]
+        vR3.register(b1,b2);   [R RRRR i. RRR.] 
+        b1 = "mkdir";    
+        b2 = new jx/fsshell/Main$2(vR0);    [ RRRR i. i...][ RRRR i. iRR.]
+        vR3.register(b1,b2);   [R RRRR i. RRR.] 
+        b1 = "cd";    
+        b2 = new jx/fsshell/Main$3(vR0);    [ RRRR i. i...][ RRRR i. iRR.]
+        vR3.register(b1,b2);   [R RRRR i. RRR.] 
+        b1 = "cat";    
+        b2 = new jx/fsshell/Main$4(vR0);    [ RRRR i. i...][ RRRR i. iRR.]
+        vR3.register(b1,b2);   [R RRRR i. RRR.] 
+        vR3.mainloop();   [R RRRR i. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 22 swaps 1 any 2 found 0 <init>
+}

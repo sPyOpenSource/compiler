@@ -1,0 +1,195 @@
+class java/sql/DriverManager {
+ 
+ method getLoginTimeout()I {
+  +START:   #1
+        return login_timeout;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLoginTimeout
+ 
+ method setLoginTimeout(I)V {
+  +START:   #1
+        login_timeout = vi0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setLoginTimeout
+ 
+ method getLogWriter()Ljava/io/PrintWriter; {
+  +START:   #1
+        return log_writer;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLogWriter
+ 
+ method setLogWriter(Ljava/io/PrintWriter;)V {
+  +START:   #1
+        log_writer = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setLogWriter
+ 
+ method getLogStream()Ljava/io/PrintStream; {
+  +START:   #1
+        return log_stream;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLogStream
+ 
+ method setLogStream(Ljava/io/PrintStream;)V {
+  +START:   #1
+        log_stream = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setLogStream
+ 
+ method println(Ljava/lang/String;)V {
+  +START:   #1
+        if log_stream==null goto B13;   
+  +B6:   #1
+        log_stream.println(vR0);   [  . RR] 
+  +B13:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 println
+ 
+ method registerDriver(Ljava/sql/Driver;)V {
+  +START:   #1
+        if drivers.contains@extra(vR0)!=0 goto B17;   
+  +B10:   #1
+        drivers.addElement@extra(vR0);   [  . RR] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 registerDriver
+ 
+ method deregisterDriver(Ljava/sql/Driver;)V {
+  +START:   #1
+        if drivers.contains@extra(vR0)==0 goto B18;   
+  +B10:   #1
+        drivers.removeElement@extra(vR0);   [  . RR] 
+  +B18:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 deregisterDriver
+ 
+ method getDrivers()Ljava/util/Enumeration; {
+  +START:   #1
+        vR0 = new java/util/Vector();    [ R  i][ R  iR]
+        vR1 = drivers.elements@extra();    [R R . R.] 
+        vR2 = currentThread@special().getContextClassLoader();    [RR R . R.] [RR R R ..]
+  +B22:   #2
+        if vR1.hasMoreElements()==0 goto B63;   
+  +B31:   #1
+        vR3 = vR1.nextElement();    [RRR R . R.] 
+        if vR3.getClass().getClassLoader@extra().equals(vR2)!=0 goto B55;   
+  +B52:   #1
+        goto +B22;   [RRRR R .. ..]
+  +B55:   #1
+        vR0.addElement@extra(vR3);   [RRRR R .. RR] 
+        goto +B22;   [RRRR R .. ..]
+  +B63:   #1
+        return vR0.elements@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 8 swaps 0 any 0 found 0 getDrivers
+ 
+ method getDriver(Ljava/lang/String;)Ljava/sql/Driver; {
+  +START:   #1
+        vR1 = drivers.elements@extra();    [  . R] 
+  +B7:   #1
+        if vR1.hasMoreElements()==0 goto B41;   
+  +B16:   #1
+        vR2 = (java/sql/Driver)(vR1.nextElement());    
+        if vR2.acceptsURL(vR0)==0 goto B38;   
+  +B36:   #1
+        return vR2;   
+  +B38:   #1
+        goto +B7;   [RR  . ..]
+  +B41:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 getDriver
+ 
+ method getConnection(Ljava/lang/String;)Ljava/sql/Connection; {
+  +START:   #1
+        b1 = new java/util/Properties();    [ ?R  i][ ?R  iR]
+        return getConnection@special(vR0,b1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getConnection
+ 
+ method getConnection(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/sql/Connection; {
+  +START:   #1
+        vR3 = new java/util/Properties();    [ R  i][ R  iR]
+        if vR1==null goto B20;   
+  +B12:   #1
+        vR3.setProperty("user",vR1);   [R R i RRR] 
+  +B20:   #1
+        if vR2==null goto B32;   
+  +B24:   #1
+        vR3.setProperty("password",vR2);   [R R i RRR] 
+  +B32:   #1
+        return getConnection@special(vR0,vR3);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 2 found 0 getConnection
+ 
+ method getConnection(Ljava/lang/String;Ljava/util/Properties;)Ljava/sql/Connection; {
+  +START:   #1
+        vR2 = getDriver@special(vR0);    [ RRR  R]
+        if vR2!=null goto B36;   
+  -B9:   #1
+        b0 = new java/sql/SQLException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Driver not found for URL: ").append@extra(vR0).toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  +B36:   #1
+        return vR2.connect(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 8 swaps 2 any 2 found 0 getConnection
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Vector();    [ R  i][ R  iR]
+        drivers = b0;   
+        vR0 = 0;    
+        if vR0==null goto B49;   
+  +B16:   #1
+        vR1 = new java/util/StringTokenizer(vR0);    [ R  i.][ R . iRR]
+  +B25:   #1
+        if vR1.hasMoreTokens()==0 goto B49;   
+  +B32:   #1
+        vR2 = vR1.nextToken();    [RR R . R..] 
+  +B37:   #1
+        forName@special(vR2);   [RRR R . R..]
+  +B42:   #1
+        goto +B46;   [RRR R . ...]
+  +H45<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+  +B46:   #1
+        goto +B25;   [RRR R . ...]
+  +B49:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+37 - 42 handler 45 type 139
+ }
+// Register: rd 7/7 wr 6 swaps 0 any 1 found 1 <clinit>
+}

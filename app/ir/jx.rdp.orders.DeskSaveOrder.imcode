@@ -1,0 +1,52 @@
+class jx/rdp/orders/DeskSaveOrder {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.offset = 0;   
+        vR0.action = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.offset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getAction()I {
+  +START:   #1
+        return vR0.action;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAction
+ 
+ method setOffset(I)V {
+  +START:   #1
+        vR0.offset = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setOffset
+ 
+ method setAction(I)V {
+  +START:   #1
+        vR0.action = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setAction
+ 
+ method reset()V {
+  +START:   #1
+        vR0.reset@special();   [   R] 
+        vR0.offset = 0;   
+        vR0.action = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 reset
+}

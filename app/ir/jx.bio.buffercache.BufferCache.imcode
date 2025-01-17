@@ -1,0 +1,546 @@
+class jx/bio/buffercache/BufferCache {
+ 
+ method <init>(Ljx/devices/bio/BlockIO;Ljx/zero/Clock;IIII)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.memMgr = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));   
+        vR0.idedevice = vR1;   
+        vR0.clock = vR2;   
+        vR0.bufferSize = vi6;   
+        vR0.cpuManager = (jx/zero/CPUManager)(lookup@special("CPUManager"));   
+        vR0.profiler = (jx/zero/Profiler)(lookup@special("Profiler"));   
+        b1 = new jx/bio/buffercache/BufferHashtable(20000);    [ RR RRR. i.][ RR RRR. iiR]
+        vR0.buffer_hashtable = b1;   
+        b1 = new jx/bio/buffercache/BufferFreeList();    [ RR RRR. i..][ RR RRR. iR.]
+        vR0.free_list = b1;   
+        vR0.maximalNumberOfBlocks = vi4;   
+        vR0.initialNumberOfBlocks = vi3;   
+        vR0.incrementNumberOfBlocks = vi5;   
+        if vi4>=vi3 goto B114;   
+  -B104:   #1
+        throw new java/lang/Error("maximalNumberOfBlocks < initialNumberOfBlocks");   
+  +B114:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 10 swaps 0 any 1 found 0 <init>
+ 
+ method stopDemon()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 stopDemon
+ 
+ method writeBlock(Ljx/fs/buffercache/BufferHead;Z)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("rwBlock(").append@extra(vR1.getBlock()).append@extra(")  size=").append@extra(vR1.getSize()).toString@extra());   [ RR iii..ii. RR...] 
+  +B40:   #1
+        vR0.idedevice.writeSectors((vR1.getBlock()*2),2,vR1.getData(),1);   [ RR iR...... iRiiR] 
+  +B61:   #1
+        goto +B72;   [ RR ........ .....]
+  +H64<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        vR1.endIo(1,1);   [R RR ........ iiR..] 
+        return;   
+  +B72:   #1
+        vR1.endIo(0,1);   [ RR ........ iiR..] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+40 - 61 handler 64 type 76
+ }
+// Register: rd 10/10 wr 15 swaps 6 any 0 found 0 writeBlock
+ 
+ method readBlock(Ljx/fs/buffer/BufferHead;Z)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("rwBlock(").append@extra(vR1.getBlock()).append@extra(")  size=").append@extra(vR1.getSize()).toString@extra());   [ RR iii..ii. RR...] 
+  +B44:   #1
+        vR0.idedevice.readSectors((vR1.getBlock()*2),2,vR1.getData(),1);   [ RR iR...... iRiiR] 
+  +B69:   #1
+        goto +B82;   [ RR ........ .....]
+  +H72<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        vR1.endIo(1,1);   [R RR ........ iiR..] 
+        return;   
+  +B82:   #1
+        vR1.endIo(0,1);   [ RR ........ iiR..] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+44 - 69 handler 72 type 76
+ }
+// Register: rd 10/10 wr 15 swaps 6 any 0 found 0 readBlock
+ 
+ method putFirstFree(Ljx/bio/buffercache/BufferHead;)V {
+  +START:   #1
+        vR0.free_list.prependElement(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 putFirstFree
+ 
+ method putLastFree(Ljx/bio/buffercache/BufferHead;)V {
+  +START:   #1
+        vR0.free_list.appendElement(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 putLastFree
+ 
+ method findBuffer(I)Ljx/fs/buffercache/BufferHead; {
+  +START:   #1
+        vR2 = vR0.buffer_hashtable.get@extra(vi1);    [ RR  iR] 
+        if vR2==null goto B47;   
+  +B13:   #1
+        vR2.ref();   [R RR  R.] 
+        if vR2.dirty()!=0 goto B29;   
+  +B24:   #1
+        vR2.b_flushtime = 0;   
+  +B29:   #1
+        if vR2.isInFreeList()==0 goto B72;   
+  +B36:   #1
+        vR0.free_list.removeElement(vR2);   [R RR  RR] 
+        goto +B72;   forward return[R RR  ..]
+  +B47:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("MISS: ").append@extra(vi1).toString@extra());   [R RR ii. RR.] 
+  +B72:   #2
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 2 any 1 found 0 findBuffer
+ 
+ method getblk(I)Ljx/fs/buffercache/BufferHead; {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("getblk(").append@extra(vi1).append@extra(" )").toString@extra());   [ RR iii.. RR..] 
+        b0 = vR0.findBuffer@extra(vi1);    [ RR iii.. iR..] 
+        vR3 = b0;    
+        if b0==null goto B42;   
+  +B40:   #1
+        return vR3;   
+  +B42:   #1
+        if vR0.free_list.size()!=0 goto B64;   
+  +B52:   #1
+        out.println("GROW buffer cache");   [?R RR i.... RR..] 
+        vR0.growBuffers@special();   [?R RR i.... R...] 
+  +B64:   #1
+        vR2 = (jx/bio/buffercache/BufferHead)(vR0.free_list.undockFirstElement());    
+        if vR2.isDirty@extra()==0 goto B88;   
+  +B82:   #1
+        vR0.writeBlock@extra(vR2,1);   [RR RR ..... iRR.] 
+  +B88:   #1
+        if vR2.hashtable_hashkey< 0 goto B143;   
+  +B95:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("REMOVE from Hashtable: ").append@extra(vR2.getBlock@extra()).append@extra(":").append@extra(vR2.id).toString@extra());   [RR RR iii..ii. RR...] 
+        vR0.buffer_hashtable.remove@extra(vR2);   [RR RR iii..ii. RR...] 
+  +B143:   #1
+        vR2.init(vi1);   [RR RR ........ iR...] 
+        vR0.buffer_hashtable.put@extra(vR2);   [RR RR ........ RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i....][ RR ........ iR...]
+        b0.println(b1.append@extra("getblk out with ").append@extra(vR2.getBlock@extra()).toString@extra());   [RR RR iii..... RR...] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 32 swaps 12 any 2 found 0 getblk
+ 
+ method brelse(Ljx/fs/buffer/BufferHead;)V {
+  +START:   #1
+        vR2 = (jx/bio/buffercache/BufferHead)(vR1);    
+        if vR2!=null goto B10;   
+  +B9:   #1
+        return;   
+  +B10:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("brelse(").append@extra(vR2.getBlock@extra()).append@extra(")").toString@extra());   [R RR ii.ii. RR..] 
+        if vR2.isDirty@extra()==0 goto B87;   
+  +B50:   #1
+        vi3 = (vR0.clock.getTimeInMillis()+30000);    
+        if vR2.b_flushtime==0 goto B79;   
+  +B71:   #1
+        if vR2.b_flushtime<=vi3 goto B92;   
+  +B79:   #1
+        vR2.b_flushtime = vi3;   
+        goto +B92;   [Ri RR ...... ....]
+  +B87:   #1
+        vR2.b_flushtime = 0;   
+  +B92:   #2
+        vR0.release@special(vR2);   [Ri RR ...... RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 11 swaps 4 any 2 found 1 brelse
+ 
+ method release(Ljx/bio/buffercache/BufferHead;)V {
+  +START:   #1
+        if vR1.isUnused@extra()==0 goto B51;   
+  +B7:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("!!! BufferCache.brelse(): attamt to release an unused block: ").append@extra(vR1.b_block).toString@extra());   [ RR iii. RR.] 
+        vR0.showBuffers@this();   [ RR iii. R..] 
+        vR0.cpuManager.printStackTrace();   [ RR iii. R..] 
+        goto +B82;   forward return[ RR iii. ...]
+  +B51:   #1
+        vR1.unref@extra();   [ RR .... R..] 
+        if vR1.isUnused@extra()==0 goto B82;   
+  +B62:   #1
+        if vR1.isUptodate@extra()==0 goto B77;   
+  +B69:   #1
+        vR0.putLastFree@special(vR1);   [ RR .... RR.] 
+        goto +B82;   forward return[ RR .... ...]
+  +B77:   #1
+        vR0.putFirstFree@special(vR1);   [ RR .... RR.] 
+  +B82:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 3 any 0 found 0 release
+ 
+ method bforget(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        vR2 = (jx/bio/buffercache/BufferHead)(vR1);    
+        if vR2!=null goto B10;   
+  +B9:   #1
+        return;   
+  +B10:   #1
+        if vR2.isUsedOnlyByMe@extra()==0 goto B24;   
+  +B17:   #1
+        if vR2.isLocked@extra()==0 goto B30;   
+  +B24:   #1
+        vR0.brelse@extra(vR2);   [R   RR] 
+        return;   
+  +B30:   #1
+        vR2.unref@extra();   [R   R.] 
+        vR0.putLastFree@special(vR2);   [R   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 2 found 1 bforget
+ 
+ method bread(I)Ljx/fs/buffercache/BufferHead; {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("bread(").append@extra(vi1).append@extra(")").toString@extra());   [ RR iii.. RR..] 
+        vR2 = vR0.getblk@extra(vi1);    [ RR iii.. iR..] 
+        if vR2.isUptodate()==0 goto B46;   
+  +B44:   #1
+        return vR2;   
+  +B46:   #1
+        vR0.readBlock@extra(vR2,1);   [R RR ..... iRR.] 
+        if vR2.isUptodate()==0 goto B61;   
+  +B59:   #1
+        return vR2;   
+  -B61:   #1
+        throw new java/lang/Error("IO Error");   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 10 swaps 3 any 0 found 0 bread
+ 
+ method growBuffers()V {
+  +START:   #1
+        out.println("growBuffers");   [ RR i. RR] 
+        if vR0.free_list.size()!=0 goto B27;   
+  +B19:   #1
+        vi2 = vR0.initialNumberOfBlocks;    
+        goto +B32;   [?i RR .. ..]
+  +B27:   #1
+        vi2 = vR0.incrementNumberOfBlocks;    
+  +B32:   #1
+        if (vR0.free_list.size()+vi2)<=vR0.maximalNumberOfBlocks goto B59;   
+  -B48:   #1
+        throw new java/lang/Error("nr_buffers + count > maximalNumberOfBlocks");   
+  +B59:   #1
+        vi3 = 0;    
+  +B61:   #1
+        if vi3>=vi2 goto B107;   
+  +B66:   #1
+        vR1 = new jx/bio/buffercache/BufferHead(vR0.memMgr,-1,vR0.bufferSize);    [ RR .. i..][ RR .. iiiRR]
+        vR0.free_list.appendElement(vR1);   [Rii RR .. RR...] 
+        vR0.nr_buffers = (vR0.nr_buffers+1);   
+        vi3++;   
+        goto +B61;   [Rii RR .. .....]
+  +B107:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i....][ RR .. iR...]
+        b0.println(b1.append@extra("BufferCache: created ").append@extra(vi2).append@extra(" buffers").toString@extra());   [Rii RR iii.. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii.. i....][ RR iii.. iR...]
+        b0.println(b1.append@extra("buffercache.BufferCache: size now: ").append@extra((vR0.nr_buffers*vR0.bufferSize)).append@extra(" bytes").toString@extra());   [Rii RR iiiiiii.. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 26 swaps 8 any 2 found 0 growBuffers
+ 
+ method showBuffers()V {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+        b0 = new java/lang/String()[3];    
+        b0[0] = "CLEAN";   
+        b0[1] = "LOCKED";   
+        b0[2] = "DIRTY";   
+        vR6 = b0;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.print(b1.append@extra("BufferHeads: ").append@extra(vR0.nr_buffers).toString@extra());   [?iiiiR RR iii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        b0.println(b1.append@extra(", free_list: ").append@extra(vR0.free_list.size()).toString@extra());   [?iiiiR RR iiiiii. RR.] 
+        vR7 = vR0.buffer_hashtable.iterator@extra();    [?iiiiR RR iiiiii. R..] 
+  +B104:   #3
+        if vR7.hasNext()==0 goto B282;   
+  +B114:   #1
+        vR1 = (jx/bio/buffercache/BufferHead)(vR7.next());    
+        if vR1!=null goto B141;   
+  +B129:   #1
+        out.println("bh == null !!!!!!!");   [RiiiiRR RR i...... RR.] 
+        goto +B104;   [RiiiiRR RR i...... ...]
+  +B141:   #1
+        vi2++;   
+        if vR1.isLocked@extra()==0 goto B189;   
+  +B151:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i..][ RR ....... iR.]
+        b0.println(b1.append@extra("Block: ").append@extra(vR1.b_block).append@extra(" = locked").toString@extra());   [RiiiiRR RR iiii... RR..] 
+        vi3++;   
+  +B189:   #1
+        if vR1.dirty@extra()==0 goto B234;   
+  +B196:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i...][ RR ....... iR..]
+        b0.println(b1.append@extra("Block: ").append@extra(vR1.b_block).append@extra("  = dirty").toString@extra());   [RiiiiRR RR iiii... RR..] 
+        vi4++;   
+  +B234:   #1
+        if vR1.isUsed@extra()==0 goto B104;   
+  +B241:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i...][ RR ....... iR..]
+        b0.println(b1.append@extra("Block: ").append@extra(vR1.b_block).append@extra(" = used").toString@extra());   [RiiiiRR RR iiii... RR..] 
+        vi5++;   
+        goto +B104;   [RiiiiRR RR iiii... ....]
+  +B282:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ....... i...][ RR ....... iR..]
+        b0.println(b1.append@extra("Hashtable: ").append@extra(vi2).append@extra(" buffers, ").append@extra(vi5).append@extra(" benutzt, ").append@extra(vi3).append@extra(" gesperrt, ").append@extra(vi4).append@extra(" dirty").toString@extra());   [RiiiiRR RR iiii.i..i..... RR........] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 73 swaps 29 any 6 found 0 showBuffers
+ 
+ method syncDevice(Z)V {
+  +START:   #1
+        vR0.syncBuffers@special(vi1,1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 syncDevice
+ 
+ method syncBuffers(ZZ)V {
+  +START:   #1
+        vR4 = vR0.buffer_hashtable.iterator@extra();    [ R  R] 
+  +B9:   #7
+        if vR4.hasNext()==0 goto B154;   
+  +B19:   #1
+        vR3 = (jx/bio/buffercache/BufferHead)(vR4.next());    
+        if vR3!=null goto B46;   
+  +B34:   #1
+        out.println("bh == null !!!!!!!");   [RR R i. RR] 
+        goto +B9;   [RR R i. ..]
+  +B46:   #1
+        if vR3.isLocked@extra()==0 goto B82;   
+  +B53:   #1
+        if vi2==0 goto B68;   
+  -B57:   #1
+        throw new java/lang/Error("cannot sync");   
+  +B68:   #1
+        if vi1!=0 goto B75;   
+  +B72:   #1
+        goto +B9;   [RR R .. ...]
+  +B75:   #1
+        vR3.waitOn();   [RR R .. R..] 
+        goto +B9;   [RR R .. ...]
+  +B82:   #1
+        if vi1!=1 goto B111;   
+  +B87:   #1
+        if vR3.isLocked@extra()!=0 goto B111;   
+  +B94:   #1
+        if vR3.dirty@extra()!=0 goto B111;   
+  +B101:   #1
+        if vR3.isUptodate@extra()!=0 goto B111;   
+  +B108:   #1
+        goto +B9;   [RR R .. ...]
+  +B111:   #4
+        if vR3.dirty@extra()!=0 goto B121;   
+  +B118:   #1
+        goto +B9;   [RR R .. ...]
+  +B121:   #1
+        vR3.ref@extra();   [RR R .. R..] 
+        vR3.b_flushtime = 0;   
+        vR0.writeBlock@extra(vR3,1);   [RR R .. iRR] 
+        vR3.unref@extra();   [RR R .. R..] 
+        if vR3.isUnused@extra()==0 goto B9;   
+  +B147:   #1
+        vR3.markClean@extra();   [RR R .. R..] 
+        goto +B9;   [RR R .. ...]
+  +B154:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 6 swaps 1 any 4 found 0 syncBuffers
+ 
+ method flushCache()V {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi3 = 0;    
+        out.println("flushing ...");   [iii RR i. RR] 
+        vR5 = vR0.buffer_hashtable.iterator@extra();    [iii RR i. R.] 
+  +B24:   #6
+        if vR5.hasNext()==0 goto B194;   
+  +B34:   #1
+        vR4 = (jx/bio/buffercache/BufferHead)(vR5.next());    
+        if vR4!=null goto B63;   
+  +B51:   #1
+        out.println("bh == null !!!!!!!");   [iiiRR RR i. RR] 
+        goto +B24;   [iiiRR RR i. ..]
+  +B63:   #1
+        if vR4.isLocked@extra()==0 goto B107;   
+  +B71:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("Buffer ").append@extra(vR4.b_block).append@extra(" locked").toString@extra());   [iiiRR RR iiii.. RR..] 
+  +B107:   #1
+        if vR4.isLocked@extra()!=0 goto B24;   
+  +B115:   #1
+        if vR4.dirty@extra()!=0 goto B126;   
+  +B123:   #1
+        goto +B24;   [iiiRR RR ...... ....]
+  +B126:   #1
+        vi1++;   
+        if vR0.clock.getTimeInMillis()>=vR4.b_flushtime goto B149;   
+  +B146:   #1
+        goto +B24;   [iiiRR RR ...... ....]
+  +B149:   #1
+        vi2++;   
+        vR4.ref@extra();   [iiiRR RR ...... R...] 
+        vR4.b_flushtime = 0;   
+        vR0.writeBlock@extra(vR4,0);   [iiiRR RR ...... iRR.] 
+        vi3++;   
+        vR4.unref@extra();   [iiiRR RR ...... R...] 
+        if vR4.isUnused@extra()==0 goto B24;   
+  +B186:   #1
+        vR4.markClean@extra();   [iiiRR RR ...... R...] 
+        goto +B24;   [iiiRR RR ...... ....]
+  +B194:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 22 swaps 6 any 4 found 0 flushCache
+ 
+ method updateBuffer(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        if vR1.isUptodate()!=0 goto B28;   
+  +B7:   #1
+        vR0.readBlock@extra(vR1,1);   [ R  iRR] 
+        if vR1.isUptodate()!=0 goto B28;   
+  -B20:   #1
+        throw new java/lang/Error();   
+  +B28:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 updateBuffer
+ 
+ method bdwrite(Ljx/fs/buffer/BufferHead;)V {
+  +START:   #1
+        vR1.markDirty();   [   R] 
+        vR0.brelse@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 bdwrite
+ 
+ method bdirty(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        vR1.markDirty();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bdirty
+ 
+ method bawrite(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        vR0.bwrite@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bawrite
+ 
+ method bwrite(Ljx/fs/buffercache/BufferHead;)V {
+  +START:   #1
+        vR1.markDirty();   [   R] 
+        vR0.writeBlock@extra(vR1,1);   [   iRR] 
+        vR0.release@special((jx/bio/buffercache/BufferHead)(vR1));   [   RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 bwrite
+ 
+ method breadn(II)V {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 breadn
+ 
+ method readAhead(Ljx/fs/buffercache/BufferHead;)V {
+  -START:   #1
+        vR0.readBlock@extra(vR1,1);   [ R  iRR] 
+        vR0.brelse@extra(vR1);   [ R  RR.] 
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 readAhead
+ 
+ method printStatistics()V {
+  +START:   #1
+        out.println("Buffercache:");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("hits:").append@extra(vR0.hit).append@extra(", missed:").append@extra(vR0.miss).toString@extra());   [ RR iiiiii... RR...] 
+        out.println("Hashtable:");   [ RR iiiiiii.. RR...] 
+        vR0.buffer_hashtable.printStatistics@extra();   [ RR iiiiiii.. R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 15 swaps 7 any 0 found 0 printStatistics
+ 
+ method getblk(I)Ljx/fs/buffer/BufferHead; {
+  +START:   #1
+        return vR0.getblk@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getblk
+ 
+ method bread(I)Ljx/fs/buffer/BufferHead; {
+  +START:   #1
+        return vR0.bread@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bread
+}

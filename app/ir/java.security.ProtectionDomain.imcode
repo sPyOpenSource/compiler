@@ -1,0 +1,64 @@
+class java/security/ProtectionDomain {
+ 
+ method <init>(Ljava/security/CodeSource;Ljava/security/PermissionCollection;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.code_source = vR1;   
+        vR0.perms = vR2;   
+        if vR2==null goto B22;   
+  +B18:   #1
+        vR2.setReadOnly();   [   R] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method getCodeSource()Ljava/security/CodeSource; {
+  +START:   #1
+        return vR0.code_source;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCodeSource
+ 
+ method getPermissions()Ljava/security/PermissionCollection; {
+  +START:   #1
+        return vR0.perms;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPermissions
+ 
+ method implies(Ljava/security/Permission;)Z {
+  +START:   #1
+        vR2 = vR0.getPermissions@extra();    [   R] 
+        if vR2!=null goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        return vR2.implies(vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 implies
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer("");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append(b1.append@extra(vR0.toString@special()).append@extra(" (").append@extra(linesep).toString@extra());   [R RR iii..i RR..] 
+        vR1.append(vR0.code_source.toString());   [R RR iiii.i RR..] 
+        vR1.append(vR0.perms.toString());   [R RR iiiiii RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii i...][ RR iiiiii iR..]
+        vR1.append(b1.append@extra(")").append@extra(linesep).toString@extra());   [R RR iiiiiiiii. RR..] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 18 swaps 9 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        linesep = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

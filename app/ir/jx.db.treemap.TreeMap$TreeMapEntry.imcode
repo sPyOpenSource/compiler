@@ -1,0 +1,51 @@
+class jx/db/treemap/TreeMap$TreeMapEntry {
+ 
+ method <init>(Ljx/db/treemap/TreeMap;Ljava/lang/Object;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.m_cKey = 0;   
+        vR0.m_cValue = 0;   
+        vR0.m_cKey = vR2;   
+        vR0.m_cValue = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.m_cKey.hashCode();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method getValue()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m_cValue;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method getKey()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.m_cKey;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getKey
+ 
+ method compareTo(Ljx/db/avltree/Comparable;)I {
+  +START:   #1
+        if vR0.m_cKey.hashCode()>=vR1.hashCode() goto B16;   
+  +B14:   #1
+        return -1;   
+  +B16:   #1
+        if vR0.m_cKey.hashCode()<=vR1.hashCode() goto B32;   
+  +B30:   #1
+        return 1;   
+  +B32:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 compareTo
+}

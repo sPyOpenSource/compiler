@@ -1,0 +1,150 @@
+class java/util/Random {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.setSeed@this(currentTimeMillis@special());   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(J)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.setSeed@this(vl1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setSeed(J)V {
+  +START:   #1
+        vR0.seed = ((vl1 ^ 25214903917) & 281474976710655);   
+        vR0.haveNextNextGaussian = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setSeed
+ 
+ method next(I)I {
+  +START:   #1
+        vR0.seed = ((vR0.seed*25214903917) & 281474976710655);   
+        return (int)(vR0.seed >>> (48-vi1));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 next
+ 
+ method nextBytes([B)V {
+  +START:   #1
+        vi3 = (vR1.length & -4);    
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vi3 goto B67;   
+  +B15:   #1
+        vi2 = vR0.next@this(32);    [?ii   iR] 
+        vR1[vi4] = (byte)vi2;   
+        vR1[(vi4+1)] = (byte)(vi2 >> 8);   
+        vR1[(vi4+2)] = (byte)(vi2 >> 16);   
+        vR1[(vi4+3)] = (byte)(vi2 >> 24);   
+        vi4+=4;   
+        goto +B9;   [iii   ..]
+  +B67:   #1
+        if vi3>=vR1.length goto B107;   
+  +B73:   #1
+        vi2 = vR0.next@this(32);    [iii   iR] 
+        vi4 = vi3;    
+  +B83:   #1
+        if vi4>=vR1.length goto B107;   
+  +B90:   #1
+        vR1[vi4] = (byte)vi2;   
+        vi2 = (vi2 >> 8);    
+        vi4++;   
+        goto +B83;   [iii   ..]
+  +B107:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 8 swaps 0 any 7 found 0 nextBytes
+ 
+ method nextInt()I {
+  +START:   #1
+        return vR0.next@this(32);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 nextInt
+ 
+ method nextInt(I)I {
+  +START:   #1
+        if vi1> 0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("n must be positive");   
+  +B14:   #1
+        if (vi1 & -vi1)!=vi1 goto B37;   
+  +B22:   #1
+        return (int)(((long)vi1*(long)vR0.next@this(31)) >> 31);   
+  +B37:   #2
+        vi2 = vR0.next@this(32);    [ R . iR.] 
+        vi3 = (vi2%vi1);    
+        if ((vi2-vi3)+(vi1-1))< 0 goto B37;   
+  +B58:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 3 found 1 nextInt
+ 
+ method nextLong()J {
+  +START:   #1
+        return (((long)vR0.next@this(32) << 32)+(long)vR0.next@this(32));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextLong
+ 
+ method nextBoolean()Z {
+  +START:   #1
+        if vR0.next@this(1)==0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ..]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 nextBoolean
+ 
+ method nextFloat()F {
+  +START:   #1
+        return ((float)vR0.next@this(24)/jx.classfile.datatypes.BCFloat@2474f125);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextFloat
+ 
+ method nextDouble()D {
+  +START:   #1
+        return ((double)(((long)vR0.next@this(26) << 27)+(long)vR0.next@this(27))/jx.classfile.datatypes.BCDouble@7357a011);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextDouble
+ 
+ method nextGaussian()D {
+  +START:   #1
+        if vR0.haveNextNextGaussian==0 goto B17;   
+  +B7:   #1
+        vR0.haveNextNextGaussian = 0;   
+        return vR0.nextNextGaussian;   
+  +B17:   #2
+        vd1 = ((jx.classfile.datatypes.BCDouble@3406472c*vR0.nextDouble@this())-1);    
+        vd3 = ((jx.classfile.datatypes.BCDouble@3406472c*vR0.nextDouble@this())-1);    
+        vd5 = ((vd1*vd1)+(vd3*vd3));    
+        if compare(vd5,1)>=0 goto B17;   
+  +B55:   #1
+        vd7 = sqrt@special(((jx.classfile.datatypes.BCDouble@5717c37*log@special(vd5))/vd5));    
+        vR0.nextNextGaussian = (vd3*vd7);   
+        vR0.haveNextNextGaussian = 1;   
+        return (vd1*vd7);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 nextGaussian
+}

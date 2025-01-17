@@ -1,0 +1,330 @@
+class jx/net/protocol/ip/IPFormat {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,14);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method insertHeaderLength()V {
+  +START:   #1
+        vR0.writeByte@this(0,69);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertHeaderLength
+ 
+ method insertTypeOfService(I)V {
+  +START:   #1
+        vR0.writeByte@this(1,(byte)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertTypeOfService
+ 
+ method insertTotalLength(I)V {
+  +START:   #1
+        vR0.writeUShort@this(2,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertTotalLength
+ 
+ method insertIdentification(I)V {
+  +START:   #1
+        vR0.writeUShort@this(4,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertIdentification
+ 
+ method insertFragmentOffset(I)V {
+  +START:   #1
+        vR0.writeUShort@this(6,(short)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertFragmentOffset
+ 
+ method insertTimeToLive(I)V {
+  +START:   #1
+        vR0.writeByte@this(8,(byte)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertTimeToLive
+ 
+ method insertProtocol(I)V {
+  +START:   #1
+        vR0.writeByte@this(9,(byte)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 insertProtocol
+ 
+ method insertChecksum()V {
+  +START:   #1
+        vR0.writeUShort@this(10,0);   [   iiR] 
+        vi1 = vR0.computeChecksum@extra();    [   R..] 
+        vR0.writeUShort@this(10,vi1);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 insertChecksum
+ 
+ method MYwriteUShort(IS)V {
+  +START:   #1
+        vR0.writeByte@this((vi1+1),(byte)((vi2 >> 8) & 255));   [  ii iiR] 
+        vR0.writeByte@this(vi1,(byte)(vi2 & 255));   [  iii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 0 found 0 MYwriteUShort
+ 
+ method insertSourceAddress(Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.writeAddress@this(12,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertSourceAddress
+ 
+ method insertDestAddress(Ljx/net/IPAddress;)V {
+  +START:   #1
+        vR0.writeAddress@this(16,vR1);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertDestAddress
+ 
+ method getVersion()I {
+  +START:   #1
+        return (vR0.readByte@this(0) & 240);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVersion
+ 
+ method getHeaderLength()I {
+  +START:   #1
+        vi1 = vR0.readByte@this(0);    [   iR] 
+        vi1 = (byte)(vi1 & 15);    
+        return (vi1*4);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getHeaderLength
+ 
+ method getServiceType()I {
+  +START:   #1
+        return vR0.readUnsignedByte@this(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getServiceType
+ 
+ method getTotalLength()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTotalLength
+ 
+ method getIdentification()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIdentification
+ 
+ method getFlags()I {
+  +START:   #1
+        vi1 = vR0.readUnsignedByte@this(6);    [   iR] 
+        vi1 = (vi1 >> 4);    
+        return (vi1 & 7);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 getFlags
+ 
+ method getFragmentOffset()I {
+  +START:   #1
+        vi1 = vR0.readUnsignedShort@this(6);    [   iR] 
+        vi1 = (vi1 & 8191);    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 getFragmentOffset
+ 
+ method getTimeToLive()I {
+  +START:   #1
+        return vR0.readUnsignedByte@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTimeToLive
+ 
+ method getProtocol()I {
+  +START:   #1
+        return vR0.readUnsignedByte@this(9);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProtocol
+ 
+ method getHeaderChecksum()I {
+  +START:   #1
+        return vR0.readUnsignedShort@this(10);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeaderChecksum
+ 
+ method getSourceIPAddress()[B {
+  +START:   #1
+        vR1 = new byte[4];    
+        vR1[0] = vR0.readByte@this(12);   
+        vR1[1] = vR0.readByte@this(13);   
+        vR1[2] = vR0.readByte@this(14);   
+        vR1[3] = vR0.readByte@this(15);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 getSourceIPAddress
+ 
+ method getDestIPAddress()[B {
+  +START:   #1
+        vR1 = new byte[4];    
+        vR1[0] = vR0.readByte@this(16);   
+        vR1[1] = vR0.readByte@this(17);   
+        vR1[2] = vR0.readByte@this(18);   
+        vR1[3] = vR0.readByte@this(19);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 getDestIPAddress
+ 
+ method computeChecksumOLD()I {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=requiresSpace@special() goto B38;   
+  +B11:   #1
+        vi3 = vR0.readShort@this(vi2);    [ii   iR] 
+        vi1 = (vi1+vi3);    
+        if vi1<=65535 goto B32;   
+  +B27:   #1
+        vi1 = (vi1-65535);    
+  +B32:   #1
+        vi2+=2;   
+        goto +B4;   [iii   ..]
+  +B38:   #1
+        return ((vi1 ^ -1) & 65535);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 5 found 1 computeChecksumOLD
+ 
+ method computeChecksum()S {
+  +START:   #1
+        vi1 = requiresSpace@special();    [ i  ]
+        vi1 = (vi1 >>> 1);    
+        vi2 = 0;    
+  +B10:   #1
+        b0 = vi1;    
+        vi1--;   
+        if b0<=0 goto B39;   
+  +B17:   #1
+        vi3 = (short)(vR0.readUnsignedShort@this((vi1*2)) & 65535);    
+        vi2 = vR0.addUShort@special(vi2,vi3);    [iii i i iiR] 
+        goto +B10;   [iii i i ...]
+  +B39:   #1
+        vi3 = ((vi2 ^ -1) & 65535);    
+        return (short)vi3;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 9 swaps 1 any 5 found 0 computeChecksum
+ 
+ method addUShort(SS)S {
+  +START:   #1
+        vi3 = ((vi1 & 65535)+(vi2 & 65535));    
+        if vi3<=65535 goto B21;   
+  +B16:   #1
+        vi3 = (vi3-65535);    
+  +B21:   #1
+        return (short)vi3;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 addUShort
+ 
+ method length()I {
+  +START:   #1
+        return requiresSpace@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 length
+ 
+ method swapAddresses()V {
+  +START:   #1
+        vR1 = new jx/net/IPv4Address(vR0.getDestIPAddress@this());    [ R  i][ R . iRR]
+        vR2 = new jx/net/IPv4Address(vR0.getSourceIPAddress@this());    [ R . i..][ R . iRR]
+        vR0.insertDestAddress@this(vR2);   [RR R . RR.] 
+        vR0.insertSourceAddress@this(vR1);   [RR R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 swapAddresses
+ 
+ method dump()V {
+  +START:   #1
+        out.println("IP-Packet:");   [ RRR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR i. i.][ RRR i. iR]
+        b1 = b1.append@extra("   Source: ");    [ RRR ii RR] 
+        b2 = new jx/net/IPv4Address(vR0.getSourceIPAddress@this());    [ RRR ii i.][ RRR ii. iRR]
+        b0.println(b1.append@extra(b2).toString@extra());   [ RRR iii RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iii i..][ RRR iii iR.]
+        b1 = b1.append@extra("   Destination: ");    [ RRR iiii RR.] 
+        b2 = new jx/net/IPv4Address(vR0.getDestIPAddress@this());    [ RRR iiii i..][ RRR iiii. iRR]
+        b0.println(b1.append@extra(b2).toString@extra());   [ RRR iiiii RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiii i..][ RRR iiiii iR.]
+        b0.println(b1.append@extra("   Checksum:").append@extra(vR0.getHeaderChecksum@this()).toString@extra());   [ RRR iiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiiiiiii. i..][ RRR iiiiiiii. iR.]
+        b0.println(b1.append@extra("   ID:").append@extra(vR0.getIdentification@this()).toString@extra());   [ RRR iiiiiiiiiii. RR.] 
+        vi1 = vR0.getProtocol@this();    [ RRR iiiiiiiiiii. R..] 
+        lswitch (vi1) { 
+           6:B179
+           17:B168
+           ::B190
+        };   
+  +B168:   #1
+        out.println("   Protocol: UDP");   [i RRR i........... RR.] 
+        goto +B215;   [i RRR i........... ...]
+  +B179:   #1
+        out.println("   Protocol: TCP");   [i RRR i........... RR.] 
+        goto +B215;   [i RRR i........... ...]
+  +B190:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ............ i..][ RRR ............ iR.]
+        b0.println(b1.append@extra("   Protocol: ").append@extra(vi1).toString@extra());   [i RRR ii.......... RR.] 
+  +B215:   #2
+        out.println("   First 32 bytes of data:");   [i RRR i........... RR.] 
+        xdump@special(vR0.buf,(vR0.offset+requiresSpace@special()),32);   [i RRR iiR......... iiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 49 swaps 16 any 1 found 0 dump
+ 
+ method requiresSpace()I {
+  +START:   #1
+        return 20;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requiresSpace
+}

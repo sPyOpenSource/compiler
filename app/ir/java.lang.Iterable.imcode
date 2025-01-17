@@ -1,0 +1,25 @@
+class java/lang/Iterable {
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        vR2 = vR0.iterator();    [   R] 
+  +B12:   #1
+        if vR2.hasNext()==0 goto B38;   
+  +B21:   #1
+        vR3 = vR2.next();    [R   R] 
+        vR1.accept(vR3);   [RR   RR] 
+        goto +B12;   [RR   ..]
+  +B38:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 forEach
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return spliteratorUnknownSize@special(vR0.iterator(),0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 spliterator
+}

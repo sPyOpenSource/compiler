@@ -1,0 +1,239 @@
+class java/net/SocketPermission {
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.hostport = vR1;   
+        vR0.actions = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
+        return 0;   
+  +B6:   #1
+        if (vR1 instanceof java/net/SocketPermission)!=0 goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        if (java/net/SocketPermission)(vR1).hostport.equals@extra(vR0.hostport)==0 goto B51;   
+  +B32:   #1
+        if (java/net/SocketPermission)(vR1).actions.equals@extra(vR0.actions)==0 goto B51;   
+  +B49:   #1
+        return 1;   
+  +B51:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 1 found 2 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        vi1 = 100;    
+        vi2 = 0;    
+  +B5:   #1
+        if vi2>=vR0.hostport.length@extra() goto B36;   
+  +B16:   #1
+        vi1 = (vi1+(vR0.hostport.charAt@extra(vi2)*7));    
+        vi2++;   
+        goto +B5;   [ii   ..]
+  +B36:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 3 found 2 hashCode
+ 
+ method getActions()Ljava/lang/String; {
+  +START:   #1
+        vi1 = 0;    
+        vR2 = new java/lang/StringBuffer("");    [ R  i][ R . iRR]
+        if vR0.actions.indexOf@extra("connect")==-1 goto B34;   
+  +B25:   #1
+        vR2.append("connect");   [iR R i RR.] 
+        vi1 = 1;    
+  +B34:   #1
+        if vR0.actions.indexOf@extra("listen")==-1 goto B70;   
+  +B47:   #1
+        if vi1==0 goto B61;   
+  +B51:   #1
+        vR2.append(",listen");   [iR R i RR.] 
+        goto +B70;   [iR R i ...]
+  +B61:   #1
+        vR2.append("listen");   [iR R i RR.] 
+        vi1 = 1;    
+  +B70:   #2
+        if vR0.actions.indexOf@extra("accept")==-1 goto B106;   
+  +B83:   #1
+        if vi1==0 goto B97;   
+  +B87:   #1
+        vR2.append(",accept");   [iR R i RR.] 
+        goto +B106;   [iR R i ...]
+  +B97:   #1
+        vR2.append("accept");   [iR R i RR.] 
+        vi1 = 1;    
+  +B106:   #2
+        if vi1==0 goto B120;   
+  +B110:   #1
+        vR2.append(",resolve");   [iR R i RR.] 
+        goto +B140;   forward return[iR R i ...]
+  +B120:   #1
+        if vR0.actions.indexOf@extra("resolve")==-1 goto B140;   
+  +B133:   #1
+        vR2.append("resolve");   [iR R i RR.] 
+  +B140:   #2
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 14 swaps 11 any 3 found 0 getActions
+ 
+ method newPermissionCollection()Ljava/security/PermissionCollection; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 newPermissionCollection
+ 
+ method implies(Ljava/security/Permission;)Z {
+  +START:   #1
+        if (vR1 instanceof java/net/SocketPermission)==0 goto B15;   
+  +B7:   #1
+        vR2 = (java/net/SocketPermission)(vR1);    
+        goto +B17;   [R   ..]
+  +B15:   #1
+        return 0;   
+  +B17:   #1
+        vR3 = vR0.getActions@extra();    [R   R.] 
+        vR4 = vR2.getActions@extra();    [RR   R.] 
+        if vR3.startsWith@extra(vR4)!=0 goto B39;   
+  +B37:   #1
+        return 0;   
+  +B39:   #1
+        vi5 = 0;    
+        vi6 = 0;    
+        vi7 = 0;    
+        vi8 = 0;    
+        if vR0.hostport.indexOf@extra(":")!=-1 goto B74;   
+  +B64:   #1
+        vi5 = 0;    
+        vi6 = 65535;    
+        goto +B211;   [RRRiiii  . ..]
+  +B74:   #1
+        vR9 = vR0.hostport.substring@extra((vR0.hostport.indexOf@extra(":")+1));    [RRRiiiiRRRRR  ii iR] 
+        if vR9.startsWith@extra("-")==0 goto B110;   
+  +B104:   #1
+        vi5 = 0;    
+        goto +B149;   [RRRiiiiRRRRR  ... ..]
+  +B110:   #1
+        if vR9.indexOf@extra("-")!=-1 goto B131;   
+  +B121:   #1
+        vi5 = parseInt@special(vR9);    [RRRiiiiRRRRR  ... R.]
+        goto +B149;   [RRRiiiiRRRRR  ... ..]
+  +B131:   #1
+        vi5 = parseInt@special(vR9.substring@extra(0,vR9.indexOf@extra("-")));    [RRRiiiiRRRRR  iiR R..]
+  +B149:   #2
+        if vR9.endsWith@extra("-")==0 goto B166;   
+  +B159:   #1
+        vi6 = 65535;    
+        goto +B211;   [RRRiiiiRRRRR  ... ...]
+  +B166:   #1
+        if vR9.indexOf@extra("-")!=-1 goto B187;   
+  +B177:   #1
+        vi6 = parseInt@special(vR9);    [RRRiiiiRRRRR  ... R..]
+        goto +B211;   [RRRiiiiRRRRR  ... ...]
+  +B187:   #1
+        vi6 = parseInt@special(vR9.substring@extra((vR9.indexOf@extra("-")+1),vR9.length@extra()));    [RRRiiiiRRRRR  iiiR R..]
+  +B211:   #3
+        if vR2.hostport.indexOf@extra(":")!=-1 goto B234;   
+  +B224:   #1
+        vi7 = 0;    
+        vi6 = 65535;    
+        goto +B371;   [RRRiiii  .... ...]
+  +B234:   #1
+        vR9 = vR2.hostport.substring@extra((vR0.hostport.indexOf@extra(":")+1));    [RRRiiiiRRRRR  ii.. iR.] 
+        if vR9.startsWith@extra("-")==0 goto B270;   
+  +B264:   #1
+        vi7 = 0;    
+        goto +B309;   [RRRiiiiRRRRR  .... ...]
+  +B270:   #1
+        if vR9.indexOf@extra("-")!=-1 goto B291;   
+  +B281:   #1
+        vi7 = parseInt@special(vR9);    [RRRiiiiRRRRR  .... R..]
+        goto +B309;   [RRRiiiiRRRRR  .... ...]
+  +B291:   #1
+        vi7 = parseInt@special(vR9.substring@extra(0,vR9.indexOf@extra("-")));    [RRRiiiiRRRRR  iiR. R..]
+  +B309:   #2
+        if vR9.endsWith@extra("-")==0 goto B326;   
+  +B319:   #1
+        vi8 = 65535;    
+        goto +B371;   [RRRiiiiRRRRR  .... ...]
+  +B326:   #1
+        if vR9.indexOf@extra("-")!=-1 goto B347;   
+  +B337:   #1
+        vi8 = parseInt@special(vR9);    [RRRiiiiRRRRR  .... R..]
+        goto +B371;   [RRRiiiiRRRRR  .... ...]
+  +B347:   #1
+        vi8 = parseInt@special(vR9.substring@extra((vR9.indexOf@extra("-")+1),vR9.length@extra()));    [RRRiiiiRRRRR  iiiR R..]
+  +B371:   #3
+        if vi7<vi5 goto B385;   
+  +B378:   #1
+        if vi8<=vi6 goto B387;   
+  +B385:   #1
+        return 0;   
+  +B387:   #1
+        if vR0.hostport.indexOf@extra(":")!=-1 goto B409;   
+  +B400:   #1
+        vR9 = vR0.hostport;    
+        goto +B428;   [RRRiiiiR  .... ...]
+  +B409:   #1
+        vR9 = vR0.hostport.substring@extra(0,vR0.hostport.indexOf@extra(":"));    [RRRiiiiRRRRR  ii.. iiR] 
+  +B428:   #1
+        if vR2.hostport.indexOf@extra(":")!=-1 goto B450;   
+  +B441:   #1
+        vR10 = vR2.hostport;    
+        goto +B469;   [RRRiiiiRR  .... ...]
+  +B450:   #1
+        vR10 = vR2.hostport.substring@extra(0,vR2.hostport.indexOf@extra(":"));    [RRRiiiiRRRRR  ii.. iiR] 
+  +B469:   #1
+        if vR9.equals@extra(vR10)==0 goto B481;   
+  +B479:   #1
+        return 1;   
+  +B481:   #1
+        vR11 = 0;    
+        vR12 = 0;    
+  +B487:   #1
+        vR11 = getByName@special(vR9).getHostName();    [RRRiiiiRRRR  .... R..] [RRRiiiiRRRR  R... R..]
+        vR12 = getByName@special(vR10).getHostName();    [RRRiiiiRRRR  .... R..] [RRRiiiiRRRR  R... R..]
+  +B507:   #1
+        goto +B530;   [RRRiiiiRRRR  .... ...]
+  +H510<caught exception>:   #1 reference
+        vR13 = <caught exception>;    
+        if vR11!=null goto B521;   
+  +B517:   #1
+        vR11 = vR9;    
+  +B521:   #1
+        if vR12!=null goto B530;   
+  +B526:   #1
+        vR12 = vR10;    
+  +B530:   #2
+        if vR11.equals@extra(vR12)==0 goto B542;   
+  +B540:   #1
+        return 1;   
+  +B542:   #1
+        if vR9.indexOf@extra("*.")==-1 goto B579;   
+  +B553:   #1
+        vR13 = vR9.substring@extra(vR9.indexOf@extra("*1"));    [RRRiiiiRRRR  ii.. iR.] 
+        if vR12.endsWith@extra(vR13)==0 goto B579;   
+  +B577:   #1
+        return 1;   
+  +B579:   #2
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+487 - 507 handler 510 type 97
+ }
+// Register: rd 54/54 wr 74 swaps 31 any 7 found 1 implies
+}

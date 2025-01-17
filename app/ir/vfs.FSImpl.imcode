@@ -1,0 +1,458 @@
+class vfs/FSImpl {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.cwdPath = "/";   
+        b1 = new java/util/Hashtable();    [ ?R  i][ ?R  iR]
+        vR0.mountpoints = b1;   
+        vR0.direntrycache = instance@special();   
+        vR0.rootInode = 0;   
+        b1 = new java/util/Hashtable();    [ ?R  i.][ ?R  iR]
+        vR0.devices = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method getCwdPath()Ljava/lang/String; {
+  +START:   #1
+        return vR0.cwdPath;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCwdPath
+ 
+ method getCwdNode()Ljx/fs/Node; {
+  +START:   #1
+        return vR0.cwdInode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCwdNode
+ 
+ method igetCwdNode()Ljx/fs/Node; {
+  +START:   #1
+        vR0.cwdInode.incUseCount();   [   R] 
+        return vR0.cwdInode;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 igetCwdNode
+ 
+ method cleanUp()V {
+  +START:   #1
+        vR0.cwdInode.decUseCount();   [   R] 
+        vR0.rootInode.decUseCount();   [   R] 
+        vR0.direntrycache.syncEntries();   [   R] 
+        vR0.rootFS.release();   [   R] 
+        vR0.direntrycache.invalidateEntries();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 cleanUp
+ 
+ method mount(Ljx/fs/FileSystem;Ljava/lang/String;Z)V {
+  +START:   #1
+        vR4 = 0;    
+        if vR0.isPath@this(vR2)==0 goto B22;   
+  +B11:   #1
+        vR4 = vR0.lookup@extra(vR0.getPathName@extra(vR2));    [R  i RR] 
+  +B22:   #1
+        vR0.direntrycache.removeEntry(vR0.getAbsolutePath@special(vR2));   [R  i RR] 
+        vR1.init(vi3);   [R  i iR] 
+        vR5 = vR1.getRootNode();    [R  i R.] 
+        vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR2),vR5);   [RR  ii RRR] 
+        if vR0.isPath@this(vR2)==0 goto B106;   
+  +B71:   #1
+        vR4.overlay(vR5,vR0.getFileName@extra(vR2));   [RR  i. RRR] 
+        vR0.mountpoints.put(vR1,vR4);   [RR  i. RRR] 
+        vR4.decUseCount();   [RR  i. R..] 
+        goto +B135;   [RR  i. ...]
+  +B106:   #1
+        vR0.cwdInode.overlay(vR5,vR0.getFileName@extra(vR2));   [RR  i. RRR] 
+        vR0.mountpoints.put(vR1,vR0.igetCwdNode@special());   [RR  ii RRR] 
+  +B135:   #1
+        vR0.devices.put(valueOf@special(vR1.getDeviceID()),vR1);   [RR  ii RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 11 swaps 7 any 0 found 0 mount
+ 
+ method unmount(Ljx/fs/FileSystem;)V {
+  +START:   #1
+        vR2 = (jx/fs/Node)(vR0.mountpoints.get(vR1));    
+        if vR2!=null goto B17;   
+  +B16:   #1
+        return;   
+  +B17:   #1
+        vR3 = vR1.getRootNode();    [R  . R.] 
+        vR2.removeOverlay(vR3);   [RR  . RR] 
+        vR2.decUseCount();   [RR  . R.] 
+        vR3.decUseCount();   [RR  . R.] 
+        vR1.release();   [RR  . R.] 
+        vR0.direntrycache.invalidateEntries();   [RR  . R.] 
+        vR0.mountpoints.remove(vR1);   [RR  . RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 1 found 0 unmount
+ 
+ method mountRoot(Ljx/fs/FileSystem;Z)V {
+  +START:   #1
+        if vR0.rootInode==null goto B16;   
+  +B7:   #1
+        vR0.rootInode.decUseCount();   [   R] 
+  +B16:   #1
+        if vR0.cwdInode==null goto B32;   
+  +B23:   #1
+        vR0.cwdInode.decUseCount();   [   R] 
+  +B32:   #1
+        vR1.init(vi2);   [   iR] 
+        vR0.rootInode = vR1.getRootNode();   
+        vR0.cwdInode = vR1.getRootNode();   
+        vR0.direntrycache.addEntry("/",vR0.rootInode);   [  iR RRR] 
+        vR0.cwdPath = "/";   
+        vR0.mountpoints.put(vR1,vR0.rootInode);   [  iRi RRR] 
+        vR0.rootFS = vR1;   
+        vR0.devices.put(valueOf@special(vR1.getDeviceID()),vR1);   [  iRiii RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 5 swaps 3 any 0 found 0 mountRoot
+ 
+ method available()I {
+  +START:   #1
+        return vR0.rootInode.available();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 available
+ 
+ method cd(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = 0;    
+        if vR1.equals@extra(".")==0 goto B14;   
+  +B13:   #1
+        return;   
+  +B14:   #7
+        if vR1.equals@extra("..")==0 goto B35;   
+  +B23:   #1
+        vR2 = vR0.getPathName@extra(vR0.cwdPath);    [RR RR i RR] 
+        goto +B41;   [RR RR i ..]
+  +B35:   #1
+        vR2 = vR0.getAbsolutePath@special(vR1);    [RR RR . RR] 
+  +B41:   #1
+        vR3 = vR0.lookup@extra(vR2);    [RR RR . RR] 
+  +B47:   #6
+        goto +B218;   [RR RR . ..]
+  +H50<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("cd: Fehler beim Lesen von '").append@extra(vR1).append@extra("'").toString@extra());   [RRR RR iii.. RR..] 
+        return;   
+  +H83<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' existiert nicht").toString@extra());   [RRR RR iii.. RR..] 
+        return;   
+  +H116<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' ist kein Verzeichnis").toString@extra());   [RRR RR iii.. RR..] 
+        return;   
+  +H149<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' ist nicht mehr gltig").toString@extra());   [RRR RR iii.. RR..] 
+        return;   
+  +H182<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("cd: Zugriff auf '").append@extra(vR1).append@extra("' nicht erlaubt").toString@extra());   [RRR RR iii.. RR..] 
+        return;   
+  +H215<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        return;   
+  +B218:   #1
+        vR0.cwdPath = vR2;   
+        if vR0.cwdInode==null goto B239;   
+  +B230:   #1
+        vR0.cwdInode.decUseCount();   [RR RR ..... R...] 
+  +B239:   #1
+        vR0.cwdInode = vR3;   
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 13 handler 50 type 144
+14 - 47 handler 50 type 144
+4 - 13 handler 83 type 172
+14 - 47 handler 83 type 172
+4 - 13 handler 116 type 178
+14 - 47 handler 116 type 178
+4 - 13 handler 149 type 182
+14 - 47 handler 149 type 182
+4 - 13 handler 182 type 186
+14 - 47 handler 182 type 186
+4 - 13 handler 215 type 192
+14 - 47 handler 215 type 192
+ }
+// Register: rd 22/22 wr 54 swaps 18 any 0 found 0 cd
+ 
+ method rename(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #2
+        if vR1.equals@extra("/")==0 goto B17;   
+  -B9:   #1
+        throw new jx/fs/PermissionException();   
+  +B17:   #1
+        if vR0.isPath@this(vR1)==0 goto B38;   
+  +B25:   #1
+        vR3 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [ R i RR] 
+        goto +B43;   [R R i ..]
+  +B38:   #1
+        vR3 = vR0.igetCwdNode@special();    [RR R . R.] 
+  +B43:   #1
+        if vR3.isOverlayed(vR0.getFileName@extra(vR1))==0 goto B71;   
+  -B57:   #1
+        vR3.decUseCount();   [R R . R.] 
+        throw new jx/fs/PermissionException();   
+  +B71:   #1
+        if vR0.isPath@this(vR2)==0 goto B93;   
+  +B79:   #1
+        vR4 = vR0.lookup@extra(vR0.getPathName@extra(vR2));    [R R i RR] 
+        goto +B99;   [RR R i ..]
+  +B93:   #1
+        vR4 = vR0.igetCwdNode@special();    [RR R . R.] 
+  +B99:   #1
+        vR3.rename(vR0.getFileName@extra(vR1),vR4,vR0.getFileName@extra(vR2));   [RR R iR RRRR] 
+        vR0.direntrycache.moveEntry(vR0.getAbsolutePath@special(vR1),vR0.getAbsolutePath@special(vR2));   [RR R iRiR RRR.] 
+        vR3.decUseCount();   [RR R iRiR R...] 
+        vR4.decUseCount();   [RR R iRiR R...] 
+  +B147:   #1
+        goto +B151;   forward return[RR R .... ....]
+  +H150<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+  +B151:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 147 handler 150 type 206
+ }
+// Register: rd 22/22 wr 15 swaps 6 any 0 found 0 rename
+ 
+ method symlink(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.isPath@this(vR2)==0 goto B21;   
+  +B8:   #1
+        vR3 = vR0.lookup@extra(vR0.getPathName@extra(vR2));    [  i RR] 
+        goto +B26;   [R  i ..]
+  +B21:   #1
+        vR3 = vR0.igetCwdNode@special();    [RR  . R.] 
+  +B26:   #1
+        vR4 = vR3.symlink(vR0.getAbsolutePath@special(vR1),vR0.getFileName@extra(vR2));    [R  iR RRR] 
+        vR3.decUseCount();   [RR  iR R..] 
+        vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR2),vR4);   [RR  iRi RRR] 
+        vR4.decUseCount();   [RR  iRi R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 3 any 0 found 0 symlink
+ 
+ method mkdir(Ljava/lang/String;I)V {
+  +START:   #1
+        if vR0.isPath@this(vR1)==0 goto B43;   
+  +B8:   #1
+        vR4 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [  i RR] 
+        vR3 = vR4.mkdir(vR0.getFileName@extra(vR1),vi2);    [?R  ii iRR] 
+        vR4.decUseCount();   [RR  ii R..] 
+        goto +B55;   [RR  ii ...]
+  +B43:   #1
+        vR3 = vR0.cwdInode.mkdir(vR1,vi2);    [RR  .. iRR] 
+  +B55:   #1
+        vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR1),vR3);   [RR  i. RRR] 
+        vR3.decUseCount();   [RR  i. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 3 any 0 found 0 mkdir
+ 
+ method rmdir(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.direntrycache.removeEntry(vR0.getAbsolutePath@special(vR1));   [  i RR] 
+        if vR0.isPath@this(vR1)==0 goto B50;   
+  +B20:   #1
+        vR2 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [  i RR] 
+        vR2.rmdir(vR0.getFileName@extra(vR1));   [R  ii RR] 
+        vR2.decUseCount();   [R  ii R.] 
+        goto +B60;   forward return[R  ii ..]
+  +B50:   #1
+        vR0.cwdInode.rmdir(vR1);   [R  .. RR] 
+  +B60:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 3 any 0 found 0 rmdir
+ 
+ method create(Ljava/lang/String;I)V {
+  +START:   #1
+        if vR0.isPath@this(vR1)==0 goto B43;   
+  +B8:   #1
+        vR4 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [  i RR] 
+        vR3 = vR4.create(vR0.getFileName@extra(vR1),vi2);    [?R  ii iRR] 
+        vR4.decUseCount();   [RR  ii R..] 
+        goto +B55;   [RR  ii ...]
+  +B43:   #1
+        vR3 = vR0.cwdInode.create(vR1,vi2);    [RR  .. iRR] 
+  +B55:   #1
+        vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR1),vR3);   [RR  i. RRR] 
+        vR3.decUseCount();   [RR  i. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 3 any 0 found 0 create
+ 
+ method unlink(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.direntrycache.removeEntry(vR0.getAbsolutePath@special(vR1));   [  i RR] 
+        if vR0.isPath@this(vR1)==0 goto B50;   
+  +B20:   #1
+        vR2 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [  i RR] 
+        vR2.unlink(vR0.getFileName@extra(vR1));   [R  ii RR] 
+        vR2.decUseCount();   [R  ii R.] 
+        goto +B60;   forward return[R  ii ..]
+  +B50:   #1
+        vR0.cwdInode.unlink(vR1);   [R  .. RR] 
+  +B60:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 3 any 0 found 0 unlink
+ 
+ method getPathName(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR1.lastIndexOf@extra(47);    [   iR] 
+        if vi2!=0 goto B14;   
+  +B11:   #1
+        return "/";   
+  +B14:   #1
+        if vi2!=-1 goto B24;   
+  +B19:   #1
+        return vR0.cwdPath;   
+  +B24:   #1
+        return vR1.substring@extra(0,vi2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 2 found 0 getPathName
+ 
+ method getFileName(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR1.lastIndexOf@extra(47);    [   iR] 
+        if vi2!=-1 goto B14;   
+  +B12:   #1
+        return vR1;   
+  +B14:   #1
+        return vR1.substring@extra((vi2+1));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 1 found 0 getFileName
+ 
+ method lookup(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        vR2 = vR0.direntrycache.getEntry(vR0.getAbsolutePath@special(vR1));    [ R i RR] 
+        if vR2==null goto B19;   
+  +B17:   #1
+        return vR2;   
+  +B19:   #1
+        if vR0.isPath@this(vR1)!=0 goto B41;   
+  +B27:   #1
+        vR2 = vR0.cwdInode.lookup(vR1);    [R R . RR] 
+        goto +B98;   [R R . ..]
+  +B41:   #1
+        vR1 = vR0.getAbsolutePath@special(vR1);    [RR R . RR] 
+        if vR1.equals@extra("/")==0 goto B70;   
+  +B56:   #1
+        vR0.rootInode.incUseCount();   [RR R . R.] 
+        return vR0.rootInode;   
+  +B70:   #1
+        vR3 = vR0.lookup@extra(vR0.getPathName@extra(vR1));    [RR R i RR] 
+        vR2 = vR3.lookup(vR0.getFileName@extra(vR1));    [RR R ii RR] 
+        vR3.decUseCount();   [RR R ii R.] 
+  +B98:   #1
+        if vR2!=null goto B110;   
+  -B102:   #1
+        throw new jx/fs/InodeNotFoundException();   
+  +B110:   #1
+        if vR2.isSymlink()==0 goto B148;   
+  +B119:   #1
+        out.println("Symlink!");   [R R i. RR] 
+        vR3 = 0;    
+        vR3 = vR2.getSymlink();    [RR R i. R.] 
+        vR2.decUseCount();   [RR R i. R.] 
+        return vR0.lookup@extra(vR3);   
+  +B148:   #1
+        vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR1),vR2);   [RR R i. RRR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 14 swaps 6 any 2 found 0 lookup
+ 
+ method getAbsolutePath(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        if vR0.isAbsolute@this(vR1)==0 goto B10;   
+  +B8:   #1
+        return vR1;   
+  +B10:   #1
+        if vR0.cwdPath.charAt@extra((vR0.cwdPath.length@extra()-1))!=47 goto B53;   
+  +B31:   #1
+        b0 = new java/lang/StringBuilder();    [ R . i.][ R . iR]
+        return b0.append@extra(vR0.cwdPath).append@extra(vR1).toString@extra();   
+  +B53:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        return b0.append@extra(vR0.cwdPath).append@extra(47).append@extra(vR1).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 10 swaps 3 any 0 found 0 getAbsolutePath
+ 
+ method read(Ljava/lang/String;Ljx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 read
+ 
+ method write(Ljava/lang/String;Ljx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 write
+ 
+ method getNode(II)Ljx/fs/Node; {
+  +START:   #1
+        vR3 = (jx/fs/FileSystem)(vR0.devices.get(valueOf@special(vi1)));    
+        if vR3!=null goto B28;   
+  +B19:   #1
+        out.println("filesystem ist null");   [R  i. RR] 
+  +B28:   #1
+        vR3.getNode(vi2);   [R  .. iR] 
+        return vR3.getNode(vi2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 2 any 1 found 0 getNode
+ 
+ method isPath(Ljava/lang/String;)Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isPath
+ 
+ method isAbsolute(Ljava/lang/String;)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isAbsolute
+}

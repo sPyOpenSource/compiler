@@ -1,0 +1,289 @@
+class test/portal/CallerHLS {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?RiR  R] 
+        vR0.runnables = 0;   
+        vR0.MyCPU = 0;   
+        vR0.anzSchedInterrupted = 0;   
+        vR0.anzSchedPreempted = 0;   
+        vR0.yielded = 0;   
+        vR0.DomainName = "";   
+        vR0.debug = 1;   
+        vR0.GCThread = 0;   
+        vR0.naming = getInitialNaming@special();   
+        vR0.cpuManager = (jx/zero/CPUManager)(vR0.naming.lookup("CPUManager"));   
+        vR0.SMPcpuManager = (jx/zero/SMPCPUManager)(vR0.naming.lookup("SMPCPUManager"));   
+        vR0.HLschedulerSupport = (jx/zero/HLSchedulerSupport)(vR0.naming.lookup("HLSchedulerSupport"));   
+        vR1 = (jx/zero/debug/DebugChannel)(vR0.naming.lookup("DebugChannel0"));    
+        b1 = new jx/zero/debug/DebugPrintStream;    
+        b2 = b1;    
+        b3 = new jx/zero/debug/DebugOutputStream(vR1);    [ ?RRR iiii. i.][ ?RRR iiii. iRR]
+        b2.<init>@special(b3);   [R ?RRR iiii. RR.] 
+        vR0.out = b1;   
+        out = vR0.out;   
+        b1 = new java/lang/StringBuilder();    [ ?RRR iiii. i..][ ?RRR iiii. iR.]
+        b1 = b1.append@extra("Inst:");    [R ?RRR iiiii RR.] 
+        b2 = instNr;    
+        instNr = (b2+1);   
+        vR0.DomainName = b1.append@extra(b2).toString@extra();   
+        b1 = new jx/scheduler/ThreadList();    [ ?RiR iiiii. i..][ ?RiR iiiii. iR.]
+        vR0.runnables = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 21 swaps 5 any 1 found 0 <init>
+ 
+ method registered()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("CallerHLS registered called on CPU").append@extra(vR0.SMPcpuManager.getMyCPU()).toString@extra());   [ RR iii. RR.] 
+        vR0.MyCPU = vR0.SMPcpuManager.getMyCPU();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 7 swaps 3 any 0 found 0 registered
+ 
+ method Scheduler_interrupted()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Scheduler_interrupted
+ 
+ method Scheduler_preempted()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Scheduler_preempted
+ 
+ method interrupted(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::interrupted called").toString@extra());   [ RR iii. RR.] 
+        if vR1!=vR0.GCThread goto B37;   
+  +B36:   #1
+        return;   
+  +B37:   #1
+        vR0.caller = 0;   
+        vR0.portal = 0;   
+        vR0.runnables.add(vR1);   [ RR .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 1 found 0 interrupted
+ 
+ method preempted(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::preempted called").toString@extra());   [ RR iii. RR.] 
+        if vR1!=vR0.GCThread goto B37;   
+  +B36:   #1
+        return;   
+  +B37:   #1
+        vR0.caller = 0;   
+        vR0.portal = 0;   
+        vR0.runnables.add(vR1);   [ RR .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 1 found 0 preempted
+ 
+ method yielded(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::yielded called").toString@extra());   [ RR iii. RR.] 
+        vR0.runnables.add(vR1);   [ RR iii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 7 swaps 3 any 0 found 0 yielded
+ 
+ method unblocked(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::unblocked called").toString@extra());   [ RR iii. RR.] 
+        if vR1!=vR0.caller goto B41;   
+  +B36:   #1
+        vR0.caller = 0;   
+  +B41:   #1
+        vR0.runnables.add(vR1);   [ RR .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 1 found 0 unblocked
+ 
+ method created(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::created called").toString@extra());   [ RR iii. RR.] 
+        vR0.runnables.add(vR1);   [ RR iii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 7 swaps 3 any 0 found 0 created
+ 
+ method switchedTo(Ljx/zero/CPUState;)V {
+  +START:   #1
+        if vR0.debug==0 goto B35;   
+  +B7:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::switchedTo called").toString@extra());   [ RR iii. RR.] 
+  -B35:   #1
+        vR0.HLschedulerSupport.activateThread(vR1);   [ RR .... RR.] 
+        throw new java/lang/Error("should never return!");   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 8 swaps 3 any 0 found 0 switchedTo
+ 
+ method blockedInPortalCall(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::blockedInPortalCall").toString@extra());   [ RR iii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 blockedInPortalCall
+ 
+ method portalCalled(Ljx/zero/CPUState;)Z {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::portalCalled called").toString@extra());   [ RR iii. RR.] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 portalCalled
+ 
+ method blockedInService(Ljx/zero/CPUState;Ljx/zero/CPUStateLink;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::blockedInService").toString@extra());   [ RR iii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 blockedInService
+ 
+ method serviceCalled(Ljx/zero/CPUState;Ljx/zero/CPUStateLink;)Z {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::serviceCalled").toString@extra());   [ RR iii. RR.] 
+        vR0.caller = vR1;   
+        vR0.portal = vR2;   
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 serviceCalled
+ 
+ method startGCThread(Ljx/zero/CPUState;Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::startGCThread called").toString@extra());   [ RR iii. RR.] 
+        if vR0.GCThread==null goto B45;   
+  -B35:   #1
+        throw new java/lang/Error("should not happen!");   
+  +B45:   #1
+        if vR1==null goto B58;   
+  +B49:   #1
+        vR0.runnables.add(vR1);   [ RR .... RR.] 
+  +B58:   #1
+        vR0.GCThread = vR2;   
+        vR0.HLschedulerSupport.activateThread(vR2);   [ RR .... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 8 swaps 3 any 1 found 0 startGCThread
+ 
+ method unblockedGCThread(Ljx/zero/CPUState;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS::unblockedGCThread called").toString@extra());   [ RR iii. RR.] 
+        if vR0.GCThread==null goto B45;   
+  -B35:   #1
+        throw new java/lang/Error("should not happen!");   
+  +B45:   #1
+        vR0.GCThread = vR0.GCThread;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 8 swaps 3 any 0 found 0 unblockedGCThread
+ 
+ method destroyedGCThread(Ljx/zero/CPUState;)V {
+  +START:   #1
+        if vR0.GCThread==vR1 goto B18;   
+  -B8:   #1
+        throw new java/lang/Error("should not happen!");   
+  +B18:   #1
+        vR0.GCThread = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 destroyedGCThread
+ 
+ method activated()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0.toString@this()).append@extra("::activated called").toString@extra());   [ RR ii.i RR.] 
+        if vR0.GCThread==null goto B48;   
+  +B35:   #1
+        vR0.HLschedulerSupport.activateThread(vR0.GCThread);   [ RR i... RR.] 
+  +B48:   #1
+        if vR0.caller==null goto B85;   
+  +B55:   #1
+        out.println("   activating Portal (caller != null)");   [ RR i... RR.] 
+        vR0.HLschedulerSupport.activateService(vR0.portal);   [ RR ii.. RR.] 
+        out.println("   activateService returned");   [ RR iii. RR.] 
+  +B85:   #1
+        vR1 = (jx/zero/CPUState)(vR0.runnables.removeFirst());    
+        if vR1!=null goto B156;   
+  -B100:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra(vR0.DomainName).append@extra(": CallerHLS: yield!").toString@extra());   [R RR iii. RR.] 
+        vR0.HLschedulerSupport.clearMyRunnableFlag();   [R RR iii. R..] 
+        vR0.HLschedulerSupport.yield();   [R RR iii. R..] 
+        throw new java/lang/Error("should never return! (A)");   
+  -B156:   #1
+        vR0.HLschedulerSupport.activateThread(vR1);   [R RR .... RR.] 
+        throw new java/lang/Error("should never return! (C)");   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 24 swaps 10 any 1 found 0 activated
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return "CallerHLS";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method dump()V {
+  +START:   #1
+        vR0.runnables.dump();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dump
+ 
+ method <clinit>()V {
+  +START:   #1
+        instNr = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

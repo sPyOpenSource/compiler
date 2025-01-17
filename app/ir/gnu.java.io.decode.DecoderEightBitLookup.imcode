@@ -1,0 +1,46 @@
+class gnu/java/io/decode/DecoderEightBitLookup {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method charsInByteArray([BII)I {
+  +START:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 charsInByteArray
+ 
+ method convertToChars([BII[CI)[C {
+  +START:   #1
+        vi6 = 0;    
+  +B3:   #1
+        if vi6>=vi3 goto B37;   
+  +B9:   #1
+        vR4[(vi5+vi6)] = lookup_table[(vR1[(vi2+vi6)] & 255)];   
+        vi6++;   
+        goto +B3;   [i   .]
+  +B37:   #1
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 2 found 0 convertToChars
+ 
+ method read([CII)I {
+  +START:   #1
+        vR4 = new byte[vi3];    
+        vi5 = vR0.in.read(vR4);    [R   RR] 
+        if vi5!=-1 goto B24;   
+  +B22:   #1
+        return -1;   
+  +B24:   #1
+        vR0.convertToChars@this(vR4,0,vi5,vR1,vi2);   [Ri   iRiiRR] 
+        return vi5;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 read
+}

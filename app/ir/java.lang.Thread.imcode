@@ -1,0 +1,392 @@
+class java/lang/Thread {
+ 
+ method currentThread()Ljava/lang/Thread; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 currentThread
+ 
+ method yield()V {
+  +START:   #1
+        cpuManager.yield();   [  . R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 yield
+ 
+ method sleep(J)V {
+  +START:   #1
+        cpuManager.sleep((int)vl0,0);   [  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 3 swaps 1 any 0 found 0 sleep
+ 
+ method sleep(JI)V {
+  +START:   #1
+        cpuManager.sleep((int)vl0,vi2);   [i  i. iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 3 swaps 1 any 0 found 0 sleep
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.daemon = 0;   
+        vR0.alive = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Runnable;)V {
+  +START:   #1
+        vR0.<init>@special(0,vR1,"thread");   [  i RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,"thread");   [  i RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(0,0,vR1);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/ThreadGroup;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,vR2);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/Runnable;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(0,vR1,vR2);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/ThreadGroup;Ljava/lang/Runnable;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.daemon = 0;   
+        vR0.alive = 0;   
+        vR0.group = vR1;   
+        vR0.runnable = vR2;   
+        vR0.name = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method start()V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR0.alive = 1;   
+        cpuManager = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));   
+        b0 = cpuManager;    
+        b1 = cpuManager;    
+        b2 = new java/lang/Thread$ThreadStarter(vR0,vR0);    [ RRR i. i.][ RRR i. iRRR]
+        b0.start(b1.createCPUState(b2));   [R RRR ii RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 9 swaps 2 any 0 found 0 start
+ 
+ method run()V {
+  +START:   #1
+        if vR0.runnable==null goto B16;   
+  +B7:   #1
+        vR0.runnable.run();   [   R] 
+  +B16:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 run
+ 
+ method stop()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 stop
+ 
+ method stop(Ljava/lang/Throwable;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 stop
+ 
+ method interrupt()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 interrupt
+ 
+ method interrupted()Z {
+  +START:   #1
+        return currentThread@special().isInterrupted@special(1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 interrupted
+ 
+ method isInterrupted()Z {
+  +START:   #1
+        return vR0.isInterrupted@special(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isInterrupted
+ 
+ method isInterrupted(Z)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isInterrupted
+ 
+ method destroy()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 destroy
+ 
+ method isAlive()Z {
+  +START:   #1
+        return vR0.alive;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isAlive
+ 
+ method suspend()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 suspend
+ 
+ method resume()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 resume
+ 
+ method setPriority(I)V {
+  +START:   #1
+        if vi1>10 goto B11;   
+  +B6:   #1
+        if vi1>=1 goto B19;   
+  -B11:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +B19:   #1
+        if vi1<=vR0.group.getMaxPriority@extra() goto B38;   
+  +B30:   #1
+        vi1 = vR0.group.getMaxPriority@extra();    [ R  R.] 
+  +B38:   #1
+        vR0.priority = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 3 found 1 setPriority
+ 
+ method getPriority()I {
+  +START:   #1
+        return vR0.priority;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPriority
+ 
+ method setName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.name = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setName
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method getThreadGroup()Ljava/lang/ThreadGroup; {
+  +START:   #1
+        return vR0.group;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getThreadGroup
+ 
+ method activeCount()I {
+  +START:   #1
+        return currentThread@special().getThreadGroup@extra().activeCount();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 activeCount
+ 
+ method enumerate([Ljava/lang/Thread;)I {
+  +START:   #1
+        return currentThread@special().getThreadGroup@extra().enumerate(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 enumerate
+ 
+ method countStackFrames()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 countStackFrames
+ 
+ method join(J)V {
+  +START:   #1
+        vl3 = currentTimeMillis@special();    
+        vl5 = 0;    
+        if compare(vl1,0)>=0 goto B23;   
+  -B13:   #1
+        throw new java/lang/IllegalArgumentException("timeout value is negative");   
+  +B23:   #1
+        if compare(vl1,0)!=0 goto B42;   
+  +B29:   #1
+        if vR0.isAlive@extra()==0 goto B81;   
+  +B36:   #1
+        yield@special();   [?l?l R . ...]
+        goto +B29;   [?l?l R . ...]
+  +B42:   #2
+        if vR0.isAlive@extra()==0 goto B81;   
+  +B49:   #1
+        vl7 = (vl1-vl5);    
+        if compare(vl7,0)> 0 goto B65;   
+  +B62:   #1
+        goto +B81;   forward return[?l?l?l R . ...]
+  +B65:   #1
+        vR0.wait@this(vl7);   [?l?l?l R . ??R] 
+        vl5 = (currentTimeMillis@special()-vl3);    
+        goto +B42;   [?l?l?l R . ...]
+  +B81:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 join
+ 
+ method join(JI)V {
+  +START:   #1
+        if compare(vl1,0)>=0 goto B16;   
+  -B6:   #1
+        throw new java/lang/IllegalArgumentException("timeout value is negative");   
+  +B16:   #1
+        if vi3< 0 goto B26;   
+  +B20:   #1
+        if vi3<=999999 goto B36;   
+  -B26:   #1
+        throw new java/lang/IllegalArgumentException("nanosecond timeout value out of range");   
+  +B36:   #1
+        if vi3>=500000 goto B52;   
+  +B42:   #1
+        if vi3==0 goto B56;   
+  +B46:   #1
+        if compare(vl1,0)!=0 goto B56;   
+  +B52:   #1
+        vl1 = (vl1+1);    
+  +B56:   #2
+        vR0.join@extra(vl1);   [i R . ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 4 found 0 join
+ 
+ method join()V {
+  +START:   #2
+        if vR0.isAlive@extra()==0 goto B13;   
+  +B7:   #1
+        yield@special();   [   .]
+        goto +START;   [   .]
+  +B13:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 join
+ 
+ method dumpStack()V {
+  +START:   #1
+        b0 = new java/lang/Exception("Stack trace");    [ R  i][ R . iRR]
+        b0.printStackTrace();   [ R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 dumpStack
+ 
+ method setDaemon(Z)V {
+  +START:   #1
+        if vR0.isAlive@extra()==0 goto B15;   
+  -B7:   #1
+        throw new java/lang/IllegalThreadStateException();   
+  +B15:   #1
+        vR0.daemon = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setDaemon
+ 
+ method isDaemon()Z {
+  +START:   #1
+        return vR0.daemon;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDaemon
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0.getThreadGroup@extra()==null goto B62;   
+  +B7:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Thread[").append@extra(vR0.getName@extra()).append@extra(",").append@extra(vR0.getPriority@extra()).append@extra(",").append@extra(vR0.getThreadGroup@extra().getName@extra()).append@extra("]").toString@extra();   
+  +B62:   #1
+        b0 = new java/lang/StringBuilder();    [ R .............. i.......][ R .............. iR......]
+        return b0.append@extra("Thread[").append@extra(vR0.getName@extra()).append@extra(",").append@extra(vR0.getPriority@extra()).append@extra(",]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 27 swaps 12 any 0 found 0 toString
+ 
+ method getContextClassLoader()Ljava/lang/ClassLoader; {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getContextClassLoader
+ 
+ method access$000(Ljava/lang/Thread;)Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method <clinit>()V {
+  +START:   #1
+        naming = getInitialNaming@special();   
+        cpuManager = (jx/zero/CPUManager)(naming.lookup("CPUManager"));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 5 swaps 1 any 0 found 0 <clinit>
+}

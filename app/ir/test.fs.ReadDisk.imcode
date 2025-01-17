@@ -1,0 +1,90 @@
+class test/fs/ReadDisk {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = (jx/devices/bio/BlockIO)(waitUntilPortalAvailable@special(vR1,vR0[0]));    
+        vi3 = vR2.getCapacity();    [RR RR R. R.] 
+        vi4 = vR2.getSectorSize();    [RRi RR R. R.] 
+        vi5 = 1000;    
+        vi6 = 512000;    
+        vi7 = vi6;    
+        if vi7<=vi3 goto B83;   
+  +B49:   #1
+        vi7 = vi3;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("Disk not large enough. Benchmark will only use ").append@extra(vi7).append@extra(" sectors.").toString@extra());   [RRiiiii RR iii.. RR..] 
+  +B83:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Capacity: ").append@extra(vi3).toString@extra());   [RRiiiii RR ii... RR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii... i...][ RR ii... iR..]
+        b0.println(b1.append@extra("SectorSize: ").append@extra(vi4).toString@extra());   [RRiiiii RR iiii. RR..] 
+        vR8 = (jx/zero/MemoryManager)(vR1.lookup("MemoryManager"));    
+        vR9 = vR8.alloc((vi4*vi5));    [RRiiiiiR RR iiiiii iR..] 
+        out.println("read test ....");   [RRiiiiiRR RR iiiiiii. RR..] 
+        vR2.readSectors(0,1,vR9,1);   [RRiiiiiRR RR iiiiiii. iRiiR] 
+        out.println("done.");   [RRiiiiiRR RR iiiiiiii. RR...] 
+        vR10 = (jx/zero/Clock)(vR1.lookup("Clock"));    
+        vR11 = new jx/zero/CycleTime();    [ RR iiiiiiiii. i....][ RR iiiiiiiii. iR...]
+        vR12 = new jx/zero/CycleTime();    [ RR iiiiiiiii. i....][ RR iiiiiiiii. iR...]
+        vR13 = new jx/zero/CycleTime();    [ RR iiiiiiiii. i....][ RR iiiiiiiii. iR...]
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii. i....][ RR iiiiiiiii. iR...]
+        b0.println(b1.append@extra("Read ").append@extra(vi7).append@extra(" sectors.").toString@extra());   [RRiiiiiRRRRRR RR iiiiiiiiiiii.. RR...] 
+        vi14 = 0;    
+        vi15 = 1;    
+  +B265:   #1
+        if vi15>=vi5 goto B517;   
+  +B272:   #1
+        if vi14!=0 goto B289;   
+  +B277:   #1
+        if vi15!=2 goto B289;   
+  +B283:   #1
+        vi15 = 1;    
+        vi14 = 1;    
+  +B289:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("Request size ").append@extra(vi15).append@extra(" sectors.").toString@extra());   [RRiiiiiRRRRRRii RR iii........... RR...] 
+        vR10.getCycles(vR11);   [RRiiiiiRRRRRRii RR iii........... RR...] 
+        vi16 = (vi7/vi15);    
+        vi17 = 0;    
+  +B339:   #1
+        if vi17>=vi16 goto B369;   
+  +B346:   #1
+        vR2.readSectors(vi17,vi15,vR9,1);   [RRiiiiiRRRRRRiiii RR .............. iRiiR] 
+        vi17 = (vi17+vi15);    
+        goto +B339;   [RRiiiiiRRRRRRiiii RR .............. .....]
+  +B369:   #1
+        vR10.getCycles(vR12);   [RRiiiiiRRRRRRiiii RR .............. RR...] 
+        vR10.subtract(vR13,vR12,vR11);   [RRiiiiiRRRRRRiiii RR .............. RRRR.] 
+        vi17 = vR10.toMilliSec(vR13);    [RRiiiiiRRRRRRiiii RR .............. RR...] 
+        vR18 = new test/fs/MyBigNumber(vi16);    [ RR .............. i....][ RR .............. iiR..]
+        vR18 = vR18.mul(vi15);    [RRiiiiiRRRRRRiiiiR RR .............. iR...] 
+        vR18 = vR18.mul(vi4);    [RRiiiiiRRRRRRiiiiR RR .............. iR...] 
+        vR18 = vR18.mul(1000);    [RRiiiiiRRRRRRiiiiR RR .............. iR...] 
+        vR18 = vR18.div(1024);    [RRiiiiiRRRRRRiiiiR RR .............. iR...] 
+        vR18 = vR18.div(vi17);    [RRiiiiiRRRRRRiiiiR RR .............. iR...] 
+        vi19 = vR18.toInt();    [RRiiiiiRRRRRRiiiiR RR .............. R....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i....][ RR .............. iR...]
+        b0.println(b1.append@extra("Time: ").append@extra(vi17).append@extra(" milliseconds, throughput: ").append@extra(vi19).append@extra(" KB/s").toString@extra());   [RRiiiiiRRRRRRiiiiRi RR iiii.......... RR....] 
+        vi15 = (vi15*2);    
+        goto +B265;   [RRiiiiiRRRRRRiiiiRi RR iiii.......... ......]
+  +B517:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 84 swaps 22 any 9 found 0 main
+}

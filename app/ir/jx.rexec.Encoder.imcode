@@ -1,0 +1,131 @@
+class jx/rexec/Encoder {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m = vR1;   
+        vR0.offset = vi2;   
+        vR0.len = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>([B)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.core = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method writeInt(I)V {
+  +START:   #1
+        if vR0.m==null goto B24;   
+  +B7:   #1
+        vR0.m.setLittleEndian32(vR0.pos,vi1);   [  i iiR] 
+        goto +B33;   [  i ...]
+  +B24:   #1
+        vR0.setLittleEndian32@special(vR0.pos,vi1);   [  i iiR] 
+  +B33:   #1
+        vR0.pos = (vR0.pos+4);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 2 any 0 found 0 writeInt
+ 
+ method writeString(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR1.length@extra();    [   R] 
+        vR0.writeInt@this(vi2);   [i   iR] 
+        vR3 = vR1.getBytes@extra();    [i   R.] 
+        vi4 = 0;    
+  +B18:   #1
+        if vi4>=vi2 goto B76;   
+  +B24:   #1
+        if vR0.m==null goto B54;   
+  +B31:   #1
+        vR0.m.set8((vR0.pos+vi4),vR3[vi4]);   [iRi  ib biR] 
+        goto +B70;   [iRi  ib ...]
+  +B54:   #1
+        vR0.core[(vR0.pos+vi4)] = vR3[vi4];   
+  +B70:   #1
+        vi4++;   
+        goto +B18;   [iRi  .. ...]
+  +B76:   #1
+        vR0.pos = (vR0.pos+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 6 swaps 1 any 2 found 0 writeString
+ 
+ method writeData(Ljx/zero/Memory;)V {
+  +START:   #1
+        vi2 = vR1.size();    [   R] 
+        vR0.writeInt@this(vi2);   [i   iR] 
+        vR1.copyToMemory(vR0.m,0,vR0.pos,vi2);   [i  ii iiiRR] 
+        vR0.pos = (vR0.pos+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 1 any 0 found 0 writeData
+ 
+ method writeData([B)V {
+  +START:   #1
+        vR0.writeData@this(vR1,0,vR1.length);   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 writeData
+ 
+ method writeData([BII)V {
+  +START:   #1
+        vi4 = vi3;    
+        vR0.writeInt@this(vi4);   [i   iR] 
+        if vR0.m==null goto B36;   
+  +B16:   #1
+        vR0.m.copyFromByteArray(vR1,vi2,vR0.pos,vi4);   [i  i iiiRR] 
+        goto +B70;   [i  i .....]
+  +B36:   #1
+        vi5 = 0;    
+  +B39:   #1
+        if vi5>=vi4 goto B70;   
+  +B46:   #1
+        vR0.core[(vR0.pos+vi5)] = vR1[(vi2+vi5)];   
+        vi5++;   
+        goto +B39;   [ii  . .....]
+  +B70:   #2
+        vR0.pos = (vR0.pos+vi4);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 4 swaps 1 any 3 found 0 writeData
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.pos;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method setLittleEndian32(II)V {
+  +START:   #1
+        vR0.core[(vi1+3)] = (byte)((vi2 >>> 24) & 255);   
+        vR0.core[(vi1+2)] = (byte)((vi2 >>> 16) & 255);   
+        vR0.core[(vi1+1)] = (byte)((vi2 >>> 8) & 255);   
+        vR0.core[(vi1+0)] = (byte)(vi2 & 255);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 setLittleEndian32
+}

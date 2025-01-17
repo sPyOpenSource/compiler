@@ -1,0 +1,52 @@
+class java/lang/invoke/ConstantCallSite {
+ 
+ method <init>(Ljava/lang/invoke/MethodHandle;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.isFrozen = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.isFrozen = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getTarget()Ljava/lang/invoke/MethodHandle; {
+  +START:   #1
+        if vR0.isFrozen!=0 goto B15;   
+  -B7:   #1
+        throw new java/lang/IllegalStateException();   
+  +B15:   #1
+        return vR0.target;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getTarget
+ 
+ method setTarget(Ljava/lang/invoke/MethodHandle;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setTarget
+ 
+ method dynamicInvoker()Ljava/lang/invoke/MethodHandle; {
+  +START:   #1
+        return vR0.getTarget@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dynamicInvoker
+ 
+ method dynamicInvoker()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.dynamicInvoker@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dynamicInvoker
+}

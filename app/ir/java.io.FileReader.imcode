@@ -1,0 +1,29 @@
+class java/io/FileReader {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        b1 = new java/io/FileInputStream(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.<init>@special(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/File;)V {
+  +START:   #1
+        b1 = new java/io/FileInputStream(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.<init>@special(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/FileDescriptor;)V {
+  +START:   #1
+        b1 = new java/io/FileInputStream(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.<init>@special(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 <init>
+}

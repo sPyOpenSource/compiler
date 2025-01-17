@@ -1,0 +1,503 @@
+class java/util/Calendar {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(getDefault@special(),getDefault@special());   [  iR RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/util/TimeZone;Ljava/util/Locale;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fields = new int[17];   
+        vR0.isSet = new boolean[17];   
+        vR0.serialVersionOnStream = 1;   
+        vR0.zone = vR1;   
+        vR0.lenient = 1;   
+        vR0.firstDayOfWeek = 2;   
+        vR0.minimalDaysInFirstWeek = 4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInstance()Ljava/util/Calendar; {
+  +START:   #1
+        return getInstance@special(getDefault@special(),getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 3 swaps 0 any 0 found 0 getInstance
+ 
+ method getInstance(Ljava/util/TimeZone;)Ljava/util/Calendar; {
+  +START:   #1
+        return getInstance@special(vR0,getDefault@special());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getInstance
+ 
+ method getInstance(Ljava/util/Locale;)Ljava/util/Calendar; {
+  +START:   #1
+        return getInstance@special(getDefault@special(),vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getInstance
+ 
+ method getInstance(Ljava/util/TimeZone;Ljava/util/Locale;)Ljava/util/Calendar; {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = getBundle@special("gnu.java.locale.Calendar",vR1);    [R RR R RR]
+        vR2 = vR3.getString@extra("calendarClass");    [RR RR Ri RR] 
+        if vR2==null goto B84;   
+  +B20:   #2
+        vR4 = forName@special(vR2);    [RR RR .. R.]
+        if java/util/Calendar.isAssignableFrom@extra(vR4)==0 goto B74;   
+  +B36:   #1
+        b1 = new java/lang/Class()[2];    
+        b1[0] = java/util/TimeZone;   
+        b1[1] = java/util/Locale;   
+        b0 = vR4.getConstructor@extra(b1);    [RRR RR .. RR] 
+        b1 = new java/lang/Object()[2];    
+        b1[0] = vR0;   
+        b1[1] = vR1;   
+        b0 = (java/util/Calendar)(b0.newInstance(b1));    
+  +B73b0:   #2 reference
+        return b0;   
+  +B74:   #1
+        goto +B84;   [RRR RR .. ..]
+  +H77<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        goto +B84;   [RRR RR .. ..]
+  +H82<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B84:   #3
+        return new java/util/GregorianCalendar(vR0,vR1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+20 - 73 handler 77 type 87
+20 - 73 handler 77 type 89
+20 - 73 handler 82 type 91
+20 - 73 handler 82 type 93
+20 - 73 handler 82 type 95
+20 - 73 handler 82 type 97
+ }
+// Register: rd 17/17 wr 14 swaps 1 any 3 found 0 getInstance
+ 
+ method getAvailableLocales()[Ljava/util/Locale; {
+  +START:   #1
+        b0 = "gnu.java.locale.Calendar";    
+        b1 = new java/util/Locale("","");    [ RR  i][ RR . iRRR]
+        vR0 = getBundle@special(b0,b1);    [ RR . RR..]
+        return ([Ljava/util/Locale;)(vR0.getObject@extra("availableLocales"));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 6 swaps 1 any 0 found 0 getAvailableLocales
+ 
+ method getTime()Ljava/util/Date; {
+  +START:   #1
+        if vR0.isTimeSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeTime@this();   [ R  R] 
+  +B11:   #1
+        return new java/util/Date(vR0.time);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getTime
+ 
+ method setTime(Ljava/util/Date;)V {
+  +START:   #1
+        vR0.setTimeInMillis@this(vR1.getTime());   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTime
+ 
+ method getTimeInMillis()J {
+  +START:   #1
+        if vR0.isTimeSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeTime@this();   [   R] 
+  +B11:   #1
+        return vR0.time;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getTimeInMillis
+ 
+ method setTimeInMillis(J)V {
+  +START:   #1
+        vR0.time = vl1;   
+        vR0.isTimeSet = 1;   
+        vR0.computeFields@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTimeInMillis
+ 
+ method get(I)I {
+  +START:   #1
+        vR0.complete@this();   [   R] 
+        return vR0.fields[vi1];   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 get
+ 
+ method internalGet(I)I {
+  +START:   #1
+        return vR0.fields[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 internalGet
+ 
+ method set(II)V {
+  +START:   #1
+        if vR0.areFieldsSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeFields@this();   [   R] 
+  +B11:   #1
+        vR0.isTimeSet = 0;   
+        vR0.fields[vi1] = vi2;   
+        vR0.isSet[vi1] = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 1 found 0 set
+ 
+ method set(III)V {
+  +START:   #1
+        if vR0.areFieldsSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeFields@this();   [ R?R?R  R] 
+  +B11:   #1
+        vR0.isTimeSet = 0;   
+        vR0.fields[1] = vi1;   
+        vR0.fields[2] = vi2;   
+        vR0.fields[5] = vi3;   
+        b0 = vR0.isSet;    
+        b2 = vR0.isSet;    
+        b4 = vR0.isSet;    
+        b4[5] = 1;   
+        b2[2] = 1;   
+        b0[1] = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 3 swaps 0 any 3 found 0 set
+ 
+ method set(IIIII)V {
+  +START:   #1
+        vR0.set@extra(vi1,vi2,vi3);   [ R?R  iiiR] 
+        vR0.fields[11] = vi4;   
+        vR0.fields[12] = vi5;   
+        b0 = vR0.isSet;    
+        b2 = vR0.isSet;    
+        b2[12] = 1;   
+        b0[11] = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 set
+ 
+ method set(IIIIII)V {
+  +START:   #1
+        vR0.set@extra(vi1,vi2,vi3,vi4,vi5);   [   iiiiiR] 
+        vR0.fields[13] = vi6;   
+        vR0.isSet[13] = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 set
+ 
+ method clear()V {
+  +START:   #1
+        vR0.isTimeSet = 0;   
+        vR0.areFieldsSet = 0;   
+        vi1 = 0;    
+  +B12:   #1
+        if vi1>=17 goto B31;   
+  +B18:   #1
+        vR0.isSet[vi1] = 0;   
+        vi1++;   
+        goto +B12;   [i   ]
+  +B31:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 2 found 0 clear
+ 
+ method clear(I)V {
+  +START:   #1
+        vR0.isTimeSet = 0;   
+        vR0.areFieldsSet = 0;   
+        vR0.isSet[vi1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method isSet(I)Z {
+  +START:   #1
+        return vR0.isSet[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 isSet
+ 
+ method complete()V {
+  +START:   #1
+        if vR0.isTimeSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeTime@this();   [   R] 
+  +B11:   #1
+        if vR0.areFieldsSet!=0 goto B22;   
+  +B18:   #1
+        vR0.computeFields@this();   [   R] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 complete
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/Calendar)==0 goto B26;   
+  +B7:   #1
+        if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())!=0 goto B26;   
+  +B22:   #1
+        b0 = 1;    
+        goto +B27b0;   forward return[ i  ..]
+  +B26:   #2
+        b0 = 0;    
+  +B27b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 equals
+ 
+ method hashCode()I {
+  +START:   #1
+        vl1 = vR0.getTimeInMillis@this();     
+        return (int)((vl1 & 4294967295) ^ (vl1 >> 32));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 hashCode
+ 
+ method before(Ljava/lang/Object;)Z {
+  +START:   #1
+        if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())>=0 goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  .]
+  +B19:   #1
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 before
+ 
+ method after(Ljava/lang/Object;)Z {
+  +START:   #1
+        if compare(vR0.getTimeInMillis@this(),(java/util/Calendar)(vR1).getTimeInMillis())<=0 goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  .]
+  +B19:   #1
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 after
+ 
+ method roll(II)V {
+  +START:   #2
+        if vi2<=0 goto B16;   
+  +B4:   #1
+        vR0.roll@this(vi1,1);   [   iiR] 
+        vi2--;   
+        goto +START;   [   ...]
+  +B16:   #2
+        if vi2>=0 goto B32;   
+  +B20:   #1
+        vR0.roll@this(vi1,0);   [   iiR] 
+        vi2++;   
+        goto +B16;   [   ...]
+  +B32:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 4 found 0 roll
+ 
+ method setTimeZone(Ljava/util/TimeZone;)V {
+  +START:   #1
+        vR0.zone = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTimeZone
+ 
+ method getTimeZone()Ljava/util/TimeZone; {
+  +START:   #1
+        return vR0.zone;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTimeZone
+ 
+ method setLenient(Z)V {
+  +START:   #1
+        vR0.lenient = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLenient
+ 
+ method isLenient()Z {
+  +START:   #1
+        return vR0.lenient;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isLenient
+ 
+ method setFirstDayOfWeek(I)V {
+  +START:   #1
+        vR0.firstDayOfWeek = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFirstDayOfWeek
+ 
+ method getFirstDayOfWeek()I {
+  +START:   #1
+        return vR0.firstDayOfWeek;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstDayOfWeek
+ 
+ method setMinimalDaysInFirstWeek(I)V {
+  +START:   #1
+        vR0.minimalDaysInFirstWeek = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMinimalDaysInFirstWeek
+ 
+ method getMinimalDaysInFirstWeek()I {
+  +START:   #1
+        return vR0.minimalDaysInFirstWeek;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimalDaysInFirstWeek
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #2
+        vR1 = (java/util/Calendar)(vR0.clone@special());    
+        vR1.fields = ([I)(vR0.fields.clone());   
+        vR1.isSet = ([Z)(vR0.isSet.clone());   
+        b0 = vR1;    
+  +B37b0:   #1 reference
+        return b0;   
+  +H38<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 37 handler 38 type 170
+ }
+// Register: rd 10/10 wr 6 swaps 0 any 1 found 0 clone
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ RR  i][ RR  iR]
+        vR1.append(vR0.getClass@this().getName@extra()).append(91);   [R RR .i iR.] [R RR Ri iRR] 
+        vR1.append("time=");   [R RR ii RR.] 
+        if vR0.isTimeSet==0 goto B51;   
+  +B39:   #1
+        vR1.append(vR0.time);   [R RR .. ??R] 
+        goto +B58;   [R RR .. ...]
+  +B51:   #1
+        vR1.append("?");   [Ri RR i. RR.] 
+  +B58:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        vR1.append(b1.append@extra(",zone=").append@extra(vR0.zone).toString@extra());   [R RR iii. RR.] 
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        vR1.append(b1.append@extra(",areFieldsSet=").append@extra(vR0.areFieldsSet).toString@extra());   [R RR iiiiii. RR.] 
+        vi2 = 0;    
+  +B114:   #1
+        if vi2>=17 goto B166;   
+  +B120:   #1
+        vR1.append(fieldNames[vi2]);   [Ri RR i...... RR.] 
+        if vR0.isSet[vi2]==0 goto B153;   
+  +B139:   #1
+        vR1.append(vR0.fields[vi2]);   [Ri RR i...... iR.] 
+        goto +B160;   [Ri RR i...... ...]
+  +B153:   #1
+        vR1.append("?");   [Ri RR i...... RR.] 
+  +B160:   #1
+        vi2++;   
+        goto +B114;   [Ri RR ....... ...]
+  +B166:   #1
+        vR1.append(",lenient=").append(vR0.lenient);   [Ri RR ii..... bR.] [Ri RR iiR.... bRR] 
+        vR1.append(",firstDayOfWeek=").append(vR0.firstDayOfWeek);   [Ri RR iiii... iR.] [Ri RR iiiiR.. iRR] 
+        vR1.append(",minimalDaysInFirstWeek=").append(vR0.minimalDaysInFirstWeek);   [Ri RR iiiiii. iR.] [Ri RR iiiiiiR iRR] 
+        vR1.append("]");   [Ri RR iiiiiii RR.] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 33 swaps 19 any 2 found 0 toString
+ 
+ method writeObject(Ljava/io/ObjectOutputStream;)V {
+  +START:   #1
+        if vR0.isTimeSet!=0 goto B11;   
+  +B7:   #1
+        vR0.computeTime@this();   [   R] 
+  +B11:   #1
+        vR1.defaultWriteObject();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 writeObject
+ 
+ method readObject(Ljava/io/ObjectInputStream;)V {
+  +START:   #1
+        vR1.defaultReadObject();   [   R] 
+        if vR0.isTimeSet!=0 goto B15;   
+  +B11:   #1
+        vR0.computeTime@this();   [   R] 
+  +B15:   #1
+        if vR0.serialVersionOnStream<=1 goto B44;   
+  +B23:   #1
+        vR0.fields = new int[17];   
+        vR0.isSet = new boolean[17];   
+        vR0.areFieldsSet = 0;   
+  +B44:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 readObject
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/String()[17];    
+        b0[0] = ",ERA=";   
+        b0[1] = ",YEAR=";   
+        b0[2] = ",MONTH=";   
+        b0[3] = ",WEEK_OF_YEAR=";   
+        b0[4] = ",WEEK_OF_MONTH=";   
+        b0[5] = ",DAY_OF_MONTH=";   
+        b0[6] = ",DAY_OF_YEAR=";   
+        b0[7] = ",DAY_OF_WEEK=";   
+        b0[8] = ",DAY_OF_WEEK_IN_MONTH=";   
+        b0[9] = ",AM_PM=";   
+        b0[10] = ",HOUR=";   
+        b0[11] = ",HOUR_OF_DAY=";   
+        b0[12] = ",MINUTE=";   
+        b0[13] = ",SECOND=";   
+        b0[14] = ",MILLISECOND=";   
+        b0[15] = ",ZONE_OFFSET=";   
+        b0[16] = ",DST_OFFSET=";   
+        fieldNames = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 1 swaps 0 any 0 found 1 <clinit>
+}

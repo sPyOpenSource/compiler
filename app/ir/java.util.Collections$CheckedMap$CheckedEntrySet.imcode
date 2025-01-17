@@ -1,0 +1,239 @@
+class java/util/Collections$CheckedMap$CheckedEntrySet {
+ 
+ method <init>(Ljava/util/Set;Ljava/lang/Class;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.s = vR1;   
+        vR0.valueType = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method forEach(Ljava/util/function/Consumer;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 forEach
+ 
+ method spliterator()Ljava/util/Spliterator; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 spliterator
+ 
+ method size()I {
+  +START:   #1
+        return vR0.s.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.s.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.s.toString();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.s.hashCode();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method clear()V {
+  +START:   #1
+        vR0.s.clear();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method add(Ljava/util/Map$Entry;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 add
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/util/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addAll
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        vR1 = vR0.s.iterator();    [ R  R] 
+        vR2 = vR0.valueType;    
+        return new java/util/Collections$CheckedMap$CheckedEntrySet$1(vR0,vR1,vR2);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 iterator
+ 
+ method toArray()[Ljava/lang/Object; {
+  +START:   #1
+        vR1 = vR0.s.toArray();    [ R  R] 
+        if java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry.isInstance@extra(vR1.getClass().getComponentType@extra())==0 goto B29;   
+  +B25:   #1
+        b0 = vR1;    
+        goto +B34b0;   [R R . ..]
+  +B29:   #1
+        b0 = new java/lang/Object()[vR1.length];    
+  +B34b0:   #1 reference
+        vR2 = b0;    
+        vi3 = 0;    
+  +B37:   #1
+        if vi3>=vR1.length goto B65;   
+  +B43:   #1
+        vR2[vi3] = checkedEntry@special((java/util/Map$Entry)(vR1[vi3]),vR0.valueType);   
+        vi3++;   
+        goto +B37;   [RRi R RR ..]
+  +B65:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 11 swaps 1 any 4 found 0 toArray
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/Map$Entry)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (java/util/Map$Entry)(vR1);    
+        b0 = vR0.s;    
+        if (vR2 instanceof java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry)==0 goto B29;   
+  +B25b0:   #1 reference
+        b1 = vR2;    
+        goto +B37b0b1;   forward return[R RR  ..]
+  +B29b0:   #1 reference
+        b1 = checkedEntry@special(vR2,vR0.valueType);    [R RR R RR]
+  +B37b0b1:   #1 reference reference
+        return b0.contains(b1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 2 found 1 contains
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        vR2 = vR1.iterator();    [   R] 
+  +B7:   #1
+        if vR2.hasNext()==0 goto B36;   
+  +B16:   #1
+        vR3 = vR2.next();    [R   R] 
+        if vR0.contains@this(vR3)!=0 goto B33;   
+  +B31:   #1
+        return 0;   
+  +B33:   #1
+        goto +B7;   [RR   ..]
+  +B36:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 containsAll
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof java/util/Map$Entry)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        b0 = vR0.s;    
+        b1 = new java/util/AbstractMap$SimpleImmutableEntry((java/util/Map$Entry)(vR1));    [ RR  i.][ RR . iRR]
+        return b0.remove(b1);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 1 remove
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        return vR0.batchRemove@special(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeAll
+ 
+ method retainAll(Ljava/util/Collection;)Z {
+  +START:   #1
+        return vR0.batchRemove@special(vR1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 retainAll
+ 
+ method batchRemove(Ljava/util/Collection;Z)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [   R]
+        vi3 = 0;    
+        vR4 = vR0.iterator@this();    [i   R] 
+  +B13:   #2
+        if vR4.hasNext()==0 goto B52;   
+  +B23:   #1
+        if vR1.contains(vR4.next())==vi2 goto B13;   
+  +B40:   #1
+        vR4.remove();   [iR  . R.] 
+        vi3 = 1;    
+        goto +B13;   [iR  . ..]
+  +B52:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 0 found 0 batchRemove
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1!=vR0 goto B7;   
+  +B5:   #1
+        return 1;   
+  +B7:   #1
+        if (vR1 instanceof java/util/Set)!=0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        vR2 = (java/util/Set)(vR1);    
+        if vR2.size()!=vR0.s.size() goto B51;   
+  +B39:   #1
+        if vR0.containsAll@this(vR2)==0 goto B51;   
+  +B47:   #1
+        b0 = 1;    
+        goto +B52b0;   forward return[R i . ..]
+  +B51:   #2
+        b0 = 0;    
+  +B52b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 2 found 1 equals
+ 
+ method checkedEntry(Ljava/util/Map$Entry;Ljava/lang/Class;)Ljava/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry; {
+  +START:   #1
+        return new java/util/Collections$CheckedMap$CheckedEntrySet$CheckedEntry(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 checkedEntry
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.add@this((java/util/Map$Entry)(vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 add
+}

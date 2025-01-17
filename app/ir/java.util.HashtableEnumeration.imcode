@@ -1,0 +1,62 @@
+class java/util/HashtableEnumeration {
+ 
+ method next_element()V {
+  +START:   #2
+        if vR0.index>=vR0.source.length goto B42;   
+  +B12:   #1
+        b0 = vR0.source;    
+        b2 = vR0.index;    
+        b1 = b2;    
+        vR0.index = (b2+1);   
+        vR1 = b0[b1];    
+        if vR1!=null goto B36;   
+  +B33:   #1
+        goto +START;   [R Rii  ]
+  +B36:   #1
+        vR0.next = vR1;   
+        return;   
+  +B42:   #1
+        vR0.next = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 4 swaps 0 any 2 found 0 next_element
+ 
+ method hasMoreElements()Z {
+  +START:   #1
+        if vR0.next==null goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 hasMoreElements
+ 
+ method nextElement()Ljava/lang/Object; {
+  +START:   #1
+        if vR0.next!=null goto B15;   
+  -B7:   #1
+        throw new java/util/NoSuchElementException();   
+  +B15:   #1
+        vR1 = vR0.next;    
+        vR0.next_element@special();   [R R  R.] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 nextElement
+ 
+ method <init>([Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.source = vR1;   
+        vR0.index = 0;   
+        vR0.next_element@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+}

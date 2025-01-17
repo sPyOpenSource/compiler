@@ -1,0 +1,546 @@
+class java/lang/Math {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method floor(D)D {
+  +START:   #1
+        return (vd0-(vd0%1));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 floor
+ 
+ method ceil(D)D {
+  +START:   #1
+        return -floor@special(-vd0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 ceil
+ 
+ method rint(D)D {
+  +START:   #1
+        vd2 = (vd0%1);    
+        vd4 = (vd0-vd2);    
+        if compare(vd2,jx.classfile.datatypes.BCDouble@78aa1f72)!=0 goto B38;   
+  +B17:   #1
+        if compare((vd4%jx.classfile.datatypes.BCDouble@1f75a668),0)!=0 goto B33;   
+  +B28:   #1
+        b0 = vd4;    
+        goto +B37b0;   forward return[?d?d d_  .]
+  +B33:   #1
+        b0 = (vd4+1);    
+  +B37b0:   #1 double
+        return b0;   
+  +B38:   #1
+        if compare(vd2,jx.classfile.datatypes.BCDouble@78aa1f72)>=0 goto B49;   
+  +B46:   #1
+        return vd4;   
+  +B49:   #1
+        if compare(vd2,jx.classfile.datatypes.BCDouble@78aa1f72)<=0 goto B62;   
+  +B57:   #1
+        return (vd4+1);   
+  +B62:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 rint
+ 
+ method round(F)I {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 round
+ 
+ method round(D)J {
+  +START:   #1
+        if isNaN@special(vd0)==0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@4b7dc788)> 0 goto B21;   
+  +B17:   #1
+        return -9223372036854775808;   
+  +B21:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@6304101a)< 0 goto B33;   
+  +B29:   #1
+        return 9223372036854775807;   
+  +B33:   #1
+        return (long)floor@special((vd0+jx.classfile.datatypes.BCDouble@78aa1f72));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 round
+ 
+ method random()D {
+  +START:   #1
+        if random!=null goto B16;   
+  +B6:   #1
+        b0 = new java/util/Random();    [ R  i][ R  iR]
+        random = b0;   
+  +B16:   #1
+        return random.nextDouble();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 random
+ 
+ method abs(I)I {
+  +START:   #1
+        if vi0>=0 goto B9;   
+  +B4:   #1
+        b0 = -vi0;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi0;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 3 found 0 abs
+ 
+ method abs(J)J {
+  +START:   #1
+        if compare(vl0,0)>=0 goto B11;   
+  +B6:   #1
+        b0 = -vl0;    
+        goto +B12b0;   forward return[ l_  .]
+  +B11:   #1
+        b0 = vl0;    
+  +B12b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 abs
+ 
+ method abs(F)F {
+  +START:   #1
+        if compare(vl0,0)>=0 goto B11;   
+  +B6:   #1
+        b0 = -vl0;    
+        goto +B12b0;   forward return[ l  .]
+  +B11:   #1
+        b0 = vl0;    
+  +B12b0:   #1 float
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 abs
+ 
+ method abs(D)D {
+  +START:   #1
+        if compare(vd0,0)>=0 goto B11;   
+  +B6:   #1
+        b0 = -vd0;    
+        goto +B12b0;   forward return[ d_  .]
+  +B11:   #1
+        b0 = vd0;    
+  +B12b0:   #1 double
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 abs
+ 
+ method min(II)I {
+  +START:   #1
+        if vi0>=vi1 goto B9;   
+  +B5:   #1
+        b0 = vi0;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi1;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 min
+ 
+ method min(JJ)J {
+  +START:   #1
+        if compare(vl0,vl2)>=0 goto B10;   
+  +B6:   #1
+        b0 = vl0;    
+        goto +B11b0;   forward return[l l_  .]
+  +B10:   #1
+        b0 = vl2;    
+  +B11b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 min
+ 
+ method min(FF)F {
+  +START:   #1
+        if compare(vl0,vl1)>=0 goto B10;   
+  +B6:   #1
+        b0 = vl0;    
+        goto +B11b0;   forward return[ l  .]
+  +B10:   #1
+        b0 = vl1;    
+  +B11b0:   #1 float
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 min
+ 
+ method min(DD)D {
+  +START:   #1
+        if compare(vd0,vd2)>=0 goto B10;   
+  +B6:   #1
+        b0 = vd0;    
+        goto +B11b0;   forward return[d d_  .]
+  +B10:   #1
+        b0 = vd2;    
+  +B11b0:   #1 double
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 min
+ 
+ method max(II)I {
+  +START:   #1
+        if vi0>=vi1 goto B9;   
+  +B5:   #1
+        b0 = vi1;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi0;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 max
+ 
+ method max(JJ)J {
+  +START:   #1
+        if compare(vl0,vl2)>=0 goto B10;   
+  +B6:   #1
+        b0 = vl2;    
+        goto +B11b0;   forward return[l l_  .]
+  +B10:   #1
+        b0 = vl0;    
+  +B11b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 max
+ 
+ method max(FF)F {
+  +START:   #1
+        if compare(vl0,vl1)>=0 goto B10;   
+  +B6:   #1
+        b0 = vl1;    
+        goto +B11b0;   forward return[ l  .]
+  +B10:   #1
+        b0 = vl0;    
+  +B11b0:   #1 float
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 max
+ 
+ method max(DD)D {
+  +START:   #1
+        if compare(vd0,vd2)>=0 goto B10;   
+  +B6:   #1
+        b0 = vd2;    
+        goto +B11b0;   forward return[d d_  .]
+  +B10:   #1
+        b0 = vd0;    
+  +B11b0:   #1 double
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 max
+ 
+ method IEEEremainder(DD)D {
+  +START:   #1
+        if isNaN@special(vd0)!=0 goto B14;   
+  +B7:   #1
+        if isNaN@special(vd2)==0 goto B18;   
+  +B14:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B18:   #1
+        if isInfinite@special(vd0)==0 goto B29;   
+  +B25:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B29:   #1
+        if compare(vd2,0)!=0 goto B39;   
+  +B35:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B39:   #1
+        if isInfinite@special(vd2)==0 goto B48;   
+  +B46:   #1
+        return vd0;   
+  +B48:   #1
+        vd4 = rint@special((vd0/vd2));    
+        return (vd0-(vd2*vd4));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 IEEEremainder
+ 
+ method exp(D)D {
+  +START:   #1
+        return (1+(vd0*(1+(vd0*(jx.classfile.datatypes.BCDouble@78aa1f72+(vd0*(jx.classfile.datatypes.BCDouble@5170bcf4+(vd0*(jx.classfile.datatypes.BCDouble@2812b107+(vd0*(jx.classfile.datatypes.BCDouble@df6620a+(vd0*jx.classfile.datatypes.BCDouble@4e31276e))))))))))));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 exp
+ 
+ method pow(DD)D {
+  +START:   #1
+        return exp@special((log@special(vd0)*vd2));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 pow
+ 
+ method sqrt(D)D {
+  +START:   #1
+        return pow@special(vd0,jx.classfile.datatypes.BCDouble@78aa1f72);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sqrt
+ 
+ method sin(D)D {
+  +START:   #1
+        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@1a72a540)%jx.classfile.datatypes.BCDouble@27d5a580)-jx.classfile.datatypes.BCDouble@1a72a540);    
+        vd2 = (vd0*vd0);    
+        return (vd0*(1-(vd2*(jx.classfile.datatypes.BCDouble@5170bcf4+(vd2*(jx.classfile.datatypes.BCDouble@df6620a-(vd2*jx.classfile.datatypes.BCDouble@198d6542)))))));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 sin
+ 
+ method cos(D)D {
+  +START:   #1
+        vd0 = (((vd0+jx.classfile.datatypes.BCDouble@1a72a540)%jx.classfile.datatypes.BCDouble@27d5a580)-jx.classfile.datatypes.BCDouble@1a72a540);    
+        vd2 = (vd0*vd0);    
+        return (1-(vd2*(jx.classfile.datatypes.BCDouble@78aa1f72+(vd2*(jx.classfile.datatypes.BCDouble@2812b107-(vd2*jx.classfile.datatypes.BCDouble@4e31276e))))));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 cos
+ 
+ method tan(D)D {
+  +START:   #1
+        return (sin@special(vd0)/cos@special(vd0));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 tan
+ 
+ method log(D)D {
+  +START:   #1
+        if compare(vd0,0)>=0 goto B10;   
+  +B6:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B10:   #1
+        if compare(vd0,0)!=0 goto B20;   
+  +B16:   #1
+        return jx.classfile.datatypes.BCDouble@5e403b4a;   
+  +B20:   #1
+        if compare(vd0,1)>=0 goto B34;   
+  +B26:   #1
+        return -log@special((1/vd0));   
+  +B34:   #1
+        if compare(vd0,1)!=0 goto B42;   
+  +B40:   #1
+        return 0;   
+  +B42:   #1
+        vd2 = 0;    
+        vd4 = jx.classfile.datatypes.BCDouble@5117dd67;    
+        vd6 = jx.classfile.datatypes.BCDouble@35399441;    
+        vi8 = 0;    
+  +B57:   #1
+        if vi8>=64 goto B121;   
+  +B64:   #1
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1f75a668);    
+        vd9 = exp@special(vd6);    
+        if compare(vd0,vd9)!=0 goto B91;   
+  +B88:   #1
+        goto +B121;   forward return[?d?d?d?id   .]
+  +B91:   #1
+        if compare(vd0,vd9)<=0 goto B104;   
+  +B98:   #1
+        vd2 = vd6;    
+        goto +B115;   [?d?d?d?id   .]
+  +B104:   #1
+        if compare(vd0,vd9)>=0 goto B115;   
+  +B111:   #1
+        vd4 = vd6;    
+  +B115:   #2
+        vi8++;   
+        goto +B57;   [?d?d?d?id   .]
+  +B121:   #2
+        return vd6;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 log
+ 
+ method asin(D)D {
+  +START:   #1
+        if compare(vd0,1)<=0 goto B10;   
+  +B6:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B10:   #1
+        if compare(vd0,1)!=0 goto B20;   
+  +B16:   #1
+        return jx.classfile.datatypes.BCDouble@5be49b60;   
+  +B20:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@2931522b)>=0 goto B32;   
+  +B28:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B32:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@2931522b)!=0 goto B44;   
+  +B40:   #1
+        return jx.classfile.datatypes.BCDouble@7674b62c;   
+  +B44:   #1
+        vd2 = jx.classfile.datatypes.BCDouble@7674b62c;    
+        vd4 = jx.classfile.datatypes.BCDouble@5be49b60;    
+        vd6 = jx.classfile.datatypes.BCDouble@35399441;    
+        vi8 = 0;    
+  +B61:   #1
+        if vi8>=64 goto B125;   
+  +B68:   #1
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1f75a668);    
+        vd9 = sin@special(vd6);    
+        if compare(vd0,vd9)!=0 goto B95;   
+  +B92:   #1
+        goto +B125;   forward return[?d?d?d?id   .]
+  +B95:   #1
+        if compare(vd0,vd9)<=0 goto B108;   
+  +B102:   #1
+        vd2 = vd6;    
+        goto +B119;   [?d?d?d?id   .]
+  +B108:   #1
+        if compare(vd0,vd9)>=0 goto B119;   
+  +B115:   #1
+        vd4 = vd6;    
+  +B119:   #2
+        vi8++;   
+        goto +B61;   [?d?d?d?id   .]
+  +B125:   #2
+        return vd6;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 asin
+ 
+ method acos(D)D {
+  +START:   #1
+        if compare(vd0,1)<=0 goto B10;   
+  +B6:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B10:   #1
+        if compare(vd0,1)!=0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@2931522b)>=0 goto B30;   
+  +B26:   #1
+        return jx.classfile.datatypes.BCDouble@35399441;   
+  +B30:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@2931522b)!=0 goto B42;   
+  +B38:   #1
+        return jx.classfile.datatypes.BCDouble@1a72a540;   
+  +B42:   #1
+        vd2 = 0;    
+        vd4 = jx.classfile.datatypes.BCDouble@1a72a540;    
+        vd6 = jx.classfile.datatypes.BCDouble@35399441;    
+        vi8 = 0;    
+  +B57:   #1
+        if vi8>=64 goto B121;   
+  +B64:   #1
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1f75a668);    
+        vd9 = cos@special(vd6);    
+        if compare(vd0,vd9)!=0 goto B91;   
+  +B88:   #1
+        goto +B121;   forward return[?d?d?d?id   .]
+  +B91:   #1
+        if compare(vd0,vd9)<=0 goto B105;   
+  +B98:   #1
+        vd4 = vd6;    
+        goto +B115;   [?d?d?d?id   .]
+  +B105:   #1
+        if compare(vd0,vd9)>=0 goto B115;   
+  +B112:   #1
+        vd2 = vd6;    
+  +B115:   #2
+        vi8++;   
+        goto +B57;   [?d?d?d?id   .]
+  +B121:   #2
+        return vd6;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 acos
+ 
+ method atan(D)D {
+  +START:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@19e7a160)!=0 goto B12;   
+  +B8:   #1
+        return jx.classfile.datatypes.BCDouble@5be49b60;   
+  +B12:   #1
+        if compare(vd0,jx.classfile.datatypes.BCDouble@5e403b4a)!=0 goto B24;   
+  +B20:   #1
+        return jx.classfile.datatypes.BCDouble@7674b62c;   
+  +B24:   #1
+        vd2 = jx.classfile.datatypes.BCDouble@7674b62c;    
+        vd4 = jx.classfile.datatypes.BCDouble@5be49b60;    
+        vd6 = jx.classfile.datatypes.BCDouble@35399441;    
+        vi8 = 0;    
+  +B41:   #1
+        if vi8>=64 goto B105;   
+  +B48:   #1
+        vd6 = ((vd2+vd4)/jx.classfile.datatypes.BCDouble@1f75a668);    
+        vd9 = tan@special(vd6);    
+        if compare(vd0,vd9)!=0 goto B75;   
+  +B72:   #1
+        goto +B105;   forward return[?d?d?d?id   .]
+  +B75:   #1
+        if compare(vd0,vd9)<=0 goto B88;   
+  +B82:   #1
+        vd2 = vd6;    
+        goto +B99;   [?d?d?d?id   .]
+  +B88:   #1
+        if compare(vd0,vd9)>=0 goto B99;   
+  +B95:   #1
+        vd4 = vd6;    
+  +B99:   #2
+        vi8++;   
+        goto +B41;   [?d?d?d?id   .]
+  +B105:   #2
+        return vd6;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 atan
+ 
+ method atan2(DD)D {
+  +START:   #1
+        vd4 = atan@special((vd0/vd2));    
+        if compare(vd0,0)<=0 goto B19;   
+  +B14:   #1
+        b0 = vd4;    
+        goto +B40b0;   forward return[d?d d_  .]
+  +B19:   #1
+        if compare(vd2,0)<=0 goto B34;   
+  +B25:   #1
+        b0 = (vd4+jx.classfile.datatypes.BCDouble@1a72a540);    
+        goto +B40b0;   forward return[d?d d_  .]
+  +B34:   #1
+        b0 = (vd4-jx.classfile.datatypes.BCDouble@1a72a540);    
+  +B40b0:   #2 double
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 atan2
+ 
+ method addExact(II)I {
+  +START:   #1
+        vi2 = (vi0+vi1);    
+        if ((vi0 ^ vi2) & (vi1 ^ vi2))>=0 goto B24;   
+  -B14:   #1
+        throw new java/lang/ArithmeticException("integer overflow");   
+  +B24:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 addExact
+}

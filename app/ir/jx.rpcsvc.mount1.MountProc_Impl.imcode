@@ -1,0 +1,80 @@
+class jx/rpcsvc/mount1/MountProc_Impl {
+ 
+ method <init>(Ljx/fs/FS;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fs = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method nullproc()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nullproc
+ 
+ method mnt(Ljx/rpcsvc/nfs2/DirPath;)Ljx/rpcsvc/mount1/FHStatus; {
+  +START:   #1
+        out.println("MountProc.mnt called");   [ RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("   -> ").append@extra(vR1.data).toString@extra());   [ RR iiii. RR.] 
+  +B36:   #1
+        vR2 = vR0.fs.lookup(vR1.data);    [ RR i.... RR.] 
+        vR3 = new jx/rpcsvc/nfs2/MappedFHandle(vR2.getFileSystem().getDeviceID(),vR2.getIdentifier(),0);    [ RR i.... i..][ RR i.... iiiiR]
+        b0 = new jx/rpcsvc/mount1/FHStatusOK(vR3.getFHandle());    [ RR i.... i....][ RR i.... iRR..]
+  +B87b0:   #1 reference
+        return b0;   
+  +H88<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        out.println("Fehler in mount!");   [RR RR i.... RR...] 
+        out.println("Fehler in mount!");   [RR RR ii... RR...] 
+        return new jx/rpcsvc/mount1/FHStatusOK();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+36 - 87 handler 88 type 81
+ }
+// Register: rd 11/11 wr 21 swaps 7 any 0 found 0 mnt
+ 
+ method dump()Ljx/rpcsvc/mount1/MountList; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 dump
+ 
+ method umnt(Ljx/rpcsvc/nfs2/DirPath;)V {
+  +START:   #1
+        out.println("UNMOUNT AUFGERUFEN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");   [ R i. RR] 
+  +B8:   #1
+        vR0.fs.cleanUp();   [ R .. R.] 
+  +B17:   #1
+        goto +B29;   forward return[ R .. ..]
+  -H20<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B29:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+8 - 17 handler 20 type 81
+ }
+// Register: rd 1/1 wr 3 swaps 1 any 0 found 0 umnt
+ 
+ method umntall()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 umntall
+ 
+ method export()Ljx/rpcsvc/mount1/Exports; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 export
+}

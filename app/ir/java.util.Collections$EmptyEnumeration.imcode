@@ -1,0 +1,33 @@
+class java/util/Collections$EmptyEnumeration {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasMoreElements()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hasMoreElements
+ 
+ method nextElement()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/util/NoSuchElementException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 nextElement
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Collections$EmptyEnumeration();    [ R  i][ R  iR]
+        EMPTY_ENUMERATION = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

@@ -1,0 +1,73 @@
+class java/security/DummySignature {
+ 
+ method <init>(Ljava/security/SignatureSpi;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR2);   [   RR] 
+        vR0.sigSpi = 0;   
+        vR0.sigSpi = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method engineInitVerify(Ljava/security/PublicKey;)V {
+  +START:   #1
+        vR0.sigSpi.engineInitVerify(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineInitVerify
+ 
+ method engineInitSign(Ljava/security/PrivateKey;)V {
+  +START:   #1
+        vR0.sigSpi.engineInitSign(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineInitSign
+ 
+ method engineUpdate(B)V {
+  +START:   #1
+        vR0.sigSpi.engineUpdate(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineUpdate
+ 
+ method engineUpdate([BII)V {
+  +START:   #1
+        vR0.sigSpi.engineUpdate(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineUpdate
+ 
+ method engineSign()[B {
+  +START:   #1
+        return vR0.sigSpi.engineSign();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineSign
+ 
+ method engineVerify([B)Z {
+  +START:   #1
+        return vR0.sigSpi.engineVerify(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineVerify
+ 
+ method engineSetParameter(Ljava/lang/String;Ljava/lang/Object;)V {
+  +START:   #1
+        vR0.sigSpi.engineSetParameter(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineSetParameter
+ 
+ method engineGetParameter(Ljava/lang/String;)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.sigSpi.engineGetParameter(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 engineGetParameter
+}

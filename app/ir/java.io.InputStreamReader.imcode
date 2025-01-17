@@ -1,0 +1,56 @@
+class java/io/InputStreamReader {
+ 
+ method <init>(Ljava/io/InputStream;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.in = getDecoder@special(vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/InputStream;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.in = getDecoder@special(vR1,vR2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getEncoding()Ljava/lang/String; {
+  +START:   #1
+        return getSchemeName@special();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getEncoding
+ 
+ method close()V {
+  +START:   #1
+        vR0.in.close();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+ 
+ method ready()Z {
+  +START:   #1
+        return vR0.in.ready();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ready
+ 
+ method read()I {
+  +START:   #1
+        return vR0.in.read();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+ 
+ method read([CII)I {
+  +START:   #1
+        return vR0.in.read(vR1,vi2,vi3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 read
+}

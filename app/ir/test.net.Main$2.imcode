@@ -1,0 +1,50 @@
+class test/net/Main$2 {
+ 
+ method <init>(Ltest/net/Main;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method command(Ljava/io/PrintStream;[Ljava/lang/String;)V {
+  +START:   #1
+        if vR2.length==2 goto B15;   
+  +B6:   #1
+        out.println("need 2 args");   [ R?R i. RR] 
+        return;   
+  +B15:   #1
+        b0 = vR0.this$0.net;    
+        b2 = new jx/net/IPv4Address(vR2[0]);    [ R?R .. i.][ R?R .. iRR]
+        vR3 = b0.getUDPSender(6665,b2,parseInt@special(vR2[1]));    [ R?R Ri iRiR] 
+        vR4 = vR0.this$0.net.getUDPBuffer(50);    [R R?R Ri iR..] 
+        vi5 = 0;    
+  +B66:   #1
+        if vi5>=50 goto B91;   
+  +B73:   #1
+        vR4.set8(vi5,(byte)vi5);   [RRi R?R i. iiR.] 
+        vi5++;   
+        goto +B66;   [RRi R?R i. ....]
+  +B91:   #1
+        vi5 = 0;    
+  +B94:   #1
+        if vi5>=10 goto B116;   
+  +B101:   #1
+        vR3.send(vR4);   [RRi R?R .. RR..] 
+        vi5++;   
+        goto +B94;   [RRi R?R .. ....]
+  +B116:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 14 swaps 2 any 4 found 1 command
+ 
+ method getInfo()Ljava/lang/String; {
+  +START:   #1
+        return "send packets to <addr> <port>";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInfo
+}

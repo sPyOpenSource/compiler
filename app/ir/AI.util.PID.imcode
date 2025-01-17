@@ -1,0 +1,62 @@
+class AI/util/PID {
+ 
+ method <init>(DDD)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.kp = vd1;   
+        vR0.ki = vd3;   
+        vR0.kd = vd5;   
+        vR0.max = jx.classfile.datatypes.BCDouble@b83a9be;   
+        vR0.min = jx.classfile.datatypes.BCDouble@2609b277;   
+        vR0.temp = 0;   
+        vR0.setpoint = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setRange(DD)V {
+  +START:   #1
+        vR0.max = vd1;   
+        vR0.min = vd3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setRange
+ 
+ method setPoint(D)V {
+  +START:   #1
+        vR0.setpoint = vd1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setPoint
+ 
+ method Compute(DDD)D {
+  +START:   #1
+        vd7 = (vR0.setpoint-vd1);    
+        vR0.temp = (vR0.temp+((vd7*vd5)*vR0.ki));   
+        if compare(vR0.temp,vR0.max)<=0 goto B50;   
+  +B39:   #1
+        vR0.temp = vR0.max;   
+        goto +B70;   [?d?d   .]
+  +B50:   #1
+        if compare(vR0.temp,vR0.min)>=0 goto B70;   
+  +B62:   #1
+        vR0.temp = vR0.min;   
+  +B70:   #2
+        vd9 = ((vR0.temp+(vd7*vR0.kp))-(vd1*vR0.kd));    
+        if compare(vd9,vR0.max)<=0 goto B110;   
+  +B101:   #1
+        vd9 = vR0.max;    
+        goto +B126;   forward return[?d?d?d   .]
+  +B110:   #1
+        if compare(vd9,vR0.min)>=0 goto B126;   
+  +B120:   #1
+        vd9 = vR0.min;    
+  +B126:   #2
+        return vd9;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 Compute
+}

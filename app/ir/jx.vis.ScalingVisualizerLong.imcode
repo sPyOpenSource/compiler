@@ -1,0 +1,114 @@
+class jx/vis/ScalingVisualizerLong {
+ 
+ method <init>(Ljx/vis/Visualizer;JJJJJJ)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.vis = vR1;   
+        vR0.xoff = vl2;   
+        vR0.yoff = vl4;   
+        vR0.virtualW = vl6;   
+        vR0.virtualH = vl8;   
+        vR0.realW = vl10;   
+        vR0.realH = vl12;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 init
+ 
+ method finish()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 finish
+ 
+ method drawLine(JJJJ)V {
+  +START:   #1
+        vR0.vis.drawLine(vR0.convX@special(vl1),vR0.convY@special(vl3),vR0.convX@special(vl5),vR0.convY@special(vl7));   [l?l  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 0 found 0 drawLine
+ 
+ method drawThinLine(JJJJ)V {
+  +START:   #1
+        vR0.vis.drawThinLine(vR0.convX@special(vl1),vR0.convY@special(vl3),vR0.convX@special(vl5),vR0.convY@special(vl7));   [l?l  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 0 found 0 drawThinLine
+ 
+ method drawEllipse(JJJJ)V {
+  +START:   #1
+        vR0.vis.drawEllipse(vR0.convX@special(vl1),vR0.convY@special(vl3),vR0.convW@special(vl5),vR0.convH@special(vl7));   [l?l  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 0 found 0 drawEllipse
+ 
+ method drawText(Ljava/lang/String;JJJI)V {
+  +START:   #1
+        vR0.vis.drawText(vR1,vR0.convX@special(vl2),vR0.convY@special(vl4),vR0.convH@special(vl6),vi8);   [l?i  iii iiiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 2 any 0 found 0 drawText
+ 
+ method drawText(Ljava/lang/String;JJJIII)V {
+  +START:   #1
+        vi11 = vR0.convH@special(vl6);    [   ??R] 
+        vi12 = vR0.convY@special(vl4);    [???i   ??R] 
+        if vi11>=0 goto B33;   
+  +B21:   #1
+        vi12 = (vi11+vi12);    
+        vi11 = -vi11;    
+  +B33:   #1
+        vR0.vis.drawText(vR1,vR0.convX@special(vl2),vi12,vi11,vi8,vi9,vi10);   [iiiii  i iiiiiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 1 any 3 found 0 drawText
+ 
+ method drawRect(JJJJLjava/lang/String;)V {
+  +START:   #1
+        vR0.vis.drawRect(vR0.convX@special(vl1),vR0.convY@special(vl3),vR0.convW@special(vl5),vR0.convH@special(vl7),vR9);   [?l?R  iiii RiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 3 any 0 found 0 drawRect
+ 
+ method convX(J)I {
+  +START:   #1
+        return (int)(vR0.xoff+((vR0.realW*vl1)/vR0.virtualW));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 convX
+ 
+ method convY(J)I {
+  +START:   #1
+        return (int)(vR0.yoff+((vR0.realH*vl1)/vR0.virtualH));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 convY
+ 
+ method convW(J)I {
+  +START:   #1
+        return (int)((vR0.realW*vl1)/vR0.virtualW);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 convW
+ 
+ method convH(J)I {
+  +START:   #1
+        return (int)((vR0.realH*vl1)/vR0.virtualH);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 convH
+}

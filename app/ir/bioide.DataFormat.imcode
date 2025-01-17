@@ -1,0 +1,54 @@
+class bioide/DataFormat {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readString(Ljx/zero/Memory;II)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new byte[vi2];    
+        vi4 = 0;    
+  +B7:   #1
+        if vi4>=vi2 goto B33;   
+  +B13:   #1
+        vR3[vi4] = vR0.get8((vi1+vi4));   
+        vi4++;   
+        goto +B7;   [Ri R i ..]
+  +B33:   #1
+        return new java/lang/String(vR3);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 1 any 2 found 0 readString
+ 
+ method writeString(Ljx/zero/Memory;ILjava/lang/String;I)V {
+  +START:   #1
+        vR4 = vR2.getBytes@extra();    [ ??i  R] 
+        vi5 = vR4.length;    
+        if vi5<=vi3 goto B20;   
+  +B17:   #1
+        vi5 = vi3;    
+  +B20:   #1
+        vi6 = 0;    
+  +B23:   #1
+        if vi6>=vi5 goto B51;   
+  +B30:   #1
+        vR0.set8((vi1+vi6),vR4[vi6]);   [Rii ??i ib biR] 
+        vi6++;   
+        goto +B23;   [Rii ??i ib ...]
+  +B51:   #2
+        if vi5>=vi3 goto B74;   
+  +B57:   #1
+        b2 = vi5;    
+        vi5++;   
+        vR0.set8((vi1+b2),0);   [Rii ??i i. iiR] 
+        goto +B51;   [Rii ??i i. ...]
+  +B74:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 10 swaps 2 any 7 found 0 writeString
+}

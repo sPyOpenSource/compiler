@@ -1,0 +1,78 @@
+class java/lang/invoke/MethodTypeForm {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method findForm(Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/MethodTypeForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 findForm
+ 
+ method cachedLambdaForm(I)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 cachedLambdaForm
+ 
+ method setCachedLambdaForm(ILjava/lang/invoke/LambdaForm;)Ljava/lang/invoke/LambdaForm; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setCachedLambdaForm
+ 
+ method parameterSlotCount()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 parameterSlotCount
+ 
+ method returnSlotCount()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 returnSlotCount
+ 
+ method hasPrimitives()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hasPrimitives
+ 
+ method erasedType()Ljava/lang/invoke/MethodType; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 erasedType
+ 
+ method basicType()Ljava/lang/invoke/MethodType; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 basicType
+ 
+ method <clinit>()V {
+  +START:   #1
+        LF_REBIND = 0;   
+        LF_DELEGATE_BLOCK_INLINING = 0;   
+        LF_DELEGATE = 0;   
+        LF_GWT = 0;   
+        LF_GWC = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 0 any 0 found 0 <clinit>
+}
