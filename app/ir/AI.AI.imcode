@@ -39,15 +39,16 @@ class AI/AI {
  method main([Ljava/lang/String;)V {
   +START:   #2
         vR1 = new AI/AI();    [ R  i][ R  iR]
-  +B8:   #1
-        goto +B12;   forward return[R R  ..]
-  +H11<caught exception>:   #1 reference
-        vR1 = <caught exception>;    
+        vR1.start@extra();   [R R  R.] 
   +B12:   #1
+        goto +B16;   forward return[R R  ..]
+  +H15<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+  +B16:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 8 handler 11 type 83
+0 - 12 handler 15 type 84
  }
-// Register: rd 0/0 wr 2 swaps 0 any 0 found 0 main
+// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 main
 }
