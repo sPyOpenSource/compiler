@@ -2,31 +2,26 @@ class AI/AIMemory {
  
  method <init>()V {
   +START:   #1
-        vR0.<init>@special();   [ RR  R] 
+        vR0.<init>@special();   [ ?R  R] 
         vR0.length = 101;   
-        b1 = new java/util/TreeMap();    [ RR  i][ RR  iR]
+        b1 = new java/util/TreeMap();    [ ?R  i][ ?R  iR]
         vR0.tree = b1;   
   +B21:   #1
-        main@special(new java/lang/String()[0]);   [ RR R R.]
-        b0 = new java/lang/String()[2];    
-        b0[0] = "BioRAM";   
-        b0[1] = "FS";   
-        main@special(b0);   [ RR R R.]
         vR1 = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));    
         vR0.ports = (jx/zero/Ports)(lookup@special("Ports"));   
         vR0.buffer = vR1.alloc(512);   
-  +B79:   #1
-        goto +B83;   forward return[R RR .... ..]
-  +H82<caught exception>:   #1 reference
+  +B55:   #1
+        goto +B59;   forward return[R ?R ... ..]
+  +H58<caught exception>:   #1 reference
         vR1 = <caught exception>;    
-  +B83:   #1
+  +B59:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-21 - 79 handler 82 type 61
-21 - 79 handler 82 type 63
+21 - 55 handler 58 type 46
+21 - 55 handler 58 type 48
  }
-// Register: rd 12/12 wr 9 swaps 0 any 0 found 0 <init>
+// Register: rd 9/9 wr 7 swaps 0 any 0 found 0 <init>
  
  method init(Ljx/devices/bio/BlockIO;Ljx/fs/buffer/BufferCache;Ljx/zero/Clock;)V {
   -START:   #1
