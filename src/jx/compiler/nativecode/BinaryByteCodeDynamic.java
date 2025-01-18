@@ -1,13 +1,8 @@
-package compiler; 
+package jx.compiler.nativecode; 
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
 import java.util.Collections;
-
-import jx.compiler.nativecode.NCExceptionHandler;
-import jx.compiler.nativecode.Opr;
-import jx.compiler.nativecode.Ref;
-import jx.compiler.nativecode.Reg;
 
 import jx.compiler.symbols.*;
 import jx.zero.Debug;
