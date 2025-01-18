@@ -137,10 +137,17 @@ public class StaticCompiler implements ClassFinder {
                 in = libZip[i];
             }
             System.out.println(in.getFile());
-            MetaInfo x = new MetaInfo(in.getPath().split("dist")[0] + "META");
-
-            String sd = x.getVar("SUBDIRS");
-            String[] sds = MetaInfo.split(sd);
+            if(domainZip.length == 1){
+                if( i < 0)
+                    meta = new MetaInfo(in.getPath().split("dist")[0] + "META");
+            } else {
+                if(in.getPath().endsWith("META")){
+                    meta = new MetaInfo(in.toString());
+                    continue;
+                }
+            }
+            //String sd = x.getVar("SUBDIRS");
+            //String[] sds = MetaInfo.split(sd);
             
             try {
                 JarURLConnection con = (JarURLConnection)in.openConnection();
@@ -175,7 +182,6 @@ public class StaticCompiler implements ClassFinder {
                             ClassData data = new ClassData(new DataInputStream(is));
                             if(i < 0){
                                 domdata.add(data);
-                                meta = x;
                             } else {
                                 libdata.add(data);
                             }

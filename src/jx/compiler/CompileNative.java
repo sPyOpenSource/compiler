@@ -104,11 +104,12 @@ public class CompileNative {
         URL[] libClasses = new URL[0];
         if(path.endsWith("init2")){
             domClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/APP/dist/testOS.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/FS/dist/testFS.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/HCI/dist/testHCI.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/NET/dist/testNET.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/dev/WM/dist/JavaWM.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/"),
+                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/FS/dist/testFS.jar!/"),
+                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/"),
+                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/NET/dist/testNET.jar!/"),
+                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/"),
+                //new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META")
             };
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
@@ -129,7 +130,8 @@ public class CompileNative {
             domClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
                 new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
+                new URL("https://github.com/sPyOpenSource/os/raw/dev/META")
             };
             libClasses = new URL[]{
                 new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/")
