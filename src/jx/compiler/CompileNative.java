@@ -12,8 +12,6 @@ import de.tu_darmstadt.informatik.rbg.hatlak.joliet.impl.JolietConfig;
 import de.tu_darmstadt.informatik.rbg.hatlak.rockridge.impl.RockRidgeConfig;
 import de.tu_darmstadt.informatik.rbg.mhartle.sabre.HandlerException;
 
-import jx.emulation.MemoryManagerImpl;
-import jx.zero.MemoryManager;
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
 
@@ -31,8 +29,6 @@ import jx.zero.Debug;
 import net.lingala.zip4j.ZipFile;
 
 public class CompileNative {
-    static MemoryManager memMgr = new MemoryManagerImpl();
-
     public static void main(String[] args) throws Exception {
 	String libdir = "./app/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
@@ -167,7 +163,6 @@ public class CompileNative {
                                  opts, io);
 
         // release resources
-
         for (ExtendedDataInputStream table : tableIn)
             table.close();
         codeFile.close();
@@ -195,12 +190,14 @@ public class CompileNative {
             while((len=fis.read(buffer)) != -1){
                 gzipOS.write(buffer, 0, len);
             }
+            
             //close resources
             gzipOS.close();
             fos.close();
             fis.close();
             
             File outfile = new File("ISOTest6.iso");
+            
             // Directory hierarchy, starting from the root
             ISO9660RootDirectory.MOVED_DIRECTORIES_STORE_NAME = "rr_moved";
             ISO9660RootDirectory root = new ISO9660RootDirectory();
