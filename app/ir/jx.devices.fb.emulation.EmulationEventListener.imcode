@@ -1,0 +1,69 @@
+class jx/devices/fb/emulation/EmulationEventListener {
+ 
+ method <init>(Ljx/wm/WindowManager;Ljx/zero/FBEmulation;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ R  RR] 
+        vR0.x = -1;   
+        vR0.y = -1;   
+        vR0.mousex = -1;   
+        vR0.mousey = -1;   
+        vR0.fb = vR2;   
+        b0 = new jx/devices/fb/emulation/EmulationEventListener$1(vR0,"FBEmul-Eventloop");    [ R  i.][ R . iRRR]
+        b0.start();   [ R . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method eventloop()V {
+  +START:   #1
+        if vR0.fb.inputDevicesAvailable()!=0 goto B13;   
+  +B12:   #1
+        return;   
+  +B13:   #1
+        vR1 = new jx/zero/FBEmulationEvent();    [ RR  i][ RR  iR]
+  +B21:   #2
+        if vR0.fb.checkEvent(vR1)!=0 goto B45;   
+  +B34:   #1
+        yield@special();   [R RR  ..]
+        vi2 = vR1.eventType;    
+        goto +B21;   [Ri RR  ..]
+  +B45:   #1
+        lswitch (vR1.eventType) { 
+           1:B100
+           2:B115
+           4:B130
+           8:B141
+           16:B152
+           ::B216
+        };   
+  +B100:   #1
+        vR0.handleKeyDown@this(vR0.translateKeyCode@special(vR1.keycode));   [Ri RR ii iR] 
+        goto +B216;   [Ri RR ii ..]
+  +B115:   #1
+        vR0.handleKeyUp@this(vR0.translateKeyCode@special(vR1.keycode));   [Ri RR ii iR] 
+        goto +B216;   [Ri RR ii ..]
+  +B130:   #1
+        vR0.handleMouseDown@this(vR1.button);   [Ri RR i. iR] 
+        goto +B216;   [Ri RR i. ..]
+  +B141:   #1
+        vR0.handleMouseUp@this(vR1.button);   [Ri RR i. iR] 
+        goto +B216;   [Ri RR i. ..]
+  +B152:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("MOUSE MOVE: ").append@extra(vR1.x).append@extra("/").append@extra(vR1.y).append@extra(", state=").append@extra(vR1.state).toString@extra());   [Ri RR iiiiiii..... RR.....] 
+        vR0.handleMousePosition@this(vR1.x,vR1.y);   [Ri RR iiiiiiiii... iiR....] 
+  +B216:   #5
+        goto +B21;   [Ri RR ............ .......]
+  +END:   #1
+ }
+// Register: rd 22/22 wr 25 swaps 15 any 0 found 0 eventloop
+ 
+ method translateKeyCode(I)I {
+  +START:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 translateKeyCode
+}

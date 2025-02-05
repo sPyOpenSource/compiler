@@ -1,0 +1,52 @@
+class jx/wm/plugin/FileReceiver {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vi1 = parseInt@special(vR0[1]);    [ RRR R R]
+        vR2 = new java/net/ServerSocket(vi1);    [ RRR R i][ RRR R. iiR]
+        out.println("Accepting connections");   [iR RRR Ri. RR.] 
+        vR3 = vR2.accept();    [iR RRR Ri. R..] 
+        out.println("Connection established.");   [iRR RRR Rii. RR.] 
+        vR4 = new java/io/BufferedInputStream(vR3.getInputStream());    [ RRR Rii. i..][ RRR Rii. iRR]
+        vR5 = new jx/formats/LittleEndianInputStream(vR4);    [ RRR Rii. i..][ RRR Rii. iRR]
+        vi6 = vR5.readInt@extra();    [iRRRR RRR Rii. R..] 
+        vi7 = vR5.readInt@extra();    [iRRRRi RRR Rii. R..] 
+        vi8 = vR5.readInt@extra();    [iRRRRii RRR Rii. R..] 
+        b0 = new java/io/BufferedOutputStream;    
+        b1 = b0;    
+        b2 = new java/io/FileOutputStream(vR0[0]);    [ RRR Rii. i..][ RRR Rii. iRR]
+        b1.<init>@special(b2);   [iRRRRiii RRR Rii. RR.] 
+        vR9 = b0;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR Rii. i..][ RRR Rii. iR.]
+        b0.println(b1.append@extra("Size: ").append@extra(vi8).toString@extra());   [iRRRRiiiR RRR Riiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR Riiii. i..][ RRR Riiii. iR.]
+        b0.println(b1.append@extra("Width: ").append@extra(vi6).toString@extra());   [iRRRRiiiR RRR Riiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR Riiiiii. i..][ RRR Riiiiii. iR.]
+        b0.println(b1.append@extra("Height: ").append@extra(vi7).toString@extra());   [iRRRRiiiR RRR Riiiiiiii. RR.] 
+        vi10 = 0;    
+  +B182:   #1
+        if vi10>=vi8 goto B209;   
+  +B189:   #1
+        vi11 = vR4.read();    [iRRRRiiiRi RRR .......... R..] 
+        vR9.write(vi11);   [iRRRRiiiRii RRR .......... iR.] 
+        vi10++;   
+        goto +B182;   [iRRRRiiiRii RRR .......... ...]
+  +B209:   #1
+        vR9.close();   [iRRRRiiiRii RRR .......... R..] 
+        out.println("Done.");   [iRRRRiiiRii RRR i......... RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 44 swaps 9 any 4 found 0 main
+}

@@ -1,0 +1,138 @@
+class org/jnode/fs/ntfs/logfile/RestartArea {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCurrentLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCurrentLsn
+ 
+ method getLogClients()I {
+  +START:   #1
+        return vR0.getUInt16@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLogClients
+ 
+ method getClientFreeList()I {
+  +START:   #1
+        return vR0.getUInt16@this(10);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientFreeList
+ 
+ method getClientInUseList()I {
+  +START:   #1
+        return vR0.getUInt16@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientInUseList
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getUInt16@this(14);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getSequenceNumberBits()J {
+  +START:   #1
+        return vR0.getUInt32@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSequenceNumberBits
+ 
+ method getRestartAreaLength()I {
+  +START:   #1
+        return vR0.getUInt16@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRestartAreaLength
+ 
+ method getClientArrayOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(22);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientArrayOffset
+ 
+ method getFileSize()J {
+  +START:   #1
+        return vR0.getInt64@this(24);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFileSize
+ 
+ method getLastLsnDataLength()J {
+  +START:   #1
+        return vR0.getUInt32@this(32);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastLsnDataLength
+ 
+ method getRecordLength()I {
+  +START:   #1
+        return vR0.getUInt16@this(36);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRecordLength
+ 
+ method getLogPageDataOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(38);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLogPageDataOffset
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder("Restart Area:[
+");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append@extra(b1.append@extra("current-lsn: ").append@extra(vR0.getCurrentLsn@this()).append@extra("
+").toString@extra());   [R RR iii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iii.. i....][ RR iii.. iR...]
+        vR1.append@extra(b1.append@extra("log-clients: ").append@extra(vR0.getLogClients@this()).append@extra("
+").toString@extra());   [R RR iiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiii.ii. i....][ RR iiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("client-free-list: ").append@extra(vR0.getClientFreeList@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii.ii. i....][ RR iiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("client-in-use-list: ").append@extra(vR0.getClientInUseList@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("flags: ").append@extra(vR0.getFlags@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("seq-number-bits: ").append@extra(vR0.getSequenceNumberBits@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("restart-area-length: ").append@extra(vR0.getRestartAreaLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("client-array-offset: ").append@extra(vR0.getClientArrayOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("file-size: ").append@extra(vR0.getFileSize@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("last-lsn-data-length: ").append@extra(vR0.getLastLsnDataLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("record-length: ").append@extra(vR0.getRecordLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("log-page-data-offset: ").append@extra(vR0.getLogPageDataOffset@this()).append@extra("]").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 34/34 wr 94 swaps 44 any 0 found 0 toDebugString
+}

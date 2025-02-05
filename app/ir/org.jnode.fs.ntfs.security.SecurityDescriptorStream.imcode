@@ -1,0 +1,50 @@
+class org/jnode/fs/ntfs/security/SecurityDescriptorStream {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFile$StreamFile;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.sdsFile = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getEntries()Ljava/util/List; {
+  +START:   #1
+        if vR0.entries!=null goto B74;   
+  +B7:   #1
+        b1 = new java/util/ArrayList();    [ ?R  i][ ?R  iR]
+        vR0.entries = b1;   
+        vl1 = 0;    
+        vl3 = (long)vR0.sdsFile.getLength();    
+  +B29:   #1
+        if compare(vl1,vl3)>=0 goto B74;   
+  +B35:   #1
+        vR5 = vR0.readOneEntry@this(vl1);    [l?l ?R  ??R] 
+        if vR5!=null goto B50;   
+  +B47:   #1
+        goto +B74;   forward return[l?l?R ?R  ...]
+  +B50:   #1
+        vR0.entries.add(vR5);   [l?l?R ?R  RR.] 
+        vl1 = (vl1+(long)vR5.getLength());    
+        goto +B29;   [l?l?R ?R  ...]
+  +B74:   #3
+        return vR0.entries;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 0 getEntries
+ 
+ method readOneEntry(J)Lorg/jnode/fs/ntfs/security/SecurityDescriptorStreamEntry; {
+  +START:   #1
+        vR3 = new byte[4];    
+        vi4 = 0;    
+        if vi4!=0 goto B14;   
+  +B12:   #1
+        return 0;   
+  +B14:   #1
+        vR5 = new byte[vi4];    
+        return new org/jnode/fs/ntfs/security/SecurityDescriptorStreamEntry(0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 4 swaps 0 any 1 found 0 readOneEntry
+}

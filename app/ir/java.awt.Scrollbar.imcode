@@ -1,0 +1,387 @@
+class java/awt/Scrollbar {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,0,10,0,100);   [   iiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIIII)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        if vi1==0 goto B40;   
+  +B8:   #1
+        if vi1==1 goto B40;   
+  -B13:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Bad orientation value: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B40:   #2
+        vR0.orientation = vi1;   
+        vR0.setValues@this(vi2,vi3,vi4,vi5);   [ RRR ... iiiiR] 
+        vR0.lineIncrement = 1;   
+        vR0.pageIncrement = ((vi5-vi4)/5);   
+        if vR0.pageIncrement!=0 goto B83;   
+  +B78:   #1
+        vR0.pageIncrement = 1;   
+  +B83:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 7 swaps 2 any 3 found 0 <init>
+ 
+ method getOrientation()I {
+  +START:   #1
+        return vR0.orientation;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOrientation
+ 
+ method setOrientation(I)V {
+  +START:   #1
+        if vi1==0 goto B36;   
+  +B4:   #1
+        if vi1==1 goto B36;   
+  -B9:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Bad orientation value: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B36:   #2
+        vR0.orientation = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 2 any 3 found 0 setOrientation
+ 
+ method getValue()I {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method setValue(I)V {
+  +START:   #1
+        vR0.setValues@this(vi1,vR0.visibleAmount,vR0.minimum,vR0.maximum);   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 setValue
+ 
+ method getMaximum()I {
+  +START:   #1
+        return vR0.maximum;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaximum
+ 
+ method setMaximum(I)V {
+  +START:   #1
+        vR0.setValues@this(vR0.value,vR0.visibleAmount,vR0.minimum,vi1);   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 setMaximum
+ 
+ method getMinimum()I {
+  +START:   #1
+        return vR0.minimum;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimum
+ 
+ method setMinimum(I)V {
+  +START:   #1
+        vR0.setValues@this(vR0.value,vR0.visibleAmount,vi1,vR0.maximum);   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 setMinimum
+ 
+ method getVisibleAmount()I {
+  +START:   #1
+        return vR0.visibleAmount;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVisibleAmount
+ 
+ method getVisible()I {
+  +START:   #1
+        return vR0.getVisibleAmount@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVisible
+ 
+ method setVisibleAmount(I)V {
+  +START:   #1
+        vR0.setValues@this(vR0.value,vi1,vR0.minimum,vR0.maximum);   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 setVisibleAmount
+ 
+ method setValues(IIII)V {
+  +START:   #1
+        if vi4>=vi3 goto B9;   
+  +B6:   #1
+        vi4 = vi3;    
+  +B9:   #1
+        if vi1>=vi3 goto B16;   
+  +B14:   #1
+        vi1 = vi3;    
+  +B16:   #1
+        if vi1<=vi4 goto B25;   
+  +B22:   #1
+        vi1 = vi4;    
+  +B25:   #1
+        vR0.value = vi1;   
+        vR0.visibleAmount = vi2;   
+        vR0.minimum = vi3;   
+        vR0.maximum = vi4;   
+        vR5 = 0;    
+        if vR5==null goto B66;   
+  +B54:   #1
+        vR5.setValues(vi1,vi2,vi3,vi4);   [R   iiiiR] 
+  +B66:   #1
+        vi6 = (vi4-vi3);    
+        if vR0.lineIncrement<=vi6 goto B116;   
+  +B81:   #1
+        if vi6!=0 goto B94;   
+  +B86:   #1
+        vR0.lineIncrement = 1;   
+        goto +B100;   [Ri   .....]
+  +B94:   #1
+        vR0.lineIncrement = vi6;   
+  +B100:   #1
+        if vR5==null goto B116;   
+  +B105:   #1
+        vR5.setLineIncrement(vR0.lineIncrement);   [Ri  i iR...] 
+  +B116:   #2
+        if vR0.pageIncrement<=vi6 goto B160;   
+  +B125:   #1
+        if vi6!=0 goto B138;   
+  +B130:   #1
+        vR0.pageIncrement = 1;   
+        goto +B144;   [Ri  . .....]
+  +B138:   #1
+        vR0.pageIncrement = vi6;   
+  +B144:   #1
+        if vR5==null goto B160;   
+  +B149:   #1
+        vR5.setPageIncrement(vR0.pageIncrement);   [Ri  i iR...] 
+  +B160:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 7 swaps 2 any 12 found 0 setValues
+ 
+ method getUnitIncrement()I {
+  +START:   #1
+        return vR0.lineIncrement;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUnitIncrement
+ 
+ method getLineIncrement()I {
+  +START:   #1
+        return vR0.lineIncrement;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLineIncrement
+ 
+ method setUnitIncrement(I)V {
+  +START:   #1
+        if vi1>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("Unit increment less than zero.");   
+  +B14:   #1
+        vi2 = (vR0.maximum-vR0.minimum);    
+        if vi1<=vi2 goto B40;   
+  +B29:   #1
+        if vi2!=0 goto B38;   
+  +B33:   #1
+        vi1 = 1;    
+        goto +B40;   [i R . ...]
+  +B38:   #1
+        vi1 = vi2;    
+  +B40:   #2
+        if vi1!=vR0.lineIncrement goto B49;   
+  +B48:   #1
+        return;   
+  +B49:   #1
+        vR0.lineIncrement = vi1;   
+        vR3 = 0;    
+        if vR3==null goto B70;   
+  +B60:   #1
+        vR3.setLineIncrement(vR0.lineIncrement);   [iR R i iR.] 
+  +B70:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 5 swaps 1 any 6 found 0 setUnitIncrement
+ 
+ method setLineIncrement(I)V {
+  +START:   #1
+        vR0.setUnitIncrement@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLineIncrement
+ 
+ method getBlockIncrement()I {
+  +START:   #1
+        return vR0.pageIncrement;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBlockIncrement
+ 
+ method getPageIncrement()I {
+  +START:   #1
+        return vR0.pageIncrement;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPageIncrement
+ 
+ method setBlockIncrement(I)V {
+  +START:   #1
+        if vi1>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("Block increment less than zero.");   
+  +B14:   #1
+        vi2 = (vR0.maximum-vR0.minimum);    
+        if vi1<=vi2 goto B40;   
+  +B29:   #1
+        if vi2!=0 goto B38;   
+  +B33:   #1
+        vi1 = 1;    
+        goto +B40;   [i R . ...]
+  +B38:   #1
+        vi1 = vi2;    
+  +B40:   #2
+        if vi1!=vR0.pageIncrement goto B49;   
+  +B48:   #1
+        return;   
+  +B49:   #1
+        vR0.pageIncrement = vi1;   
+        vR3 = 0;    
+        if vR3==null goto B70;   
+  +B60:   #1
+        vR3.setPageIncrement(vR0.pageIncrement);   [iR R i iR.] 
+  +B70:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 5 swaps 1 any 6 found 0 setBlockIncrement
+ 
+ method setPageIncrement(I)V {
+  +START:   #1
+        vR0.setBlockIncrement@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setPageIncrement
+ 
+ method addNotify()V {
+  +START:   #1
+        vR0.addNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method addAdjustmentListener(Ljava/awt/event/AdjustmentListener;)V {
+  +START:   #1
+        vR0.adjustment_listeners = add@special(vR0.adjustment_listeners,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 addAdjustmentListener
+ 
+ method removeAdjustmentListener(Ljava/awt/event/AdjustmentListener;)V {
+  +START:   #1
+        vR0.adjustment_listeners = remove@special(vR0.adjustment_listeners,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 removeAdjustmentListener
+ 
+ method processEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if (vR1 instanceof java/awt/event/AdjustmentEvent)==0 goto B18;   
+  +B7:   #1
+        vR0.processAdjustmentEvent@this((java/awt/event/AdjustmentEvent)(vR1));   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B18:   #1
+        vR0.processEvent@special(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 processEvent
+ 
+ method processAdjustmentEvent(Ljava/awt/event/AdjustmentEvent;)V {
+  +START:   #1
+        if vR0.adjustment_listeners==null goto B17;   
+  +B7:   #1
+        vR0.adjustment_listeners.adjustmentValueChanged(vR1);   [   RR] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 processAdjustmentEvent
+ 
+ method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        vR0.dispatchEventImpl@special(vR1);   [   RR] 
+        if vR1.id>601 goto B50;   
+  +B15:   #1
+        if vR1.id<601 goto B50;   
+  +B25:   #1
+        if vR0.adjustment_listeners!=null goto B45;   
+  +B32:   #1
+        if compare((vR0.eventMask & 256),0)==0 goto B50;   
+  +B45:   #1
+        vR0.processEvent@this(vR1);   [   RR] 
+  +B50:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0 = b0.append@extra("value=").append@extra(vR0.getValue@this()).append@extra(",visibleAmount=").append@extra(vR0.getVisibleAmount@this()).append@extra(",minimum=").append@extra(vR0.getMinimum@this()).append@extra(",maximum=").append@extra(vR0.getMaximum@this()).append@extra(",pageIncrement=").append@extra(vR0.pageIncrement).append@extra(",lineIncrement=").append@extra(vR0.lineIncrement).append@extra(",orientation=");    [ RR iiiii.....ii..ii..ii..ii. RR............] [ RR iiiiiR....ii..ii..ii..ii. RiR...........] [ RR iiiiiRR...ii..ii..ii..ii. RiRR..........] [ RR iiiiiRRR..ii..ii..ii..ii. RiRiR.........] [ RR iiiiiRRRR.ii..ii..ii..ii. RiRiRR........] [ RR iiiiiRRRRRii..ii..ii..ii. RiRiRiR.......] [ RR iiiiiRRRRRiiR.ii..ii..ii. RiRiRiRR......] [ RR iiiiiRRRRRiiRRii..ii..ii. RiRiRiRiR.....] [ RR iiiiiRRRRRiiRRiiR.ii..ii. RiRiRiRiRR....] [ RR iiiiiRRRRRiiRRiiRRii..ii. RiRiRiRiRiR...] [ RR iiiiiRRRRRiiRRiiRRiiR.ii. RiRiRiRiRiRR..] [ RR iiiiiRRRRRiiRRiiRRiiRRii. RiRiRiRiRiRiR.] [ RR iiiiiRRRRRiiRRiiRRiiRRiiR RiRiRiRiRiRiRR] 
+        if vR0.orientation!=0 goto B96;   
+  +B91b0:   #1 reference
+        b1 = "HORIZONTAL";    
+        goto +B98b0b1;   forward return[ RR ......................... ..............]
+  +B96b0:   #1 reference
+        b1 = "VERTICAL";    
+  +B98b0b1:   #1 reference reference
+        return b0.append@extra(b1).append@extra(vR0.paramString@special()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 32 swaps 14 any 0 found 0 paramString
+ 
+ method getFont()Ljava/awt/Font; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFont
+}

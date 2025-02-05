@@ -1,0 +1,44 @@
+class jx/keyboard/KeyboardListener {
+ 
+ method <init>(Ljx/wm/WindowManager;Ljx/keyboard/KeyboardImpl;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        vR0.m_cKeyboard = vR2;   
+        out.println("KeyboardListener::KeyboardListener() for native pc keyboard");   [ ?R i. RR] 
+        b1 = new java/lang/Thread(vR0,"KeyboardListener (PC Keyboard)");    [ ?R i. i.][ ?R i. iRRR]
+        vR0.m_cThread = b1;   
+        vR0.m_cThread.start();   [ ?R i. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 0 found 0 <init>
+ 
+ method finalize()V {
+  +START:   #1
+        out.println("KeyboardListener::finalize()");   [  i. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 finalize
+ 
+ method run()V {
+  +START:   #1
+        out.println("Starting to listen to keyboard");   [ R i. RR] 
+        vR1 = new jx/wm/Keycode();    [ R i. i.][ R i. iR]
+        vR2 = new jx/wm/Keycode();    [ R i. i.][ R i. iR]
+  +B24:   #1
+        vi3 = (vR0.m_cKeyboard.getcode() & 255);    
+        if vi3==0 goto B67;   
+  +B40:   #1
+        if (vi3 & 128)==0 goto B59;   
+  +B48:   #1
+        vR0.handleKeyUp@this((vi3 & 127));   [RRi R i. iR] 
+        goto +B67;   [RRi R i. ..]
+  +B59:   #1
+        vR0.handleKeyDown@this((vi3 & 127));   [RRi R i. iR] 
+  +B67:   #2
+        goto +B24;   [RRi R .. ..]
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 2 found 0 run
+}

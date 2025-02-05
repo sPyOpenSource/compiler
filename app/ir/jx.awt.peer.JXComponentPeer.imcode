@@ -1,0 +1,625 @@
+class jx/awt/peer/JXComponentPeer {
+ 
+ method <init>(Ljx/awt/JXToolkit;Ljava/awt/Component;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.peerState = 0;   
+        vR0.isEnabled = 1;   
+        vR0.isVisible = 1;   
+        vR0.ready = 0;   
+        vR0.toolkit = vR1;   
+        vR0.parent = vR2;   
+        vR0.setEnabled@this(vR2.isEnabled());   [  i bR] 
+        vR0.isVisible = vR2.isVisible();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method paint(Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR0.paint@this((jx/awt/JXGraphics)(vR1));   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 paint
+ 
+ method keyPressed(III)V {
+  +START:   #1
+        vR0.sendKeyEvent@this(401,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keyPressed
+ 
+ method keyReleased(IIIZ)V {
+  +START:   #1
+        vR0.sendKeyEvent@this(402,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keyReleased
+ 
+ method keyClicked(III)V {
+  +START:   #1
+        vR0.sendKeyEvent@this(400,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 keyClicked
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.peerState = 1;   
+        vR0.sendMouseEvent@this(501,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        b0 = vR0;    
+        if vi4==0 goto B10;   
+  +B6b0:   #1 reference
+        b1 = 2;    
+        goto +B11b0b1;   [ Ri  ]
+  +B10b0:   #1 reference
+        b1 = 0;    
+  +B11b0b1:   #1 reference int
+        b0.peerState = b1;   
+        vR0.sendMouseEvent@this(502,vi1,vi2,vi3);   [ Ri  iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 mouseReleased
+ 
+ method mouseClicked(III)V {
+  +START:   #1
+        vR0.sendMouseEvent@this(500,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 mouseClicked
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.isEnabled==0 goto B12;   
+  +B8b0:   #1 reference
+        b1 = 2;    
+        goto +B13b0b1;   [ Ri  ]
+  +B12b0:   #1 reference
+        b1 = 3;    
+  +B13b0b1:   #1 reference int
+        b0.peerState = b1;   
+        vR0.sendMouseEvent@this(504,vi1,vi2,vi3);   [ Ri  iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.isEnabled==0 goto B12;   
+  +B8b0:   #1 reference
+        b1 = 0;    
+        goto +B13b0b1;   [ Ri  ]
+  +B12b0:   #1 reference
+        b1 = 3;    
+  +B13b0b1:   #1 reference int
+        b0.peerState = b1;   
+        vR0.sendMouseEvent@this(505,vi1,vi2,vi3);   [ Ri  iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 mouseExited
+ 
+ method mouseMoved(III)V {
+  +START:   #1
+        vR0.sendMouseEvent@this(503,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 mouseMoved
+ 
+ method mouseDragged(III)V {
+  +START:   #1
+        vR0.sendMouseEvent@this(506,vi1,vi2,vi3);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 mouseDragged
+ 
+ method sendKeyEvent(IIII)V {
+  +START:   #1
+        vi5 = translate@special(vi2,vi3);    [ RR  ii]
+        vi6 = 0;    
+        if shiftPressed@special(vi4)==0 goto B24;   
+  +B18:   #1
+        vi6 = (vi6 | 1);    
+  +B24:   #1
+        if altPressed@special(vi4)==0 goto B39;   
+  +B32:   #1
+        vi6 = (vi6 | 8);    
+  +B39:   #1
+        if ctrlPressed@special(vi4)==0 goto B53;   
+  +B47:   #1
+        vi6 = (vi6 | 2);    
+  +B53:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/KeyEvent(vR0.parent,0,(long)vi1,vi6,vi5);    [ RR  i.][ RR .. iiiliRR]
+        b0.postEvent(b1);   [ii RR .. RR.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 9 swaps 0 any 3 found 0 sendKeyEvent
+ 
+ method sendMouseEvent(IIII)V {
+  +START:   #1
+        vR5 = vR0.getLocationRelativeToComponent@this(vi2,vi3);    [ RRRRil_iiiii  iiR] 
+        vi6 = 0;    
+        if vi4!=1 goto B24;   
+  +B17:   #1
+        vi6 = (vi6 | 16);    
+  +B24:   #1
+        if vi4!=2 goto B36;   
+  +B30:   #1
+        vi6 = (vi6 | 4);    
+  +B36:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/MouseEvent;    
+        b2 = b1;    
+        b3 = vR0.parent;    
+        b4 = 0;    
+        b5 = (long)vi1;    
+        b6 = vi6;    
+        b7 = vR5.x;    
+        b8 = vR5.y;    
+        b9 = 0;    
+        if vi4!=2 goto B85;   
+  +B81b0b1b2b3b4b5b6b7b8b9:   #1 reference reference reference reference int long int int int int
+        b10 = 1;    
+        goto +B86b0b1b2b3b4b5b6b7b8b9b10;   [Ri RRRRil_iiiii  ...]
+  +B85b0b1b2b3b4b5b6b7b8b9:   #1 reference reference reference reference int long int int int int
+        b10 = 0;    
+  +B86b0b1b2b3b4b5b6b7b8b9b10:   #1 reference reference reference reference int long int int int int int
+        b2.<init>@special(b3,b4,b5,b6,b7,b8,b9,b10);   [Ri RRRRil_iiiii  iiiii??iRR] 
+        b0.postEvent(b1);   [Ri RRRRil_iiiii  RR........] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 14 swaps 0 any 7 found 0 sendMouseEvent
+ 
+ method sendComponentEvent(I)V {
+  +START:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/ComponentEvent(vR0.parent,vi1);    [ RR  i][ RR . iiRR]
+        b0.postEvent(b1);   [ RR . RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 0 found 0 sendComponentEvent
+ 
+ method enabled()Z {
+  +START:   #1
+        return vR0.isEnabled;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enabled
+ 
+ method visible()Z {
+  +START:   #1
+        return vR0.isVisible;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 visible
+ 
+ method redraw()V {
+  +START:   #1
+        if vR0.ready==0 goto B31;   
+  +B7:   #1
+        if vR0.parent==null goto B31;   
+  +B14:   #1
+        vR1 = vR0.getJXGraphics@this();    [   R] 
+        vR1.setBufferCount();   [R   R] 
+        vR0.redrawComponent@this();   [R   R] 
+        vR1.drawBackBuffer();   [R   R] 
+  +B31:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 redraw
+ 
+ method redrawComponent()V {
+  +START:   #1
+        if vR0.ready==0 goto B94;   
+  +B7:   #1
+        if vR0.parent==null goto B94;   
+  +B14:   #1
+        vR1 = vR0.getJXGraphics@this();    [ RRRR?R  R] 
+        if vR0.isVisible==0 goto B89;   
+  +B26:   #1
+        vR0.paint@this(vR1);   [R RRRR?R  RR] 
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/PaintEvent;    
+        b2 = b1;    
+        b3 = vR0.parent;    
+        b5 = new java/awt/Rectangle(vR0.x,vR0.y,vR0.width,vR0.height);    [ RRRR?R  i.][ RRRR?R . iiiiiR]
+        b2.<init>@special(b3,800,b5);   [R RRRR?R . RiRR..] 
+        b0.postEvent(b1);   [R RRRR?R . RR....] 
+        goto +B94;   forward return[R RRRR?R . ......]
+  +B89:   #1
+        vR0.paintInvisibleComponent@this(vR1);   [R RRRR?R . RR....] 
+  +B94:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 7 swaps 0 any 1 found 0 redrawComponent
+ 
+ method hasFocus()Z {
+  +START:   #1
+        if vR0.toolkit.getFocusHandler().getFocusedComponent()!=vR0.parent goto B21;   
+  +B17:   #1
+        b0 = 1;    
+        goto +B22b0;   forward return[ i . .]
+  +B21:   #1
+        b0 = 0;    
+  +B22b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 hasFocus
+ 
+ method setFocus()V {
+  +START:   #1
+        vR0.toolkit.getFocusHandler().setFocusedComponent(vR0.parent);   [  i. RR] [  iR RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 setFocus
+ 
+ method getLocationRelativeToComponent(II)Ljava/awt/Point; {
+  +START:   #1
+        vR3 = vR0.getJXGraphics@this().getLocationRelativeToComponent(vi1,vi2);    [  . iiR] [  R iiR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getLocationRelativeToComponent
+ 
+ method getLocationRelativeToWindow(II)Ljava/awt/Point; {
+  +START:   #1
+        vR3 = vR0.getJXGraphics@this().getLocationRelativeToWindow(vi1,vi2);    [  . iiR] [  R iiR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getLocationRelativeToWindow
+ 
+ method getHostWindow()Ljava/awt/Window; {
+  +START:   #1
+        vR1 = vR0.parent;    
+  +B5:   #1
+        if (vR1 instanceof java/awt/Window)!=0 goto B20;   
+  +B12:   #1
+        vR1 = vR1.getParent();    [R   R.] 
+        goto +B5;   [R   ..]
+  +B20:   #1
+        return (java/awt/Window)(vR1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 1 getHostWindow
+ 
+ method getJXGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = 0;    
+        vR5 = 0;    
+        vR6 = vR0.parent;    
+  +B18:   #1
+        if (vR6 instanceof java/awt/Frame)!=0 goto B136;   
+  +B26:   #1
+        vR7 = vR6.getBounds();    [iiiiRR   R.] 
+        vi1 = (vi1+vR7.x);    
+        vi2 = (vi2+vR7.y);    
+        if (vR6.getParent() instanceof java/awt/ScrollPane)==0 goto B126;   
+  +B60:   #1
+        if vR6==(java/awt/ScrollPane)(vR6.getParent()).getHAdjustable() goto B126;   
+  +B76:   #1
+        if vR6==(java/awt/ScrollPane)(vR6.getParent()).getVAdjustable() goto B126;   
+  +B92:   #1
+        vR5 = (java/awt/ScrollPane)(vR6.getParent()).getViewportSize();    [iiiiRRR  . R.] 
+        vR8 = 0;    
+        vi3 = (vi3-vR8.x);    
+        vi4 = (vi4-vR8.y);    
+  +B126:   #3
+        vR6 = vR6.getParent();    [iiiiRRRR  . R.] 
+        goto +B18;   [iiiiRRRR  . ..]
+  +B136:   #1
+        vR7 = 0;    
+        if vR5==null goto B198;   
+  +B144:   #1
+        vR8 = vR7.getTranslationOrigin();    [iiiiRRRR  . R.] 
+        vR8.x = (vR8.x+vi1);   
+        vR8.y = (vR8.y+vi2);   
+        vR7.setViewClip(vR8.x,vR8.y,vR5.width,vR5.height);   [iiiiRRRR  iiii iiiiR] 
+  +B198:   #1
+        vR7.translate((vi1+vi3),(vi2+vi4));   [iiiiRRRR  ii.. iiR..] 
+        vR7.setClip(0,0,vR0.width,vR0.height);   [iiiiRRRR  iiii iiiiR] 
+        return vR7;   
+  +END:   #1
+ }
+// Register: rd 45/45 wr 30 swaps 3 any 7 found 4 getJXGraphics
+ 
+ method setCursor(Ljava/awt/Cursor;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setCursor
+ 
+ method print(Ljava/awt/Graphics;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 print
+ 
+ method setEventMask(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setEventMask
+ 
+ method handleEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleEvent
+ 
+ method setForeground(Ljava/awt/Color;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setForeground
+ 
+ method setBackground(Ljava/awt/Color;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setBackground
+ 
+ method setVisible(Z)V {
+  +START:   #1
+        vR0.ready = vi1;   
+        vR0.isVisible = vi1;   
+        if vi1==0 goto B19;   
+  +B14:   #1
+        b0 = 102;    
+        goto +B21b0;   [ i  ]
+  +B19:   #1
+        b0 = 103;    
+  +B21b0:   #1 int
+        vi2 = b0;    
+        vR0.sendComponentEvent@this(vi2);   [i i  iR] 
+        if (vR0.parent instanceof java/awt/Window)!=0 goto B41;   
+  +B37:   #1
+        vR0.redraw@extra();   [i i  R.] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 2 found 0 setVisible
+ 
+ method requestFocus()V {
+  +START:   #1
+        vR2 = vR0.toolkit.getFocusHandler().getFocusedComponent();    [  . R] [  R R] 
+        if vR2==null goto B20;   
+  +B15:   #1
+        vR1 = 0;    
+        goto +B22;   [RR  . .]
+  +B20:   #1
+        vR1 = 0;    
+  +B22:   #1
+        vR0.setFocus@this();   [RR  . R] 
+        if vR1==null goto B41;   
+  +B30:   #1
+        if vR1.isFocusTraversable()==0 goto B41;   
+  +B37:   #1
+        vR1.redraw@extra();   [RR  . R] 
+  +B41:   #2
+        if vR0.isFocusTraversable@this()==0 goto B52;   
+  +B48:   #1
+        vR0.redraw@extra();   [RR  . R] 
+  +B52:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 requestFocus
+ 
+ method isFocusTraversable()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFocusTraversable
+ 
+ method enable()V {
+  +START:   #1
+        vR0.setEnabled@this(1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enable
+ 
+ method disable()V {
+  +START:   #1
+        vR0.setEnabled@this(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 disable
+ 
+ method setEnabled(Z)V {
+  +START:   #1
+        if vi1==vR0.isEnabled goto B58;   
+  +B8:   #1
+        vR0.isEnabled = vi1;   
+        b0 = vR0;    
+        if vR0.isEnabled==0 goto B25;   
+  +B21b0:   #1 reference
+        b1 = 0;    
+        goto +B26b0b1;   [ Ri  ]
+  +B25b0:   #1 reference
+        b1 = 3;    
+  +B26b0b1:   #1 reference int
+        b0.peerState = b1;   
+        if vR0.isEnabled!=0 goto B54;   
+  +B36:   #1
+        if vR0.hasFocus@this()==0 goto B54;   
+  +B43:   #1
+        vR0.toolkit.getFocusHandler().setFocusedComponent(0);   [ Ri . RR] [ Ri R RR] 
+  +B54:   #2
+        vR0.redraw@extra();   [ Ri . R.] 
+  +B58:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 3 swaps 0 any 2 found 0 setEnabled
+ 
+ method repaint(IIII)V {
+  +START:   #1
+        vR0.redraw@extra();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 repaint
+ 
+ method show()V {
+  +START:   #1
+        vR0.setVisible@this(1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 show
+ 
+ method hide()V {
+  +START:   #1
+        vR0.setVisible@this(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hide
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.ready = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method setBounds(IIII)V {
+  +START:   #1
+        if vR0.width!=vi3 goto B17;   
+  +B8:   #1
+        if vR0.height==vi4 goto B26;   
+  +B17:   #1
+        vR0.sendComponentEvent@this(101);   [   iR] 
+        goto +B32;   [   ..]
+  +B26:   #1
+        vR0.sendComponentEvent@this(100);   [   iR] 
+  +B32:   #1
+        vR0.x = vi1;   
+        vR0.y = vi2;   
+        vR0.width = vi3;   
+        vR0.height = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 0 swaps 0 any 0 found 0 setBounds
+ 
+ method reshape(IIII)V {
+  +START:   #1
+        vR0.setBounds@this(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 reshape
+ 
+ method getToolkit()Ljava/awt/Toolkit; {
+  +START:   #1
+        return vR0.toolkit;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getToolkit
+ 
+ method getGraphics()Ljava/awt/Graphics; {
+  +START:   #1
+        return vR0.getJXGraphics@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGraphics
+ 
+ method getLocationOnScreen()Ljava/awt/Point; {
+  +START:   #1
+        vR1 = vR0.getHostWindow@this();    [ R  R] 
+        if (vR1 instanceof java/awt/Frame)==0 goto B50;   
+  +B12:   #1
+        vR2 = vR1.getLocationOnScreen();    [R R  R.] 
+        vR3 = vR0.getLocationRelativeToWindow@this(0,0);    [RR R  iiR] 
+        return new java/awt/Point((vR2.x+vR3.x),(vR2.y+vR3.y));   
+  +B50:   #1
+        out.println("could not find host window!");   [RRR R i. RR..] 
+        return new java/awt/Point(vR0.x,vR0.y);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 1 any 0 found 0 getLocationOnScreen
+ 
+ method getPreferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(vR0.prefWidth,vR0.prefHeight);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method getMinimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimumSize
+ 
+ method minimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMinimumSize@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 minimumSize
+ 
+ method preferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredSize
+ 
+ method paintInvisibleComponent(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.fillRect(0,0,(vR0.width-1),(vR0.height-1));   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 0 found 0 paintInvisibleComponent
+}

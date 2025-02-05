@@ -1,0 +1,734 @@
+class jx/awt/peer/JXMenuPeer {
+ 
+ method <init>(Ljava/awt/Menu;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [ ?R  RRR] 
+        b1 = new java/awt/MenuItem("-");    [ ?R  i..][ ?R . iRR]
+        vR0.separator = b1;   
+        vR0.BORDER = 3;   
+        vR0.ARROWWIDTH = 10;   
+        vR0.CHECKBOXWIDTH = 15;   
+        vR0.SCROLLBUTTONHEIGHT = 10;   
+        vR0.SCROLLAMOUNT = 20;   
+        vR0.sensitive = 0;   
+        b1 = new jx/awt/peer/JXMenuConnector(vR1,vR2);    [ ?R . i..][ ?R . iRRR]
+        vR0.connector = b1;   
+        b1 = new java/util/Vector();    [ ?R . i...][ ?R . iR..]
+        vR0.menuItems = b1;   
+        b1 = new java/util/Vector();    [ ?R . i...][ ?R . iR..]
+        vR0.menuItemSizes = b1;   
+        vi3 = 0;    
+  +B90:   #1
+        if vi3>=vR1.getItemCount() goto B113;   
+  +B98:   #1
+        vR0.addItem@this(vR1.getItem(vi3));   [i ?R i RR..] 
+        vi3++;   
+        goto +B90;   [i ?R i ....]
+  +B113:   #1
+        vR0.calculateSize@special();   [i ?R . R...] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 9 swaps 1 any 2 found 1 <init>
+ 
+ method setCurrentMenuItem(Ljava/awt/MenuItem;)V {
+  +START:   #1
+        vR0.currentMenuItem = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCurrentMenuItem
+ 
+ method getCurrentMenuItem()Ljava/awt/MenuItem; {
+  +START:   #1
+        return vR0.currentMenuItem;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrentMenuItem
+ 
+ method isSelectable(Ljava/awt/MenuItem;)Z {
+  +START:   #1
+        if vR1==null goto B15;   
+  +B4:   #1
+        if vR1.isEnabled()==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  .]
+  +B15:   #2
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 isSelectable
+ 
+ method nextSelectableMenuItem(IZ)Ljava/awt/MenuItem; {
+  +START:   #1
+        if vi1<-1 goto B16;   
+  +B5:   #1
+        if vi1<vR0.menuItems.size@extra() goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        if vi1!=-1 goto B29;   
+  +B23:   #1
+        if vi2!=0 goto B29;   
+  +B27:   #1
+        vi1 = 0;    
+  +B29:   #2
+        vi4 = vi1;    
+        if vi2==0 goto B90;   
+  +B36:   #1
+        vi4 = ((vi4+1)%vR0.menuItems.size@extra());    
+        vR3 = (java/awt/MenuItem)(vR0.menuItems.elementAt(vi4));    
+        if vi4==vi1 goto B77;   
+  +B69:   #1
+        if vR0.isSelectable@this(vR3)==0 goto B36;   
+  +B77:   #1
+        if vR3.isEnabled()==0 goto B88;   
+  +B84:   #1
+        b0 = vR3;    
+        goto +B89b0;   forward return[Ri R . ..]
+  +B88:   #1
+        b0 = 0;    
+  +B89b0:   #1 reference
+        return b0;   
+  +B90:   #2
+        if vi4!=0 goto B107;   
+  +B95:   #1
+        b0 = (vR0.menuItems.size@extra()-1);    
+        goto +B111b0;   [Ri i . ..]
+  +B107:   #1
+        b0 = (vi4-1);    
+  +B111b0:   #1 int
+        vi4 = b0;    
+        vR3 = (java/awt/MenuItem)(vR0.menuItems.elementAt(vi4));    
+        if vi4==vi1 goto B140;   
+  +B132:   #1
+        if vR0.isSelectable@this(vR3)==0 goto B90;   
+  +B140:   #1
+        if vR3.isEnabled()==0 goto B151;   
+  +B147:   #1
+        b0 = vR3;    
+        goto +B152b0;   forward return[Ri R . ..]
+  +B151:   #1
+        b0 = 0;    
+  +B152b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 14 swaps 0 any 13 found 1 nextSelectableMenuItem
+ 
+ method getLowerMenuItem()Ljava/awt/MenuItem; {
+  +START:   #1
+        if vR0.currentMenuItem!=null goto B13;   
+  +B7:   #1
+        return vR0.getDefaultMenuItem@this(1);   
+  +B13:   #1
+        vi1 = vR0.menuItems.indexOf@extra(vR0.currentMenuItem);    [  i RR] 
+        return vR0.nextSelectableMenuItem@special(vi1,1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getLowerMenuItem
+ 
+ method getUpperMenuItem()Ljava/awt/MenuItem; {
+  +START:   #1
+        if vR0.currentMenuItem!=null goto B13;   
+  +B7:   #1
+        return vR0.getDefaultMenuItem@this(0);   
+  +B13:   #1
+        vi1 = vR0.menuItems.indexOf@extra(vR0.currentMenuItem);    [  i RR] 
+        return vR0.nextSelectableMenuItem@special(vi1,0);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getUpperMenuItem
+ 
+ method getDefaultMenuItem(Z)Ljava/awt/MenuItem; {
+  +START:   #1
+        return vR0.nextSelectableMenuItem@special(-1,vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDefaultMenuItem
+ 
+ method getChildMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return vR0.subMenu;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getChildMenu
+ 
+ method adjustScrollOffset()V {
+  +START:   #1
+        if vR0.currentMenuItem!=null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vi1 = vR0.menuItems.indexOf@extra(vR0.currentMenuItem);    [  i RR] 
+        vR2 = (java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi1));    
+        if vR2.y>=vR0.scrollOffset goto B55;   
+  +B43:   #1
+        vR0.scrollOffset = vR2.y;   
+        vR0.redrawMenu@this();   [iR  .. R.] 
+  +B55:   #1
+        if (vR2.y+vR2.height)<=(vR0.scrollOffset+vR0.visibleHeight) goto B98;   
+  +B76:   #1
+        vR0.scrollOffset = ((vR2.y+vR2.height)-vR0.visibleHeight);   
+        vR0.redrawMenu@this();   [iR  .. R.] 
+  +B98:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 4 swaps 1 any 0 found 0 adjustScrollOffset
+ 
+ method performMenuItemAction(Ljava/awt/MenuItem;)V {
+  +START:   #1
+        vR0.toolkit.getMenuThread().setSelectedItem(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 performMenuItemAction
+ 
+ method performKey(I)Z {
+  +START:   #1
+        if vR0.subMenu==null goto B10;   
+  +B7:   #1
+        goto +B189;   forward return[   ]
+  +B10:   #1
+        lswitch (vi1) { 
+           10:B60
+           37:B185
+           38:B131
+           39:B152
+           40:B110
+           ::B187
+        };   
+  +B60:   #1
+        vR2 = vR0.currentMenuItem;    
+        if vR0.isSelectable@this(vR2)==0 goto B189;   
+  +B73:   #1
+        if (vR2 instanceof java/awt/Menu)==0 goto B102;   
+  +B80:   #1
+        vR0.openSubMenu@this((java/awt/Menu)(vR2));   [R   RR] 
+        vR3 = 0;    
+        vR3.setCurrentMenuItem(vR3.getDefaultMenuItem(1));   [RR  i RR] 
+        goto +B189;   forward return[RR  i ..]
+  +B102:   #1
+        vR0.performMenuItemAction@this(vR2);   [RR  . RR] 
+        goto +B189;   forward return[RR  . ..]
+  +B110:   #1
+        vR2 = vR0.getLowerMenuItem@this();    [RR  . R.] 
+        vR0.setCurrentMenuItem@this(vR2);   [RR  . RR] 
+        vR0.adjustScrollOffset@this();   [RR  . R.] 
+        vR0.redrawMenu@this();   [RR  . R.] 
+        goto +B189;   forward return[RR  . ..]
+  +B131:   #1
+        vR2 = vR0.getUpperMenuItem@this();    [RR  . R.] 
+        vR0.setCurrentMenuItem@this(vR2);   [RR  . RR] 
+        vR0.adjustScrollOffset@this();   [RR  . R.] 
+        vR0.redrawMenu@this();   [RR  . R.] 
+        goto +B189;   forward return[RR  . ..]
+  +B152:   #1
+        vR2 = vR0.currentMenuItem;    
+        if vR0.isSelectable@this(vR2)==0 goto B183;   
+  +B165:   #1
+        if (vR2 instanceof java/awt/Menu)==0 goto B183;   
+  +B172:   #1
+        vR0.openSubMenu@this((java/awt/Menu)(vR2));   [RR  . RR] 
+        goto +B189;   forward return[RR  . ..]
+  +B183:   #2
+        return 0;   
+  +B185:   #1
+        return 0;   
+  +B187:   #1
+        return 0;   
+  +B189:   #7
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 6 swaps 1 any 1 found 2 performKey
+ 
+ method handleMenuMouseUp(III)V {
+  +START:   #1
+        if vR0.inScrollRange@this(vi1,vi2)==0 goto B138;   
+  +B9:   #1
+        if vR0.upperScroll.contains(vi1,vi2)==0 goto B59;   
+  +B21:   #1
+        if vR0.scrollOffset<=0 goto B59;   
+  +B28:   #1
+        vR0.scrollOffset = (vR0.scrollOffset-20);   
+        if vR0.scrollOffset>=0 goto B51;   
+  +B46:   #1
+        vR0.scrollOffset = 0;   
+  +B51:   #1
+        vR0.deleteSubMenus@this();   [   R..] 
+        vR0.redrawMenu@this();   [   R..] 
+  +B59:   #2
+        if vR0.lowerScroll.contains(vi1,vi2)==0 goto B181;   
+  +B71:   #1
+        if vR0.scrollOffset>=(vR0.fullHeight-vR0.visibleHeight) goto B181;   
+  +B87:   #1
+        vR0.scrollOffset = (vR0.scrollOffset+20);   
+        if vR0.scrollOffset<=(vR0.fullHeight-vR0.visibleHeight) goto B127;   
+  +B114:   #1
+        vR0.scrollOffset = (vR0.fullHeight-vR0.visibleHeight);   
+  +B127:   #1
+        vR0.deleteSubMenus@this();   [   R..] 
+        vR0.redrawMenu@this();   [   R..] 
+        goto +B181;   forward return[   ...]
+  +B138:   #1
+        vR4 = vR0.getMenuEntry@this(vi1,vi2);    [   iiR] 
+        if vR0.isSelectable@this(vR4)==0 goto B181;   
+  +B155:   #1
+        if (vR4 instanceof java/awt/Menu)!=0 goto B172;   
+  +B163:   #1
+        vR0.performMenuItemAction@this(vR4);   [R   RR.] 
+        goto +B181;   forward return[R   ...]
+  +B172:   #1
+        vR0.openSubMenu@this((java/awt/Menu)(vR4));   [R   RR.] 
+  +B181:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 1 swaps 0 any 0 found 1 handleMenuMouseUp
+ 
+ method handleMenuMouseMoved(IIZ)V {
+  +START:   #1
+        vR5 = vR0.getCurrentMenuItem@this();    [   R] 
+        if vi3!=0 goto B16;   
+  +B10:   #1
+        vR4 = 0;    
+        goto +B24;   [RR   .]
+  +B16:   #1
+        vR4 = vR0.getMenuEntry@this(vi1,vi2);    [RR   iiR] 
+  +B24:   #1
+        if vR5==vR4 goto B41;   
+  +B31:   #1
+        vR0.setCurrentMenuItem@this(vR4);   [RR   RR.] 
+        vR0.redrawMenu@this();   [RR   R..] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 0 handleMenuMouseMoved
+ 
+ method setBounds(IIII)V {
+  +START:   #1
+        vR0.x = vi1;   
+        vR0.y = vi2;   
+        vR0.width = vi3;   
+        vR0.height = vi4;   
+        vR0.connector.setBounds(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 setBounds
+ 
+ method setLocation(II)V {
+  +START:   #1
+        vR0.setBounds@this(vi1,vi2,vR0.width,vR0.height);   [  ii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setLocation
+ 
+ method getLocation()Ljava/awt/Point; {
+  +START:   #1
+        return vR0.connector.getWindowOrigin();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocation
+ 
+ method getMenuSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(vR0.width,vR0.height);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getMenuSize
+ 
+ method setVisible(Z)V {
+  +START:   #1
+        vR0.connector.show(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setVisible
+ 
+ method getParent()Ljava/awt/Menu; {
+  +START:   #1
+        return (java/awt/Menu)(vR0.parent);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getParent
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.paintMenu@this(vR1,vR0.currentMenuItem);   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 paint
+ 
+ method redrawMenu()V {
+  +START:   #1
+        vR1 = vR0.connector.getGraphics();    [   R] 
+        vR0.paint@special(vR1);   [R   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 redrawMenu
+ 
+ method inScrollRange(II)Z {
+  +START:   #1
+        if vR0.upperScroll==null goto B35;   
+  +B7:   #1
+        if vR0.upperScroll.contains(vi1,vi2)!=0 goto B31;   
+  +B19:   #1
+        if vR0.lowerScroll.contains(vi1,vi2)==0 goto B35;   
+  +B31:   #1
+        b0 = 1;    
+        goto +B36b0;   forward return[ i  ...]
+  +B35:   #2
+        b0 = 0;    
+  +B36b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 inScrollRange
+ 
+ method getMenuEntry(II)Ljava/awt/MenuItem; {
+  +START:   #1
+        if vR0.upperScroll==null goto B33;   
+  +B7:   #1
+        if vR0.inScrollRange@this(vi1,vi2)==0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        vi2 = (vi2-(vR0.upperScroll.height-vR0.scrollOffset));    
+  +B33:   #1
+        vi3 = 0;    
+  +B35:   #1
+        if vi3>=vR0.menuItems.size@extra() goto B101;   
+  +B46:   #1
+        if (java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi3)).contains(vi1,vi2)==0 goto B95;   
+  +B65:   #1
+        if vR0.isSeparator@special((java/awt/MenuItem)(vR0.menuItems.elementAt(vi3)))!=0 goto B95;   
+  +B83:   #1
+        return (java/awt/MenuItem)(vR0.menuItems.elementAt(vi3));   
+  +B95:   #2
+        vi3++;   
+        goto +B35;   [i  . ....]
+  +B101:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 1 any 3 found 1 getMenuEntry
+ 
+ method findSubMenuLocationPoint()Ljava/awt/Point; {
+  +START:   #1
+        vi1 = vR0.menuItems.indexOf@extra(vR0.subMenu);    [ R i RR] 
+        vR2 = vR0.getLocation@this();    [i R i R.] 
+        vR3 = vR0.toolkit.getScreenSize();    [iR R i R.] 
+        vR4 = 0;    
+        vi5 = ((vR2.x+(java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi1)).width)-1);    
+        vi6 = (vR2.y+(java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi1)).y);    
+        if vR0.upperScroll==null goto B96;   
+  +B79:   #1
+        vi6 = (vi6+(vR0.upperScroll.height-vR0.scrollOffset));    
+  +B96:   #1
+        if (vi6+vR4.height)<=vR3.height goto B123;   
+  +B111:   #1
+        vi6 = (vR3.height-vR4.height);    
+  +B123:   #1
+        if (vi5+vR4.width)<=vR3.width goto B150;   
+  +B138:   #1
+        vi5 = (vR2.x-vR4.width);    
+  +B150:   #1
+        return new java/awt/Point(vi5,vi6);   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 15 swaps 1 any 3 found 0 findSubMenuLocationPoint
+ 
+ method deleteSubMenus()V {
+  +START:   #1
+        if vR0.subMenu==null goto B14;   
+  +B7:   #1
+        vR0.subMenu.removeNotify();   [   R] 
+  +B14:   #1
+        vR0.subMenu = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 deleteSubMenus
+ 
+ method show(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 show
+ 
+ method openSubMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        if vR0.subMenu!=vR1 goto B9;   
+  +B8:   #1
+        return;   
+  +B9:   #1
+        vR0.deleteSubMenus@this();   [   R] 
+        vR0.subMenu = vR1;   
+        if vR1!=null goto B23;   
+  +B22:   #1
+        return;   
+  +B23:   #1
+        vR0.subMenu.addNotify();   [   R] 
+        vR2 = vR0.findSubMenuLocationPoint@this();    [   R] 
+        vR0.show@this(vR2.x,vR2.y);   [R  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 1 any 1 found 0 openSubMenu
+ 
+ method isSeparator(Ljava/awt/MenuItem;)Z {
+  +START:   #1
+        return vR1.getLabel().equals@extra(vR0.separator.getLabel());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 isSeparator
+ 
+ method textWidth(Ljava/lang/String;)I {
+  +START:   #1
+        return ((9*vR1.length@extra())+6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 textWidth
+ 
+ method textHeight()I {
+  +START:   #1
+        return 20;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 textHeight
+ 
+ method separatorHeight()I {
+  +START:   #1
+        return 8;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 separatorHeight
+ 
+ method calculateSize()V {
+  +START:   #1
+        vi1 = vR0.toolkit.getScreenSize().height;    
+        vR0.width = 0;   
+        vR0.height = 0;   
+        vi2 = 0;    
+  +B23:   #1
+        if vi2>=vR0.menuItems.size@extra() goto B95;   
+  +B34:   #1
+        vi3 = vR0.textWidth@special((java/awt/MenuItem)(vR0.menuItems.elementAt(vi2)).getLabel());    [ii ?R i RR] 
+        if vR0.width>=vi3 goto B66;   
+  +B61:   #1
+        vR0.width = vi3;   
+  +B66:   #1
+        vR0.height = (vR0.height+(java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi2)).height);   
+        vi2++;   
+        goto +B23;   [iii ?R .. ..]
+  +B95:   #1
+        vR0.width = (vR0.width+37);   
+        vR0.height = (vR0.height+6);   
+        vR0.fullHeight = vR0.height;   
+        vR0.visibleHeight = vR0.height;   
+        if vR0.height<=vi1 goto B219;   
+  +B141:   #1
+        vR0.height = vi1;   
+        b1 = new java/awt/Rectangle(0,0,vR0.width,10);    [ ?R .. i.][ ?R .. iiiiiR]
+        vR0.upperScroll = b1;   
+        b1 = new java/awt/Rectangle(0,(vR0.height-10),vR0.width,10);    [ ?R .. i.....][ ?R .. iiiiiR]
+        vR0.lowerScroll = b1;   
+        vR0.scrollOffset = 0;   
+        vR0.visibleHeight = ((vR0.height-vR0.upperScroll.height)-vR0.lowerScroll.height);   
+  +B219:   #1
+        vi2 = 0;    
+  +B221:   #1
+        if vi2>=vR0.menuItems.size@extra() goto B256;   
+  +B232:   #1
+        (java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi2)).width = vR0.width;   
+        vi2++;   
+        goto +B221;   [iii ?R .. ......]
+  +B256:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 53/53 wr 17 swaps 1 any 4 found 2 calculateSize
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.connector.dispose();   [   R] 
+        vR0.dispose@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method addItem(Ljava/awt/MenuItem;)V {
+  +START:   #1
+        vi2 = 3;    
+        if vR0.isSeparator@special(vR1)!=0 goto B21;   
+  +B10:   #1
+        if vR0.menuItems.contains@extra(vR1)!=0 goto B120;   
+  +B21:   #1
+        vR0.menuItems.addElement@extra(vR1);   [i RRRiiii  RR] 
+        if vR0.menuItemSizes.isEmpty@extra()!=0 goto B71;   
+  +B39:   #1
+        vi2 = ((java/awt/Rectangle)(vR0.menuItemSizes.lastElement@extra()).y+(java/awt/Rectangle)(vR0.menuItemSizes.lastElement@extra()).height);    
+  +B67:   #1
+        goto +B71;   [i RRRiiii .. ..]
+  +H70<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+  +B71:   #2
+        b0 = vR0.menuItemSizes;    
+        b1 = new java/awt/Rectangle;    
+        b2 = b1;    
+        b3 = 0;    
+        b4 = vi2;    
+        b5 = 0;    
+        if vR0.isSeparator@special(vR1)==0 goto B97;   
+  +B90b0b1b2b3b4b5:   #1 reference reference reference int int int
+        b6 = vR0.separatorHeight@special();    [i RRRiiii .. R.] 
+        goto +B101b0b1b2b3b4b5b6;   [i RRRiiii .. ..]
+  +B97b0b1b2b3b4b5:   #1 reference reference reference int int int
+        b6 = vR0.textHeight@special();    [i RRRiiii .. R.] 
+  +B101b0b1b2b3b4b5b6:   #1 reference reference reference int int int int
+        b2.<init>@special(b3,b4,b5,b6);   [i RRRiiii .. iiiiR] 
+        b0.addElement@extra(b1);   [i RRRiiii .. RR...] 
+        if vR0.isSeparator@special(vR1)==0 goto B120;   
+  +B115:   #1
+        vR1.setEnabled(0);   [i RRRiiii .. iR...] 
+  +B120:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+39 - 67 handler 70 type 303
+ }
+// Register: rd 24/24 wr 13 swaps 0 any 2 found 0 addItem
+ 
+ method addSeparator()V {
+  +START:   #1
+        out.println("*** addSeparator() called!");   [  i. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 addSeparator
+ 
+ method delItem(I)V {
+  +START:   #1
+        vR0.menuItems.remove(vi1);   [   iR] 
+        vR0.menuItemSizes.remove(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 delItem
+ 
+ method paintMenu(Ljx/awt/JXGraphics;Ljava/awt/MenuItem;)V {
+  +START:   #1
+        vR1.setClip(0,0,vR0.width,vR0.height);   [  ii iiiiR] 
+        vR1.setColor(menuBgColor);   [  iii RR...] 
+        if vR0.lowerScroll==null goto B388;   
+  +B28:   #1
+        vR1.fill3DRect(vR0.upperScroll.x,vR0.upperScroll.y,vR0.upperScroll.width,vR0.upperScroll.height,1);   [  iiii iiiiiR] 
+        vR1.fill3DRect(vR0.lowerScroll.x,vR0.lowerScroll.y,vR0.lowerScroll.width,vR0.lowerScroll.height,1);   [  iiiiiiii iiiiiR] 
+        vR1.fill3DRect(0,vR0.upperScroll.height,vR0.width,vR0.visibleHeight,1);   [  iiiiiiiiiii iiiiiR] 
+        vR1.setColor(arrowColor);   [  iiiiiiiiiiii RR....] 
+        vR1.drawLine((vR0.width/2),(vR0.upperScroll.y+2),((vR0.width/2)-5),(vR0.upperScroll.y+7));   [  iiiiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine((vR0.width/2),(vR0.upperScroll.y+2),((vR0.width/2)+5),(vR0.upperScroll.y+7));   [  iiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine(((vR0.width/2)+5),(vR0.upperScroll.y+7),((vR0.width/2)-5),(vR0.upperScroll.y+7));   [  iiiiiiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine(((vR0.width/2)-5),(vR0.lowerScroll.y+2),(vR0.width/2),(vR0.lowerScroll.y+7));   [  iiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine(((vR0.width/2)+5),(vR0.lowerScroll.y+2),(vR0.width/2),(vR0.lowerScroll.y+7));   [  iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine(((vR0.width/2)+5),(vR0.lowerScroll.y+2),((vR0.width/2)-5),(vR0.lowerScroll.y+2));   [  iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.setClip(0,vR0.upperScroll.height,vR0.width,vR0.visibleHeight);   [  iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiiiR.] 
+        vR1.translate(0,(vR0.upperScroll.height-vR0.scrollOffset));   [  iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii iiR...] 
+        goto +B403;   [  iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii ......]
+  +B388:   #1
+        vR1.fill3DRect(0,0,vR0.width,vR0.height,1);   [RRRiRR  ii...................................... iiiiiR] 
+  +B403:   #1
+        vR3 = normalBgColor;    
+        vR4 = vR3.darker();    [R  ........................................ R.....] 
+        vR5 = vR3.brighter();    [RR  ........................................ R.....] 
+        vi6 = 0;    
+  +B422:   #1
+        if vi6>=vR0.menuItems.size@extra() goto B1016;   
+  +B434:   #1
+        vR7 = (java/awt/Rectangle)(vR0.menuItemSizes.elementAt(vi6));    
+        if (vR7.y+vR7.height)>vR0.scrollOffset goto B483;   
+  +B466:   #1
+        if vR7.y>=(vR0.scrollOffset+vR0.visibleHeight) goto B1010;   
+  +B483:   #1
+        vR8 = (java/awt/MenuItem)(vR0.menuItems.elementAt(vi6));    
+        if vR0.isSeparator@special(vR8)==0 goto B571;   
+  +B506:   #1
+        vR1.setColor(vR4);   [RRRiRR  ........................................ RR....] 
+        vR1.drawLine(0,(vR7.y+3),vR0.width,(vR7.y+3));   [RRRiRR  iii..................................... iiiiR.] 
+        vR1.setColor(vR5);   [RRRiRR  iii..................................... RR....] 
+        vR1.drawLine(0,((vR7.y+3)+1),vR0.width,((vR7.y+3)+1));   [RRRiRR  iiiiii.................................. iiiiR.] 
+        goto +B726;   [RRRiRR  iiiiii.................................. ......]
+  +B571:   #1
+        if vR8!=vR2 goto B683;   
+  +B577:   #1
+        if vR8.isEnabled()==0 goto B683;   
+  +B585:   #1
+        vR1.setColor(menuSelBgColor);   [RRRiRR  i....................................... RR....] 
+        vR1.fillRect(0,vR7.y,vR0.width,vR7.height);   [RRRiRR  iiii.................................... iiiiR.] 
+        vR1.setColor(vR4);   [RRRiRR  iiii.................................... RR....] 
+        vR1.drawLine(0,vR7.y,vR0.width,vR7.y);   [RRRiRR  iiiiiii................................. iiiiR.] 
+        vR1.setColor(vR5);   [RRRiRR  iiiiiii................................. RR....] 
+        vR1.drawLine(0,(vR7.y+vR7.height),vR0.width,(vR7.y+vR7.height));   [RRRiRR  iiiiiiiiii.............................. iiiiR.] 
+        vR1.setColor(menuSelTextColor);   [RRRiRR  iiiiiiiiiii............................. RR....] 
+        goto +B708;   [RRRiRR  iiiiiiiiiii............................. ......]
+  +B683:   #2
+        if vR8.isEnabled()==0 goto B701;   
+  +B691:   #1
+        vR1.setColor(menuTextColor);   [RRRiRR  i....................................... RR....] 
+        goto +B708;   [RRRiRR  i....................................... ......]
+  +B701:   #1
+        vR1.setColor(disabledTextColor);   [RRRiRR  i....................................... RR....] 
+  +B708:   #2
+        vR1.drawJXString(vR8.getLabel(),21,(vR7.y+3));   [RRRiRR  ii...................................... iiRR..] 
+  +B726:   #1
+        if (vR8 instanceof java/awt/CheckboxMenuItem)==0 goto B865;   
+  +B734:   #1
+        vR1.setColor(normalBgColor);   [RRRiRR  i....................................... RR....] 
+        vR1.draw3DRect(3,(vR7.y+3),15,15,0);   [RRRiRR  ii...................................... iiiiiR] 
+        vR1.fill3DRect(4,((vR7.y+3)+1),14,14,1);   [RRRiRR  iii..................................... iiiiiR] 
+        if (java/awt/CheckboxMenuItem)(vR8).getState()==0 goto B865;   
+  +B788:   #1
+        if vR8.isEnabled()==0 goto B806;   
+  +B796:   #1
+        vR1.setColor(checkboxFgColor);   [RRRiRR  i....................................... RR....] 
+        goto +B813;   [RRRiRR  i....................................... ......]
+  +B806:   #1
+        vR1.setColor(disabledTextColor);   [RRRiRR  i....................................... RR....] 
+  +B813:   #1
+        vR1.drawLine(3,((vR7.y+3)+7),10,((vR7.y+3)+15));   [RRRiRR  ii...................................... iiiiR.] 
+        vR1.drawLine(18,(vR7.y+3),10,((vR7.y+3)+15));   [RRRiRR  iiii.................................... iiiiR.] 
+  +B865:   #2
+        if (vR8 instanceof java/awt/Menu)==0 goto B1010;   
+  +B873:   #1
+        if vR8.isEnabled()==0 goto B891;   
+  +B881:   #1
+        vR1.setColor(arrowColor);   [RRRiRR  i....................................... RR....] 
+        goto +B898;   [RRRiRR  i....................................... ......]
+  +B891:   #1
+        vR1.setColor(disabledArrowColor);   [RRRiRR  i....................................... RR....] 
+  +B898:   #1
+        vR1.drawLine(((vR0.width-3)-10),(vR7.y+3),((vR0.width-3)-10),((vR7.y+3)+10));   [RRRiRR  iiii.................................... iiiiR.] 
+        vR1.drawLine(((vR0.width-3)-10),(vR7.y+3),(vR0.width-3),((vR7.y+3)+5));   [RRRiRR  iiiiiiii................................ iiiiR.] 
+        vR1.drawLine(((vR0.width-3)-10),((vR7.y+3)+10),(vR0.width-3),((vR7.y+3)+5));   [RRRiRR  iiiiiiiiiiii............................ iiiiR.] 
+  +B1010:   #2
+        vi6++;   
+        goto +B422;   [RRRiRR  ........................................ ......]
+  +B1016:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 156/156 wr 104 swaps 43 any 3 found 2 paintMenu
+}

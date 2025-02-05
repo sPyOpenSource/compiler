@@ -1,0 +1,124 @@
+class jx/keyboard/MouseListener {
+ 
+ method <init>(Ljx/wm/WindowManager;Ljx/keyboard/KeyboardImpl;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ RR  RR] 
+        vR0.m_cKeyboard = 0;   
+        vR0.m_nLastButtons = 0;   
+        vR0.m_nButtons = 0;   
+        vR0.debug = 0;   
+        vR0.m_cKeyboard = vR2;   
+        if vR2!=null goto B44;   
+  -B34:   #1
+        throw new java/lang/Error("NO KEYBOARD");   
+  +B44:   #1
+        out.println("MouseListener::MouseListener()");   [ RR i. RR.] 
+        b1 = new java/lang/Thread(vR0,"MouseListener");    [ RR i. i..][ RR i. iRRR]
+        vR0.m_cThread = b1;   
+        vR0.m_cThread.start();   [ RR i. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 1 any 1 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        vi1 = 0;    
+        b0 = new byte[4];    
+        b0[0] = 0;   
+        b0[1] = 0;   
+        b0[2] = 0;   
+        b0[3] = 0;   
+        vR2 = b0;    
+        out.println("starting to listen to mouse");   [iR Ri i. RR] 
+        vR0.m_cKeyboard.openAux();   [iR Ri i. R.] 
+  +B37:   #1
+        vi3 = vR0.m_cKeyboard.readAux();    [iR Ri .. R.] 
+  +B45:   #2
+        if vi3==-1 goto B196;   
+  +B50:   #1
+        vi3 = (vi3 & 255);    
+        if vi1!=0 goto B84;   
+  +B60:   #1
+        if (vi3 & 8)==0 goto B73;   
+  +B67:   #1
+        if (vi3 & 4)==0 goto B84;   
+  +B73:   #1
+        vi3 = vR0.m_cKeyboard.readAuxUnblocked();    [iRi Ri .. R.] 
+        goto +B45;   [iRi Ri .. ..]
+  +B84:   #2
+        b1 = vi1;    
+        vi1++;   
+        vR2[b1] = (byte)vi3;   
+        if vi1<3 goto B185;   
+  +B97:   #1
+        vi4 = vR2[1];    
+        vi5 = vR2[2];    
+        if (vR2[0] & 16)==0 goto B124;   
+  +B116:   #1
+        vi4 = (vi4 | -256);    
+  +B124:   #1
+        if (vR2[0] & 32)==0 goto B141;   
+  +B133:   #1
+        vi5 = (vi5 | -256);    
+  +B141:   #1
+        vi6 = 0;    
+        if (vR2[0] & 1)==0 goto B158;   
+  +B152:   #1
+        vi6 = (vi6 | 1);    
+  +B158:   #1
+        if (vR2[0] & 2)==0 goto B172;   
+  +B166:   #1
+        vi6 = (vi6 | 2);    
+  +B172:   #1
+        vR0.dispatchEvent@this(vi4,-vi5,vi6);   [iRiiii Ri i. iiiR] 
+        vi1 = 0;    
+  +B185:   #1
+        vi3 = vR0.m_cKeyboard.readAuxUnblocked();    [iRiiii Ri .. R...] 
+        goto +B45;   [iRiiii Ri .. ....]
+  +B196:   #1
+        yield@special();   [iRiiii Ri .. ....]
+        goto +B37;   [iRiiii Ri .. ....]
+  +END:   #1
+ }
+// Register: rd 32/32 wr 20 swaps 2 any 13 found 0 run
+ 
+ method dispatchEvent(III)V {
+  +START:   #1
+        vi4 = (vi3 ^ vR0.m_nLastButtons);    
+        vR0.m_nLastButtons = vi3;   
+        if vi4==0 goto B112;   
+  +B18:   #1
+        if (vi4 & 1)==0 goto B65;   
+  +B25:   #1
+        if (vi3 & 1)==0 goto B49;   
+  +B31:   #1
+        vR0.m_nButtons = (vR0.m_nButtons | 1);   
+        vR0.handleMouseDown@this(1);   [i   iR] 
+        goto +B65;   [i   ..]
+  +B49:   #1
+        vR0.m_nButtons = (vR0.m_nButtons & -2);   
+        vR0.handleMouseUp@this(1);   [i   iR] 
+  +B65:   #2
+        if (vi4 & 2)==0 goto B112;   
+  +B72:   #1
+        if (vi3 & 2)==0 goto B96;   
+  +B78:   #1
+        vR0.m_nButtons = (vR0.m_nButtons | 2);   
+        vR0.handleMouseDown@this(2);   [i   iR] 
+        goto +B112;   [i   ..]
+  +B96:   #1
+        vR0.m_nButtons = (vR0.m_nButtons & -3);   
+        vR0.handleMouseUp@this(2);   [i   iR] 
+  +B112:   #3
+        if vi1!=0 goto B120;   
+  +B116:   #1
+        if vi2==0 goto B126;   
+  +B120:   #1
+        vR0.handleMouseMoved@this(vi1,vi2);   [i   iiR] 
+  +B126:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 1 swaps 0 any 8 found 0 dispatchEvent
+}

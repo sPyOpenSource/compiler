@@ -9,58 +9,61 @@ class jx/net/UDPDataImpl {
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
  
  method setMemory(Ljx/zero/Memory;)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.mem = vR1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setMemory
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMemory
  
  method setSourcePort(I)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.sourcePort = vi1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setSourcePort
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSourcePort
  
  method setSourceAddress(Ljx/net/IPAddress;)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.sourceAddress = vR1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setSourceAddress
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSourceAddress
  
  method Size()I {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.size;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 Size
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 Size
  
  method getOffset()I {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.offset;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getOffset
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
  
  method getMemory()Ljx/zero/Memory; {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.mem;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getMemory
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMemory
  
  method getSourceAddress()Ljx/net/IPAddress; {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.sourceAddress;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSourceAddress
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSourceAddress
  
  method getSourcePort()I {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.sourcePort;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSourcePort
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSourcePort
 }

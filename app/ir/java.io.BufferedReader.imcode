@@ -243,36 +243,36 @@ EXCEPTIONHANDLER-TABLE:
  
  method read([CII)I {
   +START:   #2
-        vR4 = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));    
-        vR5 = vR4.alloc(4096);    [R iR R. iR] 
+        vR4 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR5 = vR4.alloc(4096);    [R iR i. iR] 
         vR6 = (jx/fs/FS)(waitUntilPortalAvailable@special(0,"FS"));    
-        vR7 = vR6.lookup("/index.html");    [RRR iR RRi RR] 
-        vi8 = vR7.getLength();    [RRRR iR RRi R.] 
+        vR7 = vR6.lookup("/index.html");    [RRR iR iRi RR] 
+        vi8 = vR7.getLength();    [RRRR iR iRi R.] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR RRi i.][ RR RRi iR]
-        b0.println(b1.append@extra("l: ").append@extra(vi8).append@extra(" count: ").append@extra(vi3).toString@extra());   [RRRRi RR RRiiii... RR...] 
-        vR7.read(vR5,0,vi8);   [RRRRi RR RRiiii... iiRR.] 
+        b1 = new java/lang/StringBuilder();    [ RR iRi i.][ RR iRi iR]
+        b0.println(b1.append@extra("l: ").append@extra(vi8).append@extra(" count: ").append@extra(vi3).toString@extra());   [RRRRi RR iRiiii... RR...] 
+        vR7.read(vR5,0,vi8);   [RRRRi RR iRiiii... iiRR.] 
         vR9 = new byte[vi8];    
-        vR5.copyToByteArray(vR9,0,0,512);   [RRRRiR RR RRiiii... iiiRR] 
+        vR5.copyToByteArray(vR9,0,0,512);   [RRRRiR RR iRiiii... iiiRR] 
         vi10 = 0;    
-  +B124:   #1
-        if vi10>=vi3 goto B158;   
-  +B130:   #1
+  +B129:   #1
+        if vi10>=vi3 goto B163;   
+  +B135:   #1
         vR1[vi10] = (char)vR9[(vi2+vi10)];   
         out.print(vR1[vi10]);   [RRRRiRi RR i........ cR...] 
         vi10++;   
-        goto +B124;   [RRRRiRi RR i........ .....]
-  +B158:   #1
+        goto +B129;   [RRRRiRi RR i........ .....]
+  +B163:   #1
         b0 = vi3;    
-  +B159b0:   #1 int
+  +B164b0:   #1 int
         return b0;   
-  +H160<caught exception>:   #1 reference
+  +H165<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         out.println(vR4.getMessage());   [RRRRiRi iR i........ RR...] 
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 159 handler 160 type 153
+0 - 164 handler 165 type 159
  }
-// Register: rd 23/23 wr 28 swaps 6 any 3 found 0 read
+// Register: rd 23/23 wr 29 swaps 7 any 3 found 0 read
 }

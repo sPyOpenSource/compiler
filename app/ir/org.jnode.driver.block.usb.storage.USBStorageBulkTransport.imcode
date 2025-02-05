@@ -1,0 +1,93 @@
+class org/jnode/driver/block/usb/storage/USBStorageBulkTransport {
+ 
+ method <init>(Lorg/jnode/driver/block/usb/storage/USBStorageDeviceData;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.storageDeviceData = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method transport(Lorg/jnode/driver/bus/scsi/CDB;J)V {
+  +START:   #2
+        vR4 = vR1.toByteArray();    [ R  R] 
+        vR5 = new org/jnode/driver/block/usb/storage/CBW();    [ R  i][ R  iR]
+        vR5.setSignature(1128420181);   [?RR R  iR] 
+        vR5.setTag(1);   [?RR R  iR] 
+        vR5.setDataTransferLength((byte)vR1.getDataTransfertCount());   [?RR R i iR] 
+        vR5.setFlags(0);   [?RR R i iR] 
+        vR5.setLun(0);   [?RR R i iR] 
+        vR5.setLength((byte)vR4.size());   [?RR R ii iR] 
+        vR5.setCdb(vR4);   [?RR R ii RR] 
+        vR6 = (org/jnode/driver/bus/usb/USBDataPipe)(vR0.storageDeviceData.getBulkOutEndPoint@extra().getPipe@extra());    
+        vR7 = vR6.createRequest(vR5);    [?RRR R ii. RR] 
+        if compare(vl2,0)> 0 goto B114;   
+  +B102:   #1
+        vR6.asyncSubmit(vR7);   [?RRRR R ... RR] 
+        goto +B124;   [?RRRR R ... ..]
+  +B114:   #1
+        vR6.syncSubmit(vR7,vl2);   [?RRRRRRR R ... ??RR] 
+  +B124:   #1
+        vR8 = new org/jnode/driver/block/usb/storage/CSW();    [ R ... i...][ R ... iR..]
+        vR8.setSignature(1396855637);   [?RRRRR R ... iR..] 
+        vR9 = (org/jnode/driver/bus/usb/USBDataPipe)(vR0.storageDeviceData.getBulkInEndPoint@extra().getPipe@extra());    
+        vR10 = vR9.createRequest(vR8);    [?RRRRRR R ... RR..] 
+        if compare(vl2,0)> 0 goto B184;   
+  +B172:   #1
+        vR9.asyncSubmit(vR10);   [?RRRRRRR R ... RR..] 
+        goto +B194;   [?RRRRRRR R ... ....]
+  +B184:   #1
+        vR9.syncSubmit(vR10,vl2);   [?RRRRRRR R ... ??RR] 
+  +B194:   #2
+        goto +B204;   forward return[?RRRRRRR R ... ....]
+  +H197<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR4.printStackTrace();   [?RRRRRRR R ... R...] 
+  +B204:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 194 handler 197 type 92
+ }
+// Register: rd 22/22 wr 14 swaps 2 any 0 found 0 transport
+ 
+ method reset()V {
+  +START:   #1
+        vR1 = vR0.storageDeviceData.getDevice@extra().getDefaultControlPipe@extra();    [ ?R . R] [ ?R R R] 
+        b1 = new org/jnode/driver/bus/usb/SetupPacket(33,255,0,0,0);    [ ?R . i][ ?R . iiiiiiR]
+        vR2 = vR1.createRequest(b1,0);    [R ?R . RRR....] 
+        vR1.syncSubmit(vR2,5000);   [RR ?R . ??RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 0 any 0 found 0 reset
+ 
+ method getMaxLun(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vR2 = vR1.getDefaultControlPipe@extra();    [ RRR  R] 
+        vR3 = new org/jnode/driver/bus/usb/USBPacket(1);    [ RRR  i][ RRR . iiR]
+        b1 = new org/jnode/driver/bus/usb/SetupPacket(161,254,0,0,1);    [ RRR . i..][ RRR . iiiiiiR]
+        vR4 = vR2.createRequest(b1,vR3);    [RR RRR . RRR....] 
+        vR2.syncSubmit(vR4,5000);   [RRR RRR . ??RR...] 
+        if vR4.getStatus()!=32768 goto B82;   
+  +B62:   #1
+        vR0.storageDeviceData.setMaxLun@extra(vR3.getData().get8(0));   [RRR RRR i bR.....] 
+        goto +B141;   forward return[RRR RRR i .......]
+  +B82:   #1
+        if vR4.getStatus()!=1 goto B104;   
+  +B93:   #1
+        vR0.storageDeviceData.setMaxLun@extra(0);   [RRR RRR . iR.....] 
+        goto +B141;   forward return[RRR RRR . .......]
+  -B104:   #1
+        b0 = new org/jnode/driver/bus/usb/USBException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i......][ RRR . iR.....]
+        b1.<init>@special(b2.append@extra("Request status   : 0x").append@extra(hex@special(vR4.getStatus(),4)).toString@extra());   [RRR RRR iiii. RR.....] 
+        throw b0;   
+  +B141:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 17 swaps 4 any 1 found 0 getMaxLun
+}

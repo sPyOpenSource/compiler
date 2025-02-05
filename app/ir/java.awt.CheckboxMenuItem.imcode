@@ -1,0 +1,138 @@
+class java/awt/CheckboxMenuItem {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("",0);   [  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Z)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.state = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getState()Z {
+  +START:   #1
+        return vR0.state;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getState
+ 
+ method setState(Z)V {
+  +START:   #1
+        vR0.state = vi1;   
+        if vR0.peer==null goto B27;   
+  +B12:   #1
+        vR2 = (java/awt/peer/CheckboxMenuItemPeer)(vR0.peer);    
+        vR2.setState(vi1);   [R  . iR] 
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 setState
+ 
+ method getSelectedObjects()[Ljava/lang/Object; {
+  +START:   #1
+        if vR0.state!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR1 = new java/lang/Object()[1];    
+        vR1[0] = vR0.getLabel@this();   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getSelectedObjects
+ 
+ method addNotify()V {
+  +START:   #1
+        if vR0.peer==null goto B7;   
+  +B7:   #1
+        vR0.addNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method addItemListener(Ljava/awt/event/ItemListener;)V {
+  +START:   #1
+        vR0.item_listeners = add@special(vR0.item_listeners,vR1);   
+        vR0.enableEvents@this(512);   [  R iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 addItemListener
+ 
+ method removeItemListener(Ljava/awt/event/ItemListener;)V {
+  +START:   #1
+        vR0.item_listeners = remove@special(vR0.item_listeners,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 removeItemListener
+ 
+ method processEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if (vR1 instanceof java/awt/event/ItemEvent)==0 goto B18;   
+  +B7:   #1
+        vR0.processItemEvent@this((java/awt/event/ItemEvent)(vR1));   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B18:   #1
+        vR0.processEvent@special(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 processEvent
+ 
+ method processItemEvent(Ljava/awt/event/ItemEvent;)V {
+  +START:   #1
+        if vR0.item_listeners==null goto B17;   
+  +B7:   #1
+        vR0.item_listeners.itemStateChanged(vR1);   [   RR] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 processItemEvent
+ 
+ method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        vR0.dispatchEventImpl@special(vR1);   [   RR] 
+        if vR1.id>701 goto B51;   
+  +B15:   #1
+        if vR1.id<701 goto B51;   
+  +B25:   #1
+        if vR0.item_listeners!=null goto B46;   
+  +B32:   #1
+        if compare(((long)vR0.eventMask & 512),0)==0 goto B51;   
+  +B46:   #1
+        vR0.processEvent@this(vR1);   [   RR] 
+  +B51:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("label=").append@extra(vR0.getLabel@this()).append@extra(",state=").append@extra(vR0.state).append@extra(",").append@extra(vR0.paramString@special()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 6 any 0 found 0 paramString
+}

@@ -1,0 +1,420 @@
+class jx/wm/WindowManagerImpl {
+ 
+ method testBitBlt()V {
+  +START:   #1
+        vR1 = new jx/devices/fb/PixelRect()[1];    
+        vR2 = new jx/devices/fb/PixelRect()[1];    
+        vR3 = vR0.m_cDisplay.getScreenBitmap();    [RR RRR  R.] 
+        vR4 = (jx/zero/Clock)(vR0.m_cNaming.lookup("Clock"));    
+        vi5 = 400;    
+        vi6 = 350;    
+        vi7 = 100;    
+        vi8 = 2;    
+        vR9 = new jx/zero/CycleTime();    [ RRR i. i.][ RRR i. iR]
+        vR10 = new jx/zero/CycleTime();    [ RRR i. i.][ RRR i. iR]
+        vR11 = new jx/zero/CycleTime();    [ RRR i. i.][ RRR i. iR]
+        b2 = new jx/devices/fb/PixelRect();    [ RRR i. i.][ RRR i. iR]
+        vR1[0] = b2;   
+        b2 = new jx/devices/fb/PixelRect();    [ RRR i. i.][ RRR i. iR]
+        vR2[0] = b2;   
+        vR4.getCycles(vR9);   [RRRRiiiiRRR RRR i. RR] 
+        vi12 = 0;    
+  +B110:   #1
+        if vi12>=100 goto B184;   
+  +B117:   #1
+        vR1[0].setTo@extra((vi12+0),(vi12+50),(vi12+400),(vi12+350));   [RRRRiiiiRRRi RRR iiii iiiiR] 
+        vR2[0].setTo@extra((vi12+1),(vi12+51),(vi12+401),(vi12+351));   [RRRRiiiiRRRi RRR iiiiiiii iiiiR] 
+        vR3.bitBlt(vR1,vR2,1);   [RRRRiiiiRRRi RRR iiiiiiii iRRR.] 
+        vi12++;   
+        goto +B110;   [RRRRiiiiRRRi RRR iiiiiiii .....]
+  +B184:   #1
+        vR4.getCycles(vR10);   [RRRRiiiiRRRi RRR ........ RR...] 
+        vR4.subtract(vR11,vR10,vR9);   [RRRRiiiiRRRi RRR ........ RRRR.] 
+        vi12 = vR4.toMilliSec(vR11);    [RRRRiiiiRRRi RRR ........ RR...] 
+        vi13 = (((vi5*vi6)*vi8)*vi7);    
+        vi14 = (vi13/(vi12*1000));    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i....][ RRR ........ iR...]
+        b0.println(b1.append@extra("testBitBlt() copied ").append@extra(vi13).append@extra(" Bytes, ").append@extra(vi12).append@extra(" milliseconds, ").append@extra(vi14).append@extra(" MB/s").toString@extra());   [RRRRiiiiRRRiii RRR iiii.i..... RR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 38 swaps 12 any 5 found 0 testBitBlt
+ 
+ method <init>([Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.m_cDisplay = 0;   
+        b1 = new jx/wm/Keymap();    [ RR  i][ RR  iR]
+        vR0.m_cKeymap = b1;   
+        b1 = new jx/wm/Keycode();    [ RR  i.][ RR  iR]
+        vR0.m_eRawCode = b1;   
+        b1 = new jx/wm/Keycode();    [ RR  i.][ RR  iR]
+        vR0.m_eKeyCode = b1;   
+        b1 = new jx/wm/Qualifiers();    [ RR  i.][ RR  iR]
+        vR0.m_eQual = b1;   
+        vR0.nPlugins = 0;   
+        vR0.maxPlugins = 5;   
+        vR0.plugins = new jx/wm/HotkeyPlugin()[vR0.maxPlugins];   
+        vR0.hotkeys = new int[vR0.maxPlugins];   
+        vR2 = vR1[0];    
+        vR3 = vR1[1];    
+        vR4 = getInitialNaming@special();    
+        vR0.m_cNaming = vR4;   
+        out.print("Starting window manager...
+");   [RRR RR i. RR] 
+        vR6 = (jx/zero/BootFS)(vR4.lookup("BootFS"));    
+        if vR6!=null goto B139;   
+  +B130:   #1
+        out.println("unable to find BootFS");   [RRR?R RR i.. RR] 
+        return;   
+  +B139:   #1
+        vR7 = vR6.getFile("std.keymap");    [RRR?R RR i.. RR] 
+        if vR7!=null goto B164;   
+  +B155:   #1
+        out.println("unable to load standard keymap");   [RRR?RR RR i.. RR] 
+        return;   
+  +B164:   #1
+        vR0.setKeymap@this(vR7);   [RRR?RR RR ... RR] 
+        vR8 = (jx/devices/fb/FramebufferDevice)(waitUntilPortalAvailable@special(getInitialNaming@special(),vR3));    
+        vR5 = new jx/wm/WDisplay(vR8);    [ RR R.. i.][ RR R.. iRR]
+        setDisplay@special(vR5);   [RRRRRRR RR R.. R..]
+        scanFonts@special();   [RRRRRRR RR R.. ...]
+        vR5.startUpdate();   [RRRRRRR RR R.. R..] 
+        vR9 = new jx/devices/fb/PixelRect(vR5.getScreenBitmap().getBounds());    [ RR R.. i..][ RR R.. iRR]
+        vR10 = new jx/wm/WView(vR5.getScreenBitmap(),"desktop",vR9);    [ RR R.. i..][ RR R.. iRRRR]
+        setTopView@special(vR10);   [RRRRRRRRR RR R.. R....]
+        vR10.setEraseColor(64,64,64);   [RRRRRRRRR RR R.. iiiR.] 
+        vR10.setBgColor(64,64,64);   [RRRRRRRRR RR R.. iiiR.] 
+        vR10.invalidate();   [RRRRRRRRR RR R.. R....] 
+        vR10.updateRegions(1);   [RRRRRRRRR RR R.. iR...] 
+        vR5.initMouseSprite();   [RRRRRRRRR RR R.. R....] 
+        vR5.endUpdate();   [RRRRRRRRR RR R.. R....] 
+        out.println("Window manager is now ready to accept requests.");   [RRRRRRRRR RR Ri. RR...] 
+        vR0.m_cDisplay = vR5;   
+        vR4.registerPortal(vR0,vR2);   [RRRRRRRRR RR Ri. RRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 30 swaps 6 any 2 found 0 <init>
+ 
+ method setKeymap(Ljx/zero/ReadOnlyMemory;)V {
+  +START:   #1
+        vR0.m_cKeymap.m_nCapsLock = vR1.get32(0);   
+        vR0.m_cKeymap.m_nScrollLock = vR1.get32(1);   
+        vR0.m_cKeymap.m_nNumLock = vR1.get32(2);   
+        vR0.m_cKeymap.m_nLShift = vR1.get32(3);   
+        vR0.m_cKeymap.m_nRShift = vR1.get32(4);   
+        vR0.m_cKeymap.m_nLCommand = vR1.get32(5);   
+        vR0.m_cKeymap.m_nRCommand = vR1.get32(6);   
+        vR0.m_cKeymap.m_nLControl = vR1.get32(7);   
+        vR0.m_cKeymap.m_nRControl = vR1.get32(8);   
+        vR0.m_cKeymap.m_nLOption = vR1.get32(9);   
+        vR0.m_cKeymap.m_nROption = vR1.get32(10);   
+        vR0.m_cKeymap.m_nMenu = vR1.get32(11);   
+        vR0.m_cKeymap.m_nLockSetting = vR1.get32(12);   
+        vi2 = 13;    
+        vi3 = 0;    
+  +B194:   #1
+        if vi3>=128 goto B245;   
+  +B201:   #1
+        vi4 = 0;    
+  +B204:   #1
+        if vi4>=9 goto B239;   
+  +B211:   #1
+        b0 = vR0.m_cKeymap.m_anMap[vi3];    
+        b3 = vi2;    
+        vi2++;   
+        b0[vi4] = vR1.get32(b3);   
+        vi4++;   
+        goto +B204;   [iii R??i  ..]
+  +B239:   #1
+        vi3++;   
+        goto +B194;   [iii R??i  ..]
+  +B245:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 7 swaps 0 any 6 found 0 setKeymap
+ 
+ method createWindow(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)Ljx/wm/WWindowInterface; {
+  +START:   #2
+        if vR0.m_cDisplay!=null goto B13;   
+  +B7:   #1
+        yield@special();   [ R  ]
+        goto +START;   [ R  ]
+  +B13:   #1
+        out.println("WindowManager::createWindow()");   [ R i. RR] 
+        vR4 = new jx/wm/WWindowImpl(vR1,vR2,vR3,vR0.m_cDisplay);    [ R i. i.][ R i. iRRRRR]
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 0 found 0 createWindow
+ 
+ method postInputEvent(Ljx/wm/message/WMessage;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("WindowManager.postInputEvent(").append@extra(vR1).append@extra(")").toString@extra());   [ RR iii.. RR..] 
+        lswitch (vR1.getCode()) { 
+           2:B64
+           3:B74
+           ::B81
+        };   
+  +B64:   #1
+        KeyDown@special((jx/wm/message/WKeyDownMessage)(vR1));   [ RR ..... R...]
+        goto +B81;   forward return[ RR ..... ....]
+  +B74:   #1
+        KeyUp@special((jx/wm/message/WKeyUpMessage)(vR1));   [ RR ..... R...]
+  +B81:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 8 swaps 3 any 0 found 2 postInputEvent
+ 
+ method handleKeyUp(I)V {
+  +START:   #1
+        vR0.setQualifiers@this((vi1 | 128));   [  i iR] 
+        vR0.m_eRawCode.setValue(vi1);   [  i iR] 
+        vR0.m_eKeyCode.setValue(vR0.convertKeyCode@this(vi1,vR0.m_eQual));   [  iii iR.] 
+        if vR0.m_cDisplay==null goto B55;   
+  +B40:   #1
+        handleKeyUp@special(vR0.m_eKeyCode,vR0.m_eRawCode,vR0.m_eQual);   [  RRR RRR]
+  +B55:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 3 any 0 found 0 handleKeyUp
+ 
+ method handleKeyDown(I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("CODE:").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        vi2 = 0;    
+  +B28:   #1
+        if vi2>=vR0.nPlugins goto B66;   
+  +B36:   #1
+        if vi1!=vR0.hotkeys[vi2] goto B60;   
+  +B46:   #1
+        vi3 = vi2;    
+        b0 = new jx/wm/WindowManagerImpl$1(vR0,vi3);    [ RR ... i..][ RR ... iiRR]
+        b0.start();   [ii RR ... R...] 
+  +B60:   #1
+        vi2++;   
+        goto +B28;   [ii RR ... ....]
+  +B66:   #1
+        vR0.setQualifiers@this(vi1);   [ii RR ... iR..] 
+        vR0.m_eRawCode.setValue(vi1);   [ii RR ... iR..] 
+        vR0.m_eKeyCode.setValue(vR0.convertKeyCode@this(vi1,vR0.m_eQual));   [ii RR ii. iR..] 
+        if vR0.m_cDisplay==null goto B117;   
+  +B102:   #1
+        handleKeyDown@special(vR0.m_eKeyCode,vR0.m_eRawCode,vR0.m_eQual);   [ii RR RRR RRR.]
+  +B117:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 16 swaps 4 any 4 found 0 handleKeyDown
+ 
+ method handleMouseDown(I)V {
+  +START:   #1
+        if vR0.m_cDisplay==null goto B11;   
+  +B7:   #1
+        handleMouseDown@special(vi1);   [   i]
+  +B11:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 handleMouseDown
+ 
+ method handleMouseUp(I)V {
+  +START:   #1
+        if vR0.m_cDisplay==null goto B11;   
+  +B7:   #1
+        handleMouseUp@special(vi1);   [   i]
+  +B11:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 handleMouseUp
+ 
+ method handleMouseMoved(II)V {
+  +START:   #1
+        if vR0.m_cDisplay==null goto B12;   
+  +B7:   #1
+        handleMouseMoved@special(vi1,vi2);   [   ii]
+  +B12:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 handleMouseMoved
+ 
+ method handleMousePosition(II)V {
+  +START:   #1
+        if vR0.m_cDisplay==null goto B12;   
+  +B7:   #1
+        handleMousePosition@special(vi1,vi2);   [   ii]
+  +B12:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 handleMousePosition
+ 
+ method getDisplayWidth()I {
+  +START:   #1
+        return vR0.m_cDisplay.getWidth();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDisplayWidth
+ 
+ method getDisplayHeight()I {
+  +START:   #1
+        return vR0.m_cDisplay.getHeight();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDisplayHeight
+ 
+ method registerHotkeyPlugin(Ljx/wm/HotkeyPlugin;I)V {
+  +START:   #1
+        if vR0.nPlugins!=vR0.maxPlugins goto B19;   
+  -B11:   #1
+        throw new jx/wm/TooManyPluginsException();   
+  +B19:   #1
+        vR0.plugins[vR0.nPlugins] = vR1;   
+        vR0.hotkeys[vR0.nPlugins] = vi2;   
+        vR0.nPlugins = (vR0.nPlugins+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 2 found 0 registerHotkeyPlugin
+ 
+ method setQualifiers(I)V {
+  +START:   #1
+        lswitch (vi1) { 
+           75:B108
+           86:B141
+           92:B174
+           93:B241
+           95:B275
+           96:B207
+           203:B124
+           214:B157
+           220:B190
+           221:B258
+           223:B292
+           224:B224
+           ::B306
+        };   
+  +B108:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 1);   
+        goto +B306;   forward return[ R  ]
+  +B124:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -2);   
+        goto +B306;   forward return[ R  ]
+  +B141:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 2);   
+        goto +B306;   forward return[ R  ]
+  +B157:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -3);   
+        goto +B306;   forward return[ R  ]
+  +B174:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 4);   
+        goto +B306;   forward return[ R  ]
+  +B190:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -5);   
+        goto +B306;   forward return[ R  ]
+  +B207:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 8);   
+        goto +B306;   forward return[ R  ]
+  +B224:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -9);   
+        goto +B306;   forward return[ R  ]
+  +B241:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 16);   
+        goto +B306;   forward return[ R  ]
+  +B258:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -17);   
+        goto +B306;   forward return[ R  ]
+  +B275:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value | 32);   
+        goto +B306;   forward return[ R  ]
+  +B292:   #1
+        b0 = vR0.m_eQual;    
+        b0.value = (b0.value & -33);   
+  +B306:   #12
+        return;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 12 swaps 0 any 1 found 0 setQualifiers
+ 
+ method convertKeyCode(ILjx/wm/Qualifiers;)I {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        if vi1< 0 goto B16;   
+  +B9:   #1
+        if vi1<128 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        if (vR2.value & 3)==0 goto B33;   
+  +B27:   #1
+        vi4 = (vi4 | 1);    
+  +B33:   #1
+        if (vR2.value & 12)==0 goto B49;   
+  +B43:   #1
+        vi4 = (vi4 | 2);    
+  +B49:   #1
+        if (vR2.value & 48)==0 goto B65;   
+  +B59:   #1
+        vi4 = (vi4 | 4);    
+  +B65:   #1
+        tswitch (vi4) B112 B117 B122 B127 B133 B138 B143 B149 : B152;   
+  +B112:   #1
+        vi3 = 0;    
+        goto +B152;   forward return[ii   ]
+  +B117:   #1
+        vi3 = 1;    
+        goto +B152;   forward return[ii   ]
+  +B122:   #1
+        vi3 = 2;    
+        goto +B152;   forward return[ii   ]
+  +B127:   #1
+        vi3 = 6;    
+        goto +B152;   forward return[ii   ]
+  +B133:   #1
+        vi3 = 3;    
+        goto +B152;   forward return[ii   ]
+  +B138:   #1
+        vi3 = 4;    
+        goto +B152;   forward return[ii   ]
+  +B143:   #1
+        vi3 = 7;    
+        goto +B152;   forward return[ii   ]
+  +B149:   #1
+        vi3 = 8;    
+  +B152:   #8
+        return vR0.m_cKeymap.m_anMap[vi1][vi3];   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 6 swaps 0 any 6 found 0 convertKeyCode
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/wm/WindowManagerImpl(vR0);    [ R  i][ R . iRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 main
+}

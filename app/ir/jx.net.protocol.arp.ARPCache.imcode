@@ -127,33 +127,20 @@ class jx/net/protocol/arp/ARPCache {
   +START:   #1
         vR0.add@this(vR0.broadcastETH,vR0.broadcastIP);   [ ?RR iR RRR] 
         b1 = new byte[6];    
-        b1[0] = -108;   
-        b1[1] = 83;   
-        b1[2] = 48;   
-        b1[3] = -57;   
-        b1[4] = -8;   
-        b1[5] = 3;   
+        b1[0] = 82;   
+        b1[1] = -19;   
+        b1[2] = 60;   
+        b1[3] = -64;   
+        b1[4] = -17;   
+        b1[5] = 100;   
         b2 = new byte[4];    
         b2[0] = -64;   
         b2[1] = -88;   
-        b2[2] = 1;   
-        b2[3] = 14;   
-        vR0.add@this(b1,b2);   [ ?RR iR RRR] 
-        b1 = new byte[6];    
-        b1[0] = -108;   
-        b1[1] = 83;   
-        b1[2] = 48;   
-        b1[3] = -57;   
-        b1[4] = -8;   
-        b1[5] = 3;   
-        b2 = new byte[4];    
-        b2[0] = -64;   
-        b2[1] = -88;   
-        b2[2] = 90;   
-        b2[3] = -38;   
+        b2[2] = 64;   
+        b2[3] = 1;   
         vR0.add@this(b1,b2);   [ ?RR iR RRR] 
         return;   
   +END:   #1
  }
-// Register: rd 29/29 wr 6 swaps 1 any 0 found 0 init
+// Register: rd 16/16 wr 4 swaps 1 any 0 found 0 init
 }

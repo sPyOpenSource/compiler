@@ -1,0 +1,30 @@
+class jx/keyboard/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = new jx/keyboard/KeyboardImpl();    [ R  i][ R  iR]
+        if vR1.keyboardHardwareAvailable()==0 goto B62;   
+  +B15:   #1
+        out.println("    init keyboard");   [R R i. RR] 
+        vR1.init();   [R R i. R.] 
+        out.println("    keyboard initialized");   [R R ii. RR] 
+        vR2 = getInitialNaming@special();    
+        vR3 = new jx/screen/ScreenImpl(vR2);    [ R ii. i.][ R ii. iRR]
+        b0 = new jx/console/ConsoleImpl(vR2,vR3,vR1);    [ R ii. i..][ R ii. iRRRR]
+        goto +B70;   forward return[RRR R ii. .....]
+  +B62:   #1
+        out.println("************ NO KEYBOARD FOUND!! **************");   [RRR R i.. RR...] 
+  +B70:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 12 swaps 3 any 0 found 0 main
+}

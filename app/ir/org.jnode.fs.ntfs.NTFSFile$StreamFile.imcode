@@ -1,0 +1,85 @@
+class org/jnode/fs/ntfs/NTFSFile$StreamFile {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFile;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(access$000@special(vR1),access$100@special(vR1));   [  iR RRR] 
+        vR0.attributeName = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method getStreamName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.attributeName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStreamName
+ 
+ method getFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.this$0.getFileRecord();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileRecord
+ 
+ method getLength()I {
+  +START:   #1
+        return (int)vR0.this$0.getFileRecord().getAttributeTotalSize(128,vR0.attributeName);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getLength
+ 
+ method setLength(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not implemented yet");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLength
+ 
+ method read(JLjava/nio/ByteBuffer;)V {
+  +START:   #1
+        vR4 = 0;    
+        if compare((vl1+(long)vR4.size()),(long)vR0.getLength@this())<=0 goto B49;   
+  -B22:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Attempt to read past the end of stream, offset: ").append@extra(vl1).toString@extra());   [?R RRR ii. RR..] 
+        throw b0;   
+  +B49:   #1
+        vR0.getFileRecord@this().readData(128,vR0.attributeName,vl1,vR4,0,vR4.size(),1);   [?R RRR ii. iiiR??RiR] [?R RRR iiR iiiR??RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 12 swaps 3 any 1 found 0 read
+ 
+ method write(JLjava/nio/ByteBuffer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not implemented yet");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 write
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method isValid()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isValid
+ 
+ method getFileSystem()Ljx/fs/FileSystem; {
+  +START:   #1
+        return vR0.this$0.getFileSystem();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileSystem
+}

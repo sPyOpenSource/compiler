@@ -2,11 +2,11 @@ class java/util/Hashtable {
  
  method rehash()V {
   +START:   #2
-        if compare((float)(vR0.size*100),((float)vR0.capacity*vR0.load))<=0 goto B35;   
-  +B22:   #1
+        if (vR0.size*100)<=(vR0.capacity*vR0.load) goto B32;   
+  +B19:   #1
         vR0.capacity = (vR0.capacity << 1);   
-        goto +START;   [   .]
-  +B35:   #1
+        goto +START;   [   ]
+  +B32:   #1
         vR0.mask = (vR0.capacity-1);   
         vR1 = vR0.keys;    
         vR2 = vR0.values;    
@@ -14,20 +14,20 @@ class java/util/Hashtable {
         vR0.values = new java/lang/Object()[vR0.capacity];   
         vR0.size = 0;   
         vi3 = 0;    
-  +B84:   #1
-        if vi3>=vR1.length goto B113;   
-  +B90:   #1
-        if vR1[vi3]==null goto B107;   
-  +B96:   #1
+  +B81:   #1
+        if vi3>=vR1.length goto B110;   
+  +B87:   #1
+        if vR1[vi3]==null goto B104;   
+  +B93:   #1
         vR0.put@this(vR1[vi3],vR2[vi3]);   [RRi  iR RRR] 
-  +B107:   #1
+  +B104:   #1
         vi3++;   
-        goto +B84;   [RRi  .. ...]
-  +B113:   #1
+        goto +B81;   [RRi  .. ...]
+  +B110:   #1
         return;   
   +END:   #1
  }
-// Register: rd 21/21 wr 6 swaps 1 any 2 found 0 rehash
+// Register: rd 24/24 wr 6 swaps 1 any 2 found 0 rehash
  
  method toString()Ljava/lang/String; {
   +START:   #1
@@ -130,63 +130,63 @@ class java/util/Hashtable {
  
  method put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
-        if compare((float)(vR0.size*100),((float)vR0.capacity*vR0.load))<=0 goto B26;   
-  +B22:   #1
+        if (vR0.size*100)<=(vR0.capacity*vR0.load) goto B23;   
+  +B19:   #1
         vR0.rehash@this();   [ R  R] 
-  +B26:   #1
-        if vR1==null goto B34;   
-  +B30:   #1
-        if vR2!=null goto B42;   
-  -B34:   #1
+  +B23:   #1
+        if vR1==null goto B31;   
+  +B27:   #1
+        if vR2!=null goto B39;   
+  -B31:   #1
         throw new java/lang/NullPointerException();   
-  +B42:   #1
+  +B39:   #1
         vi3 = (vR1.hashCode() & vR0.mask);    
         vi4 = 0;    
-  +B55:   #1
-        if vi4>=vR0.capacity goto B255;   
-  +B64:   #1
+  +B52:   #1
+        if vi4>=vR0.capacity goto B252;   
+  +B61:   #1
         vi5 = ((vi3+vi4) & vR0.mask);    
-        if vR0.keys[vi5]==null goto B127;   
-  +B85:   #1
-        if vR0.keys[vi5].equals(vR1)==0 goto B249;   
-  +B99:   #1
+        if vR0.keys[vi5]==null goto B124;   
+  +B82:   #1
+        if vR0.keys[vi5].equals(vR1)==0 goto B246;   
+  +B96:   #1
         vR6 = vR0.values[vi5];    
         vR0.keys[vi5] = vR1;   
         vR0.values[vi5] = vR2;   
         return vR6;   
-  +B127:   #1
+  +B124:   #1
         vR0.keys[vi5] = vR1;   
         vR0.values[vi5] = vR2;   
         vR0.size = (vR0.size+1);   
         vi4++;   
-  +B156:   #1
-        if vi4>=vR0.capacity goto B247;   
-  +B165:   #1
+  +B153:   #1
+        if vi4>=vR0.capacity goto B244;   
+  +B162:   #1
         vi5 = ((vi3+vi4) & vR0.mask);    
-        if vR0.keys[vi5]==null goto B241;   
-  +B186:   #1
-        if vR0.keys[vi5].equals(vR1)!=0 goto B203;   
+        if vR0.keys[vi5]==null goto B238;   
+  +B183:   #1
+        if vR0.keys[vi5].equals(vR1)!=0 goto B200;   
+  +B197:   #1
+        goto +B238;   [iiiR R  ..]
   +B200:   #1
-        goto +B241;   [iiiR R  ..]
-  +B203:   #1
         vR6 = vR0.values[vi5];    
         vR0.keys[vi5] = 0;   
         vR0.values[vi5] = 0;   
         vR0.size = (vR0.size-1);   
         return vR6;   
-  +B241:   #2
+  +B238:   #2
         vi4++;   
-        goto +B156;   [iiiR R  ..]
-  +B247:   #1
+        goto +B153;   [iiiR R  ..]
+  +B244:   #1
         return 0;   
-  +B249:   #1
+  +B246:   #1
         vi4++;   
-        goto +B55;   [iiiR R  ..]
-  +B255:   #1
+        goto +B52;   [iiiR R  ..]
+  +B252:   #1
         return 0;   
   +END:   #1
  }
-// Register: rd 52/52 wr 9 swaps 0 any 13 found 0 put
+// Register: rd 55/55 wr 9 swaps 0 any 13 found 0 put
  
  method remove(Ljava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
@@ -253,11 +253,11 @@ class java/util/Hashtable {
  
  method containsKey(Ljava/lang/Object;)Z {
   +START:   #1
-        vi2 = (vR1.hashCode() & vR0.mask);    
-        if vR1!=null goto B16;   
-  +B14:   #1
+        if vR1!=null goto B6;   
+  +B4:   #1
         return 0;   
-  +B16:   #1
+  +B6:   #1
+        vi2 = (vR1.hashCode() & vR0.mask);    
         vi3 = 0;    
   +B18:   #1
         if vi3>=vR0.capacity goto B68;   
@@ -301,10 +301,10 @@ class java/util/Hashtable {
  }
 // Register: rd 8/8 wr 2 swaps 0 any 3 found 0 contains
  
- method <init>(IF)V {
+ method <init>(II)V {
   +START:   #1
         vR0.<init>@special();   [   R] 
-        vR0.load = vl2;   
+        vR0.load = vi2;   
         vR0.size = 0;   
         vR0.capacity = 1;   
   +B19:   #1
@@ -319,11 +319,11 @@ class java/util/Hashtable {
         return;   
   +END:   #1
  }
-// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 <init>
+// Register: rd 15/15 wr 0 swaps 0 any 0 found 0 <init>
  
  method <init>(I)V {
   +START:   #1
-        vR0.<init>@special(vi1,jx.classfile.datatypes.BCFloat@398dada8);   [   ?iR] 
+        vR0.<init>@special(vi1,75);   [   iiR] 
         return;   
   +END:   #1
  }

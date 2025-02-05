@@ -1,0 +1,43 @@
+class org/jnode/fs/util/DosUtils {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method decodeDateTime(II)J {
+  +START:   #1
+        vR2 = getInstance@special();    [   ]
+        vR2.set@extra(14,0);   [R   iiR] 
+        vR2.set@extra(13,((vi1 & 31)*2));   [R  i iiR] 
+        vR2.set@extra(12,((vi1 >> 5) & 63));   [R  ii iiR] 
+        vR2.set@extra(11,(vi1 >> 11));   [R  iii iiR] 
+        vR2.set@extra(5,(vi0 & 31));   [R  iiii iiR] 
+        vR2.set@extra(2,(((vi0 >> 5) & 15)-1));   [R  iiiii iiR] 
+        vR2.set@extra(1,((vi0 >> 9)+1980));   [R  iiiiii iiR] 
+        return vR2.getTimeInMillis();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 7 swaps 6 any 0 found 0 decodeDateTime
+ 
+ method encodeTime(J)I {
+  +START:   #1
+        vR2 = getInstance@special();    [   ]
+        vR2.setTimeInMillis(vl0);   [?R   ??R] 
+        return (((2048*vR2.get@extra(11))+(32*vR2.get@extra(12)))+(vR2.get@extra(13)/2));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 encodeTime
+ 
+ method encodeDate(J)I {
+  +START:   #1
+        vR2 = getInstance@special();    [   ]
+        vR2.setTimeInMillis(vl0);   [?R   ??R] 
+        return (((512*(vR2.get@extra(1)-1980))+(32*(vR2.get@extra(2)+1)))+vR2.get@extra(5));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 encodeDate
+}

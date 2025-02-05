@@ -1,0 +1,19 @@
+class jx/awt/MessageDialog$2 {
+ 
+ method <init>(Ljava/awt/Frame;)V {
+  +START:   #1
+        vR0.val$f = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method windowClosing(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        vR0.val$f.dispose();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 windowClosing
+}

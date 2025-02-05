@@ -1,0 +1,639 @@
+class jx/wm/WRegion {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new jx/devices/fb/PixelRect();    [ ?R  i][ ?R  iR]
+        vR0.m_cBounds = b1;   
+        vR0.m_cBounds.m_nX0 = 99999999;   
+        vR0.m_cBounds.m_nY0 = 99999999;   
+        vR0.m_cBounds.m_nX1 = -99999999;   
+        vR0.m_cBounds.m_nY1 = -99999999;   
+        vR0.m_nNumClipRect = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        vR0.m_nNumClipRect = 1;   
+        vR0.m_acClips = new jx/devices/fb/PixelRect()[1];   
+        b0 = vR0.m_acClips;    
+        b2 = new jx/devices/fb/PixelRect(vR1);    [ RRR  i.][ RRR . iRR]
+        b0[0] = b2;   
+        b1 = new jx/devices/fb/PixelRect();    [ RRR . i..][ RRR . iR.]
+        vR0.m_cBounds = b1;   
+        vR0.m_cBounds.m_nX0 = vR1.m_nX0;   
+        vR0.m_cBounds.m_nY0 = vR1.m_nY0;   
+        vR0.m_cBounds.m_nX1 = vR1.m_nX1;   
+        vR0.m_cBounds.m_nY1 = vR1.m_nY1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 4 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(Ljx/wm/WRegion;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.m_acClips = 0;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R  i][ ?R  iR]
+        vR0.m_cBounds = b1;   
+        vR0.m_cBounds.m_nX0 = 99999999;   
+        vR0.m_cBounds.m_nY0 = 99999999;   
+        vR0.m_cBounds.m_nX1 = -99999999;   
+        vR0.m_cBounds.m_nY1 = -99999999;   
+        vR0.m_nNumClipRect = 0;   
+        vR0.include@this(vR1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method makeEmpty()V {
+  +START:   #1
+        vR0.m_acClips = 0;   
+        vR0.m_nNumClipRect = 0;   
+        vR0.m_cBounds.m_nX0 = 99999999;   
+        vR0.m_cBounds.m_nY0 = 99999999;   
+        vR0.m_cBounds.m_nX1 = -99999999;   
+        vR0.m_cBounds.m_nY1 = -99999999;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 makeEmpty
+ 
+ method AddClipRect(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR2 = vR0.m_acClips;    
+        vR0.m_acClips = new jx/devices/fb/PixelRect()[(vR0.m_nNumClipRect+1)];   
+        arraycopy@special(vR2,0,vR0.m_acClips,0,vR0.m_nNumClipRect);   [R Rii Ri iiRiR]
+        b0 = vR0.m_acClips;    
+        b2 = vR0.m_nNumClipRect;    
+        b1 = b2;    
+        vR0.m_nNumClipRect = (b2+1);   
+        b0[b1] = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 2 found 0 AddClipRect
+ 
+ method RemClipRect(I)V {
+  +START:   #1
+        if vi1<vR0.m_nNumClipRect goto B9;   
+  +B8:   #1
+        return;   
+  +B9:   #1
+        vR2 = vR0.m_acClips;    
+        vR0.m_acClips = new jx/devices/fb/PixelRect()[(vR0.m_nNumClipRect-1)];   
+        arraycopy@special(vR2,0,vR0.m_acClips,0,vi1);   [R  R iiRiR]
+        vi3 = (vi1+1);    
+  +B42:   #1
+        if vi3>=vR0.m_nNumClipRect goto B67;   
+  +B50:   #1
+        vR0.m_acClips[(vi3-1)] = vR2[vi3];   
+        vi3++;   
+        goto +B42;   [Ri  . .....]
+  +B67:   #1
+        vR0.m_nNumClipRect = (vR0.m_nNumClipRect-1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 4 swaps 0 any 4 found 0 RemClipRect
+ 
+ method RemClipRect(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.m_nNumClipRect goto B29;   
+  +B10:   #1
+        if vR0.m_acClips[vi2]!=vR1 goto B23;   
+  +B20:   #1
+        goto +B29;   [i   ]
+  +B23:   #1
+        vi2++;   
+        goto +B2;   [i   ]
+  +B29:   #2
+        if vi2!=vR0.m_nNumClipRect goto B38;   
+  +B37:   #1
+        return;   
+  +B38:   #1
+        vR0.RemClipRect@special(vi2);   [i   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 3 found 0 RemClipRect
+ 
+ method Optimize()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.m_nNumClipRect goto B269;   
+  +B10:   #1
+        vR2 = vR0.m_acClips[vi1];    
+        vi3 = (vi1+1);    
+  +B21:   #5
+        if vi3>=vR0.m_nNumClipRect goto B263;   
+  +B29:   #1
+        vR4 = vR0.m_acClips[vi3];    
+        if vR2.m_nY0!=(vR4.m_nY1+1) goto B92;   
+  +B51:   #1
+        if vR2.m_nX0!=vR4.m_nX0 goto B92;   
+  +B63:   #1
+        if vR2.m_nX1!=vR4.m_nX1 goto B92;   
+  +B75:   #1
+        vR2.m_nY0 = vR4.m_nY0;   
+        vR0.RemClipRect@special(vi3);   [iRiR   iR] 
+        goto +B21;   [iRiR   ..]
+  +B92:   #3
+        if vR2.m_nY1!=(vR4.m_nY0-1) goto B147;   
+  +B106:   #1
+        if vR2.m_nX0!=vR4.m_nX0 goto B147;   
+  +B118:   #1
+        if vR2.m_nX1!=vR4.m_nX1 goto B147;   
+  +B130:   #1
+        vR2.m_nY1 = vR4.m_nY1;   
+        vR0.RemClipRect@special(vi3);   [iRiR   iR] 
+        goto +B21;   [iRiR   ..]
+  +B147:   #3
+        if vR2.m_nX0!=(vR4.m_nX1+1) goto B202;   
+  +B161:   #1
+        if vR2.m_nY0!=vR4.m_nY0 goto B202;   
+  +B173:   #1
+        if vR2.m_nY1!=vR4.m_nY1 goto B202;   
+  +B185:   #1
+        vR2.m_nX0 = vR4.m_nX0;   
+        vR0.RemClipRect@special(vi3);   [iRiR   iR] 
+        goto +B21;   [iRiR   ..]
+  +B202:   #3
+        if vR2.m_nX1!=(vR4.m_nX0-1) goto B257;   
+  +B216:   #1
+        if vR2.m_nY0!=vR4.m_nY0 goto B257;   
+  +B228:   #1
+        if vR2.m_nY1!=vR4.m_nY1 goto B257;   
+  +B240:   #1
+        vR2.m_nX1 = vR4.m_nX1;   
+        vR0.RemClipRect@special(vi3);   [iRiR   iR] 
+        goto +B21;   [iRiR   ..]
+  +B257:   #3
+        vi3++;   
+        goto +B21;   [iRiR   ..]
+  +B263:   #1
+        vi1++;   
+        goto +B2;   [iRiR   ..]
+  +B269:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 47/47 wr 6 swaps 0 any 5 found 0 Optimize
+ 
+ method CalculateBounds()V {
+  +START:   #1
+        vR0.m_cBounds.m_nX0 = 9999999;   
+        vR0.m_cBounds.m_nY0 = 9999999;   
+        vR0.m_cBounds.m_nX1 = -9999999;   
+        vR0.m_cBounds.m_nY1 = -9999999;   
+        vi1 = 0;    
+  +B38:   #1
+        if vi1>=vR0.m_nNumClipRect goto B65;   
+  +B46:   #1
+        vR0.m_cBounds.include@extra(vR0.m_acClips[vi1]);   [i  i RR] 
+        vi1++;   
+        goto +B38;   [i  i ..]
+  +B65:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 1 any 2 found 0 CalculateBounds
+ 
+ method exclude(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #17
+        if vi2>=vR0.m_nNumClipRect goto B1457;   
+  +B10:   #1
+        vR3 = vR0.m_acClips[vi2];    
+        vi5 = 0;    
+        if vR1.m_nX1<vR3.m_nX0 goto B64;   
+  +B31:   #1
+        if vR1.m_nX0>vR3.m_nX1 goto B64;   
+  +B42:   #1
+        if vR1.m_nY1<vR3.m_nY0 goto B64;   
+  +B53:   #1
+        if vR1.m_nY0<=vR3.m_nY1 goto B70;   
+  +B64:   #3
+        vi2++;   
+        goto +B2;   [iR?i R  ]
+  +B70:   #1
+        if vR1.m_nX0>vR3.m_nX0 goto B87;   
+  +B81:   #1
+        vi6 = 0;    
+        goto +B92;   [iR?ii R  ]
+  +B87:   #1
+        vi6 = 4096;    
+  +B92:   #1
+        if vR1.m_nX1>=vR3.m_nX1 goto B109;   
+  +B103:   #1
+        vi7 = 0;    
+        goto +B114;   [iR?iii R  ]
+  +B109:   #1
+        vi7 = 256;    
+  +B114:   #1
+        if vR1.m_nY0>vR3.m_nY0 goto B131;   
+  +B125:   #1
+        vi8 = 0;    
+        goto +B135;   [iR?iiii R  ]
+  +B131:   #1
+        vi8 = 16;    
+  +B135:   #1
+        if vR1.m_nY1>=vR3.m_nY1 goto B152;   
+  +B146:   #1
+        vi9 = 0;    
+        goto +B155;   [iR?iiiii R  ]
+  +B152:   #1
+        vi9 = 1;    
+  +B155:   #1
+        vi5 = (((vi6+vi7)+vi8)+vi9);    
+        lswitch (vi5) { 
+           0:B510
+           1:B356
+           16:B1152
+           17:B717
+           256:B308
+           257:B1449
+           272:B372
+           273:B340
+           4096:B786
+           4097:B441
+           4112:B1274
+           4113:B1030
+           4352:B579
+           4353:B324
+           4368:B908
+           4369:B648
+           ::B1454
+        };   
+  +B308:   #1
+        vR3.m_nY0 = (vR1.m_nY1+1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ]
+  +B324:   #1
+        vR3.m_nX1 = (vR1.m_nX0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ]
+  +B340:   #1
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ]
+  +B356:   #1
+        vR3.m_nX0 = (vR1.m_nX1+1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ]
+  +B372:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = (vR1.m_nY1+1);   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B441:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR3.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR3.m_nX1 = (vR1.m_nX0-1);   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B510:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR3.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY0 = (vR1.m_nY1+1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B579:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR3.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY0 = (vR1.m_nY1+1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B648:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B717:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B786:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR3.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR3.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY0 = (vR1.m_nY1+1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B908:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = (vR1.m_nY1+1);   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B1030:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B1152:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = (vR1.m_nY1+1);   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B1274:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = (vR1.m_nX0-1);   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX1+1);   
+        vR4.m_nY0 = vR1.m_nY0;   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR1.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = vR3.m_nX0;   
+        vR4.m_nY0 = (vR1.m_nY1+1);   
+        vR4.m_nX1 = vR3.m_nX1;   
+        vR4.m_nY1 = vR3.m_nY1;   
+        vR0.AddClipRect@special(vR4);   [iRRiiiii R  RR] 
+        vR3.m_nY1 = (vR1.m_nY0-1);   
+        vi2++;   
+        goto +B2;   [iRRiiiii R  ..]
+  +B1449:   #1
+        vR0.RemClipRect@special(vi2);   [iRRiiiii R  iR] 
+  +B1454:   #1
+        goto +B2;   [iR?iiiii R  ..]
+  +B1457:   #1
+        vR0.Optimize@special();   [iRRiiiii R  R.] 
+        vR0.CalculateBounds@special();   [iRRiiiii R  R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 227/227 wr 41 swaps 0 any 19 found 0 exclude
+ 
+ method exclude(Ljx/wm/WRegion;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR1.m_nNumClipRect goto B26;   
+  +B10:   #1
+        vR0.exclude@this(vR1.m_acClips[vi2]);   [i  i RR] 
+        vi2++;   
+        goto +B2;   [i  i ..]
+  +B26:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 2 found 0 exclude
+ 
+ method include(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR2 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R  i][ R . iRR]
+        vR2.include@extra(vR1);   [R R . RR.] 
+        vR3 = new jx/wm/WRegion(vR2);    [ R . i..][ R . iRR]
+        vi5 = 0;    
+  +B29:   #1
+        if vi5>=vR0.m_nNumClipRect goto B55;   
+  +B38:   #1
+        vR3.exclude(vR0.m_acClips[vi5]);   [RR?i R i RR.] 
+        vi5++;   
+        goto +B29;   [RR?i R i ...]
+  +B55:   #1
+        vR3.exclude(vR1);   [RR?i R . RR.] 
+        vR0.makeEmpty@this();   [RR?i R . R..] 
+        vR4 = new jx/devices/fb/PixelRect(vR2.m_nX0,vR2.m_nY0,vR2.m_nX1,vR2.m_nY1);    [ R . i..][ R . iiiiiR]
+        vR0.AddClipRect@special(vR4);   [RRRi R . RR....] 
+        vi5 = 0;    
+  +B98:   #1
+        if vi5>=vR3.m_nNumClipRect goto B124;   
+  +B107:   #1
+        vR0.exclude@this(vR3.m_acClips[vi5]);   [RRRi R i RR....] 
+        vi5++;   
+        goto +B98;   [RRRi R i ......]
+  +B124:   #1
+        vR0.CalculateBounds@special();   [RRRi R . R.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 12 swaps 2 any 4 found 0 include
+ 
+ method include(Ljx/wm/WRegion;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR1.m_nNumClipRect goto B26;   
+  +B10:   #1
+        vR0.include@this(vR1.m_acClips[vi2]);   [i  i RR] 
+        vi2++;   
+        goto +B2;   [i  i ..]
+  +B26:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 2 found 0 include
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR1 = b0.append@extra("WRegion ").append@extra(vR0.m_nNumClipRect).append@extra(" [").toString@extra();    [ RR iii... R...] [ RR iiiR.. RR..] [ RR iiiRR. RiR.] [ RR iiiRRR RiRR] 
+        vi2 = 0;    
+  +B30:   #1
+        if vi2>=vR0.m_nNumClipRect goto B103;   
+  +B38:   #1
+        if vi2!=(vR0.m_nNumClipRect-1) goto B65;   
+  +B48:   #1
+        vR1 = vR1.concat@extra(vR0.m_acClips[vi2].toString@extra());    [Ri RR i..... RR..] 
+        goto +B97;   [Ri RR i..... ....]
+  +B65:   #1
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        vR1 = vR1.concat@extra(b1.append@extra(vR0.m_acClips[vi2].toString@extra()).append@extra(",").toString@extra());    [Ri RR ii.i.. RR..] 
+  +B97:   #1
+        vi2++;   
+        goto +B30;   [Ri RR ...... ....]
+  +B103:   #1
+        vR1 = vR1.concat@extra("]");    [Ri RR i..... RR..] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 21 swaps 8 any 3 found 0 toString
+ 
+ method exchange(Ljx/wm/WRegion;Ljx/wm/WRegion;)V {
+  +START:   #1
+        vR0.makeEmpty@this();   [   R] 
+        vR0.m_acClips = vR1.m_acClips;   
+        vR0.m_cBounds.m_nX0 = vR1.m_cBounds.m_nX0;   
+        vR0.m_cBounds.m_nY0 = vR1.m_cBounds.m_nY0;   
+        vR0.m_cBounds.m_nX1 = vR1.m_cBounds.m_nX1;   
+        vR0.m_cBounds.m_nY1 = vR1.m_cBounds.m_nY1;   
+        vR0.m_nNumClipRect = vR1.m_nNumClipRect;   
+        vR1.m_acClips = 0;   
+        vR1.m_cBounds.m_nX0 = 9999999;   
+        vR1.m_cBounds.m_nY0 = 9999999;   
+        vR1.m_cBounds.m_nX1 = -9999999;   
+        vR1.m_cBounds.m_nY1 = -9999999;   
+        vR1.m_nNumClipRect = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 0 swaps 0 any 0 found 0 exchange
+ 
+ method isEmpty()Z {
+  +START:   #1
+        if vR0.m_nNumClipRect!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isEmpty
+ 
+ method countRects()I {
+  +START:   #1
+        return vR0.m_nNumClipRect;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 countRects
+ 
+ method rectAt(I)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        if vi1<vR0.m_nNumClipRect goto B10;   
+  +B8:   #1
+        return 0;   
+  +B10:   #1
+        return vR0.m_acClips[vi1];   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 rectAt
+ 
+ method includeIntersection(Ljx/wm/WRegion;Ljx/devices/fb/PixelRect;Z)V {
+  +START:   #1
+        vR5 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vi6 = 0;    
+  +B12:   #1
+        if vi6>=vR1.m_nNumClipRect goto B156;   
+  +B21:   #1
+        vR4 = vR1.m_acClips[vi6];    
+        vR5.m_nX0 = vR4.m_nX0;   
+        vR5.m_nY0 = vR4.m_nY0;   
+        vR5.m_nX1 = vR4.m_nX1;   
+        vR5.m_nY1 = vR4.m_nY1;   
+        vR5.clip@extra(vR2);   [RRi R  RR] 
+        if vR5.isValid@extra()==0 goto B150;   
+  +B84:   #1
+        if vi3==0 goto B144;   
+  +B88:   #1
+        vR5.m_nX0 = (vR5.m_nX0-vR2.m_nX0);   
+        vR5.m_nY0 = (vR5.m_nY0-vR2.m_nY0);   
+        vR5.m_nX1 = (vR5.m_nX1-vR2.m_nX0);   
+        vR5.m_nY1 = (vR5.m_nY1-vR2.m_nY0);   
+  +B144:   #1
+        vR0.include@this(vR5);   [RRi R  RR] 
+  +B150:   #1
+        vi6++;   
+        goto +B12;   [RRi R  ..]
+  +B156:   #1
+        vR0.Optimize@special();   [RRi R  R.] 
+        vR0.CalculateBounds@special();   [RRi R  R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 4 swaps 0 any 3 found 0 includeIntersection
+ 
+ method getBounds()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return new jx/devices/fb/PixelRect(vR0.m_cBounds);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getBounds
+ 
+ method intersect(Ljx/wm/WRegion;)V {
+  +START:   #1
+        vR2 = new jx/wm/WRegion(vR0);    [ R  i][ R . iRR]
+        vR2.exclude(vR1);   [R R . RR.] 
+        vR0.exclude@this(vR2);   [R R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 intersect
+}

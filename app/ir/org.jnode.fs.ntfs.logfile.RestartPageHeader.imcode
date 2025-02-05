@@ -1,0 +1,94 @@
+class org/jnode/fs/ntfs/logfile/RestartPageHeader {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getBootRecord@extra().getBytesPerSector@extra(),1,vR2,vi3);   [  i iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method isValid()Z {
+  +START:   #1
+        if vR0.getMagic@this()==1381258066 goto B18;   
+  +B9:   #1
+        if vR0.getMagic@this()!=1145784387 goto B22;   
+  +B18:   #1
+        b0 = 1;    
+        goto +B23b0;   forward return[ i  .]
+  +B22:   #1
+        b0 = 0;    
+  +B23b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isValid
+ 
+ method getCheckDiskLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCheckDiskLsn
+ 
+ method getSystemPageSize()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSystemPageSize
+ 
+ method getLogPageSize()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLogPageSize
+ 
+ method getRestartOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRestartOffset
+ 
+ method getMinorVersion()I {
+  +START:   #1
+        return vR0.getInt16@this(26);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinorVersion
+ 
+ method getMajorVersion()I {
+  +START:   #1
+        return vR0.getUInt16@this(28);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMajorVersion
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder("Restart Page Header:[
+");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append@extra(b1.append@extra("chkdsk-lsn: ").append@extra(vR0.getCheckDiskLsn@this()).append@extra("
+").toString@extra());   [R RR iii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iii.. i....][ RR iii.. iR...]
+        vR1.append@extra(b1.append@extra("system-page-size: ").append@extra(vR0.getSystemPageSize@this()).append@extra("
+").toString@extra());   [R RR iiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiii.ii. i....][ RR iiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("log-page-size: ").append@extra(vR0.getLogPageSize@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii.ii. i....][ RR iiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("restart-offset: ").append@extra(vR0.getRestartOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("minor-version: ").append@extra(vR0.getMinorVersion@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("major-version: ").append@extra(vR0.getMajorVersion@this()).append@extra("]").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 49 swaps 23 any 0 found 0 toDebugString
+}

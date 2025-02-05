@@ -1,0 +1,1062 @@
+class jx/wm/bitmap/WBitmapRGB16Memory {
+ 
+ method init(III)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("WBitmap::init(").append@extra(vi1).append@extra(", ").append@extra(vi2).append@extra(", ").append@extra(vi3).append@extra(")").toString@extra());   [ RR iiii.i..... RR......] 
+        vR0.m_cDisplayDriver = 0;   
+        vR0.m_nBytesPerLine = (vi1*2);   
+        if vi3==-1 goto B84;   
+  +B65:   #1
+        if vR0.m_nBytesPerLine<=vi3 goto B79;   
+  +B73:   #1
+        vR0.m_nBytesPerLine = -1;   
+        return;   
+  +B79:   #1
+        vR0.m_nBytesPerLine = vi3;   
+  +B84:   #1
+        vR0.m_nSize = (vi2*vR0.m_nBytesPerLine);   
+        vR0.m_cMemory = allocMemory@special(vR0.m_nSize);   
+        vR0.m_nOffset = 0;   
+        vR0.m_eColorSpace.setValue(4);   [ RR i.......... iR......] 
+        vR0.m_nWidth = vi1;   
+        vR0.m_nHeight = vi2;   
+        b1 = new jx/devices/fb/PixelRect(0,0,(vR0.m_nWidth-1),(vR0.m_nHeight-1));    [ RR i.......... i.......][ RR i.......... iiiiiR..]
+        vR0.m_cBounds = b1;   
+        vR0.m_bIsVideoMemory = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 17 swaps 7 any 1 found 0 init
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_eColorSpace.setValue(4);   [   iR] 
+        vR0.m_nOffset = 0;   
+        vR0.m_nBytesPerLine = 0;   
+        vR0.m_nHeight = 0;   
+        vR0.m_nWidth = 0;   
+        vR0.m_cMemory = 0;   
+        vR0.m_cBounds = 0;   
+        vR0.m_cDisplayDriver = 0;   
+        vR0.m_bIsVideoMemory = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.init@this(vi1,vi2,vi3);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.init@this(vi1,vi2,-1);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/FramebufferDevice;IIILjx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("WBitmap::init(").append@extra(vi2).append@extra(", ").append@extra(vi3).append@extra(", ").append@extra(vi4).append@extra(")").toString@extra());   [ RR iiii.i..... RR......] 
+        vR0.m_cDisplayDriver = vR1;   
+        vR0.m_nWidth = vi2;   
+        vR0.m_nHeight = vi3;   
+        vR0.m_eColorSpace.setValue(4);   [ RR iiii.i..... iR......] 
+        vR0.m_nBytesPerLine = vi4;   
+        vR0.m_cMemory = vR5;   
+        vR0.m_nOffset = vi6;   
+        vR0.m_nSize = (vi3*vR0.m_nBytesPerLine);   
+        if vR0.m_nSize<=vR5.size() goto B128;   
+  -B118:   #1
+        throw new java/lang/RuntimeException("memory too small for bitmap");   
+  +B128:   #1
+        b1 = new jx/devices/fb/PixelRect(0,0,(vR0.m_nWidth-1),(vR0.m_nHeight-1));    [ RR ........... i.......][ RR ........... iiiiiR..]
+        vR0.m_cBounds = b1;   
+        vR0.m_bIsVideoMemory = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 18 swaps 7 any 0 found 0 <init>
+ 
+ method drawLine_Unsafe(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        cClipped.setTo@extra(vR1);   [  . RR] 
+        vR2.clip@extra(vR0.m_cBounds);   [  i RR] 
+        if vR2.isValid@extra()!=0 goto B23;   
+  +B22:   #1
+        return;   
+  +B23:   #1
+        if vR0.clipLine@this(vR2,cClipped)!=0 goto B35;   
+  +B34:   #1
+        return;   
+  +B35:   #1
+        if vR0.m_cDisplayDriver==null goto B62;   
+  +B42:   #1
+        if vR0.m_cDisplayDriver.drawLine(vR1,cClipped,vR3,vR4)!=0 goto B62;   
+  +B61:   #1
+        return;   
+  +B62:   #2
+        vR0.startFrameBufferUpdate@this();   [  . R....] 
+        vR0.drawLineRGB16@special(vR1,cClipped,vR3.toRGB16(),vR4);   [  is RsRRR] 
+        vR0.endFrameBufferUpdate@this();   [  is R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 4 any 0 found 0 drawLine_Unsafe
+ 
+ method drawRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR1);    [ R  i][ R . iRR]
+        vR5 = new jx/devices/fb/PixelRect(vR1);    [ R . i..][ R . iRR]
+        vR5.m_nX1 = vR1.m_nX0;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nY1 = vR1.m_nY0;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nY0 = vR1.m_nY1;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nX0 = vR1.m_nX1;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 4 swaps 0 any 0 found 0 drawRect
+ 
+ method drawLine(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR5 = new jx/devices/fb/PixelRect(vR1);    [ RR  i][ RR . iRR]
+        vR6 = new jx/devices/fb/PixelRect(vR2);    [ RR . i..][ RR . iRR]
+        vR6.clip@extra(vR0.m_cBounds);   [RR RR i RR.] 
+        if vR6.isValid@extra()!=0 goto B38;   
+  +B37:   #1
+        return;   
+  +B38:   #1
+        if vR0.clipLine@this(vR6,vR5)!=0 goto B50;   
+  +B49:   #1
+        return;   
+  +B50:   #1
+        if vR5.m_nX0<vR0.m_cBounds.m_nX0 goto B170;   
+  +B65:   #1
+        if vR5.m_nX0>vR0.m_cBounds.m_nX1 goto B170;   
+  +B80:   #1
+        if vR5.m_nX1<vR0.m_cBounds.m_nX0 goto B170;   
+  +B95:   #1
+        if vR5.m_nX1>vR0.m_cBounds.m_nX1 goto B170;   
+  +B110:   #1
+        if vR5.m_nY0<vR0.m_cBounds.m_nY0 goto B170;   
+  +B125:   #1
+        if vR5.m_nY0>vR0.m_cBounds.m_nY1 goto B170;   
+  +B140:   #1
+        if vR5.m_nY1<vR0.m_cBounds.m_nY0 goto B170;   
+  +B155:   #1
+        if vR5.m_nY1<=vR0.m_cBounds.m_nY1 goto B208;   
+  +B170:   #7
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("BUG() in drawLine ").append@extra(vR5).append@extra(" / ").append@extra(vR0.m_cBounds).toString@extra());   [RR RR iiii... RR...] 
+  +B208:   #1
+        if vR0.m_cDisplayDriver==null goto B234;   
+  +B215:   #1
+        if vR0.m_cDisplayDriver.drawLine(vR1,vR5,vR3,vR4)!=0 goto B234;   
+  +B233:   #1
+        return;   
+  +B234:   #2
+        vR0.startFrameBufferUpdate@this();   [RR RR ....... R....] 
+        vR0.drawLineRGB16@special(vR1,vR5,vR3.toRGB16(),vR4);   [RR RR i...... RsRRR] 
+        vR0.endFrameBufferUpdate@this();   [RR RR i...... R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 16 swaps 6 any 0 found 0 drawLine
+ 
+ method fillRect([Ljx/devices/fb/PixelRect;ILjx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vR0.m_cDisplayDriver==null goto B25;   
+  +B7:   #1
+        if vR0.m_cDisplayDriver.fillRect(vR1,vi2,vR3,vR4)!=0 goto B25;   
+  +B24:   #1
+        return;   
+  +B25:   #2
+        vR0.startFrameBufferUpdate@this();   [   R....] 
+        vR0.fillRectRGB16@special(vR1,vi2,vR3.toRGB16(),vR4);   [  i RsiRR] 
+        vR0.endFrameBufferUpdate@this();   [  i R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 1 any 0 found 0 fillRect
+ 
+ method fillRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect()[1];    
+        vR4[0] = vR1;   
+        vR0.fillRect@this(vR4,1,vR2,vR3);   [R   RRiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 fillRect
+ 
+ method drawLineRGB16(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;SLjx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vi5 = abs@special((vR1.m_nX1-vR1.m_nX0));    [  i i]
+        vi6 = abs@special((vR1.m_nY1-vR1.m_nY0));    [i  ii i]
+        vi7 = vR1.m_nX0;    
+        vi8 = vR1.m_nY0;    
+        vi9 = vR0.m_nBytesPerLine;    
+        vi10 = 0;    
+        vi11 = abs@special((vR2.m_nX1-vR2.m_nX0));    [iiiiii  iii i]
+        vi12 = abs@special((vR2.m_nY1-vR2.m_nY0));    [iiiiiii  iiii i]
+        if vi5<=vi6 goto B255;   
+  +B84:   #1
+        vi17 = (vi6 << 1);    
+        vi18 = ((vi6-vi5) << 1);    
+        vi16 = (vi17-vi5);    
+        if vi7!=vR2.m_nX0 goto B124;   
+  +B115:   #1
+        if vi8==vR2.m_nY0 goto B167;   
+  +B124:   #1
+        vi20 = abs@special((vR2.m_nX0-vi7));    [iiiiiiii???iii  i... i]
+        vi21 = abs@special((vR2.m_nY0-vi8));    [iiiiiiii???iii?i  ii.. i]
+        vi16 = (vi16+((vi21*vi18)+((vi20-vi21)*vi17)));    
+  +B167:   #1
+        if vR2.m_nY0<=vR2.m_nY1 goto B186;   
+  +B178:   #1
+        vi19 = -vi9;    
+        goto +B190;   [iiiiiiii???iiiiii  .... .]
+  +B186:   #1
+        vi19 = vi9;    
+  +B190:   #1
+        if vR2.m_nX0<=vR2.m_nX1 goto B225;   
+  +B201:   #1
+        vi19 = -vi19;    
+        vi10 = ((vR2.m_nX1*2)+(vi9*vR2.m_nY1));    
+        goto +B241;   [iiiiiiii???iiiiii  .... .]
+  +B225:   #1
+        vi10 = ((vR2.m_nX0*2)+(vi9*vR2.m_nY0));    
+  +B241:   #1
+        vi15 = vi11;    
+        vi13 = vi19;    
+        vi14 = 2;    
+        goto +B422;   [iiiiiiiiiiiiiiiii  .... .]
+  +B255:   #1
+        vi17 = (vi5 << 1);    
+        vi16 = (vi17-vi6);    
+        vi18 = ((vi5-vi6) << 1);    
+        if vi7!=vR2.m_nX0 goto B295;   
+  +B286:   #1
+        if vi8==vR2.m_nY0 goto B338;   
+  +B295:   #1
+        vi20 = abs@special((vR2.m_nX0-vi7));    [iiiiiiiiiiiiiiiii  i... i]
+        vi21 = abs@special((vR2.m_nY0-vi8));    [iiiiiiiiiiiiiiiii  ii.. i]
+        vi16 = (vi16+((vi20*vi18)+((vi21-vi20)*vi17)));    
+  +B338:   #1
+        if vR2.m_nX0<=vR2.m_nX1 goto B356;   
+  +B349:   #1
+        vi19 = -2;    
+        goto +B359;   [iiiiiiiiiiiiiiiii  .... .]
+  +B356:   #1
+        vi19 = 2;    
+  +B359:   #1
+        if vR2.m_nY0<=vR2.m_nY1 goto B394;   
+  +B370:   #1
+        vi19 = -vi19;    
+        vi10 = ((vR2.m_nX1*2)+(vi9*vR2.m_nY1));    
+        goto +B410;   [iiiiiiiiiiiiiiiii  .... .]
+  +B394:   #1
+        vi10 = ((vR2.m_nX0*2)+(vi9*vR2.m_nY0));    
+  +B410:   #1
+        vi15 = vi12;    
+        vi13 = vi19;    
+        vi14 = vi9;    
+  +B422:   #1
+        if vR4.isSet@extra(1)!=0 goto B440;   
+  +B431:   #1
+        if vR4.isSet@extra(3)==0 goto B502;   
+  +B440:   #1
+        vi19 = 0;    
+  +B443:   #1
+        if vi19>vi15 goto B499;   
+  +B450:   #1
+        vR0.set16@this(vi10,vi3);   [iiiiiiiiiiiiiiiii  .... iiR] 
+        if vi16>=0 goto B472;   
+  +B462:   #1
+        vi16 = (vi16+vi17);    
+        goto +B486;   [iiiiiiiiiiiiiiiii  .... ...]
+  +B472:   #1
+        vi16 = (vi16+vi18);    
+        vi10 = (vi10+vi13);    
+  +B486:   #1
+        vi10 = (vi10+vi14);    
+        vi19++;   
+        goto +B443;   [iiiiiiiiiiiiiiiii  .... ...]
+  +B499:   #1
+        goto +B578;   forward return[iiiiiiiiiiiiiiiii  .... ...]
+  +B502:   #1
+        if vR4.isSet@extra(2)==0 goto B578;   
+  +B511:   #1
+        vi19 = 0;    
+  +B514:   #1
+        if vi19>vi15 goto B578;   
+  +B521:   #1
+        vR0.set16@this(vi10,invertRGB16@special(vR0.get16@this(vi10)));   [iiiiiiiiiiiiiiiii  si.. siR] 
+        if vi16>=0 goto B551;   
+  +B541:   #1
+        vi16 = (vi16+vi17);    
+        goto +B565;   [iiiiiiiiiiiiiiiii  .... ...]
+  +B551:   #1
+        vi16 = (vi16+vi18);    
+        vi10 = (vi10+vi13);    
+  +B565:   #1
+        vi10 = (vi10+vi14);    
+        vi19++;   
+        goto +B514;   [iiiiiiiiiiiiiiiii  .... ...]
+  +B578:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 110/110 wr 55 swaps 1 any 36 found 0 drawLineRGB16
+ 
+ method fillRectRGB16([Ljx/devices/fb/PixelRect;ISLjx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vR4.isSet@extra(2)==0 goto B118;   
+  +B9:   #1
+        vi5 = 0;    
+  +B12:   #1
+        if vi5>=vi2 goto B115;   
+  +B18:   #1
+        vi6 = vR1[vi5].top@extra();    [i   R.] 
+  +B27:   #1
+        if vi6>vR1[vi5].bottom@extra() goto B109;   
+  +B39:   #1
+        vi7 = ((vi6*vR0.m_nBytesPerLine)+(vR1[vi5].left@extra()*2));    
+        vi8 = vR1[vi5].left@extra();    [iii  . R.] 
+  +B67:   #1
+        if vi8>vR1[vi5].right@extra() goto B103;   
+  +B79:   #1
+        vR0.set16@this(vi7,invertRGB16@special(vR0.get16@this(vi7)));   [iiii  si siR] 
+        vi7+=2;   
+        vi8++;   
+        goto +B67;   [iiii  si ...]
+  +B103:   #1
+        vi6++;   
+        goto +B27;   [iiii  .. ...]
+  +B109:   #1
+        vi5++;   
+        goto +B12;   [iiii  .. ...]
+  +B115:   #1
+        goto +B195;   forward return[iiii  .. ...]
+  +B118:   #1
+        vi5 = 0;    
+  +B121:   #1
+        if vi5>=vi2 goto B195;   
+  +B127:   #1
+        vi6 = vR1[vi5].top@extra();    [iiii  .. R..] 
+  +B136:   #1
+        if vi6>vR1[vi5].bottom@extra() goto B189;   
+  +B148:   #1
+        vi7 = ((vi6*vR0.m_nBytesPerLine)+(vR1[vi5].left@extra()*2));    
+        vR0.fill16@this(vi7,(vR1[vi5].width@extra()+1),vi3);   [iiii  i. iiiR] 
+        vi6++;   
+        goto +B136;   [iiii  i. ....]
+  +B189:   #1
+        vi5++;   
+        goto +B121;   [iiii  .. ....]
+  +B195:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 18 swaps 2 any 13 found 3 fillRectRGB16
+ 
+ method bitBlt([Ljx/devices/fb/PixelRect;[Ljx/devices/fb/PixelRect;I)V {
+  +START:   #1
+        vi8 = 0;    
+  +B3:   #3
+        if vi8>=vi3 goto B532;   
+  +B9:   #1
+        vR6 = vR1[vi8];    
+        vR7 = vR2[vi8];    
+        if vR6.m_nX1>=vR6.m_nX0 goto B40;   
+  +B34:   #1
+        vi8++;   
+        goto +B3;   [??RRi   ]
+  +B40:   #1
+        if vR6.m_nX0>=0 goto B69;   
+  +B48:   #1
+        vR7.m_nX0 = (vR7.m_nX0-vR6.m_nX0);   
+        vR6.m_nX0 = 0;   
+  +B69:   #1
+        if vR7.m_nX0>=0 goto B98;   
+  +B77:   #1
+        vR6.m_nX0 = (vR6.m_nX0-vR7.m_nX0);   
+        vR7.m_nX0 = 0;   
+  +B98:   #1
+        if vR6.m_nY0>=0 goto B127;   
+  +B106:   #1
+        vR7.m_nY0 = (vR7.m_nY0-vR6.m_nY0);   
+        vR6.m_nY0 = 0;   
+  +B127:   #1
+        if vR7.m_nY0>=0 goto B156;   
+  +B135:   #1
+        vR6.m_nY0 = (vR6.m_nY0-vR7.m_nY0);   
+        vR7.m_nY0 = 0;   
+  +B156:   #1
+        if vR6.m_nX1<vR0.m_nWidth goto B201;   
+  +B168:   #1
+        vR7.m_nX1 = (vR7.m_nX1-((vR6.m_nX1-vR0.m_nWidth)+1));   
+        vR6.m_nX1 = (vR0.m_nWidth-1);   
+  +B201:   #1
+        if vR7.m_nX1<vR0.m_nWidth goto B246;   
+  +B213:   #1
+        vR6.m_nX1 = (vR6.m_nX1-((vR7.m_nX1-vR0.m_nWidth)+1));   
+        vR7.m_nX1 = (vR0.m_nWidth-1);   
+  +B246:   #1
+        if vR6.m_nY1<vR0.m_nHeight goto B291;   
+  +B258:   #1
+        vR7.m_nY1 = (vR7.m_nY1-((vR6.m_nY1-vR0.m_nHeight)+1));   
+        vR6.m_nY1 = (vR0.m_nHeight-1);   
+  +B291:   #1
+        if vR7.m_nY1<vR0.m_nHeight goto B336;   
+  +B303:   #1
+        vR6.m_nY1 = (vR6.m_nY1-((vR7.m_nY1-vR0.m_nHeight)+1));   
+        vR7.m_nY1 = (vR0.m_nHeight-1);   
+  +B336:   #1
+        if vR7.m_nX1<vR7.m_nX0 goto B388;   
+  +B349:   #1
+        if vR7.m_nY1<vR7.m_nY0 goto B388;   
+  +B362:   #1
+        if vR6.m_nX1<vR6.m_nX0 goto B388;   
+  +B375:   #1
+        if vR6.m_nY1>=vR6.m_nY0 goto B394;   
+  +B388:   #3
+        vi8++;   
+        goto +B3;   [??RRi   ]
+  +B394:   #1
+        vi4 = (vR6.m_nX1-vR6.m_nX0);    
+        vi5 = (vR7.m_nX1-vR7.m_nX0);    
+        if vi4>=vi5 goto B440;   
+  +B427:   #1
+        vR7.m_nX1 = (vR7.m_nX0+vi4);   
+  +B440:   #1
+        if vi5>=vi4 goto B460;   
+  +B447:   #1
+        vR6.m_nX1 = (vR6.m_nX0+vi5);   
+  +B460:   #1
+        vi4 = (vR6.m_nY1-vR6.m_nY0);    
+        vi5 = (vR7.m_nY1-vR7.m_nY0);    
+        if vi4>=vi5 goto B506;   
+  +B493:   #1
+        vR7.m_nY1 = (vR7.m_nY0+vi4);   
+  +B506:   #1
+        if vi5>=vi4 goto B526;   
+  +B513:   #1
+        vR6.m_nY1 = (vR6.m_nY0+vi5);   
+  +B526:   #1
+        vi8++;   
+        goto +B3;   [iiRRi   ]
+  +B532:   #1
+        if vR0.m_cDisplayDriver==null goto B555;   
+  +B539:   #1
+        if vR0.m_cDisplayDriver.bitBlt(vR1,vR2,vi3)!=0 goto B555;   
+  +B554:   #1
+        return;   
+  +B555:   #2
+        vR0.startFrameBufferUpdate@this();   [iiRRi   R...] 
+        vi9 = 0;    
+  +B562:   #1
+        if vi9>=vi3 goto B586;   
+  +B568:   #1
+        vR0.bitBlt16@special(vR1[vi9],vR2[vi9]);   [iiRRii  iR RRR.] 
+        vi9++;   
+        goto +B562;   [iiRRii  iR ....]
+  +B586:   #1
+        vR0.endFrameBufferUpdate@this();   [iiRRii  .. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 111/111 wr 14 swaps 1 any 10 found 0 bitBlt
+ 
+ method bitBlt16(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        if vR1.top@extra()>=vR2.top@extra() goto B130;   
+  +B11:   #1
+        vi4 = ((((vR2.bottom@extra()-vR2.top@extra())+vR1.top@extra())*vR0.m_nBytesPerLine)+(vR1.left@extra()*2));    
+        vi5 = ((vR2.bottom@extra()*vR0.m_nBytesPerLine)+(vR2.left@extra()*2));    
+        vi3 = vR2.bottom@extra();    [?ii  . R] 
+  +B62:   #1
+        if vi3<vR2.top@extra() goto B239;   
+  +B70:   #1
+        vR0.m_cMemory.move((vR0.m_nOffset+vi5),(vR0.m_nOffset+vi4),(((vR2.right@extra()-vR2.left@extra())+1)*2));   [iii  iii iiiR] 
+        vi4 = (vi4-vR0.m_nBytesPerLine);    
+        vi5 = (vi5-vR0.m_nBytesPerLine);    
+        vi3--;   
+        goto +B62;   [iii  iii ....]
+  +B130:   #1
+        vi4 = ((vR1.top@extra()*vR0.m_nBytesPerLine)+(vR1.left@extra()*2));    
+        vi5 = ((vR2.top@extra()*vR0.m_nBytesPerLine)+(vR2.left@extra()*2));    
+        vi3 = vR2.top@extra();    [iii  ... R...] 
+  +B171:   #1
+        if vi3>vR2.bottom@extra() goto B239;   
+  +B179:   #1
+        vR0.m_cMemory.move((vR0.m_nOffset+vi5),(vR0.m_nOffset+vi4),(((vR2.right@extra()-vR2.left@extra())+1)*2));   [iii  iii iiiR] 
+        vi4 = (vi4+vR0.m_nBytesPerLine);    
+        vi5 = (vi5+vR0.m_nBytesPerLine);    
+        vi3++;   
+        goto +B171;   [iii  iii ....]
+  +B239:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 61/61 wr 31 swaps 2 any 8 found 2 bitBlt16
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vR3.isValid@extra()!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR2.isValid@extra()!=0 goto B16;   
+  +B15:   #1
+        return;   
+  +B16:   #1
+        vR10 = new jx/devices/fb/PixelRect(vR2);    [ RR  i][ RR . iRR]
+        vR10.clip@extra(vR0.m_cBounds);   [????R RR i RR.] 
+        vR10.clip@extra(vR4);   [????R RR i RR.] 
+        if vR10.isValid@extra()!=0 goto B51;   
+  +B50:   #1
+        return;   
+  +B51:   #1
+        vR11 = new jx/devices/fb/PixelRect(vR3);    [ RR . i..][ RR . iRR]
+        vR11.clip@extra(vR1.getBounds());   [????RR RR i RR.] 
+        if vR11.isValid@extra()!=0 goto B79;   
+  +B78:   #1
+        return;   
+  +B79:   #1
+        if vR11.width@extra()>=vR10.width@extra() goto B108;   
+  +B92:   #1
+        vR10.m_nX1 = (vR10.m_nX0+vR11.width@extra());   
+  +B108:   #1
+        if vR11.height@extra()>=vR10.height@extra() goto B137;   
+  +B121:   #1
+        vR10.m_nY1 = (vR10.m_nY0+vR11.height@extra());   
+  +B137:   #1
+        vi12 = 0;    
+        if vR5.isScaleable@extra()==0 goto B255;   
+  +B148:   #1
+        if vR11.width@extra()==0 goto B163;   
+  +B156:   #1
+        if vR2.width@extra()!=0 goto B170;   
+  +B163:   #1
+        vi7 = 65536;    
+        goto +B200;   [?i??RRi RR . ...]
+  +B170:   #1
+        vi7 = ((vR11.width@extra() << 16)/vR2.width@extra());    
+        if vR11.width@extra()==vR2.width@extra() goto B200;   
+  +B197:   #1
+        vi12 = 1;    
+  +B200:   #2
+        if vR11.height@extra()==0 goto B215;   
+  +B208:   #1
+        if vR2.height@extra()!=0 goto B222;   
+  +B215:   #1
+        vi6 = 65536;    
+        goto +B263;   [ii??RRi RR . ...]
+  +B222:   #1
+        vi6 = ((vR11.height@extra() << 16)/vR2.height@extra());    
+        if vR11.height@extra()==vR2.height@extra() goto B263;   
+  +B249:   #1
+        vi12 = 1;    
+        goto +B263;   [iiiiRRiii RR . ...]
+  +B255:   #1
+        vi7 = 65536;    
+        vi6 = 65536;    
+  +B263:   #3
+        vi13 = ((vR10.left@extra()-vR2.left@extra())+vR11.left@extra());    
+        vi14 = ((vR10.top@extra()-vR2.top@extra())+vR11.top@extra());    
+        vi8 = (vi13*vi7);    
+        vi9 = (vi14*vi6);    
+        vR0.startFrameBufferUpdate@this();   [iiiiRRiii RR . R..] 
+  +B317:   #1
+        lswitch (vR1.m_eColorSpace.getValue()) { 
+           1:B400
+           4:B380
+           7:B360
+           ::B420
+        };   
+  +B360:   #1
+        vR0.drawBitmapCMAP8@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B420;   [iiiiRRiii RR . ........]
+  +B380:   #1
+        vR0.drawBitmapRGB16@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B420;   [iiiiRRiii RR . ........]
+  +B400:   #1
+        vR0.drawBitmapRGB32@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B420;   [iiiiRRiii RR . ........]
+  +B420:   #5
+        goto +B499;   [iiiiRRiii RR . ........]
+  +H423<caught exception>:   #1 reference
+        vR15 = <caught exception>;    
+        out.println("exception in drawBitmap");   [iiiiRRiiiR RR i. RR......] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.......][ RR i. iR......]
+        b0.println(b1.append@extra("cSrc ").append@extra(vR3).append@extra(vR11).append@extra(" cDst ").append@extra(vR2).append@extra(" m_cBounds ").append@extra(vR0.m_cBounds).append@extra(" cDraw ").append@extra(vR10).toString@extra());   [iiiiRRiiiR RR iiiiii...i..... RR........] 
+  +B499:   #1
+        vR0.endFrameBufferUpdate@this();   [iiiiRRiii RR ............... R.........] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+317 - 420 handler 423 type 102
+ }
+// Register: rd 67/67 wr 45 swaps 13 any 2 found 0 drawBitmap
+ 
+ method drawBitmapCMAP8Fast(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;II)V {
+  +START:   #1
+        vR13 = vR1.m_eColorSpace;    
+        vi14 = vR0.bytesPerLine@this();    [????????R   R] 
+        vi15 = vR1.bytesPerLine();    [????????Ri   R] 
+        vi5 = ((vR2.m_nY0*vi14)+(vR2.m_nX0*2));    
+        vi16 = (vR2.m_nY1-vR2.m_nY0);    
+        vi17 = (vR2.m_nX1-vR2.m_nX0);    
+        vi18 = (vi17/4);    
+        vi19 = (vi17%4);    
+        if vi17<=0 goto B92;   
+  +B73:   #1
+        if (vi5%4)!=0 goto B86;   
+  +B80:   #1
+        if (vi3%4)==0 goto B92;   
+  +B86:   #1
+        vi18--;   
+        vi19+=4;   
+  +B92:   #2
+        vi10 = 0;    
+  +B95:   #1
+        if vi10>=vi16 goto B353;   
+  +B102:   #1
+        vi7 = vi5;    
+        vi6 = (((vi10+vi4)*vi15)+vi3);    
+        vi9 = 0;    
+  +B121:   #1
+        if vi9>=vi19 goto B175;   
+  +B128:   #1
+        if (vi7%4)!=0 goto B142;   
+  +B135:   #1
+        if (vi6%4)==0 goto B175;   
+  +B142:   #1
+        vi12 = vR1.get8(vi6);    [iii?ii??Riiiiii   iR] 
+        vi6++;   
+        vR0.set16@this(vi7,vR13.CMAP8toRGB16(vi12));   [iii?ii?iRiiiiii  i siR] 
+        vi7+=2;   
+        vi9++;   
+        goto +B121;   [iii?ii?iRiiiiii  i ...]
+  +B175:   #2
+        vi8 = 0;    
+  +B178:   #1
+        if vi8>=vi18 goto B300;   
+  +B185:   #1
+        vi11 = vR1.get32(vi6);    [iiiiii?iRiiiiii  . iR.] 
+        vR0.set32@this(vi7,(((vR13.CMAP8toRGB16((byte)((vi11 >>> 8) & 255)) & 65535) << 16) | (vR13.CMAP8toRGB16((byte)(vi11 & 255)) & 65535)));   [iiiiiiiiRiiiiii  iii siR] 
+        vR0.set32@this((vi7+4),(((vR13.CMAP8toRGB16((byte)((vi11 >>> 24) & 255)) & 65535) << 16) | (vR13.CMAP8toRGB16((byte)((vi11 >>> 16) & 255)) & 65535)));   [iiiiiiiiRiiiiii  iiiiiis siR] 
+        vi6+=4;   
+        vi7+=8;   
+        vi8++;   
+        goto +B178;   [iiiiiiiiRiiiiii  iiiiiis ...]
+  +B300:   #2
+        if vi9>=vi19 goto B340;   
+  +B307:   #1
+        vi12 = vR1.get8(vi6);    [iiiiiiiiRiiiiii  ....... iR.] 
+        vi6++;   
+        vR0.set16@this(vi7,vR13.CMAP8toRGB16(vi12));   [iiiiiiiiRiiiiii  i...... siR] 
+        vi7+=2;   
+        vi9++;   
+        goto +B300;   [iiiiiiiiRiiiiii  i...... ...]
+  +B340:   #1
+        vi5 = (vi5+vi14);    
+        vi10++;   
+        goto +B95;   [iiiiiiiiRiiiiii  ....... ...]
+  +B353:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 65/65 wr 41 swaps 8 any 20 found 0 drawBitmapCMAP8Fast
+ 
+ method drawBitmapCMAP8(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR15 = vR1.m_eColorSpace;    
+        vi16 = vR1.bytesPerLine();    [???????R   R] 
+        vi8 = ((vR2.m_nY0*vR0.m_nBytesPerLine)+(vR2.m_nX0*2));    
+        lswitch (vR7.getValue@extra()) { 
+           1:B60
+           3:B176
+           ::B298
+        };   
+  +B60:   #1
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B70:   #1
+        if vi12>vR2.m_nY1 goto B298;   
+  +B79:   #1
+        vi10 = vi8;    
+        vi9 = ((vi14 >> 16)*vi16);    
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B103:   #1
+        if vi11>vR2.m_nX1 goto B154;   
+  +B112:   #1
+        vi17 = vR1.get8((vi9+(vi13 >> 16)));    [iiiiiiiRi  i iR] 
+        vR0.set16@this(vi10,vR15.CMAP8toRGB16(vi17));   [iiiiiiiRii  ii siR] 
+        vi10+=2;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B103;   [iiiiiiiRii  ii ...]
+  +B154:   #1
+        vi8 = (vi8+vR0.m_nBytesPerLine);    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B70;   [iiiiiiiRii  .. ...]
+  +B176:   #1
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B186:   #1
+        if vi12>vR2.m_nY1 goto B298;   
+  +B195:   #1
+        vi10 = vi8;    
+        vi9 = ((vi14 >> 16)*vi16);    
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B219:   #1
+        if vi11>vR2.m_nX1 goto B276;   
+  +B228:   #1
+        vi17 = vR1.get8((vi9+(vi13 >> 16)));    [iiiiiiiRii  i. iR.] 
+        if vi17==-1 goto B261;   
+  +B248:   #1
+        vR0.set16@this(vi10,vR15.CMAP8toRGB16(vi17));   [iiiiiiiRii  i. siR] 
+  +B261:   #1
+        vi10+=2;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B219;   [iiiiiiiRii  .. ...]
+  +B276:   #1
+        vi8 = (vi8+vR0.m_nBytesPerLine);    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B186;   [iiiiiiiRii  .. ...]
+  +B298:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 33 swaps 4 any 25 found 0 drawBitmapCMAP8
+ 
+ method drawBitmapRGB16(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vi3==65536 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   [ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        vi15 = b0;    
+        vi8 = (((vR2.m_nY0*vR0.bytesPerLine@this())+vR2.m_nX0)+vR2.m_nX0);    
+        lswitch (vR7.getValue@extra()) { 
+           1:B64
+           3:B314
+           ::B433
+        };   
+  +B64:   #1
+        if vi15==0 goto B182;   
+  +B69:   #1
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B79:   #1
+        if vi12>vR2.m_nY1 goto B433;   
+  +B88:   #1
+        vi10 = vi8;    
+        vi9 = ((vi14 >> 16)*vR1.bytesPerLine());    
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B114:   #1
+        if vi11>vR2.m_nX1 goto B160;   
+  +B123:   #1
+        vi16 = vR1.get16((vi9+(vi13 >> 15)));    [iiiiiiii i i iR] 
+        vR0.set16@this(vi10,vi16);   [iiiiiiiii i i iiR] 
+        vi10+=2;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B114;   [iiiiiiiii i i ...]
+  +B160:   #1
+        vi8 = (vi8+vR0.bytesPerLine@this());    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B79;   [iiiiiiiii i . ...]
+  +B182:   #1
+        vi16 = (((vR2.m_nX1-vR2.m_nX0)+1)*2);    
+        vR17 = vR1.castMemory();    [iiiiiiiii i . R..] 
+        vi18 = vR1.bytesPerLine();    [iiiiiiiiiR i . R..] 
+        vi19 = vR0.m_nBytesPerLine;    
+        vi8 = (vi8+vR0.m_nOffset);    
+        vi20 = 1;    
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B237:   #1
+        if vi12>vR2.m_nY1 goto B311;   
+  +B246:   #1
+        vi9 = ((((vi14 >> 16)*vi18)+(vi5 >> 15))+vR17.m_nOffset);    
+        vR0.m_cMemory.copyFromMemory(vR17.m_cMemory,vi9,vi8,vi16);   [iiiiiiiiiRiii i R iiiRR] 
+        vi8 = (vi8+vR0.bytesPerLine@this());    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B237;   [iiiiiiiiiRiii i R .....]
+  +B311:   #1
+        goto +B433;   forward return[iiiiiiiiiRiii i . .....]
+  +B314:   #1
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B324:   #1
+        if vi12>vR2.m_nY1 goto B433;   
+  +B333:   #1
+        vi10 = vi8;    
+        vi9 = ((vi14 >> 16)*vR1.bytesPerLine());    
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B359:   #1
+        if vi11>vR2.m_nX1 goto B411;   
+  +B368:   #1
+        vi16 = vR1.get16((vi9+(vi13 >> 15)));    [iiiiiiiiiRiii i i iR...] 
+        if vi16==-1 goto B396;   
+  +B388:   #1
+        vR0.set16@this(vi10,vi16);   [iiiiiiiiiRiii i . iiR..] 
+  +B396:   #1
+        vi10+=2;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B359;   [iiiiiiiiiRiii i . .....]
+  +B411:   #1
+        vi8 = (vi8+vR0.bytesPerLine@this());    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B324;   [iiiiiiiiiRiii i . .....]
+  +B433:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 46 swaps 2 any 35 found 3 drawBitmapRGB16
+ 
+ method drawBitmapRGB32(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vi3==65536 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   [ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        vi15 = b0;    
+        vi8 = ((vR2.m_nY0*vR0.bytesPerLine@this())+(vR2.m_nX0*4));    
+        vi12 = vR2.m_nY0;    
+        vi14 = vi6;    
+  +B41:   #1
+        if vi12>vR2.m_nY1 goto B306;   
+  +B50:   #1
+        vi10 = vi8;    
+        vi9 = ((vi14 >> 16)*vR1.bytesPerLine());    
+        lswitch (vR7.getValue@extra()) { 
+           1:B96
+           3:B222
+           ::B284
+        };   
+  +B96:   #1
+        if vi15==0 goto B160;   
+  +B101:   #1
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B111:   #1
+        if vi11>vR2.m_nX1 goto B157;   
+  +B120:   #1
+        vi16 = vR1.get32((vi9+(vi13 >> 14)));    [iiiiiiii i i iR] 
+        vR0.set32@this(vi10,vi16);   [iiiiiiiii i i iiR] 
+        vi10+=4;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B111;   [iiiiiiiii i i ...]
+  +B157:   #1
+        goto +B284;   [iiiiiiiii i . ...]
+  +B160:   #1
+        vi9 = (vi9+(vi5 >> 14));    
+        vR16 = vR1.castMemory();    [iiiiiiiii i . R..] 
+        vR0.m_cMemory.copyFromMemory(vR16.m_cMemory,(vR16.m_nOffset+vi9),(vR0.m_nOffset+vi10),(((vR2.m_nX1-vR2.m_nX0)+1)*4));   [iiiiiiiiR i iiii iiiRR] 
+        goto +B284;   [iiiiiiiiR i iiii .....]
+  +B222:   #1
+        vi11 = vR2.m_nX0;    
+        vi13 = vi5;    
+  +B232:   #1
+        if vi11>vR2.m_nX1 goto B284;   
+  +B241:   #1
+        vi16 = vR1.get32((vi9+(vi13 >> 14)));    [iiiiiiiiR i i... iR...] 
+        if vi16==-1 goto B269;   
+  +B261:   #1
+        vR0.set32@this(vi10,vi16);   [iiiiiiiii i .... iiR..] 
+  +B269:   #1
+        vi10+=4;   
+        vi11++;   
+        vi13 = (vi13+vi3);    
+        goto +B232;   [iiiiiiiii i .... .....]
+  +B284:   #4
+        vi8 = (vi8+vR0.bytesPerLine@this());    
+        vi12++;   
+        vi14 = (vi14+vi4);    
+        goto +B41;   [iii?i?ii i .... .....]
+  +B306:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 58/58 wr 32 swaps 3 any 22 found 1 drawBitmapRGB32
+ 
+ method renderGlyph16(Ljx/wm/Glyph;IILjx/devices/fb/PixelRect;[I)V {
+  +START:   #1
+        vR12 = vR1.m_cBounds;    
+        vi13 = (vR12.m_nX0+vi2);    
+        vi14 = (vR12.m_nY0+vi3);    
+        vR15 = new jx/devices/fb/PixelRect(vi13,vi14,((vR12.m_nX1+vi2)-1),((vR12.m_nY1+vi3)-1));    [ b  i][ b . iiiiiR]
+        vR15.clip@extra(vR4);   [??????RiiR b . RR....] 
+        if vR15.isValid@extra()!=0 goto B71;   
+  +B70:   #1
+        return;   
+  +B71:   #1
+        vi9 = (((vR15.top@extra()*vR0.m_nBytesPerLine)+vR15.left@extra())+vR15.left@extra());    
+        vi8 = ((vR15.left@extra()-vi13)+((vR15.top@extra()-vi14)*vR1.m_nBytesPerLine));    
+        vi11 = (((vR0.m_nBytesPerLine-vR15.width@extra())-vR15.width@extra())-2);    
+        vi10 = ((vR1.m_nBytesPerLine-vR15.width@extra())-1);    
+        vi7 = vR15.top@extra();    [??iiiiRiiR b . R.....] 
+  +B160:   #1
+        if vi7>vR15.bottom@extra() goto B248;   
+  +B170:   #1
+        vi6 = vR15.left@extra();    [?iiiiiRiiR b . R.....] 
+  +B177:   #1
+        if vi6>vR15.right@extra() goto B228;   
+  +B187:   #1
+        b0 = vR1.m_anRaster[vi8];    
+        vi16 = b0;    
+        if b0==0 goto B216;   
+  +B200:   #1
+        vR0.set16@this(vi9,(short)vR5[(vi16 & 255)]);   [iiiiiiRiiRi b i iiR...] 
+  +B216:   #1
+        vi9+=2;   
+        vi8++;   
+        vi6++;   
+        goto +B177;   [iiiiiiRiiRi b . ......]
+  +B228:   #1
+        vi9 = (vi9+vi11);    
+        vi8 = (vi8+vi10);    
+        vi7++;   
+        goto +B160;   [iiiiiiRiiRi b . ......]
+  +B248:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 26 swaps 1 any 10 found 2 renderGlyph16
+ 
+ method renderGlyph(Ljx/wm/Glyph;IILjx/devices/fb/PixelRect;[I)V {
+  +START:   #1
+        vR6 = new jx/devices/fb/PixelRect(vR4);    [ R  i][ R . iRR]
+        vR6.clip@extra(vR0.m_cBounds);   [R R i RR.] 
+        vR0.renderGlyph16@special(vR1,vi2,vi3,vR6,vR5);   [R R i RRiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 0 found 0 renderGlyph
+ 
+ method drawCloneMap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        if vR2.isValid@extra()!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR7 = new jx/devices/fb/PixelRect(vR2);    [ R  i][ R . iRR]
+        vR7.clip@extra(vR0.m_cBounds);   [???R R i RR.] 
+        vR7.clip@extra(vR3);   [???R R i RR.] 
+        if vR7.isValid@extra()!=0 goto B42;   
+  +B41:   #1
+        return;   
+  +B42:   #1
+        vR8 = new jx/devices/fb/PixelRect(vR1.getBounds());    [ R . i..][ R . iRR]
+        if vR8.isValid@extra()!=0 goto B64;   
+  +B63:   #1
+        return;   
+  +B64:   #1
+        if vR0.isCloneMap@this(vR1)!=0 goto B82;   
+  +B72:   #1
+        out.println("!!!!!!! is not clone !!!!!!!!!!");   [???RR R i. RR.] 
+        return;   
+  +B82:   #1
+        if vR8.width@extra()>=vR7.width@extra() goto B111;   
+  +B95:   #1
+        vR7.m_nX1 = (vR7.m_nX0+vR8.width@extra());   
+  +B111:   #1
+        if vR8.height@extra()>=vR7.height@extra() goto B140;   
+  +B124:   #1
+        vR7.m_nY1 = (vR7.m_nY0+vR8.height@extra());   
+  +B140:   #1
+        vi4 = 65536;    
+        vi5 = ((vR7.left@extra()-vR2.left@extra())+vR8.left@extra());    
+        vi6 = ((vR7.top@extra()-vR2.top@extra())+vR8.top@extra());    
+        vR0.startFrameBufferUpdate@this();   [iiiRR R .. R..] 
+        vR0.drawCloneMapRGB16@special(vR1,vR7,vi5,vi6);   [iiiRR R .. iiRRR] 
+        vR0.endFrameBufferUpdate@this();   [iiiRR R .. R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 17 swaps 2 any 0 found 0 drawCloneMap
+ 
+ method drawCloneMapRGB16(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;II)V {
+  +START:   #1
+        vR12 = vR1.castMemory();    [   R] 
+        vi5 = (((vR2.m_nY0*vR0.bytesPerLine@this())+vR2.m_nX0)+vR2.m_nX0);    
+        vi9 = vR2.m_nY0;    
+        vi11 = vi4;    
+  +B37:   #1
+        if vi9>vR2.m_nY1 goto B126;   
+  +B46:   #1
+        vi7 = vi5;    
+        vi6 = (vi11*vR1.bytesPerLine());    
+        vi6 = (vi6+vi3);    
+        vR0.m_cMemory.copyFromMemory(vR12.m_cMemory,(vR12.m_nOffset+vi6),(vR0.m_nOffset+vi7),(((vR2.m_nX1-vR2.m_nX0)+1)*2));   [iii?i?iR  iiii iiiRR] 
+        vi5 = (vi5+vR0.bytesPerLine@this());    
+        vi9++;   
+        vi11++;   
+        goto +B37;   [iii?i?iR  iiii .....]
+  +B126:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 15 swaps 1 any 8 found 2 drawCloneMapRGB16
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("WBitmapRGB16Memory(").append@extra(vR0.m_nWidth).append@extra(",").append@extra(vR0.m_nHeight).append@extra(",").append@extra(vR0.m_nBytesPerLine).append@extra(",").append@extra(vR0.m_eColorSpace).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 19 swaps 13 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        cClipped = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

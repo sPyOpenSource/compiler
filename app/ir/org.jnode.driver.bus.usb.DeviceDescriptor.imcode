@@ -1,0 +1,172 @@
+class org/jnode/driver/bus/usb/DeviceDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(18);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getUSBVersion()I {
+  +START:   #1
+        return vR0.getShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUSBVersion
+ 
+ method getDeviceClass()I {
+  +START:   #1
+        return vR0.getByte@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeviceClass
+ 
+ method getDeviceSubClass()I {
+  +START:   #1
+        return vR0.getByte@this(5);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeviceSubClass
+ 
+ method getDeviceProtocol()I {
+  +START:   #1
+        return vR0.getByte@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeviceProtocol
+ 
+ method getMaxPacketSize0()I {
+  +START:   #1
+        return vR0.getByte@this(7);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaxPacketSize0
+ 
+ method getVendorID()I {
+  +START:   #1
+        return vR0.getShort@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVendorID
+ 
+ method getProductID()I {
+  +START:   #1
+        return vR0.getShort@this(10);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProductID
+ 
+ method getDeviceRelease()I {
+  +START:   #1
+        return vR0.getShort@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDeviceRelease
+ 
+ method getManufacturerStringIndex()I {
+  +START:   #1
+        return vR0.getByte@this(14);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getManufacturerStringIndex
+ 
+ method getProductStringIndex()I {
+  +START:   #1
+        return vR0.getByte@this(15);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProductStringIndex
+ 
+ method getSerialNumberStringIndex()I {
+  +START:   #1
+        return vR0.getByte@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSerialNumberStringIndex
+ 
+ method getNumConfigurations()I {
+  +START:   #1
+        return vR0.getByte@this(17);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumConfigurations
+ 
+ method getManufacturerName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.manufacturer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getManufacturerName
+ 
+ method getProductName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.product;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProductName
+ 
+ method getSerialNumber()Ljava/lang/String; {
+  +START:   #1
+        return vR0.serialNumber;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSerialNumber
+ 
+ method loadStrings(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vi2 = vR0.getManufacturerStringIndex@extra();    [   R] 
+        if vi2<=0 goto B19;   
+  +B9:   #1
+        vR0.manufacturer = vR1.getString@extra(vi2,0);   
+  +B19:   #1
+        vi3 = vR0.getProductStringIndex@extra();    [i   R..] 
+        if vi3<=0 goto B38;   
+  +B28:   #1
+        vR0.product = vR1.getString@extra(vi3,0);   
+  +B38:   #1
+        vi4 = vR0.getSerialNumberStringIndex@extra();    [ii   R..] 
+        if vi4<=0 goto B60;   
+  +B49:   #1
+        vR0.serialNumber = vR1.getString@extra(vi4,0);   
+  +B60:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 3 swaps 0 any 3 found 0 loadStrings
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0 = b0.append@extra("DEV[usb:0x").append@extra(hex@special(vR0.getUSBVersion@extra(),4)).append@extra(", dclass:").append@extra(vR0.getDeviceClass@extra()).append@extra(", dsubcls:").append@extra(vR0.getDeviceSubClass@extra()).append@extra(", dprot:").append@extra(vR0.getDeviceProtocol@extra()).append@extra(", maxps0:").append@extra(vR0.getMaxPacketSize0@extra()).append@extra(", vendor:0x").append@extra(hex@special(vR0.getVendorID@extra(),4)).append@extra(", prod:0x").append@extra(hex@special(vR0.getProductID@extra(),4)).append@extra(", devrel:0x").append@extra(hex@special(vR0.getDeviceRelease@extra(),4)).append@extra(", manu:");    [ RR i.iii..iii..iii..ii..ii..ii..ii..iii. RR................] [ RR iRiii..iii..iii..ii..ii..ii..ii..iii. RRR...............] [ RR iRiiiR.iii..iii..ii..ii..ii..ii..iii. RRRR..............] [ RR iRiiiRRiii..iii..ii..ii..ii..ii..iii. RRRRR.............] [ RR iRiiiRRiiiR.iii..ii..ii..ii..ii..iii. RRRRRR............] [ RR iRiiiRRiiiRRiii..ii..ii..ii..ii..iii. RRRRRRR...........] [ RR iRiiiRRiiiRRiiiR.ii..ii..ii..ii..iii. RRRRRRRR..........] [ RR iRiiiRRiiiRRiiiRRii..ii..ii..ii..iii. RRRRRRRiR.........] [ RR iRiiiRRiiiRRiiiRRiiR.ii..ii..ii..iii. RRRRRRRiRR........] [ RR iRiiiRRiiiRRiiiRRiiRRii..ii..ii..iii. RRRRRRRiRiR.......] [ RR iRiiiRRiiiRRiiiRRiiRRiiR.ii..ii..iii. RRRRRRRiRiRR......] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRii..ii..iii. RRRRRRRiRiRiR.....] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRiiR.ii..iii. RRRRRRRiRiRiRR....] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRiiRRii..iii. RRRRRRRiRiRiRiR...] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRiiRRiiR.iii. RRRRRRRiRiRiRiRR..] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRiiRRiiRRiii. RRRRRRRiRiRiRiRRR.] [ RR iRiiiRRiiiRRiiiRRiiRRiiRRiiRRiiRRiiiR RRRRRRRiRiRiRiRRRR] 
+        if vR0.manufacturer==null goto B138;   
+  +B131b0:   #1 reference
+        b1 = vR0.manufacturer;    
+        goto +B160b0b1;   [ RR ..................................... ..................]
+  +B138b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ..................................... i.................][ RR ..................................... iR................]
+        b1 = b1.append@extra("%").append@extra(vR0.getManufacturerStringIndex@extra()).toString@extra();    [ RR .ii.................................. R.................] [ RR Rii.................................. iR................] [ RR RiiR................................. iRR...............] 
+  +B160b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1).append@extra(", prod:");    [ RR i.................................... RR................] [ RR iR................................... RRR...............] 
+        if vR0.product==null goto B182;   
+  +B175b0:   #1 reference
+        b1 = vR0.product;    
+        goto +B204b0b1;   [ RR ..................................... ..................]
+  +B182b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ..................................... i.................][ RR ..................................... iR................]
+        b1 = b1.append@extra("%").append@extra(vR0.getProductStringIndex@extra()).toString@extra();    [ RR .ii.................................. R.................] [ RR Rii.................................. iR................] [ RR RiiR................................. iRR...............] 
+  +B204b0b1:   #1 reference reference
+        b0 = b0.append@extra(b1).append@extra(", sernr:");    [ RR i.................................... RR................] [ RR iR................................... RRR...............] 
+        if vR0.serialNumber==null goto B226;   
+  +B219b0:   #1 reference
+        b1 = vR0.serialNumber;    
+        goto +B248b0b1;   forward return[ RR ..................................... ..................]
+  +B226b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ..................................... i.................][ RR ..................................... iR................]
+        b1 = b1.append@extra("%").append@extra(vR0.getSerialNumberStringIndex@extra()).toString@extra();    [ RR .ii.................................. R.................] [ RR Rii.................................. iR................] [ RR RiiR................................. iRR...............] 
+  +B248b0b1:   #1 reference reference
+        return b0.append@extra(b1).append@extra(", #cnf:").append@extra(vR0.getNumConfigurations@extra()).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 72 swaps 27 any 0 found 0 toString
+}

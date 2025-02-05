@@ -1,0 +1,226 @@
+class org/jnode/driver/bus/usb/USBHubMonitor {
+ 
+ method <init>(Ljx/devices/Device;Lorg/jnode/driver/bus/usb/USBHostControllerAPI;Ljx/zero/timer/SleepManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.sleepManager = vR3;   
+        vR0.hubDevice = vR1;   
+        vR0.hub = vR2.getRootHUB();   
+        vR0.api = (org/jnode/driver/bus/usb/uhci/UHCICore)(vR2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 1 <init>
+ 
+ method checkStatus(Z)V {
+  +START:   #2
+        vi2 = vR0.hub.getNumPorts();    [   R] 
+        vi3 = 0;    
+  +B12:   #1
+        if vi3>=vi2 goto B82;   
+  +B17:   #1
+        if vi1==0 goto B54;   
+  +B21:   #1
+        vR0.hub.setPortEnabled(vi3,0);   [ii   iiR] 
+        vR0.sleep@special(100);   [ii   iR.] 
+        vR0.hub.resetPort(vi3);   [ii   iR.] 
+        vR0.sleep@special(100);   [ii   iR.] 
+  +B54:   #1
+        if vi1!=0 goto B71;   
+  +B58:   #1
+        if vR0.hub.isPortConnectionStatusChanged(vi3)==0 goto B76;   
+  +B71:   #1
+        vR0.portConnectionStatusChanged@this(vi3);   [ii   iR.] 
+  +B76:   #1
+        vi3++;   
+        goto +B12;   [ii   ...]
+  +B82:   #2
+        goto +B86;   forward return[ii   ...]
+  +H85<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B86:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 82 handler 85 type 57
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 4 found 0 checkStatus
+ 
+ method portConnectionStatusChanged(I)V {
+  +START:   #1
+        if vR0.hub.isPortConnected(vi1)==0 goto B374;   
+  +B13:   #1
+        vR0.sleep@special(100);   [ RR  iR] 
+        vR0.hub.resetPort(vi1);   [ RR  iR] 
+        vR0.sleep@special(100);   [ RR  iR] 
+        if vR0.hub.isPortConnectedToLowSpeed(vi1)==0 goto B53;   
+  +B48:   #1
+        vi2 = 1;    
+        goto +B73;   [i RR  ..]
+  +B53:   #1
+        if vR0.hub.isPortConnectedToHighSpeed(vi1)==0 goto B71;   
+  +B66:   #1
+        vi2 = 3;    
+        goto +B73;   [iRiRiiR RR  ..]
+  +B71:   #1
+        vi2 = 2;    
+  +B73:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Creating USBDevice: ").append@extra(vi2).toString@extra());   [i RR ii. RR.] 
+        vR3 = new org/jnode/driver/bus/usb/USBDevice(vR0.hub.getUSBBus(),vi2);    [ RR ii. i..][ RR ii. iiRR]
+        vR3.getDefaultControlPipe@extra().open();   [iR RR ii. R...] [iR RR iiR R...] 
+        vi4 = vR3.getUSBBus@extra().allocDeviceID@extra();    [iR RR ii. R...] [iR RR iiR R...] 
+  +B134:   #2
+        vR3.setAddress@extra(vi4);   [iRi RR ... iR..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0.println(b1.append@extra("Now using address 0x").append@extra(hex@special(vi4,2)).toString@extra());   [iRi RR iii. RR..] 
+        vR0.sleep@special(100);   [iRi RR iii. iR..] 
+        vR5 = new org/jnode/driver/bus/usb/DeviceDescriptor();    [ RR iii. i...][ RR iii. iR..]
+        vR3.readDescriptor@extra(0,1,0,0,8,vR5);   [iRiR RR iii. RiiiiiR] 
+        vR3.setDescriptor@extra(vR5);   [iRiR RR iii. RR.....] 
+        vR3.readDescriptor@extra(0,1,0,0,18,vR5);   [iRiR RR iii. RiiiiiR] 
+        vR3.setFullDescriptor@extra(vR5);   [iRiR RR iii. RR.....] 
+        vi6 = vR5.getNumConfigurations@extra();    [iRiR RR iii. R......] 
+        vi7 = 0;    
+  +B231:   #1
+        if vi7>=vi6 goto B261;   
+  +B238:   #1
+        vR8 = vR0.getConfiguration@special(vR3,vi7);    [iRiRii RR .... iRR....] 
+        vR3.setConfiguration@extra(vi7,vR8);   [iRiRiiR RR .... RiR....] 
+        vi7++;   
+        goto +B231;   [iRiRiiR RR .... .......]
+  +B261:   #1
+        vR3.setConfiguration@extra(vR3.getConfiguration@extra(0));   [iRiRiiR RR i... RR.....] 
+        vR5.loadStrings@extra(vR3);   [iRiRiiR RR i... RR.....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i... i......][ RR i... iR.....]
+        b0.println(b1.append@extra("Got descriptor ").append@extra(vR5).toString@extra());   [iRiRiiR RR iii. RR.....] 
+        vR0.hub.setDevice(vR3,vi1);   [iRiRiiR RR iii. iRR....] 
+  +B313:   #2
+        goto +B371;   [iRiRiiR RR .... .......]
+  -H316<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR3.getUSBBus@extra().freeDeviceID@extra(vi4);   [RRiRiiR RR .... iR.....] [RRiRiiR RR R... iR.....] 
+        vR0.hub.unsetDevice(vi1);   [RRiRiiR RR .... iR.....] 
+        throw vR5;   
+  -H340<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        vR3.getUSBBus@extra().freeDeviceID@extra(vi4);   [RRiRiiR RR .... iR.....] [RRiRiiR RR R... iR.....] 
+        vR0.hub.unsetDevice(vi1);   [RRiRiiR RR .... iR.....] 
+        throw new org/jnode/driver/bus/usb/USBException(vR5);   
+  +B371:   #1
+        goto +B410;   [iRiRiiR RR .... .......]
+  +B374:   #1
+        vR2 = vR0.hub.getDevice(vi1);    [iRiRiiR RR .... iR.....] 
+        if vR2==null goto B399;   
+  +B389:   #1
+        vR0.hub.unsetDevice(vi1);   [RRiRiiR RR .... iR.....] 
+  +B399:   #1
+        vR0.hub.setPortEnabled(vi1,0);   [RRiRiiR RR .... iiR....] 
+  +B410:   #1
+        vR0.hub.clearPortConnectionStatusChanged(vi1);   [iRiRiiR RR .... iR.....] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+134 - 313 handler 316 type 57
+134 - 313 handler 340 type 183
+ }
+// Register: rd 45/45 wr 36 swaps 8 any 3 found 0 portConnectionStatusChanged
+ 
+ method getConfiguration(Lorg/jnode/driver/bus/usb/USBDevice;I)Lorg/jnode/driver/bus/usb/USBConfiguration; {
+  +START:   #1
+        vR3 = new org/jnode/driver/bus/usb/ConfigurationDescriptor();    [ Ri  i][ Ri  iR]
+        vR1.readDescriptor@extra(0,2,vi2,0,9,vR3);   [R Ri  RiiiiiR] 
+        vR4 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR5 = vR4.alloc(vR3.getTotalLength@extra());    [RR Ri ii iR.....] 
+        vR6 = new org/jnode/driver/bus/usb/USBPacket(vR5);    [ Ri ii i......][ Ri ii. iRR....]
+        vR1.readDescriptor@extra(0,2,vi2,0,vR5.size(),vR6);   [RRRR Ri iii RiiiiiR] 
+        vR7 = new org/jnode/driver/bus/usb/ConfigurationDescriptor(vR5,0,9);    [ Ri iii i......][ Ri iii. iiiRR..]
+        vR7.loadStrings@extra(vR1);   [RRRRR Ri iii. RR.....] 
+        vR8 = new org/jnode/driver/bus/usb/USBConfiguration(vR1,vR7);    [ Ri iii. i......][ Ri iii. iRRR...]
+        vi9 = vR7.getNumInterfaces@extra();    [RRRRRR Ri iii. R......] 
+        vi10 = vR7.getLength();    [RRRRRRi Ri iii. R......] 
+        vi11 = 0;    
+  +B124:   #1
+        if vi11>=vi9 goto B292;   
+  +B131:   #1
+        vR12 = new org/jnode/driver/bus/usb/InterfaceDescriptor(vR5,vi10,9);    [ Ri .... i......][ Ri .... iiiRR..]
+        vR12.loadStrings@extra(vR1);   [RRRRRRiiiR Ri .... RR.....] 
+        vi10 = (vi10+vR12.getLength());    
+        vR13 = new org/jnode/driver/bus/usb/USBInterface(vR8,vR12);    [ Ri .... i......][ Ri .... iRRR...]
+        vR8.setInterface@extra(vi11,vR13);   [RRRRRRiiiRR Ri .... RiR....] 
+        vi14 = vR12.getNumEndPoints@extra();    [RRRRRRiiiRR Ri .... R......] 
+        vi15 = 0;    
+  +B194:   #1
+        if vi15>=vi14 goto B286;   
+  +B201:   #1
+        vi16 = vR6.getByte@extra((vi10+1));    [RRRRRRiiiRRii Ri i... iR.....] 
+        if vi16!=5 goto B271;   
+  +B218:   #1
+        vR17 = new org/jnode/driver/bus/usb/EndPointDescriptor(vR5,vi10,7);    [ Ri .... i......][ Ri .... iiiRR..]
+        vi10 = (vi10+vR17.getLength());    
+        vR18 = new org/jnode/driver/bus/usb/USBEndPoint(vR13,vR17);    [ Ri .... i......][ Ri .... iRRR...]
+        b1 = vi15;    
+        vi15++;   
+        vR13.setEndPoint@extra(b1,vR18);   [RRRRRRiiiRRiiiRR Ri .... RiR....] 
+        goto +B283;   [RRRRRRiiiRRiiiRR Ri .... .......]
+  +B271:   #1
+        vi10 = (vi10+vR6.getByte@extra(vi10));    
+  +B283:   #1
+        goto +B194;   [RRRRRRiiiRRiiiRR Ri .... .......]
+  +B286:   #1
+        vi11++;   
+        goto +B124;   [RRRRRRiiiRRiiiRR Ri .... .......]
+  +B292:   #1
+        return vR8;   
+  +END:   #1
+ }
+// Register: rd 53/53 wr 35 swaps 4 any 9 found 3 getConfiguration
+ 
+ method sleep(I)V {
+  +START:   #1
+        vR0.sleepManager.mdelay(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 sleep
+ 
+ method startMonitor()V {
+  +START:   #1
+        if vR0.thread!=null goto B22;   
+  +B7:   #1
+        b1 = new org/jnode/driver/bus/usb/USBHubMonitor$USBHubMonitorThread(vR0,"HubMonitor-");    [ ?R  i][ ?R . iRRR]
+        vR0.thread = b1;   
+  +B22:   #1
+        if vR0.api.getVersion()!=1 goto B40;   
+  +B33:   #1
+        vR0.thread.run();   [ ?R . R...] 
+  +B40:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 startMonitor
+ 
+ method stopMonitor()V {
+  +START:   #1
+        vR1 = vR0.thread;    
+        if vR1==null goto B24;   
+  +B9:   #1
+        vR1.stopThread();   [R   R] 
+  +B13:   #1
+        vR1.join(2000);   [R   ??R] 
+  +B20:   #1
+        goto +B24;   [R   ...]
+  +H23<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B24:   #2
+        vR0.thread = 0;   
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+13 - 20 handler 23 type 311
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 stopMonitor
+}

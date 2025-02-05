@@ -1,0 +1,61 @@
+class org/jnode/driver/block/usb/storage/CSW {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(13);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setSignature(I)V {
+  +START:   #1
+        vR0.setInt@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setSignature
+ 
+ method setFlag(I)V {
+  +START:   #1
+        vR0.setInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFlag
+ 
+ method setResidue(I)V {
+  +START:   #1
+        vR0.setInt@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setResidue
+ 
+ method setStatus(B)V {
+  +START:   #1
+        vR0.setByte@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setStatus
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR1.append("--- CSW ---").append("
+");   [R R ii. RR.] [R R iiR RRR] 
+        vR1.append("Signature : 0x").append(hex@special(vR0.getInt@this(0),8)).append("
+");   [R R iii.iii. RR..] [R R iiiRiii. RRR.] [R R iiiRiiiR RRRR] 
+        vR1.append("Flag      : 0x").append(hex@special(vR0.getByte@this(4),8)).append("
+");   [R R iiiiiii.iii. RR..] [R R iiiiiiiRiii. RRR.] [R R iiiiiiiRiiiR RRRR] 
+        vR1.append("Residue   : 0x").append(hex@special(vR0.getByte@this(8),8)).append("
+");   [R R iiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Status    : 0x").append(hex@special(vR0.getByte@this(12),2)).append("
+");   [R R iiiiiiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Packet    : ").append(vR0.toString@special());   [R R iiiiiiiiiiiiiiiiiiii. RR..] [R R iiiiiiiiiiiiiiiiiiiiR RRR.] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 31 swaps 16 any 0 found 0 toString
+}

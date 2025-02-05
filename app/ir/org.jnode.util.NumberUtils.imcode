@@ -1,0 +1,357 @@
+class org/jnode/util/NumberUtils {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString(FI)Ljava/lang/String; {
+  +START:   #1
+        vR2 = toString@special(vl0);    [   ?]
+        vi3 = vR2.indexOf@extra(46);    [R   iR] 
+        if vi3< 0 goto B38;   
+  +B16:   #1
+        vi4 = min@special(vR2.length@extra(),((vi3+vi1)+1));    [Ri  ii ii]
+        return vR2.substring@extra(0,vi4);   
+  +B38:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 1 found 0 toString
+ 
+ method toUnsigned(B)I {
+  +START:   #1
+        return (vi0 & 255);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toUnsigned
+ 
+ method toUnsigned(S)I {
+  +START:   #1
+        return (vi0 & 65535);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toUnsigned
+ 
+ method toUnsigned(I)J {
+  +START:   #1
+        return ((long)vi0 & 4294967295);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toUnsigned
+ 
+ method hex(II)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuilder(vi1);    [ R  i][ R . iiR]
+        int2HexString@special(vR2,vi0);   [R R . iR.]
+        return prefixZero@special(vR2,vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 hex
+ 
+ method hex(I)Ljava/lang/String; {
+  +START:   #1
+        return hex@special(vi0,8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hex
+ 
+ method hex(JI)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder(vi2);    [ R  i][ R . iiR]
+        long2HexString@special(vR3,vl0);   [iR R . ??R]
+        return prefixZero@special(vR3,vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 hex
+ 
+ method hex(J)Ljava/lang/String; {
+  +START:   #1
+        return hex@special(vl0,16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hex
+ 
+ method hex([BII)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder((vi2*3));    [ R  i][ R . iiR]
+        vi4 = 0;    
+  +B14:   #1
+        if vi4>=vi2 goto B75;   
+  +B20:   #1
+        if vi4<=0 goto B50;   
+  +B25:   #1
+        if (vi4%16)!=0 goto B43;   
+  +B33:   #1
+        vR3.append@extra(10);   [Ri R . iR.] 
+        goto +B50;   [Ri R . ...]
+  +B43:   #1
+        vR3.append@extra(32);   [Ri R . iR.] 
+  +B50:   #2
+        vR3.append@extra(hex@special((vR0[(vi1+vi4)] & 255),2));   [Ri R bi RR.] 
+        vi4++;   
+        goto +B14;   [Ri R bi ...]
+  +B75:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 6 swaps 1 any 3 found 0 hex
+ 
+ method hexCompact([BII)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder((vi2*2));    [ R  i][ R . iiR]
+        vi4 = 0;    
+  +B14:   #1
+        if vi4>=vi2 goto B65;   
+  +B20:   #1
+        if vi4<=0 goto B40;   
+  +B25:   #1
+        if (vi4%16)!=0 goto B40;   
+  +B33:   #1
+        vR3.append@extra(10);   [Ri R . iR.] 
+  +B40:   #2
+        vR3.append@extra(hex@special((vR0[(vi1+vi4)] & 255),2));   [Ri R bi RR.] 
+        vi4++;   
+        goto +B14;   [Ri R bi ...]
+  +B65:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 1 any 3 found 0 hexCompact
+ 
+ method hex([IIII)Ljava/lang/String; {
+  +START:   #1
+        vR4 = new java/lang/StringBuilder((vi2*(vi3+1)));    [ R  i][ R . iiR]
+        vi5 = 0;    
+  +B17:   #1
+        if vi5>=vi2 goto B77;   
+  +B23:   #1
+        if vi5<=0 goto B55;   
+  +B28:   #1
+        if (vi5%16)!=0 goto B47;   
+  +B36:   #1
+        vR4.append@extra(10);   [Ri R . iR.] 
+        goto +B55;   [Ri R . ...]
+  +B47:   #1
+        vR4.append@extra(32);   [Ri R . iR.] 
+  +B55:   #2
+        vR4.append@extra(hex@special(vR0[(vi1+vi5)],vi3));   [Ri R ii RR.] 
+        vi5++;   
+        goto +B17;   [Ri R ii ...]
+  +B77:   #1
+        return vR4.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 1 any 3 found 0 hex
+ 
+ method hex([CII)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder((vi2*3));    [ R  i][ R . iiR]
+        vi4 = 0;    
+  +B14:   #1
+        if vi4>=vi2 goto B71;   
+  +B20:   #1
+        if vi4<=0 goto B50;   
+  +B25:   #1
+        if (vi4%16)!=0 goto B43;   
+  +B33:   #1
+        vR3.append@extra(10);   [Ri R . iR.] 
+        goto +B50;   [Ri R . ...]
+  +B43:   #1
+        vR3.append@extra(32);   [Ri R . iR.] 
+  +B50:   #2
+        vR3.append@extra(hex@special(vR0[(vi1+vi4)],2));   [Ri R ci RR.] 
+        vi4++;   
+        goto +B14;   [Ri R ci ...]
+  +B71:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 6 swaps 1 any 3 found 0 hex
+ 
+ method hex([B)Ljava/lang/String; {
+  +START:   #1
+        return hex@special(vR0,0,vR0.length);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hex
+ 
+ method hex(Ljx/zero/Memory;)Ljava/lang/String; {
+  +START:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hex
+ 
+ method hex([II)Ljava/lang/String; {
+  +START:   #1
+        return hex@special(vR0,0,vR0.length,vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 hex
+ 
+ method prefixZero(Ljava/lang/StringBuilder;I)Ljava/lang/String; {
+  +START:   #1
+        if vR0.length@extra()<=vi1 goto B19;   
+  +B8:   #1
+        return vR0.substring@extra((vR0.length@extra()-vi1));   
+  +B19:   #2
+        if vR0.length@extra()>=vi1 goto B38;   
+  +B27:   #1
+        vR0.insert@extra(0,48);   [  . iiR] 
+        goto +B19;   [  . ...]
+  +B38:   #1
+        return vR0.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 1 any 0 found 0 prefixZero
+ 
+ method size(J)Ljava/lang/String; {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=values.length goto B76;   
+  +B10:   #1
+        if compare(vl0,1024)>=0 goto B65;   
+  +B18:   #1
+        if compare(vl0,0)< 0 goto B65;   
+  +B24:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0 = b0.append@extra(valueOf@special(vl0));    [?i RR i RR] 
+        b1 = new org/jnode/util/SizeUnit(keys[vi2],values[vi2]);    [ RR i i.][ RR i. iRiR]
+        return b0.append@extra(b1.getUnit()).toString@extra();   
+  +B65:   #2
+        vl0 = (vl0 >>> 10);    
+        vi2++;   
+        goto +B2;   [?i RR ... ....]
+  +B76:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0 = b0.append@extra(valueOf@special((vl0 >>> 10)));    [?i RR i.. RR..] 
+        b1 = new org/jnode/util/SizeUnit(keys[-1],values[-1]);    [ RR i.. i...][ RR i.. iRiR]
+        return b0.append@extra(b1.getUnit()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 16 swaps 4 any 2 found 1 size
+ 
+ method toDecimalByte(J)Ljava/lang/String; {
+  +START:   #1
+        return toDecimalByte@special(vl0,2);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toDecimalByte
+ 
+ method toDecimalByte(JI)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(apply@special(vl0,vi2)).append@extra(66).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 4 swaps 1 any 0 found 0 toDecimalByte
+ 
+ method toBinaryByte(JI)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(apply@special(vl0,vi2)).append@extra(66).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 4 swaps 1 any 0 found 0 toBinaryByte
+ 
+ method toBinaryByte(J)Ljava/lang/String; {
+  +START:   #1
+        return toBinaryByte@special(vl0,2);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toBinaryByte
+ 
+ method getSize(Ljava/lang/String;)J {
+  +START:   #1
+        if vR0==null goto B14;   
+  +B4:   #1
+        if vR0.trim@extra().isEmpty@extra()==0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        vR0 = vR0.trim@extra();    [ R . R] 
+        b0 = new org/jnode/util/SizeUnit(keys[0],values[0]);    [ R . i][ R . iRiR]
+        vl1 = b0.getMultiplier();     
+        vR3 = getSizeUnit@special(vR0);    [l R . R...]
+        if vR3==null goto B74;   
+  +B51:   #1
+        vl1 = vR3.getMultiplier();     
+        vR0 = vR0.substring@extra(0,(vR0.length@extra()-vR3.getUnit().length@extra()));    [l?R R i. iiR.] 
+  +B74:   #1
+        return (parseLong@special(vR0)*vl1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 9 swaps 1 any 2 found 0 getSize
+ 
+ method getSizeUnit(Ljava/lang/String;)Lorg/jnode/util/SizeUnit; {
+  +START:   #1
+        if vR0==null goto B14;   
+  +B4:   #1
+        if vR0.trim@extra().isEmpty@extra()==0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        vR0 = vR0.trim@extra();    [ R . R] 
+        vi1 = 0;    
+  +B23:   #1
+        if vi1>=values.length goto B70;   
+  +B31:   #1
+        vR2 = new org/jnode/util/SizeUnit(keys[vi1],values[vi1]);    [ R . i][ R . iRiR]
+        vR3 = vR2.getUnit();    [iR R . R...] 
+        if vR0.endsWith@extra(vR3)==0 goto B64;   
+  +B62:   #1
+        return vR2;   
+  +B64:   #1
+        vi1++;   
+        goto +B23;   [iRR R . ....]
+  +B70:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 0 any 3 found 1 getSizeUnit
+ 
+ method int2HexString(Ljava/lang/StringBuilder;I)V {
+  +START:   #1
+        vi2 = (vi1 & 15);    
+        vi3 = (vi1 >>> 4);    
+        if vi3==0 goto B18;   
+  +B13:   #1
+        int2HexString@special(vR0,vi3);   [ii   iR]
+  +B18:   #1
+        if vi2>=10 goto B37;   
+  +B24:   #1
+        vR0.append@extra((char)(vi2+48));   [ii  i iR] 
+        goto +B50;   forward return[ii  i ..]
+  +B37:   #1
+        vR0.append@extra((char)((vi2+65)-10));   [ii  i iR] 
+  +B50:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 4 found 0 int2HexString
+ 
+ method long2HexString(Ljava/lang/StringBuilder;J)V {
+  +START:   #1
+        vi3 = (int)(vl1 & 15);    
+        vl4 = (vl1 >>> 4);    
+        if compare(vl4,0)==0 goto B25;   
+  +B19:   #1
+        long2HexString@special(vR0,vl4);   [?il  . ??R]
+  +B25:   #1
+        if vi3>=10 goto B44;   
+  +B31:   #1
+        vR0.append@extra((char)(vi3+48));   [?il  i iR.] 
+        goto +B57;   forward return[?il  i ...]
+  +B44:   #1
+        vR0.append@extra((char)((vi3+65)-10));   [?il  i iR.] 
+  +B57:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 2 any 1 found 0 long2HexString
+}

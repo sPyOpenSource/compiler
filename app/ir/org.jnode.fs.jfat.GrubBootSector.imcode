@@ -1,0 +1,25 @@
+class org/jnode/fs/jfat/GrubBootSector {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getStage2Sector()J {
+  +START:   #1
+        return (long)vR0.get32@this(68);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getStage2Sector
+ 
+ method setStage2Sector(J)V {
+  +START:   #1
+        vR0.set32@this(68,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setStage2Sector
+}

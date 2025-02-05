@@ -1,0 +1,258 @@
+class jx/wm/WDisplay {
+ 
+ method <init>(Ljx/devices/fb/FramebufferDevice;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RiiR  R] 
+        vR0.m_cMouseSprite = 0;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ RRiR  i][ RRiR . iiiR]
+        vR0.m_cMousePos = b1;   
+        vR0.m_cDisplayDriver = vR1;   
+        vR2 = vR0.m_cDisplayDriver.getSupportedConfigurations();    [ RRiR . R...] 
+        vR0.m_cScreen = 0;   
+        if vR2!=null goto B56;   
+  -B46:   #1
+        throw new java/lang/Error("WDisplay::WDisplay() unable to find a appropriate video mode!");   
+  +B56:   #1
+        vR3 = (jx/devices/fb/FramebufferConfigurationTemplate)(vR2[0]);    
+        if vR3!=null goto B77;   
+  -B67:   #1
+        throw new java/lang/Error("WDisplay::WDisplay() unable to find a appropriate video mode!");   
+  +B77:   #1
+        b1 = vR3.xresolution;    
+        b2 = vR3.yresolution;    
+        b3 = new jx/devices/fb/ColorSpace(vR3.colorSpace);    [ RiiR . i...][ RiiR . iRR.]
+        vR0.setMode@this(b1,b2,b3);   [RR RiiR . RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 11 swaps 0 any 2 found 0 <init>
+ 
+ method initMouseSprite()V {
+  +START:   #1
+        vR1 = createWBitmap@special(8,8,CMAP8);    [ ?RRRRR R Rii]
+        vi2 = 0;    
+  +B13:   #1
+        if vi2>=8 goto B61;   
+  +B19:   #1
+        vi3 = 0;    
+  +B21:   #1
+        if vi3>=8 goto B55;   
+  +B27:   #1
+        vR1.set8(((vi2*vR1.bytesPerLine())+vi3),s_anMouseShape[((vi2*8)+vi3)]);   [Rii ?RRRRR ib biR] 
+        vi3++;   
+        goto +B21;   [Rii ?RRRRR ib ...]
+  +B55:   #1
+        vi2++;   
+        goto +B13;   [Rii ?RRRRR .. ...]
+  +B61:   #1
+        b1 = new jx/wm/WSprite;    
+        b2 = b1;    
+        b3 = vR1.getBounds();    [Rii ?RRRRR .. R..] 
+        b4 = new jx/devices/fb/PixelPoint(0,0);    [ ?RRRRR .. i..][ ?RRRRR .. iiiR]
+        b5 = new jx/devices/fb/PixelPoint(0,0);    [ ?RRRRR .. i...][ ?RRRRR .. iiiR]
+        b2.<init>@special(b3,b4,b5,vR0.m_cScreen,vR1);   [Rii ?RRRRR R. RRRRRR] 
+        vR0.m_cMouseSprite = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 17 swaps 1 any 5 found 1 initMouseSprite
+ 
+ method getScreenBitmap()Ljx/wm/WBitmap; {
+  +START:   #1
+        return vR0.m_cScreen;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScreenBitmap
+ 
+ method getScreenResolution()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return new jx/devices/fb/PixelRect(vR0.m_cScreen.getBounds());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getScreenResolution
+ 
+ method setMode(IILjx/devices/fb/ColorSpace;)I {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("WDisplay::SetMode() ").append@extra(vi1).append@extra("/").append@extra(vi2).append@extra("/").append@extra(vR3).toString@extra());   [ RR iiii..... RR.....] 
+        vR5 = new jx/devices/fb/FramebufferConfiguration(vi1,vi2,vR3);    [ RR iiii..... i......][ RR iiii..... iRiiR..]
+        vR0.m_cDisplayDriver.open(vR5);   [?R RR iiii..... RR.....] 
+        vR0.m_cScreen = createWBitmap@special(vR0.m_cDisplayDriver,vi1,vi2,vR3,vR0.m_cDisplayDriver.getBytesPerLine(),vR0.m_cDisplayDriver.getFrameBuffer(),vR0.m_cDisplayDriver.getFrameBufferOffset());   
+        vR0.nWidth = vi1;   
+        vR0.nHeight = vi2;   
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 21 swaps 6 any 0 found 0 setMode
+ 
+ method getWidth()I {
+  +START:   #1
+        return vR0.nWidth;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()I {
+  +START:   #1
+        return vR0.nHeight;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method startUpdate()V {
+  +START:   #1
+        hide@special();   [   ]
+        vR0.m_cDisplayDriver.startUpdate();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 startUpdate
+ 
+ method endUpdate()V {
+  +START:   #1
+        vR0.m_cDisplayDriver.endUpdate();   [   R] 
+        unhide@special();   [   .]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 endUpdate
+ 
+ method getMousePos()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint(vR0.m_cMousePos);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getMousePos
+ 
+ method moveMouseBy(II)V {
+  +START:   #1
+        b0 = vR0.m_cMousePos;    
+        b0.m_nX = (b0.m_nX+vi1);   
+        b0 = vR0.m_cMousePos;    
+        b0.m_nY = (b0.m_nY+vi2);   
+        if vR0.m_cMousePos.m_nX>=0 goto B44;   
+  +B36:   #1
+        vR0.m_cMousePos.m_nX = 0;   
+  +B44:   #1
+        if vR0.m_cMousePos.m_nY>=0 goto B62;   
+  +B54:   #1
+        vR0.m_cMousePos.m_nY = 0;   
+  +B62:   #1
+        if vR0.m_cMousePos.m_nX<vR0.m_cScreen.width() goto B95;   
+  +B79:   #1
+        vR0.m_cMousePos.m_nX = (vR0.m_cScreen.width()-1);   
+  +B95:   #1
+        if vR0.m_cMousePos.m_nY<vR0.m_cScreen.height() goto B128;   
+  +B112:   #1
+        vR0.m_cMousePos.m_nY = (vR0.m_cScreen.height()-1);   
+  +B128:   #1
+        vR0.startUpdate@this();   [ R . R] 
+        vR0.m_cMouseSprite.moveTo(vR0.m_cMousePos);   [ R i RR] 
+        vR0.endUpdate@this();   [ R i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 5 swaps 1 any 0 found 0 moveMouseBy
+ 
+ method moveMouseTo(II)V {
+  +START:   #1
+        vR0.m_cMousePos.m_nX = vi1;   
+        vR0.m_cMousePos.m_nY = vi2;   
+        if vR0.m_cMousePos.m_nX>=0 goto B34;   
+  +B26:   #1
+        vR0.m_cMousePos.m_nX = 0;   
+  +B34:   #1
+        if vR0.m_cMousePos.m_nY>=0 goto B52;   
+  +B44:   #1
+        vR0.m_cMousePos.m_nY = 0;   
+  +B52:   #1
+        if vR0.m_cMousePos.m_nX<vR0.m_cScreen.width() goto B85;   
+  +B69:   #1
+        vR0.m_cMousePos.m_nX = (vR0.m_cScreen.width()-1);   
+  +B85:   #1
+        if vR0.m_cMousePos.m_nY<vR0.m_cScreen.height() goto B118;   
+  +B102:   #1
+        vR0.m_cMousePos.m_nY = (vR0.m_cScreen.height()-1);   
+  +B118:   #1
+        vR0.startUpdate@this();   [  . R] 
+        vR0.m_cMouseSprite.moveTo(vR0.m_cMousePos);   [  i RR] 
+        vR0.endUpdate@this();   [  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 3 swaps 1 any 0 found 0 moveMouseTo
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new byte[64];    
+        b0[0] = -2;   
+        b0[1] = -1;   
+        b0[2] = -1;   
+        b0[3] = -1;   
+        b0[4] = -1;   
+        b0[5] = -1;   
+        b0[6] = -1;   
+        b0[7] = -1;   
+        b0[8] = -2;   
+        b0[9] = -2;   
+        b0[10] = -1;   
+        b0[11] = -1;   
+        b0[12] = -1;   
+        b0[13] = -1;   
+        b0[14] = -1;   
+        b0[15] = -1;   
+        b0[16] = -2;   
+        b0[17] = 3;   
+        b0[18] = -2;   
+        b0[19] = -1;   
+        b0[20] = -1;   
+        b0[21] = -1;   
+        b0[22] = -1;   
+        b0[23] = -1;   
+        b0[24] = -2;   
+        b0[25] = 3;   
+        b0[26] = 3;   
+        b0[27] = -2;   
+        b0[28] = -1;   
+        b0[29] = -1;   
+        b0[30] = -1;   
+        b0[31] = -1;   
+        b0[32] = -2;   
+        b0[33] = 3;   
+        b0[34] = 3;   
+        b0[35] = 3;   
+        b0[36] = -2;   
+        b0[37] = -1;   
+        b0[38] = -1;   
+        b0[39] = -1;   
+        b0[40] = -2;   
+        b0[41] = 3;   
+        b0[42] = 3;   
+        b0[43] = 3;   
+        b0[44] = 3;   
+        b0[45] = -2;   
+        b0[46] = -1;   
+        b0[47] = -1;   
+        b0[48] = -2;   
+        b0[49] = 3;   
+        b0[50] = 3;   
+        b0[51] = 3;   
+        b0[52] = 3;   
+        b0[53] = 3;   
+        b0[54] = -2;   
+        b0[55] = -1;   
+        b0[56] = -2;   
+        b0[57] = -2;   
+        b0[58] = -2;   
+        b0[59] = -2;   
+        b0[60] = -2;   
+        b0[61] = -2;   
+        b0[62] = -2;   
+        b0[63] = -2;   
+        s_anMouseShape = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 66/66 wr 1 swaps 0 any 0 found 1 <clinit>
+}

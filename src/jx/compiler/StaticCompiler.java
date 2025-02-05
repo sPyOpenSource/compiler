@@ -66,8 +66,8 @@ public class StaticCompiler implements ClassFinder {
     // compile all classes that are in the zipfile
     public StaticCompiler(ExtendedDataOutputStream out,
 			  ExtendedDataOutputStream tableOut,			  
-			  URL[] domainZip, 
-			  URL[] libZip,
+			  String[] domainZip, 
+			  String[] libZip,
 			  ExtendedDataInputStream tableIn[],
 			  CompilerOptions opts,
 			  IOSystem ioSystem
@@ -129,20 +129,20 @@ public class StaticCompiler implements ClassFinder {
 
 	// split zipfiles into classfiles
 	for(int i = - domainZip.length; i < libZip.length; i++) {
-	    URL in;
+	    String in;
             
 	    if (i < 0) {
                 in = domainZip[-1 * i - 1];
             } else {
                 in = libZip[i];
             }
-            System.out.println(in.getFile());
+            //System.out.println(in.getFile());
             if(domainZip.length == 1){
                 if( i < 0)
-                    meta = new MetaInfo(in.getPath().split("dist")[0] + "META");
+                    meta = new MetaInfo(in.split("dist")[0].replace("jar:", "") + "META");
             } else {
-                if(in.getPath().endsWith("META")){
-                    meta = new MetaInfo(in.toString());
+                if(in.endsWith("META")){
+                    meta = new MetaInfo(in);
                     continue;
                 }
             }
@@ -150,9 +150,13 @@ public class StaticCompiler implements ClassFinder {
             //String[] sds = MetaInfo.split(sd);
             
             try {
-                JarURLConnection con = (JarURLConnection)in.openConnection();
-                JarFile jar = con.getJarFile();
-                
+                JarFile jar = null;
+                if(in.startsWith("jar")){
+                JarURLConnection con = (JarURLConnection)(new URL(in)).openConnection();
+                 jar = con.getJarFile();
+                } else {
+                    jar = new JarFile(in);
+                }
                 Enumeration<JarEntry> entries = jar.entries();
                 main:
                 while (entries.hasMoreElements()) {
@@ -175,7 +179,6 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("java/awt")) continue;
                         if (name.startsWith("java/applet")) continue;
                         if (name.startsWith("gnu/java/awt")) continue;
-                        if (name.startsWith("org/jnode/util")) continue;
                         if (name.startsWith("test/portal/perf")) continue;
                         System.out.println(name); 
                         try (InputStream is = jar.getInputStream(entry)) {

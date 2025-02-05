@@ -1,0 +1,620 @@
+class jx/awt/peer/JXScrollPanePeer {
+ 
+ method <init>(Ljava/awt/ScrollPane;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [ R  RRR] 
+        vR0.NONE = 0;   
+        vR0.RIGHTBAR = 2;   
+        vR0.LOWERBAR = 3;   
+        vR3 = new jx/awt/peer/InternalScrollbar(0,0);    [ R  i..][ R . iRRR]
+        requireNonNull@special(vR3);   [R R . R...]
+        vR0.barSize = 15;   
+        vR0.policy = vR1.getScrollbarDisplayPolicy();   
+        vR0.pos = vR1.getScrollPosition();   
+        if vR0.getChild@special()==null goto B93;   
+  +B65:   #1
+        vR0.prefWidth = vR0.getChild@special().getPreferredSize().width;   
+        vR0.prefHeight = vR0.getChild@special().getPreferredSize().height;   
+  +B93:   #1
+        if vR0.prefWidth> 0 goto B106;   
+  +B100:   #1
+        vR0.prefWidth = 100;   
+  +B106:   #1
+        if vR0.prefHeight> 0 goto B119;   
+  +B113:   #1
+        vR0.prefHeight = 100;   
+  +B119:   #1
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [   iiiR] 
+        lswitch (vR0.lastArea) { 
+           2:B36
+           3:B49
+           ::B59
+        };   
+  +B36:   #1
+        vR0.getVScrollPeer@special().mousePressed(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        goto +B59;   [  . ....]
+  +B49:   #1
+        vR0.getHScrollPeer@special().mousePressed(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+  +B59:   #2
+        vR0.lastPressedArea = vR0.lastArea;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        vR0.mouseReleased@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        lswitch (vR0.lastArea) { 
+           2:B40
+           3:B73
+           ::B103
+        };   
+  +B40:   #1
+        vR0.getVScrollPeer@special().mouseReleased(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        vR0.pos.y = vR0.getVScrollPeer@special().getValue();   
+        vR0.redraw@this();   [  . R....] 
+        goto +B103;   [  . .....]
+  +B73:   #1
+        vR0.getHScrollPeer@special().mouseReleased(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        vR0.pos.x = vR0.getHScrollPeer@special().getValue();   
+        vR0.redraw@this();   [  . R....] 
+  +B103:   #2
+        vR0.lastPressedArea = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 0 any 0 found 0 mouseReleased
+ 
+ method mouseMoved(III)V {
+  +START:   #1
+        vR0.mouseMoved@special(vi1,vi2,vi3);   [   iiiR] 
+        vi4 = vR0.getCurrentArea@special(vi1,vi2);    [   iiR.] 
+        if vi4==vR0.lastArea goto B131;   
+  +B24:   #1
+        lswitch (vR0.lastArea) { 
+           2:B56
+           3:B69
+           ::B79
+        };   
+  +B56:   #1
+        vR0.getVScrollPeer@special().mouseExited(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+        goto +B79;   [iii  . ....]
+  +B69:   #1
+        vR0.getHScrollPeer@special().mouseExited(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+  +B79:   #2
+        lswitch (vi4) { 
+           2:B108
+           3:B121
+           ::B131
+        };   
+  +B108:   #1
+        vR0.getVScrollPeer@special().mouseEntered(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+        goto +B131;   [iii  . ....]
+  +B121:   #1
+        vR0.getHScrollPeer@special().mouseEntered(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+  +B131:   #3
+        vR0.lastArea = vi4;   
+        lswitch (vR0.lastArea) { 
+           2:B168
+           3:B181
+           ::B191
+        };   
+  +B168:   #1
+        vR0.getVScrollPeer@special().mouseMoved(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+        goto +B191;   [iii  . ....]
+  +B181:   #1
+        vR0.getHScrollPeer@special().mouseMoved(vi1,vi2,vi3);   [iii  . iiiR] [iii  R iiiR] 
+  +B191:   #2
+        if vi3==0 goto B295;   
+  +B195:   #1
+        lswitch (vR0.lastPressedArea) { 
+           2:B224
+           3:B261
+           ::B295
+        };   
+  +B224:   #1
+        vi5 = vR0.getVScrollPeer@special().getValue();    [i  . R...] [i  R R...] 
+        if vi5==vR0.pos.y goto B295;   
+  +B245:   #1
+        vR0.pos.y = vi5;   
+        vR0.redraw@this();   [ii  . R...] 
+        goto +B295;   forward return[ii  . ....]
+  +B261:   #1
+        vi6 = vR0.getHScrollPeer@special().getValue();    [ii  . R...] [ii  R R...] 
+        if vi6==vR0.pos.x goto B295;   
+  +B282:   #1
+        vR0.pos.x = vi6;   
+        vR0.redraw@this();   [iii  . R...] 
+  +B295:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 11 swaps 0 any 5 found 0 mouseMoved
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        vR0.mouseEntered@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.lastArea = vR0.getCurrentArea@special(vi1,vi2);   
+        lswitch (vR0.lastArea) { 
+           2:B48
+           3:B61
+           ::B71
+        };   
+  +B48:   #1
+        vR0.getVScrollPeer@special().mouseEntered(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        goto +B71;   forward return[  . ....]
+  +B61:   #1
+        vR0.getHScrollPeer@special().mouseEntered(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+  +B71:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        vR0.mouseExited@special(vi1,vi2,vi3);   [   iiiR] 
+        lswitch (vR0.lastArea) { 
+           2:B36
+           3:B49
+           ::B59
+        };   
+  +B36:   #1
+        vR0.getVScrollPeer@special().mouseExited(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        goto +B59;   [  . ....]
+  +B49:   #1
+        vR0.getHScrollPeer@special().mouseExited(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+  +B59:   #2
+        vR0.lastArea = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 mouseExited
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.resetLayout@special();   [   R] 
+        vR0.paintScrollPane@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 paint
+ 
+ method resetLayout()V {
+  +START:   #1
+        if vR0.getChild@special()!=null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR1 = vR0.getChild@special().getSize();    [ RR . R] [ RR R R] 
+        b1 = new java/awt/Dimension(vR0.width,vR0.height);    [ RR . i][ RR . iiiR]
+        vR0.viewPort = b1;   
+        if vR0.policy==2 goto B199;   
+  +B43:   #1
+        vi2 = 0;    
+        if vR0.viewPort.height!=vR0.height goto B120;   
+  +B59:   #1
+        if vR0.getHScrollbar@special()==null goto B120;   
+  +B66:   #1
+        if vR0.policy==1 goto B88;   
+  +B74:   #1
+        if vR1.width<=vR0.viewPort.width goto B120;   
+  +B88:   #1
+        if vR1.width<=vR0.viewPort.width goto B104;   
+  +B102:   #1
+        vi2 = 1;    
+  +B104:   #1
+        b0 = vR0.viewPort;    
+        b0.height = (b0.height-vR0.getHScrollbarHeight@this());   
+  +B120:   #3
+        if vR0.viewPort.width!=vR0.width goto B195;   
+  +B134:   #1
+        if vR0.getVScrollbar@special()==null goto B195;   
+  +B141:   #1
+        if vR0.policy==1 goto B163;   
+  +B149:   #1
+        if vR1.height<=vR0.viewPort.height goto B195;   
+  +B163:   #1
+        if vR1.height<=vR0.viewPort.height goto B179;   
+  +B177:   #1
+        vi2 = 1;    
+  +B179:   #1
+        b0 = vR0.viewPort;    
+        b0.width = (b0.width-vR0.getVScrollbarWidth@this());   
+  +B195:   #3
+        if vi2!=0 goto B43;   
+  +B199:   #1
+        if (vR0.pos.y+vR0.viewPort.height)<=vR1.height goto B240;   
+  +B221:   #1
+        vR0.pos.y = (vR1.height-vR0.viewPort.height);   
+  +B240:   #1
+        if vR0.pos.y>=0 goto B258;   
+  +B250:   #1
+        vR0.pos.y = 0;   
+  +B258:   #1
+        if (vR0.pos.x+vR0.viewPort.width)<=vR1.width goto B299;   
+  +B280:   #1
+        vR0.pos.x = (vR1.width-vR0.viewPort.width);   
+  +B299:   #1
+        if vR0.pos.x>=0 goto B317;   
+  +B309:   #1
+        vR0.pos.x = 0;   
+  +B317:   #1
+        if vR0.viewPort.width==vR0.width goto B382;   
+  +B331:   #1
+        vR0.getVScrollbar@special().setVisible(1);   [Ri RR . iR..] [Ri RR R iR..] 
+        vR0.getVScrollbar@special().setValues(vR0.pos.y,vR0.viewPort.height,0,vR1.height);   [Ri RR iii. iiiiR] [Ri RR iiiR iiiiR] 
+        vR0.getVScrollbar@special().setPageIncrement(vR0.viewPort.height);   [Ri RR iiii. iR...] [Ri RR iiiiR iR...] 
+        goto +B397;   [Ri RR iiii. .....]
+  +B382:   #1
+        if vR0.getVScrollbar@special()==null goto B397;   
+  +B389:   #1
+        vR0.getVScrollbar@special().setVisible(0);   [Ri RR ..... iR...] [Ri RR R.... iR...] 
+  +B397:   #2
+        if vR0.viewPort.height==vR0.height goto B462;   
+  +B411:   #1
+        vR0.getHScrollbar@special().setVisible(1);   [Ri RR ..... iR...] [Ri RR R.... iR...] 
+        vR0.getHScrollbar@special().setValues(vR0.pos.x,vR0.viewPort.width,0,vR1.width);   [Ri RR iii.. iiiiR] [Ri RR iiiR. iiiiR] 
+        vR0.getHScrollbar@special().setPageIncrement(vR0.viewPort.width);   [Ri RR iiii. iR...] [Ri RR iiiiR iR...] 
+        goto +B477;   forward return[Ri RR iiii. .....]
+  +B462:   #1
+        if vR0.getHScrollbar@special()==null goto B477;   
+  +B469:   #1
+        vR0.getHScrollbar@special().setVisible(0);   [Ri RR ..... iR...] [Ri RR R.... iR...] 
+  +B477:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 73/73 wr 25 swaps 4 any 1 found 0 resetLayout
+ 
+ method insets()Ljava/awt/Insets; {
+  +START:   #1
+        if vR0.getVScrollbar@special()==null goto B24;   
+  +B7:   #1
+        if vR0.getVScrollbar@special().isVisible()==0 goto B24;   
+  +B17:   #1
+        b0 = vR0.getVScrollbarWidth@this();    [ i . R] 
+        goto +B25b0;   [ i . .]
+  +B24:   #2
+        b0 = 0;    
+  +B25b0:   #1 int
+        vi1 = b0;    
+        if vR0.getHScrollbar@special()==null goto B50;   
+  +B33:   #1
+        if vR0.getHScrollbar@special().isVisible()==0 goto B50;   
+  +B43:   #1
+        b0 = vR0.getHScrollbarHeight@this();    [i i . R] 
+        goto +B51b0;   [i i . .]
+  +B50:   #2
+        b0 = 0;    
+  +B51b0:   #1 int
+        vi2 = b0;    
+        return new java/awt/Insets(0,0,vi2,vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 9 swaps 0 any 2 found 0 insets
+ 
+ method getVScrollbar()Ljava/awt/Scrollbar; {
+  +START:   #1
+        return (java/awt/Scrollbar)((java/awt/ScrollPane)(vR0.parent).getVAdjustable());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getVScrollbar
+ 
+ method getHScrollbar()Ljava/awt/Scrollbar; {
+  +START:   #1
+        return (java/awt/Scrollbar)((java/awt/ScrollPane)(vR0.parent).getHAdjustable());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getHScrollbar
+ 
+ method getVScrollPeer()Ljx/awt/peer/JXScrollbarPeer; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getVScrollPeer
+ 
+ method getHScrollPeer()Ljx/awt/peer/JXScrollbarPeer; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getHScrollPeer
+ 
+ method getChild()Ljava/awt/Component; {
+  +START:   #1
+        return (java/awt/Container)(vR0.parent).getComponent(0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getChild
+ 
+ method getCurrentArea(II)I {
+  +START:   #1
+        vR3 = vR0.getLocationRelativeToComponent@this(vi1,vi2);    [   iiR] 
+        if vR3.x<vR0.viewPort.width goto B37;   
+  +B21:   #1
+        if vR3.y<vR0.viewPort.height goto B37;   
+  +B35:   #1
+        return 0;   
+  +B37:   #2
+        if vR3.x<vR0.viewPort.width goto B70;   
+  +B51:   #1
+        if vR0.getVScrollPeer@special()==null goto B70;   
+  +B58:   #1
+        if vR0.getVScrollbar@special().isVisible()==0 goto B70;   
+  +B68:   #1
+        return 2;   
+  +B70:   #3
+        if vR3.y<vR0.viewPort.height goto B103;   
+  +B84:   #1
+        if vR0.getHScrollPeer@special()==null goto B103;   
+  +B91:   #1
+        if vR0.getHScrollbar@special().isVisible()==0 goto B103;   
+  +B101:   #1
+        return 3;   
+  +B103:   #3
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 3 swaps 0 any 0 found 0 getCurrentArea
+ 
+ method getScrollPosition()Ljava/awt/Point; {
+  +START:   #1
+        return vR0.pos;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScrollPosition
+ 
+ method childResized(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 childResized
+ 
+ method setUnitIncrement(Ljava/awt/Adjustable;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setUnitIncrement
+ 
+ method setValue(Ljava/awt/Adjustable;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setValue
+ 
+ method getHScrollbarHeight()I {
+  +START:   #1
+        return vR0.barSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHScrollbarHeight
+ 
+ method getVScrollbarWidth()I {
+  +START:   #1
+        return vR0.barSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVScrollbarWidth
+ 
+ method setScrollPosition(II)V {
+  +START:   #1
+        vR0.pos.x = vi1;   
+        vR0.pos.y = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setScrollPosition
+ 
+ method paintScrollPane(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.fillRect(0,0,(vR0.width-1),(vR0.height-1));   [  iii iiiiR] 
+        if vR0.viewPort.width==vR0.width goto B73;   
+  +B39:   #1
+        vR0.getVScrollbar@special().setBounds(vR0.viewPort.width,0,(vR0.width-vR0.viewPort.width),vR0.viewPort.height);   [  iii. iiiiR] [  iiiR iiiiR] 
+  +B73:   #1
+        if vR0.viewPort.height==vR0.height goto B121;   
+  +B87:   #1
+        vR0.getHScrollbar@special().setBounds(0,vR0.viewPort.height,vR0.viewPort.width,(vR0.height-vR0.viewPort.height));   [  iii. iiiiR] [  iiiR iiiiR] 
+  +B121:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 11 swaps 4 any 0 found 0 paintScrollPane
+ 
+ method beginLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 beginLayout
+ 
+ method endLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 endLayout
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

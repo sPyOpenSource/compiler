@@ -1,0 +1,106 @@
+class org/jnode/fs/jfat/Geometry {
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.cylinders = vi1;   
+        vR0.heads = vi2;   
+        vR0.sectors = vi3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCylinders()I {
+  +START:   #1
+        return vR0.cylinders;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCylinders
+ 
+ method getHeads()I {
+  +START:   #1
+        return vR0.heads;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeads
+ 
+ method getSectors()I {
+  +START:   #1
+        return vR0.sectors;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSectors
+ 
+ method getTotalSectors()J {
+  +START:   #1
+        vl1 = (long)vR0.cylinders;    
+        vl1 = (vl1*(long)vR0.heads);    
+        vl1 = (vl1*(long)vR0.sectors);    
+        return vl1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTotalSectors
+ 
+ method getLogicalSector(Lorg/jnode/fs/jfat/Geometry$CHS;)J {
+  +START:   #1
+        vl2 = (long)((vR1.getCylinder()*vR0.heads)*vR0.sectors);    
+        vl2 = (vl2+(long)(vR1.getHead()*vR0.sectors));    
+        vl2 = (vl2+(long)vR1.getSector());    
+        return (vl2-1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLogicalSector
+ 
+ method getCHS(J)Lorg/jnode/fs/jfat/Geometry$CHS; {
+  +START:   #1
+        vl3 = vl1;    
+        vi5 = (int)((vl3%(long)vR0.sectors)+1);    
+        vl3 = (vl3/(long)vR0.sectors);    
+        vi6 = (int)(vl3%(long)vR0.heads);    
+        vl3 = (vl3/(long)vR0.heads);    
+        vi7 = (int)vl3;    
+  +B44:   #1
+        b0 = new org/jnode/fs/jfat/Geometry$CHS(vR0,vi7,vi6,vi5);    [ RRR ... i][ RRR ... iiiiRR]
+  +B58b0:   #1 reference
+        return b0;   
+  -H59<caught exception>:   #1 reference
+        vR8 = <caught exception>;    
+        b0 = new java/lang/Exception;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i.....][ RRR ... iR....]
+        b1.<init>@special(b2.append@extra("can't get CHS for logical sector ").append@extra(vl1).toString@extra(),vR8);   [?l?iiiR RRR ii. RRR...] 
+        throw b0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+44 - 58 handler 59 type 34
+ }
+// Register: rd 10/10 wr 16 swaps 2 any 1 found 0 getCHS
+ 
+ method nextSector(Lorg/jnode/fs/jfat/Geometry$CHS;)Lorg/jnode/fs/jfat/Geometry$CHS; {
+  +START:   #1
+        vi2 = vR1.getSector();    [ RRR  R] 
+        vi3 = vR1.getHead();    [i RRR  R] 
+        vi4 = vR1.getCylinder();    [ii RRR  R] 
+        vi2++;   
+        if vi2<=vR0.sectors goto B82;   
+  +B27:   #1
+        vi2 = 1;    
+        vi3++;   
+        if vi3<vR0.heads goto B82;   
+  +B40:   #1
+        vi3 = 0;    
+        vi4++;   
+        if vi4<vR0.cylinders goto B82;   
+  -B54:   #1
+        b0 = new java/lang/Exception;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("this geometry doesn't support cyclinder").append@extra(vi4).toString@extra());   [iii RRR ii. RR.] 
+        throw b0;   
+  +B82:   #3
+        return new org/jnode/fs/jfat/Geometry$CHS(vR0,vi4,vi3,vi2);   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 15 swaps 2 any 7 found 0 nextSector
+}

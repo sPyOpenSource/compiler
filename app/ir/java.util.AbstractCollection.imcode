@@ -175,9 +175,129 @@ class java/util/AbstractCollection {
  method toArray()[Ljava/lang/Object; {
   +START:   #1
         vR1 = new java/lang/Object()[vR0.size@this()];    
-        vR2 = vR0.iterator@this();    [R   R.] 
-        return 0;   
+        vR2 = vR0.iterator@this();    [R R  R.] 
+        vi3 = 0;    
+  +B15:   #1
+        if vi3>=vR1.length goto B51;   
+  +B21:   #1
+        if vR2.hasNext()!=0 goto B36;   
+  +B30:   #1
+        return copyOf@special(vR1,vi3);   
+  +B36:   #1
+        vR1[vi3] = vR2.next();   
+        vi3++;   
+        goto +B15;   [RRi R  ..]
+  +B51:   #1
+        if vR2.hasNext()==0 goto B68;   
+  +B60:   #1
+        b0 = finishToArray@special(vR1,vR2);    [RRi R  RR]
+        goto +B69b0;   forward return[RRi R  ..]
+  +B68:   #1
+        b0 = vR1;    
+  +B69b0:   #1 reference
+        return b0;   
   +END:   #1
  }
-// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 toArray
+// Register: rd 12/12 wr 6 swaps 0 any 3 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  +START:   #1
+        vi2 = vR0.size@this();    [ R  R] 
+        if vR1.length<vi2 goto B15;   
+  +B11:   #1
+        b0 = vR1;    
+        goto +B29b0;   [i R  .]
+  +B15:   #1
+        b0 = ([Ljava/lang/Object;)(newInstance@special(vR1.getClass().getComponentType@extra(),vi2));    
+  +B29b0:   #1 reference
+        vR3 = b0;    
+        vR4 = vR0.iterator@this();    [iR R .. R.] 
+        vi5 = 0;    
+  +B39:   #1
+        if vi5>=vR3.length goto B123;   
+  +B46:   #1
+        if vR4.hasNext()!=0 goto B106;   
+  +B56:   #1
+        if vR1!=vR3 goto B69;   
+  +B61:   #1
+        vR3[vi5] = 0;   
+        goto +B104;   forward return[iRRi R .. ..]
+  +B69:   #1
+        if vR1.length>=vi5 goto B83;   
+  +B76:   #1
+        return copyOf@special(vR3,vi5);   
+  +B83:   #1
+        arraycopy@special(vR3,0,vR1,0,vi5);   [iRRi R .. iiRiR]
+        if vR1.length<=vi5 goto B104;   
+  +B99:   #1
+        vR1[vi5] = 0;   
+  +B104:   #2
+        return vR1;   
+  +B106:   #1
+        vR3[vi5] = vR4.next();   
+        vi5++;   
+        goto +B39;   [iRRi R .. .....]
+  +B123:   #1
+        if vR4.hasNext()==0 goto B142;   
+  +B133:   #1
+        b0 = finishToArray@special(vR3,vR4);    [iRRi R .. RR...]
+        goto +B143b0;   forward return[iRRi R .. .....]
+  +B142:   #1
+        b0 = vR3;    
+  +B143b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 12 swaps 0 any 6 found 0 toArray
+ 
+ method finishToArray([Ljava/lang/Object;Ljava/util/Iterator;)[Ljava/lang/Object; {
+  +START:   #1
+        vi2 = vR0.length;    
+  +B3:   #1
+        if vR1.hasNext()==0 goto B67;   
+  +B12:   #1
+        vi3 = vR0.length;    
+        if vi2!=vi3 goto B52;   
+  +B20:   #1
+        vi4 = ((vi3+(vi3 >> 1))+1);    
+        if (vi4-2147483639)<=0 goto B45;   
+  +B37:   #1
+        vi4 = hugeCapacity@special((vi3+1));    [iii Ri i i]
+  +B45:   #1
+        vR0 = copyOf@special(vR0,vi4);    [iii Ri . iR]
+  +B52:   #1
+        b1 = vi2;    
+        vi2++;   
+        vR0[b1] = vR1.next();   
+        goto +B3;   [iii Ri . ..]
+  +B67:   #1
+        if vi2!=vR0.length goto B77;   
+  +B73:   #1
+        b0 = vR0;    
+        goto +B82b0;   forward return[iii Ri . ..]
+  +B77:   #1
+        b0 = copyOf@special(vR0,vi2);    [iii Ri . iR]
+  +B82b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 10 swaps 0 any 7 found 1 finishToArray
+ 
+ method hugeCapacity(I)I {
+  +START:   #1
+        if vi0>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/OutOfMemoryError("Required array size too large");   
+  +B14:   #1
+        if vi0<=2147483639 goto B25;   
+  +B20:   #1
+        b0 = 2147483647;    
+        goto +B27b0;   forward return[ i . ...]
+  +B25:   #1
+        b0 = 2147483639;    
+  +B27b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 0 hugeCapacity
 }

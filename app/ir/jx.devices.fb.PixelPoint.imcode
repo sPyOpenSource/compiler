@@ -1,0 +1,158 @@
+class jx/devices/fb/PixelPoint {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nY = -1;   
+        vR0.m_nX = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX = vi1;   
+        vR0.m_nY = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX = vR1.m_nX;   
+        vR0.m_nY = vR1.m_nY;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method X()I {
+  +START:   #1
+        return vR0.m_nX;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 X
+ 
+ method Y()I {
+  +START:   #1
+        return vR0.m_nY;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 Y
+ 
+ method add(Ljx/devices/fb/PixelPoint;Ljx/devices/fb/PixelPoint;)Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint((vR0.m_nX+vR1.m_nX),(vR0.m_nY+vR1.m_nY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 add
+ 
+ method sub(Ljx/devices/fb/PixelPoint;Ljx/devices/fb/PixelPoint;)Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint((vR0.m_nX-vR1.m_nX),(vR0.m_nY-vR1.m_nY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 sub
+ 
+ method add(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_nX = (vR0.m_nX+vR1.m_nX);   
+        vR0.m_nY = (vR0.m_nY+vR1.m_nY);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 add
+ 
+ method add(II)V {
+  +START:   #1
+        vR0.m_nX = (vR0.m_nX+vi1);   
+        vR0.m_nY = (vR0.m_nY+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 add
+ 
+ method sub(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_nX = (vR0.m_nX-vR1.m_nX);   
+        vR0.m_nY = (vR0.m_nY-vR1.m_nY);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 sub
+ 
+ method sub(II)V {
+  +START:   #1
+        vR0.m_nX = (vR0.m_nX-vi1);   
+        vR0.m_nY = (vR0.m_nY-vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 sub
+ 
+ method setTo(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_nX = vR1.m_nX;   
+        vR0.m_nY = vR1.m_nY;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method setTo(II)V {
+  +START:   #1
+        vR0.m_nX = vi1;   
+        vR0.m_nY = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method isEqual(Ljx/devices/fb/PixelPoint;)Z {
+  +START:   #1
+        if vR0.m_nX!=vR1.m_nX goto B26;   
+  +B11:   #1
+        if vR0.m_nY!=vR1.m_nY goto B26;   
+  +B22:   #1
+        b0 = 1;    
+        goto +B27b0;   forward return[ i  ]
+  +B26:   #2
+        b0 = 0;    
+  +B27b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 isEqual
+ 
+ method isNotEqual(Ljx/devices/fb/PixelPoint;)Z {
+  +START:   #1
+        if vR0.m_nX!=vR1.m_nX goto B22;   
+  +B11:   #1
+        if vR0.m_nY!=vR1.m_nY goto B26;   
+  +B22:   #1
+        b0 = 1;    
+        goto +B27b0;   forward return[ i  ]
+  +B26:   #1
+        b0 = 0;    
+  +B27b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 isNotEqual
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<null>";   
+  +B7:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("[").append@extra(vR0.m_nX).append@extra(",").append@extra(vR0.m_nY).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 11 swaps 5 any 1 found 0 toString
+}

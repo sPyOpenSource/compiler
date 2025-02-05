@@ -1,0 +1,72 @@
+class org/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method startDevice(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #2
+        vR2 = vR1.getConfiguration@extra(0);    [ RR  iR] 
+        vR1.setConfiguration@extra(vR2);   [R RR  RR] 
+        b1 = new org/jnode/driver/block/usb/storage/USBStorageDeviceData(vR1);    [ RR  i.][ RR . iRR]
+        vR0.storageDeviceData = b1;   
+        vR3 = (org/jnode/driver/bus/usb/USBDataPipe)(vR0.storageDeviceData.getBulkOutEndPoint@extra().getPipe@extra());    
+        vR3.open();   [RR RR . R..] 
+        vR3 = (org/jnode/driver/bus/usb/USBDataPipe)(vR0.storageDeviceData.getBulkInEndPoint@extra().getPipe@extra());    
+        vR3.open();   [RR RR . R..] 
+        vR4 = new org/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver$USBStorageSCSIHostBus(vR0,vR1);    [ RR . i..][ RR . iRRR]
+        b1 = new org/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver$USBStorageSCSIDevice(vR0,vR4,"_sg");    [ RR . i...][ RR . iRRRR]
+        vR0.scsiDevice = b1;   
+  +B90:   #1
+        vR0.scsiDevice.inquiry@extra();   [RRR RR . R....] 
+  +B97:   #1
+        goto +B114;   [RRR RR . .....]
+  -H100<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        throw new java/lang/Exception("Interrupted while INQUIRY device",vR5);   
+  +B114:   #2
+        goto +B127;   forward return[RRR RR . .....]
+  -H117<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        throw new java/lang/Exception(vR2);   
+  +B127:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+90 - 97 handler 100 type 65
+0 - 114 handler 117 type 74
+ }
+// Register: rd 25/25 wr 17 swaps 0 any 0 found 0 startDevice
+ 
+ method stopDevice()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 stopDevice
+ 
+ method requestCompleted(Lorg/jnode/driver/bus/usb/USBRequest;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requestCompleted
+ 
+ method requestFailed(Lorg/jnode/driver/bus/usb/USBRequest;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 requestFailed
+ 
+ method access$000(Lorg/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver;)Lorg/jnode/driver/block/usb/storage/USBStorageDeviceData; {
+  +START:   #1
+        return vR0.storageDeviceData;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+}

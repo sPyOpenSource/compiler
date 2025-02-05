@@ -1,0 +1,60 @@
+class org/jnode/fs/ntfs/attribute/NTFSResidentAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAttributeOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributeOffset
+ 
+ method getIndexedFlag()I {
+  +START:   #1
+        return vR0.getUInt8@this(22);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndexedFlag
+ 
+ method getAttributeLength()I {
+  +START:   #1
+        return (int)vR0.getUInt32@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getAttributeLength
+ 
+ method hexDump()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.MemManager.alloc(vR0.getAttributeLength@this());    [  i iR] 
+        vR0.getData@this(vR0.getAttributeOffset@this(),vR1,0,vR1.size());   [R  iii iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 2 any 0 found 0 hexDump
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "[attribute (res) type=x%x name'%s' size=%d]";    
+        b1 = new java/lang/Object()[3];    
+        b1[0] = valueOf@special(vR0.getAttributeType@this());   
+        b1[1] = vR0.getAttributeName@this();   
+        b1[2] = valueOf@special(vR0.getAttributeLength@this());   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 0 found 0 toString
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.toString@this()).append@extra(" data:").append@extra(vR0.hexDump@this()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 7 swaps 3 any 0 found 0 toDebugString
+}

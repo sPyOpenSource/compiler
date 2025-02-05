@@ -1,0 +1,44 @@
+class jx/vis/EventAnalyzer$3 {
+ 
+ method <init>(Ljx/vis/EventAnalyzer;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method action(Ljx/vis/EventInfo;)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRii  i][ RRii  iR]
+        b3 = vR0.i;    
+        b2 = b3;    
+        vR0.i = (b3+1);   
+        b0.print(b1.append@extra(b2).append@extra(" ").append@extra((long)access$000@special(vR0.this$0,vR1.timestamp)).append@extra(" ").append@extra(vR1.type.name).toString@extra());   [ RRii iiii.... RR.....] 
+        if vR0.this$0.opt_tid==0 goto B124;   
+  +B75:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRii ........ i......][ RRii ........ iR.....]
+        b0.print(b1.append@extra("  ").append@extra((vR1.info1 >>> 16)).append@extra(".").append@extra((vR1.info1 & 65535)).toString@extra());   [ RRii iiiii... RR.....] 
+        goto +B159;   [ RRii iiiii... .......]
+  +B124:   #1
+        if vR1.info1==0 goto B159;   
+  +B131:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRii ........ i......][ RRii ........ iR.....]
+        b0.print(b1.append@extra("  ").append@extra(vR1.info1).toString@extra());   [ RRii iii..... RR.....] 
+  +B159:   #2
+        if vR1.info2==0 goto B194;   
+  +B166:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRii ........ i......][ RRii ........ iR.....]
+        b0.print(b1.append@extra("  ").append@extra(vR1.info2).toString@extra());   [ RRii iii..... RR.....] 
+  +B194:   #1
+        out.println("");   [ RRii i....... RR.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 40 swaps 16 any 1 found 0 action
+}

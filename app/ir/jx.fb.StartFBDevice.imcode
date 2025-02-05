@@ -1,0 +1,72 @@
+class jx/fb/StartFBDevice {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        vR1 = getInitialNaming@special();    
+        vR2 = 0;    
+        vR3 = 0;    
+        vR5 = (jx/zero/ComponentManager)(vR1.lookup("ComponentManager"));    
+        vi6 = 0;    
+  +B24:   #1
+        if vi6>=vR0.length goto B75;   
+  +B31:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi .. i.][ RRi .. iR]
+        b0.println(b1.append@extra("args[").append@extra(vi6).append@extra("]=").append@extra(vR0[vi6]).toString@extra());   [RRR?Ri RRi iiii... RR...] 
+        vi6++;   
+        goto +B24;   [RRR?Ri RRi iiii... .....]
+  +B75:   #1
+        vR6 = vR0[0];    
+        vi7 = 1;    
+  +B83:   #1
+        if vi7>=vR0.length goto B283;   
+  +B90:   #1
+        b1 = vi7;    
+        vi7++;   
+        vR8 = vR0[b1];    
+        b1 = vi7;    
+        vi7++;   
+        vR9 = vR0[b1];    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi ....... i....][ RRi ....... iR...]
+        b0.println(b1.append@extra("Trying class ").append@extra(vR8).append@extra(" in component ").append@extra(vR9).toString@extra());   [RRR?RRiRR RRi iii.... RR...] 
+        vR10 = new java/util/Vector();    [ RRi iii.... i....][ RRi iii.... iR...]
+  +B153:   #1
+        if vR0[vi7].equals@extra("null")!=0 goto B208;   
+  +B165:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRi ....... i....][ RRi ....... iR...]
+        b0.println(b1.append@extra("DRIVER ARG: ").append@extra(vR0[vi7]).toString@extra());   [RRR?RRiRRR RRi iii.... RR...] 
+        b2 = vi7;    
+        vi7++;   
+        vR10.addElement@extra(vR0[b2]);   [RRR?RRiRRR RRi iiii... RR...] 
+        goto +B153;   [RRR?RRiRRR RRi iiii... .....]
+  +B208:   #1
+        vi7++;   
+        vR11 = new java/lang/String()[vR10.size@extra()];    
+        vR10.copyInto(vR11);   [RRR?RRiRRRR RRi ....... RR...] 
+        vR5.load(vR9);   [RRR?RRiRRRR RRi ....... RR...] 
+        vR12 = (jx/devices/DeviceFinder)(forName@special(vR8).newInstance@extra());    
+        if vR2==null goto B280;   
+  +B255:   #1
+        if vR2[0]==null goto B280;   
+  +B261:   #1
+        vR13 = (jx/devices/fb/FramebufferDevice)(vR2[0]);    
+        vR1.registerPortal(vR13,vR6);   [RRR?RRiRRRRRR RRi ....... RRR..] 
+        return;   
+  +B280:   #2
+        goto +B83;   [RRR?RRiRRRRRR RRi ....... .....]
+  -B283:   #1
+        throw new java/lang/Error("Unable to find suitable framebuffer driver.");   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 54 swaps 13 any 11 found 0 main
+}

@@ -1,0 +1,262 @@
+class org/jnode/fs/jfat/FatRecord {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.init@special();   [ ?R  R] 
+        b1 = new java/util/Vector(20);    [ ?R  i][ ?R . iiR]
+        vR0.longEntries = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatDirectory;Lorg/jnode/fs/jfat/FatName;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        vR0.init@special();   [ RRR  R] 
+        vR3 = vR1.getFatFileSystem();    [ RRR  R] 
+        vi6 = vR2.getNumberOfComponents();    [R RRR  R] 
+        if vR2.isMangled()!=0 goto B60;   
+  +B26:   #1
+        if vi6==1 goto B60;   
+  -B32:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("not mangled and n=").append@extra(vi6).toString@extra());   [R??i RRR ii. RR.] 
+        throw b0;   
+  +B60:   #2
+        if vR2.isMangled()==0 goto B95;   
+  +B67:   #1
+        vR4 = vR1.getFatFreeEntries((vi6+1));    [R??i RRR i.. iR.] 
+        b1 = new java/util/Vector((vi6+1));    [ RRR i.. i..][ RRR i.. iiR]
+        vR0.longEntries = b1;   
+        goto +B114;   [RR?i RRR i.. ...]
+  +B95:   #1
+        vR4 = vR1.getFatFreeEntries(1);    [RRRiRi RRR ... iR.] 
+        b1 = new java/util/Vector(0);    [ RRR ... i..][ RRR ... iiR]
+        vR0.longEntries = b1;   
+  +B114:   #1
+        vR5 = new org/jnode/fs/jfat/FatShortDirEntry(vR3,vR2,vR4[(vR4.length-1)].getIndex());    [ RRR ... i..][ RRR ... iiRRR]
+        if vR2.isMangled()==0 goto B248;   
+  +B143:   #1
+        vR7 = new org/jnode/fs/jfat/FatLongDirEntry(vR3,vR2.getComponent((vi6-1)),(byte)vi6,vR5.getChkSum(),1,vR4[0].getIndex());    [ RRR ... i....][ RRR .i. iiibbRRR]
+        vR0.addSetFatDirEntry@special(vR1,vR7);   [RRRiR RRR .i. RRR.....] 
+        vi8 = (vi6-2);    
+  +B190:   #1
+        if vi8< 0 goto B248;   
+  +B195:   #1
+        vR7 = new org/jnode/fs/jfat/FatLongDirEntry(vR3,vR2.getComponent(vi8),(byte)(vi8+1),vR5.getChkSum(),0,vR4[((vi6-1)-vi8)].getIndex());    [ RRR ... i.......][ RRR ... iiibbRRR]
+        vR0.addSetFatDirEntry@special(vR1,vR7);   [RRRiRi RRR ... RRR.....] 
+        vi8--;   
+        goto +B190;   [RRRiRi RRR ... ........]
+  +B248:   #2
+        vR0.close@this(vR5);   [RRRiRi RRR ... RR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 48/48 wr 25 swaps 4 any 5 found 1 <init>
+ 
+ method init()V {
+  +START:   #1
+        vR0.shortEntry = 0;   
+        vR0.longName = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 init
+ 
+ method clearLongEntries()V {
+  +START:   #1
+        vR0.longEntries.clear@extra();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clearLongEntries
+ 
+ method mustBeOpen()V {
+  +START:   #1
+        if vR0.shortEntry==null goto B17;   
+  -B7:   #1
+        throw new java/lang/UnsupportedOperationException("FatRecord is closed");   
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 mustBeOpen
+ 
+ method mustBeClose()V {
+  +START:   #1
+        if vR0.shortEntry!=null goto B17;   
+  -B7:   #1
+        throw new java/lang/UnsupportedOperationException("FatRecord is open");   
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 mustBeClose
+ 
+ method clear()V {
+  +START:   #1
+        vR0.init@special();   [   R] 
+        vR0.clearLongEntries@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 clear
+ 
+ method add(Lorg/jnode/fs/jfat/FatLongDirEntry;)V {
+  +START:   #1
+        vR0.mustBeOpen@special();   [ R  R] 
+        if vR1.isDamaged()==0 goto B21;   
+  -B11:   #1
+        throw new java/lang/UnsupportedOperationException("Damaged entry, shouldn't happen");   
+  +B21:   #1
+        vR0.longEntries.add(vR1);   [ R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 add
+ 
+ method addSetFatDirEntry(Lorg/jnode/fs/jfat/FatDirectory;Lorg/jnode/fs/jfat/FatLongDirEntry;)V {
+  +START:   #1
+        vR0.add@this(vR2);   [   RR] 
+        vR1.setFatDirEntry(vR2);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 addSetFatDirEntry
+ 
+ method close(Lorg/jnode/fs/jfat/FatShortDirEntry;)V {
+  +START:   #1
+        vR0.mustBeOpen@special();   [ RR  R] 
+        vR0.shortEntry = vR1;   
+        vR0.mustBeClose@special();   [ RR  R] 
+        vR0.longName = vR0.getShortName@this();   
+        if vR0.longEntries.isEmpty@extra()==0 goto B32;   
+  +B31:   #1
+        return;   
+  +B32:   #1
+        vR3 = new java/lang/StringBuilder((vR0.longEntries.size@extra()*13));    [ RR  i][ RR . iiR]
+        vi4 = (vR0.longEntries.size@extra()-1);    
+        vi5 = vR0.getChkSum@this();    [?Ri RR . R..] 
+        vi2 = vi4;    
+  +B70:   #1
+        if vi2< 0 goto B213;   
+  +B74:   #1
+        vR6 = (org/jnode/fs/jfat/FatLongDirEntry)(vR0.longEntries.get(vi2));    
+        vi7 = ((vi4-vi2)+1);    
+        if vR6.getOrdinal()==vi7 goto B146;   
+  +B105:   #1
+        if vR6.isFreeDirEntry()!=0 goto B146;   
+  +B113:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("ordinal orphaned vector discarded for ").append@extra(vR0.getShortName@this()).toString@extra());   [iRiiRi RR iii. RR.] 
+        vR0.clearLongEntries@special();   [iRiiRi RR iii. R..] 
+        return;   
+  +B146:   #2
+        if vR6.getChkSum()==vi5 goto B197;   
+  +B156:   #1
+        if vR6.isFreeDirEntry()!=0 goto B197;   
+  +B164:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("chksum orphaned vector discarded for ").append@extra(vR0.getShortName@this()).toString@extra());   [iRiiRi RR iii. RR.] 
+        vR0.clearLongEntries@special();   [iRiiRi RR iii. R..] 
+        return;   
+  +B197:   #2
+        vR3.append@extra(vR6.getComponent());   [iRiiRi RR i... RR.] 
+        vi2--;   
+        goto +B70;   [iRiiRi RR i... ...]
+  +B213:   #1
+        vR0.longName = vR3.toString@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 24 swaps 7 any 4 found 0 close
+ 
+ method getShortEntry()Lorg/jnode/fs/jfat/FatShortDirEntry; {
+  +START:   #1
+        vR0.mustBeClose@special();   [   R] 
+        return vR0.shortEntry;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getShortEntry
+ 
+ method getShortName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getShortEntry@this().getShortName();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getShortName
+ 
+ method hasLongEntries()Z {
+  +START:   #1
+        vR0.mustBeClose@special();   [ i  R] 
+        if vR0.longEntries.isEmpty@extra()!=0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 hasLongEntries
+ 
+ method size()I {
+  +START:   #1
+        vR0.mustBeClose@special();   [   R] 
+        return (vR0.longEntries.size@extra()+1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 size
+ 
+ method getChkSum()B {
+  +START:   #1
+        vR0.mustBeClose@special();   [   R] 
+        return vR0.shortEntry.getChkSum();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getChkSum
+ 
+ method getLongEntries()Ljava/util/Vector; {
+  +START:   #1
+        vR0.mustBeClose@special();   [   R] 
+        return vR0.longEntries;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getLongEntries
+ 
+ method getLongName()Ljava/lang/String; {
+  +START:   #1
+        vR0.mustBeClose@special();   [   R] 
+        return vR0.longName;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getLongName
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0.shortEntry!=null goto B24;   
+  +B7:   #1
+        b0 = "FatRecord (Open) %s";    
+        b1 = new java/lang/Object()[1];    
+        b1[0] = vR0.longEntries;   
+        return format@special(b0,b1);   
+  +B24:   #1
+        b0 = "FatRecord (Closed) ['%s' %s] index:%d chksum:%s size:%d";    
+        b1 = new java/lang/Object()[5];    
+        b1[0] = vR0.getLongName@this();   
+        b1[1] = vR0.getShortName@this();   
+        b1[2] = valueOf@special(vR0.getShortEntry@this().getIndex());   
+        b1[3] = hex@special(vR0.getChkSum@this(),2);   
+        b1[4] = valueOf@special(vR0.size@this());   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 8 swaps 0 any 0 found 0 toString
+}

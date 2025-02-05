@@ -1,54 +1,92 @@
 class AI/AI {
  
- method <init>()V {
+ method <init>(Ljx/zero/Naming;)V {
   +START:   #1
-        vR0.<init>@special();   [ ?R  R] 
-        b1 = new AI/AIIO();    [ ?R  i][ ?R  iR]
+        vR0.<init>@special();   [ RRR  R] 
+        vR0.monitors = new org/jnode/driver/bus/usb/USBHubMonitor()[8];   
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(getInitialNaming@special().lookup("DebugChannel0")));    [ RRR  i.][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        b1 = new AI/AIIO(vR1);    [ RRR .i. i..][ RRR .i. iRR]
         vR0.IO = b1;   
-        b1 = new AI/AILogic(vR0.IO.getMemory());    [ ?R  i.][ ?R . iRR]
+        b1 = new AI/AILogic(vR0.IO.getMemory());    [ RRR .i. i..][ RRR .i. iRR]
         vR0.log = b1;   
-        b1 = new java/lang/Thread(vR0.log,"logic");    [ ?R . i..][ ?R . iRRR]
+        b0 = vR0.IO.getMemory().getInitialNaming();    [ RRR .i. R..] [ RRR Ri. R..] 
+        b1 = new java/lang/String()[1];    
+        b1[0] = "NET";   
+        init@special(b0,b1);   [ RRR .i. RR.]
+        vi2 = 0;    
+        vR3 = vR0.log.getSM();    [i RRR .i. R..] 
+        vR4 = (jx/devices/pci/PCIAccess)(vR0.IO.getMemory().getInitialNaming().lookup("PCIAccess"));    
+        vi5 = 0;    
+  +B130:   #1
+        if vi5>=vR4.getNumberOfDevices() goto B213;   
+  +B142:   #1
+        vR6 = vR4.getDeviceAt(vi5);    [iRRi RRR .... iR.] 
+        if lookupClass@special(vR6.getClassCode()).startsWith@extra("USB")==0 goto B207;   
+  +B171:   #1
+        vR7 = new org/jnode/driver/bus/usb/uhci/UHCIDriver(vR6,vR3);    [ RRR .... i..][ RRR .... iRRR]
+        b0 = vR0.monitors;    
+        b1 = vi2;    
+        vi2++;   
+        b2 = new org/jnode/driver/bus/usb/USBHubMonitor(vR6,vR7.getAPI(),vR3);    [ RiR .... i...][ RiR .... iRRRR]
+        b0[b1] = b2;   
+  +B207:   #1
+        vi5++;   
+        goto +B130;   [iRRiRR RiR .... .....]
+  +B213:   #1
+        b1 = new java/lang/Thread(vR0.log,"logic");    [ RRR .... i....][ RRR .... iRRR.]
         vR0.logThread = b1;   
+        vi5 = 0;    
+  +B233:   #1
+        if vi5>=vR0.monitors.length goto B272;   
+  +B243:   #1
+        if vR0.monitors[vi5]!=null goto B256;   
+  +B253:   #1
+        goto +B266;   [iRRiRR RRR .... .....]
+  +B256:   #1
+        vR0.monitors[vi5].startMonitor();   [iRRiRR RRR .... R....] 
+  +B266:   #1
+        vi5++;   
+        goto +B233;   [iRRiRR RRR .... .....]
+  +B272:   #1
         return;   
   +END:   #1
  }
-// Register: rd 11/11 wr 5 swaps 0 any 0 found 0 <init>
+// Register: rd 54/54 wr 38 swaps 3 any 8 found 2 <init>
  
  method start()V {
   +START:   #1
+        vR0.logThread.start();   [   R] 
+        vR0.IO.start();   [   R] 
         out.println("AI running...");   [  i. RR] 
-        vR0.logThread.start();   [  i. R.] 
-        vR0.IO.start();   [  i. R.] 
         return;   
   +END:   #1
  }
 // Register: rd 2/2 wr 2 swaps 1 any 0 found 0 start
  
+ method getIO()LAI/AIIO; {
+  +START:   #1
+        return vR0.IO;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIO
+ 
  method init(Ljx/zero/Naming;)V {
   +START:   #1
-        vR1 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ R  i][ R .i. iRR]
-        b0 = new jx/zero/debug/DebugPrintStream(vR1);    [ R .i. i..][ R .i. iRR]
-        out = b0;   
-        out.println("Init running...");   [R R ii. RR.] 
-        main@special(0);   [R R ii. R..]
+        vR1 = new AI/AI(vR0);    [ R  i][ R . iRR]
+        vR1.start@extra();   [R R . R..] 
         return;   
   +END:   #1
  }
-// Register: rd 7/7 wr 8 swaps 2 any 0 found 1 init
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 init
  
  method main([Ljava/lang/String;)V {
-  +START:   #2
-        vR1 = new AI/AI();    [ R  i][ R  iR]
-        vR1.start@extra();   [R R  R.] 
-  +B12:   #1
-        goto +B16;   forward return[R R  ..]
-  +H15<caught exception>:   #1 reference
-        vR1 = <caught exception>;    
-  +B16:   #1
+  +START:   #1
         return;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-0 - 12 handler 15 type 84
  }
-// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 main
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 main
 }

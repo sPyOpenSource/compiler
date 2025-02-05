@@ -1,0 +1,77 @@
+class org/jnode/driver/bus/usb/spi/AbstractUSBRequest {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.actualLength = 0;   
+        vR0.completed = 0;   
+        vR0.status = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getActualLength()I {
+  +START:   #1
+        return vR0.actualLength;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getActualLength
+ 
+ method isCompleted()Z {
+  +START:   #1
+        return vR0.completed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isCompleted
+ 
+ method getStatus()I {
+  +START:   #1
+        return vR0.status;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStatus
+ 
+ method setActualLength(I)V {
+  +START:   #1
+        vR0.actualLength = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setActualLength
+ 
+ method setCompleted(Z)V {
+  +START:   #1
+        vR0.completed = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCompleted
+ 
+ method setStatus(I)V {
+  +START:   #1
+        vR0.status = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setStatus
+ 
+ method waitUntilComplete(J)V {
+  +START:   #2
+        if vR0.isCompleted@this()!=0 goto B43;   
+  +B7:   #1
+        vi3 = 0;    
+  +B9:   #1
+        if vi3>=1000 goto B40;   
+  +B16:   #1
+        (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager")).yield();   [?i  i.. R.] 
+        vi3++;   
+        goto +B9;   [?i  i.. ..]
+  +B40:   #1
+        goto +START;   [?i  ... ..]
+  +B43:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 6 swaps 1 any 2 found 0 waitUntilComplete
+}

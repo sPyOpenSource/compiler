@@ -3,28 +3,28 @@ class test/fs/FSDomain {
  method main([Ljava/lang/String;)V {
   +START:   #1
         vR1 = getInitialNaming@special();    
-        vR2 = (jx/zero/CPUManager)(lookup@special("CPUManager"));    
+        vR2 = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));    
         vR3 = (jx/devices/bio/BlockIO)(waitUntilPortalAvailable@special(vR1,vR0[0]));    
-        if vR0.length<=2 goto B58;   
-  +B30:   #1
-        if vR0[2].equals@extra("-format")==0 goto B58;   
-  +B41:   #1
+        if vR0.length<=2 goto B63;   
+  +B35:   #1
+        if vR0[2].equals@extra("-format")==0 goto B63;   
+  +B46:   #1
         b0 = new test/fs/FSDomain(vR1,vR3,vR0[1],1);    [ R ... i.][ R ... iiRRRR]
-        goto +B106;   forward return[RRR R ... ......]
-  +B58:   #2
-        if vR0.length<=2 goto B92;   
-  +B64:   #1
-        if vR0[2].equals@extra("-noformat")==0 goto B92;   
-  +B75:   #1
+        goto +B111;   forward return[RRR R ... ......]
+  +B63:   #2
+        if vR0.length<=2 goto B97;   
+  +B69:   #1
+        if vR0[2].equals@extra("-noformat")==0 goto B97;   
+  +B80:   #1
         b0 = new test/fs/FSDomain(vR1,vR3,vR0[1],0);    [ R ... i.....][ R ... iiRRRR]
-        goto +B106;   forward return[RRR R ... ......]
-  +B92:   #2
+        goto +B111;   forward return[RRR R ... ......]
+  +B97:   #2
         b0 = new test/fs/FSDomain(vR1,vR3,vR0[1],0);    [ R ... i.....][ R ... iiRRRR]
-  +B106:   #2
+  +B111:   #2
         return;   
   +END:   #1
  }
-// Register: rd 19/19 wr 15 swaps 2 any 0 found 0 main
+// Register: rd 19/19 wr 16 swaps 3 any 0 found 0 main
  
  method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
   +START:   #1
@@ -43,33 +43,23 @@ class test/fs/FSDomain {
  method <init>(Ljx/zero/Naming;Ljx/devices/bio/BlockIO;Ljava/lang/String;Z)V {
   +START:   #1
         vR0.<init>@special();   [ RR  R] 
-  +B4:   #1
         vR0.naming = vR1;   
         vR5 = new vfs/FSImpl();    [ RR  i][ RR  iR]
-        vR6 = new AI/AIMemory();    [ RR  i.][ RR  iR]
-        vR7 = new test/fs/DummyClock();    [ RR  i.][ RR  iR]
+        vR6 = new org/jnode/fs/jfat/FatFileSystem(vR2);    [ RR  i.][ RR . iRR]
+        vR7 = (org/jnode/fs/jfat/FatRootDirectory)(vR6.getRootNode());    
+        vR8 = new test/fs/DummyClock();    [ RR . i..][ RR . iR.]
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
-        b0.println(b1.append@extra("Capacity: ").append@extra(vR2.getCapacity()).toString@extra());   [RRR RR iii. RR.] 
-        if vi4==0 goto B71;   
-  +B71:   #1
-        vR5.mountRoot@extra(vR6,0);   [RRR RR .... iRR] 
-        if vi4==0 goto B94;   
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("Capacity: ").append@extra(vR2.getCapacity()).toString@extra());   [RRRR RR iii. RR.] 
+        if vi4==0 goto B84;   
   +B84:   #1
-        vR5.mkdir@extra("lost+found",493);   [RRR RR i... iRR] 
-  +B94:   #2
-        goto +B133;   forward return[RRR RR .... ...]
-  -H97<caught exception>:   #1 reference
-        vR5 = <caught exception>;    
-        b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
-        b0.println(b1.append@extra("EXCEPTION: ").append@extra(vR5).toString@extra());   [RRR RR ii.. RR.] 
-        throw new java/lang/Error();   
-  +B133:   #1
+        vR5.mountRoot@extra(vR6,0);   [RRRR RR .... iRR] 
+        if vi4==0 goto B97;   
+  +B97:   #1
+        vR1.registerPortal(vR5,vR3);   [RRRR RR .... RRR] 
+        vR1.registerPortal(vR6,"JavaFS");   [RRRR RR i... RRR] 
         return;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-4 - 94 handler 97 type 122
  }
-// Register: rd 12/12 wr 18 swaps 6 any 2 found 0 <init>
+// Register: rd 15/15 wr 14 swaps 4 any 2 found 0 <init>
 }

@@ -1,0 +1,371 @@
+class java/awt/BorderLayout {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0,0);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.hgap = vi1;   
+        vR0.vgap = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getHgap()I {
+  +START:   #1
+        return vR0.hgap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHgap
+ 
+ method setHgap(I)V {
+  +START:   #1
+        vR0.hgap = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setHgap
+ 
+ method getVgap()I {
+  +START:   #1
+        return vR0.vgap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVgap
+ 
+ method setVgap(I)V {
+  +START:   #1
+        vR0.vgap = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setVgap
+ 
+ method addLayoutComponent(Ljava/awt/Component;Ljava/lang/Object;)V {
+  +START:   #1
+        if vR2==null goto B21;   
+  +B4:   #1
+        if (vR2 instanceof java/lang/String)!=0 goto B21;   
+  -B11:   #1
+        throw new java/lang/IllegalArgumentException("Constraint must be a string");   
+  +B21:   #2
+        vR3 = (java/lang/String)(vR2);    
+        if vR3==null goto B39;   
+  +B30:   #1
+        if vR3.equals@extra("Center")==0 goto B47;   
+  +B39:   #1
+        vR0.center = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B47:   #1
+        if vR3.equals@extra("North")==0 goto B64;   
+  +B56:   #1
+        vR0.north = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B64:   #1
+        if vR3.equals@extra("South")==0 goto B81;   
+  +B73:   #1
+        vR0.south = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B81:   #1
+        if vR3.equals@extra("East")==0 goto B98;   
+  +B90:   #1
+        vR0.east = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B98:   #1
+        if vR3.equals@extra("West")==0 goto B115;   
+  +B107:   #1
+        vR0.west = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B115:   #1
+        if vR3.equals@extra("First")==0 goto B132;   
+  +B124:   #1
+        vR0.firstLine = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B132:   #1
+        if vR3.equals@extra("Last")==0 goto B149;   
+  +B141:   #1
+        vR0.lastLine = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B149:   #1
+        if vR3.equals@extra("Before")==0 goto B166;   
+  +B158:   #1
+        vR0.firstItem = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  +B166:   #1
+        if vR3.equals@extra("After")==0 goto B183;   
+  +B175:   #1
+        vR0.lastItem = vR1;   
+        goto +B210;   forward return[R RRR . ...]
+  -B183:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("Constraint value not valid: ").append@extra(vR3).toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  +B210:   #9
+        return;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 18 swaps 11 any 4 found 1 addLayoutComponent
+ 
+ method addLayoutComponent(Ljava/lang/String;Ljava/awt/Component;)V {
+  +START:   #1
+        vR0.addLayoutComponent@this(vR2,vR1);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addLayoutComponent
+ 
+ method removeLayoutComponent(Ljava/awt/Component;)V {
+  +START:   #1
+        if vR0.north!=vR1 goto B13;   
+  +B8:   #1
+        vR0.north = 0;   
+  +B13:   #1
+        if vR0.south!=vR1 goto B26;   
+  +B21:   #1
+        vR0.south = 0;   
+  +B26:   #1
+        if vR0.east!=vR1 goto B39;   
+  +B34:   #1
+        vR0.east = 0;   
+  +B39:   #1
+        if vR0.west!=vR1 goto B52;   
+  +B47:   #1
+        vR0.west = 0;   
+  +B52:   #1
+        if vR0.center!=vR1 goto B65;   
+  +B60:   #1
+        vR0.center = 0;   
+  +B65:   #1
+        if vR0.firstItem!=vR1 goto B78;   
+  +B73:   #1
+        vR0.firstItem = 0;   
+  +B78:   #1
+        if vR0.lastItem!=vR1 goto B91;   
+  +B86:   #1
+        vR0.lastItem = 0;   
+  +B91:   #1
+        if vR0.firstLine!=vR1 goto B104;   
+  +B99:   #1
+        vR0.firstLine = 0;   
+  +B104:   #1
+        if vR0.lastLine!=vR1 goto B117;   
+  +B112:   #1
+        vR0.lastLine = 0;   
+  +B117:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 0 swaps 0 any 0 found 0 removeLayoutComponent
+ 
+ method minimumLayoutSize(Ljava/awt/Container;)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.calcSize@special(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 minimumLayoutSize
+ 
+ method preferredLayoutSize(Ljava/awt/Container;)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.calcSize@special(vR1,2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredLayoutSize
+ 
+ method maximumLayoutSize(Ljava/awt/Container;)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.calcSize@special(vR1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 maximumLayoutSize
+ 
+ method invalidateLayout(Ljava/awt/Container;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 invalidateLayout
+ 
+ method layoutContainer(Ljava/awt/Container;)V {
+  +START:   #1
+        vR2 = vR1.getInsets();    [   R] 
+        vi3 = 1;    
+        vR4 = vR0.north;    
+        vR5 = vR0.east;    
+        vR6 = vR0.south;    
+        vR7 = vR0.west;    
+        if vR0.firstLine==null goto B44;   
+  +B38:   #1
+        vR4 = vR0.firstLine;    
+  +B44:   #1
+        if vR0.lastLine==null goto B57;   
+  +B51:   #1
+        vR6 = vR0.lastLine;    
+  +B57:   #1
+        if vR0.firstItem==null goto B83;   
+  +B64:   #1
+        if vi3==0 goto B77;   
+  +B68:   #1
+        vR7 = vR0.firstItem;    
+        goto +B83;   [RiRRRR   .]
+  +B77:   #1
+        vR5 = vR0.firstItem;    
+  +B83:   #2
+        if vR0.lastItem==null goto B109;   
+  +B90:   #1
+        if vi3==0 goto B103;   
+  +B94:   #1
+        vR5 = vR0.lastItem;    
+        goto +B109;   [RiRRRR   .]
+  +B103:   #1
+        vR7 = vR0.lastItem;    
+  +B109:   #2
+        vR8 = vR0.calcCompSize@special(vR0.center,2);    [RiRRRR  i iRR] 
+        vR9 = vR0.calcCompSize@special(vR4,2);    [RiRRRRR  i iRR] 
+        vR10 = vR0.calcCompSize@special(vR6,2);    [RiRRRRRR  i iRR] 
+        vR11 = vR0.calcCompSize@special(vR5,2);    [RiRRRRRRR  i iRR] 
+        vR12 = vR0.calcCompSize@special(vR7,2);    [RiRRRRRRRR  i iRR] 
+        vR13 = vR1.getSize();    [RiRRRRRRRRR  i R..] 
+        vi14 = vR2.left;    
+        vi15 = ((vi14+vR12.width)+vR0.hgap);    
+        vi16 = ((vR13.width-vR2.right)-vR11.width);    
+        vi17 = ((vR13.width-vR2.right)-vR2.left);    
+        vi18 = vR2.top;    
+        vi19 = ((vi18+vR9.height)+vR0.vgap);    
+        vi20 = ((vR13.height-vR2.bottom)-vR10.height);    
+        vi21 = ((vi20-vi19)-vR0.vgap);    
+        vR0.setBounds@special(vR0.center,vi15,vi19,((vi16-vi15)-vR0.hgap),vi21);   [RiRRRRRRRRRRiiiiiiii  iii iiiiRR] 
+        vR0.setBounds@special(vR4,vi14,vi18,vi17,vR9.height);   [RiRRRRRRRRRRiiiiiiii  iiii iiiiRR] 
+        vR0.setBounds@special(vR6,vi14,vi20,vi17,vR10.height);   [RiRRRRRRRRRRiiiiiiii  iiiii iiiiRR] 
+        vR0.setBounds@special(vR7,vi14,vi19,vR12.width,vi21);   [RiRRRRRRRRRRiiiiiiii  iiiiii iiiiRR] 
+        vR0.setBounds@special(vR5,vi16,vi19,vR11.width,vi21);   [RiRRRRRRRRRRiiiiiiii  iiiiiii iiiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 32 swaps 6 any 5 found 0 layoutContainer
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("[hgap=").append@extra(vR0.hgap).append@extra(",vgap=").append@extra(vR0.vgap).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 14 swaps 8 any 0 found 0 toString
+ 
+ method setBounds(Ljava/awt/Component;IIII)V {
+  +START:   #1
+        if vR1!=null goto B5;   
+  +B4:   #1
+        return;   
+  +B5:   #1
+        vR1.setBounds(vi2,vi3,vi4,vi5);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 setBounds
+ 
+ method calcCompSize(Ljava/awt/Component;I)Ljava/awt/Dimension; {
+  +START:   #1
+        if vR1!=null goto B14;   
+  +B4:   #1
+        return new java/awt/Dimension(0,0);   
+  +B14:   #1
+        if vi2!=0 goto B23;   
+  +B18:   #1
+        return vR1.getMinimumSize();   
+  +B23:   #1
+        if vi2!=1 goto B33;   
+  +B28:   #1
+        return vR1.getMaximumSize();   
+  +B33:   #1
+        return vR1.getPreferredSize();   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 3 found 0 calcCompSize
+ 
+ method calcSize(Ljava/awt/Container;I)Ljava/awt/Dimension; {
+  +START:   #1
+        vR3 = vR1.getInsets();    [ R  R] 
+        vi4 = 1;    
+        vR5 = vR0.north;    
+        vR6 = vR0.east;    
+        vR7 = vR0.south;    
+        vR8 = vR0.west;    
+        if vR0.firstLine==null goto B45;   
+  +B39:   #1
+        vR5 = vR0.firstLine;    
+  +B45:   #1
+        if vR0.lastLine==null goto B58;   
+  +B52:   #1
+        vR7 = vR0.lastLine;    
+  +B58:   #1
+        if vR0.firstItem==null goto B85;   
+  +B65:   #1
+        if vi4==0 goto B79;   
+  +B70:   #1
+        vR8 = vR0.firstItem;    
+        goto +B85;   [RiRRRR R  .]
+  +B79:   #1
+        vR6 = vR0.firstItem;    
+  +B85:   #2
+        if vR0.lastItem==null goto B112;   
+  +B92:   #1
+        if vi4==0 goto B106;   
+  +B97:   #1
+        vR6 = vR0.lastItem;    
+        goto +B112;   [RiRRRR R  .]
+  +B106:   #1
+        vR8 = vR0.lastItem;    
+  +B112:   #2
+        vR9 = vR0.calcCompSize@special(vR5,vi2);    [RiRRRR R  iRR] 
+        vR10 = vR0.calcCompSize@special(vR7,vi2);    [RiRRRRR R  iRR] 
+        vR11 = vR0.calcCompSize@special(vR6,vi2);    [RiRRRRRR R  iRR] 
+        vR12 = vR0.calcCompSize@special(vR8,vi2);    [RiRRRRRRR R  iRR] 
+        vR13 = vR0.calcCompSize@special(vR0.center,vi2);    [RiRRRRRRRR R i iRR] 
+        vi14 = (((vR11.width+vR13.width)+vR12.width)+(vR0.hgap*2));    
+        if vR9.width<=vi14 goto B202;   
+  +B195:   #1
+        vi14 = vR9.width;    
+  +B202:   #1
+        if vR10.width<=vi14 goto B219;   
+  +B212:   #1
+        vi14 = vR10.width;    
+  +B219:   #1
+        vi14 = (vi14+(vR3.left+vR3.right));    
+        vi15 = vR11.height;    
+        if vR13.height<=vi15 goto B257;   
+  +B250:   #1
+        vi15 = vR13.height;    
+  +B257:   #1
+        if vR12.height<=vi15 goto B274;   
+  +B267:   #1
+        vi15 = vR12.height;    
+  +B274:   #1
+        vi15 = (vi15+((((vR9.height+vR10.height)+(vR0.vgap*2))+vR3.top)+vR3.bottom));    
+        return new java/awt/Dimension(vi14,vi15);   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 26 swaps 1 any 4 found 0 calcSize
+ 
+ method getLayoutAlignmentX(Ljava/awt/Container;)F {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLayoutAlignmentX
+ 
+ method getLayoutAlignmentY(Ljava/awt/Container;)F {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLayoutAlignmentY
+}

@@ -8,32 +8,31 @@ class jx/net/devices/lance/LanceFinder {
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
  
- method find([Ljava/lang/String;)[Ljx/devices/Device; {
+ method find(Ljx/zero/Naming;)[Ljx/devices/Device; {
   +START:   #1
-        vR2 = getInitialNaming@special();    
-        vR0.ports = (jx/zero/Ports)(vR2.lookup("Ports"));   
-        vR0.irq = (jx/zero/IRQ)(vR2.lookup("IRQ"));   
-        vR0.rm = (jx/zero/MemoryManager)(vR2.lookup("MemoryManager"));   
-        vR0.cpuManager = (jx/zero/CPUManager)(vR2.lookup("CPUManager"));   
-        out.println("lookup PCI Access Point...");   [R  iiiii. RR] 
-        vi4 = 0;    
-  +B75:   #1
-        vR3 = (jx/devices/pci/PCIAccess)(lookup@special("PCIAccess"));    
-        if vR3!=null goto B116;   
-  +B88:   #1
-        if (vi4%20)!=0 goto B107;   
-  +B96:   #1
-        vi4 = 0;    
-        out.println("NetInit still waiting for PCI");   [RRi  i..... RR] 
-  +B107:   #1
-        vi4++;   
-        yield@special();   [RRi  ...... ..]
-        goto +B75;   [RRi  ...... ..]
-  +B116:   #1
-        return vR0.findDevice@this(vR3);   
+        vR0.ports = (jx/zero/Ports)(vR1.lookup("Ports"));   
+        vR0.irq = (jx/zero/IRQ)(vR1.lookup("IRQ"));   
+        vR0.rm = (jx/zero/MemoryManager)(vR1.lookup("MemoryManager"));   
+        vR0.cpuManager = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));   
+        out.println("lookup PCI Access Point...");   [  iiiii. RR] 
+        vi3 = 0;    
+  +B70:   #1
+        vR2 = (jx/devices/pci/PCIAccess)(vR1.lookup("PCIAccess"));    
+        if vR2!=null goto B112;   
+  +B86:   #1
+        if (vi3%20)!=0 goto B103;   
+  +B93:   #1
+        vi3 = 0;    
+        out.println("NetInit still waiting for PCI");   [Ri  i..... RR] 
+  +B103:   #1
+        vi3++;   
+        yield@special();   [Ri  ...... ..]
+        goto +B70;   [Ri  ...... ..]
+  +B112:   #1
+        return vR0.findDevice@this(vR2);   
   +END:   #1
  }
-// Register: rd 17/17 wr 19 swaps 6 any 2 found 0 find
+// Register: rd 18/18 wr 18 swaps 7 any 2 found 0 find
  
  method findDevice(Ljx/devices/pci/PCIAccess;)[Lorg/jnode/driver/net/lance/LanceDriver; {
   +START:   #1

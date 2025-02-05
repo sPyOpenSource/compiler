@@ -1,0 +1,40 @@
+class test/fs/IOZoneBench {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = (jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0"));    
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream(vR2);    [ RRR i. i.][ RRR i. iRR]
+        b1.<init>@special(b2);   [R RRR i. RR.] 
+        out = b0;   
+        main@special(vR1);   [R RRR i. R..]
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 1 any 1 found 1 init
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        if vR0.length==5 goto B16;   
+  -B6:   #1
+        throw new java/lang/Error("wrong args");   
+  +B16:   #1
+        IOZONE_MIN_FILESIZE = parseInt@special(vR0[1]);   
+        IOZONE_MAX_FILESIZE = parseInt@special(vR0[2]);   
+        IOZONE_MIN_RECSIZE = parseInt@special(vR0[3]);   
+        IOZONE_MAX_RECSIZE = parseInt@special(vR0[4]);   
+        b0 = new test/fs/Main(getInitialNaming@special(),vR0[0]);    [ R RRRR. i..][ R RRRR. iRRR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 11 swaps 0 any 0 found 0 main
+}

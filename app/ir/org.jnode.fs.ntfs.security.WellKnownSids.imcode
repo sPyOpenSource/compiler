@@ -1,0 +1,165 @@
+class org/jnode/fs/ntfs/security/WellKnownSids {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method register(Ljava/lang/String;Ljava/lang/String;)Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        vR2 = fromString@special(vR0);    [ RRR  R]
+        if nameMap.put(vR2,vR1)==null goto B45;   
+  -B18:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("Duplicate key! ").append@extra(vR0).toString@extra());   [R RRR ii. RR.] 
+        throw b0;   
+  +B45:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 2 any 1 found 0 register
+ 
+ method containsSid(Lorg/jnode/fs/ntfs/security/SecurityIdentifier;)Z {
+  +START:   #1
+        return nameMap.containsKey(vR0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 containsSid
+ 
+ method getName(Lorg/jnode/fs/ntfs/security/SecurityIdentifier;)Ljava/lang/String; {
+  +START:   #1
+        vR1 = (java/lang/String)(nameMap.get(vR0));    
+        if vR1!=null goto B105;   
+  +B17:   #1
+        vR2 = vR0.toSidString@this();    [R R . R.] 
+        if vR2.startsWith@extra("S-1-5-21-")==0 goto B60;   
+  +B31:   #1
+        vR3 = vR2.substring@extra((vR2.lastIndexOf@extra(45)+1));    [RR R i iR] 
+        vR1 = (java/lang/String)(WELL_KNOWN_1_5_21_MAP.get(vR3));    
+        goto +B72;   [RRR R i. ..]
+  +B60:   #1
+        if vR2.startsWith@extra("S-1-5-5-")==0 goto B72;   
+  +B69:   #1
+        vR1 = "Logon Session";    
+  +B72:   #2
+        if vR1==null goto B105;   
+  +B76:   #1
+        b0 = new java/lang/StringBuilder();    [ R .. i.][ R .. iR]
+        vR1 = b0.append@extra(vR1).append@extra(" (").append@extra(vR2).append@extra(")").toString@extra();    [RRR R ii.... R....] [RRR R iiR... RR...] [RRR R iiRR.. RRR..] [RRR R iiRRR. RRRR.] [RRR R iiRRRR RRRRR] 
+  +B105:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 20 swaps 5 any 2 found 0 getName
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/LinkedHashMap();    [ R  i][ R  iR]
+        nameMap = b0;   
+        NULL_AUTHORITY = register@special("S-1-0","Null Authority");   
+        NOBODY = register@special("S-1-0-0","Nobody");   
+        WORLD_AUTHORITY = register@special("S-1-1","World Authority");   
+        EVERYONE = register@special("S-1-1-0","Everyone");   
+        LOCAL_AUTHORITY = register@special("S-1-2","Local Authority");   
+        LOCAL = register@special("S-1-2-0","Local");   
+        CONSOLE_LOGIN = register@special("S-1-2-1","Console Logon");   
+        CREATOR_AUTHORITY = register@special("S-1-3","Creator Authority");   
+        CREATOR_OWNER = register@special("S-1-3-0","Creator Owner");   
+        CREATOR_GROUP = register@special("S-1-3-1","Creator Group");   
+        CREATOR_OWNER_SERVER = register@special("S-1-3-2","Creator Owner Server");   
+        CREATOR_GROUP_SERVER = register@special("S-1-3-3","Creator Group Server");   
+        OWNDER_RIGHTS = register@special("S-1-3-4","Owner Rights");   
+        NON_UNIQUE_AUTHORITY = register@special("S-1-4","Non-unique Authority");   
+        NT_AUTHORITY = register@special("S-1-5","NT Authority");   
+        DIALUP = register@special("S-1-5-1","Dialup");   
+        NETWORK = register@special("S-1-5-2","Network");   
+        BATCH = register@special("S-1-5-3","Batch");   
+        INTERACTIVE = register@special("S-1-5-4","Interactive");   
+        SERVICE = register@special("S-1-5-6","Service");   
+        ANONYMOUS = register@special("S-1-5-7","Anonymous (Null Logon)");   
+        PROXY = register@special("S-1-5-8","Proxy");   
+        SERVER_LOGON = register@special("S-1-5-9","Server Logon (Domain Controller)");   
+        PRINCIPAL_SELF = register@special("S-1-5-10","Principal Self");   
+        AUTHENTICATED_USER = register@special("S-1-5-11","Authenticated User");   
+        RESTRICTED_CODE = register@special("S-1-5-12","Restricted Code");   
+        TERMINAL_SERVER_USERS = register@special("S-1-5-13","Terminal Server Users");   
+        REMOTE_INTERACTIVE_LOGON = register@special("S-1-5-14","Remote Interactive Logon");   
+        THIS_ORGANIZATION = register@special("S-1-5-15","This Organisation");   
+        IIS_USER = register@special("S-1-5-17","IIS User");   
+        LOCAL_SYSTEM = register@special("S-1-5-18","Local System");   
+        AUTHENTICATION_AUTHORITY_ASSERTED_IDENTITY = register@special("S-1-5-18-1","Authentication Authority Asserted Identity");   
+        SERVICE_ASSERTED_IDENTITY = register@special("S-1-5-18-2","Service Asserted Identity");   
+        LOCAL_SERVICE = register@special("S-1-5-19","Local Service");   
+        NETWORK_SERVICE = register@special("S-1-5-20","Network Service");   
+        COMPOUNDED_AUTHENTICATION = register@special("S-1-5-21-0-0-0-496","Compound Authentication");   
+        BUILT_IN_DOMAIN = register@special("S-1-5-32","Built-in Domain");   
+        LOCAL_ADMIN = register@special("S-1-5-32-500","Local Admin");   
+        LOCAL_GUEST = register@special("S-1-5-32-501","Local Guest");   
+        LOCAL_KERBEROS_TARGET = register@special("S-1-5-32-502","Local Kerberos Tager");   
+        LOCAL_ADMINS = register@special("S-1-5-32-512","Local Admins");   
+        LOCAL_USERS = register@special("S-1-5-32-513","Local Users");   
+        LOCAL_GUESTS = register@special("S-1-5-32-514","Local Guests");   
+        LOCAL_COMPUTERS = register@special("S-1-5-32-515","Local Computers");   
+        LOCAL_CONTROLLERS = register@special("S-1-5-32-516","Local Controllers");   
+        LOCAL_CERT_ADMINS = register@special("S-1-5-32-517","Local Cert Admins");   
+        LOCAL_SCHEMA_ADMINS = register@special("S-1-5-32-518","Local Schema Admins");   
+        LOCAL_ENTERPRISE_ADMINS = register@special("S-1-5-32-519","Local Enterprise Admins");   
+        LOCAL_POLICY_ADMINS = register@special("S-1-5-32-520","Local Policy Admins");   
+        BUILTIN_ADMINS = register@special("S-1-5-32-544","BUILTIN\Administrators");   
+        BUILTIN_USERS = register@special("S-1-5-32-545","BUILTIN\Users");   
+        BUILTIN_GUESTS = register@special("S-1-5-32-546","BUILTIN\Guests");   
+        BUILTIN_POWER_USERS = register@special("S-1-5-32-547","BUILTIN\Power Users");   
+        BUILTIN_ACCOUNT_OPS = register@special("S-1-5-32-548","BUILTIN\Account Operators");   
+        BUILTIN_SYSTEM_OPS = register@special("S-1-5-32-549","BUILTIN\System Operators");   
+        BUILTIN_PRINT_OPS = register@special("S-1-5-32-550","BUILTIN\Print Operators");   
+        BUILTIN_BACKUP_OPS = register@special("S-1-5-32-551","BUILTIN\Backup Operators");   
+        BUILTIN_REPLICATOR = register@special("S-1-5-32-552","BUILTIN\Replicator");   
+        BUILTIN_RAS_SERVERS = register@special("S-1-5-32-553","BUILTIN\RAS Servers");   
+        LOCAL_PRE_W2K = register@special("S-1-5-32-554","Local Pre-Windows 2000 Compatible Access");   
+        REMOTE_DESKTOP_ALIAS = register@special("S-1-5-32-555","Remote Desktop Users Alias");   
+        NETWORK_CONFIGURATION_OPS = register@special("S-1-5-32-556","Network Configuration Operators Alias");   
+        INCOMING_FOREST_TRUST_BUILDERS = register@special("S-1-5-32-557","Incoming Forest Trust Builders Alias");   
+        PERFMON_USERS = register@special("S-1-5-32-558","Performance Monitor Users Alias");   
+        PERFLOG_USERS = register@special("S-1-5-32-559","Performance Log Users Alias");   
+        WINDOWS_AUTHORIZATION_ACCESS_GROUP = register@special("S-1-5-32-560","Windows Authorization Access Group Alias");   
+        TERMINAL_SERVER_LICENSE_SERVERS = register@special("S-1-5-32-561","Terminal Server License Servers Alias");   
+        DISTRIBUTED_COM_USERS = register@special("S-1-5-32-562","Distributed COM Users Alias");   
+        CRYPTOGRAPHIC_OPERATORS = register@special("S-1-5-32-569","BUILTIN\Cryptographic Operators");   
+        EVENT_LOG_READERS = register@special("S-1-5-32-573","BUILTIN\Event Log Readers");   
+        CERTIFICATE_SERVICE_DCOM_ACCESS = register@special("S-1-5-32-574","BUILTIN\Certificate Service DCOM Access");   
+        RDS_REMOTE_ACCESS_SERVERS = register@special("S-1-5-32-575","RDS Remote Access Servers");   
+        RDS_ENDPOINT_SERVERS = register@special("S-1-5-32-576","RDS Endpoint Servers");   
+        RDS_MANAGEMENT_SERVERS = register@special("S-1-5-32-577","RDS Management Servers");   
+        HYPER_V_ADMINS = register@special("S-1-5-32-578","Hyper-V Administrators");   
+        ACCESS_CONTROL_ASSISTANCE_OPS = register@special("S-1-5-32-579","Access Control Assistance Operators");   
+        REMOTE_MANAGEMENT_USERS = register@special("S-1-5-32-580","Remote Management Users");   
+        WRITE_RESTRICTED_CODE = register@special("S-1-5-33","Write Restricted Code");   
+        NTLM_AUTHENTICATION = register@special("S-1-5-64-10","NTLM Authentication");   
+        SCHANNEL_AUTHENTICATION = register@special("S-1-5-64-14","SChannel Authentication");   
+        DIGEST_AUTHENTICATION = register@special("S-1-5-64-21","Digest Authentication");   
+        NT_SERVICE = register@special("S-1-5-80","NT Service");   
+        ALL_NT_SERVICES = register@special("S-1-5-80-0","All Services");   
+        NT_VM_MACHINES = register@special("S-1-5-83-0","NT VIRTUAL MACHINE\Virtual Machines");   
+        USER_MODE_DRIVERS = register@special("S-1-5-84-0-0-0-0-0","User-mode Driver Process");   
+        LOCAL_ACCOUNT = register@special("S-1-5-113","Local Account");   
+        ALL_APP_PACKAGES = register@special("S-1-15-2-1","All App Package Applications");   
+        ML_UNTRUSTED = register@special("S-1-16-0","Untrusted Mandatory Level");   
+        ML_LOW = register@special("S-1-16-4096","Low Mandatory Level");   
+        ML_MEDIUM = register@special("S-1-16-8192","Medium Mandatory Level");   
+        ML_MEDIUM_PLUS = register@special("S-1-16-8448","Medium Plus Mandatory Level");   
+        ML_HIGH = register@special("S-1-16-12288","High Mandatory Level");   
+        ML_SYSTEM = register@special("S-1-16-16384","System Mandatory Level");   
+        ML_PROTECTED_PROCESS = register@special("S-1-16-20480","Protected Process Mandatory Level");   
+        MANDATORY_PROCESS_SECURE = register@special("S-1-16-28672","Secure Process Mandatory Level");   
+        b0 = new org/jnode/fs/ntfs/security/WellKnownSids$1();    [ R RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR. i.][ R RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR. iR]
+        WELL_KNOWN_1_5_21_MAP = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 99/99 wr 287 swaps 0 any 0 found 2 <clinit>
+}

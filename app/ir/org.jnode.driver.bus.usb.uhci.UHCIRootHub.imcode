@@ -1,0 +1,174 @@
+class org/jnode/driver/bus/usb/uhci/UHCIRootHub {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/uhci/UHCIIO;Lorg/jnode/driver/bus/usb/USBBus;Ljx/zero/timer/SleepManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.sleepManager = vR3;   
+        vR0.io = vR1;   
+        vR0.bus = vR2;   
+        vR0.devices = new org/jnode/driver/bus/usb/USBDevice()[vR0.getNumPorts@this()];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method resetHub()V {
+  +START:   #1
+        vi1 = vR0.getNumPorts@this();    [   R] 
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vi1 goto B27;   
+  +B12:   #1
+        vR0.io.setPortSC@extra(vi2,0);   [ii   iiR] 
+        vi2++;   
+        goto +B7;   [ii   ...]
+  +B27:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 resetHub
+ 
+ method getUSBBus()Lorg/jnode/driver/bus/usb/USBBus; {
+  +START:   #1
+        return vR0.bus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUSBBus
+ 
+ method getDevice(I)Lorg/jnode/driver/bus/usb/USBDevice; {
+  +START:   #1
+        return vR0.devices[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getDevice
+ 
+ method setDevice(Lorg/jnode/driver/bus/usb/USBDevice;I)V {
+  +START:   #1
+        if vR0.devices[vi2]==null goto B36;   
+  -B9:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Cannot overwrite the device at port ").append@extra(vi2).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B36:   #1
+        vR0.devices[vi2] = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 2 any 2 found 0 setDevice
+ 
+ method unsetDevice(I)V {
+  +START:   #1
+        vR0.devices[vi1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 unsetDevice
+ 
+ method getNumPorts()I {
+  +START:   #1
+        return 2;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getNumPorts
+ 
+ method isPortEnabled(I)Z {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.io.getPortSCBits@extra(vi1,4);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 isPortEnabled
+ 
+ method setPortEnabled(IZ)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.io.setPortSCBits@extra(vi1,4,vi2);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setPortEnabled
+ 
+ method resetPort(I)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.io.setPortSCBits@extra(vi1,512,1);   [   iiiR] 
+        vR0.sleepManager.mdelay(100);   [   iR..] 
+        vR0.io.setPortSCBits@extra(vi1,512,0);   [   iiiR] 
+        vR0.sleepManager.mdelay(1);   [   iR..] 
+        vR0.io.setPortSCBits@extra(vi1,4,1);   [   iiiR] 
+        vR0.sleepManager.mdelay(10);   [   iR..] 
+        vR0.io.setPortSCBits@extra(vi1,10,1);   [   iiiR] 
+        vR0.sleepManager.mdelay(200);   [   iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 resetPort
+ 
+ method isPortConnected(I)Z {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.io.getPortSCBits@extra(vi1,1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 isPortConnected
+ 
+ method isPortConnectionStatusChanged(I)Z {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.io.getPortSCBits@extra(vi1,2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 isPortConnectionStatusChanged
+ 
+ method clearPortConnectionStatusChanged(I)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.io.setPortSCBits@extra(vi1,2,1);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 clearPortConnectionStatusChanged
+ 
+ method isPortConnectedToLowSpeed(I)Z {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.io.getPortSCBits@extra(vi1,256);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 isPortConnectedToLowSpeed
+ 
+ method isPortConnectedToHighSpeed(I)Z {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isPortConnectedToHighSpeed
+ 
+ method getPortStatus(I)I {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.io.getPortSC@extra(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getPortStatus
+ 
+ method testPort(I)V {
+  +START:   #1
+        if vi1< 0 goto B9;   
+  +B4:   #1
+        if vi1<=1 goto B36;   
+  -B9:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid port ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B36:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 2 any 3 found 0 testPort
+}

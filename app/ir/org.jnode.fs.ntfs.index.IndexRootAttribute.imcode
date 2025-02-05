@@ -1,0 +1,42 @@
+class org/jnode/fs/ntfs/index/IndexRootAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getRoot()Lorg/jnode/fs/ntfs/index/IndexRoot; {
+  +START:   #1
+        if vR0.root!=null goto B19;   
+  +B7:   #1
+        b1 = new org/jnode/fs/ntfs/index/IndexRoot(vR0);    [ ?R  i][ ?R . iRR]
+        vR0.root = b1;   
+  +B19:   #1
+        return vR0.root;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 getRoot
+ 
+ method getHeader()Lorg/jnode/fs/ntfs/index/IndexHeader; {
+  +START:   #1
+        if vR0.header!=null goto B19;   
+  +B7:   #1
+        b1 = new org/jnode/fs/ntfs/index/IndexHeader(vR0);    [ ?R  i][ ?R . iRR]
+        vR0.header = b1;   
+  +B19:   #1
+        return vR0.header;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 getHeader
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        vi1 = (vR0.getAttributeOffset@this()+16);    
+        return new org/jnode/fs/ntfs/index/IndexEntryIterator(vR0.getFileRecord@this(),vR0,(vi1+vR0.getHeader@extra().getFirstEntryOffset@extra()));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 1 iterator
+}

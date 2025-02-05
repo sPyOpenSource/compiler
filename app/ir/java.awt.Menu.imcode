@@ -1,0 +1,213 @@
+class java/awt/Menu {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.items = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Z)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        b1 = new java/util/Vector();    [ ?R  i.][ ?R  iR]
+        vR0.items = b1;   
+        vR0.isTearOff = vi2;   
+        if vR1.equals@extra("Help")==0 goto B35;   
+  +B30:   #1
+        vR0.isHelpMenu = 1;   
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method isTearOff()Z {
+  +START:   #1
+        return vR0.isTearOff;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isTearOff
+ 
+ method getItemCount()I {
+  +START:   #1
+        return vR0.items.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getItemCount
+ 
+ method count()I {
+  +START:   #1
+        return vR0.items.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 count
+ 
+ method getItem(I)Ljava/awt/MenuItem; {
+  +START:   #1
+        return (java/awt/MenuItem)(vR0.items.elementAt(vi1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getItem
+ 
+ method add(Ljava/awt/MenuItem;)Ljava/awt/MenuItem; {
+  +START:   #1
+        if vR1.getLabel().equals@extra(separator.getLabel())==0 goto B21;   
+  +B16:   #1
+        vR1.parent = 0;   
+  +B21:   #1
+        vR0.items.addElement@extra(vR1);   [  .. RR] 
+        if vR1.parent==null goto B46;   
+  +B36:   #1
+        vR1.parent.remove(vR1);   [  .. RR] 
+  +B46:   #1
+        vR1.parent = vR0;   
+        if vR0.peer==null goto B73;   
+  +B58:   #1
+        vR2 = (java/awt/peer/MenuPeer)(vR0.peer);    
+        vR2.addItem(vR1);   [R  .. RR] 
+  +B73:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 1 any 0 found 0 add
+ 
+ method add(Ljava/lang/String;)V {
+  +START:   #1
+        b1 = new java/awt/MenuItem(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.add@this(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 add
+ 
+ method insert(Ljava/awt/MenuItem;I)V {
+  +START:   #1
+        if vi2>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("Index is less than zero");   
+  +B14:   #1
+        vR0.items.insertElementAt@extra(vR1,vi2);   [ R . iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 insert
+ 
+ method insert(Ljava/lang/String;I)V {
+  +START:   #1
+        b1 = new java/awt/MenuItem(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.insert@this(b1,vi2);   [ ?R . iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 insert
+ 
+ method addSeparator()V {
+  +START:   #1
+        vR0.add@this(separator);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 addSeparator
+ 
+ method insertSeparator(I)V {
+  +START:   #1
+        vR0.insert@this(separator,vi1);   [  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 insertSeparator
+ 
+ method remove(I)V {
+  +START:   #1
+        vR0.items.removeElementAt@extra(vi1);   [   iR] 
+        vR2 = 0;    
+        if vR2==null goto B21;   
+  +B14:   #1
+        vR2.delItem(vi1);   [R   iR] 
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 remove
+ 
+ method remove(Ljava/awt/MenuComponent;)V {
+  +START:   #1
+        vi2 = vR0.items.indexOf@extra(vR1);    [   RR] 
+        if vi2!=-1 goto B15;   
+  +B14:   #1
+        return;   
+  +B15:   #1
+        vR0.remove@this(vi2);   [i   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 remove
+ 
+ method removeAll()V {
+  +START:   #1
+        vi1 = vR0.getItemCount@this();    [   R] 
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vi1 goto B23;   
+  +B12:   #1
+        vR0.remove@this(0);   [ii   iR] 
+        vi2++;   
+        goto +B7;   [ii   ..]
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 removeAll
+ 
+ method addNotify()V {
+  +START:   #1
+        vR0.addNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method removeNotify()V {
+  +START:   #1
+        vR0.removeNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeNotify
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(",isTearOff=").append@extra(vR0.isTearOff).append@extra(",isHelpMenu=").append@extra(vR0.isHelpMenu).append@extra(vR0.paramString@special()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 11 swaps 5 any 0 found 0 paramString
+ 
+ method getFont()Ljava/awt/Font; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFont
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/awt/MenuItem("-");    [ R  i][ R . iRR]
+        separator = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 1 <clinit>
+}

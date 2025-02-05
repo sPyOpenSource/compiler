@@ -1,0 +1,180 @@
+class java/awt/image/DataBuffer {
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.banks = 1;   
+        vR0.dataType = vi1;   
+        vR0.size = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2);   [   iiR] 
+        vR0.banks = vi3;   
+        vR0.offsets = new int[vi3];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIII)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3);   [   iiiR] 
+        fill@special(vR0.offsets,vi4);   [  R iR..]
+        vR0.offset = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III[I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2);   [ R  iiR] 
+        if vi3==vR4.length goto B21;   
+  -B13:   #1
+        throw new java/lang/ArrayIndexOutOfBoundsException();   
+  +B21:   #1
+        vR0.banks = vi3;   
+        vR0.offsets = vR4;   
+        vR0.offset = vR4[0];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method getDataTypeSize(I)I {
+  +START:   #1
+        tswitch (vi0) B40 B43 B43 B46 B46 B49 : B52;   
+  +B40:   #1
+        return 8;   
+  +B43:   #2
+        return 16;   
+  +B46:   #2
+        return 32;   
+  +B49:   #1
+        return 64;   
+  -B52:   #1
+        throw new java/lang/IllegalArgumentException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 getDataTypeSize
+ 
+ method getDataType()I {
+  +START:   #1
+        return vR0.dataType;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataType
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.offset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getOffsets()[I {
+  +START:   #1
+        if vR0.offsets!=null goto B24;   
+  +B7:   #1
+        vR0.offsets = new int[1];   
+        vR0.offsets[0] = vR0.offset;   
+  +B24:   #1
+        return vR0.offsets;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 getOffsets
+ 
+ method getNumBanks()I {
+  +START:   #1
+        return vR0.banks;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumBanks
+ 
+ method getElem(I)I {
+  +START:   #1
+        return vR0.getElem@this(0,vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getElem
+ 
+ method setElem(II)V {
+  +START:   #1
+        vR0.setElem@this(0,vi1,vi2);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setElem
+ 
+ method getElemFloat(I)F {
+  +START:   #1
+        return (float)vR0.getElem@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getElemFloat
+ 
+ method getElemFloat(II)F {
+  +START:   #1
+        return (float)vR0.getElem@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getElemFloat
+ 
+ method setElemFloat(IF)V {
+  +START:   #1
+        vR0.setElem@this(vi1,(int)vl2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setElemFloat
+ 
+ method setElemFloat(IIF)V {
+  +START:   #1
+        vR0.setElem@this(vi1,vi2,(int)vl3);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setElemFloat
+ 
+ method getElemDouble(I)D {
+  +START:   #1
+        return (double)vR0.getElem@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getElemDouble
+ 
+ method getElemDouble(II)D {
+  +START:   #1
+        return (double)vR0.getElem@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getElemDouble
+ 
+ method setElemDouble(ID)V {
+  +START:   #1
+        vR0.setElem@this(vi1,(int)vd2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setElemDouble
+ 
+ method setElemDouble(IID)V {
+  +START:   #1
+        vR0.setElem@this(vi1,vi2,(int)vd3);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setElemDouble
+}

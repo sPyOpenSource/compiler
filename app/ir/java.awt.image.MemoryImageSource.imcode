@@ -1,0 +1,249 @@
+class java/awt/image/MemoryImageSource {
+ 
+ method <init>(IILjava/awt/image/ColorModel;[BII)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vR3,vR4,vi5,vi6,0);   [   RiiRRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IILjava/awt/image/ColorModel;[BIILjava/util/Hashtable;)V {
+  +START:   #1
+        vR0.<init>@special();   [ iR  R] 
+        vR0.animated = 0;   
+        vR0.fullbuffers = 0;   
+        b1 = new java/util/Hashtable();    [ iR  i][ iR  iR]
+        vR0.consumers = b1;   
+        vR0.width = vi1;   
+        vR0.height = vi2;   
+        vR0.offset = vi5;   
+        vR0.scansize = vi6;   
+        vR0.props = vR7;   
+        if vR0.scansize<=vR0.width goto B71;   
+  +B64:   #1
+        b0 = vR0.scansize;    
+        goto +B75b0;   [ iR  ..]
+  +B71:   #1
+        b0 = vR0.width;    
+  +B75b0:   #1 int
+        vi8 = b0;    
+        vR0.pixelb = new byte[(vi8*vR0.height)];   
+        arraycopy@special(vR4,0,vR0.pixelb,0,(vi8*vR0.height));   [i iR Ri iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 6 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(IILjava/awt/image/ColorModel;[III)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vR3,vR4,vi5,vi6,0);   [   RiiRRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IILjava/awt/image/ColorModel;[IIILjava/util/Hashtable;)V {
+  +START:   #1
+        vR0.<init>@special();   [ iR  R] 
+        vR0.animated = 0;   
+        vR0.fullbuffers = 0;   
+        b1 = new java/util/Hashtable();    [ iR  i][ iR  iR]
+        vR0.consumers = b1;   
+        vR0.width = vi1;   
+        vR0.height = vi2;   
+        vR0.offset = vi5;   
+        vR0.scansize = vi6;   
+        vR0.props = vR7;   
+        if vR0.scansize<=vR0.width goto B71;   
+  +B64:   #1
+        b0 = vR0.scansize;    
+        goto +B75b0;   [ iR  ..]
+  +B71:   #1
+        b0 = vR0.width;    
+  +B75b0:   #1 int
+        vi8 = b0;    
+        vR0.pixeli = new int[(vi8*vR0.height)];   
+        arraycopy@special(vR4,0,vR0.pixeli,0,(vi8*vR0.height));   [i iR Ri iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 6 swaps 0 any 1 found 0 <init>
+ 
+ method addConsumer(Ljava/awt/image/ImageConsumer;)V {
+  +START:   #1
+        if vR0.consumers.containsKey(vR1)==0 goto B12;   
+  +B11:   #1
+        return;   
+  +B12:   #1
+        vR0.consumers.put(vR1,vR1);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 addConsumer
+ 
+ method isConsumer(Ljava/awt/image/ImageConsumer;)Z {
+  +START:   #1
+        if vR0.consumers.containsKey(vR1)==0 goto B13;   
+  +B11:   #1
+        return 1;   
+  +B13:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isConsumer
+ 
+ method removeConsumer(Ljava/awt/image/ImageConsumer;)V {
+  +START:   #1
+        vR0.consumers.remove(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeConsumer
+ 
+ method startProduction(Ljava/awt/image/ImageConsumer;)V {
+  +START:   #1
+        if vR0.consumers.containsKey(vR1)!=0 goto B21;   
+  +B11:   #1
+        vR0.consumers.put(vR1,vR1);   [   RRR] 
+  +B21:   #1
+        vR2 = vR0.consumers.elements();    [   R..] 
+  +B29:   #1
+        if vR2.hasMoreElements()==0 goto B64;   
+  +B38:   #1
+        vR1 = (java/awt/image/ImageConsumer)(vR2.nextElement());    
+        vR0.sendPicture@special(vR1);   [R  . RR.] 
+        vR1.imageComplete(16);   [R  . iR.] 
+        goto +B29;   [R  . ...]
+  +B64:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 0 found 0 startProduction
+ 
+ method requestTopDownLeftRightResend(Ljava/awt/image/ImageConsumer;)V {
+  +START:   #1
+        vR0.startProduction@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 requestTopDownLeftRightResend
+ 
+ method setAnimated(Z)V {
+  +START:   #1
+        vR0.animated = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setAnimated
+ 
+ method setFullBufferUpdates(Z)V {
+  +START:   #1
+        vR0.fullbuffers = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFullBufferUpdates
+ 
+ method newPixels()V {
+  +START:   #1
+        if vR0.animated!=1 goto B51;   
+  +B8:   #1
+        vR2 = vR0.consumers.elements();    [   R] 
+  +B16:   #1
+        if vR2.hasMoreElements()==0 goto B51;   
+  +B25:   #1
+        vR1 = (java/awt/image/ImageConsumer)(vR2.nextElement());    
+        vR0.sendPicture@special(vR1);   [RR  . RR] 
+        vR1.imageComplete(16);   [RR  . iR] 
+        goto +B16;   [RR  . ..]
+  +B51:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 newPixels
+ 
+ method sendPicture(Ljava/awt/image/ImageConsumer;)V {
+  +START:   #1
+        vR1.setHints(2);   [   iR] 
+        vR1.setDimensions(vR0.width,vR0.height);   [  ii iiR] 
+        if vR0.props==null goto B28;   
+  +B28:   #1
+        if vR0.pixeli==null goto B70;   
+  +B35:   #1
+        vR1.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixeli,vR0.offset,vR0.scansize);   [  iiRRii iiRRiiiiR] 
+        goto +B102;   forward return[  iiRRii .........]
+  +B70:   #1
+        vR1.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixelb,vR0.offset,vR0.scansize);   [  iiRRii iiRRiiiiR] 
+  +B102:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 16 swaps 5 any 0 found 0 sendPicture
+ 
+ method newPixels(IIII)V {
+  +START:   #1
+        if vR0.animated!=1 goto B156;   
+  +B8:   #1
+        if vR0.fullbuffers==0 goto B22;   
+  +B15:   #1
+        vR0.newPixels@this();   [   R] 
+        goto +B156;   forward return[   .]
+  +B22:   #1
+        vR6 = vR0.consumers.elements();    [   R] 
+  +B31:   #1
+        if vR6.hasMoreElements()==0 goto B156;   
+  +B41:   #1
+        vR5 = (java/awt/image/ImageConsumer)(vR6.nextElement());    
+        vR5.setHints(2);   [RR  . iR] 
+        if vR0.props==null goto B68;   
+  +B68:   #1
+        if vR0.pixeli==null goto B111;   
+  +B75:   #1
+        vR5.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixeli,vR0.offset,vR0.scansize);   [RR  iiRRii iiRRiiiiR] 
+        goto +B144;   [RR  iiRRii .........]
+  +B111:   #1
+        vR5.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixelb,vR0.offset,vR0.scansize);   [RR  iiRRii iiRRiiiiR] 
+  +B144:   #1
+        vR5.imageComplete(16);   [RR  ...... iR.......] 
+        goto +B31;   [RR  ...... .........]
+  +B156:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 17 swaps 4 any 0 found 0 newPixels
+ 
+ method newPixels(IIIIZ)V {
+  +START:   #1
+        if vR0.animated!=1 goto B162;   
+  +B8:   #1
+        if vR0.fullbuffers==0 goto B22;   
+  +B15:   #1
+        vR0.newPixels@this();   [   R] 
+        goto +B162;   forward return[   .]
+  +B22:   #1
+        vR7 = vR0.consumers.elements();    [   R] 
+  +B31:   #2
+        if vR7.hasMoreElements()==0 goto B162;   
+  +B41:   #1
+        vR6 = (java/awt/image/ImageConsumer)(vR7.nextElement());    
+        vR6.setHints(2);   [RR  . iR] 
+        if vR0.props==null goto B68;   
+  +B68:   #1
+        if vR0.pixeli==null goto B111;   
+  +B75:   #1
+        vR6.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixeli,vR0.offset,vR0.scansize);   [RR  iiRRii iiRRiiiiR] 
+        goto +B144;   [RR  iiRRii .........]
+  +B111:   #1
+        vR6.setPixels(0,0,vR0.width,vR0.height,vR0.cm,vR0.pixelb,vR0.offset,vR0.scansize);   [RR  iiRRii iiRRiiiiR] 
+  +B144:   #1
+        if vi5!=1 goto B31;   
+  +B150:   #1
+        vR6.imageComplete(16);   [RR  ...... iR.......] 
+        goto +B31;   [RR  ...... .........]
+  +B162:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 17 swaps 4 any 1 found 0 newPixels
+}

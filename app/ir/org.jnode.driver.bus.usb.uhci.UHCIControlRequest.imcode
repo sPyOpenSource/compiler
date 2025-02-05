@@ -1,0 +1,85 @@
+class org/jnode/driver/bus/usb/uhci/UHCIControlRequest {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/SetupPacket;Lorg/jnode/driver/bus/usb/USBPacket;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method createTDs(Lorg/jnode/driver/bus/usb/uhci/UHCIPipe;)V {
+  +START:   #1
+        vR2 = vR0.getSetupPacket@this();    [ iRR  R] 
+        vR0.setupTD = vR1.createTD(45,1,vR2.getData(),0,vR2.getSize(),0);   
+        vR3 = vR0.getDataPacket@this();    [R iRR ii R......] 
+        vi4 = vR2.getLength@extra();    [RR iRR ii R......] 
+        vi5 = vi4;    
+        vi6 = 0;    
+        if vR2.isDirIn()==0 goto B56;   
+  +B51:   #1
+        b0 = 105;    
+        goto +B59b0;   [RRiii iRR .. .......]
+  +B56:   #1
+        b0 = 225;    
+  +B59b0:   #1 int
+        vi7 = b0;    
+        vi8 = 0;    
+        vi9 = vR1.getMaxPacketSize@extra();    [RRiiiii iRR .. R......] 
+        if vi9> 0 goto B103;   
+  -B75:   #1
+        b0 = new org/jnode/driver/bus/usb/USBException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i......][ RRR .. iR.....]
+        b1.<init>@special(b2.append@extra("Invalid maximum packet size ").append@extra(vi9).toString@extra());   [RRiiiiii RRR ii. RR.....] 
+        throw b0;   
+  +B103:   #2
+        if vi5<=0 goto B175;   
+  +B108:   #1
+        vi11 = min@special(vi5,vi9);    [RRiiiiii RRR ... ii.....]
+        vR10 = vR1.createTD(vi7,vi8,vR3.getData(),vi6,vi11,0);    [RRiiiiii?i RRR i.. iiiRiiR] 
+        vR0.setupTD.append@extra(vR10,0);   [RRiiiiiiRi RRR i.. iRR....] 
+        if vi8!=0 goto B155;   
+  +B151:   #1
+        b0 = 1;    
+        goto +B156b0;   [RRiiiiiiRi iRR ... .......]
+  +B155:   #1
+        b0 = 0;    
+  +B156b0:   #1 int
+        vi8 = b0;    
+        vi5 = (vi5-vi11);    
+        vi6 = (vi6+vi11);    
+        goto +B103;   [RRiiiiiiRi iRR ... .......]
+  +B175:   #1
+        if vR2.isDirOut()!=0 goto B187;   
+  +B182:   #1
+        if vi4!=0 goto B192;   
+  +B187:   #1
+        b0 = 105;    
+        goto +B195b0;   [RRiiiiiiRi iRR ... .......]
+  +B192:   #1
+        b0 = 225;    
+  +B195b0:   #1 int
+        vi11 = b0;    
+        vR10 = vR1.createTD(vi11,0,0,0,0,1);    [RRiiiiiiRi iRR ... iiiRiiR] 
+        vR0.setupTD.append@extra(vR10,0);   [RRiiiiiiRi iRR ... iRR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 27 swaps 4 any 11 found 0 createTDs
+ 
+ method getFirstTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor; {
+  +START:   #1
+        return vR0.setupTD;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstTD
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("setup[").append@extra(vR0.getSetupPacket@this()).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 6 swaps 2 any 0 found 0 toString
+}

@@ -1,0 +1,316 @@
+class org/jnode/fs/jfat/AbstractDirectory {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        b1 = new java/util/Vector();    [ ?R  i.][ ?R  iR]
+        vR0.entries = b1;   
+        vR0.entries.setSize@extra(vi2);   [ ?R  iR] 
+        vR0._dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;ILorg/jnode/fs/jfat/FatFile;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        vR0.file = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatFile;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,(vR2.getLength()/32),vR2);   [  i RiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method getDirectoryId()Ljava/lang/String; {
+  +START:   #1
+        return toString@special((long)vR0.file.getStartCluster());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDirectoryId
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/jfat/AbstractDirectory$DirIterator(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method addFatFile(Ljava/lang/String;)Lorg/jnode/fs/jfat/FatDirEntry; {
+  +START:   #1
+        if vR0.getFatEntry@this(vR1)==null goto B35;   
+  -B8:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("File already exists").append@extra(vR1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B35:   #1
+        vR2 = 0;    
+        vi3 = vR0.entries.size@extra();    [R RRR ... R..] 
+        vi4 = 0;    
+  +B48:   #1
+        if vi4>=vi3 goto B89;   
+  +B54:   #1
+        vR5 = (org/jnode/fs/jfat/FatBasicDirEntry)(vR0.entries.get(vi4));    
+        if vR5!=null goto B83;   
+  +B73:   #1
+        vR0.setDirty@extra();   [RiiR RRR ... R..] 
+        vR0.flush@this();   [RiiR RRR ... R..] 
+        return vR2;   
+  +B83:   #1
+        vi4++;   
+        goto +B48;   [RiiR RRR ... ...]
+  +B89:   #1
+        vi4 = (vi3+16);    
+        if vR0.canChangeSize@this(vi4)==0 goto B114;   
+  +B104:   #1
+        vR0.setDirty@extra();   [RiiR RRR ... R..] 
+        vR0.flush@this();   [RiiR RRR ... R..] 
+        return vR2;   
+  -B114:   #1
+        throw new java/io/IOException("Directory is full");   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 15 swaps 2 any 5 found 0 addFatFile
+ 
+ method addFile(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        return vR0.addFatFile@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addFile
+ 
+ method addFatDirectory(Ljava/lang/String;J)Lorg/jnode/fs/jfat/FatDirEntry; {
+  +START:   #1
+        vR4 = vR0.addFatFile@this(vR1);    [   RR] 
+        vi5 = vR0.getFatFileSystem@this().getClusterSize();    [?R  . R.] [?R  R R.] 
+        vR6 = 0;    
+        vR6.setLength((long)vi5);   [?RiR  . ??R] 
+        vR7 = 0;    
+        vR0.flush@this();   [?RiRR  . R..] 
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 0 any 0 found 0 addFatDirectory
+ 
+ method addDirectory(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        if vR0.file!=null goto B12;   
+  +B7:   #1
+        vl2 = 0;    
+        goto +B21;   forward return[l   ]
+  +B12:   #1
+        vl2 = (long)vR0.file.getStartCluster();    
+  +B21:   #1
+        return vR0.addFatDirectory@this(vR1,vl2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 addDirectory
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.entries.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getFatEntry(Ljava/lang/String;)Lorg/jnode/fs/jfat/FatDirEntry; {
+  +START:   #1
+        vR2 = vR0.splitName@this(vR1);    [   RR] 
+        vR3 = vR0.splitExt@this(vR1);    [R   RR] 
+        vi4 = vR0.entries.size@extra();    [RR   R.] 
+        vi5 = 0;    
+  +B24:   #1
+        if vi5>=vi4 goto B51;   
+  +B31:   #1
+        vR6 = (org/jnode/fs/jfat/FatBasicDirEntry)(vR0.entries.get(vi5));    
+        vi5++;   
+        goto +B24;   [RRiiR  . ..]
+  +B51:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 7 swaps 0 any 2 found 0 getFatEntry
+ 
+ method getEntry(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        vR2 = vR0.getFatEntry@this(vR1);    [ R  RR] 
+        if vR2!=null goto B19;   
+  -B10:   #1
+        throw new java/io/FileNotFoundException(vR1);   
+  +B19:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 getEntry
+ 
+ method remove(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = vR0.getFatEntry@this(vR1);    [ R  RR] 
+        if vR2!=null goto B19;   
+  -B10:   #1
+        throw new java/io/FileNotFoundException(vR1);   
+  +B19:   #1
+        vi3 = 0;    
+  +B21:   #1
+        if vi3>=vR0.entries.size@extra() goto B38;   
+  +B32:   #1
+        vi3++;   
+        goto +B21;   [Ri R . ...]
+  +B38:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 3 found 1 remove
+ 
+ method printTo(Ljava/io/PrintWriter;)V {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = vR0.entries.size@extra();    [i ?R  R] 
+        vi4 = 0;    
+  +B13:   #1
+        if vi4>=vi3 goto B94;   
+  +B19:   #1
+        vR5 = (org/jnode/fs/jfat/FatBasicDirEntry)(vR0.entries.get(vi4));    
+        if vR5==null goto B85;   
+  +B38:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R . i.][ ?R . iR]
+        vR1.println(b1.append@extra("0x").append@extra(toHexString@special(vi4)).append@extra(" ").append@extra(vR0.entries.get(vi4)).toString@extra());   [iiiR ?R iii..ii. RR...] 
+        goto +B88;   [iiiR ?R iii..ii. .....]
+  +B85:   #1
+        vi2++;   
+  +B88:   #1
+        vi4++;   
+        goto +B13;   [iiiR ?R ........ .....]
+  +B94:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R ........ i....][ ?R ........ iR...]
+        vR1.println(b1.append@extra("Unused entries ").append@extra(vi2).toString@extra());   [iiiR ?R ii...... RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 22 swaps 7 any 4 found 0 printTo
+ 
+ method isDirty()Z {
+  +START:   #1
+        if vR0._dirty==0 goto B9;   
+  +B7:   #1
+        return 1;   
+  +B9:   #1
+        vi1 = vR0.entries.size@extra();    [   R] 
+        vi2 = 0;    
+  +B19:   #1
+        if vi2>=vi1 goto B42;   
+  +B24:   #1
+        vR3 = (org/jnode/fs/jfat/FatBasicDirEntry)(vR0.entries.get(vi2));    
+        vi2++;   
+        goto +B19;   [iiR  . ..]
+  +B42:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 0 isDirty
+ 
+ method setDirty()V {
+  +START:   #1
+        vR0._dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDirty
+ 
+ method resetDirty()V {
+  +START:   #1
+        vR0._dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 resetDirty
+ 
+ method splitName(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR1.indexOf@extra(46);    [   iR] 
+        if vi2>=0 goto B13;   
+  +B11:   #1
+        return vR1;   
+  +B13:   #1
+        return vR1.substring@extra(0,vi2);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 splitName
+ 
+ method splitExt(Ljava/lang/String;)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR1.indexOf@extra(46);    [   iR] 
+        if vi2>=0 goto B14;   
+  +B11:   #1
+        return "";   
+  +B14:   #1
+        return vR1.substring@extra((vi2+1));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 1 found 0 splitExt
+ 
+ method initialize(JJ)V {
+  +START:   #1
+        vR5 = 0;    
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 initialize
+ 
+ method read([B)V {
+  +START:   #1
+        vi2 = vR0.entries.size@extra();    [   R] 
+        vi3 = 0;    
+  +B10:   #1
+        if vi3>=vi2 goto B61;   
+  +B15:   #1
+        vi4 = (vi3*32);    
+        if vR1[vi4]!=0 goto B41;   
+  +B28:   #1
+        vR0.entries.set(vi3,0);   [iii   RiR] 
+        goto +B55;   [iii   ...]
+  +B41:   #1
+        vR5 = 0;    
+        vR0.entries.set(vi3,vR5);   [iiiR   RiR] 
+  +B55:   #1
+        vi3++;   
+        goto +B10;   [iii   ...]
+  +B61:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 3 found 0 read
+ 
+ method write([B)V {
+  +START:   #1
+        vi2 = vR0.entries.size@extra();    [   R] 
+        vR3 = new byte[32];    
+        vi4 = 0;    
+  +B16:   #1
+        if vi4>=vi2 goto B74;   
+  +B22:   #1
+        vR5 = (org/jnode/fs/jfat/FatBasicDirEntry)(vR0.entries.get(vi4));    
+        if vR5==null goto B55;   
+  +B41:   #1
+        vR5.write(vR1,(vi4*32));   [iRiR  i iRR] 
+        goto +B68;   [iRiR  i ...]
+  +B55:   #1
+        arraycopy@special(vR3,0,vR1,(vi4*32),vR3.length);   [iRiR  ii iiRiR]
+  +B68:   #1
+        vi4++;   
+        goto +B16;   [iRiR  .. .....]
+  +B74:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 9 swaps 1 any 3 found 0 write
+}

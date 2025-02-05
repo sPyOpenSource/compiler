@@ -1,0 +1,79 @@
+class jx/vis/EventAnalyzer$2 {
+ 
+ method <init>(Ljx/vis/EventAnalyzer;Ljx/vis/Events;[I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$e = vR2;   
+        vR0.val$counts = vR3;   
+        vR0.<init>@special();   [   R] 
+        vR0.prev = -1;   
+        vR0.prevTime = -1;   
+        vR0.intervalStart = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method action(Ljx/vis/EventInfo;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.val$e.types.length goto B52;   
+  +B14:   #1
+        if vR1.number!=vR0.val$e.types[vi2].number goto B46;   
+  +B33:   #1
+        b0 = vR0.val$counts;    
+        b0[vi2] = (b0[vi2]+1);   
+        goto +B52;   [i RR  ]
+  +B46:   #1
+        vi2++;   
+        goto +B2;   [i RR  ]
+  +B52:   #2
+        if vR0.this$0.opt_countfreq==0 goto B251;   
+  +B62:   #1
+        if compare(vR0.intervalStart,-1)!=0 goto B81;   
+  +B73:   #1
+        vR0.intervalStart = vR1.timestamp;   
+  +B81:   #1
+        if compare((vR1.timestamp-vR0.intervalStart),(long)vR0.this$0.interval)<=0 goto B240;   
+  +B102:   #1
+        b0 = vR0.this$0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.print(b1.append@extra(((float)vR1.timestamp*vR0.this$0.timefactor)).append@extra(" ").toString@extra());   [i RR ii. RR.] 
+        vi2 = 0;    
+  +B145:   #1
+        if vi2>=vR0.val$counts.length goto B222;   
+  +B154:   #1
+        b0 = vR0.this$0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.print(b1.append@extra(((double)vR0.val$counts[vi2]/(double)((float)(vR1.timestamp-vR0.intervalStart)*vR0.this$0.timefactor))).append@extra(" ").toString@extra());   [i RR ii. RR..] 
+        vR0.val$counts[vi2] = 0;   
+        vi2++;   
+        goto +B145;   [i RR ii. ....]
+  +B222:   #1
+        vR0.this$0.out.println();   [i RR ... R...] 
+        vR0.intervalStart = vR1.timestamp;   
+  +B240:   #1
+        vR0.prevTime = vR1.timestamp;   
+        goto +B353;   forward return[i RR ... ....]
+  +B251:   #1
+        b0 = vR0.this$0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0.print(b1.append@extra(((float)vR1.timestamp*vR0.this$0.timefactor)).append@extra(" ").toString@extra());   [i RR ii. RR..] 
+        vi2 = 0;    
+  +B294:   #1
+        if vi2>=vR0.val$counts.length goto B343;   
+  +B303:   #1
+        b0 = vR0.this$0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0.print(b1.append@extra(vR0.val$counts[vi2]).append@extra(" ").toString@extra());   [i RR iii. RR..] 
+        vi2++;   
+        goto +B294;   [i RR iii. ....]
+  +B343:   #1
+        vR0.this$0.out.println();   [i RR .... R...] 
+  +B353:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 32 swaps 9 any 6 found 0 action
+}

@@ -1,0 +1,21 @@
+class org/jnode/fs/ntfs/attribute/AttributeListAttributeNonRes {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAllEntries()Ljava/util/Iterator; {
+  +START:   #1
+        vi1 = vR0.getNumberOfVCNs@this();    [ R  R] 
+        vR2 = vR0.MemManager.alloc((vi1*vR0.getFileRecord@this().getClusterSize()));    [i R i iR] 
+        vR0.readVCN@this(vR0.getStartVCN@this(),vR2,0,vi1);   [iR R i iiR??R] 
+        vR3 = new org/jnode/fs/ntfs/attribute/AttributeListBlock(vR2,0,vR0.getAttributeActualSize@this());    [ R i i.....][ R i. iliRR.]
+        return vR3.getAllEntries@extra();   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 1 any 0 found 1 getAllEntries
+}

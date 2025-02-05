@@ -1,0 +1,18 @@
+class test/fs/CreateRemoveSingle$1 {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method ask(Ljava/lang/String;)Z {
+  -START:   #1
+        out.println(vR1);   [ R . RR] 
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 0 any 0 found 0 ask
+}

@@ -1,0 +1,41 @@
+class org/jnode/fs/ntfs/index/IndexAllocationAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getMagic()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMagic
+ 
+ method getIndexBlock(Lorg/jnode/fs/ntfs/index/IndexRoot;J)Lorg/jnode/fs/ntfs/index/IndexBlock; {
+  +START:   #1
+        vR4 = vR0.getFileRecord@this();    [ RRR  R] 
+        vi5 = vR1.getIndexBlockSize@extra();    [?R RRR  R] 
+        vi6 = (vi5/vR1.getClustersPerIndexBlock@extra());    
+        vi7 = vR4.getClusterSize();    [?Rii RRR  R] 
+        vl8 = ((vl2*(long)vi6)/(long)vi7);    
+        vi10 = (((vi5-1)/vi7)+1);    
+        vi11 = (int)((vl2*(long)vi6)%(long)vi7);    
+        vR12 = vR0.MemManager.alloc((vi10*vi7));    [?Riiil?ii RRR ii iR] 
+        vi13 = vR0.readVCN@this(vl8,vR12,0,vi10);    [?Riiil?iiR RRR ii iiR??R] 
+        if vi13==vi10 goto B141;   
+  -B98:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i.....][ RRR .. iR....]
+        b1.<init>@special(b2.append@extra("Number of clusters read was not the number requested (requested ").append@extra(vi10).append@extra(", read ").append@extra(vi13).append@extra(")").toString@extra());   [?Riiil?iiRi RRR iiii.... RR....] 
+        throw b0;   
+  +B141:   #1
+        return new org/jnode/fs/ntfs/index/IndexBlock(vR4,vR12,vi11);   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 23 swaps 5 any 2 found 0 getIndexBlock
+}

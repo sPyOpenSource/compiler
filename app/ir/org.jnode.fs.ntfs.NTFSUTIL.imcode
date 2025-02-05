@@ -1,0 +1,32 @@
+class org/jnode/fs/ntfs/NTFSUTIL {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method filetimeToMillis(J)J {
+  +START:   #1
+        vl0 = (vl0-116444736000000000);    
+        if compare(vl0,0)>=0 goto B28;   
+  +B12:   #1
+        vl0 = (-1-((-vl0-1)/10000));    
+        goto +B34;   forward return[   .]
+  +B28:   #1
+        vl0 = (vl0/10000);    
+  +B34:   #1
+        return vl0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 filetimeToMillis
+ 
+ method filetimeToDate(J)Ljava/util/Date; {
+  +START:   #1
+        return new java/util/Date(filetimeToMillis@special(vl0));   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 filetimeToDate
+}

@@ -1,0 +1,1112 @@
+class jx/keyboard/KeyboardImpl {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/io/OutputStream;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new jx/keyboard/KeyQueue(256);    [ ?R  i][ ?R . iiR]
+        vR0.queue = b1;   
+        b1 = new jx/keyboard/KeyQueue(256);    [ ?R . i..][ ?R . iiR]
+        vR0.auxQueue = b1;   
+        b1 = new java/util/Vector();    [ ?R . i..][ ?R . iR.]
+        vR0.keyListeners = b1;   
+        vR0.leds = 0;   
+        vR0.waitingInGetcode = 0;   
+        vR0.waitingForMouse = 0;   
+        vR0.mouse_reply_expected = 0;   
+        vR0.aux_count = 0;   
+        vR0.hasAuxiliaryPort = 0;   
+        vR0.hwAvailableUnknown = 1;   
+        out.println("KeyboardImpl::KeyboardImpl()");   [ ?R i. RR.] 
+        vR0.naming = getInitialNaming@special();   
+        vR0.cpuManager = (jx/zero/CPUManager)(vR0.naming.lookup("CPUManager"));   
+        vR0.ports = (jx/zero/Ports)(vR0.naming.lookup("Ports"));   
+        vR0.irq = (jx/zero/IRQ)(vR0.naming.lookup("IRQ"));   
+        b1 = new jx/keyboard/Scancodes(out);    [ ?R iiii. i..][ ?R iiii. iRR]
+        vR0.scan = b1;   
+        vR0.localEcho = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 15 swaps 4 any 0 found 0 <init>
+ 
+ method addKeyListener(Ljx/devices/KeyListener;)V {
+  +START:   #1
+        vR0.keyListeners.addElement@extra(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addKeyListener
+ 
+ method notifyKeyListeners(I)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.keyListeners.size@extra() goto B36;   
+  +B13:   #1
+        (jx/devices/KeyListener)(vR0.keyListeners.elementAt(vi2)).keyPressed(vi1);   [i  . iR.] 
+        vi2++;   
+        goto +B2;   [i  . ...]
+  +B36:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 2 found 1 notifyKeyListeners
+ 
+ method openAux()V {
+  +START:   #1
+        if vR0.hasAuxiliaryPort!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        b1 = vR0.aux_count;    
+        b0 = b1;    
+        vR0.aux_count = (b1+1);   
+        if b0!=0 goto B42;   
+  +B22:   #1
+        vR0.kbdWrite@special(100,-88);   [ ii  iiR] 
+        vR0.kbdWriteCmd@special(71);   [ ii  iR.] 
+        vR0.auxWriteAck@this(-12);   [ ii  iR.] 
+  +B42:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 openAux
+ 
+ method releaseAux()V {
+  +START:   #1
+        if vR0.hasAuxiliaryPort!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        b1 = (vR0.aux_count-1);    
+        b0 = b1;    
+        vR0.aux_count = b1;   
+        if b0==0 goto B23;   
+  +B22:   #1
+        return;   
+  +B23:   #1
+        vR0.kbdWriteCmd@special(101);   [ ii  iR] 
+        vR0.kbdWrite@special(100,-89);   [ ii  iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 releaseAux
+ 
+ method readAuxUnblocked()I {
+  +START:   #1
+        if vR0.hasAuxiliaryPort!=0 goto B9;   
+  +B7:   #1
+        return -1;   
+  +B9:   #1
+        if vR0.auxQueue.available()!=0 goto B21;   
+  +B19:   #1
+        return -1;   
+  +B21:   #2
+        b0 = vR0.auxQueue.get();    [ i  R] 
+  +B28b0:   #1 int
+        return b0;   
+  +H29<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return -1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+9 - 20 handler 29 type 159
+21 - 28 handler 29 type 159
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 readAuxUnblocked
+ 
+ method readAux()I {
+  +START:   #1
+        if vR0.hasAuxiliaryPort!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vi1 = -1;    
+  +B11:   #1
+        vi2 = -1;    
+  +B13:   #2
+        if vR0.auxQueue.available()!=0 goto B48;   
+  +B23:   #1
+        vR0.waitingForMouse = vR0.cpuManager.getCPUState();   
+        vR0.cpuManager.block();   [ii   R] 
+        goto +B13;   [ii   .]
+  +B48:   #1
+        vi2 = vR0.auxQueue.get();    [ii   R] 
+        if vi2==-1 goto B13;   
+  +B61:   #1
+        vi1 = vi2;    
+  +B63:   #1
+        goto +B67;   forward return[ii   .]
+  +H66<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B67:   #1
+        return vi1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 63 handler 66 type 159
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 2 found 0 readAux
+ 
+ method writeAux(B)V {
+  +START:   #1
+        if vR0.hasAuxiliaryPort!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.waitForKeyboard@special();   [   R] 
+        vR0.ports.outb(100,-44);   [   iiR] 
+        vR0.waitForKeyboard@special();   [   R..] 
+        vR0.ports.outb(96,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 writeAux
+ 
+ method auxWriteAck(I)V {
+  +START:   #1
+        vR0.mouse_reply_expected = (vR0.mouse_reply_expected+1);   
+        vR0.waitForKeyboard@special();   [   R] 
+        vR0.ports.outb(100,-44);   [   iiR] 
+        vR0.waitForKeyboard@special();   [   R..] 
+        vR0.ports.outb(96,(byte)vi1);   [  i iiR] 
+        vR0.waitForKeyboard@special();   [  i R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 1 any 0 found 0 auxWriteAck
+ 
+ method handleMouseEvent(I)V {
+  +START:   #1
+        if vR0.mouse_reply_expected==0 goto B32;   
+  +B7:   #1
+        if vi1!=-6 goto B24;   
+  +B13:   #1
+        vR0.mouse_reply_expected = (vR0.mouse_reply_expected-1);   
+        return;   
+  +B24:   #1
+        vR0.mouse_reply_expected = 0;   
+        goto +B52;   [   ]
+  +B32:   #1
+        if vi1!=-86 goto B52;   
+  +B38:   #1
+        vR0.auxQueue.flush();   [   R] 
+        vR0.auxWriteAck@this(-12);   [   iR] 
+        return;   
+  +B52:   #2
+        if vR0.aux_count==0 goto B94;   
+  +B59:   #1
+        vR0.auxQueue.append(vi1);   [   iR] 
+        if vR0.waitingForMouse==null goto B94;   
+  +B75:   #1
+        vR0.cpuManager.unblock(vR0.waitingForMouse);   [  i RR] 
+        vR0.waitingForMouse = 0;   
+  +B94:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 1 swaps 1 any 2 found 0 handleMouseEvent
+ 
+ method interrupt()V {
+  +START:   #1
+        vi2 = (vR0.ports.inb_p(100) & 255);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("KeyboardImpl::interrupt() status: ").append@extra(toHexString@special(vi2)).toString@extra());   [?i RR iii. RR.] 
+  +B44:   #1
+        if (vi2 & 1)==0 goto B191;   
+  +B50:   #1
+        vi1 = (vR0.ports.inb_p(96) & 255);    
+        if (vi2 & 32)==0 goto B81;   
+  +B73:   #1
+        vR0.handleMouseEvent@this(vi1);   [ii RR .... iR.] 
+        goto +B172;   [ii RR .... ...]
+  +B81:   #1
+        if vR0.scan.isReset(vi1)==0 goto B96;   
+  +B92:   #1
+        vR0.resetPC@this();   [ii RR .... R..] 
+  +B96:   #1
+        if vR0.scan.isNumLock(vi1)==0 goto B112;   
+  +B107:   #1
+        vR0.switchNumLED@this();   [ii RR .... R..] 
+        return;   
+  +B112:   #1
+        out.println(vi1);   [ii RR .... iR.] 
+        vi3 = convertKeyCode@special(vi1);    [ii RR .... i..]
+        if vi3==0 goto B172;   
+  +B128:   #1
+        if vR0.queue.append(vi1)!=0 goto B139;   
+  +B139:   #1
+        vR0.queue.notifyWaiter();   [iii RR .... R..] 
+        if vR0.waitingInGetcode==null goto B172;   
+  +B153:   #1
+        vR0.cpuManager.unblock(vR0.waitingInGetcode);   [iii RR i... RR.] 
+        vR0.waitingInGetcode = 0;   
+  +B172:   #3
+        vi2 = (vR0.ports.inb_p(100) & 255);    
+        goto +B44;   [ii RR .... ...]
+  +B191:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 13 swaps 4 any 3 found 0 interrupt
+ 
+ method sleep(I)V {
+  +START:   #1
+        vR0.ports.outb(128,0);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 sleep
+ 
+ method detectAuxiliaryPort()Z {
+  +START:   #1
+        vi1 = 10;    
+        vi2 = 0;    
+        vR0.waitForKeyboard@special();   [ii   R] 
+        vR0.ports.outb(100,-45);   [ii   iiR] 
+        vR0.waitForKeyboard@special();   [ii   R..] 
+        vR0.ports.outb(96,90);   [ii   iiR] 
+  +B39:   #1
+        vi3 = (vR0.ports.inb(100) & 255);    
+        if (vi3 & 1)==0 goto B93;   
+  +B61:   #1
+        vR0.ports.inb(96);   [iii   iR.] 
+        if (vi3 & 32)==0 goto B115;   
+  +B80:   #1
+        out.println("Detected PS/2 Mouse Port.");   [iii  i. RR.] 
+        vi2 = 1;    
+        goto +B115;   forward return[iii  i. ...]
+  +B93:   #1
+        vi4 = 1000000;    
+  +B97:   #1
+        if vi4< 0 goto B108;   
+  +B102:   #1
+        vi4--;   
+        goto +B97;   [iiii  .. ...]
+  +B108:   #1
+        vi1--;   
+        if vi1> 0 goto B39;   
+  +B115:   #2
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 1 any 6 found 0 detectAuxiliaryPort
+ 
+ method keyboardHardwareAvailable()Z {
+  +START:   #1
+        if vR0.hwAvailableUnknown==0 goto B62;   
+  +B7:   #1
+        vR0.hwAvailableUnknown = 0;   
+        vi1 = 0;    
+  +B14:   #1
+        if vi1>=1000000 goto B55;   
+  +B20:   #1
+        if (vR0.ports.inb_p(100) & 2)!=0 goto B43;   
+  +B36:   #1
+        vR0.hwAvailable = 1;   
+        return 1;   
+  +B43:   #1
+        vR0.sleep@special(60);   [i   iR] 
+        vi1++;   
+        goto +B14;   [i   ..]
+  +B55:   #1
+        vR0.hwAvailable = 0;   
+        return 0;   
+  +B62:   #1
+        return vR0.hwAvailable;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 2 found 0 keyboardHardwareAvailable
+ 
+ method waitForKeyboard()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=1000000 goto B37;   
+  +B8:   #1
+        if (vR0.ports.inb_p(100) & 2)!=0 goto B25;   
+  +B24:   #1
+        return;   
+  +B25:   #1
+        vR0.sleep@special(60);   [i R  iR] 
+        vi1++;   
+        goto +B2;   [i R  ..]
+  -B37:   #1
+        throw new java/lang/Error("No answer from keyboard.");   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 waitForKeyboard
+ 
+ method kbdWrite(II)V {
+  +START:   #1
+        vR0.waitForKeyboard@special();   [   R] 
+        vR0.ports.outb(vi1,(byte)vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 kbdWrite
+ 
+ method kbdWriteCmd(I)V {
+  +START:   #1
+        vR0.waitForKeyboard@special();   [   R] 
+        vR0.ports.outb_p(100,96);   [   iiR] 
+        vR0.waitForKeyboard@special();   [   R..] 
+        vR0.ports.outb_p(96,(byte)vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 1 any 0 found 0 kbdWriteCmd
+ 
+ method wrCommand(I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("wrCommand: ").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        vR0.waitForKeyboard@special();   [ RR ii. R..] 
+        vR0.ports.outb_p(100,96);   [ RR ii. iiR] 
+        vR0.waitForKeyboard@special();   [ RR ii. R..] 
+        vR0.ports.outb_p(96,(byte)vi1);   [ RR iii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 3 any 0 found 0 wrCommand
+ 
+ method clearKbdBuffer()V {
+  +START:   #2
+        if (vR0.ports.inb_p(100) & 1)==0 goto B37;   
+  +B16:   #1
+        vR0.sleep@special(60);   [   iR] 
+        vR0.ports.inb_p(96);   [   iR] 
+        goto +START;   [   ..]
+  +B37:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 clearKbdBuffer
+ 
+ method resetKeyboard()Z {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=10 goto B85;   
+  +B8:   #1
+        vR0.waitForKeyboard@special();   [i   R] 
+        vR0.ports.outb_p(96,-1);   [i   iiR] 
+        vi2 = 10000;    
+  +B28:   #1
+        if (vR0.ports.inb_p(100) & 1)!=0 goto B60;   
+  +B44:   #1
+        vi2--;   
+        if vi2<=0 goto B60;   
+  +B51:   #1
+        vR0.sleep@special(60);   [ii   iR.] 
+        goto +B28;   [ii   ...]
+  +B60:   #2
+        if vR0.ports.inb_p(96)!=250 goto B79;   
+  +B77:   #1
+        return 1;   
+  +B79:   #1
+        vi1++;   
+        goto +B2;   [ii   ...]
+  +B85:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 4 found 0 resetKeyboard
+ 
+ method resetKeyboardFinish()Z {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=100 goto B70;   
+  +B8:   #1
+        vi2 = 10000;    
+  +B12:   #1
+        if (vR0.ports.inb_p(100) & 1)!=0 goto B45;   
+  +B28:   #1
+        vi2--;   
+        if vi2<=0 goto B45;   
+  +B35:   #1
+        vR0.sleep@special(600);   [ii   iR] 
+        goto +B12;   [ii   ..]
+  +B45:   #2
+        if vR0.ports.inb_p(96)!=170 goto B64;   
+  +B62:   #1
+        return 1;   
+  +B64:   #1
+        vi1++;   
+        goto +B2;   [ii   ..]
+  +B70:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 4 found 0 resetKeyboardFinish
+ 
+ method init()V {
+  +START:   #1
+        out.println("KeyboardImpl.init()");   [ RRR i. RR] 
+        vR0.wrCommand@special(76);   [ RRR i. iR] 
+        out.println("ClearBuffer:");   [ RRR ii. RR] 
+        vR0.clearKbdBuffer@special();   [ RRR ii. R.] 
+        out.println("  OK.");   [ RRR iii. RR] 
+        out.println("Reset:");   [ RRR iiii. RR] 
+        if vR0.resetKeyboard@special()!=0 goto B61;   
+  -B53:   #1
+        throw new java/lang/Error();   
+  +B61:   #1
+        out.println("  OK.");   [ RRR i.... RR] 
+        out.println("ResetFinish: ");   [ RRR ii... RR] 
+        if vR0.resetKeyboardFinish@special()!=0 goto B103;   
+  -B86:   #1
+        out.println("unable to reset keyboard");   [ RRR i.... RR] 
+        throw new java/lang/Error();   
+  +B103:   #1
+        out.println("  OK.");   [ RRR i.... RR] 
+        out.println("Keyboard reset ok.");   [ RRR ii... RR] 
+        vR0.hasAuxiliaryPort = vR0.detectAuxiliaryPort@this();   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ii... i.][ RRR ii... iR]
+        b0.println(b1.append@extra("PS/2 Mouse available: ").append@extra(vR0.hasAuxiliaryPort).toString@extra());   [ RRR iiiii. RR.] 
+        b0 = vR0.cpuManager;    
+        b1 = vR0.cpuManager;    
+        b2 = new jx/keyboard/KeyboardImpl$1(vR0);    [ RRR iiiii. i..][ RRR iiiii. iRR]
+        b0.start(b1.createCPUState(b2));   [ RRR iiiiii RR.] 
+        out.println("Started IRQ handler.");   [ RRR iiiiiii. RR.] 
+        vR0.irq.installFirstLevelHandler(1,vR0);   [ RRR iiiiiii. RiR] 
+        vR0.irq.enableIRQ(1);   [ RRR iiiiiii. iR.] 
+        vR0.wrCommand@special(77);   [ RRR iiiiiii. iR.] 
+        if vR0.hasAuxiliaryPort!=1 goto B309;   
+  +B229:   #1
+        vR0.irq.installFirstLevelHandler(12,vR0);   [ RRR ........ RiR] 
+        vR0.irq.enableIRQ(12);   [ RRR ........ iR.] 
+        vR0.kbdWrite@special(100,-88);   [ RRR ........ iiR] 
+        vR0.kbdWriteCmd@special(71);   [ RRR ........ iR.] 
+        vR0.auxWriteAck@this(-13);   [ RRR ........ iR.] 
+        vR0.auxWriteAck@this(100);   [ RRR ........ iR.] 
+        vR0.auxWriteAck@this(-24);   [ RRR ........ iR.] 
+        vR0.auxWriteAck@this(3);   [ RRR ........ iR.] 
+        vR0.auxWriteAck@this(-25);   [ RRR ........ iR.] 
+        vR0.kbdWrite@special(100,-89);   [ RRR ........ iiR] 
+        vR0.kbdWriteCmd@special(101);   [ RRR ........ iR.] 
+  +B309:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 32 swaps 14 any 0 found 0 init
+ 
+ method readKeys()V {
+  +START:   #1
+        vR0.ports.outb_p(33,2);   [ RR  iiR] 
+  +B12:   #2
+        vi1 = vR0.ports.inb_p(100);    [ RR  iR.] 
+        if (vi1 & 1)!=1 goto B34;   
+  +B31:   #1
+        goto +B37;   [i RR  ...]
+  +B34:   #1
+        goto +B12;   [i RR  ...]
+  +B37:   #1
+        vi1 = vR0.ports.inb_p(96);    [i RR  iR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("KB ").append@extra(vi1).toString@extra());   [i RR ii. RR.] 
+        if vi1!=1 goto B83;   
+  +B80:   #1
+        goto +B86;   [i RR ... ...]
+  +B83:   #1
+        goto +B12;   [i RR ... ...]
+  +B86:   #1
+        vR0.ports.outb_p(33,0);   [i RR ... iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 2 any 2 found 0 readKeys
+ 
+ method getc()I {
+  +START:   #1
+        vi1 = -1;    
+  +B2:   #2
+        vi2 = -1;    
+  +B4:   #2
+        if vR0.queue.available()!=0 goto B17;   
+  +B14:   #1
+        goto +B4;   [ii   .]
+  +B17:   #1
+        vi2 = vR0.queue.get();    [ii   R] 
+        if vi2==-1 goto B4;   
+  +B30:   #1
+        if vR0.scan.isReset(vi2)==0 goto B54;   
+  +B41:   #1
+        out.println("Reset PC on users request.");   [ii  i. RR] 
+        vR0.resetPC@this();   [ii  i. R.] 
+  +B54:   #1
+        vi1 = vR0.scan.translate(vi2);    [ii  .. iR] 
+  +B63:   #1
+        goto +B67;   [ii  .. ..]
+  +H66<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B67:   #1
+        if vi1==-1 goto B2;   
+  +B72:   #1
+        if vR0.localEcho==null goto B88;   
+  +B79:   #1
+        vR0.localEcho.write((char)vi1);   [ii  i. iR] 
+  +B88:   #2
+        goto +B92;   forward return[ii  .. ..]
+  +H91<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B92:   #1
+        return vi1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+2 - 63 handler 66 type 159
+72 - 88 handler 91 type 335
+ }
+// Register: rd 11/11 wr 7 swaps 2 any 2 found 0 getc
+ 
+ method getcode()I {
+  +START:   #1
+        vi1 = -1;    
+  +B2:   #1
+        vi2 = -1;    
+  +B4:   #2
+        if vR0.queue.available()!=0 goto B39;   
+  +B14:   #1
+        vR0.waitingInGetcode = vR0.cpuManager.getCPUState();   
+        vR0.cpuManager.block();   [ii   R] 
+        goto +B4;   [ii   .]
+  +B39:   #1
+        vi2 = vR0.queue.get();    [ii   R] 
+        if vi2==-1 goto B4;   
+  +B52:   #1
+        if vR0.scan.isReset(vi2)==0 goto B76;   
+  +B63:   #1
+        out.println("Reset PC on users request.");   [ii  i. RR] 
+        vR0.resetPC@this();   [ii  i. R.] 
+  +B76:   #1
+        vi1 = vi2;    
+  +B78:   #1
+        goto +B82;   forward return[ii  .. ..]
+  +H81<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B82:   #1
+        return vi1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+2 - 78 handler 81 type 159
+ }
+// Register: rd 10/10 wr 5 swaps 1 any 2 found 0 getcode
+ 
+ method getNumLock()Z {
+  +START:   #1
+        if (vR0.leds & 2)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getNumLock
+ 
+ method switchNumLED()V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.getNumLock@this()!=0 goto B12;   
+  +B8b0:   #1 reference
+        b1 = 1;    
+        goto +B13b0b1;   [ Ri  .]
+  +B12b0:   #1 reference
+        b1 = 0;    
+  +B13b0b1:   #1 reference int
+        b0.switchNumLED(b1);   [ Ri  iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 switchNumLED
+ 
+ method switchNumLED(Z)V {
+  +START:   #1
+        if vi1==0 goto B18;   
+  +B4:   #1
+        vR0.leds = (byte)(vR0.leds | 2);   
+        goto +B30;   [   ]
+  +B18:   #1
+        vR0.leds = (byte)(vR0.leds & -3);   
+  +B30:   #1
+        vR0.switchLEDs@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 1 found 0 switchNumLED
+ 
+ method switchLEDs()V {
+  +START:   #1
+        vR0.ports.outb_p(96,-19);   [   iiR] 
+  +B13:   #1
+        vi1 = vR0.ports.inb_p(100);    [   iR.] 
+        if vi1==2 goto B13;   
+  +B30:   #1
+        vR0.ports.outb_p(96,vR0.leds);   [i  i biR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 1 found 0 switchLEDs
+ 
+ method resetPC()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=100 goto B20;   
+  +B8:   #1
+        vR0.wrCommand@special(-2);   [i   iR] 
+        vi1++;   
+        goto +B2;   [i   ..]
+  +B20:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 2 found 0 resetPC
+ 
+ method convertKeyCode(I)I {
+  +START:   #1
+        if nPauseKeyCount<=0 goto B31;   
+  +B6:   #1
+        nPauseKeyCount = (nPauseKeyCount+1);   
+        if nPauseKeyCount!=6 goto B29;   
+  +B22:   #1
+        nPauseKeyCount = 0;   
+        return 16;   
+  +B29:   #1
+        return 0;   
+  +B31:   #1
+        if 225!=vi0 goto B44;   
+  +B38:   #1
+        nPauseKeyCount = 1;   
+        return 0;   
+  +B44:   #1
+        vi2 = (vi0 & 128);    
+        if 224!=nLastCode goto B72;   
+  +B59:   #1
+        vi1 = s_anExtRawKeyTab[(vi0 & -129)];    
+        goto +B141;   [ii RR . .]
+  +B72:   #1
+        if 224==vi0 goto B139;   
+  +B79:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        b0.println(b1.append@extra("ncode: ").append@extra((vi0 & -129)).toString@extra());   [ii RR iii. RR.] 
+        if (vi0 & -129)<s_anRawKeyTab.length goto B126;   
+  +B121:   #1
+        vi1 = 0;    
+        goto +B141;   [ii RR .... ...]
+  +B126:   #1
+        vi1 = s_anRawKeyTab[(vi0 & -129)];    
+        goto +B141;   [ii RR .... ...]
+  +B139:   #1
+        vi1 = 0;    
+  +B141:   #3
+        nLastCode = vi0;   
+        if (vi1 | vi2)==nLastKey goto B159;   
+  +B154:   #1
+        if 0!=vi1 goto B161;   
+  +B159:   #1
+        return 0;   
+  +B161:   #1
+        nLastKey = (vi1 | vi2);   
+        return (vi1 | vi2);   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 19 swaps 3 any 3 found 1 convertKeyCode
+ 
+ method access$000(Ljx/keyboard/KeyboardImpl;)Ljx/zero/CPUManager; {
+  +START:   #1
+        return vR0.cpuManager;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Ljx/keyboard/KeyboardImpl;)Ljx/keyboard/KeyQueue; {
+  +START:   #1
+        return vR0.queue;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200(Ljx/keyboard/KeyboardImpl;I)V {
+  +START:   #1
+        vR0.notifyKeyListeners@special(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method <clinit>()V {
+  +START:   #1
+        nLastCode = 0;   
+        nLastKey = 0;   
+        nPauseKeyCount = 0;   
+        b0 = new int[89];    
+        b0[0] = 0;   
+        b0[1] = 1;   
+        b0[2] = 18;   
+        b0[3] = 19;   
+        b0[4] = 20;   
+        b0[5] = 21;   
+        b0[6] = 22;   
+        b0[7] = 23;   
+        b0[8] = 24;   
+        b0[9] = 25;   
+        b0[10] = 26;   
+        b0[11] = 27;   
+        b0[12] = 28;   
+        b0[13] = 29;   
+        b0[14] = 30;   
+        b0[15] = 38;   
+        b0[16] = 39;   
+        b0[17] = 40;   
+        b0[18] = 41;   
+        b0[19] = 42;   
+        b0[20] = 43;   
+        b0[21] = 44;   
+        b0[22] = 45;   
+        b0[23] = 46;   
+        b0[24] = 47;   
+        b0[25] = 48;   
+        b0[26] = 49;   
+        b0[27] = 50;   
+        b0[28] = 71;   
+        b0[29] = 92;   
+        b0[30] = 60;   
+        b0[31] = 61;   
+        b0[32] = 62;   
+        b0[33] = 63;   
+        b0[34] = 64;   
+        b0[35] = 65;   
+        b0[36] = 66;   
+        b0[37] = 67;   
+        b0[38] = 68;   
+        b0[39] = 69;   
+        b0[40] = 70;   
+        b0[41] = 17;   
+        b0[42] = 75;   
+        b0[43] = 51;   
+        b0[44] = 76;   
+        b0[45] = 77;   
+        b0[46] = 78;   
+        b0[47] = 79;   
+        b0[48] = 80;   
+        b0[49] = 81;   
+        b0[50] = 82;   
+        b0[51] = 83;   
+        b0[52] = 84;   
+        b0[53] = 85;   
+        b0[54] = 86;   
+        b0[55] = 36;   
+        b0[56] = 93;   
+        b0[57] = 94;   
+        b0[58] = 59;   
+        b0[59] = 2;   
+        b0[60] = 3;   
+        b0[61] = 4;   
+        b0[62] = 5;   
+        b0[63] = 6;   
+        b0[64] = 7;   
+        b0[65] = 8;   
+        b0[66] = 9;   
+        b0[67] = 10;   
+        b0[68] = 11;   
+        b0[69] = 34;   
+        b0[70] = 15;   
+        b0[71] = 55;   
+        b0[72] = 56;   
+        b0[73] = 57;   
+        b0[74] = 37;   
+        b0[75] = 72;   
+        b0[76] = 73;   
+        b0[77] = 74;   
+        b0[78] = 58;   
+        b0[79] = 88;   
+        b0[80] = 89;   
+        b0[81] = 90;   
+        b0[82] = 100;   
+        b0[83] = 101;   
+        b0[84] = 126;   
+        b0[85] = 0;   
+        b0[86] = 105;   
+        b0[87] = 12;   
+        b0[88] = 13;   
+        s_anRawKeyTab = b0;   
+        b0 = new int[257];    
+        b0[0] = 0;   
+        b0[1] = 0;   
+        b0[2] = 0;   
+        b0[3] = 0;   
+        b0[4] = 0;   
+        b0[5] = 0;   
+        b0[6] = 0;   
+        b0[7] = 0;   
+        b0[8] = 0;   
+        b0[9] = 0;   
+        b0[10] = 0;   
+        b0[11] = 0;   
+        b0[12] = 0;   
+        b0[13] = 0;   
+        b0[14] = 0;   
+        b0[15] = 0;   
+        b0[16] = 0;   
+        b0[17] = 0;   
+        b0[18] = 0;   
+        b0[19] = 0;   
+        b0[20] = 0;   
+        b0[21] = 0;   
+        b0[22] = 0;   
+        b0[23] = 0;   
+        b0[24] = 0;   
+        b0[25] = 0;   
+        b0[26] = 0;   
+        b0[27] = 0;   
+        b0[28] = 91;   
+        b0[29] = 96;   
+        b0[30] = 0;   
+        b0[31] = 0;   
+        b0[32] = 0;   
+        b0[33] = 0;   
+        b0[34] = 0;   
+        b0[35] = 0;   
+        b0[36] = 0;   
+        b0[37] = 0;   
+        b0[38] = 0;   
+        b0[39] = 0;   
+        b0[40] = 0;   
+        b0[41] = 0;   
+        b0[42] = 0;   
+        b0[43] = 0;   
+        b0[44] = 0;   
+        b0[45] = 0;   
+        b0[46] = 0;   
+        b0[47] = 0;   
+        b0[48] = 0;   
+        b0[49] = 0;   
+        b0[50] = 0;   
+        b0[51] = 0;   
+        b0[52] = 0;   
+        b0[53] = 35;   
+        b0[54] = 0;   
+        b0[55] = 14;   
+        b0[56] = 95;   
+        b0[57] = 0;   
+        b0[58] = 0;   
+        b0[59] = 0;   
+        b0[60] = 0;   
+        b0[61] = 0;   
+        b0[62] = 0;   
+        b0[63] = 0;   
+        b0[64] = 0;   
+        b0[65] = 0;   
+        b0[66] = 0;   
+        b0[67] = 0;   
+        b0[68] = 0;   
+        b0[69] = 0;   
+        b0[70] = 127;   
+        b0[71] = 32;   
+        b0[72] = 87;   
+        b0[73] = 33;   
+        b0[74] = 0;   
+        b0[75] = 97;   
+        b0[76] = 0;   
+        b0[77] = 99;   
+        b0[78] = 0;   
+        b0[79] = 53;   
+        b0[80] = 98;   
+        b0[81] = 54;   
+        b0[82] = 31;   
+        b0[83] = 52;   
+        b0[84] = 0;   
+        b0[85] = 0;   
+        b0[86] = 0;   
+        b0[87] = 0;   
+        b0[88] = 0;   
+        b0[89] = 0;   
+        b0[90] = 0;   
+        b0[91] = 0;   
+        b0[92] = 0;   
+        b0[93] = 0;   
+        b0[94] = 0;   
+        b0[95] = 0;   
+        b0[96] = 0;   
+        b0[97] = 0;   
+        b0[98] = 0;   
+        b0[99] = 0;   
+        b0[100] = 0;   
+        b0[101] = 0;   
+        b0[102] = 0;   
+        b0[103] = 0;   
+        b0[104] = 0;   
+        b0[105] = 0;   
+        b0[106] = 0;   
+        b0[107] = 0;   
+        b0[108] = 0;   
+        b0[109] = 0;   
+        b0[110] = 0;   
+        b0[111] = 0;   
+        b0[112] = 0;   
+        b0[113] = 0;   
+        b0[114] = 0;   
+        b0[115] = 0;   
+        b0[116] = 0;   
+        b0[117] = 0;   
+        b0[118] = 0;   
+        b0[119] = 0;   
+        b0[120] = 0;   
+        b0[121] = 0;   
+        b0[122] = 0;   
+        b0[123] = 0;   
+        b0[124] = 0;   
+        b0[125] = 0;   
+        b0[126] = 0;   
+        b0[127] = 0;   
+        b0[128] = 0;   
+        b0[129] = 0;   
+        b0[130] = 0;   
+        b0[131] = 0;   
+        b0[132] = 0;   
+        b0[133] = 0;   
+        b0[134] = 0;   
+        b0[135] = 0;   
+        b0[136] = 0;   
+        b0[137] = 0;   
+        b0[138] = 0;   
+        b0[139] = 0;   
+        b0[140] = 0;   
+        b0[141] = 0;   
+        b0[142] = 0;   
+        b0[143] = 0;   
+        b0[144] = 0;   
+        b0[145] = 0;   
+        b0[146] = 0;   
+        b0[147] = 0;   
+        b0[148] = 0;   
+        b0[149] = 0;   
+        b0[150] = 0;   
+        b0[151] = 0;   
+        b0[152] = 0;   
+        b0[153] = 0;   
+        b0[154] = 0;   
+        b0[155] = 0;   
+        b0[156] = 0;   
+        b0[157] = 0;   
+        b0[158] = 0;   
+        b0[159] = 0;   
+        b0[160] = 0;   
+        b0[161] = 0;   
+        b0[162] = 0;   
+        b0[163] = 0;   
+        b0[164] = 0;   
+        b0[165] = 0;   
+        b0[166] = 0;   
+        b0[167] = 0;   
+        b0[168] = 0;   
+        b0[169] = 0;   
+        b0[170] = 0;   
+        b0[171] = 0;   
+        b0[172] = 0;   
+        b0[173] = 0;   
+        b0[174] = 0;   
+        b0[175] = 0;   
+        b0[176] = 0;   
+        b0[177] = 0;   
+        b0[178] = 0;   
+        b0[179] = 0;   
+        b0[180] = 0;   
+        b0[181] = 0;   
+        b0[182] = 0;   
+        b0[183] = 0;   
+        b0[184] = 0;   
+        b0[185] = 0;   
+        b0[186] = 0;   
+        b0[187] = 0;   
+        b0[188] = 0;   
+        b0[189] = 0;   
+        b0[190] = 0;   
+        b0[191] = 0;   
+        b0[192] = 0;   
+        b0[193] = 0;   
+        b0[194] = 0;   
+        b0[195] = 0;   
+        b0[196] = 0;   
+        b0[197] = 0;   
+        b0[198] = 0;   
+        b0[199] = 0;   
+        b0[200] = 0;   
+        b0[201] = 0;   
+        b0[202] = 0;   
+        b0[203] = 0;   
+        b0[204] = 0;   
+        b0[205] = 0;   
+        b0[206] = 0;   
+        b0[207] = 0;   
+        b0[208] = 0;   
+        b0[209] = 0;   
+        b0[210] = 0;   
+        b0[211] = 0;   
+        b0[212] = 0;   
+        b0[213] = 0;   
+        b0[214] = 0;   
+        b0[215] = 0;   
+        b0[216] = 0;   
+        b0[217] = 0;   
+        b0[218] = 0;   
+        b0[219] = 0;   
+        b0[220] = 0;   
+        b0[221] = 0;   
+        b0[222] = 0;   
+        b0[223] = 0;   
+        b0[224] = 0;   
+        b0[225] = 0;   
+        b0[226] = 0;   
+        b0[227] = 0;   
+        b0[228] = 0;   
+        b0[229] = 0;   
+        b0[230] = 0;   
+        b0[231] = 0;   
+        b0[232] = 0;   
+        b0[233] = 0;   
+        b0[234] = 0;   
+        b0[235] = 0;   
+        b0[236] = 0;   
+        b0[237] = 0;   
+        b0[238] = 0;   
+        b0[239] = 0;   
+        b0[240] = 0;   
+        b0[241] = 0;   
+        b0[242] = 0;   
+        b0[243] = 0;   
+        b0[244] = 0;   
+        b0[245] = 0;   
+        b0[246] = 0;   
+        b0[247] = 0;   
+        b0[248] = 0;   
+        b0[249] = 0;   
+        b0[250] = 0;   
+        b0[251] = 0;   
+        b0[252] = 0;   
+        b0[253] = 0;   
+        b0[254] = 0;   
+        b0[255] = 0;   
+        b0[256] = 0;   
+        s_anExtRawKeyTab = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 353/353 wr 5 swaps 0 any 0 found 2 <clinit>
+}

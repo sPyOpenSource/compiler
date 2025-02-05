@@ -18,10 +18,10 @@ class bioide/Controller {
         vR0.ctl_port = (vR0.io_base+518);   
         vR0.present = 0;   
         vR0.operation = 0;   
-        vR0.drives = new bioide/Drive()[1];   
+        vR0.drives = new bioide/Drive()[2];   
         vi3 = 0;    
   +B86:   #1
-        if vi3>=1 goto B113;   
+        if vi3>=2 goto B113;   
   +B91:   #1
         b0 = vR0.drives;    
         b2 = new bioide/Drive(vR1,vR0,vi3);    [ RRR  i.][ RRR . iiRRR]
@@ -196,7 +196,7 @@ class bioide/Controller {
         cpuManager.dump("Controller.queueOperation this:",vR0);   [ R i. RRR] 
         cpuManager.dump("Controller.queueOperation op:",vR0.operation);   [ R iiR. RRR] 
         vR0.operation.startOperation();   [ R iiR. R..] 
-        out.println("queueOperation: nach startOperation");   [ R iiRi. RR.] 
+        out.println("queueOperation: after startOperation");   [ R iiRi. RR.] 
         goto +B116;   [ R iiRi. ...]
   +B55:   #1
         out.println("queueOperation: operation != null");   [ R i.... RR.] 
@@ -270,7 +270,7 @@ EXCEPTIONHANDLER-TABLE:
         b0.present = b1;   
         vi2 = 0;    
   +B52:   #1
-        if vi2>=1 goto B95;   
+        if vi2>=2 goto B95;   
   +B57:   #1
         vR3 = vR0.drives[vi2];    
         b0 = out;    
@@ -281,7 +281,7 @@ EXCEPTIONHANDLER-TABLE:
   +B95:   #1
         vi2 = 0;    
   +B97:   #1
-        if vi2>=1 goto B170;   
+        if vi2>=2 goto B170;   
   +B102:   #1
         vR3 = vR0.drives[vi2];    
   +B109:   #1

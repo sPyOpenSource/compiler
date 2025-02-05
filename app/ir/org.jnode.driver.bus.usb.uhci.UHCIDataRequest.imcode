@@ -1,0 +1,67 @@
+class org/jnode/driver/bus/usb/uhci/UHCIDataRequest {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBPacket;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method createTDs(Lorg/jnode/driver/bus/usb/uhci/UHCIPipe;)V {
+  +START:   #1
+        out.println("i'm here");   [ i i. RR] 
+        vR2 = vR0.getDataPacket@this();    [ i i. R.] 
+        vi3 = 0;    
+        vi4 = vR2.getSize();    [Ri i i. R.] 
+        vR5 = vR1.getEndPoint();    [Rii i i. R.] 
+        out.println("datapid");   [RiiR i ii. RR] 
+        if vR5.getDescriptor@extra().isDirIn@extra()==0 goto B51;   
+  +B46:   #1
+        b0 = 105;    
+        goto +B54b0;   [RiiR i ... ..]
+  +B51:   #1
+        b0 = 225;    
+  +B54b0:   #1 int
+        vi6 = b0;    
+        vi7 = vR1.getMaxPacketSize@extra();    [RiiRi i ... R.] 
+        vR8 = 0;    
+        out.println("here");   [RiiRiiR i i.. RR] 
+  +B73:   #1
+        if vi4<=0 goto B163;   
+  +B78:   #1
+        vi9 = min@special(vi4,vi7);    [RiiRiiR i ... ii]
+        if vi9!=vi4 goto B98;   
+  +B94:   #1
+        b0 = 1;    
+        goto +B99b0;   [RiiRiiRi i ... ..]
+  +B98:   #1
+        b0 = 0;    
+  +B99b0:   #1 int
+        vi11 = b0;    
+        vR10 = vR1.createTD(vi6,vR5.getDataToggle@extra(),vR2.getData(),vi3,vi9,vi11);    [RiiRiiRi?i i iR. iiiRbiR] 
+        if vR8!=null goto B135;   
+  +B128:   #1
+        vR8 = vR10;    
+        goto +B143;   [RiiRiiRiRi i ... .......]
+  +B135:   #1
+        vR8.append@extra(vR10,0);   [RiiRiiRiRi i ... iRR....] 
+  +B143:   #1
+        vR5.toggle@extra();   [RiiRiiRiRi i ... R......] 
+        vi4 = (vi4-vi9);    
+        vi3 = (vi3+vi9);    
+        goto +B73;   [RiiRiiRiRi i ... .......]
+  +B163:   #1
+        vR0.firstTD = vR8;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 24 swaps 4 any 8 found 0 createTDs
+ 
+ method getFirstTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor; {
+  +START:   #1
+        return vR0.firstTD;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstTD
+}

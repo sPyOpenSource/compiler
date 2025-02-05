@@ -1,0 +1,191 @@
+class jx/start/ShellWindow {
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/start/ShellWindow;    
+        b1 = b0;    
+        b2 = vR0[0];    
+        b3 = new jx/devices/fb/PixelRect(10,30,750,400);    [ RRRRR  i][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [ RRRRR . RRRR..] 
+        vR1 = b0;    
+        vR1.show(1);   [R RRRRR . iR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 0 any 2 found 0 main
+ 
+ method <init>(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3);   [ RRR  RRRR] 
+        vR0.m_nColumns = 80;   
+        vR0.m_nLines = 25;   
+        vR0.m_nCursorX = 0;   
+        vR0.m_nCursorY = 0;   
+        b1 = new jx/devices/fb/DrawingMode();    [ RRR  i...][ RRR  iR..]
+        vR0.m_eDrawingMode = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ RRR  i...][ RRR  iR..]
+        vR0.m_cCursorRect = b1;   
+        vR0.m_cScreen = new java/lang/StringBuffer()[vR0.m_nLines];   
+        vR0.m_cText = "";   
+        vi4 = 0;    
+  +B71:   #1
+        if vi4>=vR0.m_nLines goto B104;   
+  +B80:   #1
+        b0 = vR0.m_cScreen;    
+        b2 = new java/lang/StringBuffer(vR0.m_nColumns);    [ RRR  i...][ RRR . iiR.]
+        b0[vi4] = b2;   
+        vi4++;   
+        goto +B71;   [i RRR . ....]
+  +B104:   #1
+        vR4 = new jx/start/ShellWindow$WindowStreamProvider(vR0);    [ RRR . i...][ RRR . iRR.]
+        getInitialNaming@special().registerPortal(vR4,vR1);   [R RRR . RRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 10 swaps 0 any 3 found 0 <init>
+ 
+ method drawLine(I)V {
+  +START:   #1
+        vR0.setFgColor@this(255,255,255);   [   iiiR] 
+        vR0.m_cCursorRect.setTo@extra(0,(vi1*14),((vR0.m_nColumns*9)-1),((vi1*14)+13));   [  iii iiiiR] 
+        vR0.fillRect@this(vR0.m_cCursorRect);   [  iiii RR...] 
+        vR0.movePenTo@this(0,(vi1*14));   [  iiiii iiR..] 
+        vR0.setFgColor@this(63,63,63);   [  iiiii iiiR.] 
+        vR0.drawString@this(vR0.m_cScreen[vi1].toString());   [  iiiiii RR...] 
+        if vR0.m_nCursorY!=vi1 goto B150;   
+  +B89:   #1
+        vR0.m_cCursorRect.setTo@extra((vR0.m_nCursorX*9),(vR0.m_nCursorY*14),((vR0.m_nCursorX*9)+8),((vR0.m_nCursorY*14)+10));   [  iiii.. iiiiR] 
+        vR0.m_eDrawingMode.setValue@extra(2);   [  iiii.. iR...] 
+        vR0.fillRect@this(vR0.m_cCursorRect,vR0.m_eDrawingMode);   [  iiiiiR RRR..] 
+  +B150:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 12 swaps 6 any 0 found 0 drawLine
+ 
+ method scrDown()V {
+  +START:   #1
+        vi1 = 1;    
+  +B2:   #1
+        if vi1>=vR0.m_nLines goto B30;   
+  +B10:   #1
+        vR0.m_cScreen[(vi1-1)] = vR0.m_cScreen[vi1];   
+        vi1++;   
+        goto +B2;   [i RiR  ]
+  +B30:   #1
+        b0 = vR0.m_cScreen;    
+        b1 = (vR0.m_nLines-1);    
+        b2 = new java/lang/StringBuffer(vR0.m_nColumns);    [ RiR  i][ RiR . iiR]
+        b0[b1] = b2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 0 any 3 found 0 scrDown
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR0.m_nLines goto B21;   
+  +B10:   #1
+        vR0.drawLine@this(vi2);   [i   iR] 
+        vi2++;   
+        goto +B2;   [i   ..]
+  +B21:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 paint
+ 
+ method keyDown(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        lswitch (vR1.value) { 
+           8:B64
+           10:B67
+           28:B152
+           29:B180
+           30:B212
+           31:B285
+           ::B364
+        };   
+  +B64:   #1
+        goto +B412;   forward return[ iii  ]
+  +B67:   #1
+        vR0.m_nCursorX = 0;   
+        b1 = (vR0.m_nCursorY+1);    
+        b0 = b1;    
+        vR0.m_nCursorY = b1;   
+        if b0!=vR0.m_nLines goto B131;   
+  +B90:   #1
+        vR0.m_nCursorY = (vR0.m_nLines-1);   
+        vR0.scrDown@this();   [ iii  R] 
+        vi4 = 0;    
+  +B107:   #1
+        if vi4>=vR0.m_nLines goto B128;   
+  +B116:   #1
+        vR0.drawLine@this(vi4);   [i iii  iR] 
+        vi4++;   
+        goto +B107;   [i iii  ..]
+  +B128:   #1
+        goto +B412;   forward return[i iii  ..]
+  +B131:   #1
+        vR0.drawLine@this((vR0.m_nCursorY-1));   [i iii i iR] 
+        vR0.drawLine@this(vR0.m_nCursorY);   [i iii ii iR] 
+        goto +B412;   forward return[i iii ii ..]
+  +B152:   #1
+        if vR0.m_nCursorX<=0 goto B180;   
+  +B159:   #1
+        vR0.m_nCursorX = (vR0.m_nCursorX-1);   
+        vR0.drawLine@this(vR0.m_nCursorY);   [i iii i. iR] 
+        goto +B412;   forward return[i iii i. ..]
+  +B180:   #2
+        if vR0.m_nCursorX>=vR0.m_nColumns goto B212;   
+  +B191:   #1
+        vR0.m_nCursorX = (vR0.m_nCursorX+1);   
+        vR0.drawLine@this(vR0.m_nCursorY);   [i iii i. iR] 
+        goto +B412;   forward return[i iii i. ..]
+  +B212:   #2
+        if vR0.m_nCursorY<=0 goto B285;   
+  +B219:   #1
+        vR0.m_nCursorY = (vR0.m_nCursorY-1);   
+        if vR0.m_nCursorX<=vR0.m_cScreen[vR0.m_nCursorY].length() goto B264;   
+  +B248:   #1
+        vR0.m_nCursorX = vR0.m_cScreen[vR0.m_nCursorY].length();   
+  +B264:   #1
+        vR0.drawLine@this((vR0.m_nCursorY+1));   [i iii i. iR] 
+        vR0.drawLine@this(vR0.m_nCursorY);   [i iii ii iR] 
+        goto +B412;   forward return[i iii ii ..]
+  +B285:   #2
+        if vR0.m_nCursorY>=(vR0.m_nLines-1) goto B364;   
+  +B298:   #1
+        vR0.m_nCursorY = (vR0.m_nCursorY+1);   
+        if vR0.m_nCursorX<=vR0.m_cScreen[vR0.m_nCursorY].length() goto B343;   
+  +B327:   #1
+        vR0.m_nCursorX = vR0.m_cScreen[vR0.m_nCursorY].length();   
+  +B343:   #1
+        vR0.drawLine@this((vR0.m_nCursorY-1));   [i iii i. iR] 
+        vR0.drawLine@this(vR0.m_nCursorY);   [i iii ii iR] 
+        goto +B412;   forward return[i iii ii ..]
+  +B364:   #2
+        if vR0.m_nCursorX>=vR0.m_nColumns goto B412;   
+  +B375:   #1
+        b0 = vR0.m_cScreen[vR0.m_nCursorY];    
+        b2 = vR0.m_nCursorX;    
+        b1 = b2;    
+        vR0.m_nCursorX = (b2+1);   
+        b0.insert(b1,(char)vR1.value);   [ Rii i. iiR] 
+        vR0.drawLine@this(vR0.m_nCursorY);   [ Rii ii iR.] 
+  +B412:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 72/72 wr 19 swaps 9 any 5 found 0 keyDown
+ 
+ method keyUp(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 keyUp
+}

@@ -1,0 +1,385 @@
+class org/jnode/fs/ntfs/logfile/LogRecord {
+ 
+ method <init>(Ljx/zero/Memory;III)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        vR0.pageSize = vi3;   
+        vR0.logPageDataOffset = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isValid()Z {
+  +START:   #1
+        if compare(vR0.getLsn@this(),0)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValid
+ 
+ method getLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLsn
+ 
+ method getClientPreviousLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getClientPreviousLsn
+ 
+ method getClientUndoNextLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getClientUndoNextLsn
+ 
+ method getClientDataLength()J {
+  +START:   #1
+        return vR0.getUInt32@this(24);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getClientDataLength
+ 
+ method getClientId()I {
+  +START:   #1
+        return vR0.getUInt16@this(28);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientId
+ 
+ method getRecordType()J {
+  +START:   #1
+        return vR0.getUInt32@this(32);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRecordType
+ 
+ method getTransactionId()J {
+  +START:   #1
+        return vR0.getUInt32@this(36);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTransactionId
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getUInt16@this(40);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getUInt16AcrossPages(I)I {
+  +START:   #1
+        if vR0.getCrossesPage@this()==0 goto B40;   
+  +B7:   #1
+        vi2 = ((vR0.getOffset@this()%vR0.pageSize)+vi1);    
+        if (vi2+2)<=vR0.pageSize goto B40;   
+  +B29:   #1
+        return vR0.getUInt16@this((vi2+vR0.logPageDataOffset));   
+  +B40:   #2
+        return vR0.getUInt16@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 1 any 1 found 0 getUInt16AcrossPages
+ 
+ method getUInt32AcrossPages(I)J {
+  +START:   #1
+        if vR0.getCrossesPage@this()==0 goto B40;   
+  +B7:   #1
+        vi2 = ((vR0.getOffset@this()%vR0.pageSize)+vi1);    
+        if (vi2+4)<=vR0.pageSize goto B40;   
+  +B29:   #1
+        return vR0.getUInt32@this((vi2+vR0.logPageDataOffset));   
+  +B40:   #2
+        return vR0.getUInt32@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 0 getUInt32AcrossPages
+ 
+ method getDataAcrossPages(ILjx/zero/Memory;II)V {
+  +START:   #1
+        if vR0.getCrossesPage@this()==0 goto B145;   
+  +B7:   #1
+        vi5 = (vR0.getOffset@this()+vi1);    
+        vi6 = (vi5%vR0.pageSize);    
+        vi7 = (vi5/vR0.pageSize);    
+  +B33:   #1
+        if vi4<=0 goto B145;   
+  +B38:   #1
+        if vi7<=vR0.getBuffer@this().size() goto B60;   
+  +B52:   #1
+        vi7 = (4*vR0.pageSize);    
+  +B60:   #1
+        vi8 = min@special((vi6+vi4),vR0.pageSize);    [iii  ii ii]
+        vi9 = (vi8-vi6);    
+        vR0.getData@this((vi7+vi6),vR2,vi3,vi9);   [iiiii  iii iiRiR] 
+        vi4 = (vi4-vi9);    
+        vi6 = (vi6+vi9);    
+        vi3 = (vi3+vi9);    
+        if vi6>=vR0.pageSize goto B127;   
+  +B122:   #1
+        if vi9!=0 goto B142;   
+  +B127:   #1
+        vi6 = vR0.logPageDataOffset;    
+        vi7 = (vi7+vR0.pageSize);    
+  +B142:   #1
+        goto +B33;   [iiiii  ... .....]
+  +B145:   #2
+        vR0.getData@this(vi1,vR2,vi3,vi4);   [iiiii  ... iiRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 15 swaps 1 any 9 found 1 getDataAcrossPages
+ 
+ method getCrossesPage()Z {
+  +START:   #1
+        if (vR0.getFlags@this() & FLAG_CROSSES_PAGE)!=FLAG_CROSSES_PAGE goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i . .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 getCrossesPage
+ 
+ method getRedoOperation()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(48);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRedoOperation
+ 
+ method getUndoOperation()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(50);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUndoOperation
+ 
+ method getRedoOffset()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(52);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRedoOffset
+ 
+ method getRedoLength()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(54);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRedoLength
+ 
+ method getUndoOffset()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(56);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUndoOffset
+ 
+ method getUndoLength()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(58);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUndoLength
+ 
+ method getTargetAttribute()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(60);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTargetAttribute
+ 
+ method getLcnsToFollow()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(62);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLcnsToFollow
+ 
+ method getRecordOffset()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(64);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRecordOffset
+ 
+ method getAttributeOffset()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(66);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributeOffset
+ 
+ method getMftClusterIndex()I {
+  +START:   #1
+        return vR0.getUInt16AcrossPages@this(68);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMftClusterIndex
+ 
+ method getTargetVcn()J {
+  +START:   #1
+        return vR0.getUInt32AcrossPages@this(72);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTargetVcn
+ 
+ method getTargetLcn()J {
+  +START:   #1
+        return vR0.getUInt32AcrossPages@this(80);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTargetLcn
+ 
+ method getRedoData(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.getDataAcrossPages@extra((vR0.getRedoOffset@this()+48),vR1,0,vR0.getRedoLength@this());   [  ii iiRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 getRedoData
+ 
+ method getUndoData(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.getDataAcrossPages@extra((vR0.getUndoOffset@this()+48),vR1,0,vR0.getUndoLength@this());   [  ii iiRiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 getUndoData
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = "";    
+        if compare(vR0.getRecordType@this(),(long)RECORD_TYPE_CHECKPOINT)!=0 goto B21;   
+  +B15:   #1
+        vR1 = "checkpoint";    
+        goto +B125;   [R RR  .]
+  +B21:   #1
+        vR2 = fromCode@special(vR0.getUndoOperation@this());    [R RR i i]
+        if vR2==null goto B36;   
+  +B33:   #1
+        goto +B63;   [RR RR . .]
+  +B36:   #1
+        b0 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        vR1 = b0.append@extra(vR1).append@extra("unknown: ").append@extra(vR0.getUndoOperation@this()).toString@extra();    [RRR RR .ii.. R...] [RRR RR Rii.. iR..] [RRR RR RiiR. iRR.] [RRR RR RiiRR iRRR] 
+  +B63:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        vR1 = b0.append@extra(vR1).append@extra(" --- ").toString@extra();    [RR RR i.... R...] [RR RR iR... RR..] [RR RR iRR.. RRR.] 
+        vR3 = fromCode@special(vR0.getRedoOperation@this());    [RR RR ii... i...]
+        if vR3==null goto B98;   
+  +B95:   #1
+        goto +B125;   [RRR RR ..... ....]
+  +B98:   #1
+        b0 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        vR1 = b0.append@extra(vR1).append@extra("unknown: ").append@extra(vR0.getRedoOperation@this()).toString@extra();    [RRR RR .ii.. R...] [RRR RR Rii.. iR..] [RRR RR RiiR. iRR.] [RRR RR RiiRR iRRR] 
+  +B125:   #2
+        b0 = "log-record:[%d - %d %s]";    
+        b1 = new java/lang/Object()[3];    
+        b1[0] = valueOf@special(vR0.getLsn@this());   
+        b1[1] = valueOf@special(vR0.getTransactionId@this());   
+        b1[2] = vR1;   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 27 swaps 5 any 3 found 0 toString
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder("Log Record:[
+");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append@extra(b1.append@extra("lsn: ").append@extra(vR0.getLsn@this()).append@extra("
+").toString@extra());   [R RR iii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iii.. i....][ RR iii.. iR...]
+        vR1.append@extra(b1.append@extra("prev-lsn: ").append@extra(vR0.getClientPreviousLsn@this()).append@extra("
+").toString@extra());   [R RR iiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii.. i....][ RR iiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("undo-lsn: ").append@extra(vR0.getClientUndoNextLsn@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii.. i....][ RR iiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("data-length: ").append@extra(vR0.getClientDataLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiii.. i....][ RR iiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("client-id: ").append@extra(vR0.getClientId@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("record-type: ").append@extra(vR0.getRecordType@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("transaction-id: ").append@extra(vR0.getTransactionId@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("flags: ").append@extra(vR0.getFlags@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("redo: ").append@extra(vR0.getRedoOperation@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("undo: ").append@extra(vR0.getUndoOperation@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("redo-offset: ").append@extra(vR0.getRedoOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("redo-length: ").append@extra(vR0.getRedoLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("undo-offset: ").append@extra(vR0.getUndoOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("undo-length: ").append@extra(vR0.getUndoLength@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("target-attribute: ").append@extra(vR0.getTargetAttribute@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("lcns-to-follow: ").append@extra(vR0.getLcnsToFollow@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("record-offset: ").append@extra(vR0.getRecordOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("attribute-offset: ").append@extra(vR0.getAttributeOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("MFT-cluster-index: ").append@extra(vR0.getMftClusterIndex@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("target-vcn: ").append@extra(vR0.getTargetVcn@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("target-lcn: ").append@extra(vR0.getTargetLcn@this()).append@extra("]").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 162 swaps 76 any 0 found 0 toDebugString
+ 
+ method <clinit>()V {
+  +START:   #1
+        HEADER_SIZE = 88;   
+        LENGTH_CALCULATION_OFFSET = 48;   
+        RECORD_TYPE_CHECKPOINT = 2;   
+        FLAG_CROSSES_PAGE = 1;   
+        LCN_FOLLOWING_RECORD = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 0 any 0 found 0 <clinit>
+}

@@ -1,0 +1,109 @@
+class org/jnode/fs/ntfs/index/NTFSIndex {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fileRecord = vR1;   
+        vR0.attributeName = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getIndexRootAttribute()Lorg/jnode/fs/ntfs/index/IndexRootAttribute; {
+  +START:   #1
+        if vR0.indexRootAttribute!=null goto B33;   
+  +B7:   #1
+        vR0.indexRootAttribute = (org/jnode/fs/ntfs/index/IndexRootAttribute)(vR0.fileRecord.findAttributesByTypeAndName(144,vR0.attributeName).next());   
+  +B33:   #1
+        return vR0.indexRootAttribute;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 getIndexRootAttribute
+ 
+ method getIndexAllocationAttribute()Lorg/jnode/fs/ntfs/index/IndexAllocationAttribute; {
+  +START:   #1
+        if vR0.indexAllocationAttribute!=null goto B33;   
+  +B7:   #1
+        vR0.indexAllocationAttribute = (org/jnode/fs/ntfs/index/IndexAllocationAttribute)(vR0.fileRecord.findAttributesByTypeAndName(160,vR0.attributeName).next());   
+  +B33:   #1
+        return vR0.indexAllocationAttribute;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 getIndexAllocationAttribute
+ 
+ method search(Lorg/jnode/fs/ntfs/index/IndexSearchCallback;)Lorg/jnode/fs/ntfs/index/IndexEntry; {
+  +START:   #1
+        vR2 = vR0.getIndexRootAttribute@extra().iterator@extra();    [  . R] [  R R] 
+  +B8:   #1
+        if vR2.hasNext()==0 goto B72;   
+  +B17:   #1
+        vR3 = (org/jnode/fs/ntfs/index/IndexEntry)(vR2.next());    
+        if vR3.isLastIndexEntryInSubnode@extra()==0 goto B41;   
+  +B34:   #1
+        return vR0.searchSubTree@extra(vR3,vR1);   
+  +B41:   #1
+        vi4 = vR1.visitAndCompareEntry(vR3);    [RR  . RR.] 
+        if vi4!=0 goto B57;   
+  +B55:   #1
+        return vR3;   
+  +B57:   #1
+        if vi4>=0 goto B69;   
+  +B62:   #1
+        return vR0.searchSubTree@extra(vR3,vR1);   
+  +B69:   #1
+        goto +B8;   [RRi  . ...]
+  +B72:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 5 swaps 0 any 2 found 0 search
+ 
+ method searchSubTree(Lorg/jnode/fs/ntfs/index/IndexEntry;Lorg/jnode/fs/ntfs/index/IndexSearchCallback;)Lorg/jnode/fs/ntfs/index/IndexEntry; {
+  +START:   #1
+        if vR1.hasSubNodes@extra()!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #2
+        vR4 = vR0.getIndexRootAttribute@extra().getRoot@extra();    [ R . R] [ R R R] 
+        vR3 = vR0.getIndexAllocationAttribute@extra().getIndexBlock@extra(vR4,vR1.getSubnodeVCN@extra());    [?R R . ??RR] [?R R R ??RR] 
+  +B32:   #1
+        goto +B49;   [RR R . ....]
+  -H35<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        throw new java/lang/IllegalStateException("Cannot read next index block during search",vR4);   
+  +B49:   #1
+        vR4 = vR3.iterator@extra();    [RR R . R...] 
+  +B55:   #1
+        if vR4.hasNext()==0 goto B127;   
+  +B65:   #1
+        vR5 = (org/jnode/fs/ntfs/index/IndexEntry)(vR4.next());    
+        if vR5.isLastIndexEntryInSubnode@extra()==0 goto B93;   
+  +B85:   #1
+        return vR0.searchSubTree@extra(vR5,vR2);   
+  +B93:   #1
+        vi6 = vR2.visitAndCompareEntry(vR5);    [RRR R . RR..] 
+        if vi6!=0 goto B111;   
+  +B108:   #1
+        return vR5;   
+  +B111:   #1
+        if vi6>=0 goto B124;   
+  +B116:   #1
+        return vR0.searchSubTree@extra(vR5,vR2);   
+  +B124:   #1
+        goto +B55;   [RRRi R . ....]
+  +B127:   #1
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+9 - 32 handler 35 type 89
+ }
+// Register: rd 16/16 wr 10 swaps 0 any 2 found 0 searchSubTree
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/ntfs/index/NTFSIndex$FullIndexEntryIterator(vR0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 iterator
+}

@@ -1,0 +1,32 @@
+class org/jnode/driver/bus/scsi/cdb/mmc/CapacityData {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLogicalBlockAddress()I {
+  +START:   #1
+        return vR0.getInt32@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLogicalBlockAddress
+ 
+ method getBlockLength()I {
+  +START:   #1
+        return vR0.getInt32@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBlockLength
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("LBA 0x").append@extra(hex8@special(vR0.getLogicalBlockAddress@extra())).append@extra(", BlockLength 0x").append@extra(hex8@special(vR0.getBlockLength@extra())).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 11 swaps 4 any 0 found 0 toString
+}

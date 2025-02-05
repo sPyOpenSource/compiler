@@ -1,0 +1,48 @@
+class org/jnode/driver/bus/scsi/cdb/mmc/MMCUtils {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readCapacity(Lorg/jnode/driver/bus/scsi/SCSIDevice;)Lorg/jnode/driver/bus/scsi/cdb/mmc/CapacityData; {
+  +START:   #1
+        vR1 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR2 = vR1.alloc(8);    [R R i. iR] 
+        vR3 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBReadCapacity();    [ R i. i.][ R i. iR]
+        vR0.executeCommand@this(vR3,vR2,0,10000);   [RRR R i. ??iRRR] 
+        return new org/jnode/driver/bus/scsi/cdb/mmc/CapacityData(vR2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 7 swaps 1 any 0 found 0 readCapacity
+ 
+ method readData(Lorg/jnode/driver/bus/scsi/SCSIDevice;IILjx/zero/Memory;I)V {
+  +START:   #1
+        vR5 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBRead10(vi1,vi2);    [ R  i][ R . iiiR]
+        vR0.executeCommand@this(vR5,vR3,vi4,10000);   [R R . ??iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 readData
+ 
+ method setMediaRemoval(Lorg/jnode/driver/bus/scsi/SCSIDevice;ZZ)V {
+  +START:   #1
+        vR3 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBMediaRemoval(vi1,vi2);    [ R  i][ R . iiiR]
+        vR0.executeCommand@this(vR3,0,0,10000);   [R R . ??iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 setMediaRemoval
+ 
+ method startStopUnit(Lorg/jnode/driver/bus/scsi/SCSIDevice;Lorg/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action;Z)V {
+  +START:   #1
+        vR3 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit(vR1,vi2);    [ R  i][ R . iiRR]
+        vR0.executeCommand@this(vR3,0,0,10000);   [R R . ??iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 startStopUnit
+}

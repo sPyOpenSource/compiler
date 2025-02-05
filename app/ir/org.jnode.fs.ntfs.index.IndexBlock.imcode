@@ -1,0 +1,51 @@
+class org/jnode/fs/ntfs/index/IndexBlock {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getVolume().getBootRecord@extra().getBytesPerSector@extra(),1,vR2,vi3);   [  i. iRiiR] 
+        vR0.parentFileRecord = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method getLogFileSequenceNumber()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLogFileSequenceNumber
+ 
+ method getIndexBlockVCN()J {
+  +START:   #1
+        return vR0.getUInt32@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getIndexBlockVCN
+ 
+ method getHeader()Lorg/jnode/fs/ntfs/index/IndexHeader; {
+  +START:   #1
+        if vR0.header!=null goto B21;   
+  +B7:   #1
+        b1 = new org/jnode/fs/ntfs/index/IndexHeader(vR0,24);    [ ?R  i][ ?R . iiRR]
+        vR0.header = b1;   
+  +B21:   #1
+        return vR0.header;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 getHeader
+ 
+ method getParentFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.parentFileRecord;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParentFileRecord
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/ntfs/index/IndexEntryIterator(vR0.parentFileRecord,vR0,(vR0.getHeader@extra().getFirstEntryOffset@extra()+24));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 iterator
+}

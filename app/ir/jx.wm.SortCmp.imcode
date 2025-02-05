@@ -1,0 +1,33 @@
+class jx/wm/SortCmp {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method compare(Ljava/lang/Object;Ljava/lang/Object;)I {
+  +START:   #1
+        vR3 = (jx/wm/ClippingRect)(vR1);    
+        vR4 = (jx/wm/ClippingRect)(vR2);    
+        if vR3.m_nX0<=vR4.m_nX1 goto B64;   
+  +B23:   #1
+        if vR3.m_nX1>=vR4.m_nX0 goto B64;   
+  +B35:   #1
+        if vR3.m_nMoveX>=0 goto B53;   
+  +B42:   #1
+        return (vR3.m_nX0-vR4.m_nX0);   
+  +B53:   #1
+        return (vR4.m_nX0-vR3.m_nX0);   
+  +B64:   #2
+        if vR3.m_nMoveY>=0 goto B82;   
+  +B71:   #1
+        return (vR3.m_nY0-vR4.m_nY0);   
+  +B82:   #1
+        return (vR4.m_nY0-vR3.m_nY0);   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 2 swaps 0 any 2 found 2 compare
+}

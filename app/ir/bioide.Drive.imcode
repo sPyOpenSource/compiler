@@ -242,12 +242,15 @@ EXCEPTIONHANDLER-TABLE:
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RRs ................ i........][ RRs ................ iR.......]
         b0.println(b1.append@extra("DRIVE OK: ").append@extra(vR0.name).append@extra("; cyl=").append@extra(vR0.cyl).append@extra(", head=").append@extra(vR0.head).append@extra(", sect=").append@extra(vR0.sect).toString@extra());   [R RRs iiiiiii..ii..... RR.......] 
-        b1 = new bioide/PartitionTable(vR0);    [ RRs iiiiiii..ii..... i........][ RRs iiiiiii..ii..... iRR......]
+        if vR0.sect==0 goto B455;   
+  +B443:   #1
+        b1 = new bioide/PartitionTable(vR0);    [ RRs ................ i........][ RRs ................ iRR......]
         vR0.entries = b1;   
+  +B455:   #1
         return;   
   +END:   #1
  }
-// Register: rd 73/73 wr 55 swaps 27 any 3 found 0 identify
+// Register: rd 74/74 wr 55 swaps 27 any 3 found 0 identify
  
  method readSectors(IILjx/zero/Memory;Z)V {
   +START:   #1

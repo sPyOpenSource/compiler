@@ -1,0 +1,117 @@
+class org/jnode/fs/ntfs/BootSector {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [ ?RR  iRR] 
+        vR0.systemID = vR0.getString@this(3,8);   
+        vR0.bytesPerSector = vR0.getUInt16@this(11);   
+        vR0.sectorsPerCluster = vR0.getUInt8@this(13);   
+        vR0.mediaDescriptor = vR0.getUInt8@this(21);   
+        vR0.sectorsPerTrack = vR0.getUInt16@this(24);   
+        vR0.totalSectors = vR0.getUInt32@this(40);   
+        vR0.mftLcn = vR0.getUInt32@this(48);   
+        vi2 = vR0.getInt8@this(64);    [ ?RR  iR.] 
+        vi3 = vR0.getInt8@this(68);    [i ?RR  iR.] 
+        b1 = "%02X%02X-%02X%02X";    
+        b2 = new java/lang/Object()[4];    
+        b2[0] = valueOf@special(vR1.get8(75));   
+        b2[1] = valueOf@special(vR1.get8(74));   
+        b2[2] = valueOf@special(vR1.get8(73));   
+        b2[3] = valueOf@special(vR1.get8(72));   
+        vR0.serialNumber = format@special(b1,b2);   
+        vR0.clusterSize = (vR0.sectorsPerCluster*vR0.bytesPerSector);   
+        vR0.fileRecordSize = vR0.calcByteSize@special(vi2);   
+        vR0.indexRecordSize = vR0.calcByteSize@special(vi3);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 8 swaps 0 any 0 found 0 <init>
+ 
+ method getBytesPerSector()I {
+  +START:   #1
+        return vR0.bytesPerSector;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytesPerSector
+ 
+ method getMediaDescriptor()I {
+  +START:   #1
+        return vR0.mediaDescriptor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMediaDescriptor
+ 
+ method getMftLcn()J {
+  +START:   #1
+        return vR0.mftLcn;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftLcn
+ 
+ method getSectorsPerCluster()I {
+  +START:   #1
+        return vR0.sectorsPerCluster;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSectorsPerCluster
+ 
+ method getSectorsPerTrack()I {
+  +START:   #1
+        return vR0.sectorsPerTrack;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSectorsPerTrack
+ 
+ method getSystemID()Ljava/lang/String; {
+  +START:   #1
+        return vR0.systemID;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSystemID
+ 
+ method getSerialNumber()Ljava/lang/String; {
+  +START:   #1
+        return vR0.serialNumber;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSerialNumber
+ 
+ method getTotalSectors()J {
+  +START:   #1
+        return vR0.totalSectors;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTotalSectors
+ 
+ method getFileRecordSize()I {
+  +START:   #1
+        return vR0.fileRecordSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileRecordSize
+ 
+ method getIndexRecordSize()I {
+  +START:   #1
+        return vR0.indexRecordSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndexRecordSize
+ 
+ method getClusterSize()I {
+  +START:   #1
+        return vR0.clusterSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClusterSize
+ 
+ method calcByteSize(I)I {
+  +START:   #1
+        if vi1<=0 goto B11;   
+  +B4:   #1
+        return (vi1*vR0.clusterSize);   
+  +B11:   #1
+        return (1 << -vi1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 calcByteSize
+}

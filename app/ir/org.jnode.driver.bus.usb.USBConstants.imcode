@@ -1,0 +1,15 @@
+class org/jnode/driver/bus/usb/USBConstants {
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/String()[4];    
+        b0[0] = "control";   
+        b0[1] = "isochronous";   
+        b0[2] = "bulk";   
+        b0[3] = "interrupt";   
+        USB_ENDPOINT_XFER_NAMES = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 1 <clinit>
+}

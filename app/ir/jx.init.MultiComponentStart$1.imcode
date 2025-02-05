@@ -1,0 +1,21 @@
+class jx/init/MultiComponentStart$1 {
+ 
+ method <init>(Ljx/zero/CPUManager;Ljx/init/MultiComponentStart$StartInfo;)V {
+  +START:   #1
+        vR0.val$cpuManager = vR1;   
+        vR0.val$info = vR2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        vR0.val$cpuManager.setThreadName(vR0.val$info.name);   [  i RR] 
+        vR0.val$info.method.invoke(0,vR0.val$info.args);   [  ii RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 2 any 0 found 0 run
+}

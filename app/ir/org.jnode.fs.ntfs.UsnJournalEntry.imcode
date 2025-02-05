@@ -1,0 +1,118 @@
+class org/jnode/fs/ntfs/UsnJournalEntry {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getSize()J {
+  +START:   #1
+        return vR0.getUInt32@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getMajorVersion()I {
+  +START:   #1
+        return vR0.getUInt16@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMajorVersion
+ 
+ method getMinorVersion()I {
+  +START:   #1
+        return vR0.getUInt16@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinorVersion
+ 
+ method getMftReference()J {
+  +START:   #1
+        return vR0.getInt48@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftReference
+ 
+ method getParentMtfReference()J {
+  +START:   #1
+        return vR0.getInt48@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getParentMtfReference
+ 
+ method getTimestamp()J {
+  +START:   #1
+        return filetimeToMillis@special(vR0.getInt64@this(32));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTimestamp
+ 
+ method getReason()J {
+  +START:   #1
+        return vR0.getUInt32@this(40);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getReason
+ 
+ method getSourceInfo()I {
+  +START:   #1
+        return vR0.getInt32@this(43);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSourceInfo
+ 
+ method getSecurityId()I {
+  +START:   #1
+        return vR0.getInt32@this(48);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSecurityId
+ 
+ method getFileAttributes()I {
+  +START:   #1
+        return vR0.getInt32@this(52);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileAttributes
+ 
+ method getFileNameSize()I {
+  +START:   #1
+        return vR0.getInt16@this(56);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileNameSize
+ 
+ method getFileName()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.MemManager.alloc(vR0.getFileNameSize@this());    [  i iR] 
+        vR0.getData@this(60,vR1,0,vR1.size());   [R  ii iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 0 found 0 getFileName
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "MFT: 0x%x parent MFT: 0x%x, %s version: %d.%d, size: %d source: 0x%x security: 0x%x attributes: %s time: %s, name:%s";    
+        b1 = new java/lang/Object()[11];    
+        b1[0] = valueOf@special(vR0.getMftReference@this());   
+        b1[1] = valueOf@special(vR0.getParentMtfReference@this());   
+        b1[2] = lookupReasons@special(vR0.getReason@this());   
+        b1[3] = valueOf@special(vR0.getMajorVersion@this());   
+        b1[4] = valueOf@special(vR0.getMinorVersion@this());   
+        b1[5] = valueOf@special(vR0.getSize@this());   
+        b1[6] = valueOf@special(vR0.getSourceInfo@this());   
+        b1[7] = valueOf@special(vR0.getSecurityId@this());   
+        b1[8] = lookupAttributes@special((long)vR0.getFileAttributes@this());   
+        b2 = b1;    
+        b4 = new java/util/Date(vR0.getTimestamp@this());    [ RRR?R iiii i.][ RRR?R iiii. ilR]
+        b2[9] = b4;   
+        b1[10] = vR0.getFileName@this();   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 9 swaps 0 any 2 found 0 toString
+}

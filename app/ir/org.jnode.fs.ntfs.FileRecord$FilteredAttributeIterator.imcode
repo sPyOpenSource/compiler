@@ -1,0 +1,77 @@
+class org/jnode/fs/ntfs/FileRecord$FilteredAttributeIterator {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljava/util/Iterator;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        vR0.attributes = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        if vR0.hasCached==0 goto B9;   
+  +B7:   #1
+        return 1;   
+  +B9:   #1
+        vR0.nextMatch@special();   [   R] 
+        return vR0.hasCached;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        if vR0.hasNext@this()==0 goto B17;   
+  +B7:   #1
+        vR0.hasCached = 0;   
+        return vR0.cached;   
+  -B17:   #1
+        throw new java/util/NoSuchElementException();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 next
+ 
+ method nextMatch()Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #2
+        if vR0.attributes.hasNext()==0 goto B48;   
+  +B12:   #1
+        vR1 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR0.attributes.next());    
+        if vR0.matches@this(vR1)==0 goto B45;   
+  +B33:   #1
+        vR0.hasCached = 1;   
+        vR0.cached = vR1;   
+        return vR1;   
+  +B45:   #1
+        goto +START;   [R  . ..]
+  +B48:   #1
+        vR0.hasCached = 0;   
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 0 found 0 nextMatch
+ 
+ method remove()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.next@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljava/util/Iterator;Lorg/jnode/fs/ntfs/FileRecord$1;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+}

@@ -1,0 +1,104 @@
+class org/jnode/fs/ntfs/NTFSDirectory {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFileSystem;Lorg/jnode/fs/ntfs/FileRecord;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR2.getReferenceNumber());   [ ?R  ??RRR] 
+        vR0.fs = vR1;   
+        vR0.fileRecord = vR2;   
+        b1 = new org/jnode/fs/ntfs/index/NTFSIndex(vR2,"$I30");    [ ?R  i....][ ?R . iRRR.]
+        vR0.index = b1;   
+        vR0.id = toString@special(vR2.getReferenceNumber());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method getDirectoryId()Ljava/lang/String; {
+  +START:   #1
+        return vR0.id;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDirectoryId
+ 
+ method iterator()Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/ntfs/DirectoryEntryIterator(vR0.fs,vR0.index);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method getEntry(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        vR2 = vR0.iterator@this();    [   R] 
+  +B5:   #1
+        if vR2.hasNext()==0 goto B40;   
+  +B14:   #1
+        vR3 = (org/jnode/fs/ntfs/NTFSEntry)(vR2.next());    
+        if vR3.getName().equals@extra(vR1)==0 goto B37;   
+  +B35:   #1
+        return vR3;   
+  +B37:   #1
+        goto +B5;   [RR  . ..]
+  +B40:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 getEntry
+ 
+ method getEntryById(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        vR2 = vR0.fs.getNTFSVolume().getMFT().getRecord(parseLong@special(vR1));    [ R .. ??R] [ R R. ??R] [ R RR ??R] 
+        return new org/jnode/fs/ntfs/NTFSEntry(vR0.fs,vR2,vR0.fileRecord.getReferenceNumber());   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 getEntryById
+ 
+ method getFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.fileRecord;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileRecord
+ 
+ method addFile(Ljava/lang/String;)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/io/IOException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addFile
+ 
+ method addDirectory(Ljava/lang/String;)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/io/IOException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addDirectory
+ 
+ method remove(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/io/IOException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method isValid()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isValid
+ 
+ method getFileSystem()Ljx/fs/FileSystem; {
+  +START:   #1
+        return vR0.fs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileSystem
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+}

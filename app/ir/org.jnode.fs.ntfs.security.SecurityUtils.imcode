@@ -1,0 +1,39 @@
+class org/jnode/fs/ntfs/security/SecurityUtils {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readSid(Lorg/jnode/fs/ntfs/NTFSStructure;I)Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        vi2 = vR0.getInt8@extra(vi1);    [ RRR  iR] 
+        if vi2==1 goto B38;   
+  -B11:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid SID version: ").append@extra(vi2).toString@extra());   [i RRR ii. RR.] 
+        throw b0;   
+  +B38:   #1
+        vi3 = vR0.getInt8@extra((vi1+1));    [i RRR i.. iR.] 
+        vR4 = MemManager.alloc(6);    [ii RRR i.. iR.] 
+        vR0.getData@extra((vi1+2),vR4,0,vR4.size());   [iiR RRR iii iiRiR] 
+        vl5 = 0;    
+        vR7 = new java/util/ArrayList();    [ RRR iii i....][ RRR iii iR...]
+        vi8 = 0;    
+  +B90:   #1
+        if vi8>=vi3 goto B126;   
+  +B96:   #1
+        vR7.add(valueOf@special(vR0.getUInt32@extra(((vi1+8)+(4*vi8)))));   [iiRl?Ri RRR i.. RR...] 
+        vi8++;   
+        goto +B90;   [iiRl?Ri RRR i.. .....]
+  +B126:   #1
+        return new org/jnode/fs/ntfs/security/SecurityIdentifier(vl5,vR7);   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 20 swaps 5 any 4 found 0 readSid
+}

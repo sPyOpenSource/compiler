@@ -1,0 +1,119 @@
+class jx/awt/image/JXImageCreator {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method createImage(Ljava/awt/image/ImageProducer;)Ljx/awt/JXImage; {
+  +START:   #1
+        vR0.complete = 0;   
+        vR1.startProduction(vR0);   [   RR] 
+        if vR0.complete!=0 goto B29;   
+  +B19:   #1
+        out.println("Error on creating image!");   [  i. RR] 
+        return 0;   
+  +B29:   #1
+        return vR0.image;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 createImage
+ 
+ method setDimensions(II)V {
+  +START:   #1
+        vR0.image = createImage@special(vi1,vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDimensions
+ 
+ method setPixels(IIIILjava/awt/image/ColorModel;[BII)V {
+  +START:   #1
+        vR11 = new jx/devices/fb/PixelRect(0,0,0,0);    [ R  i][ R . iiiiiR]
+        vR12 = new jx/devices/fb/PixelColor(0,0,0,0);    [ R . i.....][ R . iiiiiR]
+        vi13 = vi2;    
+  +B29:   #1
+        if vi13>=(vi2+vi4) goto B125;   
+  +B38:   #1
+        vi14 = vi1;    
+  +B41:   #1
+        if vi14>=(vi1+vi3) goto B119;   
+  +B49:   #1
+        vi9 = (((vi13*vi8)+vi14)+vi7);    
+        vi10 = vR6[vi9];    
+        vR11.setTo@extra(vi14,vi13,vi14,vi13);   [iiRRii R . iiiiR.] 
+        vR12.setTo(vi10,vi10,vi10,0);   [iiRRii R . iiiiR.] 
+        vR0.image.getBitmap().drawLine(vR11,vR11,vR12,OVER);   [iiRRii R i. RRRRR.] [iiRRii R iR RRRRR.] 
+        vi14++;   
+        goto +B41;   [iiRRii R i. ......]
+  +B119:   #1
+        vi13++;   
+        goto +B29;   [iiRRii R .. ......]
+  +B125:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 12 swaps 1 any 7 found 0 setPixels
+ 
+ method setPixels(IIIILjava/awt/image/ColorModel;[III)V {
+  +START:   #1
+        vR13 = new jx/devices/fb/PixelRect(0,0,0,0);    [ R  i][ R . iiiiiR]
+        vR14 = new jx/devices/fb/PixelColor(0,0,0,0);    [ R . i.....][ R . iiiiiR]
+        vi15 = vi2;    
+  +B29:   #1
+        if vi15>=(vi2+vi4) goto B157;   
+  +B38:   #1
+        vi16 = vi1;    
+  +B41:   #1
+        if vi16>=(vi1+vi3) goto B151;   
+  +B49:   #1
+        vi9 = (((vi15*vi8)+vi16)+vi7);    
+        vi10 = ((vR6[vi9] >> 16) & 255);    
+        vi11 = ((vR6[vi9] >> 8) & 255);    
+        vi12 = (vR6[vi9] & 255);    
+        vR13.setTo@extra(vi16,vi15,vi16,vi15);   [iiiiRRii R . iiiiR.] 
+        vR14.setTo(vi10,vi11,vi12,0);   [iiiiRRii R . iiiiR.] 
+        vR0.image.getBitmap().drawLine(vR13,vR13,vR14,OVER);   [iiiiRRii R i. RRRRR.] [iiiiRRii R iR RRRRR.] 
+        vi16++;   
+        goto +B41;   [iiiiRRii R i. ......]
+  +B151:   #1
+        vi15++;   
+        goto +B29;   [iiiiRRii R .. ......]
+  +B157:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 14 swaps 1 any 7 found 0 setPixels
+ 
+ method imageComplete(I)V {
+  +START:   #1
+        vR0.complete = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 imageComplete
+ 
+ method setProperties(Ljava/util/Hashtable;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setProperties
+ 
+ method setHints(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setHints
+ 
+ method setColorModel(Ljava/awt/image/ColorModel;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setColorModel
+}

@@ -1,0 +1,286 @@
+class org/jnode/driver/bus/scsi/cdb/spc/SenseKey {
+ 
+ method <init>(ILjava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.key = vi1;   
+        vR0.name = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method valueOf(I)Lorg/jnode/driver/bus/scsi/cdb/spc/SenseKey; {
+  +START:   #1
+        return KEYS[vi0];   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 valueOf
+ 
+ method isNoSense()Z {
+  +START:   #1
+        if vR0.key!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isNoSense
+ 
+ method isRecoveredError()Z {
+  +START:   #1
+        if vR0.key!=1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isRecoveredError
+ 
+ method isNotReady()Z {
+  +START:   #1
+        if vR0.key!=2 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isNotReady
+ 
+ method isMediumError()Z {
+  +START:   #1
+        if vR0.key!=3 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isMediumError
+ 
+ method isHardwareError()Z {
+  +START:   #1
+        if vR0.key!=4 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isHardwareError
+ 
+ method isIllegalRequest()Z {
+  +START:   #1
+        if vR0.key!=5 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isIllegalRequest
+ 
+ method isUnitAttention()Z {
+  +START:   #1
+        if vR0.key!=6 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isUnitAttention
+ 
+ method isDataProtect()Z {
+  +START:   #1
+        if vR0.key!=7 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDataProtect
+ 
+ method isBlankCheck()Z {
+  +START:   #1
+        if vR0.key!=8 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isBlankCheck
+ 
+ method isVendorSpecific()Z {
+  +START:   #1
+        if vR0.key!=9 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isVendorSpecific
+ 
+ method isCopyAborted()Z {
+  +START:   #1
+        if vR0.key!=10 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isCopyAborted
+ 
+ method isAbortedCommand()Z {
+  +START:   #1
+        if vR0.key!=11 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isAbortedCommand
+ 
+ method isVolumeOverflow()Z {
+  +START:   #1
+        if vR0.key!=13 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isVolumeOverflow
+ 
+ method isMiscompare()Z {
+  +START:   #1
+        if vR0.key!=14 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isMiscompare
+ 
+ method hashCode()I {
+  +START:   #1
+        return vR0.key;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey()[16];    
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(0,"NO SENSE");    [ RR?R  i.][ RR?R . iRiR]
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(1,"RECOVERED ERROR");    [ RR?R . i...][ RR?R . iRiR]
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(2,"NOT READY");    [ RR?R . i...][ RR?R . iRiR]
+        b1[2] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(3,"MEDIUM ERROR");    [ RR?R . i...][ RR?R . iRiR]
+        b1[3] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(4,"HARDWARE ERROR");    [ RR?R . i...][ RR?R . iRiR]
+        b1[4] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(5,"ILLEGAL REQUEST");    [ RR?R . i...][ RR?R . iRiR]
+        b1[5] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(6,"UNIT ATTENTION");    [ RR?R . i...][ RR?R . iRiR]
+        b1[6] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(7,"DATA PROTECT");    [ RR?R . i...][ RR?R . iRiR]
+        b1[7] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(8,"BLANK CHECK");    [ RR?R . i...][ RR?R . iRiR]
+        b1[8] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(9,"VENDOR SPECIFIC");    [ RR?R . i...][ RR?R . iRiR]
+        b1[9] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(10,"COPY ABORTED");    [ RR?R . i...][ RR?R . iRiR]
+        b1[10] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(11,"ABORTED COMMMAND");    [ RR?R . i...][ RR?R . iRiR]
+        b1[11] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(12,"Obsolete");    [ RR?R . i...][ RR?R . iRiR]
+        b1[12] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(13,"VOLUME OVERFLOW");    [ RR?R . i...][ RR?R . iRiR]
+        b1[13] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(14,"MISCOMPARE");    [ RR?R . i...][ RR?R . iRiR]
+        b1[14] = b3;   
+        b1 = b0;    
+        b3 = new org/jnode/driver/bus/scsi/cdb/spc/SenseKey(15,"Reserved");    [ RR?R . i...][ RR?R . iRiR]
+        b1[15] = b3;   
+        KEYS = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 66/66 wr 49 swaps 0 any 32 found 1 <clinit>
+}

@@ -1,0 +1,204 @@
+class org/jnode/fs/jfat/FatCase {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.ncase = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.ncase = ((vi1 & 24) >> 3);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vR1.length@extra()!=0 goto B21;   
+  -B11:   #1
+        throw new java/lang/UnsupportedOperationException("empty baseName");   
+  +B21:   #1
+        vi3 = isUpperCase@special(vR1);    [ R . R..]
+        vi4 = isLowerCase@special(vR1);    [i R . R..]
+        if vR2.length@extra()!=0 goto B60;   
+  +B39:   #1
+        if vi4==0 goto B52;   
+  +B44:   #1
+        vR0.ncase = 1;   
+        goto +B130;   forward return[ii R . ...]
+  +B52:   #1
+        vR0.ncase = 0;   
+        goto +B130;   forward return[ii R . ...]
+  +B60:   #1
+        vi5 = isUpperCase@special(vR2);    [ii R . R..]
+        vi6 = isLowerCase@special(vR2);    [iii R . R..]
+        if vi4==0 goto B90;   
+  +B77:   #1
+        if vi6==0 goto B90;   
+  +B82:   #1
+        vR0.ncase = 3;   
+        goto +B130;   forward return[iiii R . ...]
+  +B90:   #2
+        if vi3==0 goto B107;   
+  +B94:   #1
+        if vi6==0 goto B107;   
+  +B99:   #1
+        vR0.ncase = 2;   
+        goto +B130;   forward return[iiii R . ...]
+  +B107:   #2
+        if vi4==0 goto B125;   
+  +B112:   #1
+        if vi5==0 goto B125;   
+  +B117:   #1
+        vR0.ncase = 1;   
+        goto +B130;   forward return[iiii R . ...]
+  +B125:   #2
+        vR0.ncase = 0;   
+  +B130:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 5 swaps 0 any 7 found 0 <init>
+ 
+ method getCase()I {
+  +START:   #1
+        return (vR0.ncase << 3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCase
+ 
+ method isLowerBase()Z {
+  +START:   #1
+        if vR0.isLowerUpper@this()!=0 goto B14;   
+  +B7:   #1
+        if vR0.isLowerLower@this()==0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isLowerBase
+ 
+ method isUpperBase()Z {
+  +START:   #1
+        if vR0.isUpperLower@this()!=0 goto B14;   
+  +B7:   #1
+        if vR0.isUpperUpper@this()==0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isUpperBase
+ 
+ method isLowerExt()Z {
+  +START:   #1
+        if vR0.isUpperLower@this()!=0 goto B14;   
+  +B7:   #1
+        if vR0.isLowerLower@this()==0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isLowerExt
+ 
+ method isUpperExt()Z {
+  +START:   #1
+        if vR0.isLowerUpper@this()!=0 goto B14;   
+  +B7:   #1
+        if vR0.isUpperUpper@this()==0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isUpperExt
+ 
+ method isUpperUpper()Z {
+  +START:   #1
+        if vR0.ncase!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isUpperUpper
+ 
+ method isLowerUpper()Z {
+  +START:   #1
+        if vR0.ncase!=1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLowerUpper
+ 
+ method isUpperLower()Z {
+  +START:   #1
+        if vR0.ncase!=2 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isUpperLower
+ 
+ method isLowerLower()Z {
+  +START:   #1
+        if vR0.ncase!=3 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLowerLower
+ 
+ method setLowerLower()V {
+  +START:   #1
+        vR0.ncase = 3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLowerLower
+}

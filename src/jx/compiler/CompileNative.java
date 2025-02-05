@@ -12,8 +12,11 @@ import de.tu_darmstadt.informatik.rbg.hatlak.joliet.impl.JolietConfig;
 import de.tu_darmstadt.informatik.rbg.hatlak.rockridge.impl.RockRidgeConfig;
 import de.tu_darmstadt.informatik.rbg.mhartle.sabre.HandlerException;
 
+import static jx.compspec.StartBuilder.getCompilerOptions;
 import jx.compiler.persistent.*;
 import jx.compiler.execenv.IOSystem;
+import jx.zero.Debug;
+import net.lingala.zip4j.ZipFile;
 
 import java.io.*;
 import java.net.URL;
@@ -23,10 +26,6 @@ import java.util.List;
 import java.util.zip.GZIPOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import static jx.compspec.StartBuilder.getCompilerOptions;
-import jx.zero.Debug;
-import net.lingala.zip4j.ZipFile;
 
 public class CompileNative {
     public static void main(String[] args) throws Exception {
@@ -40,7 +39,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        compile("zero", opts);
+        //compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -51,10 +50,10 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	compile("os", opts);
+	//compile("os", opts);
         
-	jllname = libdir + "ai.jll";
-        jlnname = libdir + "ai.jln";
+	jllname = libdir + "wm.jll";
+        jlnname = libdir + "wm.jln";
         neededLibs = new String[]{
             "zero", "jdk0"
         };
@@ -62,7 +61,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("ai", opts);
+	//compile("wm", opts);
         
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
@@ -94,46 +93,90 @@ public class CompileNative {
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 
 
-	URL[] domClasses = new URL[]{
-            new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/")
+	String[] domClasses = new String[]{
+            new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString()
         };
-        URL[] libClasses = new URL[0];
+        String[] libClasses = new String[0];
         if(path.endsWith("init2")){
-            domClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/FS/dist/testFS.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/NET/dist/testNET.jar!/"),
-                //new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/"),
-                //new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META")
+            domClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/FS/dist/testFS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/NET/dist/testNET.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/").toString(),
+                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META").toString()
             };
-            libClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"), 
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/")
+            libClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString(), 
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(), 
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString()
             };
-        } else if(path.endsWith("ai")){
-            domClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/")
+        } else if(path.endsWith("wm")){
+            domClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/WM/dist/JavaWM.jar!/").toString()
             };
-            libClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/")
+            libClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/HCI/dist/testHCI.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/APP/dist/testOS.jar!/").toString()
             };
         } else if(path.endsWith("os")){
-            domClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/"),
-                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/"),
-                new URL("https://github.com/sPyOpenSource/os/raw/dev/META")
+            domClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/os/raw/dev/dist/OS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/applications/raw/simulator/ifOS/dist/ifOS.jar!/").toString(),
+                new URL("jar:https://github.com/sPyOpenSource/AIZero/raw/master/dist/AIZero.jar!/").toString(),
+                new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
             };
-            libClasses = new URL[]{
-                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/")
+            libClasses = new String[]{
+                new URL("jar:https://github.com/sPyOpenSource/zero/raw/jar/dist/Zero.jar!/").toString()
             };
         }
-
+        
+        /*domClasses = new String[]{
+            "../Zero/dist/Zero.jar"
+        };*/
+        libClasses = new String[0];
+        if(path.endsWith("init2")){
+            domClasses = new String[]{
+                "../test/APP/dist/testOS.jar",
+                "../test/FS/dist/testFS.jar",
+                "../test/HCI/dist/testHCI.jar",
+                "../test/NET/dist/testNET.jar",
+                //"../test/WM/dist/JavaWM.jar",
+                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/APP/META").toString()
+            };
+            libClasses = new String[]{
+                "../Zero/dist/Zero.jar", 
+                "../OS/dist/OS.jar", 
+                "../AIZero/dist/AIZero.jar",
+                "../test/ifOS/dist/ifOS.jar"
+            };
+        } else if(path.endsWith("wm")){
+            domClasses = new String[]{
+                "../test/WM/dist/JavaWM.jar"
+            };
+            libClasses = new String[]{
+                "../Zero/dist/Zero.jar",
+                "../OS/dist/OS.jar",
+                "../test/ifOS/dist/ifOS.jar",
+                "../test/APP/dist/testOS.jar",
+                "../test/HCI/dist/testHCI.jar"
+            };
+        } else if(path.endsWith("os")){
+            domClasses = new String[]{
+                "../OS/dist/OS.jar",
+                "../test/ifOS/dist/ifOS.jar",
+                "../AIZero/dist/AIZero.jar",
+                new URL("https://github.com/sPyOpenSource/os/raw/dev/META").toString()
+            };
+            libClasses = new String[]{
+                "../Zero/dist/Zero.jar"
+            };
+        }
+        
         ExtendedDataInputStream[] tableIn;
         ArrayList links = opts.getLibsLinkerInfo();
         if (links != null) {

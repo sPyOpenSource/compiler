@@ -1,0 +1,174 @@
+class org/jnode/driver/bus/usb/uhci/QueueHead {
+ 
+ method <init>(Ljx/zero/MemoryManager;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,32,16);   [   iiRR] 
+        vR0.setInt@this(0,1);   [   iiR.] 
+        vR0.setInt@this(1,1);   [   iiR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setLink(Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;)V {
+  +START:   #1
+        vi2 = (vR1.getDescriptorAddress() & -16);    
+        vR0.linkPointer = vR1;   
+        vR0.setInt@this(0,vi2);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 setLink
+ 
+ method setLink(Lorg/jnode/driver/bus/usb/uhci/QueueHead;)V {
+  +START:   #1
+        vi2 = ((vR1.getDescriptorAddress() & -16) | 2);    
+        vR0.linkPointer = vR1;   
+        vR0.setInt@this(0,vi2);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 setLink
+ 
+ method insertLink(Lorg/jnode/driver/bus/usb/uhci/QueueHead;)V {
+  +START:   #1
+        if vR1.getLink@extra()==null goto B17;   
+  -B7:   #1
+        throw new java/lang/IllegalArgumentException("qh.link must be null");   
+  +B17:   #1
+        vR1.setInt(0,vR0.getInt@this(0));   [ R i iiR] 
+        vR1.linkPointer = vR0.linkPointer;   
+        vR0.setLink@extra(vR1);   [ R i RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 1 any 0 found 0 insertLink
+ 
+ method removeLink()V {
+  +START:   #1
+        vR0.setInt@this(0,1);   [   iiR] 
+        vR0.linkPointer = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 removeLink
+ 
+ method removeLink(Lorg/jnode/driver/bus/usb/uhci/QueueHead;)V {
+  +START:   #1
+        vR2 = vR0;    
+  +B2:   #1
+        if vR2.linkPointer==vR1 goto B32;   
+  +B10:   #1
+        if (vR2.linkPointer instanceof org/jnode/driver/bus/usb/uhci/QueueHead)==0 goto B31;   
+  +B20:   #1
+        vR2 = (org/jnode/driver/bus/usb/uhci/QueueHead)(vR2.linkPointer);    
+        goto +B2;   [R  . ..]
+  +B31:   #1
+        return;   
+  +B32:   #1
+        vR0.linkPointer = vR1.linkPointer;   
+        vR0.setInt@this(0,vR1.getInt(0));   [R  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 1 any 1 found 0 removeLink
+ 
+ method getLink()Lorg/jnode/driver/bus/usb/uhci/AbstractStructure; {
+  +START:   #1
+        return vR0.linkPointer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLink
+ 
+ method add(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V {
+  +START:   #1
+        if vR0.isEmpty@extra()==0 goto B20;   
+  +B7:   #1
+        vR0.setElement@extra(vR1.getFirstTD());   [ R i RR] 
+        goto +B30;   forward return[ R i ..]
+  -B20:   #1
+        throw new java/lang/IllegalStateException("Cannot add to non-empty queue");   
+  +B30:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 add
+ 
+ method remove(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V {
+  +START:   #1
+        vR2 = vR1.getFirstTD();    [   R] 
+  +B7:   #2
+        if vR2==null goto B36;   
+  +B11:   #1
+        if vR0.isElement@special(vR2)==0 goto B28;   
+  +B19:   #1
+        vR0.removeElement@special();   [R   R.] 
+        vR2 = 0;    
+        goto +B7;   [R   ..]
+  +B28:   #1
+        vR2 = vR2.getNextTD@extra();    [R   R.] 
+        goto +B7;   [R   ..]
+  +B36:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 remove
+ 
+ method setElement(Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;)V {
+  +START:   #1
+        vi2 = (vR1.getDescriptorAddress() & -16);    
+        vR0.setInt@this(1,vi2);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 setElement
+ 
+ method isElement(Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;)Z {
+  +START:   #1
+        vi2 = vR0.getInt@this(1);    [ i  iR] 
+        vi3 = (vR1.getDescriptorAddress() & -16);    
+        if (vi2 & 1)!=0 goto B32;   
+  +B20:   #1
+        if (vi2 & -16)!=vi3 goto B32;   
+  +B28:   #1
+        b0 = 1;    
+        goto +B33b0;   forward return[ii i  ..]
+  +B32:   #2
+        b0 = 0;    
+  +B33b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 2 found 0 isElement
+ 
+ method removeElement()V {
+  +START:   #1
+        vR0.setInt@this(1,1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeElement
+ 
+ method isEmpty()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 1)!=1 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isEmpty
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("QH[").append@extra(hex@special(vR0.getInt@this(0))).append@extra(", ").append@extra(hex@special(vR0.getInt@this(1))).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 12 swaps 4 any 0 found 0 toString
+}

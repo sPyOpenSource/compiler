@@ -21,7 +21,7 @@ class java/util/Vector {
  
  method <init>()V {
   +START:   #1
-        vR0.<init>@special(10);   [   iR] 
+        vR0.<init>@special(20);   [   iR] 
         return;   
   +END:   #1
  }
@@ -35,35 +35,103 @@ class java/util/Vector {
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 capacity
  
  method clone()Ljava/lang/Object; {
-  +START:   #1
-        vR1 = new java/util/Vector();    [ R  i][ R  iR]
-        vi2 = 0;    
-  +B10:   #1
-        if vi2>=vR0.size@extra() goto B33;   
-  +B18:   #1
-        vR1.addElement@extra(vR0.elementAt@this(vi2));   [Ri R i RR] 
-        vi2++;   
-        goto +B10;   [Ri R i ..]
-  +B33:   #1
-        return vR1;   
+  +START:   #2
+        vR1 = (java/util/Vector)(vR0.clone@special());    
+        vR1.elementData = copyOf@special(vR0.elementData,vR0.elementCount);   
+        vR1.modCount = 0;   
+        b0 = vR1;    
+  +B29b0:   #1 reference
+        return b0;   
+  +H30<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 29 handler 30 type 43
  }
-// Register: rd 7/7 wr 4 swaps 1 any 2 found 1 clone
+// Register: rd 8/8 wr 6 swaps 0 any 1 found 0 clone
  
  method trimToSize()V {
   +START:   #1
+        vR0.modCount = (vR0.modCount+1);   
+        vi1 = vR0.elementData.length;    
+        if vR0.elementCount>=vi1 goto B39;   
+  +B24:   #1
+        vR0.elementData = copyOf@special(vR0.elementData,vR0.elementCount);   
+  +B39:   #1
         return;   
   +END:   #1
  }
-// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 trimToSize
+// Register: rd 8/8 wr 3 swaps 0 any 0 found 0 trimToSize
+ 
+ method ensureCapacityHelper(I)V {
+  +START:   #1
+        if (vi1-vR0.elementData.length)<=0 goto B15;   
+  +B10:   #1
+        vR0.grow@special(vi1);   [   iR] 
+  +B15:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 1 found 0 ensureCapacityHelper
+ 
+ method grow(I)V {
+  +START:   #1
+        vi2 = vR0.elementData.length;    
+        b0 = vi2;    
+        if vR0.capacityIncrement<=0 goto B21;   
+  +B14b0:   #1 int
+        b1 = vR0.capacityIncrement;    
+        goto +B22b0b1;   [i ii  ]
+  +B21b0:   #1 int
+        b1 = vi2;    
+  +B22b0b1:   #1 int int
+        vi3 = (b0+b1);    
+        if (vi3-vi1)>=0 goto B32;   
+  +B30:   #1
+        vi3 = vi1;    
+  +B32:   #1
+        if (vi3-2147483639)<=0 goto B44;   
+  +B39:   #1
+        vi3 = hugeCapacity@special(vi1);    [ii ii  i]
+  +B44:   #1
+        vR0.elementData = copyOf@special(vR0.elementData,vi3);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 0 any 6 found 0 grow
+ 
+ method hugeCapacity(I)I {
+  +START:   #1
+        if vi0>=0 goto B12;   
+  -B4:   #1
+        throw new java/lang/OutOfMemoryError();   
+  +B12:   #1
+        if vi0<=2147483639 goto B23;   
+  +B18:   #1
+        b0 = 2147483647;    
+        goto +B25b0;   forward return[ i  ..]
+  +B23:   #1
+        b0 = 2147483639;    
+  +B25b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 2 found 0 hugeCapacity
  
  method addElement(Ljava/lang/Object;)V {
   +START:   #1
-        vR0.add@this(vR1);   [   RR] 
+        vR0.modCount = (vR0.modCount+1);   
+        vR0.ensureCapacityHelper@special((vR0.elementCount+1));   [ Rii i iR] 
+        b0 = vR0.elementData;    
+        b2 = vR0.elementCount;    
+        b1 = b2;    
+        vR0.elementCount = (b2+1);   
+        b0[b1] = vR1;   
         return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addElement
+// Register: rd 12/12 wr 4 swaps 1 any 2 found 0 addElement
  
  method insertElementAt(Ljava/lang/Object;I)V {
   +START:   #1
@@ -403,11 +471,12 @@ class java/util/Vector {
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 listIterator
  
  method add(ILjava/lang/Object;)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.insertElementAt@extra(vR2,vi1);   [   iRR] 
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 add
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 add
  
  method set(ILjava/lang/Object;)Ljava/lang/Object; {
   -START:   #1

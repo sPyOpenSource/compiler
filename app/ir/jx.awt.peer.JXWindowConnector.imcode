@@ -1,0 +1,546 @@
+class jx/awt/peer/JXWindowConnector {
+ 
+ method <init>(Ljx/awt/JXToolkit;Ljava/awt/Window;)V {
+  +START:   #1
+        b2 = "";    
+        b3 = new jx/devices/fb/PixelRect(0,0,30,30);    [ ??RRR  i][ ??RRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags(7168);    [ ??RRR . i.....][ ??RRR . iiR...]
+        vR0.<init>@special(vR1,b2,b3,b4);   [ ??RRR . RRRRR.] 
+        vR0.isActive = 0;   
+        vR0.menuRange = 0;   
+        vR0.lastPressedButton = 0;   
+        vR0.flags = 7168;   
+        vR0.parent = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method getComponentGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        vR1 = (jx/awt/JXGraphics)(vR0.graphics.create());    
+        vR1.translate(vR0.componentOffsetX,vR0.componentOffsetY);   [R  ii iiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 1 any 0 found 0 getComponentGraphics
+ 
+ method getMenuGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        return (jx/awt/JXGraphics)(vR0.graphics.create());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getMenuGraphics
+ 
+ method setResizable(Z)V {
+  +START:   #1
+        if vi1==0 goto B19;   
+  +B4:   #1
+        vR0.flags = (vR0.flags & -193);   
+        goto +B31;   [ ?R  ]
+  +B19:   #1
+        vR0.flags = (vR0.flags | 192);   
+  +B31:   #1
+        b1 = new jx/wm/WindowFlags(vR0.flags);    [ ?R  i][ ?R . iiR]
+        vR0.setFlags@this(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 1 found 0 setResizable
+ 
+ method showBorder(Z)V {
+  +START:   #1
+        if vi1==0 goto B18;   
+  +B4:   #1
+        vR0.flags = (vR0.flags & -2);   
+        goto +B28;   [ ?R  ]
+  +B18:   #1
+        vR0.flags = (vR0.flags | 1);   
+  +B28:   #1
+        b1 = new jx/wm/WindowFlags(vR0.flags);    [ ?R  i][ ?R . iiR]
+        vR0.setFlags@this(b1);   [ ?R . RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 1 found 0 showBorder
+ 
+ method setClip(IIII)V {
+  +START:   #1
+        if vi1!=vR0.oldClipX goto B34;   
+  +B8:   #1
+        if vi2!=vR0.oldClipY goto B34;   
+  +B16:   #1
+        if vi3!=vR0.oldClipWidth goto B34;   
+  +B24:   #1
+        if vi4!=vR0.oldClipHeight goto B34;   
+  +B33:   #1
+        return;   
+  +B34:   #4
+        vR0.oldClipX = vi1;   
+        vR0.oldClipY = vi2;   
+        vR0.oldClipWidth = vi3;   
+        vR0.oldClipHeight = vi4;   
+        vR0.setClip@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 0 swaps 0 any 4 found 0 setClip
+ 
+ method doRepaint(Z)V {
+  +START:   #1
+        if vR0.parent==null goto B116;   
+  +B7:   #1
+        if vi1==0 goto B56;   
+  +B11:   #1
+        vR0.parentPeer.layoutMenu((vR0.parent.getWidth()+vR0.componentOffsetX),(vR0.parent.getHeight()+vR0.componentOffsetY));   [  ii iiR] 
+        vR0.parent.invalidate();   [  ii R..] 
+        vR0.parent.validate();   [  ii R..] 
+  +B56:   #1
+        if vR0.componentOffsetY==vR0.parentPeer.getMenuHeight() goto B106;   
+  +B70:   #1
+        vR2 = vR0.getBounds@this();    [  .. R..] 
+        vR0.componentOffsetY = vR0.parentPeer.getMenuHeight();   
+        vR0.setBounds@this(vR2.x,vR2.y,vR2.width,vR2.height);   [R  iiii iiiiR] 
+  +B106:   #1
+        vR0.parentPeer.redraw();   [R  .... R....] 
+        yield@special();   [R  .... .....]
+  +B116:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 9 swaps 2 any 1 found 0 doRepaint
+ 
+ method inMenuRange(II)Z {
+  +START:   #1
+        if vi2< 0 goto B36;   
+  +B4:   #1
+        if vi2>=vR0.componentOffsetY goto B36;   
+  +B12:   #1
+        if vi1< 0 goto B36;   
+  +B16:   #1
+        if vi1>=(vR0.parent.getWidth()+vR0.componentOffsetX) goto B36;   
+  +B32:   #1
+        b0 = 1;    
+        goto +B37b0;   forward return[ i  .]
+  +B36:   #4
+        b0 = 0;    
+  +B37b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 4 found 1 inMenuRange
+ 
+ method findTargetComponent(Ljava/awt/Container;II)Ljava/awt/Component; {
+  +START:   #1
+        if vR1.contains(vi2,vi3)!=0 goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        vi4 = 0;    
+  +B14:   #1
+        if vi4>=vR1.getComponentCount() goto B195;   
+  +B23:   #1
+        vR5 = vR1.getComponent(vi4);    [i   iR.] 
+        if vR5.isVisible()!=0 goto B42;   
+  +B39:   #1
+        goto +B189;   [iR   ...]
+  +B42:   #1
+        vi6 = (vi2-vR5.getX());    
+        vi7 = (vi3-vR5.getY());    
+        if (vR5 instanceof java/awt/Container)==0 goto B174;   
+  +B68:   #1
+        if vR5.contains(vi6,vi7)==0 goto B189;   
+  +B80:   #1
+        vR8 = (java/awt/Container)(vR5).getInsets();    [iRii   R..] 
+        if vi6<vR8.left goto B168;   
+  +B100:   #1
+        if vi7<vR8.top goto B168;   
+  +B110:   #1
+        if vi6>=(vR5.getWidth()-vR8.right) goto B168;   
+  +B126:   #1
+        if vi7>=(vR5.getHeight()-vR8.bottom) goto B168;   
+  +B142:   #1
+        vR9 = vR0.findTargetComponent@special((java/awt/Container)(vR5),vi6,vi7);    [iRiiR   iiRR] 
+        if vR9==null goto B165;   
+  +B162:   #1
+        return vR9;   
+  +B165:   #1
+        goto +B171;   [iRiiRR   ....]
+  +B168:   #4
+        return vR5;   
+  +B171:   #1
+        goto +B189;   [iRiiRR   ....]
+  +B174:   #1
+        if vR5.contains(vi6,vi7)==0 goto B189;   
+  +B186:   #1
+        return vR5;   
+  +B189:   #4
+        vi4++;   
+        goto +B14;   [iR   ....]
+  +B195:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 7 swaps 0 any 9 found 7 findTargetComponent
+ 
+ method getTarget(II)Ljava/awt/Component; {
+  +START:   #1
+        if vR0.parent!=null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR3 = vR0.findTargetComponent@special(vR0.parent,vi1,vi2);    [ R i iiRR] 
+        if vR3!=null goto B31;   
+  +B24:   #1
+        b0 = vR0.parent;    
+        goto +B32b0;   forward return[R R . ....]
+  +B31:   #1
+        b0 = vR3;    
+  +B32b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 2 found 0 getTarget
+ 
+ method validTarget(Ljava/awt/Component;)Z {
+  +START:   #1
+        if vR1==null goto B29;   
+  +B4:   #1
+        if vR1.isDisplayable()==0 goto B29;   
+  +B11:   #1
+        if vR1.isEnabled()==0 goto B29;   
+  +B18:   #1
+        if vR1.isVisible()==0 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   forward return[ i  .]
+  +B29:   #4
+        b0 = 0;    
+  +B30b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 validTarget
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.parent = 0;   
+        vR0.dispose@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method doWindowChange(Ljx/devices/fb/PixelRect;Z)V {
+  +START:   #1
+        vR0.connectorEnabled = 0;   
+        vR0.parent.setBounds(vR1.x0@extra(),vR1.y0@extra(),((vR1.width@extra()-vR0.componentOffsetX)+1),((vR1.height@extra()-vR0.componentOffsetY)+1));   [  iiii iiiiR] 
+        vR0.connectorEnabled = 1;   
+        if vi2==0 goto B56;   
+  +B51:   #1
+        vR0.doRepaint@special(1);   [  .... iR...] 
+  +B56:   #1
+        yield@special();   [  .... .....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 1 any 1 found 0 doWindowChange
+ 
+ method keyDown(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if vR0.isActive==0 goto B138;   
+  +B7:   #1
+        if vR0.toolkit.getMenuHandler().isMenuOpen()!=0 goto B30;   
+  +B20:   #1
+        if vR0.parentPeer.getCurrentMenu()==null goto B47;   
+  +B30:   #1
+        vR0.parentPeer.handleMenuKeyDown(translate@special(vR1.getValue()));   [  ii iR] 
+        goto +B138;   forward return[  ii ..]
+  +B47:   #1
+        if translate@special(vR1.getValue(),vR2.getValue())!=18 goto B64;   
+  +B63:   #1
+        return;   
+  +B64:   #1
+        vR4 = vR0.toolkit.getFocusHandler().getFocusedComponent();    [  .. R.] [  R. R.] 
+        lswitch (vR1.getValue()) { 
+           9:B100
+           ::B130
+        };   
+  +B100:   #1
+        vR0.toolkit.getSlaveWindowHandler().performCloseOperation();   [R  .. R.] [R  R. R.] 
+        if vR4!=null goto B125;   
+  +B115:   #1
+        vR0.parent.transferFocus();   [R  .. R.] 
+        goto +B130;   [R  .. ..]
+  +B125:   #1
+        vR4.transferFocus();   [R  .. R.] 
+  +B130:   #2
+        vR0.lastPressedKey = vR1.getValue();   
+  +B138:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 9 swaps 1 any 1 found 0 keyDown
+ 
+ method keyUp(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if vR0.isActive==0 goto B93;   
+  +B7:   #1
+        if vR0.toolkit.getMenuHandler().isMenuOpen()!=0 goto B30;   
+  +B20:   #1
+        if vR0.parentPeer.getCurrentMenu()==null goto B47;   
+  +B30:   #1
+        vR0.parentPeer.handleMenuKeyUp(translate@special(vR1.getValue()));   [  ii iR] 
+        goto +B93;   forward return[  ii ..]
+  +B47:   #1
+        if translate@special(vR1.getValue(),vR2.getValue())!=18 goto B71;   
+  +B63:   #1
+        vR0.parentPeer.activateMenuBar();   [  .. R.] 
+        return;   
+  +B71:   #1
+        vR4 = vR0.toolkit.getFocusHandler().getFocusedComponent();    [  .. R.] [  R. R.] 
+        if vR4==null goto B88;   
+  +B88:   #1
+        vR0.lastPressedKey = 0;   
+  +B93:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 1 any 1 found 0 keyUp
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.isActive!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR0.inMenuRange@special(vR1.X(),vR1.Y())==0 goto B55;   
+  +B23:   #1
+        if vR0.toolkit.getMenuHandler().isPopupMenuOpen()!=0 goto B55;   
+  +B36:   #1
+        vR0.parentPeer.handleMenuMouseDown(vR1.X(),vR1.Y(),vi2);   [  ii iiiR] 
+        goto +B187;   forward return[  ii ....]
+  +B55:   #2
+        if vR0.toolkit.getMenuHandler().isMenuOpen()!=0 goto B81;   
+  +B68:   #1
+        if vR0.toolkit.getSlaveWindowHandler().windowsRegistered()==0 goto B82;   
+  +B81:   #1
+        return;   
+  +B82:   #1
+        vR1.m_nX = (vR1.m_nX-vR0.componentOffsetX);   
+        vR1.m_nY = (vR1.m_nY-vR0.componentOffsetY);   
+        if vR0.lastPressedButton==0 goto B121;   
+  +B115:   #1
+        vR0.mouseUp@this(vR1,vi2);   [  .. iRR.] 
+  +B121:   #1
+        vR0.lastPressedButton = vi2;   
+        vR0.target = vR0.getTarget@special(vR1.X(),vR1.Y());   
+        if vR0.validTarget@special(vR0.target)==0 goto B184;   
+  +B153:   #1
+        vR0.lastPressedTarget = vR0.target;   
+        vR0.target.requestFocus();   [  ... R...] 
+        vR0.peer.mousePressed(vR1.X(),vR1.Y(),vi2);   [  ii. iiiR] 
+  +B184:   #1
+        yield@special();   [  ... ....]
+  +B187:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 16 swaps 5 any 0 found 0 mouseDown
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.isActive!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR0.inMenuRange@special(vR1.X(),vR1.Y())==0 goto B55;   
+  +B23:   #1
+        if vR0.toolkit.getMenuHandler().isPopupMenuOpen()!=0 goto B55;   
+  +B36:   #1
+        vR0.parentPeer.handleMenuMouseUp(vR1.X(),vR1.Y(),vi2);   [ Riiii ii iiiR] 
+        goto +B230;   [ Riiii ii ....]
+  +B55:   #2
+        if vR0.toolkit.getMenuHandler().isMenuOpen()!=0 goto B81;   
+  +B68:   #1
+        if vR0.toolkit.getSlaveWindowHandler().windowsRegistered()==0 goto B82;   
+  +B81:   #1
+        return;   
+  +B82:   #1
+        vR1.m_nX = (vR1.m_nX-vR0.componentOffsetX);   
+        vR1.m_nY = (vR1.m_nY-vR0.componentOffsetY);   
+        vR0.target = vR0.getTarget@special(vR1.X(),vR1.Y());   
+        if vR0.target!=vR0.lastPressedTarget goto B170;   
+  +B135:   #1
+        if vi2!=vR0.lastPressedButton goto B170;   
+  +B143:   #1
+        if vR0.validTarget@special(vR0.target)==0 goto B170;   
+  +B154:   #1
+        vR0.peer.mouseClicked(vR1.X(),vR1.Y(),vi2);   [ Riiii ii iiiR] 
+  +B170:   #3
+        if vR0.lastPressedTarget==null goto B220;   
+  +B177:   #1
+        if vR0.validTarget@special(vR0.lastPressedTarget)==0 goto B220;   
+  +B188:   #1
+        b0 = vR0.peer;    
+        b1 = vR1.X();    [ Riiii .. R...] 
+        b2 = vR1.Y();    [ Riiii .. R...] 
+        b3 = vi2;    
+        if vR0.lastPressedTarget!=vR0.target goto B216;   
+  +B212b0b1b2b3:   #1 reference int int int
+        b4 = 1;    
+        goto +B217b0b1b2b3b4;   [ Riiii .. ....]
+  +B216b0b1b2b3:   #1 reference int int int
+        b4 = 0;    
+  +B217b0b1b2b3b4:   #1 reference int int int int
+        b0.mouseReleased(b1,b2,b3,b4);   [ Riiii .. iiiiR] 
+  +B220:   #2
+        vR0.lastPressedTarget = 0;   
+        vR0.lastPressedButton = 0;   
+  +B230:   #1
+        yield@special();   [ Riiii .. .....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 49/49 wr 22 swaps 6 any 2 found 0 mouseUp
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.isActive!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR0.inMenuRange@special(vR1.X(),vR1.Y())==0 goto B59;   
+  +B23:   #1
+        if vR0.toolkit.getMenuHandler().isPopupMenuOpen()!=0 goto B59;   
+  +B36:   #1
+        vR0.parentPeer.handleMenuMouseMoved(vR1.X(),vR1.Y());   [ RR ii iiR] 
+        vR0.menuRange = 1;   
+        goto +B415;   [ RR ii ...]
+  +B59:   #2
+        if vR0.menuRange==0 goto B91;   
+  +B66:   #1
+        if vR0.toolkit.getMenuHandler().isMenuOpen()!=0 goto B91;   
+  +B79:   #1
+        vR0.parentPeer.resetMenuBar();   [ RR .. R..] 
+        vR0.menuRange = 0;   
+  +B91:   #2
+        vR1.m_nX = (vR1.m_nX-vR0.componentOffsetX);   
+        vR1.m_nY = (vR1.m_nY-vR0.componentOffsetY);   
+        b0 = vR0;    
+        if vR0.lastPressedTarget==null goto B132;   
+  +B125b0:   #1 reference
+        b1 = vR0.lastPressedTarget;    
+        goto +B144b0b1;   [ RR .. ...]
+  +B132b0:   #1 reference
+        b1 = vR0.getTarget@special(vR1.X(),vR1.Y());    [ RR ii iiR] 
+  +B144b0b1:   #1 reference reference
+        b0.target = b1;   
+        if vR0.lastMovedTarget==vR0.target goto B221;   
+  +B158:   #1
+        if vR0.validTarget@special(vR0.lastMovedTarget)==0 goto B188;   
+  +B169:   #1
+        vR0.peer.mouseExited(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+  +B188:   #1
+        if vR0.validTarget@special(vR0.target)==0 goto B370;   
+  +B199:   #1
+        vR0.peer.mouseEntered(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+        goto +B370;   [ RR iii ....]
+  +B221:   #1
+        if vR0.validTarget@special(vR0.target)==0 goto B262;   
+  +B232:   #1
+        if vR0.target==vR0.parent goto B262;   
+  +B243:   #1
+        vR0.peer.mouseMoved(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+  +B262:   #2
+        if vR0.target!=vR0.parent goto B370;   
+  +B273:   #1
+        tswitch (vi2) B348 B370 B304 B326 : B370;   
+  +B304:   #1
+        vR0.peer.mouseEntered(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+        goto +B370;   [ RR iii ....]
+  +B326:   #1
+        vR0.peer.mouseExited(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+        goto +B370;   [ RR iii ....]
+  +B348:   #1
+        vR0.peer.mouseMoved(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+        goto +B370;   [ RR iii ....]
+  +B370:   #8
+        if vR0.lastPressedButton==0 goto B407;   
+  +B377:   #1
+        if vR0.validTarget@special(vR0.target)==0 goto B407;   
+  +B388:   #1
+        vR0.peer.mouseDragged(vR1.X(),vR1.Y(),vR0.lastPressedButton);   [ RR iii iiiR] 
+  +B407:   #2
+        vR0.lastMovedTarget = vR0.target;   
+  +B415:   #1
+        yield@special();   [ RR ... ....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 83/83 wr 46 swaps 21 any 2 found 0 mouseMoved
+ 
+ method windowActivated(Z)V {
+  +START:   #1
+        vR2 = vR0.toolkit.getMenuHandler();    [   R] 
+        if vR2.isMenuOpen()==0 goto B26;   
+  +B15:   #1
+        vR2.deleteOpenMenus();   [R   R] 
+        vR0.parentPeer.resetMenuBar();   [R   R] 
+  +B26:   #1
+        vR0.toolkit.getSlaveWindowHandler().performCloseOperation();   [R  . R] [R  R R] 
+        if vR0.isActive!=vi1 goto B45;   
+  +B44:   #1
+        return;   
+  +B45:   #1
+        vR0.isActive = vi1;   
+        if vR0.isActive==0 goto B84;   
+  +B57:   #1
+        if vR0.lastFocusedTarget!=null goto B74;   
+  +B64:   #1
+        vR0.parent.requestFocus();   [R  . R] 
+        goto +B98;   [R  . .]
+  +B74:   #1
+        vR0.lastFocusedTarget.requestFocus();   [R  . R] 
+        goto +B98;   [R  . .]
+  +B84:   #1
+        vR0.lastFocusedTarget = vR0.toolkit.getFocusHandler().getFocusedComponent();   
+  +B98:   #2
+        vR0.parentPeer.windowActivated(vR0.isActive);   [R  i bR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 4 swaps 1 any 0 found 0 windowActivated
+ 
+ method windowResized(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.doWindowChange@special(vR1,1);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 windowResized
+ 
+ method windowMoved(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.doWindowChange@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 windowMoved
+ 
+ method closeRequested()V {
+  +START:   #1
+        vR0.parentPeer.closeRequested();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 closeRequested
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.doRepaint@special(1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 paint
+}

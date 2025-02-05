@@ -1,0 +1,78 @@
+class org/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver$USBStorageSCSIDevice {
+ 
+ method <init>(Lorg/jnode/driver/block/usb/storage/USBStorageSCSIHostDriver;Ljx/devices/Bus;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(vR2,vR3);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method executeCommand(Lorg/jnode/driver/bus/scsi/CDB;Ljx/zero/Memory;IJ)I {
+  +START:   #1
+        vR6 = access$000@special(vR0.this$0).getTransport@extra();    [  .R R] [  RR R]
+        vR6.transport(vR1,vl4);   [?R  .R ??RR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 0 any 0 found 0 executeCommand
+ 
+ method testUnit()V {
+  +START:   #1
+        b1 = new org/jnode/driver/bus/scsi/cdb/spc/CDBTestUnitReady();    [ ?R  i][ ?R  iR]
+        vi1 = vR0.executeCommand@extra(b1,0,0,50000);    [ ?R  ??iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 testUnit
+ 
+ method inquiry()V {
+  +START:   #1
+        vR1 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR2 = vR1.alloc(96);    [R ?R i. iR] 
+        vR3 = access$000@special(vR0.this$0).getTransport@extra();    [RR ?R i.R R.] [RR ?R iRR R.]
+        b1 = new org/jnode/driver/bus/scsi/cdb/spc/CDBInquiry(vR2.size());    [ ?R i.R i.][ ?R i.R iiR]
+        vR3.transport(b1,50000);   [RRR ?R i.R ??RR] 
+        b1 = new org/jnode/driver/bus/scsi/cdb/spc/InquiryData(vR2);    [ ?R i.R i...][ ?R i.R iRR.]
+        vR0.inquiryResult = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 12 swaps 1 any 0 found 0 inquiry
+ 
+ method getDescriptor()Lorg/jnode/driver/bus/scsi/cdb/spc/InquiryData; {
+  +START:   #1
+        return vR0.inquiryResult;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptor
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSupportedConfigurations
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 open
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method getId()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
+}

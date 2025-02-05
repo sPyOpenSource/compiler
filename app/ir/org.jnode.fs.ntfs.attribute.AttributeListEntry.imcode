@@ -1,0 +1,108 @@
+class org/jnode/fs/ntfs/attribute/AttributeListEntry {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/attribute/AttributeListBlock;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getType()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getType
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.getUInt16@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getNameLength()I {
+  +START:   #1
+        return vR0.getUInt8@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameLength
+ 
+ method getNameOffset()I {
+  +START:   #1
+        return vR0.getUInt8@this(7);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameOffset
+ 
+ method getStartingVCN()I {
+  +START:   #1
+        return vR0.getUInt16@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStartingVCN
+ 
+ method getFileReferenceNumber()J {
+  +START:   #1
+        return vR0.getUInt48@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFileReferenceNumber
+ 
+ method getFileSequenceNumber()J {
+  +START:   #1
+        return (long)vR0.getUInt16@this(22);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFileSequenceNumber
+ 
+ method getAttributeID()I {
+  +START:   #1
+        return vR0.getUInt16@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributeID
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.getNameLength@special();    [ R  R] 
+        if vi1!=0 goto B12;   
+  +B9:   #1
+        return "";   
+  +B12:   #1
+        vR2 = new char[vi1];    
+        vi3 = 0;    
+        vi4 = vR0.getNameOffset@special();    [iRi R  R.] 
+  +B24:   #1
+        if vi3>=vi1 goto B47;   
+  +B29:   #1
+        vR2[vi3] = vR0.getChar16@this(vi4);   
+        vi3++;   
+        vi4+=2;   
+        goto +B24;   [iRii R  ..]
+  +B47:   #1
+        return new java/lang/String(vR2);   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 7 swaps 0 any 4 found 0 getName
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder(vR0.toString@special());    [ R  i][ R . iRR]
+        vR1.append@extra("[type=").append@extra(vR0.getType@extra());   [R R ii. iR.] [R R iiR iRR] 
+        vR1.append@extra(",name=").append@extra(vR0.getName@extra());   [R R iiii. RR.] [R R iiiiR RRR] 
+        if vR0.getStartingVCN@extra()!=0 goto B57;   
+  +B47:   #1
+        vR1.append@extra(",resident");   [R R i.... RR.] 
+        goto +B85;   [R R i.... ...]
+  +B57:   #1
+        vR1.append@extra(",ref=").append@extra(vR0.getFileReferenceNumber@extra());   [R R i.... ??R.] [R R iR... ??RR] 
+        vR1.append@extra(",vcn=").append@extra(vR0.getStartingVCN@extra());   [R R iii.. iR..] [R R iiiR. iRR.] 
+  +B85:   #1
+        vR1.append@extra(",id=").append@extra(vR0.getAttributeID@extra()).append@extra("]");   [R R i.ii. RR..] [R R iRii. RiR.] [R R iRiiR RiRR] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 19 swaps 11 any 0 found 0 toString
+}

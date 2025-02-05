@@ -1,0 +1,273 @@
+class org/jnode/fs/util/FSUtils {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getName(Ljava/lang/String;C)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR0.lastIndexOf@extra(vi1);    [   iR] 
+        if vi2< 0 goto B18;   
+  +B10:   #1
+        vR0 = vR0.substring@extra((vi2+1));    [i  i iR] 
+  +B18:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 1 found 0 getName
+ 
+ method getParentName(Ljava/lang/String;C)Ljava/lang/String; {
+  +START:   #1
+        vi2 = vR0.lastIndexOf@extra(vi1);    [   iR] 
+        if vi2>=0 goto B16;   
+  +B10:   #1
+        vR0 = "";    
+        goto +B23;   forward return[i   ..]
+  +B16:   #1
+        vR0 = vR0.substring@extra(0,vi2);    [i   iiR] 
+  +B23:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 1 found 0 getParentName
+ 
+ method toString(Ljx/fs/Node;Z)Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<FSEntry>NULL</FSEntry>";   
+  +B7:   #1
+        vR2 = new java/lang/StringBuilder(2048);    [ R  i][ R . iiR]
+        vR2.append@extra("<FSEntry>");   [R R i RR.] 
+        vR2.append@extra(toStringDate@special(" lastModified=",(long)vR0.lastModified()));   [R R iRi RR.] 
+        vR2.append@extra(" isDirty=").append@extra(vR0.isDirty());   [R R iRiii. bR.] [R R iRiiiR bRR] 
+        vR2.append@extra(" isFile=").append@extra(vR0.isFile());   [R R iRiiiii. bR.] [R R iRiiiiiR bRR] 
+        if vi1==0 goto B87;   
+  +B78:   #1
+        if vR0.isFile()==0 goto B87;   
+  +B87:   #2
+        vR2.append@extra(" isDir=").append@extra(vR0.isDirectory());   [R R ii...... bR.] [R R iiR..... bRR] 
+        if vi1==0 goto B123;   
+  +B107:   #1
+        if vR0.isDirectory()==0 goto B123;   
+  +B116:   #1
+        vR2.append@extra("</FSEntry>");   [R R i....... RR.] 
+  +B123:   #2
+        return vR2.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 15 swaps 9 any 3 found 0 toString
+ 
+ method toString(Ljx/fs/Directory;)Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method toString(Ljx/fs/Directory;Z)Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<FSDirectory>NULL</FSDirectory>";   
+  +B7:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR2 = b0.append@extra("<FSDirectory>isValid=").append@extra(vR0.isValid()).append@extra("</FSDirectory>").toString@extra();    [ R i..ii. R...] [ R iR.ii. RR..] [ R iRRii. RbR.] [ R iRRiiR RbRR] 
+        if vi1==0 goto B68;   
+  +B41:   #1
+        b0 = new java/lang/StringBuilder();    [ R ...... i...][ R ...... iR..]
+        vR2 = b0.append@extra(vR2).append@extra("
+").append@extra(vR0.toString@this()).toString@extra();    [R R .ii... R...] [R R Rii... RR..] [R R RiiR.. RRR.] [R R RiiRR. RRRR] 
+  +B68:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 15 swaps 5 any 2 found 0 toString
+ 
+ method toString(Ljx/fs/RegularFile;)Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<FSEntry>NULL</FSEntry>";   
+  +B7:   #1
+        vR1 = new java/lang/StringBuilder(32);    [ RR  i][ RR . iiR]
+        vR1.append@extra("<FSFile>");   [R RR i RR.] 
+        b1 = new java/lang/StringBuilder();    [ RR i i..][ RR i iR.]
+        vR1.append@extra(b1.append@extra(" isValid").append@extra(vR0.isValid()).toString@extra());   [R RR iiii. RR.] 
+        vR1.append@extra("</FSFile>");   [R RR iiiii RR.] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 10 swaps 5 any 1 found 0 toString
+ 
+ method toStringDate(Ljava/lang/String;J)Ljava/lang/String; {
+  +START:   #1
+        b1 = new java/util/Date(vl1);    [ ?R  i][ ?R . il_R]
+        return toString@special(vR0,b1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 toStringDate
+ 
+ method toString(Ljava/lang/String;Ljava/util/Date;)Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0).append@extra(dateFormat.format@extra(vR1)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 5 swaps 1 any 0 found 0 toString
+ 
+ method toString([B)Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0,0,vR0.length);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+ 
+ method toString([BII)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        vi4 = vi1;    
+  +B11:   #1
+        if vi4>=vi2 goto B206;   
+  +B17:   #1
+        vi5 = min@special(16,(vi2-vi4));    [Ri RRR i ii]
+        b1 = "0x%08x - ";    
+        b2 = new java/lang/Object()[1];    
+        b2[0] = valueOf@special(vi4);   
+        vR3.append@extra(format@special(b1,b2));   [Rii RRR ii RR] 
+        vi6 = 0;    
+  +B53:   #1
+        if vi6>=16 goto B125;   
+  +B60:   #1
+        if vi6>=vi5 goto B112;   
+  +B67:   #1
+        vi7 = (vR0[(vi4+vi6)] & 255);    
+        if vi7>=16 goto B94;   
+  +B87:   #1
+        vR3.append@extra(48);   [Riiii RRR .. iR] 
+  +B94:   #1
+        vR3.append@extra(toHexString@special(vi7)).append@extra(32);   [Riiii RRR .i iR.] [Riiii RRR Ri iRR] 
+        goto +B119;   [Riiii RRR .i ...]
+  +B112:   #1
+        vR3.append@extra("   ");   [Riiii RRR i. RR.] 
+  +B119:   #1
+        vi6++;   
+        goto +B53;   [Riiii RRR .. ...]
+  +B125:   #1
+        vR3.append@extra("  ");   [Riiii RRR i. RR.] 
+        vi6 = 0;    
+  +B135:   #1
+        if vi6>=vi5 goto B193;   
+  +B142:   #1
+        vi7 = (vR0[(vi4+vi6)] & 255);    
+        if vi7<32 goto B180;   
+  +B162:   #1
+        if vi7>126 goto B180;   
+  +B169:   #1
+        vR3.append@extra((char)vi7);   [Riiii RRR i. iR.] 
+        goto +B187;   [Riiii RRR i. ...]
+  +B180:   #2
+        vR3.append@extra(46);   [Riiii RRR .. iR.] 
+  +B187:   #1
+        vi6++;   
+        goto +B135;   [Riiii RRR .. ...]
+  +B193:   #1
+        vR3.append@extra(10);   [Riiii RRR .. iR.] 
+        vi4+=16;   
+        goto +B11;   [Riiii RRR .. ...]
+  +B206:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 19 swaps 5 any 11 found 0 toString
+ 
+ method lpad(Ljava/lang/String;I)Ljava/lang/String; {
+  +START:   #1
+        if vR0.length@extra()<vi1 goto B10;   
+  +B8:   #1
+        return vR0;   
+  +B10:   #1
+        vR2 = "";    
+        vi3 = (vi1-vR0.length@extra());    
+        vi4 = 0;    
+  +B23:   #1
+        if vi4>=vi3 goto B55;   
+  +B29:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        vR2 = b0.append@extra(vR2).append@extra(" ").toString@extra();    [Rii R i.. R..] [Rii R iR. RR.] [Rii R iRR RRR] 
+        vi4++;   
+        goto +B23;   [Rii R i.. ...]
+  +B55:   #1
+        b0 = new java/lang/StringBuilder();    [ R ... i..][ R ... iR.]
+        return b0.append@extra(vR2).append@extra(vR0).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 12 swaps 1 any 3 found 1 lpad
+ 
+ method toStringAsChars([BII)Ljava/lang/String; {
+  +START:   #1
+        vi3 = min@special((vi1+vi2),vR0.length);    [ R ii ii]
+        vR4 = new java/lang/StringBuilder(vi3);    [ R ii i.][ R ii. iiR]
+        vi5 = vi1;    
+  +B22:   #1
+        if vi5>=vi3 goto B45;   
+  +B28:   #1
+        vR4.append@extra((char)vR0[vi5]);   [iRi R i.. bR.] 
+        vi5++;   
+        goto +B22;   [iRi R i.. ...]
+  +B45:   #1
+        return vR4.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 8 swaps 1 any 3 found 0 toStringAsChars
+ 
+ method roundUpToBoundary(IJ)J {
+  +START:   #1
+        if compare((vl1%(long)vi0),0)!=0 goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B20b0;   [ l_  .]
+  +B13:   #1
+        b0 = ((long)vi0-(vl1%(long)vi0));    
+  +B20b0:   #1 long
+        vl3 = b0;    
+        return (vl3+vl1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 roundUpToBoundary
+ 
+ method roundUpToBoundary(II)I {
+  +START:   #1
+        if (vi1%vi0)!=0 goto B10;   
+  +B6:   #1
+        b0 = 0;    
+        goto +B15b0;   [ i  ]
+  +B10:   #1
+        b0 = (vi0-(vi1%vi0));    
+  +B15b0:   #1 int
+        vi2 = b0;    
+        return (vi2+vi1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 0 any 2 found 1 roundUpToBoundary
+ 
+ method checkedCast(J)I {
+  +START:   #1
+        vi2 = (int)vl0;    
+        if compare((long)vi2,vl0)==0 goto B37;   
+  -B10:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b1.<init>@special(b2.append@extra("Overflow converting to int: ").append@extra(vl0).toString@extra());   [?i RRR ii. RR..] 
+        throw b0;   
+  +B37:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 2 any 1 found 0 checkedCast
+}

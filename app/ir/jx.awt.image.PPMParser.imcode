@@ -1,0 +1,90 @@
+class jx/awt/image/PPMParser {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method readLine(Ljx/zero/memory/MemoryInputStream;)Ljava/lang/String; {
+  +START:   #1
+        vR2 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+  +B8:   #1
+        vi3 = (char)vR1.read();    
+        if vi3==10 goto B26;   
+  +B20:   #1
+        vR2.append(vi3);   [Ri R  iR] 
+  +B26:   #1
+        if vi3!=10 goto B8;   
+  +B32:   #1
+        return vR2.toString();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 readLine
+ 
+ method getFileStream(Ljava/lang/String;)Ljx/zero/memory/MemoryInputStream; {
+  +START:   #1
+        vR2 = (jx/zero/BootFS)(getInitialNaming@special().lookup("BootFS"));    
+        if vR2!=null goto B28;   
+  -B18:   #1
+        throw new java/lang/Error("No BootFS found!");   
+  +B28:   #1
+        return new jx/zero/memory/MemoryInputStream(vR2.getFile(vR1));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 6 swaps 1 any 1 found 0 getFileStream
+ 
+ method readImageFile(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.mem = vR0.getFileStream@special(vR1);   
+        if vR0.readLine@special(vR0.mem).startsWith@extra("P6")!=0 goto B35;   
+  -B25:   #1
+        throw new java/lang/Error("Unsupported file format!");   
+  +B35:   #1
+        vR0.readLine@special(vR0.mem);   [ R i.. RR.] 
+        vR2 = new java/util/StringTokenizer(vR0.readLine@special(vR0.mem)," ");    [ R i.. i..][ R i.i iRRR]
+        vR0.width = parseInt@special(vR2.nextToken());   
+        vR0.height = parseInt@special(vR2.nextToken());   
+        vR0.readLine@special(vR0.mem);   [R R iRiRi RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 11 swaps 5 any 0 found 0 readImageFile
+ 
+ method getImageWidth()I {
+  +START:   #1
+        return vR0.width;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getImageWidth
+ 
+ method getImageHeight()I {
+  +START:   #1
+        return vR0.height;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getImageHeight
+ 
+ method getRedAt(II)I {
+  +START:   #1
+        return vR0.mem.read();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRedAt
+ 
+ method getGreenAt(II)I {
+  +START:   #1
+        return vR0.mem.read();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGreenAt
+ 
+ method getBlueAt(II)I {
+  +START:   #1
+        return vR0.mem.read();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBlueAt
+}

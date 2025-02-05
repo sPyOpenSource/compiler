@@ -143,7 +143,7 @@ class java/util/HashMap {
         vl6 = ((float)vi4*vR0.loadFactor);    
         if vi4>=1073741824 goto B121;   
   +B107:   #1
-        if compare(vl6,jx.classfile.datatypes.BCFloat@5cdec700)>=0 goto B121;   
+        if compare(vl6,jx.classfile.datatypes.BCFloat@39d76cb5)>=0 goto B121;   
   +B115:   #1
         b0 = (int)vl6;    
         goto +B123b0;   [Riiiil i  .]
@@ -322,7 +322,7 @@ class java/util/HashMap {
         if vR0.table!=null goto B68;   
   +B18:   #1
         vl4 = (((float)vi3/vR0.loadFactor)+1);    
-        if compare(vl4,jx.classfile.datatypes.BCFloat@5cdec700)>=0 goto B43;   
+        if compare(vl4,jx.classfile.datatypes.BCFloat@39d76cb5)>=0 goto B43;   
   +B37:   #1
         b0 = (int)vl4;    
         goto +B45b0;   [il i  .]
@@ -679,40 +679,39 @@ class java/util/HashMap {
  
  method internalPut(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
-        out.println("key");   [ ii i. RR] 
         vR7 = vR1;    
-        vR3 = new java/util/HashMap$HashMapEntry(vR7,vR2);    [ ii i. i.][ ii i. iRRR]
-        vi5 = hash@special(vR7);    [R???R ii i. R...]
+        vR3 = new java/util/HashMap$HashMapEntry(vR7,vR2);    [ ii  i][ ii . iRRR]
+        vi5 = hash@special(vR7);    [R???R ii . R...]
         vR4 = vR0.buckets[vi5];    
-        if vR4!=null goto B61;   
-  +B43:   #1
-        vR4 = new java/util/Bucket();    [ ii .. i...][ ii .. iR..]
+        if vR4!=null goto B53;   
+  +B35:   #1
+        vR4 = new java/util/Bucket();    [ ii . i...][ ii . iR..]
         vR0.buckets[vi5] = vR4;   
-  +B61:   #1
-        vR6 = vR4.add(vR3);    [RRi?R ii .. RR..] 
-        if vR6!=null goto B108;   
-  +B74:   #1
+  +B53:   #1
+        vR6 = vR4.add(vR3);    [RRi?R ii . RR..] 
+        if vR6!=null goto B100;   
+  +B66:   #1
         vR0.modCount = (vR0.modCount+1);   
         b1 = vR0.size;    
         b0 = b1;    
         vR0.size = (b1+1);   
-        if b0!=vR0.threshold goto B106;   
-  +B102:   #1
-        vR0.rehash@special();   [RRiRR ii .. R...] 
-  +B106:   #1
+        if b0!=vR0.threshold goto B98;   
+  +B94:   #1
+        vR0.rehash@special();   [RRiRR ii . R...] 
+  +B98:   #1
         return 0;   
-  +B108:   #1
+  +B100:   #1
         return vR6;   
   +END:   #1
  }
-// Register: rd 22/22 wr 11 swaps 1 any 6 found 0 internalPut
+// Register: rd 22/22 wr 9 swaps 0 any 6 found 0 internalPut
  
  method init(I)V {
   +START:   #1
         vR0.size = 0;   
         vR0.modCount = 0;   
         vR0.capacity = vi1;   
-        vR0.loadFactor = jx.classfile.datatypes.BCFloat@6d026701;   
+        vR0.loadFactor = jx.classfile.datatypes.BCFloat@4a00d9cf;   
         vR0.threshold = 8;   
         vR0.buckets = new java/util/Bucket()[vR0.capacity];   
         return;   

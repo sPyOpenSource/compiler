@@ -1,0 +1,20 @@
+class org/jnode/fs/jfat/ClusterSize {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?l_R  R] 
+        b1 = (long)vi1;    
+        b2 = new org/jnode/util/BinaryScaleFactor(keys[1],values[1]);    [ ?l_R  i][ ?l_R . iRiR]
+        vR0.size = (int)(b1*b2.getMultiplier());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 <init>
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+}

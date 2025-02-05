@@ -1,0 +1,25 @@
+class jx/wm/decorator/WindowDecorator {
+ 
+ method <init>(Ljx/wm/WView;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_cView = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getView()Ljx/wm/WView; {
+  +START:   #1
+        return vR0.m_cView;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getView
+ 
+ method create(Ljx/wm/WView;Ljx/wm/WindowFlags;)Ljx/wm/decorator/WindowDecorator; {
+  +START:   #1
+        return new jx/wm/decorator/AmigaDecorator2(vR0,vR1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 create
+}

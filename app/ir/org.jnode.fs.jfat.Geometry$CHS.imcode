@@ -1,0 +1,80 @@
+class org/jnode/fs/jfat/Geometry$CHS {
+ 
+ method <init>(Lorg/jnode/fs/jfat/Geometry;III)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [ R  R] 
+        if vi2>=0 goto B23;   
+  -B13:   #1
+        throw new java/lang/IllegalArgumentException("Cylinder < 0");   
+  +B23:   #1
+        if vi3>=0 goto B37;   
+  -B27:   #1
+        throw new java/lang/IllegalArgumentException("Head < 0");   
+  +B37:   #1
+        if vi4>=1 goto B53;   
+  -B43:   #1
+        throw new java/lang/IllegalArgumentException("Sector < 1");   
+  +B53:   #1
+        vR0.cylinder = vi2;   
+        vR0.head = vi3;   
+        vR0.sector = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 3 swaps 0 any 3 found 0 <init>
+ 
+ method getCylinder()I {
+  +START:   #1
+        return vR0.cylinder;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCylinder
+ 
+ method getHead()I {
+  +START:   #1
+        return vR0.head;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHead
+ 
+ method getSector()I {
+  +START:   #1
+        return vR0.sector;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSector
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR1==null goto B55;   
+  +B4:   #1
+        if (vR1 instanceof org/jnode/fs/jfat/Geometry$CHS)==0 goto B55;   
+  +B11:   #1
+        vR2 = (org/jnode/fs/jfat/Geometry$CHS)(vR1);    
+        if vR0.cylinder!=vR2.cylinder goto B53;   
+  +B27:   #1
+        if vR0.head!=vR2.head goto B53;   
+  +B38:   #1
+        if vR0.sector!=vR2.sector goto B53;   
+  +B49:   #1
+        b0 = 1;    
+        goto +B54b0;   forward return[R i  ..]
+  +B53:   #3
+        b0 = 0;    
+  +B54b0:   #1 int
+        return b0;   
+  +B55:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 2 swaps 0 any 2 found 1 equals
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("").append@extra(vR0.cylinder).append@extra("/").append@extra(vR0.head).append@extra("/").append@extra(vR0.sector).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 13 swaps 7 any 0 found 0 toString
+}

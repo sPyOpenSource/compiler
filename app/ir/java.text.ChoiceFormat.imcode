@@ -2,7 +2,7 @@ class java/text/ChoiceFormat {
  
  method nextDouble(DZ)D {
   +START:   #1
-        if compare(vd0,jx.classfile.datatypes.BCDouble@30c8681)!=0 goto B10;   
+        if compare(vd0,jx.classfile.datatypes.BCDouble@589da3f3)!=0 goto B10;   
   +B8:   #1
         return vd0;   
   -B10:   #1
@@ -178,7 +178,7 @@ EXCEPTIONHANDLER-TABLE:
         vi4++;   
         goto +B12;   [Ri R .. ...]
   +B76:   #1
-        return new java/lang/Double(jx.classfile.datatypes.BCDouble@30c8681);   
+        return new java/lang/Double(jx.classfile.datatypes.BCDouble@589da3f3);   
   +END:   #1
  }
 // Register: rd 17/17 wr 9 swaps 3 any 2 found 0 parse

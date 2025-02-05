@@ -1,0 +1,424 @@
+class jx/awt/peer/JXTextFieldPeer {
+ 
+ method <init>(Ljava/awt/TextField;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.NO_ECHO = 0;   
+        vR0.columns = vR1.getColumns();   
+        vR0.rows = 1;   
+        vR0.setEchoChar@this(vR1.getEchoChar());   [  i cR.] 
+        vR0.offsetX = 0;   
+        vR0.offsetY = 0;   
+        vR0.textSpace = vR0.initialTextSpace@this();   
+        vR0.prefWidth = vR0.textSpace.width;   
+        vR0.prefHeight = vR0.textSpace.height;   
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.resetLayout@special();   [   R] 
+        vi2 = vR0.hasFocus@this();    [   R] 
+        tswitch (vR0.peerState) B44 B56 B68 B80 : B89;   
+  +B44:   #1
+        vR0.paintTextField@this(vR1,vi2,0,0,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B56:   #1
+        vR0.paintTextField@this(vR1,vi2,1,0,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B68:   #1
+        vR0.paintTextField@this(vR1,vi2,0,1,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B80:   #1
+        vR0.paintTextField@this(vR1,vi2,0,0,1);   [i   iiiiRR] 
+  +B89:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 paint
+ 
+ method keyPressed(III)V {
+  +START:   #1
+        vR0.keyPressed@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.performTextEditing@this(vi1,vi3,0);   [   iiiR] 
+        vR0.updateOffsets@special();   [   R...] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 keyPressed
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [   iiiR] 
+        vR4 = vR0.getLocationRelativeToComponent@this(((vi1-4)+vR0.offsetX),((vi2-4)+vR0.offsetY));    [  ii iiR.] 
+        vR0.caretPosition = vR0.getTextPosition@this(vR4.x,vR4.y);   
+        vR0.selectionStart = vR0.caretPosition;   
+        vR0.selectionEnd = vR0.caretPosition;   
+        vR0.updateOffsets@special();   [R  iiii R...] 
+        vR0.redraw@this();   [R  iiii R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 2 any 0 found 0 mousePressed
+ 
+ method mouseMoved(III)V {
+  +START:   #1
+        vR0.mouseMoved@special(vi1,vi2,vi3);   [   iiiR] 
+        vR4 = vR0.getLocationRelativeToComponent@this(vi1,vi2);    [   iiR.] 
+        if vi3==0 goto B88;   
+  +B19:   #1
+        vR5 = vR0.getLocationRelativeToComponent@this(((vi1-4)+vR0.offsetX),((vi2-4)+vR0.offsetY));    [R  ii iiR.] 
+        vi6 = vR0.getTextPosition@this(vR5.x,vR5.y);    [RR  iiii iiR.] 
+        if vi6==vR0.selectionEnd goto B88;   
+  +B66:   #1
+        vR0.selectionEnd = vi6;   
+        vR0.caretPosition = vR0.selectionEnd;   
+        vR0.updateOffsets@special();   [RRi  .... R...] 
+        vR0.redraw@this();   [RRi  .... R...] 
+  +B88:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 7 swaps 2 any 2 found 0 mouseMoved
+ 
+ method createEchoString(CI)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new char[vi2];    
+        vi4 = 0;    
+  +B7:   #1
+        if vi4>=vi2 goto B24;   
+  +B13:   #1
+        vR3[vi4] = vi1;   
+        vi4++;   
+        goto +B7;   [Ri R  ..]
+  +B24:   #1
+        return new java/lang/String(vR3);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 3 found 0 createEchoString
+ 
+ method resetLayout()V {
+  +START:   #1
+        vR0.textSpace.width = vR0.width;   
+        vR0.textSpace.height = vR0.height;   
+        vR0.columns = vR0.text.length();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 resetLayout
+ 
+ method updateOffsets()V {
+  +START:   #1
+        vR0.x = ((vR0.caretPosition*9)+4);   
+        if vR0.offsetX<=(vR0.x-4) goto B36;   
+  +B26:   #1
+        vR0.offsetX = (vR0.x-4);   
+  +B36:   #1
+        if vR0.offsetX>=(vR0.x-((vR0.textSpace.width-8)-9)) goto B83;   
+  +B61:   #1
+        vR0.offsetX = (vR0.x-((vR0.textSpace.width-8)-9));   
+  +B83:   #1
+        if vR0.offsetX>=0 goto B95;   
+  +B90:   #1
+        vR0.offsetX = 0;   
+  +B95:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 0 swaps 0 any 0 found 0 updateOffsets
+ 
+ method handleTextAltered()V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.echo!=0 goto B18;   
+  +B8b0:   #1 reference
+        b1 = vR0.text.toString();    [ RR  R] 
+        goto +B33b0b1;   [ RR  .]
+  +B18b0:   #1 reference
+        b1 = vR0.createEchoString@special(vR0.echo,vR0.text.length());    [ RR ii icR] 
+  +B33b0b1:   #1 reference reference
+        b0.textString = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 1 any 1 found 0 handleTextAltered
+ 
+ method minimumSize(I)Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension((vR0.textSpace.x+vR0.textSpace.width),(vR0.textSpace.y+vR0.textSpace.height));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 minimumSize
+ 
+ method getMinimumSize(I)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.minimumSize@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimumSize
+ 
+ method preferredSize(I)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.minimumSize@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredSize
+ 
+ method getPreferredSize(I)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.preferredSize@this(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method setEchoChar(C)V {
+  +START:   #1
+        vR0.echo = vi1;   
+        vR0.handleTextAltered@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setEchoChar
+ 
+ method setEchoCharacter(C)V {
+  +START:   #1
+        vR0.setEchoChar@this(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setEchoCharacter
+ 
+ method paintTextField(Ljx/awt/JXGraphics;ZZZZ)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.draw3DRect(0,0,(vR0.width-1),(vR0.height-1),0);   [  iii iiiiiR] 
+        if vi5!=0 goto B48;   
+  +B31:   #1
+        if vR0.editable==0 goto B48;   
+  +B38:   #1
+        vR1.setColor(textBgColor);   [  i.. RR....] 
+        goto +B55;   [  i.. ......]
+  +B48:   #2
+        vR1.setColor(disabledBgColor);   [ii  i.. RR....] 
+  +B55:   #1
+        vR1.fillRect((vR0.textSpace.x+1),(vR0.textSpace.y+1),(vR0.textSpace.width-3),(vR0.textSpace.height-3));   [  iiii iiiiR.] 
+        if vi2==0 goto B146;   
+  +B99:   #1
+        vR1.setColor(focusColor);   [  i... RR....] 
+        vR1.drawRect((vR0.textSpace.x+1),(vR0.textSpace.y+1),(vR0.textSpace.width-3),(vR0.textSpace.height-3));   [  iiiii iiiiR.] 
+  +B146:   #1
+        vR1.setClip(4,4,(vR0.textSpace.width-8),(vR0.textSpace.height-8));   [  ii... iiiiR.] 
+        if vi5==0 goto B187;   
+  +B177:   #1
+        vR1.setColor(disabledTextColor);   [  i.... RR....] 
+        goto +B194;   [  i.... ......]
+  +B187:   #1
+        vR1.setColor(textTextColor);   [ii  i.... RR....] 
+  +B194:   #1
+        vR1.drawJXString(vR0.textString,(4-vR0.offsetX),4);   [  ii... iiRR..] 
+        if vR0.selectionStart==vR0.selectionEnd goto B319;   
+  +B220:   #1
+        vi6 = (((vR0.getLowerSelection@this()*9)+4)-vR0.offsetX);    
+        vi7 = ((vR0.getUpperSelection@this()-vR0.getLowerSelection@this())*9);    
+        if vi6>=4 goto B268;   
+  +B256:   #1
+        vi7 = (vi7-(4-vi6));    
+        vi6 = 4;    
+  +B268:   #1
+        if (vi6+vi7)<=vR0.textSpace.width goto B295;   
+  +B283:   #1
+        vi7 = (vR0.textSpace.width-vi6);    
+  +B295:   #1
+        vR1.setXORMode(black);   [ii  i.... RR....] 
+        vR1.fillRect(vi6,4,(vi7-1),14);   [ii  ii... iiiiR.] 
+        vR1.setPaintMode();   [ii  ii... R.....] 
+  +B319:   #1
+        if vi2==0 goto B347;   
+  +B323:   #1
+        vi6 = (((vR0.caretPosition*9)+4)-vR0.offsetX);    
+        vR0.paintCaret@this(vR1,vi6,4);   [ii  ..... iiRR..] 
+  +B347:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 28 swaps 13 any 7 found 0 paintTextField
+ 
+ method getInputMethodRequests()Ljava/awt/im/InputMethodRequests; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getInputMethodRequests
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

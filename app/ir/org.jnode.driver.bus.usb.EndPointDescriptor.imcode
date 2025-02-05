@@ -1,0 +1,173 @@
+class org/jnode/driver/bus/usb/EndPointDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(7);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getEndPointAddress()I {
+  +START:   #1
+        return vR0.getByte@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEndPointAddress
+ 
+ method getEndPointNumber()I {
+  +START:   #1
+        return (vR0.getByte@this(2) & 15);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEndPointNumber
+ 
+ method isDirIn()Z {
+  +START:   #1
+        if (vR0.getByte@this(2) & 128)!=128 goto B19;   
+  +B15:   #1
+        b0 = 1;    
+        goto +B20b0;   forward return[ i  ..]
+  +B19:   #1
+        b0 = 0;    
+  +B20b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDirIn
+ 
+ method isDirOut()Z {
+  +START:   #1
+        if (vR0.getByte@this(2) & 128)!=0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[ i  ..]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDirOut
+ 
+ method getAttributes()I {
+  +START:   #1
+        return vR0.getByte@this(3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributes
+ 
+ method getTransferType()I {
+  +START:   #1
+        return (vR0.getByte@this(3) & 3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTransferType
+ 
+ method isControlTransfer()Z {
+  +START:   #1
+        if (vR0.getByte@this(3) & 3)!=0 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  ..]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isControlTransfer
+ 
+ method isIntTransfer()Z {
+  +START:   #1
+        if (vR0.getByte@this(3) & 3)!=3 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isIntTransfer
+ 
+ method isBulkTransfer()Z {
+  +START:   #1
+        if (vR0.getByte@this(3) & 3)!=2 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isBulkTransfer
+ 
+ method isIsochronousTransfer()Z {
+  +START:   #1
+        if (vR0.getByte@this(3) & 3)!=1 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isIsochronousTransfer
+ 
+ method getMaxPacketSize()I {
+  +START:   #1
+        return (vR0.getShort@this(4) & 2047);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaxPacketSize
+ 
+ method getInterval()I {
+  +START:   #1
+        return vR0.getByte@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterval
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0 = b0.append@extra("EP[epnum:").append@extra(vR0.getEndPointNumber@extra()).append@extra(", dir:");    [ RR i.ii. RR..] [ RR iRii. RiR.] [ RR iRiiR RiRR] 
+        if vR0.isDirIn@extra()==0 goto B36;   
+  +B31b0:   #1 reference
+        b1 = "IN";    
+        goto +B38b0b1;   forward return[ RR ..... ....]
+  +B36b0:   #1 reference
+        b1 = "OUT";    
+  +B38b0b1:   #1 reference reference
+        return b0.append@extra(b1).append@extra(", xfertype:").append@extra(USB_ENDPOINT_XFER_NAMES[vR0.getTransferType@extra()]).append@extra(", mpsize:").append@extra(vR0.getMaxPacketSize@extra()).append@extra(", intval:").append@extra(vR0.getInterval@extra()).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 24 swaps 9 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/lang/String()[4];    
+        b0[0] = "control";   
+        b0[1] = "isochronous";   
+        b0[2] = "bulk";   
+        b0[3] = "interrupt";   
+        USB_ENDPOINT_XFER_NAMES = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 1 <clinit>
+}

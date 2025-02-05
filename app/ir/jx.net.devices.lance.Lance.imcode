@@ -70,4 +70,11 @@ class jx/net/devices/lance/Lance {
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 registerNonBlockingConsumer
+ 
+ method getId()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
 }

@@ -6,8 +6,8 @@ class AI/util/PID {
         vR0.kp = vd1;   
         vR0.ki = vd3;   
         vR0.kd = vd5;   
-        vR0.max = jx.classfile.datatypes.BCDouble@57ad2aa7;   
-        vR0.min = jx.classfile.datatypes.BCDouble@5b3f61ff;   
+        vR0.max = jx.classfile.datatypes.BCDouble@5e21e98f;   
+        vR0.min = jx.classfile.datatypes.BCDouble@51a9ad5e;   
         vR0.temp = 0;   
         vR0.setpoint = 0;   
         return;   

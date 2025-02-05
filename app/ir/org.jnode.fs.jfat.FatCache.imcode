@@ -1,0 +1,218 @@
+class org/jnode/fs/jfat/FatCache {
+ 
+ method <init>(Lorg/jnode/fs/jfat/Fat;II)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.access = 0;   
+        vR0.hit = 0;   
+        vR0.fat = vR1;   
+        vR0.fatsize = (vR1.getBootSector@extra().getSectorsPerFat()*vR1.getBootSector@extra().getBytesPerSector());   
+        vR0.nrfats = vR1.getBootSector@extra().getNrFats();   
+        vR0.elementSize = vi3;   
+        b1 = new org/jnode/fs/jfat/CacheMap(vi2,vR1.getApi@extra());    [ ?R .. i][ ?R .. iRiR]
+        vR0.map = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 6 swaps 0 any 0 found 0 <init>
+ 
+ method getCacheSize()I {
+  +START:   #1
+        return vR0.map.getCacheSize();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCacheSize
+ 
+ method usedEntries()I {
+  +START:   #1
+        return vR0.map.usedEntries();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 usedEntries
+ 
+ method freeEntries()I {
+  +START:   #1
+        return vR0.map.freeEntries();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 freeEntries
+ 
+ method put(I)Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        vR2 = new org/jnode/fs/jfat/CacheElement(vR0.fat.getApi@extra());    [ R  i][ R . iRR]
+        out.println("read");   [R R i. RR.] 
+        vR2.read(vi1);   [R R i. iR.] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 put
+ 
+ method get(I)Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        vR2 = vR0.map.get(vi1);    [   iR] 
+        vR0.access = (vR0.access+1);   
+        vR0.hit = (vR0.hit+1);   
+        out.println("put");   [R  i. RR] 
+        vR2 = vR0.put@special(vi1);    [R  i. iR] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 4 swaps 1 any 0 found 0 get
+ 
+ method getUInt16(I)I {
+  +START:   #1
+        vi2 = (vi1/vR0.elementSize);    
+        vi3 = (vi1%vR0.elementSize);    
+        vR4 = vR0.get@special(vi2).getData();    [ii  . R.] [ii  R iR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 getUInt16
+ 
+ method getUInt32(I)I {
+  +START:   #1
+        vi2 = vR0.fat.position@extra(0,vi1);    [ RR  iiR] 
+        vi3 = (vi2/vR0.elementSize);    
+        vi4 = (vi2%vR0.elementSize);    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i..][ RR  iR.]
+        b0.println(b1.append@extra("addr: ").append@extra(vi3).toString@extra());   [iii RR ii. RR.] 
+        vR5 = vR0.get@special(vi3).getData();    [iii RR ii. R..] [iii RR iiR iR.] 
+        out.println("get ok");   [iiiR RR iii. RR.] 
+        return vR5.getLittleEndian32(vi4);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 13 swaps 3 any 0 found 0 getUInt32
+ 
+ method setInt16(II)V {
+  +START:   #1
+        vi3 = (vi1/vR0.elementSize);    
+        vi4 = (vi1%vR0.elementSize);    
+        vR5 = vR0.get@special(vi3);    [ii   iR] 
+        vR6 = vR5.getData();    [iiR   R.] 
+        vR5.setDirty();   [iiRR   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 setInt16
+ 
+ method setInt32(II)V {
+  +START:   #1
+        vi3 = (vi1/vR0.elementSize);    
+        vi4 = (vi1%vR0.elementSize);    
+        vR5 = vR0.get@special(vi3);    [ii   iR] 
+        vR6 = vR5.getData();    [iiR   R.] 
+        vR5.setDirty();   [iiRR   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 setInt32
+ 
+ method flush(I)V {
+  +START:   #1
+        vR2 = vR0.map.get(vi1);    [   iR] 
+        if vR2==null goto B17;   
+  +B13:   #1
+        vR2.flush();   [R   R.] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 flush
+ 
+ method flush()V {
+  +START:   #1
+        vR1 = vR0.map.values().iterator();    [  . R] [  R R] 
+  +B13:   #1
+        if vR1.hasNext()==0 goto B39;   
+  +B22:   #1
+        vR2 = (org/jnode/fs/jfat/CacheElement)(vR1.next());    
+        vR2.flush();   [RR  . R.] 
+        goto +B13;   [RR  . ..]
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 flush
+ 
+ method getHit()J {
+  +START:   #1
+        return vR0.hit;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getHit
+ 
+ method getAccess()J {
+  +START:   #1
+        return vR0.access;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAccess
+ 
+ method getRatio()D {
+  +START:   #1
+        if compare(vR0.access,0)<=0 goto B21;   
+  +B9:   #1
+        return ((double)vR0.hit/(double)vR0.access);   
+  +B21:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRatio
+ 
+ method flushOrder()Ljava/lang/String; {
+  +START:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flushOrder
+ 
+ method syncDevice(Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 syncDevice
+ 
+ method flushCache()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flushCache
+ 
+ method showBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 showBuffers
+ 
+ method bread(I)Ljx/fs/buffer/BufferHead; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bread
+ 
+ method getblk(I)Ljx/fs/buffer/BufferHead; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getblk
+ 
+ method bdwrite(Ljx/fs/buffer/BufferHead;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 bdwrite
+ 
+ method brelse(Ljx/fs/buffer/BufferHead;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 brelse
+}

@@ -1,0 +1,155 @@
+class org/jnode/driver/bus/usb/uhci/Schedule {
+ 
+ method <init>(Ljx/zero/MemoryManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new org/jnode/driver/bus/usb/uhci/FrameList(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.frameList = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int128QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int64QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int32QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int16QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int8QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int4QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int2QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.int1QH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.lowSpeedControlQH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.highSpeedControlQH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.bulkQH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.termQH = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/TransferDescriptor(vR1,127,0,105,1,0,0,0,0,0,0);    [ ?R . i..][ ?R . iiiiiiRiiiiRR]
+        vR0.termTD = b1;   
+        vR0.int128QH.setLink@extra(vR0.int64QH);   [ ?R i RR...........] 
+        vR0.int64QH.setLink@extra(vR0.int32QH);   [ ?R ii RR...........] 
+        vR0.int32QH.setLink@extra(vR0.int16QH);   [ ?R iii RR...........] 
+        vR0.int16QH.setLink@extra(vR0.int8QH);   [ ?R iiii RR...........] 
+        vR0.int8QH.setLink@extra(vR0.int4QH);   [ ?R iiiii RR...........] 
+        vR0.int4QH.setLink@extra(vR0.int2QH);   [ ?R iiiiii RR...........] 
+        vR0.int2QH.setLink@extra(vR0.int1QH);   [ ?R iiiiiii RR...........] 
+        vR0.int1QH.setLink@extra(vR0.lowSpeedControlQH);   [ ?R iiiiiiii RR...........] 
+        vR0.lowSpeedControlQH.setLink@extra(vR0.highSpeedControlQH);   [ ?R iiiiiiiii RR...........] 
+        vR0.highSpeedControlQH.setLink@extra(vR0.bulkQH);   [ ?R iiiiiiiiii RR...........] 
+        vR0.bulkQH.setLink@extra(vR0.termQH);   [ ?R iiiiiiiiiii RR...........] 
+        vR0.termQH.setLink@extra(vR0.highSpeedControlQH);   [ ?R iiiiiiiiiiii RR...........] 
+        vR0.termQH.setElement@extra(vR0.termTD);   [ ?R iiiiiiiiiiiii RR...........] 
+        vR0.termTD.setActive@extra(0);   [ ?R iiiiiiiiiiiii iR...........] 
+        vi2 = vR0.frameList.getSize@extra();    [ ?R iiiiiiiiiiiii R............] 
+        vi3 = 0;    
+  +B345:   #1
+        if vi3>=vi2 goto B461;   
+  +B350:   #1
+        vR4 = vR0.int1QH;    
+        if (vi3 & 1)==0 goto B444;   
+  +B362:   #1
+        vR4 = vR0.int2QH;    
+        if (vi3 & 2)==0 goto B444;   
+  +B374:   #1
+        vR4 = vR0.int4QH;    
+        if (vi3 & 4)==0 goto B444;   
+  +B386:   #1
+        vR4 = vR0.int8QH;    
+        if (vi3 & 8)==0 goto B444;   
+  +B399:   #1
+        vR4 = vR0.int16QH;    
+        if (vi3 & 16)==0 goto B444;   
+  +B412:   #1
+        vR4 = vR0.int32QH;    
+        if (vi3 & 32)==0 goto B444;   
+  +B425:   #1
+        vR4 = vR0.int64QH;    
+        if (vi3 & 64)==0 goto B444;   
+  +B438:   #1
+        vR4 = vR0.int128QH;    
+  +B444:   #7
+        vR0.frameList.setListPointer@extra(vi3,vR4,1);   [iiR ?R ............. iRiR.........] 
+        vi3++;   
+        goto +B345;   [iiR ?R ............. .............]
+  +B461:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 104/104 wr 52 swaps 13 any 9 found 0 <init>
+ 
+ method getFrameList()Lorg/jnode/driver/bus/usb/uhci/FrameList; {
+  +START:   #1
+        return vR0.frameList;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrameList
+ 
+ method getInterruptQH(I)Lorg/jnode/driver/bus/usb/uhci/QueueHead; {
+  +START:   #1
+        if vi1>=16 goto B42;   
+  +B6:   #1
+        if vi1>=4 goto B26;   
+  +B11:   #1
+        if vi1>=2 goto B21;   
+  +B16:   #1
+        return vR0.int1QH;   
+  +B21:   #1
+        return vR0.int2QH;   
+  +B26:   #1
+        if vi1>=8 goto B37;   
+  +B32:   #1
+        return vR0.int4QH;   
+  +B37:   #1
+        return vR0.int8QH;   
+  +B42:   #1
+        if vi1>=64 goto B64;   
+  +B48:   #1
+        if vi1>=32 goto B59;   
+  +B54:   #1
+        return vR0.int16QH;   
+  +B59:   #1
+        return vR0.int32QH;   
+  +B64:   #1
+        if vi1>=128 goto B76;   
+  +B71:   #1
+        return vR0.int64QH;   
+  +B76:   #1
+        return vR0.int128QH;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 0 swaps 0 any 7 found 0 getInterruptQH
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Schedule{lowQH:").append@extra(vR0.lowSpeedControlQH).append@extra(", highQH:").append@extra(vR0.highSpeedControlQH).append@extra(125).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 10 swaps 4 any 0 found 0 toString
+ 
+ method getBulkQH()Lorg/jnode/driver/bus/usb/uhci/QueueHead; {
+  +START:   #1
+        return vR0.bulkQH;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBulkQH
+ 
+ method getHighSpeedControlQH()Lorg/jnode/driver/bus/usb/uhci/QueueHead; {
+  +START:   #1
+        return vR0.highSpeedControlQH;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHighSpeedControlQH
+ 
+ method getLowSpeedControlQH()Lorg/jnode/driver/bus/usb/uhci/QueueHead; {
+  +START:   #1
+        return vR0.lowSpeedControlQH;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLowSpeedControlQH
+}

@@ -1,0 +1,242 @@
+class test/fs/Main {
+ 
+ method dotest(Ljx/fs/FS;)V {
+  +START:   #1
+        vR0.iozoneTest@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dotest
+ 
+ method <init>(Ljx/zero/Naming;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,"FS");   [  i RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Naming;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        vR0.BUFFERCACHE_NUMBER_FSBLOCKS = 1024;   
+        vR0.BUFFERCACHE_MAXNUMBER_FSBLOCKS = 1024;   
+        vR0.BUFFERCACHE_INCNUMBER_FSBLOCKS = 0;   
+        vR3 = 0;    
+        dm = (jx/zero/DomainManager)(vR1.lookup("DomainManager"));   
+        if singleDomain==0 goto B53;   
+  -B45:   #1
+        throw new java/lang/Error();   
+  +B53:   #1
+        vR4 = (jx/fs/FS)(waitUntilPortalAvailable@special(vR1,vR2));    
+        vR0.dotest@this(vR4);   [RR R .. RR] 
+        vR3 = (jx/fs/FileSystem)(vR1.lookup("JavaFS"));    
+        if vR3==null goto B91;   
+  +B85:   #1
+        vR3.release();   [RR R .. R.] 
+  +B91:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 2 any 1 found 0 <init>
+ 
+ method iozoneTest(Ljx/fs/FS;)Z {
+  +START:   #1
+        out.println("starting IOZONE");   [ R i. RR] 
+        vR2 = new jx/iozone/IOZONE(vR1,IOZONE_MIN_FILESIZE,IOZONE_MAX_FILESIZE,IOZONE_MIN_RECSIZE,IOZONE_MAX_RECSIZE);    [ R i. i.][ R i. iiiiiRR]
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 4 swaps 1 any 0 found 0 iozoneTest
+ 
+ method fsckTest()Z {
+  +START:   #1
+        vR1 = (jx/fs/FS)(naming.lookup("FS"));    
+        vR2 = (jx/devices/bio/BlockIO)(naming.lookup("IDE"));    
+        vR3 = new jx/fs/javafs/FileSystem();    [ RRR ii. i.][ RRR ii. iR]
+        vR4 = new test/fs/DummyClock();    [ RRR ii. i.][ RRR ii. iR]
+        b2 = new jx/bio/buffercache/BufferCache(vR2,vR4,500,1000,100,1024);    [ RRR ii. i.][ RRR ii. iiiiiRRR]
+        vR3.init(vR2,b2,vR4);   [RRRR RRR ii. RRRR....] 
+        naming.registerPortal(vR3,"JavaFS");   [RRRR RRR iii. RRR.....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iii. i.......][ RRR iii. iR......]
+        b0.println(b1.append@extra("Kapazitaet: ").append@extra(vR2.getCapacity()).toString@extra());   [RRRR RRR iiiiii. RR......] 
+        vR5 = vR3;    
+        vR5.build("TestFS",1024);   [RRRRR RRR iiiiiii iRR.....] 
+        vR1.mountRoot(vR5,0);   [RRRRR RRR iiiiiii iRR.....] 
+        vR1.mkdir("lost+found",493);   [RRRRR RRR iiiiiiii iRR.....] 
+        vR1.mkdir("d1",493);   [RRRRR RRR iiiiiiiii iRR.....] 
+        vR1.mkdir("d2",493);   [RRRRR RRR iiiiiiiiii iRR.....] 
+        vR1.mkdir("d3",493);   [RRRRR RRR iiiiiiiiiii iRR.....] 
+        vR1.create("iozone.tmp",420);   [RRRRR RRR iiiiiiiiiiii iRR.....] 
+        vR6 = (jx/fs/InodeImpl)(vR1.lookup("iozone.tmp"));    
+        vR7 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR8 = vR7.alloc(376832);    [RRRRRRR RRR iiiiiiiiiiiiii. iR......] 
+        vi9 = 0;    
+  +B237:   #1
+        if vi9>=vR8.size() goto B271;   
+  +B249:   #1
+        vR8.set8(vi9,(byte)(vi9 & 255));   [RRRRRRRRi RRR i.............. iiR.....] 
+        vi9++;   
+        goto +B237;   [RRRRRRRRi RRR i.............. ........]
+  +B271:   #1
+        vi9 = 4096;    
+        vi10 = (vR8.size()/vi9);    
+        vi11 = 0;    
+  +B291:   #1
+        if vi11>=2 goto B334;   
+  +B297:   #1
+        vi12 = 0;    
+  +B300:   #1
+        if vi12>=vi10 goto B328;   
+  +B307:   #1
+        vR6.write(vR8,(vi12*vi9),vi9);   [RRRRRRRRiiii RRR i.............. iiRR....] 
+        vi12++;   
+        goto +B300;   [RRRRRRRRiiii RRR i.............. ........]
+  +B328:   #1
+        vi11++;   
+        goto +B291;   [RRRRRRRRiiii RRR ............... ........]
+  +B334:   #1
+        vi11 = 0;    
+  +B337:   #1
+        if vi11>=2 goto B380;   
+  +B343:   #1
+        vi12 = 0;    
+  +B346:   #1
+        if vi12>=vi10 goto B374;   
+  +B353:   #1
+        vR6.read(vR8,(vi12*vi9),vi9);   [RRRRRRRRiiii RRR i.............. iiRR....] 
+        vi12++;   
+        goto +B346;   [RRRRRRRRiiii RRR i.............. ........]
+  +B374:   #1
+        vi11++;   
+        goto +B337;   [RRRRRRRRiiii RRR ............... ........]
+  +B380:   #1
+        vR6.decUseCount();   [RRRRRRRRiiii RRR ............... R.......] 
+        vR3.release();   [RRRRRRRRiiii RRR ............... R.......] 
+        out.println("*** CHECKING FILESYSTEM ***");   [RRRRRRRRiiii RRR i.............. RR......] 
+        vR3.check();   [RRRRRRRRiiii RRR i.............. R.......] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 50/50 wr 52 swaps 18 any 11 found 2 fsckTest
+ 
+ method rereadTest(Ljx/fs/FS;)Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 rereadTest
+ 
+ method fileTreeWalkTest()V {
+  +START:   #1
+        vR1 = (jx/fs/FS)(naming.lookup("FS"));    
+        vR2 = (jx/zero/BootFS)(naming.lookup("BootFS"));    
+        vR3 = vR2.getReadWriteFile("diskImage.ext2");    [RR RRR iii RR] 
+        out.println("DISKIMAGE:");   [RRR RRR iiii. RR] 
+        xdump1@special(vR3,0,256);   [RRR RRR iiii. iiR]
+        vR4 = new jx/bio/ram/BlockIORAM(vR3);    [ RRR iiii. i..][ RRR iiii. iRR]
+        vR5 = new jx/fs/javafs/FileSystem();    [ RRR iiii. i..][ RRR iiii. iR.]
+        vR6 = new test/fs/DummyClock();    [ RRR iiii. i..][ RRR iiii. iR.]
+        b2 = new jx/bio/buffercache/BufferCache(vR4,vR6,500,1000,100,1024);    [ RRR iiii. i..][ RRR iiii. iiiiiRRR]
+        vR5.init(vR4,b2,vR6);   [RRRRRR RRR iiii. RRRR....] 
+        vR5.init(0);   [RRRRRR RRR iiii. iR......] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR iiii. i.......][ RRR iiii. iR......]
+        b0.println(b1.append@extra("Kapazitaet: ").append@extra(vR4.getCapacity()).toString@extra());   [RRRRRR RRR iiiiiii. RR......] 
+        vR7 = vR5;    
+        vR1.mountRoot(vR7,0);   [RRRRRRR RRR iiiiiii. iRR.....] 
+        vR0.printDir@special(" ",vR1.getCwdNode());   [RRRRRRR RRR iiiiiiiiR RRR.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 29 swaps 8 any 1 found 0 fileTreeWalkTest
+ 
+ method printDir(Ljava/lang/String;Ljx/fs/Node;)V {
+  +START:   #1
+        vR4 = vR2.readdirNames();    [ RR  R] 
+        vR5 = vR4;    
+        vi6 = vR5.length;    
+        vi7 = 0;    
+  +B20:   #1
+        if vi7>=vi6 goto B225;   
+  +B27:   #1
+        vR8 = vR5[vi7];    
+        vR3 = vR2.lookup(vR8);    [?RRiiR RR  RR] 
+        out.print(vR1);   [RRRiiR RR . RR] 
+        if vR3.isDirectory()==0 goto B71;   
+  +B59:   #1
+        out.print(" D");   [RRRiiR RR i. RR] 
+        goto +B110;   [RRRiiR RR i. ..]
+  +B71:   #1
+        if vR3.isFile()==0 goto B92;   
+  +B80:   #1
+        out.print(" F");   [RRRiiR RR i. RR] 
+        goto +B110;   [RRRiiR RR i. ..]
+  +B92:   #1
+        if vR3.isSymlink()==0 goto B110;   
+  +B101:   #1
+        out.print(" L");   [RRRiiR RR i. RR] 
+  +B110:   #3
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.print(b1.append@extra(" ").append@extra(vR3.getLength()).toString@extra());   [RRRiiR RR iii. RR.] 
+        vR3.decUseCount();   [RRRiiR RR iii. R..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        b0.print(b1.append@extra("  		").append@extra(vR8).toString@extra());   [RRRiiR RR iiiii. RR.] 
+        if vR3.isSymlink()==0 goto B213;   
+  +B182:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i..][ RR ...... iR.]
+        b0.print(b1.append@extra(" -> ").append@extra(vR3.getSymlink()).toString@extra());   [RRRiiR RR iii... RR.] 
+  +B213:   #1
+        out.println();   [RRRiiR RR ...... R..] 
+        vi7++;   
+        goto +B20;   [RRRiiR RR ...... ...]
+  +B225:   #1
+        vR5 = vR4;    
+        vi6 = vR5.length;    
+        vi7 = 0;    
+  +B237:   #1
+        if vi7>=vi6 goto B385;   
+  +B244:   #1
+        vR8 = vR5[vi7];    
+        vR3 = vR2.lookup(vR8);    [RRRiiR RR ...... RR.] 
+        if vR8.equals@extra(".")!=0 goto B373;   
+  +B271:   #1
+        if vR8.equals@extra("..")!=0 goto B373;   
+  +B282:   #1
+        if vR3.isDirectory()==0 goto B373;   
+  +B291:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i..][ RR ...... iR.]
+        b0.println(b1.append@extra(vR1).append@extra("-------------").toString@extra());   [RRRiiR RR ii.... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii.... i..][ RR ii.... iR.]
+        b0.println(b1.append@extra(vR1).append@extra(vR8).append@extra(":").toString@extra());   [RRRiiR RR iiii.. RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR iiii.. i...][ RR iiii.. iR..]
+        vR0.printDir@special(b1.append@extra(vR1).append@extra("  ").toString@extra(),vR3);   [RRRiiR RR iiiiii. RRR.] 
+  +B373:   #3
+        vR3.decUseCount();   [RRRiiR RR ....... R...] 
+        vi7++;   
+        goto +B237;   [RRRiiR RR ....... ....]
+  +B385:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 61 swaps 19 any 6 found 0 printDir
+ 
+ method <clinit>()V {
+  +START:   #1
+        useRAM = 0;   
+        singleDomain = 0;   
+        IOZONE_MAX_FILESIZE = 8192;   
+        IOZONE_MIN_FILESIZE = 4;   
+        IOZONE_MIN_RECSIZE = 4096;   
+        IOZONE_MAX_RECSIZE = 16777216;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 6 swaps 0 any 0 found 0 <clinit>
+}

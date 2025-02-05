@@ -1,0 +1,59 @@
+class java/awt/event/WindowAdapter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method windowActivated(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowActivated
+ 
+ method windowDeactivated(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowDeactivated
+ 
+ method windowOpened(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowOpened
+ 
+ method windowClosing(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowClosing
+ 
+ method windowClosed(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowClosed
+ 
+ method windowIconified(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowIconified
+ 
+ method windowDeiconified(Ljava/awt/event/WindowEvent;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowDeiconified
+}

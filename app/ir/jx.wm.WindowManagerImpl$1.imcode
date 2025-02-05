@@ -1,0 +1,20 @@
+class jx/wm/WindowManagerImpl$1 {
+ 
+ method <init>(Ljx/wm/WindowManagerImpl;I)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$n = vi2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        vR0.this$0.plugins[vR0.val$n].keyPressed();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 run
+}

@@ -1,0 +1,73 @@
+class org/jnode/fs/ntfs/UsnJournalEntry$Reason {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method register(JLjava/lang/String;)J {
+  +START:   #1
+        reasonMap.put(valueOf@special(vl0),vR2);   [R  i. RRR] 
+        return vl0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 register
+ 
+ method lookupReasons(J)Ljava/util/List; {
+  +START:   #1
+        vR2 = new java/util/ArrayList();    [ RR  i][ RR  iR]
+        vR3 = reasonMap.entrySet().iterator();    [?R RR .. R.] [?R RR R. R.] 
+  +B22:   #1
+        if vR3.hasNext()==0 goto B98;   
+  +B31:   #1
+        vR4 = (java/util/Map$Entry)(vR3.next());    
+        if compare((vl0 & (java/lang/Long)(vR4.getKey()).longValue@extra()),0)==0 goto B95;   
+  +B62:   #1
+        vR2.add((java/lang/String)(vR4.getValue()));   [?RRR RR i. RR] 
+        vl0 = (vl0-(java/lang/Long)(vR4.getKey()).longValue@extra());    
+  +B95:   #1
+        goto +B22;   [?RRR RR .. ..]
+  +B98:   #1
+        if compare(vl0,0)==0 goto B133;   
+  +B104:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        vR2.add(b1.append@extra("unknown-x").append@extra(toHexString@special(vl0)).toString@extra());   [?RRR RR iii. RR.] 
+  +B133:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 14 swaps 4 any 0 found 0 lookupReasons
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/HashMap();    [ R  i][ R  iR]
+        reasonMap = b0;   
+        DATA_WRITE = register@special(1,"data-write");   
+        FS_ENTRY_ADDED = register@special(2,"fs-entry-added");   
+        FS_ENTRY_TRUNCATED = register@special(4,"fs-entry-truncated");   
+        DATA_WRITE_ALT = register@special(16,"data-write-alt");   
+        DATA_APPEND = register@special(32,"data-append");   
+        DATA_TRUNCATED = register@special(64,"data-truncated");   
+        FS_ENTRY_CREATED = register@special(256,"fs-entry-created");   
+        FS_ENTRY_DELETED = register@special(512,"fs-entry-deleted");   
+        FS_ENTRY_EX_ATTR_CHANGED = register@special(1024,"fs-entry-ex-attr-changed");   
+        FS_ENTRY_ACCESS_CHANGED = register@special(2048,"fs-entry-access-changed");   
+        FS_ENTRY_RENAMED_OLD = register@special(4096,"fs-entry-rename-old");   
+        FS_ENTRY_RENAMED_NEW = register@special(8192,"fs-entry-rename-new");   
+        FS_ENTRY_INDEXING_CHANGED = register@special(16384,"fs-entry-indexing-changed");   
+        FS_ENTRY_ATTR_CHANGED = register@special(32768,"fs-entry-attr-changed");   
+        HARD_LINK_REMOVED = register@special(65536,"hard-link-removed");   
+        FS_ENTRY_COMPRESSION_CHANGED = register@special(131072,"fs-entry-compression-changed");   
+        FS_ENTRY_ENCRYPTION_CHANGED = register@special(262144,"fs-entry-encryption-changed");   
+        FS_ENTRY_OBJ_IDENTIFIER_CHANGED = register@special(524288,"fs-entry-obj-identifier-changed");   
+        REPARSE_POINT_ALTERED = register@special(1048576,"reparse-point-altered");   
+        DATA_STREAM_ALTERED = register@special(2097152,"data-stream-altered");   
+        FS_ENTRY_CLOSED = register@special(2147483648,"fs-entry-closed");   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

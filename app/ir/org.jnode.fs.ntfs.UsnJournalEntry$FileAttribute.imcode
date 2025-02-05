@@ -1,0 +1,67 @@
+class org/jnode/fs/ntfs/UsnJournalEntry$FileAttribute {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method register(JLjava/lang/String;)J {
+  +START:   #1
+        attributeMap.put(valueOf@special(vl0),vR2);   [R  i. RRR] 
+        return vl0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 register
+ 
+ method lookupAttributes(J)Ljava/util/List; {
+  +START:   #1
+        vR2 = new java/util/ArrayList();    [ RR  i][ RR  iR]
+        vR3 = attributeMap.entrySet().iterator();    [?R RR .. R.] [?R RR R. R.] 
+  +B22:   #1
+        if vR3.hasNext()==0 goto B98;   
+  +B31:   #1
+        vR4 = (java/util/Map$Entry)(vR3.next());    
+        if compare((vl0 & (java/lang/Long)(vR4.getKey()).longValue@extra()),0)==0 goto B95;   
+  +B62:   #1
+        vR2.add((java/lang/String)(vR4.getValue()));   [?RRR RR i. RR] 
+        vl0 = (vl0-(java/lang/Long)(vR4.getKey()).longValue@extra());    
+  +B95:   #1
+        goto +B22;   [?RRR RR .. ..]
+  +B98:   #1
+        if compare(vl0,0)==0 goto B133;   
+  +B104:   #1
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        vR2.add(b1.append@extra("unknown-x").append@extra(toHexString@special(vl0)).toString@extra());   [?RRR RR iii. RR.] 
+  +B133:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 14 swaps 4 any 0 found 0 lookupAttributes
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/LinkedHashMap();    [ R  i][ R  iR]
+        attributeMap = b0;   
+        READONLY = register@special(1,"read-only");   
+        HIDDEN = register@special(2,"hidden");   
+        SYSTEM = register@special(4,"system");   
+        DIRECTORY = register@special(16,"directory");   
+        ARCHIVE = register@special(32,"archive");   
+        DEVICE = register@special(64,"device");   
+        NORMAL = register@special(128,"normal");   
+        TEMPORARY = register@special(256,"temporary");   
+        SPARSE = register@special(512,"sparse");   
+        REPARSE_POINT = register@special(1024,"reparse-point");   
+        COMPRESSED = register@special(2048,"compressed");   
+        OFFLINE = register@special(4096,"offline");   
+        NOT_INDEXED = register@special(8192,"not-indexed");   
+        VIRTUAL = register@special(65536,"virtual");   
+        ENCRYPTED = register@special(16383,"encrypted");   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

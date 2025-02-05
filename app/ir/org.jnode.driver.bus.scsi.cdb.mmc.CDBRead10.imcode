@@ -1,0 +1,19 @@
+class org/jnode/driver/bus/scsi/cdb/mmc/CDBRead10 {
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special(10,40);   [   iiR] 
+        vR0.setInt32@this(2,vi1);   [   iiR] 
+        vR0.setInt16@this(7,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getDataTransfertCount()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDataTransfertCount
+}

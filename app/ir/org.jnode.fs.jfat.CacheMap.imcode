@@ -1,0 +1,124 @@
+class org/jnode/fs/jfat/CacheMap {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special(11);   [ RR  iR] 
+        b1 = new org/jnode/fs/jfat/CacheKey();    [ RR  i.][ RR  iR]
+        vR0.key = b1;   
+        b1 = new java/util/Stack();    [ RR  i.][ RR  iR]
+        vR0.free = b1;   
+        vR0.cacheSize = vi1;   
+        vi2 = 0;    
+  +B35:   #1
+        if vi2>=(vi1+1) goto B63;   
+  +B42:   #1
+        b0 = vR0.free;    
+        b1 = new org/jnode/fs/jfat/CacheElement();    [ RR  i.][ RR  iR]
+        b0.push(b1);   [i RR  RR] 
+        vi2++;   
+        goto +B35;   [i RR  ..]
+  +B63:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 2 found 0 <init>
+ 
+ method <init>(ILjx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR0.<init>@special(11);   [ RR  iR] 
+        b1 = new org/jnode/fs/jfat/CacheKey();    [ RR  i.][ RR  iR]
+        vR0.key = b1;   
+        b1 = new java/util/Stack();    [ RR  i.][ RR  iR]
+        vR0.free = b1;   
+        vR0.cacheSize = vi1;   
+        vi3 = 0;    
+  +B35:   #1
+        if vi3>=(vi1+1) goto B63;   
+  +B42:   #1
+        b0 = vR0.free;    
+        b1 = new org/jnode/fs/jfat/CacheElement();    [ RR  i.][ RR  iR]
+        b0.push(b1);   [i RR  RR] 
+        vi3++;   
+        goto +B35;   [i RR  ..]
+  +B63:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 2 found 0 <init>
+ 
+ method getCacheSize()I {
+  +START:   #1
+        return vR0.cacheSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCacheSize
+ 
+ method usedEntries()I {
+  +START:   #1
+        return vR0.size@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 usedEntries
+ 
+ method freeEntries()I {
+  +START:   #1
+        return (vR0.free.size()-1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 freeEntries
+ 
+ method peek()Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        return (org/jnode/fs/jfat/CacheElement)(vR0.free.peek());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 peek
+ 
+ method push(Lorg/jnode/fs/jfat/CacheElement;)Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        return (org/jnode/fs/jfat/CacheElement)(vR0.free.push(vR1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 push
+ 
+ method pop()Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        return (org/jnode/fs/jfat/CacheElement)(vR0.free.pop());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 pop
+ 
+ method get(I)Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        vR0.key.set(vi1);   [   iR] 
+        return (org/jnode/fs/jfat/CacheElement)(vR0.get@this(vR0.key));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 get
+ 
+ method put(Lorg/jnode/fs/jfat/CacheElement;)Lorg/jnode/fs/jfat/CacheElement; {
+  +START:   #1
+        return (org/jnode/fs/jfat/CacheElement)(vR0.put@this(vR1.getAddress(),vR1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 put
+ 
+ method removeEldestEntry(Ljava/util/Map$Entry;)Z {
+  +START:   #1
+        if vR0.size@this()<=vR0.cacheSize goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   [ i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        vi2 = b0;    
+        if vi2==0 goto B35;   
+  +B21:   #1
+        vR0.push@special((org/jnode/fs/jfat/CacheElement)(vR1.getValue()));   [i i i RR] 
+  +B35:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 2 found 0 removeEldestEntry
+}

@@ -1,0 +1,26 @@
+class jx/wm/message/WMessage {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nCode = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCode()I {
+  +START:   #1
+        return vR0.m_nCode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCode
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("MSG(").append@extra(vR0.m_nCode).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 7 swaps 3 any 0 found 0 toString
+}

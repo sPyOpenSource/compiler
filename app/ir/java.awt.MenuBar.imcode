@@ -1,0 +1,186 @@
+class java/awt/MenuBar {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.menus = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getHelpMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return vR0.helpMenu;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHelpMenu
+ 
+ method setHelpMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        if vR0.helpMenu==null goto B22;   
+  +B7:   #1
+        vR0.helpMenu.removeNotify();   [   R] 
+        vR0.helpMenu.parent = 0;   
+  +B22:   #1
+        if vR1.parent==null goto B39;   
+  +B29:   #1
+        vR1.parent.remove(vR1);   [   RR] 
+  +B39:   #1
+        vR1.parent = vR0;   
+        vR0.helpMenu = vR1;   
+        if vR0.peer==null goto B71;   
+  +B56:   #1
+        vR2 = (java/awt/peer/MenuBarPeer)(vR0.peer);    
+        vR2.addHelpMenu(vR1);   [R  . RR] 
+  +B71:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 0 any 0 found 0 setHelpMenu
+ 
+ method add(Ljava/awt/Menu;)Ljava/awt/Menu; {
+  +START:   #1
+        if vR1.parent==null goto B17;   
+  +B7:   #1
+        vR1.parent.remove(vR1);   [   RR] 
+  +B17:   #1
+        vR1.parent = vR0;   
+        vR0.menus.addElement@extra(vR1);   [   RR] 
+        if vR0.peer==null goto B52;   
+  +B37:   #1
+        vR2 = (java/awt/peer/MenuBarPeer)(vR0.peer);    
+        vR2.addMenu(vR1);   [R  . RR] 
+  +B52:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 0 found 0 add
+ 
+ method remove(I)V {
+  +START:   #1
+        vR2 = 0;    
+        vR0.menus.remove(vi1);   [R   iR] 
+        vR2.removeNotify();   [R   R.] 
+        vR2.parent = 0;   
+        if vR0.peer==null goto B42;   
+  +B27:   #1
+        vR3 = (java/awt/peer/MenuBarPeer)(vR0.peer);    
+        vR3.delMenu(vi1);   [RR  . iR] 
+  +B42:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 remove
+ 
+ method remove(Ljava/awt/MenuComponent;)V {
+  +START:   #1
+        vi2 = vR0.menus.indexOf@extra(vR1);    [   RR] 
+        if vi2!=-1 goto B15;   
+  +B14:   #1
+        return;   
+  +B15:   #1
+        vR0.remove@this(vi2);   [i   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 remove
+ 
+ method getMenuCount()I {
+  +START:   #1
+        return vR0.menus.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMenuCount
+ 
+ method countMenus()I {
+  +START:   #1
+        return vR0.getMenuCount@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 countMenus
+ 
+ method getMenu(I)Ljava/awt/Menu; {
+  +START:   #1
+        return (java/awt/Menu)(vR0.menus.elementAt(vi1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getMenu
+ 
+ method addNotify()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method removeNotify()V {
+  +START:   #1
+        vR0.removeNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeNotify
+ 
+ method shortcuts()Ljava/util/Enumeration; {
+  +START:   #1
+        vR1 = new java/util/Vector();    [ R  i][ R  iR]
+        vR2 = vR0.menus.elements@extra();    [R R  R.] 
+  +B16:   #1
+        if vR2.hasMoreElements()==0 goto B53;   
+  +B25:   #1
+        vR3 = (java/awt/Menu)(vR2.nextElement());    
+        if vR3.getShortcut()==null goto B50;   
+  +B42:   #1
+        vR1.addElement@extra(vR3.getShortcut());   [RRR R i RR] 
+  +B50:   #1
+        goto +B16;   [RRR R . ..]
+  +B53:   #1
+        return vR1.elements@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 1 any 0 found 0 shortcuts
+ 
+ method getShortcutMenuItem(Ljava/awt/MenuShortcut;)Ljava/awt/MenuItem; {
+  +START:   #1
+        vR2 = vR0.menus.elements@extra();    [   R] 
+  +B8:   #1
+        if vR2.hasMoreElements()==0 goto B52;   
+  +B17:   #1
+        vR3 = (java/awt/Menu)(vR2.nextElement());    
+        vR4 = vR3.getShortcut();    [RR  . R.] 
+        if vR4==null goto B49;   
+  +B38:   #1
+        if vR4.equals(vR1)==0 goto B49;   
+  +B47:   #1
+        return vR3;   
+  +B49:   #2
+        goto +B8;   [RRR  . ..]
+  +B52:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 1 found 0 getShortcutMenuItem
+ 
+ method deleteShortcut(Ljava/awt/MenuShortcut;)V {
+  +START:   #2
+        b0 = vR0.getShortcutMenuItem@this(vR1);    [ R  RR] 
+        vR2 = b0;    
+        if b0==null goto B17;   
+  +B10:   #1
+        vR2.deleteShortcut();   [R R  R.] 
+        goto +START;   [R R  ..]
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 2 found 0 deleteShortcut
+ 
+ method getFont()Ljava/awt/Font; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFont
+}

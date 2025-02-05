@@ -1,0 +1,506 @@
+class jx/wm/WBitmap {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new jx/devices/fb/ColorSpace();    [ ?R  i][ ?R  iR]
+        vR0.m_eColorSpace = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method createWBitmap(IILjx/devices/fb/ColorSpace;)Ljx/wm/WBitmap; {
+  +START:   #1
+        return createWBitmap@special(vi0,vi1,vR2,-1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 createWBitmap
+ 
+ method createWBitmap(IILjx/devices/fb/ColorSpace;I)Ljx/wm/WBitmap; {
+  +START:   #1
+        tswitch (vR2.getValue()) B71 B94 B94 B60 B94 B94 B82 B94 B94 B94 : B94;   
+  +B60:   #1
+        return new jx/wm/bitmap/WBitmapRGB16Memory(vi0,vi1,vi3);   
+  +B71:   #1
+        return new jx/wm/bitmap/WBitmapRGB32Memory(vi0,vi1,vi3);   
+  +B82:   #1
+        return new jx/wm/bitmap/WBitmapCMAP8Memory(vi0,vi1,vR2,vi3);   
+  +B94:   #8
+        return new jx/wm/bitmap/WBitmapOrg(vi0,vi1,vR2,vi3);   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 4 swaps 0 any 0 found 0 createWBitmap
+ 
+ method createWBitmap(Ljx/devices/fb/FramebufferDevice;IILjx/devices/fb/ColorSpace;ILjx/zero/Memory;I)Ljx/wm/WBitmap; {
+  +START:   #1
+        tswitch (vR3.getValue()) B77 B112 B112 B60 B112 B112 B94 B112 B112 B112 : B112;   
+  +B60:   #1
+        return new jx/wm/bitmap/WBitmapRGB16Memory(vR0,vi1,vi2,vi4,vR5,vi6);   
+  +B77:   #1
+        return new jx/wm/bitmap/WBitmapRGB32Memory(vR0,vi1,vi2,vi4,vR5,vi6);   
+  +B94:   #1
+        return new jx/wm/bitmap/WBitmapCMAP8Memory(vR0,vi1,vi2,vR3,vi4,vR5,vi6);   
+  +B112:   #8
+        return new jx/wm/bitmap/WBitmapOrg(vR0,vi1,vi2,vR3,vi4,vR5,vi6);   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 4 swaps 0 any 0 found 0 createWBitmap
+ 
+ method IsVideoMemory()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 IsVideoMemory
+ 
+ method isMemory()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isMemory
+ 
+ method castMemory()Ljx/wm/bitmap/WBitmapMemory; {
+  -START:   #1
+        throw new java/lang/Error();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 castMemory
+ 
+ method bounds()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cBounds;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bounds
+ 
+ method getBounds()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        if vR0.m_cBounds!=null goto B32;   
+  +B7:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra(vR0).append@extra(": m_cBounds==null").toString@extra());   [ RR ii. RR.] 
+  +B32:   #1
+        return vR0.m_cBounds;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 6 swaps 2 any 0 found 0 getBounds
+ 
+ method width()I {
+  +START:   #1
+        return vR0.m_nWidth;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 width
+ 
+ method height()I {
+  +START:   #1
+        return vR0.m_nHeight;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 height
+ 
+ method getWidth()I {
+  +START:   #1
+        return vR0.m_nWidth;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()I {
+  +START:   #1
+        return vR0.m_nHeight;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method getColorSpace()Ljx/devices/fb/ColorSpace; {
+  +START:   #1
+        return vR0.m_eColorSpace;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColorSpace
+ 
+ method bytesPerLine()I {
+  +START:   #1
+        return vR0.m_nBytesPerLine;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bytesPerLine
+ 
+ method set8(IB)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set8
+ 
+ method get8(I)B {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 get8
+ 
+ method set16(IS)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set16
+ 
+ method get16(I)S {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 get16
+ 
+ method set32(II)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set32
+ 
+ method get32(I)I {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 get32
+ 
+ method fill16(IIS)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill16
+ 
+ method fill32(III)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 fill32
+ 
+ method drawRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR1);    [ R  i][ R . iRR]
+        vR5 = new jx/devices/fb/PixelRect(vR1);    [ R . i..][ R . iRR]
+        vR5.m_nX1 = vR1.m_nX0;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nY1 = vR1.m_nY0;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nY0 = vR1.m_nY1;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        vR5.setTo@extra(vR1);   [RR R . RR...] 
+        vR5.m_nX0 = vR1.m_nX1;   
+        vR0.drawLine@this(vR5,vR4,vR2,vR3);   [RR R . RRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 4 swaps 0 any 0 found 0 drawRect
+ 
+ method abs(I)I {
+  +START:   #1
+        if vi0>=0 goto B9;   
+  +B4:   #1
+        b0 = -vi0;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi0;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 3 found 0 abs
+ 
+ method clipLine(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;)Z {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = 0;    
+        vi7 = 0;    
+        vi8 = 0;    
+        vi9 = 0;    
+        vi10 = 0;    
+        vi11 = 0;    
+        vi12 = 0;    
+        if vR2.m_nX0<vR1.m_nX0 goto B75;   
+  +B40:   #1
+        if vR2.m_nX0>vR1.m_nX1 goto B75;   
+  +B51:   #1
+        if vR2.m_nY0<vR1.m_nY0 goto B75;   
+  +B62:   #1
+        if vR2.m_nY0>vR1.m_nY1 goto B75;   
+  +B73:   #1
+        vi3 = 1;    
+  +B75:   #4
+        if vR2.m_nX1<vR1.m_nX0 goto B122;   
+  +B86:   #1
+        if vR2.m_nX1>vR1.m_nX1 goto B122;   
+  +B97:   #1
+        if vR2.m_nY1<vR1.m_nY0 goto B122;   
+  +B108:   #1
+        if vR2.m_nY1>vR1.m_nY1 goto B122;   
+  +B119:   #1
+        vi4 = 1;    
+  +B122:   #4
+        if vi3==0 goto B133;   
+  +B126:   #1
+        if vi4==0 goto B133;   
+  +B131:   #1
+        return 1;   
+  +B133:   #2
+        if vi3!=0 goto B235;   
+  +B137:   #1
+        if vi4!=0 goto B235;   
+  +B142:   #1
+        if vR2.m_nX0>=vR1.m_nX0 goto B164;   
+  +B153:   #1
+        if vR2.m_nX1<vR1.m_nX0 goto B230;   
+  +B164:   #1
+        if vR2.m_nX0<=vR1.m_nX1 goto B186;   
+  +B175:   #1
+        if vR2.m_nX1>vR1.m_nX1 goto B230;   
+  +B186:   #1
+        if vR2.m_nY0>=vR1.m_nY0 goto B208;   
+  +B197:   #1
+        if vR2.m_nY1<vR1.m_nY0 goto B230;   
+  +B208:   #1
+        if vR2.m_nY0<=vR1.m_nY1 goto B232;   
+  +B219:   #1
+        if vR2.m_nY1<=vR1.m_nY1 goto B232;   
+  +B230:   #3
+        return 0;   
+  +B232:   #2
+        vi5 = 1;    
+  +B235:   #2
+        if vi3!=0 goto B244;   
+  +B239:   #1
+        if vi5==0 goto B676;   
+  +B244:   #1
+        vi13 = (vR2.m_nX1-vR2.m_nX0);    
+        vi14 = (vR2.m_nY1-vR2.m_nY0);    
+        if vR2.m_nX1<=vR1.m_nX1 goto B328;   
+  +B277:   #1
+        vi8 = 1;    
+        if vi13==0 goto B322;   
+  +B285:   #1
+        vi7 = ((((((vi14*65536)*(vR1.m_nX1-vR2.m_nX0))/vi13)+32768)+(vR2.m_nY0*65536))/65536);    
+        goto +B387;   [iiiiiiiiiiii   ]
+  +B322:   #1
+        vi7 = -1;    
+        goto +B387;   [iiiiiiiiiiii   ]
+  +B328:   #1
+        if vR2.m_nX1>=vR1.m_nX0 goto B387;   
+  +B339:   #1
+        vi9 = 1;    
+        if vi13==0 goto B384;   
+  +B347:   #1
+        vi7 = ((((((vi14*65536)*(vR1.m_nX0-vR2.m_nX0))/vi13)+32768)+(vR2.m_nY0*65536))/65536);    
+        goto +B387;   [iiiiiiiiiiii   ]
+  +B384:   #1
+        vi7 = -1;    
+  +B387:   #4
+        if vR2.m_nY1<=vR1.m_nY1 goto B449;   
+  +B398:   #1
+        vi11 = 1;    
+        if vi14==0 goto B443;   
+  +B406:   #1
+        vi6 = ((((((vi13*65536)*(vR1.m_nY1-vR2.m_nY0))/vi14)+32768)+(vR2.m_nX0*65536))/65536);    
+        goto +B508;   [iiiiiiiiiiii   ]
+  +B443:   #1
+        vi6 = -1;    
+        goto +B508;   [iiiiiiiiiiii   ]
+  +B449:   #1
+        if vR2.m_nY1>=vR1.m_nY0 goto B508;   
+  +B460:   #1
+        vi10 = 1;    
+        if vi14==0 goto B505;   
+  +B468:   #1
+        vi6 = ((((((vi13*65536)*(vR1.m_nY0-vR2.m_nY0))/vi14)+32768)+(vR2.m_nX0*65536))/65536);    
+        goto +B508;   [iiiiiiiiiiii   ]
+  +B505:   #1
+        vi6 = -1;    
+  +B508:   #4
+        if vi8!=1 goto B552;   
+  +B514:   #1
+        if vi7<vR1.m_nY0 goto B552;   
+  +B523:   #1
+        if vi7>vR1.m_nY1 goto B552;   
+  +B532:   #1
+        vR2.m_nX1 = vR1.m_nX1;   
+        vR2.m_nY1 = vi7;   
+        vi12 = 1;    
+        goto +B592;   [iiiiiiiiiiii   ]
+  +B552:   #3
+        if vi9==0 goto B592;   
+  +B557:   #1
+        if vi7<vR1.m_nY0 goto B592;   
+  +B566:   #1
+        if vi7>vR1.m_nY1 goto B592;   
+  +B575:   #1
+        vR2.m_nX1 = vR1.m_nX0;   
+        vR2.m_nY1 = vi7;   
+        vi12 = 1;    
+  +B592:   #4
+        if vi11!=1 goto B636;   
+  +B598:   #1
+        if vi6<vR1.m_nX0 goto B636;   
+  +B607:   #1
+        if vi6>vR1.m_nX1 goto B636;   
+  +B616:   #1
+        vR2.m_nX1 = vi6;   
+        vR2.m_nY1 = vR1.m_nY1;   
+        vi12 = 1;    
+        goto +B676;   [iiiiiiiiiiii   ]
+  +B636:   #3
+        if vi10==0 goto B676;   
+  +B641:   #1
+        if vi6<vR1.m_nX0 goto B676;   
+  +B650:   #1
+        if vi6>vR1.m_nX1 goto B676;   
+  +B659:   #1
+        vR2.m_nX1 = vi6;   
+        vR2.m_nY1 = vR1.m_nY0;   
+        vi12 = 1;    
+  +B676:   #5
+        vi11 = 0;    
+        vi10 = 0;    
+        vi9 = 0;    
+        vi8 = 0;    
+        if vi4!=0 goto B698;   
+  +B693:   #1
+        if vi5==0 goto B1129;   
+  +B698:   #1
+        vi13 = (vR2.m_nX0-vR2.m_nX1);    
+        vi14 = (vR2.m_nY0-vR2.m_nY1);    
+        if vR2.m_nX0<=vR1.m_nX1 goto B782;   
+  +B731:   #1
+        vi8 = 1;    
+        if vi13==0 goto B776;   
+  +B739:   #1
+        vi7 = ((((((vi14*65536)*(vR1.m_nX1-vR2.m_nX1))/vi13)+32768)+(vR2.m_nY1*65536))/65536);    
+        goto +B841;   [iiiiiiiiiiii   ]
+  +B776:   #1
+        vi7 = -1;    
+        goto +B841;   [iiiiiiiiiiii   ]
+  +B782:   #1
+        if vR2.m_nX0>=vR1.m_nX0 goto B841;   
+  +B793:   #1
+        vi9 = 1;    
+        if vi13==0 goto B838;   
+  +B801:   #1
+        vi7 = ((((((vi14*65536)*(vR1.m_nX0-vR2.m_nX1))/vi13)+32768)+(vR2.m_nY1*65536))/65536);    
+        goto +B841;   [iiiiiiiiiiii   ]
+  +B838:   #1
+        vi7 = -1;    
+  +B841:   #4
+        if vR2.m_nY0<=vR1.m_nY1 goto B903;   
+  +B852:   #1
+        vi11 = 1;    
+        if vi14==0 goto B897;   
+  +B860:   #1
+        vi6 = ((((((vi13*65536)*(vR1.m_nY1-vR2.m_nY1))/vi14)+32768)+(vR2.m_nX1*65536))/65536);    
+        goto +B962;   [iiiiiiiiiiii   ]
+  +B897:   #1
+        vi6 = -1;    
+        goto +B962;   [iiiiiiiiiiii   ]
+  +B903:   #1
+        if vR2.m_nY0>=vR1.m_nY0 goto B962;   
+  +B914:   #1
+        vi10 = 1;    
+        if vi14==0 goto B959;   
+  +B922:   #1
+        vi6 = ((((((vi13*65536)*(vR1.m_nY0-vR2.m_nY1))/vi14)+32768)+(vR2.m_nX1*65536))/65536);    
+        goto +B962;   [iiiiiiiiiiii   ]
+  +B959:   #1
+        vi6 = -1;    
+  +B962:   #4
+        if vi8==0 goto B1005;   
+  +B967:   #1
+        if vi7<vR1.m_nY0 goto B1005;   
+  +B976:   #1
+        if vi7>vR1.m_nY1 goto B1005;   
+  +B985:   #1
+        vR2.m_nX0 = vR1.m_nX1;   
+        vR2.m_nY0 = vi7;   
+        vi12 = 1;    
+        goto +B1045;   [iiiiiiiiiiii   ]
+  +B1005:   #3
+        if vi9==0 goto B1045;   
+  +B1010:   #1
+        if vi7<vR1.m_nY0 goto B1045;   
+  +B1019:   #1
+        if vi7>vR1.m_nY1 goto B1045;   
+  +B1028:   #1
+        vR2.m_nX0 = vR1.m_nX0;   
+        vR2.m_nY0 = vi7;   
+        vi12 = 1;    
+  +B1045:   #4
+        if vi11==0 goto B1088;   
+  +B1050:   #1
+        if vi6<vR1.m_nX0 goto B1088;   
+  +B1059:   #1
+        if vi6>vR1.m_nX1 goto B1088;   
+  +B1068:   #1
+        vR2.m_nX0 = vi6;   
+        vR2.m_nY0 = vR1.m_nY1;   
+        vi12 = 1;    
+        goto +B1129;   forward return[iiiiiiiiiiii   ]
+  +B1088:   #3
+        if vi10!=1 goto B1129;   
+  +B1094:   #1
+        if vi6<vR1.m_nX0 goto B1129;   
+  +B1103:   #1
+        if vi6>vR1.m_nX1 goto B1129;   
+  +B1112:   #1
+        vR2.m_nX0 = vi6;   
+        vR2.m_nY0 = vR1.m_nY0;   
+        vi12 = 1;    
+  +B1129:   #5
+        return vi12;   
+  +END:   #1
+ }
+// Register: rd 185/185 wr 26 swaps 0 any 40 found 0 clipLine
+ 
+ method isCloneMap(Ljx/wm/WBitmap;)Z {
+  +START:   #1
+        if vR0.m_nWidth!=vR1.m_nWidth goto B37;   
+  +B11:   #1
+        if vR0.m_nHeight!=vR1.m_nHeight goto B37;   
+  +B22:   #1
+        if vR0.m_nBytesPerLine!=vR1.m_nBytesPerLine goto B37;   
+  +B33:   #1
+        b0 = 1;    
+        goto +B38b0;   forward return[ i  ]
+  +B37:   #3
+        b0 = 0;    
+  +B38b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 isCloneMap
+ 
+ method getCloneMap()Ljx/wm/WBitmap; {
+  +START:   #1
+        return createWBitmap@special(vR0.m_nWidth,vR0.m_nHeight,vR0.m_eColorSpace,vR0.m_nBytesPerLine);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 0 found 0 getCloneMap
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("WBitmap(").append@extra(vR0.m_nWidth).append@extra(",").append@extra(vR0.m_nHeight).append@extra(",").append@extra(vR0.m_nBytesPerLine).append@extra(",").append@extra(vR0.m_eColorSpace).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 19 swaps 13 any 0 found 0 toString
+}

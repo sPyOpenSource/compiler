@@ -1,0 +1,169 @@
+class test/wm/MainWindow {
+ 
+ method <init>(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3);   [ ?R  RRRR] 
+        b1 = new jx/devices/fb/DrawingMode();    [ ?R  i...][ ?R  iR..]
+        vR0.m_eDrawingMode = b1;   
+        b1 = new jx/devices/fb/PixelRect(10,10,159,29);    [ ?R  i...][ ?R . iiiiiR]
+        vR0.m_cButton1 = b1;   
+        b1 = new jx/devices/fb/PixelRect(10,40,159,59);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.m_cButton2 = b1;   
+        b1 = new jx/devices/fb/PixelRect(10,70,159,89);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.m_cButton3 = b1;   
+        b1 = new jx/devices/fb/PixelRect(10,100,209,119);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.m_cButton4 = b1;   
+        b1 = new jx/devices/fb/PixelRect(10,130,259,149);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.m_cButton5 = b1;   
+        vR0.m_bButton1 = 0;   
+        vR0.m_bButton2 = 0;   
+        vR0.m_bButton3 = 0;   
+        vR0.m_bButton4 = 0;   
+        vR0.m_bButton5 = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 11 swaps 0 any 0 found 0 <init>
+ 
+ method drawButton(Ljava/lang/String;IIIIZ)V {
+  +START:   #1
+        if vi6==0 goto B21;   
+  +B5:   #1
+        vR0.setFgColor@this(200,200,200);   [ ?R  iiiR] 
+        goto +B34;   [ ?R  ....]
+  +B21:   #1
+        vR0.setFgColor@this(255,255,255);   [ ?R  iiiR] 
+  +B34:   #1
+        b1 = new jx/devices/fb/PixelRect(vi2,vi3,((vi2+vi4)-1),((vi3+vi5)-1));    [ ?R  i...][ ?R . iiiiiR]
+        vR0.fillRect@this(b1);   [ ?R . RR....] 
+        if vi6==0 goto B74;   
+  +B64:   #1
+        vR0.setFgColor@this(0,0,0);   [ ?R . iiiR..] 
+        goto +B87;   [ ?R . ......]
+  +B74:   #1
+        vR0.setFgColor@this(128,128,128);   [ ?R . iiiR..] 
+  +B87:   #1
+        vR0.movePenTo@this(vi2,(vi3+vi5));   [ ?R i iiR...] 
+        vR0.drawLine@this(vi2,vi3);   [ ?R i iiR...] 
+        vR0.drawLine@this((vi2+vi4),vi3);   [ ?R ii iiR...] 
+        if vi6==0 goto B132;   
+  +B116:   #1
+        vR0.setFgColor@this(128,128,128);   [ ?R .. iiiR..] 
+        goto +B139;   [ ?R .. ......]
+  +B132:   #1
+        vR0.setFgColor@this(0,0,0);   [ ?R .. iiiR..] 
+  +B139:   #1
+        vR0.drawLine@this((vi2+vi4),(vi3+vi5));   [ ?R ii iiR...] 
+        vR0.drawLine@this(vi2,(vi3+vi5));   [ ?R iii iiR...] 
+        vR0.movePenTo@this((vi2+2),(vi3+2));   [ ?R iiiii iiR...] 
+        vR0.drawString@this(vR1);   [ ?R iiiii RR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 9 swaps 5 any 3 found 0 drawButton
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.drawButton@this("keyboard test",10,10,150,20,vR0.m_bButton1);   [  ib biiiiRR] 
+        vR0.drawButton@this("zeichen test",10,40,150,20,vR0.m_bButton2);   [  ibib biiiiRR] 
+        vR0.drawButton@this("domain test",10,70,150,20,vR0.m_bButton3);   [  ibibib biiiiRR] 
+        vR0.drawButton@this("malicious domain test",10,100,200,20,vR0.m_bButton4);   [  ibibibib biiiiRR] 
+        vR0.drawButton@this("terminate current domain",10,130,250,20,vR0.m_bButton5);   [  ibibibibib biiiiRR] 
+        vR0.setFgColor@this(0,0,0);   [  ibibibibib iiiR...] 
+        vR0.fillRect@this(10,160,150,20);   [  ibibibibib iiiiR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 5 any 0 found 0 paint
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("MainWindow::MouseDown(").append@extra(vR1.m_nX).append@extra(", ").append@extra(vR1.m_nY).append@extra(")").toString@extra());   [ RR iiiiii.... RR....] 
+        if vR0.m_cButton1.contains@extra(vR1)==0 goto B69;   
+  +B56:   #1
+        vR0.m_bButton1 = 1;   
+        vR0.invalidate@this(vR0.m_cButton1);   [ RR i......... RR....] 
+  +B69:   #1
+        if vR0.m_cButton2.contains@extra(vR1)==0 goto B93;   
+  +B80:   #1
+        vR0.m_bButton2 = 1;   
+        vR0.invalidate@this(vR0.m_cButton2);   [ RR i......... RR....] 
+  +B93:   #1
+        if vR0.m_cButton3.contains@extra(vR1)==0 goto B117;   
+  +B104:   #1
+        vR0.m_bButton3 = 1;   
+        vR0.invalidate@this(vR0.m_cButton3);   [ RR i......... RR....] 
+  +B117:   #1
+        if vR0.m_cButton4.contains@extra(vR1)==0 goto B141;   
+  +B128:   #1
+        vR0.m_bButton4 = 1;   
+        vR0.invalidate@this(vR0.m_cButton4);   [ RR i......... RR....] 
+  +B141:   #1
+        if vR0.m_cButton5.contains@extra(vR1)==0 goto B165;   
+  +B152:   #1
+        vR0.m_bButton5 = 1;   
+        vR0.invalidate@this(vR0.m_cButton5);   [ RR i......... RR....] 
+  +B165:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 18 swaps 11 any 0 found 0 mouseDown
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRRRR  i][ RRRRR  iR]
+        b0.println(b1.append@extra("MainWindow.mouseUp(").append@extra(vR1.m_nX).append@extra(", ").append@extra(vR1.m_nY).append@extra(")").toString@extra());   [ RRRRR iiiiii.... RR....] 
+        if vR0.m_bButton1==0 goto B104;   
+  +B52:   #1
+        vR0.m_bButton1 = 0;   
+        vR0.invalidate@this(vR0.m_cButton1);   [ RRRRR i......... RR....] 
+        b0 = new test/wm/TestWindow;    
+        b1 = b0;    
+        b2 = "keyboard-test";    
+        b3 = new jx/devices/fb/PixelRect(100,100,400,300);    [ RRRRR i......... i.....][ RRRRR i......... iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR i......... i.....][ RRRRR i......... iR....]
+        b1.<init>@special(b2,b3,b4);   [ RRRRR i......... RRRR..] 
+        vR3 = b0;    
+        vR3.show(1);   [R RRRRR i......... iR....] 
+  +B104:   #1
+        if vR0.m_bButton2==0 goto B167;   
+  +B111:   #1
+        vR0.m_bButton2 = 0;   
+        vR0.invalidate@this(vR0.m_cButton2);   [R RRRRR i......... RR....] 
+        b0 = new test/wm/DrawWindow;    
+        b1 = b0;    
+        b2 = "zeichen-test";    
+        b3 = new jx/devices/fb/PixelRect(250,50,700,200);    [ RRRRR i......... i.....][ RRRRR i......... iiiiiR]
+        b4 = new jx/wm/WindowFlags(1024);    [ RRRRR i......... i.....][ RRRRR i......... iiR...]
+        b1.<init>@special(b2,b3,b4);   [R RRRRR i......... RRRR..] 
+        vR3 = b0;    
+        vR3.show(1);   [R RRRRR i......... iR....] 
+  +B167:   #1
+        if vR0.m_bButton3==0 goto B206;   
+  +B174:   #1
+        vR0.m_bButton3 = 0;   
+        vR0.invalidate@this(vR0.m_cButton3);   [R RRRRR i......... RR....] 
+        createDomain@special("Good","test_wm.jll","test/wm/GDomain",300000,100000,1000000,100000,3);   [R RRRRR iRRR...... iiiiiRRR]
+  +B206:   #1
+        if vR0.m_bButton4==0 goto B245;   
+  +B213:   #1
+        vR0.m_bButton4 = 0;   
+        vR0.invalidate@this(vR0.m_cButton4);   [R RRRRR i......... RR......] 
+        createDomain@special("Malicious","test_wm.jll","test/wm/MDomain",300000,100000,1000000,100000,3);   [R RRRRR iRRR...... iiiiiRRR]
+  +B245:   #1
+        if vR0.m_bButton5==0 goto B293;   
+  +B252:   #1
+        vR0.m_bButton5 = 0;   
+        vR0.invalidate@this(vR0.m_cButton5);   [R RRRRR i......... RR......] 
+        out.println("TERMINATE");   [R RRRRR ii........ RR......] 
+        vR3 = (jx/zero/DomainManager)(getInitialNaming@special().lookup("DomainManager"));    
+        vR3.terminateCaller();   [R RRRRR iii....... R.......] 
+  +B293:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 43/43 wr 45 swaps 13 any 4 found 0 mouseUp
+}

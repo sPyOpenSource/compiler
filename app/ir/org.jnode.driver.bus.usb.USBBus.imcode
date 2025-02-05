@@ -1,0 +1,82 @@
+class org/jnode/driver/bus/usb/USBBus {
+ 
+ method <init>(Ljx/devices/Device;Lorg/jnode/driver/bus/usb/USBHostControllerAPI;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.hcApi = vR2;   
+        vR0.devIdsInUse = new boolean[128];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method allocDeviceID()I {
+  +START:   #1
+        vi1 = vR0.devIdsInUse.length;    
+        vi2 = 1;    
+  +B8:   #1
+        if vi2>=vi1 goto B37;   
+  +B13:   #1
+        if vR0.devIdsInUse[vi2]!=0 goto B31;   
+  +B22:   #1
+        vR0.devIdsInUse[vi2] = 1;   
+        return vi2;   
+  +B31:   #1
+        vi2++;   
+        goto +B8;   [ii R  ]
+  -B37:   #1
+        throw new java/lang/IllegalArgumentException("Too many allocated USB device id's");   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 2 found 0 allocDeviceID
+ 
+ method freeDeviceID(I)V {
+  +START:   #1
+        vR0.devIdsInUse[vi1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 freeDeviceID
+ 
+ method getHcApi()Lorg/jnode/driver/bus/usb/USBHostControllerAPI; {
+  +START:   #1
+        return vR0.hcApi;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHcApi
+ 
+ method getChild(I)Ljx/devices/Device; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getChild
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSupportedConfigurations
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 open
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method getId()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
+}

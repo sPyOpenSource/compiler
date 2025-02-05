@@ -1,0 +1,641 @@
+class org/jnode/fs/jfat/FatEntry {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatDirectory;Lorg/jnode/fs/jfat/FatRecord;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        vR0.name = vR3.getLongName();   
+        vR0.record = vR3;   
+        vR0.entry = vR3.getShortEntry();   
+        vR0.parent = vR2;   
+        b1 = new org/jnode/fs/jfat/FatChain(vR1,vR0.entry.getStartCluster());    [ ?R  i.][ ?R . iiRR]
+        vR0.chain = b1;   
+        b1 = new java/util/Vector();    [ ?R . i...][ ?R . iR..]
+        vR0.overlayNames = b1;   
+        b1 = new java/util/Vector();    [ ?R . i...][ ?R . iR..]
+        vR0.overlayInodes = b1;   
+        vR0.i_dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method setRoot()V {
+  +START:   #1
+        vR0.name = "";   
+        vR0.record = 0;   
+        vR0.entry = 0;   
+        vR0.parent = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 setRoot
+ 
+ method setRoot32(I)V {
+  +START:   #1
+        vR0.setRoot@special();   [ ?R  R] 
+        b1 = new org/jnode/fs/jfat/FatChain(vR0.getFatFileSystem@this(),vi1);    [ ?R  i][ ?R . iiRR]
+        vR0.chain = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 setRoot32
+ 
+ method isDirty()Z {
+  +START:   #1
+        if vR0.entry.isDirty()!=0 goto B20;   
+  +B10:   #1
+        if vR0.chain.isDirty()==0 goto B24;   
+  +B20:   #1
+        b0 = 1;    
+        goto +B25b0;   forward return[ i  .]
+  +B24:   #1
+        b0 = 0;    
+  +B25b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isDirty
+ 
+ method delete()V {
+  +START:   #1
+        vR0.entry.delete();   [   R] 
+        vR0.parent.setFatDirEntry(vR0.entry);   [  i RR] 
+        vR0.entry.flush();   [  i R.] 
+        vR1 = vR0.record.getLongEntries();    [  i R.] 
+        vi2 = 0;    
+  +B35:   #1
+        if vi2>=vR1.size@extra() goto B74;   
+  +B43:   #1
+        vR3 = (org/jnode/fs/jfat/FatLongDirEntry)(vR1.get(vi2));    
+        vR3.delete();   [RiR  . R.] 
+        vR0.parent.setFatDirEntry(vR3);   [RiR  . RR] 
+        vR3.flush();   [RiR  . R.] 
+        vi2++;   
+        goto +B35;   [RiR  . ..]
+  +B74:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 6 swaps 1 any 2 found 1 delete
+ 
+ method freeAllClusters()V {
+  +START:   #1
+        vR0.getChain@this().freeAllClusters();   [  . R] [  R R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 freeAllClusters
+ 
+ method dumpChain(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.chain.dump(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dumpChain
+ 
+ method getRecord()Lorg/jnode/fs/jfat/FatRecord; {
+  +START:   #1
+        return vR0.record;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRecord
+ 
+ method getId()Ljava/lang/String; {
+  +START:   #1
+        return toString@special(vR0.entry.getIndex());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
+ 
+ method getName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.name;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method setName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.name = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setName
+ 
+ method getShortName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.entry.getShortName();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortName
+ 
+ method isShortName([B)Z {
+  +START:   #1
+        if vR1.length==11 goto B35;   
+  -B7:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("illegal shortname length: ").append@extra(vR1.length).toString@extra());   [ RRR iii. RR.] 
+        throw b0;   
+  +B35:   #1
+        return equals@special(vR1,vR0.entry.getName());   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 9 swaps 3 any 1 found 0 isShortName
+ 
+ method getIndex()I {
+  +START:   #1
+        return vR0.entry.getIndex();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndex
+ 
+ method getCreated()J {
+  +START:   #1
+        return vR0.entry.getCreated();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCreated
+ 
+ method getLastModified()J {
+  +START:   #1
+        return vR0.entry.getLastModified();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastModified
+ 
+ method getLastAccessed()J {
+  +START:   #1
+        return vR0.entry.getLastAccessed();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastAccessed
+ 
+ method setCreated(J)V {
+  +START:   #1
+        vR0.entry.setCreated(vl1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setCreated
+ 
+ method setLastModified(J)V {
+  +START:   #1
+        vR0.entry.setLastModified(vl1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLastModified
+ 
+ method setLastAccessed(J)V {
+  +START:   #1
+        vR0.entry.setLastAccessed(vl1);   [   ??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLastAccessed
+ 
+ method getEntry()Lorg/jnode/fs/jfat/FatShortDirEntry; {
+  +START:   #1
+        return vR0.entry;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEntry
+ 
+ method setEntry(Lorg/jnode/fs/jfat/FatShortDirEntry;)V {
+  +START:   #1
+        vR0.entry = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setEntry
+ 
+ method getChain()Lorg/jnode/fs/jfat/FatChain; {
+  +START:   #1
+        return vR0.chain;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getChain
+ 
+ method getStartCluster()I {
+  +START:   #1
+        return vR0.getChain@this().getStartCluster();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getStartCluster
+ 
+ method getParent()Lorg/jnode/fs/jfat/FatDirectory; {
+  +START:   #1
+        return vR0.parent;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParent
+ 
+ method isFile()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFile
+ 
+ method isDirectory()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method isRoot()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isRoot
+ 
+ method flush()V {
+  +START:   #1
+        if vR0.isDirty@this()==0 goto B66;   
+  +B7:   #1
+        if vR0.chain.isDirty()==0 goto B38;   
+  +B17:   #1
+        vR0.entry.setStartCluster(vR0.chain.getStartCluster());   [  i iR] 
+        vR0.chain.flush();   [  i R.] 
+  +B38:   #1
+        if vR0.entry.isDirty()==0 goto B66;   
+  +B48:   #1
+        vR0.parent.setFatDirEntry(vR0.entry);   [  i RR] 
+        vR0.entry.flush();   [  i R.] 
+  +B66:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 2 any 0 found 0 flush
+ 
+ method getDirectory()Ljx/fs/Directory; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("getDirectory");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getDirectory
+ 
+ method getFile()Ljx/fs/Node; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("getFile");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFile
+ 
+ method getPath()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder(1024);    [ R?R  i][ R?R . iiR]
+        vR2 = vR0.getParent@this();    [R R?R . R..] 
+        if vR0.getName@this().length@extra()==0 goto B38;   
+  +B26:   #1
+        vR1.append@extra(vR0.getName@this());   [RR R?R i RR.] 
+        goto +B45;   [RR R?R i ...]
+  +B38:   #1
+        vR1.append@extra("\");   [RR R?R i RR.] 
+  +B45:   #2
+        if vR2==null goto B85;   
+  +B49:   #1
+        b2 = new java/lang/StringBuilder();    [ R?R . i..][ R?R . iR.]
+        vR1.insert@extra(0,b2.append@extra(vR2.getName()).append@extra("\").toString@extra());   [RR R?R ii.i RiR] 
+        vR2 = vR2.getParent();    [RR R?R ii.i R..] 
+        goto +B45;   [RR R?R ii.i ...]
+  +B85:   #1
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 13 swaps 5 any 1 found 0 getPath
+ 
+ method setParent(Ljx/fs/Node;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setParent
+ 
+ method setDirty(Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setDirty
+ 
+ method incUseCount()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 incUseCount
+ 
+ method decUseCount()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 decUseCount
+ 
+ method i_nlinks()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 i_nlinks
+ 
+ method deleteNode()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 deleteNode
+ 
+ method writeNode()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 writeNode
+ 
+ method putNode()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 putNode
+ 
+ method overlay(Ljx/fs/Node;Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 overlay
+ 
+ method removeOverlay(Ljx/fs/Node;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 removeOverlay
+ 
+ method removeAllOverlays()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 removeAllOverlays
+ 
+ method isOverlayed(Ljava/lang/String;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isOverlayed
+ 
+ method lookup(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        if vR0.isDirectory@this()!=0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +B15:   #1
+        if vR1.equals@extra(".")==0 goto B30;   
+  +B24:   #1
+        vR0.incUseCount@this();   [ R . R.] 
+        return vR0;   
+  +B30:   #1
+        if vR1.equals@extra("..")==0 goto B51;   
+  +B39:   #1
+        vR0.parent.incUseCount();   [ R . R.] 
+        return vR0.parent;   
+  +B51:   #1
+        vi2 = 0;    
+  +B53:   #1
+        if vi2>=vR0.overlayNames.size@extra() goto B108;   
+  +B64:   #1
+        if vR1.equals@extra((java/lang/String)(vR0.overlayNames.elementAt(vi2)))==0 goto B102;   
+  +B82:   #1
+        vR3 = (jx/fs/Node)(vR0.overlayInodes.elementAt(vi2));    
+        vR3.incUseCount();   [iR R . R.] 
+        return vR3;   
+  +B102:   #1
+        vi2++;   
+        goto +B53;   [iR R . ..]
+  +B108:   #1
+        return vR0.getNode@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 8 swaps 3 any 2 found 1 lookup
+ 
+ method isSymlink()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isSymlink
+ 
+ method isWritable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isWritable
+ 
+ method isReadable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReadable
+ 
+ method isExecutable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isExecutable
+ 
+ method lastModified()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastModified
+ 
+ method lastAccessed()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastAccessed
+ 
+ method lastChanged()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 lastChanged
+ 
+ method setLastModified(I)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLastModified
+ 
+ method setLastAccessed(I)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLastAccessed
+ 
+ method readdirNames()[Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readdirNames
+ 
+ method mkdir(Ljava/lang/String;I)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 mkdir
+ 
+ method rmdir(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 rmdir
+ 
+ method create(Ljava/lang/String;I)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 create
+ 
+ method unlink(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 unlink
+ 
+ method symlink(Ljava/lang/String;Ljava/lang/String;)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 symlink
+ 
+ method getSymlink()Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSymlink
+ 
+ method rename(Ljava/lang/String;Ljx/fs/Node;Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 rename
+ 
+ method read(Ljx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 read
+ 
+ method read(ILjx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 read
+ 
+ method readWeak(II)Ljx/zero/ReadOnlyMemory; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 readWeak
+ 
+ method write(Ljx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 write
+ 
+ method write(ILjx/zero/Memory;II)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 write
+ 
+ method available()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 available
+ 
+ method getLength()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLength
+ 
+ method getIdentifier()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getIdentifier
+ 
+ method getVersion()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getVersion
+ 
+ method getFileSystem()Ljx/fs/FileSystem; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFileSystem
+ 
+ method getStatFS()Ljx/fs/StatFS; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getStatFS
+ 
+ method getParent()Ljx/fs/Node; {
+  +START:   #1
+        return vR0.getParent@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParent
+}

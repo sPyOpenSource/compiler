@@ -28,12 +28,12 @@ class test/fs/BioRAMDomain {
         vR0.<init>@special();   [ RR  R] 
         vR0.naming = vR1;   
         vR3 = new jx/bio/ram/BlockIORAM(20480);    [ RR  i][ RR . iiR]
-        registerPortal@special(vR3,vR2);   [R RR . RR.]
+        getInitialNaming@special().registerPortal(vR3,vR2);   [R RR . RRR] 
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
         b0.println(b1.append@extra("Block I/O device registered as ").append@extra(vR2).toString@extra());   [R RR ii. RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 6/6 wr 8 swaps 2 any 0 found 0 <init>
+// Register: rd 6/6 wr 9 swaps 2 any 0 found 0 <init>
 }

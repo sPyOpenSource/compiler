@@ -1,0 +1,35 @@
+class jx/awt/peer/JXPopupMenuPeer {
+ 
+ method <init>(Ljava/awt/PopupMenu;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.parent = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method show(Ljava/awt/Component;II)V {
+  +START:   #1
+        vR4 = vR0.toolkit.getMenuHandler();    [ ?RR  R] 
+        if vR4.isMenuOpen()==0 goto B18;   
+  +B17:   #1
+        return;   
+  +B18:   #1
+        vR5 = 0;    
+        vR4.setCurrentMenuBar(0);   [RR ?RR  RR] 
+        b1 = (java/awt/Menu)(vR0.parent);    
+        b2 = new java/awt/Rectangle((vR5.x+vi2),(vR5.y+vi3),0,0);    [ ?RR . i.][ ?RR . iiiiiR]
+        vR4.openMenu(b1,b2,0);   [RR ?RR . iRRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 0 found 0 show
+ 
+ method show(Ljava/awt/Event;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 show
+}

@@ -1,0 +1,32 @@
+class jx/wm/WFont$FontHeight {
+ 
+ method <init>(Ljx/wm/WFont;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method ascender()I {
+  +START:   #1
+        return vR0.nAscender;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ascender
+ 
+ method descender()I {
+  +START:   #1
+        return vR0.nDescender;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 descender
+ 
+ method lineGap()I {
+  +START:   #1
+        return vR0.nLineGap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lineGap
+}

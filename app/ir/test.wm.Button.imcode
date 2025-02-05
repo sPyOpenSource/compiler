@@ -1,0 +1,96 @@
+class test/wm/Button {
+ 
+ method <init>(Ljx/wm/WWindow;Ljx/devices/fb/PixelRect;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.m_cOwner = 0;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R  i][ ?R  iR]
+        vR0.m_cFrame = b1;   
+        vR0.m_bPressed = 0;   
+        vR0.m_cTitle = 0;   
+        vR0.m_cOwner = vR1;   
+        vR0.m_cFrame.setTo@extra(vR2);   [ ?R  RR] 
+        vR0.m_cTitle = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        if vR0.m_bPressed==0 goto B26;   
+  +B7:   #1
+        vR0.m_cOwner.setFgColor(200,200,200);   [   iiiR] 
+        goto +B42;   [   ....]
+  +B26:   #1
+        vR0.m_cOwner.setFgColor(255,255,255);   [   iiiR] 
+  +B42:   #1
+        vR0.m_cOwner.fillRect(vR0.m_cFrame);   [  i RR..] 
+        if vR0.m_bPressed==0 goto B73;   
+  +B60:   #1
+        vR0.m_cOwner.setFgColor(0,0,0);   [  . iiiR] 
+        goto +B89;   [  . ....]
+  +B73:   #1
+        vR0.m_cOwner.setFgColor(128,128,128);   [  . iiiR] 
+  +B89:   #1
+        vR0.m_cOwner.movePenTo(vR0.m_cFrame.m_nX0,vR0.m_cFrame.m_nY1);   [  ii iiR.] 
+        vR0.m_cOwner.drawLine(vR0.m_cFrame.m_nX0,vR0.m_cFrame.m_nY0);   [  iiii iiR.] 
+        vR0.m_cOwner.drawLine(vR0.m_cFrame.m_nX1,vR0.m_cFrame.m_nY0);   [  iiiiii iiR.] 
+        if vR0.m_bPressed==0 goto B178;   
+  +B159:   #1
+        vR0.m_cOwner.setFgColor(128,128,128);   [  ...... iiiR] 
+        goto +B188;   [  ...... ....]
+  +B178:   #1
+        vR0.m_cOwner.setFgColor(0,0,0);   [  ...... iiiR] 
+  +B188:   #1
+        vR0.m_cOwner.drawLine(vR0.m_cFrame.m_nX1,vR0.m_cFrame.m_nY1);   [  ii.... iiR.] 
+        vR0.m_cOwner.drawLine(vR0.m_cFrame.m_nX0,vR0.m_cFrame.m_nY1);   [  iiii.. iiR.] 
+        vR0.m_cOwner.movePenTo((vR0.m_cFrame.m_nX0+2),(vR0.m_cFrame.m_nY0+2));   [  iiiiii iiR.] 
+        vR0.m_cOwner.drawString(vR0.m_cTitle);   [  iiiiiii RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 14 swaps 8 any 0 found 0 paint
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)Z {
+  +START:   #1
+        vi3 = 0;    
+        if vR0.m_cFrame.contains@extra(vR1)==0 goto B31;   
+  +B13:   #1
+        vR0.m_bPressed = 1;   
+        vi3 = 1;    
+        vR0.m_cOwner.invalidate(vR0.m_cFrame);   [i  i RR] 
+  +B31:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 mouseDown
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)Z {
+  +START:   #1
+        vi3 = vR0.m_bPressed;    
+        if vR0.m_bPressed==0 goto B28;   
+  +B12:   #1
+        vR0.m_bPressed = 0;   
+        vR0.m_cOwner.invalidate(vR0.m_cFrame);   [i  i RR] 
+  +B28:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 1 any 0 found 0 mouseUp
+ 
+ method setValue(Z)V {
+  +START:   #1
+        vR0.m_bPressed = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setValue
+ 
+ method getValue()Z {
+  +START:   #1
+        return vR0.m_bPressed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+}

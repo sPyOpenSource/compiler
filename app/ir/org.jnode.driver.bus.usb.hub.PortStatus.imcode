@@ -1,0 +1,60 @@
+class org/jnode/driver/bus/usb/hub/PortStatus {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(4);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPortStatus()I {
+  +START:   #1
+        return vR0.getShort@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPortStatus
+ 
+ method getPortStatusBits(I)Z {
+  +START:   #1
+        if (vR0.getShort@this(0) & vi1)!=vi1 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getPortStatusBits
+ 
+ method getPortChange()I {
+  +START:   #1
+        return vR0.getShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPortChange
+ 
+ method getPortChangeBits(I)Z {
+  +START:   #1
+        if (vR0.getShort@this(2) & vi1)!=vi1 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 getPortChangeBits
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("ST:").append@extra(hex@special(vR0.getPortStatus@this(),4)).append@extra(", CH:").append@extra(hex@special(vR0.getPortChange@this(),4)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 11 swaps 4 any 0 found 0 toString
+}

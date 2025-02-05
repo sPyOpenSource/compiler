@@ -1,0 +1,152 @@
+class jx/devices/fb/emulation/FBImpl {
+ 
+ method <init>(Ljx/zero/FBEmulation;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.fb = vR1;   
+        if vR1.getBitsPerPixel()!=32 goto B35;   
+  +B20:   #1
+        b1 = new jx/devices/fb/ColorSpace(1);    [ ?R  i][ ?R . iiR]
+        vR0.m_eColorSpace = b1;   
+        goto +B47;   forward return[ ?R . ...]
+  +B35:   #1
+        b1 = new jx/devices/fb/ColorSpace(4);    [ ?R . i..][ ?R . iiR]
+        vR0.m_eColorSpace = b1;   
+  +B47:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method getWidth()I {
+  +START:   #1
+        return vR0.fb.getWidth();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()I {
+  +START:   #1
+        return vR0.fb.getHeight();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method setMode(IILjx/devices/fb/ColorSpace;)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setMode
+ 
+ method startFrameBufferUpdate()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 startFrameBufferUpdate
+ 
+ method endFrameBufferUpdate()V {
+  +START:   #1
+        vR0.fb.update();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 endFrameBufferUpdate
+ 
+ method startUpdate()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 startUpdate
+ 
+ method endUpdate()V {
+  +START:   #1
+        vR0.fb.update();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 endUpdate
+ 
+ method getFrameBuffer()Ljx/zero/DeviceMemory; {
+  +START:   #1
+        return vR0.fb.getVideoMemory();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrameBuffer
+ 
+ method getFrameBufferOffset()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFrameBufferOffset
+ 
+ method getBytesPerLine()I {
+  +START:   #1
+        return vR0.fb.getBytesPerLine();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytesPerLine
+ 
+ method getColorSpace()Ljx/devices/fb/ColorSpace; {
+  +START:   #1
+        return vR0.m_eColorSpace;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColorSpace
+ 
+ method drawLine(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawLine
+ 
+ method fillRect([Ljx/devices/fb/PixelRect;ILjx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fillRect
+ 
+ method bitBlt([Ljx/devices/fb/PixelRect;[Ljx/devices/fb/PixelRect;I)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 bitBlt
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 open
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  +START:   #1
+        b0 = new jx/devices/DeviceConfigurationTemplate()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/FramebufferConfigurationTemplate(vR0.fb.getWidth(),vR0.fb.getHeight(),vR0.m_eColorSpace);    [ RR?R  i.][ RR?R . iRiiR]
+        b1[0] = b3;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 2 found 0 getSupportedConfigurations
+ 
+ method close()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 close
+ 
+ method getId()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
+}

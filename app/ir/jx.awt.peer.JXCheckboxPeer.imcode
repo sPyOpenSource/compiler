@@ -1,0 +1,561 @@
+class jx/awt/peer/JXCheckboxPeer {
+ 
+ method <init>(Ljava/awt/Checkbox;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.selected = 0;   
+        vR0.checkboxReady = 1;   
+        vR0.group = 0;   
+        vR0.setCheckboxGroup@this(vR1.getCheckboxGroup());   [  i RR.] 
+        vR0.setState@this(vR1.getState());   [  ii bR.] 
+        vR0.setLabel@this(vR1.getLabel());   [  iii RR.] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 3 any 0 found 0 <init>
+ 
+ method keyPressed(III)V {
+  +START:   #1
+        vR0.keyPressed@special(vi1,vi2,vi3);   [   iiiR] 
+        if vi1!=32 goto B22;   
+  +B13:   #1
+        vR0.peerState = 1;   
+        vR0.redraw@this();   [   R...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 keyPressed
+ 
+ method keyReleased(IIIZ)V {
+  +START:   #1
+        vR0.keyReleased@special(vi1,vi2,vi3,vi4);   [ Ri  iiiiR] 
+        if vi1!=32 goto B33;   
+  +B15:   #1
+        b0 = vR0;    
+        if vi4==0 goto B25;   
+  +B21b0:   #1 reference
+        b1 = 2;    
+        goto +B26b0b1;   [ Ri  .....]
+  +B25b0:   #1 reference
+        b1 = 0;    
+  +B26b0b1:   #1 reference int
+        b0.peerState = b1;   
+        vR0.redraw@this();   [ Ri  R....] 
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 keyReleased
+ 
+ method keyClicked(III)V {
+  +START:   #1
+        vR0.keyClicked@special(vi1,vi2,vi3);   [ ii  iiiR] 
+        if vi1!=32 goto B102;   
+  +B13:   #1
+        if vR0.group==null goto B26;   
+  +B20:   #1
+        vi4 = 1;    
+        goto +B40;   [i ii  ....]
+  +B26:   #1
+        if vR0.selected==0 goto B37;   
+  +B33:   #1
+        b0 = 2;    
+        goto +B38b0;   [i ii  ....]
+  +B37:   #1
+        b0 = 1;    
+  +B38b0:   #1 int
+        vi4 = b0;    
+  +B40:   #1
+        b0 = (java/awt/Checkbox)(vR0.parent);    
+        if vi4!=1 goto B57;   
+  +B53b0:   #1 reference
+        b1 = 1;    
+        goto +B58b0b1;   [i Ri . ....]
+  +B57b0:   #1 reference
+        b1 = 0;    
+  +B58b0b1:   #1 reference int
+        b0.setState(b1);   [i Ri . iR..] 
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/ItemEvent((java/awt/Checkbox)(vR0.parent),701,vR0.parent,vi4);    [ RR . i...][ RR .. iiRiRR]
+        b0.postEvent(b1);   [i RR .. RR....] 
+  +B102:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 8 swaps 0 any 3 found 0 keyClicked
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        vR0.mouseReleased@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        vR0.redraw@this();   [   R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseReleased
+ 
+ method mouseClicked(III)V {
+  +START:   #1
+        vR0.mouseClicked@special(vi1,vi2,vi3);   [ ii  iiiR] 
+        if vR0.group==null goto B20;   
+  +B14:   #1
+        vi4 = 1;    
+        goto +B34;   [i ii  ....]
+  +B20:   #1
+        if vR0.selected==0 goto B31;   
+  +B27:   #1
+        b0 = 2;    
+        goto +B32b0;   [i ii  ....]
+  +B31:   #1
+        b0 = 1;    
+  +B32b0:   #1 int
+        vi4 = b0;    
+  +B34:   #1
+        b0 = (java/awt/Checkbox)(vR0.parent);    
+        if vi4!=1 goto B51;   
+  +B47b0:   #1 reference
+        b1 = 1;    
+        goto +B52b0b1;   [i Ri . ....]
+  +B51b0:   #1 reference
+        b1 = 0;    
+  +B52b0b1:   #1 reference int
+        b0.setState(b1);   [i Ri . iR..] 
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/ItemEvent((java/awt/Checkbox)(vR0.parent),701,vR0.parent,vi4);    [ RR . i...][ RR .. iiRiRR]
+        b0.postEvent(b1);   [i RR .. RR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 8 swaps 0 any 2 found 0 mouseClicked
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        vR0.mouseEntered@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        vR0.mouseExited@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseExited
+ 
+ method isFocusTraversable()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFocusTraversable
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        if vR0.group==null goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   [ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        vi2 = b0;    
+        vi3 = vR0.hasFocus@this();    [i i  R] 
+        tswitch (vR0.peerState) B52 B88 B124 B160 : B196;   
+  +B52:   #1
+        if vi2==0 goto B72;   
+  +B56:   #1
+        vR0.paintCheckboxGrouped@this(vR1,vR0.selected,vi3,0,0,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B72:   #1
+        vR0.paintCheckboxUngrouped@this(vR1,vR0.selected,vi3,0,0,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B88:   #1
+        if vi2==0 goto B108;   
+  +B92:   #1
+        vR0.paintCheckboxGrouped@this(vR1,vR0.selected,vi3,1,0,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B108:   #1
+        vR0.paintCheckboxUngrouped@this(vR1,vR0.selected,vi3,1,0,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B124:   #1
+        if vi2==0 goto B144;   
+  +B128:   #1
+        vR0.paintCheckboxGrouped@this(vR1,vR0.selected,vi3,0,1,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B144:   #1
+        vR0.paintCheckboxUngrouped@this(vR1,vR0.selected,vi3,0,1,0);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B160:   #1
+        if vi2==0 goto B180;   
+  +B164:   #1
+        vR0.paintCheckboxGrouped@this(vR1,vR0.selected,vi3,0,0,1);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B180:   #1
+        vR0.paintCheckboxUngrouped@this(vR1,vR0.selected,vi3,0,0,1);   [ii i i iiiibRR] 
+        goto +B204;   forward return[ii i i .......]
+  +B196:   #1
+        out.println("*** unsupported checkbox state!!!");   [ii i i. RR.....] 
+  +B204:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 13 swaps 9 any 5 found 0 paint
+ 
+ method setCheckboxGroup(Ljava/awt/CheckboxGroup;)V {
+  +START:   #1
+        if vR0.group==vR1 goto B17;   
+  +B8:   #1
+        vR0.group = vR1;   
+        vR0.redraw@this();   [   R] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 setCheckboxGroup
+ 
+ method setState(Z)V {
+  +START:   #1
+        if vR0.checkboxReady!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR0.selected==vi1 goto B60;   
+  +B16:   #1
+        vR0.selected = vi1;   
+        vR0.redraw@this();   [   R] 
+        if vR0.group==null goto B60;   
+  +B32:   #1
+        if vi1==0 goto B60;   
+  +B36:   #1
+        vR0.checkboxReady = 0;   
+        vR0.group.setSelectedCheckbox((java/awt/Checkbox)(vR0.parent));   [  i RR] 
+        vR0.checkboxReady = 1;   
+  +B60:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 2 swaps 1 any 1 found 0 setState
+ 
+ method setLabel(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.text = vR1;   
+        vR0.prefWidth = ((vR1.length@extra()*9)+16);   
+        vR0.prefHeight = 18;   
+        vR0.redraw@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 setLabel
+ 
+ method paintCheckboxGrouped(Ljx/awt/JXGraphics;ZZZZZ)V {
+  +START:   #1
+        vi7 = 0;    
+        vi8 = 0;    
+        if vi5==0 goto B21;   
+  +B11:   #1
+        vR1.setColor(hoverColor);   [ii  i RR] 
+        goto +B28;   [ii  i ..]
+  +B21:   #1
+        vR1.setColor(normalBgColor);   [iiRR  i RR] 
+  +B28:   #1
+        vR9 = vR1.getColor().brighter();    [ii  . R.] [ii  R R.] 
+        vR10 = vR1.getColor().darker();    [iiR  . R.] [iiR  R R.] 
+        vR1.fillRect(vi7,vi8,vR0.width,vR0.height);   [iiRR  ii iiiiR] 
+        if vi4==0 goto B73;   
+  +B67:   #1
+        vi7++;   
+        vi8++;   
+  +B73:   #1
+        if vi3==0 goto B108;   
+  +B77:   #1
+        vR1.setColor(focusColor);   [iiRR  i. RR...] 
+        vR1.drawRect((vi7+1),(vi8+1),(vR0.width-3),(vR0.height-3));   [iiRR  iiiii iiiiR] 
+  +B108:   #1
+        if vi6==0 goto B123;   
+  +B113:   #1
+        vR1.setColor(disabledTextColor);   [iiRR  i.... RR...] 
+        goto +B142;   [iiRR  i.... .....]
+  +B123:   #1
+        if vi2==0 goto B136;   
+  +B127:   #1
+        vR1.setColor(vR10);   [iiRR  ..... RR...] 
+        goto +B142;   [iiRR  ..... .....]
+  +B136:   #1
+        vR1.setColor(vR9);   [iiRR  ..... RR...] 
+  +B142:   #2
+        vR1.drawLine((vi7+2),(vi8+(vR0.height/2)),((vi7+2)+5),(vi8+((vR0.height-10)/2)));   [iiRR  iiii. iiiiR] 
+        vR1.drawLine((vi7+2),(vi8+(vR0.height/2)),((vi7+2)+5),(vi8+((vR0.height+10)/2)));   [iiRR  iiiiiiii iiiiR] 
+        if vi6==0 goto B227;   
+  +B217:   #1
+        vR1.setColor(disabledTextColor);   [iiRR  i....... RR...] 
+        goto +B246;   [iiRR  i....... .....]
+  +B227:   #1
+        if vi2==0 goto B240;   
+  +B231:   #1
+        vR1.setColor(vR9);   [iiRR  ........ RR...] 
+        goto +B246;   [iiRR  ........ .....]
+  +B240:   #1
+        vR1.setColor(vR10);   [iiRR  ........ RR...] 
+  +B246:   #2
+        vR1.drawLine(((vi7+2)+10),(vi8+(vR0.height/2)),((vi7+2)+5),(vi8+((vR0.height-10)/2)));   [iiRR  iiii.... iiiiR] 
+        vR1.drawLine(((vi7+2)+10),(vi8+(vR0.height/2)),((vi7+2)+5),(vi8+((vR0.height+10)/2)));   [iiRR  iiiiiiii iiiiR] 
+        if vi6==0 goto B337;   
+  +B327:   #1
+        vR1.setColor(disabledTextColor);   [iiRR  i....... RR...] 
+        goto +B344;   [iiRR  i....... .....]
+  +B337:   #1
+        vR1.setColor(normalTextColor);   [iiRR  i....... RR...] 
+  +B344:   #1
+        vR1.drawJXString(vR0.text,((vi7+4)+10),(vi8+((vR0.height-14)/2)));   [iiRR  iii..... iiiR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 69/69 wr 45 swaps 19 any 10 found 0 paintCheckboxGrouped
+ 
+ method paintCheckboxUngrouped(Ljx/awt/JXGraphics;ZZZZZ)V {
+  +START:   #1
+        vi7 = 0;    
+        vi8 = 0;    
+        if vi5==0 goto B21;   
+  +B11:   #1
+        vR1.setColor(hoverColor);   [ii  i RR] 
+        goto +B28;   [ii  i ..]
+  +B21:   #1
+        vR1.setColor(normalBgColor);   [ii  i RR] 
+  +B28:   #1
+        vR1.fillRect(vi7,vi8,vR0.width,vR0.height);   [ii  ii iiiiR] 
+        if vi4==0 goto B55;   
+  +B49:   #1
+        vi7++;   
+        vi8++;   
+  +B55:   #1
+        if vi3==0 goto B90;   
+  +B59:   #1
+        vR1.setColor(focusColor);   [ii  i. RR...] 
+        vR1.drawRect((vi7+1),(vi8+1),(vR0.width-3),(vR0.height-3));   [ii  iiiii iiiiR] 
+  +B90:   #1
+        if vi5==0 goto B105;   
+  +B95:   #1
+        vR1.setColor(hoverColor);   [ii  i.... RR...] 
+        goto +B112;   [ii  i.... .....]
+  +B105:   #1
+        vR1.setColor(normalBgColor);   [ii  i.... RR...] 
+  +B112:   #1
+        vR1.fill3DRect((vi7+2),(vi8+((vR0.height-10)/2)),10,10,0);   [ii  ii... iiiiiR] 
+        if vi6==0 goto B152;   
+  +B142:   #1
+        vR1.setColor(disabledBgColor);   [ii  i.... RR....] 
+        goto +B159;   [ii  i.... ......]
+  +B152:   #1
+        vR1.setColor(checkboxBgColor);   [ii  i.... RR....] 
+  +B159:   #1
+        vR1.fillRect(((vi7+2)+1),((vi8+((vR0.height-10)/2))+1),7,7);   [ii  ii... iiiiR.] 
+        if vi6==0 goto B202;   
+  +B192:   #1
+        vR1.setColor(disabledTextColor);   [ii  i.... RR....] 
+        goto +B209;   [ii  i.... ......]
+  +B202:   #1
+        vR1.setColor(checkboxFgColor);   [ii  i.... RR....] 
+  +B209:   #1
+        if vi2==0 goto B289;   
+  +B213:   #1
+        vR1.drawLine((vi7+2),(vi8+(vR0.height/2)),((vi7+2)+5),(vi8+((vR0.height+10)/2)));   [ii  iiii. iiiiR.] 
+        vR1.drawLine(((vi7+2)+10),(vi8+((vR0.height-10)/2)),((vi7+2)+5),(vi8+((vR0.height+10)/2)));   [ii  iiiiiiii iiiiR.] 
+  +B289:   #1
+        if vi6==0 goto B304;   
+  +B294:   #1
+        vR1.setColor(disabledTextColor);   [ii  i....... RR....] 
+        goto +B311;   [ii  i....... ......]
+  +B304:   #1
+        vR1.setColor(normalTextColor);   [ii  i....... RR....] 
+  +B311:   #1
+        vR1.drawJXString(vR0.text,((vi7+4)+10),(vi8+((vR0.height-14)/2)));   [ii  iii..... iiiR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 61/61 wr 41 swaps 23 any 10 found 0 paintCheckboxUngrouped
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

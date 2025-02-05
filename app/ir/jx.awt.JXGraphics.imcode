@@ -1,0 +1,467 @@
+class jx/awt/JXGraphics {
+ 
+ method <init>(Ljx/awt/peer/GeneralConnector;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.BASELINE = 10;   
+        vR0.invert = 0;   
+        vR0.connector = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLocationRelativeToComponent(II)Ljava/awt/Point; {
+  +START:   #1
+        return vR0.connector.getLocationOnComponents((vi1-vR0.transX),(vi2-vR0.transY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getLocationRelativeToComponent
+ 
+ method getLocationRelativeToWindow(II)Ljava/awt/Point; {
+  +START:   #1
+        return vR0.connector.getLocationOnHost((vi1+vR0.transX),(vi2+vR0.transY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getLocationRelativeToWindow
+ 
+ method createJXGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        vR1 = new jx/awt/JXGraphics(vR0.connector);    [ R  i][ R . iRR]
+        vR1.translate(vR0.transX,vR0.transY);   [R R ii iiR] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 1 any 0 found 0 createJXGraphics
+ 
+ method setBufferCount()V {
+  +START:   #1
+        vR0.connector.setBufferCount();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBufferCount
+ 
+ method drawBackBuffer()V {
+  +START:   #1
+        vR0.connector.drawBackBuffer();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawBackBuffer
+ 
+ method setViewClip(IIII)V {
+  +START:   #1
+        if vi3==0 goto B9;   
+  +B4:   #1
+        if vi4!=0 goto B15;   
+  +B9:   #1
+        vR0.viewClip = 0;   
+        return;   
+  +B15:   #1
+        if vR0.viewClip!=null goto B41;   
+  +B22:   #1
+        b1 = new java/awt/Rectangle(vi1,vi2,vi3,vi4);    [ RR  i][ RR . iiiiiR]
+        vR0.viewClip = b1;   
+        goto +B68;   forward return[ RR . ......]
+  +B41:   #1
+        vR5 = new java/awt/Rectangle(vi1,vi2,vi3,vi4);    [ RR . i.....][ RR . iiiiiR]
+        vR0.viewClip = vR0.viewClip.intersection(vR5);   
+  +B68:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 4 swaps 0 any 2 found 0 setViewClip
+ 
+ method getTranslationOrigin()Ljava/awt/Point; {
+  +START:   #1
+        return new java/awt/Point(vR0.transX,vR0.transY);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getTranslationOrigin
+ 
+ method dispose()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method drawJXString(Ljava/lang/String;II)V {
+  +START:   #1
+        vi2 = (vi2+vR0.transX);    
+        vi3 = (vi3+vR0.transY);    
+        vR0.connector.movePenTo(vi2,vi3);   [   iiR] 
+        vR0.connector.drawString(vR1);   [   RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 2 found 0 drawJXString
+ 
+ method copyArea(IIIIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 copyArea
+ 
+ method clearRect(IIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 clearRect
+ 
+ method drawRoundRect(IIIIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawRoundRect
+ 
+ method fillRoundRect(IIIIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fillRoundRect
+ 
+ method fillOval(IIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fillOval
+ 
+ method drawArc(IIIIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawArc
+ 
+ method fillArc(IIIIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fillArc
+ 
+ method fillPolygon([I[II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 fillPolygon
+ 
+ method drawOval(IIII)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawOval
+ 
+ method create()Ljava/awt/Graphics; {
+  +START:   #1
+        return vR0.createJXGraphics@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 create
+ 
+ method translate(II)V {
+  +START:   #1
+        vR0.transX = (vR0.transX+vi1);   
+        vR0.transY = (vR0.transY+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 translate
+ 
+ method setPaintMode()V {
+  +START:   #1
+        vR0.invert = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setPaintMode
+ 
+ method setXORMode(Ljava/awt/Color;)V {
+  +START:   #1
+        vR0.invert = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setXORMode
+ 
+ method clipRect(IIII)V {
+  +START:   #1
+        vR0.setClip@this(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clipRect
+ 
+ method setClip(IIII)V {
+  +START:   #1
+        vR0.clipX = vi1;   
+        vR0.clipY = vi2;   
+        vR0.clipWidth = vi3;   
+        vR0.clipHeight = vi4;   
+        if vR0.viewClip==null goto B108;   
+  +B28:   #1
+        vR5 = new java/awt/Rectangle((vi1+vR0.transX),(vi2+vR0.transY),vi3,vi4);    [ R  i][ R . iiiiiR]
+        if vR5.isEmpty()==0 goto B67;   
+  +B60:   #1
+        b0 = vR0.viewClip;    
+        goto +B76b0;   [R R . ......]
+  +B67:   #1
+        b0 = vR0.viewClip.intersection(vR5);    [RR R . RR....] 
+  +B76b0:   #1 reference
+        vR6 = b0;    
+        vR0.connector.setClip(vR6.x,vR6.y,vR6.width,vR6.height);   [RR R iiii iiiiR.] 
+        goto +B130;   forward return[RR R iiii ......]
+  +B108:   #1
+        vR0.connector.setClip((vi1+vR0.transX),(vi2+vR0.transY),vi3,vi4);   [RR R ii.. iiiiR.] 
+  +B130:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 11 swaps 2 any 1 found 0 setClip
+ 
+ method setClip(Ljava/awt/Shape;)V {
+  +START:   #1
+        vR2 = vR1.getBounds();    [   R] 
+        vR0.setClip@this(vR2.x,vR2.y,vR2.width,vR2.height);   [R  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 0 found 0 setClip
+ 
+ method getClip()Ljava/awt/Shape; {
+  +START:   #1
+        return vR0.getClipBounds@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClip
+ 
+ method getClipBounds()Ljava/awt/Rectangle; {
+  +START:   #1
+        return new java/awt/Rectangle(vR0.clipX,vR0.clipY,vR0.clipWidth,vR0.clipHeight);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getClipBounds
+ 
+ method setColor(Ljava/awt/Color;)V {
+  +START:   #1
+        vR0.fgColor = vR1;   
+        vR0.connector.setFgColor(vR1.getRed(),vR1.getGreen(),vR1.getBlue(),vR1.getAlpha());   [  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 2 any 0 found 0 setColor
+ 
+ method getColor()Ljava/awt/Color; {
+  +START:   #1
+        return vR0.fgColor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColor
+ 
+ method drawLine(IIII)V {
+  +START:   #1
+        vi1 = (vi1+vR0.transX);    
+        vi2 = (vi2+vR0.transY);    
+        vi3 = (vi3+vR0.transX);    
+        vi4 = (vi4+vR0.transY);    
+        vR0.connector.movePenTo(vi1,vi2);   [   iiR] 
+        if vR0.invert==0 goto B59;   
+  +B46:   #1
+        vR0.connector.invertLine(vi3,vi4);   [   iiR] 
+        goto +B69;   forward return[   ...]
+  +B59:   #1
+        vR0.connector.drawLine(vi3,vi4);   [   iiR] 
+  +B69:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 4 swaps 0 any 4 found 0 drawLine
+ 
+ method fillRect(IIII)V {
+  +START:   #1
+        vi1 = (vi1+vR0.transX);    
+        vi2 = (vi2+vR0.transY);    
+        b0 = vR0.connector;    
+        b1 = new jx/devices/fb/PixelRect(vi1,vi2,(vi1+vi3),(vi2+vi4));    [ RRR  i][ RRR . iiiiiR]
+        if vR0.invert==0 goto B47;   
+  +B41b0b1:   #1 reference reference
+        b2 = INVERT;    
+        goto +B50b0b1b2;   [ RRR . ......]
+  +B47b0b1:   #1 reference reference
+        b2 = COPY;    
+  +B50b0b1b2:   #1 reference reference reference
+        b0.fillRect(b1,b2);   [ RRR . RRR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 7 swaps 0 any 2 found 0 fillRect
+ 
+ method drawPolyline([I[II)V {
+  +START:   #1
+        if vi3>=2 goto B6;   
+  +B5:   #1
+        return;   
+  +B6:   #1
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vi3 goto B43;   
+  +B15:   #1
+        vR1[vi4] = (vR1[vi4]+vR0.transX);   
+        vR2[vi4] = (vR2[vi4]+vR0.transY);   
+        vi4++;   
+        goto +B9;   [i   ]
+  +B43:   #1
+        vR0.connector.movePenTo(vR1[0],vR2[0]);   [i  ii iiR] 
+        vi4 = 1;    
+  +B59:   #1
+        if vi4>=vi3 goto B111;   
+  +B65:   #1
+        if vR0.invert==0 goto B90;   
+  +B72:   #1
+        vR0.connector.invertLine(vR1[vi4],vR2[vi4]);   [i  ii iiR] 
+        goto +B105;   [i  ii ...]
+  +B90:   #1
+        vR0.connector.drawLine(vR1[vi4],vR2[vi4]);   [i  ii iiR] 
+  +B105:   #1
+        vi4++;   
+        goto +B59;   [i  .. ...]
+  +B111:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 9 swaps 3 any 5 found 0 drawPolyline
+ 
+ method drawPolygon([I[II)V {
+  +START:   #1
+        vR0.drawPolyline@this(vR1,vR2,vi3);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawPolygon
+ 
+ method drawString(Ljava/lang/String;II)V {
+  +START:   #1
+        vR0.drawJXString@this(vR1,vi2,(vi3-10));   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 drawString
+ 
+ method drawImage(Ljava/awt/Image;IILjava/awt/image/ImageObserver;)Z {
+  +START:   #1
+        vi2 = (vi2+vR0.transX);    
+        vi3 = (vi3+vR0.transY);    
+        if vR0.invert==0 goto B50;   
+  +B21:   #1
+        b0 = vR0.connector;    
+        b1 = (jx/awt/JXImage)(vR1).getBitmap();    [ RRR  R.] 
+        b2 = new jx/devices/fb/PixelPoint(vi2,vi3);    [ RRR  i.][ RRR . iiiR]
+        b0.drawBitmap(b1,b2,INVERT);   [ RRR R RRRR] 
+        goto +B66;   forward return[ RRR R ....]
+  +B50:   #1
+        vR0.connector.drawBitmap((jx/awt/JXImage)(vR1).getBitmap(),vi2,vi3);   [ RRR i iiRR] 
+  +B66:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 8 swaps 1 any 2 found 4 drawImage
+ 
+ method drawImage(Ljava/awt/Image;IIIILjava/awt/image/ImageObserver;)Z {
+  +START:   #1
+        vi2 = (vi2+vR0.transX);    
+        vi3 = (vi3+vR0.transY);    
+        vR7 = new jx/devices/fb/PixelRect(0,0,(vR1.getWidth(vR6)-1),(vR1.getHeight(vR6)-1));    [ RRRRR  i][ RRRRR . iiiiiR]
+        vR8 = new jx/devices/fb/PixelRect(vi2,vi3,((vi2+vi4)-1),((vi3+vi5)-1));    [ RRRRR . i.....][ RRRRR . iiiiiR]
+        b0 = vR0.connector;    
+        b1 = (jx/awt/JXImage)(vR1).getBitmap();    [RR RRRRR . R.....] 
+        b2 = vR7;    
+        b3 = vR8;    
+        if vR0.invert==0 goto B92;   
+  +B86b0b1b2b3:   #1 reference reference reference reference
+        b4 = INVERT;    
+        goto +B95b0b1b2b3b4;   [RR RRRRR . ......]
+  +B92b0b1b2b3:   #1 reference reference reference reference
+        b4 = SCALEDCOPY;    
+  +B95b0b1b2b3b4:   #1 reference reference reference reference reference
+        b0.drawBitmap(b1,b2,b3,b4);   [RR RRRRR . RRRRR.] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 12 swaps 0 any 4 found 1 drawImage
+ 
+ method drawImage(Ljava/awt/Image;IIIIIIIILjava/awt/image/ImageObserver;)Z {
+  -START:   #1
+        throw new java/lang/Error("NOT IMPLEMENTED");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawImage
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/String;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("JXGraphics: tx = ").append@extra(vR0.transX).append@extra(", ty = ").append@extra(vR0.transY).toString@extra());   [ RRR iiiii... RR...] 
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 12 swaps 5 any 1 found 0 toString
+ 
+ method getFont()Ljava/awt/Font; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFont
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method drawString(Ljava/text/AttributedCharacterIterator;II)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawString
+ 
+ method drawImage(Ljava/awt/Image;IILjava/awt/Color;Ljava/awt/image/ImageObserver;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawImage
+ 
+ method drawImage(Ljava/awt/Image;IIIILjava/awt/Color;Ljava/awt/image/ImageObserver;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawImage
+ 
+ method drawImage(Ljava/awt/Image;IIIIIIIILjava/awt/Color;Ljava/awt/image/ImageObserver;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawImage
+}

@@ -1,0 +1,634 @@
+class org/jnode/fs/jfat/FatShortDirEntry {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;)V {
+  +START:   #1
+        b2 = new org/jnode/fs/jfat/FatMarshal(32);    [ ??R  i][ ??R . iiR]
+        vR0.<init>@special(vR1,b2,0);   [ ??R . iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatMarshal;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vi3);   [   iRRR] 
+        vR0.decode@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatName;I)V {
+  +START:   #1
+        b2 = new org/jnode/fs/jfat/FatMarshal(32);    [ ?RR  i][ ?RR . iiR]
+        vR0.<init>@special(vR1,b2,vi3);   [ ?RR . iRRR] 
+        vl4 = currentTimeMillis@special();    
+        vR0.setNameCase@this(vR2.getShortCase());   [l ?RR i RR..] 
+        b1 = new org/jnode/fs/jfat/FatAttr();    [ ?RR i i...][ ?RR i iR..]
+        vR0.setAttr@this(b1);   [l ?RR i RR..] 
+        vR0.setName@this(vR2.getName());   [l ?RR ii RR..] 
+        vR0.setCreated@this(vl4);   [l ?RR ii ??R.] 
+        vR0.setLastAccessed@this(vl4);   [l ?RR ii ??R.] 
+        vR0.setLastModified@this(vl4);   [l ?RR ii ??R.] 
+        vR0.setStartCluster@this(0);   [l ?RR ii iR..] 
+        vR0.setLength@this(0);   [l ?RR ii iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 5 swaps 2 any 0 found 0 <init>
+ 
+ method decodeName()V {
+  +START:   #1
+        vR0.lName = vR0.entry.getBytes(0,11);   
+        if vR0.lName[0]!=5 goto B32;   
+  +B24:   #1
+        vR0.lName[0] = -27;   
+  +B32:   #1
+        vR0.decodeBase@this();   [   R..] 
+        vR0.decodeExt@this();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 decodeName
+ 
+ method encodeName()V {
+  +START:   #1
+        if vR0.lName[0]!=-27 goto B18;   
+  +B11:   #1
+        vR0.lName[0] = 5;   
+  +B18:   #1
+        vR0.decodeBase@this();   [   R] 
+        vR0.decodeExt@this();   [   R] 
+        vR0.entry.setBytes(0,11,vR0.lName);   [  i RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 1 any 0 found 0 encodeName
+ 
+ method decodeBase()V {
+  +START:   #1
+        vR2 = new byte[8];    
+        arraycopy@special(vR0.lName,0,vR2,0,8);   [?R R R iiRiR]
+        vR1 = new java/lang/String(vR2);    [ R R i....][ R R. iRR..]
+        vR0.base = vR1.trim@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 decodeBase
+ 
+ method decodeExt()V {
+  +START:   #1
+        vR2 = new byte[3];    
+        arraycopy@special(vR0.lName,8,vR2,0,3);   [?R R R iiRiR]
+        vR1 = new java/lang/String(vR2);    [ R R i....][ R R. iRR..]
+        vR0.ext = vR1.trim@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 decodeExt
+ 
+ method decodeAttr()V {
+  +START:   #1
+        vR0.lAttr = vR0.entry.getUInt8(11);   
+        b1 = new org/jnode/fs/jfat/FatAttr(vR0.lAttr);    [ ?R  i.][ ?R . iiR]
+        vR0.attr = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 decodeAttr
+ 
+ method encodeAttr()V {
+  +START:   #1
+        vR0.lAttr = vR0.attr.getAttr();   
+        vR0.entry.setUInt8(11,vR0.lAttr);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 encodeAttr
+ 
+ method decodeNameCase()V {
+  +START:   #1
+        vR0.lNTRes = vR0.entry.getUInt8(12);   
+        b1 = new org/jnode/fs/jfat/FatCase(vR0.lNTRes);    [ ?R  i.][ ?R . iiR]
+        vR0.ncase = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 decodeNameCase
+ 
+ method encodeNameCase()V {
+  +START:   #1
+        vR0.lNTRes = vR0.ncase.getCase();   
+        vR0.entry.setUInt8(12,vR0.lNTRes);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 encodeNameCase
+ 
+ method decodeCreated()V {
+  +START:   #1
+        vR0.lCrtTimeTenth = vR0.entry.getUInt8(13);   
+        vR0.lCrtTime = vR0.entry.getUInt16(14);   
+        vR0.lCrtDate = vR0.entry.getUInt16(16);   
+        vR0.created = decodeDateTime@special(vR0.lCrtDate,vR0.lCrtTime,vR0.lCrtTimeTenth);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 decodeCreated
+ 
+ method encodeCreated()V {
+  +START:   #1
+        vR0.lCrtDate = encodeDate@special(vR0.created);   
+        vR0.lCrtTime = encodeTime@special(vR0.created);   
+        vR0.lCrtTimeTenth = encodeTenth@special(vR0.created);   
+        vR0.entry.setUInt8(13,vR0.lCrtTimeTenth);   [  i iiR] 
+        vR0.entry.setUInt16(14,vR0.lCrtTime);   [  ii iiR] 
+        vR0.entry.setUInt16(16,vR0.lCrtDate);   [  iii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 3 swaps 3 any 0 found 0 encodeCreated
+ 
+ method decodeAccessed()V {
+  +START:   #1
+        vR0.lLstAccDate = vR0.entry.getUInt16(18);   
+        vR0.accessed = decodeDateTime@special(vR0.lLstAccDate,0);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 decodeAccessed
+ 
+ method encodeAccessed()V {
+  +START:   #1
+        vR0.lLstAccDate = encodeDate@special(vR0.accessed);   
+        vR0.entry.setUInt16(18,vR0.lLstAccDate);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 encodeAccessed
+ 
+ method decodeModified()V {
+  +START:   #1
+        vR0.lWrtTime = vR0.entry.getUInt16(22);   
+        vR0.lWrtDate = vR0.entry.getUInt16(24);   
+        vR0.modified = decodeDateTime@special(vR0.lWrtDate,vR0.lWrtTime);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 decodeModified
+ 
+ method encodeModified()V {
+  +START:   #1
+        vR0.lWrtDate = encodeDate@special(vR0.modified);   
+        vR0.lWrtTime = encodeTime@special(vR0.modified);   
+        vR0.entry.setUInt16(22,vR0.lWrtTime);   [  i iiR] 
+        vR0.entry.setUInt16(24,vR0.lWrtDate);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 2 any 0 found 0 encodeModified
+ 
+ method decodeCluster()V {
+  +START:   #1
+        vR0.lFstClusHi = vR0.entry.getUInt16(20);   
+        vR0.lFstClusLo = vR0.entry.getUInt16(26);   
+        if vR0.lFstClusLo<=65535 goto B69;   
+  -B35:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("FstClusLo too large: ").append@extra(hex@special(vR0.lFstClusLo,4)).toString@extra());   [ RRR iiii. RR.] 
+        throw b0;   
+  +B69:   #1
+        if vR0.lFstClusHi<=4095 goto B113;   
+  -B79:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i..][ RRR ..... iR.]
+        b1.<init>@special(b2.append@extra("FstClusHi too large: ").append@extra(hex@special(vR0.lFstClusHi,4)).toString@extra());   [ RRR iiii. RR.] 
+        throw b0;   
+  +B113:   #1
+        vR0.cluster = ((vR0.lFstClusHi << 16)+vR0.lFstClusLo);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 18 swaps 6 any 2 found 0 decodeCluster
+ 
+ method encodeCluster()V {
+  +START:   #1
+        if vR0.cluster< 0 goto B16;   
+  +B7:   #1
+        if vR0.cluster<=268435455 goto B51;   
+  -B16:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("cluster is invalid: ").append@extra(hex@special(vR0.cluster,8)).toString@extra());   [ RRR iiii. RR.] 
+        throw b0;   
+  +B51:   #1
+        vR0.lFstClusLo = (vR0.cluster & 65535);   
+        vR0.lFstClusHi = ((vR0.cluster >> 16) & 4095);   
+        vR0.entry.setUInt16(20,vR0.lFstClusHi);   [ RRR i.... iiR] 
+        vR0.entry.setUInt16(26,vR0.lFstClusLo);   [ RRR ii... iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 11 swaps 5 any 1 found 0 encodeCluster
+ 
+ method decodeLength()V {
+  +START:   #1
+        vR0.lFileSize = vR0.entry.getUInt32(28);   
+        vR0.length = vR0.lFileSize;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 decodeLength
+ 
+ method encodeLength()V {
+  +START:   #1
+        if compare((long)vR0.length,0)< 0 goto B22;   
+  +B10:   #1
+        if compare((long)vR0.length,4294967295)<=0 goto B52;   
+  -B22:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("length is invalid: ").append@extra(vR0.length).toString@extra());   [ RRR iii. RR.] 
+        throw b0;   
+  +B52:   #1
+        vR0.lFileSize = vR0.length;   
+        vR0.entry.setUInt32(28,vR0.lFileSize);   [ RRR i... iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 9 swaps 4 any 1 found 0 encodeLength
+ 
+ method decode()V {
+  +START:   #1
+        vR0.decodeNameCase@this();   [   R] 
+        vR0.decodeAttr@this();   [   R] 
+        vR0.decodeName@this();   [   R] 
+        vR0.decodeCreated@this();   [   R] 
+        vR0.decodeAccessed@this();   [   R] 
+        vR0.decodeModified@this();   [   R] 
+        vR0.decodeCluster@this();   [   R] 
+        vR0.decodeLength@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 decode
+ 
+ method encode()V {
+  +START:   #1
+        vR0.encodeNameCase@special();   [   R] 
+        vR0.encodeAttr@special();   [   R] 
+        vR0.encodeName@this();   [   R] 
+        vR0.encodeCreated@special();   [   R] 
+        vR0.encodeAccessed@special();   [   R] 
+        vR0.encodeModified@special();   [   R] 
+        vR0.encodeCluster@special();   [   R] 
+        vR0.encodeLength@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 encode
+ 
+ method isShortDirEntry()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isShortDirEntry
+ 
+ method getNameCase()Lorg/jnode/fs/jfat/FatCase; {
+  +START:   #1
+        return vR0.ncase;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameCase
+ 
+ method isBaseLowerCase()Z {
+  +START:   #1
+        return vR0.ncase.isLowerBase();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isBaseLowerCase
+ 
+ method isExtLowertCase()Z {
+  +START:   #1
+        return vR0.ncase.isLowerExt();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isExtLowertCase
+ 
+ method setNameCase(Lorg/jnode/fs/jfat/FatCase;)V {
+  +START:   #1
+        vR0.ncase = vR1;   
+        vR0.encodeNameCase@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setNameCase
+ 
+ method getAttr()Lorg/jnode/fs/jfat/FatAttr; {
+  +START:   #1
+        return vR0.attr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttr
+ 
+ method setAttr(Lorg/jnode/fs/jfat/FatAttr;)V {
+  +START:   #1
+        vR0.attr = vR1;   
+        vR0.encodeAttr@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setAttr
+ 
+ method isReadOnly()Z {
+  +START:   #1
+        return vR0.attr.isReadOnly();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadOnly
+ 
+ method setReadOnly()V {
+  +START:   #1
+        vR0.attr.setReadOnly(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setReadOnly
+ 
+ method isHidden()Z {
+  +START:   #1
+        return vR0.attr.isHidden();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isHidden
+ 
+ method setHidden()V {
+  +START:   #1
+        vR0.attr.setHidden(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setHidden
+ 
+ method isSystem()Z {
+  +START:   #1
+        return vR0.attr.isSystem();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isSystem
+ 
+ method setSystem()V {
+  +START:   #1
+        vR0.attr.setSystem(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSystem
+ 
+ method isLabel()Z {
+  +START:   #1
+        return vR0.attr.isLabel();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isLabel
+ 
+ method setLabel()V {
+  +START:   #1
+        vR0.attr.setLabel(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLabel
+ 
+ method isDirectory()Z {
+  +START:   #1
+        return vR0.attr.isDirectory();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method setDirectory()V {
+  +START:   #1
+        vR0.attr.setDirectory(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDirectory
+ 
+ method isArchive()Z {
+  +START:   #1
+        return vR0.attr.isArchive();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isArchive
+ 
+ method setArchive()V {
+  +START:   #1
+        vR0.attr.setArchive(1);   [   iR] 
+        vR0.encodeAttr@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setArchive
+ 
+ method getName()[B {
+  +START:   #1
+        return vR0.lName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method setName([B)V {
+  +START:   #1
+        if vR1.length==11 goto B36;   
+  -B7:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("illegal shortname length: ").append@extra(vR1.length).toString@extra());   [ RRR iii. RR.] 
+        throw b0;   
+  +B36:   #1
+        vR0.lName = vR1;   
+        vR0.encodeName@this();   [ RRR .... R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 3 any 1 found 0 setName
+ 
+ method clearName()V {
+  +START:   #1
+        vR1 = new byte[11];    
+        fill@special(vR1,0,vR1.length,32);   [R  i iiiR]
+        vR0.setName@this(vR1);   [R  i RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 clearName
+ 
+ method getBase()Ljava/lang/String; {
+  +START:   #1
+        return vR0.base;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBase
+ 
+ method getExt()Ljava/lang/String; {
+  +START:   #1
+        return vR0.ext;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getExt
+ 
+ method getLabel()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/String(vR0.lName);    [ R  i][ R . iRR]
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getLabel
+ 
+ method getShortName()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.getBase@this();    [ R  R] 
+        vR2 = vR0.getExt@this();    [R R  R] 
+        if vR2.length@extra()<=0 goto B42;   
+  +B17:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR1).append@extra(".").append@extra(vR2).toString@extra();   
+  +B42:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 7 swaps 1 any 0 found 0 getShortName
+ 
+ method getChkSum()B {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=11 goto B48;   
+  +B10:   #1
+        if (vi1 & 1)!=1 goto B23;   
+  +B17:   #1
+        b0 = 128;    
+        goto +B24b0;   [ii i  ]
+  +B23:   #1
+        b0 = 0;    
+  +B24b0:   #1 int
+        vi1 = ((b0+(vi1 >> 1))+vR0.lName[vi2]);    
+        vi1 = (vi1 & 255);    
+        vi2++;   
+        goto +B4;   [ii i  ]
+  +B48:   #1
+        return (byte)vi1;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 5 found 0 getChkSum
+ 
+ method getCreated()J {
+  +START:   #1
+        return vR0.created;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCreated
+ 
+ method setCreated(J)V {
+  +START:   #1
+        vR0.created = checkDateTime@special(vl1);   
+        vR0.encodeCreated@special();   [   R] 
+        vR0.decodeCreated@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCreated
+ 
+ method getLastAccessed()J {
+  +START:   #1
+        return vR0.accessed;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastAccessed
+ 
+ method setLastAccessed(J)V {
+  +START:   #1
+        vR0.accessed = checkDateTime@special(vl1);   
+        vR0.encodeAccessed@special();   [   R] 
+        vR0.decodeAccessed@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLastAccessed
+ 
+ method getLastModified()J {
+  +START:   #1
+        return vR0.modified;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastModified
+ 
+ method setLastModified(J)V {
+  +START:   #1
+        vR0.modified = checkDateTime@special(vl1);   
+        vR0.encodeModified@special();   [   R] 
+        vR0.decodeModified@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLastModified
+ 
+ method getStartCluster()I {
+  +START:   #1
+        return vR0.cluster;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStartCluster
+ 
+ method setStartCluster(I)V {
+  +START:   #1
+        vR0.cluster = vi1;   
+        vR0.encodeCluster@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setStartCluster
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.length;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method setLength(I)V {
+  +START:   #1
+        vR0.length = vi1;   
+        vR0.encodeLength@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setLength
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "Short Entry [%s] index:%d attr:%s size:%d";    
+        b1 = new java/lang/Object()[4];    
+        b1[0] = vR0.getShortName@this();   
+        b1[1] = valueOf@special(vR0.getIndex@this());   
+        b1[2] = hex@special(vR0.lAttr,2);   
+        b1[3] = valueOf@special(vR0.lFileSize);   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 5 swaps 0 any 0 found 0 toString
+}

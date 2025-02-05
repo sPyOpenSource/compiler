@@ -28,26 +28,27 @@ class jx/net/protocol/icmp/ICMP {
   +START:   #1
         out.println("ICMP packet received: offset=");   [ RR i. RR] 
         vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
-        vR3 = new jx/net/protocol/icmp/ICMPFormat(vR1,34);    [ RR ii. i.][ RR ii. iiRR]
-        vi4 = vR3.getType();    [RR RR ii. R...] 
-        vi5 = vR3.getCode();    [RRi RR ii. R...] 
-        vi6 = vR3.getChecksum();    [RRii RR ii. R...] 
+        vR3 = vR2.alloc(98);    [R RR ii. iR] 
+        vR3.copyFromMemory(vR1,0,0,98);   [RR RR ii. iiiRR] 
+        vR4 = new jx/net/protocol/icmp/ICMPFormat(vR3,34);    [ RR ii. i....][ RR ii. iiRR.]
+        vi5 = vR4.getType();    [RRR RR ii. R....] 
+        vi6 = vR4.getCode();    [RRRi RR ii. R....] 
+        vi7 = vR4.getChecksum();    [RRRii RR ii. R....] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR ii. i...][ RR ii. iR..]
-        b0.println(b1.append@extra("ICMP type: ").append@extra(vi4).append@extra(", code=").append@extra(vi5).append@extra(", checksum=").append@extra(vi6).toString@extra());   [RRiii RR iiiiii..... RR.....] 
-        if vi4!=8 goto B170;   
-  +B104:   #1
-        out.println("  ICMP ECHO RECEIVED. (ping)");   [RRiii RR i.......... RR.....] 
-        vR3.insertType(0);   [RRiii RR i.......... iR.....] 
-        vR3.CalculateChecksum();   [RRiii RR i.......... R......] 
+        b1 = new java/lang/StringBuilder();    [ RR ii. i....][ RR ii. iR...]
+        b0.println(b1.append@extra("ICMP type: ").append@extra(vi5).append@extra(", code=").append@extra(vi6).append@extra(", checksum=").append@extra(vi7).toString@extra());   [RRRiii RR iiiiii..... RR.....] 
+        if vi5!=8 goto B186;   
+  +B129:   #1
+        out.println("  ICMP ECHO RECEIVED. (ping)");   [RRRiii RR i.......... RR.....] 
+        vR4.insertType(0);   [RRRiii RR i.......... iR.....] 
+        vR4.CalculateChecksum();   [RRRiii RR i.......... R......] 
         vR0.sender = vR0.net.getIPSender(vR0.data.getSourceAddress(),1);   
-        out.println(vR1.size());   [RRiii RR iii........ iR.....] 
-        vR0.sender.send(vR3.getMemory());   [RRiii RR iiii....... RR.....] 
-  +B170:   #1
+        vR0.sender.send(vR4.getMemory());   [RRRiii RR iii........ RR.....] 
+  +B186:   #1
         return vR1;   
   +END:   #1
  }
-// Register: rd 18/18 wr 29 swaps 11 any 1 found 0 processMemory
+// Register: rd 19/19 wr 28 swaps 10 any 1 found 0 processMemory
  
  method processIP(Ljx/net/IPData;)Ljx/zero/Memory; {
   +START:   #1

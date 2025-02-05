@@ -1,0 +1,94 @@
+class org/jnode/fs/ntfs/StandardInformationAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCreationTime()J {
+  +START:   #1
+        return vR0.getInt64@this(vR0.getAttributeOffset@this());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCreationTime
+ 
+ method getModificationTime()J {
+  +START:   #1
+        return vR0.getInt64@this((vR0.getAttributeOffset@this()+8));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getModificationTime
+ 
+ method getMftChangeTime()J {
+  +START:   #1
+        return vR0.getInt64@this((vR0.getAttributeOffset@this()+16));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftChangeTime
+ 
+ method getAccessTime()J {
+  +START:   #1
+        return vR0.getInt64@this((vR0.getAttributeOffset@this()+24));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAccessTime
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+32));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getFlags
+ 
+ method getMaxVersions()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+36));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getMaxVersions
+ 
+ method getVersionNumber()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+40));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getVersionNumber
+ 
+ method getClassId()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+44));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getClassId
+ 
+ method getOwnerId()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+48));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getOwnerId
+ 
+ method getSecurityId()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+52));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getSecurityId
+ 
+ method getQuotaCharged()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+56));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getQuotaCharged
+ 
+ method getUpdateSequenceNumber()I {
+  +START:   #1
+        return vR0.getInt32@this((vR0.getAttributeOffset@this()+64));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getUpdateSequenceNumber
+}

@@ -1,0 +1,29 @@
+class jx/keyboard/KeyboardImpl$1 {
+ 
+ method <init>(Ljx/keyboard/KeyboardImpl;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method run()V {
+  +START:   #1
+        access$000@special(vR0.this$0).setThreadName("KBD-2nd-IRQ");   [  i.R RR] [  iRR RR]
+  +B14:   #3
+        access$100@special(vR0.this$0).waitForCharacter();   [  .R. R.] [  RR. R.]
+        access$200@special(vR0.this$0,access$100@special(vR0.this$0).get());   [  iRRR iR]
+  +B41:   #1
+        goto +B14;   [  .... ..]
+  +H44<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        out.println("EXCEPTION");   [R  i... RR] 
+        goto +B14;   [R  i... ..]
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+14 - 41 handler 44 type 44
+ }
+// Register: rd 5/5 wr 13 swaps 2 any 0 found 0 run
+}

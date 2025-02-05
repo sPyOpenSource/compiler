@@ -1,0 +1,78 @@
+class test/wm/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method main([Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new test/wm/MainWindow;    
+        b1 = b0;    
+        b2 = "main";    
+        b3 = new jx/devices/fb/PixelRect(300,500,750,700);    [ RRRRR  i][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [ RRRRR . RRRR..] 
+        vR1 = b0;    
+        vR1.show(1);   [R RRRRR . iR....] 
+        if vR0.length!=1 goto B261;   
+  +B47:   #1
+        if vR0[0].equals@extra("showAll")==0 goto B137;   
+  +B58:   #1
+        b0 = new test/wm/TestWindow;    
+        b1 = b0;    
+        b2 = "keyboard-test";    
+        b3 = new jx/devices/fb/PixelRect(50,250,450,600);    [ RRRRR . i.....][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [R RRRRR . RRRR..] 
+        b0.show(1);   [R RRRRR . iR....] 
+        b0 = new test/wm/DrawWindow;    
+        b1 = b0;    
+        b2 = "zeichen-test";    
+        b3 = new jx/devices/fb/PixelRect(250,50,700,200);    [ RRRRR . i.....][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [R RRRRR . RRRR..] 
+        b0.show(1);   [R RRRRR . iR....] 
+        goto +B261;   forward return[R RRRRR . ......]
+  +B137:   #1
+        if vR0[0].equals@extra("term")==0 goto B225;   
+  +B148:   #1
+        b0 = new test/wm/DrawWindow;    
+        b1 = b0;    
+        b2 = "zeichen-test";    
+        b3 = new jx/devices/fb/PixelRect(250,50,700,200);    [ RRRRR . i.....][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [R RRRRR . RRRR..] 
+        b0.show(1);   [R RRRRR . iR....] 
+        vi2 = 0;    
+  +B188:   #1
+        if vi2>=10 goto B203;   
+  +B194:   #1
+        yield@special();   [Ri RRRRR . ......]
+        vi2++;   
+        goto +B188;   [Ri RRRRR . ......]
+  +B203:   #1
+        createDomain@special("Good","test_wm.jll","test/wm/GDomainTerm",300000,100000,1000000,100000,3);   [Ri RRRRR RRR iiiiiRRR]
+        goto +B261;   forward return[Ri RRRRR RRR ........]
+  +B225:   #1
+        if vR0[0].equals@extra("gctest")==0 goto B261;   
+  +B236:   #1
+        vR2 = new int[100000];    
+        vi3 = 0;    
+  +B243:   #1
+        if vi3>=100 goto B258;   
+  +B249:   #1
+        yield@special();   [RRi RRRRR ... ........]
+        vi3++;   
+        goto +B243;   [RRi RRRRR ... ........]
+  +B258:   #1
+        goto +B236;   [RRi RRRRR ... ........]
+  +B261:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 36 swaps 3 any 9 found 0 main
+}

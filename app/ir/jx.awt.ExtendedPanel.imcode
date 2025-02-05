@@ -1,0 +1,68 @@
+class jx/awt/ExtendedPanel {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(0,0);   [   RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(ILjava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.borderType = vi1;   
+        vR0.title = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/LayoutManager;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,0);   [   RiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/LayoutManager;ILjava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.borderType = vi2;   
+        vR0.title = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getBorderType()I {
+  +START:   #1
+        return vR0.borderType;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBorderType
+ 
+ method getTitle()Ljava/lang/String; {
+  +START:   #1
+        return vR0.title;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTitle
+ 
+ method setBorderType(I)V {
+  +START:   #1
+        vR0.borderType = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBorderType
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.title = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTitle
+}

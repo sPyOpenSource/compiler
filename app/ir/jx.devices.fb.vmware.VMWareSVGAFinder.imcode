@@ -1,0 +1,78 @@
+class jx/devices/fb/vmware/VMWareSVGAFinder {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method find(Ljx/zero/Naming;)[Ljx/devices/Device; {
+  +START:   #1
+        out.println("lookup PCI Access Point...");   [  i. RR] 
+        vi3 = 0;    
+        vR4 = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));    
+  +B25:   #1
+        vR2 = (jx/devices/pci/PCIAccess)(getInitialNaming@special().lookup("PCIAccess"));    
+        if vR2!=null goto B73;   
+  +B43:   #1
+        if (vi3%20)!=0 goto B60;   
+  +B50:   #1
+        vi3 = 0;    
+        out.println("VMWareSVGAFinder still waiting for PCI");   [RiR  i.. RR] 
+  +B60:   #1
+        vi3++;   
+        vR4.yield();   [RiR  ... R.] 
+        goto +B25;   [RiR  ... ..]
+  +B73:   #1
+        return vR0.findDevice@this(vR2);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 15 swaps 4 any 2 found 0 find
+ 
+ method findDevice(Ljx/devices/pci/PCIAccess;)[Ljx/devices/fb/vmware/VMWareSVGAImpl; {
+  +START:   #1
+        vi2 = -1;    
+        vi3 = -1;    
+        vi5 = vR1.getNumberOfDevices();    [ii RR?R  R] 
+        vR6 = new jx/devices/fb/vmware/VMWareSVGAImpl()[vi5];    
+        vi7 = 0;    
+  +B22:   #1
+        if vi7>=vi5 goto B162;   
+  +B29:   #1
+        vR4 = vR1.getDeviceAt(vi7);    [ii?iRi RR?R  iR] 
+        vi2 = (vR4.getDeviceID() & 65535);    
+        vi3 = (vR4.getVendorID() & 65535);    
+        if vi3!=5549 goto B156;   
+  +B68:   #1
+        lswitch (vi2) { 
+           1029:B122
+           1808:B96
+           ::B148
+        };   
+  +B96:   #1
+        out.println("VMWare SVGA found");   [iiRiRi RR?R i. RR] 
+        b0 = new jx/devices/fb/vmware/VMWareSVGAImpl()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/vmware/VMWareSVGAImpl(vR4,1);    [ RR?R i. i.][ RR?R i. iiRR]
+        b1[0] = b3;   
+        return b0;   
+  +B122:   #1
+        out.println("VMWare SVGA1 found");   [iiRiRi RR?R i. RR..] 
+        b0 = new jx/devices/fb/vmware/VMWareSVGAImpl()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/vmware/VMWareSVGAImpl(vR4,0);    [ RR?R i. i...][ RR?R i. iiRR]
+        b1[0] = b3;   
+        return b0;   
+  +B148:   #1
+        out.println("ERROR: Unsupported VMWare card found");   [iiRiRi RR?R i. RR..] 
+  +B156:   #1
+        vi7++;   
+        goto +B22;   [iiRiRi RR?R .. ....]
+  +B162:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 21 swaps 3 any 8 found 0 findDevice
+}

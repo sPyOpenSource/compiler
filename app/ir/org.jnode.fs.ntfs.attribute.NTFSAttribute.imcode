@@ -1,0 +1,166 @@
+class org/jnode/fs/ntfs/attribute/NTFSAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        vR0.fileRecord = vR1;   
+        vR0.type = vR0.getUInt32AsInt@this(0);   
+        vR0.flags = vR0.getUInt16@this(12);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAttributeType()I {
+  +START:   #1
+        return vR0.type;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributeType
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.flags;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method isCompressedAttribute()Z {
+  +START:   #1
+        if (vR0.getFlags@this() & 1)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isCompressedAttribute
+ 
+ method getNameLength()I {
+  +START:   #1
+        return vR0.getUInt8@this(9);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameLength
+ 
+ method getNameOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(10);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameOffset
+ 
+ method getAttributeID()I {
+  +START:   #1
+        return vR0.getUInt16@this(14);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttributeID
+ 
+ method getAttributeName()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.getNameLength@this();    [ R  R] 
+        if vi1<=0 goto B56;   
+  +B9:   #1
+        vR2 = new char[vi1];    
+        vi3 = vR0.getNameOffset@this();    [iR R  R.] 
+        vi4 = 0;    
+  +B21:   #1
+        if vi4>=vi1 goto B47;   
+  +B27:   #1
+        vR2[vi4] = vR0.getChar16@this((vi3+(vi4*2)));   
+        vi4++;   
+        goto +B21;   [iRii R i ..]
+  +B47:   #1
+        return new java/lang/String(vR2);   
+  +B56:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 1 any 3 found 0 getAttributeName
+ 
+ method getFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.fileRecord;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileRecord
+ 
+ method isResident()Z {
+  +START:   #1
+        if vR0.getUInt8@this(8)!=0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ..]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isResident
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getAttribute(Lorg/jnode/fs/ntfs/FileRecord;I)Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        vi2 = 1;    
+        return getAttribute@special(vR0,vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAttribute
+ 
+ method getAttribute(Lorg/jnode/fs/ntfs/FileRecord;II)Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        if vR0.getUInt8@this((vi1+8))!=0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   [ i . ..]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        vi3 = b0;    
+        vi4 = vR0.getUInt32AsInt@this((vi1+0));    [i i i iR] 
+        lswitch (vi4) { 
+           16:B88
+           32:B98
+           48:B123
+           144:B133
+           160:B143
+           192:B154
+           ::B164
+        };   
+  +B88:   #1
+        return new org/jnode/fs/ntfs/StandardInformationAttribute(vR0,vi1);   
+  +B98:   #1
+        if vi3==0 goto B112;   
+  +B102:   #1
+        return new org/jnode/fs/ntfs/attribute/AttributeListAttributeRes(vR0,vi1);   
+  +B112:   #1
+        return new org/jnode/fs/ntfs/attribute/AttributeListAttributeNonRes(vR0,vi1,vi2);   
+  +B123:   #1
+        return new org/jnode/fs/ntfs/FileNameAttribute(vR0,vi1);   
+  +B133:   #1
+        return new org/jnode/fs/ntfs/index/IndexRootAttribute(vR0,vi1);   
+  +B143:   #1
+        return new org/jnode/fs/ntfs/index/IndexAllocationAttribute(vR0,vi1,vi2);   
+  +B154:   #1
+        return new org/jnode/fs/ntfs/attribute/ReparsePointAttribute(vR0,vi1);   
+  +B164:   #1
+        if vi3==0 goto B178;   
+  +B168:   #1
+        return new org/jnode/fs/ntfs/attribute/NTFSResidentAttribute(vR0,vi1);   
+  +B178:   #1
+        return new org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute(vR0,vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 14 swaps 2 any 4 found 0 getAttribute
+}

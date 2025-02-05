@@ -1,0 +1,343 @@
+class org/jnode/driver/bus/usb/USBDevice {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBBus;I)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/util/HashMap();    [ RR  i][ RR  iR]
+        vR0.stringCache = b1;   
+        vR0.defaultLangID = -1;   
+        vR0.bus = vR1;   
+        vR0.devId = 0;   
+        if vi2<1 goto B40;   
+  +B35:   #1
+        if vi2<=3 goto B50;   
+  -B40:   #1
+        throw new java/lang/IllegalArgumentException("Invalid speed value");   
+  +B50:   #1
+        vR0.speed = vi2;   
+        vR0.maxPacketSize = new int[16];   
+        if vi2!=3 goto B79;   
+  +B68:   #1
+        vR0.maxPacketSize[0] = 64;   
+        goto +B87;   [ RR . ...]
+  +B79:   #1
+        vR0.maxPacketSize[0] = 8;   
+  +B87:   #1
+        vR0.defaultControlPipe = vR1.getHcApi().createDefaultControlPipe(vR0);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 3 swaps 0 any 3 found 0 <init>
+ 
+ method getUSBBus()Lorg/jnode/driver/bus/usb/USBBus; {
+  +START:   #1
+        return vR0.bus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUSBBus
+ 
+ method getUSBDeviceId()I {
+  +START:   #1
+        return vR0.devId;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUSBDeviceId
+ 
+ method finalize()V {
+  +START:   #1
+        vR0.getUSBBus@extra().freeDeviceID@extra(vR0.devId);   [  i. iR] [  iR iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 finalize
+ 
+ method getSpeed()I {
+  +START:   #1
+        return vR0.speed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSpeed
+ 
+ method isLowSpeed()Z {
+  +START:   #1
+        if vR0.speed!=1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLowSpeed
+ 
+ method isFullSpeed()Z {
+  +START:   #1
+        if vR0.speed!=2 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isFullSpeed
+ 
+ method isHighSpeed()Z {
+  +START:   #1
+        if vR0.speed!=3 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isHighSpeed
+ 
+ method getMaxPacketSize(I)I {
+  +START:   #1
+        return vR0.maxPacketSize[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getMaxPacketSize
+ 
+ method getDescriptor()Lorg/jnode/driver/bus/usb/DeviceDescriptor; {
+  +START:   #1
+        return vR0.deviceDescriptor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptor
+ 
+ method setDescriptor(Lorg/jnode/driver/bus/usb/DeviceDescriptor;)V {
+  +START:   #1
+        if vR0.deviceDescriptor==null goto B17;   
+  -B7:   #1
+        throw new java/lang/IllegalStateException("Cannot overwrite the device descriptor");   
+  +B17:   #1
+        vR0.deviceDescriptor = vR1;   
+        vR0.maxPacketSize[0] = vR1.getMaxPacketSize0@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 setDescriptor
+ 
+ method setFullDescriptor(Lorg/jnode/driver/bus/usb/DeviceDescriptor;)V {
+  +START:   #1
+        if vR0.confs==null goto B17;   
+  -B7:   #1
+        throw new java/lang/IllegalStateException("Cannot overwrite the full device descriptor");   
+  +B17:   #1
+        vR0.deviceDescriptor = vR1;   
+        vR0.maxPacketSize[0] = vR1.getMaxPacketSize0@extra();   
+        vR0.confs = new org/jnode/driver/bus/usb/USBConfiguration()[vR1.getNumConfigurations@extra()];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 0 setFullDescriptor
+ 
+ method getConfiguration(I)Lorg/jnode/driver/bus/usb/USBConfiguration; {
+  +START:   #1
+        return vR0.confs[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getConfiguration
+ 
+ method setConfiguration(ILorg/jnode/driver/bus/usb/USBConfiguration;)V {
+  +START:   #1
+        if vR0.confs[vi1]==null goto B19;   
+  -B9:   #1
+        throw new java/lang/SecurityException("Cannot overwrite a specific configuration");   
+  +B19:   #1
+        vR0.confs[vi1] = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 setConfiguration
+ 
+ method getString(II)Ljava/lang/String; {
+  +START:   #1
+        if vi1> 0 goto B31;   
+  -B4:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid string index ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B31:   #1
+        if vi2> 0 goto B87;   
+  +B35:   #1
+        if vR0.defaultLangID>=0 goto B82;   
+  +B42:   #1
+        vR3 = new org/jnode/driver/bus/usb/StringDescriptorZero(256);    [ RRR ... i..][ RRR ... iiR]
+  +B53:   #1
+        vR0.readDescriptor@extra(0,3,0,0,4,vR3);   [R RRR ... RiiiiiR] 
+        vR0.defaultLangID = vR3.getLangID(0);   
+  +B72:   #1
+        goto +B82;   [R RRR ... .......]
+  +H75<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.defaultLangID = 0;   
+  +B82:   #2
+        vi2 = vR0.defaultLangID;    
+  +B87:   #1
+        vi3 = ((vi2 << 16) | vi1);    
+        vR4 = 0;    
+        if vR4==null goto B105;   
+  +B102:   #1
+        return vR4;   
+  +B105:   #1
+        vR5 = new org/jnode/driver/bus/usb/StringDescriptor(256);    [ RRR ... i......][ RRR ... iiR....]
+        vR0.readDescriptor@extra(0,3,vi1,vi2,-1,vR5);   [iRR RRR ... RiiiiiR] 
+        return vR5.getString@extra();   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+53 - 72 handler 75 type 126
+ }
+// Register: rd 20/20 wr 15 swaps 2 any 5 found 0 getString
+ 
+ method readDescriptor(IIIIILorg/jnode/driver/bus/usb/USBPacket;)V {
+  +START:   #1
+        vR7 = 0;    
+        vi8 = 0;    
+  +B6:   #1
+        if vi8>=3 goto B113;   
+  +B12:   #1
+        if vi5>=0 goto B61;   
+  +B17:   #1
+        vR9 = vR0.defaultControlPipe.createRequest(createGetDescriptorPacket@special(vi1,vi2,vi3,vi4,1),vR6);    [Ri  i RRR..] 
+        vR0.defaultControlPipe.syncSubmit(vR9,5000);   [RiR  i ??RR.] 
+        vi5 = vR6.getByte@extra(0);    [RiR  i iR...] 
+  +B61:   #1
+        vR9 = vR0.defaultControlPipe.createRequest(createGetDescriptorPacket@special(vi1,vi2,vi3,vi4,vi5),vR6);    [RiR  i RRR..] 
+        vR0.defaultControlPipe.syncSubmit(vR9,5000);   [RiR  i ??RR.] 
+  +B98:   #1
+        goto +B107;   [RiR  . .....]
+  +H101<caught exception>:   #1 reference
+        vR9 = <caught exception>;    
+        vR7 = vR9;    
+  +B107:   #1
+        vi8++;   
+        goto +B6;   [RiR  . .....]
+  +B113:   #1
+        if vR7==null goto B121;   
+  -B118:   #1
+        throw vR7;   
+  +B121:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+12 - 98 handler 101 type 126
+ }
+// Register: rd 11/11 wr 10 swaps 2 any 5 found 0 readDescriptor
+ 
+ method setAddress(I)V {
+  +START:   #1
+        if vR0.devId==0 goto B21;   
+  +B7:   #1
+        if vi1==0 goto B21;   
+  -B11:   #1
+        throw new java/lang/SecurityException("Cannot overwrite the USB device id.");   
+  +B21:   #2
+        vR2 = vR0.defaultControlPipe.createRequest(createDeviceSetAddressPacket@special(vi1),0);    [ R i RRR] 
+        vR0.defaultControlPipe.syncSubmit(vR2,5000);   [R R i ??RR] 
+        vR0.devId = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 1 any 1 found 0 setAddress
+ 
+ method getConfiguration()Lorg/jnode/driver/bus/usb/USBConfiguration; {
+  +START:   #1
+        return vR0.activeConf;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getConfiguration
+ 
+ method setConfiguration(Lorg/jnode/driver/bus/usb/USBConfiguration;)V {
+  +START:   #1
+        vi2 = vR1.getDescriptor@extra().getConfigurationValue@extra();    [  . R] [  R R] 
+        vR3 = vR0.defaultControlPipe.createRequest(createDeviceSetConfigurationPacket@special(vi2),0);    [i  i RRR] 
+        vR0.defaultControlPipe.syncSubmit(vR3,5000);   [iR  i ??RR] 
+        vR0.activeConf = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 1 any 0 found 0 setConfiguration
+ 
+ method getStatus()I {
+  +START:   #1
+        vR1 = new org/jnode/driver/bus/usb/USBPacket(2);    [ R  i][ R . iiR]
+        vR2 = vR0.defaultControlPipe.createRequest(createGetStatusPacket@special(0,0),vR1);    [R R i RRR] 
+        vR0.defaultControlPipe.syncSubmit(vR2,5000);   [RR R i ??RR] 
+        return vR1.getShort@extra(0);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 getStatus
+ 
+ method setFeature(III)V {
+  +START:   #1
+        vR4 = vR0.defaultControlPipe.createRequest(createSetFeaturePacket@special(vi1,vi2,vi3),0);    [  i RRR] 
+        vR0.defaultControlPipe.syncSubmit(vR4,5000);   [R  i ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 setFeature
+ 
+ method clearFeature(III)V {
+  +START:   #1
+        vR4 = vR0.defaultControlPipe.createRequest(createClearFeaturePacket@special(vi1,vi2,vi3),0);    [  i RRR] 
+        vR0.defaultControlPipe.syncSubmit(vR4,5000);   [R  i ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 clearFeature
+ 
+ method getDefaultControlPipe()Lorg/jnode/driver/bus/usb/USBControlPipe; {
+  +START:   #1
+        return vR0.defaultControlPipe;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDefaultControlPipe
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSupportedConfigurations
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 open
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method getId()I {
+  +START:   #1
+        return vR0.devId;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getId
+ 
+ method <clinit>()V {
+  +START:   #1
+        usbIdCounter = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

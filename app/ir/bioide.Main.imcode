@@ -26,12 +26,12 @@ class bioide/Main {
         out.println("*3");   [RiRRRiR RR Rii. RR] 
         vR5 = vR7[vi6];    
   +B93:   #1
-        registerPortal@special(vR5,vR1);   [RiRRR RR .... RR]
+        getInitialNaming@special().registerPortal(vR5,vR1);   [RiRRR RR .... RRR] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR .... i.][ RR .... iR]
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
         b0.println(b1.append@extra("Block I/O device registered as ").append@extra(vR1).toString@extra());   [RiRRR RR ii.. RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 13/13 wr 23 swaps 6 any 0 found 0 main
+// Register: rd 13/13 wr 24 swaps 6 any 0 found 0 main
 }

@@ -1,0 +1,817 @@
+class jx/awt/peer/JXTextAreaPeer {
+ 
+ method <init>(Ljava/awt/TextArea;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.columns = vR1.getColumns();   
+        vR0.rows = vR1.getRows();   
+        vR0.visibleRows = vR0.rows;   
+        vR0.visibleColumns = vR0.columns;   
+        vR0.offsetX = 0;   
+        vR0.offsetY = 0;   
+        vR0.textSpace = vR0.initialTextSpace@this();   
+        vR0.setScrollbars@special(vR1.getScrollbarVisibility());   [  i iR.] 
+        vR0.prefWidth = vR0.textSpace.width;   
+        vR0.prefHeight = vR0.textSpace.height;   
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.resetLayout@special();   [   R] 
+        vi2 = vR0.hasFocus@this();    [   R] 
+        tswitch (vR0.peerState) B44 B56 B68 B80 : B89;   
+  +B44:   #1
+        vR0.paintTextArea@this(vR1,vi2,0,0,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B56:   #1
+        vR0.paintTextArea@this(vR1,vi2,1,0,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B68:   #1
+        vR0.paintTextArea@this(vR1,vi2,0,1,0);   [i   iiiiRR] 
+        goto +B89;   forward return[i   ......]
+  +B80:   #1
+        vR0.paintTextArea@this(vR1,vi2,0,0,1);   [i   iiiiRR] 
+  +B89:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 paint
+ 
+ method keyPressed(III)V {
+  +START:   #1
+        vR0.keyPressed@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.performTextEditing@this(vi1,vi3,1);   [   iiiR] 
+        vR0.updateOffsets@special();   [   R...] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 keyPressed
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [ ii  iiiR] 
+        if vR0.rightBar==null goto B41;   
+  +B14:   #1
+        b1 = vR0.rightBar.mouseInScrollbarPressed(vi1,vi2,vi3);    [ ii  iiiR] 
+        b0 = b1;    
+        vR0.lastRightPressed = b1;   
+        requireNonNull@special(vR0.rightBar);   [ ii R R...]
+        if b0!=0 goto B75;   
+  +B41:   #1
+        if vR0.lowerBar==null goto B82;   
+  +B48:   #1
+        b1 = vR0.lowerBar.mouseInScrollbarPressed(vi1,vi2,vi3);    [ ii . iiiR] 
+        b0 = b1;    
+        vR0.lastLowerPressed = b1;   
+        requireNonNull@special(vR0.lowerBar);   [ ii R R...]
+        if b0==0 goto B82;   
+  +B75:   #1
+        vR0.redraw@this();   [ ii . R...] 
+        goto +B161;   forward return[ ii . ....]
+  +B82:   #2
+        vR4 = vR0.getLocationRelativeToComponent@this(((vi1-4)+(vR0.offsetX*9)),(((vi2-4)+(vR0.offsetY*14))+((vR0.offsetY-1)*1)));    [ ii ii iiR.] 
+        vR0.caretPosition = vR0.getTextPosition@this(vR4.x,vR4.y);   
+        vR0.selectionStart = vR0.caretPosition;   
+        vR0.selectionEnd = vR0.caretPosition;   
+        vR0.updateOffsets@special();   [R ii iiii R...] 
+        vR0.redraw@this();   [R ii iiii R...] 
+  +B161:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 11 swaps 2 any 4 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        vR0.mouseReleased@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        if vR0.rightBar==null goto B32;   
+  +B16:   #1
+        if vR0.handleScrollbarReleased@special(vR0.rightBar,vi1,vi2,vi3,vi4)!=0 goto B55;   
+  +B32:   #1
+        if vR0.lowerBar==null goto B121;   
+  +B39:   #1
+        if vR0.handleScrollbarReleased@special(vR0.lowerBar,vi1,vi2,vi3,vi4)==0 goto B121;   
+  +B55:   #1
+        if vR0.rightBar==null goto B86;   
+  +B62:   #1
+        vR0.offsetY = vR0.rightBar.getValue();   
+        requireNonNull@special(vR0.rightBar);   [  R R.....]
+        vR0.lastRightPressed = 0;   
+  +B86:   #1
+        if vR0.lowerBar==null goto B117;   
+  +B93:   #1
+        vR0.offsetX = vR0.lowerBar.getValue();   
+        requireNonNull@special(vR0.lowerBar);   [  R R.....]
+        vR0.lastLowerPressed = 0;   
+  +B117:   #1
+        vR0.redraw@this();   [  . R.....] 
+  +B121:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 4 swaps 2 any 0 found 0 mouseReleased
+ 
+ method mouseMoved(III)V {
+  +START:   #1
+        vR0.mouseMoved@special(vi1,vi2,vi3);   [   iiiR] 
+        vi4 = 0;    
+        if vR0.rightBar==null goto B31;   
+  +B17:   #1
+        if vR0.handleScrollbarMoved@special(vR0.rightBar,vi1,vi2,vi3)!=0 goto B52;   
+  +B31:   #1
+        if vR0.lowerBar==null goto B136;   
+  +B38:   #1
+        if vR0.handleScrollbarMoved@special(vR0.lowerBar,vi1,vi2,vi3)==0 goto B136;   
+  +B52:   #1
+        if vR0.rightBar==null goto B87;   
+  +B59:   #1
+        if vR0.offsetY==vR0.rightBar.getValue() goto B87;   
+  +B73:   #1
+        vR0.offsetY = vR0.rightBar.getValue();   
+        vi4 = 1;    
+  +B87:   #2
+        if vR0.lowerBar==null goto B122;   
+  +B94:   #1
+        if vR0.offsetX==vR0.lowerBar.getValue() goto B122;   
+  +B108:   #1
+        vR0.offsetX = vR0.lowerBar.getValue();   
+        vi4 = 1;    
+  +B122:   #2
+        if vi4!=0 goto B131;   
+  +B127:   #1
+        if vi3!=0 goto B135;   
+  +B131:   #1
+        vR0.redraw@this();   [i  . R....] 
+  +B135:   #1
+        return;   
+  +B136:   #2
+        vR5 = vR0.getLocationRelativeToComponent@this(vi1,vi2);    [i  . iiR..] 
+        if vi3==0 goto B246;   
+  +B148:   #1
+        if vR0.lastRightPressed!=0 goto B246;   
+  +B155:   #1
+        if vR0.lastLowerPressed!=0 goto B246;   
+  +B162:   #1
+        vR6 = vR0.getLocationRelativeToComponent@this(((vi1-4)+(vR0.offsetX*9)),(((vi2-4)+(vR0.offsetY*14))+((vR0.offsetY-1)*1)));    [iR  ii iiR..] 
+        vi7 = vR0.getTextPosition@this(vR6.x,vR6.y);    [iRR  iiii iiR..] 
+        if vi7==vR0.selectionEnd goto B246;   
+  +B224:   #1
+        vR0.selectionEnd = vi7;   
+        vR0.caretPosition = vR0.selectionEnd;   
+        vR0.updateOffsets@special();   [iRRi  .... R....] 
+        vR0.redraw@this();   [iRRi  .... R....] 
+  +B246:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 43/43 wr 12 swaps 4 any 4 found 0 mouseMoved
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        vR0.mouseEntered@special(vi1,vi2,vi3);   [   iiiR] 
+        if vR0.rightBar==null goto B24;   
+  +B14:   #1
+        vR0.rightBar.mouseInScrollbarEntered(vi1,vi2,vi3);   [   iiiR] 
+  +B24:   #1
+        if vR0.lowerBar==null goto B41;   
+  +B31:   #1
+        vR0.lowerBar.mouseInScrollbarEntered(vi1,vi2,vi3);   [   iiiR] 
+  +B41:   #1
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        vR0.mouseExited@special(vi1,vi2,vi3);   [   iiiR] 
+        if vR0.rightBar==null goto B24;   
+  +B14:   #1
+        vR0.rightBar.mouseInScrollbarExited(vi1,vi2,vi3);   [   iiiR] 
+  +B24:   #1
+        if vR0.lowerBar==null goto B41;   
+  +B31:   #1
+        vR0.lowerBar.mouseInScrollbarExited(vi1,vi2,vi3);   [   iiiR] 
+  +B41:   #1
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 mouseExited
+ 
+ method handleScrollbarReleased(Ljx/awt/peer/InternalScrollbar;IIIZ)Z {
+  +START:   #1
+        requireNonNull@special(vR1);   [ i  R]
+        if vR1.mouseInScrollbarReleased(vi2,vi3,vi4,vi5)==0 goto B23;   
+  +B19:   #1
+        b0 = 1;    
+        goto +B24b0;   forward return[ i  .....]
+  +B23:   #1
+        b0 = 0;    
+  +B24b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 handleScrollbarReleased
+ 
+ method handleScrollbarMoved(Ljx/awt/peer/InternalScrollbar;III)Z {
+  +START:   #1
+        vi5 = vR1.mouseInScrollbarMoved(vi2,vi3,vi4);    [   iiiR] 
+        if vi4==0 goto B28;   
+  +B15:   #1
+        requireNonNull@special(vR1);   [i   R...]
+        if vi5!=5 goto B28;   
+  +B26:   #1
+        return 1;   
+  +B28:   #2
+        if vR1!=vR0.rightBar goto B53;   
+  +B36:   #1
+        if vi5==vR0.lastRightArea goto B53;   
+  +B45:   #1
+        vR0.lastRightArea = vi5;   
+        return 1;   
+  +B53:   #2
+        if vR1!=vR0.lowerBar goto B78;   
+  +B61:   #1
+        if vi5==vR0.lastLowerArea goto B78;   
+  +B70:   #1
+        vR0.lastLowerArea = vi5;   
+        return 1;   
+  +B78:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 1 swaps 0 any 6 found 0 handleScrollbarMoved
+ 
+ method updateOffsets()V {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vR0.textStrings.size@extra() goto B92;   
+  +B21:   #1
+        if vi1>vR0.caretPosition goto B63;   
+  +B29:   #1
+        if (vi1+(java/lang/String)(vR0.textStrings.elementAt(vi4)).length@extra())<vR0.caretPosition goto B63;   
+  +B53:   #1
+        vi2 = (vR0.caretPosition-vi1);    
+        goto +B92;   [iiii  . ..]
+  +B63:   #2
+        vi3++;   
+        vi1 = (vi1+((java/lang/String)(vR0.textStrings.elementAt(vi4)).length@extra()+1));    
+        vi4++;   
+        goto +B9;   [iiii  . ..]
+  +B92:   #2
+        if vR0.offsetX<=vi2 goto B105;   
+  +B100:   #1
+        vR0.offsetX = vi2;   
+  +B105:   #1
+        if vR0.offsetX>=((vi2-vR0.visibleColumns)+2) goto B132;   
+  +B120:   #1
+        vR0.offsetX = ((vi2-vR0.visibleColumns)+2);   
+  +B132:   #1
+        if vR0.offsetY<=vi3 goto B145;   
+  +B140:   #1
+        vR0.offsetY = vi3;   
+  +B145:   #1
+        if vR0.offsetY>=((vi3-vR0.visibleRows)+2) goto B172;   
+  +B160:   #1
+        vR0.offsetY = ((vi3-vR0.visibleRows)+2);   
+  +B172:   #1
+        if vR0.rightBar==null goto B190;   
+  +B179:   #1
+        vR0.rightBar.setValue(vR0.offsetY);   [iiii  i iR] 
+  +B190:   #1
+        if vR0.lowerBar==null goto B208;   
+  +B197:   #1
+        vR0.lowerBar.setValue(vR0.offsetX);   [iiii  i iR] 
+  +B208:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 14 swaps 2 any 6 found 3 updateOffsets
+ 
+ method setScrollbars(I)V {
+  +START:   #1
+        vR0.rightBar = 0;   
+        vR0.lowerBar = 0;   
+        if vi1==0 goto B19;   
+  +B14:   #1
+        if vi1!=1 goto B64;   
+  +B19:   #1
+        b1 = new jx/awt/peer/InternalScrollbar(vR0,vR0.toolkit);    [ ?R  i][ ?R . iRRR]
+        vR0.rightBar = b1;   
+        vR0.rightBar.setOrientation(1);   [ ?R . iR..] 
+        vR0.rightBar.setSmallIncrement(1);   [ ?R . iR..] 
+        requireNonNull@special(vR0.rightBar);   [ ?R R R...]
+        vR0.lastRightPressed = 0;   
+  +B64:   #1
+        if vi1==0 goto B73;   
+  +B68:   #1
+        if vi1!=2 goto B118;   
+  +B73:   #1
+        b1 = new jx/awt/peer/InternalScrollbar(vR0,vR0.toolkit);    [ ?R . i...][ ?R . iRRR]
+        vR0.lowerBar = b1;   
+        vR0.lowerBar.setOrientation(0);   [ ?R . iR..] 
+        vR0.lowerBar.setSmallIncrement(1);   [ ?R . iR..] 
+        requireNonNull@special(vR0.lowerBar);   [ ?R R R...]
+        vR0.lastLowerPressed = 0;   
+  +B118:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 6 swaps 0 any 4 found 0 setScrollbars
+ 
+ method widthToColumns(I)I {
+  +START:   #1
+        return (vi1/9);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 widthToColumns
+ 
+ method resetLayout()V {
+  +START:   #1
+        vi1 = vR0.width;    
+        vi2 = vR0.height;    
+        if vR0.rightBar==null goto B27;   
+  +B17:   #1
+        vi1 = (vi1-vR0.rightBar.getPrefWidth());    
+  +B27:   #1
+        if vR0.lowerBar==null goto B44;   
+  +B34:   #1
+        vi2 = (vi2-vR0.lowerBar.getPrefHeight());    
+  +B44:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+  +B52:   #1
+        if vi5>=vR0.textStrings.size@extra() goto B98;   
+  +B64:   #1
+        vi6 = (java/lang/String)(vR0.textStrings.elementAt(vi5)).length@extra();    [iiiii  . R.] 
+        if vi6<=vi4 goto B92;   
+  +B88:   #1
+        vi4 = vi6;    
+  +B92:   #1
+        vi5++;   
+        goto +B52;   [iiiiii  . ..]
+  +B98:   #1
+        vi3 = vR0.textStrings.size@extra();    [iiiiii  . R.] 
+        vi4++;   
+        if vi3!=0 goto B115;   
+  +B113:   #1
+        vi3 = 1;    
+  +B115:   #1
+        if vi1!=vR0.textSpace.width goto B154;   
+  +B126:   #1
+        if vi2!=vR0.textSpace.height goto B154;   
+  +B137:   #1
+        if vi3!=vR0.rows goto B154;   
+  +B145:   #1
+        if vi4==vR0.columns goto B321;   
+  +B154:   #3
+        vR0.textSpace.width = vi1;   
+        vR0.textSpace.height = vi2;   
+        vR0.rows = vi3;   
+        vR0.columns = vi4;   
+        if vR0.rightBar==null goto B251;   
+  +B188:   #1
+        vR0.visibleRows = vR0.heightToRows@this((vR0.textSpace.height-8));   
+        vR0.rightBar.setValues(vR0.rightBar.getValue(),vR0.visibleRows,0,vR0.rows);   [iiiiii  iiii iiiiR] 
+        vR0.offsetY = vR0.rightBar.getValue();   
+        vR0.rightBar.setBigIncrement(vR0.visibleRows);   [iiiiii  iiiii iR...] 
+  +B251:   #1
+        if vR0.lowerBar==null goto B321;   
+  +B258:   #1
+        vR0.visibleColumns = vR0.widthToColumns@special((vR0.textSpace.width-8));   
+        vR0.lowerBar.setValues(vR0.lowerBar.getValue(),vR0.visibleColumns,0,vR0.columns);   [iiiiii  iiii. iiiiR] 
+        vR0.offsetX = vR0.lowerBar.getValue();   
+        vR0.lowerBar.setBigIncrement(vR0.visibleColumns);   [iiiiii  iiiii iR...] 
+  +B321:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 62/62 wr 24 swaps 6 any 12 found 3 resetLayout
+ 
+ method handleTextAltered()V {
+  +START:   #1
+        b1 = new java/util/Vector();    [ RR  i][ RR  iR]
+        vR0.textStrings = b1;   
+        vR1 = new java/util/StringTokenizer(vR0.text.toString(),vR0.newline);    [ RR  i.][ RR . iRRR]
+  +B30:   #1
+        if vR1.hasMoreTokens()==0 goto B51;   
+  +B37:   #1
+        vR0.textStrings.addElement@extra(vR1.nextToken());   [R RR i RR..] 
+        goto +B30;   [R RR i ....]
+  +B51:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 0 found 0 handleTextAltered
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.rightBar = 0;   
+        vR0.lowerBar = 0;   
+        vR0.dispose@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method minimumSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        vR3 = new java/awt/Dimension((vR0.textSpace.x+vR0.textSpace.width),(vR0.textSpace.y+vR0.textSpace.height));    [ R  i][ R . iiiR]
+        if vR0.rightBar==null goto B61;   
+  +B45:   #1
+        vR3.width = (vR3.width+vR0.rightBar.getPrefWidth());   
+  +B61:   #1
+        if vR0.lowerBar==null goto B84;   
+  +B68:   #1
+        vR3.height = (vR3.height+vR0.lowerBar.getPrefHeight());   
+  +B84:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 4 swaps 0 any 0 found 0 minimumSize
+ 
+ method getMinimumSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.minimumSize@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMinimumSize
+ 
+ method preferredSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.minimumSize@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredSize
+ 
+ method getPreferredSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.preferredSize@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method insert(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.text.insert(vi2,vR1);   [   RiR] 
+        if vi2>vR0.caretPosition goto B31;   
+  +B18:   #1
+        vR0.caretPosition = (vR0.caretPosition+vR1.length@extra());   
+  +B31:   #1
+        vR0.handleTextAltered@this();   [  . R..] 
+        vR0.redraw@this();   [  . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 1 found 0 insert
+ 
+ method insertText(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.insert@this(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertText
+ 
+ method replaceRange(Ljava/lang/String;II)V {
+  +START:   #1
+        vR0.text.replace(vi2,vi3,vR1);   [   RiiR] 
+        vR0.handleTextAltered@this();   [   R...] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 replaceRange
+ 
+ method replaceText(Ljava/lang/String;II)V {
+  +START:   #1
+        vR0.replaceRange@this(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 replaceText
+ 
+ method paintTextArea(Ljx/awt/JXGraphics;ZZZZ)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.draw3DRect(vR0.textSpace.x,vR0.textSpace.y,(vR0.textSpace.width-1),(vR0.textSpace.height-1),0);   [  iiiii iiiiiR] 
+        if vi5!=0 goto B66;   
+  +B49:   #1
+        if vR0.editable==0 goto B66;   
+  +B56:   #1
+        vR1.setColor(textBgColor);   [  i.... RR....] 
+        goto +B73;   [  i.... ......]
+  +B66:   #2
+        vR1.setColor(disabledBgColor);   [iiiiiiiiRiiii  i.... RR....] 
+  +B73:   #1
+        vR1.fillRect((vR0.textSpace.x+1),(vR0.textSpace.y+1),(vR0.textSpace.width-3),(vR0.textSpace.height-3));   [  iiii. iiiiR.] 
+        if vi2==0 goto B164;   
+  +B117:   #1
+        vR1.setColor(focusColor);   [  i.... RR....] 
+        vR1.drawRect((vR0.textSpace.x+1),(vR0.textSpace.y+1),(vR0.textSpace.width-3),(vR0.textSpace.height-3));   [  iiiii iiiiR.] 
+  +B164:   #1
+        if vR0.lowerBar==null goto B227;   
+  +B171:   #1
+        if vR0.rightBar==null goto B227;   
+  +B178:   #1
+        vR1.setColor(normalBgColor);   [  i.... RR....] 
+        vR1.fillRect(vR0.textSpace.width,vR0.textSpace.height,(vR0.width-vR0.textSpace.width),(vR0.height-vR0.textSpace.height));   [  iiiii iiiiR.] 
+  +B227:   #2
+        vR1.setClip(4,4,(vR0.textSpace.width-8),(vR0.textSpace.height-8));   [  ii... iiiiR.] 
+        vi6 = (4-(vR0.offsetX*9));    
+        vi7 = ((4-(vR0.offsetY*14))-((vR0.offsetY-1)*1));    
+        vi8 = 0;    
+        vi9 = vR0.getLowerSelection@this();    [iii  ii... R.....] 
+        vi10 = vR0.getUpperSelection@this();    [iiii  ii... R.....] 
+        vi11 = 0;    
+        vi12 = 0;    
+        vi13 = 0;    
+  +B308:   #1
+        if vi13>=vR0.textStrings.size@extra() goto B679;   
+  +B320:   #1
+        vR14 = (java/lang/String)(vR0.textStrings.elementAt(vi13));    
+        if (vi7+14)<=4 goto B458;   
+  +B343:   #1
+        if vi7>=(vR0.textSpace.height-4) goto B458;   
+  +B357:   #1
+        if (vi6+vR0.textWidth@this(vR14))<=4 goto B458;   
+  +B370:   #1
+        if vi5==0 goto B385;   
+  +B375:   #1
+        vR1.setColor(disabledTextColor);   [iiiiiiiiR  i.... RR....] 
+        goto +B392;   [iiiiiiiiR  i.... ......]
+  +B385:   #1
+        vR1.setColor(textTextColor);   [iiiiiiiiRiiii  i.... RR....] 
+  +B392:   #1
+        vR1.drawJXString(vR14,vi6,vi7);   [iiiiiiiiR  ..... iiRR..] 
+        if vi8>vR0.caretPosition goto B458;   
+  +B411:   #1
+        if (vi8+vR14.length@extra())<vR0.caretPosition goto B458;   
+  +B426:   #1
+        if vi2==0 goto B458;   
+  +B430:   #1
+        vi15 = ((((vR0.caretPosition-vi8)-vR0.offsetX)*9)+4);    
+        vR0.paintCaret@this(vR1,vi15,vi7);   [iiiiiiiiRi  ..... iiRR..] 
+  +B458:   #6
+        if vi10==vi9 goto B658;   
+  +B465:   #1
+        if vi11!=0 goto B503;   
+  +B470:   #1
+        if vi8>vi9 goto B503;   
+  +B477:   #1
+        if (vi8+vR14.length@extra())<vi9 goto B503;   
+  +B490:   #1
+        vi15 = (vi9-vi8);    
+        vi11 = 1;    
+        goto +B506;   [iiiiiiiiRi  ..... ......]
+  +B503:   #3
+        vi15 = 0;    
+  +B506:   #1
+        if vi11==0 goto B544;   
+  +B511:   #1
+        if vi8>vi10 goto B544;   
+  +B518:   #1
+        if (vi8+vR14.length@extra())<vi10 goto B544;   
+  +B531:   #1
+        vi16 = (vi10-vi8);    
+        vi12 = 1;    
+        goto +B551;   [iiiiiiiiRii  ..... ......]
+  +B544:   #3
+        vi16 = vR14.length@extra();    [iiiiiiiiRiiii  ..... R.....] 
+  +B551:   #1
+        if vi11==0 goto B650;   
+  +B556:   #1
+        vi17 = (((vi15-vR0.offsetX)*9)+4);    
+        vi18 = ((vi16-vi15)*9);    
+        if vi17>=4 goto B598;   
+  +B586:   #1
+        vi18 = (vi18-(4-vi17));    
+        vi17 = 4;    
+  +B598:   #1
+        if (vi17+vi18)<=vR0.textSpace.width goto B625;   
+  +B613:   #1
+        vi18 = (vR0.textSpace.width-vi17);    
+  +B625:   #1
+        vR1.setXORMode(black);   [iiiiiiiiRiiii  i.... RR....] 
+        vR1.fillRect(vi17,vi7,(vi18-1),14);   [iiiiiiiiRiiii  ii... iiiiR.] 
+        vR1.setPaintMode();   [iiiiiiiiRiiii  ii... R.....] 
+  +B650:   #1
+        if vi12==0 goto B658;   
+  +B655:   #1
+        vi11 = 0;    
+  +B658:   #2
+        vi7+=15;   
+        vi8 = (vi8+(vR14.length@extra()+1));    
+        vi13++;   
+        goto +B308;   [iiiiiiiiRiiii  ..... ......]
+  +B679:   #1
+        vR0.paintScrollbars@special(vR1,vi3,vi5);   [iiiiiiiiRiiii  ..... iiRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 111/111 wr 50 swaps 14 any 29 found 6 paintTextArea
+ 
+ method paintScrollbars(Ljava/awt/Graphics;ZZ)V {
+  +START:   #1
+        if vR0.rightBar==null goto B54;   
+  +B7:   #1
+        vR0.rightBar.setScrollArea(vR0.textSpace.width,0,(vR0.width-vR0.textSpace.width),vR0.textSpace.height);   [  iii iiiiR] 
+        vR0.rightBar.paintScrollbar(vR1.create(),vi2,vi3);   [  iiii iiRR.] 
+  +B54:   #1
+        if vR0.lowerBar==null goto B108;   
+  +B61:   #1
+        vR0.lowerBar.setScrollArea(0,vR0.textSpace.height,vR0.textSpace.width,(vR0.height-vR0.textSpace.height));   [  iii. iiiiR] 
+        vR0.lowerBar.paintScrollbar(vR1.create(),vi2,vi3);   [  iiii iiRR.] 
+  +B108:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 4 any 0 found 0 paintScrollbars
+ 
+ method getInputMethodRequests()Ljava/awt/im/InputMethodRequests; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getInputMethodRequests
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

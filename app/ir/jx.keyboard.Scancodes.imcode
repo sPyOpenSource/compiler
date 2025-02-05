@@ -1,0 +1,226 @@
+class jx/keyboard/Scancodes {
+ 
+ method <init>(Ljx/zero/debug/DebugPrintStream;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new char[59];    
+        b1[0] = 32;   
+        b1[1] = 27;   
+        b1[2] = 49;   
+        b1[3] = 50;   
+        b1[4] = 51;   
+        b1[5] = 52;   
+        b1[6] = 53;   
+        b1[7] = 54;   
+        b1[8] = 55;   
+        b1[9] = 56;   
+        b1[10] = 57;   
+        b1[11] = 48;   
+        b1[12] = 45;   
+        b1[13] = 61;   
+        b1[14] = 8;   
+        b1[15] = 9;   
+        b1[16] = 113;   
+        b1[17] = 119;   
+        b1[18] = 101;   
+        b1[19] = 114;   
+        b1[20] = 116;   
+        b1[21] = 121;   
+        b1[22] = 117;   
+        b1[23] = 105;   
+        b1[24] = 111;   
+        b1[25] = 112;   
+        b1[26] = 91;   
+        b1[27] = 93;   
+        b1[28] = 10;   
+        b1[29] = 32;   
+        b1[30] = 97;   
+        b1[31] = 115;   
+        b1[32] = 100;   
+        b1[33] = 102;   
+        b1[34] = 103;   
+        b1[35] = 104;   
+        b1[36] = 106;   
+        b1[37] = 107;   
+        b1[38] = 108;   
+        b1[39] = 59;   
+        b1[40] = 39;   
+        b1[41] = 96;   
+        b1[42] = 32;   
+        b1[43] = 92;   
+        b1[44] = 122;   
+        b1[45] = 120;   
+        b1[46] = 99;   
+        b1[47] = 118;   
+        b1[48] = 98;   
+        b1[49] = 110;   
+        b1[50] = 109;   
+        b1[51] = 44;   
+        b1[52] = 46;   
+        b1[53] = 47;   
+        b1[54] = 32;   
+        b1[55] = 32;   
+        b1[56] = 32;   
+        b1[57] = 32;   
+        b1[58] = 32;   
+        vR0.scanTable = b1;   
+        b1 = new char[59];    
+        b1[0] = 32;   
+        b1[1] = 27;   
+        b1[2] = 33;   
+        b1[3] = 64;   
+        b1[4] = 35;   
+        b1[5] = 36;   
+        b1[6] = 37;   
+        b1[7] = 94;   
+        b1[8] = 38;   
+        b1[9] = 42;   
+        b1[10] = 40;   
+        b1[11] = 41;   
+        b1[12] = 95;   
+        b1[13] = 43;   
+        b1[14] = 32;   
+        b1[15] = 32;   
+        b1[16] = 81;   
+        b1[17] = 87;   
+        b1[18] = 69;   
+        b1[19] = 82;   
+        b1[20] = 84;   
+        b1[21] = 89;   
+        b1[22] = 85;   
+        b1[23] = 73;   
+        b1[24] = 79;   
+        b1[25] = 80;   
+        b1[26] = 123;   
+        b1[27] = 125;   
+        b1[28] = 10;   
+        b1[29] = 32;   
+        b1[30] = 65;   
+        b1[31] = 83;   
+        b1[32] = 68;   
+        b1[33] = 70;   
+        b1[34] = 71;   
+        b1[35] = 72;   
+        b1[36] = 74;   
+        b1[37] = 75;   
+        b1[38] = 76;   
+        b1[39] = 58;   
+        b1[40] = 34;   
+        b1[41] = 126;   
+        b1[42] = 32;   
+        b1[43] = 124;   
+        b1[44] = 90;   
+        b1[45] = 88;   
+        b1[46] = 67;   
+        b1[47] = 86;   
+        b1[48] = 66;   
+        b1[49] = 78;   
+        b1[50] = 77;   
+        b1[51] = 60;   
+        b1[52] = 62;   
+        b1[53] = 63;   
+        b1[54] = 32;   
+        b1[55] = 32;   
+        b1[56] = 32;   
+        b1[57] = 32;   
+        b1[58] = 32;   
+        vR0.shiftTable = b1;   
+        vR0.out = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 125/125 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method translate(I)I {
+  +START:   #1
+        vi1 = (vi1 & 255);    
+        if (vi1 & 128)==0 goto B90;   
+  +B14:   #1
+        vi1 = (vi1 & 127);    
+        lswitch (vi1) { 
+           29:B72
+           42:B64
+           54:B64
+           56:B80
+           ::B88
+        };   
+  +B64:   #2
+        vR0.shiftDown = 0;   
+        goto +B88;   forward return[ cR  ]
+  +B72:   #1
+        vR0.controlDown = 0;   
+        goto +B88;   forward return[ cR  ]
+  +B80:   #1
+        vR0.altDown = 0;   
+        goto +B88;   forward return[ cR  ]
+  +B88:   #4
+        return -1;   
+  +B90:   #1
+        if vi1==42 goto B102;   
+  +B96:   #1
+        if vi1!=54 goto B109;   
+  +B102:   #1
+        vR0.shiftDown = 1;   
+        return -1;   
+  +B109:   #1
+        if vi1!=29 goto B122;   
+  +B115:   #1
+        vR0.controlDown = 1;   
+        return -1;   
+  +B122:   #1
+        b0 = vR0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("s: ").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        b0 = vR0.out;    
+        b1 = new java/lang/StringBuilder();    [ RR ii. i..][ RR ii. iR.]
+        b0.println(b1.append@extra("l:").append@extra(vR0.shiftTable.length).toString@extra());   [ RR iiiii. RR.] 
+        if vi1<vR0.shiftTable.length goto B189;   
+  +B187:   #1
+        return -1;   
+  +B189:   #1
+        if vR0.shiftDown==0 goto B205;   
+  +B196:   #1
+        b0 = vR0.shiftTable[vi1];    
+        goto +B211b0;   forward return[ cR ...... ...]
+  +B205:   #1
+        b0 = vR0.scanTable[vi1];    
+  +B211b0:   #1 char
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 17 swaps 5 any 8 found 0 translate
+ 
+ method functionKey(I)I {
+  +START:   #1
+        if vi1<59 goto B19;   
+  +B6:   #1
+        if vi1>68 goto B19;   
+  +B12:   #1
+        return ((vi1-59)+1);   
+  +B19:   #2
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 2 found 0 functionKey
+ 
+ method isReset(I)Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isReset
+ 
+ method isNumLock(I)Z {
+  +START:   #1
+        if vi1!=69 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isNumLock
+}

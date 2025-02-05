@@ -1,0 +1,396 @@
+class org/jnode/driver/bus/usb/uhci/UHCIPipe {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/uhci/UHCIPipeManager;Ljx/zero/MemoryManager;Lorg/jnode/driver/bus/usb/USBDevice;Lorg/jnode/driver/bus/usb/USBEndPoint;ILorg/jnode/driver/bus/usb/uhci/QueueHead;)V {
+  +START:   #1
+        vR0.<init>@special();   [ Ri  R] 
+        b1 = new java/util/ArrayList();    [ RR  i][ RR  iR]
+        vR0.listeners = b1;   
+        vR0.pm = vR1;   
+        vR0.rm = vR2;   
+        vR0.device = vR3;   
+        vR0.endPoint = vR4;   
+        vR0.transferType = vi5;   
+        b0 = vR0;    
+        if vR0.endPoint==null goto B63;   
+  +B50b0:   #1 reference
+        b1 = vR0.endPoint.getDescriptor@extra().getEndPointNumber@extra();    [ Ri . R.] [ Ri R R.] 
+        goto +B64b0b1;   [ Ri . ..]
+  +B63b0:   #1 reference
+        b1 = 0;    
+  +B64b0b1:   #1 reference int
+        b0.endPointNum = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/QueueHead(vR2);    [ RR . i.][ RR . iRR]
+        vR0.qh = b1;   
+        vR0.skelQH = vR6;   
+        b1 = new AI/util/AIQueue();    [ RR . i..][ RR . iR.]
+        vR0.queue = b1;   
+        b0 = vR0;    
+        if vR0.endPoint==null goto B117;   
+  +B104b0:   #1 reference
+        b1 = vR0.endPoint.getDescriptor@extra().getMaxPacketSize@extra();    [ Ri . R..] [ Ri R R..] 
+        goto +B118b0b1;   [ Ri . ...]
+  +B117b0:   #1 reference
+        b1 = -1;    
+  +B118b0b1:   #1 reference int
+        b0.maxPktSize = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 11 swaps 0 any 2 found 0 <init>
+ 
+ method isControlPipe()Z {
+  +START:   #1
+        if vR0.transferType!=0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isControlPipe
+ 
+ method isInterruptPipe()Z {
+  +START:   #1
+        if vR0.transferType!=3 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isInterruptPipe
+ 
+ method isIsochronousPipe()Z {
+  +START:   #1
+        if vR0.transferType!=1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isIsochronousPipe
+ 
+ method isBulkPipe()Z {
+  +START:   #1
+        if vR0.transferType!=2 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isBulkPipe
+ 
+ method isOpen()Z {
+  +START:   #1
+        return vR0.open;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isOpen
+ 
+ method open()V {
+  +START:   #1
+        if vR0.open!=0 goto B31;   
+  +B7:   #1
+        vR0.pm.add@extra(vR0);   [   RR] 
+        vR0.skelQH.insertLink@extra(vR0.qh);   [  i RR] 
+        vR0.open = 1;   
+  +B31:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 1 any 0 found 0 open
+ 
+ method close()V {
+  +START:   #1
+        if vR0.open==0 goto B31;   
+  +B7:   #1
+        vR0.skelQH.removeLink@extra(vR0.qh);   [  i RR] 
+        vR0.pm.remove@extra(vR0);   [  i RR] 
+        vR0.open = 0;   
+  +B31:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 1 any 0 found 0 close
+ 
+ method asyncSubmit(Lorg/jnode/driver/bus/usb/USBRequest;)V {
+  +START:   #1
+        if vR0.open!=0 goto B17;   
+  -B7:   #1
+        throw new org/jnode/driver/bus/usb/USBException("Not open");   
+  +B17:   #1
+        if (vR1 instanceof org/jnode/driver/bus/usb/uhci/UHCIRequest)!=0 goto B34;   
+  -B24:   #1
+        throw new java/lang/IllegalArgumentException("Invalid request type (IUHCIRequest)");   
+  +B34:   #1
+        if (vR1 instanceof org/jnode/driver/bus/usb/spi/AbstractUSBRequest)!=0 goto B51;   
+  -B41:   #1
+        throw new java/lang/IllegalArgumentException("Invalid request type (AbstractUSBRequest)");   
+  +B51:   #1
+        vR2 = (org/jnode/driver/bus/usb/uhci/UHCIRequest)(vR1);    
+        vR3 = (org/jnode/driver/bus/usb/spi/AbstractUSBRequest)(vR1);    
+        vR3.setCompleted(0);   [RR R . iR.] 
+        vR3.setActualLength(0);   [RR R . iR.] 
+        vR3.setStatus(0);   [RR R . iR.] 
+        if vR0.qh.isEmpty@extra()==0 goto B94;   
+  +B86:   #1
+        vR0.activateRequest@special(vR2);   [RR R . RR.] 
+        goto +B105;   forward return[RR R . ...]
+  +B94:   #1
+        vR0.queue.add(vR2);   [RR R . RR.] 
+  +B105:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 0 any 2 found 2 asyncSubmit
+ 
+ method syncSubmit(Lorg/jnode/driver/bus/usb/USBRequest;J)V {
+  +START:   #1
+        vR0.asyncSubmit@this(vR1);   [ RRR  RR] 
+        vR1.waitUntilComplete(vl2);   [ RRR  ??R] 
+        if vR1.isCompleted()!=0 goto B31;   
+  -B21:   #1
+        throw new org/jnode/driver/bus/usb/USBException("Timeout on request");   
+  +B31:   #1
+        vi4 = vR1.getStatus();    [ RRR . R..] 
+        if (vi4 & 63)==0 goto B78;   
+  -B47:   #1
+        b0 = new org/jnode/driver/bus/usb/USBException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("USB error 0x").append@extra(hex@special(vi4)).toString@extra());   [?i RRR iii. RR.] 
+        throw b0;   
+  +B78:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 10 swaps 3 any 2 found 0 syncSubmit
+ 
+ method addListener(Lorg/jnode/driver/bus/usb/USBPipeListener;)V {
+  +START:   #1
+        vR0.listeners.add(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addListener
+ 
+ method removeListener(Lorg/jnode/driver/bus/usb/USBPipeListener;)V {
+  +START:   #1
+        vR0.listeners.remove(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 removeListener
+ 
+ method handleInterrupt()V {
+  +START:   #1
+        if vR0.open==0 goto B129;   
+  +B7:   #1
+        vR1 = vR0.activeRequest;    
+        if vR1==null goto B66;   
+  +B16:   #1
+        vR0.handleInterrupt@special(vR1);   [R   RR] 
+        if vR1.isCompleted()==0 goto B66;   
+  +B30:   #1
+        vR0.qh.remove@extra(vR1);   [R   RR] 
+        vR0.activeRequest = 0;   
+        if vR0.isInterruptPipe@extra()==0 goto B66;   
+  +B50:   #1
+        if vR0.open==0 goto B66;   
+  +B57:   #1
+        vR0.asyncSubmit@this(vR1);   [R   RR] 
+  +B62:   #1
+        goto +B66;   [R   ..]
+  +H65<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+  +B66:   #5
+        if vR0.queue.isEmpty()!=0 goto B129;   
+  +B78:   #1
+        if vR0.qh.isEmpty@extra()==0 goto B129;   
+  +B88:   #1
+        vR2 = (org/jnode/driver/bus/usb/uhci/UHCIRequest)(vR0.queue.poll());    
+  +B101:   #1
+        vR0.activateRequest@special(vR2);   [RR  . RR] 
+  +B106:   #1
+        goto +B129;   forward return[RR  . ..]
+  +H109<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        vR4 = (org/jnode/driver/bus/usb/spi/AbstractUSBRequest)(vR2);    
+        vR4.setStatus(16);   [RRRR  . iR] 
+        vR4.setCompleted(1);   [RRRR  . iR] 
+  +B129:   #4
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+57 - 62 handler 65 type 98
+101 - 106 handler 109 type 98
+ }
+// Register: rd 19/19 wr 6 swaps 0 any 2 found 1 handleInterrupt
+ 
+ method activateRequest(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V {
+  +START:   #1
+        vR2 = vR1.getFirstTD();    [   R] 
+        if vR2!=null goto B21;   
+  +B11:   #1
+        vR1.createTDs(vR0);   [R   RR] 
+        goto +B45;   [R   ..]
+  +B21:   #1
+        out.println("recycle");   [R  i. RR] 
+  +B29:   #1
+        if vR2==null goto B45;   
+  +B33:   #1
+        vR2.resetStatus@extra();   [R  .. R.] 
+        vR2 = vR2.getNextTD@extra();    [R  .. R.] 
+        goto +B29;   [R  .. ..]
+  +B45:   #2
+        vR0.activeRequest = vR1;   
+        vR0.qh.add@extra(vR1);   [R  .. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 1 any 2 found 0 activateRequest
+ 
+ method handleInterrupt(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR1.getFirstTD();    [R   R] 
+        vi4 = 0;    
+  +B12:   #2
+        if vR3==null goto B48;   
+  +B16:   #1
+        if vR2!=null goto B48;   
+  +B20:   #1
+        if vR3.isAnyError@extra()==0 goto B32;   
+  +B27:   #1
+        vR2 = vR3;    
+        goto +B12;   [RRi   .]
+  +B32:   #1
+        if vR3.isActive@extra()==0 goto B40;   
+  +B39:   #1
+        return;   
+  +B40:   #1
+        vR3 = vR3.getNextTD@extra();    [RRi   R] 
+        goto +B12;   [RRi   .]
+  +B48:   #2
+        vi5 = 0;    
+        if vR2==null goto B139;   
+  +B55:   #1
+        if vR2.isStalled@extra()==0 goto B68;   
+  +B62:   #1
+        vi5 = (vi5 | 1);    
+  +B68:   #1
+        if vR2.isDataBufferError@extra()==0 goto B81;   
+  +B75:   #1
+        vi5 = (vi5 | 4);    
+  +B81:   #1
+        if vR2.isBabbleDetected@extra()==0 goto B95;   
+  +B88:   #1
+        vi5 = (vi5 | 32);    
+  +B95:   #1
+        if vR2.isNAKReceived@extra()==0 goto B108;   
+  +B102:   #1
+        vi5 = (vi5 | 2);    
+  +B108:   #1
+        if vR2.isCRCTimeOutError@extra()==0 goto B122;   
+  +B115:   #1
+        vi5 = (vi5 | 8);    
+  +B122:   #1
+        if vR2.isBitstuffError@extra()==0 goto B146;   
+  +B129:   #1
+        vi5 = (vi5 | 16);    
+        goto +B146;   [RRii   .]
+  +B139:   #1
+        vi5 = (vi5 | 32768);    
+  +B146:   #2
+        vR6 = (org/jnode/driver/bus/usb/spi/AbstractUSBRequest)(vR1);    
+        vR6.setStatus(vi5);   [RRiiR   iR] 
+        vR6.setActualLength(vi4);   [RRiiR   iR] 
+        vR6.setCompleted(1);   [RRiiR   iR] 
+        vR0.firePipeEvent@this(vR1);   [RRiiR   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 14 swaps 0 any 12 found 1 handleInterrupt
+ 
+ method firePipeEvent(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V {
+  +START:   #1
+        vi2 = vR0.listeners.size();    [ i  R] 
+        vi3 = vR1.getStatus();    [i i  R] 
+        if (vi3 & 63)==0 goto B26;   
+  +B22:   #1
+        b0 = 1;    
+        goto +B27b0;   [ii i  .]
+  +B26:   #1
+        b0 = 0;    
+  +B27b0:   #1 int
+        vi4 = b0;    
+        if vi4==0 goto B48;   
+  +B34:   #1
+        if vR0.isInterruptPipe@extra()==0 goto B48;   
+  +B41:   #1
+        if (vi3 & 2)==0 goto B48;   
+  +B47:   #1
+        return;   
+  +B48:   #3
+        vi5 = 0;    
+  +B51:   #1
+        if vi5>=vi2 goto B101;   
+  +B57:   #1
+        vR6 = (org/jnode/driver/bus/usb/USBPipeListener)(vR0.listeners.get(vi5));    
+        if vi4==0 goto B87;   
+  +B76:   #1
+        vR6.requestFailed(vR1);   [iiiiR i . RR] 
+        goto +B95;   [iiiiR i . ..]
+  +B87:   #1
+        vR6.requestCompleted(vR1);   [iiiiR i . RR] 
+  +B95:   #1
+        vi5++;   
+        goto +B51;   [iiiiR i . ..]
+  +B101:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 8 swaps 0 any 7 found 0 firePipeEvent
+ 
+ method createTD(IZLjx/zero/Memory;IIZ)Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor; {
+  +START:   #1
+        vi7 = vR0.device.getUSBDeviceId@extra();    [ R  R] 
+        vi8 = vR0.isIsochronousPipe@this();    [i R  R] 
+        vi9 = vR0.device.isLowSpeed@extra();    [ii R  R] 
+        return new org/jnode/driver/bus/usb/uhci/TransferDescriptor(vR0.rm,vi7,vR0.endPointNum,vi1,vi2,vR3,vi4,vi5,vi8,vi9,vi6);   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 4 swaps 0 any 0 found 0 createTD
+ 
+ method getMaxPacketSize()I {
+  +START:   #1
+        if vR0.maxPktSize<=0 goto B12;   
+  +B7:   #1
+        return vR0.maxPktSize;   
+  +B12:   #1
+        return vR0.device.getMaxPacketSize@extra(vR0.endPointNum);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 getMaxPacketSize
+ 
+ method getEndPoint()Lorg/jnode/driver/bus/usb/USBEndPoint; {
+  +START:   #1
+        return vR0.endPoint;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEndPoint
+}

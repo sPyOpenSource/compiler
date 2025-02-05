@@ -1,0 +1,274 @@
+class org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [ ?R  iRR] 
+        vR0.numberOfVCNs = 0;   
+        b1 = new java/util/ArrayList();    [ ?R  i..][ ?R  iR.]
+        vR0.dataRuns = b1;   
+        vi4 = vR0.getDataRunsOffset@this();    [ ?R  R..] 
+        if vi4<=0 goto B40;   
+  +B33:   #1
+        vR0.readDataRuns@special(vi4,vi3);   [i ?R  iiR] 
+  +B40:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 0 <init>
+ 
+ method getStartVCN()J {
+  +START:   #1
+        return vR0.getUInt32@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getStartVCN
+ 
+ method getLastVCN()J {
+  +START:   #1
+        return vR0.getUInt32@this(24);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastVCN
+ 
+ method getDataRunsOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(32);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataRunsOffset
+ 
+ method getStoredCompressionUnitSize()I {
+  +START:   #1
+        return vR0.getUInt16@this(34);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStoredCompressionUnitSize
+ 
+ method getCompressionUnitSize(I)I {
+  +START:   #1
+        vi2 = vR0.getStoredCompressionUnitSize@this();    [   R] 
+        if vi2!=0 goto B11;   
+  +B9:   #1
+        return vi1;   
+  +B11:   #1
+        return (1 << vi2);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 getCompressionUnitSize
+ 
+ method getAttributeAllocatedSize()J {
+  +START:   #1
+        return vR0.getInt64@this(40);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAttributeAllocatedSize
+ 
+ method getAttributeActualSize()J {
+  +START:   #1
+        return vR0.getInt64@this(48);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAttributeActualSize
+ 
+ method getAttributeInitializedSize()J {
+  +START:   #1
+        return vR0.getInt64@this(56);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAttributeInitializedSize
+ 
+ method readDataRuns(II)V {
+  +START:   #1
+        vi3 = vi1;    
+        vi4 = 0;    
+        vR5 = vR0.getDataRuns@this();    [ii iR  R] 
+        vl6 = 0;    
+        vi8 = vR0.isCompressedAttribute@this();    [iiRl iR  R] 
+        vi9 = 0;    
+        vi10 = 1;    
+        vi11 = 0;    
+        if vi8==0 goto B42;   
+  +B34:   #1
+        b0 = vR0.getCompressionUnitSize@special(vi2);    [iiRl?iiii iR  iR] 
+        goto +B43b0;   [iiRl?iiii iR  ..]
+  +B42:   #1
+        b0 = 1;    
+  +B43b0:   #1 int
+        vi12 = b0;    
+  +B45:   #1
+        if vR0.getUInt8@this(vi3)==0 goto B481;   
+  +B53:   #1
+        vR13 = new org/jnode/fs/ntfs/DataRun(vR0,vi3,vl6,vi4);    [ iR  i.][ iR . iil_iRR]
+        if vi8==0 goto B411;   
+  +B73:   #1
+        if vR13.isSparse@extra()==0 goto B167;   
+  +B81:   #1
+        if vi9!=0 goto B91;   
+  +B86:   #1
+        if vi10==0 goto B167;   
+  +B91:   #1
+        vi9 = 0;    
+        if (vR13.getLength@extra()+vi11)<=vi12 goto B452;   
+  +B107:   #1
+        vi14 = (vR13.getLength@extra()-(vi12-vi11));    
+        b1 = new org/jnode/fs/ntfs/DataRun(0,vi14,1,0,vl6);    [ iR . i.._...][ iR . ili_iiiR]
+        vR5.add(b1);   [iiRl?iiiiiRi iR . RR._....] 
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vi14);   
+        vl6 = (vl6+(long)vi14);    
+        vi11 = 0;    
+        goto +B452;   [iiRl?iiiiiRi iR . ..._....]
+  +B167:   #2
+        if vR13.getLength@extra()<vi12 goto B360;   
+  +B177:   #1
+        vi14 = (vR13.getLength@extra()%vi12);    
+        if vi14==0 goto B322;   
+  +B192:   #1
+        vi15 = (vR13.getLength@extra()-vi14);    
+        vR16 = new org/jnode/fs/ntfs/DataRun(vR13.getCluster@extra(),vi15,0,0,vl6);    [ iR . i.._....][ iR . ili_iiiR]
+        vR5.add(vR16);   [iiRl?iiiiiRiiR iR . RR._....] 
+        vl6 = (vl6+(long)vi15);    
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vi15);   
+        vR17 = new org/jnode/fs/ntfs/DataRun((vR13.getCluster@extra()+vi15),vi14,0,0,vl6);    [ iR . i.._....][ iR . ili_iiiR]
+        b1 = new org/jnode/fs/ntfs/CompressedDataRun(vR17,vi12);    [ iR . i.._....][ iR . iiR_R...]
+        vR5.add(b1);   [iiRl?iiiiiRiiRR iR . RR._....] 
+        vi9 = 1;    
+        vi11 = vi14;    
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vi12);   
+        vl6 = (vl6+(long)vi12);    
+        goto +B357;   [iiRl?iiiiiRiiRR iR . ..._....]
+  +B322:   #1
+        vR5.add(vR13);   [iiRl?iiiiiRiiRR iR . RR._....] 
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vR13.getLength@extra());   
+        vl6 = (vl6+(long)vR13.getLength@extra());    
+  +B357:   #1
+        goto +B452;   [iiRl?iiiiiRiiRR iR . ..._....]
+  +B360:   #1
+        b1 = new org/jnode/fs/ntfs/CompressedDataRun(vR13,vi12);    [ iR . i.._....][ iR . iiR_R...]
+        vR5.add(b1);   [iiRl?iiiiiRiiRR iR . RR._....] 
+        vi9 = 1;    
+        vi11 = vR13.getLength@extra();    [iiRl?iiiiiRiiRR iR . R.._....] 
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vi12);   
+        vl6 = (vl6+(long)vi12);    
+        goto +B452;   [iiRl?iiiiiRiiRR iR . ..._....]
+  +B411:   #1
+        vR5.add(vR13);   [iiRl?iiiiiRiiRR iR . RR._....] 
+        vR0.numberOfVCNs = (vR0.numberOfVCNs+vR13.getLength@extra());   
+        vl6 = (vl6+(long)vR13.getLength@extra());    
+        vi11 = 0;    
+        vi9 = 0;    
+  +B452:   #4
+        if vR13.isSparse@extra()!=0 goto B467;   
+  +B460:   #1
+        vi4 = vR13.getCluster@extra();    [iiRl?iiiiiRi iR . R.._....] 
+  +B467:   #1
+        vi3 = (vi3+vR13.getSize@extra());    
+        vi10 = 0;    
+        goto +B45;   [iiRl?iiiiiRi iR . ..._....]
+  +B481:   #1
+        vi13 = vR0.getFileRecord@this().getClusterSize();    [iiRl?iiiiiRiiRR iR . R.._....] [iiRl?iiiiiRiiRR iR R R.._....] 
+        vl14 = (((vR0.getAttributeAllocatedSize@this()-1)/(long)vi13)+1);    
+        if compare((long)vR0.numberOfVCNs,vl14)==0 goto B515;   
+  +B515:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 85/85 wr 36 swaps 0 any 9 found 2 readDataRuns
+ 
+ method getDataRuns()Ljava/util/List; {
+  +START:   #1
+        return vR0.dataRuns;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataRuns
+ 
+ method readVCN(JLjx/zero/Memory;II)I {
+  +START:   #1
+        vi6 = vR0.getFlags@this();    [ R  R] 
+        if (vi6 & 16384)==0 goto B25;   
+  -B15:   #1
+        throw new java/io/IOException("Reading encrypted files is not supported");   
+  +B25:   #1
+        vR7 = vR0.getFileRecord@this().getVolume();    [?i R . R..] [?i R R R..] 
+        vi8 = vR7.getClusterSize();    [?iR R . R..] 
+        vi9 = 0;    
+        vR10 = vR0.getDataRuns@this().iterator();    [?iRii R . R..] [?iRii R R R..] 
+  +B55:   #1
+        if vR10.hasNext()==0 goto B112;   
+  +B65:   #1
+        vR11 = (org/jnode/fs/ntfs/DataRunInterface)(vR10.next());    
+        vi9 = (vi9+vR11.readClusters(vl1,vR3,vi4,vi5,vi8,vR7));    
+        if vi9!=vi5 goto B109;   
+  +B106:   #1
+        goto +B112;   forward return[iiRiiRR R . ........]
+  +B109:   #1
+        goto +B55;   [iiRiiRR R . ........]
+  +B112:   #2
+        return vi9;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 11 swaps 0 any 3 found 1 readVCN
+ 
+ method getNumberOfVCNs()I {
+  +START:   #1
+        return vR0.numberOfVCNs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberOfVCNs
+ 
+ method hexDump()Ljava/lang/String; {
+  +START:   #1
+        vi1 = (vR0.getBuffer@this().size()-vR0.getOffset@this());    
+        vR2 = vR0.MemManager.alloc(vi1);    [i  . iR] 
+        vR0.getData@this(0,vR2,0,vR2.size());   [iR  i iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 0 found 0 hexDump
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "[attribute (non-res) type=x%x name'%s' size=%d runs=%d]";    
+        b1 = new java/lang/Object()[4];    
+        b1[0] = valueOf@special(vR0.getAttributeType@this());   
+        b1[1] = vR0.getAttributeName@this();   
+        b1[2] = valueOf@special(vR0.getAttributeActualSize@this());   
+        b1[3] = valueOf@special(vR0.getDataRuns@this().size());   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 0 found 0 toString
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+  +B8:   #1
+        vR2 = vR0.getDataRuns@this().iterator();    [R RR . R.] [R RR R R.] 
+  +B18:   #1
+        if vR2.hasNext()==0 goto B53;   
+  +B27:   #1
+        vR3 = (org/jnode/fs/ntfs/DataRunInterface)(vR2.next());    
+        vR1.append@extra(vR3);   [RRR RR . RR] 
+        vR1.append@extra("
+");   [RRR RR i RR] 
+        goto +B18;   [RRR RR i ..]
+  +B53:   #2
+        goto +B68;   [RRR RR . ..]
+  +H56<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        vR1.append@extra("Error: ").append@extra(vR2);   [RRR RR i. RR.] [RRR RR iR RRR] 
+  +B68:   #1
+        b0 = "%s
+Data runs:
+%s
+Data: %s";    
+        b1 = new java/lang/Object()[3];    
+        b1[0] = vR0.toString@this();   
+        b1[1] = vR1.toString@extra();   
+        b1[2] = vR0.hexDump@this();   
+        return format@special(b0,b1);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+8 - 53 handler 56 type 208
+ }
+// Register: rd 15/15 wr 11 swaps 2 any 0 found 0 toDebugString
+}

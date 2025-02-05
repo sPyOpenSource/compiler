@@ -1,0 +1,45 @@
+class org/jnode/fs/ntfs/security/AccessControlEntry {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/security/AccessControlList;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getType()I {
+  +START:   #1
+        return vR0.getInt8@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getType
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getInt8@this(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.getInt16@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getAccessMask()I {
+  +START:   #1
+        return vR0.getInt32@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAccessMask
+ 
+ method getSid()Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        return readSid@special(vR0,8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSid
+}

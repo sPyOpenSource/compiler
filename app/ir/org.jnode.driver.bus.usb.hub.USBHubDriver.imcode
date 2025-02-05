@@ -1,0 +1,248 @@
+class org/jnode/driver/bus/usb/hub/USBHubDriver {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new org/jnode/driver/bus/usb/hub/PortStatus();    [ ?R  i][ ?R  iR]
+        vR0.statusData = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method startDevice()V {
+  +START:   #1
+        vR0.dev = 0;   
+  +B5:   #1
+        b1 = new org/jnode/driver/bus/usb/hub/HubDescriptor();    [ RR  i][ RR  iR]
+        vR0.descr = b1;   
+        vR0.dev.readDescriptor@extra(32,41,0,0,-1,vR0.descr);   [ RR i RiiiiiR] 
+        vR0.nrPorts = vR0.descr.getNumPorts@extra();   
+        vR0.devices = new org/jnode/driver/bus/usb/USBDevice()[vR0.nrPorts];   
+        vR0.powerOn@special();   [ RR i R......] 
+        b1 = new org/jnode/driver/bus/usb/USBHubMonitor(vR0.dev,0,0);    [ RR i i......][ RR i. iRRRR..]
+        vR0.monitor = b1;   
+  +B77:   #1
+        goto +B90;   forward return[ RR .. .......]
+  -H80<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/Exception(vR1);   
+  +B90:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+5 - 77 handler 80 type 59
+ }
+// Register: rd 16/16 wr 6 swaps 1 any 0 found 0 startDevice
+ 
+ method stopDevice()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.nrPorts goto B34;   
+  +B10:   #1
+        vR2 = vR0.devices[vi1];    
+        if vR2==null goto B21;   
+  +B21:   #1
+        vR0.devices[vi1] = 0;   
+        vi1++;   
+        goto +B2;   [iR   ]
+  +B34:   #1
+        if vR0.monitor==null goto B53;   
+  +B41:   #1
+        vR0.monitor.stopMonitor();   [iR   R] 
+        vR0.monitor = 0;   
+  +B53:   #1
+        vR0.nrPorts = 0;   
+        vR0.devices = 0;   
+        vR0.dev = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 3 swaps 0 any 3 found 0 stopDevice
+ 
+ method clearPortConnectionStatusChanged(I)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.clearPortFeature@special(vi1,16);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 clearPortConnectionStatusChanged
+ 
+ method getDevice(I)Lorg/jnode/driver/bus/usb/USBDevice; {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        return vR0.devices[vi1];   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getDevice
+ 
+ method getNumPorts()I {
+  +START:   #1
+        return vR0.nrPorts;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumPorts
+ 
+ method getPortStatus(I)I {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return ((vR0.statusData.getPortStatus() << 16) | vR0.statusData.getPortChange());   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getPortStatus
+ 
+ method getUSBBus()Lorg/jnode/driver/bus/usb/USBBus; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getUSBBus
+ 
+ method isPortConnected(I)Z {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return vR0.statusData.getPortStatusBits(1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 isPortConnected
+ 
+ method isPortConnectedToHighSpeed(I)Z {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return vR0.statusData.getPortStatusBits(1024);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 isPortConnectedToHighSpeed
+ 
+ method isPortConnectedToLowSpeed(I)Z {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return vR0.statusData.getPortStatusBits(512);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 isPortConnectedToLowSpeed
+ 
+ method isPortConnectionStatusChanged(I)Z {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return vR0.statusData.getPortChangeBits(1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 isPortConnectionStatusChanged
+ 
+ method isPortEnabled(I)Z {
+  +START:   #1
+        vR0.readPortStatus@special(vi1,vR0.statusData);   [  i RiR] 
+        return vR0.statusData.getPortStatusBits(2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 isPortEnabled
+ 
+ method resetPort(I)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.setPortFeature@special(vi1,4);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 resetPort
+ 
+ method setDevice(Lorg/jnode/driver/bus/usb/USBDevice;I)V {
+  +START:   #1
+        vR0.testPort@special(vi2);   [   iR] 
+        vR0.devices[vi2] = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 setDevice
+ 
+ method setPortEnabled(IZ)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        if vi2==0 goto B18;   
+  +B9:   #1
+        vR0.setPortFeature@special(vi1,1);   [   iiR] 
+        goto +B24;   forward return[   ...]
+  +B18:   #1
+        vR0.clearPortFeature@special(vi1,1);   [   iiR] 
+  +B24:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 setPortEnabled
+ 
+ method unsetDevice(I)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [   iR] 
+        vR0.devices[vi1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 unsetDevice
+ 
+ method testPort(I)V {
+  +START:   #1
+        if vi1< 0 goto B12;   
+  +B4:   #1
+        if vi1<vR0.nrPorts goto B22;   
+  -B12:   #1
+        throw new java/lang/IllegalArgumentException("Invalid port number");   
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 0 testPort
+ 
+ method clearPortFeature(II)V {
+  +START:   #1
+        vR0.dev.clearFeature@extra(35,(vi1+1),vi2);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 clearPortFeature
+ 
+ method setPortFeature(II)V {
+  +START:   #1
+        vR0.dev.setFeature@extra(35,(vi1+1),vi2);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setPortFeature
+ 
+ method powerOn()V {
+  +START:   #1
+        vi1 = 0;    
+  +B2:   #1
+        if vi1>=vR0.nrPorts goto B23;   
+  +B10:   #1
+        vR0.setPortFeature@special(vi1,8);   [i   iiR] 
+        vi1++;   
+        goto +B2;   [i   ...]
+  +B23:   #2
+        sleep@special((long)vR0.descr.getPowerOn2PowerGood@extra());   [i   ??.]
+  +B34:   #1
+        goto +B38;   forward return[i   ...]
+  +H37<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+  +B38:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+23 - 34 handler 37 type 120
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 powerOn
+ 
+ method readPortStatus(ILorg/jnode/driver/bus/usb/hub/PortStatus;)V {
+  +START:   #1
+        vR0.testPort@special(vi1);   [ ?R  iR] 
+        vR3 = vR0.dev.getDefaultControlPipe@extra();    [ ?R  R.] 
+        b1 = new org/jnode/driver/bus/usb/SetupPacket(163,0,0,(vi1+1),4);    [ ?R  i.][ ?R . iiiiiiR]
+        vR4 = vR3.createRequest(b1,vR2);    [R ?R . RRR....] 
+        vR3.syncSubmit(vR4,5000);   [RR ?R . ??RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 readPortStatus
+}

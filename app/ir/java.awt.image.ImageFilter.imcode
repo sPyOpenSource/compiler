@@ -1,0 +1,105 @@
+class java/awt/image/ImageFilter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.consumer = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method resendTopDownLeftRight(Ljava/awt/image/ImageProducer;)V {
+  +START:   #1
+        vR1.requestTopDownLeftRightResend(vR0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 resendTopDownLeftRight
+ 
+ method clone()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.clone@special();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 clone
+ 
+ method getFilterInstance(Ljava/awt/image/ImageConsumer;)Ljava/awt/image/ImageFilter; {
+  +START:   #1
+        if vR1!=null goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("null argument for ImageFilter.getFilterInstance(ImageConsumer)");   
+  +B14:   #1
+        vR0.consumer = vR1;   
+  +B19:   #1
+        vR2 = (java/awt/image/ImageFilter)(vR0.clone@this());    
+        vR0.consumer = 0;   
+        b0 = vR2;    
+  +B33b0:   #1 reference
+        return b0;   
+  +H34<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        vR0.consumer = 0;   
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+19 - 33 handler 34 type 31
+ }
+// Register: rd 10/10 wr 5 swaps 0 any 2 found 0 getFilterInstance
+ 
+ method setDimensions(II)V {
+  +START:   #1
+        vR0.consumer.setDimensions(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDimensions
+ 
+ method setProperties(Ljava/util/Hashtable;)V {
+  +START:   #1
+        vR1.put("filters","ImageFilter");   [  iR RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 setProperties
+ 
+ method setColorModel(Ljava/awt/image/ColorModel;)V {
+  +START:   #1
+        vR0.consumer.setColorModel(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setColorModel
+ 
+ method setHints(I)V {
+  +START:   #1
+        vR0.consumer.setHints(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setHints
+ 
+ method setPixels(IIIILjava/awt/image/ColorModel;[BII)V {
+  +START:   #1
+        vR0.consumer.setPixels(vi1,vi2,vi3,vi4,vR5,vR6,vi7,vi8);   [   iiRRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setPixels
+ 
+ method setPixels(IIIILjava/awt/image/ColorModel;[III)V {
+  +START:   #1
+        vR0.consumer.setPixels(vi1,vi2,vi3,vi4,vR5,vR6,vi7,vi8);   [   iiRRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setPixels
+ 
+ method imageComplete(I)V {
+  +START:   #1
+        vR0.consumer.imageComplete(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 imageComplete
+}

@@ -1,0 +1,75 @@
+class jx/awt/peer/JXMenuThread {
+ 
+ method <init>(Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.selectedItem = 0;   
+        vR0.toolkit = vR1;   
+        vR0.cpuManager = (jx/zero/CPUManager)(waitUntilPortalAvailable@special(getInitialNaming@special(),"CPUManager"));   
+        vR0.av = vR0.cpuManager.getAtomicVariable();   
+        vR0.av.set(0);   [  RR. RR] 
+        vR0.start@this();   [  RR. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 0 found 0 <init>
+ 
+ method setSelectedItem(Ljava/awt/MenuItem;)V {
+  +START:   #1
+        vR0.selectedItem = vR1;   
+        vR0.av.atomicUpdateUnblock(vR0.selectedItem,vR0.cpuState);   [  iR RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 setSelectedItem
+ 
+ method run()V {
+  +START:   #1
+        vR0.mh = vR0.toolkit.getMenuHandler();   
+        out.println("MenuThread started.");   [ iR i. RR] 
+  +B19:   #1
+        vR0.cpuState = vR0.cpuManager.getCPUState();   
+        vR0.av.blockIfEqual(0);   [ iR .. RR] 
+        vR0.cpuState = 0;   
+        vR0.av.set(0);   [ iR .. RR] 
+        vi1 = vR0.mh.isPopupMenuOpen();    [ iR .. R.] 
+        vR0.mh.deleteOpenMenus();   [i iR .. R.] 
+        if vi1!=0 goto B92;   
+  +B76:   #1
+        vR2 = vR0.mh.getCurrentMenuBar();    [i iR .. R.] 
+        vR0.mh.setCurrentMenuBar(0);   [iR iR .. RR] 
+  +B92:   #1
+        vR2 = vR0.toolkit.getSystemEventQueue();    [iR iR .. R.] 
+        if (vR0.selectedItem instanceof java/awt/CheckboxMenuItem)==0 goto B181;   
+  +B110:   #1
+        if (java/awt/CheckboxMenuItem)(vR0.selectedItem).getState()!=0 goto B127;   
+  +B123:   #1
+        b0 = 1;    
+        goto +B128b0;   [iR iR .. ..]
+  +B127:   #1
+        b0 = 0;    
+  +B128b0:   #1 int
+        vi3 = b0;    
+        (java/awt/CheckboxMenuItem)(vR0.selectedItem).setState(vi3);   [iRi iR .. iR.] 
+        if vi3==0 goto B148;   
+  +B144:   #1
+        b0 = 1;    
+        goto +B149b0;   [iRi iR .. ...]
+  +B148:   #1
+        b0 = 2;    
+  +B149b0:   #1 int
+        vi4 = b0;    
+        b1 = new java/awt/event/ItemEvent((java/awt/ItemSelectable)(vR0.selectedItem),701,vR0.selectedItem,vi4);    [ iR .. i..][ iR .. iiRiRR]
+        vR2.postEvent(b1);   [iRii iR .. RR....] 
+        goto +B217;   [iRii iR .. ......]
+  +B181:   #1
+        if (vR0.selectedItem instanceof java/awt/MenuItem)==0 goto B217;   
+  +B191:   #1
+        b1 = new java/awt/event/ActionEvent(vR0.selectedItem,1001,vR0.selectedItem.getActionCommand(),0);    [ iR .. i.....][ iR .. iiRiRR]
+        vR2.postEvent(b1);   [iRii iR .. RR....] 
+  +B217:   #2
+        goto +B19;   [iRii iR .. ......]
+  +END:   #1
+ }
+// Register: rd 34/34 wr 15 swaps 1 any 4 found 0 run
+}

@@ -1,0 +1,78 @@
+class org/jnode/fs/ntfs/MasterFileTable {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,vR2,vi3);   [   iR??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;IIZLjx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3,vi4,0,vR5,vi6);   [   iR??iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getMftLength()J {
+  +START:   #1
+        if compare(vR0.mftLength,0)!=0 goto B21;   
+  +B9:   #1
+        vR0.mftLength = vR0.getAttributeTotalSize@this(128,0);   
+  +B21:   #1
+        return vR0.mftLength;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftLength
+ 
+ method readRecord(J)Ljx/zero/Memory; {
+  +START:   #1
+        vR3 = vR0.getVolume@this();    [   R] 
+        vi4 = vR3.getBootRecord@extra().getFileRecordSize@extra();    [?R  . R] [?R  R R] 
+        vl5 = ((long)vi4*vl1);    
+        vR7 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR8 = vR7.alloc(vi4);    [?Ril?R  i. iR] 
+        vR0.readData@this(vl5,vR8,0,vi4);   [?Ril?RR  i. iiR??R] 
+        return vR8;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 8 swaps 1 any 0 found 0 readRecord
+ 
+ method getRecordUnchecked(J)Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        vR3 = vR0.getVolume@this();    [ R  R] 
+        vR4 = vR0.readRecord@this(vl1);    [?R R  ??R] 
+        return new org/jnode/fs/ntfs/FileRecord(vR3,vl1,vR4,0);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 getRecordUnchecked
+ 
+ method getRecord(J)Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        vR3 = vR0.getVolume@this();    [ RRR  R] 
+        vi4 = vR3.getBootRecord@extra().getFileRecordSize@extra();    [?R RRR . R] [?R RRR R R] 
+        vl5 = ((long)vi4*vl1);    
+        if compare((vl5+(long)vi4),vR0.getMftLength@this())<=0 goto B63;   
+  -B35:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b1.<init>@special(b2.append@extra("Attempt to read past the end of the MFT, offset: ").append@extra(vl5).toString@extra());   [?Ril RRR ii. RR..] 
+        throw b0;   
+  +B63:   #1
+        vR7 = vR0.getRecordUnchecked@this(vl1);    [?Ril RRR ... ??R.] 
+        vR7.checkIfValid();   [?Ril?R RRR ... R...] 
+        return vR7;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 11 swaps 2 any 1 found 0 getRecord
+ 
+ method getIndexedFileRecord(Lorg/jnode/fs/ntfs/index/IndexEntry;)Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.getRecord@this(vR1.getFileReferenceNumber@extra());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndexedFileRecord
+}

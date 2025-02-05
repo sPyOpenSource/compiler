@@ -1,0 +1,354 @@
+class jx/awt/peer/JXScrollbarPeer {
+ 
+ method <init>(Ljava/awt/Scrollbar;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [ ?R  RRR] 
+        b1 = new jx/awt/peer/InternalScrollbar(vR0,vR2);    [ ?R  i..][ ?R . iRRR]
+        vR0.scrollbar = b1;   
+        vR0.scrollbar.setOrientation(vR1.getOrientation());   [ ?R i iR..] 
+        vR0.setLineIncrement@this(vR1.getLineIncrement());   [ ?R ii iR..] 
+        vR0.setPageIncrement@this(vR1.getPageIncrement());   [ ?R iii iR..] 
+        vR0.setValues@this(vR1.getValue(),vR1.getVisibleAmount(),vR1.getMinimum(),vR1.getMaximum());   [ ?R iiiiiii iiiiR] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 12 swaps 6 any 0 found 0 <init>
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [   iiiR] 
+        requireNonNull@special(vR0.scrollbar);   [  R R...]
+        if vR0.scrollbar.mouseInScrollbarPressed(vi1,vi2,vi3)==0 goto B33;   
+  +B29:   #1
+        vR0.redraw@this();   [  . R...] 
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        vR0.mouseReleased@special(vi1,vi2,vi3,vi4);   [ RR  iiiiR] 
+        vi5 = 0;    
+        vi6 = 1;    
+        tswitch (vR0.scrollbar.mouseInScrollbarReleased(vi1,vi2,vi3,vi4)) B56 B62 B68 B74 : B80;   
+  +B56:   #1
+        vi5 = 2;    
+        goto +B83;   [ii RR  .....]
+  +B62:   #1
+        vi5 = 1;    
+        goto +B83;   [ii RR  .....]
+  +B68:   #1
+        vi5 = 3;    
+        goto +B83;   [ii RR  .....]
+  +B74:   #1
+        vi5 = 4;    
+        goto +B83;   [ii RR  .....]
+  +B80:   #1
+        vi6 = 0;    
+  +B83:   #4
+        if vi6==0 goto B154;   
+  +B88:   #1
+        if vR0.oldValue==vR0.scrollbar.getValue() goto B154;   
+  +B102:   #1
+        vR0.oldValue = vR0.scrollbar.getValue();   
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/AdjustmentEvent((java/awt/Adjustable)(vR0.parent),601,vi5,vR0.oldValue);    [ RR . i....][ RR .. iiiiRR]
+        b0.postEvent(b1);   [ii RR .. RR....] 
+  +B154:   #2
+        vR0.redraw@this();   [ii RR .. R.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 7 swaps 0 any 1 found 0 mouseReleased
+ 
+ method mouseMoved(III)V {
+  +START:   #1
+        vR0.mouseMoved@special(vi1,vi2,vi3);   [ RR  iiiR] 
+        vi4 = vR0.scrollbar.mouseInScrollbarMoved(vi1,vi2,vi3);    [ RR  iiiR] 
+        if vi3==0 goto B88;   
+  +B23:   #1
+        requireNonNull@special(vR0.scrollbar);   [i RR R R...]
+        if vi4!=5 goto B88;   
+  +B37:   #1
+        vR0.oldValue = vR0.scrollbar.getValue();   
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/AdjustmentEvent((java/awt/Adjustable)(vR0.parent),601,5,vR0.oldValue);    [ RR . i...][ RR .. iiiiRR]
+        b0.postEvent(b1);   [i RR .. RR....] 
+  +B88:   #2
+        if vi4!=vR0.lastArea goto B101;   
+  +B97:   #1
+        if vi3==0 goto B111;   
+  +B101:   #1
+        vR0.lastArea = vi4;   
+        vR0.redraw@this();   [i RR .. R.....] 
+  +B111:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 6 swaps 0 any 4 found 0 mouseMoved
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        vR0.mouseEntered@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.scrollbar.mouseInScrollbarEntered(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        vR0.mouseExited@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.scrollbar.mouseInScrollbarExited(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 mouseExited
+ 
+ method getValue()I {
+  +START:   #1
+        return vR0.scrollbar.getValue();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.scrollbar = 0;   
+        vR0.dispose@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        tswitch (vR0.peerState) B36 B46 B36 B56 : B66;   
+  +B36:   #2
+        vR0.paintScrollbar@special(vR1,0,0);   [   iiRR] 
+        goto +B74;   forward return[   ....]
+  +B46:   #1
+        vR0.paintScrollbar@special(vR1,1,0);   [   iiRR] 
+        goto +B74;   forward return[   ....]
+  +B56:   #1
+        vR0.paintScrollbar@special(vR1,0,1);   [   iiRR] 
+        goto +B74;   forward return[   ....]
+  +B66:   #1
+        out.println("*** JXScrollbarPeer: Unknown state!!!");   [  i. RR..] 
+  +B74:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 paint
+ 
+ method setLineIncrement(I)V {
+  +START:   #1
+        vR0.scrollbar.setSmallIncrement(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLineIncrement
+ 
+ method setPageIncrement(I)V {
+  +START:   #1
+        vR0.scrollbar.setBigIncrement(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setPageIncrement
+ 
+ method setValues(IIII)V {
+  +START:   #1
+        vR0.scrollbar.setValues(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        vR0.oldValue = (vi3-1);   
+        vR0.prefWidth = vR0.scrollbar.getPrefWidth();   
+        vR0.prefHeight = vR0.scrollbar.getPrefHeight();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 setValues
+ 
+ method paintScrollbar(Ljx/awt/JXGraphics;ZZ)V {
+  +START:   #1
+        vR0.scrollbar.setScrollArea(0,0,vR0.width,vR0.height);   [  ii iiiiR] 
+        vR0.scrollbar.paintScrollbar(vR1,vi2,vi3);   [  ii iiRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 paintScrollbar
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

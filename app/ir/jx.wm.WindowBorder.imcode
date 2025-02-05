@@ -1,0 +1,774 @@
+class jx/wm/WindowBorder {
+ 
+ method <init>(Ljx/wm/WWindowImpl;Ljx/wm/WView;Ljava/lang/String;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        b4 = new jx/devices/fb/PixelRect(0,0,0,0);    [ iRR?RRR  i][ iRR?RRR . iiiiiR]
+        vR0.<init>@special(vR1,vR2,vR3,b4,0);   [ iRR?RRR . iRRRRR] 
+        vR0.m_nPendingMoves = 0;   
+        vR0.m_nMouseDown = 0;   
+        vR0.m_bWireFramePending = 0;   
+        vR0.m_bZoomed = 0;   
+        b1 = new jx/devices/fb/PixelRect();    [ iRR?RRR . i.....][ iRR?RRR . iR....]
+        vR0.m_cOldFrame = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ iRR?RRR . i.....][ iRR?RRR . iR....]
+        vR0.m_cUnzoomedFrame = b1;   
+        if (vR4.getValue() & 32)==0 goto B76;   
+  +B72:   #1
+        b0 = 1;    
+        goto +B77b0;   [ iRR?RRR . ......]
+  +B76:   #1
+        b0 = 0;    
+  +B77b0:   #1 int
+        vi5 = b0;    
+        if (vR4.getValue() & 1024)==0 goto B95;   
+  +B91:   #1
+        b0 = 1;    
+        goto +B96b0;   [i iRR?RRR . ......]
+  +B95:   #1
+        b0 = 0;    
+  +B96b0:   #1 int
+        vi6 = b0;    
+        vR0.m_cOwner = vR1;   
+        vR0.m_eHitItem = 0;   
+        vR0.m_eCursorHitItem = 0;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cDeltaMove = b1;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cDeltaSize = b1;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cHitOffset = b1;   
+        b1 = new jx/devices/fb/PixelPoint(1,1);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cMinSize = b1;   
+        b1 = new jx/devices/fb/PixelPoint(9999999,9999999);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cMaxSize = b1;   
+        b1 = new jx/devices/fb/PixelPoint(1,1);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cAlignSize = b1;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cAlignSizeOff = b1;   
+        b1 = new jx/devices/fb/PixelPoint(1,1);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cAlignPos = b1;   
+        b1 = new jx/devices/fb/PixelPoint(0,0);    [ iRR?RRR . i.....][ iRR?RRR . iiiR..]
+        vR0.m_cAlignPosOff = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ iRR?RRR . i.....][ iRR?RRR . iR....]
+        vR0.m_cRawFrame = b1;   
+        vR0.m_nToggleDown = 0;   
+        vR0.m_nZoomDown = 0;   
+        vR0.m_nCloseDown = 0;   
+        vR0.m_bWndMovePending = 0;   
+        vR0.m_bBackdrop = vi5;   
+        vR0.m_cDecorator = 0;   
+        vi7 = 0;    
+        if vi6!=0 goto B288;   
+  +B282:   #1
+        vi7 = (vi7 | 1);    
+  +B288:   #1
+        if (vR4.getValue() & 2048)==0 goto B307;   
+  +B300:   #1
+        vi7 = (vi7 | 8);    
+  +B307:   #1
+        if (vR4.getValue() & 4096)==0 goto B326;   
+  +B319:   #1
+        vi7 = (vi7 | 16);    
+  +B326:   #1
+        b1 = new jx/wm/WView;    
+        b2 = b1;    
+        b5 = new java/lang/StringBuilder();    [ iRR?RRR . i.....][ iRR?RRR . iR....]
+        b5 = b5.append@extra(vR3).append@extra("_client").toString@extra();    [iii iRR?RRR i.. R.....] [iii iRR?RRR iR. RR....] [iii iRR?RRR iRR RRR...] 
+        b6 = new jx/devices/fb/PixelRect(0,0,0,0);    [ iRR?RRR i.. i.....][ iRR?RRR i.. iiiiiR]
+        b2.<init>@special(vR1,vR0,b5,b6,vi7);   [iii iRR?RRR i.. iRRRRR] 
+        vR0.m_cClient = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 69/69 wr 40 swaps 1 any 7 found 0 <init>
+ 
+ method finalize()V {
+  +START:   #1
+        vR0.m_cOwner = 0;   
+        vR0.m_cDeltaMove = 0;   
+        vR0.m_cDeltaSize = 0;   
+        vR0.m_cHitOffset = 0;   
+        vR0.m_cMinSize = 0;   
+        vR0.m_cMaxSize = 0;   
+        vR0.m_cAlignSize = 0;   
+        vR0.m_cAlignSizeOff = 0;   
+        vR0.m_cAlignPos = 0;   
+        vR0.m_cAlignPosOff = 0;   
+        vR0.m_cRawFrame = 0;   
+        vR0.m_cDecorator = 0;   
+        vR0.removeChild@this(vR0.m_cClient);   [  i RR] 
+        vR0.m_cClient = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 1 swaps 1 any 0 found 0 finalize
+ 
+ method setDisplay(Ljx/wm/WDisplay;)V {
+  +START:   #1
+        s_cDisplay = vR0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setDisplay
+ 
+ method setDecorator(Ljx/wm/decorator/WindowDecorator;)V {
+  +START:   #1
+        vR0.m_cDecorator = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDecorator
+ 
+ method rectToClient(Ljx/devices/fb/PixelRect;)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        vR2 = vR0.m_cDecorator.getBorderSize();    [ R  R] 
+        return new jx/devices/fb/PixelRect((vR1.m_nX0+vR2.m_nX0),(vR1.m_nY0+vR2.m_nY0),(vR1.m_nX1-vR2.m_nX1),(vR1.m_nY1-vR2.m_nY1));   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 0 found 0 rectToClient
+ 
+ method doSetFrame(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.setFrame@special(vR1);   [   RR] 
+        vR2 = vR0.getBounds@this();    [   R.] 
+        vR0.m_cClient.setFrame(vR0.rectToClient@special(vR2));   [R  i RR] 
+        vR0.m_cDecorator.frameSized(vR2);   [R  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 doSetFrame
+ 
+ method setFrame(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_cRawFrame.setTo@extra(vR1);   [   RR] 
+        vR0.doSetFrame@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFrame
+ 
+ method paint(Ljx/wm/WRegion;Z)V {
+  +START:   #1
+        vR3 = vR1.getBounds();    [   R] 
+        if vi2==0 goto B13;   
+  +B9:   #1
+        vR0.beginUpdate@this();   [R   R] 
+  +B13:   #1
+        vR0.m_cDecorator.render(vR3);   [R   RR] 
+        if vi2==0 goto B29;   
+  +B25:   #1
+        vR0.endUpdate@this();   [R   R.] 
+  +B29:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 2 found 0 paint
+ 
+ method getClient()Ljx/wm/WView; {
+  +START:   #1
+        return vR0.m_cClient;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClient
+ 
+ method getHitPointBase(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        tswitch (vR0.m_eHitItem) B84 B93 B52 B61 B116 B125 B185 B148 : B208;   
+  +B52:   #1
+        vR1.setTo(0,0);   [   iiR] 
+        goto +B214;   forward return[   ...]
+  +B61:   #1
+        vR1.setTo((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX),0);   [  i iiR] 
+        goto +B214;   forward return[  i ...]
+  +B84:   #1
+        vR1.setTo(0,0);   [  . iiR] 
+        goto +B214;   forward return[  . ...]
+  +B93:   #1
+        vR1.setTo(0,(vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY));   [  i iiR] 
+        goto +B214;   forward return[  i ...]
+  +B116:   #1
+        vR1.setTo(0,0);   [  . iiR] 
+        goto +B214;   forward return[  . ...]
+  +B125:   #1
+        vR1.setTo((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX),0);   [  i iiR] 
+        goto +B214;   forward return[  i ...]
+  +B148:   #1
+        vR1.setTo((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX),(vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY));   [  ii iiR] 
+        goto +B214;   forward return[  ii ...]
+  +B185:   #1
+        vR1.setTo(0,(vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY));   [  i. iiR] 
+        goto +B214;   forward return[  i. ...]
+  +B208:   #1
+        vR1.setTo(0,0);   [  .. iiR] 
+  +B214:   #8
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 7 swaps 5 any 0 found 0 getHitPointBase
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)Z {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint();    [ i  i][ i  iR]
+        if vR0.m_eHitItem==0 goto B27;   
+  +B15:   #1
+        vR0.m_nMouseDown = (vR0.m_nMouseDown+1);   
+        return 1;   
+  +B27:   #1
+        vR0.m_cDeltaMove.setTo(0,0);   [R i  iiR] 
+        vR0.m_cDeltaSize.setTo(0,0);   [R i  iiR] 
+        vR0.m_cRawFrame.setTo@extra(vR0.m_cFrame);   [R i i RR.] 
+        vR0.m_cOldFrame.setTo@extra(vR0.m_cFrame);   [R i ii RR.] 
+        if vR0.getBounds@this().intersects@extra(vR1)==0 goto B107;   
+  +B78:   #1
+        if vR0.m_cClient.m_cFrame.intersects@extra(vR1)!=0 goto B107;   
+  +B92:   #1
+        vR0.m_eHitItem = vR0.m_cDecorator.hitTest(vR1);   
+        goto +B112;   [R i ... ...]
+  +B107:   #2
+        vR0.m_eHitItem = 0;   
+  +B112:   #1
+        vR0.getHitPointBase@this(vR3);   [R i ... RR.] 
+        vR0.m_cHitOffset.setTo(vR1);   [R i ... RR.] 
+        vR0.m_cHitOffset.add(vR0.getLeftTop@this());   [R i i.. RR.] 
+        vR0.m_cHitOffset.sub(vR0.m_cRawFrame.m_nX0,vR0.m_cRawFrame.m_nY0);   [R i iii iiR] 
+        vR0.m_cHitOffset.sub(vR3);   [R i iii RR.] 
+        tswitch (vR0.m_eHitItem) B200 B216 B232 B248 : B258;   
+  +B200:   #1
+        vR0.m_nCloseDown = 1;   
+        vR0.m_cDecorator.setCloseButtonState(1);   [R i ... iR.] 
+        goto +B258;   [R i ... ...]
+  +B216:   #1
+        vR0.m_nZoomDown = 1;   
+        vR0.m_cDecorator.setZoomButtonState(1);   [R i ... iR.] 
+        goto +B258;   [R i ... ...]
+  +B232:   #1
+        vR0.m_nToggleDown = 1;   
+        vR0.m_cDecorator.setDepthButtonState(1);   [R i ... iR.] 
+        goto +B258;   [R i ... ...]
+  +B248:   #1
+        vR0.m_cOwner.moveToFront();   [R i ... R..] 
+        goto +B258;   [R i ... ...]
+  +B258:   #5
+        if vR0.m_eHitItem==0 goto B275;   
+  +B265:   #1
+        vR0.m_nMouseDown = (vR0.m_nMouseDown+1);   
+  +B275:   #1
+        if vR0.m_eHitItem==0 goto B286;   
+  +B282:   #1
+        b0 = 1;    
+        goto +B287b0;   forward return[R i ... ...]
+  +B286:   #1
+        b0 = 0;    
+  +B287b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 8 swaps 4 any 0 found 0 mouseDown
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)Z {
+  +START:   #1
+        b1 = (vR0.m_nMouseDown-1);    
+        b0 = b1;    
+        vR0.m_nMouseDown = b1;   
+        if b0==0 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        if vR0.m_nCloseDown!=1 goto B34;   
+  +B24:   #1
+        vR0.m_cOwner.close();   [ ii  R] 
+        goto +B236;   [ ii  .]
+  +B34:   #1
+        if vR0.m_nToggleDown!=1 goto B83;   
+  +B42:   #1
+        vR0.toggleDepth@this();   [ ii  R] 
+        if vR0.m_cParent==null goto B236;   
+  +B54:   #1
+        s_cDisplay.startUpdate();   [ ii . R] 
+        hide@special();   [ ii . .]
+        vR0.m_cParent.updateRegions(0);   [ ii . iR] 
+        unhide@special();   [ ii . ..]
+        s_cDisplay.endUpdate();   [ ii . R.] 
+        goto +B236;   [ ii . ..]
+  +B83:   #1
+        if vR0.m_nZoomDown!=1 goto B236;   
+  +B91:   #1
+        vi3 = vR0.m_cOwner.getFlags().getValue();    [ ii . R.] [ ii R R.] 
+        if (vi3 & 192)!=0 goto B236;   
+  +B110:   #1
+        if vR0.m_bZoomed==0 goto B137;   
+  +B117:   #1
+        vR0.m_bZoomed = 0;   
+        vR0.m_cOwner.setFrame(vR0.m_cUnzoomedFrame,1);   [i ii i iRR] 
+        goto +B169;   [i ii i ...]
+  +B137:   #1
+        vR0.m_bZoomed = 1;   
+        vR0.m_cUnzoomedFrame = vR0.m_cOwner.getFrame(1);   
+        vR0.m_cOwner.setFrame(vR0.m_cOwner.getScreenResolution(),1);   [iRR ii i iRR] 
+  +B169:   #1
+        s_cDisplay.startUpdate();   [i ii . R..] 
+        hide@special();   [i ii . ...]
+        vR0.m_cParent.updateRegions(0);   [i ii . iR.] 
+        unhide@special();   [i ii . ...]
+        s_cDisplay.endUpdate();   [i ii . R..] 
+        vR4 = vR0.m_cDecorator.getBorderSize();    [i ii . R..] 
+        vR5 = vR0.alignRect@this(vR0.m_cRawFrame,vR4);    [iR ii i RRR] 
+        b0 = vR0.m_cOwner;    
+        b1 = new jx/wm/message/WWindowFrameChangedMessage(vR0.rectToClient@special(vR5));    [ RR i i..][ RR i. iRR]
+        b0.postMessage(b1);   [iRR RR i. RR.] 
+  +B236:   #5
+        vR0.m_eHitItem = 0;   
+        if vR0.m_nToggleDown!=1 goto B257;   
+  +B249:   #1
+        vR0.m_cDecorator.setDepthButtonState(0);   [ RR .. iR.] 
+  +B257:   #1
+        if vR0.m_nZoomDown!=1 goto B273;   
+  +B265:   #1
+        vR0.m_cDecorator.setZoomButtonState(0);   [ RR .. iR.] 
+  +B273:   #1
+        if vR0.m_nCloseDown!=1 goto B289;   
+  +B281:   #1
+        vR0.m_cDecorator.setCloseButtonState(0);   [ RR .. iR.] 
+  +B289:   #1
+        vR0.m_nToggleDown = 0;   
+        vR0.m_nZoomDown = 0;   
+        vR0.m_nCloseDown = 0;   
+        vR0.m_cRawFrame.setTo@extra(vR0.m_cFrame);   [ RR i. RR.] 
+        if s_bUseWireFrames==0 goto B357;   
+  +B321:   #1
+        if vR0.m_bWireFramePending==0 goto B357;   
+  +B328:   #1
+        if vR0.m_nMouseDown!=0 goto B357;   
+  +B335:   #1
+        b0 = vR0.m_cOwner;    
+        b1 = new jx/wm/message/WWindowFrameChangedMessage(vR0.rectToClient@special(vR0.m_cOldFrame));    [ RR .. i..][ RR .i iRR]
+        b0.postMessage(b1);   [ RR .i RR.] 
+  +B357:   #3
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 21 swaps 5 any 3 found 0 mouseUp
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)Z {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint();    [ ii  i][ ii  iR]
+        if vR0.m_eHitItem!=0 goto B27;   
+  +B15:   #1
+        if vi2!=4 goto B27;   
+  +B20:   #1
+        vR0.m_eCursorHitItem = 0;   
+        return 0;   
+  +B27:   #2
+        vi5 = 0;    
+        vi6 = 0;    
+        if vR0.m_cDecorator==null goto B78;   
+  +B40:   #1
+        vR4 = vR0.m_cDecorator.getBorderSize();    [R?ii ii  R.] 
+        vi5 = (vR4.m_nX0+vR4.m_nX1);    
+        vi6 = (vR4.m_nY0+vR4.m_nY1);    
+        goto +B80;   [RRii ii  ..]
+  +B78:   #1
+        return 0;   
+  +B80:   #1
+        vR0.getHitPointBase@this(vR3);   [RRii ii  RR] 
+        vR7 = new jx/devices/fb/PixelPoint(vR1);    [ ii  i.][ ii . iRR]
+        vR7.sub(vR3);   [RRiiR ii . RR.] 
+        vR7.sub(vR0.m_cHitOffset);   [RRiiR ii i RR.] 
+        vR7.sub(vR0.m_cDeltaMove);   [RRiiR ii ii RR.] 
+        vR7.add(vR0.getLeftTop@this());   [RRiiR ii iii RR.] 
+        vR7.sub(vR0.m_cRawFrame.m_nX0,vR0.m_cRawFrame.m_nY0);   [RRiiR ii iiiii iiR] 
+        if vR0.getBounds@this().intersects@extra(vR1)==0 goto B185;   
+  +B158:   #1
+        if vR0.m_cClient.m_cFrame.intersects@extra(vR1)!=0 goto B185;   
+  +B172:   #1
+        vi8 = vR0.m_cDecorator.hitTest(vR1);    [RRiiR ii ...... RR.] 
+        goto +B188;   [RRiiRi ii ...... ...]
+  +B185:   #2
+        vi8 = 0;    
+  +B188:   #1
+        if vR0.m_eHitItem!=0 goto B197;   
+  +B195:   #1
+        return 0;   
+  +B197:   #1
+        if vR0.m_nToggleDown<=0 goto B255;   
+  +B204:   #1
+        if vi8!=3 goto B214;   
+  +B210:   #1
+        b0 = 1;    
+        goto +B215b0;   [RRiiRi ii ...... ...]
+  +B214:   #1
+        b0 = 2;    
+  +B215b0:   #1 int
+        vi9 = b0;    
+        if vi9==vR0.m_nToggleDown goto B252;   
+  +B226:   #1
+        vR0.m_nToggleDown = vi9;   
+        b0 = vR0.m_cDecorator;    
+        if vR0.m_nToggleDown!=1 goto B248;   
+  +B244b0:   #1 reference
+        b1 = 1;    
+        goto +B249b0b1;   [RRiiRii Ri ...... ...]
+  +B248b0:   #1 reference
+        b1 = 0;    
+  +B249b0b1:   #1 reference int
+        b0.setDepthButtonState(b1);   [RRiiRii Ri ...... iR.] 
+  +B252:   #1
+        goto +B430;   [RRiiRii Ri ...... ...]
+  +B255:   #1
+        if vR0.m_nZoomDown<=0 goto B313;   
+  +B262:   #1
+        if vi8!=2 goto B272;   
+  +B268:   #1
+        b0 = 1;    
+        goto +B273b0;   [RRiiRiiRR ii ...... ...]
+  +B272:   #1
+        b0 = 2;    
+  +B273b0:   #1 int
+        vi9 = b0;    
+        if vi9==vR0.m_nZoomDown goto B310;   
+  +B284:   #1
+        vR0.m_nZoomDown = vi9;   
+        b0 = vR0.m_cDecorator;    
+        if vR0.m_nZoomDown!=1 goto B306;   
+  +B302b0:   #1 reference
+        b1 = 1;    
+        goto +B307b0b1;   [RRiiRiiRR Ri ...... ...]
+  +B306b0:   #1 reference
+        b1 = 0;    
+  +B307b0b1:   #1 reference int
+        b0.setZoomButtonState(b1);   [RRiiRiiRR Ri ...... iR.] 
+  +B310:   #1
+        goto +B430;   [RRiiRiiRR Ri ...... ...]
+  +B313:   #1
+        if vR0.m_nCloseDown<=0 goto B371;   
+  +B320:   #1
+        if vi8!=1 goto B330;   
+  +B326:   #1
+        b0 = 1;    
+        goto +B331b0;   [RRiiRiiRR ii ...... ...]
+  +B330:   #1
+        b0 = 2;    
+  +B331b0:   #1 int
+        vi9 = b0;    
+        if vi9==vR0.m_nCloseDown goto B368;   
+  +B342:   #1
+        vR0.m_nCloseDown = vi9;   
+        b0 = vR0.m_cDecorator;    
+        if vR0.m_nCloseDown!=1 goto B364;   
+  +B360b0:   #1 reference
+        b1 = 1;    
+        goto +B365b0b1;   [RRiiRiiRR Ri ...... ...]
+  +B364b0:   #1 reference
+        b1 = 0;    
+  +B365b0b1:   #1 reference int
+        b0.setCloseButtonState(b1);   [RRiiRiiRR Ri ...... iR.] 
+  +B368:   #1
+        goto +B430;   [RRiiRiiRR Ri ...... ...]
+  +B371:   #1
+        if vR0.m_eHitItem!=4 goto B430;   
+  +B379:   #1
+        vR7.m_nX = vR0.align@this(vR7.m_nX,vR0.m_cAlignPos.m_nX);   
+        vR7.m_nY = vR0.align@this(vR7.m_nY,vR0.m_cAlignPos.m_nY);   
+        vR0.m_cDeltaMove.add(vR7);   [RRiiRiiRR Ri iiii.. RR.] 
+  +B430:   #4
+        vi9 = vR0.m_cOwner.getFlags().getValue();    [RRiiRii Ri ...... R..] [RRiiRii Ri R..... R..] 
+        if (vi9 & 192)==192 goto B1749;   
+  +B454:   #1
+        if (vi9 & 64)==0 goto B468;   
+  +B462:   #1
+        vR7.m_nX = 0;   
+  +B468:   #1
+        if (vi9 & 128)==0 goto B483;   
+  +B477:   #1
+        vR7.m_nY = 0;   
+  +B483:   #1
+        vR10 = vR0.m_cDecorator.getMinimumSize();    [RRiiRii Ri ...... R..] 
+        vR11 = new jx/devices/fb/PixelPoint(vR0.m_cMinSize);    [ Ri ...... i..][ Ri ...... iRR]
+        if vR11.m_nX>=(vR10.m_nX-vi5) goto B534;   
+  +B521:   #1
+        vR11.m_nX = (vR10.m_nX-vi5);   
+  +B534:   #1
+        if vR11.m_nY>=(vR10.m_nY-vi6) goto B563;   
+  +B550:   #1
+        vR11.m_nY = (vR10.m_nY-vi6);   
+  +B563:   #1
+        tswitch (vR0.m_eHitItem) B816 B933 B612 B729 B1020 B1201 B1548 B1402 : B1749;   
+  +B612:   #1
+        vR7.m_nX = -vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),-vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nX = vR0.align@this(vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX),vR0.m_cAlignPos.m_nX);   
+        b0 = vR0.m_cDeltaMove;    
+        b0.m_nX = (b0.m_nX+vR7.m_nX);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nX = (b0.m_nX-vR7.m_nX);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiii .....]
+  +B729:   #1
+        vR7.m_nX = vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nX = vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nX = (b0.m_nX+vR7.m_nX);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiii.. .....]
+  +B816:   #1
+        vR7.m_nY = -vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),-vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nY = vR0.align@this(vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY),vR0.m_cAlignPos.m_nY);   
+        b0 = vR0.m_cDeltaMove;    
+        b0.m_nY = (b0.m_nY+vR7.m_nY);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nY = (b0.m_nY-vR7.m_nY);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiii .....]
+  +B933:   #1
+        vR7.m_nY = vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nY = vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nY = (b0.m_nY+vR7.m_nY);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiii.. .....]
+  +B1020:   #1
+        vR7.m_nX = -vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),-vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nY = -vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),-vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nX = vR0.align@this(vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX),vR0.m_cAlignPos.m_nX);   
+        vR7.m_nY = vR0.align@this(vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY),vR0.m_cAlignPos.m_nY);   
+        vR0.m_cDeltaMove.add(vR7);   [RRiiRiiRR Ri iiiiiiiiiiiiiiii RR...] 
+        vR0.m_cDeltaSize.sub(vR7);   [RRiiRiiRR Ri iiiiiiiiiiiiiiii RR...] 
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiiiiiiiiiii .....]
+  +B1201:   #1
+        vR7.m_nX = vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nY = -vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),-vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nX = vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX);   
+        vR7.m_nY = vR0.align@this(vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY),vR0.m_cAlignPos.m_nY);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nX = (b0.m_nX+vR7.m_nX);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nY = (b0.m_nY-vR7.m_nY);   
+        b0 = vR0.m_cDeltaMove;    
+        b0.m_nY = (b0.m_nY+vR7.m_nY);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiiiiiiiii.. .....]
+  +B1402:   #1
+        vR7.m_nX = vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nY = vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nX = vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX);   
+        vR7.m_nY = vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY);   
+        vR0.m_cDeltaSize.add(vR7);   [RRiiRiiRR Ri iiiiiiiiiiii.... RR...] 
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiiiiiii.... .....]
+  +B1548:   #1
+        vR7.m_nX = -vR0.clamp@this((((vR0.m_cRawFrame.width@extra()+vR0.m_cDeltaSize.m_nX)-vi5)+1),-vR7.m_nX,vR11.m_nX,vR0.m_cMaxSize.m_nX);   
+        vR7.m_nY = vR0.clamp@this((((vR0.m_cRawFrame.height@extra()+vR0.m_cDeltaSize.m_nY)-vi6)+1),vR7.m_nY,vR11.m_nY,vR0.m_cMaxSize.m_nY);   
+        vR7.m_nX = vR0.align@this(vR0.align@this(vR7.m_nX,vR0.m_cAlignSize.m_nX),vR0.m_cAlignPos.m_nX);   
+        vR7.m_nY = vR0.align@this(vR7.m_nY,vR0.m_cAlignSize.m_nY);   
+        b0 = vR0.m_cDeltaMove;    
+        b0.m_nX = (b0.m_nX+vR7.m_nX);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nX = (b0.m_nX-vR7.m_nX);   
+        b0 = vR0.m_cDeltaSize;    
+        b0.m_nY = (b0.m_nY+vR7.m_nY);   
+        goto +B1749;   [RRiiRiiRR Ri iiiiiiiiiiiiii.. .....]
+  +B1749:   #10
+        if vR0.m_bWndMovePending!=0 goto B2010;   
+  +B1756:   #1
+        if vR0.m_cDeltaSize.m_nX!=0 goto B1796;   
+  +B1766:   #1
+        if vR0.m_cDeltaSize.m_nY!=0 goto B1796;   
+  +B1776:   #1
+        if vR0.m_cDeltaMove.m_nX!=0 goto B1796;   
+  +B1786:   #1
+        if vR0.m_cDeltaMove.m_nY==0 goto B2010;   
+  +B1796:   #3
+        vR0.m_bWndMovePending = 1;   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nX1 = (b0.m_nX1+(vR0.m_cDeltaSize.m_nX+vR0.m_cDeltaMove.m_nX));   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nY1 = (b0.m_nY1+(vR0.m_cDeltaSize.m_nY+vR0.m_cDeltaMove.m_nY));   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nX0 = (b0.m_nX0+vR0.m_cDeltaMove.m_nX);   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nY0 = (b0.m_nY0+vR0.m_cDeltaMove.m_nY);   
+        vR0.m_cDeltaMove.setTo(0,0);   [RRiiRiiRR Ri ................ iiR..] 
+        vR0.m_cDeltaSize.setTo(0,0);   [RRiiRiiRR Ri ................ iiR..] 
+        vR10 = vR0.alignRect@this(vR0.m_cRawFrame,vR4);    [RRiiRiiRR Ri i............... RRR..] 
+        if s_bUseWireFrames!=1 goto B1958;   
+  +B1930:   #1
+        s_cDisplay.startUpdate();   [RRiiRiiRR Ri ................ R....] 
+        hide@special();   [RRiiRiiRR Ri ................ .....]
+        vR0.drawWireFrame@special(vR10,0);   [RRiiRiiRR Ri ................ iRR..] 
+        unhide@special();   [RRiiRiiRR Ri ................ .....]
+        s_cDisplay.endUpdate();   [RRiiRiiRR Ri ................ R....] 
+        goto +B1990;   [RRiiRiiRR Ri ................ .....]
+  +B1958:   #1
+        vR0.doSetFrame@special(vR10);   [RRiiRiiRR Ri ................ RR...] 
+        s_cDisplay.startUpdate();   [RRiiRiiRR Ri ................ R....] 
+        hide@special();   [RRiiRiiRR Ri ................ .....]
+        vR0.m_cParent.updateRegions(0);   [RRiiRiiRR Ri ................ iR...] 
+        unhide@special();   [RRiiRiiRR Ri ................ .....]
+        s_cDisplay.endUpdate();   [RRiiRiiRR Ri ................ R....] 
+  +B1990:   #1
+        b0 = vR0.m_cOwner;    
+        b1 = new jx/wm/message/WWindowFrameChangedMessage(vR0.rectToClient@special(vR10));    [ RR ................ i....][ RR ................ iRR..]
+        b0.postMessage(b1);   [RRiiRiiRR RR ................ RR...] 
+  +B2010:   #2
+        if vR0.m_eHitItem==0 goto B2021;   
+  +B2017:   #1
+        b0 = 1;    
+        goto +B2022b0;   forward return[RRiiRiiRR iR ................ .....]
+  +B2021:   #1
+        b0 = 0;    
+  +B2022b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 336/336 wr 144 swaps 37 any 13 found 0 mouseMoved
+ 
+ method drawWireFrame(Ljx/devices/fb/PixelRect;Z)V {
+  +START:   #1
+        vR3 = s_cDisplay.getScreenBitmap();    [ R . R] 
+        vR4 = vR3.getBounds();    [R R . R] 
+        vR5 = new jx/devices/fb/PixelRect();    [ R . i][ R . iR]
+        vR6 = new jx/devices/fb/PixelColor(255,255,255);    [ R . i.][ R . iiiiR]
+        vR7 = new jx/devices/fb/DrawingMode(2);    [ R . i....][ R . iiR..]
+        if vR0.m_bWireFramePending!=1 goto B241;   
+  +B58:   #1
+        vR5.setTo@extra(vR0.m_cOldFrame.m_nX0,vR0.m_cOldFrame.m_nY0,vR0.m_cOldFrame.m_nX1,vR0.m_cOldFrame.m_nY0);   [RRRRR R iiii iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiii RRRRR] 
+        vR5.setTo@extra(vR0.m_cOldFrame.m_nX1,vR0.m_cOldFrame.m_nY0,vR0.m_cOldFrame.m_nX1,vR0.m_cOldFrame.m_nY1);   [RRRRR R iiiiiiii iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiii RRRRR] 
+        vR5.setTo@extra(vR0.m_cOldFrame.m_nX1,vR0.m_cOldFrame.m_nY1,vR0.m_cOldFrame.m_nX0,vR0.m_cOldFrame.m_nY1);   [RRRRR R iiiiiiiiiiii iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiiiiiii RRRRR] 
+        vR5.setTo@extra(vR0.m_cOldFrame.m_nX0,vR0.m_cOldFrame.m_nY1,vR0.m_cOldFrame.m_nX0,vR0.m_cOldFrame.m_nY0);   [RRRRR R iiiiiiiiiiiiiiii iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiiiiiiiiiii RRRRR] 
+        goto +B246;   [RRRRR R iiiiiiiiiiiiiiii .....]
+  +B241:   #1
+        vR0.m_bWireFramePending = 1;   
+  +B246:   #1
+        if vi2!=1 goto B259;   
+  +B251:   #1
+        vR0.m_bWireFramePending = 0;   
+        goto +B399;   forward return[RRRRR R ................ .....]
+  +B259:   #1
+        vR5.setTo@extra(vR1.m_nX0,vR1.m_nY0,vR1.m_nX1,vR1.m_nY0);   [RRRRR R iiii............ iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiii............ RRRRR] 
+        vR5.setTo@extra(vR1.m_nX1,vR1.m_nY0,vR1.m_nX1,vR1.m_nY1);   [RRRRR R iiiiiiii........ iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiii........ RRRRR] 
+        vR5.setTo@extra(vR1.m_nX1,vR1.m_nY1,vR1.m_nX0,vR1.m_nY1);   [RRRRR R iiiiiiiiiiii.... iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiiiiiii.... RRRRR] 
+        vR5.setTo@extra(vR1.m_nX0,vR1.m_nY1,vR1.m_nX0,vR1.m_nY0);   [RRRRR R iiiiiiiiiiiiiiii iiiiR] 
+        vR3.drawLine(vR5,vR4,vR6,vR7);   [RRRRR R iiiiiiiiiiiiiiii RRRRR] 
+        vR0.m_cOldFrame.setTo@extra(vR1);   [RRRRR R iiiiiiiiiiiiiiii RR...] 
+  +B399:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 56/56 wr 40 swaps 8 any 1 found 0 drawWireFrame
+ 
+ method align(II)I {
+  +START:   #1
+        return ((vi1/vi2)*vi2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 align
+ 
+ method clamp(IIII)I {
+  +START:   #1
+        if (vi1+vi2)>=vi3 goto B11;   
+  +B7:   #1
+        return (vi3-vi1);   
+  +B11:   #1
+        if (vi1+vi2)<=vi4 goto B24;   
+  +B19:   #1
+        return (vi4-vi1);   
+  +B24:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 0 swaps 0 any 2 found 0 clamp
+ 
+ method alignRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vi4 = (vR2.m_nX0+vR2.m_nX1);    
+        vi5 = (vR2.m_nY0+vR2.m_nY1);    
+        vR3.m_nX0 = (((((vR1.m_nX0+vR2.m_nX0)/vR0.m_cAlignPos.m_nX)*vR0.m_cAlignPos.m_nX)+vR0.m_cAlignPosOff.m_nX)-vR2.m_nX0);   
+        vR3.m_nY0 = (((((vR1.m_nY0+vR2.m_nY0)/vR0.m_cAlignPos.m_nY)*vR0.m_cAlignPos.m_nY)+vR0.m_cAlignPosOff.m_nY)-vR2.m_nY0);   
+        vR3.m_nX1 = (((vR3.m_nX0+(((vR1.width@extra()-vi4)/vR0.m_cAlignSize.m_nX)*vR0.m_cAlignSize.m_nX))+vR0.m_cAlignSizeOff.m_nX)+vi4);   
+        vR3.m_nY1 = (((vR3.m_nY0+(((vR1.height@extra()-vi5)/vR0.m_cAlignSize.m_nY)*vR0.m_cAlignSize.m_nY))+vR0.m_cAlignSizeOff.m_nY)+vi5);   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 7 swaps 0 any 0 found 0 alignRect
+ 
+ method wndMoveReply()V {
+  +START:   #1
+        if vR0.m_cDeltaSize.m_nX!=0 goto B40;   
+  +B10:   #1
+        if vR0.m_cDeltaSize.m_nY!=0 goto B40;   
+  +B20:   #1
+        if vR0.m_cDeltaMove.m_nX!=0 goto B40;   
+  +B30:   #1
+        if vR0.m_cDeltaMove.m_nY==0 goto B275;   
+  +B40:   #3
+        if vR0.m_cOwner==null goto B353;   
+  +B47:   #1
+        if vR0.m_cDecorator!=null goto B55;   
+  +B54:   #1
+        return;   
+  +B55:   #1
+        vR1 = vR0.m_cDecorator.getBorderSize();    [ RR  R] 
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nX1 = (b0.m_nX1+(vR0.m_cDeltaSize.m_nX+vR0.m_cDeltaMove.m_nX));   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nY1 = (b0.m_nY1+(vR0.m_cDeltaSize.m_nY+vR0.m_cDeltaMove.m_nY));   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nX0 = (b0.m_nX0+vR0.m_cDeltaMove.m_nX);   
+        b0 = vR0.m_cRawFrame;    
+        b0.m_nY0 = (b0.m_nY0+vR0.m_cDeltaMove.m_nY);   
+        vR0.m_cDeltaMove.setTo(0,0);   [R RR  iiR] 
+        vR0.m_cDeltaSize.setTo(0,0);   [R RR  iiR] 
+        vR0.m_bWndMovePending = 1;   
+        vR2 = vR0.alignRect@this(vR0.m_cRawFrame,vR1);    [R RR i RRR] 
+        if s_bUseWireFrames!=1 goto B222;   
+  +B195:   #1
+        s_cDisplay.startUpdate();   [RR RR . R..] 
+        hide@special();   [RR RR . ...]
+        vR0.drawWireFrame@special(vR2,0);   [RR RR . iRR] 
+        unhide@special();   [RR RR . ...]
+        s_cDisplay.endUpdate();   [RR RR . R..] 
+        goto +B253;   [RR RR . ...]
+  +B222:   #1
+        vR0.doSetFrame@special(vR2);   [RR RR . RR.] 
+        s_cDisplay.startUpdate();   [RR RR . R..] 
+        hide@special();   [RR RR . ...]
+        vR0.m_cParent.updateRegions(0);   [RR RR . iR.] 
+        unhide@special();   [RR RR . ...]
+        s_cDisplay.endUpdate();   [RR RR . R..] 
+  +B253:   #1
+        b0 = vR0.m_cOwner;    
+        b1 = new jx/wm/message/WWindowFrameChangedMessage(vR0.rectToClient@special(vR2));    [ RR . i..][ RR . iRR]
+        b0.postMessage(b1);   [RR RR . RR.] 
+        goto +B353;   forward return[RR RR . ...]
+  +B275:   #1
+        vR0.m_bWndMovePending = 0;   
+        if s_bUseWireFrames==0 goto B353;   
+  +B286:   #1
+        if vR0.m_bWireFramePending==0 goto B353;   
+  +B293:   #1
+        if vR0.m_nMouseDown!=0 goto B353;   
+  +B300:   #1
+        vR1 = vR0.alignRect@this(vR0.m_cOldFrame,vR0.m_cDecorator.getBorderSize());    [RR RR iR RRR] 
+        s_cDisplay.startUpdate();   [RR RR iR. R..] 
+        hide@special();   [RR RR iR. ...]
+        vR0.drawWireFrame@special(0,1);   [RR RR iR. iRR] 
+        vR0.doSetFrame@special(vR1);   [RR RR iR. RR.] 
+        vR0.m_cParent.updateRegions(0);   [RR RR iR. iR.] 
+        unhide@special();   [RR RR iR. ...]
+        s_cDisplay.endUpdate();   [RR RR iR. R..] 
+  +B353:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 48/48 wr 20 swaps 2 any 0 found 0 wndMoveReply
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_cDisplay = 0;   
+        s_bUseWireFrames = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 <clinit>
+}

@@ -1,0 +1,53 @@
+class jx/start/ShellWindow$WindowOutputStream {
+ 
+ method <init>(Ljx/start/ShellWindow;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method write(I)V {
+  +START:   #1
+        if vi1!=10 goto B130;   
+  +B6:   #1
+        vR0.this$0.m_nCursorX = 0;   
+        b0 = vR0.this$0;    
+        b0.m_nCursorY = (b0.m_nCursorY+1);   
+        if vR0.this$0.m_nCursorY!=vR0.this$0.m_nLines goto B97;   
+  +B44:   #1
+        vR0.this$0.m_nCursorY = (vR0.this$0.m_nLines-1);   
+        vR0.this$0.scrDown();   [ R  R] 
+        vi2 = 0;    
+  +B69:   #1
+        if vi2>=vR0.this$0.m_nLines goto B94;   
+  +B80:   #1
+        vR0.this$0.drawLine(vi2);   [i R  iR] 
+        vi2++;   
+        goto +B69;   [i R  ..]
+  +B94:   #1
+        goto +B185;   forward return[i R  ..]
+  +B97:   #1
+        vR0.this$0.drawLine((vR0.this$0.m_nCursorY-1));   [i R i iR] 
+        vR0.this$0.drawLine(vR0.this$0.m_nCursorY);   [i R ii iR] 
+        goto +B185;   forward return[i R ii ..]
+  +B130:   #1
+        vR0.this$0.m_cScreen[vR0.this$0.m_nCursorY].insert(vR0.this$0.m_nCursorX,(char)vi1);   [i R ii iiR] 
+        b0 = vR0.this$0;    
+        b0.m_nCursorX = (b0.m_nCursorX+1);   
+        vR0.this$0.drawLine(vR0.this$0.m_nCursorY);   [i R iii iR.] 
+  +B185:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 9 swaps 4 any 3 found 0 write
+}

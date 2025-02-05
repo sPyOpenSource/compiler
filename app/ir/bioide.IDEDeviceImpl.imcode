@@ -4,7 +4,7 @@ class bioide/IDEDeviceImpl {
   +START:   #1
         vR0.<init>@special();   [ RRR  R] 
         vR0.inited = 0;   
-        vR0.drives = new bioide/Drive()[2];   
+        vR0.drives = new bioide/Drive()[4];   
         if vR0.inited==0 goto B25;   
   +B24:   #1
         return;   
@@ -48,7 +48,7 @@ class bioide/IDEDeviceImpl {
         b1 = new java/lang/StringBuilder();    [ RRR ... i...][ RRR ... iR..]
         b0.println(b1.append@extra("Setup controller ").append@extra(vi1).toString@extra());   [i RRR ii. RR..] 
         vR0.controllers[vi1].setup();   [i RRR ii. R...] 
-        arraycopy@special(vR0.controllers[vi1].drives,0,vR0.drives,(vi1*1),1);   [i RRR iiRRi iiRiR]
+        arraycopy@special(vR0.controllers[vi1].drives,0,vR0.drives,(vi1*2),2);   [i RRR iiRRi iiRiR]
   +B238:   #2
         vi1++;   
         goto +B101;   [i RRR ..... .....]
@@ -73,7 +73,7 @@ class bioide/IDEDeviceImpl {
         vi1 = ports.inb(113);    [?R R . iR.] 
         vi3 = 0;    
   +B33:   #1
-        if vi3>=1 goto B77;   
+        if vi3>=2 goto B77;   
   +B38:   #1
         vR4 = vR0.controllers[0].drives[vi3];    
         if (vi1 & (240 >> (vi3*4)))<=0 goto B71;   

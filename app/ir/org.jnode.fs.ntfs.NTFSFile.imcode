@@ -1,0 +1,181 @@
+class org/jnode/fs/ntfs/NTFSFile {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFileSystem;Lorg/jnode/fs/ntfs/index/IndexEntry;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.fs = vR1;   
+        vR0.indexEntry = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFileSystem;Lorg/jnode/fs/ntfs/FileRecord;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,0);   [   ??RRR] 
+        vR0.fs = vR1;   
+        vR0.fileRecord = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLength()I {
+  +START:   #1
+        vR1 = vR0.getFileRecord@this().findAttributesByTypeAndName(128,0);    [ R . RiR] [ R R RiR] 
+        if vR1.hasNext()!=0 goto B48;   
+  +B21:   #1
+        if vR0.indexEntry==null goto B48;   
+  +B28:   #1
+        vR2 = new org/jnode/fs/ntfs/FileNameAttribute$Structure(vR0.indexEntry,16);    [ R . i..][ R . iiRR]
+        return (int)vR2.getRealSize();   
+  +B48:   #2
+        return (int)vR0.getFileRecord@this().getAttributeTotalSize(128,0);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 6 swaps 0 any 0 found 0 getLength
+ 
+ method setLength(J)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setLength
+ 
+ method read(JLjava/nio/ByteBuffer;)V {
+  +START:   #1
+        vR4 = 0;    
+        vR0.getFileRecord@this().readData(vl1,vR4,0,vR4.size());   [?R  i. iiR??R] [?R  iR iiR??R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 read
+ 
+ method write(JLjava/nio/ByteBuffer;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 write
+ 
+ method isValid()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isValid
+ 
+ method getFileSystem()Ljx/fs/FileSystem; {
+  +START:   #1
+        return vR0.fs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileSystem
+ 
+ method getFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        if vR0.fileRecord!=null goto B39;   
+  +B7:   #1
+        vR0.fileRecord = vR0.indexEntry.getParentFileRecord@extra().getVolume().getMFT().getIndexedFileRecord(vR0.indexEntry);   
+  +B31:   #1
+        goto +B39;   forward return[  .... ..]
+  +H34<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        vR1.printStackTrace();   [R  .... R.] 
+  +B39:   #2
+        return vR0.fileRecord;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 31 handler 34 type 86
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 0 found 0 getFileRecord
+ 
+ method setFileRecord(Lorg/jnode/fs/ntfs/FileRecord;)V {
+  +START:   #1
+        vR0.fileRecord = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setFileRecord
+ 
+ method getSlackSpace()Ljx/zero/Memory; {
+  +START:   #1
+        vR1 = vR0.getFileRecord@this().findAttributesByTypeAndName(128,0);    [ R . RiR] [ R R RiR] 
+        if vR1.hasNext()==0 goto B33;   
+  +B21:   #1
+        b0 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR1.next());    
+        goto +B34b0;   [R R . ...]
+  +B33:   #1
+        b0 = 0;    
+  +B34b0:   #1 reference
+        vR2 = b0;    
+        if vR2==null goto B46;   
+  +B39:   #1
+        if vR2.isResident()==0 goto B48;   
+  +B46:   #1
+        return 0;   
+  +B48:   #1
+        vi3 = (org/jnode/fs/ntfs/NTFSFileSystem)(vR0.getFileSystem@this()).getNTFSVolume().getClusterSize();    [RR R .. R..] [RR R R. R..] 
+        vi4 = (vi3-(vR0.getLength@this()%vi3));    
+        if vi4!=vi3 goto B81;   
+  +B78:   #1
+        vi4 = 0;    
+  +B81:   #1
+        vR5 = vR0.MemManager.alloc(vi4);    [RRii R .. iR.] 
+        vR0.getFileRecord@this().readData(128,0,(long)vR0.getLength@this(),vR5,0,vR5.size(),0);   [RRiiR R i. iiiR??RiR] [RRiiR R iR iiiR??RiR] 
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 15 swaps 1 any 4 found 3 getSlackSpace
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method getStreams()Ljava/util/Map; {
+  +START:   #1
+        vR1 = new java/util/LinkedHashSet();    [ R?R  i][ R?R  iR]
+        vR2 = vR0.getFileRecord@this().findAttributesByType(128);    [R R?R . iR] [R R?R R iR] 
+  +B19:   #1
+        if vR2.hasNext()==0 goto B61;   
+  +B28:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR2.next());    
+        vR4 = vR3.getAttributeName();    [RRR R?R . R.] 
+        if vR4==null goto B58;   
+  +B49:   #1
+        vR1.add(vR4);   [RRRR R?R . RR] 
+  +B58:   #1
+        goto +B19;   [RRRR R?R . ..]
+  +B61:   #1
+        vR3 = new java/util/HashMap();    [ R?R . i.][ R?R . iR]
+        vR4 = vR1.iterator();    [RRRR R?R . R.] 
+  +B77:   #1
+        if vR4.hasNext()==0 goto B121;   
+  +B87:   #1
+        vR5 = (java/lang/String)(vR4.next());    
+        b2 = new org/jnode/fs/ntfs/NTFSFile$StreamFile(vR0,vR5);    [ R?R . i.][ R?R . iRRR]
+        vR3.put(vR5,b2);   [RRRRR R?R . RRR.] 
+        goto +B77;   [RRRRR R?R . ....]
+  +B121:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 12 swaps 0 any 1 found 0 getStreams
+ 
+ method access$000(Lorg/jnode/fs/ntfs/NTFSFile;)Lorg/jnode/fs/ntfs/NTFSFileSystem; {
+  +START:   #1
+        return vR0.fs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$000
+ 
+ method access$100(Lorg/jnode/fs/ntfs/NTFSFile;)Lorg/jnode/fs/ntfs/index/IndexEntry; {
+  +START:   #1
+        return vR0.indexEntry;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+}

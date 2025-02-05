@@ -1,0 +1,603 @@
+class org/jnode/fs/ntfs/FileRecord {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;JLjx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR1.getBootRecord@extra().getBytesPerSector@extra(),vR1.getClusterSize(),1,vl2,vR4,vi5);   [i  ii iR??iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;IIZJLjx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vi2,vi4,vR7,vi8);   [i   iRiiR] 
+        vR0.volume = vR1;   
+        vR0.clusterSize = vi3;   
+        vR0.referenceNumber = vl5;   
+        vR0.storedAttributeList = vR0.readStoredAttributes@special();   
+        vR0.attributeListAttribute = (org/jnode/fs/ntfs/attribute/AttributeListAttribute)(vR0.findStoredAttributeByType@special(32));   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method checkIfValid()V {
+  +START:   #1
+        if vR0.getMagic@this()==1162627398 goto B158;   
+  +B9:   #1
+        vi1 = 0;    
+  +B11:   #1
+        if vi1>=vR0.getBuffer@this().size() goto B128;   
+  +B24:   #1
+        vR2 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        vi3 = vi1;    
+  +B34:   #1
+        if vi3>=(vi1+32) goto B122;   
+  +B42:   #1
+        if vi3>=vR0.getBuffer@this().size() goto B122;   
+  +B55:   #1
+        vR4 = toHexString@special(vR0.getBuffer@this().get8(vi3));    [iRi RRR b b.]
+  +B70:   #1
+        if vR4.length@extra()>=2 goto B104;   
+  +B79:   #1
+        b0 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        vR4 = b0.append@extra(48).append@extra(vR4).toString@extra();    [iRiR RRR .. R..] [iRiR RRR R. RR.] [iRiR RRR RR RiR] 
+        goto +B70;   [iRiR RRR .. ...]
+  +B104:   #1
+        vR2.append@extra(32).append@extra(vR4);   [iRiR RRR .. RR.] [iRiR RRR R. RiR] 
+        vi3++;   
+        goto +B34;   [iRiR RRR .. ...]
+  +B122:   #2
+        vi1+=32;   
+        goto +B11;   [iRiR RRR .. ...]
+  -B128:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i..][ RRR .. iR.]
+        b1.<init>@special(b2.append@extra("Invalid magic found: ").append@extra(vR0.getMagic@this()).toString@extra());   [iRiR RRR iii. RR.] 
+        throw b0;   
+  +B158:   #1
+        vl1 = vR0.getStoredReferenceNumber@this();     
+        if compare(vl1,0)< 0 goto B220;   
+  +B169:   #1
+        if compare(vR0.referenceNumber,vl1)==0 goto B220;   
+  -B178:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Stored reference number ").append@extra(vR0.getStoredReferenceNumber@this()).append@extra(" does not match reference number ").append@extra(vR0.referenceNumber).toString@extra());   [lRiR RRR iii... RR.....] 
+        throw b0;   
+  +B220:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 33 swaps 6 any 8 found 2 checkIfValid
+ 
+ method getVolume()Lorg/jnode/fs/ntfs/NTFSVolume; {
+  +START:   #1
+        return vR0.volume;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVolume
+ 
+ method getClusterSize()I {
+  +START:   #1
+        return vR0.clusterSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClusterSize
+ 
+ method getAllocatedSize()J {
+  +START:   #1
+        return vR0.getUInt32@this(28);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAllocatedSize
+ 
+ method getBaseReferenceNumber()J {
+  +START:   #1
+        return vR0.getUInt48@this(32);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getBaseReferenceNumber
+ 
+ method getRealSize()J {
+  +START:   #1
+        return vR0.getUInt32@this(24);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRealSize
+ 
+ method isInUse()Z {
+  +START:   #1
+        if (vR0.getFlags@this() & 1)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isInUse
+ 
+ method isDirectory()Z {
+  +START:   #1
+        if (vR0.getFlags@this() & 2)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDirectory
+ 
+ method getHardLinkCount()I {
+  +START:   #1
+        return vR0.getUInt16@this(18);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHardLinkCount
+ 
+ method getFirstAttributeOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstAttributeOffset
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getUInt16@this(22);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getNextAttributeID()I {
+  +START:   #1
+        return vR0.getUInt16@this(40);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNextAttributeID
+ 
+ method getLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLsn
+ 
+ method getSequenceNumber()I {
+  +START:   #1
+        return vR0.getUInt16@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSequenceNumber
+ 
+ method getReferenceNumber()J {
+  +START:   #1
+        return vR0.referenceNumber;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getReferenceNumber
+ 
+ method getUpdateSequenceOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateSequenceOffset
+ 
+ method getStoredReferenceNumber()J {
+  +START:   #1
+        if vR0.getUpdateSequenceOffset@this()<48 goto B16;   
+  +B9:   #1
+        return vR0.getUInt32@this(44);   
+  +B16:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStoredReferenceNumber
+ 
+ method getFileName()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.getFileNameAttribute@this();    [   R] 
+        if vR1==null goto B14;   
+  +B9:   #1
+        return vR1.getFileName@extra();   
+  +B14:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 getFileName
+ 
+ method getStandardInformationAttribute()Lorg/jnode/fs/ntfs/StandardInformationAttribute; {
+  +START:   #1
+        if vR0.standardInformationAttribute!=null goto B20;   
+  +B7:   #1
+        vR0.standardInformationAttribute = (org/jnode/fs/ntfs/StandardInformationAttribute)(vR0.findAttributeByType@this(16));   
+  +B20:   #1
+        return vR0.standardInformationAttribute;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getStandardInformationAttribute
+ 
+ method getFileNameAttribute()Lorg/jnode/fs/ntfs/FileNameAttribute; {
+  +START:   #1
+        if vR0.fileNameAttribute!=null goto B62;   
+  +B7:   #1
+        vR1 = vR0.findAttributesByType@this(48);    [   iR] 
+  +B14:   #1
+        if vR1.hasNext()==0 goto B62;   
+  +B23:   #1
+        vR2 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR1.next());    
+        if vR0.fileNameAttribute==null goto B51;   
+  +B40:   #1
+        if vR0.fileNameAttribute.getNameSpace@extra()==1 goto B59;   
+  +B51:   #1
+        vR0.fileNameAttribute = (org/jnode/fs/ntfs/FileNameAttribute)(vR2);   
+  +B59:   #1
+        goto +B14;   [RR  . ..]
+  +B62:   #2
+        return vR0.fileNameAttribute;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 3 swaps 0 any 0 found 1 getFileNameAttribute
+ 
+ method getAllStoredAttributes()Ljava/util/List; {
+  +START:   #1
+        return vR0.storedAttributeList;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAllStoredAttributes
+ 
+ method findStoredAttributeByID(I)Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        vR2 = vR0.storedAttributeList.iterator();    [   R] 
+  +B10:   #1
+        if vR2.hasNext()==0 goto B46;   
+  +B19:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR2.next());    
+        if vR3==null goto B43;   
+  +B33:   #1
+        if vR3.getAttributeID()!=vi1 goto B43;   
+  +B41:   #1
+        return vR3;   
+  +B43:   #2
+        goto +B10;   [RR  . ..]
+  +B46:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 1 found 0 findStoredAttributeByID
+ 
+ method findStoredAttributeByType(I)Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        vR2 = vR0.storedAttributeList.iterator();    [   R] 
+  +B10:   #1
+        if vR2.hasNext()==0 goto B46;   
+  +B19:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR2.next());    
+        if vR3==null goto B43;   
+  +B33:   #1
+        if vR3.getAttributeType()!=vi1 goto B43;   
+  +B41:   #1
+        return vR3;   
+  +B43:   #2
+        goto +B10;   [RR  . ..]
+  +B46:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 1 found 0 findStoredAttributeByType
+ 
+ method getAllAttributes()Ljava/util/List; {
+  +START:   #1
+        if vR0.attributeList!=null goto B51;   
+  +B7:   #1
+        b1 = new java/util/ArrayList();    [ ?R  i][ ?R  iR]
+        vR0.attributeList = b1;   
+  +B18:   #1
+        if vR0.attributeListAttribute!=null goto B43;   
+  +B25:   #1
+        b1 = new java/util/ArrayList(vR0.getAllStoredAttributes@this());    [ ?R  i.][ ?R . iRR]
+        vR0.attributeList = b1;   
+        goto +B47;   [ ?R . ...]
+  +B43:   #1
+        vR0.readAttributeListAttributes@special();   [ ?R . R..] 
+  +B47:   #2
+        goto +B51;   forward return[ ?R . ...]
+  +H50<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+  +B51:   #2
+        return vR0.attributeList;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+18 - 47 handler 50 type 218
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 0 found 0 getAllAttributes
+ 
+ method findAttributeByType(I)Lorg/jnode/fs/ntfs/attribute/NTFSAttribute; {
+  +START:   #1
+        vR2 = vR0.getAllAttributes@this().iterator();    [  . R] [  R R] 
+  +B10:   #1
+        if vR2.hasNext()==0 goto B42;   
+  +B19:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR2.next());    
+        if vR3.getAttributeType()!=vi1 goto B39;   
+  +B37:   #1
+        return vR3;   
+  +B39:   #1
+        goto +B10;   [RR  . ..]
+  +B42:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 findAttributeByType
+ 
+ method findAttributesByType(I)Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/ntfs/FileRecord$1(vR0,vR0.getAllAttributes@this().iterator(),vi1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 findAttributesByType
+ 
+ method findAttributesByTypeAndName(ILjava/lang/String;)Ljava/util/Iterator; {
+  +START:   #1
+        return new org/jnode/fs/ntfs/FileRecord$2(vR0,vR0.getAllAttributes@this().iterator(),vi1,vR2);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 findAttributesByTypeAndName
+ 
+ method getAttributeTotalSize(ILjava/lang/String;)J {
+  +START:   #1
+        vR3 = vR0.findAttributesByTypeAndName@this(vi1,vR2);    [ RRR  RiR] 
+        if vR3.hasNext()!=0 goto B57;   
+  -B16:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i..][ RRR  iR.]
+        b1.<init>@special(b2.append@extra("Failed to find an attribute with type: ").append@extra(vi1).append@extra(" and name: '").append@extra(vR2).append@extra("'").toString@extra());   [R RRR iiii.... RR....] 
+        throw b0;   
+  +B57:   #1
+        vR4 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR3.next());    
+        if vR4.isResident()==0 goto B86;   
+  +B76:   #1
+        return (long)(org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)(vR4).getAttributeLength();   
+  +B86:   #1
+        return (org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute)(vR4).getAttributeActualSize();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 15 swaps 4 any 1 found 0 getAttributeTotalSize
+ 
+ method readData(JLjx/zero/Memory;II)V {
+  +START:   #1
+        vR0.readData@this(128,0,vl1,vR3,vi4,vi5,1);   [i   iiiR??RiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 readData
+ 
+ method readData(ILjava/lang/String;JLjx/zero/Memory;IIZ)V {
+  +START:   #1
+        if vi7!=0 goto B6;   
+  +B5:   #1
+        return;   
+  +B6:   #1
+        vR9 = vR0.findAttributesByTypeAndName@this(vi1,vR2);    [ RRR  RiR] 
+        if vR9.hasNext()!=0 goto B56;   
+  -B24:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i..][ RRR  iR.]
+        b1.<init>@special(b2.append@extra(vi1).append@extra(" attribute not found, file record = ").append@extra(vR0).toString@extra());   [?R RRR ii.. RR..] 
+        throw b0;   
+  +B56:   #1
+        vR10 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR9.next());    
+        if vR10.isResident()==0 goto B201;   
+  +B76:   #1
+        if vR9.hasNext()==0 goto B114;   
+  -B86:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i...][ RRR .... iR..]
+        b1.<init>@special(b2.append@extra("Resident attribute should be by itself, file record = ").append@extra(vR0).toString@extra());   [?RR RRR ii.. RR..] 
+        throw b0;   
+  +B114:   #1
+        vR11 = (org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)(vR10);    
+        vi12 = vR11.getAttributeLength();    [?RRR RRR .... R...] 
+        if vi12>=vi7 goto B181;   
+  -B135:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i...][ RRR .... iR..]
+        b1.<init>@special(b2.append@extra("File data(").append@extra(vi12).append@extra("b) is not large enough to read:").append@extra(vi7).append@extra("b").toString@extra());   [?RRRi RRR iiii.... RR....] 
+        throw b0;   
+  +B181:   #1
+        vR11.getData((vR11.getAttributeOffset()+(int)vl3),vR5,vi6,vi7);   [?RRRi RRR i....... iiRiR.] 
+        return;   
+  +B201:   #1
+        vl11 = (org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute)(vR10).getAttributeInitializedSize();     
+        if compare(vl11,0)!=0 goto B221;   
+  +B218:   #1
+        vi8 = 0;    
+  +B221:   #1
+        vi13 = vR0.getClusterSize@this();    [iRRli RRR ........ R.....] 
+        vl14 = (vl3/(long)vi13);    
+        vl16 = (((vl3+(long)vi7)-1)/(long)vi13);    
+        vi18 = (int)((vl16-vl14)+1);    
+        vR19 = vR0.MemManager.alloc((vi18*vi13));    [iRRliil?l?i RRR ii...... iR....] 
+        vl20 = 0;    
+        vl22 = vl14;    
+        vi24 = 0;    
+  +B283:   #1
+        if vR10.isResident()==0 goto B319;   
+  -B291:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ........ i.....][ RRR ........ iR....]
+        b1.<init>@special(b2.append@extra("Resident attribute should be by itself, file record = ").append@extra(vR0).toString@extra());   [iRRliil?l?iRl?l?i RRR ii...... RR....] 
+        throw b0;   
+  +B319:   #1
+        vR25 = (org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute)(vR10);    
+        vi24 = (vi24+vR25.readVCN(vl22,vR19,0,vi18));    
+        if vi24<=0 goto B412;   
+  +B348:   #1
+        vl26 = (((vl20+vl22)+(long)vi18)*(long)vi13);    
+        if compare(vl26,vl11)<=0 goto B412;   
+  +B371:   #1
+        if vi8==0 goto B412;   
+  +B376:   #1
+        vi28 = (int)(vl26-vl11);    
+        vi29 = max@special((vR19.size()-vi28),0);    [iRRliil?l?iRl?l?iRl?i RRR ii...... ii....]
+        if vi29>=vR19.size() goto B412;   
+  +B412:   #4
+        if vi24!=vi18 goto B422;   
+  +B419:   #1
+        goto +B469;   [iRRliil?l?iRl?l?iRl?ii RRR ........ ......]
+  +B422:   #1
+        vl22 = (vl22-(long)vR25.getNumberOfVCNs());    
+        vl20 = (vl20+(long)vR25.getNumberOfVCNs());    
+        if vR9.hasNext()==0 goto B469;   
+  +B454:   #1
+        vR10 = (org/jnode/fs/ntfs/attribute/NTFSAttribute)(vR9.next());    
+        goto +B283;   [iRRliil?l?iRl?l?iRl?ii RRR ........ ......]
+  +B469:   #2
+        if vi24==vi18 goto B536;   
+  -B476:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ........ i.....][ RRR ........ iR....]
+        b1.<init>@special(b2.append@extra("Requested ").append@extra(vi18).append@extra(" clusters but only read ").append@extra(vi24).append@extra(", file offset = ").append@extra(vl3).append@extra(", file record = ").append@extra(vR0).toString@extra());   [iRRliil?l?iRl?l?iRl?ii RRR iiii..i..... RR........] 
+        throw b0;   
+  +B536:   #1
+        arraycopy@special(vR19,(int)(vl3%(long)vi13),vR5,vi6,vi7);   [iRRliil?l?iRl?l?iRl?ii RRR i........... iiRiR.....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 60/60 wr 75 swaps 20 any 15 found 4 readData
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0.isInUse@this()==0 goto B35;   
+  +B7:   #1
+        b0 = "FileRecord [%d fileName='%s']";    
+        b1 = new java/lang/Object()[2];    
+        b1[0] = valueOf@special(vR0.referenceNumber);   
+        b1[1] = vR0.getFileName@this();   
+        return format@special(b0,b1);   
+  +B35:   #1
+        b0 = "FileRecord [%d unused]";    
+        b1 = new java/lang/Object()[1];    
+        b1[0] = valueOf@special(vR0.referenceNumber);   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 0 found 0 toString
+ 
+ method readAttributeListAttributes()V {
+  +START:   #2
+        vR1 = vR0.attributeListAttribute.getAllEntries();    [ RRR  R] 
+  +B10:   #1
+        goto +B43;   [R RRR  .]
+  -H13<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Error getting attributes from attribute list, file record ").append@extra(vR0).toString@extra(),vR2);   [RRRRRRRi RRR ii. RRR] 
+        throw b0;   
+  +B43:   #1
+        vR2 = new java/util/LinkedHashMap();    [ RRR ... i..][ RRR ... iR.]
+  +B51:   #2
+        if vR1.hasNext()==0 goto B342;   
+  +B60:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/AttributeListEntry)(vR1.next());    
+        if compare(vR3.getFileReferenceNumber@extra(),vR0.referenceNumber)!=0 goto B95;   
+  +B82:   #1
+        vR4 = vR0.findStoredAttributeByID@special(vR3.getAttributeID@extra());    [RRR RRR i.. iR.] 
+        goto +B233;   [RRRR RRR i.. ...]
+  +B95:   #1
+        vR5 = vR0.getVolume@this().getMFT();    [RRRR RRR ... R..] [RRRR RRR R.. R..] 
+        if compare(vR0.getReferenceNumber@this(),0)!=0 goto B125;   
+  +B113:   #1
+        b0 = vR5.getRecordUnchecked(vR3.getFileReferenceNumber@extra());    [RRRRR RRR ... ??R] 
+        goto +B134b0;   [RRRRR RRR ... ...]
+  +B125:   #1
+        b0 = vR5.getRecord(vR3.getFileReferenceNumber@extra());    [RRRRRRRi RRR ... ??R] 
+  +B134b0:   #1 reference
+        vR6 = b0;    
+        vR4 = vR6.findStoredAttributeByID@special(vR3.getAttributeID@extra());    [RRRRRR RRR i.. iR.] 
+        if vR4!=null goto B155;   
+  +B152:   #1
+        goto +B51;   [RRRRRR RRR ... ...]
+  +B155:   #2
+        if vR4.isResident()!=0 goto B233;   
+  +B163:   #1
+        if vR4.isCompressedAttribute()==0 goto B233;   
+  +B171:   #1
+        if vR2.containsKey(valueOf@special(vR4.getAttributeType()))==0 goto B233;   
+  +B188:   #1
+        vR7 = (org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute)(vR2.get(valueOf@special(vR4.getAttributeType())));    
+        vi8 = (1 << vR7.getStoredCompressionUnitSize());    
+        vR4 = getAttribute@special(vR4.getFileRecord(),vR4.getOffset(),vi8);    [RRRRRRRi RRR iiiR iiR]
+  +B233:   #4
+        if vR4.isResident()!=0 goto B286;   
+  +B241:   #1
+        if vR4.isCompressedAttribute()==0 goto B286;   
+  +B249:   #1
+        if vR2.containsKey(valueOf@special(vR4.getAttributeType()))!=0 goto B286;   
+  +B266:   #1
+        vR2.put(valueOf@special(vR4.getAttributeType()),(org/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute)(vR4));   [RRRR RRR ii.. RRR] 
+  +B286:   #3
+        vR0.attributeList.add(vR4);   [RRRR RRR .... RR.] 
+  +B298:   #1
+        goto +B339;   [RRRR RRR .... ...]
+  -H301<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        b1.<init>@special(b2.append@extra("Error getting MFT or FileRecord for attribute in list, ref = 0x").append@extra(toHexString@special(vR3.getFileReferenceNumber@extra())).toString@extra(),vR4);   [RRRRRRRi RRR iii. RRR] 
+        throw b0;   
+  +B339:   #1
+        goto +B51;   [RRRR RRR .... ...]
+  +B342:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 13 type 105
+70 - 152 handler 301 type 105
+155 - 298 handler 301 type 105
+ }
+// Register: rd 43/43 wr 47 swaps 11 any 4 found 1 readAttributeListAttributes
+ 
+ method readStoredAttributes()Ljava/util/List; {
+  +START:   #1
+        vR1 = new java/util/ArrayList();    [ R  i][ R  iR]
+        vi2 = vR0.getFirstAttributeOffset@this();    [R R  R.] 
+  +B13:   #1
+        vi3 = vR0.getUInt32AsInt@this(vi2);    [Ri R  iR] 
+        if vi3!=-1 goto B27;   
+  +B24:   #1
+        goto +B68;   forward return[Rii R  ..]
+  +B27:   #1
+        vR4 = getAttribute@special(vR0,vi2);    [Rii R  iR]
+        vi5 = vR0.getUInt32AsInt@this((vi2+4));    [RiiR R i iR] 
+        if vi5> 0 goto B51;   
+  +B48:   #1
+        goto +B68;   forward return[RiiRi R . ..]
+  +B51:   #1
+        vi2 = (vi2+vi5);    
+        vR1.add(vR4);   [RiiRi R . RR] 
+        goto +B13;   [RiiRi R . ..]
+  +B68:   #2
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 1 any 3 found 0 readStoredAttributes
+}
