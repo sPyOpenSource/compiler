@@ -129,11 +129,17 @@ class java/util/ArrayList {
   +B27:   #1
         vi3 = hugeCapacity@special(vi1);    [ii   i]
   +B32:   #1
+        if vi2!=0 goto B47;   
+  +B36:   #1
+        vR0.elementData = new java/lang/Object()[vi3];   
+        goto +B59;   forward return[ii   ..]
+  +B47:   #1
         vR0.elementData = copyOf@special(vR0.elementData,vi3);   
+  +B59:   #1
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 5 swaps 0 any 4 found 1 grow
+// Register: rd 12/12 wr 5 swaps 0 any 5 found 1 grow
  
  method hugeCapacity(I)I {
   +START:   #1

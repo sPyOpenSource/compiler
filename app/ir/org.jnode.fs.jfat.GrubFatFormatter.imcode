@@ -1,0 +1,148 @@
+class org/jnode/fs/jfat/GrubFatFormatter {
+ 
+ method <init>(IILorg/jnode/fs/jfat/Geometry;Lorg/jnode/fs/jfat/FatType;ILjava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.installPartition = -1;   
+        vR8 = (org/jnode/fs/jfat/GrubBootSector)(vR0.createBootSector@special(vR6,vR7));    
+        vR0.formatter = HDFormatter@special(vi1,(int)vR3.getTotalSectors(),vR3.getSectors(),vR3.getHeads(),vR4,0,vR0.calculateReservedSectors@special(512),vR8);   
+        vR0.bootSectorOffset = vi5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 9 swaps 2 any 0 found 0 <init>
+ 
+ method calculateReservedSectors(I)I {
+  +START:   #1
+        return (((vR0.stage2.size()/vi1)+1)+1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 calculateReservedSectors
+ 
+ method <init>(ILjava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.installPartition = -1;   
+        vR4 = (org/jnode/fs/jfat/GrubBootSector)(vR0.createBootSector@special(vR2,vR3));    
+        vR0.bootSectorOffset = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method createBootSector(Ljava/lang/String;Ljava/lang/String;)Lorg/jnode/fs/jfat/BootSector; {
+  +START:   #1
+        if vR1!=null goto B7;   
+  +B4:   #1
+        vR1 = "stage1";    
+  +B7:   #1
+        if vR2!=null goto B14;   
+  +B11:   #1
+        vR2 = "stage2";    
+  +B14:   #2
+        vR0.getStage1@this(vR1);   [ R  RR] 
+        vR0.getStage2@this(vR2);   [ R  RR] 
+        b0 = new org/jnode/fs/jfat/GrubBootSector(vR0.stage1);    [ R  i.][ R . iRR]
+  +B37b0:   #1 reference
+        return b0;   
+  -H38<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        throw new java/lang/RuntimeException(vR3);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+14 - 37 handler 38 type 73
+ }
+// Register: rd 9/9 wr 6 swaps 0 any 2 found 0 createBootSector
+ 
+ method getStage1(Ljava/lang/String;)Ljx/zero/Memory; {
+  +START:   #1
+        if vR0.stage1!=null goto B41;   
+  +B7:   #1
+        vR2 = vR0.getClass@this().getClassLoader@extra().getResourceAsStream(vR1);    [  .. RR] [  R. RR] [  RR RR] 
+        vR3 = vR0.MemManager.alloc(512);    [R  .. iR] 
+        vR2.close();   [RR  .. R.] 
+        vR0.stage1 = vR3;   
+  +B41:   #1
+        return vR0.stage1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 getStage1
+ 
+ method getStage2(Ljava/lang/String;)Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.stage2;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStage2
+ 
+ method format(Ljx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR2 = (org/jnode/fs/jfat/GrubBootSector)(vR0.formatter.getBootSector());    
+        vR0.stage2.setLittleEndian32(126,(vR0.bootSectorOffset+2));   [R Ri i iiR] 
+        vR0.stage2.setLittleEndian32(130,vR0.installPartition);   [R Ri ii iiR] 
+        if vR0.configFile==null goto B132;   
+  +B51:   #1
+        vi3 = 530;    
+  +B55:   #1
+        if vR0.stage2.get8(vi3)==0 goto B74;   
+  +B68:   #1
+        vi3++;   
+        goto +B55;   [Ri Ri .. ...]
+  +B74:   #1
+        vi3++;   
+        vi4 = 0;    
+  +B80:   #1
+        if vi4>=vR0.configFile.length@extra() goto B121;   
+  +B92:   #1
+        b0 = vR0.stage2;    
+        b1 = vi3;    
+        vi3++;   
+        b0.set8(b1,(byte)vR0.configFile.charAt@extra(vi4));   [Rii Ri i. iiR] 
+        vi4++;   
+        goto +B80;   [Rii Ri i. ...]
+  +B121:   #1
+        vR0.stage2.set8(vi3,0);   [Rii Ri .. iiR] 
+  +B132:   #1
+        vR1.writeSectors(vR2.getBytesPerSector(),vR0.stage2.size(),vR0.stage2,1);   [Rii Ri iii iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 16 swaps 4 any 6 found 2 format
+ 
+ method getConfigFile()Ljava/lang/String; {
+  +START:   #1
+        return vR0.configFile;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getConfigFile
+ 
+ method setConfigFile(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.configFile = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setConfigFile
+ 
+ method getInstallPartition()I {
+  +START:   #1
+        return vR0.installPartition;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInstallPartition
+ 
+ method getBootSector()Lorg/jnode/fs/jfat/BootSector; {
+  +START:   #1
+        return vR0.formatter.getBootSector();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBootSector
+ 
+ method setInstallPartition(I)V {
+  +START:   #1
+        vR0.installPartition = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setInstallPartition
+}

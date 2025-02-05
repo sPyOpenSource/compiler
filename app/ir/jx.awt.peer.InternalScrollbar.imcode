@@ -1,0 +1,649 @@
+class jx/awt/peer/InternalScrollbar {
+ 
+ method <init>(Ljx/awt/peer/JXComponentPeer;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.SLIDERWIDTH = 15;   
+        vR0.SLIDERHEIGHT = 20;   
+        vR0.NONE = 0;   
+        vR0.BUBBLE = 5;   
+        vR0.enabled = 1;   
+        vR0.translateCoords = 1;   
+        vR0.currentArea = 0;   
+        vR0.dragging = 0;   
+        vR0.host = vR1;   
+        vR0.toolkit = vR2;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R  i][ ?R . iiiiiR]
+        vR0.arrowTop = b1;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.arrowBottom = b1;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.sliderTop = b1;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.sliderBottom = b1;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.bubble = b1;   
+        b1 = new java/awt/Rectangle(0,0,0,0);    [ ?R . i.....][ ?R . iiiiiR]
+        vR0.scrollArea = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 12 swaps 0 any 0 found 0 <init>
+ 
+ method setTranslate(Z)V {
+  +START:   #1
+        vR0.translateCoords = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTranslate
+ 
+ method setScrollArea(IIII)V {
+  +START:   #1
+        vR0.scrollArea.x = vi1;   
+        vR0.scrollArea.y = vi2;   
+        vR0.scrollArea.width = vi3;   
+        vR0.scrollArea.height = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setScrollArea
+ 
+ method inScrollArea(II)Z {
+  +START:   #1
+        if vR0.translateCoords==0 goto B19;   
+  +B7:   #1
+        b0 = vR0.host.getLocationRelativeToComponent(vi1,vi2);    [ R  iiR] 
+        goto +B28b0;   [ R  ...]
+  +B19:   #1
+        b0 = new java/awt/Point(vi1,vi2);    [ R  i..][ R . iiiR]
+  +B28b0:   #1 reference
+        vR3 = b0;    
+        return vR0.scrollArea.contains(vR3.x,vR3.y);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 6 swaps 1 any 1 found 0 inScrollArea
+ 
+ method getScrollLocation(II)Ljava/awt/Point; {
+  +START:   #1
+        if vR0.translateCoords==0 goto B19;   
+  +B7:   #1
+        b0 = vR0.host.getLocationRelativeToComponent(vi1,vi2);    [ R  iiR] 
+        goto +B28b0;   [ R  ...]
+  +B19:   #1
+        b0 = new java/awt/Point(vi1,vi2);    [ R  i..][ R . iiiR]
+  +B28b0:   #1 reference
+        vR3 = b0;    
+        vR3.x = (vR3.x-vR0.scrollArea.x);   
+        vR3.y = (vR3.y-vR0.scrollArea.y);   
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 4 swaps 0 any 1 found 0 getScrollLocation
+ 
+ method setEnabled(Z)V {
+  +START:   #1
+        vR0.enabled = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setEnabled
+ 
+ method isEnabled()Z {
+  +START:   #1
+        return vR0.enabled;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEnabled
+ 
+ method getPrefVerticalWidth()I {
+  +START:   #1
+        return 15;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getPrefVerticalWidth
+ 
+ method getPrefVerticalHeight()I {
+  +START:   #1
+        return (((vR0.visible+20)+(vR0.maximum-vR0.minimum))+20);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getPrefVerticalHeight
+ 
+ method getPrefWidth()I {
+  +START:   #1
+        lswitch (vR0.orientation) { 
+           0:B32
+           1:B37
+           ::B42
+        };   
+  +B32:   #1
+        return vR0.getPrefVerticalHeight@special();   
+  +B37:   #1
+        return vR0.getPrefVerticalWidth@special();   
+  +B42:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getPrefWidth
+ 
+ method getPrefHeight()I {
+  +START:   #1
+        lswitch (vR0.orientation) { 
+           0:B32
+           1:B37
+           ::B42
+        };   
+  +B32:   #1
+        return vR0.getPrefVerticalWidth@special();   
+  +B37:   #1
+        return vR0.getPrefVerticalHeight@special();   
+  +B42:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 getPrefHeight
+ 
+ method getValue()I {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method setValue(I)V {
+  +START:   #1
+        if vi1>=vR0.minimum goto B13;   
+  +B8:   #1
+        vi1 = vR0.minimum;    
+  +B13:   #1
+        if vi1<=vR0.maximum goto B26;   
+  +B21:   #1
+        vi1 = vR0.maximum;    
+  +B26:   #1
+        vR0.value = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 2 found 0 setValue
+ 
+ method mouseInScrollbarPressed(III)I {
+  +START:   #1
+        if vR0.enabled==0 goto B16;   
+  +B7:   #1
+        if vR0.inScrollArea@this(vi1,vi2)!=0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        if vR0.currentArea!=0 goto B35;   
+  +B25:   #1
+        vR0.currentArea = vR0.getCurrentArea@special(vi1,vi2);   
+  +B35:   #1
+        if vR0.currentArea!=5 goto B90;   
+  +B43:   #1
+        vR4 = vR0.getScrollLocation@special(vi1,vi2);    [   iiR] 
+        vR0.spotX = (vR4.x-vR0.bubble.x);   
+        vR0.spotY = (vR4.y-vR0.bubble.y);   
+        vR0.dragging = 1;   
+  +B90:   #1
+        return vR0.currentArea;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 1 swaps 0 any 0 found 0 mouseInScrollbarPressed
+ 
+ method mouseInScrollbarReleased(IIIZ)I {
+  +START:   #1
+        if vR0.enabled==0 goto B16;   
+  +B7:   #1
+        if vR0.inScrollArea@this(vi1,vi2)!=0 goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        vi5 = 0;    
+        vi6 = vR0.value;    
+        vR0.dragging = 0;   
+        if vR0.currentArea!=1 goto B76;   
+  +B40:   #1
+        if vR0.value<(vR0.minimum+vR0.lineIncrement) goto B70;   
+  +B56:   #1
+        vi6 = (vR0.value-vR0.lineIncrement);    
+        goto +B76;   [ii   ...]
+  +B70:   #1
+        vi6 = vR0.minimum;    
+  +B76:   #2
+        if vR0.currentArea!=2 goto B120;   
+  +B84:   #1
+        if vR0.value>(vR0.maximum-vR0.lineIncrement) goto B114;   
+  +B100:   #1
+        vi6 = (vR0.value+vR0.lineIncrement);    
+        goto +B120;   [ii   ...]
+  +B114:   #1
+        vi6 = vR0.maximum;    
+  +B120:   #2
+        if vR0.currentArea!=3 goto B164;   
+  +B128:   #1
+        if vR0.value<(vR0.minimum+vR0.pageIncrement) goto B158;   
+  +B144:   #1
+        vi6 = (vR0.value-vR0.pageIncrement);    
+        goto +B164;   [ii   ...]
+  +B158:   #1
+        vi6 = vR0.minimum;    
+  +B164:   #2
+        if vR0.currentArea!=4 goto B208;   
+  +B172:   #1
+        if vR0.value>(vR0.maximum-vR0.pageIncrement) goto B202;   
+  +B188:   #1
+        vi6 = (vR0.value+vR0.pageIncrement);    
+        goto +B208;   [ii   ...]
+  +B202:   #1
+        vi6 = vR0.maximum;    
+  +B208:   #2
+        vi5 = vR0.currentArea;    
+        vR0.value = vi6;   
+        vR0.setPaintValues@special();   [ii   R..] 
+        vR0.currentArea = vR0.getCurrentArea@special(vi1,vi2);   
+        return vi5;   
+  +END:   #1
+ }
+// Register: rd 39/39 wr 11 swaps 0 any 0 found 0 mouseInScrollbarReleased
+ 
+ method mouseInScrollbarMoved(III)I {
+  +START:   #1
+        if vR0.enabled!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vi4 = 0;    
+        vR0.currentArea = vR0.getCurrentArea@special(vi1,vi2);   
+        if vi3!=0 goto B31;   
+  +B26:   #1
+        vR0.dragging = 0;   
+  +B31:   #1
+        if vR0.dragging==0 goto B316;   
+  +B38:   #1
+        vi5 = vR0.value;    
+        vR6 = vR0.getScrollLocation@special(vi1,vi2);    [ii   iiR] 
+        if vR0.orientation!=0 goto B161;   
+  +B59:   #1
+        if vR6.x>=(vR0.bubble.x+vR0.spotX) goto B110;   
+  +B79:   #1
+        if vR0.value<vR0.minimum goto B110;   
+  +B90:   #1
+        vR0.value = (vR0.value-vR0.lineIncrement);   
+        vR0.setPaintValues@special();   [iiR   R..] 
+        goto +B59;   [iiR   ...]
+  +B110:   #3
+        if vR6.x<=(vR0.bubble.x+vR0.spotX) goto B263;   
+  +B130:   #1
+        if vR0.value>vR0.maximum goto B263;   
+  +B141:   #1
+        vR0.value = (vR0.value+vR0.lineIncrement);   
+        vR0.setPaintValues@special();   [iiR   R..] 
+        goto +B110;   [iiR   ...]
+  +B161:   #2
+        if vR6.y>=(vR0.bubble.y+vR0.spotY) goto B212;   
+  +B181:   #1
+        if vR0.value<vR0.minimum goto B212;   
+  +B192:   #1
+        vR0.value = (vR0.value-vR0.lineIncrement);   
+        vR0.setPaintValues@special();   [iiR   R..] 
+        goto +B161;   [iiR   ...]
+  +B212:   #3
+        if vR6.y<=(vR0.bubble.y+vR0.spotY) goto B263;   
+  +B232:   #1
+        if vR0.value>vR0.maximum goto B263;   
+  +B243:   #1
+        vR0.value = (vR0.value+vR0.lineIncrement);   
+        vR0.setPaintValues@special();   [iiR   R..] 
+        goto +B212;   [iiR   ...]
+  +B263:   #4
+        if vR0.value>=vR0.minimum goto B282;   
+  +B274:   #1
+        vR0.value = vR0.minimum;   
+  +B282:   #1
+        if vR0.value<=vR0.maximum goto B301;   
+  +B293:   #1
+        vR0.value = vR0.maximum;   
+  +B301:   #1
+        if vi5==vR0.value goto B313;   
+  +B310:   #1
+        vi4 = 5;    
+  +B313:   #1
+        goto +B322;   forward return[iiR   ...]
+  +B316:   #1
+        vi4 = vR0.currentArea;    
+  +B322:   #1
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 4 swaps 0 any 2 found 0 mouseInScrollbarMoved
+ 
+ method mouseInScrollbarEntered(III)V {
+  +START:   #1
+        if vR0.enabled==0 goto B16;   
+  +B7:   #1
+        if vR0.inScrollArea@this(vi1,vi2)!=0 goto B17;   
+  +B16:   #1
+        return;   
+  +B17:   #1
+        vR0.currentArea = vR0.getCurrentArea@special(vi1,vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 mouseInScrollbarEntered
+ 
+ method mouseInScrollbarExited(III)V {
+  +START:   #1
+        if vR0.enabled!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.currentArea = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseInScrollbarExited
+ 
+ method setValues(IIII)V {
+  +START:   #1
+        if vi2<=(vi4-vi3) goto B13;   
+  +B8:   #1
+        vi2 = (vi4-vi3);    
+  +B13:   #1
+        if (vi1+vi2)<=vi4 goto B26;   
+  +B21:   #1
+        vi1 = (vi4-vi2);    
+  +B26:   #1
+        vR0.value = vi1;   
+        vR0.visible = vi2;   
+        vR0.minimum = vi3;   
+        vR0.maximum = (vi4-vi2);   
+        if vR0.lineIncrement!=0 goto B61;   
+  +B56:   #1
+        vR0.lineIncrement = 1;   
+  +B61:   #1
+        if vR0.pageIncrement!=0 goto B73;   
+  +B68:   #1
+        vR0.pageIncrement = vi2;   
+  +B73:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 2 swaps 0 any 4 found 0 setValues
+ 
+ method setSmallIncrement(I)V {
+  +START:   #1
+        vR0.lineIncrement = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSmallIncrement
+ 
+ method setBigIncrement(I)V {
+  +START:   #1
+        vR0.pageIncrement = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBigIncrement
+ 
+ method setOrientation(I)V {
+  +START:   #1
+        vR0.orientation = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setOrientation
+ 
+ method valueToPixel(IIII)I {
+  +START:   #1
+        if (vi3-vi2)!=0 goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        return ((vi1*vi4)/(vi3-vi2));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 1 found 0 valueToPixel
+ 
+ method getCurrentArea(II)I {
+  +START:   #1
+        vR3 = vR0.getScrollLocation@special(vi1,vi2);    [   iiR] 
+        if vR0.sliderTop.contains(vR3.x,vR3.y)==0 goto B27;   
+  +B25:   #1
+        return 3;   
+  +B27:   #1
+        if vR0.sliderBottom.contains(vR3.x,vR3.y)==0 goto B47;   
+  +B45:   #1
+        return 4;   
+  +B47:   #1
+        if vR0.arrowTop.contains(vR3.x,vR3.y)==0 goto B67;   
+  +B65:   #1
+        return 1;   
+  +B67:   #1
+        if vR0.arrowBottom.contains(vR3.x,vR3.y)==0 goto B87;   
+  +B85:   #1
+        return 2;   
+  +B87:   #1
+        if vR0.bubble.contains(vR3.x,vR3.y)==0 goto B107;   
+  +B105:   #1
+        return 5;   
+  +B107:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 11 swaps 5 any 0 found 0 getCurrentArea
+ 
+ method setPaintValues()V {
+  +START:   #1
+        lswitch (vR0.orientation) { 
+           0:B32
+           1:B376
+           ::B717
+        };   
+  +B32:   #1
+        vR0.arrowTop.x = 0;   
+        vR0.arrowTop.y = 0;   
+        vR0.arrowTop.width = 20;   
+        vR0.arrowTop.height = vR0.scrollArea.height;   
+        vR0.arrowBottom.x = (vR0.scrollArea.width-20);   
+        vR0.arrowBottom.y = 0;   
+        vR0.arrowBottom.width = 20;   
+        vR0.arrowBottom.height = vR0.scrollArea.height;   
+        vR0.bubble.x = (vR0.valueToPixel@special(vR0.value,vR0.minimum,(vR0.maximum+vR0.visible),((vR0.scrollArea.width-vR0.arrowTop.width)-vR0.arrowBottom.width))+20);   
+        vR0.bubble.y = 0;   
+        vR0.bubble.width = vR0.valueToPixel@special(vR0.visible,vR0.minimum,(vR0.maximum+vR0.visible),((vR0.scrollArea.width-vR0.arrowTop.width)-vR0.arrowBottom.width));   
+        vR0.bubble.height = vR0.scrollArea.height;   
+        vR0.sliderTop.x = 20;   
+        vR0.sliderTop.y = 0;   
+        vR0.sliderTop.width = (vR0.bubble.x-vR0.sliderTop.x);   
+        vR0.sliderTop.height = vR0.scrollArea.height;   
+        vR0.sliderBottom.x = (vR0.bubble.x+vR0.bubble.width);   
+        vR0.sliderBottom.y = 0;   
+        vR0.sliderBottom.width = (vR0.arrowBottom.x-(vR0.bubble.x+vR0.bubble.width));   
+        vR0.sliderBottom.height = vR0.scrollArea.height;   
+        goto +B717;   forward return[  iiiiiiii .....]
+  +B376:   #1
+        vR0.arrowTop.x = 0;   
+        vR0.arrowTop.y = 0;   
+        vR0.arrowTop.width = vR0.scrollArea.width;   
+        vR0.arrowTop.height = 20;   
+        vR0.arrowBottom.x = 0;   
+        vR0.arrowBottom.y = (vR0.scrollArea.height-20);   
+        vR0.arrowBottom.width = vR0.scrollArea.width;   
+        vR0.arrowBottom.height = 20;   
+        vR0.bubble.x = 0;   
+        vR0.bubble.y = (vR0.valueToPixel@special(vR0.value,vR0.minimum,(vR0.maximum+vR0.visible),((vR0.scrollArea.height-vR0.arrowTop.height)-vR0.arrowBottom.height))+20);   
+        vR0.bubble.width = vR0.scrollArea.width;   
+        vR0.bubble.height = vR0.valueToPixel@special(vR0.visible,vR0.minimum,(vR0.maximum+vR0.visible),((vR0.scrollArea.height-vR0.arrowTop.height)-vR0.arrowBottom.height));   
+        vR0.sliderTop.x = 0;   
+        vR0.sliderTop.y = 20;   
+        vR0.sliderTop.width = vR0.scrollArea.width;   
+        vR0.sliderTop.height = (vR0.bubble.y-vR0.sliderTop.y);   
+        vR0.sliderBottom.x = 0;   
+        vR0.sliderBottom.y = (vR0.bubble.y+vR0.bubble.height);   
+        vR0.sliderBottom.width = vR0.scrollArea.width;   
+        vR0.sliderBottom.height = (vR0.arrowBottom.y-(vR0.bubble.y+vR0.bubble.height));   
+  +B717:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 99/99 wr 16 swaps 4 any 0 found 0 setPaintValues
+ 
+ method paintScrollbar(Ljava/awt/Graphics;ZZ)V {
+  +START:   #1
+        if vR0.enabled==0 goto B11;   
+  +B7:   #1
+        if vi3==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   [ iiiiii  ]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        vi4 = b0;    
+        vR0.setPaintValues@special();   [i iiiiii  R] 
+        vR1.setClip(vR0.scrollArea);   [i iiiiii i RR] 
+        vR1.translate(vR0.scrollArea.x,vR0.scrollArea.y);   [i iiiiii iii iiR] 
+        if vR0.currentArea!=3 goto B71;   
+  +B56:   #1
+        if vi4!=0 goto B71;   
+  +B61:   #1
+        vR1.setColor(hoverColor);   [i iiiiii i.. RR.] 
+        goto +B78;   [i iiiiii i.. ...]
+  +B71:   #2
+        vR1.setColor(normalBgColor);   [i iiiiii i.. RR.] 
+  +B78:   #1
+        vR1.fillRect(vR0.sliderTop.x,vR0.sliderTop.y,(vR0.sliderTop.width-1),(vR0.sliderTop.height-1));   [i iiiiii iiii iiiiR] 
+        if vR0.currentArea!=4 goto B137;   
+  +B122:   #1
+        if vi4!=0 goto B137;   
+  +B127:   #1
+        vR1.setColor(hoverColor);   [i iiiiii i... RR...] 
+        goto +B144;   [i iiiiii i... .....]
+  +B137:   #2
+        vR1.setColor(normalBgColor);   [i iiiiii i... RR...] 
+  +B144:   #1
+        vR1.fillRect(vR0.sliderBottom.x,vR0.sliderBottom.y,(vR0.sliderBottom.width-1),(vR0.sliderBottom.height-1));   [i iiiiii iiii iiiiR] 
+        vR1.setColor(normalBgColor.darker());   [i iiiiii iiiii RR...] 
+        vR1.drawRect(0,0,(vR0.scrollArea.width-1),(vR0.scrollArea.height-1));   [i iiiiii iiiiiii iiiiR] 
+        if vR0.currentArea!=1 goto B237;   
+  +B222:   #1
+        if vi4!=0 goto B237;   
+  +B227:   #1
+        vR1.setColor(hoverColor);   [i iiiiii i...... RR...] 
+        goto +B244;   [i iiiiii i...... .....]
+  +B237:   #2
+        vR1.setColor(normalBgColor);   [i iiiiii i...... RR...] 
+  +B244:   #1
+        b0 = vR1;    
+        b1 = vR0.arrowTop.x;    
+        b2 = vR0.arrowTop.y;    
+        b3 = vR0.arrowTop.width;    
+        b4 = vR0.arrowTop.height;    
+        if vi2==0 goto B285;   
+  +B277b0b1b2b3b4:   #1 reference int int int int
+        if vR0.currentArea==1 goto B289;   
+  +B285b0b1b2b3b4:   #1 reference int int int int
+        b5 = 1;    
+        goto +B290b0b1b2b3b4b5;   [i Riiiii ....... .....]
+  +B289b0b1b2b3b4:   #1 reference int int int int
+        b5 = 0;    
+  +B290b0b1b2b3b4b5:   #1 reference int int int int int
+        b0.fill3DRect(b1,b2,b3,b4,b5);   [i Riiiii ....... iiiiiR] 
+        if vR0.currentArea!=2 goto B316;   
+  +B301:   #1
+        if vi4!=0 goto B316;   
+  +B306:   #1
+        vR1.setColor(hoverColor);   [i Riiiii i...... RR....] 
+        goto +B323;   [i Riiiii i...... ......]
+  +B316:   #2
+        vR1.setColor(normalBgColor);   [i Riiiii i...... RR....] 
+  +B323:   #1
+        b0 = vR1;    
+        b1 = vR0.arrowBottom.x;    
+        b2 = vR0.arrowBottom.y;    
+        b3 = vR0.arrowBottom.width;    
+        b4 = vR0.arrowBottom.height;    
+        if vi2==0 goto B364;   
+  +B356b0b1b2b3b4:   #1 reference int int int int
+        if vR0.currentArea==2 goto B368;   
+  +B364b0b1b2b3b4:   #1 reference int int int int
+        b5 = 1;    
+        goto +B369b0b1b2b3b4b5;   [i Riiiii ....... ......]
+  +B368b0b1b2b3b4:   #1 reference int int int int
+        b5 = 0;    
+  +B369b0b1b2b3b4b5:   #1 reference int int int int int
+        b0.fill3DRect(b1,b2,b3,b4,b5);   [i Riiiii ....... iiiiiR] 
+        lswitch (vR0.orientation) { 
+           0:B404
+           1:B653
+           ::B899
+        };   
+  +B404:   #1
+        if vi4==0 goto B419;   
+  +B409:   #1
+        vR1.setColor(disabledArrowColor);   [i Riiiii i...... RR....] 
+        goto +B426;   [i Riiiii i...... ......]
+  +B419:   #1
+        vR1.setColor(arrowColor);   [i Riiiii i...... RR....] 
+  +B426:   #1
+        vR1.drawLine(2,(vR0.scrollArea.height/2),(vR0.arrowTop.width/2),2);   [i Riiiii ii..... iiiiR.] 
+        vR1.drawLine((vR0.arrowTop.width/2),2,(vR0.arrowTop.width/2),(vR0.scrollArea.height-3));   [i Riiiii iiiii.. iiiiR.] 
+        vR1.drawLine(2,(vR0.scrollArea.height/2),(vR0.arrowTop.width/2),(vR0.scrollArea.height-3));   [i Riiiii iiiiiiii iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width-(vR0.arrowBottom.width/2)),2,(vR0.scrollArea.width-(vR0.arrowBottom.width/2)),(vR0.scrollArea.height-3));   [i Riiiii iiiiiiiiiii iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width-(vR0.arrowBottom.width/2)),2,(vR0.scrollArea.width-3),(vR0.scrollArea.height/2));   [i Riiiii iiiiiiiiiiiiii iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width-(vR0.arrowBottom.width/2)),(vR0.scrollArea.height-3),(vR0.scrollArea.width-3),(vR0.scrollArea.height/2));   [i Riiiii iiiiiiiiiiiiiiiiii iiiiR.] 
+        goto +B899;   [i Riiiii iiiiiiiiiiiiiiiiii ......]
+  +B653:   #1
+        if vi4==0 goto B668;   
+  +B658:   #1
+        vR1.setColor(disabledArrowColor);   [i Riiiii i................. RR....] 
+        goto +B675;   [i Riiiii i................. ......]
+  +B668:   #1
+        vR1.setColor(arrowColor);   [i Riiiii i................. RR....] 
+  +B675:   #1
+        vR1.drawLine((vR0.scrollArea.width/2),2,2,(vR0.arrowTop.height/2));   [i Riiiii ii................ iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width/2),2,(vR0.scrollArea.width-3),(vR0.arrowTop.height/2));   [i Riiiii iiiii............. iiiiR.] 
+        vR1.drawLine(2,(vR0.arrowTop.height/2),(vR0.scrollArea.width-3),(vR0.arrowTop.height/2));   [i Riiiii iiiiiiii.......... iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width/2),(vR0.scrollArea.height-3),2,(vR0.scrollArea.height-(vR0.arrowBottom.height/2)));   [i Riiiii iiiiiiiiiii....... iiiiR.] 
+        vR1.drawLine((vR0.scrollArea.width/2),(vR0.scrollArea.height-3),(vR0.scrollArea.width-3),(vR0.scrollArea.height-(vR0.arrowBottom.height/2)));   [i Riiiii iiiiiiiiiiiiiii... iiiiR.] 
+        vR1.drawLine(2,(vR0.scrollArea.height-(vR0.arrowBottom.height/2)),(vR0.scrollArea.width-3),(vR0.scrollArea.height-(vR0.arrowBottom.height/2)));   [i Riiiii iiiiiiiiiiiiiiiiii iiiiR.] 
+  +B899:   #2
+        if vR0.currentArea!=5 goto B922;   
+  +B907:   #1
+        if vi4!=0 goto B922;   
+  +B912:   #1
+        vR1.setColor(hoverColor);   [i Riiiii i................. RR....] 
+        goto +B929;   [i Riiiii i................. ......]
+  +B922:   #2
+        vR1.setColor(normalBgColor);   [i Riiiii i................. RR....] 
+  +B929:   #1
+        if vi4==0 goto B1020;   
+  +B934:   #1
+        vR1.fillRect((vR0.bubble.x+1),(vR0.bubble.y+1),(vR0.bubble.width-3),(vR0.bubble.height-3));   [i Riiiii iiii.............. iiiiR.] 
+        vR1.setColor(hoverColor);   [i Riiiii iiiii............. RR....] 
+        vR1.drawRect(vR0.bubble.x,vR0.bubble.y,(vR0.bubble.width-1),(vR0.bubble.height-1));   [i Riiiii iiiiiiiii......... iiiiR.] 
+        goto +B1069;   forward return[i Riiiii iiiiiiiii......... ......]
+  +B1020:   #1
+        b0 = vR1;    
+        b1 = vR0.bubble.x;    
+        b2 = vR0.bubble.y;    
+        b3 = vR0.bubble.width;    
+        b4 = vR0.bubble.height;    
+        if vi2==0 goto B1061;   
+  +B1053b0b1b2b3b4:   #1 reference int int int int
+        if vR0.currentArea==5 goto B1065;   
+  +B1061b0b1b2b3b4:   #1 reference int int int int
+        b5 = 1;    
+        goto +B1066b0b1b2b3b4b5;   [i Riiiii .................. ......]
+  +B1065b0b1b2b3b4:   #1 reference int int int int
+        b5 = 0;    
+  +B1066b0b1b2b3b4b5:   #1 reference int int int int int
+        b0.fill3DRect(b1,b2,b3,b4,b5);   [i Riiiii .................. iiiiiR] 
+  +B1069:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 174/174 wr 111 swaps 52 any 16 found 0 paintScrollbar
+}

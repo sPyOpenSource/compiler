@@ -1,0 +1,31 @@
+class jx/devices/fb/emulation/EmulFBFinder {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method find(Ljx/zero/Naming;)[Ljx/devices/Device; {
+  +START:   #1
+        vR2 = (jx/zero/FBEmulation)(getInitialNaming@special().lookup("FBEmulation"));    
+        if vR2!=null goto B20;   
+  +B18:   #1
+        return 0;   
+  +B20:   #1
+        vi3 = 280;    
+        if vR2.open(vi3)!=0 goto B36;   
+  +B34:   #1
+        return 0;   
+  +B36:   #1
+        b0 = new jx/devices/Device()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/emulation/FBImpl(vR2);    [ RR?R .. i.][ RR?R .. iRR]
+        b1[0] = b3;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 1 any 3 found 0 find
+}

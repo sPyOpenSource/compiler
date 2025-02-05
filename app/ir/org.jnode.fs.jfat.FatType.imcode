@@ -1,0 +1,59 @@
+class org/jnode/fs/jfat/FatType {
+ 
+ method <init>(IF)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.minReservedEntry = (-16 & vi1);   
+        vR0.maxReservedEntry = (-10 & vi1);   
+        vR0.eofCluster = (-8 & vi1);   
+        vR0.eofMarker = (-1 & vi1);   
+        vR0.entrySize = vl2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isReservedCluster(J)Z {
+  +START:   #1
+        if compare(vl1,(long)vR0.minReservedEntry)< 0 goto B24;   
+  +B10:   #1
+        if compare(vl1,(long)vR0.maxReservedEntry)> 0 goto B24;   
+  +B20:   #1
+        b0 = 1;    
+        goto +B25b0;   forward return[ i  .]
+  +B24:   #2
+        b0 = 0;    
+  +B25b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReservedCluster
+ 
+ method isEofCluster(J)Z {
+  +START:   #1
+        if compare(vl1,(long)vR0.eofCluster)< 0 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  .]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isEofCluster
+ 
+ method getEofMarker()J {
+  +START:   #1
+        return (long)vR0.eofMarker;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getEofMarker
+ 
+ method getEntrySize()F {
+  +START:   #1
+        return vR0.entrySize;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getEntrySize
+}

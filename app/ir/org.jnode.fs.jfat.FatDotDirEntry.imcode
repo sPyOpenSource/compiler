@@ -1,0 +1,51 @@
+class org/jnode/fs/jfat/FatDotDirEntry {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatMarshal;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vi3);   [ R  iRRR] 
+        if vR0.isDirectory@this()!=0 goto B22;   
+  -B14:   #1
+        throw new java/lang/UnsupportedOperationException();   
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;ZLorg/jnode/fs/jfat/FatShortDirEntry;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.init@special(vR3,vi4);   [   iRR] 
+        if vi2!=0 goto B24;   
+  +B16:   #1
+        vR0.setIndex@this(0);   [   iR.] 
+        goto +B37;   [   ...]
+  +B24:   #1
+        vR0.setIndex@this(1);   [   iR.] 
+        vR0.lName[1] = 46;   
+  +B37:   #1
+        vR0.encodeName@this();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 1 found 0 <init>
+ 
+ method init(Lorg/jnode/fs/jfat/FatShortDirEntry;I)V {
+  +START:   #1
+        b1 = new org/jnode/fs/jfat/FatCase();    [ ?R  i][ ?R  iR]
+        vR0.setNameCase@this(b1);   [ ?R  RR] 
+        b1 = new org/jnode/fs/jfat/FatAttr();    [ ?R  i.][ ?R  iR]
+        vR0.setAttr@this(b1);   [ ?R  RR] 
+        vR0.setDirectory@this();   [ ?R  R.] 
+        vR0.setCreated@this(vR1.getCreated());   [ ?R  ??R] 
+        vR0.clearName@this();   [ ?R  R..] 
+        vR0.lName[0] = 46;   
+        vR0.setLastAccessed@this(vR1.getLastAccessed());   [ ?R  ??R] 
+        vR0.setLastModified@this(vR1.getLastModified());   [ ?R  ??R] 
+        vR0.setStartCluster@this(vi2);   [ ?R  iR.] 
+        vR0.setLength@this(0);   [ ?R  iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 2 swaps 0 any 0 found 0 init
+}

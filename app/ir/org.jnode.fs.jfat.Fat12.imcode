@@ -1,0 +1,88 @@
+class org/jnode/fs/jfat/Fat12 {
+ 
+ method <init>(Lorg/jnode/fs/jfat/BootSector;Ljx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method offset(I)I {
+  +START:   #1
+        return (int)floor@special((jx.classfile.datatypes.BCDouble@63611043*(double)vi1));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 offset
+ 
+ method get(I)I {
+  +START:   #1
+        vi2 = 0;    
+        if (vi1%2)!=0 goto B17;   
+  +B8:   #1
+        vi2 = (vi2 & 4095);    
+        goto +B21;   forward return[i   ]
+  +B17:   #1
+        vi2 = (vi2 >> 4);    
+  +B21:   #1
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 get
+ 
+ method set(II)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Can't write to FAT-12 yet");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 set
+ 
+ method getClusterPosition(I)I {
+  +START:   #1
+        vR2 = vR0.getBootSector@this();    [   R] 
+        vi3 = (vR2.getFirstDataSector()*vR2.getBytesPerSector());    
+        if vi1!=0 goto B21;   
+  +B19:   #1
+        return vi3;   
+  +B21:   #1
+        vi4 = (vi3+(vR2.getNrRootDirEntries()*32));    
+        return (vi4+((vi1-vR0.firstCluster@this())*vR0.getClusterSize@this()));   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 5 swaps 0 any 2 found 3 getClusterPosition
+ 
+ method hasNext(I)Z {
+  +START:   #1
+        if vR0.isEofChain@this(vi1)!=0 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ..]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 hasNext
+ 
+ method isEofChain(I)Z {
+  +START:   #1
+        if vi1<4080 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isEofChain
+ 
+ method eofChain()I {
+  +START:   #1
+        return 4080;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 eofChain
+}

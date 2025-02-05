@@ -2,14 +2,13 @@ class org/jnode/net/ipv4/dhcp/DHCPMessage {
  
  method <init>(Ljx/net/protocol/bootp/BOOTPFormat;)V {
   +START:   #1
-        vR0.<init>@special();   [ ?R  R] 
-        b1 = new java/util/HashMap();    [ ?R  i][ ?R  iR]
-        vR0.options = b1;   
+        vR0.<init>@special();   [   R] 
+        vR0.options = new [B()[60];   
         vR0.header = vR1;   
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 <init>
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
  
  method <init>(Ljx/net/protocol/bootp/BOOTPFormat;I)V {
   +START:   #1
@@ -85,15 +84,15 @@ class org/jnode/net/ipv4/dhcp/DHCPMessage {
         if vi1!=53 goto B16;   
   +B6:   #1
         vR0.messageType = vR2[0];   
-        goto +B39;   forward return[   ]
+        goto +B31;   forward return[   ]
   +B16:   #1
         out.println("put");   [  i. RR] 
-        vR0.options.put(valueOf@special(vi1),vR2);   [  ii RRR] 
-  +B39:   #1
+        vR0.options[vi1] = vR2;   
+  +B31:   #1
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 3 swaps 2 any 1 found 0 setOption
+// Register: rd 6/6 wr 2 swaps 1 any 2 found 0 setOption
  
  method setOption16(II)V {
   +START:   #1
@@ -119,7 +118,7 @@ class org/jnode/net/ipv4/dhcp/DHCPMessage {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 11 handler 14 type 91
+0 - 11 handler 14 type 79
  }
 // Register: rd 4/4 wr 4 swaps 2 any 0 found 0 setOption
  
@@ -139,10 +138,10 @@ EXCEPTIONHANDLER-TABLE:
         b0[0] = (byte)vR0.messageType;   
         return b0;   
   +B18:   #1
-        return ([B)(vR0.options.get(valueOf@special(vi1)));   
+        return vR0.options[vi1];   
   +END:   #1
  }
-// Register: rd 6/6 wr 3 swaps 1 any 1 found 0 getOption
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 getOption
  
  method toDatagramPacket()Ljava/net/DatagramPacket; {
   +START:   #1
@@ -157,32 +156,36 @@ EXCEPTIONHANDLER-TABLE:
         vR1.set8((vi2+5),1);   [Ri R iiiiiii iiR] 
         vR1.set8((vi2+6),(byte)vR0.messageType);   [Ri R iiiiiiiii iiR] 
         vi3 = 7;    
-        vR4 = vR0.options.entrySet().iterator();    [Rii R iiiiiiiii. R..] [Rii R iiiiiiiiiR R..] 
-  +B119:   #1
-        if vR4.hasNext()==0 goto B223;   
-  +B129:   #1
-        vR5 = (java/util/Map$Entry)(vR4.next());    
-        vi6 = (java/lang/Integer)(vR5.getKey()).intValue();    [RiiRR R .......... R..] 
-        vR7 = ([B)(vR5.getValue());    
-        vR1.set8((vi3+vi2),(byte)vi6);   [RiiRRiR R ii........ iiR] 
-        vR1.set8(((vi3+1)+vi2),(byte)vR7.length);   [RiiRRiR R iiii...... iiR] 
-        vR1.copyFromByteArray(vR7,0,((vi3+2)+vi2),vR7.length);   [RiiRRiR R iiiiii.... iiiRR] 
-        vi3 = (vi3+(vR7.length+2));    
-        goto +B119;   [RiiRRiR R iiiiii.... .....]
-  +B223:   #1
-        vR1.set8((vi3+vi2),-1);   [RiiRRiR R i......... iiR..] 
+        vi4 = 0;    
+  +B106:   #1
+        if vi4>=60 goto B197;   
+  +B113:   #1
+        vi5 = vi4;    
+        vR6 = vR0.options[vi4];    
+        if vR6==null goto B191;   
+  +B131:   #1
+        out.println(vi4);   [RiiiiR R ......... iR.] 
+        vR1.set8((vi3+vi2),(byte)vi5);   [RiiiiR R ii....... iiR] 
+        vR1.set8(((vi3+1)+vi2),(byte)vR6.length);   [RiiiiR R iiii..... iiR] 
+        vR1.copyFromByteArray(vR6,0,((vi3+2)+vi2),vR6.length);   [RiiiiR R iiiiii... iiiRR] 
+        vi3 = (vi3+(vR6.length+2));    
+  +B191:   #1
+        vi4++;   
+        goto +B106;   [RiiiiR R ......... .....]
+  +B197:   #1
+        vR1.set8((vi3+vi2),-1);   [RiiiiR R i........ iiR..] 
         vR4 = new byte[vR1.size()];    
-        vR1.copyToByteArray(vR4,0,0,vR4.length);   [RiiRRiR R ii........ iiiRR] 
-  +B256:   #1
-        b0 = new java/net/DatagramPacket(vR4,vR4.length,getByName@special("all"),67);    [ R .......... i....][ R .R........ iiRiRR]
-  +B275b0:   #1 reference
+        vR1.copyToByteArray(vR4,0,0,vR4.length);   [RiiRiR R ii....... iiiRR] 
+  +B230:   #1
+        b0 = new java/net/DatagramPacket(vR4,vR4.length,getByName@special("all"),67);    [ R ......... i....][ R .R....... iiRiRR]
+  +B249b0:   #1 reference
         return b0;   
-  +H276<caught exception>:   #1 reference
+  +H250<caught exception>:   #1 reference
         vR5 = <caught exception>;    
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-256 - 275 handler 276 type 175
+230 - 249 handler 250 type 129
  }
-// Register: rd 48/48 wr 34 swaps 13 any 1 found 0 toDatagramPacket
+// Register: rd 46/46 wr 30 swaps 13 any 5 found 0 toDatagramPacket
 }

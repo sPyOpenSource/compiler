@@ -1,0 +1,77 @@
+class jx/awt/JXImage {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method createImage(II)Ljx/awt/JXImage; {
+  +START:   #1
+        vR2 = new jx/awt/JXImage();    [ R??R  i][ R??R  iR]
+        b3 = new jx/devices/fb/ColorSpace(4);    [ R??R  i.][ R??R . iiR]
+        vR2.setBitmap(createWBitmap@special(vi0,vi1,b3));   [R R??R i RR.] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 createImage
+ 
+ method getBitmap()Ljx/wm/WBitmap; {
+  +START:   #1
+        return vR0.bitmap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBitmap
+ 
+ method setBitmap(Ljx/wm/WBitmap;)V {
+  +START:   #1
+        vR0.bitmap = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBitmap
+ 
+ method getWidth(Ljava/awt/image/ImageObserver;)I {
+  +START:   #1
+        return vR0.bitmap.getWidth();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight(Ljava/awt/image/ImageObserver;)I {
+  +START:   #1
+        return vR0.bitmap.getHeight();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method getSource()Ljava/awt/image/ImageProducer; {
+  -START:   #1
+        throw new java/lang/Error("not implemented!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSource
+ 
+ method getGraphics()Ljava/awt/Graphics; {
+  -START:   #1
+        throw new java/lang/Error("not implemented!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphics
+ 
+ method getProperty(Ljava/lang/String;Ljava/awt/image/ImageObserver;)Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/Error("not implemented!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getProperty
+ 
+ method flush()V {
+  -START:   #1
+        throw new java/lang/Error("not implemented!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flush
+}

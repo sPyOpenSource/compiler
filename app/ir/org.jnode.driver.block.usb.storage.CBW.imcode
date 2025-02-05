@@ -1,0 +1,96 @@
+class org/jnode/driver/block/usb/storage/CBW {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(31);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setSignature(I)V {
+  +START:   #1
+        vR0.setInt@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setSignature
+ 
+ method setTag(I)V {
+  +START:   #1
+        vR0.setInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTag
+ 
+ method setDataTransferLength(I)V {
+  +START:   #1
+        vR0.setInt@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDataTransferLength
+ 
+ method setFlags(B)V {
+  +START:   #1
+        vR0.setByte@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFlags
+ 
+ method setLun(B)V {
+  +START:   #1
+        vR0.setByte@this(13,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLun
+ 
+ method setLength(B)V {
+  +START:   #1
+        vR0.setByte@this(14,(vi1 & 7));   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setLength
+ 
+ method setCdb(Ljx/zero/Memory;)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR1.size() goto B33;   
+  +B12:   #1
+        vR0.setByte@this((vi2+15),vR1.get8(vi2));   [i  ib biR] 
+        vi2++;   
+        goto +B2;   [i  ib ...]
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 1 any 2 found 1 setCdb
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR1.append("--- CBW ---").append("
+");   [R R ii. RR.] [R R iiR RRR] 
+        vR1.append("Signature : 0x").append(hex@special(vR0.getInt@this(0),8)).append("
+");   [R R iii.iii. RR..] [R R iiiRiii. RRR.] [R R iiiRiiiR RRRR] 
+        vR1.append("Tag       : 0x").append(hex@special(vR0.getInt@this(4),8)).append("
+");   [R R iiiiiii.iii. RR..] [R R iiiiiiiRiii. RRR.] [R R iiiiiiiRiiiR RRRR] 
+        vR1.append("DTL       : 0x").append(hex@special(vR0.getInt@this(8),8)).append("
+");   [R R iiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Flag      : 0x").append(hex@special(vR0.getByte@this(12),2)).append("
+");   [R R iiiiiiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Lun       : 0x").append(hex@special(vR0.getByte@this(13),2)).append("
+");   [R R iiiiiiiiiiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Length    : 0x").append(hex@special(vR0.getByte@this(14),2)).append("
+");   [R R iiiiiiiiiiiiiiiiiiiiiii.iii. RR..] [R R iiiiiiiiiiiiiiiiiiiiiiiRiii. RRR.] [R R iiiiiiiiiiiiiiiiiiiiiiiRiiiR RRRR] 
+        vR1.append("Packet    : ").append(vR0.toString@special());   [R R iiiiiiiiiiiiiiiiiiiiiiiiiiii. RR..] [R R iiiiiiiiiiiiiiiiiiiiiiiiiiiiR RRR.] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 43 swaps 22 any 0 found 0 toString
+}

@@ -1,0 +1,70 @@
+class org/jnode/fs/ntfs/DirectoryEntryIterator {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSFileSystem;Lorg/jnode/fs/ntfs/index/NTFSIndex;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.fs = vR1;   
+        vR0.indexIterator = vR2.iterator@extra();   
+        vR0.readNextEntry@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasNext()Z {
+  +START:   #1
+        if vR0.nextEntry==null goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 hasNext
+ 
+ method next()Ljx/fs/Node; {
+  +START:   #1
+        vR1 = vR0.nextEntry;    
+        vR0.readNextEntry@special();   [R   R] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 next
+ 
+ method remove()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method readNextEntry()V {
+  +START:   #2
+        if vR0.indexIterator.hasNext()!=0 goto B18;   
+  +B12:   #1
+        vR0.nextEntry = 0;   
+        return;   
+  +B18:   #1
+        vR1 = (org/jnode/fs/ntfs/index/IndexEntry)(vR0.indexIterator.next());    
+        vR2 = new org/jnode/fs/ntfs/FileNameAttribute$Structure(vR1,16);    [ RR . i.][ RR . iiRR]
+        if vR2.getNameSpace()==2 goto B67;   
+  +B50:   #1
+        b1 = new org/jnode/fs/ntfs/NTFSEntry(vR0.fs,vR1);    [ RR . i...][ RR . iRRR]
+        vR0.nextEntry = b1;   
+        return;   
+  +B67:   #1
+        goto +START;   [RR RR . ....]
+  +END:   #1
+ }
+// Register: rd 12/12 wr 6 swaps 0 any 0 found 0 readNextEntry
+ 
+ method next()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.next@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 next
+}

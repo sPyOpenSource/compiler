@@ -1,0 +1,347 @@
+class jx/wm/WSprite {
+ 
+ method <init>(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelPoint;Ljx/devices/fb/PixelPoint;Ljx/wm/WBitmap;Ljx/wm/WBitmap;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.m_cPrev = 0;   
+        vR0.m_cNext = 0;   
+        b1 = new jx/devices/fb/DrawingMode();    [ RR  i][ RR  iR]
+        vR0.m_nMode = b1;   
+        vR0.m_cImage = vR5;   
+        vR0.m_cTarget = vR4;   
+        vR0.m_nMode = OVER;   
+        if vR5==null goto B74;   
+  +B49:   #1
+        vR0.m_cBackground = createWBitmap@special(vR5.getWidth(),vR5.getHeight(),vR4.getColorSpace());   
+        goto +B79;   [ RR iii ...]
+  +B74:   #1
+        vR0.m_cBackground = 0;   
+  +B79:   #1
+        b1 = new jx/devices/fb/PixelPoint(vR2);    [ RR ... i..][ RR ... iRR]
+        vR0.m_cPosition = b1;   
+        b1 = new jx/devices/fb/PixelPoint(vR3);    [ RR ... i..][ RR ... iRR]
+        vR0.m_cHotSpot = b1;   
+        vR0.m_bVisible = 1;   
+        if vR5==null goto B143;   
+  +B113:   #1
+        b1 = new jx/devices/fb/PixelRect(0,0,(vR5.getWidth()-1),(vR5.getHeight()-1));    [ RR ... i..][ RR ... iiiiiR]
+        vR0.m_cBounds = b1;   
+        goto +B155;   [ RR ... ......]
+  +B143:   #1
+        b1 = new jx/devices/fb/PixelRect(vR1);    [ RR ... i.....][ RR ... iRR...]
+        vR0.m_cBounds = b1;   
+  +B155:   #1
+        vR7 = new jx/devices/fb/PixelPoint();    [ RR ... i.....][ RR ... iR....]
+        vR6 = s_cTail;    
+  +B169:   #1
+        if vR6==null goto B243;   
+  +B174:   #1
+        if vR6.m_cImage==null goto B233;   
+  +B182:   #1
+        vR7.setTo((vR6.m_cPosition.m_nX-vR6.m_cHotSpot.m_nX),(vR6.m_cPosition.m_nY-vR6.m_cHotSpot.m_nY));   [RR RR ii. iiR...] 
+        vR6.erase(vR6.m_cTarget,vR7);   [RR RR iii RRR...] 
+  +B233:   #1
+        vR6 = vR6.m_cPrev;    
+        goto +B169;   [RR RR ... ......]
+  +B243:   #1
+        vR7.setTo((vR0.m_cPosition.m_nX-vR0.m_cHotSpot.m_nX),(vR0.m_cPosition.m_nY-vR0.m_cHotSpot.m_nY));   [RR RR ii. iiR...] 
+        vR0.capture@this(vR0.m_cTarget,vR7);   [RR RR iii RRR...] 
+        vR0.draw@this(vR0.m_cTarget,vR7);   [RR RR iiii RRR...] 
+        vR6 = s_cHead;    
+  +B303:   #1
+        if vR6==null goto B389;   
+  +B308:   #1
+        if vR6.m_cImage==null goto B379;   
+  +B316:   #1
+        vR7.setTo((vR6.m_cPosition.m_nX-vR6.m_cHotSpot.m_nX),(vR6.m_cPosition.m_nY-vR6.m_cHotSpot.m_nY));   [RR RR ii.. iiR...] 
+        vR6.capture(vR6.m_cTarget,vR7);   [RR RR iii. RRR...] 
+        vR6.draw(vR6.m_cTarget,vR7);   [RR RR iiii RRR...] 
+  +B379:   #1
+        vR6 = vR6.m_cNext;    
+        goto +B303;   [RR RR .... ......]
+  +B389:   #1
+        b1 = s_cHead;    
+        b0 = b1;    
+        vR0.m_cNext = b1;   
+        if b0==null goto B407;   
+  +B400:   #1
+        s_cHead.m_cPrev = vR0;   
+  +B407:   #1
+        vR0.m_cPrev = 0;   
+        s_cHead = vR0;   
+        if s_cTail!=null goto B426;   
+  +B422:   #1
+        s_cTail = vR0;   
+  +B426:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 79/79 wr 32 swaps 9 any 6 found 3 <init>
+ 
+ method colorSpaceChanged()V {
+  +START:   #1
+        vR0 = s_cHead;    
+  +B4:   #1
+        if vR0==null goto B51;   
+  +B8:   #1
+        if vR0.m_cImage==null goto B43;   
+  +B15:   #1
+        vR0.m_cBackground = createWBitmap@special(vR0.m_cImage.getWidth(),vR0.m_cImage.getHeight(),vR0.m_cTarget.getColorSpace());   
+  +B43:   #1
+        vR0 = vR0.m_cNext;    
+        goto +B4;   [R  ... ...]
+  +B51:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 1 any 1 found 0 colorSpaceChanged
+ 
+ method hide(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vi1 = 0;    
+        vR3 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        s_nHideCount = (s_nHideCount+1);   
+        vR2 = s_cHead;    
+  +B22:   #1
+        if vR2==null goto B151;   
+  +B26:   #1
+        vR3.setTo@extra(vR2.m_cBounds);   [iRR R i RR] 
+        vR3.m_nX0 = (vR3.m_nX0+(vR2.m_cPosition.m_nX-vR2.m_cHotSpot.m_nX));   
+        vR3.m_nY0 = (vR3.m_nY0+(vR2.m_cPosition.m_nY-vR2.m_cHotSpot.m_nY));   
+        vR3.m_nX1 = (vR3.m_nX1+(vR2.m_cPosition.m_nX-vR2.m_cHotSpot.m_nX));   
+        vR3.m_nY1 = (vR3.m_nY1+(vR2.m_cPosition.m_nY-vR2.m_cHotSpot.m_nY));   
+        if vR0.intersects@extra(vR3)==0 goto B143;   
+  +B138:   #1
+        vi1 = 1;    
+        goto +B151;   [iRR R . ..]
+  +B143:   #1
+        vR2 = vR2.m_cNext;    
+        goto +B22;   [iRR R . ..]
+  +B151:   #2
+        if vi1!=1 goto B183;   
+  +B156:   #1
+        vR2 = s_cHead;    
+  +B160:   #1
+        if vR2==null goto B183;   
+  +B164:   #1
+        if vR2.m_bVisible==0 goto B175;   
+  +B171:   #1
+        vR2.erase();   [iRR R . R.] 
+  +B175:   #1
+        vR2 = vR2.m_cNext;    
+        goto +B160;   [iRR R . ..]
+  +B183:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 8 swaps 1 any 3 found 0 hide
+ 
+ method hide()V {
+  +START:   #1
+        s_nHideCount = (s_nHideCount+1);   
+        vR0 = s_cHead;    
+  +B12:   #1
+        if vR0==null goto B35;   
+  +B16:   #1
+        if vR0.m_bVisible==0 goto B27;   
+  +B23:   #1
+        vR0.erase@this();   [R  . R] 
+  +B27:   #1
+        vR0 = vR0.m_cNext;    
+        goto +B12;   [R  . .]
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 hide
+ 
+ method unhide()V {
+  +START:   #1
+        b0 = s_nHideCount;    
+        s_nHideCount = (b0-1);   
+        if b0==1 goto B14;   
+  +B13:   #1
+        return;   
+  +B14:   #1
+        vR0 = s_cHead;    
+  +B18:   #1
+        if vR0==null goto B41;   
+  +B22:   #1
+        if vR0.m_bVisible!=0 goto B33;   
+  +B29:   #1
+        vR0.draw@this();   [R i . R] 
+  +B33:   #1
+        vR0 = vR0.m_cNext;    
+        goto +B18;   [R i . .]
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 2 found 0 unhide
+ 
+ method draw()V {
+  +START:   #1
+        if vR0.m_bVisible==0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.m_bVisible = 1;   
+        vR1 = new jx/devices/fb/PixelRect(0,0,(vR0.m_cTarget.getWidth()-1),(vR0.m_cTarget.getHeight()-1));    [ R  i][ R . iiiiiR]
+        if vR0.m_cImage==null goto B197;   
+  +B48:   #1
+        vR2 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R . i.....][ R . iRR...]
+        vR2.m_nX0 = (vR2.m_nX0+(vR0.m_cPosition.m_nX-vR0.m_cHotSpot.m_nX));   
+        vR2.m_nY0 = (vR2.m_nY0+(vR0.m_cPosition.m_nY-vR0.m_cHotSpot.m_nY));   
+        vR2.m_nX1 = (vR2.m_nX1+(vR0.m_cPosition.m_nX-vR0.m_cHotSpot.m_nX));   
+        vR2.m_nY1 = (vR2.m_nY1+(vR0.m_cPosition.m_nY-vR0.m_cHotSpot.m_nY));   
+        vR0.m_cBackground.drawBitmap(vR0.m_cTarget,vR0.m_cBounds,vR2,vR0.m_cBounds);   [RR R iRR RRRRR.] 
+        vR0.m_cTarget.drawBitmap(vR0.m_cImage,vR2,vR0.m_cBounds,vR1,vR0.m_nMode);   [RR R iRRiRR RRRRRR] 
+  +B197:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 10 swaps 2 any 0 found 0 draw
+ 
+ method erase()V {
+  +START:   #1
+        if vR0.m_bVisible!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR1 = new jx/devices/fb/PixelRect(0,0,(vR0.m_cTarget.getWidth()-1),(vR0.m_cTarget.getHeight()-1));    [ R  i][ R . iiiiiR]
+        if vR0.m_cImage==null goto B168;   
+  +B43:   #1
+        vR2 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R . i.....][ R . iRR...]
+        vR2.m_nX0 = (vR2.m_nX0+(vR0.m_cPosition.m_nX-vR0.m_cHotSpot.m_nX));   
+        vR2.m_nY0 = (vR2.m_nY0+(vR0.m_cPosition.m_nY-vR0.m_cHotSpot.m_nY));   
+        vR2.m_nX1 = (vR2.m_nX1+(vR0.m_cPosition.m_nX-vR0.m_cHotSpot.m_nX));   
+        vR2.m_nY1 = (vR2.m_nY1+(vR0.m_cPosition.m_nY-vR0.m_cHotSpot.m_nY));   
+        vR0.m_cTarget.drawBitmap(vR0.m_cBackground,vR2,vR0.m_cBounds,vR1);   [RR R iR RRRRR.] 
+  +B168:   #1
+        vR0.m_bVisible = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 1 any 0 found 0 erase
+ 
+ method draw(Ljx/wm/WBitmap;Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelRect(0,0,(vR1.getWidth()-1),(vR1.getHeight()-1));    [ R  i][ R . iiiiiR]
+        if vR0.m_cImage==null goto B67;   
+  +B29:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R . i.....][ R . iRR...]
+        vR4.add@extra(vR2);   [RR R . RR....] 
+        vR1.drawBitmap(vR0.m_cImage,vR4,vR0.m_cBounds,vR3,vR0.m_nMode);   [RR R iRR RRRRRR] 
+  +B67:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 1 any 0 found 0 draw
+ 
+ method capture(Ljx/wm/WBitmap;Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        if vR0.m_cImage==null goto B41;   
+  +B7:   #1
+        vR3 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R  i][ R . iRR]
+        vR3.add@extra(vR2);   [R R . RR.] 
+        vR0.m_cBackground.drawBitmap(vR1,vR0.m_cBounds,vR3,vR0.m_cBounds);   [R R iR RRRRR] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 0 found 0 capture
+ 
+ method erase(Ljx/wm/WBitmap;Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelRect(0,0,(vR1.getWidth()-1),(vR1.getHeight()-1));    [ R  i][ R . iiiiiR]
+        if vR0.m_cImage==null goto B63;   
+  +B29:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R . i.....][ R . iRR...]
+        vR4.add@extra(vR2);   [RR R . RR....] 
+        vR1.drawBitmap(vR0.m_cBackground,vR4,vR0.m_cBounds,vR3);   [RR R iR RRRRR.] 
+  +B63:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 1 any 0 found 0 erase
+ 
+ method moveBy(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint();    [ R  i][ R  iR]
+        if s_nHideCount!=0 goto B55;   
+  +B14:   #1
+        vR2 = s_cTail;    
+  +B18:   #1
+        if vR2==null goto B55;   
+  +B22:   #1
+        vR3.setTo(vR2.m_cPosition);   [RR R i RR] 
+        vR3.sub(vR2.m_cHotSpot);   [RR R ii RR] 
+        vR2.erase(vR2.m_cTarget,vR3);   [RR R iii RRR] 
+        vR2 = vR2.m_cPrev;    
+        goto +B18;   [RR R iii ...]
+  +B55:   #2
+        vR2 = s_cHead;    
+  +B59:   #1
+        if vR2==null goto B119;   
+  +B63:   #1
+        vR2.m_cPosition.add(vR1);   [RR R ... RR.] 
+        if s_nHideCount!=0 goto B111;   
+  +B77:   #1
+        vR3.setTo(vR2.m_cPosition);   [RR R i.. RR.] 
+        vR3.sub(vR2.m_cHotSpot);   [RR R ii. RR.] 
+        vR2.capture(vR2.m_cTarget,vR3);   [RR R iii RRR] 
+        vR2.draw(vR2.m_cTarget,vR3);   [RR R iiii RRR] 
+  +B111:   #1
+        vR2 = vR2.m_cNext;    
+        goto +B59;   [RR R .... ...]
+  +B119:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 12 swaps 7 any 2 found 0 moveBy
+ 
+ method moveTo(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint();    [ R  i][ R  iR]
+        if s_nHideCount!=0 goto B55;   
+  +B14:   #1
+        vR2 = s_cTail;    
+  +B18:   #1
+        if vR2==null goto B55;   
+  +B22:   #1
+        vR3.setTo(vR2.m_cPosition);   [RR R i RR] 
+        vR3.sub(vR2.m_cHotSpot);   [RR R ii RR] 
+        vR2.erase(vR2.m_cTarget,vR3);   [RR R iii RRR] 
+        vR2 = vR2.m_cPrev;    
+        goto +B18;   [RR R iii ...]
+  +B55:   #2
+        vR2 = s_cHead;    
+  +B59:   #1
+        if vR2==null goto B119;   
+  +B63:   #1
+        vR2.m_cPosition.setTo(vR1);   [RR R ... RR.] 
+        if s_nHideCount!=0 goto B111;   
+  +B77:   #1
+        vR3.setTo(vR2.m_cPosition);   [RR R i.. RR.] 
+        vR3.sub(vR2.m_cHotSpot);   [RR R ii. RR.] 
+        vR2.capture(vR2.m_cTarget,vR3);   [RR R iii RRR] 
+        vR2.draw(vR2.m_cTarget,vR3);   [RR R iiii RRR] 
+  +B111:   #1
+        vR2 = vR2.m_cNext;    
+        goto +B59;   [RR R .... ...]
+  +B119:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 12 swaps 7 any 2 found 0 moveTo
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_cHead = 0;   
+        s_cTail = 0;   
+        s_nHideCount = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 <clinit>
+}

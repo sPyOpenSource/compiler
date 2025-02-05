@@ -1,0 +1,27 @@
+class java/awt/Container$GfxPrintVisitor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method visit(Ljava/awt/Component;Ljava/awt/Graphics;)V {
+  +START:   #1
+        vR1.print(vR2);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 visit
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/awt/Container$GfxPrintVisitor();    [ R  i][ R  iR]
+        INSTANCE = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

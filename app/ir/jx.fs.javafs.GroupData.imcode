@@ -1,0 +1,102 @@
+class jx/fs/javafs/GroupData {
+ 
+ method <init>(Ljx/fs/buffer/BufferHead;I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.init@this(vR1,vi2);   [   iRR] 
+        vR0.length = 32;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method bg_block_bitmap()I {
+  +START:   #1
+        return vR0.readInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_block_bitmap
+ 
+ method bg_block_bitmap(I)V {
+  +START:   #1
+        vR0.writeInt@this(0,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_block_bitmap
+ 
+ method bg_inode_bitmap()I {
+  +START:   #1
+        return vR0.readInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_inode_bitmap
+ 
+ method bg_inode_bitmap(I)V {
+  +START:   #1
+        vR0.writeInt@this(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_inode_bitmap
+ 
+ method bg_inode_table()I {
+  +START:   #1
+        return vR0.readInt@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_inode_table
+ 
+ method bg_inode_table(I)V {
+  +START:   #1
+        vR0.writeInt@this(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_inode_table
+ 
+ method bg_free_blocks_count()S {
+  +START:   #1
+        return vR0.readShort@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_free_blocks_count
+ 
+ method bg_free_blocks_count(S)V {
+  +START:   #1
+        vR0.writeShort@this(12,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_free_blocks_count
+ 
+ method bg_free_inodes_count()S {
+  +START:   #1
+        return vR0.readShort@this(14);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_free_inodes_count
+ 
+ method bg_free_inodes_count(S)V {
+  +START:   #1
+        vR0.writeShort@this(14,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_free_inodes_count
+ 
+ method bg_used_dirs_count()S {
+  +START:   #1
+        return vR0.readShort@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_used_dirs_count
+ 
+ method bg_used_dirs_count(S)V {
+  +START:   #1
+        vR0.writeShort@this(16,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bg_used_dirs_count
+}

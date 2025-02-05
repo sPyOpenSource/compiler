@@ -3,27 +3,27 @@ class jx/bio/buffercache/BufferCache {
  method <init>(Ljx/devices/bio/BlockIO;Ljx/zero/Clock;IIII)V {
   +START:   #1
         vR0.<init>@special();   [ RR  R] 
-        vR0.memMgr = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));   
+        vR0.memMgr = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
         vR0.idedevice = vR1;   
         vR0.clock = vR2;   
         vR0.bufferSize = vi6;   
-        vR0.cpuManager = (jx/zero/CPUManager)(lookup@special("CPUManager"));   
-        vR0.profiler = (jx/zero/Profiler)(lookup@special("Profiler"));   
-        b1 = new jx/bio/buffercache/BufferHashtable(20000);    [ RR RRR. i.][ RR RRR. iiR]
+        vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
+        vR0.profiler = (jx/zero/Profiler)(getInitialNaming@special().lookup("Profiler"));   
+        b1 = new jx/bio/buffercache/BufferHashtable(20000);    [ RR iii. i.][ RR iii. iiR]
         vR0.buffer_hashtable = b1;   
-        b1 = new jx/bio/buffercache/BufferFreeList();    [ RR RRR. i..][ RR RRR. iR.]
+        b1 = new jx/bio/buffercache/BufferFreeList();    [ RR iii. i..][ RR iii. iR.]
         vR0.free_list = b1;   
         vR0.maximalNumberOfBlocks = vi4;   
         vR0.initialNumberOfBlocks = vi3;   
         vR0.incrementNumberOfBlocks = vi5;   
-        if vi4>=vi3 goto B114;   
-  -B104:   #1
+        if vi4>=vi3 goto B129;   
+  -B119:   #1
         throw new java/lang/Error("maximalNumberOfBlocks < initialNumberOfBlocks");   
-  +B114:   #1
+  +B129:   #1
         return;   
   +END:   #1
  }
-// Register: rd 27/27 wr 10 swaps 0 any 1 found 0 <init>
+// Register: rd 27/27 wr 13 swaps 3 any 1 found 0 <init>
  
  method stopDemon()V {
   +START:   #1
@@ -50,7 +50,7 @@ class jx/bio/buffercache/BufferCache {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-40 - 61 handler 64 type 76
+40 - 61 handler 64 type 82
  }
 // Register: rd 10/10 wr 15 swaps 6 any 0 found 0 writeBlock
  
@@ -72,7 +72,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-44 - 69 handler 72 type 76
+44 - 69 handler 72 type 82
  }
 // Register: rd 10/10 wr 15 swaps 6 any 0 found 0 readBlock
  

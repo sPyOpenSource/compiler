@@ -1,0 +1,36 @@
+class java/awt/HeadlessException {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getMessage()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.getMessage@special();    [ R  R] 
+        vR2 = "";    
+        if vR1!=null goto B14;   
+  +B12:   #1
+        return vR2;   
+  +B14:   #1
+        if vR2!=null goto B20;   
+  +B18:   #1
+        return vR1;   
+  +B20:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR1).append@extra(vR2).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 0 any 2 found 0 getMessage
+}

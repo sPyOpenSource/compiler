@@ -1,0 +1,468 @@
+class java/awt/image/ComponentSampleModel {
+ 
+ method <init>(IIIII[I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,vi4,vi5,new int[vR6.length],vR6);   [  i RRiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(IIIII[I[I)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vi3,vR7.length);   [ R i iiiiR] 
+        vR0.tightPixelPacking = 0;   
+        if vi4< 0 goto B41;   
+  +B20:   #1
+        if vi5< 0 goto B41;   
+  +B25:   #1
+        if vR7.length<1 goto B41;   
+  +B32:   #1
+        if vR7.length==vR6.length goto B49;   
+  -B41:   #3
+        throw new java/lang/IllegalArgumentException();   
+  +B49:   #1
+        vR0.bandOffsets = vR7;   
+        vR0.bankIndices = vR6;   
+        vi8 = 0;    
+  +B64:   #1
+        if vi8>=vR6.length goto B96;   
+  +B72:   #1
+        vR0.numBanks = max@special(vR0.numBanks,(vR6[vi8]+1));   
+        vi8++;   
+        goto +B64;   [i R ii .....]
+  +B96:   #1
+        vR0.scanlineStride = vi5;   
+        vR0.pixelStride = vi4;   
+        if vi4!=vR0.numBands goto B166;   
+  +B117:   #1
+        vR0.tightPixelPacking = 1;   
+        vi8 = 0;    
+  +B125:   #1
+        if vi8>=vR0.numBands goto B166;   
+  +B134:   #1
+        if vR7[vi8]!=vi8 goto B152;   
+  +B144:   #1
+        if vR6[vi8]==0 goto B160;   
+  +B152:   #1
+        vR0.tightPixelPacking = 0;   
+        goto +B166;   forward return[i R .. .....]
+  +B160:   #1
+        vi8++;   
+        goto +B125;   [i R .. .....]
+  +B166:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 7 swaps 1 any 7 found 0 <init>
+ 
+ method createCompatibleSampleModel(II)Ljava/awt/image/SampleModel; {
+  +START:   #1
+        return new java/awt/image/ComponentSampleModel(vR0.dataType,vi1,vi2,vR0.pixelStride,vR0.scanlineStride,vR0.bankIndices,vR0.bandOffsets);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 0 createCompatibleSampleModel
+ 
+ method createSubsetSampleModel([I)Ljava/awt/image/SampleModel; {
+  +START:   #1
+        vi2 = vR1.length;    
+        vR3 = new int[vi2];    
+        vR4 = new int[vi2];    
+        vi5 = 0;    
+  +B15:   #1
+        if vi5>=vi2 goto B54;   
+  +B21:   #1
+        vR3[vi5] = vR0.bankIndices[vR1[vi5]];   
+        vR4[vi5] = vR0.bandOffsets[vR1[vi5]];   
+        vi5++;   
+        goto +B15;   [iRRi R  ..]
+  +B54:   #1
+        return new java/awt/image/ComponentSampleModel(vR0.dataType,vR0.width,vR0.height,vR0.pixelStride,vR0.scanlineStride,vR3,vR4);   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 6 swaps 0 any 2 found 0 createSubsetSampleModel
+ 
+ method createDataBuffer()Ljava/awt/image/DataBuffer; {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=vR0.numBands goto B29;   
+  +B12:   #1
+        vi1 = max@special(vi1,vR0.bandOffsets[vi2]);    [ii  i ii]
+        vi2++;   
+        goto +B4;   [ii  i ..]
+  +B29:   #1
+        vi2 = ((((vR0.pixelStride*(vR0.width-1))+(vR0.scanlineStride*(vR0.height-1)))+vi1)+1);    
+        return createBuffer@special(vR0.getDataType@this(),vi2,vR0.numBanks);   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 0 any 2 found 0 createDataBuffer
+ 
+ method getOffset(II)I {
+  +START:   #1
+        return vR0.getOffset@this(vi1,vi2,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getOffset(III)I {
+  +START:   #1
+        return ((vR0.bandOffsets[vi3]+(vR0.pixelStride*vi1))+(vR0.scanlineStride*vi2));   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getSampleSize()[I {
+  +START:   #1
+        vi1 = getDataTypeSize@special(vR0.getDataType@this());    [  i i]
+        vR2 = new int[vR0.numBands];    
+        fill@special(vR2,vi1);   [iR  i iR]
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 getSampleSize
+ 
+ method getSampleSize(I)I {
+  +START:   #1
+        return getDataTypeSize@special(vR0.getDataType@this());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSampleSize
+ 
+ method getBankIndices()[I {
+  +START:   #1
+        return vR0.bankIndices;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBankIndices
+ 
+ method getBandOffsets()[I {
+  +START:   #1
+        return vR0.bandOffsets;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBandOffsets
+ 
+ method getScanlineStride()I {
+  +START:   #1
+        return vR0.scanlineStride;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScanlineStride
+ 
+ method getPixelStride()I {
+  +START:   #1
+        return vR0.pixelStride;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPixelStride
+ 
+ method getNumDataElements()I {
+  +START:   #1
+        return vR0.numBands;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumDataElements
+ 
+ method getDataElements(IILjava/lang/Object;Ljava/awt/image/DataBuffer;)Ljava/lang/Object; {
+  +START:   #1
+        vi5 = ((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2));    
+        vR6 = new int[vR0.numBands];    
+        vR7 = vR4.getOffsets();    [iR RRR  R.] 
+        vi8 = 0;    
+  +B33:   #1
+        if vi8>=vR0.numBands goto B74;   
+  +B42:   #1
+        vR6[vi8] = ((vR0.bandOffsets[vi8]+vR7[vR0.bankIndices[vi8]])+vi5);   
+        vi8++;   
+        goto +B33;   [iRRi RRR  ..]
+  +B74:   #1
+        tswitch (vR0.getTransferType@this()) B108 B182 B330 B256 : B330;   
+  +B108:   #1
+        vR8 = (java/awt/image/DataBufferByte)(vR4);    
+        vR9 = ([B)(vR3);    
+        if vR9!=null goto B134;   
+  +B126:   #1
+        vR9 = new byte[vR0.numBands];    
+  +B134:   #1
+        vi10 = 0;    
+  +B137:   #1
+        if vi10>=vR0.numBands goto B179;   
+  +B146:   #1
+        vi11 = vR6[vi10];    
+        vR9[vi10] = vR8.getData(vR0.bankIndices[vi10])[vi11];   
+        vi10++;   
+        goto +B137;   [iRRRRii RRR i ..]
+  +B179:   #1
+        return vR9;   
+  +B182:   #1
+        vR10 = (java/awt/image/DataBufferUShort)(vR4);    
+        vR11 = ([S)(vR3);    
+        if vR11!=null goto B208;   
+  +B200:   #1
+        vR11 = new short[vR0.numBands];    
+  +B208:   #1
+        vi12 = 0;    
+  +B211:   #1
+        if vi12>=vR0.numBands goto B253;   
+  +B220:   #1
+        vi13 = vR6[vi12];    
+        vR11[vi12] = vR10.getData(vR0.bankIndices[vi12])[vi13];   
+        vi12++;   
+        goto +B211;   [iRRRRRRii RRR i ..]
+  +B253:   #1
+        return vR11;   
+  +B256:   #1
+        vR12 = (java/awt/image/DataBufferInt)(vR4);    
+        vR13 = ([I)(vR3);    
+        if vR13!=null goto B282;   
+  +B274:   #1
+        vR13 = new int[vR0.numBands];    
+  +B282:   #1
+        vi14 = 0;    
+  +B285:   #1
+        if vi14>=vR0.numBands goto B327;   
+  +B294:   #1
+        vi15 = vR6[vi14];    
+        vR13[vi14] = vR12.getData(vR0.bankIndices[vi14])[vi15];   
+        vi14++;   
+        goto +B285;   [iRRRRRRRRii RRR i ..]
+  +B327:   #1
+        return vR13;   
+  -B330:   #3
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i.][ RRR . iR]
+        b1.<init>@special(b2.append@extra("unknown transfer type ").append@extra(vR0.getTransferType@this()).toString@extra());   [iRRi RRR iii. RR.] 
+        throw b0;   
+  -H360<caught exception>:   #2 reference
+        vR8 = <caught exception>;    
+        b0 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
+        vR9 = b0.append@extra("While reading data elements, x=").append@extra(vi1).append@extra(", y=").append@extra(vi2).append@extra(", , xyOffset=").append@extra(vi5).append@extra(", data.getSize()=").append@extra(vR4.getSize()).append@extra(": ").append@extra(vR8).toString@extra();    [iRRRRRRRRii RRR i...iiii..i..... R..........] [iRRRRRRRRii RRR iR..iiii..i..... RR.........] [iRRRRRRRRii RRR iRR.iiii..i..... RRR........] [iRRRRRRRRii RRR iRRRiiii..i..... RRiR.......] [iRRRRRRRRii RRR iRRRiiiii.i..... RRiRR......] [iRRRRRRRRii RRR iRRRiiiiiii..... RRiRiR.....] [iRRRRRRRRii RRR iRRRiiiiiiiR.... RRiRiRR....] [iRRRRRRRRii RRR iRRRiiiiiiiRR... RRiRiRiR...] [iRRRRRRRRii RRR iRRRiiiiiiiRRR.. RRiRiRiRR..] [iRRRRRRRRii RRR iRRRiiiiiiiRRRR. RRiRiRiRiR.] [iRRRRRRRRii RRR iRRRiiiiiiiRRRRR RRiRiRiRiRR] 
+        throw new java/lang/ArrayIndexOutOfBoundsException(vR9);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+74 - 181 handler 360 type 131
+182 - 255 handler 360 type 131
+256 - 329 handler 360 type 131
+330 - 360 handler 360 type 131
+ }
+// Register: rd 81/81 wr 54 swaps 14 any 18 found 6 getDataElements
+ 
+ method getDataElements(IIIILjava/lang/Object;Ljava/awt/image/DataBuffer;)Ljava/lang/Object; {
+  +START:   #1
+        if vR0.tightPixelPacking!=0 goto B21;   
+  +B7:   #1
+        return vR0.getDataElements@special(vi1,vi2,vi3,vi4,vR5,vR6);   
+  +B21:   #1
+        vi7 = (vi3*vR0.numBands);    
+        vi8 = (vi7*vi4);    
+        vR9 = createBuffer@special(vR0.getTransferType@this(),vR5,vi8);    [ii  i iRi....]
+        vR5 = getData@special(vR9);    [iiR  i R......]
+        vi10 = (((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2))+vR6.getOffset());    
+        if vR0.scanlineStride!=vi7 goto B96;   
+  +B86:   #1
+        vi7 = (vi7*vi4);    
+        vi4 = 1;    
+  +B96:   #1
+        vi11 = 0;    
+        vR12 = getData@special(vR6);    [iiRii  .. R......]
+        vi13 = 0;    
+  +B109:   #1
+        if vi13>=vi4 goto B151;   
+  +B116:   #1
+        arraycopy@special(vR12,vi10,vR5,vi11,vi7);   [iiRiiRi  .. iiRiR..]
+        vi10 = (vi10+vR0.scanlineStride);    
+        vi11 = (vi11+vi7);    
+        vi13++;   
+        goto +B109;   [iiRiiRi  .. .......]
+  +B151:   #1
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 14 swaps 0 any 7 found 0 getDataElements
+ 
+ method setDataElements(IIIILjava/lang/Object;Ljava/awt/image/DataBuffer;)V {
+  +START:   #1
+        if vR0.tightPixelPacking!=0 goto B21;   
+  +B7:   #1
+        vR0.setDataElements@special(vi1,vi2,vi3,vi4,vR5,vR6);   [ ?i  RRiiiiR] 
+        return;   
+  +B21:   #1
+        vi7 = (vi3*vR0.numBands);    
+        vi8 = (vi7*vi4);    
+        vR9 = createBufferFromData@special(vR0.getTransferType@this(),vR5,vi8);    [ii ?i i iRi....]
+        vR10 = vR6.getOffsets();    [iiR ?i i R......] 
+        vi11 = (((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2))+vR10[0]);    
+        if vR0.scanlineStride!=vi7 goto B100;   
+  +B85:   #1
+        b1 = (vi7*vi4);    
+        vi7 = b1;    
+        vR0.scanlineStride = b1;   
+        vi4 = 1;    
+  +B100:   #1
+        vi12 = 0;    
+        vR13 = getData@special(vR6);    [iiRRii ?i . R......]
+        vi14 = 0;    
+  +B113:   #1
+        if vi14>=vi4 goto B155;   
+  +B120:   #1
+        arraycopy@special(vR5,vi12,vR13,vi11,vi7);   [iiRRiiRi ?i . iiRiR..]
+        vi11 = (vi11+vR0.scanlineStride);    
+        vi12 = (vi12+vi7);    
+        vi14++;   
+        goto +B113;   [iiRRiiRi ?i . .......]
+  +B155:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 14 swaps 0 any 8 found 0 setDataElements
+ 
+ method getPixel(II[ILjava/awt/image/DataBuffer;)[I {
+  +START:   #1
+        vi5 = ((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2));    
+        if vR3!=null goto B26;   
+  +B19:   #1
+        vR3 = new int[vR0.numBands];    
+  +B26:   #1
+        vi6 = 0;    
+  +B29:   #1
+        if vi6>=vR0.numBands goto B70;   
+  +B38:   #1
+        vR3[vi6] = vR4.getElem(vR0.bankIndices[vi6],(vi5+vR0.bandOffsets[vi6]));   
+        vi6++;   
+        goto +B29;   [ii  ii ...]
+  +B70:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 6 swaps 1 any 3 found 0 getPixel
+ 
+ method getPixels(IIII[ILjava/awt/image/DataBuffer;)[I {
+  +START:   #1
+        vi7 = ((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2));    
+        if vR5!=null goto B33;   
+  +B20:   #1
+        vR5 = new int[((vR0.numBands*vi3)*vi4)];    
+  +B33:   #1
+        vi8 = 0;    
+        vi2 = 0;    
+  +B38:   #1
+        if vi2>=vi4 goto B133;   
+  +B44:   #1
+        vi9 = vi7;    
+        vi1 = 0;    
+  +B50:   #1
+        if vi1>=vi3 goto B118;   
+  +B55:   #1
+        vi10 = 0;    
+  +B58:   #1
+        if vi10>=vR0.numBands goto B103;   
+  +B67:   #1
+        b1 = vi8;    
+        vi8++;   
+        vR5[b1] = vR6.getElem(vR0.bankIndices[vi10],(vi9+vR0.bandOffsets[vi10]));   
+        vi10++;   
+        goto +B58;   [iiii ?i ii ...]
+  +B103:   #1
+        vi9 = (vi9+vR0.pixelStride);    
+        vi1++;   
+        goto +B50;   [iiii ?i .. ...]
+  +B118:   #1
+        vi7 = (vi7+vR0.scanlineStride);    
+        vi2++;   
+        goto +B38;   [iiii ?i .. ...]
+  +B133:   #1
+        return vR5;   
+  +END:   #1
+ }
+// Register: rd 33/33 wr 16 swaps 1 any 12 found 0 getPixels
+ 
+ method getSample(IIILjava/awt/image/DataBuffer;)I {
+  +START:   #1
+        return vR4.getElem(vR0.bankIndices[vi3],vR0.getOffset@this(vi1,vi2,vi3));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 0 found 0 getSample
+ 
+ method setDataElements(IILjava/lang/Object;Ljava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vi5 = ((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2));    
+        vR6 = new int[vR0.numBands];    
+        vR7 = vR4.getOffsets();    [iR R  R.] 
+        vi8 = 0;    
+  +B33:   #1
+        if vi8>=vR0.numBands goto B74;   
+  +B42:   #1
+        vR6[vi8] = ((vR0.bandOffsets[vi8]+vR7[vR0.bankIndices[vi8]])+vi5);   
+        vi8++;   
+        goto +B33;   [iRRi R  ..]
+  +B74:   #1
+        tswitch (vR0.getTransferType@this()) B108 B163 B273 B218 : B273;   
+  +B108:   #1
+        vR8 = (java/awt/image/DataBufferByte)(vR4);    
+        vR9 = ([B)(vR3);    
+        vi10 = 0;    
+  +B124:   #1
+        if vi10>=vR0.numBands goto B162;   
+  +B133:   #1
+        vR8.getData(vR0.bankIndices[vi10])[vR6[vi10]] = vR9[vi10];   
+        vi10++;   
+        goto +B124;   [iRRRRi R i. ..]
+  +B162:   #1
+        return;   
+  +B163:   #1
+        vR8 = (java/awt/image/DataBufferUShort)(vR4);    
+        vR9 = ([S)(vR3);    
+        vi10 = 0;    
+  +B179:   #1
+        if vi10>=vR0.numBands goto B217;   
+  +B188:   #1
+        vR8.getData(vR0.bankIndices[vi10])[vR6[vi10]] = vR9[vi10];   
+        vi10++;   
+        goto +B179;   [iRRRRi R i. ..]
+  +B217:   #1
+        return;   
+  +B218:   #1
+        vR8 = (java/awt/image/DataBufferInt)(vR4);    
+        vR9 = ([I)(vR3);    
+        vi10 = 0;    
+  +B234:   #1
+        if vi10>=vR0.numBands goto B272;   
+  +B243:   #1
+        vR8.getData(vR0.bankIndices[vi10])[vR6[vi10]] = vR9[vi10];   
+        vi10++;   
+        goto +B234;   [iRRRRi R i. ..]
+  +B272:   #1
+        return;   
+  -B273:   #2
+        throw new java/lang/UnsupportedOperationException("transfer type not implemented");   
+  +END:   #1
+ }
+// Register: rd 64/64 wr 24 swaps 3 any 14 found 6 setDataElements
+ 
+ method setPixel(II[ILjava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vi5 = ((vR0.pixelStride*vi1)+(vR0.scanlineStride*vi2));    
+        vi6 = 0;    
+  +B18:   #1
+        if vi6>=vR0.numBands goto B59;   
+  +B27:   #1
+        vR4.setElem(vR0.bankIndices[vi6],(vi5+vR0.bandOffsets[vi6]),vR3[vi6]);   [ii  iii iiiR] 
+        vi6++;   
+        goto +B18;   [ii  iii ....]
+  +B59:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 1 any 2 found 0 setPixel
+ 
+ method setSample(IIIILjava/awt/image/DataBuffer;)V {
+  +START:   #1
+        vR5.setElem(vR0.bankIndices[vi3],vR0.getOffset@this(vi1,vi2,vi3),vi4);   [  ii iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 0 found 0 setSample
+}

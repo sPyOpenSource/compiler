@@ -1,0 +1,155 @@
+class org/jnode/driver/bus/usb/SetupPacket {
+ 
+ method <init>(IIIII)V {
+  +START:   #1
+        vR0.<init>@special(8);   [   iR] 
+        vR0.setByte@this(0,vi1);   [   iiR] 
+        vR0.setByte@this(1,vi2);   [   iiR] 
+        vR0.setShort@this(2,vi3);   [   iiR] 
+        vR0.setShort@this(4,vi4);   [   iiR] 
+        vR0.setShort@this(6,vi5);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getRequestType()I {
+  +START:   #1
+        return vR0.getByte@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRequestType
+ 
+ method getRequest()I {
+  +START:   #1
+        return vR0.getByte@this(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRequest
+ 
+ method getValue()I {
+  +START:   #1
+        return vR0.getShort@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method getIndex()I {
+  +START:   #1
+        return vR0.getShort@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndex
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.getShort@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method isDirOut()Z {
+  +START:   #1
+        if (vR0.getRequestType@extra() & 128)!=0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDirOut
+ 
+ method isDirIn()Z {
+  +START:   #1
+        if (vR0.getRequestType@extra() & 128)!=128 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isDirIn
+ 
+ method createDeviceSetAddressPacket(I)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(0,5,vi0,0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 createDeviceSetAddressPacket
+ 
+ method createDeviceGetConfigurationPacket()Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(128,8,0,0,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createDeviceGetConfigurationPacket
+ 
+ method createDeviceSetConfigurationPacket(I)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(0,9,vi0,0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 createDeviceSetConfigurationPacket
+ 
+ method createInterfaceGetInterfacePacket(I)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(129,10,0,vi0,1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 createInterfaceGetInterfacePacket
+ 
+ method createInterfaceSetInterfacePacket(II)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(1,11,vi1,vi0,0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createInterfaceSetInterfacePacket
+ 
+ method createEndPointSyncFramePacket(I)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(130,12,0,vi0,2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 createEndPointSyncFramePacket
+ 
+ method createEndPointSetInterfacePacket(I)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket(1,11,vi0,0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 createEndPointSetInterfacePacket
+ 
+ method createGetDescriptorPacket(IIIII)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket((128 | vi0),6,((vi1 << 8) | vi2),vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 createGetDescriptorPacket
+ 
+ method createGetStatusPacket(II)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket((128 | vi0),0,0,vi1,2);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createGetStatusPacket
+ 
+ method createClearFeaturePacket(III)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket((0 | vi0),1,vi2,vi1,0);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 createClearFeaturePacket
+ 
+ method createSetFeaturePacket(III)Lorg/jnode/driver/bus/usb/SetupPacket; {
+  +START:   #1
+        return new org/jnode/driver/bus/usb/SetupPacket((0 | vi0),3,vi2,vi1,0);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 createSetFeaturePacket
+}

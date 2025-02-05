@@ -1,0 +1,551 @@
+class jx/awt/peer/JXTextComponentPeer {
+ 
+ method <init>(Ljx/awt/JXToolkit;Ljava/awt/TextComponent;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        vR0.newline = getProperty@special("line.separator");   
+        vR0.BORDER = 4;   
+        vR0.TEXTBORDER = 1;   
+        vR0.setText@this(vR2.getText());   [  Ri RR.] 
+        vR0.setCaretPosition@this(vR2.getCaretPosition());   [  Rii iR.] 
+        vR0.select@this(vR2.getSelectionStart(),vR2.getSelectionEnd());   [  Riiii iiR] 
+        vR0.setEditable@this(vR2.isEditable());   [  Riiiii bR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 7 swaps 4 any 0 found 0 <init>
+ 
+ method isFocusTraversable()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFocusTraversable
+ 
+ method initialTextSpace()Ljava/awt/Rectangle; {
+  +START:   #1
+        return new java/awt/Rectangle(0,0,(vR0.columnsToWidth@this(vR0.columns)+8),(vR0.rowsToHeight@this(vR0.rows)+8));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 0 found 0 initialTextSpace
+ 
+ method getLowerSelection()I {
+  +START:   #1
+        if vR0.selectionStart>=vR0.selectionEnd goto B18;   
+  +B11:   #1
+        b0 = vR0.selectionStart;    
+        goto +B22b0;   forward return[ i  ]
+  +B18:   #1
+        b0 = vR0.selectionEnd;    
+  +B22b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getLowerSelection
+ 
+ method getUpperSelection()I {
+  +START:   #1
+        if vR0.selectionStart<=vR0.selectionEnd goto B18;   
+  +B11:   #1
+        b0 = vR0.selectionStart;    
+        goto +B22b0;   forward return[ i  ]
+  +B18:   #1
+        b0 = vR0.selectionEnd;    
+  +B22b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getUpperSelection
+ 
+ method textWidth(Ljava/lang/String;)I {
+  +START:   #1
+        return vR0.columnsToWidth@this(vR1.length@extra());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 textWidth
+ 
+ method columnsToWidth(I)I {
+  +START:   #1
+        return (vi1*9);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 columnsToWidth
+ 
+ method rowsToHeight(I)I {
+  +START:   #1
+        return ((vi1*14)+((vi1-1)*1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 rowsToHeight
+ 
+ method heightToRows(I)I {
+  +START:   #1
+        return ((vi1+1)/15);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 heightToRows
+ 
+ method getTextPosition(II)I {
+  +START:   #1
+        vR3 = "";    
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = 0;    
+        vR7 = new java/util/StringTokenizer(vR0.text.toString(),vR0.newline);    [ R  i][ R . iRRR]
+  +B32:   #1
+        if vR7.hasMoreTokens()==0 goto B69;   
+  +B40:   #1
+        if vi5>vi2 goto B69;   
+  +B46:   #1
+        vR3 = vR7.nextToken();    [RiiiR R . R...] 
+        vi5+=15;   
+        vi6 = (vi6+(vR3.length@extra()+1));    
+        goto +B32;   [RiiiR R . ....]
+  +B69:   #2
+        vi6 = (vi6-(vR3.length@extra()+1));    
+  +B80:   #1
+        if vi4>vi1 goto B105;   
+  +B86:   #1
+        if vi4>vR0.textWidth@this(vR3) goto B105;   
+  +B96:   #1
+        vi4+=9;   
+        vi6++;   
+        goto +B80;   [RiiiR R . ....]
+  +B105:   #2
+        if vi4<=0 goto B113;   
+  +B110:   #1
+        vi6--;   
+  +B113:   #1
+        return vi6;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 13 swaps 0 any 10 found 3 getTextPosition
+ 
+ method intToChar(I)C {
+  +START:   #1
+        return (char)vi1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 intToChar
+ 
+ method getLineStart()I {
+  +START:   #1
+        vi1 = vR0.caretPosition;    
+  +B5:   #1
+        if vi1<=0 goto B38;   
+  +B9:   #1
+        if vR0.newline.equals@extra(valueOf@special(vR0.text.charAt((vi1-1))))!=0 goto B38;   
+  +B32:   #1
+        vi1--;   
+        goto +B5;   [i i ... ..]
+  +B38:   #2
+        if vi1< 0 goto B46;   
+  +B42:   #1
+        b0 = vi1;    
+        goto +B47b0;   forward return[i i ... ..]
+  +B46:   #1
+        b0 = 0;    
+  +B47b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 7 swaps 2 any 4 found 0 getLineStart
+ 
+ method getLineEnd()I {
+  +START:   #1
+        vi1 = vR0.caretPosition;    
+  +B5:   #1
+        if vi1>=vR0.text.length() goto B43;   
+  +B16:   #1
+        if vR0.newline.equals@extra(valueOf@special(vR0.text.charAt(vi1)))!=0 goto B43;   
+  +B37:   #1
+        vi1++;   
+        goto +B5;   [i i .. ..]
+  +B43:   #2
+        if vi1>=vR0.text.length() goto B58;   
+  +B54:   #1
+        b0 = vi1;    
+        goto +B65b0;   forward return[i i .. ..]
+  +B58:   #1
+        b0 = vR0.text.length();    [i i .. R.] 
+  +B65b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 1 any 4 found 2 getLineEnd
+ 
+ method getUpPosition(I)I {
+  +START:   #1
+        vi2 = vR0.caretPosition;    
+        vi3 = (vR0.caretPosition-vR0.getLineStart@this());    
+        vR0.caretPosition = vR0.getLineStart@this();   
+        vi4 = 0;    
+  +B26:   #1
+        if vi4>=vi1 goto B63;   
+  +B32:   #1
+        if vR0.caretPosition<=0 goto B49;   
+  +B39:   #1
+        vR0.caretPosition = (vR0.caretPosition-1);   
+  +B49:   #1
+        vR0.caretPosition = vR0.getLineStart@this();   
+        vi4++;   
+        goto +B26;   [iii  . .]
+  +B63:   #1
+        if vi3<=(vR0.getLineEnd@this()-vR0.getLineStart@this()) goto B86;   
+  +B76:   #1
+        vi3 = (vR0.getLineEnd@this()-vR0.getLineStart@this());    
+  +B86:   #1
+        vR0.caretPosition = (vR0.caretPosition+vi3);   
+        vi4 = vR0.caretPosition;    
+        vR0.caretPosition = vi2;   
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 9 swaps 0 any 3 found 1 getUpPosition
+ 
+ method getDownPosition(I)I {
+  +START:   #1
+        vi2 = vR0.caretPosition;    
+        vi3 = (vR0.caretPosition-vR0.getLineStart@this());    
+        vi4 = 0;    
+  +B18:   #1
+        if vi4>=vi1 goto B62;   
+  +B24:   #1
+        vR0.caretPosition = vR0.getLineEnd@this();   
+        if vR0.caretPosition>=vR0.text.length() goto B56;   
+  +B46:   #1
+        vR0.caretPosition = (vR0.caretPosition+1);   
+  +B56:   #1
+        vi4++;   
+        goto +B18;   [iii  . .]
+  +B62:   #1
+        if vi3<=(vR0.getLineEnd@this()-vR0.getLineStart@this()) goto B85;   
+  +B75:   #1
+        vi3 = (vR0.getLineEnd@this()-vR0.getLineStart@this());    
+  +B85:   #1
+        vR0.caretPosition = (vR0.caretPosition+vi3);   
+        vi4 = vR0.caretPosition;    
+        vR0.caretPosition = vi2;   
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 10 swaps 0 any 3 found 1 getDownPosition
+ 
+ method performTextEditing(IIZ)V {
+  +START:   #1
+        if vi1!=0 goto B5;   
+  +B4:   #1
+        return;   
+  +B5:   #1
+        vi4 = 1;    
+        vi5 = 1;    
+        lswitch (vi1) { 
+           1:B272
+           4:B297
+           8:B402
+           9:B120
+           10:B581
+           11:B322
+           12:B362
+           28:B174
+           29:B123
+           30:B212
+           31:B242
+           127:B493
+           ::B635
+        };   
+  +B120:   #1
+        goto +B638;   [ii ii  ]
+  +B123:   #1
+        b0 = vR0;    
+        if vR0.caretPosition>=vR0.text.length() goto B147;   
+  +B138b0:   #1 reference
+        b1 = (vR0.caretPosition+1);    
+        goto +B154b0b1;   [ii Ri . .]
+  +B147b0:   #1 reference
+        b1 = vR0.text.length();    [ii Ri . R] 
+  +B154b0b1:   #1 reference int
+        b0.caretPosition = b1;   
+        if shiftPressed@special(vi2)!=0 goto B168;   
+  +B164:   #1
+        b0 = 1;    
+        goto +B169b0;   [ii ii . .]
+  +B168:   #1
+        b0 = 0;    
+  +B169b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . .]
+  +B174:   #1
+        b0 = vR0;    
+        if vR0.caretPosition<=0 goto B191;   
+  +B182b0:   #1 reference
+        b1 = (vR0.caretPosition-1);    
+        goto +B192b0b1;   [ii Ri . .]
+  +B191b0:   #1 reference
+        b1 = 0;    
+  +B192b0b1:   #1 reference int
+        b0.caretPosition = b1;   
+        if shiftPressed@special(vi2)!=0 goto B206;   
+  +B202:   #1
+        b0 = 1;    
+        goto +B207b0;   [ii ii . .]
+  +B206:   #1
+        b0 = 0;    
+  +B207b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . .]
+  +B212:   #1
+        if vi3==0 goto B638;   
+  +B216:   #1
+        vR0.caretPosition = vR0.getUpPosition@this(1);   
+        if shiftPressed@special(vi2)!=0 goto B236;   
+  +B232:   #1
+        b0 = 1;    
+        goto +B237b0;   [ii ii . ..]
+  +B236:   #1
+        b0 = 0;    
+  +B237b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . ..]
+  +B242:   #1
+        if vi3==0 goto B638;   
+  +B246:   #1
+        vR0.caretPosition = vR0.getDownPosition@this(1);   
+        if shiftPressed@special(vi2)!=0 goto B266;   
+  +B262:   #1
+        b0 = 1;    
+        goto +B267b0;   [ii ii . ..]
+  +B266:   #1
+        b0 = 0;    
+  +B267b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . ..]
+  +B272:   #1
+        vR0.caretPosition = vR0.getLineStart@this();   
+        if shiftPressed@special(vi2)!=0 goto B291;   
+  +B287:   #1
+        b0 = 1;    
+        goto +B292b0;   [ii ii . ..]
+  +B291:   #1
+        b0 = 0;    
+  +B292b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . ..]
+  +B297:   #1
+        vR0.caretPosition = vR0.getLineEnd@this();   
+        if shiftPressed@special(vi2)!=0 goto B316;   
+  +B312:   #1
+        b0 = 1;    
+        goto +B317b0;   [ii ii . ..]
+  +B316:   #1
+        b0 = 0;    
+  +B317b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii . ..]
+  +B322:   #1
+        if vi3==0 goto B638;   
+  +B326:   #1
+        vR0.caretPosition = vR0.getUpPosition@this(vR0.heightToRows@this(vR0.textSpace.height));   
+        if shiftPressed@special(vi2)!=0 goto B356;   
+  +B352:   #1
+        b0 = 1;    
+        goto +B357b0;   [ii ii .. ..]
+  +B356:   #1
+        b0 = 0;    
+  +B357b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii .. ..]
+  +B362:   #1
+        if vi3==0 goto B638;   
+  +B366:   #1
+        vR0.caretPosition = vR0.getDownPosition@this(vR0.heightToRows@this(vR0.textSpace.height));   
+        if shiftPressed@special(vi2)!=0 goto B396;   
+  +B392:   #1
+        b0 = 1;    
+        goto +B397b0;   [ii ii .. ..]
+  +B396:   #1
+        b0 = 0;    
+  +B397b0:   #1 int
+        vi4 = b0;    
+        goto +B638;   [ii ii .. ..]
+  +B402:   #1
+        if vR0.editable==0 goto B638;   
+  +B409:   #1
+        if vR0.selectionStart==vR0.selectionEnd goto B447;   
+  +B420:   #1
+        vR0.text.delete(vR0.getLowerSelection@this(),vR0.getUpperSelection@this());   [ii ii ii iiR] 
+        vR0.caretPosition = vR0.getLowerSelection@this();   
+        goto +B482;   [ii ii ii ...]
+  +B447:   #1
+        if vR0.caretPosition<=0 goto B482;   
+  +B454:   #1
+        vR0.text.delete((vR0.caretPosition-1),vR0.caretPosition);   [ii ii ii iiR] 
+        vR0.caretPosition = (vR0.caretPosition-1);   
+  +B482:   #2
+        vR0.handleTextAltered@this();   [ii ii .. R..] 
+        vR0.sendTextEvent@this();   [ii ii .. R..] 
+        goto +B638;   [ii ii .. ...]
+  +B493:   #1
+        if vR0.editable==0 goto B638;   
+  +B500:   #1
+        if vR0.selectionStart==vR0.selectionEnd goto B538;   
+  +B511:   #1
+        vR0.text.delete(vR0.getLowerSelection@this(),vR0.getUpperSelection@this());   [ii ii ii iiR] 
+        vR0.caretPosition = vR0.getLowerSelection@this();   
+        goto +B570;   [ii ii ii ...]
+  +B538:   #1
+        if vR0.caretPosition>=vR0.text.length() goto B570;   
+  +B552:   #1
+        vR0.text.delete(vR0.caretPosition,(vR0.caretPosition+1));   [ii ii ii iiR] 
+  +B570:   #2
+        vR0.handleTextAltered@this();   [ii ii .. R..] 
+        vR0.sendTextEvent@this();   [ii ii .. R..] 
+        goto +B638;   [ii ii .. ...]
+  +B581:   #1
+        if vi3!=0 goto B635;   
+  +B585:   #1
+        if vR0.editable==0 goto B638;   
+  +B592:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/ActionEvent(vR0.parent,1001,vR0.text.toString(),0);    [ RR .. i..][ RR .. iiRiRR]
+        b0.postEvent(b1);   [ii RR .. RR....] 
+        goto +B638;   [ii RR .. ......]
+  +B635:   #2
+        vi5 = 0;    
+  +B638:   #19
+        if vi5!=0 goto B734;   
+  +B643:   #1
+        if vR0.caretPosition< 0 goto B664;   
+  +B650:   #1
+        if vR0.caretPosition<=vR0.text.length() goto B665;   
+  +B664:   #1
+        return;   
+  +B665:   #1
+        if vR0.editable==0 goto B734;   
+  +B672:   #1
+        if vR0.selectionStart==vR0.selectionEnd goto B699;   
+  +B683:   #1
+        vR0.text.delete(vR0.getLowerSelection@this(),vR0.getUpperSelection@this());   [ii RR ii iiR...] 
+  +B699:   #1
+        vR0.text.insert(vR0.caretPosition,vR0.intToChar@this(vi1));   [ii RR ic ciR...] 
+        vR0.caretPosition = (vR0.caretPosition+1);   
+        vR0.handleTextAltered@this();   [ii RR ic R.....] 
+        vR0.sendTextEvent@this();   [ii RR ic R.....] 
+  +B734:   #2
+        if vi4==0 goto B758;   
+  +B739:   #1
+        vR0.selectionStart = vR0.caretPosition;   
+        vR0.selectionEnd = vR0.caretPosition;   
+        goto +B766;   forward return[ii RR .. ......]
+  +B758:   #1
+        vR0.selectionEnd = vR0.caretPosition;   
+  +B766:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 114/114 wr 49 swaps 10 any 19 found 0 performTextEditing
+ 
+ method sendTextEvent()V {
+  +START:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/TextEvent(vR0.parent,900);    [ RR  i][ RR . iiRR]
+        b0.postEvent(b1);   [ RR . RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 sendTextEvent
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.text = 0;   
+        vR0.textSpace = 0;   
+        vR0.dispose@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method getSelectionEnd()I {
+  +START:   #1
+        return vR0.selectionEnd;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSelectionEnd
+ 
+ method getSelectionStart()I {
+  +START:   #1
+        return vR0.selectionStart;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSelectionStart
+ 
+ method select(II)V {
+  +START:   #1
+        vR0.selectionStart = vi1;   
+        vR0.selectionEnd = vi2;   
+        vR0.caretPosition = vi2;   
+        vR0.redraw@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 select
+ 
+ method getText()Ljava/lang/String; {
+  +START:   #1
+        return vR0.text.toString();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getText
+ 
+ method setText(Ljava/lang/String;)V {
+  +START:   #1
+        b1 = new java/lang/StringBuffer(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.text = b1;   
+        if vR0.caretPosition<=vR1.length@extra() goto B31;   
+  +B23:   #1
+        vR0.caretPosition = vR1.length@extra();   
+  +B31:   #1
+        vR0.handleTextAltered@this();   [ ?R . R..] 
+        vR0.redraw@this();   [ ?R . R..] 
+        vR0.sendTextEvent@this();   [ ?R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 3 swaps 0 any 0 found 0 setText
+ 
+ method setEditable(Z)V {
+  +START:   #1
+        vR0.editable = vi1;   
+        vR0.redraw@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setEditable
+ 
+ method getCaretPosition()I {
+  +START:   #1
+        return vR0.caretPosition;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCaretPosition
+ 
+ method setCaretPosition(I)V {
+  +START:   #1
+        vR0.caretPosition = vi1;   
+        vR0.redraw@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setCaretPosition
+ 
+ method paintCaret(Ljx/awt/JXGraphics;II)V {
+  +START:   #1
+        vR1.setColor(caretColor);   [  i RR] 
+        vR1.drawRect(vi2,vi3,1,14);   [  i iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 paintCaret
+}

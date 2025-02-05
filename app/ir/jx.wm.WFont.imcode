@@ -1,0 +1,125 @@
+class jx/wm/WFont {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nAscender = 9;   
+        vR0.m_nDescender = 4;   
+        vR0.m_nLineGap = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method ascender()I {
+  +START:   #1
+        return vR0.m_nAscender;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ascender
+ 
+ method descender()I {
+  +START:   #1
+        return vR0.m_nDescender;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 descender
+ 
+ method lineGap()I {
+  +START:   #1
+        return vR0.m_nLineGap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lineGap
+ 
+ method getFontHeight(Ljx/wm/WFontHeight;)V {
+  +START:   #1
+        vR1.nAscender = vR0.m_nAscender;   
+        vR1.nDescender = vR0.m_nDescender;   
+        vR1.nLineGap = vR0.m_nLineGap;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 getFontHeight
+ 
+ method getGlyph(I)Ljx/wm/Glyph; {
+  +START:   #1
+        vi1 = (vi1 & 2147483647);    
+        if vi1<s_acGlyphs.length goto B15;   
+  +B13:   #1
+        return 0;   
+  +B15:   #1
+        return s_acGlyphs[vi1];   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 1 getGlyph
+ 
+ method scanFonts()V {
+  +START:   #1
+        vR0 = getInitialNaming@special();    
+        out.println("WFont::scanFonts()");   [R RRR i. RR] 
+        vR1 = (jx/zero/BootFS)(vR0.lookup("BootFS"));    
+        if vR1!=null goto B37;   
+  +B28:   #1
+        out.println("WFont::scanFont() unable to find BootFS");   [RR RRR i.. RR] 
+        return;   
+  +B37:   #1
+        vR2 = vR1.getFile("default.fon");    [RR RRR i.. RR] 
+        if vR2!=null goto B59;   
+  +B50:   #1
+        out.println("WFont::scanFonts() unable to open 'default.fon'");   [RRR RRR i.. RR] 
+        return;   
+  +B59:   #1
+        vi3 = 0;    
+  +B61:   #1
+        if vi3>=256 goto B226;   
+  +B68:   #1
+        b0 = s_acGlyphs;    
+        b2 = new jx/wm/Glyph();    [ RRR ... i.][ RRR ... iR]
+        b0[vi3] = b2;   
+        b0 = s_acGlyphs[vi3];    
+        b1 = new jx/devices/fb/PixelRect(0,0,9,14);    [ RRR ... i.][ RRR ... iiiiiR]
+        b0.m_cBounds = b1;   
+        s_acGlyphs[vi3].m_nAdvance = 9;   
+        s_acGlyphs[vi3].m_nBytesPerLine = 9;   
+        b0 = s_acGlyphs[vi3];    
+        b0.m_anRaster = new byte[126];   
+        vi4 = 0;    
+  +B136:   #1
+        if vi4>=14 goto B220;   
+  +B143:   #1
+        vi5 = ((((vi3/16)*2016)+((vi3%16)*9))+((vi4*9)*16));    
+        vi6 = 0;    
+  +B173:   #1
+        if vi6>=9 goto B214;   
+  +B180:   #1
+        s_acGlyphs[vi3].m_anRaster[((vi4*9)+vi6)] = vR2.get8((vi5+vi6));   
+        vi6++;   
+        goto +B173;   [RRRiiii RRR i.. ......]
+  +B214:   #1
+        vi4++;   
+        goto +B136;   [RRRiiii RRR ... ......]
+  +B220:   #1
+        vi3++;   
+        goto +B61;   [RRRiiii RRR ... ......]
+  +B226:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 30 swaps 7 any 9 found 0 scanFonts
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return "WFont(default.fon)";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_acGlyphs = new jx/wm/Glyph()[256];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

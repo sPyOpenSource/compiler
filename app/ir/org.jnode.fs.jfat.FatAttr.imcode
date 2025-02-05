@@ -1,0 +1,187 @@
+class org/jnode/fs/jfat/FatAttr {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.attr = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.attr = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof org/jnode/fs/jfat/FatAttr)==0 goto B33;   
+  +B7:   #1
+        if ((org/jnode/fs/jfat/FatAttr)(vR1).getAttr() & 63)!=(vR0.attr & 63) goto B31;   
+  +B27:   #1
+        b0 = 1;    
+        goto +B32b0;   forward return[ i  ..]
+  +B31:   #1
+        b0 = 0;    
+  +B32b0:   #1 int
+        return b0;   
+  +B33:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 1 equals
+ 
+ method getAttr()I {
+  +START:   #1
+        return vR0.attr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAttr
+ 
+ method isAttr(I)Z {
+  +START:   #1
+        if (vR0.attr & vi1)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isAttr
+ 
+ method setAttr(IZ)V {
+  +START:   #1
+        if vi2==0 goto B17;   
+  +B4:   #1
+        vR0.attr = (vR0.attr | vi1);   
+        goto +B29;   forward return[   ]
+  +B17:   #1
+        vR0.attr = (vR0.attr & (vi1 ^ -1));   
+  +B29:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 1 found 0 setAttr
+ 
+ method isReadOnly()Z {
+  +START:   #1
+        return vR0.isAttr@special(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadOnly
+ 
+ method setReadOnly(Z)V {
+  +START:   #1
+        vR0.setAttr@special(1,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setReadOnly
+ 
+ method isHidden()Z {
+  +START:   #1
+        return vR0.isAttr@special(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isHidden
+ 
+ method setHidden(Z)V {
+  +START:   #1
+        vR0.setAttr@special(2,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setHidden
+ 
+ method isSystem()Z {
+  +START:   #1
+        return vR0.isAttr@special(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isSystem
+ 
+ method setSystem(Z)V {
+  +START:   #1
+        vR0.setAttr@special(4,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setSystem
+ 
+ method isLabel()Z {
+  +START:   #1
+        return vR0.isAttr@special(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isLabel
+ 
+ method setLabel(Z)V {
+  +START:   #1
+        vR0.setAttr@special(8,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setLabel
+ 
+ method isDirectory()Z {
+  +START:   #1
+        return vR0.isAttr@special(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirectory
+ 
+ method setDirectory(Z)V {
+  +START:   #1
+        vR0.setAttr@special(16,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDirectory
+ 
+ method isArchive()Z {
+  +START:   #1
+        return vR0.isAttr@special(32);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isArchive
+ 
+ method setArchive(Z)V {
+  +START:   #1
+        vR0.setAttr@special(32,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setArchive
+ 
+ method isLong()Z {
+  +START:   #1
+        if (vR0.attr & 63)!=15 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[ i  ]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLong
+ 
+ method setLong()V {
+  +START:   #1
+        vR0.setAttr@special(15,1);   [   iiR] 
+        vR0.setAttr@special(32,0);   [   iiR] 
+        vR0.setAttr@special(16,0);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setLong
+}

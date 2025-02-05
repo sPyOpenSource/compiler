@@ -1,0 +1,233 @@
+class org/jnode/driver/block/usb/storage/USBStorageDeviceData {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.device = vR1;   
+        vR0.usbInterface = vR0.device.getConfiguration@extra(0).getInterface@extra(0);   
+        vR2 = vR0.usbInterface.getDescriptor@extra();    [ RR . R..] 
+        vR0.maxLun = 0;   
+        vR0.protocol = vR2.getInterfaceProtocol@extra();   
+        vR0.subClass = vR2.getInterfaceSubClass@extra();   
+        lswitch (vR0.protocol) { 
+           0:B92
+           80:B95
+           128:B110
+           ::B110
+        };   
+  +B92:   #1
+        goto +B120;   [R RR . ...]
+  +B95:   #1
+        b1 = new org/jnode/driver/block/usb/storage/USBStorageBulkTransport(vR0);    [ RR . i..][ RR . iRR]
+        vR0.transport = b1;   
+        goto +B120;   [RRi RR . ...]
+  -B110:   #2
+        throw new java/lang/Exception("Transport protocol not implemented.");   
+  +B120:   #2
+        vi4 = 0;    
+  +B123:   #1
+        if vi4>=vR2.getNumEndPoints@extra() goto B209;   
+  +B132:   #1
+        vR3 = vR0.usbInterface.getEndPoint@extra(vi4);    [R?i RR . iR.] 
+        if (vR3.getDescriptor@extra().getAttributes@extra() & 3)!=2 goto B185;   
+  +B155:   #1
+        if (vR3.getDescriptor@extra().getEndPointAddress@extra() & 128)!=0 goto B177;   
+  +B169:   #1
+        vR0.bulkInEndPoint = vR3;   
+        goto +B203;   [RRi RR . ...]
+  +B177:   #1
+        vR0.bulkOutEndPoint = vR3;   
+        goto +B203;   [RRi RR . ...]
+  +B185:   #1
+        if (vR3.getDescriptor@extra().getAttributes@extra() & 3)!=3 goto B203;   
+  +B198:   #1
+        vR0.intrEndPoint = vR3;   
+  +B203:   #3
+        vi4++;   
+        goto +B123;   [RRi RR . ...]
+  +B209:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 11 swaps 0 any 2 found 1 <init>
+ 
+ method getReceiveBulkPipe()Lorg/jnode/driver/bus/usb/USBDataPipe; {
+  +START:   #1
+        return vR0.receiveBulkPipe;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getReceiveBulkPipe
+ 
+ method setReceiveBulkPipe(Lorg/jnode/driver/bus/usb/USBDataPipe;)V {
+  +START:   #1
+        vR0.receiveBulkPipe = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setReceiveBulkPipe
+ 
+ method getReceiveControlPipe()Lorg/jnode/driver/bus/usb/USBDataPipe; {
+  +START:   #1
+        return vR0.receiveControlPipe;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getReceiveControlPipe
+ 
+ method setReceiveControlPipe(Lorg/jnode/driver/bus/usb/USBDataPipe;)V {
+  +START:   #1
+        vR0.receiveControlPipe = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setReceiveControlPipe
+ 
+ method getSendBulkPipe()Lorg/jnode/driver/bus/usb/USBDataPipe; {
+  +START:   #1
+        return vR0.sendBulkPipe;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSendBulkPipe
+ 
+ method setSendBulkPipe(Lorg/jnode/driver/bus/usb/USBDataPipe;)V {
+  +START:   #1
+        vR0.sendBulkPipe = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSendBulkPipe
+ 
+ method getSendControlPipe()Lorg/jnode/driver/bus/usb/USBDataPipe; {
+  +START:   #1
+        return vR0.sendControlPipe;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSendControlPipe
+ 
+ method setSendControlPipe(Lorg/jnode/driver/bus/usb/USBDataPipe;)V {
+  +START:   #1
+        vR0.sendControlPipe = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSendControlPipe
+ 
+ method getBulkInEndPoint()Lorg/jnode/driver/bus/usb/USBEndPoint; {
+  +START:   #1
+        return vR0.bulkInEndPoint;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBulkInEndPoint
+ 
+ method setBulkInEndPoint(Lorg/jnode/driver/bus/usb/USBEndPoint;)V {
+  +START:   #1
+        vR0.bulkInEndPoint = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBulkInEndPoint
+ 
+ method getBulkOutEndPoint()Lorg/jnode/driver/bus/usb/USBEndPoint; {
+  +START:   #1
+        return vR0.bulkOutEndPoint;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBulkOutEndPoint
+ 
+ method setBulkOutEndPoint(Lorg/jnode/driver/bus/usb/USBEndPoint;)V {
+  +START:   #1
+        vR0.bulkOutEndPoint = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBulkOutEndPoint
+ 
+ method getIntrEndPoint()Lorg/jnode/driver/bus/usb/USBEndPoint; {
+  +START:   #1
+        return vR0.intrEndPoint;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIntrEndPoint
+ 
+ method setIntrEndPoint(Lorg/jnode/driver/bus/usb/USBEndPoint;)V {
+  +START:   #1
+        vR0.intrEndPoint = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setIntrEndPoint
+ 
+ method getMaxLun()B {
+  +START:   #1
+        return vR0.maxLun;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMaxLun
+ 
+ method setMaxLun(B)V {
+  +START:   #1
+        vR0.maxLun = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMaxLun
+ 
+ method getTransport()Lorg/jnode/driver/block/usb/storage/ITransport; {
+  +START:   #1
+        return vR0.transport;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTransport
+ 
+ method setTransport(Lorg/jnode/driver/block/usb/storage/ITransport;)V {
+  +START:   #1
+        vR0.transport = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setTransport
+ 
+ method getProtocol()I {
+  +START:   #1
+        return vR0.protocol;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProtocol
+ 
+ method setProtocol(I)V {
+  +START:   #1
+        vR0.protocol = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setProtocol
+ 
+ method getSubClass()I {
+  +START:   #1
+        return vR0.subClass;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSubClass
+ 
+ method setSubClass(I)V {
+  +START:   #1
+        vR0.subClass = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSubClass
+ 
+ method getDevice()Lorg/jnode/driver/bus/usb/USBDevice; {
+  +START:   #1
+        return vR0.device;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDevice
+ 
+ method setDevice(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vR0.device = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDevice
+}

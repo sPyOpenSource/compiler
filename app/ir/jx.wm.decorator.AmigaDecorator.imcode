@@ -1,0 +1,515 @@
+class jx/wm/decorator/AmigaDecorator {
+ 
+ method <init>(Ljx/wm/WView;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        b1 = new jx/wm/WindowFlags(vR2);    [ ?R  i.][ ?R . iRR]
+        vR0.m_nFlags = b1;   
+        vR0.m_bHasFocus = 0;   
+        vR0.m_bCloseState = 0;   
+        vR0.m_bZoomState = 0;   
+        vR0.m_bDepthState = 0;   
+        b1 = new jx/wm/WFontHeight();    [ ?R . i..][ ?R . iR.]
+        vR0.m_sFontHeight = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R . i..][ ?R . iR.]
+        vR0.m_cCloseRect = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R . i..][ ?R . iR.]
+        vR0.m_cZoomRect = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R . i..][ ?R . iR.]
+        vR0.m_cToggleRect = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R . i..][ ?R . iR.]
+        vR0.m_cDragRect = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ ?R . i..][ ?R . iR.]
+        vR0.m_cBounds = b1;   
+        vR1.getFontHeight(vR0.m_sFontHeight);   [ ?R i RR.] 
+        vR0.calculateBorderSizes@this();   [ ?R i R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 9 swaps 1 any 0 found 0 <init>
+ 
+ method calculateBorderSizes()V {
+  +START:   #1
+        if (vR0.m_nFlags.getValue() & 1)==0 goto B35;   
+  +B12:   #1
+        vR0.m_nLeftBorder = 0;   
+        vR0.m_nRightBorder = 0;   
+        vR0.m_nTopBorder = 0;   
+        vR0.m_nBottomBorder = 0;   
+        goto +B95;   forward return[   .]
+  +B35:   #1
+        if (vR0.m_nFlags.getValue() & 30)!=30 goto B58;   
+  +B50:   #1
+        vR0.m_nTopBorder = 4;   
+        goto +B80;   [   .]
+  +B58:   #1
+        vR0.m_nTopBorder = ((vR0.m_sFontHeight.nAscender+vR0.m_sFontHeight.nDescender)+6);   
+  +B80:   #1
+        vR0.m_nLeftBorder = 4;   
+        vR0.m_nRightBorder = 4;   
+        vR0.m_nBottomBorder = 4;   
+  +B95:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 0 swaps 0 any 0 found 0 calculateBorderSizes
+ 
+ method hitTest(Ljx/devices/fb/PixelPoint;)I {
+  +START:   #1
+        if vR1.m_nX>=4 goto B41;   
+  +B8:   #1
+        if vR1.m_nY>=4 goto B19;   
+  +B16:   #1
+        return 9;   
+  +B19:   #1
+        if vR1.m_nY<=(vR0.m_cBounds.m_nY1-4) goto B38;   
+  +B35:   #1
+        return 11;   
+  +B38:   #1
+        return 7;   
+  +B41:   #1
+        if vR1.m_nX<=(vR0.m_cBounds.m_nX1-4) goto B90;   
+  +B57:   #1
+        if vR1.m_nY>=4 goto B68;   
+  +B65:   #1
+        return 10;   
+  +B68:   #1
+        if vR1.m_nY<=(vR0.m_cBounds.m_nY1-4) goto B87;   
+  +B84:   #1
+        return 12;   
+  +B87:   #1
+        return 8;   
+  +B90:   #1
+        if vR1.m_nY>=4 goto B100;   
+  +B98:   #1
+        return 5;   
+  +B100:   #1
+        if vR1.m_nY<=(vR0.m_cBounds.m_nY1-4) goto B119;   
+  +B116:   #1
+        return 6;   
+  +B119:   #1
+        if vR0.m_cCloseRect.intersects@extra(vR1)==0 goto B132;   
+  +B130:   #1
+        return 1;   
+  +B132:   #1
+        if vR0.m_cZoomRect.intersects@extra(vR1)==0 goto B145;   
+  +B143:   #1
+        return 2;   
+  +B145:   #1
+        if vR0.m_cToggleRect.intersects@extra(vR1)==0 goto B158;   
+  +B156:   #1
+        return 3;   
+  +B158:   #1
+        if vR0.m_cDragRect.intersects@extra(vR1)==0 goto B171;   
+  +B169:   #1
+        return 4;   
+  +B171:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 0 swaps 0 any 0 found 0 hitTest
+ 
+ method frameSized(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR2 = vR0.getView@this();    [ R  R] 
+        vR3 = new jx/devices/fb/PixelPoint((vR1.width@extra()-vR0.m_cBounds.width@extra()),(vR1.height@extra()-vR0.m_cBounds.height@extra()));    [ R  i][ R .. iiiR]
+        vR0.m_cBounds.setTo@extra(vR1.bounds@extra());   [RR R i. RR..] 
+        vR0.layout@special();   [RR R i. R...] 
+        if vR3.m_nX==0 goto B97;   
+  +B59:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R .. i...][ R .. iRR.]
+        vR4.m_nX0 = ((vR0.m_cZoomRect.m_nX0-vR3.m_nX)-2);   
+        vR2.invalidate(vR4);   [RRR R .. RR..] 
+  +B97:   #1
+        if vR3.m_nY==0 goto B153;   
+  +B104:   #1
+        vR4 = new jx/devices/fb/PixelRect(vR0.m_cBounds);    [ R .. i...][ R .. iRR.]
+        vR4.m_nY0 = ((vR4.m_nY1-vR0.__max__@special(vR0.m_nBottomBorder,(vR0.m_nBottomBorder+vR3.m_nY)))-1);   
+        vR2.invalidate(vR4);   [RRR R i.i RR..] 
+  +B153:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 13 swaps 2 any 0 found 0 frameSized
+ 
+ method getBorderSize()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return new jx/devices/fb/PixelRect(vR0.m_nLeftBorder,vR0.m_nTopBorder,vR0.m_nRightBorder,vR0.m_nBottomBorder);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getBorderSize
+ 
+ method getMinimumSize()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        vR1 = new jx/devices/fb/PixelPoint(0,(vR0.m_nTopBorder+vR0.m_nBottomBorder));    [ R  i][ R . iiiR]
+        if (vR0.m_nFlags.getValue() & 8)!=0 goto B47;   
+  +B31:   #1
+        vR1.m_nX = (vR1.m_nX+vR0.m_cCloseRect.width@extra());   
+  +B47:   #1
+        if (vR0.m_nFlags.getValue() & 4)!=0 goto B75;   
+  +B59:   #1
+        vR1.m_nX = (vR1.m_nX+vR0.m_cZoomRect.width@extra());   
+  +B75:   #1
+        if (vR0.m_nFlags.getValue() & 16)!=0 goto B104;   
+  +B88:   #1
+        vR1.m_nX = (vR1.m_nX+vR0.m_cToggleRect.width@extra());   
+  +B104:   #1
+        if vR1.m_nX>=(vR0.m_nLeftBorder+vR0.m_nRightBorder) goto B133;   
+  +B120:   #1
+        vR1.m_nX = (vR0.m_nLeftBorder+vR0.m_nRightBorder);   
+  +B133:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 5 swaps 0 any 0 found 0 getMinimumSize
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.m_cTitle = vR1;   
+        vR0.render@this(vR0.m_cBounds);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setTitle
+ 
+ method setFlags(Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.m_nFlags.setValue(vR1.getValue());   [  i iR] 
+        vR0.calculateBorderSizes@this();   [  i R.] 
+        vR0.getView@this().invalidate();   [  i. R.] [  iR R.] 
+        vR0.layout@special();   [  i. R.] 
+        vR0.render@this(vR0.m_cBounds);   [  ii RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 2 any 0 found 0 setFlags
+ 
+ method fontChanged()V {
+  +START:   #1
+        vR1 = vR0.getView@this();    [   R] 
+        vR1.getFontHeight(vR0.m_sFontHeight);   [R  i RR] 
+        vR0.calculateBorderSizes@this();   [R  i R.] 
+        vR1.invalidate();   [R  i R.] 
+        vR0.layout@special();   [R  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 1 any 0 found 0 fontChanged
+ 
+ method setWindowFlags(Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.m_nFlags.setValue(vR1.getValue());   [  i iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setWindowFlags
+ 
+ method setFocusState(Z)V {
+  +START:   #1
+        vR0.m_bHasFocus = vi1;   
+        vR0.render@this(vR0.m_cBounds);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setFocusState
+ 
+ method setCloseButtonState(Z)V {
+  +START:   #1
+        vR0.m_bCloseState = vi1;   
+        vR0.render@this(vR0.m_cCloseRect);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setCloseButtonState
+ 
+ method setZoomButtonState(Z)V {
+  +START:   #1
+        vR0.m_bZoomState = vi1;   
+        vR0.render@this(vR0.m_cZoomRect);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setZoomButtonState
+ 
+ method setDepthButtonState(Z)V {
+  +START:   #1
+        vR0.m_bDepthState = vi1;   
+        vR0.render@this(vR0.m_cToggleRect);   [  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setDepthButtonState
+ 
+ method render(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        if (vR0.m_nFlags.getValue() & 1)==0 goto B13;   
+  +B12:   #1
+        return;   
+  +B13:   #1
+        if vR0.m_bHasFocus==0 goto B26;   
+  +B20:   #1
+        b0 = s_cSelWinCol;    
+        goto +B29b0;   [ RRRi  .]
+  +B26:   #1
+        b0 = s_cWinCol;    
+  +B29b0:   #1 reference
+        vR2 = b0;    
+        vR3 = vR0.getView@this();    [R RRRi  R] 
+        vR3.fillRect(vR1,vR2);   [RR RRRi  RRR] 
+        vR4 = vR3.getBounds();    [RR RRRi  R..] 
+        vR5 = new jx/devices/fb/PixelRect(vR4);    [ RRRi  i..][ RRRi . iRR]
+        vR5.m_nX0 = (vR5.m_nX0+(vR0.m_nLeftBorder-1));   
+        vR5.m_nX1 = (vR5.m_nX1-(vR0.m_nRightBorder-1));   
+        vR5.m_nY0 = (vR5.m_nY0+(vR0.m_nTopBorder-1));   
+        vR5.m_nY1 = (vR5.m_nY1-(vR0.m_nBottomBorder-1));   
+        vR3.drawFrame(vR4,65584);   [RRRR RRRi . iRR] 
+        vR3.drawFrame(vR5,65576);   [RRRR RRRi . iRR] 
+        b1 = new jx/devices/fb/PixelRect((vR4.m_nX0+1),(vR5.m_nY1+1),(vR4.m_nX1-1),(vR4.m_nY1-1));    [ RRRi . i..][ RRRi . iiiiiR]
+        vR3.fillRect(b1,vR2);   [RRRR RRRi . RRR...] 
+        b1 = new jx/devices/fb/PixelRect((vR4.m_nX0+1),(vR4.m_nY0+vR0.m_nTopBorder),(vR5.m_nX0-1),vR5.m_nY1);    [ RRRi . i.....][ RRRi . iiiiiR]
+        vR3.fillRect(b1,vR2);   [RRRR RRRi . RRR...] 
+        b1 = new jx/devices/fb/PixelRect((vR5.m_nX1+1),(vR4.m_nY0+vR0.m_nTopBorder),(vR4.m_nX1-1),vR5.m_nY1);    [ RRRi . i.....][ RRRi . iiiiiR]
+        vR3.fillRect(b1,vR2);   [RRRR RRRi . RRR...] 
+        if (vR0.m_nFlags.getValue() & 8)!=0 goto B295;   
+  +B273:   #1
+        b0 = vR0;    
+        b1 = vR0.m_cCloseRect;    
+        b2 = vR2;    
+        if vR0.m_bCloseState!=1 goto B291;   
+  +B287b0b1b2:   #1 reference reference reference
+        b3 = 1;    
+        goto +B292b0b1b2b3;   [RRRR RRRi . ......]
+  +B291b0b1b2:   #1 reference reference reference
+        b3 = 0;    
+  +B292b0b1b2b3:   #1 reference reference reference int
+        b0.drawClose(b1,b2,b3);   [RRRR RRRi . iRRR..] 
+  +B295:   #1
+        if (vR0.m_nFlags.getValue() & 2)!=0 goto B364;   
+  +B307:   #1
+        vR3.fillRect(vR0.m_cDragRect,vR2);   [RRRR RRRi i RRR...] 
+        vR3.drawFrame(vR0.m_cDragRect,65552);   [RRRR RRRi ii iRR...] 
+        vR3.setFgColor(0,0,0);   [RRRR RRRi ii iiiR..] 
+        vR3.setBgColor(vR2);   [RRRR RRRi ii RR....] 
+        vR3.movePenTo((vR0.m_cDragRect.m_nX0+5),2);   [RRRR RRRi iii iiR...] 
+        vR3.drawString(vR0.m_cTitle,-1);   [RRRR RRRi iiii iRR...] 
+        goto +B404;   [RRRR RRRi iiii ......]
+  +B364:   #1
+        b1 = new jx/devices/fb/PixelRect((vR4.m_nX0+1),(vR4.m_nY0-1),(vR4.m_nX1-1),(vR5.m_nY0+1));    [ RRRi .... i.....][ RRRi .... iiiiiR]
+        vR3.fillRect(b1,vR2);   [RRRR RRRi .... RRR...] 
+  +B404:   #1
+        if (vR0.m_nFlags.getValue() & 4)!=0 goto B438;   
+  +B416:   #1
+        b0 = vR0;    
+        b1 = vR0.m_cZoomRect;    
+        b2 = vR2;    
+        if vR0.m_bZoomState!=1 goto B434;   
+  +B430b0b1b2:   #1 reference reference reference
+        b3 = 1;    
+        goto +B435b0b1b2b3;   [RRRR RRRi .... ......]
+  +B434b0b1b2:   #1 reference reference reference
+        b3 = 0;    
+  +B435b0b1b2b3:   #1 reference reference reference int
+        b0.drawZoom(b1,b2,b3);   [RRRR RRRi .... iRRR..] 
+  +B438:   #1
+        if (vR0.m_nFlags.getValue() & 16)!=0 goto B473;   
+  +B451:   #1
+        b0 = vR0;    
+        b1 = vR0.m_cToggleRect;    
+        b2 = vR2;    
+        if vR0.m_bDepthState!=1 goto B469;   
+  +B465b0b1b2:   #1 reference reference reference
+        b3 = 1;    
+        goto +B470b0b1b2b3;   [RRRR RRRi .... ......]
+  +B469b0b1b2:   #1 reference reference reference
+        b3 = 0;    
+  +B470b0b1b2b3:   #1 reference reference reference int
+        b0.drawDepth(b1,b2,b3);   [RRRR RRRi .... iRRR..] 
+  +B473:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 90/90 wr 31 swaps 4 any 7 found 0 render
+ 
+ method layout()V {
+  +START:   #1
+        if (vR0.m_nFlags.getValue() & 8)==0 goto B48;   
+  +B13:   #1
+        vR0.m_cCloseRect.m_nX0 = 0;   
+        vR0.m_cCloseRect.m_nX1 = 0;   
+        vR0.m_cCloseRect.m_nY0 = 0;   
+        vR0.m_cCloseRect.m_nY1 = 0;   
+        goto +B90;   [   .]
+  +B48:   #1
+        vR0.m_cCloseRect.m_nX0 = 0;   
+        vR0.m_cCloseRect.m_nX1 = (vR0.m_nTopBorder-1);   
+        vR0.m_cCloseRect.m_nY0 = 0;   
+        vR0.m_cCloseRect.m_nY1 = (vR0.m_nTopBorder-1);   
+  +B90:   #1
+        vR0.m_cToggleRect.m_nX1 = vR0.m_cBounds.m_nX1;   
+        if (vR0.m_nFlags.getValue() & 16)==0 goto B134;   
+  +B117:   #1
+        vR0.m_cToggleRect.m_nX0 = vR0.m_cToggleRect.m_nX1;   
+        goto +B160;   [   .]
+  +B134:   #1
+        vR0.m_cToggleRect.m_nX0 = (vR0.m_cToggleRect.m_nX1-(vR0.m_nTopBorder+(vR0.m_nTopBorder/2)));   
+  +B160:   #1
+        vR0.m_cToggleRect.m_nY0 = 0;   
+        vR0.m_cToggleRect.m_nY1 = (vR0.m_nTopBorder-1);   
+        if (vR0.m_nFlags.getValue() & 4)==0 goto B224;   
+  +B193:   #1
+        vR0.m_cZoomRect.m_nX0 = vR0.m_cToggleRect.m_nX0;   
+        vR0.m_cZoomRect.m_nX1 = vR0.m_cToggleRect.m_nX0;   
+        goto +B296;   [  . .]
+  +B224:   #1
+        if (vR0.m_nFlags.getValue() & 16)==0 goto B254;   
+  +B237:   #1
+        vR0.m_cZoomRect.m_nX1 = vR0.m_cBounds.m_nX1;   
+        goto +B270;   [  . .]
+  +B254:   #1
+        vR0.m_cZoomRect.m_nX1 = (vR0.m_cToggleRect.m_nX0-1);   
+  +B270:   #1
+        vR0.m_cZoomRect.m_nX0 = (vR0.m_cZoomRect.m_nX1-(vR0.m_nTopBorder+(vR0.m_nTopBorder/2)));   
+  +B296:   #1
+        vR0.m_cZoomRect.m_nY0 = 0;   
+        vR0.m_cZoomRect.m_nY1 = (vR0.m_nTopBorder-1);   
+        if (vR0.m_nFlags.getValue() & 8)==0 goto B341;   
+  +B330:   #1
+        vR0.m_cDragRect.m_nX0 = 0;   
+        goto +B357;   [  . .]
+  +B341:   #1
+        vR0.m_cDragRect.m_nX0 = (vR0.m_cCloseRect.m_nX1+1);   
+  +B357:   #1
+        if (vR0.m_nFlags.getValue() & 4)==0 goto B418;   
+  +B369:   #1
+        if (vR0.m_nFlags.getValue() & 16)==0 goto B399;   
+  +B382:   #1
+        vR0.m_cDragRect.m_nX1 = vR0.m_cBounds.m_nX1;   
+        goto +B434;   [  . .]
+  +B399:   #1
+        vR0.m_cDragRect.m_nX1 = (vR0.m_cToggleRect.m_nX0-1);   
+        goto +B434;   [  . .]
+  +B418:   #1
+        vR0.m_cDragRect.m_nX1 = (vR0.m_cZoomRect.m_nX0-1);   
+  +B434:   #2
+        vR0.m_cDragRect.m_nY0 = 0;   
+        vR0.m_cDragRect.m_nY1 = (vR0.m_nTopBorder-1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 57/57 wr 2 swaps 2 any 0 found 0 layout
+ 
+ method __max__(II)I {
+  +START:   #1
+        if vi1<=vi2 goto B9;   
+  +B5:   #1
+        b0 = vi1;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi2;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 __max__
+ 
+ method drawDepth(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Z)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vR5 = new jx/devices/fb/PixelRect();    [ R  i.][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX0+((vR1.width@extra()+1)/7));   
+        vR4.m_nY0 = (vR1.m_nY0+((vR1.height@extra()+1)/7));   
+        vR4.m_nX1 = (vR4.m_nX0+(((vR1.width@extra()+1)*4)/7));   
+        vR4.m_nY1 = (vR4.m_nY0+((vR1.height@extra()+1)/2));   
+        vR5.m_nX1 = (vR1.m_nX1-((vR1.width@extra()+1)/7));   
+        vR5.m_nY1 = (vR1.m_nY1-((vR1.height@extra()+1)/7));   
+        vR5.m_nX0 = (vR5.m_nX1-(((vR1.width@extra()+1)*4)/7));   
+        vR5.m_nY0 = (vR5.m_nY1-((vR1.height@extra()+1)/2));   
+        vR6 = vR0.getView@this();    [RR R .. R.] 
+        if vi3==0 goto B230;   
+  +B186:   #1
+        vR6.fillRect(vR1,vR2);   [RRR R .. RRR] 
+        vR6.drawFrame(vR1,65544);   [RRR R .. iRR] 
+        vR6.drawFrame(vR4,65552);   [RRR R .. iRR] 
+        vR6.fillRect(vR5,vR2);   [RRR R .. RRR] 
+        vR6.drawFrame(vR5,65552);   [RRR R .. iRR] 
+        goto +B271;   forward return[RRR R .. ...]
+  +B230:   #1
+        vR6.fillRect(vR1,vR2);   [RRR R .. RRR] 
+        vR6.drawFrame(vR1,65552);   [RRR R .. iRR] 
+        vR6.drawFrame(vR4,65544);   [RRR R .. iRR] 
+        vR6.fillRect(vR5,vR2);   [RRR R .. RRR] 
+        vR6.drawFrame(vR5,65552);   [RRR R .. iRR] 
+  +B271:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 19 swaps 0 any 1 found 0 drawDepth
+ 
+ method drawZoom(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Z)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ RR  i][ RR  iR]
+        vR5 = new jx/devices/fb/PixelRect();    [ RR  i.][ RR  iR]
+        vR4.m_nX0 = (vR1.m_nX0+((vR1.width@extra()+1)/6));   
+        vR4.m_nY0 = (vR1.m_nY0+((vR1.height@extra()+1)/6));   
+        vR4.m_nX1 = (vR1.m_nX1-((vR1.width@extra()+1)/6));   
+        vR4.m_nY1 = (vR1.m_nY1-((vR1.height@extra()+1)/6));   
+        vR5.m_nX0 = (vR4.m_nX0+1);   
+        vR5.m_nY0 = (vR4.m_nY0+1);   
+        vR5.m_nX1 = (vR5.m_nX0+((vR1.width@extra()+1)/3));   
+        vR5.m_nY1 = (vR5.m_nY0+((vR1.height@extra()+1)/3));   
+        vR6 = vR0.getView@this();    [RR RR .. R.] 
+        if vi3==0 goto B243;   
+  +B166:   #1
+        vR6.fillRect(vR1,vR2);   [RRR RR .. RRR] 
+        vR6.drawFrame(vR1,65544);   [RRR RR .. iRR] 
+        vR6.drawFrame(vR5,65552);   [RRR RR .. iRR] 
+        vR6.drawFrame(vR4,65544);   [RRR RR .. iRR] 
+        b1 = new jx/devices/fb/PixelRect((vR4.m_nX0+1),(vR4.m_nY0+1),(vR4.m_nX1-1),(vR4.m_nY1-1));    [ RR .. i..][ RR .. iiiiiR]
+        vR6.fillRect(b1,vR2);   [RRR RR .. RRR...] 
+        goto +B276;   forward return[RRR RR .. ......]
+  +B243:   #1
+        vR6.fillRect(vR1,vR2);   [RRR RR .. RRR...] 
+        vR6.drawFrame(vR1,65552);   [RRR RR .. iRR...] 
+        vR6.drawFrame(vR4,65552);   [RRR RR .. iRR...] 
+        vR6.drawFrame(vR5,65544);   [RRR RR .. iRR...] 
+  +B276:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 51/51 wr 17 swaps 0 any 1 found 0 drawZoom
+ 
+ method drawClose(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Z)V {
+  +START:   #1
+        vR4 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vR4.m_nX0 = (vR1.m_nX0+((vR1.width@extra()+1)/3));   
+        vR4.m_nY0 = (vR1.m_nY0+((vR1.height@extra()+1)/3));   
+        vR4.m_nX1 = (vR1.m_nX1-((vR1.width@extra()+1)/3));   
+        vR4.m_nY1 = (vR1.m_nY1-((vR1.height@extra()+1)/3));   
+        vR5 = vR0.getView@this();    [R R .. R.] 
+        if vi3==0 goto B118;   
+  +B91:   #1
+        vR5.fillRect(vR1,vR2);   [RR R .. RRR] 
+        vR5.drawFrame(vR1,65544);   [RR R .. iRR] 
+        vR5.drawFrame(vR4,65552);   [RR R .. iRR] 
+        goto +B142;   forward return[RR R .. ...]
+  +B118:   #1
+        vR5.fillRect(vR1,vR2);   [RR R .. RRR] 
+        vR5.drawFrame(vR1,65552);   [RR R .. iRR] 
+        vR5.drawFrame(vR4,65544);   [RR R .. iRR] 
+  +B142:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 10 swaps 0 any 1 found 0 drawClose
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/devices/fb/PixelColor(255,0,0,0);    [ R  i][ R . iiiiiR]
+        s_cSelWinCol = b0;   
+        b0 = new jx/devices/fb/PixelColor(0,0,255,0);    [ R . i.....][ R . iiiiiR]
+        s_cWinCol = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 2 <clinit>
+}

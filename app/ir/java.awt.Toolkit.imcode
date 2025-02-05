@@ -1,0 +1,84 @@
+class java/awt/Toolkit {
+ 
+ method getDefaultToolkit()Ljava/awt/Toolkit; {
+  +START:   #1
+        if toolkit==null goto B10;   
+  +B6:   #1
+        return toolkit;   
+  +B10:   #1
+        vR0 = "jx.awt.JXToolkit";    
+        return toolkit;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDefaultToolkit
+ 
+ method getNativeContainer(Ljava/awt/Component;)Ljava/awt/Container; {
+  +START:   #1
+        vR0 = vR0.getParent@this();    [   R] 
+  +B5:   #2
+        if vR0!=null goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        if (vR0 instanceof java/awt/Container)!=0 goto B26;   
+  +B18:   #1
+        vR0 = vR0.getParent@this();    [   R.] 
+        goto +B5;   [   ..]
+  +B26:   #1
+        if (vR0.getPeer@this() instanceof java/awt/peer/LightweightPeer)==0 goto B44;   
+  +B36:   #1
+        vR0 = vR0.getParent@this();    [   R.] 
+        goto +B5;   [   ..]
+  +B44:   #1
+        return (java/awt/Container)(vR0);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 1 found 1 getNativeContainer
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Properties();    [ ?R  i][ ?R  iR]
+        vR0.desktopProperties = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getMenuShortcutKeyMask()I {
+  +START:   #1
+        return 2;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMenuShortcutKeyMask
+ 
+ method getSystemEventQueue()Ljava/awt/EventQueue; {
+  +START:   #1
+        return vR0.getSystemEventQueueImpl@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSystemEventQueue
+ 
+ method getBestCursorSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(0,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBestCursorSize
+ 
+ method getMaximumCursorColors()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMaximumCursorColors
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/util/Properties();    [ R  i][ R  iR]
+        props = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 1 <clinit>
+}

@@ -1148,7 +1148,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     }
 
         @Override
-    public void codeGetStaticField(IMNode node,FieldRefCPEntry fieldRefCPEntry, Reg result, int bcPosition) throws CompileException {
+    public void codeGetStaticField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg result, int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
 	BCClassInfo info = (BCClassInfo)aClass.getInfo();

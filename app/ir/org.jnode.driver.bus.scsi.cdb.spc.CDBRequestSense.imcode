@@ -1,0 +1,19 @@
+class org/jnode/driver/bus/scsi/cdb/spc/CDBRequestSense {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special(6,3);   [   iiR] 
+        vR0.dataTransfertCount = min@special(vi1,255);   
+        vR0.setInt8@this(4,vR0.dataTransfertCount);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getDataTransfertCount()I {
+  +START:   #1
+        return vR0.dataTransfertCount;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataTransfertCount
+}

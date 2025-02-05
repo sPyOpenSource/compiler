@@ -1,0 +1,507 @@
+class jx/devices/fb/vmware/VMWareSVGAImpl {
+ 
+ method ReadConfig(I)I {
+  +START:   #1
+        return vR0.m_cPCIDevice.readConfig((vi1/4));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 ReadConfig
+ 
+ method WriteConfig(II)V {
+  +START:   #1
+        vR0.m_cPCIDevice.writeConfig((vi1/4),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 WriteConfig
+ 
+ method ReadReg32(I)I {
+  +START:   #1
+        vR0.m_cPorts.outl(vR0.m_nIndexPort,vi1);   [  i iiR] 
+        vi2 = vR0.m_cPorts.inl(vR0.m_nValuePort);    [  ii iR.] 
+        return vi2;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 2 any 0 found 0 ReadReg32
+ 
+ method WriteReg32(II)V {
+  +START:   #1
+        vR0.m_cPorts.outl(vR0.m_nIndexPort,vi1);   [  i iiR] 
+        vR0.m_cPorts.outl(vR0.m_nValuePort,vi2);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 2 any 0 found 0 WriteReg32
+ 
+ method ReadFIFO(I)I {
+  +START:   #1
+        return vR0.m_cFIFO.get32(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 ReadFIFO
+ 
+ method WriteFIFO(II)V {
+  +START:   #1
+        vR0.m_cFIFO.set32(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 WriteFIFO
+ 
+ method <init>(Ljx/devices/pci/PCIDevice;Z)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.m_bIsOpen = 0;   
+        if s_cNaming!=null goto B21;   
+  +B15:   #1
+        s_cNaming = getInitialNaming@special();   
+  +B21:   #1
+        b1 = vR0.FindDevice@this();    [ RR . R] 
+        b0 = b1;    
+        vR0.m_cPCIDevice = b1;   
+        if b0!=null goto B34;   
+  +B33:   #1
+        return;   
+  +B34:   #1
+        vR0.m_cPorts = (jx/zero/Ports)(s_cNaming.lookup("Ports"));   
+        if vR0.m_cPorts!=null goto B68;   
+  -B58:   #1
+        throw new java/lang/Error("VMWareSVGAImpl: no Ports found!");   
+  +B68:   #1
+        vi4 = vR0.m_cPCIDevice.readConfig(0);    [ RR .. iR.] 
+        vR5 = (jx/zero/MemoryManager)(s_cNaming.lookup("MemoryManager"));    
+        if vR5!=null goto B110;   
+  -B100:   #1
+        throw new java/lang/Error("VMWareSVGAImpl: no MemoryManager found");   
+  +B110:   #1
+        if vi4!=118494637 goto B132;   
+  +B117:   #1
+        out.print("Found VMWare 0x071015ad
+");   [?iR RR i. RR.] 
+        vi3 = 17760;    
+        goto +B149;   [iiR RR i. ...]
+  +B132:   #1
+        out.print("Found VMWare 0x040515ad
+");   [iiR RR i. RR.] 
+        vi3 = (vR0.ReadConfig@this(0) & -16);    
+  +B149:   #1
+        vR0.m_bFIFODirty = 0;   
+        vR0.m_nIndexPort = (vi3+0);   
+        vR0.m_nValuePort = (vi3+4);   
+        vi4 = vR0.GetSVGAId@this();    [iiR RR .. R..] 
+        if vi4==-1879048192 goto B187;   
+  +B181:   #1
+        if vi4!=-1 goto B197;   
+  -B187:   #1
+        throw new java/lang/Error("VMWareSVGAImpl: no supported VMWare SVGA found
+");   
+  +B197:   #1
+        vR0.m_nVideoRam = vR0.ReadReg32@this(15);   
+        vR0.m_nMemPhysBase = vR0.ReadReg32@this(13);   
+        vR0.m_nMaxWidth = vR0.ReadReg32@this(4);   
+        vR0.m_nMaxHeight = vR0.ReadReg32@this(5);   
+        vR0.m_nBitsPerPixel = vR0.ReadReg32@this(7);   
+        vR0.m_nBytesPerLine = vR0.ReadReg32@this(12);   
+        b1 = new jx/devices/fb/ColorSpace(4);    [ RR .. i..][ RR .. iiR]
+        vR0.m_eColorSpace = b1;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("VideoRam: 0x").append@extra(toHexString@special(vR0.m_nVideoRam)).toString@extra());   [iiR RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("MemPhysBase: 0x").append@extra(toHexString@special(vR0.m_nMemPhysBase)).toString@extra());   [iiR RR iiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiii. i..][ RR iiiiiiii. iR.]
+        b0.println(b1.append@extra("Max Res.: ").append@extra(vR0.m_nMaxWidth).append@extra("/").append@extra(vR0.m_nMaxHeight).toString@extra());   [iiR RR iiiiiiiiiiiii... RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiii... i....][ RR iiiiiiiiiiiii... iR...]
+        b0.println(b1.append@extra("BitsPerPixel: ").append@extra(vR0.m_nBitsPerPixel).toString@extra());   [iiR RR iiiiiiiiiiiiiiii. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiii. i....][ RR iiiiiiiiiiiiiiii. iR...]
+        b0.println(b1.append@extra("BytesPerLine: ").append@extra(vR0.m_nBytesPerLine).toString@extra());   [iiR RR iiiiiiiiiiiiiiiiiii. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiii. i....][ RR iiiiiiiiiiiiiiiiiii. iR...]
+        b0.println(b1.append@extra("Pseudocolor: ").append@extra(vR0.ReadReg32@this(8)).toString@extra());   [iiR RR iiiiiiiiiiiiiiiiiiiiii. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiii. i....][ RR iiiiiiiiiiiiiiiiiiiiii. iR...]
+        b0.println(b1.append@extra("Red mask:   ").append@extra(toHexString@special(vR0.ReadReg32@this(9))).toString@extra());   [iiR RR iiiiiiiiiiiiiiiiiiiiiiiiii. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiii. iR...]
+        b0.println(b1.append@extra("Green mask: ").append@extra(toHexString@special(vR0.ReadReg32@this(10))).toString@extra());   [iiR RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR...]
+        b0.println(b1.append@extra("Blue mask:  ").append@extra(toHexString@special(vR0.ReadReg32@this(11))).toString@extra());   [iiR RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR...] 
+        vR0.m_cFrameBuffer = vR5.allocDeviceMemory(vR0.m_nMemPhysBase,vR0.m_nVideoRam);   
+        if vR0.m_cFrameBuffer!=null goto B590;   
+  -B580:   #1
+        throw new java/lang/Error("VMWareSVGAImpl: cannot allocate memory for framebuffer");   
+  +B590:   #1
+        vR0.InitFIFO@this();   [iiR RR .................................... R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 77/77 wr 97 swaps 34 any 6 found 0 <init>
+ 
+ method open(Ljx/devices/DeviceConfiguration;)V {
+  +START:   #1
+        vR2 = (jx/devices/fb/FramebufferConfiguration)(vR1);    
+        if vR0.m_bIsOpen==0 goto B21;   
+  +B12:   #1
+        out.println("Attempt to open the VMWare SVGA a second time!");   [R  i. RR] 
+        return;   
+  +B21:   #1
+        vR0.m_bIsOpen = 1;   
+        vR0.setMode@this(vR2.xresolution,vR2.yresolution,vR2.colorSpace);   [R  iiR RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 6 swaps 2 any 1 found 1 open
+ 
+ method close()V {
+  +START:   #1
+        vR0.m_bIsOpen = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+ 
+ method getSupportedConfigurations()[Ljx/devices/DeviceConfigurationTemplate; {
+  +START:   #1
+        b0 = new jx/devices/DeviceConfigurationTemplate()[3];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/FramebufferConfigurationTemplate;    
+        b4 = b3;    
+        b7 = new jx/devices/fb/ColorSpace(4);    [ RR?RR??R  i.][ RR?RR??R . iiR]
+        b4.<init>@special(640,480,b7);   [ RR?RR??R . RiiR] 
+        b1[0] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/fb/FramebufferConfigurationTemplate;    
+        b4 = b3;    
+        b7 = new jx/devices/fb/ColorSpace(4);    [ RR?RR??R . i...][ RR?RR??R . iiR.]
+        b4.<init>@special(800,600,b7);   [ RR?RR??R . RiiR] 
+        b1[1] = b3;   
+        b1 = b0;    
+        b3 = new jx/devices/fb/FramebufferConfigurationTemplate;    
+        b4 = b3;    
+        b7 = new jx/devices/fb/ColorSpace(4);    [ RR?RR??R . i...][ RR?RR??R . iiR.]
+        b4.<init>@special(1024,768,b7);   [ RR?RR??R . RiiR] 
+        b1[2] = b3;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 16 swaps 0 any 9 found 0 getSupportedConfigurations
+ 
+ method getWidth()I {
+  +START:   #1
+        return vR0.m_nWidth;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getWidth
+ 
+ method getHeight()I {
+  +START:   #1
+        return vR0.m_nHeight;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method setMode(IILjx/devices/fb/ColorSpace;)I {
+  +START:   #1
+        if vi1>vR0.m_nMaxWidth goto B30;   
+  +B8:   #1
+        if vi2>vR0.m_nMaxHeight goto B30;   
+  +B16:   #1
+        if vR0.m_eColorSpace.getValue()==vR3.getValue() goto B32;   
+  +B30:   #2
+        return -1;   
+  +B32:   #1
+        vR0.WriteReg32@this(2,vi1);   [ RR . iiR] 
+        vR0.WriteReg32@this(3,vi2);   [ RR . iiR] 
+        vR0.WriteReg32@this(1,1);   [ RR . iiR] 
+        vR0.m_nOffset = vR0.ReadReg32@this(14);   
+        vR0.WriteReg32@this(23,20490);   [ RR . iiR] 
+        vR0.m_nDisplayWidth = ((vR0.ReadReg32@this(12)*8)/((vR0.m_nBitsPerPixel+7) & -8));   
+        vR0.m_nBytesPerLine = vR0.ReadReg32@this(12);   
+        vR0.m_nWidth = vi1;   
+        vR0.m_nHeight = vi2;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("VMWareSVGAImpl::SetMode() to ").append@extra(vi1).append@extra("/").append@extra(vi2).append@extra("/").append@extra(vR3).toString@extra());   [ RR iiii..... RR.....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii..... i......][ RR iiii..... iR.....]
+        b0.println(b1.append@extra("BytesPerLine: ").append@extra(vR0.m_nBytesPerLine).toString@extra());   [ RR iiiiiii.. RR.....] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiii.. i......][ RR iiiiiii.. iR.....]
+        b0.println(b1.append@extra("Offset: ").append@extra(vR0.m_nOffset).toString@extra());   [ RR iiiiiiiiii. RR.....] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 28 swaps 11 any 2 found 0 setMode
+ 
+ method startFrameBufferUpdate()V {
+  +START:   #1
+        vR0.WaitForFB@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 startFrameBufferUpdate
+ 
+ method endFrameBufferUpdate()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 endFrameBufferUpdate
+ 
+ method startUpdate()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 startUpdate
+ 
+ method endUpdate()V {
+  +START:   #1
+        vR0.UpdateFullScreen@this();   [   R] 
+        vR0.WaitForFB@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 endUpdate
+ 
+ method getFrameBuffer()Ljx/zero/DeviceMemory; {
+  +START:   #1
+        return vR0.m_cFrameBuffer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrameBuffer
+ 
+ method getFrameBufferOffset()I {
+  +START:   #1
+        return vR0.m_nOffset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrameBufferOffset
+ 
+ method BitsPerPixel()I {
+  +START:   #1
+        return vR0.m_nBitsPerPixel;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 BitsPerPixel
+ 
+ method getBytesPerLine()I {
+  +START:   #1
+        return vR0.m_nBytesPerLine;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytesPerLine
+ 
+ method FindDevice()Ljx/devices/pci/PCIDevice; {
+  +START:   #1
+        vR1 = 0;    
+        vR2 = (jx/devices/pci/PCIAccess)(s_cNaming.lookup("PCIAccess"));    
+        vi3 = vR2.getNumberOfDevices();    [RR  i. R.] 
+        vi4 = 0;    
+  +B27:   #1
+        if vi4>=vi3 goto B77;   
+  +B33:   #1
+        vR1 = vR2.getDeviceAt(vi4);    [RRii  .. iR] 
+        vi5 = vR1.readConfig(0);    [RRii  .. iR] 
+        if vi5==67442093 goto B69;   
+  +B59:   #1
+        if vi5==118494637 goto B69;   
+  +B66:   #1
+        goto +B71;   [RRiii  .. ..]
+  +B69:   #2
+        return vR1;   
+  +B71:   #1
+        vi4++;   
+        goto +B27;   [RRiii  .. ..]
+  +B77:   #1
+        out.print("unable to find VMWare SVGA graphics card!
+");   [RRiii  i. RR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 12 swaps 2 any 4 found 0 FindDevice
+ 
+ method GetSVGAId()I {
+  +START:   #1
+        vR0.WriteReg32@this(0,-1879048190);   [   iiR] 
+        vi1 = vR0.ReadReg32@this(0);    [   iR.] 
+        if vi1!=-1879048190 goto B25;   
+  +B21:   #1
+        return -1879048190;   
+  +B25:   #1
+        vR0.WriteReg32@this(0,-1879048191);   [i   iiR] 
+        vi1 = vR0.ReadReg32@this(0);    [i   iR.] 
+        if vi1!=-1879048191 goto B50;   
+  +B46:   #1
+        return -1879048191;   
+  +B50:   #1
+        if vi1!=-1879048192 goto B59;   
+  +B56:   #1
+        return -1879048192;   
+  +B59:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 GetSVGAId
+ 
+ method InitFIFO()V {
+  +START:   #1
+        vR1 = (jx/zero/MemoryManager)(s_cNaming.lookup("MemoryManager"));    
+        if vR1!=null goto B29;   
+  -B18:   #1
+        throw new java/lang/Error("VMWare: no MemoryManager found");   
+  +B29:   #1
+        vR0.m_nMMIOPhysBase = vR0.ReadReg32@this(18);   
+        vR0.m_nMMIOSize = vR0.ReadReg32@this(19);   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("VMWare::InitFIFO() PhysBase: ").append@extra(toHexString@special(vR0.m_nMMIOPhysBase)).append@extra(", Size: ").append@extra(vR0.m_nMMIOSize).toString@extra());   [R RR iii..iii. RR...] 
+        vR0.m_cFIFO = vR1.allocDeviceMemory(vR0.m_nMMIOPhysBase,vR0.m_nMMIOSize);   
+        vR0.WriteFIFO@this(0,16);   [R RR iiiiiiii. iiR..] 
+        vR0.WriteFIFO@this(1,vR0.m_nMMIOSize);   [R RR iiiiiiiii iiR..] 
+        vR0.WriteFIFO@this(2,16);   [R RR iiiiiiiii iiR..] 
+        vR0.WriteFIFO@this(3,16);   [R RR iiiiiiiii iiR..] 
+        vR0.WriteReg32@this(20,1);   [R RR iiiiiiiii iiR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 20 swaps 8 any 1 found 0 InitFIFO
+ 
+ method WriteWordToFIFO(I)V {
+  +START:   #1
+        vR0.m_bFIFODirty = 1;   
+        if (vR0.ReadFIFO@this(2)+4)==vR0.ReadFIFO@this(3) goto B48;   
+  +B20:   #1
+        if vR0.ReadFIFO@this(2)!=(vR0.ReadFIFO@this(1)-4) goto B76;   
+  +B35:   #1
+        if vR0.ReadFIFO@this(3)!=vR0.ReadFIFO@this(0) goto B76;   
+  +B48:   #1
+        out.println("VMWare::WriteWordToFIFO() syncing FIFO");   [  i. RR] 
+        vR0.WriteReg32@this(21,1);   [  i. iiR] 
+  +B64:   #1
+        if vR0.ReadReg32@this(22)==0 goto B76;   
+  +B73:   #1
+        goto +B64;   [  .. ...]
+  +B76:   #3
+        vR0.WriteFIFO@this((vR0.ReadFIFO@this(2)/4),vi1);   [  i. iiR] 
+        vR0.WriteFIFO@this(2,(vR0.ReadFIFO@this(2)+4));   [  ii iiR] 
+        if vR0.ReadFIFO@this(2)!=vR0.ReadFIFO@this(1) goto B123;   
+  +B113:   #1
+        vR0.WriteFIFO@this(2,vR0.ReadFIFO@this(0));   [  i.. iiR] 
+  +B123:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 10 swaps 4 any 0 found 0 WriteWordToFIFO
+ 
+ method UpdateFullScreen()V {
+  +START:   #1
+        vR0.WriteWordToFIFO@this(1);   [   iR] 
+        vR0.WriteWordToFIFO@this(0);   [   iR] 
+        vR0.WriteWordToFIFO@this(0);   [   iR] 
+        vR0.WriteWordToFIFO@this(vR0.m_nWidth);   [  i iR] 
+        vR0.WriteWordToFIFO@this(vR0.m_nHeight);   [  ii iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 2 any 0 found 0 UpdateFullScreen
+ 
+ method WaitForFB()V {
+  +START:   #1
+        if vR0.m_bFIFODirty!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR0.WriteReg32@this(21,1);   [   iiR] 
+  +B15:   #1
+        if vR0.ReadReg32@this(22)==0 goto B27;   
+  +B24:   #1
+        goto +B15;   [   ...]
+  +B27:   #1
+        vR0.m_bFIFODirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 WaitForFB
+ 
+ method drawLine(IIIILjx/devices/fb/PixelColor;)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawLine
+ 
+ method drawLine(Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 drawLine
+ 
+ method fillRect([Ljx/devices/fb/PixelRect;ILjx/devices/fb/PixelColor;Ljx/devices/fb/DrawingMode;)I {
+  +START:   #1
+        if vR4.getValue@extra()==1 goto B11;   
+  +B9:   #1
+        return -1;   
+  +B11:   #1
+        vi5 = 0;    
+  +B14:   #1
+        if vi5>=vi2 goto B122;   
+  +B20:   #1
+        vR0.WriteWordToFIFO@this(2);   [i   iR] 
+        lswitch (vR0.m_eColorSpace.getValue()) { 
+           4:B52
+           ::B63
+        };   
+  +B52:   #1
+        vR0.WriteWordToFIFO@this(vR3.toRGB16());   [i  i sR] 
+        goto +B68;   [i  i ..]
+  +B63:   #1
+        vR0.WriteWordToFIFO@this(0);   [i  . iR] 
+  +B68:   #1
+        vR0.WriteWordToFIFO@this(vR1[vi5].left@extra());   [i  i iR] 
+        vR0.WriteWordToFIFO@this(vR1[vi5].top@extra());   [i  ii iR] 
+        vR0.WriteWordToFIFO@this((vR1[vi5].width@extra()+1));   [i  iii iR] 
+        vR0.WriteWordToFIFO@this((vR1[vi5].height@extra()+1));   [i  iiii iR] 
+        vi5++;   
+        goto +B14;   [i  iiii ..]
+  +B122:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 7 swaps 5 any 2 found 0 fillRect
+ 
+ method bitBlt([Ljx/devices/fb/PixelRect;[Ljx/devices/fb/PixelRect;I)I {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 bitBlt
+ 
+ method getColorSpace()Ljx/devices/fb/ColorSpace; {
+  +START:   #1
+        return vR0.m_eColorSpace;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColorSpace
+ 
+ method getId()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getId
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_cNaming = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

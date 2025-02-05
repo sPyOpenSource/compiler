@@ -1,0 +1,39 @@
+class org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.code = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCode()I {
+  +START:   #1
+        return vR0.code;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCode
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(32);    [ R  i][ R . iiR]
+        SET_IDLE_STATE = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(48);    [ R . i..][ R . iiR]
+        SET_STANDBY_STATE = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(80);    [ R . i..][ R . iiR]
+        SET_SLEEP_STATE = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(1);    [ R . i..][ R . iiR]
+        START = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(0);    [ R . i..][ R . iiR]
+        STOP = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(2);    [ R . i..][ R . iiR]
+        EJECT = b0;   
+        b0 = new org/jnode/driver/bus/scsi/cdb/mmc/CDBStartStopUnit$Action(3);    [ R . i..][ R . iiR]
+        LOAD = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 14 swaps 0 any 0 found 7 <clinit>
+}

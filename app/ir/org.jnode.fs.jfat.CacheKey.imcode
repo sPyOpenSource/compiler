@@ -1,0 +1,87 @@
+class org/jnode/fs/jfat/CacheKey {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.key = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.free@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method free()V {
+  +START:   #1
+        vR0.key = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 free
+ 
+ method isFree()Z {
+  +START:   #1
+        if vR0.key!=-1 goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  ]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isFree
+ 
+ method get()I {
+  +START:   #1
+        return vR0.key;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method set(I)V {
+  +START:   #1
+        vR0.key = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 set
+ 
+ method hashCode()I {
+  +START:   #1
+        return (vR0.key ^ (vR0.key >>> 16));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof org/jnode/fs/jfat/CacheKey)==0 goto B25;   
+  +B7:   #1
+        if vR0.key!=(org/jnode/fs/jfat/CacheKey)(vR1).get() goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i . ..]
+  +B25:   #2
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 1 equals
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return valueOf@special(vR0.key);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toString
+}

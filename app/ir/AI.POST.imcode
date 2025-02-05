@@ -11,15 +11,14 @@ class AI/POST {
  
  method test()V {
   +START:   #1
-        init@special(vR0.naming,0);   [ RR R RR]
-        b0 = vR0.naming;    
-        b1 = new java/lang/String()[1];    
-        b1[0] = "BioRAM";   
-        init@special(b0,b1);   [ RR R RR]
-        vR1 = (jx/devices/bio/BlockIO)(vR0.naming.lookup("BioRAM"));    
-        vR2 = (jx/zero/Clock)(vR0.naming.lookup(""));    
+        vR1 = new jx/fs/javafs/FileSystem();    [ R?R  i][ R?R  iR]
+        vR2 = (jx/devices/bio/BlockIO)(vR0.naming.lookup("BioRAM"));    
+        vR3 = (jx/zero/Clock)(vR0.naming.lookup(""));    
+        b2 = new jx/bio/buffercache/BufferCache(vR2,vR3,800,1000,100,512);    [ R?R ii. i.][ R?R ii. iiiiiRRR]
+        vR1.init(vR2,b2,vR3);   [RRR R?R ii. RRRR....] 
+        vR0.naming.registerPortal(vR1,"JavaFS");   [RRR R?R iii RRR.....] 
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 9 swaps 2 any 0 found 0 test
+// Register: rd 10/10 wr 10 swaps 3 any 0 found 0 test
 }

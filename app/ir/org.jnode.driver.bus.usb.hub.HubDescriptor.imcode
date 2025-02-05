@@ -1,0 +1,99 @@
+class org/jnode/driver/bus/usb/hub/HubDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(71);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getNumPorts()I {
+  +START:   #1
+        return vR0.getByte@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumPorts
+ 
+ method getCharacteristics()I {
+  +START:   #1
+        return vR0.getShort@this(3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCharacteristics
+ 
+ method getLogicalPowerSwitchingMode()I {
+  +START:   #1
+        return (vR0.getShort@this(3) & 3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLogicalPowerSwitchingMode
+ 
+ method getPowerOn2PowerGood()I {
+  +START:   #1
+        return (vR0.getByte@this(5) << 1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPowerOn2PowerGood
+ 
+ method getHubControllerCurrent()I {
+  +START:   #1
+        return vR0.getByte@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHubControllerCurrent
+ 
+ method isRemovableDevice(I)Z {
+  +START:   #1
+        if (vR0.getByte@this((((vi1+1)/8)+7)) & (1 << ((vi1+1)%8)))!=0 goto B29;   
+  +B25:   #1
+        b0 = 1;    
+        goto +B30b0;   forward return[ i ... ..]
+  +B29:   #1
+        b0 = 0;    
+  +B30b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 3 any 0 found 0 isRemovableDevice
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ Ri  i][ Ri  iR]
+        vi2 = vR0.getNumPorts@extra();    [R Ri  R.] 
+        vi3 = vR0.getCharacteristics@extra();    [Ri Ri  R.] 
+        vR1.append("HUB[");   [Rii Ri i RR] 
+        vR1.append("length:");   [Rii Ri ii RR] 
+        vR1.append(vR0.getLength@this());   [Rii Ri iii iR] 
+        vR1.append(", #ports:");   [Rii Ri iiii RR] 
+        vR1.append(vi2);   [Rii Ri iiii iR] 
+        vR1.append(", char:0x");   [Rii Ri iiiii RR] 
+        vR1.append(hex@special(vi3,4));   [Rii Ri iiiiii RR] 
+        vR1.append(", pon2pg:");   [Rii Ri iiiiiii RR] 
+        vR1.append(vR0.getPowerOn2PowerGood@extra());   [Rii Ri iiiiiiii iR] 
+        vR1.append("maxCtrlCur:");   [Rii Ri iiiiiiiii RR] 
+        vR1.append(vR0.getHubControllerCurrent@extra());   [Rii Ri iiiiiiiiii iR] 
+        if (vi3 & 4)==0 goto B152;   
+  +B109:   #1
+        vR1.append(", devs:");   [Rii Ri i......... RR] 
+        vi4 = 0;    
+  +B119:   #1
+        if vi4>=vi2 goto B152;   
+  +B125:   #1
+        b0 = vR1;    
+        if vR0.isRemovableDevice@extra(vi4)==0 goto B140;   
+  +B135b0:   #1 reference
+        b1 = 82;    
+        goto +B142b0b1;   [Riii Ri .......... ..]
+  +B140b0:   #1 reference
+        b1 = 70;    
+  +B142b0b1:   #1 reference int
+        b0.append(b1);   [Riii Ri .......... iR] 
+        vi4++;   
+        goto +B119;   [Riii Ri .......... ..]
+  +B152:   #2
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 17 swaps 11 any 4 found 0 toString
+}

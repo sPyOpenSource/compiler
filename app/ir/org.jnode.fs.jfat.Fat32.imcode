@@ -1,0 +1,61 @@
+class org/jnode/fs/jfat/Fat32 {
+ 
+ method <init>(Lorg/jnode/fs/jfat/BootSector;Ljx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method offset(I)I {
+  +START:   #1
+        return (4*vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 offset
+ 
+ method getClusterPosition(I)I {
+  +START:   #1
+        return (vR0.getClusterSector@this(vi1)*vR0.getBootSector@this().getBytesPerSector());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getClusterPosition
+ 
+ method get(I)I {
+  +START:   #1
+        return (vR0.getUInt32@this(vi1) & 268435455);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method set(II)I {
+  +START:   #1
+        vl3 = (long)vR0.getUInt32@this(vi1);    
+        vR0.setInt32@this(vi1,(int)((long)(vi2 & 268435455) | (vl3 & -268435456)));   [l  i iiR] 
+        return (int)(vl3 & 268435455);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 set
+ 
+ method isEofChain(I)Z {
+  +START:   #1
+        if vi1<268435448 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 isEofChain
+ 
+ method eofChain()I {
+  +START:   #1
+        return 268435455;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 eofChain
+}

@@ -1,0 +1,182 @@
+class test/wm/DrawWindow {
+ 
+ method <init>(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3);   [ ?RRRR  RRRR] 
+        vR0.m_nMode = 0;   
+        vR0.m_bDrawLine = 0;   
+        vR0.m_bDrawRect = 0;   
+        b1 = new test/wm/Button;    
+        b2 = b1;    
+        b4 = new jx/devices/fb/PixelRect(10,10,109,29);    [ ?RRRR  i...][ ?RRRR . iiiiiR]
+        b2.<init>@special(vR0,b4,"Linien");   [ ?RRRR R RRRR..] 
+        vR0.m_cLiner = b1;   
+        b1 = new test/wm/Button;    
+        b2 = b1;    
+        b4 = new jx/devices/fb/PixelRect(10,35,109,54);    [ ?RRRR R i.....][ ?RRRR R. iiiiiR]
+        b2.<init>@special(vR0,b4,"Rechtecke");   [ ?RRRR RR RRRR..] 
+        vR0.m_cRecter = b1;   
+        b1 = new test/wm/Button;    
+        b2 = b1;    
+        b4 = new jx/devices/fb/PixelRect(120,10,239,29);    [ ?RRRR RR i.....][ ?RRRR RR. iiiiiR]
+        b2.<init>@special(vR0,b4,"Filltest");   [ ?RRRR RRR RRRR..] 
+        vR0.m_cFillTest = b1;   
+        b3 = new jx/devices/fb/ColorSpace(4);    [ ?RRRR RRR i.....][ ?RRRR RRR. iiR...]
+        vR0.m_cBackBuffer = createWBitmap@special(800,600,b3);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 25/25 wr 17 swaps 0 any 3 found 0 <init>
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.setBitmap@this(vR0.m_cBackBuffer);   [  i RR] 
+        vR0.setFgColor@this(0,0,0);   [  i iiiR] 
+        vR0.m_cLiner.paint(vR1);   [  i RR..] 
+        vR0.m_cRecter.paint(vR1);   [  i RR..] 
+        vR0.m_cFillTest.paint(vR1);   [  i RR..] 
+        vR0.setBitmap@this(0);   [  i RR..] 
+        vR0.drawBitmap@this(vR0.m_cBackBuffer,0,0);   [  ii iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 2 any 0 found 0 paint
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.m_cLiner.mouseDown(vR1,vi2)!=0 goto B165;   
+  +B12:   #1
+        if vR0.m_cRecter.mouseDown(vR1,vi2)!=0 goto B165;   
+  +B24:   #1
+        if vR0.m_cFillTest.mouseDown(vR1,vi2)!=0 goto B165;   
+  +B36:   #1
+        if vR0.m_nMode!=0 goto B105;   
+  +B43:   #1
+        if vR0.m_bDrawLine!=0 goto B105;   
+  +B50:   #1
+        b2 = vR1.m_nX;    
+        b1 = b2;    
+        vR0.m_nEndX = b2;   
+        vR0.m_nStartX = b1;   
+        b2 = vR1.m_nY;    
+        b1 = b2;    
+        vR0.m_nEndY = b2;   
+        vR0.m_nStartY = b1;   
+        vR0.movePenTo@this(vR0.m_nStartX,vR0.m_nStartY);   [ ?ii ii iiR] 
+        vR0.invertLine@this(vR0.m_nEndX,vR0.m_nEndY);   [ ?ii iiii iiR] 
+        vR0.m_bDrawLine = 1;   
+  +B105:   #2
+        if vR0.m_nMode!=1 goto B165;   
+  +B113:   #1
+        if vR0.m_bDrawRect!=0 goto B165;   
+  +B120:   #1
+        b2 = vR1.m_nX;    
+        b1 = b2;    
+        vR0.m_nEndX = b2;   
+        vR0.m_nStartX = b1;   
+        b2 = vR1.m_nY;    
+        b1 = b2;    
+        vR0.m_nEndY = b2;   
+        vR0.m_nStartY = b1;   
+        vR0.invertRect@this(vR0.m_nStartX,vR0.m_nStartY,1,1);   [ ?ii ii.. iiiiR] 
+        vR0.m_bDrawRect = 1;   
+  +B165:   #5
+        return;   
+  +END:   #1
+ }
+// Register: rd 42/42 wr 14 swaps 3 any 4 found 0 mouseDown
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.m_bDrawLine==0 goto B71;   
+  +B7:   #1
+        vR0.movePenTo@this(vR0.m_nStartX,vR0.m_nStartY);   [  ii iiR] 
+        vR0.invertLine@this(vR0.m_nEndX,vR0.m_nEndY);   [  iiii iiR] 
+        vR0.m_nEndX = vR1.m_nX;   
+        vR0.m_nEndY = vR1.m_nY;   
+        vR0.movePenTo@this(vR0.m_nStartX,vR0.m_nStartY);   [  iiiiii iiR] 
+        vR0.invertLine@this(vR0.m_nEndX,vR0.m_nEndY);   [  iiiiiiii iiR] 
+  +B71:   #1
+        if vR0.m_bDrawRect==0 goto B162;   
+  +B78:   #1
+        vR0.invertRect@this(vR0.m_nStartX,vR0.m_nStartY,((vR0.m_nEndX-vR0.m_nStartX)+1),((vR0.m_nEndY-vR0.m_nStartY)+1));   [  iiii.... iiiiR] 
+        vR0.m_nEndX = vR1.m_nX;   
+        vR0.m_nEndY = vR1.m_nY;   
+        vR0.invertRect@this(vR0.m_nStartX,vR0.m_nStartY,((vR0.m_nEndX-vR0.m_nStartX)+1),((vR0.m_nEndY-vR0.m_nStartY)+1));   [  iiiiiiii iiiiR] 
+  +B162:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 16 swaps 6 any 0 found 0 mouseMoved
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        if vR0.m_cLiner.mouseUp(vR1,vi2)==0 goto B17;   
+  +B12:   #1
+        vR0.m_nMode = 0;   
+  +B17:   #1
+        if vR0.m_cRecter.mouseUp(vR1,vi2)==0 goto B34;   
+  +B29:   #1
+        vR0.m_nMode = 1;   
+  +B34:   #1
+        if vR0.m_cFillTest.mouseUp(vR1,vi2)==0 goto B50;   
+  +B46:   #1
+        vR0.testFillRect@this();   [   R..] 
+  +B50:   #1
+        if vR0.m_bDrawLine==0 goto B86;   
+  +B57:   #1
+        vR0.movePenTo@this(vR0.m_nStartX,vR0.m_nStartY);   [  ii iiR] 
+        vR0.invertLine@this(vR0.m_nEndX,vR0.m_nEndY);   [  iiii iiR] 
+        vR0.m_bDrawLine = 0;   
+  +B86:   #1
+        if vR0.m_bDrawRect==0 goto B132;   
+  +B93:   #1
+        vR0.invertRect@this(vR0.m_nStartX,vR0.m_nStartY,((vR0.m_nEndX-vR0.m_nStartX)+1),((vR0.m_nEndY-vR0.m_nStartY)+1));   [  iiii iiiiR] 
+        vR0.m_bDrawRect = 0;   
+  +B132:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 8 swaps 3 any 0 found 0 mouseUp
+ 
+ method testFillRect()V {
+  +START:   #1
+        vR1 = new jx/devices/fb/PixelRect();    [ R  i][ R  iR]
+        vR2 = getInitialNaming@special();    
+        vR3 = (jx/zero/Clock)(vR2.lookup("Clock"));    
+        vi4 = 400;    
+        vi5 = 350;    
+        vi6 = 100;    
+        vi7 = 2;    
+        vR8 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR9 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR10 = new jx/zero/CycleTime();    [ R i. i.][ R i. iR]
+        vR3.getCycles(vR8);   [RRRiiiiRRR R i. RR] 
+        vi11 = 0;    
+  +B79:   #1
+        if vi11>=100 goto B132;   
+  +B86:   #1
+        vR0.setFgColor@this(vi11,vi11,vi11);   [RRRiiiiRRRi R .. iiiR] 
+        vR1.setTo@extra((vi11+0),(vi11+60),(vi11+400),(vi11+360));   [RRRiiiiRRRi R iiii iiiiR] 
+        vR0.fillRect@this(vR1);   [RRRiiiiRRRi R iiii RR...] 
+        vi11++;   
+        goto +B79;   [RRRiiiiRRRi R iiii .....]
+  +B132:   #1
+        vR3.getCycles(vR9);   [RRRiiiiRRRi R .... RR...] 
+        vR3.subtract(vR10,vR9,vR8);   [RRRiiiiRRRi R .... RRRR.] 
+        vi11 = vR3.toMilliSec(vR10);    [RRRiiiiRRRi R .... RR...] 
+        vi12 = (((vi4*vi5)*vi7)*vi6);    
+        vi13 = (vi12/(vi11*1000));    
+        b0 = new java/lang/StringBuilder();    [ R .... i....][ R .... iR...]
+        vR14 = b0.append@extra("results: ").append@extra(vi12).append@extra(" Bytes, ").append@extra(vi11).append@extra(" milliseconds, ").append@extra(vi13).append@extra(" MB/s").toString@extra();    [RRRiiiiRRRiii R iii..i..... R.......] [RRRiiiiRRRiii R iiii.i..... RR......] [RRRiiiiRRRiii R iiiiii..... RiR.....] [RRRiiiiRRRiii R iiiiiiR.... RiRR....] [RRRiiiiRRRiii R iiiiiiRR... RiRiR...] [RRRiiiiRRRiii R iiiiiiRRR.. RiRiRR..] [RRRiiiiRRRiii R iiiiiiRRRR. RiRiRiR.] [RRRiiiiRRRiii R iiiiiiRRRRR RiRiRiRR] 
+        vR0.setFgColor@this(255,255,255);   [RRRiiiiRRRiiiR R iii..i..... iiiR....] 
+        vR1.setTo@extra(0,60,600,500);   [RRRiiiiRRRiiiR R iii..i..... iiiiR...] 
+        vR0.fillRect@this(vR1);   [RRRiiiiRRRiiiR R iii..i..... RR......] 
+        vR0.setFgColor@this(0,0,0);   [RRRiiiiRRRiiiR R iii..i..... iiiR....] 
+        vR0.movePenTo@this(10,60);   [RRRiiiiRRRiiiR R iii..i..... iiR.....] 
+        vR0.drawString@this(vR14);   [RRRiiiiRRRiiiR R iii..i..... RR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 30 swaps 8 any 3 found 0 testFillRect
+}

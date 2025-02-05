@@ -1,0 +1,398 @@
+class jx/awt/peer/JXMenuBarPeer {
+ 
+ method <init>(Ljava/awt/MenuBar;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [ ?R  RRR] 
+        vR0.BORDER = 2;   
+        b1 = new java/util/Vector();    [ ?R  i..][ ?R  iR.]
+        vR0.menus = b1;   
+        b1 = new java/util/Vector();    [ ?R  i..][ ?R  iR.]
+        vR0.menuSizes = b1;   
+        vi3 = 0;    
+  +B35:   #1
+        if vi3>=vR1.getMenuCount() goto B58;   
+  +B43:   #1
+        vR0.addMenu@this(vR1.getMenu(vi3));   [i ?R i RR.] 
+        vi3++;   
+        goto +B35;   [i ?R i ...]
+  +B58:   #1
+        vR0.addHelpMenu@this(vR1.getHelpMenu());   [i ?R i RR.] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 6 swaps 2 any 2 found 1 <init>
+ 
+ method setParentFrame(Ljava/awt/Frame;)V {
+  +START:   #1
+        vR0.parentFrame = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setParentFrame
+ 
+ method setCurrentMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        vR0.currentMenu = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCurrentMenu
+ 
+ method getCurrentMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return vR0.currentMenu;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrentMenu
+ 
+ method isSelectable(Ljava/awt/Menu;)Z {
+  +START:   #1
+        if vR1==null goto B15;   
+  +B4:   #1
+        if vR1.isEnabled()==0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  .]
+  +B15:   #2
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 isSelectable
+ 
+ method redrawMenuBar()V {
+  +START:   #1
+        if vR0.ready==0 goto B18;   
+  +B7:   #1
+        vR1 = 0;    
+        vR0.paintMenuBar@this(vR1,vR0.currentMenu);   [R  i RRR] 
+  +B18:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 redrawMenuBar
+ 
+ method activateMenuBar()V {
+  +START:   #1
+        vR0.currentMenu = vR0.getDefaultMenu@this();   
+        vR0.redrawMenuBar@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 activateMenuBar
+ 
+ method resetMenuBar()V {
+  +START:   #1
+        vR0.currentMenu = 0;   
+        vR0.redrawMenuBar@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 resetMenuBar
+ 
+ method nextSelectableMenu(IZ)Ljava/awt/Menu; {
+  +START:   #1
+        if vi1<-1 goto B16;   
+  +B5:   #1
+        if vi1<vR0.menus.size@extra() goto B18;   
+  +B16:   #1
+        return 0;   
+  +B18:   #1
+        if vi1!=-1 goto B25;   
+  +B23:   #1
+        vi2 = 1;    
+  +B25:   #1
+        vi4 = vi1;    
+        if vi2==0 goto B85;   
+  +B32:   #1
+        vi4 = ((vi4+1)%vR0.menus.size@extra());    
+        vR3 = (java/awt/Menu)(vR0.menus.elementAt(vi4));    
+        if vi4==vi1 goto B72;   
+  +B65:   #1
+        if vR3.isEnabled()==0 goto B32;   
+  +B72:   #1
+        if vR3.isEnabled()==0 goto B83;   
+  +B79:   #1
+        b0 = vR3;    
+        goto +B84b0;   forward return[Ri R . ..]
+  +B83:   #1
+        b0 = 0;    
+  +B84b0:   #1 reference
+        return b0;   
+  +B85:   #2
+        if vi4!=0 goto B102;   
+  +B90:   #1
+        b0 = (vR0.menus.size@extra()-1);    
+        goto +B106b0;   [Ri i . ..]
+  +B102:   #1
+        b0 = (vi4-1);    
+  +B106b0:   #1 int
+        vi4 = b0;    
+        vR3 = (java/awt/Menu)(vR0.menus.elementAt(vi4));    
+        if vi4==vi1 goto B134;   
+  +B127:   #1
+        if vR3.isEnabled()==0 goto B85;   
+  +B134:   #1
+        if vR3.isEnabled()==0 goto B145;   
+  +B141:   #1
+        b0 = vR3;    
+        goto +B146b0;   forward return[Ri R . ..]
+  +B145:   #1
+        b0 = 0;    
+  +B146b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 13 swaps 0 any 12 found 1 nextSelectableMenu
+ 
+ method getLeftMenu()Ljava/awt/Menu; {
+  +START:   #1
+        if vR0.currentMenu!=null goto B12;   
+  +B7:   #1
+        return vR0.getDefaultMenu@this();   
+  +B12:   #1
+        vi1 = vR0.menus.indexOf@extra(vR0.currentMenu);    [  i RR] 
+        return vR0.nextSelectableMenu@special(vi1,0);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getLeftMenu
+ 
+ method getRightMenu()Ljava/awt/Menu; {
+  +START:   #1
+        if vR0.currentMenu!=null goto B12;   
+  +B7:   #1
+        return vR0.getDefaultMenu@this();   
+  +B12:   #1
+        vi1 = vR0.menus.indexOf@extra(vR0.currentMenu);    [  i RR] 
+        return vR0.nextSelectableMenu@special(vi1,1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getRightMenu
+ 
+ method getDefaultMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return vR0.nextSelectableMenu@special(-1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDefaultMenu
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.currentMenu = 0;   
+        vR0.menus = 0;   
+        vR0.menuSizes = 0;   
+        vR0.helpMenu = 0;   
+        vR0.parentFrame = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method paintMenuBar(Ljx/awt/JXGraphics;Ljava/awt/Menu;)V {
+  +START:   #1
+        vR0.paintMenuBackground@this(vR1);   [ RRRRi  RR] 
+        vi3 = 0;    
+  +B7:   #1
+        if vi3>=vR0.menus.size@extra() goto B76;   
+  +B18:   #1
+        vR4 = (java/awt/Menu)(vR0.menus.elementAt(vi3));    
+        vR5 = (java/awt/Rectangle)(vR0.menuSizes.elementAt(vi3));    
+        vR1.setClip(vR5);   [iRR RRRRi . RR] 
+        b0 = vR0;    
+        b1 = vR1;    
+        b2 = vR4;    
+        b3 = vR5;    
+        if vR4!=vR2 goto B66;   
+  +B62b0b1b2b3:   #1 reference reference reference reference
+        b4 = 1;    
+        goto +B67b0b1b2b3b4;   [iRR RRRRi . ..]
+  +B66b0b1b2b3:   #1 reference reference reference reference
+        b4 = 0;    
+  +B67b0b1b2b3b4:   #1 reference reference reference reference int
+        b0.paintMenuEntry(b1,b2,b3,b4);   [iRR RRRRi . iRRRR] 
+        vi3++;   
+        goto +B7;   [iRR RRRRi . .....]
+  +B76:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 11 swaps 0 any 7 found 1 paintMenuBar
+ 
+ method getMenuEntry(II)Ljava/awt/Menu; {
+  +START:   #1
+        vi3 = 0;    
+  +B2:   #1
+        if vi3>=vR0.menuSizes.size@extra() goto B72;   
+  +B13:   #1
+        vR4 = (java/awt/Rectangle)(vR0.menuSizes.elementAt(vi3));    
+        if vR4.contains(vi1,vi2)==0 goto B66;   
+  +B36:   #1
+        if vR0.isSelectable@this((java/awt/Menu)(vR0.menus.elementAt(vi3)))==0 goto B66;   
+  +B54:   #1
+        return (java/awt/Menu)(vR0.menus.elementAt(vi3));   
+  +B66:   #2
+        vi3++;   
+        goto +B2;   [iR  . ...]
+  +B72:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 1 any 2 found 1 getMenuEntry
+ 
+ method getHeight()I {
+  +START:   #1
+        return vR0.barHeight;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHeight
+ 
+ method layout(II)V {
+  +START:   #1
+        vR0.barWidth = vi1;   
+        if vR0.helpMenu==null goto B48;   
+  +B12:   #1
+        vR6 = vR0.getMenuBounds@this(vR0.helpMenu);    [  i RR] 
+        vR6.x = (vi1-vR6.width);   
+        vR6.y = 0;   
+        vi1 = (vi1-vR6.width);    
+  +B48:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+        vi6 = 0;    
+  +B59:   #1
+        if vi6>=vR0.menuSizes.size@extra() goto B161;   
+  +B71:   #1
+        if vR0.menus.elementAt(vi6)==vR0.helpMenu goto B155;   
+  +B87:   #1
+        vR7 = (java/awt/Rectangle)(vR0.menuSizes.elementAt(vi6));    
+        if vi5==0 goto B131;   
+  +B106:   #1
+        if (vi3+vR7.width)<=vi1 goto B131;   
+  +B117:   #1
+        vi4 = (vi4+vR0.menuHeight@special());    
+        vi3 = 0;    
+        vi5 = 0;    
+  +B131:   #2
+        vR7.x = vi3;   
+        vR7.y = vi4;   
+        vi3 = (vi3+vR7.width);    
+        vi5 = 1;    
+  +B155:   #1
+        vi6++;   
+        goto +B59;   [iiiiR  . ..]
+  +B161:   #1
+        vR0.barHeight = ((vi4+vR0.menuHeight@special())+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 14 swaps 1 any 7 found 3 layout
+ 
+ method getMenuBounds(Ljava/awt/Menu;)Ljava/awt/Rectangle; {
+  +START:   #1
+        vi2 = vR0.menus.indexOf@extra(vR1);    [   RR] 
+        if vi2!=-1 goto B16;   
+  +B14:   #1
+        return 0;   
+  +B16:   #1
+        return (java/awt/Rectangle)(vR0.menuSizes.elementAt(vi2));   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 getMenuBounds
+ 
+ method menuWidth(Ljava/lang/String;)I {
+  +START:   #1
+        return ((9*vR1.length@extra())+4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 menuWidth
+ 
+ method menuHeight()I {
+  +START:   #1
+        return 18;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 menuHeight
+ 
+ method addMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        if vR0.menus.contains@extra(vR1)!=0 goto B47;   
+  +B11:   #1
+        vR0.menus.addElement@extra(vR1);   [ RR  RR] 
+        b0 = vR0.menuSizes;    
+        b1 = new java/awt/Rectangle(0,0,vR0.menuWidth@special(vR1.getLabel()),vR0.menuHeight@special());    [ RR  i.][ RR .i iiiiiR]
+        b0.addElement@extra(b1);   [ RR .i RR....] 
+  +B47:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 1 any 0 found 0 addMenu
+ 
+ method addHelpMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        if vR1==null goto B14;   
+  +B4:   #1
+        vR0.helpMenu = vR1;   
+        vR0.addMenu@this(vR1);   [   RR] 
+  +B14:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 addHelpMenu
+ 
+ method delMenu(I)V {
+  +START:   #1
+        if vR0.menus.elementAt(vi1)!=vR0.helpMenu goto B20;   
+  +B15:   #1
+        vR0.helpMenu = 0;   
+  +B20:   #1
+        vR0.menus.remove(vi1);   [   iR] 
+        vR0.menuSizes.remove(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 delMenu
+ 
+ method paintMenuBackground(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR1.setColor(menuBgColor);   [  i RR] 
+        vR1.setClip(0,0,vR0.barWidth,vR0.barHeight);   [  iii iiiiR] 
+        vR1.fillRect(0,0,(vR0.barWidth-1),(vR0.barHeight-1));   [  iiiii iiiiR] 
+        vR1.setColor(menuBgColor.darker());   [  iiiiii RR...] 
+        vR1.drawLine(0,(vR0.barHeight-1),vR0.barWidth,(vR0.barHeight-1));   [  iiiiiiiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 5 any 0 found 0 paintMenuBackground
+ 
+ method paintMenuEntry(Ljx/awt/JXGraphics;Ljava/awt/Menu;Ljava/awt/Rectangle;Z)V {
+  +START:   #1
+        if vi4==0 goto B46;   
+  +B5:   #1
+        vR1.setColor(menuSelBgColor);   [  i RR] 
+        vR1.fillRect(vR3.x,vR3.y,(vR3.width-1),(vR3.height-1));   [  iiiii iiiiR] 
+        vR1.setColor(menuSelTextColor);   [  iiiiii RR...] 
+        goto +B70;   [  iiiiii .....]
+  +B46:   #1
+        if vR2.isEnabled()==0 goto B63;   
+  +B53:   #1
+        vR1.setColor(menuTextColor);   [  i..... RR...] 
+        goto +B70;   [  i..... .....]
+  +B63:   #1
+        vR1.setColor(disabledTextColor);   [  i..... RR...] 
+  +B70:   #2
+        vR1.drawJXString(vR2.getLabel(),(vR3.x+2),(vR3.y+2));   [  iii... iiRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 11 swaps 6 any 1 found 0 paintMenuEntry
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+}

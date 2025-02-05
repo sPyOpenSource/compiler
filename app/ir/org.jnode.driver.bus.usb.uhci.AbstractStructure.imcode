@@ -1,0 +1,45 @@
+class org/jnode/driver/bus/usb/uhci/AbstractStructure {
+ 
+ method <init>(Ljx/zero/MemoryManager;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = new byte[vi2];   
+        vR1 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR0.dataRes = vR1.allocAligned(vi2,vi3);   
+        vi4 = vR0.dataRes.getStartAddress();    [  i. R..] 
+        vi5 = 0;    
+  +B51:   #1
+        if ((vi5+vi4) & (vi3-1))==0 goto B69;   
+  +B63:   #1
+        vi5++;   
+        goto +B51;   [ii  .. ...]
+  +B69:   #1
+        vR0.offset = vi5;   
+        vR0.descrAddr = (vR0.dataRes.getStartAddress()+vi5);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 7 swaps 1 any 2 found 0 <init>
+ 
+ method getInt(I)I {
+  +START:   #1
+        return vR0.dataRes.get32((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getInt
+ 
+ method setInt(II)V {
+  +START:   #1
+        vR0.dataRes.set32((vR0.offset+vi1),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 setInt
+ 
+ method getDescriptorAddress()I {
+  +START:   #1
+        return vR0.descrAddr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptorAddress
+}

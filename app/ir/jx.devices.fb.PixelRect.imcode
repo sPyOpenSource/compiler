@@ -1,0 +1,430 @@
+class jx/devices/fb/PixelRect {
+ 
+ method __min__(II)I {
+  +START:   #1
+        if vi0>=vi1 goto B9;   
+  +B5:   #1
+        b0 = vi0;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi1;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 __min__
+ 
+ method __max__(II)I {
+  +START:   #1
+        if vi0<=vi1 goto B9;   
+  +B5:   #1
+        b0 = vi0;    
+        goto +B10b0;   forward return[ i  ]
+  +B9:   #1
+        b0 = vi1;    
+  +B10b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 3 found 0 __max__
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nY1 = 99999999;   
+        vR0.m_nX1 = 99999999;   
+        vR0.m_nY0 = 99999999;   
+        vR0.m_nX0 = 99999999;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX0 = vi1;   
+        vR0.m_nY0 = vi2;   
+        vR0.m_nX1 = vi3;   
+        vR0.m_nY1 = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelPoint;Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX0 = vR1.X();   
+        vR0.m_nY0 = vR1.Y();   
+        vR0.m_nX1 = vR2.X();   
+        vR0.m_nY1 = vR2.Y();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX0 = vR1.m_nX0;   
+        vR0.m_nY0 = vR1.m_nY0;   
+        vR0.m_nX1 = vR1.m_nX1;   
+        vR0.m_nY1 = vR1.m_nY1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setTo(IIII)V {
+  +START:   #1
+        vR0.m_nX0 = vi1;   
+        vR0.m_nY0 = vi2;   
+        vR0.m_nX1 = vi3;   
+        vR0.m_nY1 = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method setTo(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = vR1.m_nX0;   
+        vR0.m_nY0 = vR1.m_nY0;   
+        vR0.m_nX1 = vR1.m_nX1;   
+        vR0.m_nY1 = vR1.m_nY1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method isValid()Z {
+  +START:   #1
+        if vR0.m_nX0>vR0.m_nX1 goto B26;   
+  +B11:   #1
+        if vR0.m_nY0>vR0.m_nY1 goto B26;   
+  +B22:   #1
+        b0 = 1;    
+        goto +B27b0;   forward return[ i  ]
+  +B26:   #2
+        b0 = 0;    
+  +B27b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 isValid
+ 
+ method isEqual(Ljx/devices/fb/PixelRect;)Z {
+  +START:   #1
+        if vR0.m_nX0!=vR1.m_nX0 goto B48;   
+  +B11:   #1
+        if vR0.m_nY0!=vR1.m_nY0 goto B48;   
+  +B22:   #1
+        if vR0.m_nX1!=vR1.m_nX1 goto B48;   
+  +B33:   #1
+        if vR0.m_nY1!=vR1.m_nY1 goto B48;   
+  +B44:   #1
+        b0 = 1;    
+        goto +B49b0;   forward return[ i  ]
+  +B48:   #4
+        b0 = 0;    
+  +B49b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 isEqual
+ 
+ method invalidate()V {
+  +START:   #1
+        vR0.m_nY0 = 999999;   
+        vR0.m_nX0 = 999999;   
+        vR0.m_nY1 = -999999;   
+        vR0.m_nX1 = -999999;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 invalidate
+ 
+ method intersects(Ljx/devices/fb/PixelPoint;)Z {
+  +START:   #1
+        if vR1.m_nX<vR0.m_nX0 goto B48;   
+  +B11:   #1
+        if vR1.m_nX>vR0.m_nX1 goto B48;   
+  +B22:   #1
+        if vR1.m_nY<vR0.m_nY0 goto B48;   
+  +B33:   #1
+        if vR1.m_nY>vR0.m_nY1 goto B48;   
+  +B44:   #1
+        b0 = 1;    
+        goto +B49b0;   forward return[ i  ]
+  +B48:   #4
+        b0 = 0;    
+  +B49b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 intersects
+ 
+ method contains(Ljx/devices/fb/PixelPoint;)Z {
+  +START:   #1
+        if vR1.m_nX<vR0.m_nX0 goto B48;   
+  +B11:   #1
+        if vR1.m_nX>vR0.m_nX1 goto B48;   
+  +B22:   #1
+        if vR1.m_nY<vR0.m_nY0 goto B48;   
+  +B33:   #1
+        if vR1.m_nY>vR0.m_nY1 goto B48;   
+  +B44:   #1
+        b0 = 1;    
+        goto +B49b0;   forward return[ i  ]
+  +B48:   #4
+        b0 = 0;    
+  +B49b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 contains
+ 
+ method intersects(Ljx/devices/fb/PixelRect;)Z {
+  +START:   #1
+        if vR1.m_nX1<vR0.m_nX0 goto B48;   
+  +B11:   #1
+        if vR1.m_nX0>vR0.m_nX1 goto B48;   
+  +B22:   #1
+        if vR1.m_nY1<vR0.m_nY0 goto B48;   
+  +B33:   #1
+        if vR1.m_nY0>vR0.m_nY1 goto B48;   
+  +B44:   #1
+        b0 = 1;    
+        goto +B49b0;   forward return[ i  ]
+  +B48:   #4
+        b0 = 0;    
+  +B49b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 1 swaps 0 any 0 found 0 intersects
+ 
+ method resize(IIII)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0+vi1);   
+        vR0.m_nY0 = (vR0.m_nY0+vi2);   
+        vR0.m_nX1 = (vR0.m_nX1+vi3);   
+        vR0.m_nY1 = (vR0.m_nY1+vi4);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 resize
+ 
+ method x0()I {
+  +START:   #1
+        return vR0.m_nX0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 x0
+ 
+ method y0()I {
+  +START:   #1
+        return vR0.m_nY0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 y0
+ 
+ method x1()I {
+  +START:   #1
+        return vR0.m_nX1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 x1
+ 
+ method y1()I {
+  +START:   #1
+        return vR0.m_nY1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 y1
+ 
+ method left()I {
+  +START:   #1
+        return vR0.m_nX0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 left
+ 
+ method right()I {
+  +START:   #1
+        return vR0.m_nX1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 right
+ 
+ method top()I {
+  +START:   #1
+        return vR0.m_nY0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 top
+ 
+ method bottom()I {
+  +START:   #1
+        return vR0.m_nY1;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 bottom
+ 
+ method width()I {
+  +START:   #1
+        return (vR0.m_nX1-vR0.m_nX0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 width
+ 
+ method height()I {
+  +START:   #1
+        return (vR0.m_nY1-vR0.m_nY0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 height
+ 
+ method leftTop()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint(vR0.m_nX0,vR0.m_nY0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 leftTop
+ 
+ method leftBottom()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint(vR0.m_nX0,vR0.m_nY1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 leftBottom
+ 
+ method rightTop()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint(vR0.m_nX1,vR0.m_nY0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 rightTop
+ 
+ method rightBottom()Ljx/devices/fb/PixelPoint; {
+  +START:   #1
+        return new jx/devices/fb/PixelPoint(vR0.m_nX1,vR0.m_nY1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 rightBottom
+ 
+ method bounds()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return new jx/devices/fb/PixelRect(0,0,(vR0.m_nX1-vR0.m_nX0),(vR0.m_nY1-vR0.m_nY0));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 bounds
+ 
+ method add(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0+vR1.X());   
+        vR0.m_nY0 = (vR0.m_nY0+vR1.Y());   
+        vR0.m_nX1 = (vR0.m_nX1+vR1.X());   
+        vR0.m_nY1 = (vR0.m_nY1+vR1.Y());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 4 swaps 0 any 0 found 0 add
+ 
+ method add(II)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0+vi1);   
+        vR0.m_nY0 = (vR0.m_nY0+vi2);   
+        vR0.m_nX1 = (vR0.m_nX1+vi1);   
+        vR0.m_nY1 = (vR0.m_nY1+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 add
+ 
+ method sub(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0-vR1.m_nX);   
+        vR0.m_nY0 = (vR0.m_nY0-vR1.m_nY);   
+        vR0.m_nX1 = (vR0.m_nX1-vR1.m_nX);   
+        vR0.m_nY1 = (vR0.m_nY1-vR1.m_nY);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 sub
+ 
+ method sub(II)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0-vi1);   
+        vR0.m_nY0 = (vR0.m_nY0-vi2);   
+        vR0.m_nX1 = (vR0.m_nX1-vi1);   
+        vR0.m_nY1 = (vR0.m_nY1-vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 sub
+ 
+ method add(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0+vR1.m_nX0);   
+        vR0.m_nY0 = (vR0.m_nY0+vR1.m_nY0);   
+        vR0.m_nX1 = (vR0.m_nX1+vR1.m_nX1);   
+        vR0.m_nY1 = (vR0.m_nY1+vR1.m_nY1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 add
+ 
+ method sub(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = (vR0.m_nX0-vR1.m_nX0);   
+        vR0.m_nY0 = (vR0.m_nY0-vR1.m_nY0);   
+        vR0.m_nX1 = (vR0.m_nX1-vR1.m_nX1);   
+        vR0.m_nY1 = (vR0.m_nY1-vR1.m_nY1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 0 swaps 0 any 0 found 0 sub
+ 
+ method or(Ljx/devices/fb/PixelRect;)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return new jx/devices/fb/PixelRect(__min__@special(vR0.m_nX0,vR1.m_nX0),__min__@special(vR0.m_nY0,vR1.m_nY0),__max__@special(vR0.m_nX1,vR1.m_nX1),__max__@special(vR0.m_nY1,vR1.m_nY1));   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 9 swaps 0 any 0 found 0 or
+ 
+ method include(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = __min__@special(vR0.m_nX0,vR1.m_nX0);   
+        vR0.m_nY0 = __min__@special(vR0.m_nY0,vR1.m_nY0);   
+        vR0.m_nX1 = __max__@special(vR0.m_nX1,vR1.m_nX1);   
+        vR0.m_nY1 = __max__@special(vR0.m_nY1,vR1.m_nY1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 0 any 0 found 0 include
+ 
+ method clip(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = __max__@special(vR0.m_nX0,vR1.m_nX0);   
+        vR0.m_nY0 = __max__@special(vR0.m_nY0,vR1.m_nY0);   
+        vR0.m_nX1 = __min__@special(vR0.m_nX1,vR1.m_nX1);   
+        vR0.m_nY1 = __min__@special(vR0.m_nY1,vR1.m_nY1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 8 swaps 0 any 0 found 0 clip
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<null>";   
+  +B7:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("[").append@extra(vR0.m_nX0).append@extra("/").append@extra(vR0.m_nY0).append@extra(" - ").append@extra(vR0.m_nX1).append@extra("/").append@extra(vR0.m_nY1).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 19 swaps 13 any 1 found 0 toString
+}

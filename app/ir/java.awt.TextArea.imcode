@@ -1,0 +1,258 @@
+class java/awt/TextArea {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special("",1,1,0);   [  i iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,1,vR1.length@extra(),0);   [  i iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special("",vi1,vi2,0);   [  i iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3,0);   [   iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/lang/String;III)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ R  RR] 
+        if vi2<1 goto B14;   
+  +B10:   #1
+        if vi3>=0 goto B24;   
+  -B14:   #1
+        throw new java/lang/IllegalArgumentException("Bad row or column value");   
+  +B24:   #1
+        if vi4==0 goto B57;   
+  +B29:   #1
+        if vi4==1 goto B57;   
+  +B35:   #1
+        if vi4==2 goto B57;   
+  +B41:   #1
+        if vi4==3 goto B57;   
+  -B47:   #1
+        throw new java/lang/IllegalArgumentException("Bad scrollbar visibility value");   
+  +B57:   #4
+        vR0.rows = vi2;   
+        vR0.columns = vi3;   
+        vR0.scrollbarVisibility = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 2 swaps 0 any 6 found 0 <init>
+ 
+ method getColumns()I {
+  +START:   #1
+        return vR0.columns;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColumns
+ 
+ method setColumns(I)V {
+  +START:   #1
+        if vi1>=0 goto B31;   
+  -B4:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Value is less than zero: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B31:   #1
+        vR0.columns = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 2 any 2 found 0 setColumns
+ 
+ method getRows()I {
+  +START:   #1
+        return vR0.rows;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRows
+ 
+ method setRows(I)V {
+  +START:   #1
+        if vi1>=1 goto B32;   
+  -B5:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Value is less than one: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B32:   #1
+        vR0.rows = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 7 swaps 2 any 2 found 0 setRows
+ 
+ method getMinimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMinimumSize@this(vR0.getRows@this(),vR0.getColumns@this());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 getMinimumSize
+ 
+ method getMinimumSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        vR3 = 0;    
+        if vR3!=null goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        return vR3.getMinimumSize(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getMinimumSize
+ 
+ method minimumSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMinimumSize@this(vR0.getRows@this(),vR0.getColumns@this());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 minimumSize
+ 
+ method minimumSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getMinimumSize@this(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 minimumSize
+ 
+ method getPreferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this(vR0.getRows@this(),vR0.getColumns@this());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 getPreferredSize
+ 
+ method getPreferredSize(II)Ljava/awt/Dimension; {
+  +START:   #1
+        vR3 = 0;    
+        if vR3!=null goto B8;   
+  +B6:   #1
+        return 0;   
+  +B8:   #1
+        return vR3.getPreferredSize(vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getPreferredSize
+ 
+ method preferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this(vR0.getRows@this(),vR0.getColumns@this());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 0 found 0 preferredSize
+ 
+ method preferredSize(I)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getPreferredSize@this(vR0.rows,vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 preferredSize
+ 
+ method getScrollbarVisibility()I {
+  +START:   #1
+        return vR0.scrollbarVisibility;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScrollbarVisibility
+ 
+ method addNotify()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method append(Ljava/lang/String;)V {
+  +START:   #1
+        vR2 = 0;    
+        if vR2!=null goto B7;   
+  +B6:   #1
+        return;   
+  +B7:   #1
+        vR2.insert(vR1,vR2.getText().length@extra());   [R  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 1 any 1 found 0 append
+ 
+ method appendText(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.append@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 appendText
+ 
+ method insert(Ljava/lang/String;I)V {
+  +START:   #1
+        vR3 = 0;    
+        if vR3!=null goto B7;   
+  +B6:   #1
+        return;   
+  +B7:   #1
+        vR3.insert(vR1,vi2);   [R   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 insert
+ 
+ method insertText(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.insert@this(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 insertText
+ 
+ method replaceRange(Ljava/lang/String;II)V {
+  +START:   #1
+        vR4 = 0;    
+        if vR4!=null goto B9;   
+  +B8:   #1
+        return;   
+  +B9:   #1
+        vR4.replaceRange(vR1,vi2,vi3);   [R   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 replaceRange
+ 
+ method replaceText(Ljava/lang/String;II)V {
+  +START:   #1
+        vR0.replaceRange@this(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 replaceText
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra(vR0.getClass@this().getName@extra()).append@extra("(rows=").append@extra(vR0.getRows@this()).append@extra(",columns=").append@extra(vR0.getColumns@this()).append@extra(",scrollbars=").append@extra(vR0.getScrollbarVisibility@this()).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 18 swaps 8 any 0 found 0 paramString
+}

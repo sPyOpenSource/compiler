@@ -1,0 +1,20 @@
+class org/jnode/fs/ntfs/attribute/AttributeListAttributeRes {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getAllEntries()Ljava/util/Iterator; {
+  +START:   #1
+        vR1 = vR0.MemManager.alloc(vR0.getAttributeLength@this());    [ R i iR] 
+        vR0.getData@this(vR0.getAttributeOffset@this(),vR1,0,vR1.size());   [R R iii iiRiR] 
+        vR2 = new org/jnode/fs/ntfs/attribute/AttributeListBlock(vR1,0,(long)vR0.getAttributeLength@this());    [ R iii i....][ R iii.. iliRR]
+        return vR2.getAllEntries@extra();   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 2 any 0 found 0 getAllEntries
+}

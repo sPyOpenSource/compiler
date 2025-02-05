@@ -1,0 +1,101 @@
+class org/jnode/driver/bus/usb/USBInterface {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBConfiguration;Lorg/jnode/driver/bus/usb/InterfaceDescriptor;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getDevice());   [  i RR] 
+        vR0.conf = vR1;   
+        vR0.descr = vR2;   
+        vR0.endPoints = new org/jnode/driver/bus/usb/USBEndPoint()[vR2.getNumEndPoints@extra()];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getDescriptor()Lorg/jnode/driver/bus/usb/InterfaceDescriptor; {
+  +START:   #1
+        return vR0.descr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptor
+ 
+ method getConfuration()Lorg/jnode/driver/bus/usb/USBConfiguration; {
+  +START:   #1
+        return vR0.conf;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getConfuration
+ 
+ method getEndPoint(I)Lorg/jnode/driver/bus/usb/USBEndPoint; {
+  +START:   #1
+        return vR0.endPoints[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getEndPoint
+ 
+ method setEndPoint(ILorg/jnode/driver/bus/usb/USBEndPoint;)V {
+  +START:   #1
+        if vR0.endPoints[vi1]==null goto B19;   
+  -B9:   #1
+        throw new java/lang/SecurityException("Cannot overwrite a specific endpoint");   
+  +B19:   #1
+        vR0.endPoints[vi1] = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 setEndPoint
+ 
+ method getStatus()I {
+  +START:   #1
+        vR1 = new org/jnode/driver/bus/usb/USBPacket(2);    [ R  i][ R . iiR]
+        vR2 = vR0.getDevice@this().getDefaultControlPipe@extra();    [R R . R..] [R R R R..] 
+        vR3 = vR2.createRequest(createGetStatusPacket@special(1,vR0.descr.getInterfaceNumber@extra()),vR1);    [RR R ii RRR] 
+        vR2.syncSubmit(vR3,5000);   [RRR R ii ??RR] 
+        return vR1.getShort@extra(0);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 1 any 0 found 0 getStatus
+ 
+ method setFeature(I)V {
+  +START:   #1
+        vR2 = vR0.getDevice@this().getDefaultControlPipe@extra();    [  . R] [  R R] 
+        vR3 = vR2.createRequest(createSetFeaturePacket@special(1,vR0.descr.getInterfaceNumber@extra(),vi1),0);    [R  ii RRR] 
+        vR2.syncSubmit(vR3,5000);   [RR  ii ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 setFeature
+ 
+ method clearFeature(I)V {
+  +START:   #1
+        vR2 = vR0.getDevice@this().getDefaultControlPipe@extra();    [  . R] [  R R] 
+        vR3 = vR2.createRequest(createClearFeaturePacket@special(1,vR0.descr.getInterfaceNumber@extra(),vi1),0);    [R  ii RRR] 
+        vR2.syncSubmit(vR3,5000);   [RR  ii ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 clearFeature
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR1.append("DESCR:");   [R R i RR] 
+        vR1.append(vR0.descr);   [R R ii RR] 
+        vR1.append(", EPS{");   [R R iii RR] 
+        vi2 = 0;    
+  +B33:   #1
+        if vi2>=vR0.endPoints.length goto B70;   
+  +B42:   #1
+        if vi2<=0 goto B53;   
+  +B46:   #1
+        vR1.append(", ");   [Ri R i.. RR] 
+  +B53:   #1
+        vR1.append(vR0.endPoints[vi2]);   [Ri R i.. RR] 
+        vi2++;   
+        goto +B33;   [Ri R i.. ..]
+  +B70:   #1
+        vR1.append(125);   [Ri R ... iR] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 8 swaps 5 any 3 found 0 toString
+}

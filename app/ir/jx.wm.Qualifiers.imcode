@@ -1,0 +1,52 @@
+class jx/wm/Qualifiers {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.value = vR1.value;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getValue()I {
+  +START:   #1
+        return vR0.value;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getValue
+ 
+ method setValue(I)V {
+  +START:   #1
+        vR0.value = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setValue
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Qualifiers(").append@extra(toHexString@special(vR0.value)).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 8 swaps 3 any 0 found 0 toString
+}

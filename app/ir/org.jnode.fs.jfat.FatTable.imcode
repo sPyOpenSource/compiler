@@ -1,0 +1,78 @@
+class org/jnode/fs/jfat/FatTable {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/HashMap();    [ ?R  i][ ?R  iR]
+        vR0.table = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method get(Ljava/lang/String;)Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        b0 = vR0.table;    
+        b1 = new org/jnode/fs/jfat/FatTable$FatKey(vR0,vR1,0);    [ RR  i][ RR . iRRRR]
+        return (org/jnode/fs/jfat/FatEntry)(b0.get(b1));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 get
+ 
+ method put(Lorg/jnode/fs/jfat/FatEntry;)Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        vR2 = new org/jnode/fs/jfat/FatTable$FatKey(vR0,vR1.getName(),0);    [ R  i][ R . iRRRR]
+        if vR0.table.containsKey(vR2)==0 goto B37;   
+  -B27:   #1
+        throw new java/lang/IllegalArgumentException("shouldn't happen");   
+  +B37:   #1
+        vR0.table.put(vR2,vR1);   [R R . RRR..] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 put
+ 
+ method remove(Lorg/jnode/fs/jfat/FatEntry;)Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        vR2 = new org/jnode/fs/jfat/FatTable$FatKey(vR0,vR1.getName(),0);    [ R  i][ R . iRRRR]
+        if vR0.table.containsKey(vR2)!=0 goto B37;   
+  -B27:   #1
+        throw new java/lang/IllegalArgumentException("shouldn't happen");   
+  +B37:   #1
+        return (org/jnode/fs/jfat/FatEntry)(vR0.table.remove(vR2));   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 0 found 0 remove
+ 
+ method put(Ljava/lang/String;Lorg/jnode/fs/jfat/FatEntry;)Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        vR3 = new org/jnode/fs/jfat/FatTable$FatKey(vR0,vR1,0);    [ R  i][ R . iRRRR]
+        if vR0.table.containsKey(vR3)==0 goto B34;   
+  -B24:   #1
+        throw new java/lang/IllegalArgumentException("shouldn't happen");   
+  +B34:   #1
+        vR0.table.put(vR3,vR2);   [R R . RRR..] 
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 put
+ 
+ method look(Lorg/jnode/fs/jfat/FatEntry;)Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        vR2 = vR0.get@this(vR1.getName());    [  i RR] 
+        if vR2==null goto B15;   
+  +B13:   #1
+        return vR2;   
+  +B15:   #1
+        return vR0.put@this(vR1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 1 found 0 look
+ 
+ method size()I {
+  +START:   #1
+        return vR0.table.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+}

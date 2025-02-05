@@ -1,0 +1,211 @@
+class org/jnode/fs/ntfs/DataRun {
+ 
+ method <init>(IIZIJ)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.sparse = 0;   
+        vR0.cluster = vi1;   
+        vR0.length = vi2;   
+        vR0.sparse = vi3;   
+        vR0.size = vi4;   
+        vR0.vcn = vl5;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/attribute/NTFSNonResidentAttribute;IJI)V {
+  +START:   #1
+        vR0.<init>@special();   [ RiR  R] 
+        vR0.sparse = 0;   
+        vR6 = new org/jnode/fs/ntfs/NTFSStructure(vR1,vi2);    [ RiR  i][ RiR . iiRR]
+        vi7 = vR6.getUInt8@extra(0);    [?R RiR . iR..] 
+        vi8 = (vi7 & 15);    
+        vi9 = (vi7 >>> 4);    
+        vR0.size = ((vi8+vi9)+1);   
+        vR0.vcn = vl3;   
+        tswitch (vi8) B92 B100 B113 B126 B139 : B152;   
+  +B92:   #1
+        vR0.length = 0;   
+        goto +B180;   [?Riii RiR . ....]
+  +B100:   #1
+        vR0.length = vR6.getUInt8@extra(1);   
+        goto +B180;   [iRiiii RiR . ....]
+  +B113:   #1
+        vR0.length = vR6.getUInt16@extra(1);   
+        goto +B180;   [iRiiii RiR . ....]
+  +B126:   #1
+        vR0.length = vR6.getUInt24@extra(1);   
+        goto +B180;   [iRiiii RiR . ....]
+  +B139:   #1
+        vR0.length = vR6.getUInt32AsInt@extra(1);   
+        goto +B180;   [iRiiii RiR . ....]
+  -B152:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i...][ RRR . iR..]
+        b1.<init>@special(b2.append@extra("Invalid length length ").append@extra(vi8).toString@extra());   [?Riii RRR ii. RR..] 
+        throw b0;   
+  +B180:   #5
+        tswitch (vi9) B216 B227 B241 B255 B269 : B283;   
+  +B216:   #1
+        vR0.sparse = 1;   
+        vi10 = 0;    
+        goto +B311;   [?Riiii RRR ... ....]
+  +B227:   #1
+        vi10 = vR6.getInt8@extra((vi8+1));    [iRiiii RRR i.. iR..] 
+        goto +B311;   [iRiiii RRR i.. ....]
+  +B241:   #1
+        vi10 = vR6.getInt16@extra((vi8+1));    [iRiiii RRR i.. iR..] 
+        goto +B311;   [iRiiii RRR i.. ....]
+  +B255:   #1
+        vi10 = vR6.getInt24@extra((vi8+1));    [iRiiii RRR i.. iR..] 
+        goto +B311;   [iRiiii RRR i.. ....]
+  +B269:   #1
+        vi10 = vR6.getInt32@extra((vi8+1));    [iRiiii RRR i.. iR..] 
+        goto +B311;   [iRiiii RRR i.. ....]
+  -B283:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i...][ RRR ... iR..]
+        b1.<init>@special(b2.append@extra("Unknown cluster length ").append@extra(vi9).toString@extra());   [?Riii RRR ii. RR..] 
+        throw b0;   
+  +B311:   #5
+        b0 = vR0;    
+        if vi10!=0 goto B321;   
+  +B317b0:   #1 reference
+        b1 = 0;    
+        goto +B326b0b1;   [?Riiii RiR ... ....]
+  +B321b0:   #1 reference
+        b1 = (vi10+vi5);    
+  +B326b0b1:   #1 reference int
+        b0.cluster = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 45/45 wr 31 swaps 8 any 9 found 0 <init>
+ 
+ method isSparse()Z {
+  +START:   #1
+        return vR0.sparse;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isSparse
+ 
+ method getCluster()I {
+  +START:   #1
+        return vR0.cluster;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCluster
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.length;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method getFirstVcn()J {
+  +START:   #1
+        return vR0.vcn;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFirstVcn
+ 
+ method getLastVcn()J {
+  +START:   #1
+        return ((vR0.getFirstVcn@extra()+(long)vR0.getLength@extra())-1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastVcn
+ 
+ method readClusters(JLjx/zero/Memory;IIILorg/jnode/fs/ntfs/NTFSVolume;)I {
+  +START:   #1
+        vl8 = vR0.getFirstVcn@extra();     
+        vi10 = vR0.getLength@extra();    [?l   R] 
+        vl11 = vR0.getLastVcn@extra();     
+        vl13 = ((vl1+(long)vi5)-1);    
+        if compare(vl1,vl11)> 0 goto B42;   
+  +B34:   #1
+        if compare(vl8,vl13)<=0 goto B44;   
+  +B42:   #1
+        return 0;   
+  +B44:   #1
+        if compare(vl1,vl8)>=0 goto B89;   
+  +B51:   #1
+        vi18 = (int)(vl8-vl1);    
+        vi16 = min@special((vi5-vi18),vi10);    [?l?il?l????i  ii ii]
+        vi17 = (vi4+(vi18*vi6));    
+        vi15 = vR0.getCluster@extra();    [?l?il?l??iii  ii R.] 
+        goto +B121;   [?l?il?l?iiii  ii ..]
+  +B89:   #1
+        vi18 = (int)(vl1-vl8);    
+        vi16 = min@special(vi5,(vi10-vi18));    [Rl?il?l?iiii  ii ii]
+        vi17 = vi4;    
+        vi15 = (vR0.getCluster@extra()+vi18);    
+  +B121:   #1
+        if vR0.isSparse@extra()!=0 goto B140;   
+  +B128:   #1
+        vR7.readClusters(vi15,vR3,vi17,vi16);   [Rl?il?l?iiii  .. iiRiR] 
+  +B140:   #1
+        return vi16;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 13 swaps 0 any 2 found 0 readClusters
+ 
+ method mapVcnToLcn(J)J {
+  +START:   #1
+        vl3 = ((vR0.getFirstVcn@extra()+(long)vR0.getLength@extra())-1);    
+        if compare(vl1,vl3)> 0 goto B28;   
+  +B19:   #1
+        if compare(vR0.getFirstVcn@extra(),vl1)<=0 goto B55;   
+  -B28:   #1
+        b0 = new java/lang/ArrayIndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Invalid VCN for this data run: ").append@extra(vl1).toString@extra());   [?l RRR ii. RR..] 
+        throw b0;   
+  +B55:   #1
+        vl5 = (long)vR0.getCluster@extra();    
+        if compare(vl5,0)==0 goto B76;   
+  +B69:   #1
+        if vR0.isSparse@extra()==0 goto B80;   
+  +B76:   #1
+        return -1;   
+  +B80:   #1
+        vi7 = (int)(vl1-vR0.getFirstVcn@extra());    
+        return (vl5+(long)vi7);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 9 swaps 2 any 1 found 0 mapVcnToLcn
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "[%s-run vcn:%d-%d cluster:%d]";    
+        b1 = new java/lang/Object()[4];    
+        b2 = b1;    
+        b3 = 0;    
+        if vR0.isSparse@extra()==0 goto B20;   
+  +B15b0b1b2b3:   #1 reference reference reference int
+        b4 = "sparse";    
+        goto +B22b0b1b2b3b4;   [ RRRiR  ..]
+  +B20b0b1b2b3:   #1 reference reference reference int
+        b4 = "data";    
+  +B22b0b1b2b3b4:   #1 reference reference reference int reference
+        b2[b3] = b4;   
+        b1[1] = valueOf@special(vR0.getFirstVcn@extra());   
+        b1[2] = valueOf@special(vR0.getLastVcn@extra());   
+        b1[3] = valueOf@special(vR0.getCluster@extra());   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 0 any 2 found 0 toString
+}

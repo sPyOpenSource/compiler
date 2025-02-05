@@ -1,0 +1,1046 @@
+class jx/fs/javafs/Super {
+ 
+ method <init>(Ljx/fs/javafs/FileSystem;ZLjx/fs/buffer/BufferCache;Ljx/fs/javafs/InodeCache;Ljx/zero/Clock;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.fileSystem = vR1;   
+        b1 = new java/util/Vector(10);    [ RR  i][ RR . iiR]
+        vR0.s_dirty = b1;   
+        b1 = new java/util/Vector(16);    [ RR . i..][ RR . iiR]
+        vR0.bitmap_cache = b1;   
+        vR0.s_readonly = vi2;   
+        vR0.bufferCache = vR3;   
+        vR0.inodeCache = vR4;   
+        vR0.clock = vR5;   
+  +B57:   #1
+        vR0.readSuper@special();   [ RR . R..] 
+  +B61:   #1
+        goto +B74;   forward return[ RR . ...]
+  -H64<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B74:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+57 - 61 handler 64 type 44
+ }
+// Register: rd 18/18 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method dump()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("Number of blockgroups: ").append@extra(vR0.s_groups_count).toString@extra());   [ RR iii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii. i..][ RR iii. iR.]
+        b0.println(b1.append@extra("Number of inodes: ").append@extra(vR0.s_inodes_count).toString@extra());   [ RR iiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii. i..][ RR iiiiii. iR.]
+        b0.println(b1.append@extra("Blocksize: ").append@extra(vR0.s_blocksize).toString@extra());   [ RR iiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii. i..][ RR iiiiiiiii. iR.]
+        b0.println(b1.append@extra("First data block: ").append@extra(vR0.s_first_data_block).toString@extra());   [ RR iiiiiiiiiiii. RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 28 swaps 12 any 0 found 0 dump
+ 
+ method isReadonly()Z {
+  +START:   #1
+        return vR0.s_readonly;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isReadonly
+ 
+ method available()I {
+  +START:   #1
+        if vR0.sb_data.s_free_blocks_count@extra()>=vR0.sb_data.s_r_blocks_count@extra() goto B19;   
+  +B17:   #1
+        return 0;   
+  +B19:   #1
+        return ((vR0.sb_data.s_free_blocks_count@extra()-vR0.sb_data.s_r_blocks_count@extra())*vR0.s_blocksize);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 available
+ 
+ method getNumberOfBlocks()I {
+  +START:   #1
+        return vR0.sb_data.s_blocks_count@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberOfBlocks
+ 
+ method getNumberOfFreeBlocks()I {
+  +START:   #1
+        return vR0.sb_data.s_free_blocks_count@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberOfFreeBlocks
+ 
+ method putSuper()V {
+  +START:   #1
+        vi3 = -1;    
+        vR0.rootInode.decUseCount();   [??i   R] 
+        vi4 = 0;    
+  +B12:   #1
+        if vi4>=vR0.desc_vector.size@extra() goto B79;   
+  +B24:   #1
+        vR1 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi4));    
+        if vR1.bh.getBlock()==vi3 goto B73;   
+  +B50:   #1
+        vi3 = vR1.bh.getBlock();    [R?ii  . R.] 
+        vR0.bufferCache.brelse(vR1.bh);   [R?ii  i RR] 
+  +B73:   #1
+        vi4++;   
+        goto +B12;   [R?ii  . ..]
+  +B79:   #1
+        vR0.desc_vector.removeAllElements@extra();   [R?ii  . R.] 
+        vi4 = 0;    
+  +B89:   #1
+        if vi4>=vR0.bitmap_cache.size@extra() goto B124;   
+  +B101:   #1
+        vR2 = (jx/fs/javafs/Bitmap)(vR0.bitmap_cache.elementAt(vi4));    
+        vR2.releaseBitmap();   [RRii  . R.] 
+        vi4++;   
+        goto +B89;   [RRii  . ..]
+  +B124:   #1
+        vR0.bitmap_cache.removeAllElements@extra();   [RRii  . R.] 
+        vR0.bufferCache.brelse(vR0.sb_bh);   [RRii  i RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 11 swaps 2 any 4 found 2 putSuper
+ 
+ method readSuper()V {
+  +START:   #1
+        out.println("Reading superblock of device ");   [ RR i. RR] 
+        b1 = vR0.bufferCache.bread(1);    [ RR i. iR] 
+        b0 = b1;    
+        vR0.sb_bh = b1;   
+        if b0!=null goto B42;   
+  -B26:   #1
+        out.println("unable to read superblock");   [ RR i. RR] 
+        throw new jx/fs/javafs/BufferIOException();   
+  +B42:   #1
+        b1 = new jx/fs/javafs/SuperBlockData(vR0.sb_bh);    [ RR .. i.][ RR .. iRR]
+        vR0.sb_data = b1;   
+        vR0.s_blocksize = 1024;   
+        vi3 = 0;    
+  +B66:   #1
+        if vi3>=vR0.sb_data.s_log_block_size@extra() goto B93;   
+  +B77:   #1
+        vR0.s_blocksize = (vR0.s_blocksize*2);   
+        vi3++;   
+        goto +B66;   [??i RR .. ...]
+  +B93:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
+        b0.println(b1.append@extra("readSuper(): blocksize: ").append@extra(vR0.s_blocksize).toString@extra());   [??i RR iii. RR.] 
+        vR0.s_inodes_count = vR0.sb_data.s_inodes_count@extra();   
+        if vR0.sb_data.s_inodes_count@extra()!=0 goto B158;   
+  -B142:   #1
+        out.println("Superblock invalid 1");   [??i RR i... RR.] 
+        throw new jx/fs/javafs/BufferIOException();   
+  +B158:   #1
+        if vR0.sb_data.s_blocks_per_group@extra()!=0 goto B184;   
+  -B168:   #1
+        out.println("Superblock ungueltig 2");   [??i RR i... RR.] 
+        throw new jx/fs/javafs/BufferIOException();   
+  +B184:   #1
+        vR0.s_desc_per_block = (vR0.s_blocksize/32);   
+        vR0.s_first_data_block = vR0.sb_data.s_first_data_block@extra();   
+        vR0.s_groups_count = ((((vR0.sb_data.s_blocks_count@extra()-vR0.s_first_data_block)+vR0.sb_data.s_blocks_per_group@extra())-1)/vR0.sb_data.s_blocks_per_group@extra());   
+        vR0.s_db_per_group = (((vR0.s_groups_count+vR0.s_desc_per_block)-1)/vR0.s_desc_per_block);   
+        vR0.s_itb_per_group = ((vR0.sb_data.s_inodes_per_group@extra()*vR0.sb_data.s_inode_size@extra())/vR0.s_blocksize);   
+        b1 = new java/util/Vector(vR0.s_groups_count);    [ RR .... i..][ RR .... iiR]
+        vR0.desc_vector = b1;   
+        vi3 = 0;    
+  +B301:   #1
+        if vi3>=vR0.s_db_per_group goto B392;   
+  +B309:   #1
+        vR1 = vR0.bufferCache.bread(((vR0.sb_data.s_first_data_block@extra()+vi3)+1));    [??i RR i... iR.] 
+        vi4 = 0;    
+  +B333:   #1
+        if vi4>=vR0.s_desc_per_block goto B386;   
+  +B342:   #1
+        if ((vi3*vR0.s_desc_per_block)+vi4)>=vR0.s_groups_count goto B386;   
+  +B358:   #1
+        vR2 = new jx/fs/javafs/GroupData(vR1,(vi4*32));    [ RR .... i..][ RR .... iiRR]
+        vR0.desc_vector.addElement@extra(vR2);   [RRii RR .... RR..] 
+        vi4++;   
+        goto +B333;   [RRii RR .... ....]
+  +B386:   #2
+        vi3++;   
+        goto +B301;   [RRii RR .... ....]
+  +B392:   #1
+        vR0.setupSuper@special();   [RRii RR .... R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 66/66 wr 35 swaps 8 any 9 found 1 readSuper
+ 
+ method setupSuper()V {
+  +START:   #1
+        vR0.sb_data.s_mtime@extra(vR0.clock.getTimeInMillis());   [ RR i iR] 
+        out.println("setupSuper");   [ RR ii. RR] 
+  +B24:   #1
+        vR0.checkBlockBitmaps@this();   [ RR ... R.] 
+        vR0.checkInodeBitmaps@this();   [ RR ... R.] 
+  +B32:   #1
+        goto +B44;   [ RR ... ..]
+  -H35<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/Error();   
+  +B44:   #1
+        vR0.sb_bh.markDirty();   [ RR ... R.] 
+        vR1 = vR0.getInodeData@this(2);    [ RR ... iR] 
+        b1 = new jx/fs/javafs/DirInode(vR0.fileSystem,vR0,2,vR1,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR ... i.][ RR ... iRRRRiRRR]
+        vR0.rootInode = b1;   
+        vR0.inodeCache.addInode(vR0.rootInode);   [R RR i.. RR.......] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+24 - 32 handler 35 type 44
+ }
+// Register: rd 17/17 wr 8 swaps 3 any 0 found 0 setupSuper
+ 
+ method commitSuper()V {
+  +START:   #1
+        vR0.sb_data.s_wtime@extra(vR0.clock.getTimeInMillis());   [  i iR] 
+        vR0.sb_bh.markDirty();   [  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 commitSuper
+ 
+ method getRootInode()Ljx/fs/javafs/DirInode; {
+  +START:   #1
+        vR0.rootInode.incUseCount();   [   R] 
+        return vR0.rootInode;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getRootInode
+ 
+ method writeSuper()V {
+  +START:   #1
+        vR0.sb_data.s_mtime@extra(vR0.clock.getTimeInMillis());   [  i iR] 
+        vR0.commitSuper@special();   [  i R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 writeSuper
+ 
+ method loadBitmap(I)Ljx/fs/javafs/Bitmap; {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vR0.bitmap_cache.size@extra() goto B44;   
+  +B15:   #1
+        vR3 = (jx/fs/javafs/Bitmap)(vR0.bitmap_cache.elementAt(vi4));    
+        if vR3.block_nr!=vi1 goto B38;   
+  +B36:   #1
+        return vR3;   
+  +B38:   #1
+        vi4++;   
+        goto +B3;   [?Ri R . ..]
+  +B44:   #1
+        if vi1<vR0.sb_data.s_blocks_count@extra() goto B57;   
+  +B55:   #1
+        return 0;   
+  +B57:   #1
+        if vR0.bitmap_cache.size@extra()<=15 goto B100;   
+  +B69:   #1
+        vR3 = (jx/fs/javafs/Bitmap)(vR0.bitmap_cache.elementAt(15));    
+        vR3.releaseBitmap();   [?Ri R . R.] 
+        vR0.bitmap_cache.removeElementAt@extra(15);   [?Ri R . iR] 
+  +B95:   #1
+        goto +B100;   [?Ri R . ..]
+  +H98<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B100:   #2
+        vR3 = new jx/fs/javafs/Bitmap(vR0.bufferCache,vR0.s_blocksize,vi1);    [ R . i.][ R . iiiRR]
+  +B117:   #1
+        vR0.bitmap_cache.insertElementAt@extra(vR3,0);   [?Ri R . iRR..] 
+  +B126:   #1
+        goto +B131;   [?Ri R . .....]
+  +H129<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+  +B131:   #1
+        vR3.loadBitmap();   [?Ri R . R....] 
+        return vR3;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+69 - 95 handler 98 type 258
+117 - 126 handler 129 type 258
+ }
+// Register: rd 24/24 wr 10 swaps 0 any 3 found 2 loadBitmap
+ 
+ method countFreeInodes()I {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+  +B8:   #1
+        if vi5>=vR0.s_groups_count goto B74;   
+  +B17:   #1
+        vR1 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi5));    
+        vi3 = (vi3+vR1.bg_free_inodes_count());    
+        vR2 = vR0.loadBitmap@this(vR1.bg_inode_bitmap());    [R?iii RR i iR] 
+        if vR2!=null goto B52;   
+  +B50:   #1
+        return 0;   
+  +B52:   #1
+        vi4 = (vi4+vR2.countFree(vR0.sb_data.s_inodes_per_group@extra()));    
+        vi5++;   
+        goto +B8;   [RRiii RR i ..]
+  +B74:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("countFreeInodes: stored = ").append@extra(vR0.sb_data.s_free_inodes_count@extra()).append@extra(", computed = ").append@extra(vi3).append@extra(", ").append@extra(vi4).toString@extra());   [RRiii RR iii....ii. RR.....] 
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 24 swaps 8 any 5 found 2 countFreeInodes
+ 
+ method countFreeBlocks()I {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = 0;    
+  +B8:   #1
+        if vi5>=vR0.s_groups_count goto B120;   
+  +B17:   #1
+        vR1 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi5));    
+        vi3 = (vi3+vR1.bg_free_blocks_count());    
+        vR2 = vR0.loadBitmap@this(vR1.bg_block_bitmap());    [R?iii  i iR] 
+        if vR2!=null goto B52;   
+  +B50:   #1
+        return 0;   
+  +B52:   #1
+        if vi5>=(vR0.s_groups_count-1) goto B82;   
+  +B63:   #1
+        vi4 = (vi4+vR2.countFree(vR0.sb_data.s_blocks_per_group@extra()));    
+        goto +B114;   [RRiii  i ..]
+  +B82:   #1
+        vi4 = (vi4+vR2.countFree(((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra())));    
+  +B114:   #1
+        vi5++;   
+        goto +B8;   [RRiii  .. ..]
+  +B120:   #1
+        return vi3;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 15 swaps 3 any 7 found 3 countFreeBlocks
+ 
+ method freeBlocks(II)V {
+  +START:   #1
+        if vi1<vR0.sb_data.s_first_data_block@extra() goto B24;   
+  +B11:   #1
+        if (vi1+vi2)<=vR0.sb_data.s_blocks_count@extra() goto B61;   
+  +B24:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i][ RR . iR]
+        b0.println(b1.append@extra("freeBlocks: Freeing blocks not in datazone - block = ").append@extra(vi1).append@extra(", count = ").append@extra(vi2).toString@extra());   [ RR iii... RR...] 
+        return;   
+  +B61:   #2
+        vi5 = 0;    
+        vi3 = ((vi1-vR0.sb_data.s_first_data_block@extra())/vR0.sb_data.s_blocks_per_group@extra());    
+        vi4 = ((vi1-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra());    
+        if (vi4+vi2)<=vR0.sb_data.s_blocks_per_group@extra() goto B134;   
+  +B115:   #1
+        vi5 = ((vi4+vi2)-vR0.sb_data.s_blocks_per_group@extra());    
+        vi2 = (vi2-vi5);    
+  +B134:   #1
+        vR6 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi3));    
+        vR7 = vR0.loadBitmap@this(vR6.bg_block_bitmap());    [iiiR RR i..... iR...] 
+        if vR7!=null goto B164;   
+  +B163:   #1
+        return;   
+  +B164:   #1
+        if vi1>vR6.bg_block_bitmap() goto B186;   
+  +B173:   #1
+        if ((vi1+vi2)-1)>=vR6.bg_block_bitmap() goto B264;   
+  +B186:   #1
+        if vi1>vR6.bg_inode_bitmap() goto B208;   
+  +B195:   #1
+        if ((vi1+vi2)-1)>=vR6.bg_inode_bitmap() goto B264;   
+  +B208:   #1
+        if vi1<vR6.bg_inode_table() goto B233;   
+  +B217:   #1
+        if vi1<=((vR6.bg_inode_table()+vR0.s_itb_per_group)+1) goto B264;   
+  +B233:   #1
+        if (vi1+vi2)<(vR6.bg_inode_table()+1) goto B300;   
+  +B246:   #1
+        if (vi1+vi2)>((vR6.bg_inode_table()+vR0.s_itb_per_group)+2) goto B300;   
+  +B264:   #3
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i....][ RR ...... iR...]
+        b0.println(b1.append@extra("freeBlocks(): Freeing blocks in system zones - Block = ").append@extra(vi1).append@extra(", count = ").append@extra(vi2).toString@extra());   [iiiRR RR iii... RR...] 
+  +B300:   #2
+        vi8 = 0;    
+  +B303:   #1
+        if vi8>=vi2 goto B401;   
+  +B309:   #1
+        if vR7.testBit((vi4+vi8))!=0 goto B351;   
+  +B322:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i....][ RR ...... iR...]
+        b0.println(b1.append@extra("freeBlocks(): bit already cleared for block ").append@extra(vi1).toString@extra());   [iiiRRi RR ii.... RR...] 
+        goto +B395;   [iiiRRi RR ii.... .....]
+  +B351:   #1
+        vR7.clearBit((vi4+vi8));   [iiiRRi RR i..... iR...] 
+        vR7.markBitmapDirty();   [iiiRRi RR i..... R....] 
+        vR6.bg_free_blocks_count((short)(vR6.bg_free_blocks_count()+1));   [iiiRRi RR ii.... iR...] 
+        vR0.sb_data.s_free_blocks_count@extra((vR0.sb_data.s_free_blocks_count@extra()+1));   [iiiRRi RR iii... iR...] 
+  +B395:   #1
+        vi8++;   
+        goto +B303;   [iiiRRi RR ...... .....]
+  +B401:   #1
+        vR6.bh.markDirty();   [iiiRRi RR ...... R....] 
+        vR0.sb_bh.markDirty();   [iiiRRi RR ...... R....] 
+        if vi5<=0 goto B435;   
+  +B425:   #1
+        vi1 = (vi1+vi2);    
+        vi2 = vi5;    
+        goto +B61;   [iiiRRi RR ...... .....]
+  +B435:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 88/88 wr 50 swaps 13 any 19 found 7 freeBlocks
+ 
+ method freeInode(Ljx/fs/javafs/InodeImpl;)V {
+  +START:   #1
+        if vR1.i_count<=1 goto B38;   
+  +B8:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("ext2_free_inode: inode has count=").append@extra(vR1.i_count).toString@extra());   [ RR iii. RR.] 
+        return;   
+  +B38:   #1
+        if vR1.i_data.i_links_count@extra()<=0 goto B81;   
+  +B48:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("ext2_free_inode: inode has links count=").append@extra(vR1.i_data.i_links_count@extra()).toString@extra());   [ RR iii. RR.] 
+        return;   
+  +B81:   #1
+        vi2 = vR1.i_ino;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("freeing inode ").append@extra(vi2).toString@extra());   [i RR ii.. RR.] 
+        if vi2<vR0.sb_data.s_first_ino@extra() goto B134;   
+  +B123:   #1
+        if vi2<=vR0.sb_data.s_inodes_count@extra() goto B144;   
+  +B134:   #1
+        out.println("freeInode(): reserved inode or nonexistent inode");   [i RR i... RR.] 
+        return;   
+  +B144:   #1
+        vi3 = ((vi2-1)/vR0.sb_data.s_inodes_per_group@extra());    
+        vi4 = ((vi2-1)%vR0.sb_data.s_inodes_per_group@extra());    
+        vR6 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi3));    
+        vR7 = vR0.loadBitmap@this(vR6.bg_inode_bitmap());    [iii?R RR i... iR.] 
+        if vR7!=null goto B199;   
+  +B198:   #1
+        return;   
+  +B199:   #1
+        if vR7.testBit(vi4)!=0 goto B238;   
+  +B209:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("freeInode(): bit already cleared for inode ").append@extra(vi2).toString@extra());   [iii?RR RR ii.. RR.] 
+        goto +B318;   forward return[iii?RR RR ii.. ...]
+  +B238:   #1
+        vR7.clearBit(vi4);   [iii?RR RR .... iR.] 
+        vR7.markBitmapDirty();   [iii?RR RR .... R..] 
+        vR6.bg_free_inodes_count((short)(vR6.bg_free_inodes_count()+1));   [iii?RR RR i... iR.] 
+        if vR1.isDirectory()==0 goto B283;   
+  +B270:   #1
+        vR6.bg_used_dirs_count((short)(vR6.bg_used_dirs_count()-1));   [iii?RR RR i... iR.] 
+  +B283:   #1
+        vR6.bh.markDirty();   [iii?RR RR .... R..] 
+        vR0.sb_data.s_free_inodes_count@extra((vR0.sb_data.s_free_inodes_count@extra()+1));   [iii?RR RR i... iR.] 
+        vR0.sb_bh.markDirty();   [iii?RR RR i... R..] 
+  +B318:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 40/40 wr 38 swaps 15 any 3 found 2 freeInode
+ 
+ method checkBlockBitmaps()V {
+  +START:   #1
+        vR0.checkBlockBitmaps@this(0);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 checkBlockBitmaps
+ 
+ method checkBlockBitmaps(Ljava/util/Hashtable;)V {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vi5 = (((vR0.s_groups_count+vR0.s_desc_per_block)-1)/vR0.s_desc_per_block);    
+        vi10 = 0;    
+  +B25:   #1
+        if vi10>=vR0.s_groups_count goto B838;   
+  +B34:   #1
+        vR8 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi10));    
+        vi2 = (vi2+vR8.bg_free_inodes_count());    
+        vR9 = vR0.loadBitmap@this(vR8.bg_block_bitmap());    [ii?i??R?i RR i iR] 
+        if vR9!=null goto B73;   
+  +B72:   #1
+        return;   
+  +B73:   #1
+        if vR9.testBit(0)!=0 goto B126;   
+  +B82:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("checkBlockBitmaps: Superblock in group ").append@extra(vi10).append@extra(" is marked free").toString@extra());   [ii?i??RRi RR iii.. RR..] 
+        vR9.setBit(0);   [ii?i??RRi RR iii.. iR..] 
+        vR9.markBitmapDirty();   [ii?i??RRi RR iii.. R...] 
+  +B126:   #1
+        vi11 = 0;    
+  +B129:   #1
+        if vi11>=vi5 goto B212;   
+  +B136:   #1
+        if vR9.testBit((vi11+1))!=0 goto B206;   
+  +B148:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("checkBlockBitmaps: Descriptor block #").append@extra(vi11).append@extra(" in group ").append@extra(vi10).append@extra(" is marked free").toString@extra());   [ii?i??RRii RR iiii.... RR....] 
+        vR9.setBit((vi11+1));   [ii?i??RRii RR iiiii... iR....] 
+        vR9.markBitmapDirty();   [ii?i??RRii RR iiiii... R.....] 
+  +B206:   #1
+        vi11++;   
+        goto +B129;   [ii?i??RRii RR ........ ......]
+  +B212:   #1
+        if vR9.testBit(((vR8.bg_block_bitmap()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()))!=0 goto B305;   
+  +B241:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i.....][ RR ........ iR....]
+        b0.println(b1.append@extra("checkBlockBitmaps: Block bitmap for group ").append@extra(vi10).append@extra(" is marked free").toString@extra());   [ii?i??RRii RR iii..... RR....] 
+        vR9.setBit(((vR8.bg_block_bitmap()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()));   [ii?i??RRii RR iiii.... iR....] 
+        vR9.markBitmapDirty();   [ii?i??RRii RR iiii.... R.....] 
+  +B305:   #1
+        if vR9.testBit(((vR8.bg_inode_bitmap()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()))!=0 goto B398;   
+  +B334:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i.....][ RR ........ iR....]
+        b0.println(b1.append@extra("checkBlockBitmaps: Inode bitmap for group ").append@extra(vi10).append@extra(" is marked free").toString@extra());   [ii?i??RRii RR iii..... RR....] 
+        vR9.setBit(((vR8.bg_inode_bitmap()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()));   [ii?i??RRii RR iiii.... iR....] 
+        vR9.markBitmapDirty();   [ii?i??RRii RR iiii.... R.....] 
+  +B398:   #1
+        vi11 = 0;    
+  +B401:   #1
+        if vi11>=vR0.s_itb_per_group goto B526;   
+  +B410:   #1
+        if vR9.testBit((((vR8.bg_inode_table()+vi11)-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()))!=0 goto B520;   
+  +B442:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i.....][ RR ........ iR....]
+        b0.println(b1.append@extra("checkBlockBitmaps: Block #").append@extra(vi11).append@extra(" of the inode table in group ").append@extra(vi10).append@extra(" is marked free").toString@extra());   [ii?i??RRii RR iiii.... RR....] 
+        vR9.setBit((((vR8.bg_inode_table()+vi11)-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()));   [ii?i??RRii RR iiiii... iR....] 
+        vR9.markBitmapDirty();   [ii?i??RRii RR iiiii... R.....] 
+  +B520:   #1
+        vi11++;   
+        goto +B401;   [ii?i??RRii RR ........ ......]
+  +B526:   #1
+        if vR1==null goto B684;   
+  +B530:   #1
+        if vi10>=(vR0.s_groups_count-1) goto B553;   
+  +B541:   #1
+        vi6 = vR0.sb_data.s_blocks_per_group@extra();    [ii?i??RRii RR ........ R.....] 
+        goto +B578;   [ii?ii?RRii RR ........ ......]
+  +B553:   #1
+        vi6 = ((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra());    
+  +B578:   #1
+        vi11 = 0;    
+  +B581:   #1
+        if vi11>=vi6 goto B684;   
+  +B588:   #1
+        vi7 = (((vi10*vR0.sb_data.s_blocks_per_group@extra())+vi11)+vR0.sb_data.s_first_data_block@extra());    
+        if vR1.containsKey(valueOf@special(vi7))==0 goto B678;   
+  +B623:   #1
+        if vR9.testBit(vi11)!=0 goto B678;   
+  +B633:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i.....][ RR ........ iR....]
+        b0.println(b1.append@extra("checkBlockBitmaps: Block #").append@extra(vi7).append@extra(" is used but was marked free").toString@extra());   [ii?iiiRRii RR iii..... RR....] 
+        vR9.setBit(vi11);   [ii?iiiRRii RR iii..... iR....] 
+        vR9.markBitmapDirty();   [ii?iiiRRii RR iii..... R.....] 
+  +B678:   #2
+        vi11++;   
+        goto +B581;   [ii?iiiRRii RR ........ ......]
+  +B684:   #2
+        if vi10>=(vR0.s_groups_count-1) goto B712;   
+  +B695:   #1
+        vi4 = vR9.countFree(vR0.sb_data.s_blocks_per_group@extra());    [ii?iiiRRii RR i....... iR....] 
+        goto +B742;   [iiiiiiRRii RR i....... ......]
+  +B712:   #1
+        vi4 = vR9.countFree(((vR0.sb_data.s_blocks_count@extra()-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra()));    [iiiiiiRRii RR i....... iR....] 
+  +B742:   #1
+        if vR8.bg_free_blocks_count()==vi4 goto B827;   
+  +B752:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ........ i.....][ RR ........ iR....]
+        b0.println(b1.append@extra("checkBlockBitmaps: Falsche Anzahl freier Blocke in Gruppe ").append@extra(vi10).append@extra(": gesichert = ").append@extra(vR8.bg_free_blocks_count()).append@extra(", ermittelt = ").append@extra(vi4).append@extra(": Wert wird korrigiert").toString@extra());   [iiiiiiRRii RR iii...iii... RR......] 
+        vR8.bg_free_blocks_count(vi4);   [iiiiiiRRii RR iii...iii... iR......] 
+        vR8.bh.markDirty();   [iiiiiiRRii RR iii...iii... R.......] 
+  +B827:   #1
+        vi3 = (vi3+vi4);    
+        vi10++;   
+        goto +B25;   [iiiiiiRRii RR ............ ........]
+  +B838:   #1
+        if vR0.sb_data.s_free_blocks_count@extra()==vi3 goto B917;   
+  +B849:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............ i.......][ RR ............ iR......]
+        b0.println(b1.append@extra("checkBlockBitmaps: Falsche Anzahl freier Bloecke im Superblock: gesichert = ").append@extra(vR0.sb_data.s_free_blocks_count@extra()).append@extra(", ermittelt = ").append@extra(vi3).append@extra(": Wert wird korrigiert").toString@extra());   [iiiiiiRRii RR iii...ii.... RR......] 
+        vR0.sb_data.s_free_blocks_count@extra(vi3);   [iiiiiiRRii RR iii...ii.... iR......] 
+        vR0.sb_data.bh.markDirty();   [iiiiiiRRii RR iii...ii.... R.......] 
+  +B917:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 129/129 wr 131 swaps 43 any 15 found 2 checkBlockBitmaps
+ 
+ method checkInodeBitmaps()V {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+        vi6 = 0;    
+  +B7:   #1
+        if vi6>=vR0.s_groups_count goto B241;   
+  +B16:   #1
+        vR4 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi6));    
+        vi1 = (vi1+vR4.bg_free_inodes_count());    
+        vR5 = vR0.loadBitmap@this(vR4.bg_inode_bitmap());    [ii?R?i RR i iR] 
+        if vR5!=null goto B55;   
+  +B54:   #1
+        return;   
+  +B55:   #1
+        if vi6!=0 goto B142;   
+  +B60:   #1
+        vi7 = 1;    
+  +B63:   #1
+        if vi7>=vR0.sb_data.s_first_ino@extra() goto B142;   
+  +B75:   #1
+        if vR5.testBit((vi7-1))!=0 goto B136;   
+  +B87:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
+        b0.println(b1.append@extra("checkInodeBitmaps: Inode ").append@extra((vi7-1)).append@extra(" was marked free").toString@extra());   [ii?RRii RR iiii.. RR..] 
+        vR5.setBit((vi7-1));   [ii?RRii RR iiiii. iR..] 
+        vR5.markBitmapDirty();   [ii?RRii RR iiiii. R...] 
+  +B136:   #1
+        vi7++;   
+        goto +B63;   [ii?RRii RR ...... ....]
+  +B142:   #2
+        vi3 = vR5.countFree(vR0.sb_data.s_inodes_per_group@extra());    [ii?RRii RR i..... iR..] 
+        if vR4.bg_free_inodes_count()==vi3 goto B231;   
+  +B164:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ...... i...][ RR ...... iR..]
+        b0.println(b1.append@extra("checkInodeBitmaps: Wrong free inodes count in group ").append@extra(vi6).append@extra(": stored = ").append@extra(vR4.bg_free_inodes_count()).append@extra(", counted = ").append@extra(vi3).toString@extra());   [iiiRRii RR ii..iii... RR.....] 
+        vR4.bg_free_inodes_count(vi3);   [iiiRRii RR ii..iii... iR.....] 
+        vR4.bh.markDirty();   [iiiRRii RR ii..iii... R......] 
+  +B231:   #1
+        vi2 = (vi2+vi3);    
+        vi6++;   
+        goto +B7;   [iiiRRii RR .......... .......]
+  +B241:   #1
+        if vR0.sb_data.s_free_inodes_count@extra()==vi2 goto B314;   
+  +B252:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .......... i......][ RR .......... iR.....]
+        b0.println(b1.append@extra("checkInodeBitmaps: Wrong free inodes count in super block: stored = ").append@extra(vR0.sb_data.s_free_inodes_count@extra()).append@extra(", counted = ").append@extra(vi2).toString@extra());   [iiiRRii RR ii..ii.... RR.....] 
+        vR0.sb_data.s_free_inodes_count@extra(vi2);   [iiiRRii RR ii..ii.... iR.....] 
+        vR0.sb_data.bh.markDirty();   [iiiRRii RR ii..ii.... R......] 
+  +B314:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 42/42 wr 47 swaps 17 any 8 found 2 checkInodeBitmaps
+ 
+ method groupStart(I)I {
+  +START:   #1
+        vi2 = ((vi1-1)/vR0.sb_data.s_inodes_per_group@extra());    
+        return ((vi2*vR0.sb_data.s_blocks_per_group@extra())+vR0.sb_data.s_first_data_block@extra());   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 1 groupStart
+ 
+ method getInodeData(I)Ljx/fs/javafs/InodeData; {
+  +START:   #1
+        if vi1==2 goto B16;   
+  +B5:   #1
+        if vi1<vR0.sb_data.s_first_ino@extra() goto B27;   
+  +B16:   #1
+        if vi1<=vR0.sb_data.s_inodes_count@extra() goto B55;   
+  +B27:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("createInode: bad inode number ").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        return 0;   
+  +B55:   #1
+        vi4 = ((vi1-1)/vR0.sb_data.s_inodes_per_group@extra());    
+        if vi4<vR0.s_groups_count goto B88;   
+  +B77:   #1
+        out.println("createInode: group >= groups count");   [??i RR i.. RR.] 
+        return 0;   
+  +B88:   #1
+        vR3 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi4));    
+  +B101:   #1
+        vi7 = ((vi1-1)%vR0.sb_data.s_inodes_per_group@extra());    
+        vR8 = vR0.loadBitmap@this(vR3.bg_inode_bitmap());    [?Ri??i RR i.. iR.] 
+        if vR8.testBit(vi7)!=0 goto B136;   
+  +B134:   #1
+        b0 = 0;    
+  +B135b0:   #1 reference
+        return b0;   
+  +B136:   #1
+        goto +B143;   [?Ri??iR RR ... ...]
+  +H139<caught exception>:   #1 reference
+        vR7 = <caught exception>;    
+        return 0;   
+  +B143:   #1
+        vi5 = (((vi1-1)%vR0.sb_data.s_inodes_per_group@extra())*vR0.sb_data.s_inode_size@extra());    
+        vi6 = (vR3.bg_inode_table()+(vi5/vR0.s_blocksize));    
+        b0 = vR0.bufferCache.bread(vi6);    [?RiiiiR RR ... iR.] 
+        vR2 = b0;    
+        if b0!=null goto B233;   
+  +B194:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.println(b1.append@extra("createInode(): unable to read inode block - inode = ").append@extra(vi1).append@extra(", block = ").append@extra(vi6).toString@extra());   [RRiiiiR RR iii... RR...] 
+        return 0;   
+  +B233:   #1
+        vi5 = (vi5 & (vR0.s_blocksize-1));    
+        return new jx/fs/javafs/InodeData(vR2,vi5);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+101 - 135 handler 139 type 44
+ }
+// Register: rd 39/39 wr 33 swaps 8 any 7 found 2 getInodeData
+ 
+ method newInode(Ljx/fs/javafs/InodeImpl;I)Ljx/fs/javafs/InodeImpl; {
+  +START:   #1
+        vi4 = 0;    
+        vR8 = 0;    
+        if vR1==null goto B20;   
+  +B10:   #1
+        if vR1.i_data.i_links_count@extra()!=0 goto B31;   
+  +B20:   #1
+        out.println("newInode(): dir doesn't exist");   [?i???R RR i. RR] 
+        return 0;   
+  +B31:   #1
+        if (vi2 & 16384)<=0 goto B124;   
+  +B39:   #1
+        vi3 = (vR0.sb_data.s_free_inodes_count@extra()/vR0.s_groups_count);    
+        vi5 = 0;    
+  +B55:   #1
+        if vi5>=vR0.s_groups_count goto B344;   
+  +B64:   #1
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi5));    
+        if vR9==null goto B118;   
+  +B83:   #1
+        if vR9.bg_free_inodes_count()<vi3 goto B118;   
+  +B92:   #1
+        if vR8==null goto B110;   
+  +B97:   #1
+        if vR9.bg_free_blocks_count()<=vR8.bg_free_blocks_count() goto B118;   
+  +B110:   #1
+        vi4 = vi5;    
+        vR8 = vR9;    
+  +B118:   #3
+        vi5++;   
+        goto +B55;   [iii??RR RR .. ..]
+  +B124:   #1
+        vi4 = ((vR1.i_ino-1)/vR0.sb_data.s_inodes_per_group@extra());    
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi4));    
+        if vR9==null goto B174;   
+  +B159:   #1
+        if vR9.bg_free_inodes_count()<=0 goto B174;   
+  +B167:   #1
+        vR8 = vR9;    
+        goto +B254;   [iiiRRRRRi RR .. ..]
+  +B174:   #2
+        vi5 = 1;    
+  +B177:   #1
+        if vi5>=vR0.s_groups_count goto B254;   
+  +B186:   #1
+        vi4 = (vi4+vi5);    
+        if vi4<vR0.s_groups_count goto B211;   
+  +B202:   #1
+        vi4 = (vi4-vR0.s_groups_count);    
+  +B211:   #1
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi4));    
+        if vR9==null goto B245;   
+  +B230:   #1
+        if vR9.bg_free_inodes_count()<=0 goto B245;   
+  +B238:   #1
+        vR8 = vR9;    
+        goto +B254;   [iiiRRRRRi RR .. ..]
+  +B245:   #2
+        vi5 = (vi5 << 1);    
+        goto +B177;   [iiiRRRRRi RR .. ..]
+  +B254:   #3
+        if vR8!=null goto B344;   
+  +B259:   #1
+        vi4 = (((vR1.i_ino-1)/vR0.sb_data.s_inodes_per_group@extra())+1);    
+        vi5 = 2;    
+  +B280:   #1
+        if vi5>=vR0.s_groups_count goto B344;   
+  +B289:   #1
+        vi4++;   
+        if vi4<vR0.s_groups_count goto B304;   
+  +B301:   #1
+        vi4 = 0;    
+  +B304:   #1
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi4));    
+        if vR9==null goto B338;   
+  +B323:   #1
+        if vR9.bg_free_inodes_count()<=0 goto B338;   
+  +B331:   #1
+        vR8 = vR9;    
+        goto +B344;   [iiiRRRRRi RR .. ..]
+  +B338:   #2
+        vi5++;   
+        goto +B280;   [iiiRRRRRi RR .. ..]
+  +B344:   #4
+        if vR8!=null goto B360;   
+  +B349:   #1
+        out.println("no free group found");   [iii??RR RR i. RR] 
+        return 0;   
+  +B360:   #2
+        vR10 = vR0.loadBitmap@this(vR8.bg_inode_bitmap());    [iii??RR RR i. iR] 
+        if vR10!=null goto B387;   
+  +B376:   #1
+        out.println("bitmap == null");   [iii??RRR RR i. RR] 
+        b0 = 0;    
+  +B386b0:   #1 reference
+        return b0;   
+  +B387:   #1
+        goto +B403;   [iii??RRR RR .. ..]
+  +H390<caught exception>:   #1 reference
+        vR11 = <caught exception>;    
+        out.println("loadBitmap: BufferIOException");   [iiiRRRRRR RR i. RR] 
+        return 0;   
+  +B403:   #1
+        b0 = vR10.findFirstZeroBit();    [iii??RRR iR .. R.] 
+        vi5 = b0;    
+        if b0==-1 goto B430;   
+  +B415:   #1
+        vR10.setBit(vi5);   [iii??RRR iR .. iR] 
+        vR10.markBitmapDirty();   [iii??RRR iR .. R.] 
+        goto +B478;   [iii??RRR iR .. ..]
+  +B430:   #1
+        if vR8.bg_free_inodes_count()==0 goto B467;   
+  +B438:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .. i.][ RR .. iR]
+        b0.println(b1.append@extra("Free inodes count corrupted in group ").append@extra(vi4).toString@extra());   [iiiRRRRRi RR ii. RR.] 
+        return 0;   
+  +B467:   #1
+        out.println("  no free inode found");   [iiiRRRRRi RR i.. RR.] 
+        return 0;   
+  +B478:   #1
+        vi5 = (vi5+((vi4*vR0.sb_data.s_inodes_per_group@extra())+1));    
+        if vi5<vR0.sb_data.s_first_ino@extra() goto B519;   
+  +B507:   #1
+        if vi5<=vR0.sb_data.s_inodes_count@extra() goto B559;   
+  +B519:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
+        b0.println(b1.append@extra("newInode(): reserved inode or inode > inodes count - block_group = ").append@extra(vi4).append@extra(", inode = ").append@extra(vi5).toString@extra());   [iii??RRR RR iii... RR...] 
+        return 0;   
+  +B559:   #1
+        vR8.bg_free_inodes_count((short)(vR8.bg_free_inodes_count()-1));   [iii??RRR RR i..... iR...] 
+        if (vi2 & 16384)<=0 goto B593;   
+  +B580:   #1
+        vR8.bg_used_dirs_count((short)(vR8.bg_used_dirs_count()+1));   [iii??RRR RR i..... iR...] 
+  +B593:   #1
+        vR8.bh.markDirty();   [iii??RRR RR ...... R....] 
+        vR0.sb_data.s_free_inodes_count@extra((vR0.sb_data.s_free_inodes_count@extra()-1));   [iii??RRR RR i..... iR...] 
+        vR0.sb_bh.markDirty();   [iii??RRR RR i..... R....] 
+        vR7 = vR0.getInodeData@this(vi5);    [iii??RRR RR i..... iR...] 
+        if vi2<=0 goto B805;   
+  +B640:   #1
+        vR7.clear();   [iii?RRRR RR ...... R....] 
+        vR7.i_mode@extra((short)vi2);   [iii?RRRR RR i..... iR...] 
+        vR7.i_links_count@extra(1);   [iii?RRRR RR i..... iR...] 
+        vR7.i_uid@extra(0);   [iii?RRRR RR i..... iR...] 
+        if (vR1.i_data.i_mode@extra() & 1024)<=0 goto B720;   
+  +B678:   #1
+        vR7.i_gid@extra(vR1.i_data.i_gid@extra());   [iii?RRRR RR i..... sR...] 
+        if (vR7.i_mode@extra() & 61440)!=16384 goto B720;   
+  +B705:   #1
+        vR7.i_mode@extra((short)(vR7.i_mode@extra() | 1024));   [iii?RRRR RR i..... iR...] 
+  +B720:   #2
+        vR7.i_blocks@extra(0);   [iii?RRRR RR ...... iR...] 
+        vi11 = 0;    
+  +B729:   #1
+        if vi11>=15 goto B750;   
+  +B736:   #1
+        vR7.i_block@extra(vi11,0);   [iii?RRRRi RR ...... iiR..] 
+        vi11++;   
+        goto +B729;   [iii?RRRRi RR ...... .....]
+  +B750:   #1
+        vi11 = vR0.clock.getTimeInMillis();    [iii?RRRRi RR ...... R....] 
+        vR7.i_atime@extra(vi11);   [iii?RRRRi RR ...... iR...] 
+        vR7.i_ctime@extra(vi11);   [iii?RRRRi RR ...... iR...] 
+        vR7.i_mtime@extra(vi11);   [iii?RRRRi RR ...... iR...] 
+        vR7.i_dtime@extra(0);   [iii?RRRRi RR ...... iR...] 
+        vR7.i_version@extra(vi11);   [iii?RRRRi RR ...... iR...] 
+        vR7.bh.markDirty();   [iii?RRRRi RR ...... R....] 
+  +B805:   #1
+        vR6 = 0;    
+        if (vR7.i_mode@extra() & 61440)!=32768 goto B853;   
+  +B823:   #1
+        vR6 = new jx/fs/javafs/FileInode(vR0.fileSystem,vR0,vi5,vR7,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR ...... i....][ RR ...... iRRRRiRRR]
+  +B853:   #1
+        if (vR7.i_mode@extra() & 61440)!=16384 goto B898;   
+  +B868:   #1
+        vR6 = new jx/fs/javafs/DirInode(vR0.fileSystem,vR0,vi5,vR7,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR ...... i........][ RR ...... iRRRRiRRR]
+  +B898:   #1
+        if (vR7.i_mode@extra() & 61440)!=40960 goto B943;   
+  +B913:   #1
+        vR6 = new jx/fs/javafs/SymlinkInode(vR0.fileSystem,vR0,vi5,vR7,vR0.bufferCache,vR0.inodeCache,vR0.clock);    [ RR ...... i........][ RR ...... iRRRRiRRR]
+  +B943:   #1
+        if vR6!=null goto B959;   
+  +B948:   #1
+        out.println("newInode(): Fehler beim Erzeugen der Inode");   [iiiRRRRRi RR i..... RR.......] 
+        return 0;   
+  +B959:   #1
+        vR6.setParent(vR1);   [iiiRRRRRi RR ...... RR.......] 
+        vR0.inodeCache.addInode(vR6);   [iiiRRRRRi RR ...... RR.......] 
+        vR6.setDirty@extra(1);   [iiiRRRRRi RR ...... iR.......] 
+        return vR6;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+360 - 386 handler 390 type 44
+ }
+// Register: rd 146/146 wr 79 swaps 18 any 36 found 4 newInode
+ 
+ method newBlock(I)I {
+  +START:   #1
+        return vR0.newBlock@this(vi1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 newBlock
+ 
+ method newBlock(IZ)I {
+  +START:   #1
+        vi4 = 0;    
+        vR8 = 0;    
+        if vR0.sb_data.s_free_blocks_count@extra()>=vR0.sb_data.s_r_blocks_count@extra() goto B41;   
+  -B23:   #1
+        vR0.sb_data.dump@extra();   [?i???R RR . R] 
+        throw new java/lang/Error("no more free blocks (free blocks < reserved blocks)");   
+  +B41:   #1
+        if vi1<vR0.sb_data.s_first_data_block@extra() goto B63;   
+  +B52:   #1
+        if vi1<vR0.sb_data.s_blocks_count@extra() goto B71;   
+  +B63:   #1
+        vi1 = vR0.sb_data.s_first_data_block@extra();    [?i???R RR . R..] 
+  +B71:   #1
+        vi3 = ((vi1-vR0.sb_data.s_first_data_block@extra())/vR0.sb_data.s_blocks_per_group@extra());    
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi3));    
+        if vR9.bg_free_blocks_count()<=0 goto B207;   
+  +B110:   #1
+        vi4 = ((vi1-vR0.sb_data.s_first_data_block@extra())%vR0.sb_data.s_blocks_per_group@extra());    
+        vR8 = vR0.loadBitmap@this(vR9.bg_block_bitmap());    [ii???RR RR i iR.] 
+        if vR8!=null goto B156;   
+  -B145:   #1
+        throw new java/lang/Error("Bitmap could not be loaded");   
+  +B156:   #1
+        if vR8.testBit(vi4)!=1 goto B207;   
+  +B167:   #1
+        vi5 = vR8.findNextZeroByte(vi4);    [ii???RR RR . iR.] 
+        if vi5!=-1 goto B191;   
+  +B182:   #1
+        vi5 = vR8.findNextZeroBit(vi4);    [iii??RR RR . iR.] 
+  +B191:   #1
+        if vi5==-1 goto B204;   
+  +B197:   #1
+        vi4 = vi5;    
+        goto +B207;   [iii??RR RR . ...]
+  +B204:   #1
+        vi4 = -1;    
+  +B207:   #3
+        if vR9.bg_free_blocks_count()< 0 goto B221;   
+  +B215:   #1
+        if vi4!=-1 goto B419;   
+  +B221:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra("Bit not found in block group ").append@extra(vi3).append@extra(".
+").toString@extra());   [iii??RR RR iii.. RR..] 
+        vi5 = 0;    
+  +B256:   #1
+        if vi5>=vR0.s_groups_count goto B308;   
+  +B265:   #1
+        vi3++;   
+        if vi3<vR0.s_groups_count goto B278;   
+  +B276:   #1
+        vi3 = 0;    
+  +B278:   #1
+        vR9 = (jx/fs/javafs/GroupData)(vR0.desc_vector.elementAt(vi3));    
+        if vR9.bg_free_blocks_count()<=0 goto B302;   
+  +B299:   #1
+        goto +B308;   [iii??RR RR ..... ....]
+  +B302:   #1
+        vi5++;   
+        goto +B256;   [iiiiRRR RR ..... ....]
+  +B308:   #2
+        if vi5<vR0.s_groups_count goto B328;   
+  -B317:   #1
+        throw new java/lang/Error("no free block found in groups");   
+  +B328:   #1
+        vR8 = vR0.loadBitmap@this(vR9.bg_block_bitmap());    [iii??RR RR i.... iR..] 
+        if vR8!=null goto B355;   
+  -B344:   #1
+        throw new java/lang/Error("bitmap not loaded");   
+  +B355:   #1
+        b0 = vR8.findFirstZeroByte();    [iii??RR iR ..... R...] 
+        vi4 = b0;    
+        if b0!=-1 goto B419;   
+  +B367:   #1
+        b0 = vR8.findFirstZeroBit();    [iii??RR iR ..... R...] 
+        vi4 = b0;    
+        if b0!=-1 goto B419;   
+  -B379:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("Free blocks count corrupted for block group ").append@extra(vi3).append@extra(".
+").toString@extra());   [iii??RR RR iii.. RR..] 
+        throw new java/lang/Error();   
+  +B419:   #3
+        vi6 = ((vi4+(vi3*vR0.sb_data.s_blocks_per_group@extra()))+vR0.sb_data.s_first_data_block@extra());    
+        vR8.setBit(vi4);   [iiii?RR RR ..... iR..] 
+        vi4 = vi6;    
+        vR8.markBitmapDirty();   [iiii?RR RR ..... R...] 
+        if vi4<vR0.sb_data.s_blocks_count@extra() goto B514;   
+  -B469:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("block >= blocks_count - block_group=").append@extra(vi3).append@extra(", block=").append@extra(vi4).toString@extra());   [iiii?RR RR iii... RR...] 
+        throw new java/lang/Error();   
+  +B514:   #1
+        vR7 = vR0.bufferCache.getblk(vi4);    [iiii?RR RR ...... iR...] 
+        if vi2==0 goto B538;   
+  +B531:   #1
+        vR7.clear();   [iiiiRRR RR ...... R....] 
+  +B538:   #1
+        vR7.markUptodate();   [iiiiRRR RR ...... R....] 
+        vR0.bufferCache.bdwrite(vR7);   [iiiiRRR RR ...... RR...] 
+        vR9.bg_free_blocks_count((short)(vR9.bg_free_blocks_count()-1));   [iiiiRRR RR i..... iR...] 
+        vR9.bh.markDirty();   [iiiiRRR RR i..... R....] 
+        vR0.sb_data.s_free_blocks_count@extra((vR0.sb_data.s_free_blocks_count@extra()-1));   [iiiiRRR RR ii.... iR...] 
+        vR0.sb_bh.markDirty();   [iiiiRRR RR ii.... R....] 
+        return vi4;   
+  +END:   #1
+ }
+// Register: rd 90/90 wr 62 swaps 13 any 21 found 7 newBlock
+}

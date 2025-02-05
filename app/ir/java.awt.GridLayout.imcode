@@ -1,0 +1,271 @@
+class java/awt/GridLayout {
+ 
+ method addLayoutComponent(Ljava/lang/String;Ljava/awt/Component;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 addLayoutComponent
+ 
+ method getColumns()I {
+  +START:   #1
+        return vR0.cols;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getColumns
+ 
+ method getHgap()I {
+  +START:   #1
+        return vR0.hgap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getHgap
+ 
+ method getRows()I {
+  +START:   #1
+        return vR0.rows;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRows
+ 
+ method getVgap()I {
+  +START:   #1
+        return vR0.vgap;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVgap
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(1,0,0,0);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,0,0);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIII)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        if vi1>=0 goto B18;   
+  -B8:   #1
+        throw new java/lang/IllegalArgumentException("number of rows cannot be negative");   
+  +B18:   #1
+        if vi2>=0 goto B32;   
+  -B22:   #1
+        throw new java/lang/IllegalArgumentException("number of columns cannot be negative");   
+  +B32:   #1
+        if vi1!=0 goto B50;   
+  +B36:   #1
+        if vi2!=0 goto B50;   
+  -B40:   #1
+        throw new java/lang/IllegalArgumentException("both rows and columns cannot be 0");   
+  +B50:   #2
+        if vi3>=0 goto B64;   
+  -B54:   #1
+        throw new java/lang/IllegalArgumentException("horizontal gap must be nonnegative");   
+  +B64:   #1
+        if vi4>=0 goto B79;   
+  -B69:   #1
+        throw new java/lang/IllegalArgumentException("vertical gap must be nonnegative");   
+  +B79:   #1
+        vR0.rows = vi1;   
+        vR0.cols = vi2;   
+        vR0.hgap = vi3;   
+        vR0.vgap = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 5 swaps 0 any 6 found 0 <init>
+ 
+ method layoutContainer(Ljava/awt/Container;)V {
+  +START:   #1
+        vi2 = vR1.ncomponents;    
+        vR3 = vR1.component;    
+        vi4 = vR0.rows;    
+        vi5 = vR0.cols;    
+        if vi4!=0 goto B41;   
+  +B27:   #1
+        vi4 = (((vi2+vi5)-1)/vi5);    
+        goto +B52;   [iRii   ]
+  +B41:   #1
+        vi5 = (((vi2+vi4)-1)/vi4);    
+  +B52:   #1
+        if vi2>=vi5 goto B61;   
+  +B58:   #1
+        vi5 = vi2;    
+  +B61:   #1
+        vR6 = vR1.getSize();    [iRii   R] 
+        vR7 = vR1.getInsets();    [iRiiR   R] 
+        vi8 = ((vR6.width-vR7.left)-vR7.right);    
+        vi8 = ((vi8-((vi5-1)*vR0.hgap))/vi5);    
+        vi9 = ((vR6.height-vR7.top)-vR7.bottom);    
+        vi9 = ((vi9-((vi4-1)*vR0.vgap))/vi4);    
+        if vi8>=0 goto B153;   
+  +B150:   #1
+        vi8 = 1;    
+  +B153:   #1
+        if vi9>=0 goto B161;   
+  +B158:   #1
+        vi9 = 1;    
+  +B161:   #1
+        vi10 = vR7.left;    
+        vi11 = vR7.top;    
+        vi12 = 0;    
+        vi13 = 0;    
+  +B181:   #2
+        if vi12>=vi2 goto B255;   
+  +B187:   #1
+        vR3[vi12].setBounds(vi10,vi11,vi8,vi9);   [iRiiRRiiiiii   iiiiR] 
+        vi12++;   
+        vi13++;   
+        if vi13!=vi5 goto B240;   
+  +B215:   #1
+        vi13 = 0;    
+        vi11 = (vi11+(vR0.vgap+vi9));    
+        vi10 = vR7.left;    
+        goto +B181;   [iRiiRRiiiiii   .....]
+  +B240:   #1
+        vi10 = (vi10+(vR0.hgap+vi8));    
+        goto +B181;   [iRiiRRiiiiii   .....]
+  +B255:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 49/49 wr 23 swaps 0 any 11 found 4 layoutContainer
+ 
+ method minimumLayoutSize(Ljava/awt/Container;)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getSize@special(vR1,1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 minimumLayoutSize
+ 
+ method preferredLayoutSize(Ljava/awt/Container;)Ljava/awt/Dimension; {
+  +START:   #1
+        return vR0.getSize@special(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 preferredLayoutSize
+ 
+ method removeLayoutComponent(Ljava/awt/Component;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 removeLayoutComponent
+ 
+ method setColumns(I)V {
+  +START:   #1
+        if vR0.cols>=0 goto B17;   
+  -B7:   #1
+        throw new java/lang/IllegalArgumentException("number of columns cannot be negative");   
+  +B17:   #1
+        if vi1!=0 goto B38;   
+  +B21:   #1
+        if vR0.rows!=0 goto B38;   
+  -B28:   #1
+        throw new java/lang/IllegalArgumentException("number of rows is already 0");   
+  +B38:   #2
+        vR0.cols = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 0 setColumns
+ 
+ method setHgap(I)V {
+  +START:   #1
+        if vi1>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("horizontal gap must be nonnegative");   
+  +B14:   #1
+        vR0.hgap = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 setHgap
+ 
+ method setRows(I)V {
+  +START:   #1
+        if vR0.rows>=0 goto B17;   
+  -B7:   #1
+        throw new java/lang/IllegalArgumentException("number of rows cannot be negative");   
+  +B17:   #1
+        if vi1!=0 goto B38;   
+  +B21:   #1
+        if vR0.cols!=0 goto B38;   
+  -B28:   #1
+        throw new java/lang/IllegalArgumentException("number of columns is already 0");   
+  +B38:   #2
+        vR0.rows = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 0 setRows
+ 
+ method setVgap(I)V {
+  +START:   #1
+        if vi1>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("vertical gap must be nonnegative");   
+  +B14:   #1
+        vR0.vgap = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 setVgap
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("[").append@extra(vR0.getClass@this().getName@extra()).append@extra(",hgap=").append@extra(vR0.hgap).append@extra(",vgap=").append@extra(vR0.vgap).append@extra(",rows=").append@extra(vR0.rows).append@extra(",cols=").append@extra(vR0.cols).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 24 swaps 17 any 0 found 0 toString
+ 
+ method getSize(Ljava/awt/Container;Z)Ljava/awt/Dimension; {
+  +START:   #1
+        vi3 = 0;    
+        vi4 = 0;    
+        vi5 = vR1.ncomponents;    
+        vR6 = vR1.component;    
+        vi7 = 0;    
+  +B20:   #1
+        if vi7>=vi5 goto B82;   
+  +B27:   #1
+        if vi2==0 goto B44;   
+  +B31:   #1
+        vR8 = vR6[vi7].getMinimumSize();    [iiiRi R  R] 
+        goto +B54;   [iiiRiR R  .]
+  +B44:   #1
+        vR8 = vR6[vi7].getPreferredSize();    [iiiRiR R  R] 
+  +B54:   #1
+        vi3 = max@special(vR8.width,vi3);    [iiiRiR R i ii]
+        vi4 = max@special(vR8.height,vi4);    [iiiRiR R ii ii]
+        vi7++;   
+        goto +B20;   [iiiRiR R ii ..]
+  +B82:   #1
+        vi7 = vR0.rows;    
+        vi8 = vR0.cols;    
+        if vi7!=0 goto B114;   
+  +B99:   #1
+        vi7 = (((vi5+vi8)-1)/vi8);    
+        goto +B126;   [iiiRii R .. ..]
+  +B114:   #1
+        vi8 = (((vi5+vi7)-1)/vi7);    
+  +B126:   #1
+        vR9 = vR1.getInsets();    [iiiRii R .. R.] 
+        vi3 = (((vR9.left+vR9.right)+(vi8*(vi3+vR0.hgap)))-vR0.hgap);    
+        vi4 = (((vR9.top+vR9.bottom)+(vi7*(vi4+vR0.vgap)))-vR0.vgap);    
+        return new java/awt/Dimension(vi3,vi4);   
+  +END:   #1
+ }
+// Register: rd 37/37 wr 20 swaps 0 any 4 found 2 getSize
+}

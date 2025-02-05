@@ -1,0 +1,21 @@
+class org/jnode/driver/bus/scsi/SCSIDevice {
+ 
+ method <init>(Ljx/devices/Bus;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method requestSense()Lorg/jnode/driver/bus/scsi/cdb/spc/SenseData; {
+  +START:   #1
+        vR1 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR2 = vR1.alloc(96);    [R R i. iR] 
+        vR3 = new org/jnode/driver/bus/scsi/cdb/spc/CDBRequestSense(vR2.size());    [ R i. i.][ R i. iiR]
+        vR0.executeCommand@this(vR3,vR2,0,500);   [RRR R i. ??iRRR] 
+        return new org/jnode/driver/bus/scsi/cdb/spc/SenseData(vR2);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 8 swaps 1 any 0 found 0 requestSense
+}

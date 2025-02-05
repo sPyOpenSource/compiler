@@ -1,0 +1,80 @@
+class org/jnode/fs/ntfs/NTFSRecord {
+ 
+ method <init>(IZLjx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR3,vi4);   [   iRR] 
+        vR0.bytesPerSector = vi1;   
+        vR0.fixUp@special(vi2);   [   iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IZLorg/jnode/fs/ntfs/NTFSStructure;I)V {
+  +START:   #1
+        vR0.<init>@special(vR3,vi4);   [   iRR] 
+        vR0.bytesPerSector = vi1;   
+        vR0.fixUp@special(vi2);   [   iR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getMagic()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMagic
+ 
+ method getUpdateSequenceArrayOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateSequenceArrayOffset
+ 
+ method getUpdateSequenceArrayCount()I {
+  +START:   #1
+        return vR0.getUInt16@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateSequenceArrayCount
+ 
+ method fixUp(Z)V {
+  +START:   #2
+        vi2 = vR0.getUpdateSequenceArrayOffset@this();    [ R  R] 
+        vi3 = vR0.getUInt16@this(vi2);    [i R  iR] 
+        vi4 = vR0.getUpdateSequenceArrayCount@this();    [ii R  R.] 
+        vi5 = 1;    
+  +B20:   #1
+        if vi5>=vi4 goto B91;   
+  +B27:   #1
+        vi6 = ((vi5*vR0.bytesPerSector)-2);    
+        vi7 = (vi2+(vi5*2));    
+        if vR0.getUInt16@this(vi6)!=vi3 goto B71;   
+  +B56:   #1
+        vR0.setUInt16@this(vi6,vR0.getUInt16@this(vi7));   [iiiiii R i iiR] 
+        goto +B85;   [iiiiii R i ...]
+  +B71:   #1
+        if vi1==0 goto B85;   
+  -B75:   #1
+        throw new java/io/IOException("Fix-up error");   
+  +B85:   #2
+        vi5++;   
+        goto +B20;   [iiiiii R . ...]
+  +B91:   #2
+        goto +B110;   forward return[iiiiii R . ...]
+  +H94<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        if vi1==0 goto B110;   
+  -B99:   #1
+        throw new java/io/IOException("Fix-up error",vR2);   
+  +B110:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 91 handler 94 type 38
+ }
+// Register: rd 19/19 wr 10 swaps 1 any 6 found 0 fixUp
+}

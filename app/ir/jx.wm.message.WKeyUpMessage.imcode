@@ -1,0 +1,23 @@
+class jx/wm/message/WKeyUpMessage {
+ 
+ method <init>(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        vR0.<init>@special(3);   [ ?R  iR] 
+        b1 = new jx/wm/Keycode(vR1);    [ ?R  i.][ ?R . iRR]
+        vR0.m_eKeyCode = b1;   
+        b1 = new jx/wm/Keycode(vR2);    [ ?R . i..][ ?R . iRR]
+        vR0.m_eRawCode = b1;   
+        b1 = new jx/wm/Qualifiers(vR3);    [ ?R . i..][ ?R . iRR]
+        vR0.m_eQual = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 0 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return "MSG(KEY_UP)";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+}

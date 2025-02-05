@@ -65,16 +65,15 @@ class vfs/FSImpl {
         vR4.overlay(vR5,vR0.getFileName@extra(vR2));   [RR  i. RRR] 
         vR0.mountpoints.put(vR1,vR4);   [RR  i. RRR] 
         vR4.decUseCount();   [RR  i. R..] 
-        goto +B135;   [RR  i. ...]
+        goto +B135;   forward return[RR  i. ...]
   +B106:   #1
         vR0.cwdInode.overlay(vR5,vR0.getFileName@extra(vR2));   [RR  i. RRR] 
         vR0.mountpoints.put(vR1,vR0.igetCwdNode@special());   [RR  ii RRR] 
   +B135:   #1
-        vR0.devices.put(valueOf@special(vR1.getDeviceID()),vR1);   [RR  ii RRR] 
         return;   
   +END:   #1
  }
-// Register: rd 20/20 wr 11 swaps 7 any 0 found 0 mount
+// Register: rd 18/18 wr 9 swaps 6 any 0 found 0 mount
  
  method unmount(Ljx/fs/FileSystem;)V {
   +START:   #1
@@ -112,11 +111,10 @@ class vfs/FSImpl {
         vR0.cwdPath = "/";   
         vR0.mountpoints.put(vR1,vR0.rootInode);   [  iRi RRR] 
         vR0.rootFS = vR1;   
-        vR0.devices.put(valueOf@special(vR1.getDeviceID()),vR1);   [  iRiii RRR] 
         return;   
   +END:   #1
  }
-// Register: rd 18/18 wr 5 swaps 3 any 0 found 0 mountRoot
+// Register: rd 16/16 wr 3 swaps 2 any 0 found 0 mountRoot
  
  method available()I {
   +START:   #1
@@ -127,79 +125,77 @@ class vfs/FSImpl {
  
  method cd(Ljava/lang/String;)V {
   +START:   #1
-        vR2 = 0;    
-        vR3 = 0;    
-        if vR1.equals@extra(".")==0 goto B14;   
-  +B13:   #1
+        if vR1.equals@extra(".")==0 goto B10;   
+  +B9:   #1
         return;   
-  +B14:   #7
-        if vR1.equals@extra("..")==0 goto B35;   
-  +B23:   #1
-        vR2 = vR0.getPathName@extra(vR0.cwdPath);    [RR RR i RR] 
-        goto +B41;   [RR RR i ..]
-  +B35:   #1
+  +B10:   #7
+        if vR1.equals@extra("..")==0 goto B31;   
+  +B19:   #1
+        vR2 = vR0.getPathName@extra(vR0.cwdPath);    [ RR i RR] 
+        goto +B37;   [R RR i ..]
+  +B31:   #1
         vR2 = vR0.getAbsolutePath@special(vR1);    [RR RR . RR] 
-  +B41:   #1
-        vR3 = vR0.lookup@extra(vR2);    [RR RR . RR] 
-  +B47:   #6
-        goto +B218;   [RR RR . ..]
-  +H50<caught exception>:   #1 reference
+  +B37:   #1
+        vR3 = vR0.lookup@extra(vR2);    [R RR . RR] 
+  +B43:   #6
+        goto +B214;   [RR RR . ..]
+  +H46<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR . i.][ RR . iR]
         b0.println(b1.append@extra("cd: Fehler beim Lesen von '").append@extra(vR1).append@extra("'").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +H83<caught exception>:   #1 reference
+  +H79<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
         b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' existiert nicht").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +H116<caught exception>:   #1 reference
+  +H112<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
         b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' ist kein Verzeichnis").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +H149<caught exception>:   #1 reference
+  +H145<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
         b0.println(b1.append@extra("cd: '").append@extra(vR1).append@extra("' ist nicht mehr gltig").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +H182<caught exception>:   #1 reference
+  +H178<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
         b0.println(b1.append@extra("cd: Zugriff auf '").append@extra(vR1).append@extra("' nicht erlaubt").toString@extra());   [RRR RR iii.. RR..] 
         return;   
-  +H215<caught exception>:   #1 reference
+  +H211<caught exception>:   #1 reference
         vR4 = <caught exception>;    
         return;   
-  +B218:   #1
+  +B214:   #1
         vR0.cwdPath = vR2;   
-        if vR0.cwdInode==null goto B239;   
-  +B230:   #1
+        if vR0.cwdInode==null goto B235;   
+  +B226:   #1
         vR0.cwdInode.decUseCount();   [RR RR ..... R...] 
-  +B239:   #1
+  +B235:   #1
         vR0.cwdInode = vR3;   
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-4 - 13 handler 50 type 144
-14 - 47 handler 50 type 144
-4 - 13 handler 83 type 172
-14 - 47 handler 83 type 172
-4 - 13 handler 116 type 178
-14 - 47 handler 116 type 178
-4 - 13 handler 149 type 182
-14 - 47 handler 149 type 182
-4 - 13 handler 182 type 186
-14 - 47 handler 182 type 186
-4 - 13 handler 215 type 192
-14 - 47 handler 215 type 192
+0 - 9 handler 46 type 135
+10 - 43 handler 46 type 135
+0 - 9 handler 79 type 163
+10 - 43 handler 79 type 163
+0 - 9 handler 112 type 169
+10 - 43 handler 112 type 169
+0 - 9 handler 145 type 173
+10 - 43 handler 145 type 173
+0 - 9 handler 178 type 177
+10 - 43 handler 178 type 177
+0 - 9 handler 211 type 183
+10 - 43 handler 211 type 183
  }
-// Register: rd 22/22 wr 54 swaps 18 any 0 found 0 cd
+// Register: rd 22/22 wr 52 swaps 18 any 0 found 0 cd
  
  method rename(Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #2
@@ -238,7 +234,7 @@ EXCEPTIONHANDLER-TABLE:
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 147 handler 150 type 206
+0 - 147 handler 150 type 197
  }
 // Register: rd 22/22 wr 15 swaps 6 any 0 found 0 rename
  
@@ -384,19 +380,29 @@ EXCEPTIONHANDLER-TABLE:
   -B102:   #1
         throw new jx/fs/InodeNotFoundException();   
   +B110:   #1
-        if vR2.isSymlink()==0 goto B148;   
+        if vR2.isSymlink()==0 goto B161;   
   +B119:   #1
         out.println("Symlink!");   [R R i. RR] 
         vR3 = 0;    
-        vR3 = vR2.getSymlink();    [RR R i. R.] 
-        vR2.decUseCount();   [RR R i. R.] 
+  +B129:   #1
+        vR3 = vR2.getSymlink();    [RR R .. R.] 
+  +B136:   #1
+        goto +B149;   [RR R .. ..]
+  -H139<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        throw new jx/fs/InodeIOException();   
+  +B149:   #1
+        vR2.decUseCount();   [RR R .. R.] 
         return vR0.lookup@extra(vR3);   
-  +B148:   #1
+  +B161:   #1
         vR0.direntrycache.addEntry(vR0.getAbsolutePath@special(vR1),vR2);   [RR R i. RRR] 
         return vR2;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+129 - 136 handler 139 type 241
+129 - 136 handler 139 type 243
  }
-// Register: rd 23/23 wr 14 swaps 6 any 2 found 0 lookup
+// Register: rd 23/23 wr 15 swaps 6 any 2 found 0 lookup
  
  method getAbsolutePath(Ljava/lang/String;)Ljava/lang/String; {
   +START:   #1
@@ -444,7 +450,7 @@ EXCEPTIONHANDLER-TABLE:
  
  method isPath(Ljava/lang/String;)Z {
   +START:   #1
-        return 1;   
+        return 0;   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isPath

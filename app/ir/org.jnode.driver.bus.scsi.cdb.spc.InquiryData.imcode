@@ -1,0 +1,108 @@
+class org/jnode/driver/bus/scsi/cdb/spc/InquiryData {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getPeripheralDeviceType()I {
+  +START:   #1
+        return (vR0.getUInt8@this(0) & 31);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPeripheralDeviceType
+ 
+ method getPeripheralQualifier()I {
+  +START:   #1
+        return (vR0.getUInt8@this(0) >> 5);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPeripheralQualifier
+ 
+ method isRemovable()Z {
+  +START:   #1
+        if (vR0.getUInt8@this(1) & 128)==0 goto B16;   
+  +B12:   #1
+        b0 = 1;    
+        goto +B17b0;   forward return[ i  ..]
+  +B16:   #1
+        b0 = 0;    
+  +B17b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isRemovable
+ 
+ method getVersion()I {
+  +START:   #1
+        return vR0.getUInt8@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVersion
+ 
+ method getVendorIdentification()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getASCII@this(8,8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVendorIdentification
+ 
+ method getProductIdentification()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getASCII@this(16,16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProductIdentification
+ 
+ method getProductRevisionLevel()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getASCII@this(32,4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getProductRevisionLevel
+ 
+ method getVersionDescriptors()[I {
+  +START:   #1
+        vR1 = new int[8];    
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vR1.length goto B32;   
+  +B13:   #1
+        vR1[vi2] = vR0.getUInt16@this(((vi2*2)+58));   
+        vi2++;   
+        goto +B7;   [Ri  i ..]
+  +B32:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 1 any 2 found 0 getVersionDescriptors
+ 
+ method containsVersionDescriptors(I)Z {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=8 goto B30;   
+  +B8:   #1
+        if vi1!=vR0.getUInt16@this(((vi2*2)+58)) goto B24;   
+  +B22:   #1
+        return 1;   
+  +B24:   #1
+        vi2++;   
+        goto +B2;   [i  . ..]
+  +B30:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 3 found 1 containsVersionDescriptors
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("PeripheralDeviceType 0x").append@extra(hex@special(vR0.getPeripheralDeviceType@extra(),2)).append@extra(", PeripheralQualifier 0x").append@extra(hex@special(vR0.getPeripheralQualifier@extra(),2)).append@extra(", Version 0x").append@extra(hex@special(vR0.getVersion@extra(),2)).append@extra(", Vendor ").append@extra(vR0.getVendorIdentification@extra()).append@extra(", Product ").append@extra(vR0.getProductIdentification@extra()).append@extra(", Revision ").append@extra(vR0.getProductRevisionLevel@extra()).append@extra(", Version descriptors ").append@extra(hex@special(vR0.getVersionDescriptors@extra(),4)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 33 swaps 14 any 0 found 0 toString
+}

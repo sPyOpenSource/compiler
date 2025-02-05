@@ -1,0 +1,102 @@
+class org/jnode/fs/ntfs/index/IndexEntry {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vi3);   [   iRR] 
+        vR0.parentFileRecord = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Lorg/jnode/fs/ntfs/NTFSStructure;I)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vi3);   [   iRR] 
+        vR0.parentFileRecord = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasSubNodes()Z {
+  +START:   #1
+        if (vR0.getIndexFlags@extra() & 1)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 hasSubNodes
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.getUInt16@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getContentSize()I {
+  +START:   #1
+        return vR0.getUInt16@this(10);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getContentSize
+ 
+ method getIndexFlags()I {
+  +START:   #1
+        return vR0.getUInt8@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndexFlags
+ 
+ method isLastIndexEntryInSubnode()Z {
+  +START:   #1
+        if (vR0.getIndexFlags@extra() & 2)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLastIndexEntryInSubnode
+ 
+ method getFileReferenceNumber()J {
+  +START:   #1
+        return vR0.getUInt48@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFileReferenceNumber
+ 
+ method getParentFileRecord()Lorg/jnode/fs/ntfs/FileRecord; {
+  +START:   #1
+        return vR0.parentFileRecord;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParentFileRecord
+ 
+ method getSubnodeVCN()J {
+  +START:   #1
+        return vR0.getInt64@this((vR0.getSize@extra()-8));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSubnodeVCN
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "index-entry:[flags: %d size:%d content-size:%d]";    
+        b1 = new java/lang/Object()[3];    
+        b1[0] = valueOf@special(vR0.getIndexFlags@extra());   
+        b1[1] = valueOf@special(vR0.getSize@extra());   
+        b1[2] = valueOf@special(vR0.getContentSize@extra());   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 0 found 0 toString
+}

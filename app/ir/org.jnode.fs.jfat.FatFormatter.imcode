@@ -1,0 +1,230 @@
+class org/jnode/fs/jfat/FatFormatter {
+ 
+ method HDFormatter(IIIILorg/jnode/fs/jfat/FatType;IILorg/jnode/fs/jfat/GrubBootSector;)Lorg/jnode/fs/jfat/FatFormatter; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 HDFormatter
+ 
+ method HDDFormatter(IILorg/jnode/fs/jfat/ClusterSize;ILjx/devices/bio/BlockIO;)Lorg/jnode/fs/jfat/FatFormatter; {
+  +START:   #1
+        return new org/jnode/fs/jfat/FatFormatter(248,vi0,vi1,63,255,vR2,vi3,vR4);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 HDDFormatter
+ 
+ method <init>(IIIIILorg/jnode/fs/jfat/ClusterSize;ILjx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.NumOfFATs = 2;   
+        vR0.BackupBootSector = 6;   
+        vR0.ReservedSectorCount = 32;   
+        b1 = new byte[2];    
+        b1[0] = 85;   
+        b1[1] = -86;   
+        vR0.BS_Identifier = b1;   
+        b1 = new byte[3];    
+        b1[0] = -21;   
+        b1[1] = 90;   
+        b1[2] = -112;   
+        vR0.BS_jmpBoot = b1;   
+        vR0.FSI_LeadSig = 1096897106;   
+        vR0.FSI_StrucSig = 1631679090;   
+        vR0.FSI_FreeCount = -1;   
+        vR0.FSI_Nxt_Free = 3;   
+        vR0.FSI_TrailSig = -1437270016;   
+        vR0.ReservedSector_0 = 268435448;   
+        vR0.ReservedSector_1 = -1;   
+        vR0.ReservedSector_2 = 268435455;   
+        vR9 = new org/jnode/fs/jfat/FatFsInfo(vi2);    [ RR  i.][ RR . iiR]
+        b1 = new org/jnode/fs/jfat/BootSector(vi2);    [ RR . i..][ RR . iiR]
+        vR0.bs = b1;   
+        vi10 = vR0.getDiskSize@special(vi3,vi2);    [R RR . iiR] 
+        vi11 = get_spc@special(vR6,vi2);    [Ri RR . iR.]
+        vi12 = vR0.getUserAreaSize@special(vi3,32,2,vR6);    [Rii RR . RiiiR] 
+        vR0.FatSize = vR0.getFATSizeSectors@this(vi3,32,vi11,2,vi2);   
+        vR0.bs.setBS_JmpBoot(vR0.BS_jmpBoot);   [Riii RR i RR....] 
+        vR0.bs.setBS_OemName("MSWIN4.1");   [Riii RR ii RR....] 
+        vR0.bs.setBPB_BytesPerSector(vi2);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_SecPerCluster(vi11);   [Riii RR ii iR....] 
+        requireNonNull@special(vR0);   [Riii RR ii R.....]
+        vR0.bs.setBPB_RsvSecCount(32);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_NoFATs(2);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_RootEntCnt(0);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_TotSec16(0);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_MediumDescriptor(vi1);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_FATSz16(0);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_SecPerTrk(63);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_NumHeads(255);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_HiddSec((long)vi7);   [Riii RR ii ??R...] 
+        vR0.bs.setBPB_TotSec32((long)vi3);   [Riii RR ii ??R...] 
+        vR0.bs.setBPB_FATSz32((long)vR0.FatSize);   [Riii RR ii ??R...] 
+        vR0.bs.setBPB_ExtFlags(0);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_FSVer(0);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_RootClus(2);   [Riii RR ii ??R...] 
+        vR0.bs.setBPB_FSInfo(1);   [Riii RR ii iR....] 
+        vR0.bs.setBPB_BkBootSec(6);   [Riii RR ii iR....] 
+        vR0.bs.setBS_DrvNum(128);   [Riii RR ii iR....] 
+        vR0.bs.setBS_Reserved1(0);   [Riii RR ii iR....] 
+        vR0.bs.setBS_BootSig(41);   [Riii RR ii iR....] 
+        vi13 = vR0.getDriveSerialNumber@this();    [Riii RR ii R.....] 
+        vR0.bs.setBS_VolID((long)vi13);   [Riiii RR ii ??R...] 
+        vR0.bs.setBS_VolLab("NO NAME    ");   [Riiii RR iii RR....] 
+        vR0.bs.setBS_FilSysType("FAT32   ");   [Riiii RR iiii RR....] 
+        vR0.bs.setBS_Identifier(vR0.BS_Identifier);   [Riiii RR iiiii RR....] 
+        vR9.setFsInfo_LeadSig(1096897106);   [Riiii RR iiiii ??R...] 
+        vR9.setFsInfo_Reserved1();   [Riiii RR iiiii R.....] 
+        vR9.setFsInfo_StrucSig(1631679090);   [Riiii RR iiiii iR....] 
+        vR0.FSI_FreeCount = ((vi12/vi11)-1);   
+        vR9.setFsInfo_FreeCount(vR0.FSI_FreeCount);   [Riiii RR iiiiii iR....] 
+        vR9.setFsInfo_NextFree(3);   [Riiii RR iiiiii iR....] 
+        vR9.setReserve2();   [Riiii RR iiiiii R.....] 
+        vR9.setFsInfo_TrailSig(-1437270016);   [Riiii RR iiiiii iR....] 
+        vl14 = (long)(vi12/vi11);    
+        if compare((double)vl14,pow@special(jx.classfile.datatypes.BCDouble@20ca951f,jx.classfile.datatypes.BCDouble@2d778add))<=0 goto B508;   
+  +B508:   #1
+        vi16 = (((2*vR0.FatSize)+32)+vi11);    
+  +B522:   #1
+        vR0.setQuickSectorFree@special(vi16,vR8);   [Riiiil?i RR ...... RiR...] 
+  +B530:   #1
+        goto +B535;   [Riiiil?i RR ...... ......]
+  +H533<caught exception>:   #1 reference
+        vR17 = <caught exception>;    
+  +B535:   #2
+        vR0.format@this(vR8,vR0.bs,vR9,vi11,vi3);   [Riiiil?i RR i..... iiRRRR] 
+  +B550:   #1
+        goto +B555;   [Riiiil?i RR ...... ......]
+  +H553<caught exception>:   #1 reference
+        vR17 = <caught exception>;    
+  +B555:   #1
+        vi17 = (vi10/1000000000);    
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+522 - 530 handler 533 type 234
+535 - 550 handler 553 type 234
+ }
+// Register: rd 78/78 wr 21 swaps 7 any 0 found 0 <init>
+ 
+ method format(Ljx/devices/bio/BlockIO;Lorg/jnode/fs/jfat/BootSector;Lorg/jnode/fs/jfat/FatFsInfo;II)V {
+  +START:   #1
+        vi6 = 0;    
+  +B3:   #1
+        if vi6>=2 goto B40;   
+  +B9:   #1
+        if vi6!=0 goto B18;   
+  +B14:   #1
+        b0 = 0;    
+        goto +B21b0;   [i i  ]
+  +B18:   #1
+        b0 = 3072;    
+  +B21b0:   #1 int
+        vi7 = b0;    
+        vR3.write(vR1,(vi7+512));   [ii i i iRR] 
+        vi6++;   
+        goto +B3;   [ii i i ...]
+  +B40:   #1
+        vi6 = 0;    
+  +B43:   #1
+        if vi6>=2 goto B132;   
+  +B49:   #1
+        vi7 = ((vi6*vR0.FatSize)+32);    
+        vR0.reservedSector = vR0.MemManager.alloc(12);   
+        vR0.reservedSector.setLittleEndian32(0,268435448);   [ii i . iiR] 
+        vR0.reservedSector.setLittleEndian32(4,-1);   [ii i . iiR] 
+        vR0.reservedSector.setLittleEndian32(8,268435455);   [ii i . iiR] 
+        vR1.writeSectors(vi7,1,vR0.reservedSector,1);   [ii i i iRiiR] 
+        vi6++;   
+        goto +B43;   [ii i i .....]
+  +B132:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 9 swaps 2 any 7 found 0 format
+ 
+ method setQuickSectorFree(ILjx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR3 = vR0.MemManager.alloc(512);    [   iR] 
+        vi4 = 0;    
+  +B16:   #1
+        if vi4>=vi1 goto B39;   
+  +B22:   #1
+        vR2.writeSectors(vi4,1,vR3,1);   [Ri   iRiiR] 
+        vi4++;   
+        goto +B16;   [Ri   .....]
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 setQuickSectorFree
+ 
+ method setQuickDiskFree(ILjx/devices/bio/BlockIO;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setQuickDiskFree
+ 
+ method get_spc(Lorg/jnode/fs/jfat/ClusterSize;I)I {
+  +START:   #1
+        return (vR0.getSize@extra()/vi1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 1 get_spc
+ 
+ method getDriveSerialNumber()I {
+  +START:   #1
+        vR1 = new java/util/Date();    [ R  i][ R  iR]
+        vi2 = getYear@special(vR1.getTime());    [R R  ??]
+        vi3 = getMonth@special((long)(int)vR1.getTime());    [Ri R  ??]
+        vi4 = getDay@special((long)(int)vR1.getTime());    [Rii R  ??]
+        vi5 = getHours@special((long)(int)vR1.getTime());    [Riii R  ??]
+        vi6 = getMinutes@special((long)(int)vR1.getTime());    [Riiii R  ??]
+        vi7 = getSeconds@special((long)(int)vR1.getTime());    [Riiiii R  ??]
+        vi8 = (int)getMilliSeconds@special(vR1.getTime());    
+        vi9 = (vi4+(vi3 << 8));    
+        vi10 = ((vi8/10)+(vi7 << 8));    
+        vi9 = (vi9+vi10);    
+        vi11 = (vi6+(vi5 << 8));    
+        vi11 = (vi11+vi2);    
+        vi12 = (vi9+(vi11 << 16));    
+        return vi12;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 15 swaps 0 any 5 found 0 getDriveSerialNumber
+ 
+ method getFATSizeSectors(IIIII)I {
+  +START:   #1
+        vl10 = 4;    
+        vl6 = (vl10*(long)(vi1-vi2));    
+        vl8 = ((long)(vi3*vi5)+(vl10*(long)vi4));    
+        vl12 = (vl6/vl8);    
+        vl12 = (vl12+1);    
+        return (int)vl12;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getFATSizeSectors
+ 
+ method getUserAreaSize(IIILorg/jnode/fs/jfat/ClusterSize;)I {
+  +START:   #1
+        vi5 = ((vi1-vi2)-(vi3*vR4.getSize@extra()));    
+        return vi5;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 1 found 1 getUserAreaSize
+ 
+ method getDiskSize(II)I {
+  +START:   #1
+        return (vi1*vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getDiskSize
+ 
+ method getBootSector()Lorg/jnode/fs/jfat/BootSector; {
+  +START:   #1
+        return vR0.bs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBootSector
+}

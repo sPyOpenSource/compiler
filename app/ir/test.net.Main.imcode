@@ -74,31 +74,9 @@ class test/net/Main {
  method dotest(Ljx/devices/net/NetworkDevice;)V {
   +START:   #1
         vR2 = (jx/timer/TimerManager)(waitUntilPortalAvailable@special(vR0.naming,"TimerManager"));    
-        out.print("Perform init as first command!");   [R RRR RRi. RR] 
-        vR3 = new jx/shell/Shell(vR0.naming);    [ RRR RRi. i.][ RRR RRi. iRR]
-        b1 = "init";    
-        b2 = new test/net/Main$1(vR0,vR1,vR2);    [ RRR RRi. i..][ RRR RRi. iRRRR]
-        vR3.register(b1,b2);   [RR RRR RRi. RRR..] 
-        b1 = "snd";    
-        b2 = new test/net/Main$2(vR0);    [ RRR RRi. i....][ RRR RRi. iRR..]
-        vR3.register(b1,b2);   [RR RRR RRi. RRR..] 
-        b1 = "rcv";    
-        b2 = new test/net/Main$3(vR0);    [ RRR RRi. i....][ RRR RRi. iRR..]
-        vR3.register(b1,b2);   [RR RRR RRi. RRR..] 
-        b1 = "pingsvc";    
-        b2 = new test/net/Main$4(vR0);    [ RRR RRi. i....][ RRR RRi. iRR..]
-        vR3.register(b1,b2);   [RR RRR RRi. RRR..] 
-  +B91:   #1
-        vR3.mainloop();   [RR RRR .... R....] 
-  +B95:   #1
-        goto +B100;   forward return[RR RRR .... .....]
-  +H98<caught exception>:   #1 reference
-        vR4 = <caught exception>;    
-  +B100:   #1
+        out.print("Perform init as first command!");   [R  RRi. RR] 
         return;   
   +END:   #1
-EXCEPTIONHANDLER-TABLE:
-91 - 95 handler 98 type 189
  }
-// Register: rd 27/27 wr 21 swaps 1 any 0 found 0 dotest
+// Register: rd 2/2 wr 6 swaps 1 any 0 found 0 dotest
 }

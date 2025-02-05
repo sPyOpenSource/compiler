@@ -1,0 +1,91 @@
+class org/jnode/fs/ntfs/security/SecurityIdentifier {
+ 
+ method <init>(JLjava/util/List;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.authority = vl1;   
+        vR0.subAuthorities = vR3;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = getName@special(vR0);    [   R]
+        if vR1==null goto B11;   
+  +B9:   #1
+        return vR1;   
+  +B11:   #1
+        return vR0.toSidString@this();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 toString
+ 
+ method toSidString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        vR1.append@extra(vR0.subAuthorities.get(0));   [R RR i RR] 
+        vi2 = 1;    
+  +B25:   #1
+        if vi2>=vR0.subAuthorities.size() goto B66;   
+  +B38:   #1
+        vR1.append@extra(45);   [Ri RR . iR] 
+        vR1.append@extra(vR0.subAuthorities.get(vi2));   [Ri RR i RR] 
+        vi2++;   
+        goto +B25;   [Ri RR i ..]
+  +B66:   #1
+        b0 = "S-1-%d-%s";    
+        b1 = new java/lang/Object()[2];    
+        b1[0] = valueOf@special(vR0.authority);   
+        b1[1] = vR1.toString@extra();   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 6 swaps 2 any 2 found 1 toSidString
+ 
+ method hashCode()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 hashCode
+ 
+ method equals(Ljava/lang/Object;)Z {
+  +START:   #1
+        if (vR1 instanceof org/jnode/fs/ntfs/security/SecurityIdentifier)!=0 goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #1
+        vR2 = (org/jnode/fs/ntfs/security/SecurityIdentifier)(vR1);    
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 1 equals
+ 
+ method fromString(Ljava/lang/String;)Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        if vR0.toUpperCase@extra().startsWith@extra("S-1-")!=0 goto B39;   
+  -B12:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
+        b1.<init>@special(b2.append@extra("Invalid SID: ").append@extra(vR0).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B39:   #1
+        vR0 = vR0.substring@extra(4);    [ RRR ... iR.] 
+        vR1 = vR0.split@extra("\-");    [ RRR i.. RR.] 
+        vR2 = 0;    
+        vR3 = new java/util/ArrayList();    [ RRR i.. i..][ RRR i.. iR.]
+        vi4 = 1;    
+  +B65:   #1
+        if vi4>=vR1.length goto B78;   
+  +B72:   #1
+        vi4++;   
+        goto +B65;   [RRRi RRR ... ...]
+  +B78:   #1
+        return new org/jnode/fs/ntfs/security/SecurityIdentifier(vR2.longValue@extra(),vR3);   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 16 swaps 4 any 3 found 0 fromString
+}

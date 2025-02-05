@@ -1,0 +1,96 @@
+class org/jnode/fs/ntfs/FileNameAttribute {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [ ?R  iRR] 
+        b1 = new org/jnode/fs/ntfs/FileNameAttribute$Structure(vR0,vR0.getAttributeOffset@this());    [ ?R  i..][ ?R . iiRR]
+        vR0.fileNameStructure = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method getFileName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.fileNameStructure.getFileName();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFileName
+ 
+ method isCompressed()Z {
+  +START:   #1
+        return vR0.fileNameStructure.isCompressed();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isCompressed
+ 
+ method getParentMftIndex()J {
+  +START:   #1
+        return vR0.fileNameStructure.getParentMftIndex();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getParentMftIndex
+ 
+ method getParentSequenceNumber()I {
+  +START:   #1
+        return vR0.fileNameStructure.getParentSequenceNumber();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParentSequenceNumber
+ 
+ method getAllocatedFileSize()J {
+  +START:   #1
+        return vR0.fileNameStructure.getAllocatedFileSize();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAllocatedFileSize
+ 
+ method getRealSize()J {
+  +START:   #1
+        return vR0.fileNameStructure.getRealSize();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRealSize
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.fileNameStructure.getFlags();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getNameSpace()I {
+  +START:   #1
+        return vR0.fileNameStructure.getNameSpace();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameSpace
+ 
+ method getCreationTime()J {
+  +START:   #1
+        return vR0.fileNameStructure.getCreationTime();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCreationTime
+ 
+ method getModificationTime()J {
+  +START:   #1
+        return vR0.fileNameStructure.getModificationTime();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getModificationTime
+ 
+ method getMftChangeTime()J {
+  +START:   #1
+        return vR0.fileNameStructure.getMftChangeTime();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftChangeTime
+ 
+ method getAccessTime()J {
+  +START:   #1
+        return vR0.fileNameStructure.getAccessTime();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAccessTime
+}

@@ -1,0 +1,112 @@
+class org/jnode/fs/ntfs/logfile/RecordPageHeader {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSVolume;Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getBootRecord@extra().getBytesPerSector@extra(),1,vR2,vi3);   [  i iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method isValid()Z {
+  +START:   #1
+        if vR0.getMagic@this()!=1146241874 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isValid
+ 
+ method getUpdateSequenceOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateSequenceOffset
+ 
+ method getUpdateSequenceCount()I {
+  +START:   #1
+        return vR0.getUInt16@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUpdateSequenceCount
+ 
+ method getLastLsnOrFileOffset()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastLsnOrFileOffset
+ 
+ method getFlags()J {
+  +START:   #1
+        return vR0.getUInt32@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getPageCount()I {
+  +START:   #1
+        return vR0.getUInt16@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPageCount
+ 
+ method getPagePosition()I {
+  +START:   #1
+        return vR0.getUInt16@this(22);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPagePosition
+ 
+ method getNextRecordOffset()I {
+  +START:   #1
+        return vR0.getInt16@this(24);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNextRecordOffset
+ 
+ method getLastEndLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(32);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastEndLsn
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder("Record Page Header:[
+");    [ RR  i][ RR . iRR]
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        vR1.append@extra(b1.append@extra("update-sequence-offset: ").append@extra(vR0.getUpdateSequenceOffset@this()).append@extra("
+").toString@extra());   [R RR ii.ii. RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR ii.ii. i...][ RR ii.ii. iR..]
+        vR1.append@extra(b1.append@extra("update-sequence-count: ").append@extra(vR0.getUpdateSequenceCount@this()).append@extra("
+").toString@extra());   [R RR iiiiii.ii. RR..] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii.ii. i...][ RR iiiiii.ii. iR..]
+        vR1.append@extra(b1.append@extra("lsn-or-file-offset: ").append@extra(vR0.getLastLsnOrFileOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiii.. i....][ RR iiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("flags: ").append@extra(vR0.getFlags@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiii.. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiii.. i....][ RR iiiiiiiiiiiiii.. iR...]
+        vR1.append@extra(b1.append@extra("page-count: ").append@extra(vR0.getPageCount@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("page-position: ").append@extra(vR0.getPagePosition@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("next-record: ").append@extra(vR0.getNextRecordOffset@this()).append@extra("
+").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiii.ii. RR...] 
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. i....][ RR iiiiiiiiiiiiiiiiiiiiiiii.ii. iR...]
+        vR1.append@extra(b1.append@extra("last-end-lsn: ").append@extra(vR0.getLastEndLsn@this()).append@extra("]").toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiii.. RR...] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 63 swaps 29 any 0 found 0 toDebugString
+}

@@ -1,0 +1,103 @@
+class org/jnode/driver/bus/usb/InterfaceDescriptor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(9);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getInterfaceNumber()I {
+  +START:   #1
+        return vR0.getByte@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceNumber
+ 
+ method getAlternateSetting()I {
+  +START:   #1
+        return vR0.getByte@this(3);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlternateSetting
+ 
+ method getNumEndPoints()I {
+  +START:   #1
+        return vR0.getByte@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumEndPoints
+ 
+ method getInterfaceClass()I {
+  +START:   #1
+        return vR0.getByte@this(5);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceClass
+ 
+ method getInterfaceSubClass()I {
+  +START:   #1
+        return vR0.getByte@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceSubClass
+ 
+ method getInterfaceProtocol()I {
+  +START:   #1
+        return vR0.getByte@this(7);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceProtocol
+ 
+ method getInterfaceStringIndex()I {
+  +START:   #1
+        return vR0.getByte@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceStringIndex
+ 
+ method getInterfaceName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.intfName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterfaceName
+ 
+ method loadStrings(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vi2 = vR0.getInterfaceStringIndex@extra();    [   R] 
+        if vi2<=0 goto B19;   
+  +B9:   #1
+        vR0.intfName = vR1.getString@extra(vi2,0);   
+  +B19:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 loadStrings
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0 = b0.append@extra("INTF[ifnum:").append@extra(vR0.getInterfaceNumber@extra()).append@extra(", altst:").append@extra(vR0.getAlternateSetting@extra()).append@extra(", #ep:").append@extra(vR0.getNumEndPoints@extra()).append@extra(", iclass:").append@extra(vR0.getInterfaceClass@extra()).append@extra(", isubcls:").append@extra(vR0.getInterfaceSubClass@extra()).append@extra(", iprot:").append@extra(vR0.getInterfaceProtocol@extra()).append@extra(", name:");    [ RR i.ii..ii..ii..ii..ii..ii. RR............] [ RR iRii..ii..ii..ii..ii..ii. RiR...........] [ RR iRiiR.ii..ii..ii..ii..ii. RiRR..........] [ RR iRiiRRii..ii..ii..ii..ii. RiRiR.........] [ RR iRiiRRiiR.ii..ii..ii..ii. RiRiRR........] [ RR iRiiRRiiRRii..ii..ii..ii. RiRiRiR.......] [ RR iRiiRRiiRRiiR.ii..ii..ii. RiRiRiRR......] [ RR iRiiRRiiRRiiRRii..ii..ii. RiRiRiRiR.....] [ RR iRiiRRiiRRiiRRiiR.ii..ii. RiRiRiRiRR....] [ RR iRiiRRiiRRiiRRiiRRii..ii. RiRiRiRiRiR...] [ RR iRiiRRiiRRiiRRiiRRiiR.ii. RiRiRiRiRiRR..] [ RR iRiiRRiiRRiiRRiiRRiiRRii. RiRiRiRiRiRiR.] [ RR iRiiRRiiRRiiRRiiRRiiRRiiR RiRiRiRiRiRiRR] 
+        if vR0.intfName==null goto B98;   
+  +B91b0:   #1 reference
+        b1 = vR0.intfName;    
+        goto +B120b0b1;   forward return[ RR ......................... ..............]
+  +B98b0:   #1 reference
+        b1 = new java/lang/StringBuilder();    [ RR ......................... i.............][ RR ......................... iR............]
+        b1 = b1.append@extra("%").append@extra(vR0.getInterfaceStringIndex@extra()).toString@extra();    [ RR .ii...................... R.............] [ RR Rii...................... iR............] [ RR RiiR..................... iRR...........] 
+  +B120b0b1:   #1 reference reference
+        return b0.append@extra(b1).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 36 swaps 15 any 0 found 0 toString
+}

@@ -1,0 +1,218 @@
+class java/awt/image/IndexColorModel {
+ 
+ method <init>(II[B[B[B)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vR3,vR4,vR5,([B)(0));   [  i RRRRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(II[B[B[BI)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vR3,vR4,vR5,([B)(0));   [  i RRRRiiR] 
+        vR0.trans = vi6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(II[B[B[B[B)V {
+  +START:   #1
+        vR0.<init>@special(vi1);   [ Ri  iR] 
+        vR0.trans = -1;   
+        vR0.map_size = vi2;   
+        b0 = vR0;    
+        if vR6!=null goto B25;   
+  +B21b0:   #1 reference
+        b1 = 1;    
+        goto +B26b0b1;   [ Ri  ..]
+  +B25b0:   #1 reference
+        b1 = 0;    
+  +B26b0b1:   #1 reference int
+        b0.opaque = b1;   
+        vR0.rgb = new int[vi2];   
+        if vR6!=null goto B103;   
+  +B41:   #1
+        vi7 = 0;    
+  +B44:   #1
+        if vi7>=vi2 goto B100;   
+  +B50:   #1
+        vR0.rgb[vi7] = (((-16777216 | ((vR3[vi7] & 255) << 16)) | ((vR4[vi7] & 255) << 8)) | (vR5[vi7] & 255));   
+        vi7++;   
+        goto +B44;   [i Ri  ..]
+  +B100:   #1
+        goto +B172;   forward return[i Ri  ..]
+  +B103:   #1
+        vi7 = 0;    
+  +B106:   #1
+        if vi7>=vi2 goto B172;   
+  +B112:   #1
+        vR0.rgb[vi7] = (((((vR6[vi7] & 255) << 24) | ((vR3[vi7] & 255) << 16)) | ((vR4[vi7] & 255) << 8)) | (vR5[vi7] & 255));   
+        vi7++;   
+        goto +B106;   [i Ri  ..]
+  +B172:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 6 swaps 0 any 7 found 0 <init>
+ 
+ method <init>(II[BIZ)V {
+  +START:   #1
+        vR0.<init>@special(vi1,vi2,vR3,vi4,vi5,-1);   [   iiiRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(II[BIZI)V {
+  +START:   #1
+        vR0.<init>@special(vi1);   [ Ri  iR] 
+        vR0.trans = -1;   
+        vR0.map_size = vi2;   
+        b0 = vR0;    
+        if vi5!=0 goto B25;   
+  +B21b0:   #1 reference
+        b1 = 1;    
+        goto +B26b0b1;   [ Ri  ..]
+  +B25b0:   #1 reference
+        b1 = 0;    
+  +B26b0b1:   #1 reference int
+        b0.opaque = b1;   
+        vR0.trans = vi6;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 2 found 0 <init>
+ 
+ method getMapSize()I {
+  +START:   #1
+        return vR0.map_size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMapSize
+ 
+ method getTransparentPixel()I {
+  +START:   #1
+        return vR0.trans;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTransparentPixel
+ 
+ method getReds([B)V {
+  +START:   #1
+        vR0.getComponents@special(vR1,2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getReds
+ 
+ method getGreens([B)V {
+  +START:   #1
+        vR0.getComponents@special(vR1,1);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGreens
+ 
+ method getBlues([B)V {
+  +START:   #1
+        vR0.getComponents@special(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBlues
+ 
+ method getAlphas([B)V {
+  +START:   #1
+        vR0.getComponents@special(vR1,3);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAlphas
+ 
+ method getComponents([BI)V {
+  +START:   #1
+        if vR0.map_size>=vR1.length goto B16;   
+  +B9:   #1
+        b0 = vR0.map_size;    
+        goto +B18b0;   [ i  ]
+  +B16:   #1
+        b0 = vR1.length;    
+  +B18b0:   #1 int
+        vi4 = b0;    
+        vi3 = 0;    
+  +B22:   #1
+        if vi3>=vi4 goto B57;   
+  +B28:   #1
+        vR1[vi3] = (byte)((vR0.generateMask@special(vi2) & vR0.rgb[vi3]) >> (vi2*vR0.pixel_bits));   
+        vi3++;   
+        goto +B22;   [ii i  ..]
+  +B57:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 5 swaps 0 any 3 found 0 getComponents
+ 
+ method getRed(I)I {
+  +START:   #1
+        if vi1>=vR0.map_size goto B28;   
+  +B8:   #1
+        return ((vR0.generateMask@special(2) & vR0.rgb[vi1]) >> (2*vR0.pixel_bits));   
+  +B28:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 1 found 0 getRed
+ 
+ method getGreen(I)I {
+  +START:   #1
+        if vi1>=vR0.map_size goto B28;   
+  +B8:   #1
+        return ((vR0.generateMask@special(1) & vR0.rgb[vi1]) >> (1*vR0.pixel_bits));   
+  +B28:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 1 found 0 getGreen
+ 
+ method getBlue(I)I {
+  +START:   #1
+        if vi1>=vR0.map_size goto B21;   
+  +B8:   #1
+        return (vR0.generateMask@special(0) & vR0.rgb[vi1]);   
+  +B21:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 1 found 0 getBlue
+ 
+ method getAlpha(I)I {
+  +START:   #1
+        if vi1>=vR0.map_size goto B28;   
+  +B8:   #1
+        return ((vR0.generateMask@special(3) & vR0.rgb[vi1]) >> (3*vR0.pixel_bits));   
+  +B28:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 1 found 0 getAlpha
+ 
+ method getRGB(I)I {
+  +START:   #1
+        if vi1>=vR0.map_size goto B15;   
+  +B8:   #1
+        return vR0.rgb[vi1];   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 getRGB
+ 
+ method generateMask(I)I {
+  +START:   #1
+        return (((2 << vR0.pixel_bits)-1) << (vR0.pixel_bits*vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 generateMask
+}

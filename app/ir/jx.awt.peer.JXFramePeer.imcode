@@ -1,0 +1,563 @@
+class jx/awt/peer/JXFramePeer {
+ 
+ method <init>(Ljava/awt/Frame;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method layoutMenu(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 layoutMenu
+ 
+ method getCurrentMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCurrentMenu
+ 
+ method activateMenuBar()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 activateMenuBar
+ 
+ method getMenuHeight()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMenuHeight
+ 
+ method resetMenuBar()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 resetMenuBar
+ 
+ method openMenu(Ljava/awt/Menu;)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0.toolkit.getMenuHandler();    [R R  R] 
+        vR2.setCurrentMenu(vR1);   [RR R  RR] 
+        vR2.redrawMenuBar();   [RR R  R.] 
+        vR4 = vR0.connector.getWindowOrigin();    [RR R  R.] 
+        vR5 = vR2.getMenuBounds(vR1);    [RRR R  RR] 
+        vR6 = new java/awt/Rectangle((vR5.x+vR4.x),(vR5.y+vR4.y),vR5.width,vR5.height);    [ R  i.][ R . iiiiiR]
+        vR3.setCurrentMenuBar(vR0.menubar);   [RRRRR R i RR....] 
+        vR3.openMenu(vR1,vR6);   [RRRRR R i RRR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 7 swaps 1 any 0 found 0 openMenu
+ 
+ method switchToMenu(Ljava/awt/Menu;Z)V {
+  +START:   #1
+        vR3 = 0;    
+        vR4 = vR0.toolkit.getMenuHandler();    [R   R] 
+        if vi2==0 goto B32;   
+  +B15:   #1
+        if vR1==null goto B41;   
+  +B19:   #1
+        vR4.deleteOpenMenus();   [RR   R] 
+        vR0.openMenu@special(vR1);   [RR   RR] 
+        goto +B41;   forward return[RR   ..]
+  +B32:   #1
+        vR3.setCurrentMenu(vR1);   [RR   RR] 
+        vR3.redrawMenuBar();   [RR   R.] 
+  +B41:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 2 found 0 switchToMenu
+ 
+ method handleMenuKeyDown(I)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0.toolkit.getMenuHandler();    [R   R] 
+        vR4 = 0;    
+        lswitch (vi1) { 
+           10:B72
+           27:B136
+           37:B160
+           38:B72
+           39:B211
+           40:B72
+           ::B259
+        };   
+  +B72:   #3
+        if vR3.isMenuOpen()==0 goto B88;   
+  +B79:   #1
+        vR3.performKey(vi1);   [RRR   iR] 
+        goto +B259;   forward return[RRR   ..]
+  +B88:   #1
+        vR2 = vR4.getCurrentMenu();    [RRR   R.] 
+        vR0.openMenu@special(vR2);   [RRR   RR] 
+        vR5 = 0;    
+        if vi1!=38 goto B122;   
+  +B108:   #1
+        vR5.setCurrentMenuItem(vR5.getDefaultMenuItem(0));   [RRRR  i RR] 
+        goto +B133;   [RRRR  i ..]
+  +B122:   #1
+        vR5.setCurrentMenuItem(vR5.getDefaultMenuItem(1));   [RRRR  i RR] 
+  +B133:   #1
+        goto +B259;   forward return[RRRR  . ..]
+  +B136:   #1
+        if vR3.isMenuOpen()==0 goto B152;   
+  +B143:   #1
+        vR3.performKey(vi1);   [RRRR  . iR] 
+        goto +B259;   forward return[RRRR  . ..]
+  +B152:   #1
+        vR4.resetMenuBar();   [RRRR  . R.] 
+        goto +B259;   forward return[RRRR  . ..]
+  +B160:   #1
+        if vR4==null goto B171;   
+  +B165:   #1
+        vR2 = vR4.getLeftMenu();    [RRRR  . R.] 
+  +B171:   #1
+        if vR3.isMenuOpen()==0 goto B202;   
+  +B178:   #1
+        if vR3.performKey(vi1)!=0 goto B259;   
+  +B186:   #1
+        if vR3.isPopupMenuOpen()!=0 goto B259;   
+  +B193:   #1
+        vR0.switchToMenu@special(vR2,1);   [RRRR  . iRR] 
+        goto +B259;   forward return[RRRR  . ...]
+  +B202:   #1
+        vR0.switchToMenu@special(vR2,0);   [RRRR  . iRR] 
+        goto +B259;   forward return[RRRR  . ...]
+  +B211:   #1
+        if vR4==null goto B222;   
+  +B216:   #1
+        vR2 = vR4.getRightMenu();    [RRRR  . R..] 
+  +B222:   #1
+        if vR3.isMenuOpen()==0 goto B253;   
+  +B229:   #1
+        if vR3.performKey(vi1)!=0 goto B259;   
+  +B237:   #1
+        if vR3.isPopupMenuOpen()!=0 goto B259;   
+  +B244:   #1
+        vR0.switchToMenu@special(vR2,1);   [RRRR  . iRR] 
+        goto +B259;   forward return[RRRR  . ...]
+  +B253:   #1
+        vR0.switchToMenu@special(vR2,0);   [RRRR  . iRR] 
+  +B259:   #12
+        return;   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 9 swaps 2 any 4 found 0 handleMenuKeyDown
+ 
+ method handleMenuMouseDown(III)V {
+  +START:   #1
+        vR4 = 0;    
+        vR5 = vR0.toolkit.getMenuHandler();    [R   R] 
+        vR6 = vR4.getMenuEntry(vi1,vi2);    [RR   iiR] 
+        if vR6!=null goto B34;   
+  +B26:   #1
+        vR5.deleteOpenMenus();   [RRR   R..] 
+        goto +B40;   [RRR   ...]
+  +B34:   #1
+        vR0.openMenu@special(vR6);   [RRR   RR.] 
+  +B40:   #1
+        vR4.setCurrentMenu(vR6);   [RRR   RR.] 
+        vR4.redrawMenuBar();   [RRR   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 1 found 0 handleMenuMouseDown
+ 
+ method handleMenuMouseMoved(II)V {
+  +START:   #1
+        vR3 = 0;    
+        vR4 = vR0.toolkit.getMenuHandler();    [R   R] 
+        vR5 = vR3.getMenuEntry(vi1,vi2);    [RR   iiR] 
+        if vR5==vR3.getCurrentMenu() goto B43;   
+  +B28:   #1
+        vi6 = vR4.isMenuOpen();    [RRR   R..] 
+        vR0.switchToMenu@special(vR5,vi6);   [RRRi   iRR] 
+  +B43:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 1 found 1 handleMenuMouseMoved
+ 
+ method initWindow()V {
+  +START:   #1
+        vR0.initWindow@special();   [   R] 
+        vR0.setResizable@this((java/awt/Frame)(vR0.parent).isResizable());   [  i bR] 
+        vR0.setTitle@this((java/awt/Frame)(vR0.parent).getTitle());   [  ii RR] 
+        vR0.setMenuBar@this((java/awt/Frame)(vR0.parent).getMenuBar());   [  iii RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 3 any 0 found 0 initWindow
+ 
+ method getMenuGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        return vR0.connector.getMenuGraphics();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMenuGraphics
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.paintFrame@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 paint
+ 
+ method dispose()V {
+  +START:   #1
+        if vR0.connector==null goto B14;   
+  +B7:   #1
+        vR0.connector.dispose();   [   R] 
+  +B14:   #1
+        vR0.sendWindowEvent@this(202);   [   iR] 
+        vR0.dispose@special();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method redrawComponent()V {
+  +START:   #1
+        vR0.redrawComponent@special();   [   R] 
+        if vR0.ready==0 goto B18;   
+  +B11:   #1
+        if vR0.menubar==null goto B18;   
+  +B18:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 redrawComponent
+ 
+ method setMenuBar(Ljava/awt/MenuBar;)V {
+  +START:   #1
+        vR0.menubar = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMenuBar
+ 
+ method setResizable(Z)V {
+  +START:   #1
+        vR0.connector.setResizable(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setResizable
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.connector.setTitle(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTitle
+ 
+ method paintFrame(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.fillRect(0,0,(vR0.width-1),(vR0.height-1));   [  iii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 0 found 0 paintFrame
+ 
+ method beginLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 beginLayout
+ 
+ method endLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 endLayout
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+ 
+ method updateAlwaysOnTopState()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateAlwaysOnTopState
+ 
+ method updateFocusableWindowState()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateFocusableWindowState
+ 
+ method setModalBlocked(Ljava/awt/Dialog;Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setModalBlocked
+ 
+ method updateMinimumSize()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateMinimumSize
+ 
+ method updateIconImages()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateIconImages
+ 
+ method setOpacity(F)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setOpacity
+ 
+ method setOpaque(Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setOpaque
+ 
+ method updateWindow()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateWindow
+ 
+ method repositionSecurityWarning()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 repositionSecurityWarning
+ 
+ method setState(I)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setState
+ 
+ method getState()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getState
+ 
+ method setMaximizedBounds(Ljava/awt/Rectangle;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setMaximizedBounds
+ 
+ method setBoundsPrivate(IIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBoundsPrivate
+ 
+ method getBoundsPrivate()Ljava/awt/Rectangle; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBoundsPrivate
+ 
+ method emulateActivation(Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 emulateActivation
+}

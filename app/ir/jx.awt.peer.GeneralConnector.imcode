@@ -1,0 +1,109 @@
+class jx/awt/peer/GeneralConnector {
+ 
+ method <init>(Ljx/awt/JXToolkit;Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR3,vR4);   [ ?R  RRRR] 
+        vR0.connectorEnabled = 1;   
+        vR0.bufferCount = 0;   
+        if vR1==null goto B39;   
+  +B22:   #1
+        vR0.toolkit = vR1;   
+        b1 = new jx/awt/JXGraphics(vR0);    [ ?R  i...][ ?R . iRR.]
+        vR0.graphics = b1;   
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 1 found 0 <init>
+ 
+ method getLocationOnComponents(II)Ljava/awt/Point; {
+  +START:   #1
+        return new java/awt/Point((vi1+vR0.componentOffsetX),(vi2+vR0.componentOffsetY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getLocationOnComponents
+ 
+ method getLocationOnHost(II)Ljava/awt/Point; {
+  +START:   #1
+        return new java/awt/Point((vi1-vR0.componentOffsetX),(vi2-vR0.componentOffsetY));   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 0 found 0 getLocationOnHost
+ 
+ method setBounds(IIII)V {
+  +START:   #1
+        if vR0.connectorEnabled==0 goto B41;   
+  +B7:   #1
+        b1 = new jx/devices/fb/PixelRect(vi1,vi2,(((vi1+vi3)+vR0.componentOffsetX)-1),(((vi2+vi4)+vR0.componentOffsetY)-1));    [ ?R  i][ ?R . iiiiiR]
+        vR0.setFrame@this(b1);   [ ?R . RR....] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 2 swaps 0 any 0 found 0 setBounds
+ 
+ method getBounds()Ljava/awt/Rectangle; {
+  +START:   #1
+        vR1 = vR0.getFrame@this();    [ R  R] 
+        return new java/awt/Rectangle(vR1.x0@extra(),vR1.y0@extra(),((vR1.width@extra()-vR0.componentOffsetX)+1),((vR1.height@extra()-vR0.componentOffsetY)+1));   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 0 any 0 found 0 getBounds
+ 
+ method getComponentAreaOrigin()Ljava/awt/Point; {
+  +START:   #1
+        vR1 = vR0.getWindowOrigin@this();    [   R] 
+        vR1.x = (vR1.x+vR0.componentOffsetX);   
+        vR1.y = (vR1.y+vR0.componentOffsetY);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 0 getComponentAreaOrigin
+ 
+ method getWindowOrigin()Ljava/awt/Point; {
+  +START:   #1
+        vR1 = vR0.getFrame@this();    [ R  R] 
+        return new java/awt/Point(vR1.x0@extra(),vR1.y0@extra());   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 getWindowOrigin
+ 
+ method show(Z)V {
+  +START:   #1
+        vR0.show@special(vi1);   [   iR] 
+        if vi1==0 goto B13;   
+  +B9:   #1
+        vR0.moveToFront@this();   [   R.] 
+  +B13:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 1 found 0 show
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.graphics.dispose();   [   R] 
+        vR0.graphics = 0;   
+        vR0.show@this(0);   [   iR] 
+        vR0.quit@this();   [   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 dispose
+ 
+ method setBufferCount()V {
+  +START:   #1
+        vR0.bufferCount = (vR0.bufferCount+1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBufferCount
+ 
+ method drawBackBuffer()V {
+  +START:   #1
+        vR0.bufferCount = (vR0.bufferCount-1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 drawBackBuffer
+}

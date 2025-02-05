@@ -1,0 +1,81 @@
+class org/jnode/fs/ntfs/security/SecurityDescriptor {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getRevision()I {
+  +START:   #1
+        return vR0.getInt8@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRevision
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.getInt8@this(1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getInt16@this(2);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getOwnerSid()Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        return vR0.getSidFromOffsetReference@special(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOwnerSid
+ 
+ method getGroupSid()Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        return vR0.getSidFromOffsetReference@special(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGroupSid
+ 
+ method getSidFromOffsetReference(I)Lorg/jnode/fs/ntfs/security/SecurityIdentifier; {
+  +START:   #1
+        vi2 = vR0.getInt32@this(vi1);    [   iR] 
+        if vi2!=0 goto B12;   
+  +B10:   #1
+        return 0;   
+  +B12:   #1
+        return readSid@special(vR0,vi2);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getSidFromOffsetReference
+ 
+ method getDiscretionaryAcl()Lorg/jnode/fs/ntfs/security/AccessControlList; {
+  +START:   #1
+        vi1 = vR0.getInt32@this(12);    [ R  iR] 
+        if vi1!=0 goto B13;   
+  +B11:   #1
+        return 0;   
+  +B13:   #1
+        return new org/jnode/fs/ntfs/security/AccessControlList(vR0,vi1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 getDiscretionaryAcl
+ 
+ method getSystemAcl()Lorg/jnode/fs/ntfs/security/AccessControlList; {
+  +START:   #1
+        vi1 = vR0.getInt32@this(16);    [ R  iR] 
+        if vi1!=0 goto B13;   
+  +B11:   #1
+        return 0;   
+  +B13:   #1
+        return new org/jnode/fs/ntfs/security/AccessControlList(vR0,vi1);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 1 found 0 getSystemAcl
+}

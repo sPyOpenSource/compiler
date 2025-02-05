@@ -1,0 +1,246 @@
+class jx/devices/fb/PixelColor {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nAlpha = 0;   
+        vR0.m_nBlue = 0;   
+        vR0.m_nGreen = 0;   
+        vR0.m_nRed = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nRed = vR1.m_nRed;   
+        vR0.m_nGreen = vR1.m_nGreen;   
+        vR0.m_nBlue = vR1.m_nBlue;   
+        vR0.m_nAlpha = vR1.m_nAlpha;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(BBB)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nRed = vi1;   
+        vR0.m_nGreen = vi2;   
+        vR0.m_nBlue = vi3;   
+        vR0.m_nAlpha = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(BBBB)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nRed = vi1;   
+        vR0.m_nGreen = vi2;   
+        vR0.m_nBlue = vi3;   
+        vR0.m_nAlpha = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(III)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nRed = (byte)vi1;   
+        vR0.m_nGreen = (byte)vi2;   
+        vR0.m_nBlue = (byte)vi3;   
+        vR0.m_nAlpha = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(IIII)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nRed = (byte)vi1;   
+        vR0.m_nGreen = (byte)vi2;   
+        vR0.m_nBlue = (byte)vi3;   
+        vR0.m_nAlpha = (byte)vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setTo(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_nRed = vR1.m_nRed;   
+        vR0.m_nGreen = vR1.m_nGreen;   
+        vR0.m_nBlue = vR1.m_nBlue;   
+        vR0.m_nAlpha = vR1.m_nAlpha;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method setTo(BBBB)V {
+  +START:   #1
+        vR0.m_nRed = vi1;   
+        vR0.m_nGreen = vi2;   
+        vR0.m_nBlue = vi3;   
+        vR0.m_nAlpha = vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method setTo(IIII)V {
+  +START:   #1
+        vR0.m_nRed = (byte)vi1;   
+        vR0.m_nGreen = (byte)vi2;   
+        vR0.m_nBlue = (byte)vi3;   
+        vR0.m_nAlpha = (byte)vi4;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+ 
+ method red()B {
+  +START:   #1
+        return vR0.m_nRed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 red
+ 
+ method green()B {
+  +START:   #1
+        return vR0.m_nGreen;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 green
+ 
+ method blue()B {
+  +START:   #1
+        return vR0.m_nBlue;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 blue
+ 
+ method alpha()B {
+  +START:   #1
+        return vR0.m_nAlpha;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 alpha
+ 
+ method toCMAP8()B {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toCMAP8
+ 
+ method toRGB16()S {
+  +START:   #1
+        return (short)((((((vR0.m_nRed & 255) >> 3) << 11) | (((vR0.m_nGreen & 255) >> 2) << 5)) | ((vR0.m_nBlue & 255) >> 3)) & 65535);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 toRGB16
+ 
+ method fromRGB16(S)Ljx/devices/fb/PixelColor; {
+  +START:   #1
+        vi1 = ((vi0 & 31) << 3);    
+        vi2 = (((vi0 >>> 5) & 63) << 2);    
+        vi3 = (((vi0 >>> 11) & 31) << 3);    
+        return new jx/devices/fb/PixelColor(vi3,vi2,vi1);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 3 found 0 fromRGB16
+ 
+ method toRGB15()S {
+  +START:   #1
+        return (short)((((vR0.m_nRed >> 3) << 10) | ((vR0.m_nGreen >> 3) << 5)) | (vR0.m_nBlue >> 3));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 toRGB15
+ 
+ method toRGB24()I {
+  +START:   #1
+        return (((vR0.m_nRed << 16) | (vR0.m_nBlue << 8)) | vR0.m_nBlue);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 toRGB24
+ 
+ method toRGB32()I {
+  +START:   #1
+        return ((((vR0.m_nAlpha << 24) | (vR0.m_nRed << 16)) | (vR0.m_nBlue << 8)) | vR0.m_nBlue);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 toRGB32
+ 
+ method invertRGB16(S)S {
+  +START:   #1
+        vi1 = (short)((31-(vi0 >> 11)) << 11);    
+        vi1 = (short)(vi1 | (short)((63-((vi0 >> 5) & 63)) << 5));    
+        vi1 = (short)(vi1 | (short)(31-(vi0 & 31)));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 0 found 0 invertRGB16
+ 
+ method invertRGB32(I)I {
+  +START:   #1
+        vi1 = (255-(vi0 & 255));    
+        vi1 = (vi1 | ((255-((vi0 >> 8) & 255)) << 8));    
+        vi1 = (vi1 | ((255-((vi0 >> 16) & 255)) << 16));    
+        vi1 = (vi1 | ((255-((vi0 >> 24) & 255)) << 24));    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 3 found 0 invertRGB32
+ 
+ method RGB32toRGB16(I)S {
+  +START:   #1
+        return (short)((((((vi0 >> 16) & 255) >> 3) << 11) | ((((vi0 >> 8) & 255) >> 2) << 5)) | ((vi0 & 255) >> 3));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 RGB32toRGB16
+ 
+ method RGB16toRGB32(S)I {
+  +START:   #1
+        return ((((vi0 & 31) << 3) | (((vi0 >> 5) & 63) << 10)) | (((vi0 >> 11) & 31) << 19));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 RGB16toRGB32
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        if vR0!=null goto B7;   
+  +B4:   #1
+        return "<null>";   
+  +B7:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("[").append@extra(vR0.m_nRed).append@extra(",").append@extra(vR0.m_nGreen).append@extra(",").append@extra(vR0.m_nBlue).append@extra(",").append@extra(vR0.m_nAlpha).append@extra("]").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 19 swaps 13 any 1 found 0 toString
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new jx/devices/fb/PixelColor(0,0,0);    [ R  i][ R . iiiiR]
+        BLACK = b0;   
+        b0 = new jx/devices/fb/PixelColor(255,255,255);    [ R . i....][ R . iiiiR]
+        WHITE = b0;   
+        b0 = new jx/devices/fb/PixelColor(255,0,0);    [ R . i....][ R . iiiiR]
+        RED = b0;   
+        b0 = new jx/devices/fb/PixelColor(0,255,0);    [ R . i....][ R . iiiiR]
+        GREEN = b0;   
+        b0 = new jx/devices/fb/PixelColor(0,0,255);    [ R . i....][ R . iiiiR]
+        BLUE = b0;   
+        b0 = new jx/devices/fb/PixelColor(0,255,255);    [ R . i....][ R . iiiiR]
+        YELLOW = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 12 swaps 0 any 0 found 6 <clinit>
+}

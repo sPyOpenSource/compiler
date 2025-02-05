@@ -1,0 +1,218 @@
+class org/jnode/fs/ntfs/CompressedDataRun {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/DataRun;I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.compressedRun = vR1;   
+        vR0.compressionUnitSize = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.compressionUnitSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method readClusters(JLjx/zero/Memory;IIILorg/jnode/fs/ntfs/NTFSVolume;)I {
+  +START:   #1
+        vl8 = vR0.compressedRun.getFirstVcn@extra();     
+        vl10 = vR0.getLastVcn@extra();     
+        vl12 = ((vl1+(long)vi5)-1);    
+        if compare(vl1,vl10)> 0 goto B39;   
+  +B31:   #1
+        if compare(vl8,vl12)<=0 goto B41;   
+  +B39:   #1
+        return 0;   
+  +B41:   #1
+        vl14 = max@special(vl8,vl1);    
+        vi16 = (int)((min@special(vl10,vl12)-vl14)+1);    
+        vi17 = vR0.compressedRun.getLength@extra();    [?l?l?l?l?i RRRR i R] 
+        if vi17!=vR0.compressionUnitSize goto B100;   
+  +B82:   #1
+        return vR0.compressedRun.readClusters@extra(vl1,vR3,vi4,vi17,vi6,vR7);   
+  +B100:   #1
+        vi18 = (int)(vl14%(long)vR0.compressionUnitSize);    
+        vR19 = vR0.MemManager.alloc((vR0.compressionUnitSize*vi6));    [Rl?l?l?l?iii RRRR ii iR......] 
+        vi20 = vR0.compressedRun.readClusters@extra(vl8,vR19,0,vi17,vi6,vR7);    [Rl?l?l?l?iiiR RRRR ii RiiiR??R] 
+        if vi20==vi17 goto B194;   
+  -B156:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRRR .. i.......][ RRRR .. iR......]
+        b1.<init>@special(b2.append@extra("Needed ").append@extra(vi17).append@extra(" clusters but could only read ").append@extra(vi20).toString@extra());   [Rl?l?l?l?iiiRi RRRR iii... RR......] 
+        throw b0;   
+  +B194:   #1
+        vR21 = new byte[(vR0.compressionUnitSize*vi6)];    
+        unCompressUnit@special(vR19,vR21);   [Rl?l?l?l?iiiRiR RRRR ...... RR......]
+        vi22 = (vi18*vi6);    
+        vi23 = (vi4+((int)(vl14-vl1)*vi6));    
+        vi24 = (vi16*vi6);    
+        if (vi23+vi24)<=vR3.size() goto B298;   
+  -B253:   #1
+        b0 = new java/lang/ArrayIndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = "Copy dest %d length %d is too big for destination %d";    
+        b3 = new java/lang/Object()[3];    
+        b3[0] = valueOf@special(vi23);   
+        b3[1] = valueOf@special(vi24);   
+        b3[2] = valueOf@special(vR3.size());   
+        b1.<init>@special(format@special(b2,b3));   [Rl?l?l?l?iiiRiRiii RRRR ii.... RR......] 
+        throw b0;   
+  +B298:   #1
+        if (vi22+vi24)<=vR21.length goto B351;   
+  -B309:   #1
+        b0 = new java/lang/ArrayIndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = "Copy source %d length %d is too big for source %d";    
+        b3 = new java/lang/Object()[3];    
+        b3[0] = valueOf@special(vi22);   
+        b3[1] = valueOf@special(vi24);   
+        b3[2] = valueOf@special(vR21.length);   
+        b1.<init>@special(format@special(b2,b3));   [Rl?l?l?l?iiiRiRiii RRRR ii.... RR......] 
+        throw b0;   
+  +B351:   #1
+        arraycopy@special(vR21,vi22,vR3,vi23,vi24);   [Rl?l?l?l?iiiRiRiii RRRR ...... iiRiR...]
+        return vi16;   
+  +END:   #1
+ }
+// Register: rd 50/50 wr 36 swaps 6 any 10 found 1 readClusters
+ 
+ method unCompressUnit(Ljx/zero/Memory;[B)V {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = new org/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray(vR1,0);    [ R  i][ R . iRRR]
+        vi4 = 0;    
+  +B15:   #1
+        if (vi4*4096)>=vR1.length goto B74;   
+  +B26:   #1
+        vi5 = uncompressBlock@special(vR2,vR3);    [RRi R . RR..]
+        if vi5!=0 goto B53;   
+  +B38:   #1
+        access$200@special(vR3,0,(vR1.length-access$100@special(vR3)));   [RRii R i iiR.]
+        goto +B74;   forward return[RRii R i ....]
+  +B53:   #1
+        access$112@special(vR2,vi5);   [RRii R . iR..]
+        access$112@special(vR3,4096);   [RRii R . iR..]
+        vi4++;   
+        goto +B15;   [RRii R . ....]
+  +B74:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 8 swaps 0 any 3 found 0 unCompressUnit
+ 
+ method uncompressBlock(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;)I {
+  +START:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+        vi4 = access$300@special(vR0,vi3);    [ii ?i?i  iR]
+        vi3+=2;   
+        vi5 = (vi4 & 4095);    
+        if vi4!=0 goto B29;   
+  +B27:   #1
+        return 0;   
+  +B29:   #1
+        if (vi4 & 32768)!=0 goto B80;   
+  +B37:   #1
+        if (vi5+1)==4096 goto B47;   
+  +B47:   #1
+        access$400@special(vR1,vR0,vi3,0,(vi5+1));   [iiii ?i?i i iiiRR]
+        access$200@special(vR1,(vi5+1),(4095-vi5));   [iiii ?i?i iii iiR..]
+        vi3++;   
+        return (vi5+3);   
+  +B80:   #2
+        if vi3>=(vi5+3) goto B256;   
+  +B88:   #1
+        if vi2>=4096 goto B256;   
+  +B95:   #1
+        b1 = vi3;    
+        vi3++;   
+        vi6 = access$500@special(vR0,b1);    [iiii ?i?i ... iR...]
+        vi7 = 0;    
+  +B108:   #1
+        if vi7>=8 goto B253;   
+  +B115:   #1
+        if vi2>=4096 goto B253;   
+  +B122:   #1
+        if (vi6 & 1)==0 goto B224;   
+  +B129:   #1
+        vi8 = (vi2-1);    
+        vi9 = 4095;    
+        vi10 = 12;    
+  +B143:   #1
+        if vi8<16 goto B168;   
+  +B150:   #1
+        vi10--;   
+        vi9 = (vi9 >> 1);    
+        vi8 = (vi8 >> 1);    
+        goto +B143;   [iiiiiiiii ?i?i ... .....]
+  +B168:   #1
+        vi11 = access$300@special(vR0,vi3);    [iiiiiiiii ?i?i ... iR...]
+        vi3+=2;   
+        vi12 = (-1-(vi11 >> vi10));    
+        vi13 = min@special(((vi11 & vi9)+3),(4096-vi2));    [iiiiiiiiiii ?i?i ii. ii...]
+        access$400@special(vR1,vR1,(vi2+vi12),vi2,vi13);   [iiiiiiiiiiii ?i?i iii iiiRR]
+        vi2 = (vi2+vi13);    
+        goto +B240;   [iiiiiiiiiiii ?i?i iii .....]
+  +B224:   #1
+        b1 = vi2;    
+        vi2++;   
+        b3 = vi3;    
+        vi3++;   
+        access$600@special(vR1,b1,access$500@special(vR0,b3));   [iiiiiiiiiiii ?i?i b.. biR..]
+  +B240:   #1
+        vi6 = (byte)(vi6 >> 1);    
+        vi7++;   
+        goto +B108;   [iiiiiiiiiiii ?i?i ... .....]
+  +B253:   #2
+        goto +B80;   [iiiiiiiiiiii ?i?i ... .....]
+  +B256:   #2
+        return (vi5+3);   
+  +END:   #1
+ }
+// Register: rd 44/44 wr 32 swaps 0 any 25 found 1 uncompressBlock
+ 
+ method getFirstVcn()J {
+  +START:   #1
+        return vR0.compressedRun.getFirstVcn@extra();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getFirstVcn
+ 
+ method getLastVcn()J {
+  +START:   #1
+        return ((vR0.getFirstVcn@extra()+(long)vR0.getLength@extra())-1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastVcn
+ 
+ method getCompressionUnitSize()I {
+  +START:   #1
+        return vR0.compressionUnitSize;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCompressionUnitSize
+ 
+ method getCompressedRun()Lorg/jnode/fs/ntfs/DataRun; {
+  +START:   #1
+        return vR0.compressedRun;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCompressedRun
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "[compressed-run vcn:%d-%d %s]";    
+        b1 = new java/lang/Object()[3];    
+        b1[0] = valueOf@special(vR0.getFirstVcn@extra());   
+        b1[1] = valueOf@special(vR0.getLastVcn@extra());   
+        b1[2] = vR0.compressedRun;   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 toString
+}

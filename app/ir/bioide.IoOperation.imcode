@@ -73,17 +73,17 @@ class bioide/IoOperation {
         vi1 = b1;    
         b0.setHiCylReg((byte)(b1 & 255));   [i Ri iii... iR..] 
         vR0.controller.setLDHReg((byte)(((vi1 >> 8) & 15) | vR0.drive.select));   [i Ri iiii.. iR..] 
-        goto +B323;   forward return[i Ri iiii.. ....]
+        goto +B322;   forward return[i Ri iiii.. ....]
   +B220:   #1
-        vi5 = (vi1/vR0.drive.sect);    
-        vi2 = ((vi1%vR0.drive.sect)+1);    
-        vR0.controller.setSectorReg((byte)(vi2 & 255));   [ii??i Ri i..... iR..] 
-        vi3 = (vi5%vR0.drive.head);    
-        vi4 = (vi5/vR0.drive.head);    
-        vR0.controller.setLoCylReg((byte)(vi4 & 255));   [iiiii Ri ii.... iR..] 
-        vR0.controller.setHiCylReg((byte)(vi4 >> 8));   [iiiii Ri iii... iR..] 
-        vR0.controller.setLDHReg((byte)(vi3 | vR0.drive.select));   [iiiii Ri iiii.. iR..] 
-  +B323:   #1
+        vi2 = (vi1/vR0.drive.sect);    
+        vi3 = ((vi1%vR0.drive.sect)+1);    
+        vR0.controller.setSectorReg((byte)(vi3 & 255));   [iii Ri i..... iR..] 
+        vi4 = (vi2%vR0.drive.head);    
+        vi5 = (vi2/vR0.drive.head);    
+        vR0.controller.setLoCylReg((byte)(vi5 & 255));   [iiiii Ri ii.... iR..] 
+        vR0.controller.setHiCylReg((byte)(vi5 >> 8));   [iiiii Ri iii... iR..] 
+        vR0.controller.setLDHReg((byte)(vi4 | vR0.drive.select));   [iiiii Ri iiii.. iR..] 
+  +B322:   #1
         return;   
   +END:   #1
  }

@@ -1,0 +1,373 @@
+class jx/awt/peer/JXButtonPeer {
+ 
+ method <init>(Ljava/awt/Button;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.setLabel@this(vR1.getLabel());   [  i RR.] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method keyPressed(III)V {
+  +START:   #1
+        vR0.keyPressed@special(vi1,vi2,vi3);   [   iiiR] 
+        if vi1!=32 goto B22;   
+  +B13:   #1
+        vR0.peerState = 1;   
+        vR0.redraw@this();   [   R...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 keyPressed
+ 
+ method keyReleased(IIIZ)V {
+  +START:   #1
+        vR0.keyReleased@special(vi1,vi2,vi3,vi4);   [ Ri  iiiiR] 
+        if vi1!=32 goto B33;   
+  +B15:   #1
+        b0 = vR0;    
+        if vi4==0 goto B25;   
+  +B21b0:   #1 reference
+        b1 = 2;    
+        goto +B26b0b1;   [ Ri  .....]
+  +B25b0:   #1 reference
+        b1 = 0;    
+  +B26b0b1:   #1 reference int
+        b0.peerState = b1;   
+        vR0.redraw@this();   [ Ri  R....] 
+  +B33:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 3 found 0 keyReleased
+ 
+ method keyClicked(III)V {
+  +START:   #1
+        vR0.keyClicked@special(vi1,vi2,vi3);   [   iiiR] 
+        if vi1!=32 goto B17;   
+  +B13:   #1
+        vR0.sendActionEvent@special();   [   R...] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 1 found 0 keyClicked
+ 
+ method mousePressed(III)V {
+  +START:   #1
+        vR0.mousePressed@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mousePressed
+ 
+ method mouseReleased(IIIZ)V {
+  +START:   #1
+        vR0.mouseReleased@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        vR0.redraw@this();   [   R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseReleased
+ 
+ method mouseClicked(III)V {
+  +START:   #1
+        vR0.mouseClicked@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.sendActionEvent@special();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseClicked
+ 
+ method mouseEntered(III)V {
+  +START:   #1
+        vR0.mouseEntered@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseEntered
+ 
+ method mouseExited(III)V {
+  +START:   #1
+        vR0.mouseExited@special(vi1,vi2,vi3);   [   iiiR] 
+        vR0.redraw@this();   [   R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 mouseExited
+ 
+ method sendActionEvent()V {
+  +START:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/ActionEvent(vR0.parent,1001,(java/awt/Button)(vR0.parent).getActionCommand(),0);    [ RR  i][ RR .. iiRiRR]
+        b0.postEvent(b1);   [ RR .. RR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 0 found 0 sendActionEvent
+ 
+ method isFocusTraversable()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFocusTraversable
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vi2 = vR0.hasFocus@this();    [   R] 
+        tswitch (vR0.peerState) B52 B40 B64 B76 : B88;   
+  +B40:   #1
+        vR0.paintButton@this(vR1,vi2,1,0,0);   [i   iiiiRR] 
+        goto +B96;   forward return[i   ......]
+  +B52:   #1
+        vR0.paintButton@this(vR1,vi2,0,0,0);   [i   iiiiRR] 
+        goto +B96;   forward return[i   ......]
+  +B64:   #1
+        vR0.paintButton@this(vR1,vi2,0,1,0);   [i   iiiiRR] 
+        goto +B96;   forward return[i   ......]
+  +B76:   #1
+        vR0.paintButton@this(vR1,vi2,0,0,1);   [i   iiiiRR] 
+        goto +B96;   forward return[i   ......]
+  +B88:   #1
+        out.println("*** JXButtonPeer: Unknown state!!!");   [i  i. RR....] 
+  +B96:   #4
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 paint
+ 
+ method setLabel(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.text = vR1;   
+        vR0.prefWidth = ((vR1.length@extra()*9)+8);   
+        vR0.prefHeight = 22;   
+        vR0.redraw@this();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 setLabel
+ 
+ method paintButton(Ljx/awt/JXGraphics;ZZZZ)V {
+  +START:   #1
+        vi6 = 0;    
+        vi7 = 0;    
+        if vi3==0 goto B16;   
+  +B10:   #1
+        vi6++;   
+        vi7++;   
+  +B16:   #1
+        if vi4==0 goto B31;   
+  +B21:   #1
+        vR1.setColor(hoverColor);   [ii Riiiii i RR] 
+        goto +B38;   [ii Riiiii i ..]
+  +B31:   #1
+        vR1.setColor(normalBgColor);   [iiii Riiiii i RR] 
+  +B38:   #1
+        b0 = vR1;    
+        b1 = 0;    
+        b2 = 0;    
+        b3 = vR0.width;    
+        b4 = vR0.height;    
+        if vi3!=0 goto B57;   
+  +B53b0b1b2b3b4:   #1 reference int int int int
+        b5 = 1;    
+        goto +B58b0b1b2b3b4b5;   [ii Riiiii . ..]
+  +B57b0b1b2b3b4:   #1 reference int int int int
+        b5 = 0;    
+  +B58b0b1b2b3b4b5:   #1 reference int int int int int
+        b0.fill3DRect(b1,b2,b3,b4,b5);   [ii Riiiii . iiiiiR] 
+        if vi2==0 goto B90;   
+  +B65:   #1
+        vR1.setColor(focusColor);   [ii Riiiii i RR....] 
+        vR1.drawRect(1,1,(vR0.width-3),(vR0.height-3));   [ii Riiiii iii iiiiR.] 
+  +B90:   #1
+        if vi5==0 goto B105;   
+  +B95:   #1
+        vR1.setColor(disabledTextColor);   [ii Riiiii i.. RR....] 
+        goto +B112;   [ii Riiiii i.. ......]
+  +B105:   #1
+        vR1.setColor(normalTextColor);   [iiii Riiiii i.. RR....] 
+  +B112:   #1
+        vi8 = (vi6+((vR0.width-(vR0.text.length@extra()*9))/2));    
+        vi9 = (vi6+((vR0.height-14)/2));    
+        vR1.drawJXString(vR0.text,vi8,vi9);   [iiii Riiiii i.. iiRR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 34/34 wr 22 swaps 7 any 10 found 1 paintButton
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

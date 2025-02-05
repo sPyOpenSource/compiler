@@ -1,0 +1,54 @@
+class org/jnode/driver/bus/scsi/cdb/spc/SenseData {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new org/jnode/driver/bus/scsi/SCSIBuffer(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.responseCode = (b1.getUInt8@extra(0) & 127);   
+        b1 = new org/jnode/driver/bus/scsi/SCSIBuffer(vR1);    [ ?R . i..][ ?R . iRR]
+        vR0.senseKey = valueOf@special((b1.getUInt8@extra(2) & 15));   
+        b1 = new org/jnode/driver/bus/scsi/SCSIBuffer(vR1);    [ ?R i i..][ ?R i. iRR]
+        vR0.asc = b1.getUInt8@extra(12);   
+        b1 = new org/jnode/driver/bus/scsi/SCSIBuffer(vR1);    [ ?R i. i..][ ?R i. iRR]
+        vR0.ascq = b1.getUInt8@extra(13);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 9 swaps 0 any 0 found 0 <init>
+ 
+ method getResponseCode()I {
+  +START:   #1
+        return vR0.responseCode;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getResponseCode
+ 
+ method getSenseKey()Lorg/jnode/driver/bus/scsi/cdb/spc/SenseKey; {
+  +START:   #1
+        return vR0.senseKey;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSenseKey
+ 
+ method getASC()I {
+  +START:   #1
+        return vR0.asc;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getASC
+ 
+ method getASCQ()I {
+  +START:   #1
+        return vR0.ascq;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getASCQ
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("Response code 0x").append@extra(hex@special(vR0.getResponseCode@extra(),2)).append@extra(", ").append@extra(vR0.getSenseKey@extra()).append@extra(", ASC 0x").append@extra(hex@special(vR0.getASC@extra(),2)).append@extra(", ASCQ 0x").append@extra(hex@special(vR0.getASCQ@extra(),2)).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 20 swaps 8 any 0 found 0 toString
+}

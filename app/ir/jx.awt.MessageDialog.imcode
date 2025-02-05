@@ -1,0 +1,42 @@
+class jx/awt/MessageDialog {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method centerFrame(Ljava/awt/Frame;)V {
+  +START:   #1
+        vR1 = vR0.getBounds@this();    [   R] 
+        vR2 = getDefaultToolkit@special().getScreenSize();    [R  . R] [R  R .]
+        vR0.setBounds@this(((vR2.width-vR1.width)/2),((vR2.height-vR1.height)/2),vR1.width,vR1.height);   [RR  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 8 swaps 2 any 0 found 0 centerFrame
+ 
+ method infoMessageDialog(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V {
+  +START:   #1
+        vR3 = new jx/awt/ExtendedLabel(vR1);    [ RR  i][ RR . iRR]
+        vR4 = new java/awt/Button(vR2);    [ RR . i..][ RR . iRR]
+        vR5 = new java/awt/Frame(vR0);    [ RR . i..][ RR . iRR]
+        vR6 = new java/awt/Panel();    [ RR . i..][ RR . iR.]
+        vR5.add(vR3,"Center");   [RRRR RR i RRR] 
+        vR5.add(vR6,"South");   [RRRR RR ii RRR] 
+        vR6.add(vR4);   [RRRR RR ii RR.] 
+        b1 = new jx/awt/MessageDialog$1(vR5);    [ RR ii i..][ RR ii. iRR]
+        vR4.addActionListener(b1);   [RRRR RR ii. RR.] 
+        b1 = new jx/awt/MessageDialog$2(vR5);    [ RR ii. i..][ RR ii. iRR]
+        vR5.addWindowListener(b1);   [RRRR RR ii. RR.] 
+        vR5.pack();   [RRRR RR ii. R..] 
+        centerFrame@special(vR5);   [RRRR RR ii. R..]
+        vR5.setResizable(0);   [RRRR RR ii. iR.] 
+        vR5.show();   [RRRR RR ii. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 13 swaps 2 any 0 found 0 infoMessageDialog
+}

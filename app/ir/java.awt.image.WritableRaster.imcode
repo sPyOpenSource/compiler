@@ -1,0 +1,217 @@
+class java/awt/image/WritableRaster {
+ 
+ method <init>(Ljava/awt/image/SampleModel;Ljava/awt/Point;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR1.createDataBuffer(),vR2);   [  i RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/image/SampleModel;Ljava/awt/image/DataBuffer;Ljava/awt/Point;)V {
+  +START:   #1
+        b3 = new java/awt/Rectangle(vR3.x,vR3.y,vR1.getWidth@extra(),vR1.getHeight@extra());    [ ???R  i][ ???R . iiiiiR]
+        vR0.<init>@special(vR1,vR2,b3,vR3,0);   [ ???R . RRRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljava/awt/image/SampleModel;Ljava/awt/image/DataBuffer;Ljava/awt/Rectangle;Ljava/awt/Point;Ljava/awt/image/WritableRaster;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3,vR4,vR5);   [   RRRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getWritableParent()Ljava/awt/image/WritableRaster; {
+  +START:   #1
+        return (java/awt/image/WritableRaster)(vR0.getParent@this());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getWritableParent
+ 
+ method createWritableTranslatedChild(II)Ljava/awt/image/WritableRaster; {
+  +START:   #1
+        vi3 = ((vR0.sampleModelTranslateX-vR0.minX)+vi1);    
+        vi4 = ((vR0.sampleModelTranslateY-vR0.minY)+vi2);    
+        b0 = new java/awt/image/WritableRaster;    
+        b1 = b0;    
+        b2 = vR0.sampleModel;    
+        b3 = vR0.dataBuffer;    
+        b4 = new java/awt/Rectangle(vi1,vi2,vR0.width,vR0.height);    [ RRRRRR  i][ RRRRRR . iiiiiR]
+        b5 = new java/awt/Point(vi3,vi4);    [ RRRRRR . i.....][ RRRRRR . iiiR..]
+        b1.<init>@special(b2,b3,b4,b5,vR0);   [ii RRRRRR . RRRRRR] 
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 10 swaps 0 any 1 found 0 createWritableTranslatedChild
+ 
+ method createWritableChild(IIIIII[I)Ljava/awt/image/WritableRaster; {
+  +START:   #1
+        if vR7!=null goto B12;   
+  +B5:   #1
+        b0 = vR0.sampleModel;    
+        goto +B21b0;   [ RR?RRR  ]
+  +B12:   #1
+        b0 = vR0.sampleModel.createSubsetSampleModel(vR7);    [R RR?RRR  RR] 
+  +B21b0:   #1 reference
+        vR8 = b0;    
+        b0 = new java/awt/image/WritableRaster;    
+        b1 = b0;    
+        b3 = vR0.dataBuffer;    
+        b4 = new java/awt/Rectangle(vi5,vi6,vi3,vi4);    [ RR?RRR  i.][ RR?RRR . iiiiiR]
+        b5 = new java/awt/Point(((vR0.sampleModelTranslateX+vi5)-vi1),((vR0.sampleModelTranslateY+vi6)-vi2));    [ RR?RRR . i.....][ RR?RRR . iiiR..]
+        b1.<init>@special(vR8,b3,b4,b5,vR0);   [R RR?RRR . RRRRRR] 
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 10 swaps 0 any 3 found 0 createWritableChild
+ 
+ method setDataElements(IILjava/lang/Object;)V {
+  +START:   #1
+        vR0.sampleModel.setDataElements((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vR3,vR0.dataBuffer);   [  iiR RRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setDataElements
+ 
+ method setDataElements(IILjava/awt/image/Raster;)V {
+  +START:   #1
+        vR4 = vR0.getDataElements@this(0,0,vR3.getWidth@extra(),vR3.getHeight@extra(),0);    [  ii RiiiiR] 
+        vR0.setDataElements@this(vi1,vi2,vR4);   [R  ii RiiR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 1 any 0 found 0 setDataElements
+ 
+ method setDataElements(IIIILjava/lang/Object;)V {
+  +START:   #1
+        vR0.sampleModel.setDataElements((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vR5,vR0.dataBuffer);   [  iiR RRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setDataElements
+ 
+ method setRect(Ljava/awt/image/Raster;)V {
+  +START:   #1
+        vR0.setRect@this(vR1,0,0);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setRect
+ 
+ method setRect(Ljava/awt/image/Raster;II)V {
+  +START:   #1
+        vR4 = new java/awt/Rectangle((vR1.getMinX@extra()+vi2),(vR1.getMinY@extra()+vi3),vR1.getWidth@extra(),vR1.getHeight@extra());    [ R  i][ R . iiiiiR]
+        vR5 = vR0.getBounds@this().intersection(vR4);    [R R . RR....] [R R R RR....] 
+        if vR5.isEmpty()==0 goto B49;   
+  +B48:   #1
+        return;   
+  +B49:   #1
+        vi6 = (vR5.x-vi2);    
+        vi7 = (vR5.y-vi3);    
+        vR8 = vR1.getPixels(vi6,vi7,vR5.width,vR5.height,([I)(0));    [RRii R iRi RiiiiR] 
+        vR0.setPixels@this(vR5.x,vR5.y,vR5.width,vR5.height,vR8);   [RRiiR R iRiiiii RiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 24/24 wr 17 swaps 2 any 0 found 0 setRect
+ 
+ method setPixel(II[I)V {
+  +START:   #1
+        vR0.sampleModel.setPixel((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vR3,vR0.dataBuffer);   [  iiR RRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixel
+ 
+ method setPixel(II[F)V {
+  +START:   #1
+        vR0.sampleModel.setPixel((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vR3,vR0.dataBuffer);   [  iiR RRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixel
+ 
+ method setPixel(II[D)V {
+  +START:   #1
+        vR0.sampleModel.setPixel((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vR3,vR0.dataBuffer);   [  iiR RRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixel
+ 
+ method setPixels(IIII[I)V {
+  +START:   #1
+        vR0.sampleModel.setPixels((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vR5,vR0.dataBuffer);   [  iiR RRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixels
+ 
+ method setPixels(IIII[F)V {
+  +START:   #1
+        vR0.sampleModel.setPixels((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vR5,vR0.dataBuffer);   [  iiR RRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixels
+ 
+ method setPixels(IIII[D)V {
+  +START:   #1
+        vR0.sampleModel.setPixels((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vR5,vR0.dataBuffer);   [  iiR RRiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setPixels
+ 
+ method setSample(IIII)V {
+  +START:   #1
+        vR0.sampleModel.setSample((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vR0.dataBuffer);   [  iiR RiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSample
+ 
+ method setSample(IIIF)V {
+  +START:   #1
+        vR0.sampleModel.setSample((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vl4,vR0.dataBuffer);   [  iiR R?iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSample
+ 
+ method setSample(IIID)V {
+  +START:   #1
+        vR0.sampleModel.setSample((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vd4,vR0.dataBuffer);   [  iiR R??iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSample
+ 
+ method setSamples(IIIII[I)V {
+  +START:   #1
+        vR0.sampleModel.setSamples((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vi5,vR6,vR0.dataBuffer);   [  iiR RRiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSamples
+ 
+ method setSamples(IIIII[F)V {
+  +START:   #1
+        vR0.sampleModel.setSamples((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vi5,vR6,vR0.dataBuffer);   [  iiR RRiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSamples
+ 
+ method setSamples(IIIII[D)V {
+  +START:   #1
+        vR0.sampleModel.setSamples((vi1-vR0.sampleModelTranslateX),(vi2-vR0.sampleModelTranslateY),vi3,vi4,vi5,vR6,vR0.dataBuffer);   [  iiR RRiiiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 1 any 0 found 0 setSamples
+}

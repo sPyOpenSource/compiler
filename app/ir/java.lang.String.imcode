@@ -829,12 +829,104 @@ class java/lang/String {
  }
 // Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getChars
  
- method split(Ljava/lang/String;)[Ljava/lang/String; {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+ method split(Ljava/lang/String;I)[Ljava/lang/String; {
+  +START:   #1
+        vi3 = 0;    
+        if vR1.value.length!=1 goto B27;   
+  +B11:   #1
+        b0 = ".$|()[{^?*+\";    
+        b1 = vR1.charAt@extra(0);    [i Rc  iR] 
+        vi3 = b1;    
+        if b0.indexOf@extra(b1)==-1 goto B87;   
+  +B27:   #1
+        if vR1.length@extra()!=2 goto B334;   
+  +B35:   #1
+        if vR1.charAt@extra(0)!=92 goto B334;   
+  +B45:   #1
+        b0 = vR1.charAt@extra(1);    [i cc  iR] 
+        vi3 = b0;    
+        if ((b0-48) | (57-vi3))>=0 goto B334;   
+  +B63:   #1
+        if ((vi3-97) | (122-vi3))>=0 goto B334;   
+  +B75:   #1
+        if ((vi3-65) | (90-vi3))>=0 goto B334;   
+  +B87:   #1
+        if vi3<55296 goto B99;   
+  +B93:   #1
+        if vi3<=57343 goto B334;   
+  +B99:   #1
+        vi4 = 0;    
+        vi5 = 0;    
+        if vi2<=0 goto B113;   
+  +B109:   #1
+        b0 = 1;    
+        goto +B114b0;   [iii ic  ..]
+  +B113:   #1
+        b0 = 0;    
+  +B114b0:   #1 int
+        vi6 = b0;    
+        vR7 = new java/util/ArrayList();    [ ic  i.][ ic  iR]
+  +B125:   #1
+        b0 = vR0.indexOf@extra(vi3,vi4);    [iiiiR ic  iiR] 
+        vi5 = b0;    
+        if b0==-1 goto B205;   
+  +B139:   #1
+        if vi6==0 goto B155;   
+  +B144:   #1
+        if vR7.size()>=(vi2-1) goto B178;   
+  +B155:   #1
+        vR7.add(vR0.substring@extra(vi4,vi5));   [iiiiR ic i RR.] 
+        vi4 = (vi5+1);    
+        goto +B125;   [iiiiR ic i ...]
+  +B178:   #1
+        vR7.add(vR0.substring@extra(vi4,vR0.value.length));   [iiiiR ic ii RR.] 
+        vi4 = vR0.value.length;    
+        goto +B205;   [iiiiR ic ii ...]
+  +B205:   #2
+        if vi4!=0 goto B219;   
+  +B210:   #1
+        b0 = new java/lang/String()[1];    
+        b0[0] = vR0;   
+        return b0;   
+  +B219:   #1
+        if vi6==0 goto B233;   
+  +B224:   #1
+        if vR7.size()>=vi2 goto B250;   
+  +B233:   #1
+        vR7.add(vR0.substring@extra(vi4,vR0.value.length));   [iiiiR Rc ii RR.] 
+  +B250:   #1
+        vi8 = vR7.size();    [iiiiR Rc .. R..] 
+        if vi2!=0 goto B290;   
+  +B261:   #1
+        if vi8<=0 goto B290;   
+  +B266:   #1
+        if (java/lang/String)(vR7.get((vi8-1))).length@extra()!=0 goto B290;   
+  +B284:   #1
+        vi8--;   
+        goto +B261;   [iiiiRi Rc .. ...]
+  +B290:   #3
+        vR9 = new java/lang/String()[vi8];    
+        vi10 = 0;    
+  +B300:   #1
+        if vi10>=vR7.size() goto B331;   
+  +B310:   #1
+        vR9[vi10] = (java/lang/String)(vR7.get(vi10));   
+        vi10++;   
+        goto +B300;   [iiiiRiRi Rc .. ...]
+  +B331:   #1
+        return vR9;   
+  +B334:   #6
+        return 0;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 split
+// Register: rd 59/59 wr 30 swaps 6 any 21 found 1 split
+ 
+ method split(Ljava/lang/String;)[Ljava/lang/String; {
+  +START:   #1
+        return vR0.split@extra(vR1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 split
  
  method subSequence(II)Ljava/lang/CharSequence; {
   -START:   #1

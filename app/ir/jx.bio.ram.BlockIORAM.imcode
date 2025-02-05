@@ -14,12 +14,12 @@ class jx/bio/ram/BlockIORAM {
         b1 = new jx/timerpc/SleepManagerImpl();    [ ?R  i][ ?R  iR]
         vR0.sleepManager = b1;   
         vR0.capacity = vi1;   
-        vR2 = (jx/zero/MemoryManager)(lookup@special("MemoryManager"));    
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
         vR0.buffer = vR2.alloc((1024*vR0.capacity));   
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 5 swaps 1 any 0 found 0 <init>
+// Register: rd 9/9 wr 6 swaps 1 any 0 found 0 <init>
  
  method <init>(Ljx/zero/Memory;)V {
   +START:   #1
@@ -50,16 +50,17 @@ class jx/bio/ram/BlockIORAM {
  method main([Ljava/lang/String;)V {
   +START:   #1
         vR1 = getInitialNaming@special();    
-        vR2 = vR0[0];    
-        vR3 = new jx/bio/ram/BlockIORAM(20480);    [ RR  i][ RR . iiR]
-        vR1.registerPortal(vR3,vR2);   [RRR RR . RRR] 
+        vR2 = (jx/zero/CPUManager)(vR1.lookup("CPUManager"));    
+        vR3 = vR0[0];    
+        vR4 = new jx/bio/ram/BlockIORAM(20480);    [ RR i. i.][ RR i. iiR]
+        vR1.registerPortal(vR4,vR3);   [RRRR RR i. RRR] 
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
-        b0.println(b1.append@extra("Block I/O device registered as ").append@extra(vR2).toString@extra());   [RRR RR ii. RR.] 
+        b1 = new java/lang/StringBuilder();    [ RR i. i..][ RR i. iR.]
+        b0.println(b1.append@extra("Block I/O device registered as ").append@extra(vR3).toString@extra());   [RRRR RR iii. RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 10 swaps 2 any 0 found 0 main
+// Register: rd 7/7 wr 13 swaps 3 any 0 found 0 main
  
  method getCapacity()I {
   +START:   #1

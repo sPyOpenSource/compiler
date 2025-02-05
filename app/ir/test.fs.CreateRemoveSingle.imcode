@@ -1,0 +1,58 @@
+class test/fs/CreateRemoveSingle {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        vR2 = new vfs/FSImpl();    [ RRR .i. i..][ RRR .i. iR.]
+        vR3 = (jx/devices/bio/BlockIO)(waitUntilPortalAvailable@special(vR0,vR1[0]));    
+        vR4 = initFS@special(vR3);    [RR RRR Ri. R..]
+  +B53:   #1
+        vR5 = vR4.getRootNode();    [RRR RRR ... R..] 
+        vR5.mkdir("lost+found",493);   [RRRR RRR i.. iRR] 
+        vR5.create("blubber0",493);   [RRRR RRR ii. iRR] 
+        vR5.create("blubber1",493);   [RRRR RRR iii iRR] 
+        vR5.decUseCount();   [RRRR RRR iii R..] 
+        b0 = tools;    
+        b1 = new test/fs/CreateRemoveSingle$1();    [ RRR iii i..][ RRR iii iR.]
+        b0.checkFS(b1);   [RRRR RRR iii RR.] 
+  +B121:   #1
+        goto +B134;   [RRRR RRR ... ...]
+  +H124<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+        out.println("ERROR while testing");   [RRRR RRR i.. RR.] 
+  +B134:   #1
+        if vR4==null goto B146;   
+  +B139:   #1
+        vR4.release();   [RRRR RRR ... R..] 
+  +B146:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+53 - 121 handler 124 type 89
+ }
+// Register: rd 19/19 wr 20 swaps 5 any 2 found 1 init
+ 
+ method initFS(Ljx/devices/bio/BlockIO;)Ljx/fs/FileSystem; {
+  +START:   #1
+        vR1 = new jx/fs/javafs/FileSystem();    [ R  i][ R  iR]
+        vR2 = new test/fs/DummyClock();    [ R  i.][ R  iR]
+        vR3 = new jx/bio/buffercache/BufferCache(vR0,vR2,1024,1024,0,1024);    [ R  i.][ R . iiiiiRRR]
+        vR1.init(vR0,vR3,vR2);   [RRR R . RRRR....] 
+        vR1.build("TestFS",1024);   [RRR R i iRR.....] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 0 found 0 initFS
+}

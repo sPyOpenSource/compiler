@@ -1,0 +1,237 @@
+class org/jnode/fs/ntfs/NTFSFileSystem {
+ 
+ method <init>(Ljx/devices/bio/BlockIO;ZLorg/jnode/fs/ntfs/NTFSFileSystemType;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        vR0.init@this(vR1,0,0);   [ RR  RRRR] 
+  +B11:   #1
+        b1 = new org/jnode/fs/ntfs/NTFSVolume(vR1);    [ RR  i...][ RR . iRR.]
+        vR0.volume = b1;   
+  +B23:   #1
+        goto +B41;   forward return[ RR . ....]
+  -H26<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        throw new java/lang/Exception(vR4.getMessage());   
+  +B41:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+11 - 23 handler 26 type 22
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method getRootEntry()Lorg/jnode/fs/ntfs/NTFSEntry; {
+  +START:   #1
+        if vR0.root!=null goto B29;   
+  +B7:   #1
+        b1 = new org/jnode/fs/ntfs/NTFSEntry(vR0,vR0.getNTFSVolume@this().getRootDirectory(),-1);    [ ?R  i][ ?R .. il_RRR]
+        vR0.root = b1;   
+  +B29:   #1
+        return vR0.root;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 0 found 0 getRootEntry
+ 
+ method getNTFSVolume()Lorg/jnode/fs/ntfs/NTFSVolume; {
+  +START:   #1
+        return vR0.volume;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNTFSVolume
+ 
+ method getVolumeName()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new org/jnode/fs/ntfs/NTFSEntry(vR0,vR0.getNTFSVolume@this().getMFT().getRecord(3),5);    [ R  i][ R ... il_RRR]
+        vR2 = vR1.getFileRecord().findAttributeByType(96);    [R R ... iR_...] [R R R.. iR_...] 
+        if (vR2 instanceof org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)==0 goto B80;   
+  +B42:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)(vR2);    
+        vR4 = vR0.MemManager.alloc(vR3.getAttributeLength());    [RRR R i.. iR_...] 
+        vR3.getData(vR3.getAttributeOffset(),vR4,0,vR4.size());   [RRRR R iii ii_RiR] 
+  +B80:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 12 swaps 2 any 1 found 1 getVolumeName
+ 
+ method getVolumeId()Ljx/zero/Memory; {
+  +START:   #1
+        vR1 = (org/jnode/fs/ntfs/NTFSEntry)(vR0.getRootEntry@this().getDirectory().getEntry("$Volume"));    
+        if vR1!=null goto B22;   
+  +B20:   #1
+        return 0;   
+  +B22:   #1
+        vR2 = vR1.getFileRecord().findAttributeByType(64);    [R  ... iR] [R  R.. iR] 
+        if (vR2 instanceof org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)==0 goto B80;   
+  +B39:   #1
+        vR3 = (org/jnode/fs/ntfs/attribute/NTFSResidentAttribute)(vR2);    
+        vR4 = vR0.MemManager.alloc(vR3.getAttributeLength());    [RRR  i.. iR] 
+        vR3.getData(vR3.getAttributeOffset(),vR4,0,vR4.size());   [RRRR  iii iiRiR] 
+        return vR4;   
+  +B80:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 13 swaps 3 any 2 found 1 getVolumeId
+ 
+ method flush()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method createFile(Lorg/jnode/fs/ntfs/NTFSEntry;)Lorg/jnode/fs/ntfs/NTFSFile; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 createFile
+ 
+ method createDirectory(Lorg/jnode/fs/ntfs/NTFSEntry;)Lorg/jnode/fs/ntfs/NTFSDirectory; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 createDirectory
+ 
+ method createRootEntry()Lorg/jnode/fs/ntfs/NTFSEntry; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 createRootEntry
+ 
+ method getFreeSpace()J {
+  +START:   #1
+        vR1 = vR0.getNTFSVolume@this().getMFT().getRecord(6);    [  .. ??R] [  R. ??R] [  RR ??R] 
+        vi2 = (int)vR1.getAttributeTotalSize(128,0);    
+        vR3 = vR0.MemManager.alloc(vi2);    [Ri  i. iR.] 
+        vR1.readData(0,vR3,0,vR3.size());   [RiR  ii iiR??R] 
+        vi4 = 0;    
+        vi5 = 0;    
+  +B54:   #1
+        if vi5>=vR3.size() goto B113;   
+  +B65:   #1
+        vi6 = vR3.get8(vi5);    [RiRii  .. iR....] 
+        vi7 = 0;    
+  +B78:   #1
+        if vi7>=8 goto B107;   
+  +B85:   #1
+        if (vi6 & 1)==0 goto B95;   
+  +B92:   #1
+        vi4++;   
+  +B95:   #1
+        vi6 = (vi6 >> 1);    
+        vi7++;   
+        goto +B78;   [RiRiiii  .. ......]
+  +B107:   #1
+        vi5++;   
+        goto +B54;   [RiRiiii  .. ......]
+  +B113:   #1
+        vl5 = ((long)vi4*(long)vR0.getNTFSVolume@this().getClusterSize());    
+        return (vR0.getTotalSpace@this()-vl5);   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 15 swaps 1 any 7 found 1 getFreeSpace
+ 
+ method getTotalSpace()J {
+  +START:   #1
+        vR1 = vR0.getNTFSVolume@this().getMFT().getRecord(6);    [  .. ??R] [  R. ??R] [  RR ??R] 
+        vl2 = vR1.getFileNameAttribute().getRealSize@extra();      
+        return ((vl2*8)*(long)vR0.getNTFSVolume@this().getClusterSize());   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 3 swaps 0 any 0 found 0 getTotalSpace
+ 
+ method getUsableSpace()J {
+  +START:   #1
+        return -1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getUsableSpace
+ 
+ method init(Ljx/devices/bio/BlockIO;Ljx/fs/buffer/BufferCache;Ljx/zero/Clock;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 init
+ 
+ method name()Ljava/lang/String; {
+  +START:   #2
+        b0 = vR0.getVolumeName@this();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return "no name";   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 22
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 name
+ 
+ method getRootNode()Ljx/fs/Node; {
+  +START:   #2
+        b0 = vR0.getRootEntry@this();    [ R  R] 
+  +B4b0:   #1 reference
+        return b0;   
+  +H5<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 4 handler 5 type 22
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 0 found 0 getRootNode
+ 
+ method init(Z)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 init
+ 
+ method release()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 release
+ 
+ method build(Ljava/lang/String;I)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 build
+ 
+ method check()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 check
+ 
+ method getNode(I)Ljx/fs/Node; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getNode
+ 
+ method getDeviceID()I {
+  +START:   #2
+        b0 = vR0.getVolumeId@this().get8(0);    [ b . iR] [ b R iR] 
+  +B10b0:   #1 byte
+        return b0;   
+  +H11<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 10 handler 11 type 22
+ }
+// Register: rd 2/2 wr 3 swaps 0 any 0 found 0 getDeviceID
+}

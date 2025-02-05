@@ -1,0 +1,516 @@
+class org/jnode/fs/jfat/FatChain {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;I)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.dolog = 1;   
+        vR0.fs = vR1;   
+        vR0.fat = vR1.getFat();   
+        b1 = new org/jnode/fs/jfat/FatChain$ChainPosition(vR0,0);    [ ?R  i][ ?R . iRRR]
+        vR0.position = b1;   
+        vR0.iterator = vR0.listIterator@this();   
+        vR0.setStartCluster@special(vi2);   [ ?R . iR..] 
+        vR0.dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method mylog(Ljava/lang/String;)V {
+  +START:   #1
+        out.println(vR1);   [  . RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 mylog
+ 
+ method getFatFileSystem()Lorg/jnode/fs/jfat/FatFileSystem; {
+  +START:   #1
+        return vR0.fs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFatFileSystem
+ 
+ method getStartCluster()I {
+  +START:   #1
+        return vR0.head;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getStartCluster
+ 
+ method setStartCluster(I)V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("startcluster: ").append@extra(vi1).toString@extra());   [ RR ii. RR.] 
+        vR0.head = vi1;   
+        access$100@special(vR0.iterator);   [ RR iiR R..]
+        access$200@special(vR0.position,0);   [ RR iiRR iR.]
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 8 swaps 2 any 0 found 0 setStartCluster
+ 
+ method isDirty()Z {
+  +START:   #1
+        return vR0.dirty;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirty
+ 
+ method flush()V {
+  +START:   #1
+        vR0.dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method listIterator()Lorg/jnode/fs/jfat/FatChain$ChainIterator; {
+  +START:   #1
+        return new org/jnode/fs/jfat/FatChain$ChainIterator(vR0,0);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method listIterator(I)Lorg/jnode/fs/jfat/FatChain$ChainIterator; {
+  +START:   #1
+        return new org/jnode/fs/jfat/FatChain$ChainIterator(vR0,vi1,0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 listIterator
+ 
+ method getEndCluster()I {
+  +START:   #1
+        vi1 = 0;    
+        vR2 = vR0.listIterator@this(0);    [i   iR] 
+  +B8:   #1
+        if vR2.hasNext()==0 goto B23;   
+  +B15:   #1
+        vi1 = vR2.next();    [iR   R.] 
+        goto +B8;   [iR   ..]
+  +B23:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 getEndCluster
+ 
+ method size()I {
+  +START:   #1
+        vi1 = 0;    
+        vR2 = vR0.listIterator@this(0);    [i   iR] 
+  +B8:   #1
+        if vR2.hasNext()==0 goto B26;   
+  +B15:   #1
+        vi1++;   
+        vR2.next();   [iR   R.] 
+        goto +B8;   [iR   ..]
+  +B26:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 1 found 0 size
+ 
+ method allocateTail(IIIZ)I {
+  +START:   #1
+        if vi1> 0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("n<=0");   
+  +B14:   #1
+        if vi2>=0 goto B28;   
+  -B18:   #1
+        throw new java/lang/IllegalArgumentException("m<0");   
+  +B28:   #1
+        if vi3>=0 goto B42;   
+  -B32:   #1
+        throw new java/lang/IllegalArgumentException("offset<0");   
+  +B42:   #1
+        if vR0.dolog==0 goto B95;   
+  +B49:   #1
+        b1 = new java/lang/StringBuilder();    [ iR . i..][ iR . iR.]
+        vR0.mylog@special(b1.append@extra("n[").append@extra(vi1).append@extra("] m[").append@extra(vi2).append@extra("] offset[").append@extra(vi3).append@extra("]").toString@extra());   [ iR iiii.i..... RR......] 
+  +B95:   #1
+        vi7 = 0;    
+        vi8 = 0;    
+        if vi3<=0 goto B109;   
+  +B105:   #1
+        b0 = 2;    
+        goto +B110b0;   [??ii iR ........... ........]
+  +B109:   #1
+        b0 = 1;    
+  +B110b0:   #1 int
+        vi9 = b0;    
+        vi6 = vR0.fat.getLastFree@extra();    [??iii iR ........... R.......] 
+  +B121:   #1
+        if vi6>=vR0.fat.size@extra() goto B167;   
+  +B133:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B152;   
+  +B145:   #1
+        vi8 = vi6;    
+        vi7++;   
+  +B152:   #1
+        if vi7!=vi1 goto B161;   
+  +B158:   #1
+        goto +B167;   [?iiii iR ........... ........]
+  +B161:   #1
+        vi6++;   
+        goto +B121;   [iiiii iR ........... ........]
+  +B167:   #2
+        if vi7>=vi1 goto B224;   
+  +B173:   #1
+        vi6 = vR0.fat.firstCluster@extra();    [?iiii iR ........... R.......] 
+  +B182:   #1
+        if vi6>=vR0.fat.getLastFree@extra() goto B224;   
+  +B194:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B209;   
+  +B206:   #1
+        vi7++;   
+  +B209:   #1
+        if vi7!=vi1 goto B218;   
+  +B215:   #1
+        goto +B224;   [?iiii iR ........... ........]
+  +B218:   #1
+        vi6++;   
+        goto +B182;   [iiiii iR ........... ........]
+  +B224:   #3
+        vi5 = vi8;    
+        if vR0.dolog==0 goto B274;   
+  +B235:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra("found[").append@extra(vi7).append@extra("] last[").append@extra(vi5).append@extra("]").toString@extra());   [iiiii iR iiii....... RR......] 
+  +B274:   #1
+        vR0.fat.set(vi5,vR0.fat.eofChain());   [iiiii iR i.......... iiR.....] 
+        if vR0.dolog==0 goto B341;   
+  +B298:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra(vi1).append@extra("	|allo|	").append@extra(vi5).append@extra(" ").append@extra(vR0.fat.eofChain()).toString@extra());   [iiiii iR iiii....... RR......] 
+  +B341:   #1
+        if vi4==0 goto B405;   
+  +B346:   #1
+        if vR0.dolog==0 goto B396;   
+  +B353:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra(vi1).append@extra("	|ZERO|	").append@extra(vi5).append@extra(" ").append@extra(vR0.fat.eofChain()).toString@extra());   [iiiii iR iiii....... RR......] 
+  +B396:   #1
+        vR0.fat.clearCluster(vi5);   [iiiii iR ........... iR......] 
+  +B405:   #1
+        vi7 = 0;    
+        vi8 = vi5;    
+        vi6 = vi5;    
+  +B416:   #1
+        if vi7>=((vi1-vi2)-vi9) goto B514;   
+  +B427:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B508;   
+  +B439:   #1
+        vR0.fat.set(vi6,vi8);   [iiiii iR ........... iiR.....] 
+        if vR0.dolog==0 goto B501;   
+  +B458:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra(((vi1-vi7)-1)).append@extra("	|allo|	").append@extra(vi6).append@extra(" ").append@extra(vi8).toString@extra());   [iiiii iR iiii....... RR......] 
+  +B501:   #1
+        vi8 = vi6;    
+        vi7++;   
+  +B508:   #1
+        vi6--;   
+        goto +B416;   [iiiii iR ........... ........]
+  +B514:   #1
+        if vi3<=0 goto B619;   
+  +B518:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B613;   
+  +B530:   #1
+        vR0.fat.clearCluster(vi6,0,vi3);   [iiiii iR ........... iiiR....] 
+        vR0.fat.set(vi6,vi8);   [iiiii iR ........... iiR.....] 
+        if vR0.dolog==0 goto B603;   
+  +B560:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra(((vi1-vi7)-1)).append@extra("	|part|	").append@extra(vi6).append@extra(" ").append@extra(vi8).toString@extra());   [iiiii iR iiii....... RR......] 
+  +B603:   #1
+        vi8 = vi6;    
+        vi7++;   
+        goto +B619;   [iiiii iR ........... ........]
+  +B613:   #1
+        vi6--;   
+        goto +B518;   [iiiii iR ........... ........]
+  +B619:   #3
+        if vi7>=(vi1-1) goto B723;   
+  +B627:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B717;   
+  +B639:   #1
+        vR0.fat.clearCluster(vi6);   [iiiii iR ........... iR......] 
+        vR0.fat.set(vi6,vi8);   [iiiii iR ........... iiR.....] 
+        if vR0.dolog==0 goto B710;   
+  +B667:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra(((vi1-vi7)-1)).append@extra("	|zero|	").append@extra(vi6).append@extra(" ").append@extra(vi8).toString@extra());   [iiiii iR iiii....... RR......] 
+  +B710:   #1
+        vi8 = vi6;    
+        vi7++;   
+  +B717:   #1
+        vi6--;   
+        goto +B619;   [iiiii iR ........... ........]
+  +B723:   #1
+        vR0.fat.rewindFree@extra();   [iiiii iR ........... R.......] 
+        vi6 = vi5;    
+  +B734:   #1
+        if vi6>=vR0.fat.size@extra() goto B776;   
+  +B746:   #1
+        if vR0.fat.isFreeEntry@extra(vi6)==0 goto B770;   
+  +B758:   #1
+        vR0.fat.setLastFree@extra(vi6);   [iiiii iR ........... iR......] 
+        goto +B776;   [iiiii iR ........... ........]
+  +B770:   #1
+        vi6++;   
+        goto +B734;   [iiiii iR ........... ........]
+  +B776:   #2
+        if vR0.dolog==0 goto B812;   
+  +B783:   #1
+        b1 = new java/lang/StringBuilder();    [ iR ........... i.......][ iR ........... iR......]
+        vR0.mylog@special(b1.append@extra("LastFree: ").append@extra(vR0.fat.getLastFree@extra()).toString@extra());   [iiiii iR iii........ RR......] 
+  +B812:   #1
+        return vi8;   
+  +END:   #1
+ }
+// Register: rd 102/102 wr 108 swaps 38 any 34 found 3 allocateTail
+ 
+ method allocateTail(III)I {
+  +START:   #1
+        return vR0.allocateTail@special(vi1,vi2,vi3,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 allocateTail
+ 
+ method allocateTail(I)I {
+  +START:   #1
+        return vR0.allocateTail@special(vi1,0,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 allocateTail
+ 
+ method allocateAndClear(I)V {
+  +START:   #1
+        vi2 = vR0.allocateTail@special(vi1,(vi1-1),0,1);    [ ?R i iiiiR] 
+        vi3 = vR0.getEndCluster@special();    [i ?R i R....] 
+        if vR0.dolog==0 goto B50;   
+  +B23:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R . i....][ ?R . iR...]
+        vR0.mylog@special(b1.append@extra(vi3).append@extra(":").append@extra(vi2).toString@extra());   [ii ?R ii.. RR...] 
+  +B50:   #1
+        if vi3==0 goto B67;   
+  +B54:   #1
+        vR0.fat.set(vi3,vi2);   [ii ?R .... iiR..] 
+        goto +B85;   [ii ?R .... .....]
+  +B67:   #1
+        if vR0.dolog==0 goto B80;   
+  +B74:   #1
+        vR0.mylog@special("allocate chain");   [ii ?R i... RR...] 
+  +B80:   #1
+        vR0.setStartCluster@special(vi2);   [ii ?R .... iR...] 
+  +B85:   #1
+        vR0.fat.flush();   [ii ?R .... R....] 
+        goto +B107;   forward return[ii ?R .... .....]
+  +H95<caught exception>:   #2 reference
+        vR4 = <caught exception>;    
+  -B97:   #1
+        vR0.fat.flush();   [iiR ?R .... R....] 
+        throw vR4;   
+  +B107:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 85 handler 95 type 0
+95 - 97 handler 95 type 0
+ }
+// Register: rd 14/14 wr 11 swaps 4 any 1 found 0 allocateAndClear
+ 
+ method free(I)V {
+  +START:   #1
+        if vi1> 0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("n<=0");   
+  +B14:   #1
+        vi2 = vR0.size@this();    [ RRR . R..] 
+        if vi2>=vi1 goto B65;   
+  -B24:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("not enough cluster: count[").append@extra(vi2).append@extra("] n[").append@extra(vi1).append@extra("]").toString@extra());   [i RRR iiii.... RR....] 
+        throw b0;   
+  +B65:   #1
+        if vR0.dolog==0 goto B109;   
+  +B72:   #1
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i.....][ RRR ........ iR....]
+        vR0.mylog@special(b1.append@extra("count[").append@extra(vi2).append@extra("] n[").append@extra(vi1).append@extra("]").toString@extra());   [i RRR iiii.... RR....] 
+  +B109:   #1
+        if vi2<=vi1 goto B191;   
+  +B114:   #1
+        vR3 = vR0.listIterator@this(((vi2-vi1)-1));    [i RRR i....... iR....] 
+        vi4 = vR3.next();    [iR RRR i....... R.....] 
+        vR0.fat.set(vi4,vR0.fat.eofChain());   [iRi RRR ii...... iiR...] 
+        if vR0.dolog==0 goto B188;   
+  +B154:   #1
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i.....][ RRR ........ iR....]
+        vR0.mylog@special(b1.append@extra(vi4).append@extra(":").append@extra(vR0.fat.eofChain()).toString@extra());   [iRi RRR iii..... RR....] 
+  +B188:   #1
+        goto +B197;   [iRi RRR ........ ......]
+  +B191:   #1
+        vR3 = vR0.listIterator@this(0);    [iRi RRR ........ iR....] 
+  +B197:   #2
+        if vR3.hasNext()==0 goto B271;   
+  +B204:   #1
+        vi4 = vR3.next();    [iRi RRR ........ R.....] 
+        vR0.fat.set(vi4,vR0.fat.freeEntry@extra());   [iRi RRR i....... iiR...] 
+        if vR0.dolog==0 goto B268;   
+  +B234:   #1
+        b1 = new java/lang/StringBuilder();    [ RRR ........ i.....][ RRR ........ iR....]
+        vR0.mylog@special(b1.append@extra(vi4).append@extra(":").append@extra(vR0.fat.freeEntry@extra()).toString@extra());   [iRi RRR iii..... RR....] 
+  +B268:   #1
+        goto +B197;   [iRi RRR ........ ......]
+  +B271:   #1
+        vR0.fat.flush();   [iRi RRR ........ R.....] 
+        goto +B293;   [iRi RRR ........ ......]
+  +H281<caught exception>:   #2 reference
+        vR5 = <caught exception>;    
+  -B283:   #1
+        vR0.fat.flush();   [iRiR RRR ........ R.....] 
+        throw vR5;   
+  +B293:   #1
+        if vi2!=vi1 goto B316;   
+  +B298:   #1
+        vR0.setStartCluster@special(0);   [iRi RRR ........ iR....] 
+        if vR0.dolog==0 goto B316;   
+  +B310:   #1
+        vR0.mylog@special("zero");   [iRi RRR i....... RR....] 
+  +B316:   #2
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+109 - 271 handler 281 type 0
+281 - 283 handler 281 type 0
+ }
+// Register: rd 41/41 wr 47 swaps 18 any 5 found 0 free
+ 
+ method freeAllClusters()V {
+  +START:   #1
+        vR1 = vR0.listIterator@this(0);    [   iR] 
+  +B6:   #2
+        if vR1.hasNext()==0 goto B37;   
+  +B13:   #1
+        vi2 = vR1.next();    [R   R.] 
+        vR0.fat.set(vi2,vR0.fat.freeEntry@extra());   [Ri  i iiR] 
+        goto +B6;   [Ri  i ...]
+  +B37:   #2
+        vR0.fat.flush();   [Ri  . R..] 
+        goto +B57;   [Ri  . ...]
+  -H47<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+        vR0.fat.flush();   [RiR  . R..] 
+        throw vR3;   
+  +B57:   #1
+        vR0.setStartCluster@special(0);   [Ri  . iR.] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+6 - 37 handler 47 type 0
+ }
+// Register: rd 9/9 wr 4 swaps 1 any 0 found 0 freeAllClusters
+ 
+ method read(ILjx/zero/Memory;I)V {
+  +START:   #1
+        if vi1>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("offset<0");   
+  +B14:   #1
+        vR4 = vR0.position;    
+        vR5 = vR0.iterator;    
+        access$200@special(vR4,0);   [RR RRR . iR.]
+  +B32:   #1
+        access$600@special(vR5,access$500@special(vR4));   [RR RRR i iR.]
+  +B42:   #1
+        goto +B76;   [RR RRR . ...]
+  -H45<caught exception>:   #1 reference
+        vR6 = <caught exception>;    
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("attempt to seek after End Of Chain ").append@extra(vi1).toString@extra(),vR6);   [RRRii RRR ii. RRR] 
+        throw b0;   
+  +B76:   #1
+        vi6 = access$700@special(vR4);    [RR RRR ... R..]
+        vi7 = access$800@special(vR4);    [RRi RRR ... R..]
+  +B90:   #1
+        if vi3>=0 goto B176;   
+  +B94:   #1
+        vi8 = vR5.next();    [RRii RRR ... R..] 
+        if vi1!=1 goto B113;   
+  +B106:   #1
+        vi8 = vR5.next();    [RRiii RRR ... R..] 
+  +B113:   #1
+        if vR0.dolog==0 goto B146;   
+  +B120:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b0.println(b1.append@extra("cluster: ").append@extra(vi8).toString@extra());   [RRiii RRR ii. RR.] 
+  +B146:   #1
+        vR0.fat.readCluster(vi8,0,vR2);   [RRiii RRR ... RiiR] 
+        vi3+=65024;   
+        vi6 = access$900@special(vR4);    [RRiii RRR ... R...]
+        vi7 = 0;    
+        goto +B90;   [RRiii RRR ... ....]
+  +B176:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+32 - 42 handler 45 type 219
+ }
+// Register: rd 17/17 wr 25 swaps 4 any 5 found 0 read
+ 
+ method write(ILjx/zero/Memory;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 write
+ 
+ method getLength()J {
+  +START:   #1
+        return (long)(vR0.size@this()*vR0.fat.getClusterSize@extra());   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLength
+ 
+ method dump(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR0.size@this();    [ R  R] 
+        vR3 = new java/io/FileOutputStream(vR1);    [ R  i][ R . iRR]
+        vR4 = vR0.MemManager.alloc(vR0.fat.getClusterSize@extra());    [iR R i iR.] 
+        vi5 = 0;    
+  +B35:   #1
+        if vi5>=vi2 goto B71;   
+  +B41:   #1
+        vR4.clear();   [iRRi R . R..] 
+        vR0.read@this((vi5*vR0.fat.getClusterSize@extra()),vR4,0);   [iRRi R i iRiR] 
+        vi5++;   
+        goto +B35;   [iRRi R i ....]
+  +B71:   #1
+        vR3.close();   [iRRi R . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 8 swaps 2 any 2 found 1 dump
+ 
+ method access$1000(Lorg/jnode/fs/jfat/FatChain;)Lorg/jnode/fs/jfat/Fat; {
+  +START:   #1
+        return vR0.fat;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$1000
+ 
+ method access$1100(Lorg/jnode/fs/jfat/FatChain;)I {
+  +START:   #1
+        return vR0.head;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$1100
+}

@@ -19,21 +19,21 @@ class java/io/File {
         vR0.pathName = vR1.substring@extra(0,vi2);   
   +B63:   #2
         vR0.name = vR1;   
-        vR0.fs = (jx/fs/FS)(lookup@special("FS"));   
-  +B80:   #1
+        vR0.fs = (jx/fs/FS)(getInitialNaming@special().lookup("FS"));   
+  +B85:   #1
         vR0.fsobj = vR0.fs.lookup("/index.html");   
-  +B95:   #1
-        goto +B104;   forward return[i  .. ...]
-  +H98<caught exception>:   #1 reference
+  +B100:   #1
+        goto +B109;   forward return[i  .. ...]
+  +H103<caught exception>:   #1 reference
         vR3 = <caught exception>;    
         vR0.fsobj = 0;   
-  +B104:   #1
+  +B109:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-80 - 95 handler 98 type 59
+85 - 100 handler 103 type 65
  }
-// Register: rd 20/20 wr 6 swaps 2 any 2 found 0 <init>
+// Register: rd 20/20 wr 7 swaps 3 any 2 found 0 <init>
  
  method <init>(Ljava/lang/String;Ljava/lang/String;)V {
   +START:   #1
@@ -129,7 +129,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 9 handler 10 type 59
+0 - 9 handler 10 type 65
  }
 // Register: rd 2/2 wr 2 swaps 0 any 0 found 0 isDirectory
  
@@ -185,7 +185,7 @@ EXCEPTIONHANDLER-TABLE:
         return -1;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 12 handler 13 type 59
+0 - 12 handler 13 type 65
  }
 // Register: rd 3/3 wr 3 swaps 0 any 0 found 0 length
  
@@ -221,7 +221,7 @@ EXCEPTIONHANDLER-TABLE:
         return 0;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-0 - 14 handler 15 type 59
+0 - 14 handler 15 type 65
  }
 // Register: rd 4/4 wr 4 swaps 0 any 0 found 0 list
  

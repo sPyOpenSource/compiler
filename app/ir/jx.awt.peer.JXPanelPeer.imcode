@@ -1,0 +1,273 @@
+class jx/awt/peer/JXPanelPeer {
+ 
+ method <init>(Ljava/awt/Panel;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR0.paintPanel@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 paint
+ 
+ method insets()Ljava/awt/Insets; {
+  +START:   #1
+        if (vR0.parent instanceof jx/awt/ExtendedPanel)==0 goto B50;   
+  +B10:   #1
+        if (jx/awt/ExtendedPanel)(vR0.parent).getTitle()!=null goto B37;   
+  +B23:   #1
+        b0 = new java/awt/Insets(5,5,5,5);    [ R . i.][ R . iiiiiR]
+        goto +B49b0;   forward return[ R . ......]
+  +B37:   #1
+        b0 = new java/awt/Insets(16,5,5,5);    [ R . i.....][ R . iiiiiR]
+  +B49b0:   #1 reference
+        return b0;   
+  +B50:   #1
+        return new java/awt/Insets(0,0,0,0);   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 6 swaps 0 any 0 found 0 insets
+ 
+ method getPreferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(0,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method paintPanel(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [ i i RR] 
+        vR1.fillRect(0,0,(vR0.width-1),(vR0.height-1));   [ i iii iiiiR] 
+        if (vR0.parent instanceof jx/awt/ExtendedPanel)==0 goto B347;   
+  +B35:   #1
+        vR2 = (jx/awt/ExtendedPanel)(vR0.parent).getTitle();    [ i ... R....] 
+        if vR2==null goto B55;   
+  +B50:   #1
+        b0 = 16;    
+        goto +B56b0;   [R i ... .....]
+  +B55:   #1
+        b0 = 5;    
+  +B56b0:   #1 int
+        vi3 = b0;    
+        vi4 = (vi3/2);    
+        vR1.setColor(normalBgColor);   [Rii i i.. RR...] 
+        tswitch ((jx/awt/ExtendedPanel)(vR0.parent).getBorderType()) B303 B112 B147 B199 B251 : B303;   
+  +B112:   #1
+        vR1.setColor(normalBgColor.darker());   [Rii i i.. RR...] 
+        vR1.drawRect(2,vi4,(vR0.width-5),((vR0.height-3)-vi4));   [Rii i iii iiiiR] 
+        goto +B303;   [Rii i iii .....]
+  +B147:   #1
+        vR1.draw3DRect(2,vi4,(vR0.width-5),((vR0.height-3)-vi4),1);   [Rii i ii. iiiiiR] 
+        vR1.draw3DRect(3,(vi4+1),(vR0.width-7),((vR0.height-5)-vi4),1);   [Rii i iiiii iiiiiR] 
+        goto +B303;   [Rii i iiiii ......]
+  +B199:   #1
+        vR1.draw3DRect(2,vi4,(vR0.width-5),((vR0.height-3)-vi4),0);   [Rii i ii... iiiiiR] 
+        vR1.draw3DRect(3,(vi4+1),(vR0.width-7),((vR0.height-5)-vi4),0);   [Rii i iiiii iiiiiR] 
+        goto +B303;   [Rii i iiiii ......]
+  +B251:   #1
+        vR1.draw3DRect(2,vi4,(vR0.width-5),((vR0.height-3)-vi4),0);   [Rii i ii... iiiiiR] 
+        vR1.draw3DRect(3,(vi4+1),(vR0.width-7),((vR0.height-5)-vi4),1);   [Rii i iiiii iiiiiR] 
+        goto +B303;   [Rii i iiiii ......]
+  +B303:   #6
+        if vR2==null goto B347;   
+  +B307:   #1
+        vR1.setColor(normalBgColor);   [Rii i i.... RR....] 
+        vR1.fillRect(7,0,((vR2.length@extra()*9)+6),vi3);   [Rii i ii... iiiiR.] 
+        vR1.setColor(normalTextColor);   [Rii i iii.. RR....] 
+        vR1.drawJXString(vR2,10,1);   [Rii i iii.. iiRR..] 
+  +B347:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 51/51 wr 31 swaps 14 any 3 found 0 paintPanel
+ 
+ method beginLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 beginLayout
+ 
+ method endLayout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 endLayout
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

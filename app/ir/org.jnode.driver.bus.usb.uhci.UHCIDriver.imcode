@@ -1,0 +1,50 @@
+class org/jnode/driver/bus/usb/uhci/UHCIDriver {
+ 
+ method <init>(Ljx/devices/pci/PCIDevice;Ljx/zero/timer/SleepManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+  +B4:   #1
+        b1 = new org/jnode/driver/bus/usb/uhci/UHCICore(vR1,vR2);    [ ?R  i][ ?R . iRRR]
+        vR0.core = b1;   
+  +B17:   #1
+        goto +B21;   forward return[ ?R . ....]
+  +H20<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+  +B21:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+4 - 17 handler 20 type 18
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 <init>
+ 
+ method claimResources()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 claimResources
+ 
+ method releaseResources()V {
+  +START:   #1
+        vR0.core.release();   [   R] 
+        vR0.core = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 releaseResources
+ 
+ method getAPI()Lorg/jnode/driver/bus/usb/USBHostControllerAPI; {
+  +START:   #1
+        return vR0.core;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAPI
+ 
+ method getDevicePrefix()Ljava/lang/String; {
+  +START:   #1
+        return "usb-uhci";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getDevicePrefix
+}

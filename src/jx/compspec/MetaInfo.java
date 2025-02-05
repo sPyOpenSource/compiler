@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import jx.zero.Debug;
 
 import java.util.ArrayList;
@@ -45,8 +47,13 @@ final public class MetaInfo {
 
     public MetaInfo(String filename) {
         try {
+            InputStream f;
+            if(filename.startsWith("https")){
             URL url = new URL(filename);
-            InputStream f = url.openStream();
+             f = url.openStream();
+            } else {
+                f = Files.newInputStream(Paths.get(filename));
+            }
             meta = f.readAllBytes();
             lineloop:
             for(int j = 0; ; j++) {

@@ -1,0 +1,53 @@
+class jx/awt/peer/JXMenuConnector {
+ 
+ method <init>(Ljava/awt/Menu;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        b2 = "";    
+        b3 = new jx/devices/fb/PixelRect(0,0,50,50);    [ ??RRR  i][ ??RRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags(1537);    [ ??RRR . i.....][ ??RRR . iiR...]
+        vR0.<init>@special(vR2,b2,b3,b4);   [ ??RRR . RRRRR.] 
+        vR0.parent = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 0 found 0 <init>
+ 
+ method <init>()V {
+  +START:   #1
+        b2 = "";    
+        b3 = new jx/devices/fb/PixelRect(0,0,0,0);    [ ??RRR  i][ ??RRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ ??RRR . i.....][ ??RRR . iR....]
+        vR0.<init>@special(0,b2,b3,b4);   [ ??RRR . RRRRR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 0 any 0 found 0 <init>
+ 
+ method getGraphics()Ljx/awt/JXGraphics; {
+  +START:   #1
+        return (jx/awt/JXGraphics)(vR0.graphics.create());   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getGraphics
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseUp
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseMoved
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 paint
+}

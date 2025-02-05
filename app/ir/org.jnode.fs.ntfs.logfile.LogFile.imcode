@@ -1,0 +1,313 @@
+class org/jnode/fs/ntfs/logfile/LogFile {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RR  R] 
+        b1 = new java/util/ArrayList();    [ RR  i][ RR  iR]
+        vR0.logClients = b1;   
+        b1 = new java/util/LinkedHashMap();    [ RR  i.][ RR  iR]
+        vR0.offsetPageMap = b1;   
+        vR0.cleanlyShutdown = 1;   
+        vR0.logFileLength = vR1.getAttributeTotalSize(128,0);   
+        vR0.logFileBuffer = vR0.MemManager.alloc((int)vR0.logFileLength);   
+        vR1.readData(0,vR0.logFileBuffer,0,(int)vR0.logFileLength);   [ RR iii iiR??R] 
+        vR0.restartPageHeader = vR0.getNewestRestartPageHeader@special(vR1.getVolume(),vR0.logFileBuffer);   
+        vi2 = (vR0.restartPageHeader.getOffset()+vR0.restartPageHeader.getRestartOffset());    
+        vR0.logPageSize = vR0.restartPageHeader.getLogPageSize();   
+        b1 = new org/jnode/fs/ntfs/logfile/RestartArea(vR0.logFileBuffer,vi2);    [ RR iiiiR. i.....][ RR iiiiR. iiRR..]
+        vR0.restartArea = b1;   
+        if (vR0.restartArea.getFlags() & 2)==2 goto B153;   
+  +B148:   #1
+        vR0.cleanlyShutdown = 0;   
+  +B153:   #1
+        vi3 = vR0.restartArea.getLogClients();    [i RR ...... R.....] 
+        if vi3==65535 goto B256;   
+  +B167:   #1
+        vi4 = (vi2+vR0.restartArea.getClientArrayOffset());    
+        vR5 = new org/jnode/fs/ntfs/logfile/LogClientRecord(vR0.logFileBuffer,vi4);    [ RR ...... i.....][ RR ...... iiRR..]
+        vR0.logClients.add(vR5);   [iiiR RR ...... RR....] 
+        vi6 = 1;    
+  +B208:   #1
+        if vi6>vi3 goto B256;   
+  +B214:   #1
+        vi4 = (vi2+vR5.getNextClientOffset());    
+        vR5 = new org/jnode/fs/ntfs/logfile/LogClientRecord(vR0.logFileBuffer,vi4);    [ RR ...... i.....][ RR ...... iiRR..]
+        vR0.logClients.add(vR5);   [iiiRi RR ...... RR....] 
+        vi6++;   
+        goto +B208;   [iiiRi RR ...... ......]
+  +B256:   #2
+        vR0.oldestPageOffset = vR0.findOldestPageOffset@special(vR1.getVolume());   
+        return;   
+  +END:   #1
+ }
+// Register: rd 51/51 wr 23 swaps 3 any 5 found 2 <init>
+ 
+ method parseRecords()V {
+  +START:   #1
+        if vR0.lsnLogRecordMap==null goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        b1 = new java/util/LinkedHashMap();    [ RR  i][ RR  iR]
+        vR0.lsnLogRecordMap = b1;   
+        vi1 = vR0.oldestPageOffset;    
+        vR2 = (org/jnode/fs/ntfs/logfile/RecordPageHeader)(vR0.offsetPageMap.get(valueOf@special(vi1)));    
+        vl3 = (long)vR2.getNextRecordOffset();    
+        vl3 = roundUpToBoundary@special(8,vl3);    
+        if compare((vl3+(long)LENGTH_CALCULATION_OFFSET),(long)vR0.logPageSize)<=0 goto B124;   
+  +B69:   #1
+        vi1 = (vi1+vR0.logPageSize);    
+        vl3 = (long)vR0.restartArea.getLogPageDataOffset();    
+        vR5 = new org/jnode/fs/ntfs/logfile/LogRecord(vR0.logFileBuffer,(int)((long)vi1+vl3),vR0.logPageSize,vR0.restartArea.getLogPageDataOffset());    [ RR .. i.][ RR .. iiiiRR]
+        vl6 = vR5.getClientDataLength();     
+        goto +B185;   [iRl?Rl RR .. ......]
+  +B124:   #1
+        vR5 = new org/jnode/fs/ntfs/logfile/LogRecord(vR0.logFileBuffer,(int)((long)vi1+vl3),vR0.logPageSize,vR0.restartArea.getLogPageDataOffset());    [ RR .. i.....][ RR .. iiiiRR]
+        vl6 = vR5.getClientDataLength();     
+        vi1 = (vi1+vR0.logPageSize);    
+        vl6 = (vl6-(long)(vR0.logPageSize-vR0.restartArea.getLogPageDataOffset()));    
+  +B185:   #1
+        vl3 = vR0.getNextRecordOffset@special(vR5,vl3);     
+        vl8 = (org/jnode/fs/ntfs/logfile/RecordPageHeader)(vR0.offsetPageMap.get(valueOf@special(vi1))).getLastLsnOrFileOffset();     
+        vi10 = (int)((vR0.logFileLength-(long)(4*vR0.logPageSize))/(long)vR0.logPageSize);    
+        vi11 = 1;    
+  +B238:   #1
+        if vi11>=vi10 goto B663;   
+  +B245:   #1
+        vR12 = (org/jnode/fs/ntfs/logfile/RecordPageHeader)(vR0.offsetPageMap.get(valueOf@special(vi1)));    
+        if vR12==null goto B630;   
+  +B268:   #1
+        if vR12.isValid()==0 goto B630;   
+  +B276:   #1
+        if compare(vR12.getLastLsnOrFileOffset(),vl8)< 0 goto B302;   
+  +B287:   #1
+        if compare((vR12.getLastLsnOrFileOffset()-vl8),32768)<=0 goto B307;   
+  +B302:   #1
+        vl3 = 0;    
+        vl6 = 0;    
+  +B307:   #1
+        if compare(vl6,(long)(vR0.logPageSize-vR0.restartArea.getLogPageDataOffset()))<=0 goto B363;   
+  +B326:   #1
+        vl3 = (vl3-(long)(vR0.logPageSize-vR0.restartArea.getLogPageDataOffset()));    
+        vl6 = (vl6-(long)(vR0.logPageSize-vR0.restartArea.getLogPageDataOffset()));    
+        goto +B620;   [iRl?Rl?l?iiR RR .. ......]
+  +B363:   #1
+        if compare(vl3,(long)vR0.logPageSize)>=0 goto B385;   
+  +B373:   #1
+        vl3 = (long)vR0.restartArea.getLogPageDataOffset();    
+        goto +B404;   [iRl?Rl?l?iiR RR .. ......]
+  +B385:   #1
+        vl3 = (vl3%(long)vR0.logPageSize);    
+        vl3 = (vl3+(long)vR0.restartArea.getLogPageDataOffset());    
+  +B404:   #1
+        vl13 = (long)min@special(vR12.getNextRecordOffset(),vR0.logPageSize);    
+        if compare(vl13,0)!=0 goto B433;   
+  +B426:   #1
+        vl13 = (long)vR0.logPageSize;    
+  +B433:   #2
+        if compare(vl3,vl13)> 0 goto B620;   
+  +B440:   #1
+        if compare((vl3+(long)LENGTH_CALCULATION_OFFSET),(long)vR0.logPageSize)<=0 goto B460;   
+  +B455:   #1
+        vl3 = 0;    
+        goto +B620;   [iRl?Rl?l?iiRl RR .. ......]
+  +B460:   #1
+        vl3 = roundUpToBoundary@special(8,vl3);    
+        vR15 = new org/jnode/fs/ntfs/logfile/LogRecord(vR0.logFileBuffer,(int)((long)vi1+vl3),vR0.logPageSize,vR0.restartArea.getLogPageDataOffset());    [ RR .. i.....][ RR .. iiiiRR]
+        vl3 = vR0.getNextRecordOffset@special(vR15,vl3);     
+        vl16 = vR15.getLsn();     
+        if vR15.isValid()==0 goto B593;   
+  +B519:   #1
+        if compare(vl16,0)<=0 goto B593;   
+  +B526:   #1
+        if compare(vl16,vR12.getLastLsnOrFileOffset())> 0 goto B593;   
+  +B537:   #1
+        vR0.lsnLogRecordMap.put(valueOf@special(vl16),vR15);   [iRl?Rl?l?iiRl?Rl RR i. RRR...] 
+        vl6 = vR15.getClientDataLength();     
+        vi18 = ((vR15.getOffset()%vR0.logPageSize)+LENGTH_CALCULATION_OFFSET);    
+        vl6 = (vl6-(long)(vR0.logPageSize-vi18));    
+        goto +B617;   [iRl?Rl?l?iiRl?Rl?i RR i. ......]
+  +B593:   #3
+        if compare(vl16,0)<=0 goto B611;   
+  +B600:   #1
+        if compare(vl16,vR12.getLastLsnOrFileOffset())<=0 goto B611;   
+  +B611:   #2
+        vl6 = 0;    
+        goto +B620;   [iRl?Rl?l?iiRl?Rl?i RR .. ......]
+  +B617:   #1
+        goto +B433;   [iRl?Rl?l?iiRl?Rl?i RR .. ......]
+  +B620:   #4
+        vl8 = vR12.getLastLsnOrFileOffset();     
+        goto +B633;   [iRl?Rl?l?iiR RR .. ......]
+  +B630:   #2
+        vl8 = 0;    
+  +B633:   #1
+        vi1 = (vi1+vR0.logPageSize);    
+        if compare((long)vi1,vR0.logFileLength)< 0 goto B657;   
+  +B650:   #1
+        vi1 = (4*vR0.logPageSize);    
+  +B657:   #1
+        vi11++;   
+        goto +B238;   [iRl?Rl?l?iiR RR .. ......]
+  +B663:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 28 swaps 2 any 6 found 0 parseRecords
+ 
+ method getNextRecordOffset(Lorg/jnode/fs/ntfs/logfile/LogRecord;J)J {
+  +START:   #1
+        if vR1.isValid()==0 goto B21;   
+  +B7:   #1
+        return ((vl2+(long)LENGTH_CALCULATION_OFFSET)+(long)(int)vR1.getClientDataLength());   
+  +B21:   #1
+        return (long)vR0.restartArea.getLogPageDataOffset();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNextRecordOffset
+ 
+ method findOldestPageOffset(Lorg/jnode/fs/ntfs/NTFSVolume;)I {
+  +START:   #1
+        vR2 = new java/util/TreeMap();    [ R  i][ R  iR]
+        vR3 = new java/util/HashMap();    [ R  i.][ R  iR]
+        vi4 = (4*vR0.logPageSize);    
+  +B24:   #1
+        if compare((long)vi4,vR0.logFileLength)>=0 goto B140;   
+  +B35:   #1
+        vi5 = 0;    
+        if vi5==1146241874 goto B48;   
+  +B45:   #1
+        goto +B128;   [RRii R  ..]
+  +B48:   #1
+        vR6 = new org/jnode/fs/ntfs/logfile/RecordPageHeader(vR1,vR0.logFileBuffer,vi4);    [ R  i.][ R . iiRRR]
+        vR0.offsetPageMap.put(valueOf@special(vi4),vR6);   [RRiiR R i RRR..] 
+        if vR6.isValid()==0 goto B128;   
+  +B89:   #1
+        if compare(vR6.getLastEndLsn(),0)==0 goto B128;   
+  +B99:   #1
+        vR2.put(valueOf@special(vR6.getLastEndLsn()),vR6);   [RRiiR R i RRR..] 
+        vR3.put(vR6,valueOf@special(vi4));   [RRiiR R ii RRR..] 
+  +B128:   #3
+        vi4 = (vi4+vR0.logPageSize);    
+        goto +B24;   [RRii R .. .....]
+  +B140:   #1
+        vR4 = (org/jnode/fs/ntfs/logfile/RecordPageHeader)(vR2.firstEntry().getValue());    
+        return (java/lang/Integer)(vR3.get(vR4)).intValue();   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 15 swaps 3 any 2 found 0 findOldestPageOffset
+ 
+ method getNewestRestartPageHeader(Lorg/jnode/fs/ntfs/NTFSVolume;Ljx/zero/Memory;)Lorg/jnode/fs/ntfs/logfile/RestartPageHeader; {
+  +START:   #1
+        vR3 = new org/jnode/fs/ntfs/logfile/RestartPageHeader(vR1,vR2,0);    [ RRR  i][ RRR . iiRRR]
+        if vR3.isValid()!=0 goto B48;   
+  -B18:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i....][ RRR . iR...]
+        b1.<init>@special(b2.append@extra("Restart header has invalid magic: ").append@extra(vR3.getMagic()).toString@extra());   [R RRR iii. RR...] 
+        throw b0;   
+  +B48:   #1
+        if vR3.getMagic()!=1145784387 goto B57;   
+  +B57:   #1
+        vR4 = new org/jnode/fs/ntfs/logfile/RestartPageHeader(vR1,vR2,vR3.getLogPageSize());    [ RRR .... i....][ RRR .... iiRRR]
+        if vR4.isValid()!=0 goto B111;   
+  -B80:   #1
+        b0 = new java/lang/IllegalStateException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR .... i....][ RRR .... iR...]
+        b1.<init>@special(b2.append@extra("Second restart header has invalid magic: ").append@extra(vR4.getMagic()).toString@extra());   [RR RRR iii. RR...] 
+        throw b0;   
+  +B111:   #1
+        if vR4.getMagic()!=1145784387 goto B121;   
+  +B121:   #1
+        vi5 = vR3.getRestartOffset();    [RR RRR .... R....] 
+        vi6 = vR4.getRestartOffset();    [RRi RRR .... R....] 
+        vR7 = new org/jnode/fs/ntfs/logfile/RestartArea(vR2,vi5);    [ RRR .... i....][ RRR .... iiRR.]
+        vR8 = new org/jnode/fs/ntfs/logfile/RestartArea(vR2,(vR3.getLogPageSize()+vi6));    [ RRR .... i....][ RRR .... iiRR.]
+        if compare(vR7.getCurrentLsn(),vR8.getCurrentLsn())< 0 goto B179;   
+  +B177:   #1
+        return vR3;   
+  +B179:   #1
+        return vR4;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 26 swaps 6 any 2 found 0 getNewestRestartPageHeader
+ 
+ method isCleanlyShutdown()Z {
+  +START:   #1
+        return vR0.cleanlyShutdown;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isCleanlyShutdown
+ 
+ method getLogRecords()Ljava/util/Collection; {
+  +START:   #1
+        vR0.parseRecords@special();   [   R] 
+        return vR0.lsnLogRecordMap.values();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getLogRecords
+ 
+ method getLsnLogRecordMap()Ljava/util/Map; {
+  +START:   #1
+        vR0.parseRecords@special();   [   R] 
+        return unmodifiableMap@special(vR0.lsnLogRecordMap);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getLsnLogRecordMap
+ 
+ method dumpLogChain(J)Ljava/lang/String; {
+  +START:   #1
+        vR0.parseRecords@special();   [ R  R] 
+        vR3 = new java/util/ArrayList();    [ R  i][ R  iR]
+        vR4 = (org/jnode/fs/ntfs/logfile/LogRecord)(vR0.lsnLogRecordMap.get(valueOf@special(vl1)));    
+        vR3.add(vR4);   [?RR R i. RR] 
+        vR5 = vR4;    
+  +B43:   #1
+        if compare(vR5.getClientPreviousLsn(),0)==0 goto B87;   
+  +B53:   #1
+        vR5 = (org/jnode/fs/ntfs/logfile/LogRecord)(vR0.lsnLogRecordMap.get(valueOf@special(vR5.getClientPreviousLsn())));    
+        vR3.add(0,vR5);   [?RRR R i. RiR] 
+        goto +B43;   [?RRR R i. ...]
+  +B87:   #1
+        vi6 = (vR3.size()-1);    
+        vR5 = vR4;    
+  +B101:   #1
+        if compare(vR5.getClientUndoNextLsn(),0)==0 goto B145;   
+  +B111:   #1
+        vR5 = (org/jnode/fs/ntfs/logfile/LogRecord)(vR0.lsnLogRecordMap.get(valueOf@special(vR5.getClientUndoNextLsn())));    
+        vR3.add(vR5);   [?RRRi R i. RR.] 
+        goto +B101;   [?RRRi R i. ...]
+  +B145:   #1
+        vR7 = new java/lang/StringBuilder();    [ R .. i..][ R .. iR.]
+        vR7.append@extra("[");   [?RRRiR R i. RR.] 
+        vi8 = 0;    
+  +B166:   #1
+        if vi8>=vR3.size() goto B260;   
+  +B177:   #1
+        vR9 = (org/jnode/fs/ntfs/logfile/LogRecord)(vR3.get(vi8));    
+        if vi8>=vi6 goto B209;   
+  +B197:   #1
+        vR7.append@extra("<");   [?RRRiRiR R i. RR.] 
+        goto +B237;   [?RRRiRiR R i. ...]
+  +B209:   #1
+        if vi8!=vi6 goto B228;   
+  +B216:   #1
+        vR7.append@extra("=");   [?RRRiRiR R i. RR.] 
+        goto +B237;   [?RRRiRiR R i. ...]
+  +B228:   #1
+        vR7.append@extra(">");   [?RRRiRiR R i. RR.] 
+  +B237:   #2
+        vR7.append@extra(vR9);   [?RRRiRiR R .. RR.] 
+        vR7.append@extra("
+");   [?RRRiRiR R i. RR.] 
+        vi8++;   
+        goto +B166;   [?RRRiRiR R i. ...]
+  +B260:   #1
+        vR7.append@extra("]");   [?RRRiRiR R i. RR.] 
+        return vR7.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 31/31 wr 24 swaps 9 any 6 found 1 dumpLogChain
+}

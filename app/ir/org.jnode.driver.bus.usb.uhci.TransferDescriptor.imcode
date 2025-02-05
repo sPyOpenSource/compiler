@@ -1,0 +1,320 @@
+class org/jnode/driver/bus/usb/uhci/TransferDescriptor {
+ 
+ method <init>(Ljx/zero/MemoryManager;IIIZLjx/zero/Memory;IIZZZ)V {
+  +START:   #1
+        vR0.<init>@special(vR1,32,16);   [ ii  iiRR] 
+        vR0.dataBuffer = vR6;   
+        vR0.dataBufferOffset = vi7;   
+        if vi8<=0 goto B35;   
+  +B26:   #1
+        vi12 = (vi8-1);    
+        goto +B40;   [i ii  ....]
+  +B35:   #1
+        vi12 = 2047;    
+  +B40:   #1
+        vR0.setInt@this(0,1);   [i ii  iiR.] 
+        vi13 = 947912704;    
+        if vi11==0 goto B62;   
+  +B55:   #1
+        vi13 = (vi13 | 16777216);    
+  +B62:   #1
+        if vi9==0 goto B74;   
+  +B67:   #1
+        vi13 = (vi13 | 33554432);    
+  +B74:   #1
+        if vi10==0 goto B86;   
+  +B79:   #1
+        vi13 = (vi13 | 67108864);    
+  +B86:   #1
+        vR0.origCtrl = vi13;   
+        vR0.setInt@this(1,vi13);   [ii ii  iiR.] 
+        vi14 = (vi4 & 255);    
+        vi14 = (vi14 | ((vi2 & 127) << 8));    
+        vi14 = (vi14 | ((vi3 & 15) << 15));    
+        b0 = vi14;    
+        if vi5==0 goto B142;   
+  +B138b0:   #1 int
+        b1 = 0;    
+        goto +B143b0b1;   [iii ii  ....]
+  +B142b0:   #1 int
+        b1 = 1;    
+  +B143b0b1:   #1 int int
+        vi14 = (b0 | (b1 << 19));    
+        vi14 = (vi14 | (vi12 << 21));    
+        vR0.setInt@this(2,vi14);   [iii ii  iiR.] 
+        if vR6!=null goto B180;   
+  +B171:   #1
+        vR0.setInt@this(3,0);   [iii ii  iiR.] 
+        goto +B195;   forward return[iii ii  ....]
+  +B180:   #1
+        vR0.setInt@this(3,(vi7+vR6.getStartAddress()));   [iii ii i iiR.] 
+  +B195:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 35/35 wr 12 swaps 1 any 16 found 1 <init>
+ 
+ method resetStatus()V {
+  +START:   #1
+        vR0.setInt@this(1,vR0.origCtrl);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 resetStatus
+ 
+ method setLink(Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;Z)V {
+  +START:   #1
+        b0 = (vR1.getDescriptorAddress() & -16);    
+        if vi2==0 goto B15;   
+  +B11b0:   #1 int
+        b1 = 4;    
+        goto +B16b0b1;   [ ii  .]
+  +B15b0:   #1 int
+        b1 = 0;    
+  +B16b0b1:   #1 int int
+        vi3 = (b0 | b1);    
+        vR0.linkPointer = vR1;   
+        vR0.linkIsTD = 1;   
+        vR0.setInt@this(0,vi3);   [i ii  iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 setLink
+ 
+ method setLink(Lorg/jnode/driver/bus/usb/uhci/QueueHead;Z)V {
+  +START:   #1
+        b0 = ((vR1.getDescriptorAddress() & -16) | 2);    
+        if vi2==0 goto B17;   
+  +B13b0:   #1 int
+        b1 = 4;    
+        goto +B18b0b1;   [ ii  .]
+  +B17b0:   #1 int
+        b1 = 0;    
+  +B18b0b1:   #1 int int
+        vi3 = (b0 | b1);    
+        vR0.linkPointer = vR1;   
+        vR0.linkIsTD = 0;   
+        vR0.setInt@this(0,vi3);   [i ii  iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 2 found 0 setLink
+ 
+ method removeLink()V {
+  +START:   #1
+        vR0.setInt@this(0,1);   [   iiR] 
+        vR0.linkIsTD = 0;   
+        vR0.linkPointer = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 removeLink
+ 
+ method setActive(Z)V {
+  +START:   #1
+        vi2 = vR0.getInt@this(1);    [   iR] 
+        if vi1==0 goto B18;   
+  +B10:   #1
+        vi2 = (vi2 | 8388608);    
+        goto +B23;   [i   ..]
+  +B18:   #1
+        vi2 = (vi2 & -8388609);    
+  +B23:   #1
+        vR0.setInt@this(1,vi2);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 3 found 0 setActive
+ 
+ method isActive()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 8388608)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isActive
+ 
+ method isStalled()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 4194304)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isStalled
+ 
+ method isDataBufferError()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 2097152)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isDataBufferError
+ 
+ method isBabbleDetected()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 1048576)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isBabbleDetected
+ 
+ method isNAKReceived()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 524288)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isNAKReceived
+ 
+ method isCRCTimeOutError()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 262144)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isCRCTimeOutError
+ 
+ method isBitstuffError()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 131072)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isBitstuffError
+ 
+ method isAnyError()Z {
+  +START:   #1
+        vi1 = vR0.getInt@this(1);    [ i  iR] 
+        if (vi1 & 7733248)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  ..]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isAnyError
+ 
+ method getActualLength()I {
+  +START:   #1
+        vi1 = (vR0.getInt@this(1) & 2047);    
+        if vi1!=2047 goto B19;   
+  +B17:   #1
+        return 0;   
+  +B19:   #1
+        return (vi1+1);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 getActualLength
+ 
+ method getDataBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.dataBuffer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataBuffer
+ 
+ method getDataBufferOffset()I {
+  +START:   #1
+        return vR0.dataBufferOffset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataBufferOffset
+ 
+ method getLink()Lorg/jnode/driver/bus/usb/uhci/AbstractTreeStructure; {
+  +START:   #1
+        return vR0.linkPointer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLink
+ 
+ method getNextTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor; {
+  +START:   #1
+        if vR0.linkIsTD==0 goto B15;   
+  +B7:   #1
+        return (org/jnode/driver/bus/usb/uhci/TransferDescriptor)(vR0.linkPointer);   
+  +B15:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getNextTD
+ 
+ method append(Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;Z)V {
+  +START:   #1
+        vR3 = vR0;    
+  +B2:   #1
+        if (vR3 instanceof org/jnode/driver/bus/usb/uhci/TransferDescriptor)==0 goto B40;   
+  +B9:   #1
+        vR4 = (org/jnode/driver/bus/usb/uhci/TransferDescriptor)(vR3);    
+        if vR4.linkPointer!=null goto B31;   
+  +B23:   #1
+        vR4.setLink@extra(vR1,vi2);   [RR   iRR] 
+        return;   
+  +B31:   #1
+        vR3 = vR4.getLink@extra();    [RR   R..] 
+        goto +B2;   [RR   ...]
+  +B40:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 1 append
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("TD[").append@extra(hex@special(vR0.getInt@this(0))).append@extra(", ").append@extra(hex@special(vR0.getInt@this(1))).append@extra(", ").append@extra(hex@special(vR0.getInt@this(2))).append@extra(", ").append@extra(hex@special(vR0.getInt@this(3))).append@extra("->").append@extra(vR0.linkPointer).append@extra(93).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 26 swaps 10 any 0 found 0 toString
+}

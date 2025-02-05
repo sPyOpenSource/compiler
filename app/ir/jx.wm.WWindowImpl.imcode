@@ -1,0 +1,983 @@
+class jx/wm/WWindowImpl {
+ 
+ method setDisplay(Ljx/wm/WDisplay;)V {
+  +START:   #1
+        s_cDisplay = vR0;   
+        setDisplay@special(vR0);   [   R]
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 1 setDisplay
+ 
+ method <init>(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;Ljx/wm/WDisplay;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR??R  R] 
+        b1 = new jx/devices/fb/DrawingMode();    [ RRR??R  i][ RRR??R  iR]
+        vR0.m_nDrawingMode = b1;   
+        b1 = new jx/devices/fb/PixelRect();    [ RRR??R  i.][ RRR??R  iR]
+        vR0.m_cTmpRect = b1;   
+        vR0.m_cBackBuffer = 0;   
+        vR5 = getInitialNaming@special();    
+        vR0.m_cCPUManager = (jx/zero/CPUManager)(vR5.lookup("CPUManager"));   
+        vR0.m_cTitle = vR1;   
+        vR0.m_cDisplay = vR4;   
+        vR0.m_bBorderHit = 0;   
+        vR0.m_cPrev = 0;   
+        b1 = s_cWindows;    
+        b0 = b1;    
+        vR0.m_cNext = b1;   
+        if b0==null goto B91;   
+  +B84:   #1
+        s_cWindows.m_cPrev = vR0;   
+  +B91:   #1
+        s_cWindows = vR0;   
+        b1 = new jx/wm/WMessageQueue();    [ RRR??R .. i.][ RRR??R .. iR]
+        vR0.m_cPostedMsgs = b1;   
+        vR6 = new jx/devices/fb/PixelRect(vR2);    [ RRR??R .. i.][ RRR??R .. iRR]
+        b1 = new jx/wm/WindowFlags(vR3);    [ RRR??R .. i..][ RRR??R .. iRR]
+        vR0.m_nFlags = b1;   
+        b1 = new jx/wm/WindowBorder;    
+        b2 = b1;    
+        b5 = new java/lang/StringBuilder();    [ RRR??R .. i..][ RRR??R .. iR.]
+        b2.<init>@special(vR0,0,b5.append@extra(vR1).append@extra("_wnd_border").toString@extra(),vR3);   [RR RRR??R ii. RRRRR] 
+        vR0.m_cWndBorder = b1;   
+        vR0.m_cDecorator = create@special(vR0.m_cWndBorder,vR3);   
+        vR0.m_cWndBorder.setDecorator(vR0.m_cDecorator);   [RR RRR??R iiRi RR...] 
+        vR0.m_cTopView = vR0.m_cWndBorder.getClient();   
+        vR7 = vR0.m_cDecorator.getBorderSize();    [RR RRR??R iiRi R....] 
+        vR6.resize@extra(-vR7.m_nX0,-vR7.m_nY0,vR7.m_nX1,vR7.m_nY1);   [RRR RRR??R iiRiiiii iiiiR] 
+        vR0.m_cWndBorder.setFrame(vR6);   [RRR RRR??R iiRiiiii RR...] 
+        vR0.m_cDecorator.setTitle(vR1);   [RRR RRR??R iiRiiiii RR...] 
+        getTopView@special().addChild(vR0.m_cWndBorder);   [RRR RRR??R iiRiiiiii. RR...] [RRR RRR??R iiRiiiiiiR R....]
+        vR0.m_cWndBorder.show(0);   [RRR RRR??R iiRiiiiii. iR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 52/52 wr 28 swaps 6 any 3 found 2 <init>
+ 
+ method getBorderSize()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cDecorator.getBorderSize();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBorderSize
+ 
+ method setFlags(Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.m_nFlags.setValue(vR1.getValue());   [  i iR] 
+        vR0.m_cDecorator.setFlags(vR0.m_nFlags);   [  ii RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 2 any 0 found 0 setFlags
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.m_cDecorator.setTitle(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTitle
+ 
+ method finalize()V {
+  +START:   #1
+        vR0.m_cTitle = 0;   
+        vR0.m_cPostedMsgs = 0;   
+        vR0.m_nFlags = 0;   
+        vR0.m_cWndBorder = 0;   
+        vR0.m_cTopView = 0;   
+        vR0.m_cDecorator = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 finalize
+ 
+ method getTopView()Ljx/wm/WView; {
+  +START:   #1
+        return vR0.m_cWndBorder;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getTopView
+ 
+ method show(ZZ)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [ ?R  R] 
+        hide@special();   [ ?R  .]
+        if vR0.m_cWndBorder==null goto B36;   
+  +B17:   #1
+        vR0.m_cWndBorder.show(vi1);   [ ?R  iR] 
+        vR0.m_cWndBorder.getParent().updateRegions(0);   [ ?R . iR] [ ?R R iR] 
+  +B36:   #1
+        unhide@special();   [ ?R . ..]
+        vR0.m_cDisplay.endUpdate();   [ ?R . R.] 
+        if vi2==0 goto B62;   
+  +B50:   #1
+        b1 = new jx/wm/message/WShowMessage(vi1);    [ ?R . i.][ ?R . iiR]
+        vR0.postMessage@this(b1);   [ ?R . RR.] 
+  +B62:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 3 swaps 0 any 1 found 0 show
+ 
+ method show(Z)V {
+  +START:   #1
+        vR0.show@this(vi1,1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 show
+ 
+ method moveToFront()V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        hide@special();   [   .]
+        vR0.m_cWndBorder.moveToFront();   [   R] 
+        vR0.m_cWndBorder.getParent().updateRegions(1);   [  . iR] [  R iR] 
+        unhide@special();   [  . ..]
+        vR0.m_cDisplay.endUpdate();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 moveToFront
+ 
+ method postMessage(Ljx/wm/message/WMessage;)V {
+  +START:   #1
+        vR0.m_cPostedMsgs.addMessage(vR1);   [   RR] 
+        if vR0.m_cWaitingThread==null goto B34;   
+  +B15:   #1
+        vR0.m_cCPUManager.unblock(vR0.m_cWaitingThread);   [  i RR] 
+        vR0.m_cWaitingThread = 0;   
+  +B34:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 1 any 0 found 0 postMessage
+ 
+ method lastMessage()Ljx/wm/message/WMessage; {
+  +START:   #1
+        return vR0.m_cPostedMsgs.lastMessage();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 lastMessage
+ 
+ method peekMessage()Ljx/wm/message/WMessage; {
+  +START:   #1
+        if vR0.m_cWaitingThread==null goto B9;   
+  +B7:   #1
+        return 0;   
+  +B9:   #2
+        if vR0.m_cPostedMsgs.isEmpty()==0 goto B44;   
+  +B19:   #1
+        vR0.m_cWaitingThread = vR0.m_cCPUManager.getCPUState();   
+        vR0.m_cCPUManager.block();   [   R] 
+        goto +B9;   [   .]
+  +B44:   #1
+        vR0.m_cWaitingThread = 0;   
+        vR1 = vR0.m_cPostedMsgs.nextMessage();    [   R] 
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 1 swaps 0 any 0 found 0 peekMessage
+ 
+ method setFrame(Ljx/devices/fb/PixelRect;Z)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [ RR  R] 
+        hide@special();   [ RR  .]
+        if 0==vR0.m_cWndBorder goto B91;   
+  +B18:   #1
+        if vi2==0 goto B33;   
+  +B22:   #1
+        vR0.m_cWndBorder.setFrame(vR1);   [ RR  RR] 
+        goto +B91;   [ RR  ..]
+  +B33:   #1
+        vR3 = vR0.m_cDecorator.getBorderSize();    [ RR  R.] 
+        b0 = vR0.m_cWndBorder;    
+        b1 = new jx/devices/fb/PixelRect((vR1.m_nX0-vR3.m_nX0),(vR1.m_nY0-vR3.m_nY0),(vR1.m_nX1+vR3.m_nX1),(vR1.m_nY1+vR3.m_nY1));    [ RR  i.][ RR . iiiiiR]
+        b0.setFrame(b1);   [R RR . RR....] 
+  +B91:   #2
+        if 0==vR0.m_cWndBorder.getParent() goto B113;   
+  +B102:   #1
+        vR0.m_cWndBorder.getParent().updateRegions(0);   [ RR . iR....] [ RR R iR....] 
+  +B113:   #1
+        unhide@special();   [ RR . ......]
+        vR0.m_cDisplay.endUpdate();   [ RR . R.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 6 swaps 0 any 1 found 0 setFrame
+ 
+ method setFrame(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.setFrame@this(vR1,0);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFrame
+ 
+ method getFrame(Z)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        vR2 = vR0.m_cWndBorder.getFrame();    [   R] 
+        if vi1!=0 goto B72;   
+  +B12:   #1
+        vR3 = vR0.m_cDecorator.getBorderSize();    [R   R] 
+        vR2.m_nX0 = (vR2.m_nX0+vR3.m_nX0);   
+        vR2.m_nY0 = (vR2.m_nY0+vR3.m_nY0);   
+        vR2.m_nX1 = (vR2.m_nX1-vR3.m_nX1);   
+        vR2.m_nY1 = (vR2.m_nY1-vR3.m_nY1);   
+  +B72:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 2 swaps 0 any 1 found 0 getFrame
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("WWindow(").append@extra(vR0.m_cTitle).append@extra(")").toString@extra();   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 7 swaps 3 any 0 found 0 toString
+ 
+ method movePenTo(II)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().movePenTo(vi1,vi2);   [  . iiR] [  R iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 movePenTo
+ 
+ method movePenTo(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().movePenTo(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 movePenTo
+ 
+ method movePenBy(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().movePenBy(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 movePenBy
+ 
+ method invertRect(IIII)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [ RR  R] 
+        vR0.m_nDrawingMode.setValue@extra(2);   [ RR  iR] 
+        b0 = vR0.m_cWndBorder.getClient();    [ RR  R.] 
+        b1 = new jx/devices/fb/PixelRect(vi1,vi2,((vi1+vi3)-1),((vi2+vi4)-1));    [ RR  i.][ RR . iiiiiR]
+        b0.fillRect(b1,vR0.m_nDrawingMode);   [ RR R RRR...] 
+        vR0.m_cDisplay.endUpdate();   [ RR R R.....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 4 swaps 0 any 0 found 0 invertRect
+ 
+ method drawLine(II)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawLine(vi1,vi2);   [  . iiR] [  R iiR] 
+        vR0.m_cDisplay.endUpdate();   [  . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawLine
+ 
+ method invertLine(II)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_nDrawingMode.setValue@extra(2);   [   iR] 
+        vR0.m_cWndBorder.getClient().drawLine(vi1,vi2,vR0.m_nDrawingMode);   [  i. RiiR] [  iR RiiR] 
+        vR0.m_cDisplay.endUpdate();   [  i. R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 invertLine
+ 
+ method drawLine(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawLine(vR1);   [  . RR] [  R RR] 
+        vR0.m_cDisplay.endUpdate();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawLine
+ 
+ method setFgColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setFgColor(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setBgColor(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setEraseColor(vR1);   [  . RR] [  R RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setEraseColor
+ 
+ method setFgColor(IIII)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setFgColor(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(IIII)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setBgColor(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(IIII)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setEraseColor(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setEraseColor
+ 
+ method setFgColor(III)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setFgColor(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(III)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setBgColor(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(III)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setEraseColor(vi1,vi2,vi3);   [  . iiiR] [  R iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setEraseColor
+ 
+ method fillRect(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().fillRect(vR1);   [  . RR] [  R RR] 
+        vR0.m_cDisplay.endUpdate();   [  . R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 fillRect
+ 
+ method fillRect(IIII)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cTmpRect.setTo@extra(vi1,vi2,((vi1+vi3)-1),((vi2+vi4)-1));   [  ii iiiiR] 
+        vR0.m_cWndBorder.getClient().fillRect(vR0.m_cTmpRect);   [  iii. RR...] [  iiiR RR...] 
+        vR0.m_cDisplay.endUpdate();   [  iii. R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 2 any 0 found 0 fillRect
+ 
+ method fillRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().fillRect(vR1,vR2);   [  . RRR] [  R RRR] 
+        vR0.m_cDisplay.endUpdate();   [  . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 fillRect
+ 
+ method drawBitmap(Ljx/wm/WBitmap;II)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawBitmap(vR1,vi2,vi3);   [  . iiRR] [  R iiRR] 
+        vR0.m_cDisplay.endUpdate();   [  . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelPoint;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawBitmap(vR1,vR2,vR3);   [  . RRRR] [  R RRRR] 
+        vR0.m_cDisplay.endUpdate();   [  . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawBitmap(vR1,vR2,vR3,vR4);   [  . RRRRR] [  R RRRRR] 
+        vR0.m_cDisplay.endUpdate();   [  . R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawString(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawString(vR1,vR1.length@extra());   [  i. iRR] [  iR iRR] 
+        vR0.m_cDisplay.endUpdate();   [  i. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 drawString
+ 
+ method drawString(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.m_cDisplay.startUpdate();   [   R] 
+        vR0.m_cWndBorder.getClient().drawString(vR1,vi2);   [  . iRR] [  R iRR] 
+        vR0.m_cDisplay.endUpdate();   [  . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 drawString
+ 
+ method setBitmap(Ljx/wm/WBitmap;)V {
+  +START:   #1
+        if vR1!=null goto B24;   
+  +B4:   #1
+        vR0.m_cWndBorder.getClient().setBitmap(vR0.m_cWndBorder.getBitmap());   [  i. RR] [  iR RR] 
+        goto +B35;   forward return[  i. ..]
+  +B24:   #1
+        vR0.m_cWndBorder.getClient().setBitmap(vR1);   [  .. RR] [  R. RR] 
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 1 any 1 found 0 setBitmap
+ 
+ method setClip(IIII)V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().setClip(vi1,vi2,vi3,vi4);   [  . iiiiR] [  R iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setClip
+ 
+ method KeyUp(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B22;   
+  +B6:   #1
+        b0 = s_cActiveWindow;    
+        b1 = new jx/wm/message/WKeyUpMessage(vR0,vR1,vR2);    [ RR  i][ RR . iRRRR]
+        b0.postMessage(b1);   [ RR . RR...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 KeyUp
+ 
+ method KeyDown(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B22;   
+  +B6:   #1
+        b0 = s_cActiveWindow;    
+        b1 = new jx/wm/message/WKeyDownMessage(vR0,vR1,vR2);    [ RR  i][ RR . iRRRR]
+        b0.postMessage(b1);   [ RR . RR...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 KeyDown
+ 
+ method handleKeyUp(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B22;   
+  +B6:   #1
+        b0 = s_cActiveWindow;    
+        b1 = new jx/wm/message/WKeyUpMessage(vR0,vR1,vR2);    [ RR  i][ RR . iRRRR]
+        b0.postMessage(b1);   [ RR . RR...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 handleKeyUp
+ 
+ method handleKeyDown(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B22;   
+  +B6:   #1
+        b0 = s_cActiveWindow;    
+        b1 = new jx/wm/message/WKeyDownMessage(vR0,vR1,vR2);    [ RR  i][ RR . iRRRR]
+        b0.postMessage(b1);   [ RR . RR...] 
+  +B22:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 handleKeyDown
+ 
+ method KeyUp(Ljx/wm/message/WKeyUpMessage;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B13;   
+  +B6:   #1
+        s_cActiveWindow.postMessage(vR0);   [  . RR] 
+  +B13:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 KeyUp
+ 
+ method KeyDown(Ljx/wm/message/WKeyDownMessage;)V {
+  +START:   #1
+        if s_cActiveWindow==null goto B13;   
+  +B6:   #1
+        s_cActiveWindow.postMessage(vR0);   [  . RR] 
+  +B13:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 KeyDown
+ 
+ method handleMouseDown(I)V {
+  +START:   #1
+        vR1 = s_cDisplay.getMousePos();    [  . R] 
+        vR2 = getActiveWindow@special(0);    [R  . i]
+        vR3 = 0;    
+        if vR2==null goto B32;   
+  +B18:   #1
+        if (vR2.m_nFlags.getValue() & 768)!=0 goto B36;   
+  +B32:   #1
+        vR3 = s_cLastMouseWindow;    
+  +B36:   #1
+        if vR3==null goto B48;   
+  +B40:   #1
+        vR3.makeFocus(1);   [RRR  . iR] 
+        goto +B63;   [RRR  . ..]
+  +B48:   #1
+        if getActiveWindow@special(1)==null goto B63;   
+  +B55:   #1
+        getActiveWindow@special(1).makeFocus(0);   [RRR  . iR] [RRR  R ii]
+  +B63:   #2
+        vR2 = getActiveWindow@special(0);    [RRR  . i.]
+        if vR2==null goto B83;   
+  +B72:   #1
+        if vR3==vR2 goto B83;   
+  +B77:   #1
+        vR2.mouseDown(vR1,vi0);   [RRR  . iRR] 
+  +B83:   #2
+        if vR3==null goto B93;   
+  +B87:   #1
+        vR3.mouseDown(vR1,vi0);   [RRR  . iRR] 
+  +B93:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 7 swaps 0 any 5 found 0 handleMouseDown
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint(vR1);    [ RR  i][ RR . iRR]
+        vR3.sub(vR0.m_cWndBorder.getLeftTop());   [R RR i RR.] 
+        if vR0.m_cTopView.m_cFrame.contains@extra(vR3)!=0 goto B96;   
+  +B34:   #1
+        if (vR0.m_nFlags.getValue() & 768)!=0 goto B96;   
+  +B48:   #1
+        vR0.m_bBorderHit = 1;   
+        if vR0.m_cWndBorder.mouseDown(vR3,vi2)!=1 goto B96;   
+  +B66:   #1
+        s_cDragWindow = vR0;   
+        vR3.sub(vR0.m_cTopView.getLeftTop());   [R RR i RR.] 
+        b1 = new jx/wm/message/WMouseDownMessage(vR1,vR3,vi2);    [ RR i i..][ RR i. iiRRR]
+        vR0.postMessage@this(b1);   [R RR i. RR...] 
+        return;   
+  +B96:   #3
+        vR3.sub(vR0.m_cTopView.getLeftTop());   [R RR i. RR...] 
+        b1 = new jx/wm/message/WMouseDownMessage(vR1,vR3,vi2);    [ RR i. i....][ RR i. iiRRR]
+        vR0.postMessage@this(b1);   [R RR i. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 9 swaps 3 any 0 found 1 mouseDown
+ 
+ method handleMouseUp(I)V {
+  +START:   #1
+        vR1 = s_cDisplay.getMousePos();    [ RR . R] 
+        vR2 = getActiveWindow@special(0);    [R RR . i]
+        vR3 = 0;    
+        if s_cDragWindow==null goto B130;   
+  +B20:   #1
+        vR4 = new jx/devices/fb/PixelPoint(vR1);    [ RR . i][ RR . iRR]
+        vR4.sub(s_cDragWindow.m_cWndBorder.getLeftTop());   [RRRR RR i RR.] 
+        if s_cDragWindow.m_cWndBorder.mouseUp(vR4,vi0)!=1 goto B98;   
+  +B60:   #1
+        vR4.sub(s_cDragWindow.m_cTopView.getLeftTop());   [RRRR RR i. RR.] 
+        b0 = s_cDragWindow;    
+        b1 = new jx/wm/message/WMouseUpMessage(vR1,vR4,vi0);    [ RR i. i..][ RR i. iiRRR]
+        b0.postMessage(b1);   [RRRR RR i. RR...] 
+        s_cDragWindow = 0;   
+        goto +B129;   forward return[RRRR RR i. .....]
+  +B98:   #1
+        vR4.sub(s_cDragWindow.m_cTopView.getLeftTop());   [RRRR RR i. RR...] 
+        b0 = s_cDragWindow;    
+        b1 = new jx/wm/message/WMouseUpMessage(vR1,vR4,vi0);    [ RR i. i....][ RR i. iiRRR]
+        b0.postMessage(b1);   [RRRR RR i. RR...] 
+  +B129:   #1
+        return;   
+  +B130:   #1
+        if vR2==null goto B148;   
+  +B134:   #1
+        if (vR2.m_nFlags.getValue() & 768)!=0 goto B152;   
+  +B148:   #1
+        vR3 = s_cLastMouseWindow;    
+  +B152:   #1
+        if vR3==null goto B162;   
+  +B156:   #1
+        vR3.mouseUp(vR1,vi0);   [RRRR RR .. iRR..] 
+  +B162:   #1
+        if vR2==null goto B177;   
+  +B166:   #1
+        if vR3==vR2 goto B177;   
+  +B171:   #1
+        vR2.mouseUp(vR1,vi0);   [RRRR RR .. iRR..] 
+  +B177:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 21 swaps 3 any 4 found 0 handleMouseUp
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint(vR1);    [ RR  i][ RR . iRR]
+        vR3.sub(vR0.m_cWndBorder.getLeftTop());   [R RR i RR.] 
+        vR3.sub(vR0.m_cTopView.getLeftTop());   [R RR ii RR.] 
+        b1 = new jx/wm/message/WMouseUpMessage(vR1,vR3,vi2);    [ RR ii i..][ RR ii. iiRRR]
+        vR0.postMessage@this(b1);   [R RR ii. RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 6 swaps 2 any 0 found 0 mouseUp
+ 
+ method handleMousePosition(II)V {
+  +START:   #1
+        vR2 = s_cDisplay.getMousePos();    [  . R] 
+        vi3 = (vi0-vR2.m_nX);    
+        vi4 = (vi1-vR2.m_nY);    
+        handleMouseMoved@special(vi3,vi4);   [Rii  . ii]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 0 any 2 found 0 handleMousePosition
+ 
+ method handleMouseMoved(II)V {
+  +START:   #1
+        s_cDisplay.moveMouseBy(vi0,vi1);   [ R . iiR] 
+        vR2 = s_cDisplay.getMousePos();    [ R . R..] 
+        vR3 = getActiveWindow@special(0);    [R R . i..]
+        vR4 = 0;    
+        if s_cDragWindow==null goto B67;   
+  +B29:   #1
+        vR5 = new jx/devices/fb/PixelPoint(vR2);    [ R . i..][ R . iRR]
+        vR5.sub(s_cDragWindow.m_cWndBorder.getLeftTop());   [RRRR R i RR.] 
+        s_cDragWindow.m_cWndBorder.mouseMoved(vR5,1);   [RRRR R i. iRR] 
+        return;   
+  +B67:   #1
+        if vR3==null goto B85;   
+  +B71:   #1
+        if (vR3.m_nFlags.getValue() & 768)!=0 goto B112;   
+  +B85:   #1
+        vR5 = getTopView@special().getChildAt(vR2);    [RRRR R .. RR.] [RRRR R R. R..]
+        if vR5==null goto B109;   
+  +B99:   #1
+        vR4 = vR5.getWindow();    [RRRR R .. R..] 
+        goto +B112;   [RRRR R .. ...]
+  +B109:   #1
+        vR4 = 0;    
+  +B112:   #2
+        if s_cLastMouseWindow==vR4 goto B171;   
+  +B120:   #1
+        if s_cLastMouseWindow==null goto B143;   
+  +B126:   #1
+        s_cLastMouseWindow.mouseMoved(vR2,4);   [RRRR R .. iRR] 
+        if s_cLastMouseWindow!=vR3 goto B143;   
+  +B141:   #1
+        vR3 = 0;    
+  +B143:   #2
+        if vR4==null goto B163;   
+  +B148:   #1
+        vR4.mouseMoved(vR2,3);   [RRRR R .. iRR] 
+        if vR4!=vR3 goto B163;   
+  +B161:   #1
+        vR3 = 0;    
+  +B163:   #2
+        s_cLastMouseWindow = vR4;   
+        goto +B191;   [RRRR R .. ...]
+  +B171:   #1
+        if vR4==null goto B191;   
+  +B176:   #1
+        vR4.mouseMoved(vR2,1);   [RRRR R .. iRR] 
+        if vR4!=vR3 goto B191;   
+  +B189:   #1
+        vR3 = 0;    
+  +B191:   #3
+        if vR3==null goto B201;   
+  +B195:   #1
+        vR3.mouseMoved(vR2,2);   [RRRR R .. iRR] 
+  +B201:   #1
+        if vR4==null goto B247;   
+  +B206:   #1
+        if vR4==vR3 goto B247;   
+  +B212:   #1
+        vR5 = new jx/devices/fb/PixelPoint(vR2);    [ R .. i..][ R .. iRR]
+        vR5.sub(vR4.m_cWndBorder.getLeftTop());   [RRRR R i. RR.] 
+        vR4.m_cWndBorder.mouseMoved(vR5,1);   [RRRR R i. iRR] 
+  +B247:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 29/29 wr 21 swaps 2 any 9 found 1 handleMouseMoved
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        vR3 = new jx/devices/fb/PixelPoint(vR1);    [ RR  i][ RR . iRR]
+        vR3.sub(vR0.m_cWndBorder.getLeftTop());   [R RR i RR.] 
+        if (vR0.m_nFlags.getValue() & 768)!=0 goto B44;   
+  +B34:   #1
+        vR0.m_cWndBorder.mouseMoved(vR3,vi2);   [R RR . iRR] 
+  +B44:   #1
+        vR3.sub(vR0.m_cTopView.getLeftTop());   [R RR i RR.] 
+        vR4 = vR0.lastMessage@this();    [R RR i R..] 
+        if vR4==null goto B111;   
+  +B66:   #1
+        if vR4.getCode()!=8 goto B111;   
+  +B76:   #1
+        vR5 = (jx/wm/message/WMouseMovedMessage)(vR4);    
+        if vi2!=vR5.m_nTransit goto B111;   
+  +B92:   #1
+        vR5.m_cScreenPos.setTo(vR1);   [RRR RR . RR.] 
+        vR5.m_cPos.setTo(vR3);   [RRR RR . RR.] 
+        return;   
+  +B111:   #3
+        b1 = new jx/wm/message/WMouseMovedMessage(vR1,vR3,vi2);    [ RR . i..][ RR . iiRRR]
+        vR0.postMessage@this(b1);   [RRR RR . RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 8 swaps 2 any 3 found 1 mouseMoved
+ 
+ method makeFocus(Z)V {
+  +START:   #1
+        if (vR0.m_nFlags.getValue() & 512)!=0 goto B29;   
+  +B14:   #1
+        if vi1==0 goto B25;   
+  +B18:   #1
+        setActiveWindow@special(vR0);   [   R]
+        goto +B29;   forward return[   .]
+  +B25:   #1
+        setActiveWindow@special(0);   [   R]
+  +B29:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 makeFocus
+ 
+ method startUpdate()V {
+  +START:   #1
+        hide@special();   [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 startUpdate
+ 
+ method endUpdate()V {
+  +START:   #1
+        unhide@special();   [   ]
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 endUpdate
+ 
+ method getFlags()Ljx/wm/WindowFlags; {
+  +START:   #1
+        return vR0.m_nFlags;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getActiveWindow(Z)Ljx/wm/WWindowImpl; {
+  +START:   #1
+        if vi0==0 goto B28;   
+  +B4:   #1
+        if s_cActiveWindow==null goto B28;   
+  +B10:   #1
+        if (s_cActiveWindow.m_nFlags.getValue() & 768)==0 goto B28;   
+  +B26:   #1
+        return 0;   
+  +B28:   #3
+        return s_cActiveWindow;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 1 found 0 getActiveWindow
+ 
+ method setActiveWindow(Ljx/wm/WWindowImpl;)V {
+  +START:   #1
+        vR1 = s_cActiveWindow;    
+        if vR1==null goto B20;   
+  +B8:   #1
+        if vR1==vR0 goto B20;   
+  +B13:   #1
+        s_cActiveWindow.windowActivated(0);   [R  . iR] 
+  +B20:   #2
+        s_cActiveWindow = vR0;   
+        if vR0==null goto B35;   
+  +B28:   #1
+        s_cActiveWindow.windowActivated(1);   [R  . iR] 
+  +B35:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 3 found 1 setActiveWindow
+ 
+ method windowActivated(Z)V {
+  +START:   #1
+        b1 = new jx/wm/message/WWindowActivatedMessage(vi1);    [ ?R  i][ ?R . iiR]
+        vR0.postMessage@this(b1);   [ ?R . RR.] 
+        if vR0.m_cWndBorder==null goto B45;   
+  +B19:   #1
+        s_cDisplay.startUpdate();   [ ?R . R..] 
+        hide@special();   [ ?R . ...]
+        vR0.m_cDecorator.setFocusState(vi1);   [ ?R . iR.] 
+        unhide@special();   [ ?R . ...]
+        s_cDisplay.endUpdate();   [ ?R . R..] 
+  +B45:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 4 swaps 0 any 0 found 0 windowActivated
+ 
+ method moveReply()V {
+  +START:   #1
+        if vR0.m_cWndBorder==null goto B14;   
+  +B7:   #1
+        vR0.m_cWndBorder.wndMoveReply();   [   R] 
+  +B14:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 moveReply
+ 
+ method close()V {
+  +START:   #1
+        b1 = new jx/wm/message/WRequestCloseMessage();    [ ?R  i][ ?R  iR]
+        vR0.postMessage@this(b1);   [ ?R  RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 close
+ 
+ method getScreenResolution()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cDisplay.getScreenResolution();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getScreenResolution
+ 
+ method quit()V {
+  +START:   #1
+        vR0.show@this(0,0);   [ ?R  iiR] 
+        b1 = new jx/wm/message/WQuitMessage();    [ ?R  i..][ ?R  iR.]
+        vR0.postMessage@this(b1);   [ ?R  RR.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 quit
+ 
+ method startRepaint()V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().beginUpdate();   [  . R] [  R R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 startRepaint
+ 
+ method endRepaint()V {
+  +START:   #1
+        vR0.m_cWndBorder.getClient().endUpdate();   [  . R] [  R R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 endRepaint
+ 
+ method enableBackBuffer(Z)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 enableBackBuffer
+ 
+ method resetBackBuffer()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 resetBackBuffer
+ 
+ method drawBackBuffer()V {
+  +START:   #1
+        if vR0.m_cBackBuffer==null goto B104;   
+  +B7:   #1
+        vR1 = vR0.m_cWndBorder.getClient();    [   R] 
+        vR2 = vR0.getFrame@this(0);    [R   iR] 
+        vR0.setClip@this(0,0,(vR2.width@extra()+1),(vR2.height@extra()+1));   [RR  ii iiiiR] 
+        vR0.setBitmap@this(vR0.m_cWndBorder.getBitmap());   [RR  iii RR...] 
+        vR0.m_cDisplay.startUpdate();   [RR  iii R....] 
+        vR0.m_cWndBorder.getClient().drawCloneMap(vR0.m_cBackBuffer,0,0);   [RR  iiii. iiRR.] [RR  iiiiR iiRR.] 
+        vR0.m_cWndBorder.getClient().drawBitmap(vR0.m_cBackBuffer,0,0);   [RR  iiiii. iiRR.] [RR  iiiiiR iiRR.] 
+        vR0.m_cDisplay.endUpdate();   [RR  iiiii. R....] 
+        vR0.setBitmap@this(vR0.m_cBackBuffer);   [RR  iiiiii RR...] 
+  +B104:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 11 swaps 5 any 0 found 0 drawBackBuffer
+ 
+ method serviceFinalizer()V {
+  +START:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        b0.println(b1.append@extra("*****  WWindowImpl: THIS SERVICE TERMINATES NOW *** WindowTitle: ").append@extra(vR0.m_cTitle).toString@extra());   [ RR iii. RR.] 
+        vR0.quit@this();   [ RR iii. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 7 swaps 3 any 0 found 0 serviceFinalizer
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_cWindows = 0;   
+        s_cActiveWindow = 0;   
+        s_cLastMouseWindow = 0;   
+        s_cDisplay = 0;   
+        s_cDragWindow = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 5 swaps 0 any 0 found 0 <clinit>
+}

@@ -1,0 +1,775 @@
+class org/jnode/fs/jfat/BootSector {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.BPB_BytsPerSec = 512;   
+        vR0.BPB_SecPerClus = 1;   
+        vR0.BPB_RsvdSecCnt = 1;   
+        vR0.BPB_NumFATs = 2;   
+        vR0.BPB_RootEntCnt = 224;   
+        vR0.BPB_TotSec16 = 2880;   
+        vR0.BPB_FATSz16 = 9;   
+        vR0.BPB_SecPerTrk = 18;   
+        vR0.BPB_NumHeads = 2;   
+        vR0.BPB_HiddSec = 0;   
+        vR0.sector = vR1;   
+        vR0.decode@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.BPB_BytsPerSec = 512;   
+        vR0.BPB_SecPerClus = 1;   
+        vR0.BPB_RsvdSecCnt = 1;   
+        vR0.BPB_NumFATs = 2;   
+        vR0.BPB_RootEntCnt = 224;   
+        vR0.BPB_TotSec16 = 2880;   
+        vR0.BPB_FATSz16 = 9;   
+        vR0.BPB_SecPerTrk = 18;   
+        vR0.BPB_NumHeads = 2;   
+        vR0.BPB_HiddSec = 0;   
+        vR0.MemManager = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vR0.sector = vR0.MemManager.alloc(vi1);   
+        vR0.dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method compute()V {
+  +START:   #1
+        vR0.RootDirSectors = (((vR0.BPB_RootEntCnt*32)+(vR0.BPB_BytsPerSec-1))/vR0.BPB_BytsPerSec);   
+        if vR0.BPB_FATSz16==0 goto B41;   
+  +B30:   #1
+        vR0.FATSz = vR0.BPB_FATSz16;   
+        goto +B49;   [   ]
+  +B41:   #1
+        vR0.FATSz = vR0.BPB_FATSz32;   
+  +B49:   #1
+        if vR0.isFat32@this()==0 goto B82;   
+  +B56:   #1
+        vR0.FirstDataSector = ((vR0.BPB_RsvdSecCnt+(vR0.BPB_NumFATs*vR0.FATSz))+vR0.RootDirSectors);   
+        goto +B100;   [   .]
+  +B82:   #1
+        vR0.FirstDataSector = (vR0.BPB_RsvdSecCnt+(vR0.BPB_NumFATs*vR0.FATSz));   
+  +B100:   #1
+        if vR0.BPB_TotSec16==0 goto B118;   
+  +B107:   #1
+        vR0.TotSec = vR0.BPB_TotSec16;   
+        goto +B126;   [   .]
+  +B118:   #1
+        vR0.TotSec = vR0.BPB_TotSec32;   
+  +B126:   #1
+        vR0.DataSec = (vR0.TotSec-((vR0.BPB_RsvdSecCnt+(vR0.BPB_NumFATs*vR0.FATSz))+vR0.RootDirSectors));   
+        vR0.CountOfClusters = (vR0.DataSec/vR0.BPB_SecPerClus);   
+        if vR0.CountOfClusters>=4085 goto B186;   
+  +B177:   #1
+        vR0.type = 12;   
+        goto +B210;   forward return[   .]
+  +B186:   #1
+        if vR0.CountOfClusters>=65525 goto B204;   
+  +B195:   #1
+        vR0.type = 16;   
+        goto +B210;   forward return[   .]
+  +B204:   #1
+        vR0.type = 32;   
+  +B210:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 38/38 wr 0 swaps 0 any 0 found 0 compute
+ 
+ method decode()V {
+  +START:   #1
+        vR0.BS_OEMName = vR0.getString@this(3,8);   
+        vR0.BPB_BytsPerSec = vR0.get16@this(11);   
+        vR0.BPB_SecPerClus = vR0.get8@this(13);   
+        vR0.BPB_RsvdSecCnt = vR0.get16@this(14);   
+        vR0.BPB_NumFATs = vR0.get8@this(16);   
+        vR0.BPB_RootEntCnt = vR0.get16@this(17);   
+        vR0.BPB_TotSec16 = vR0.get16@this(19);   
+        vR0.BPB_Media = vR0.get8@this(21);   
+        vR0.BPB_FATSz16 = vR0.get16@this(22);   
+        vR0.BPB_SecPerTrk = vR0.get16@this(24);   
+        vR0.BPB_NumHeads = vR0.get16@this(26);   
+        vR0.BPB_HiddSec = vR0.get32@this(28);   
+        vR0.BPB_TotSec32 = vR0.get32@this(32);   
+        if vR0.BPB_FATSz16!=0 goto B148;   
+  +B138:   #1
+        vR0.BPB_FATSz32 = vR0.get32@this(36);   
+  +B148:   #1
+        vR0.compute@special();   [   R..] 
+        if vR0.isFat32@this()!=0 goto B226;   
+  +B159:   #1
+        vR0.BS_DrvNum = vR0.get8@this(36);   
+        vR0.BS_Reserved1 = vR0.get8@this(37);   
+        vR0.BS_BootSig = vR0.get8@this(38);   
+        vR0.BS_VolID = vR0.get32@this(39);   
+        vR0.BS_VolLab = vR0.getString@this(43,11);   
+        vR0.BS_FilSysType = vR0.getString@this(54,8);   
+        goto +B352;   forward return[   ...]
+  +B226:   #1
+        vR0.BPB_ExtFlags = vR0.get16@this(40);   
+        vR0.BPB_FSVer = vR0.get16@this(42);   
+        vR0.BPB_RootClus = vR0.get32@this(44);   
+        vR0.BPB_FSInfo = vR0.get16@this(48);   
+        vR0.BPB_BkBootSec = vR0.get16@this(50);   
+        vR0.BPB_Reserved = vR0.getBytes@this(52,12);   
+        vR0.BS_DrvNum = vR0.get8@this(64);   
+        vR0.BS_Reserved1 = vR0.get8@this(65);   
+        vR0.BS_BootSig = vR0.get8@this(66);   
+        vR0.BS_VolID = vR0.get32@this(67);   
+        vR0.BS_VolLab = vR0.getString@this(71,11);   
+        vR0.BS_FilSysType = vR0.getString@this(82,8);   
+  +B352:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 67/67 wr 0 swaps 0 any 0 found 0 decode
+ 
+ method encode()V {
+  +START:   #1
+        vR0.setBytes@this(0,3,vR0.BS_jmpBoot);   [  i RiiR] 
+        vR0.setString@this(3,8,vR0.BS_OEMName);   [  ii RiiR] 
+        vR0.set16@this(11,vR0.BPB_BytsPerSec);   [  iii iiR.] 
+        vR0.set8@this(13,vR0.BPB_SecPerClus);   [  iiii iiR.] 
+        vR0.set16@this(14,vR0.BPB_RsvdSecCnt);   [  iiiii iiR.] 
+        vR0.set8@this(16,vR0.BPB_NumFATs);   [  iiiiii iiR.] 
+        vR0.set16@this(17,vR0.BPB_RootEntCnt);   [  iiiiiii iiR.] 
+        vR0.set16@this(19,vR0.BPB_TotSec16);   [  iiiiiiii iiR.] 
+        vR0.set8@this(21,vR0.BPB_Media);   [  iiiiiiiii iiR.] 
+        vR0.set16@this(22,vR0.BPB_FATSz16);   [  iiiiiiiiii iiR.] 
+        vR0.set16@this(24,vR0.BPB_SecPerTrk);   [  iiiiiiiiiii iiR.] 
+        vR0.set16@this(26,vR0.BPB_NumHeads);   [  iiiiiiiiiiii iiR.] 
+        vR0.set32@this(28,(long)vR0.BPB_HiddSec);   [  iiiiiiiiiiii ??iR] 
+        vR0.set32@this(32,(long)vR0.BPB_TotSec32);   [  iiiiiiiiiiii ??iR] 
+        if vR0.isFat32@this()!=0 goto B218;   
+  +B150:   #1
+        vR0.set8@this(36,vR0.BS_DrvNum);   [  i........... iiR.] 
+        vR0.set8@this(37,vR0.BS_Reserved1);   [  ii.......... iiR.] 
+        vR0.set8@this(38,vR0.BS_BootSig);   [  iii......... iiR.] 
+        vR0.set32@this(39,(long)vR0.BS_VolID);   [  iii......... ??iR] 
+        vR0.setString@this(43,11,vR0.BS_VolLab);   [  iiii........ RiiR] 
+        vR0.setString@this(54,8,vR0.BS_FilSysType);   [  iiiii....... RiiR] 
+        goto +B357;   forward return[  iiiii....... ....]
+  +B218:   #1
+        vR0.set32@this(36,(long)vR0.BPB_FATSz32);   [  ............ ??iR] 
+        vR0.set16@this(40,vR0.BPB_ExtFlags);   [  i........... iiR.] 
+        vR0.set16@this(42,vR0.BPB_FSVer);   [  ii.......... iiR.] 
+        vR0.set32@this(44,(long)vR0.BPB_RootClus);   [  ii.......... ??iR] 
+        vR0.set16@this(48,vR0.BPB_FSInfo);   [  iii......... iiR.] 
+        vR0.set16@this(50,vR0.BPB_BkBootSec);   [  iiii........ iiR.] 
+        vR0.setBytes@this(52,12,vR0.BPB_Reserved);   [  iiiii....... RiiR] 
+        vR0.set8@this(64,vR0.BS_DrvNum);   [  iiiiii...... iiR.] 
+        vR0.set8@this(65,vR0.BS_Reserved1);   [  iiiiiii..... iiR.] 
+        vR0.set8@this(66,vR0.BS_BootSig);   [  iiiiiiii.... iiR.] 
+        vR0.set32@this(67,(long)vR0.BS_VolID);   [  iiiiiiii.... ??iR] 
+        vR0.setString@this(71,11,vR0.BS_VolLab);   [  iiiiiiiii... RiiR] 
+        vR0.setString@this(82,8,vR0.BS_FilSysType);   [  iiiiiiiiii.. RiiR] 
+  +B357:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 61/61 wr 27 swaps 27 any 0 found 0 encode
+ 
+ method get8(I)I {
+  +START:   #1
+        return vR0.sector.get8(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get8
+ 
+ method set8(II)V {
+  +START:   #1
+        vR0.sector.set8(vi1,(byte)vi2);   [  i iiR] 
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 set8
+ 
+ method get16(I)I {
+  +START:   #1
+        return vR0.sector.getLittleEndian16(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get16
+ 
+ method set16(II)V {
+  +START:   #1
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 set16
+ 
+ method get32(I)I {
+  +START:   #1
+        return vR0.sector.getLittleEndian32(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get32
+ 
+ method set32(IJ)V {
+  +START:   #1
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 set32
+ 
+ method getString(II)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder(vi2);    [ R  i][ R . iiR]
+        vi4 = 0;    
+  +B12:   #1
+        if vi4>=vi2 goto B47;   
+  +B18:   #1
+        vi5 = vR0.sector.get8((vi1+vi4));    [Ri R i iR.] 
+        vR3.append@extra((char)vi5);   [Rii R ii iR.] 
+        vi4++;   
+        goto +B12;   [Rii R ii ...]
+  +B47:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 2 any 2 found 0 getString
+ 
+ method setString(IILjava/lang/String;)V {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vi2 goto B38;   
+  +B9:   #1
+        if vi4>=vR3.length@extra() goto B29;   
+  +B18:   #1
+        vi5 = vR3.charAt@extra(vi4);    [i   iR] 
+        goto +B32;   [ii   ..]
+  +B29:   #1
+        vi5 = 0;    
+  +B32:   #1
+        vi4++;   
+        goto +B3;   [ii   ..]
+  +B38:   #1
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 3 found 1 setString
+ 
+ method getBytes(II)[B {
+  +START:   #1
+        vR3 = new byte[vi2];    
+        vR0.sector.copyToByteArray(vR3,0,vi1,vi2);   [R   iiiRR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getBytes
+ 
+ method setBytes(II[B)V {
+  +START:   #1
+        arraycopy@special(vR3,0,vR0.sector,vi1,vi2);   [  R iiRiR]
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 setBytes
+ 
+ method fatType()Ljava/lang/String; {
+  +START:   #1
+        lswitch (vR0.type) { 
+           12:B40
+           16:B43
+           32:B46
+           ::B49
+        };   
+  +B40:   #1
+        return "FAT12";   
+  +B43:   #1
+        return "FAT16";   
+  +B46:   #1
+        return "FAT32";   
+  +B49:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 fatType
+ 
+ method isDirty()Z {
+  +START:   #1
+        return vR0.dirty;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirty
+ 
+ method isFat12()Z {
+  +START:   #1
+        if vR0.type!=12 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isFat12
+ 
+ method isFat16()Z {
+  +START:   #1
+        if vR0.type!=16 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isFat16
+ 
+ method isFat32()Z {
+  +START:   #1
+        if vR0.type!=32 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  ]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isFat32
+ 
+ method fatSize()I {
+  +START:   #1
+        return vR0.type;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 fatSize
+ 
+ method getMediumDescriptor()I {
+  +START:   #1
+        return vR0.BPB_Media;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMediumDescriptor
+ 
+ method getSectorsPerFat()I {
+  +START:   #1
+        return vR0.FATSz;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSectorsPerFat
+ 
+ method getBytesPerSector()I {
+  +START:   #1
+        return vR0.BPB_BytsPerSec;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBytesPerSector
+ 
+ method getClusterSize()I {
+  +START:   #1
+        return (vR0.BPB_SecPerClus*vR0.BPB_BytsPerSec);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getClusterSize
+ 
+ method getSectorsPerCluster()I {
+  +START:   #1
+        return vR0.BPB_SecPerClus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSectorsPerCluster
+ 
+ method getNrReservedSectors()I {
+  +START:   #1
+        return vR0.BPB_RsvdSecCnt;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNrReservedSectors
+ 
+ method getNrFats()I {
+  +START:   #1
+        return vR0.BPB_NumFATs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNrFats
+ 
+ method getRootDirectoryStartCluster()I {
+  +START:   #1
+        return vR0.BPB_RootClus;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRootDirectoryStartCluster
+ 
+ method getCountOfClusters()I {
+  +START:   #1
+        return vR0.CountOfClusters;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCountOfClusters
+ 
+ method getFirstDataSector()I {
+  +START:   #1
+        return vR0.FirstDataSector;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstDataSector
+ 
+ method getNrRootDirEntries()I {
+  +START:   #1
+        return vR0.BPB_RootEntCnt;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNrRootDirEntries
+ 
+ method getVolumeLabel()Ljava/lang/String; {
+  +START:   #1
+        return vR0.BS_VolLab;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVolumeLabel
+ 
+ method getVolumeId()J {
+  +START:   #1
+        return (long)vR0.BS_VolID;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getVolumeId
+ 
+ method getOEMName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.BS_OEMName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOEMName
+ 
+ method setBS_JmpBoot([B)V {
+  +START:   #1
+        vR0.setBytes@this(0,3,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_JmpBoot
+ 
+ method setBS_OemName(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.setString@this(3,8,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_OemName
+ 
+ method setBPB_BytesPerSector(I)V {
+  +START:   #1
+        vR0.set16@this(11,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_BytesPerSector
+ 
+ method setBPB_SecPerCluster(I)V {
+  +START:   #1
+        vR0.set8@this(13,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_SecPerCluster
+ 
+ method setBPB_RsvSecCount(I)V {
+  +START:   #1
+        vR0.set16@this(14,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_RsvSecCount
+ 
+ method setBPB_NoFATs(I)V {
+  +START:   #1
+        vR0.set8@this(16,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_NoFATs
+ 
+ method setBPB_RootEntCnt(I)V {
+  +START:   #1
+        vR0.set16@this(17,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_RootEntCnt
+ 
+ method setBPB_TotSec16(I)V {
+  +START:   #1
+        vR0.set16@this(19,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_TotSec16
+ 
+ method setBPB_MediumDescriptor(I)V {
+  +START:   #1
+        vR0.set8@this(21,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_MediumDescriptor
+ 
+ method setBPB_FATSz16(I)V {
+  +START:   #1
+        vR0.set16@this(22,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_FATSz16
+ 
+ method setBPB_SecPerTrk(I)V {
+  +START:   #1
+        vR0.set16@this(24,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_SecPerTrk
+ 
+ method setBPB_NumHeads(I)V {
+  +START:   #1
+        vR0.set16@this(26,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_NumHeads
+ 
+ method setBPB_HiddSec(J)V {
+  +START:   #1
+        vR0.set32@this(28,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_HiddSec
+ 
+ method setBPB_TotSec32(J)V {
+  +START:   #1
+        vR0.set32@this(32,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_TotSec32
+ 
+ method setBPB_FATSz32(J)V {
+  +START:   #1
+        vR0.set32@this(36,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_FATSz32
+ 
+ method setBPB_ExtFlags(I)V {
+  +START:   #1
+        vR0.set16@this(40,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_ExtFlags
+ 
+ method setBPB_FSVer(I)V {
+  +START:   #1
+        vR0.set16@this(42,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_FSVer
+ 
+ method setBPB_RootClus(J)V {
+  +START:   #1
+        vR0.set32@this(44,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_RootClus
+ 
+ method setBPB_FSInfo(I)V {
+  +START:   #1
+        vR0.set16@this(48,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_FSInfo
+ 
+ method setBPB_BkBootSec(I)V {
+  +START:   #1
+        vR0.set16@this(50,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_BkBootSec
+ 
+ method setBPB_Reserved([B)V {
+  +START:   #1
+        vR0.setBytes@this(52,12,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBPB_Reserved
+ 
+ method setBS_DrvNum(I)V {
+  +START:   #1
+        vR0.set8@this(64,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_DrvNum
+ 
+ method setBS_Reserved1(I)V {
+  +START:   #1
+        vR0.set8@this(65,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_Reserved1
+ 
+ method setBS_BootSig(I)V {
+  +START:   #1
+        vR0.set8@this(66,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_BootSig
+ 
+ method setBS_VolID(J)V {
+  +START:   #1
+        vR0.set32@this(67,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_VolID
+ 
+ method setBS_VolLab(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.setString@this(71,11,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_VolLab
+ 
+ method setBS_FilSysType(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.setString@this(82,8,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_FilSysType
+ 
+ method setBS_Identifier([B)V {
+  +START:   #1
+        vR0.setBytes@this(510,2,vR1);   [   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBS_Identifier
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
+        out.println("***********************  BootSector *************************");   [R RR i. RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("fatType: ").append@extra(vR0.fatType@this()).toString@extra());   [R RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("isDirty: ").append@extra(vR0.isDirty@this()).toString@extra());   [R RR iiiiiii. RR.] 
+        out.println("*************************************************************");   [R RR iiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiii. i..][ RR iiiiiiii. iR.]
+        b0.println(b1.append@extra("BS_OEMName: ").append@extra(vR0.BS_OEMName).toString@extra());   [R RR iiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiii. i..][ RR iiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_BytsPerSec: ").append@extra(vR0.BPB_BytsPerSec).toString@extra());   [R RR iiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_SecPerClus: ").append@extra(vR0.BPB_SecPerClus).toString@extra());   [R RR iiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_RsvdSecCnt: ").append@extra(vR0.BPB_RsvdSecCnt).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_NumFATs: ").append@extra(vR0.BPB_NumFATs).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_RootEntCnt: ").append@extra(vR0.BPB_RootEntCnt).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_TotSec16: ").append@extra(vR0.BPB_TotSec16).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_FATSz16: ").append@extra(vR0.BPB_FATSz16).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_SecPerTrk: ").append@extra(vR0.BPB_SecPerTrk).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_NumHeads: ").append@extra(vR0.BPB_NumHeads).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_HiddSec: ").append@extra(vR0.BPB_HiddSec).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. i..][ RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. iR.]
+        b0.println(b1.append@extra("BPB_TotSec32: ").append@extra(vR0.BPB_TotSec32).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. RR.] 
+        out.println();   [R RR iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii. R..] 
+        if vR0.isFat32@this()==0 goto B567;   
+  +B445:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............................................. i..][ RR ............................................. iR.]
+        b0.println(b1.append@extra("BPB_FATSz32: ").append@extra(vR0.BPB_FATSz32).toString@extra());   [R RR iii.......................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii.......................................... i..][ RR iii.......................................... iR.]
+        b0.println(b1.append@extra("BPB_RootClus: ").append@extra(vR0.BPB_RootClus).toString@extra());   [R RR iiiiii....................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii....................................... i..][ RR iiiiii....................................... iR.]
+        b0.println(b1.append@extra("BPB_FSInfo: ").append@extra(vR0.BPB_FSInfo).toString@extra());   [R RR iiiiiiiii.................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii.................................... i..][ RR iiiiiiiii.................................... iR.]
+        b0.println(b1.append@extra("BPB_BkBootSec: ").append@extra(vR0.BPB_BkBootSec).toString@extra());   [R RR iiiiiiiiiiii................................. RR.] 
+        out.println();   [R RR iiiiiiiiiiii................................. R..] 
+  +B567:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ............................................. i..][ RR ............................................. iR.]
+        b0.println(b1.append@extra("BS_VolLab: ").append@extra(vR0.BS_VolLab).toString@extra());   [R RR iii.......................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iii.......................................... i..][ RR iii.......................................... iR.]
+        b0.println(b1.append@extra("BS_FilSysType: ").append@extra(vR0.BS_FilSysType).toString@extra());   [R RR iiiiii....................................... RR.] 
+        out.println();   [R RR iiiiii....................................... R..] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiii....................................... i..][ RR iiiiii....................................... iR.]
+        b0.println(b1.append@extra("RootDirSectors: ").append@extra(vR0.RootDirSectors).toString@extra());   [R RR iiiiiiiii.................................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiii.................................... i..][ RR iiiiiiiii.................................... iR.]
+        b0.println(b1.append@extra("FATSz: ").append@extra(vR0.FATSz).toString@extra());   [R RR iiiiiiiiiiii................................. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiii................................. i..][ RR iiiiiiiiiiii................................. iR.]
+        b0.println(b1.append@extra("FirstDataSector: ").append@extra(vR0.FirstDataSector).toString@extra());   [R RR iiiiiiiiiiiiiii.............................. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiii.............................. i..][ RR iiiiiiiiiiiiiii.............................. iR.]
+        b0.println(b1.append@extra("TotSec: ").append@extra(vR0.TotSec).toString@extra());   [R RR iiiiiiiiiiiiiiiiii........................... RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiii........................... i..][ RR iiiiiiiiiiiiiiiiii........................... iR.]
+        b0.println(b1.append@extra("DataSec: ").append@extra(vR0.DataSec).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiii........................ RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiiiiiiiiiiiiii........................ i..][ RR iiiiiiiiiiiiiiiiiiiii........................ iR.]
+        b0.println(b1.append@extra("CountOfClusters: ").append@extra(vR0.CountOfClusters).toString@extra());   [R RR iiiiiiiiiiiiiiiiiiiiiiii..................... RR.] 
+        out.print("*************************************************************");   [R RR iiiiiiiiiiiiiiiiiiiiiiiii.................... RR.] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 80/80 wr 192 swaps 81 any 0 found 0 toString
+}

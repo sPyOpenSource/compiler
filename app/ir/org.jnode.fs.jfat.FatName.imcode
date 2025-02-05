@@ -1,0 +1,376 @@
+class org/jnode/fs/jfat/FatName {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatDirectory;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.parent = vR1;   
+        vR0.name = vR2;   
+        vR0.longName = longName@special(vR2);   
+        vR0.lossy = 0;   
+        vR0.fit = 1;   
+        vR0.stripped = 0;   
+        vR0.basis = new byte[11];   
+        fill@special(vR0.basis,0,vR0.basis.length,32);   [ ?R Ri iiiR]
+  +B60:   #1
+        vR0.basisName@special();   [ ?R .. R...] 
+  +B64:   #1
+        goto +B68;   [ ?R .. ....]
+  +H67<caught exception>:   #1 reference
+        vR3 = <caught exception>;    
+  +B68:   #1
+        if vR0.isMangled@this()==0 goto B140;   
+  +B75:   #1
+        vR0.numericTail@special();   [ ?R .. R...] 
+        vR3 = new byte[8];    
+        vR4 = new byte[3];    
+        arraycopy@special(vR0.basis,0,vR3,0,8);   [RR ?R R. iiRiR]
+        arraycopy@special(vR0.basis,8,vR4,0,3);   [RR ?R RR iiRiR]
+        vR0.shortBase = "";   
+        vR0.shortExt = "";   
+        b1 = new org/jnode/fs/jfat/FatCase();    [ ?R RR i....][ ?R RR iR...]
+        vR0.shortCase = b1;   
+        goto +B240;   [RR ?R RR .....]
+  +B140:   #1
+        vi3 = vR0.longName.indexOf@extra(46);    [ii ?R .. iR...] 
+        if vi3!=-1 goto B172;   
+  +B155:   #1
+        vR0.shortBase = vR0.longName;   
+        vR0.shortExt = "";   
+        goto +B221;   [ii ?R .. .....]
+  +B172:   #1
+        vR0.shortBase = vR0.longName.substring@extra(0,vi3);   
+        if vi3!=(vR0.longName.length@extra()-1) goto B207;   
+  +B198:   #1
+        vR0.shortExt = "";   
+        goto +B221;   [ii ?R .. .....]
+  +B207:   #1
+        vR0.shortExt = vR0.longName.substring@extra((vi3+1));   
+  +B221:   #2
+        b1 = new org/jnode/fs/jfat/FatCase(vR0.shortBase,vR0.shortExt);    [ ?R .. i....][ ?R .. iRRR.]
+        vR0.shortCase = b1;   
+  +B240:   #1
+        if vR0.shortExt.length@extra()<=0 goto B286;   
+  +B250:   #1
+        b1 = new java/lang/StringBuilder();    [ ?R .. i....][ ?R .. iR...]
+        vR0.shortName = b1.append@extra(vR0.shortBase).append@extra(".").append@extra(vR0.shortExt).toString@extra();   
+        goto +B294;   [RR ?R iii... .....]
+  +B286:   #1
+        vR0.shortName = vR0.shortBase;   
+  +B294:   #1
+        vi3 = (vR0.longName.length@extra()/13);    
+        if (vR0.longName.length@extra()%13)==0 goto B321;   
+  +B318:   #1
+        vi3++;   
+  +B321:   #1
+        vR0.numberOfComponents = vi3;   
+        vR0.components = new java/lang/String()[vi3];   
+        vi4 = 0;    
+  +B337:   #1
+        if vi4>=(vi3-1) goto B377;   
+  +B345:   #1
+        vR0.components[vi4] = vR0.longName.substring@extra((vi4*13),((vi4+1)*13));   
+        vi4++;   
+        goto +B337;   [ii ?R ii.... .....]
+  +B377:   #1
+        vR0.components[(vi3-1)] = vR0.longName.substring@extra(((vi3-1)*13));   
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+60 - 64 handler 67 type 48
+ }
+// Register: rd 68/68 wr 28 swaps 6 any 5 found 1 <init>
+ 
+ method stripChar([BBZ)[B {
+  +START:   #1
+        if vi3!=0 goto B8;   
+  +B4:   #1
+        b0 = 1;    
+        goto +B9b0;   [ i  ]
+  +B8:   #1
+        b0 = 0;    
+  +B9b0:   #1 int
+        vi4 = b0;    
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 0 any 2 found 0 stripChar
+ 
+ method collide([B)Z {
+  +START:   #1
+        return vR0.parent.collide(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 collide
+ 
+ method encode()[B {
+  +START:   #1
+        vR1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=vR1.length goto B77;   
+  +B10:   #1
+        if vR1[vi2]>=32 goto B31;   
+  +B18:   #1
+        vR1[vi2] = 95;   
+        vR0.lossy = 1;   
+        goto +B71;   [Ri   ]
+  +B31:   #1
+        vi3 = 0;    
+  +B33:   #1
+        if vi3>=short_illegal.length goto B71;   
+  +B41:   #1
+        if vR1[vi2]!=short_illegal[vi3] goto B65;   
+  +B52:   #1
+        vR1[vi2] = 95;   
+        vR0.lossy = 1;   
+        goto +B71;   [Rii  . .]
+  +B65:   #1
+        vi3++;   
+        goto +B33;   [Rii  . .]
+  +B71:   #3
+        vi2++;   
+        goto +B4;   [Ri  . .]
+  +B77:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 6 swaps 0 any 4 found 1 encode
+ 
+ method strip([B)[B {
+  +START:   #1
+        return vR0.stripChar@special(vR0.stripChar@special(vR1,32,0),46,1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 strip
+ 
+ method primary([B)V {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=vR1.length goto B48;   
+  +B8:   #1
+        if vR1[vi2]!=46 goto B19;   
+  +B16:   #1
+        goto +B48;   [i   ]
+  +B19:   #1
+        if vi2<8 goto B33;   
+  +B25:   #1
+        vR0.fit = 0;   
+        goto +B48;   [iii   ]
+  +B33:   #1
+        vR0.basis[vi2] = vR1[vi2];   
+        vi2++;   
+        goto +B2;   [iii   ]
+  +B48:   #3
+        vi2 = (vR1.length-1);    
+  +B53:   #1
+        if vi2< 0 goto B74;   
+  +B57:   #1
+        if vR1[vi2]!=46 goto B68;   
+  +B65:   #1
+        goto +B74;   [i   ]
+  +B68:   #1
+        vi2--;   
+        goto +B53;   [iii   ]
+  +B74:   #2
+        if vi2==-1 goto B147;   
+  +B79:   #1
+        if vi2<=8 goto B90;   
+  +B85:   #1
+        vR0.fit = 0;   
+  +B90:   #1
+        vi4 = (vi2+1);    
+        vi3 = vi4;    
+  +B98:   #1
+        if vi3>=vR1.length goto B136;   
+  +B104:   #1
+        if (vi3-vi4)<3 goto B115;   
+  +B112:   #1
+        goto +B136;   [iii   ]
+  +B115:   #1
+        vR0.basis[((vi3-vi4)+8)] = vR1[vi3];   
+        vi3++;   
+        goto +B98;   [iii   ]
+  +B136:   #2
+        if vi3==vR1.length goto B147;   
+  +B142:   #1
+        vR0.fit = 0;   
+  +B147:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 34/34 wr 7 swaps 0 any 13 found 0 primary
+ 
+ method basisName()V {
+  +START:   #1
+        vR0.primary@special(vR0.strip@special(vR0.encode@special()));   [  ii RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 2 any 0 found 0 basisName
+ 
+ method numericTail()V {
+  +START:   #1
+        vR5 = new byte[11];    
+        vR6 = new java/lang/StringBuilder(7);    [ RRR  i.][ RRR . iiR]
+        vi4 = 7;    
+  +B21:   #1
+        if vi4< 0 goto B47;   
+  +B26:   #1
+        if vR0.basis[vi4]==32 goto B41;   
+  +B38:   #1
+        goto +B47;   [???iRR RRR . ...]
+  +B41:   #1
+        vi4--;   
+        goto +B21;   [iiiiRRR RRR . ...]
+  +B47:   #2
+        vi1 = 1;    
+  +B49:   #1
+        if vi1>999999 goto B204;   
+  +B55:   #1
+        arraycopy@special(vR0.basis,0,vR5,0,11);   [i??iRR RRR R iiRiR]
+        vR6.setLength@extra(0);   [i??iRR RRR R iR...] 
+        vR6.append@extra(vi1);   [i??iRR RRR R iR...] 
+        vR7 = 0;    
+        if vR7.length<=6 goto B121;   
+  -B92:   #1
+        b0 = new java/io/IOException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i....][ RRR . iR...]
+        b1.<init>@special(b2.append@extra("tail too long: ").append@extra(vR7.length).toString@extra());   [i??iRRR RRR iii. RR...] 
+        throw b0;   
+  +B121:   #1
+        if (vi4+vR7.length)>=8 goto B140;   
+  +B132:   #1
+        vi3 = (vi4+1);    
+        goto +B147;   [i?iiRRR RRR .... .....]
+  +B140:   #1
+        vi3 = (7-vR7.length);    
+  +B147:   #1
+        vR5[vi3] = 126;   
+        vi2 = vi3;    
+  +B155:   #1
+        if vi2>=(vi3+vR7.length) goto B182;   
+  +B164:   #1
+        vR5[(vi2+1)] = vR7[(vi2-vi3)];   
+        vi2++;   
+        goto +B155;   [iiiiRRR RRR .... .....]
+  +B182:   #1
+        if vR0.collide@this(vR5)!=0 goto B198;   
+  +B191:   #1
+        vR0.basis = vR5;   
+        return;   
+  +B198:   #1
+        vi1++;   
+        goto +B49;   [iiiiRRR RRR .... .....]
+  -B204:   #1
+        throw new java/io/IOException("tail too large");   
+  +END:   #1
+ }
+// Register: rd 36/36 wr 20 swaps 3 any 10 found 0 numericTail
+ 
+ method getName()[B {
+  +START:   #1
+        return vR0.basis;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getName
+ 
+ method getShortName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortName
+ 
+ method getLongName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.longName;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLongName
+ 
+ method isMangled()Z {
+  +START:   #1
+        if vR0.lossy!=0 goto B21;   
+  +B7:   #1
+        if vR0.stripped!=0 goto B21;   
+  +B14:   #1
+        if vR0.fit!=0 goto B25;   
+  +B21:   #2
+        b0 = 1;    
+        goto +B26b0;   forward return[ i  ]
+  +B25:   #1
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 isMangled
+ 
+ method getShortBase()Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortBase;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortBase
+ 
+ method getShortExt()Ljava/lang/String; {
+  +START:   #1
+        return vR0.shortExt;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortExt
+ 
+ method getShortCase()Lorg/jnode/fs/jfat/FatCase; {
+  +START:   #1
+        return vR0.shortCase;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortCase
+ 
+ method getNumberOfComponents()I {
+  +START:   #1
+        return vR0.numberOfComponents;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNumberOfComponents
+ 
+ method getComponents()[Ljava/lang/String; {
+  +START:   #1
+        return vR0.components;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getComponents
+ 
+ method getComponent(I)Ljava/lang/String; {
+  +START:   #1
+        return vR0.components[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getComponent
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new byte[15];    
+        b0[0] = 34;   
+        b0[1] = 42;   
+        b0[2] = 43;   
+        b0[3] = 44;   
+        b0[4] = 47;   
+        b0[5] = 58;   
+        b0[6] = 59;   
+        b0[7] = 60;   
+        b0[8] = 61;   
+        b0[9] = 62;   
+        b0[10] = 63;   
+        b0[11] = 91;   
+        b0[12] = 92;   
+        b0[13] = 93;   
+        b0[14] = 124;   
+        short_illegal = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 1 swaps 0 any 0 found 1 <clinit>
+}

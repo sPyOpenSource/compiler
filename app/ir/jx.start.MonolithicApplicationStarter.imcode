@@ -1,0 +1,110 @@
+class jx/start/MonolithicApplicationStarter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        vR2 = (jx/zero/CPUManager)(vR0.lookup("CPUManager"));    
+        vR3 = new java/util/Vector();    [ RRR ii. i..][ RRR ii. iR.]
+        vi4 = 0;    
+  +B51:   #1
+        if vi4>=vR1.length goto B446;   
+  +B58:   #1
+        vR5 = new jx/start/MonolithicApplicationStarter$StartInfo();    [ RRR ... i..][ RRR ... iR.]
+        vR6 = vR1[vi4];    
+        vR7 = vR1[(vi4+1)];    
+        vR5.name = vR6;   
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b0.println(b1.append@extra("Starting ").append@extra(vR6).append@extra(" in lib ").append@extra(vR7).toString@extra());   [RRiRRR RRR iii... RR...] 
+        vi8 = (vi4+2);    
+  +B130:   #1
+        if vi8>=vR1.length goto B153;   
+  +B137:   #1
+        if vR1[vi8]!=null goto B147;   
+  +B144:   #1
+        goto +B153;   [RRiRRRi RRR ...... .....]
+  +B147:   #1
+        vi8++;   
+        goto +B130;   [RRiRRRiRRiRRRRRiiR RRR ...... .....]
+  +B153:   #2
+        if vi8!=vR1.length goto B170;   
+  -B160:   #1
+        throw new java/lang/Error("no null found");   
+  +B170:   #1
+        vR9 = new java/lang/String()[((vi8-vi4)-2)];    
+        arraycopy@special(vR1,(vi4+2),vR9,0,vR9.length);   [RRiRRRiR RRR ii.... iiRiR]
+        b1 = new java/lang/Object()[1];    
+        b1[0] = vR9;   
+        vR5.args = b1;   
+        vi4 = vi8;    
+        vR10 = (jx/zero/ComponentManager)(vR0.lookup("ComponentManager"));    
+        vi11 = vR10.load(vR7);    [RRiRRRiRR RRR iii... RR...] 
+        vR2.executeClassConstructors(vi11);   [RRiRRRiRRi RRR iii... iR...] 
+        vR12 = vR2.getClass(vR6);    [RRiRRRiRRi RRR iii... RR...] 
+        if vR12!=null goto B294;   
+  -B261:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b1.<init>@special(b2.append@extra("Class ").append@extra(vR6).append@extra(" not found.").toString@extra());   [RRiRRRiRRiR RRR iii... RR...] 
+        throw b0;   
+  +B294:   #1
+        vR13 = vR12.getMethods();    [RRiRRRiRRiR RRR ...... R....] 
+        vR14 = "main";    
+        vR15 = "([Ljava/lang/String;)V";    
+        vR16 = vR13;    
+        vi17 = vR16.length;    
+        vi18 = 0;    
+  +B323:   #1
+        if vi18>=vi17 goto B383;   
+  +B330:   #1
+        vR19 = vR16[vi18];    
+        if vR14.equals@extra(vR19.getName())==0 goto B377;   
+  +B352:   #1
+        if vR15.equals@extra(vR19.getSignature())==0 goto B377;   
+  +B367:   #1
+        vR5.method = vR19;   
+        goto +B383;   [RRiRRRiRRiRRRRRiiR RRR ...... .....]
+  +B377:   #2
+        vi18++;   
+        goto +B323;   [RRiRRRiRRiRRRRRiiR RRR ...... .....]
+  +B383:   #2
+        if vR5.method!=null goto B434;   
+  -B391:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b1.<init>@special(b2.append@extra("Method ").append@extra(vR14).append@extra(vR15).append@extra(" not found in class ").append@extra(vR6).toString@extra());   [RRiRRRiRRiRRRRRiiR RRR iii.... RR....] 
+        throw b0;   
+  +B434:   #1
+        vR3.addElement@extra(vR5);   [RRiRRRiRRiRRRRRiiR RRR ....... RR....] 
+        vi4++;   
+        goto +B51;   [RRiRRRiRRiRRRRRiiR RRR ....... ......]
+  +B446:   #1
+        vi4 = 0;    
+  +B449:   #1
+        if vi4>=vR3.size@extra() goto B498;   
+  +B458:   #1
+        vR5 = (jx/start/MonolithicApplicationStarter$StartInfo)(vR3.elementAt(vi4));    
+        b2 = new jx/start/MonolithicApplicationStarter$1(vR2,vR5);    [ RRR ....... i.....][ RRR ....... iRRR..]
+        vR2.start(vR2.createCPUState(b2));   [RRiRRRiRRiRRRRRiiR RRR i...... RR....] 
+        vi4++;   
+        goto +B449;   [RRiRRRiRRiRRRRRiiR RRR i...... ......]
+  +B498:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 81/81 wr 74 swaps 15 any 17 found 2 init
+}

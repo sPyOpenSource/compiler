@@ -1,0 +1,64 @@
+class java/awt/datatransfer/StringSelection {
+ 
+ method <init>(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getTransferDataFlavors()[Ljava/awt/datatransfer/DataFlavor; {
+  +START:   #1
+        return supported_flavors;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getTransferDataFlavors
+ 
+ method isDataFlavorSupported(Ljava/awt/datatransfer/DataFlavor;)Z {
+  +START:   #1
+        vi2 = 0;    
+  +B2:   #1
+        if vi2>=supported_flavors.length goto B30;   
+  +B10:   #1
+        if supported_flavors[vi2].equals(vR1)==0 goto B24;   
+  +B22:   #1
+        return 1;   
+  +B24:   #1
+        vi2++;   
+        goto +B2;   [i  . ..]
+  +B30:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 1 isDataFlavorSupported
+ 
+ method getTransferData(Ljava/awt/datatransfer/DataFlavor;)Ljava/lang/Object; {
+  +START:   #1
+        if vR0.isDataFlavorSupported@this(vR1)!=0 goto B17;   
+  -B8:   #1
+        throw new java/awt/datatransfer/UnsupportedFlavorException(vR1);   
+  +B17:   #1
+        return new java/io/StringBufferInputStream(vR0.data);   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 getTransferData
+ 
+ method lostOwnership(Ljava/awt/datatransfer/Clipboard;Ljava/awt/datatransfer/Transferable;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 lostOwnership
+ 
+ method <clinit>()V {
+  +START:   #1
+        b0 = new java/awt/datatransfer/DataFlavor()[1];    
+        b0[0] = plainTextFlavor;   
+        supported_flavors = b0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 1 <clinit>
+}

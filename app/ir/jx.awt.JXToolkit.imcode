@@ -1,0 +1,364 @@
+class jx/awt/JXToolkit {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        if vR0.eventQueue!=null goto B69;   
+  +B11:   #1
+        b1 = new java/awt/EventQueue();    [ ?R  i][ ?R  iR]
+        vR0.eventQueue = b1;   
+        b1 = new jx/awt/peer/JXMenuThread(vR0);    [ ?R  i.][ ?R . iRR]
+        vR0.menuThread = b1;   
+        b1 = new jx/awt/peer/MenuHandler(vR0);    [ ?R . i..][ ?R . iRR]
+        vR0.menuHandler = b1;   
+        b1 = new jx/awt/peer/FocusHandler(vR0);    [ ?R . i..][ ?R . iRR]
+        vR0.focusHandler = b1;   
+        b1 = new jx/awt/peer/SlaveWindowHandler();    [ ?R . i..][ ?R . iR.]
+        vR0.slaveWindowHandler = b1;   
+  +B69:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 8 swaps 0 any 0 found 0 <init>
+ 
+ method getMenuThread()Ljx/awt/peer/JXMenuThread; {
+  +START:   #1
+        return vR0.menuThread;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMenuThread
+ 
+ method getMenuHandler()Ljx/awt/peer/MenuHandler; {
+  +START:   #1
+        return vR0.menuHandler;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMenuHandler
+ 
+ method getFocusHandler()Ljx/awt/peer/FocusHandler; {
+  +START:   #1
+        return vR0.focusHandler;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFocusHandler
+ 
+ method getSlaveWindowHandler()Ljx/awt/peer/SlaveWindowHandler; {
+  +START:   #1
+        return vR0.slaveWindowHandler;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSlaveWindowHandler
+ 
+ method loadAlternateColors()V {
+  +START:   #1
+        vR1 = new jx/awt/peer/JXColors();    [ R  i][ R  iR]
+        vR1.loadColorInformation();   [R R  R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 loadAlternateColors
+ 
+ method createButton(Ljava/awt/Button;)Ljava/awt/peer/ButtonPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXButtonPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createButton
+ 
+ method createTextField(Ljava/awt/TextField;)Ljava/awt/peer/TextFieldPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXTextFieldPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createTextField
+ 
+ method createLabel(Ljava/awt/Label;)Ljava/awt/peer/LabelPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXLabelPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createLabel
+ 
+ method createList(Ljava/awt/List;)Ljava/awt/peer/ListPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXListPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createList
+ 
+ method createCheckbox(Ljava/awt/Checkbox;)Ljava/awt/peer/CheckboxPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXCheckboxPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createCheckbox
+ 
+ method createScrollbar(Ljava/awt/Scrollbar;)Ljava/awt/peer/ScrollbarPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXScrollbarPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createScrollbar
+ 
+ method createScrollPane(Ljava/awt/ScrollPane;)Ljava/awt/peer/ScrollPanePeer; {
+  +START:   #1
+        return new jx/awt/peer/JXScrollPanePeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createScrollPane
+ 
+ method createTextArea(Ljava/awt/TextArea;)Ljava/awt/peer/TextAreaPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXTextAreaPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createTextArea
+ 
+ method createChoice(Ljava/awt/Choice;)Ljava/awt/peer/ChoicePeer; {
+  +START:   #1
+        return new jx/awt/peer/JXChoicePeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createChoice
+ 
+ method createFrame(Ljava/awt/Frame;)Ljava/awt/peer/FramePeer; {
+  +START:   #1
+        return new jx/awt/peer/JXFramePeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createFrame
+ 
+ method createCanvas(Ljava/awt/Canvas;)Ljava/awt/peer/CanvasPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXCanvasPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createCanvas
+ 
+ method createPanel(Ljava/awt/Panel;)Ljava/awt/peer/PanelPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXPanelPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createPanel
+ 
+ method createWindow(Ljava/awt/Window;)Ljava/awt/peer/WindowPeer; {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createWindow
+ 
+ method createMenuBar(Ljava/awt/MenuBar;)Ljava/awt/peer/MenuBarPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXMenuBarPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createMenuBar
+ 
+ method createMenu(Ljava/awt/Menu;)Ljava/awt/peer/MenuPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXMenuPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createMenu
+ 
+ method createPopupMenu(Ljava/awt/PopupMenu;)Ljava/awt/peer/PopupMenuPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXPopupMenuPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createPopupMenu
+ 
+ method createMenuItem(Ljava/awt/MenuItem;)Ljava/awt/peer/MenuItemPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXMenuItemPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createMenuItem
+ 
+ method createCheckboxMenuItem(Ljava/awt/CheckboxMenuItem;)Ljava/awt/peer/CheckboxMenuItemPeer; {
+  +START:   #1
+        return new jx/awt/peer/JXCheckboxMenuItemPeer(vR1,vR0);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 createCheckboxMenuItem
+ 
+ method createComponent(Ljava/awt/Component;)Ljava/awt/peer/LightweightPeer; {
+  -START:   #1
+        throw new java/lang/Error("createComponent: not yet implemented.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createComponent
+ 
+ method getFontPeer(Ljava/lang/String;I)Ljava/awt/peer/FontPeer; {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontPeer
+ 
+ method loadSystemColors([I)V {
+  -START:   #1
+        throw new java/lang/Error("loadSystemColors: not implemented!");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 loadSystemColors
+ 
+ method getScreenSize()Ljava/awt/Dimension; {
+  +START:   #1
+        if vR0.screenX==0 goto B14;   
+  +B7:   #1
+        if vR0.screenY!=0 goto B38;   
+  +B14:   #1
+        vR1 = new jx/awt/peer/JXMenuConnector();    [ R  i][ R  iR]
+        vR0.screenX = vR1.getDisplayWidth();   
+        vR0.screenY = vR1.getDisplayHeight();   
+  +B38:   #1
+        return new java/awt/Dimension(vR0.screenX,vR0.screenY);   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 2 swaps 0 any 0 found 0 getScreenSize
+ 
+ method getScreenResolution()I {
+  +START:   #1
+        return 5184;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getScreenResolution
+ 
+ method getFontList()[Ljava/lang/String; {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontList
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method sync()V {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 sync
+ 
+ method getImage(Ljava/lang/String;)Ljava/awt/Image; {
+  +START:   #1
+        vR2 = new jx/awt/image/JXImageLoader();    [ R  i][ R  iR]
+        return vR2.loadImage(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getImage
+ 
+ method createImage(Ljava/awt/image/ImageProducer;)Ljava/awt/Image; {
+  +START:   #1
+        vR2 = new jx/awt/image/JXImageCreator();    [ R  i][ R  iR]
+        return vR2.createImage(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method getSystemEventQueueImpl()Ljava/awt/EventQueue; {
+  +START:   #1
+        return vR0.eventQueue;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSystemEventQueueImpl
+ 
+ method beep()V {
+  -START:   #1
+        throw new java/lang/Error("not implemented");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 beep
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getImage(Ljava/net/URL;)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getImage
+ 
+ method createImage(Ljava/lang/String;)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createImage(Ljava/net/URL;)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method prepareImage(Ljava/awt/Image;IILjava/awt/image/ImageObserver;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 prepareImage
+ 
+ method checkImage(Ljava/awt/Image;IILjava/awt/image/ImageObserver;)I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 checkImage
+ 
+ method createImage([BII)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method getPrintJob(Ljava/awt/Frame;Ljava/lang/String;Ljava/util/Properties;)Ljava/awt/PrintJob; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPrintJob
+ 
+ method getSystemClipboard()Ljava/awt/datatransfer/Clipboard; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getSystemClipboard
+ 
+ method isModalityTypeSupported(Ljava/awt/Dialog$ModalityType;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isModalityTypeSupported
+ 
+ method isModalExclusionTypeSupported(Ljava/awt/Dialog$ModalExclusionType;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isModalExclusionTypeSupported
+ 
+ method mapInputMethodHighlight(Ljava/awt/im/InputMethodHighlight;)Ljava/util/Map; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 mapInputMethodHighlight
+}

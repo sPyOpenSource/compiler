@@ -1,0 +1,81 @@
+class jx/start/WindowApplicationStarter {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/start/ShellWindow;    
+        b1 = b0;    
+        b2 = vR1[0];    
+        b3 = new jx/devices/fb/PixelRect(10,30,750,400);    [ RRRRR  i][ RRRRR . iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR . i.....][ RRRRR . iR....]
+        b1.<init>@special(b2,b3,b4);   [ RRRRR . RRRR..] 
+        vR2 = b0;    
+        vR2.show(1);   [R RRRRR . iR....] 
+        vR3 = (jx/streams/StreamProvider)(waitUntilPortalAvailable@special(vR0,vR1[0]));    
+        vR4 = vR3.getOutputStream();    [RR RRRRR R. R.....] 
+        b0 = new java/io/PrintStream;    
+        b1 = b0;    
+        b2 = new jx/start/OutputStreamProxy(vR4);    [ RRRRR R. i.....][ RRRRR R. iRR...]
+        b1.<init>@special(b2);   [RRR RRRRR R. RR....] 
+        vR5 = b0;    
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/start/OutputStreamProxy(vR4);    [ RRRRR R. i.....][ RRRRR R. iRR...]
+        b1.<init>@special(b2);   [RRRR RRRRR R. RR....] 
+        out = b0;   
+        vR6 = (jx/zero/CPUManager)(vR0.lookup("CPUManager"));    
+        vR7 = vR1[1];    
+        vR8 = vR1[2];    
+        vR9 = new java/lang/String()[((vR1.length-2)-1)];    
+        vR6.setThreadName(vR7);   [RRRRRRRR RRRRR Ri. RR....] 
+        arraycopy@special(vR1,3,vR9,0,vR9.length);   [RRRRRRRR RRRRR Rii iiRiR.]
+        vR10 = (jx/zero/ComponentManager)(vR0.lookup("ComponentManager"));    
+        vi11 = vR10.load(vR8);    [RRRRRRRRR RRRRR Riii. RR....] 
+        vR6.executeClassConstructors(vi11);   [RRRRRRRRRi RRRRR Riii. iR....] 
+        vR12 = vR6.getClass(vR7);    [RRRRRRRRRi RRRRR Riii. RR....] 
+        if vR12!=null goto B232;   
+  -B199:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRRRR ..... i.....][ RRRRR ..... iR....]
+        b1.<init>@special(b2.append@extra("Class ").append@extra(vR7).append@extra(" not found.").toString@extra());   [RRRRRRRRRiR RRRRR iii.. RR....] 
+        throw b0;   
+  +B232:   #1
+        vR13 = vR12.getMethods();    [RRRRRRRRRiR RRRRR ..... R.....] 
+        vR14 = "main";    
+        vR15 = "([Ljava/lang/String;)V";    
+        vR16 = vR13;    
+        vi17 = vR16.length;    
+        vi18 = 0;    
+  +B261:   #1
+        if vi18>=vi17 goto B330;   
+  +B268:   #1
+        vR19 = vR16[vi18];    
+        if vR14.equals@extra(vR19.getName())==0 goto B324;   
+  +B290:   #1
+        if vR15.equals@extra(vR19.getSignature())==0 goto B324;   
+  +B305:   #1
+        b2 = new java/lang/Object()[1];    
+        b2[0] = vR9;   
+        vR19.invoke(0,b2);   [RRRRRRRRRiRRRRRiiR RRRRR ..... RRR...] 
+        return;   
+  +B324:   #2
+        vi18++;   
+        goto +B261;   [RRRRRRRRRiRRRRRiiR RRRRR ..... ......]
+  -B330:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRRRR ..... i.....][ RRRRR ..... iR....]
+        b1.<init>@special(b2.append@extra("Method ").append@extra(vR14).append@extra(vR15).append@extra(" not found in class ").append@extra(vR7).toString@extra());   [RRRRRRRRRiRRRRRiiR RRRRR iii.... RR....] 
+        throw b0;   
+  +END:   #1
+ }
+// Register: rd 62/62 wr 63 swaps 10 any 12 found 1 init
+}

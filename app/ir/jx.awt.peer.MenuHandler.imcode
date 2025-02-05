@@ -1,0 +1,214 @@
+class jx/awt/peer/MenuHandler {
+ 
+ method <init>(Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.currentMenu = 0;   
+        vR0.currentMenuBar = 0;   
+        vR0.menuOpen = 0;   
+        vR0.notification = 1;   
+        vR0.toolkit = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getCurrentMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return vR0.currentMenu;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrentMenu
+ 
+ method isMenuOpen()Z {
+  +START:   #1
+        return vR0.menuOpen;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isMenuOpen
+ 
+ method isPopupMenuOpen()Z {
+  +START:   #1
+        if vR0.isMenuOpen@this()==0 goto B18;   
+  +B7:   #1
+        if vR0.notification!=0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #2
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 isPopupMenuOpen
+ 
+ method setCurrentMenuBar(Ljava/awt/MenuBar;)V {
+  +START:   #1
+        vR0.currentMenuBar = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setCurrentMenuBar
+ 
+ method getCurrentMenuBar()Ljava/awt/MenuBar; {
+  +START:   #1
+        return vR0.currentMenuBar;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getCurrentMenuBar
+ 
+ method findMenuLocationPoint(Ljava/awt/Rectangle;)Ljava/awt/Point; {
+  +START:   #1
+        vR2 = 0;    
+        vR3 = vR0.toolkit.getScreenSize();    [R R  R] 
+        vR4 = vR2.getMenuSize();    [RR R  R] 
+        vi5 = vR1.x;    
+        vi6 = (vR1.y+vR1.height);    
+        if vi5>=0 goto B41;   
+  +B38:   #1
+        vi5 = 0;    
+  +B41:   #1
+        if (vi5+vR4.width)<=vR3.width goto B68;   
+  +B56:   #1
+        vi5 = (vR3.width-vR4.width);    
+  +B68:   #1
+        if (vi6+vR4.height)<=vR3.height goto B95;   
+  +B83:   #1
+        vi6 = (vR1.y-vR4.height);    
+  +B95:   #1
+        if vR4.height<=vR3.height goto B115;   
+  +B107:   #1
+        out.println("Error on calculating menu size!");   [RRRii R i. RR] 
+  +B115:   #1
+        if vR4.height!=vR3.height goto B130;   
+  +B127:   #1
+        vi6 = 0;    
+  +B130:   #1
+        return new java/awt/Point(vi5,vi6);   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 12 swaps 1 any 3 found 0 findMenuLocationPoint
+ 
+ method deleteOpenMenus()V {
+  +START:   #1
+        if vR0.isMenuOpen@this()!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        vR1 = 0;    
+        vR1.deleteSubMenus();   [R   R] 
+        vR0.currentMenu.removeNotify();   [R   R] 
+        if vR0.notification!=0 goto B35;   
+  +B28:   #1
+        vR0.currentMenu.addNotify();   [R   R] 
+  +B35:   #1
+        vR0.menuOpen = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 0 found 0 deleteOpenMenus
+ 
+ method openMenu(Ljava/awt/Menu;Ljava/awt/Rectangle;)V {
+  +START:   #1
+        vR0.openMenu@this(vR1,vR2,1);   [   iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 openMenu
+ 
+ method openMenu(Ljava/awt/Menu;Ljava/awt/Rectangle;Z)V {
+  +START:   #1
+        vR0.notification = vi3;   
+        if vR0.isMenuOpen@this()==0 goto B16;   
+  +B12:   #1
+        vR0.deleteOpenMenus@this();   [   R] 
+  +B16:   #1
+        vR0.currentMenu = vR1;   
+        if vR1!=null goto B26;   
+  +B25:   #1
+        return;   
+  +B26:   #1
+        if vR0.notification==0 goto B37;   
+  +B33:   #1
+        vR1.addNotify();   [   R] 
+  +B37:   #1
+        vR4 = 0;    
+        vR5 = vR0.findMenuLocationPoint@special(vR2);    [R   RR] 
+        vR4.setLocation(vR5.x,vR5.y);   [RR  ii iiR] 
+        vR4.setVisible(1);   [RR  ii iR.] 
+        vR0.menuOpen = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 4 swaps 1 any 1 found 0 openMenu
+ 
+ method performKey(I)Z {
+  +START:   #1
+        if vR0.menuOpen!=0 goto B17;   
+  +B7:   #1
+        out.println("error: menu should be open!");   [  i. RR] 
+        return 0;   
+  +B17:   #1
+        vR3 = 0;    
+        if vR3.getChildMenu()==null goto B32;   
+  +B26:   #1
+        return vR3.performKey(vi1);   
+  +B32:   #1
+        lswitch (vi1) { 
+           10:B92
+           27:B145
+           37:B194
+           38:B173
+           39:B194
+           40:B152
+           ::B200
+        };   
+  +B92:   #1
+        vR2 = vR3.getCurrentMenuItem();    [?R  .. R.] 
+        if vR3.isSelectable(vR2)==0 goto B202;   
+  +B105:   #1
+        if (vR2 instanceof java/awt/Menu)==0 goto B137;   
+  +B112:   #1
+        vR3.openSubMenu((java/awt/Menu)(vR2));   [RR  .. RR] 
+        vR4 = 0;    
+        vR4.setCurrentMenuItem(vR4.getDefaultMenuItem(1));   [RRR  i. RR] 
+        goto +B202;   forward return[RRR  i. ..]
+  +B137:   #1
+        vR3.performMenuItemAction(vR2);   [RRR  .. RR] 
+        goto +B202;   forward return[RRR  .. ..]
+  +B145:   #1
+        vR0.deleteOpenMenus@this();   [RRR  .. R.] 
+        goto +B202;   forward return[RRR  .. ..]
+  +B152:   #1
+        vR2 = vR3.getLowerMenuItem();    [RRR  .. R.] 
+        vR3.setCurrentMenuItem(vR2);   [RRR  .. RR] 
+        vR3.adjustScrollOffset();   [RRR  .. R.] 
+        vR3.redrawMenu();   [RRR  .. R.] 
+        goto +B202;   forward return[RRR  .. ..]
+  +B173:   #1
+        vR2 = vR3.getUpperMenuItem();    [RRR  .. R.] 
+        vR3.setCurrentMenuItem(vR2);   [RRR  .. RR] 
+        vR3.adjustScrollOffset();   [RRR  .. R.] 
+        vR3.redrawMenu();   [RRR  .. R.] 
+        goto +B202;   forward return[RRR  .. ..]
+  +B194:   #2
+        return vR3.performKey(vi1);   
+  +B200:   #1
+        return 0;   
+  +B202:   #6
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 23/23 wr 8 swaps 2 any 1 found 1 performKey
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.toolkit = 0;   
+        vR0.currentMenu = 0;   
+        vR0.currentMenuBar = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 dispose
+}

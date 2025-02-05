@@ -1,0 +1,125 @@
+class org/jnode/fs/jfat/FatFile {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;Lorg/jnode/fs/jfat/FatDirectory;Lorg/jnode/fs/jfat/FatRecord;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2,vR3);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isFile()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isFile
+ 
+ method getLength()I {
+  +START:   #1
+        return vR0.getEntry@this().getLength();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLength
+ 
+ method freeClusters(JJ)V {
+  +START:   #1
+        if compare(vl3,vl1)< 0 goto B47;   
+  -B6:   #1
+        b0 = new java/lang/UnsupportedOperationException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("new[").append@extra(vl3).append@extra("] >= old[").append@extra(vl1).append@extra("]").toString@extra());   [l RRR iiii.... RR......] 
+        throw b0;   
+  +B47:   #1
+        vl5 = (long)vR0.getFatFileSystem@this().getFat().getClusterSize@extra();    
+        vi7 = (int)(vl1/vl5);    
+        if compare((vl1%vl5),0)==0 goto B79;   
+  +B76:   #1
+        vi7++;   
+  +B79:   #1
+        vi8 = (int)(vl3/vl5);    
+        if compare((vl3%vl5),0)==0 goto B98;   
+  +B95:   #1
+        vi8++;   
+  +B98:   #1
+        vR0.getChain@this().free((vi7-vi8));   [l?l?ii RRR i....... iR......] [l?l?ii RRR iR...... iR......] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 20 swaps 5 any 3 found 0 freeClusters
+ 
+ method setLength(J)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setLength
+ 
+ method read(Ljx/zero/Memory;II)I {
+  +START:   #1
+        vi4 = (vi3-vi2);    
+        if vi4> 0 goto B12;   
+  +B10:   #1
+        return 0;   
+  +B12:   #2
+        vR0.getChain@this().read(vi2,vR1,vi3);   [i  . iRiR] [i  R iRiR] 
+  +B22:   #1
+        goto +B27;   forward return[i  . ....]
+  +H25<caught exception>:   #1 reference
+        vR5 = <caught exception>;    
+  +B27:   #1
+        return 0;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+12 - 22 handler 25 type 78
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 2 found 0 read
+ 
+ method getNode(Ljava/lang/String;)Ljx/fs/Node; {
+  +START:   #1
+        if vR0.i_released==0 goto B15;   
+  -B7:   #1
+        throw new jx/fs/NotExistException();   
+  -B15:   #1
+        throw new jx/fs/NoDirectoryInodeException();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNode
+ 
+ method getPermission()Ljx/fs/Permission; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPermission
+ 
+ method getAttribute()Ljx/fs/FSAttribute; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getAttribute
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method isValid()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValid
+}

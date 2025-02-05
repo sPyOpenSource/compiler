@@ -7,12 +7,12 @@ class jx/devices/pci/PCIGod {
         vR2 = new jx/devices/pci/PCIGod(vR1);    [ R i. i.][ R i. iRR]
         vR3 = vR1;    
         vR4 = vR2;    
-        registerPortal@special(vR4,"PCIAccess");   [RRRR R iR RR.]
-        out.println("PCIAccess registered");   [RRRR R iRi. RR.] 
+        getInitialNaming@special().registerPortal(vR4,"PCIAccess");   [RRRR R ii. RRR] 
+        out.println("PCIAccess registered");   [RRRR R iii. RR.] 
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 10 swaps 2 any 2 found 0 main
+// Register: rd 4/4 wr 11 swaps 3 any 2 found 0 main
  
  method <init>(Ljx/zero/Naming;)V {
   +START:   #1
@@ -20,20 +20,21 @@ class jx/devices/pci/PCIGod {
         b1 = new java/util/Vector();    [ RR  i][ RR  iR]
         vR0.devices = b1;   
         vR0.naming = vR1;   
-        vR0.ports = (jx/zero/Ports)(lookup@special("Ports"));   
-        if vR0.ports!=null goto B40;   
-  +B39:   #1
+        vR0.ports = (jx/zero/Ports)(getInitialNaming@special().lookup("Ports"));   
+        if vR0.ports!=null goto B45;   
+  +B44:   #1
         return;   
-  +B40:   #1
-        if vR0.probePCI@special()!=0 goto B57;   
-  -B47:   #1
+  +B45:   #1
+        if vR0.probePCI@special()!=0 goto B62;   
+  -B52:   #1
         throw new java/lang/Error("no PCI Bus detected");   
-  +B57:   #1
+  +B62:   #1
         vR0.scanBus@this();   [ RR .. R..] 
+        vR0.dumpDevices@this();   [ RR .. R..] 
         return;   
   +END:   #1
  }
-// Register: rd 11/11 wr 4 swaps 0 any 0 found 0 <init>
+// Register: rd 12/12 wr 5 swaps 0 any 0 found 0 <init>
  
  method probePCI()Z {
   +START:   #1
@@ -110,7 +111,7 @@ class jx/devices/pci/PCIGod {
         vi8 = vR0.readDeviceConfig@this(vR7,0);    [?iiiiiR RR . iRR..] 
         if vi8!=-1 goto B65;   
   +B62:   #1
-        goto +B208;   [?iiiiiRi RR . .....]
+        goto +B202;   [?iiiiiRi RR . .....]
   +B65:   #1
         vR1 = new jx/devices/pci/PCIDeviceImpl(vR0,vR7);    [ RR . i....][ RR . iRRR.]
         vi9 = vR1.getHeaderType();    [RiiiiiRi RR . R....] 
@@ -136,12 +137,12 @@ class jx/devices/pci/PCIGod {
         vi2++;   
   +B194:   #1
         vR0.devices.addElement@extra(vR1);   [RiiiiiRiiii RR ......... RR.....] 
-  +B202:   #2
+  +B202:   #3
         vi6++;   
-        goto +B26;   [RiiiiiRiiii RR ......... .......]
-  +B208:   #2
+        goto +B26;   [?iiiiiRi RR ......... .......]
+  +B208:   #1
         vi4 = (byte)(vi4+1);    
-        goto +B12;   [?iiiiiRi RR ......... .......]
+        goto +B12;   [RiiiiiRiiii RR ......... .......]
   +B218:   #1
         vi3 = (byte)(vi3+1);    
         goto +B4;   [RiiiiiRiiii RR ......... .......]

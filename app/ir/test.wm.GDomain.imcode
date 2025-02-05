@@ -1,0 +1,30 @@
+class test/wm/GDomain {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRRRR  i][ RRRRR .i. iRR]
+        b1.<init>@special(b2);   [ RRRRR .i. RR.] 
+        out = b0;   
+        b0 = new test/wm/MainWindow;    
+        b1 = b0;    
+        b2 = "main";    
+        b3 = new jx/devices/fb/PixelRect(10,100,460,300);    [ RRRRR .i. i..][ RRRRR .i. iiiiiR]
+        b4 = new jx/wm/WindowFlags();    [ RRRRR .i. i.....][ RRRRR .i. iR....]
+        b1.<init>@special(b2,b3,b4);   [ RRRRR .i. RRRR..] 
+        vR2 = b0;    
+        vR2.show(1);   [R RRRRR .i. iR....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 13 swaps 1 any 3 found 1 init
+}

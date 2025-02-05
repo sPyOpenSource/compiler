@@ -1,0 +1,60 @@
+class org/jnode/fs/ntfs/index/IndexHeader {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/index/IndexRootAttribute;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,(vR1.getAttributeOffset()+16));   [  i iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/index/IndexBlock;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFirstEntryOffset()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFirstEntryOffset
+ 
+ method getIndexEntriesSize()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getIndexEntriesSize
+ 
+ method getAllocatedIndexEntriesSize()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getAllocatedIndexEntriesSize
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getUInt8@this(12);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method isLargeIndex()Z {
+  +START:   #1
+        if (vR0.getFlags@extra() & 1)==0 goto B13;   
+  +B9:   #1
+        b0 = 1;    
+        goto +B14b0;   forward return[ i  .]
+  +B13:   #1
+        b0 = 0;    
+  +B14b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 isLargeIndex
+}

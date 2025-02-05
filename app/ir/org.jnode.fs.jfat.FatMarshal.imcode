@@ -1,0 +1,288 @@
+class org/jnode/fs/jfat/FatMarshal {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special();   [ R  R] 
+        vR0.dirty = 0;   
+        if vR1!=null goto B23;   
+  -B13:   #1
+        throw new java/lang/NullPointerException("array cannot be null");   
+  +B23:   #1
+        vR0.array = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 <init>
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.dirty = 0;   
+        vR0.array = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method length()I {
+  +START:   #1
+        return vR0.array.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 length
+ 
+ method isDirty()Z {
+  +START:   #1
+        return vR0.dirty;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isDirty
+ 
+ method setDirty()V {
+  +START:   #1
+        vR0.dirty = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setDirty
+ 
+ method flush()V {
+  +START:   #1
+        vR0.dirty = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method checkOffset(II)V {
+  +START:   #1
+        if vi1>=0 goto B36;   
+  -B4:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("offset[").append@extra(vi1).append@extra("] cannot be negative").toString@extra());   [ RRR iii.. RR..] 
+        throw b0;   
+  +B36:   #1
+        if vi2> 0 goto B72;   
+  -B40:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
+        b1.<init>@special(b2.append@extra("length[").append@extra(vi2).append@extra("] has to be positive").toString@extra());   [ RRR iii.. RR..] 
+        throw b0;   
+  +B72:   #1
+        if vi1<=(vR0.array.size()-vi2) goto B145;   
+  -B87:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
+        b1.<init>@special(b2.append@extra("length[").append@extra(vi2).append@extra("] + offset[").append@extra(vi1).append@extra("] >array.length[").append@extra(vR0.array.size()).append@extra("]").toString@extra());   [ RRR ii.iiii..... RR......] 
+        throw b0;   
+  +B145:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 19/19 wr 34 swaps 12 any 6 found 1 checkOffset
+ 
+ method get(I)B {
+  +START:   #1
+        vR0.checkOffset@special(vi1,1);   [   iiR] 
+        return vR0.array.get8(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 get
+ 
+ method put(IB)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,1);   [   iiR] 
+        vR0.array.set8(vi1,vi2);   [   iiR] 
+        vR0.setDirty@this();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 put
+ 
+ method getUInt8(I)I {
+  +START:   #1
+        vR0.checkOffset@special(vi1,1);   [   iiR] 
+        return vR0.array.get8(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getUInt8
+ 
+ method setUInt8(II)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,1);   [   iiR] 
+        vR0.array.set8(vi1,(byte)vi2);   [  i iiR] 
+        vR0.setDirty@this();   [  i R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setUInt8
+ 
+ method getUInt16(I)I {
+  +START:   #1
+        vR0.checkOffset@special(vi1,2);   [   iiR] 
+        return vR0.array.getLittleEndian16(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getUInt16
+ 
+ method setUInt16(II)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,2);   [   iiR] 
+        vR0.array.setLittleEndian16(vi1,(short)vi2);   [  i iiR] 
+        vR0.setDirty@this();   [  i R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 1 any 0 found 0 setUInt16
+ 
+ method getUInt32(I)I {
+  +START:   #1
+        vR0.checkOffset@special(vi1,4);   [   iiR] 
+        return vR0.array.getLittleEndian32(vi1);   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getUInt32
+ 
+ method setUInt32(II)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,4);   [   iiR] 
+        vR0.array.setLittleEndian32(vi1,vi2);   [   iiR] 
+        vR0.setDirty@this();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setUInt32
+ 
+ method getString(II)Ljava/lang/String; {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [ R  iiR] 
+        vR3 = new java/lang/StringBuilder(vi2);    [ R  i..][ R . iiR]
+        vi4 = 0;    
+  +B18:   #1
+        if vi4>=vi2 goto B53;   
+  +B24:   #1
+        vi5 = vR0.array.get8((vi1+vi4));    [Ri R i iR.] 
+        vR3.append@extra((char)vi5);   [Rii R ii iR.] 
+        vi4++;   
+        goto +B18;   [Rii R ii ...]
+  +B53:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 7 swaps 2 any 2 found 0 getString
+ 
+ method setString(IILjava/lang/String;)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [   iiR] 
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vi2 goto B60;   
+  +B15:   #1
+        if vi4>=vR3.length@extra() goto B35;   
+  +B24:   #1
+        vi5 = vR3.charAt@extra(vi4);    [i   iR.] 
+        goto +B38;   [ii   ...]
+  +B35:   #1
+        vi5 = 0;    
+  +B38:   #1
+        vR0.array.set8((vi1+vi4),(byte)vi5);   [ii  ii iiR] 
+        vi4++;   
+        goto +B9;   [ii  ii ...]
+  +B60:   #1
+        vR0.setDirty@this();   [ii  .. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 6 swaps 1 any 3 found 1 setString
+ 
+ method getChars(II)[C {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [   iiR] 
+        vR3 = new char[vi2];    
+        vi4 = 0;    
+  +B13:   #1
+        if vi4>=vi2 goto B43;   
+  +B19:   #1
+        vR3[vi4] = (char)vR0.array.get8((vi1+vi4));   
+        vi4++;   
+        goto +B13;   [Ri  i ...]
+  +B43:   #1
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 4 swaps 1 any 2 found 0 getChars
+ 
+ method setChars(II[C)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [   iiR] 
+        vi4 = 0;    
+  +B9:   #1
+        if vi4>=vi2 goto B39;   
+  +B15:   #1
+        vR0.array.set8((vi1+vi4),(byte)vR3[vi4]);   [i  ii iiR] 
+        vi4++;   
+        goto +B9;   [i  ii ...]
+  +B39:   #1
+        vR0.setDirty@this();   [i  .. R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 1 any 2 found 0 setChars
+ 
+ method getByteBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getByteBuffer
+ 
+ method getBytes(II)[B {
+  +START:   #1
+        vR3 = new byte[vi2];    
+        vR0.getBytes@this(vi1,vi2,0,vR3);   [R   RiiiR] 
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 getBytes
+ 
+ method setBytes(II[B)V {
+  +START:   #1
+        vR0.setBytes@this(vi1,vi2,0,vR3);   [   RiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBytes
+ 
+ method getBytes(III[B)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [   iiR] 
+        vR0.array.copyToByteArray(vR4,vi3,vi1,vi2);   [   iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getBytes
+ 
+ method setBytes(III[B)V {
+  +START:   #1
+        vR0.checkOffset@special(vi1,vi2);   [   iiR] 
+        arraycopy@special(vR4,vi3,vR0.array,vi1,vi2);   [  R iiRiR]
+        vR0.setDirty@this();   [  R R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 setBytes
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "FatMarshal %s";    
+        b1 = new java/lang/Object()[1];    
+        b1[0] = hex@special(vR0.array);   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 toString
+}

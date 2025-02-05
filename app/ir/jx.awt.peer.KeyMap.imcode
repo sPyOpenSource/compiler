@@ -1,0 +1,122 @@
+class jx/awt/peer/KeyMap {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method translate(I)I {
+  +START:   #1
+        lswitch (vi0) { 
+           1:B143
+           4:B146
+           9:B137
+           10:B131
+           11:B149
+           12:B152
+           27:B134
+           28:B122
+           29:B125
+           30:B116
+           31:B119
+           32:B128
+           127:B140
+           ::B155
+        };   
+  +B116:   #1
+        return 38;   
+  +B119:   #1
+        return 40;   
+  +B122:   #1
+        return 37;   
+  +B125:   #1
+        return 39;   
+  +B128:   #1
+        return 32;   
+  +B131:   #1
+        return 10;   
+  +B134:   #1
+        return 27;   
+  +B137:   #1
+        return 9;   
+  +B140:   #1
+        return 127;   
+  +B143:   #1
+        return 36;   
+  +B146:   #1
+        return 35;   
+  +B149:   #1
+        return 33;   
+  +B152:   #1
+        return 34;   
+  +B155:   #1
+        return vi0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 translate
+ 
+ method translate(II)I {
+  +START:   #1
+        lswitch (vi1) { 
+           75:B42
+           92:B39
+           93:B36
+           ::B45
+        };   
+  +B36:   #1
+        return 18;   
+  +B39:   #1
+        return 17;   
+  +B42:   #1
+        return 16;   
+  +B45:   #1
+        return translate@special(vi0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 1 found 0 translate
+ 
+ method shiftPressed(I)Z {
+  +START:   #1
+        if (vi0 & 1)==0 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 shiftPressed
+ 
+ method altPressed(I)Z {
+  +START:   #1
+        if (vi0 & 16)==0 goto B11;   
+  +B7:   #1
+        b0 = 1;    
+        goto +B12b0;   forward return[ i  ]
+  +B11:   #1
+        b0 = 0;    
+  +B12b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 altPressed
+ 
+ method ctrlPressed(I)Z {
+  +START:   #1
+        if (vi0 & 4)==0 goto B10;   
+  +B6:   #1
+        b0 = 1;    
+        goto +B11b0;   forward return[ i  ]
+  +B10:   #1
+        b0 = 0;    
+  +B11b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 ctrlPressed
+}

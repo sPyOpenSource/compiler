@@ -55,7 +55,7 @@ public class InterfaceMethodTable extends MethodTable {
 	Method m = (Method)mfinder.get(nameAndType);
         if(m == null) System.out.println(nameAndType);
 	if (m.ifMethodIndex == 0) {
-	    System.out.println("  WARNING: Method index=0: "+m.nameAndType);
+	    System.out.println("  WARNING: Method index=0: " + m.nameAndType);
 	}
 	return m.ifMethodIndex;
     }

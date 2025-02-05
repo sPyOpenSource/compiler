@@ -1,0 +1,65 @@
+class jx/wm/plugin/ScreenCapture$1 {
+ 
+ method <init>(Ljx/devices/fb/FramebufferDevice;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.val$fb = vR1;   
+        vR0.val$addr = vR2;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method keyPressed()V {
+  +START:   #1
+        out.println("F1 key pressed");   [ RR i. RR] 
+        vR1 = vR0.val$fb.getFrameBuffer();    [ RR i. R.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.][ RR i. iR]
+        b0.println(b1.append@extra("Size: ").append@extra(vR1.size()).toString@extra());   [R RR iiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiii. i..][ RR iiii. iR.]
+        b0.println(b1.append@extra("Width: ").append@extra(vR0.val$fb.getWidth()).toString@extra());   [R RR iiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiii. i..][ RR iiiiiii. iR.]
+        b0.println(b1.append@extra("Height: ").append@extra(vR0.val$fb.getHeight()).toString@extra());   [R RR iiiiiiiiii. RR.] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR iiiiiiiiii. i..][ RR iiiiiiiiii. iR.]
+        b0.println(b1.append@extra("Color: ").append@extra(vR0.val$fb.getColorSpace().getValue()).toString@extra());   [R RR iiiiiiiiiiiii. RR.] 
+  +B150:   #1
+        vR2 = new java/net/Socket(vR0.val$addr,6666);    [ RR .............. i..][ RR .............. iiRR]
+        vR3 = vR2.getOutputStream();    [RR RR .............. R...] 
+        vR4 = vR2.getInputStream();    [RRR RR .............. R...] 
+        vR5 = new jx/formats/LittleEndianOutputStream(vR3);    [ RR .............. i...][ RR .............. iRR.]
+        vR5.writeInt@extra(vR0.val$fb.getWidth());   [RRRRR RR i............. iR..] 
+        vR5.writeInt@extra(vR0.val$fb.getHeight());   [RRRRR RR ii............ iR..] 
+        vR5.writeInt@extra(((vR1.size() >> 1)*3));   [RRRRR RR iii........... iR..] 
+        vi6 = 0;    
+  +B232:   #1
+        if vi6>=(vR1.size() >> 1) goto B291;   
+  +B245:   #1
+        vR7 = fromRGB16@special(vR1.get16(vi6));    [RRRRRi RR s............. s...]
+        vR3.write(vR7.red());   [RRRRRiR RR si............ bR..] 
+        vR3.write(vR7.green());   [RRRRRiR RR sii........... bR..] 
+        vR3.write(vR7.blue());   [RRRRRiR RR siii.......... bR..] 
+        vi6++;   
+        goto +B232;   [RRRRRiR RR siii.......... ....]
+  +B291:   #1
+        vR3.flush();   [RRRRRiR RR .............. R...] 
+        vR2.close();   [RRRRRiR RR .............. R...] 
+  +B299:   #1
+        goto +B336;   forward return[RRRRRiR RR .............. ....]
+  -H302<caught exception>:   #1 reference
+        vR2 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .............. i...][ RR .............. iR..]
+        b0.println(b1.append@extra("Exception during data transfer : ").append@extra(vR2).toString@extra());   [RRRRRiR RR ii............ RR..] 
+        throw new java/lang/Error();   
+  +B336:   #1
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+150 - 299 handler 302 type 133
+ }
+// Register: rd 40/40 wr 55 swaps 21 any 2 found 1 keyPressed
+}

@@ -1,0 +1,304 @@
+class jx/awt/peer/JXLabelPeer {
+ 
+ method <init>(Ljava/awt/Label;Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special(vR2,vR1);   [   RRR] 
+        vR0.newline = getProperty@special("line.separator");   
+        vR0.BORDER = 2;   
+        vR0.setText@this(vR1.getText());   [  Ri RR.] 
+        vR0.ready = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method paint(Ljx/awt/JXGraphics;)V {
+  +START:   #1
+        lswitch (vR0.peerState) { 
+           3:B24
+           ::B33
+        };   
+  +B24:   #1
+        vR0.paintLabel@this(vR1,1);   [   iRR] 
+        goto +B39;   forward return[   ...]
+  +B33:   #1
+        vR0.paintLabel@this(vR1,0);   [   iRR] 
+  +B39:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 paint
+ 
+ method getMultipleLines(Ljava/lang/String;)Ljava/util/Vector; {
+  +START:   #1
+        vR2 = new java/util/Vector();    [ R  i][ R  iR]
+        vR3 = new java/util/StringTokenizer(vR1,vR0.newline);    [ R  i.][ R . iRRR]
+  +B21:   #1
+        if vR3.hasMoreTokens()==0 goto B39;   
+  +B28:   #1
+        vR2.addElement@extra(vR3.nextToken());   [RR R i RR..] 
+        goto +B21;   [RR R i ....]
+  +B39:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 0 found 0 getMultipleLines
+ 
+ method getLabelSize()Ljava/awt/Dimension; {
+  +START:   #1
+        vR1 = new java/awt/Dimension(0,0);    [ R  i][ R . iiiR]
+        if (vR0.parent instanceof jx/awt/ExtendedLabel)==0 goto B105;   
+  +B20:   #1
+        vi2 = vR0.texts.size@extra();    [R R . R...] 
+        vi3 = 0;    
+        vi4 = 0;    
+  +B33:   #1
+        if vi4>=vR0.texts.size@extra() goto B80;   
+  +B45:   #1
+        vR5 = (java/lang/String)(vR0.texts.elementAt(vi4));    
+        if vR5.length@extra()<=vi3 goto B74;   
+  +B68:   #1
+        vi3 = vR5.length@extra();    [RiiiR R . R...] 
+  +B74:   #1
+        vi4++;   
+        goto +B33;   [RiiiR R . ....]
+  +B80:   #1
+        vR1.width = (vi3*9);   
+        vR1.height = ((vi2*14)+((vi2-1)*2));   
+        goto +B125;   forward return[RiiiR R . ....]
+  +B105:   #1
+        vR1.width = (vR0.text.length@extra()*9);   
+        vR1.height = 14;   
+  +B125:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 21/21 wr 9 swaps 0 any 2 found 1 getLabelSize
+ 
+ method setAlignment(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 setAlignment
+ 
+ method setText(Ljava/lang/String;)V {
+  +START:   #1
+        if (vR0.parent instanceof jx/awt/ExtendedLabel)==0 goto B22;   
+  +B10:   #1
+        vR0.texts = vR0.getMultipleLines@special(vR1);   
+        goto +B27;   [   ..]
+  +B22:   #1
+        vR0.text = vR1;   
+  +B27:   #1
+        vR2 = vR0.getLabelSize@special();    [   R.] 
+        vR0.prefWidth = (vR2.width+4);   
+        vR0.prefHeight = (vR2.height+4);   
+        vR0.redraw@this();   [R   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 1 swaps 0 any 0 found 0 setText
+ 
+ method paintLabel(Ljx/awt/JXGraphics;Z)V {
+  +START:   #1
+        vR1.setColor(normalBgColor);   [  i RR] 
+        vR1.fillRect(0,0,(vR0.width-1),(vR0.height-1));   [  iii iiiiR] 
+        if vi2==0 goto B39;   
+  +B29:   #1
+        vR1.setColor(disabledTextColor);   [  i.. RR...] 
+        goto +B46;   [  i.. .....]
+  +B39:   #1
+        vR1.setColor(normalTextColor);   [iiiR  i.. RR...] 
+  +B46:   #1
+        if (vR0.parent instanceof jx/awt/ExtendedLabel)==0 goto B111;   
+  +B56:   #1
+        vi3 = 2;    
+        vi4 = 2;    
+        vi5 = 0;    
+  +B64:   #1
+        if vi5>=vR0.texts.size@extra() goto B108;   
+  +B76:   #1
+        vR6 = (java/lang/String)(vR0.texts.elementAt(vi5));    
+        vR1.drawJXString(vR6,vi3,vi4);   [iiiR  ... iiRR.] 
+        vi4+=16;   
+        vi5++;   
+        goto +B64;   [iiiR  ... .....]
+  +B108:   #1
+        goto +B129;   forward return[iiiR  ... .....]
+  +B111:   #1
+        vR1.drawJXString(vR0.text,2,((vR0.height-14)/2));   [iiiR  ii. iiiR.] 
+  +B129:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 13 swaps 6 any 4 found 1 paintLabel
+ 
+ method isObscured()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isObscured
+ 
+ method canDetermineObscurity()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 canDetermineObscurity
+ 
+ method setBounds(IIIII)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBounds
+ 
+ method coalescePaintEvent(Ljava/awt/event/PaintEvent;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 coalescePaintEvent
+ 
+ method getColorModel()Ljava/awt/image/ColorModel; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getColorModel
+ 
+ method getFontMetrics(Ljava/awt/Font;)Ljava/awt/FontMetrics; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFontMetrics
+ 
+ method setFont(Ljava/awt/Font;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFont
+ 
+ method updateCursorImmediately()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateCursorImmediately
+ 
+ method requestFocus(Ljava/awt/Component;ZZJLjava/awt/event/FocusEvent$Cause;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 requestFocus
+ 
+ method isFocusable()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFocusable
+ 
+ method createImage(II)Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createImage
+ 
+ method createVolatileImage(II)Ljava/awt/image/VolatileImage; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createVolatileImage
+ 
+ method getGraphicsConfiguration()Ljava/awt/GraphicsConfiguration; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getGraphicsConfiguration
+ 
+ method handlesWheelScrolling()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 handlesWheelScrolling
+ 
+ method createBuffers(ILjava/awt/BufferCapabilities;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 createBuffers
+ 
+ method getBackBuffer()Ljava/awt/Image; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getBackBuffer
+ 
+ method flip(IIIILjava/awt/BufferCapabilities$FlipContents;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 flip
+ 
+ method destroyBuffers()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 destroyBuffers
+ 
+ method reparent(Ljava/awt/peer/ContainerPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 reparent
+ 
+ method isReparentSupported()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isReparentSupported
+ 
+ method layout()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 layout
+ 
+ method applyShape(Lsun/java2d/pipe/Region;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 applyShape
+ 
+ method setZOrder(Ljava/awt/peer/ComponentPeer;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setZOrder
+ 
+ method updateGraphicsData(Ljava/awt/GraphicsConfiguration;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 updateGraphicsData
+}

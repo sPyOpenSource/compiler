@@ -1,0 +1,46 @@
+class AI/Models/IRQHandler {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.irq = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method interrupt()V {
+  +START:   #1
+        vR1 = handlers[vR0.irq];    
+        vi2 = vR1.length;    
+        vi3 = 0;    
+  +B14:   #1
+        if vi3>=vi2 goto B42;   
+  +B19:   #1
+        vR4 = vR1[vi3];    
+        if vR4==null goto B36;   
+  +B29:   #1
+        vR4.interrupt();   [RiiR   R] 
+  +B36:   #1
+        vi3++;   
+        goto +B14;   [RiiR   .]
+  +B42:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 3 found 0 interrupt
+ 
+ method first(I)Z {
+  +START:   #1
+        if handlers[vi0][1]!=null goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  .]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 first
+}

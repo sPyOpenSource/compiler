@@ -1,0 +1,219 @@
+class jx/awt/peer/JXWindowPeer {
+ 
+ method <init>(Ljx/awt/JXToolkit;Ljava/awt/Window;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vR2);   [ ?R  RRR] 
+        b1 = new jx/awt/peer/JXWindowConnector(vR1,vR2);    [ ?R  i..][ ?R . iRRR]
+        vR0.connector = b1;   
+        vR0.initWindow@this();   [ ?R . R...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method layoutMenu(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 layoutMenu
+ 
+ method activateMenuBar()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 activateMenuBar
+ 
+ method resetMenuBar()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 resetMenuBar
+ 
+ method getCurrentMenu()Ljava/awt/Menu; {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCurrentMenu
+ 
+ method getMenuHeight()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMenuHeight
+ 
+ method handleMenuKeyUp(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMenuKeyUp
+ 
+ method handleMenuKeyDown(I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMenuKeyDown
+ 
+ method handleMenuMouseUp(III)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMenuMouseUp
+ 
+ method handleMenuMouseDown(III)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMenuMouseDown
+ 
+ method handleMenuMouseMoved(II)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMenuMouseMoved
+ 
+ method initWindow()V {
+  +START:   #1
+        vR1 = vR0.parent.getBounds();    [   R] 
+        vR0.setBounds@this(vR1.x,vR1.y,vR1.width,vR1.height);   [R  iiii iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 5 swaps 1 any 0 found 0 initWindow
+ 
+ method sendWindowEvent(I)V {
+  +START:   #1
+        vR0.queue = vR0.toolkit.getSystemEventQueue();   
+        b0 = vR0.queue;    
+        b1 = new java/awt/event/WindowEvent((java/awt/Window)(vR0.parent),vi1);    [ RR  i][ RR .. iiRR]
+        b0.postEvent(b1);   [ RR .. RR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 4 swaps 0 any 0 found 0 sendWindowEvent
+ 
+ method showBorder(Z)V {
+  +START:   #1
+        vR0.connector.showBorder(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 showBorder
+ 
+ method windowActivated(Z)V {
+  +START:   #1
+        if vi1==0 goto B10;   
+  +B4:   #1
+        b0 = 205;    
+        goto +B13b0;   [ i  ]
+  +B10:   #1
+        b0 = 206;    
+  +B13b0:   #1 int
+        vi2 = b0;    
+        vR0.sendWindowEvent@this(vi2);   [i i  iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 2 found 0 windowActivated
+ 
+ method closeRequested()V {
+  +START:   #1
+        vR0.sendWindowEvent@this(201);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 closeRequested
+ 
+ method setVisible(Z)V {
+  +START:   #1
+        if vR0.isVisible==0 goto B12;   
+  +B7:   #1
+        if vi1==0 goto B12;   
+  +B11:   #1
+        return;   
+  +B12:   #2
+        vR0.setVisible@special(vi1);   [ ?R  iR] 
+        if vi1==0 goto B72;   
+  +B21:   #1
+        if vR0.connector!=null goto B57;   
+  +B28:   #1
+        b1 = new jx/awt/peer/JXWindowConnector(vR0.toolkit,(java/awt/Frame)(vR0.parent));    [ ?R  i.][ ?R .. iRRR]
+        vR0.connector = b1;   
+        vR0.initWindow@this();   [ ?R .. R...] 
+        goto +B64;   [ ?R .. ....]
+  +B57:   #1
+        vR0.sendWindowEvent@this(200);   [ ?R .. iR..] 
+  +B64:   #1
+        vR0.connector.show(1);   [ ?R .. iR..] 
+  +B72:   #1
+        if vi1!=0 goto B88;   
+  +B76:   #1
+        vR0.connector.dispose();   [ ?R .. R...] 
+        vR0.connector = 0;   
+  +B88:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 3 swaps 0 any 3 found 0 setVisible
+ 
+ method setBounds(IIII)V {
+  +START:   #1
+        vR0.setBounds@special(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        vR0.connector.setBounds(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setBounds
+ 
+ method getGraphics()Ljava/awt/Graphics; {
+  +START:   #1
+        return vR0.connector.getComponentGraphics();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getGraphics
+ 
+ method getLocationOnScreen()Ljava/awt/Point; {
+  +START:   #1
+        return vR0.connector.getComponentAreaOrigin();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLocationOnScreen
+ 
+ method getPreferredSize()Ljava/awt/Dimension; {
+  +START:   #1
+        return new java/awt/Dimension(50,50);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPreferredSize
+ 
+ method insets()Ljava/awt/Insets; {
+  +START:   #1
+        return new java/awt/Insets(0,0,0,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 insets
+ 
+ method toBack()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toBack
+ 
+ method toFront()V {
+  +START:   #1
+        vR0.connector.moveToFront();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 toFront
+}

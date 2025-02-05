@@ -1,0 +1,220 @@
+class AI/util/AIQueue {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/ArrayList();    [ ?R  i][ ?R  iR]
+        vR0.queue = b1;   
+        vR0.closed = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method get(ZJ)Ljava/lang/Object; {
+  +START:   #3
+        if vR0.queue.isEmpty()==0 goto B61;   
+  +B10:   #1
+        if vR0.closed!=0 goto B25;   
+  +B17:   #1
+        if compare(vl2,-1)!=0 goto B27;   
+  +B25:   #1
+        return 0;   
+  +B27:   #2
+        vR0.wait@this(vl2);   [   ??R] 
+  +B32:   #1
+        goto +B43;   [   ...]
+  +H35<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        if vi1!=0 goto B43;   
+  +B41:   #1
+        return 0;   
+  +B43:   #2
+        if compare(vl2,0)==0 goto START;   
+  +B49:   #1
+        if vR0.queue.isEmpty()==0 goto START;   
+  +B59:   #1
+        return 0;   
+  +B61:   #1
+        return vR0.queue.remove(0);   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+27 - 32 handler 35 type 30
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 get
+ 
+ method get(J)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.get@this(1,vl1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method get(Z)Ljava/lang/Object; {
+  +START:   #1
+        return vR0.get@this(vi1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method get()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.get@this(1,0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get
+ 
+ method add(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.closed==0 goto B17;   
+  -B7:   #1
+        throw new java/lang/SecurityException("Cannot add to a closed queue.");   
+  +B17:   #1
+        vR0.queue.add(vR1);   [ R . RR.] 
+        vR0.notifyAll@this();   [ R . ...] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 add
+ 
+ method remove(Ljava/lang/Object;)Z {
+  +START:   #1
+        if vR0.closed==0 goto B17;   
+  -B7:   #1
+        throw new java/lang/SecurityException("Cannot remove from a closed queue.");   
+  +B17:   #1
+        vR0.queue.remove(vR1);   [ R . RR.] 
+        vR0.notifyAll@this();   [ R . ...] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 remove
+ 
+ method contains(Ljava/lang/Object;)Z {
+  +START:   #1
+        return vR0.queue.contains(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 contains
+ 
+ method size()I {
+  +START:   #1
+        return vR0.queue.size();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 size
+ 
+ method isEmpty()Z {
+  +START:   #1
+        return vR0.queue.isEmpty();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isEmpty
+ 
+ method close()V {
+  +START:   #1
+        vR0.closed = 1;   
+        vR0.notifyAll@this();   [   ] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 close
+ 
+ method isClosed()Z {
+  +START:   #1
+        return vR0.closed;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 isClosed
+ 
+ method offer(Ljava/lang/Object;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 offer
+ 
+ method remove()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 remove
+ 
+ method poll()Ljava/lang/Object; {
+  +START:   #1
+        return vR0.get@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 poll
+ 
+ method element()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 element
+ 
+ method peek()Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 peek
+ 
+ method iterator()Ljava/util/Iterator; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 iterator
+ 
+ method toArray()[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method toArray([Ljava/lang/Object;)[Ljava/lang/Object; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 toArray
+ 
+ method containsAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 containsAll
+ 
+ method addAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 addAll
+ 
+ method removeAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 removeAll
+ 
+ method retainAll(Ljava/util/Collection;)Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 retainAll
+ 
+ method clear()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 clear
+}

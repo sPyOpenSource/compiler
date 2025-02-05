@@ -1,0 +1,199 @@
+class org/jnode/driver/bus/usb/uhci/UHCIIO {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.io = (jx/zero/Ports)(getInitialNaming@special().lookup("Ports"));   
+        vR0.base = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 1 any 0 found 0 <init>
+ 
+ method release()V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 release
+ 
+ method getCommand()I {
+  +START:   #1
+        return vR0.io.inw_p((vR0.base+0));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getCommand
+ 
+ method getCommandBits(I)Z {
+  +START:   #1
+        if (vR0.io.inw_p((vR0.base+0)) & vi1)!=vi1 goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i . ..]
+  +B25:   #1
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getCommandBits
+ 
+ method setCommand(I)V {
+  +START:   #1
+        vR0.io.outw_p((vR0.base+0),(short)vi1);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setCommand
+ 
+ method setCommandBits(IZ)V {
+  +START:   #1
+        vi3 = vR0.io.inw_p((vR0.base+0));    [  i iR] 
+        if vi2==0 goto B27;   
+  +B20:   #1
+        vi3 = (vi3 | vi1);    
+        goto +B33;   [i  . ..]
+  +B27:   #1
+        vi3 = (vi3 & (vi1 ^ -1));    
+  +B33:   #1
+        vR0.io.outw_p((vR0.base+0),(short)vi3);   [i  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 6 swaps 2 any 3 found 0 setCommandBits
+ 
+ method getStatus()I {
+  +START:   #1
+        return vR0.io.inw_p((vR0.base+2));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getStatus
+ 
+ method getStatusBits(I)Z {
+  +START:   #1
+        if (vR0.io.inw_p((vR0.base+2)) & vi1)!=vi1 goto B25;   
+  +B21:   #1
+        b0 = 1;    
+        goto +B26b0;   forward return[ i . ..]
+  +B25:   #1
+        b0 = 0;    
+  +B26b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getStatusBits
+ 
+ method clearStatus(I)V {
+  +START:   #1
+        vR0.io.outw_p((vR0.base+2),(short)vi1);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 clearStatus
+ 
+ method getInterruptEnable()I {
+  +START:   #1
+        return vR0.io.inw_p((vR0.base+4));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getInterruptEnable
+ 
+ method setInterruptEnable(I)V {
+  +START:   #1
+        vR0.io.outw_p((vR0.base+4),(short)vi1);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setInterruptEnable
+ 
+ method getFrameNumber()I {
+  +START:   #1
+        return vR0.io.inw_p((vR0.base+6));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getFrameNumber
+ 
+ method setFrameNumber(I)V {
+  +START:   #1
+        vR0.io.outw_p((vR0.base+6),(short)vi1);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setFrameNumber
+ 
+ method getFrameListBaseAddress()I {
+  +START:   #1
+        return vR0.io.inl_p((vR0.base+8));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getFrameListBaseAddress
+ 
+ method setFrameListBaseAddress(I)V {
+  +START:   #1
+        vR0.io.outl_p((vR0.base+8),vi1);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 setFrameListBaseAddress
+ 
+ method getStartOfFrame()I {
+  +START:   #1
+        return vR0.io.inb_p((vR0.base+12));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 getStartOfFrame
+ 
+ method setStartOfFrame(I)V {
+  +START:   #1
+        vR0.io.outb_p((vR0.base+12),(byte)vi1);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 1 any 0 found 0 setStartOfFrame
+ 
+ method getPortSC(I)I {
+  +START:   #1
+        return vR0.io.inw_p(((vR0.base+16)+(vi1 << 1)));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getPortSC
+ 
+ method getPortSCBits(II)Z {
+  +START:   #1
+        if (vR0.io.inw_p(((vR0.base+16)+(vi1 << 1))) & vi2)!=vi2 goto B30;   
+  +B26:   #1
+        b0 = 1;    
+        goto +B31b0;   forward return[ i . ..]
+  +B30:   #1
+        b0 = 0;    
+  +B31b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 1 any 0 found 0 getPortSCBits
+ 
+ method setPortSCBits(IIZ)V {
+  +START:   #1
+        vi4 = vR0.io.inw_p(((vR0.base+16)+(vi1 << 1)));    [  i iR] 
+        vi4 = (vi4 & 65525);    
+        if vi3==0 goto B42;   
+  +B33:   #1
+        vi4 = (vi4 | vi2);    
+        goto +B50;   [i  . ..]
+  +B42:   #1
+        vi4 = (vi4 & (vi2 ^ -1));    
+  +B50:   #1
+        vR0.io.outw_p(((vR0.base+16)+(vi1 << 1)),(short)vi4);   [i  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 7 swaps 2 any 4 found 0 setPortSCBits
+ 
+ method setPortSC(II)V {
+  +START:   #1
+        vR0.io.outw_p(((vR0.base+16)+(vi1 << 1)),(short)vi2);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 setPortSC
+}

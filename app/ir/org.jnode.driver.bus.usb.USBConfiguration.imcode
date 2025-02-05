@@ -1,0 +1,62 @@
+class org/jnode/driver/bus/usb/USBConfiguration {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBDevice;Lorg/jnode/driver/bus/usb/ConfigurationDescriptor;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.descr = vR2;   
+        vR0.interfaces = new org/jnode/driver/bus/usb/USBInterface()[vR2.getNumInterfaces@extra()];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getDescriptor()Lorg/jnode/driver/bus/usb/ConfigurationDescriptor; {
+  +START:   #1
+        return vR0.descr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptor
+ 
+ method getInterface(I)Lorg/jnode/driver/bus/usb/USBInterface; {
+  +START:   #1
+        return vR0.interfaces[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getInterface
+ 
+ method setInterface(ILorg/jnode/driver/bus/usb/USBInterface;)V {
+  +START:   #1
+        if vR0.interfaces[vi1]==null goto B19;   
+  -B9:   #1
+        throw new java/lang/SecurityException("Cannot overwrite a specific interface");   
+  +B19:   #1
+        vR0.interfaces[vi1] = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 setInterface
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR1.append("DESCR:");   [R R i RR] 
+        vR1.append(vR0.descr);   [R R ii RR] 
+        vR1.append(", INTFS{");   [R R iii RR] 
+        vi2 = 0;    
+  +B33:   #1
+        if vi2>=vR0.interfaces.length goto B70;   
+  +B42:   #1
+        if vi2<=0 goto B53;   
+  +B46:   #1
+        vR1.append(", ");   [Ri R i.. RR] 
+  +B53:   #1
+        vR1.append(vR0.interfaces[vi2]);   [Ri R i.. RR] 
+        vi2++;   
+        goto +B33;   [Ri R i.. ..]
+  +B70:   #1
+        vR1.append(125);   [Ri R ... iR] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 8 swaps 5 any 3 found 0 toString
+}

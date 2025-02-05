@@ -1,0 +1,93 @@
+class test/fb/Main {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method init(Ljx/zero/Naming;[Ljava/lang/String;)V {
+  +START:   #1
+        b0 = new jx/zero/debug/DebugPrintStream;    
+        b1 = b0;    
+        b2 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b1.<init>@special(b2);   [ RRR .i. RR.] 
+        out = b0;   
+        if vR1==null goto B88;   
+  +B32:   #1
+        vi2 = 0;    
+  +B34:   #1
+        if vi2>=vR1.length goto B88;   
+  +B40:   #1
+        if vR1[vi2]==null goto B82;   
+  +B46:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b0.println(b1.append@extra("PARAMETER[").append@extra(vi2).append@extra("]: ").append@extra(vR1[vi2]).toString@extra());   [i RRR iiii... RR...] 
+  +B82:   #1
+        vi2++;   
+        goto +B34;   [i RRR ....... .....]
+  +B88:   #2
+        test@special(vR0);   [i RRR ....... R....]
+        return;   
+  +END:   #1
+ }
+// Register: rd 18/18 wr 18 swaps 5 any 4 found 1 init
+ 
+ method test(Ljx/zero/Naming;)Z {
+  +START:   #1
+        out.println("lookup PCI Access Point...");   [ RRRR?R i. RR] 
+        vR2 = (jx/zero/CPUManager)(vR0.lookup("CPUManager"));    
+  +B20:   #1
+        vR1 = (jx/devices/pci/PCIAccess)(vR0.lookup("PCIAccess"));    
+        if vR1==null goto B39;   
+  +B36:   #1
+        goto +B48;   [RR RRRR?R ... ..]
+  +B39:   #1
+        vR2.yield();   [RRRRRRiR RRRR?R ... R.] 
+        goto +B20;   [RRRRRRiR RRRR?R ... ..]
+  +B48:   #1
+        vR1.dumpDevices();   [RR RRRR?R ... R.] 
+        out.println("scanning PCIBus for framebuffer devices...");   [RR RRRR?R i.. RR] 
+        b0 = new jx/devices/DeviceFinder()[1];    
+        b1 = b0;    
+        b3 = new jx/devices/fb/vmware/VMWareSVGAFinder();    [ RRRR?R i.. i.][ RRRR?R i.. iR]
+        b1[0] = b3;   
+        vR3 = b0;    
+        vR4 = 0;    
+        vR5 = vR3;    
+        vi6 = vR5.length;    
+        vi7 = 0;    
+  +B91:   #1
+        if vi7>=vi6 goto B125;   
+  +B98:   #1
+        vR8 = vR5[vi7];    
+        if vR4==null goto B119;   
+  +B110:   #1
+        if vR4.length==0 goto B119;   
+  +B116:   #1
+        goto +B125;   [RRRRRiiR RRRR?R ... ..]
+  +B119:   #2
+        vi7++;   
+        goto +B91;   [RRRRRRiR RRRR?R ... ..]
+  +B125:   #2
+        if vR4!=null goto B140;   
+  -B130:   #1
+        throw new java/lang/Error("No supported framebuffer hardware found.");   
+  +B140:   #1
+        vR5 = vR4[0];    
+        b1 = new jx/devices/fb/FramebufferConfiguration;    
+        b2 = b1;    
+        b5 = new jx/devices/fb/ColorSpace(4);    [ RRRR?R ... i..][ RRRR?R ... iiR]
+        b2.<init>@special(640,480,b5);   [RRRRRiiR RRRR?R ... RiiR] 
+        vR5.open(b1);   [RRRRRiiR RRRR?R ... RR..] 
+        vR6 = new jx/devices/fb/PixelRect(20,20,100,200);    [ RRRR?R ... i...][ RRRR?R ... iiiiiR]
+        vR7 = new jx/devices/fb/PixelColor(255,0,0);    [ RRRR?R ... i.....][ RRRR?R ... iiiiR.]
+        vR5.close();   [RRRRRRRR RRRR?R ... R.....] 
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 32/32 wr 30 swaps 4 any 10 found 0 test
+}

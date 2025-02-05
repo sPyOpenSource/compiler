@@ -1,0 +1,141 @@
+class org/jnode/fs/jfat/FatEntriesFactory {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatDirectory;Z)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.label = 0;   
+        vR0.index = 0;   
+        vR0.next = 0;   
+        vR0.entry = 0;   
+        vR0.includeDeleted = vi2;   
+        vR0.directory = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hasNextEntry()Z {
+  +START:   #1
+        vR3 = new org/jnode/fs/jfat/FatRecord();    [ RR  i][ RR  iR]
+        if vR0.index<=65535 goto B45;   
+  +B17:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Full Directory: invalid index ").append@extra(vR0.index).toString@extra());   [??R RR iii. RR.] 
+  +B45:   #1
+        vi1 = vR0.index;    
+  +B50:   #6
+        vR2 = vR0.directory.getFatDirEntry(vi1,vR0.includeDeleted);    [i?R RR i... biR] 
+        vi1++;   
+  +B66:   #2
+        goto +B111;   [iRR RR .... ...]
+  +H69<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        vR0.entry = 0;   
+        return 0;   
+  +H78<caught exception>:   #1 reference
+        vR4 = <caught exception>;    
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("cannot read entry ").append@extra(vi1).toString@extra());   [iRRRR RR ii.. RR.] 
+        vi1++;   
+        goto +B50;   [iRRRR RR ii.. ...]
+  +B111:   #1
+        if vR2.isFreeDirEntry()==0 goto B140;   
+  +B118:   #1
+        if vR2.isLongDirEntry()==0 goto B140;   
+  +B125:   #1
+        if vR0.includeDeleted==0 goto B140;   
+  +B132:   #1
+        (org/jnode/fs/jfat/FatLongDirEntry)(vR2).setDamaged(0);   [iRR RR .... iR.] 
+  +B140:   #3
+        if vR2.isFreeDirEntry()==0 goto B161;   
+  +B147:   #1
+        if vR0.includeDeleted!=0 goto B161;   
+  +B154:   #1
+        vR3.clear();   [iRR RR .... R..] 
+        goto +B50;   [iRR RR .... ...]
+  +B161:   #2
+        if vR2.isLongDirEntry()==0 goto B225;   
+  +B168:   #1
+        vR4 = (org/jnode/fs/jfat/FatLongDirEntry)(vR2);    
+        if vR4.isDamaged()==0 goto B216;   
+  +B182:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR .... i..][ RR .... iR.]
+        b0.println(b1.append@extra("Damaged entry at ").append@extra((vi1-1)).toString@extra());   [iRRR RR iii. RR.] 
+        vR3.clear();   [iRRR RR iii. R..] 
+        goto +B222;   [iRRR RR iii. ...]
+  +B216:   #1
+        vR3.add(vR4);   [iRRR RR .... RR.] 
+  +B222:   #1
+        goto +B50;   [iRRR RR .... ...]
+  +B225:   #1
+        if vR2.isShortDirEntry()==0 goto B309;   
+  +B232:   #1
+        vR4 = (org/jnode/fs/jfat/FatShortDirEntry)(vR2);    
+        if vR4.isLabel()==0 goto B333;   
+  +B246:   #1
+        if vR0.directory.isRoot()==0 goto B298;   
+  +B256:   #1
+        vR5 = (org/jnode/fs/jfat/FatRootDirectory)(vR0.directory);    
+        if vR0.label==0 goto B283;   
+  +B272:   #1
+        out.println("Duplicated label in root directory");   [iRRRR RR i... RR.] 
+        goto +B295;   [iRRRR RR i... ...]
+  +B283:   #1
+        vR5.setEntry(vR4);   [iRRRR RR .... RR.] 
+        vR0.label = 1;   
+  +B295:   #1
+        goto +B306;   [iRRRR RR .... ...]
+  +B298:   #1
+        out.println("Volume label in non root directory");   [iRRRR RR i... RR.] 
+  +B306:   #1
+        goto +B50;   [iRRRR RR .... ...]
+  +B309:   #1
+        if vR2.isLastDirEntry()==0 goto B323;   
+  +B316:   #1
+        vR0.entry = 0;   
+        return 0;   
+  -B323:   #1
+        throw new java/lang/UnsupportedOperationException("FatDirEntry is of unknown type, shouldn't happen");   
+  +B333:   #1
+        if vR2.isShortDirEntry()!=0 goto B350;   
+  -B340:   #1
+        throw new java/lang/UnsupportedOperationException("shouldn't happen");   
+  +B350:   #1
+        vR3.close((org/jnode/fs/jfat/FatShortDirEntry)(vR2));   [iRRRR RR .... RR.] 
+        if (org/jnode/fs/jfat/FatShortDirEntry)(vR2).isDirectory()==0 goto B394;   
+  +B368:   #1
+        b1 = new org/jnode/fs/jfat/FatDirectory(vR0.directory.getFatFileSystem(),vR0.directory,vR3);    [ RR .... i..][ RR .... iRRRR]
+        vR0.entry = b1;   
+        goto +B417;   [iRRRR RR .... .....]
+  +B394:   #1
+        b1 = new org/jnode/fs/jfat/FatFile(vR0.directory.getFatFileSystem(),vR0.directory,vR3);    [ RR .... i....][ RR .... iRRRR]
+        vR0.entry = b1;   
+  +B417:   #1
+        vR0.next = vi1;   
+        return 1;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+50 - 66 handler 69 type 69
+50 - 66 handler 78 type 71
+ }
+// Register: rd 63/63 wr 42 swaps 11 any 4 found 5 hasNextEntry
+ 
+ method createNextEntry()Lorg/jnode/fs/jfat/FatEntry; {
+  +START:   #1
+        if vR0.index!=vR0.next goto B16;   
+  +B11:   #1
+        vR0.hasNextEntry@this();   [ R  R] 
+  +B16:   #1
+        if vR0.entry!=null goto B31;   
+  -B23:   #1
+        throw new java/util/NoSuchElementException();   
+  +B31:   #1
+        vR0.index = vR0.next;   
+        return vR0.entry;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 createNextEntry
+}

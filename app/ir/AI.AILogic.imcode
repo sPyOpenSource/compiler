@@ -2,13 +2,19 @@ class AI/AILogic {
  
  method <init>(LAI/AIMemory;)V {
   +START:   #1
-        vR0.<init>@special(vR1);   [   RR] 
-        vR0.threshold = jx.classfile.datatypes.BCDouble@2453f95d;   
-        vR0.filter = jx.classfile.datatypes.BCDouble@44828f6b;   
+        vR0.<init>@special(vR1);   [ ?R  RR] 
+        vR0.threshold = jx.classfile.datatypes.BCDouble@1115ec15;   
+        vR0.filter = jx.classfile.datatypes.BCDouble@82ea68c;   
+        vR0.irq = (jx/zero/IRQ)(getInitialNaming@special().lookup("IRQ"));   
+        b1 = new jx/timerpc/TimerManagerImpl();    [ ?R i. i.][ ?R i. iR]
+        vR0.timerManager = b1;   
+        vR1.getInitialNaming().registerPortal(vR0.timerManager,"TimerManager");   [ ?R iiR. RRR] [ ?R iiRR RRR] 
+        b1 = new jx/timerpc/SleepManagerImpl();    [ ?R iiR. i..][ ?R iiR. iR.]
+        vR0.sleepManager = b1;   
         return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+// Register: rd 9/9 wr 8 swaps 2 any 0 found 0 <init>
  
  method ProcessImages()V {
   +START:   #1
@@ -122,6 +128,13 @@ class AI/AILogic {
   +END:   #1
  }
 // Register: rd 8/8 wr 16 swaps 4 any 8 found 0 main
+ 
+ method getSM()Ljx/zero/timer/SleepManager; {
+  +START:   #1
+        return vR0.sleepManager;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSM
  
  method <clinit>()V {
   +START:   #1

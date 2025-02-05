@@ -1,0 +1,18 @@
+class org/jnode/driver/bus/usb/AbstractDeviceItem {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBDevice;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.device = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getDevice()Lorg/jnode/driver/bus/usb/USBDevice; {
+  +START:   #1
+        return vR0.device;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDevice
+}

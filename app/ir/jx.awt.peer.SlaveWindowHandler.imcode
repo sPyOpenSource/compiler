@@ -1,0 +1,61 @@
+class jx/awt/peer/SlaveWindowHandler {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.windows = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method registerWindow(Ljx/awt/peer/JXComponentPeer;)V {
+  +START:   #1
+        if vR1==null goto B12;   
+  +B4:   #1
+        vR0.windows.addElement@extra(vR1);   [   RR] 
+  +B12:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 1 found 0 registerWindow
+ 
+ method windowsRegistered()Z {
+  +START:   #1
+        if vR0.windows.size@extra()<=0 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  .]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 windowsRegistered
+ 
+ method performCloseOperation()V {
+  +START:   #2
+        if vR0.windows.size@extra()<=0 goto B48;   
+  +B10:   #1
+        if (vR0.windows.firstElement@extra() instanceof jx/awt/peer/JXChoicePeer)==0 goto B36;   
+  +B23:   #1
+        (jx/awt/peer/JXChoicePeer)(vR0.windows.firstElement@extra()).abortChoice();   [  . R.] 
+  +B36:   #1
+        vR0.windows.remove(0);   [  . iR] 
+        goto +START;   [  . ..]
+  +B48:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 performCloseOperation
+ 
+ method dispose()V {
+  +START:   #1
+        vR0.windows = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 dispose
+}

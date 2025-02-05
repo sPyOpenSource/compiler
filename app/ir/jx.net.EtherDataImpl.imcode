@@ -9,58 +9,63 @@ class jx/net/EtherDataImpl {
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
  
  method getMemory()Ljx/zero/Memory; {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.mem;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getMemory
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMemory
  
  method getOffset()I {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.offset;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getOffset
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
  
  method Size()I {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        return vR0.size;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 Size
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 Size
  
  method setMemory(Ljx/zero/Memory;)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.mem = vR1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setMemory
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setMemory
  
  method setOffset(I)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.offset = vi1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setOffset
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setOffset
  
  method setSize(I)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.size = vi1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setSize
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSize
  
  method setSrcAddress([B)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.srcAddress = vR1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setSrcAddress
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setSrcAddress
  
  method setDstAddress([B)V {
-  -START:   #1
-        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +START:   #1
+        vR0.dstAddress = vR1;   
+        return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setDstAddress
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setDstAddress
 }

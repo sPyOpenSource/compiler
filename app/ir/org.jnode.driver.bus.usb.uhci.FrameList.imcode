@@ -1,0 +1,70 @@
+class org/jnode/driver/bus/usb/uhci/FrameList {
+ 
+ method <init>(Ljx/zero/MemoryManager;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,4096,4096);   [   iiRR] 
+        vR0.list = new org/jnode/driver/bus/usb/uhci/AbstractStructure()[1024];   
+        vi2 = 0;    
+  +B23:   #1
+        if vi2>=1024 goto B41;   
+  +B30:   #1
+        vR0.setListPointerInvalid@extra(vi2);   [i   iR..] 
+        vi2++;   
+        goto +B23;   [i   ....]
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 2 found 0 <init>
+ 
+ method setListPointer(ILorg/jnode/driver/bus/usb/uhci/TransferDescriptor;)V {
+  +START:   #1
+        vi3 = (vR2.getDescriptorAddress() & -16);    
+        vR0.list[vi1] = vR2;   
+        vR0.setInt@this(vi1,vi3);   [i   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 1 swaps 0 any 1 found 0 setListPointer
+ 
+ method setListPointer(ILorg/jnode/driver/bus/usb/uhci/QueueHead;Z)V {
+  +START:   #1
+        b0 = ((vR2.getDescriptorAddress() & -16) | 2);    
+        if vi3==0 goto B17;   
+  +B13b0:   #1 int
+        b1 = 4;    
+        goto +B18b0b1;   [ ii  .]
+  +B17b0:   #1 int
+        b1 = 0;    
+  +B18b0b1:   #1 int int
+        vi4 = (b0 | b1);    
+        vR0.list[vi1] = vR2;   
+        vR0.setInt@this(vi1,vi4);   [i ii  iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 3 found 0 setListPointer
+ 
+ method setListPointerInvalid(I)V {
+  +START:   #1
+        vR0.setInt@this(vi1,0);   [   iiR] 
+        vR0.list[vi1] = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 setListPointerInvalid
+ 
+ method getListPointer(I)Lorg/jnode/driver/bus/usb/uhci/AbstractStructure; {
+  +START:   #1
+        return vR0.list[vi1];   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 getListPointer
+ 
+ method getSize()I {
+  +START:   #1
+        return 1024;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getSize
+}

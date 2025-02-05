@@ -1,0 +1,138 @@
+class org/jnode/fs/ntfs/FileNameAttribute$Structure {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSStructure;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFileName()Ljava/lang/String; {
+  +START:   #1
+        if vR0.name!=null goto B39;   
+  +B7:   #1
+        b1 = new java/lang/String(vR0.getFileNameAsByteArray@special(),"UTF-16LE");    [ RR  i][ RR . iRRR]
+        vR0.name = b1;   
+  +B24:   #1
+        goto +B39;   forward return[ RR . ....]
+  -H27<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        throw new java/lang/IllegalStateException("UTF-16LE charset missing from JRE",vR1);   
+  +B39:   #2
+        return vR0.name;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+7 - 24 handler 27 type 24
+ }
+// Register: rd 8/8 wr 4 swaps 0 any 0 found 0 getFileName
+ 
+ method isCompressed()Z {
+  +START:   #1
+        vi1 = vR0.getFlags@this();    [ i  R] 
+        if (vi1 & 2048)==0 goto B17;   
+  +B13:   #1
+        b0 = 1;    
+        goto +B18b0;   forward return[i i  .]
+  +B17:   #1
+        b0 = 0;    
+  +B18b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 1 found 0 isCompressed
+ 
+ method isDirectory()Z {
+  +START:   #1
+        if compare(((long)vR0.getFlags@this() & 268435456),0)==0 goto B18;   
+  +B14:   #1
+        b0 = 1;    
+        goto +B19b0;   forward return[ i  .]
+  +B18:   #1
+        b0 = 0;    
+  +B19b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isDirectory
+ 
+ method getParentMftIndex()J {
+  +START:   #1
+        return vR0.getInt48@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getParentMftIndex
+ 
+ method getParentSequenceNumber()I {
+  +START:   #1
+        return vR0.getUInt16@this(6);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getParentSequenceNumber
+ 
+ method getAllocatedFileSize()J {
+  +START:   #1
+        return vR0.getInt64@this(40);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAllocatedFileSize
+ 
+ method getRealSize()J {
+  +START:   #1
+        return vR0.getInt64@this(48);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRealSize
+ 
+ method getFlags()I {
+  +START:   #1
+        return vR0.getUInt32AsInt@this(56);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFlags
+ 
+ method getNameSpace()I {
+  +START:   #1
+        return vR0.getUInt8@this(65);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNameSpace
+ 
+ method getCreationTime()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getCreationTime
+ 
+ method getModificationTime()J {
+  +START:   #1
+        return vR0.getInt64@this(16);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getModificationTime
+ 
+ method getMftChangeTime()J {
+  +START:   #1
+        return vR0.getInt64@this(24);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getMftChangeTime
+ 
+ method getAccessTime()J {
+  +START:   #1
+        return vR0.getInt64@this(32);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getAccessTime
+ 
+ method getFileNameAsByteArray()[B {
+  +START:   #1
+        vi1 = vR0.getUInt8@this(64);    [   iR] 
+        vR2 = vR0.MemManager.alloc((vi1*2));    [i  i iR] 
+        vR0.getData@this(66,vR2,0,vR2.size());   [iR  ii iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 2 any 0 found 0 getFileNameAsByteArray
+}

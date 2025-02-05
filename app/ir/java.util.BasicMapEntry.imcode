@@ -49,11 +49,10 @@ class java/util/BasicMapEntry {
  
  method getKey()Ljava/lang/Object; {
   +START:   #1
-        out.println("ret key");   [  i. RR] 
         return vR0.key;   
   +END:   #1
  }
-// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 getKey
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getKey
  
  method getValue()Ljava/lang/Object; {
   +START:   #1

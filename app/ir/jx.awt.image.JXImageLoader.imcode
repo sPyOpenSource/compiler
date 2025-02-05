@@ -1,0 +1,72 @@
+class jx/awt/image/JXImageLoader {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.UNKNOWN = 0;   
+        vR0.PPMFILE = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFileType(Ljava/lang/String;)I {
+  +START:   #1
+        vR2 = vR1.trim@extra().toLowerCase@extra();    [  . R] [  R R] 
+        if vR2.endsWith@extra(".ppm")==0 goto B19;   
+  +B17:   #1
+        return 1;   
+  +B19:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 3 swaps 1 any 0 found 0 getFileType
+ 
+ method loadImage(Ljava/lang/String;)Ljx/awt/JXImage; {
+  +START:   #1
+        vi4 = vR0.getFileType@special(vR1);    [ RR  RR] 
+        lswitch (vi4) { 
+           0:B47
+           1:B36
+           ::B47
+        };   
+  +B36:   #1
+        vR3 = new jx/awt/image/PPMParser();    [ RR  i.][ RR  iR]
+        goto +B79;   [?Ri RR  ..]
+  +B47:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR  i.][ RR  iR]
+        b0.println(b1.append@extra("Type of ").append@extra(vR1).append@extra(" is unknown!").toString@extra());   [??i RR iii.. RR..] 
+        return 0;   
+  +B79:   #1
+        vR3.readImageFile(vR1);   [?Ri RR ..... RR..] 
+        vi5 = vR3.getImageWidth();    [?Ri RR ..... R...] 
+        vi6 = vR3.getImageHeight();    [?Rii RR ..... R...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ..... i...][ RR ..... iR..]
+        b0.println(b1.append@extra("got image size ").append@extra(vi5).append@extra("x").append@extra(vi6).toString@extra());   [?Riii RR iii... RR...] 
+        vR2 = createImage@special(vi5,vi6);    [?Riii RR iii... ii...]
+        vR7 = new jx/devices/fb/PixelRect(0,0,0,0);    [ RR iii... i....][ RR iii... iiiiiR]
+        vR8 = new jx/devices/fb/PixelColor(0,0,0,0);    [ RR iii... i.....][ RR iii... iiiiiR]
+        vi9 = 0;    
+  +B175:   #1
+        if vi9>=vi6 goto B269;   
+  +B182:   #1
+        vi10 = 0;    
+  +B185:   #1
+        if vi10>=vi5 goto B263;   
+  +B192:   #1
+        vR7.setTo@extra(vi10,vi9,vi10,vi9);   [RRiiiRRii RR ...... iiiiR.] 
+        vR8.setTo(vR3.getRedAt(vi10,vi9),vR3.getGreenAt(vi10,vi9),vR3.getBlueAt(vi10,vi9),0);   [RRiiiRRii RR iii... iiiiR.] 
+        vR2.getBitmap().drawLine(vR7,vR7,vR8,OVER);   [RRiiiRRii RR iiii.. RRRRR.] [RRiiiRRii RR iiiiR. RRRRR.] 
+        vi10++;   
+        goto +B185;   [RRiiiRRii RR iiii.. ......]
+  +B263:   #1
+        vi9++;   
+        goto +B175;   [RRiiiRRii RR ...... ......]
+  +B269:   #1
+        return vR2;   
+  +END:   #1
+ }
+// Register: rd 26/26 wr 37 swaps 9 any 5 found 0 loadImage
+}

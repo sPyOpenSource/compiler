@@ -1,0 +1,38 @@
+class org/jnode/driver/bus/usb/USBHubMonitor$USBHubMonitorThread {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBHubMonitor;Ljava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special(vR2);   [   RR] 
+        vR0.first = 1;   
+        vR0.stop = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method stopThread()V {
+  +START:   #1
+        vR0.stop = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 stopThread
+ 
+ method run()V {
+  +START:   #2
+        vR0.this$0.sleepManager.mdelay(1000);   [   iR] 
+        vR0.this$0.checkStatus(vR0.first);   [  i bR] 
+  +B26:   #1
+        goto +B30;   [  . ..]
+  +H29<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+  +B30:   #1
+        vR0.first = 0;   
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+0 - 26 handler 29 type 36
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 run
+}

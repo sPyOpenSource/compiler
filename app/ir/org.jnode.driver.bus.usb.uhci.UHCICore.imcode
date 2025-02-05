@@ -1,0 +1,158 @@
+class org/jnode/driver/bus/usb/uhci/UHCICore {
+ 
+ method <init>(Ljx/devices/pci/PCIDevice;Ljx/zero/timer/SleepManager;)V {
+  +START:   #1
+        vR0.<init>@special();   [ RRR  R] 
+        vR0.version = 1;   
+        vR0.device = vR1;   
+        vR0.sleepManager = vR2;   
+        vR0.rm = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));   
+        vi3 = vR1.getBaseAddress(0);    [ RRR i. iR] 
+        if vi3!=0 goto B61;   
+  +B48:   #1
+        vi3 = (vR1.getBaseAddress(4)-1);    
+        goto +B66;   [i RRR .. ..]
+  +B61:   #1
+        vR0.version = 2;   
+  +B66:   #1
+        if vR1.getBaseAddress(1)==0 goto B94;   
+  +B76:   #1
+        vi3 = ((vi3 << 16)+vR1.getBaseAddress(1));    
+        vR0.version = 3;   
+  +B94:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR .. i.][ RRR .. iR]
+        b0.println(b1.append@extra("Found UHCI at 0x").append@extra(hex@special(vi3)).toString@extra());   [i RRR iii. RR.] 
+        b1 = new org/jnode/driver/bus/usb/uhci/UHCIIO(vi3);    [ RRR iii. i..][ RRR iii. iiR]
+        vR0.io = b1;   
+        b1 = new org/jnode/driver/bus/usb/USBBus(vR1,vR0);    [ RRR iii. i..][ RRR iii. iRRR]
+        vR0.bus = b1;   
+        b1 = new org/jnode/driver/bus/usb/uhci/UHCIRootHub(vR0.io,vR0.bus,vR2);    [ RRR iii. i...][ RRR iii. iRRRR]
+        vR0.rootHub = b1;   
+        vR4 = new org/jnode/driver/bus/usb/uhci/Schedule(vR0.rm);    [ RRR iii. i....][ RRR iii. iRR..]
+        b1 = new org/jnode/driver/bus/usb/uhci/UHCIPipeManager(vR0.rm,vR4);    [ RRR iii. i....][ RRR iii. iRRR.]
+        vR0.pipeMgr = b1;   
+        vi5 = (vR1.getInterruptLine() & 15);    
+        vR1.setInterruptLine((byte)vi5);   [iRi RRR iiii iR...] 
+        vR0.irq = (jx/zero/IRQ)(getInitialNaming@special().lookup("IRQ"));   
+        createIRQ@special(vi5,vR0);   [iRi RRR iiiii. Ri...]
+        if first@special(vi5)==0 goto B305;   
+  +B248:   #1
+        b0 = vR0.irq;    
+        b2 = new AI/Models/IRQHandler(vi5);    [ RRR ...... i....][ RRR ...... iiR..]
+        b0.installFirstLevelHandler(vi5,b2);   [iRi RRR ...... RiR..] 
+        vR0.irq.enableIRQ(vi5);   [iRi RRR ...... iR...] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b0.println(b1.append@extra("Using IRQ ").append@extra(vi5).toString@extra());   [iRi RRR ii.... RR...] 
+  +B305:   #1
+        vR0.resetHC@special();   [iRi RRR ...... R....] 
+        vR0.io.setInterruptEnable@extra(15);   [iRi RRR ...... iR...] 
+        vR0.io.setFrameListBaseAddress@extra(vR4.getFrameList@extra().getDescriptorAddress());   [iRi RRR i..... iR...] 
+        vR0.setRun@special(1);   [iRi RRR i..... iR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 59/59 wr 40 swaps 9 any 2 found 0 <init>
+ 
+ method release()V {
+  +START:   #1
+        vi1 = vR0.rootHub.getNumPorts();    [   R] 
+        vi2 = 0;    
+  +B10:   #1
+        if vi2>=vi1 goto B30;   
+  +B15:   #1
+        vR0.rootHub.setPortEnabled(vi2,0);   [ii   iiR] 
+        vi2++;   
+        goto +B10;   [ii   ...]
+  +B30:   #1
+        vR0.setRun@special(0);   [ii   iR.] 
+        vR0.io.release();   [ii   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 3 swaps 0 any 2 found 0 release
+ 
+ method getBaseAddress()Ljx/devices/pci/PCIAddress; {
+  +START:   #1
+        vR1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=vR1.length goto B26;   
+  +B10:   #1
+        vR3 = vR1[vi2];    
+        if vR3==null goto B20;   
+  +B18:   #1
+        return vR3;   
+  +B20:   #1
+        vi2++;   
+        goto +B4;   [RiR R  ]
+  -B26:   #1
+        throw new java/lang/Exception("No IO base address found");   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 5 swaps 0 any 3 found 0 getBaseAddress
+ 
+ method createDefaultControlPipe(Lorg/jnode/driver/bus/usb/USBDevice;)Lorg/jnode/driver/bus/usb/USBControlPipe; {
+  +START:   #1
+        return vR0.pipeMgr.createDefaultControlPipe(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 createDefaultControlPipe
+ 
+ method createPipe(Lorg/jnode/driver/bus/usb/USBEndPoint;)Lorg/jnode/driver/bus/usb/USBPipe; {
+  +START:   #1
+        return vR0.pipeMgr.createPipe(vR1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 createPipe
+ 
+ method interrupt()V {
+  +START:   #1
+        vi1 = vR0.io.getStatus@extra();    [   R] 
+        if vi1!=0 goto B13;   
+  +B12:   #1
+        return;   
+  +B13:   #1
+        vR0.io.clearStatus@extra(vi1);   [i   iR] 
+        vR0.pipeMgr.handleInterrupt();   [i   R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 0 interrupt
+ 
+ method resetHC()V {
+  +START:   #1
+        vR0.io.setCommand@extra(2);   [   iR] 
+        vR0.sleepManager.mdelay(50);   [   iR] 
+        vR0.io.setCommand@extra(0);   [   iR] 
+        vR0.sleepManager.mdelay(10);   [   iR] 
+        vR0.device.writeConfig(192,8192);   [   iiR] 
+        vR0.rootHub.resetHub();   [   R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 resetHC
+ 
+ method setRun(Z)V {
+  +START:   #1
+        vR0.io.setCommandBits@extra(193,vi1);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setRun
+ 
+ method getRootHUB()Lorg/jnode/driver/bus/usb/USBHubAPI; {
+  +START:   #1
+        return vR0.rootHub;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getRootHUB
+ 
+ method getVersion()I {
+  +START:   #1
+        return vR0.version;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getVersion
+}

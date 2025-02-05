@@ -10,11 +10,112 @@ class jx/init/MultiComponentStart {
  
  method init(Ljx/zero/Naming;[Ljava/lang/String;[Ljava/lang/Object;)V {
   +START:   #1
-        vR3 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ R  i][ R .i. iRR]
-        b0 = new jx/zero/debug/DebugPrintStream(vR3);    [ R .i. i..][ R .i. iRR]
+        vR3 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(vR0.lookup("DebugChannel0")));    [ RRR  i][ RRR .i. iRR]
+        b0 = new jx/zero/debug/DebugPrintStream(vR3);    [ RRR .i. i..][ RRR .i. iRR]
         out = b0;   
+        b0 = new java/io/PrintStream(vR3);    [ RRR .i. i..][ RRR .i. iRR]
+        setOut@special(b0);   [R RRR .i. R..]
+        setErr@special(out);   [R RRR Ri. R..]
+        vR4 = (jx/zero/CPUManager)(vR0.lookup("CPUManager"));    
+        vR5 = (jx/zero/ComponentManager)(vR0.lookup("ComponentManager"));    
+        vR6 = ([Ljx/bootrc/ComponentSpec;)(vR2[0]);    
+        vR7 = new java/util/Vector();    [ RRR Riii. i..][ RRR Riii. iR.]
+        vR8 = vR6;    
+        vi9 = vR8.length;    
+        vi10 = 0;    
+  +B102:   #1
+        if vi10>=vi9 goto B444;   
+  +B109:   #1
+        vR11 = vR8[vi10];    
+        vR12 = vR11.getString("InitLib");    [RRRRRRiiR RRR i.... RR.] 
+        vR13 = vR11.getString("StartClass");    [RRRRRRiiRR RRR ii... RR.] 
+        vR14 = new java/lang/String()[0];    
+        vR15 = 0;    
+  +B143:   #1
+        vR14 = vR11.getStringArray("Args");    [RRRRRRiiRRRRR RRR i.... RR.] 
+  +B152:   #1
+        goto +B157;   [RRRRRRiiRRRRR RRR ..... ...]
+  +H155<caught exception>:   #1 reference
+        vR16 = <caught exception>;    
+  +B157:   #1
+        vR16 = new jx/init/MultiComponentStart$StartInfo();    [ RRR ..... i..][ RRR ..... iR.]
+        vR16.name = vR13;   
+        b1 = new java/lang/Object()[1];    
+        b1[0] = vR14;   
+        vR16.args = b1;   
+  +B187:   #1
+        vR17 = vR11.getStringArray("InheritThread");    [RRRRRRiiRRRRRR RRR i.... RR.] 
+        vR18 = vR17;    
+        vi19 = vR18.length;    
+        vi20 = 0;    
+  +B208:   #1
+        if vi20>=vi19 goto B237;   
+  +B215:   #1
+        vR21 = vR18[vi20];    
+        vR5.setInheritThread(vR21);   [RRRRRRiiRRRRRRRRiiR RRR ..... RR.] 
+        vi20++;   
+        goto +B208;   [RRRRRRiiRRRRRRRRiiR RRR ..... ...]
+  +B237:   #2
+        goto +B242;   [RRRRRRiiRRRRRRRRiiR RRR ..... ...]
+  +H240<caught exception>:   #1 reference
+        vR17 = <caught exception>;    
+  +B242:   #1
+        vR17 = vR4.getClass(vR13);    [RRRRRRiiRRRRRRRRiiR RRR ..... RR.] 
+        if vR17!=null goto B291;   
+  -B258:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i..][ RRR ..... iR.]
+        b1.<init>@special(b2.append@extra("Class ").append@extra(vR13).append@extra(" not found.").toString@extra());   [RRRRRRiiRRRRRRRRiiR RRR iii.. RR..] 
+        throw b0;   
+  +B291:   #1
+        vR18 = vR17.getMethods();    [RRRRRRiiRRRRRRRRiiR RRR ..... R...] 
+        vR19 = "main";    
+        vR20 = "([Ljava/lang/String;)V";    
+        vR21 = vR18;    
+        vi22 = vR21.length;    
+        vi23 = 0;    
+  +B320:   #1
+        if vi23>=vi22 goto B380;   
+  +B327:   #1
+        vR24 = vR21[vi23];    
+        if vR19.equals@extra(vR24.getName())==0 goto B374;   
+  +B349:   #1
+        if vR20.equals@extra(vR24.getSignature())==0 goto B374;   
+  +B364:   #1
+        vR16.method = vR24;   
+        goto +B380;   [RRRRRRiiRRRRRRRRRRRiiR RRR ..... ....]
+  +B374:   #2
+        vi23++;   
+        goto +B320;   [RRRRRRiiRRRRRRRRRRRiiR RRR ..... ....]
+  +B380:   #2
+        if vR16.method!=null goto B431;   
+  -B388:   #1
+        b0 = new java/lang/Error;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
+        b1.<init>@special(b2.append@extra("Method ").append@extra(vR19).append@extra(vR20).append@extra(" not found in class ").append@extra(vR13).toString@extra());   [RRRRRRiiRRRRRRRRRRRiiR RRR iii.... RR....] 
+        throw b0;   
+  +B431:   #1
+        vR7.addElement@extra(vR16);   [RRRRRRiiRRRRRRRRRRRiiR RRR ....... RR....] 
+        vi10++;   
+        goto +B102;   [RRRRRRiiRRRRRRRRRRRiiR RRR ....... ......]
+  +B444:   #1
+        vi8 = 0;    
+  +B447:   #1
+        if vi8>=vR7.size@extra() goto B501;   
+  +B457:   #1
+        vR9 = (jx/init/MultiComponentStart$StartInfo)(vR7.elementAt(vi8));    
+        b2 = new jx/init/MultiComponentStart$1(vR4,vR9);    [ RRR ....... i.....][ RRR ....... iRRR..]
+        vR4.start(vR4.createCPUState(b2));   [RRRRRiRiRRRRRRRRRRRiiR RRR i...... RR....] 
+        vi8++;   
+        goto +B447;   [RRRRRiRiRRRRRRRRRRRiiR RRR i...... ......]
+  +B501:   #1
         return;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+143 - 152 handler 155 type 79
+187 - 237 handler 240 type 79
  }
-// Register: rd 7/7 wr 6 swaps 1 any 0 found 1 init
+// Register: rd 79/79 wr 80 swaps 16 any 15 found 2 init
 }

@@ -110,7 +110,7 @@ final  public class IMCast extends IMUnaryOperator {
 	    //throw new CompileException("cast d2i and f2i -- not implemented yet!");
 	    // i2<x>
 	case 12: // i2b
-	    if (result.value!=0) {
+	    if (result.value != 0) {
 		Reg regEAX = regs.getIntRegister(Reg.eax);
 		operant.translate(regEAX);
 		code.cbw();

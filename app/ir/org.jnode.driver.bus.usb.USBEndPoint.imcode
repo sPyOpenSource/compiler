@@ -1,0 +1,118 @@
+class org/jnode/driver/bus/usb/USBEndPoint {
+ 
+ method <init>(Lorg/jnode/driver/bus/usb/USBInterface;Lorg/jnode/driver/bus/usb/EndPointDescriptor;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getDevice());   [  i RR] 
+        vR0.intf = vR1;   
+        vR0.descr = vR2;   
+        vR0.dataToggle = 1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getDescriptor()Lorg/jnode/driver/bus/usb/EndPointDescriptor; {
+  +START:   #1
+        return vR0.descr;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDescriptor
+ 
+ method getInterface()Lorg/jnode/driver/bus/usb/USBInterface; {
+  +START:   #1
+        return vR0.intf;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getInterface
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuffer();    [ R  i][ R  iR]
+        vR1.append("DESCR:");   [R R i RR] 
+        vR1.append(vR0.descr);   [R R ii RR] 
+        return vR1.toString();   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 0 found 0 toString
+ 
+ method getDataToggle()Z {
+  +START:   #1
+        return vR0.dataToggle;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getDataToggle
+ 
+ method toggle()V {
+  +START:   #1
+        b0 = vR0;    
+        if vR0.dataToggle!=0 goto B12;   
+  +B8b0:   #1 reference
+        b1 = 1;    
+        goto +B13b0b1;   [ Ri  ]
+  +B12b0:   #1 reference
+        b1 = 0;    
+  +B13b0b1:   #1 reference int
+        b0.dataToggle = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 1 found 0 toggle
+ 
+ method getStatus()I {
+  +START:   #1
+        vR1 = new org/jnode/driver/bus/usb/USBPacket(2);    [ R  i][ R . iiR]
+        vi2 = vR0.descr.getEndPointAddress@extra();    [R R . R..] 
+        vR3 = vR0.getDevice@this().getDefaultControlPipe@extra();    [Ri R . R..] [Ri R R R..] 
+        vR4 = vR3.createRequest(createGetStatusPacket@special(2,vi2),vR1);    [RiR R i RRR] 
+        vR3.syncSubmit(vR4,5000);   [RiRR R i ??RR] 
+        return vR1.getShort@extra(0);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 1 any 0 found 0 getStatus
+ 
+ method setFeature(I)V {
+  +START:   #1
+        vi2 = vR0.descr.getEndPointAddress@extra();    [   R] 
+        vR3 = vR0.getDevice@this().getDefaultControlPipe@extra();    [i  . R] [i  R R] 
+        vR4 = vR3.createRequest(createSetFeaturePacket@special(2,vi2,vi1),0);    [iR  i RRR] 
+        vR3.syncSubmit(vR4,5000);   [iRR  i ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 setFeature
+ 
+ method clearFeature(I)V {
+  +START:   #1
+        vi2 = vR0.descr.getEndPointAddress@extra();    [   R] 
+        vR3 = vR0.getDevice@this().getDefaultControlPipe@extra();    [i  . R] [i  R R] 
+        vR4 = vR3.createRequest(createClearFeaturePacket@special(2,vi2,vi1),0);    [iR  i RRR] 
+        vR3.syncSubmit(vR4,5000);   [iRR  i ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 5 swaps 1 any 0 found 0 clearFeature
+ 
+ method syncFrame(I)V {
+  +START:   #1
+        vR2 = new org/jnode/driver/bus/usb/USBPacket(2);    [ R  i][ R . iiR]
+        vR2.setShort@extra(0,vi1);   [R R . iiR] 
+        vi3 = vR0.descr.getEndPointAddress@extra();    [R R . R..] 
+        vR4 = vR0.getDevice@this().getDefaultControlPipe@extra();    [Ri R . R..] [Ri R R R..] 
+        vR5 = vR4.createRequest(createEndPointSyncFramePacket@special(vi3),vR2);    [RiR R i RRR] 
+        vR4.syncSubmit(vR5,5000);   [RiRR R i ??RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 7 swaps 1 any 0 found 0 syncFrame
+ 
+ method getPipe()Lorg/jnode/driver/bus/usb/USBPipe; {
+  +START:   #1
+        if vR0.pipe!=null goto B27;   
+  +B7:   #1
+        vR0.pipe = vR0.getDevice@this().getUSBBus@extra().getHcApi().createPipe(vR0);   
+  +B27:   #1
+        return vR0.pipe;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 0 any 0 found 0 getPipe
+}

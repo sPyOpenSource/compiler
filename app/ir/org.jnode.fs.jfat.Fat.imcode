@@ -1,0 +1,419 @@
+class org/jnode/fs/jfat/Fat {
+ 
+ method <init>(Lorg/jnode/fs/jfat/BootSector;Ljx/devices/bio/BlockIO;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        vR0.bs = vR1;   
+        vR0.api = vR2;   
+        b1 = new org/jnode/fs/jfat/FatCache(vR0,8192,512);    [ ?R  i][ ?R . iiiRR]
+        vR0.cache = b1;   
+        vR0.rewindFree@extra();   [ ?R . R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method create(Ljx/devices/bio/BlockIO;)Lorg/jnode/fs/jfat/Fat; {
+  +START:   #1
+        vR1 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR2 = vR1.allocAligned(512,8);    [R R i. iiR] 
+        vR0.readSectors(0,1,vR2,1);   [RR R i. iRiiR] 
+        vR3 = new org/jnode/fs/jfat/BootSector(vR2);    [ R i. i....][ R i. iRR..]
+        vR3.toString();   [RRR R i. R....] 
+        if vR3.isFat32()==0 goto B67;   
+  +B57:   #1
+        return new org/jnode/fs/jfat/Fat32(vR3,vR0);   
+  +B67:   #1
+        if vR3.isFat16()==0 goto B76;   
+  +B74:   #1
+        return 0;   
+  +B76:   #1
+        if vR3.isFat12()==0 goto B93;   
+  +B83:   #1
+        return new org/jnode/fs/jfat/Fat12(vR3,vR0);   
+  +B93:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 15/15 wr 9 swaps 1 any 0 found 0 create
+ 
+ method getBootSector()Lorg/jnode/fs/jfat/BootSector; {
+  +START:   #1
+        return vR0.bs;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBootSector
+ 
+ method getApi()Ljx/devices/bio/BlockIO; {
+  +START:   #1
+        return vR0.api;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getApi
+ 
+ method getClusterSize()I {
+  +START:   #1
+        return (vR0.getBootSector@extra().getBytesPerSector()*vR0.getBootSector@extra().getSectorsPerCluster());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 getClusterSize
+ 
+ method getFirstSector(I)I {
+  +START:   #1
+        if vi1< 0 goto B15;   
+  +B4:   #1
+        if vi1<vR0.getBootSector@extra().getNrFats() goto B42;   
+  -B15:   #1
+        b0 = new java/lang/IndexOutOfBoundsException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i][ RRR . iR]
+        b1.<init>@special(b2.append@extra("illegal fat: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B42:   #1
+        return (vR0.getBootSector@extra().getNrReservedSectors()+(vR0.getBootSector@extra().getSectorsPerFat()*vi1));   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 11 swaps 2 any 3 found 1 getFirstSector
+ 
+ method isFirstSector(IJ)Z {
+  +START:   #1
+        if compare(vl2,(long)vR0.getFirstSector@extra(vi1))!=0 goto B15;   
+  +B11:   #1
+        b0 = 1;    
+        goto +B16b0;   forward return[ i  .]
+  +B15:   #1
+        b0 = 0;    
+  +B16b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFirstSector
+ 
+ method getLastSector(I)J {
+  +START:   #1
+        return (long)((vR0.getFirstSector@extra(vi1)+vR0.getBootSector@extra().getSectorsPerFat())-1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLastSector
+ 
+ method isLastSector(IJ)Z {
+  +START:   #1
+        if compare(vl2,vR0.getLastSector@extra(vi1))!=0 goto B14;   
+  +B10:   #1
+        b0 = 1;    
+        goto +B15b0;   forward return[ i  .]
+  +B14:   #1
+        b0 = 0;    
+  +B15b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isLastSector
+ 
+ method getFirst(I)I {
+  +START:   #1
+        return (vR0.getFirstSector@extra(vi1)*vR0.getBootSector@extra().getBytesPerSector());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getFirst
+ 
+ method getLast(I)J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getLast
+ 
+ method position(II)I {
+  +START:   #1
+        if vi2< 0 goto B12;   
+  +B4:   #1
+        if vi2<vR0.size@extra() goto B39;   
+  -B12:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("illegal entry: ").append@extra(vi2).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B39:   #1
+        return (vR0.getFirst@extra(vi1)+vR0.offset@this(vi2));   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 8 swaps 2 any 3 found 1 position
+ 
+ method readCluster(IILjx/zero/Memory;)V {
+  +START:   #1
+        if vi2>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("offset<0");   
+  +B14:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR . i..][ RR . iR.]
+        b0.println(b1.append@extra(" cpos: ").append@extra(vR0.getClusterPosition@this(vi1)).append@extra(" spc: ").append@extra(vR0.getBootSector@extra().getSectorsPerCluster()).toString@extra());   [ RR iii..ii. RR...] 
+        vR0.getApi@extra().readSectors((vR0.getClusterPosition@this(vi1)/512),vR0.getBootSector@extra().getSectorsPerCluster(),vR3,1);   [ RR iiiiiii. iRiiR] [ RR iiiiiiiR iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 19 swaps 6 any 1 found 0 readCluster
+ 
+ method clearCluster(III)V {
+  +START:   #1
+        if vi2>=0 goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("start<0");   
+  +B14:   #1
+        if vi3>=vi2 goto B55;   
+  -B19:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR . i..][ RRR . iR.]
+        b1.<init>@special(b2.append@extra("end<start ").append@extra(vi2).append@extra(" ").append@extra(vi3).toString@extra());   [ RRR iii... RR...] 
+        throw b0;   
+  +B55:   #1
+        if vi3<=vR0.getClusterSize@extra() goto B107;   
+  -B63:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ...... i....][ RRR ...... iR...]
+        b1.<init>@special(b2.append@extra("end[").append@extra(vi3).append@extra("] exceed clusterSize[").append@extra(vR0.getClusterSize@extra()).append@extra("]").toString@extra());   [ RRR ii.iii... RR....] 
+        throw b0;   
+  +B107:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 24 swaps 8 any 5 found 1 clearCluster
+ 
+ method clearCluster(I)V {
+  +START:   #1
+        vR0.clearCluster@this(vi1,0,vR0.getClusterSize@extra());   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 clearCluster
+ 
+ method firstCluster()I {
+  +START:   #1
+        return 2;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 firstCluster
+ 
+ method getClusterSector(I)I {
+  +START:   #1
+        if vi1<vR0.firstCluster@extra() goto B16;   
+  +B8:   #1
+        if vi1<vR0.size@extra() goto B43;   
+  -B16:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("illegal cluster # : ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B43:   #1
+        return (((vi1-vR0.firstCluster@extra())*vR0.bs.getSectorsPerCluster())+vR0.getBootSector@extra().getFirstDataSector());   
+  +END:   #1
+ }
+// Register: rd 17/17 wr 10 swaps 2 any 3 found 3 getClusterSector
+ 
+ method size()I {
+  +START:   #1
+        return (vR0.bs.getCountOfClusters()+vR0.firstCluster@extra());   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 0 found 0 size
+ 
+ method hasNext(I)Z {
+  +START:   #1
+        if vi1==0 goto B9;   
+  +B4:   #1
+        if vi1!=1 goto B11;   
+  +B9:   #1
+        return 0;   
+  +B11:   #1
+        if vR0.isEofChain@this(vi1)!=0 goto B23;   
+  +B19:   #1
+        b0 = 1;    
+        goto +B24b0;   forward return[ i  ..]
+  +B23:   #1
+        b0 = 0;    
+  +B24b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 2 found 0 hasNext
+ 
+ method freeEntry()I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 freeEntry
+ 
+ method isFree(I)Z {
+  +START:   #1
+        if vi1!=vR0.freeEntry@extra() goto B12;   
+  +B8:   #1
+        b0 = 1;    
+        goto +B13b0;   forward return[ i  .]
+  +B12:   #1
+        b0 = 0;    
+  +B13b0:   #1 int
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 1 found 1 isFree
+ 
+ method getUInt16(I)I {
+  +START:   #1
+        return vR0.cache.getUInt16(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUInt16
+ 
+ method getUInt32(I)I {
+  +START:   #1
+        return vR0.cache.getUInt32(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getUInt32
+ 
+ method setInt16(II)V {
+  +START:   #1
+        vR0.cache.setInt16(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setInt16
+ 
+ method setInt32(II)V {
+  +START:   #1
+        vR0.cache.setInt32(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setInt32
+ 
+ method flush()V {
+  +START:   #1
+        vR0.cache.flush();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 flush
+ 
+ method isFreeEntry(I)Z {
+  +START:   #1
+        return vR0.isFree@extra(vR0.get@this(vi1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 isFreeEntry
+ 
+ method getLastFree()I {
+  +START:   #1
+        return vR0.lastfree;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getLastFree
+ 
+ method setLastFree(I)V {
+  +START:   #1
+        vR0.lastfree = vi1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 setLastFree
+ 
+ method rewindFree()V {
+  +START:   #1
+        vR0.lastfree = vR0.firstCluster@extra();   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 rewindFree
+ 
+ method freeEntries()I {
+  +START:   #1
+        vi1 = 0;    
+        vi2 = 0;    
+  +B4:   #1
+        if vi2>=vR0.size@extra() goto B29;   
+  +B12:   #1
+        if vR0.isFreeEntry@extra(vi2)==0 goto B23;   
+  +B20:   #1
+        vi1++;   
+  +B23:   #1
+        vi2++;   
+        goto +B4;   [ii   ..]
+  +B29:   #1
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 0 any 3 found 1 freeEntries
+ 
+ method isFat32()Z {
+  +START:   #1
+        return vR0.getBootSector@extra().isFat32();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFat32
+ 
+ method isFat16()Z {
+  +START:   #1
+        return vR0.getBootSector@extra().isFat16();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFat16
+ 
+ method isFat12()Z {
+  +START:   #1
+        return vR0.getBootSector@extra().isFat12();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFat12
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "FAT cluster:%d boot sector: %s";    
+        b1 = new java/lang/Object()[2];    
+        b1[0] = valueOf@special(vR0.getClusterSize@extra());   
+        b1[1] = vR0.getBootSector@extra();   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 toString
+ 
+ method getChain(J)[J {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getChain
+ 
+ method allocNew(I)[J {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 allocNew
+ 
+ method allocAppend(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 allocAppend
+ 
+ method setEof(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setEof
+ 
+ method setFree(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFree
+}

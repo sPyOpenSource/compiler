@@ -24,31 +24,31 @@ class jx/zero/LookupHelper {
         b1 = new java/lang/StringBuilder();    [ RR  i][ RR  iR]
         b0.println(b1.append@extra("Lookup ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
   +B33:   #2
-        vR2 = lookup@special(vR1);    [R RR ... R..]
-        if vR2==null goto B45;   
-  +B42:   #1
-        goto +B70;   [R RR ... ...]
+        vR2 = vR0.lookup(vR1);    [R RR ... RR.] 
+        if vR2==null goto B48;   
   +B45:   #1
+        goto +B73;   [R RR ... ...]
+  +B48:   #1
         vi3 = 0;    
-  +B47:   #1
-        if vi3>=20 goto B67;   
-  +B53:   #1
+  +B50:   #1
+        if vi3>=20 goto B70;   
+  +B56:   #1
         cpuManager.yield();   [Ri RR ... R..] 
         vi3++;   
-        goto +B47;   [Ri RR ... ...]
-  +B67:   #1
-        goto +B33;   [Ri RR ... ...]
+        goto +B50;   [Ri RR ... ...]
   +B70:   #1
-        if verbose==0 goto B101;   
-  +B76:   #1
+        goto +B33;   [Ri RR ... ...]
+  +B73:   #1
+        if verbose==0 goto B104;   
+  +B79:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR ... i..][ RR ... iR.]
         b0.println(b1.append@extra("    --> ").append@extra(vR1).toString@extra());   [R RR ii. RR.] 
-  +B101:   #1
+  +B104:   #1
         return vR2;   
   +END:   #1
  }
-// Register: rd 8/8 wr 17 swaps 4 any 3 found 0 waitUntilPortalAvailable
+// Register: rd 9/9 wr 17 swaps 4 any 3 found 0 waitUntilPortalAvailable
  
  method <clinit>()V {
   +START:   #1

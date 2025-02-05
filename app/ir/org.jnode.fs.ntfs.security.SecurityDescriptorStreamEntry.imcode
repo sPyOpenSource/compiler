@@ -1,0 +1,57 @@
+class org/jnode/fs/ntfs/security/SecurityDescriptorStreamEntry {
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0);   [ ?R  iRR] 
+        b1 = new org/jnode/fs/ntfs/security/SecurityDescriptor(vR1,20);    [ ?R  i..][ ?R . iiRR]
+        vR0.securityDescriptor = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 0 any 0 found 0 <init>
+ 
+ method getEntryHash()I {
+  +START:   #1
+        return vR0.getInt32@this(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getEntryHash
+ 
+ method getSecurityId()I {
+  +START:   #1
+        return vR0.getInt32@this(4);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSecurityId
+ 
+ method getOffsetToEntry()I {
+  +START:   #1
+        return vR0.getInt32@this(8);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffsetToEntry
+ 
+ method getSecurityDescriptor()Lorg/jnode/fs/ntfs/security/SecurityDescriptor; {
+  +START:   #1
+        return vR0.securityDescriptor;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSecurityDescriptor
+ 
+ method getLength()I {
+  +START:   #1
+        vi1 = vR0.getInt32@this(16);    [ l_  iR] 
+        if (vi1%16)!=0 goto B18;   
+  +B14:   #1
+        b0 = 0;    
+        goto +B26b0;   [i l_  ..]
+  +B18:   #1
+        b0 = (long)(16-(vi1%16));    
+  +B26b0:   #1 long
+        vl2 = b0;    
+        vi1 = (int)((long)vi1+vl2);    
+        return vi1;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 3 swaps 0 any 0 found 0 getLength
+}

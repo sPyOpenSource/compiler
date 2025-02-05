@@ -28,133 +28,137 @@ class jx/init/Main {
         initNaming = vR1;   
         vR2 = vR0[0];    
         vR3 = (jx/zero/BootFS)(vR1.lookup("BootFS"));    
-        if vR3!=null goto B55;   
-  +B28:   #1
-        out.println("****************************");   [RRR RRR i. RR] 
-        out.println("*  NO BootFS portal found. *");   [RRR RRR ii. RR] 
-        out.println("****************************");   [RRR RRR iii. RR] 
-        goto +B502;   [RRR RRR iii. ..]
-  +B55:   #1
-        vR4 = vR3.getFile(vR2);    [RRR RRR .... RR] 
-        if vR4!=null goto B96;   
-  -B69:   #1
+        if vR3!=null goto B60;   
+  -B28:   #1
+        out.println("****************************");   [RRR RRR??????R?R i. RR] 
+        out.println("*  NO BootFS portal found. *");   [RRR RRR??????R?R ii. RR] 
+        out.println("****************************");   [RRR RRR??????R?R iii. RR] 
+        throw new java/lang/Exception();   
+  +B60:   #1
+        vR4 = vR3.getFile(vR2);    [RRR RRR??????R?R .... RR] 
+        if vR4!=null goto B101;   
+  -B74:   #1
         b0 = new java/lang/Error;    
         b1 = b0;    
-        b2 = new java/lang/StringBuilder();    [ RRR .... i.][ RRR .... iR]
-        b1.<init>@special(b2.append@extra("no startup script ").append@extra(vR2).toString@extra());   [RRRR RRR ii.. RR.] 
+        b2 = new java/lang/StringBuilder();    [ RRR??????R?R .... i.][ RRR??????R?R .... iR]
+        b1.<init>@special(b2.append@extra("no startup script ").append@extra(vR2).toString@extra());   [RRRR RRR??????R?R ii.. RR.] 
         throw b0;   
-  +B96:   #1
-        vR5 = new jx/bootrc/BootRC2(vR4);    [ RRR .... i..][ RRR .... iRR]
-        installGlobal@special(vR5.getGlobalSpec());   [RRRRR RRR R... R..]
-  +B115:   #1
-        b0 = vR5.nextDomainSpec();    [RRRRR RRR .... R..] 
+  +B101:   #1
+        vR5 = new jx/bootrc/BootRC2(vR4);    [ RRR??????R?R .... i..][ RRR??????R?R .... iRR]
+        installGlobal@special(vR5.getGlobalSpec());   [RRRRR RRR??????R?R R... R..]
+  +B120:   #1
+        b0 = vR5.nextDomainSpec();    [RRRRR RRR??????R?R .... R..] 
         vR6 = b0;    
-        if b0==null goto B502;   
-  +B126:   #1
+        if b0==null goto B542;   
+  +B131:   #1
         vi7 = 0;    
-        vR8 = vR6.getString("Name");    [RRRRRRi RRR i... RR.] 
-        vi9 = vR6.getInt("CodeSize");    [RRRRRRiR RRR ii.. RR.] 
-  +B147:   #1
-        vR6.getString("SchedulerClass");   [RRRRRRiRi RRR i... RR.] 
-  +B155:   #1
-        goto +B160;   [RRRRRRiRi RRR .... ...]
-  +H158<caught exception>:   #1 reference
+        vR8 = vR6.getString("Name");    [RRRRRRi RRR??????R?R i... RR.] 
+        vi9 = vR6.getInt("CodeSize");    [RRRRRRiR RRR??????R?R ii.. RR.] 
+  +B152:   #1
+        vR6.getString("SchedulerClass");   [RRRRRRiRi RRR??????R?R i... RR.] 
+  +B160:   #1
+        goto +B165;   [RRRRRRiRi RRR??????R?R .... ...]
+  +H163<caught exception>:   #1 reference
         vR10 = <caught exception>;    
-  +B160:   #2
-        vR10 = vR6.getString("GarbageCollector");    [RRRRRRiRi RRR i... RR.] 
+  +B165:   #2
+        vR10 = vR6.getString("GarbageCollector");    [RRRRRRiRi RRR??????R?R i... RR.] 
         vR11 = vR10;    
         vi12 = -1;    
         lswitch (vR11.hashCode@extra()) { 
-           -1388777169:B256
-           -857971233:B240
-           757417932:B272
-           953530445:B224
-           ::B285
+           -1388777169:B260
+           -857971233:B244
+           757417932:B276
+           953530445:B228
+           ::B289
         };   
-  +B224:   #1
-        if vR11.equals@extra("copying")==0 goto B285;   
-  +B234:   #1
+  +B228:   #1
+        if vR11.equals@extra("copying")==0 goto B289;   
+  +B238:   #1
         vi12 = 0;    
-        goto +B285;   [RRRRRRiRiiRiRiRRR RRR .... ...]
-  +B240:   #1
-        if vR11.equals@extra("compacting")==0 goto B285;   
-  +B250:   #1
+        goto +B289;   [RRRRRRiRiiRiRiRRR RRR??????R?R .... ...]
+  +B244:   #1
+        if vR11.equals@extra("compacting")==0 goto B289;   
+  +B254:   #1
         vi12 = 1;    
-        goto +B285;   [RRRRRRiRiiRiRiRRR RRR .... ...]
-  +B256:   #1
-        if vR11.equals@extra("bitmap")==0 goto B285;   
-  +B266:   #1
+        goto +B289;   [RRRRRRiRiiRiRiRRR RRR??????R?R .... ...]
+  +B260:   #1
+        if vR11.equals@extra("bitmap")==0 goto B289;   
+  +B270:   #1
         vi12 = 2;    
-        goto +B285;   [RRRRRRiRiiRiRiRRR RRR .... ...]
-  +B272:   #1
-        if vR11.equals@extra("chunked")==0 goto B285;   
-  +B282:   #1
+        goto +B289;   [RRRRRRiRiiRiRiRRR RRR??????R?R .... ...]
+  +B276:   #1
+        if vR11.equals@extra("chunked")==0 goto B289;   
+  +B286:   #1
         vi12 = 3;    
-  +B285:   #8
-        tswitch (vi12) B316 B322 B328 B334 : B340;   
-  +B316:   #1
+  +B289:   #8
+        tswitch (vi12) B320 B326 B332 B338 : B344;   
+  +B320:   #1
         vi7 = 0;    
-        goto +B350;   [RRRRRRiRiRRi RRR .... ...]
-  +B322:   #1
+        goto +B354;   [RRRRRRiRiRRi RRR??????R?R .... ...]
+  +B326:   #1
         vi7 = 1;    
-        goto +B350;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  +B328:   #1
+        goto +B354;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ...]
+  +B332:   #1
         vi7 = 2;    
-        goto +B350;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  +B334:   #1
+        goto +B354;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ...]
+  +B338:   #1
         vi7 = 3;    
-        goto +B350;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  -B340:   #1
+        goto +B354;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ...]
+  -B344:   #1
         throw new java/lang/Error("unknown GC implementation");   
-  +B350:   #5
-        goto +B355;   [RRRRRRiRiRRi RRR .... ...]
-  +H353<caught exception>:   #1 reference
+  +B354:   #5
+        goto +B359;   [RRRRRRiRiRRi RRR??????R?R .... ...]
+  +H357<caught exception>:   #1 reference
         vR10 = <caught exception>;    
-  +B355:   #1
+  +B359:   #1
         vi10 = 0;    
         vi11 = 0;    
         vi12 = 0;    
         vR13 = 0;    
         vi14 = -1;    
-        tswitch (vi7) B404 B404 B404 B416 : B474;   
-  +B404:   #3
-        vi10 = vR6.getInt("HeapSize");    [RRRRRRiRiiiiRi RRR i... RR.] 
-        goto +B484;   [RRRRRRiRiiiiRi RRR i... ...]
-  +B416:   #1
-        vi10 = vR6.getInt("GCHeapInitial");    [RRRRRRiRiiiiRiRRR RRR i... RR.] 
-        vi11 = vR6.getInt("GCHeapChunk");    [RRRRRRiRiiiiRiRRR RRR ii.. RR.] 
-        vi12 = vR6.getInt("GCStartGC");    [RRRRRRiRiiiiRiRRR RRR iii. RR.] 
-  +B443:   #1
-        vR13 = vR6.getString("GCAccountTo");    [RRRRRRiRiiiiRiRRR RRR i... RR.] 
-  +B452:   #1
-        goto +B457;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  +H455<caught exception>:   #1 reference
+        tswitch (vi7) B408 B408 B408 B420 : B478;   
+  +B408:   #3
+        vi10 = vR6.getInt("HeapSize");    [RRRRRRiRiiiiRi RRR??????R?R i... RR.] 
+        goto +B488;   [RRRRRRiRiiiiRi RRR??????R?R i... ...]
+  +B420:   #1
+        vi10 = vR6.getInt("GCHeapInitial");    [RRRRRRiRiiiiRiRRR RRR??????R?R i... RR.] 
+        vi11 = vR6.getInt("GCHeapChunk");    [RRRRRRiRiiiiRiRRR RRR??????R?R ii.. RR.] 
+        vi12 = vR6.getInt("GCStartGC");    [RRRRRRiRiiiiRiRRR RRR??????R?R iii. RR.] 
+  +B447:   #1
+        vR13 = vR6.getString("GCAccountTo");    [RRRRRRiRiiiiRiRRR RRR??????R?R i... RR.] 
+  +B456:   #1
+        goto +B461;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ...]
+  +H459<caught exception>:   #1 reference
         vR15 = <caught exception>;    
-  +B457:   #2
-        vi14 = vR6.getInt("GCLimit");    [RRRRRRiRiiiiRiRRR RRR i... RR.] 
-  +B466:   #1
-        goto +B484;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  +H469<caught exception>:   #1 reference
+  +B461:   #2
+        vi14 = vR6.getInt("GCLimit");    [RRRRRRiRiiiiRiRRR RRR??????R?R i... RR.] 
+  +B470:   #1
+        goto +B488;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ...]
+  +H473<caught exception>:   #1 reference
         vR15 = <caught exception>;    
-        goto +B484;   [RRRRRRiRiiRiRiRRR RRR .... ...]
-  -B474:   #1
+        goto +B488;   [RRRRRRiRiRRiRiRRR RRR??????R?R .... ...]
+  -B478:   #1
         throw new java/lang/Error("unknown GC implementation");   
-  +B484:   #3
-        vR15 = vR6.getComponents();    [RRRRRRiRiiiiRi RRR .... R..] 
+  +B488:   #3
+        vR15 = vR6.getComponents();    [RRRRRRiRiiiiRi RRR??????R?R .... R..] 
         vR16 = "init2.jll";    
         vR17 = "jx/init/MultiComponentStart";    
-        goto +B115;   [RRRRRRiRiiiiRiRRR RRR .... ...]
-  +B502:   #2
-        out.println("Init finished.");   [RRR RRR i... RR.] 
+        b9 = initNaming;    
+        b11 = new java/lang/Object()[1];    
+        b11[0] = vR15;   
+        createDomain@special(vR8,vR16,vR17,vi10,vi11,vi12,vR13,vi14,vi9,b9,vi7,b11);   [RRRRRRiRiiiiRiRRR RRR??????R?R .... RiRiiRiiiRRR]
+        goto +B120;   [RRRRRRiRiiiiRiRRR RRR??????R?R .... ............]
+  +B542:   #1
+        out.println("Init finished.");   [RRRRRRiRiiRiRiRRR RRR??????R?R i... RR..........] 
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-147 - 155 handler 158 type 121
-160 - 350 handler 353 type 121
-443 - 452 handler 455 type 121
-457 - 466 handler 469 type 121
+152 - 160 handler 163 type 124
+165 - 354 handler 357 type 124
+447 - 456 handler 459 type 124
+461 - 470 handler 473 type 124
  }
-// Register: rd 39/39 wr 66 swaps 21 any 8 found 1 main
+// Register: rd 43/43 wr 68 swaps 21 any 9 found 1 main
  
  method installGlobal(Ljx/bootrc/GlobalSpec;)V {
   +START:   #1
@@ -192,19 +196,20 @@ EXCEPTIONHANDLER-TABLE:
   +B175:   #2
         vR1 = vR0.getString@this("InstallNaming");    [RRRRRiR RRR i.... RR..] 
         b0 = new jx/InitialNaming(initNaming);    [ RRR i.... i...][ RRR i.... iRR.]
-  +B193:   #1
-        goto +B221;   forward return[RRRRRiR RRR ..... ....]
-  +H196<caught exception>:   #1 reference
+        initNaming = b0;   
+  +B195:   #1
+        goto +B223;   forward return[RRRRRiR RRR ..... ....]
+  +H198<caught exception>:   #1 reference
         vR1 = <caught exception>;    
         out.println("!!ATTENTION!!                                      !!ATTENTION!!");   [RRRRRiR RRR i.... RR..] 
         out.println("!!ATTENTION!!  DomainZero's naming service is used !!ATTENTION!!");   [RRRRRiR RRR ii... RR..] 
         out.println("!!ATTENTION!!                                      !!ATTENTION!!");   [RRRRRiR RRR iii.. RR..] 
-  +B221:   #1
+  +B223:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-29 - 147 handler 150 type 121
-175 - 193 handler 196 type 121
+29 - 147 handler 150 type 124
+175 - 195 handler 198 type 124
  }
-// Register: rd 18/18 wr 46 swaps 17 any 3 found 0 installGlobal
+// Register: rd 20/20 wr 46 swaps 17 any 3 found 1 installGlobal
 }

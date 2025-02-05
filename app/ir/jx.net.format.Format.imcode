@@ -208,6 +208,8 @@ class jx/net/format/Format {
  
  method readAddress(I)Ljx/net/IPAddress; {
   +START:   #1
+        out.println("ADDR:");   [ R i. RR] 
+        xdump1@special(vR0.buf,(vR0.offset+vi1),4);   [ R iRi iiR]
         vi2 = (vR0.buf.get8(((vR0.offset+vi1)+0)) & 255);    
         vi2 = (vi2 | ((vR0.buf.get8(((vR0.offset+vi1)+1)) << 8) & 65280));    
         vi2 = (vi2 | ((vR0.buf.get8(((vR0.offset+vi1)+2)) << 16) & 16711680));    
@@ -215,7 +217,7 @@ class jx/net/format/Format {
         return new jx/net/IPv4Address(vi2);   
   +END:   #1
  }
-// Register: rd 20/20 wr 9 swaps 4 any 3 found 3 readAddress
+// Register: rd 23/23 wr 13 swaps 5 any 3 found 3 readAddress
  
  method getMemory()Ljx/zero/Memory; {
   +START:   #1

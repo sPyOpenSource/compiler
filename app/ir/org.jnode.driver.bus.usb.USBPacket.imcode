@@ -1,0 +1,125 @@
+class org/jnode/driver/bus/usb/USBPacket {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR0.data = vR2.alloc(vi1);   
+        vR0.size = vi1;   
+        vR0.offset = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 4 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1,0,vR1.size());   [  i iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Ljx/zero/Memory;II)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.data = vR1;   
+        vR0.size = vi3;   
+        vR0.offset = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setByte(II)V {
+  +START:   #1
+        vR0.data.set8((vR0.offset+vi1),(byte)vi2);   [  ii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 setByte
+ 
+ method setShort(II)V {
+  +START:   #1
+        vR0.data.set8(((vR0.offset+vi1)+0),(byte)(vi2 & 255));   [  ii iiR] 
+        vR0.data.set8(((vR0.offset+vi1)+1),(byte)((vi2 >> 8) & 255));   [  iiii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 0 found 0 setShort
+ 
+ method setInt(II)V {
+  +START:   #1
+        vR0.data.set8(((vR0.offset+vi1)+0),(byte)(vi2 & 255));   [  ii iiR] 
+        vR0.data.set8(((vR0.offset+vi1)+1),(byte)((vi2 >> 8) & 255));   [  iiii iiR] 
+        vR0.data.set8(((vR0.offset+vi1)+2),(byte)((vi2 >> 16) & 255));   [  iiiiii iiR] 
+        vR0.data.set8(((vR0.offset+vi1)+3),(byte)((vi2 >>> 24) & 255));   [  iiiiiiii iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 4 any 0 found 0 setInt
+ 
+ method getByte(I)I {
+  +START:   #1
+        return (vR0.data.get8((vR0.offset+vi1)) & 255);   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getByte
+ 
+ method getShort(I)I {
+  +START:   #1
+        vi2 = (vR0.data.get8(((vR0.offset+vi1)+0)) & 255);    
+        vi3 = (vR0.data.get8(((vR0.offset+vi1)+1)) & 255);    
+        return (short)(vi2 | (vi3 << 8));   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 0 found 0 getShort
+ 
+ method getChar(I)C {
+  +START:   #1
+        vi2 = (vR0.data.get8(((vR0.offset+vi1)+0)) & 255);    
+        vi3 = (vR0.data.get8(((vR0.offset+vi1)+1)) & 255);    
+        return (char)(vi2 | (vi3 << 8));   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 0 found 0 getChar
+ 
+ method getInt(I)I {
+  +START:   #1
+        vi2 = (vR0.data.get8(((vR0.offset+vi1)+0)) & 255);    
+        vi3 = (vR0.data.get8(((vR0.offset+vi1)+1)) & 255);    
+        vi4 = (vR0.data.get8(((vR0.offset+vi1)+2)) & 255);    
+        vi5 = (vR0.data.get8(((vR0.offset+vi1)+3)) & 255);    
+        return (short)(((vi2 | (vi3 << 8)) | (vi4 << 16)) | (vi5 << 24));   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 8 swaps 4 any 0 found 0 getInt
+ 
+ method getData()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.data;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getData
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.offset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method getSize()I {
+  +START:   #1
+        return vR0.size;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSize
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+}

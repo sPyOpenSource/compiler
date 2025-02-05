@@ -2,11 +2,22 @@ class AI/AIOutput {
  
  method <init>(LAI/AIMemory;)V {
   +START:   #1
-        vR0.<init>@special(vR1);   [   RR] 
+        vR0.<init>@special(vR1);   [ RR  RR] 
+        b1 = new jx/zero/debug/DebugOutputStream((jx/zero/debug/DebugChannel)(getInitialNaming@special().lookup("DebugChannel0")));    [ RR  i.][ RR .i. iRR]
+        vR0.out = b1;   
+        b0 = new jx/zero/debug/DebugPrintStream(vR0.out);    [ RR .i. i..][ RR .i. iRR]
+        out = b0;   
         return;   
   +END:   #1
  }
-// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+// Register: rd 9/9 wr 7 swaps 1 any 0 found 1 <init>
+ 
+ method getOut()Ljx/zero/debug/DebugOutputStream; {
+  +START:   #1
+        return vR0.out;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOut
  
  method Send()V {
   +START:   #1

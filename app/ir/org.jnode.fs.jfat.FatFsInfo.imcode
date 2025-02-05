@@ -1,0 +1,179 @@
+class org/jnode/fs/jfat/FatFsInfo {
+ 
+ method <init>(I)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR2 = (jx/zero/MemoryManager)(getInitialNaming@special().lookup("MemoryManager"));    
+        vR0.sector = vR2.alloc(vi1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 <init>
+ 
+ method write(Ljx/devices/bio/BlockIO;I)V {
+  +START:   #1
+        vR1.writeSectors(vi2,1,vR0.sector,1);   [  i iRiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 write
+ 
+ method get8(I)I {
+  +START:   #1
+        return vR0.sector.get8(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get8
+ 
+ method set8(II)V {
+  +START:   #1
+        vR0.sector.set8(vi1,(byte)vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 set8
+ 
+ method get16(I)I {
+  +START:   #1
+        return vR0.sector.getLittleEndian16(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 get16
+ 
+ method set16(II)V {
+  +START:   #1
+        vR0.sector.setLittleEndian16(vi1,(short)vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 1 any 0 found 0 set16
+ 
+ method get32(I)J {
+  +START:   #1
+        return (long)vR0.sector.getLittleEndian32(vi1);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 get32
+ 
+ method set32(IJ)V {
+  +START:   #1
+        vR0.sector.setLittleEndian32(vi1,(int)vl2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 2 swaps 1 any 0 found 0 set32
+ 
+ method getString(II)Ljava/lang/String; {
+  +START:   #1
+        vR3 = new java/lang/StringBuilder(vi2);    [ R  i][ R . iiR]
+        vi4 = 0;    
+  +B12:   #1
+        if vi4>=vi2 goto B47;   
+  +B18:   #1
+        vi5 = vR0.sector.get32((vi1+vi4));    [Ri R i iR.] 
+        vR3.append@extra((char)vi5);   [Rii R ii iR.] 
+        vi4++;   
+        goto +B12;   [Rii R ii ...]
+  +B47:   #1
+        return vR3.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 7 swaps 2 any 2 found 0 getString
+ 
+ method setString(IILjava/lang/String;)V {
+  +START:   #1
+        vi4 = 0;    
+  +B3:   #1
+        if vi4>=vi2 goto B54;   
+  +B9:   #1
+        if vi4>=vR3.length@extra() goto B29;   
+  +B18:   #1
+        vi5 = vR3.charAt@extra(vi4);    [i   iR] 
+        goto +B32;   [ii   ..]
+  +B29:   #1
+        vi5 = 0;    
+  +B32:   #1
+        vR0.sector.set8((vi1+vi4),(byte)vi5);   [ii  ii iiR] 
+        vi4++;   
+        goto +B3;   [ii  ii ...]
+  +B54:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 11/11 wr 6 swaps 1 any 3 found 1 setString
+ 
+ method getBytes(II)[B {
+  +START:   #1
+        vR3 = new byte[vi2];    
+        arraycopy@special(vR0.sector,vi1,vR3,0,vi2);   [R  R iiRiR]
+        return vR3;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getBytes
+ 
+ method setBytes(II[B)V {
+  +START:   #1
+        arraycopy@special(vR3,0,vR0.sector,vi1,vi2);   [  R iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setBytes
+ 
+ method setFsInfo_LeadSig(J)V {
+  +START:   #1
+        vR0.set32@this(0,vl1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFsInfo_LeadSig
+ 
+ method setFsInfo_Reserved1()V {
+  +START:   #1
+        vR1 = new byte[480];    
+        vR0.setBytes@this(4,480,vR1);   [R   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setFsInfo_Reserved1
+ 
+ method setFsInfo_StrucSig(I)V {
+  +START:   #1
+        vR0.set32@this(484,(long)vi1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFsInfo_StrucSig
+ 
+ method setFsInfo_FreeCount(I)V {
+  +START:   #1
+        vR0.set32@this(488,(long)vi1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFsInfo_FreeCount
+ 
+ method setFsInfo_NextFree(I)V {
+  +START:   #1
+        vR0.set32@this(492,(long)vi1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFsInfo_NextFree
+ 
+ method setReserve2()V {
+  +START:   #1
+        vR1 = new byte[12];    
+        vR0.setBytes@this(496,12,vR1);   [R   RiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setReserve2
+ 
+ method setFsInfo_TrailSig(I)V {
+  +START:   #1
+        vR0.set32@this(508,(long)vi1);   [   ??iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFsInfo_TrailSig
+}

@@ -1,0 +1,84 @@
+class org/jnode/fs/ntfs/logfile/LogClientRecord {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getOldestLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(0);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getOldestLsn
+ 
+ method getRestartLsn()J {
+  +START:   #1
+        return vR0.getInt64@this(8);   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getRestartLsn
+ 
+ method getPreviousClientOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(16);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getPreviousClientOffset
+ 
+ method getNextClientOffset()I {
+  +START:   #1
+        return vR0.getUInt16@this(18);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getNextClientOffset
+ 
+ method getSequenceNumber()I {
+  +START:   #1
+        return vR0.getUInt16@this(20);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSequenceNumber
+ 
+ method getClientNameLength()I {
+  +START:   #1
+        return vR0.getUInt16@this(28);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getClientNameLength
+ 
+ method getClientName()Ljava/lang/String; {
+  +START:   #1
+        vi1 = vR0.getClientNameLength@this();    [   R] 
+        vR2 = vR0.MemManager.alloc(vi1);    [i   iR] 
+        vR0.getData@this(32,vR2,0,vi1);   [iR   iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getClientName
+ 
+ method toDebugString()Ljava/lang/String; {
+  +START:   #1
+        vR1 = new java/lang/StringBuilder("Log Client Record:[
+");    [ R  i][ R . iRR]
+        vR1.append@extra("oldest-lsn: ").append@extra(vR0.getOldestLsn@this()).append@extra("
+");   [R R ii.. RR...] [R R iiR. R??R.] [R R iiRR R??RR] 
+        vR1.append@extra("restart-lsn: ").append@extra(vR0.getRestartLsn@this()).append@extra("
+");   [R R iiii.. RR...] [R R iiiiR. R??R.] [R R iiiiRR R??RR] 
+        vR1.append@extra("previous-client: ").append@extra(vR0.getPreviousClientOffset@this()).append@extra("
+");   [R R iiiii.ii. RR...] [R R iiiiiRii. RiR..] [R R iiiiiRiiR RiRR.] 
+        vR1.append@extra("next-client: ").append@extra(vR0.getNextClientOffset@this()).append@extra("
+");   [R R iiiiiiii.ii. RR...] [R R iiiiiiiiRii. RiR..] [R R iiiiiiiiRiiR RiRR.] 
+        vR1.append@extra("sequence-number: ").append@extra(vR0.getSequenceNumber@this()).append@extra("
+");   [R R iiiiiiiiiii.ii. RR...] [R R iiiiiiiiiiiRii. RiR..] [R R iiiiiiiiiiiRiiR RiRR.] 
+        vR1.append@extra("name-length: ").append@extra(vR0.getClientNameLength@this()).append@extra("
+");   [R R iiiiiiiiiiiiii.ii. RR...] [R R iiiiiiiiiiiiiiRii. RiR..] [R R iiiiiiiiiiiiiiRiiR RiRR.] 
+        vR1.append@extra("name: ").append@extra(vR0.getClientName@this()).append@extra("]");   [R R iiiiiiiiiiiiiiiii.ii. RR...] [R R iiiiiiiiiiiiiiiiiRii. RRR..] [R R iiiiiiiiiiiiiiiiiRiiR RRRR.] 
+        return vR1.toString@extra();   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 35 swaps 19 any 0 found 0 toDebugString
+}

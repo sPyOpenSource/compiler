@@ -32,7 +32,7 @@ class bioide/IdentifyOperation {
   +B131:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR .. i..][ RR .. iR.]
-        b0.println(b1.append@extra("").append@extra(vR0.drive.name).append@extra(": keine Antwort (Status = ").append@extra(vR0.controller.getStatus()).append@extra(")").toString@extra());   [i RR ii.iiii... RR....] 
+        b0.println(b1.append@extra("").append@extra(vR0.drive.name).append@extra(": no answer (Status = ").append@extra(vR0.controller.getStatus()).append@extra(")").toString@extra());   [i RR ii.iiii... RR....] 
   +B182:   #2
         vR0.controller.getStatus();   [i RR .......... R.....] 
         goto +B226;   [i RR .......... ......]
@@ -105,24 +105,24 @@ class bioide/IdentifyOperation {
            ::B359
         };   
   +B304:   #1
-        out.println("FLOPPY oder CDROM - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        out.println("FLOPPY or CDROM - not supported");   [i?i RR i......... RR....] 
         goto +B390;   [i?i RR i......... ......]
   +B315:   #1
-        out.println("CDROM - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        out.println("CDROM - not supported");   [i?i RR i......... RR....] 
         goto +B390;   [i?i RR i......... ......]
   +B326:   #1
-        out.println("TAPE - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        out.println("TAPE - not supported");   [i?i RR i......... RR....] 
         goto +B390;   [i?i RR i......... ......]
   +B337:   #1
-        out.println("OPTICAL DISK - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        out.println("OPTICAL DISK - not supported");   [i?i RR i......... RR....] 
         goto +B390;   [i?i RR i......... ......]
   +B348:   #1
-        out.println("SCSI DISK - nicht unterstuetzt");   [i?i RR i......... RR....] 
+        out.println("SCSI DISK - not supported");   [i?i RR i......... RR....] 
         goto +B390;   [i?i RR i......... ......]
   +B359:   #1
         b0 = out;    
         b1 = new java/lang/StringBuilder();    [ RR .......... i.....][ RR .......... iR....]
-        b0.println(b1.append@extra("unbekanntes Geraet (Typ ").append@extra(vi4).append@extra(")").toString@extra());   [i?i RR iii....... RR....] 
+        b0.println(b1.append@extra("unknown device (Typ ").append@extra(vi4).append@extra(")").toString@extra());   [i?i RR iii....... RR....] 
   +B390:   #5
         vR0.drive.present = 0;   
         return -1;   

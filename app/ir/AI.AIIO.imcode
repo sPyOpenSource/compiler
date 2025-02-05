@@ -1,23 +1,28 @@
 class AI/AIIO {
  
- method <init>()V {
+ method <init>(Ljx/zero/Naming;)V {
   +START:   #1
-        vR0.<init>@special();   [ ?R  R] 
-        b1 = new AI/AIMemory();    [ ?R  i][ ?R  iR]
+        vR0.<init>@special();   [ RR  R] 
+        vR0.ports = (jx/zero/Ports)(vR1.lookup("Ports"));   
+        vR2 = new jx/devices/pci/PCIGod(vR1);    [ RR i. i.][ RR i. iRR]
+        vR0.depHandle = vR2;   
+        b1 = new AI/AIMemory(vR1);    [ RR i. i..][ RR i. iRR]
         vR0.mem = b1;   
-        vR0.mem.setLogPath("/AI/");   [ ?R i RR] 
-        b1 = new AI/AIInput(vR0.mem);    [ ?R i i.][ ?R i. iRR]
+        vR0.mem.getInitialNaming().registerPortal(vR0.depHandle,"PCIAccess");   [R RR iiR. RRR] [R RR iiRR RRR] 
+        vR0.mem.setLogPath("/AI/");   [R RR iiRi RR.] 
+        b1 = new AI/AIInput(vR0.mem);    [ RR iiRi i..][ RR iiRi. iRR]
         vR0.inp = b1;   
-        b1 = new AI/AIOutput(vR0.mem);    [ ?R i. i..][ ?R i. iRR]
+        b1 = new AI/AIOutput(vR0.mem);    [ RR iiRi. i..][ RR iiRi. iRR]
         vR0.out = b1;   
-        b1 = new java/lang/Thread(vR0.inp,"input");    [ ?R i. i..][ ?R i. iRRR]
+        out.println("PCIAccess registered");   [R RR iiRii. RR.] 
+        b1 = new java/lang/Thread(vR0.inp,"input");    [ RR iiRii. i..][ RR iiRii. iRRR]
         vR0.inpThread = b1;   
-        b1 = new java/lang/Thread(vR0.out,"output");    [ ?R i. i...][ ?R i. iRRR]
+        b1 = new java/lang/Thread(vR0.out,"output");    [ RR iiRii. i...][ RR iiRii. iRRR]
         vR0.outThread = b1;   
         return;   
   +END:   #1
  }
-// Register: rd 20/20 wr 10 swaps 1 any 0 found 0 <init>
+// Register: rd 31/31 wr 20 swaps 4 any 0 found 0 <init>
  
  method start()V {
   +START:   #1
@@ -35,4 +40,11 @@ class AI/AIIO {
   +END:   #1
  }
 // Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getMemory
+ 
+ method getOut()Ljx/zero/debug/DebugOutputStream; {
+  +START:   #1
+        return vR0.out.getOut();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOut
 }

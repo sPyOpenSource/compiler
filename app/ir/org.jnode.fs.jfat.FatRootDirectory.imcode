@@ -1,0 +1,180 @@
+class org/jnode/fs/jfat/FatRootDirectory {
+ 
+ method <init>(Lorg/jnode/fs/jfat/FatFileSystem;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [ R  RR] 
+        vR0.naming = getInitialNaming@special();   
+        vR0.rm = (jx/zero/MemoryManager)(vR0.naming.lookup("MemoryManager"));   
+        vR2 = vR1.getFat();    [ R i. R.] 
+        if vR2.isFat32@extra()!=0 goto B56;   
+  +B42:   #1
+        if vR2.isFat16@extra()!=0 goto B56;   
+  +B49:   #1
+        if vR2.isFat12@extra()==0 goto B73;   
+  +B56:   #2
+        vR0.setRoot32@this(vR0.getFatFileSystem@this().getBootSector().getRootDirectoryStartCluster());   [R R i. iR] 
+        goto +B83;   [R R i. ..]
+  -B73:   #1
+        throw new java/lang/UnsupportedOperationException("Unknown Fat Type");   
+  +B83:   #1
+        vR0.bootSector = vR0.getFatFileSystem@this().getBootSector();   
+        vi3 = vR0.bootSector.getFirstDataSector();    [R R .. R..] 
+        vR0.mem = vR0.rm.alloc(512);   
+        out.println(vi3);   [Ri R .. iR.] 
+        vR0.getFatFileSystem@this().getApi().readSectors(vi3,1,vR0.mem,1);   [Ri R i.. iRiiR] [Ri R iR. iRiiR] [Ri R iRR iRiiR] 
+        vR0.scanDirectory@this();   [Ri R i.. R....] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 20/20 wr 13 swaps 3 any 0 found 0 <init>
+ 
+ method getFatDirEntry(IZ)Lorg/jnode/fs/jfat/FatDirEntry; {
+  +START:   #1
+        if vR0.getFatFileSystem@this().getFat().isFat32@extra()==0 goto B13;   
+  +B13:   #1
+        if vi1<=vR0.bootSector.getNrRootDirEntries() goto B32;   
+  -B24:   #1
+        throw new java/util/NoSuchElementException();   
+  +B32:   #1
+        vR3 = vR0.rm.alloc(32);    [ R .. iR] 
+        vR3.copyFromMemory(vR0.mem,(vi1*32),0,32);   [R R ii iiiRR] 
+        out.print((char)vR3.get8(0));   [R R iii. bR...] 
+        out.print((char)vR3.get8(1));   [R R iiii. bR...] 
+        out.print((char)vR3.get8(2));   [R R iiiii. bR...] 
+        out.print((char)vR3.get8(3));   [R R iiiiii. bR...] 
+        out.print((char)vR3.get8(4));   [R R iiiiiii. bR...] 
+        out.print((char)vR3.get8(5));   [R R iiiiiiii. bR...] 
+        out.print((char)vR3.get8(6));   [R R iiiiiiiii. bR...] 
+        out.print((char)vR3.get8(7));   [R R iiiiiiiiii. bR...] 
+        out.print((char)vR3.get8(8));   [R R iiiiiiiiiii. bR...] 
+        out.print((char)vR3.get8(9));   [R R iiiiiiiiiiii. bR...] 
+        out.println((char)vR3.get8(10));   [R R iiiiiiiiiiiii. bR...] 
+        vR4 = new org/jnode/fs/jfat/FatMarshal(vR3);    [ R iiiiiiiiiiiii. i....][ R iiiiiiiiiiiii. iRR..]
+        return vR0.createDirEntry@this(vR4,vi1,vi2);   
+  +END:   #1
+ }
+// Register: rd 22/22 wr 29 swaps 12 any 1 found 1 getFatDirEntry
+ 
+ method getShortName()Ljava/lang/String; {
+  +START:   #1
+        return vR0.getName@this();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getShortName
+ 
+ method isDirty()Z {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isDirty
+ 
+ method getIndex()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Root has not an index");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getIndex
+ 
+ method isRoot()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isRoot
+ 
+ method setName(Ljava/lang/String;)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("cannot change root name");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setName
+ 
+ method getLabel()Ljava/lang/String; {
+  +START:   #1
+        vR1 = vR0.getEntry@this();    [   R] 
+        if vR1==null goto B14;   
+  +B9:   #1
+        return vR1.getLabel();   
+  +B14:   #1
+        return "";   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 getLabel
+ 
+ method getCreated()J {
+  +START:   #1
+        vR1 = vR0.getEntry@this();    [ l_  R] 
+        if vR1!=null goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B17b0;   forward return[R l_  .]
+  +B13:   #1
+        b0 = vR1.getCreated();     
+  +B17b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getCreated
+ 
+ method getLastModified()J {
+  +START:   #1
+        vR1 = vR0.getEntry@this();    [ l_  R] 
+        if vR1!=null goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B17b0;   forward return[R l_  .]
+  +B13:   #1
+        b0 = vR1.getLastModified();     
+  +B17b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getLastModified
+ 
+ method getLastAccessed()J {
+  +START:   #1
+        vR1 = vR0.getEntry@this();    [ l_  R] 
+        if vR1!=null goto B13;   
+  +B9:   #1
+        b0 = 0;    
+        goto +B17b0;   forward return[R l_  .]
+  +B13:   #1
+        b0 = vR1.getLastAccessed();     
+  +B17b0:   #1 long
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 1 found 0 getLastAccessed
+ 
+ method setCreated(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("cannot change root time");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setCreated
+ 
+ method setLastModified(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("cannot change root time");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLastModified
+ 
+ method setLastAccessed(J)V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("cannot change root time");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 setLastAccessed
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        b0 = "FatRootDirectory [%s]";    
+        b1 = new java/lang/Object()[1];    
+        b1[0] = vR0.getName@this();   
+        return format@special(b0,b1);   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 0 any 0 found 0 toString
+}

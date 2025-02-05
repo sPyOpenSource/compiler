@@ -39,24 +39,24 @@ class jx/net/protocol/tcp/TCPSocket {
         vR0.cpuManager = (jx/zero/CPUManager)(getInitialNaming@special().lookup("CPUManager"));   
         vR0.state = vR0.cpuManager.getAtomicVariable();   
         vR0.state.set(CLOSED);   [ RR iiiii RR.] 
-        vR0.timerManager = (jx/timer/TimerManager)(lookup@special("TimerManager"));   
+        vR0.timerManager = (jx/timer/TimerManager)(getInitialNaming@special().lookup("TimerManager"));   
         vR0.localWindowSize = 65535;   
         return;   
   +END:   #1
  }
-// Register: rd 28/28 wr 16 swaps 5 any 0 found 0 <init>
+// Register: rd 28/28 wr 17 swaps 6 any 0 found 0 <init>
  
  method getInitialSequenceNumber()I {
   +START:   #1
-        if vR0.timerManager!=null goto B27;   
+        if vR0.timerManager!=null goto B32;   
   +B7:   #1
         out.println("Timerman is null");   [  i. RR] 
-        vR0.timerManager = (jx/timer/TimerManager)(lookup@special("TimerManager"));   
-  +B27:   #1
+        vR0.timerManager = (jx/timer/TimerManager)(getInitialNaming@special().lookup("TimerManager"));   
+  +B32:   #1
         return vR0.timerManager.getTimeInMillis();   
   +END:   #1
  }
-// Register: rd 4/4 wr 4 swaps 1 any 0 found 0 getInitialSequenceNumber
+// Register: rd 4/4 wr 5 swaps 2 any 0 found 0 getInitialSequenceNumber
  
  method SocketState2String(Ljx/net/protocol/tcp/TCPSocketState;)Ljava/lang/String; {
   +START:   #1
@@ -475,7 +475,7 @@ class jx/net/protocol/tcp/TCPSocket {
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-31 - 58 handler 61 type 421
+31 - 58 handler 61 type 418
  }
 // Register: rd 29/29 wr 22 swaps 8 any 2 found 0 open
  
@@ -846,7 +846,7 @@ EXCEPTIONHANDLER-TABLE:
         return vR1.getMemory();   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-107 - 140 handler 143 type 421
+107 - 140 handler 143 type 418
  }
 // Register: rd 26/26 wr 22 swaps 10 any 0 found 0 listen
  

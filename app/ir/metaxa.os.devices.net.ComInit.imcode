@@ -42,27 +42,27 @@ class metaxa/os/devices/net/ComInit {
  }
 // Register: rd 26/26 wr 16 swaps 5 any 1 found 1 <init>
  
- method find([Ljava/lang/String;)[Ljx/devices/Device; {
+ method find(Ljx/zero/Naming;)[Ljx/devices/Device; {
   +START:   #1
         out.println("lookup PCI Access Point...");   [  i. RR] 
         vi3 = 0;    
   +B10:   #1
-        vR2 = (jx/devices/pci/PCIAccess)(getInitialNaming@special().lookup("PCIAccess"));    
-        if vR2!=null goto B54;   
-  +B28:   #1
-        if (vi3%20)!=0 goto B45;   
-  +B35:   #1
+        vR2 = (jx/devices/pci/PCIAccess)(vR1.lookup("PCIAccess"));    
+        if vR2!=null goto B52;   
+  +B26:   #1
+        if (vi3%20)!=0 goto B43;   
+  +B33:   #1
         vi3 = 0;    
         out.println("NetInit still waiting for PCI");   [Ri  i. RR] 
-  +B45:   #1
+  +B43:   #1
         vi3++;   
         yield@special();   [Ri  .. ..]
         goto +B10;   [Ri  .. ..]
-  +B54:   #1
+  +B52:   #1
         return vR0.findDevice@this(vR2);   
   +END:   #1
  }
-// Register: rd 5/5 wr 11 swaps 3 any 2 found 0 find
+// Register: rd 6/6 wr 10 swaps 3 any 2 found 0 find
  
  method findDevice(Ljx/devices/pci/PCIAccess;)[Lmetaxa/os/devices/net/D3C905; {
   +START:   #1

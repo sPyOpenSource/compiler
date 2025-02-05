@@ -1,0 +1,270 @@
+class jx/wm/bitmap/WBitmapMemory {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method isMemory()Z {
+  +START:   #1
+        return 1;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 isMemory
+ 
+ method castMemory()Ljx/wm/bitmap/WBitmapMemory; {
+  +START:   #1
+        return vR0;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 castMemory
+ 
+ method dumpMemory()V {
+  +START:   #1
+        vR1 = (jx/zero/DebugSupport)(getInitialNaming@special().lookup("DebugSupport"));    
+        vR1.sendBinary("screenshot",vR0.m_cMemory,vR0.m_cMemory.size());   [R  iiiR iRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 9 swaps 2 any 0 found 0 dumpMemory
+ 
+ method allocMemory(I)Ljx/zero/Memory; {
+  +START:   #1
+        b0 = getInitialNaming@special();    
+        vR2 = b0;    
+        if b0!=null goto B18;   
+  -B8:   #1
+        throw new java/lang/Error("WBitmap::WBitmap() unable to obtain Naming!");   
+  +B18:   #1
+        vR3 = (jx/zero/MemoryManager)(vR2.lookup("MemoryManager"));    
+        if vR3!=null goto B44;   
+  -B34:   #1
+        throw new java/lang/Error("WBitmap::WBitmap() no MemoryManager found");   
+  +B44:   #1
+        b0 = vR3.alloc(vi0);    [?RR R .. iR.] 
+        vR1 = b0;    
+        if b0!=null goto B66;   
+  -B56:   #1
+        throw new java/lang/Error("WBitmap::WBitmap() unable to allocate memory!");   
+  +B66:   #1
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 10 swaps 1 any 5 found 0 allocMemory
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.drawBitmap@this(vR1,vR2,vR3,vR4,COPY);   [  i RRRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 1 any 0 found 0 drawBitmap
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        if vR3.isValid@extra()!=0 goto B8;   
+  +B7:   #1
+        return;   
+  +B8:   #1
+        if vR2.isValid@extra()!=0 goto B16;   
+  +B15:   #1
+        return;   
+  +B16:   #1
+        vR10 = new jx/devices/fb/PixelRect(vR2);    [ RR  i][ RR . iRR]
+        vR10.clip@extra(vR0.m_cBounds);   [????R RR i RR.] 
+        vR10.clip@extra(vR4);   [????R RR i RR.] 
+        if vR10.isValid@extra()!=0 goto B51;   
+  +B50:   #1
+        return;   
+  +B51:   #1
+        vR11 = new jx/devices/fb/PixelRect(vR3);    [ RR . i..][ RR . iRR]
+        vR11.clip@extra(vR1.getBounds());   [????RR RR i RR.] 
+        if vR11.isValid@extra()!=0 goto B79;   
+  +B78:   #1
+        return;   
+  +B79:   #1
+        if vR11.width@extra()>=vR10.width@extra() goto B108;   
+  +B92:   #1
+        vR10.m_nX1 = (vR10.m_nX0+vR11.width@extra());   
+  +B108:   #1
+        if vR11.height@extra()>=vR10.height@extra() goto B137;   
+  +B121:   #1
+        vR10.m_nY1 = (vR10.m_nY0+vR11.height@extra());   
+  +B137:   #1
+        vi12 = 0;    
+        if vR11.width@extra()==0 goto B155;   
+  +B148:   #1
+        if vR2.width@extra()!=0 goto B162;   
+  +B155:   #1
+        vi7 = 65536;    
+        goto +B192;   [?i??RRi RR . ...]
+  +B162:   #1
+        vi7 = ((vR11.width@extra() << 16)/vR2.width@extra());    
+        if vR11.width@extra()==vR2.width@extra() goto B192;   
+  +B189:   #1
+        vi12 = 1;    
+  +B192:   #2
+        if vR11.height@extra()==0 goto B207;   
+  +B200:   #1
+        if vR2.height@extra()!=0 goto B214;   
+  +B207:   #1
+        vi6 = 65536;    
+        goto +B244;   [ii??RRi RR . ...]
+  +B214:   #1
+        vi6 = ((vR11.height@extra() << 16)/vR2.height@extra());    
+        if vR11.height@extra()==vR2.height@extra() goto B244;   
+  +B241:   #1
+        vi12 = 1;    
+  +B244:   #2
+        vi13 = ((vR10.left@extra()-vR2.left@extra())+vR11.left@extra());    
+        vi14 = ((vR10.top@extra()-vR2.top@extra())+vR11.top@extra());    
+        vi8 = (vi13*vi7);    
+        vi9 = (vi14*vi6);    
+        vR0.startFrameBufferUpdate@this();   [iiiiRRiii RR . R..] 
+  +B298:   #1
+        lswitch (vR1.m_eColorSpace.getValue()) { 
+           1:B380
+           4:B360
+           7:B340
+           ::B400
+        };   
+  +B340:   #1
+        vR0.drawBitmapCMAP8@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B400;   [iiiiRRiii RR . ........]
+  +B360:   #1
+        vR0.drawBitmapRGB16@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B400;   [iiiiRRiii RR . ........]
+  +B380:   #1
+        vR0.drawBitmapRGB32@this(vR1,vR10,vi7,vi6,vi8,vi9,vR5);   [iiiiRRiii RR . RiiiiRRR] 
+        goto +B400;   [iiiiRRiii RR . ........]
+  +B400:   #5
+        goto +B474;   [iiiiRRiii RR . ........]
+  +H403<caught exception>:   #1 reference
+        vR15 = <caught exception>;    
+        out.println("exception in drawBitmap");   [iiiiRRiiiR RR i. RR......] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR i. i.......][ RR i. iR......]
+        b0.println(b1.append@extra("cSrc ").append@extra(vR3).append@extra(vR11).append@extra(" cDst ").append@extra(vR2).append@extra(" m_cBounds ").append@extra(vR0.m_cBounds).append@extra(" cDraw ").append@extra(vR10).toString@extra());   [iiiiRRiiiR RR iiiiii...i..... RR........] 
+  +B474:   #1
+        vR0.endFrameBufferUpdate@this();   [iiiiRRiii RR ............... R.........] 
+        return;   
+  +END:   #1
+EXCEPTIONHANDLER-TABLE:
+298 - 400 handler 403 type 138
+ }
+// Register: rd 66/66 wr 45 swaps 13 any 2 found 0 drawBitmap
+ 
+ method drawBitmapCMAP8(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawBitmapCMAP8
+ 
+ method drawBitmapRGB16(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawBitmapRGB16
+ 
+ method drawBitmapRGB32(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;IIIILjx/devices/fb/DrawingMode;)V {
+  -START:   #1
+        throw new java/lang/Error("not impl");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 drawBitmapRGB32
+ 
+ method IsVideoMemory()Z {
+  +START:   #1
+        return vR0.m_bIsVideoMemory;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 IsVideoMemory
+ 
+ method set8(IB)V {
+  +START:   #1
+        vR0.m_cMemory.set8((vR0.m_nOffset+vi1),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 set8
+ 
+ method get8(I)B {
+  +START:   #1
+        return vR0.m_cMemory.get8((vR0.m_nOffset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 get8
+ 
+ method set16(IS)V {
+  +START:   #1
+        vR0.m_cMemory.set16(((vR0.m_nOffset+vi1) >> 1),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 set16
+ 
+ method get16(I)S {
+  +START:   #1
+        return vR0.m_cMemory.get16(((vR0.m_nOffset+vi1) >> 1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 get16
+ 
+ method set32(II)V {
+  +START:   #1
+        vR0.m_cMemory.set32(((vR0.m_nOffset+vi1) >> 2),vi2);   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 set32
+ 
+ method get32(I)I {
+  +START:   #1
+        return vR0.m_cMemory.get32(((vR0.m_nOffset+vi1) >> 2));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 get32
+ 
+ method fill16(IIS)V {
+  +START:   #1
+        vR0.m_cMemory.fill16(vi3,((vR0.m_nOffset+vi1) >> 1),vi2);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 fill16
+ 
+ method fill32(III)V {
+  +START:   #1
+        vR0.m_cMemory.fill32(vi3,((vR0.m_nOffset+vi1) >> 2),vi2);   [  i iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 fill32
+ 
+ method startFrameBufferUpdate()V {
+  +START:   #1
+        if vR0.m_cDisplayDriver==null goto B16;   
+  +B7:   #1
+        vR0.m_cDisplayDriver.startFrameBufferUpdate();   [   R] 
+  +B16:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 startFrameBufferUpdate
+ 
+ method endFrameBufferUpdate()V {
+  +START:   #1
+        if vR0.m_cDisplayDriver==null goto B16;   
+  +B7:   #1
+        vR0.m_cDisplayDriver.endFrameBufferUpdate();   [   R] 
+  +B16:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 endFrameBufferUpdate
+}

@@ -1,0 +1,172 @@
+class org/jnode/fs/ntfs/NTFSStructure {
+ 
+ method <init>(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        vR0.buffer = vR1;   
+        vR0.offset = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/ntfs/NTFSStructure;I)V {
+  +START:   #1
+        vR0.<init>@special(vR1.buffer);   [  i RR] 
+        vR0.buffer = vR1.buffer;   
+        vR0.offset = (vR1.offset+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method getOffset()I {
+  +START:   #1
+        return vR0.offset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getOffset
+ 
+ method reset(Ljx/zero/Memory;I)V {
+  +START:   #1
+        vR0.buffer = vR1;   
+        vR0.offset = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method reset(Lorg/jnode/fs/ntfs/NTFSStructure;I)V {
+  +START:   #1
+        vR0.buffer = vR1.buffer;   
+        vR0.offset = (vR1.offset+vi2);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 reset
+ 
+ method getUInt8(I)I {
+  +START:   #1
+        return vR0.buffer.get8((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getUInt8
+ 
+ method getUInt16(I)I {
+  +START:   #1
+        return vR0.buffer.getLittleEndian16((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getUInt16
+ 
+ method getUInt24(I)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getUInt24
+ 
+ method getUInt32(I)J {
+  +START:   #1
+        return (long)vR0.buffer.getLittleEndian32((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getUInt32
+ 
+ method getUInt32AsInt(I)I {
+  +START:   #1
+        return vR0.buffer.getLittleEndian32((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getUInt32AsInt
+ 
+ method getUInt48(I)J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getUInt48
+ 
+ method getInt8(I)I {
+  +START:   #1
+        return vR0.buffer.get8((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getInt8
+ 
+ method getInt16(I)I {
+  +START:   #1
+        return vR0.buffer.getLittleEndian16((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getInt16
+ 
+ method getInt24(I)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInt24
+ 
+ method getInt32(I)I {
+  +START:   #1
+        return vR0.buffer.getLittleEndian32((vR0.offset+vi1));   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 getInt32
+ 
+ method getInt48(I)J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInt48
+ 
+ method getInt64(I)J {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getInt64
+ 
+ method getData(ILjx/zero/Memory;II)V {
+  +START:   #1
+        arraycopy@special(vR0.buffer,(vR0.offset+vi1),vR2,vi3,vi4);   [  Ri iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 getData
+ 
+ method getChar16(I)C {
+  +START:   #1
+        vi2 = (vR0.buffer.get32((vR0.offset+vi1)) & 255);    
+        vi3 = (vR0.buffer.get32(((vR0.offset+vi1)+1)) & 255);    
+        return (char)((vi3 << 8) | vi2);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 4 swaps 2 any 0 found 0 getChar16
+ 
+ method getUtf16LEString(II)Ljava/lang/String; {
+  +START:   #1
+        vR3 = vR0.MemManager.alloc((vi2*2));    [  i iR] 
+        vR0.getData@extra(vi1,vR3,0,vR3.size());   [R  ii iiRiR] 
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 3 swaps 2 any 0 found 0 getUtf16LEString
+ 
+ method setUInt16(II)V {
+  +START:   #1
+        vR0.buffer.setLittleEndian16(vi2,(short)(vR0.offset+vi1));   [  i iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 setUInt16
+ 
+ method getBuffer()Ljx/zero/Memory; {
+  +START:   #1
+        return vR0.buffer;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBuffer
+}

@@ -1,0 +1,66 @@
+class jx/vis/EventAnalyzer$1 {
+ 
+ method <init>(Ljx/vis/EventAnalyzer;Ljava/util/Vector;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$edges = vR2;   
+        vR0.<init>@special();   [   R] 
+        vR0.prev = -1;   
+        vR0.i = -1;   
+        vR0.prevTime = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method action(Ljx/vis/EventInfo;)V {
+  +START:   #1
+        vR0.i = (vR0.i+1);   
+        out.println(vR0.i);   [ Ri i. iR] 
+        if vR0.prev==-1 goto B255;   
+  +B28:   #1
+        vi2 = 0;    
+        vi3 = 0;    
+  +B32:   #1
+        if vi3>=vR0.val$edges.size@extra() goto B161;   
+  +B43:   #1
+        vR4 = (jx/vis/EventAnalyzer$1Edge)(vR0.val$edges.elementAt(vi3));    
+        if vR0.prev!=vR4.from goto B155;   
+  +B68:   #1
+        if vR1.number!=vR4.to goto B155;   
+  +B80:   #1
+        b0 = vR4.times;    
+        b1 = vR4.number;    
+        b0[b1] = (b0[b1]+((vR1.timestamp-vR0.this$0.timecorrector)-vR0.prevTime));   
+        if compare(vR4.times[vR4.number],0)>=0 goto B139;   
+  +B127:   #1
+        vR4.times[vR4.number] = 0;   
+  +B139:   #1
+        vR4.number = (vR4.number+1);   
+        vi2 = 1;    
+        goto +B161;   [iiR Ri .. ..]
+  +B155:   #2
+        vi3++;   
+        goto +B32;   [iiR Ri .. ..]
+  +B161:   #2
+        if vi2!=0 goto B255;   
+  +B165:   #1
+        vR3 = new jx/vis/EventAnalyzer$1Edge(vR0.this$0);    [ Ri .. i.][ Ri .. iRR]
+        vR3.times = new long[40000];   
+        vR3.from = vR0.prev;   
+        vR3.to = vR1.number;   
+        vR3.times[0] = ((vR1.timestamp-vR0.prevTime)-vR0.this$0.timecorrector);   
+        if compare(vR3.times[0],0)>=0 goto B242;   
+  +B235:   #1
+        vR3.times[0] = 0;   
+  +B242:   #1
+        vR3.number = 1;   
+        vR0.val$edges.addElement@extra(vR3);   [iRR Ri .. RR.] 
+  +B255:   #2
+        vR0.prev = vR1.number;   
+        vR0.prevTime = vR1.timestamp;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 30/30 wr 11 swaps 1 any 3 found 1 action
+}

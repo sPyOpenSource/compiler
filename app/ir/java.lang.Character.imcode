@@ -270,23 +270,26 @@ class java/lang/Character {
  
  method isDigit(C)Z {
   +START:   #1
-        vi1 = 0;    
-  +B2:   #1
-        if vi1>=isDigitRangeTable.length goto B40;   
-  +B10:   #1
-        if vi0<isDigitRangeTable[vi1][0] goto B34;   
-  +B21:   #1
-        if vi0>isDigitRangeTable[vi1][1] goto B34;   
-  +B32:   #1
+        vR1 = isDigitRangeTable;    
+        vi2 = vR1.length;    
+        vi3 = 0;    
+  +B9:   #1
+        if vi3>=vi2 goto B43;   
+  +B14:   #1
+        vR4 = vR1[vi3];    
+        if vi0<vR4[0] goto B37;   
+  +B27:   #1
+        if vi0>vR4[1] goto B37;   
+  +B35:   #1
         return 1;   
-  +B34:   #2
-        vi1++;   
-        goto +B2;   [i   .]
-  +B40:   #1
+  +B37:   #2
+        vi3++;   
+        goto +B9;   [RiiR   .]
+  +B43:   #1
         return 0;   
   +END:   #1
  }
-// Register: rd 9/9 wr 2 swaps 0 any 4 found 3 isDigit
+// Register: rd 10/10 wr 5 swaps 0 any 4 found 0 isDigit
  
  method isLetter(C)Z {
   +START:   #1

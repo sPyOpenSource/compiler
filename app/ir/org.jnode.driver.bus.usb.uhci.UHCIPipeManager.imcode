@@ -1,0 +1,114 @@
+class org/jnode/driver/bus/usb/uhci/UHCIPipeManager {
+ 
+ method <init>(Ljx/zero/MemoryManager;Lorg/jnode/driver/bus/usb/uhci/Schedule;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/ArrayList();    [ ?R  i][ ?R  iR]
+        vR0.pipes = b1;   
+        vR0.rm = vR1;   
+        vR0.schedule = vR2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method createDefaultControlPipe(Lorg/jnode/driver/bus/usb/USBDevice;)Lorg/jnode/driver/bus/usb/USBControlPipe; {
+  +START:   #1
+        if vR1.isLowSpeed@extra()==0 goto B18;   
+  +B7:   #1
+        vR2 = vR0.schedule.getLowSpeedControlQH();    [ R  R] 
+        goto +B26;   [R R  .]
+  +B18:   #1
+        vR2 = vR0.schedule.getHighSpeedControlQH();    [R R  R] 
+  +B26:   #1
+        return new org/jnode/driver/bus/usb/uhci/UHCIControlPipe(vR0,vR0.rm,vR1,0,vR2);   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 3 swaps 0 any 0 found 0 createDefaultControlPipe
+ 
+ method createPipe(Lorg/jnode/driver/bus/usb/USBEndPoint;)Lorg/jnode/driver/bus/usb/USBPipe; {
+  +START:   #1
+        vR2 = vR1.getDescriptor@extra();    [ R  R] 
+        vR3 = vR1.getDevice();    [R R  R] 
+        tswitch (vR2.getTransferType@extra()) B44 B145 B119 B89 : B145;   
+  +B44:   #1
+        if vR3.isLowSpeed@extra()==0 goto B63;   
+  +B51:   #1
+        vR4 = vR0.schedule.getLowSpeedControlQH();    [RR R  R] 
+        goto +B72;   [RRR R  .]
+  +B63:   #1
+        vR4 = vR0.schedule.getHighSpeedControlQH();    [RRR R  R] 
+  +B72:   #1
+        return new org/jnode/driver/bus/usb/uhci/UHCIControlPipe(vR0,vR0.rm,vR3,vR1,vR4);   
+  +B89:   #1
+        vR4 = vR0.schedule.getInterruptQH@extra(vR2.getInterval@extra());    [RRR R i iR.....] 
+        return new org/jnode/driver/bus/usb/uhci/UHCIDataPipe(vR0,vR0.rm,vR3,vR1,vR4);   
+  +B119:   #1
+        vR4 = vR0.schedule.getBulkQH();    [RRR R .. R......] 
+        return new org/jnode/driver/bus/usb/uhci/UHCIDataPipe(vR0,vR0.rm,vR3,vR1,vR4);   
+  -B145:   #2
+        throw new java/lang/IllegalArgumentException("Unknown/implemented transfer type");   
+  +END:   #1
+ }
+// Register: rd 28/28 wr 11 swaps 1 any 0 found 0 createPipe
+ 
+ method add(Lorg/jnode/driver/bus/usb/uhci/UHCIPipe;)V {
+  +START:   #1
+        vR0.pipes.add(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 add
+ 
+ method remove(Lorg/jnode/driver/bus/usb/uhci/UHCIPipe;)V {
+  +START:   #1
+        vR0.pipes.remove(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 remove
+ 
+ method handleInterrupt()V {
+  +START:   #1
+        vi1 = vR0.pipes.size();    [   R] 
+        vi2 = 0;    
+  +B10:   #1
+        if vi2>=vi1 goto B37;   
+  +B15:   #1
+        vR3 = (org/jnode/driver/bus/usb/uhci/UHCIPipe)(vR0.pipes.get(vi2));    
+        vR3.handleInterrupt@extra();   [iiR  . R.] 
+        vi2++;   
+        goto +B10;   [iiR  . ..]
+  +B37:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 5 swaps 0 any 2 found 0 handleInterrupt
+ 
+ method deviceStarted(Ljx/devices/Device;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 deviceStarted
+ 
+ method deviceStop(Ljx/devices/Device;)V {
+  +START:   #1
+        vi2 = vR0.pipes.size();    [   R] 
+        vi3 = 0;    
+  +B10:   #1
+        if vi3>=vi2 goto B48;   
+  +B15:   #1
+        vR4 = (org/jnode/driver/bus/usb/uhci/UHCIPipe)(vR0.pipes.get(vi3));    
+        if vR4.device!=vR1 goto B42;   
+  +B37:   #1
+        vR4.close();   [iiR  . R.] 
+  +B42:   #1
+        vi3++;   
+        goto +B10;   [iiR  . ..]
+  +B48:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 5 swaps 0 any 2 found 0 deviceStop
+}

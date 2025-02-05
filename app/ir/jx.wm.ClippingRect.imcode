@@ -1,0 +1,33 @@
+class jx/wm/ClippingRect {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method <init>(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.m_nX0 = vR1.m_nX0;   
+        vR0.m_nY0 = vR1.m_nY0;   
+        vR0.m_nX1 = vR1.m_nX1;   
+        vR0.m_nY1 = vR1.m_nY1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method setTo(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_nX0 = vR1.m_nX0;   
+        vR0.m_nY0 = vR1.m_nY0;   
+        vR0.m_nX1 = vR1.m_nX1;   
+        vR0.m_nY1 = vR1.m_nY1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 0 swaps 0 any 0 found 0 setTo
+}

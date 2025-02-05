@@ -1,0 +1,136 @@
+class org/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray {
+ 
+ method <init>([B)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.array = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method get(I)B {
+  +START:   #1
+        return vR0.array[(vR0.offset+vi1)];   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 get
+ 
+ method put(IB)V {
+  +START:   #1
+        vR0.array[(vR0.offset+vi1)] = vi2;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 1 found 0 put
+ 
+ method getShort(I)I {
+  +START:   #1
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 getShort
+ 
+ method copyFrom(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;III)V {
+  +START:   #1
+        vi5 = (vR1.offset+vi2);    
+        vi6 = (vR0.offset+vi3);    
+        vR7 = vR1.array;    
+        vR8 = vR0.array;    
+        if vR7!=vR8 goto B102;   
+  +B35:   #1
+        if vi5>=vi6 goto B52;   
+  +B42:   #1
+        if (vi5+vi4)>vi6 goto B69;   
+  +B52:   #1
+        if vi6>=vi5 goto B102;   
+  +B59:   #1
+        if (vi6+vi4)<=vi5 goto B102;   
+  +B69:   #1
+        vi9 = 0;    
+  +B72:   #1
+        if vi9>=vi4 goto B101;   
+  +B79:   #1
+        vR8[(vi6+vi9)] = vR7[(vi5+vi9)];   
+        vi9++;   
+        goto +B72;   [iiRRi   ]
+  +B101:   #1
+        return;   
+  +B102:   #3
+        arraycopy@special(vR7,vi5,vR8,vi6,vi4);   [iiRRi   iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 27/27 wr 6 swaps 0 any 7 found 0 copyFrom
+ 
+ method zero(II)V {
+  +START:   #1
+        fill@special(vR0.array,(vR0.offset+vi1),((vR0.offset+vi1)+vi2),0);   [  Rii iiiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 zero
+ 
+ method <init>([BLorg/jnode/fs/ntfs/CompressedDataRun$1;)V {
+  +START:   #1
+        vR0.<init>@special(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method access$100(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;)I {
+  +START:   #1
+        return vR0.offset;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$100
+ 
+ method access$200(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;II)V {
+  +START:   #1
+        vR0.zero@special(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$200
+ 
+ method access$112(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;I)I {
+  +START:   #1
+        b1 = (vR0.offset+vi1);    
+        b0 = b1;    
+        vR0.offset = b1;   
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 1 found 0 access$112
+ 
+ method access$300(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;I)I {
+  +START:   #1
+        return vR0.getShort@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$300
+ 
+ method access$400(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;III)V {
+  +START:   #1
+        vR0.copyFrom@special(vR1,vi2,vi3,vi4);   [   iiiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$400
+ 
+ method access$500(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;I)B {
+  +START:   #1
+        return vR0.get@special(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$500
+ 
+ method access$600(Lorg/jnode/fs/ntfs/CompressedDataRun$OffsetByteArray;IB)V {
+  +START:   #1
+        vR0.put@special(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 access$600
+}

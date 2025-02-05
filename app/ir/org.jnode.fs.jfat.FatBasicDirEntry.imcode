@@ -1,0 +1,85 @@
+class org/jnode/fs/jfat/FatBasicDirEntry {
+ 
+ method <init>(Lorg/jnode/fs/jfat/AbstractDirectory;)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getFatFileSystem());   [  i RR] 
+        vR0.rawData = new byte[32];   
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 1 any 0 found 0 <init>
+ 
+ method <init>(Lorg/jnode/fs/jfat/AbstractDirectory;[BI)V {
+  +START:   #1
+        vR0.<init>@special(vR1.getFatFileSystem());   [  i RR] 
+        vR0.rawData = new byte[32];   
+        arraycopy@special(vR2,vi3,vR0.rawData,0,32);   [  iR iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 2 swaps 1 any 0 found 0 <init>
+ 
+ method write([BI)V {
+  +START:   #1
+        arraycopy@special(vR0.rawData,0,vR1,vi2,32);   [  R iiRiR]
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 write
+ 
+ method getFileSystem()Ljx/fs/FileSystem; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFileSystem
+ 
+ method isFile()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isFile
+ 
+ method isDirectory()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isDirectory
+ 
+ method getPermission()Ljx/fs/Permission; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getPermission
+ 
+ method getAttribute()Ljx/fs/FSAttribute; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getAttribute
+ 
+ method close()V {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 close
+ 
+ method getLength()I {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getLength
+ 
+ method isValid()Z {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 isValid
+}

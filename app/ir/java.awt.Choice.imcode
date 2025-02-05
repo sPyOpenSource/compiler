@@ -1,0 +1,293 @@
+class java/awt/Choice {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special();   [ ?R  R] 
+        b1 = new java/util/Vector();    [ ?R  i][ ?R  iR]
+        vR0.pItems = b1;   
+        vR0.selectedIndex = -1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 1 swaps 0 any 0 found 0 <init>
+ 
+ method getItemCount()I {
+  +START:   #1
+        return vR0.pItems.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getItemCount
+ 
+ method countItems()I {
+  +START:   #1
+        return vR0.pItems.size@extra();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 countItems
+ 
+ method getItem(I)Ljava/lang/String; {
+  +START:   #1
+        return (java/lang/String)(vR0.pItems.elementAt(vi1));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 getItem
+ 
+ method add(Ljava/lang/String;)V {
+  +START:   #1
+        if vR1!=null goto B14;   
+  -B4:   #1
+        throw new java/lang/IllegalArgumentException("item must be non-null");   
+  +B14:   #1
+        vR0.pItems.addElement@extra(vR1);   [ R . RR.] 
+        vi2 = (vR0.pItems.size@extra()-1);    
+        if vR0.peer==null goto B55;   
+  +B39:   #1
+        vR3 = (java/awt/peer/ChoicePeer)(vR0.peer);    
+        vR3.add(vR1,vi2);   [iR R . iRR] 
+  +B55:   #1
+        if vi2!=0 goto B64;   
+  +B59:   #1
+        vR0.select@this(0);   [iR R . iR.] 
+  +B64:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 10/10 wr 4 swaps 0 any 2 found 0 add
+ 
+ method addItem(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.add@this(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addItem
+ 
+ method insert(Ljava/lang/String;I)V {
+  +START:   #1
+        if vi2<=vR0.getItemCount@this() goto B13;   
+  +B8:   #1
+        vi2 = vR0.getItemCount@this();    [   R] 
+  +B13:   #1
+        vR0.pItems.insertElementAt@extra(vR1,vi2);   [   iRR] 
+        if vR0.peer==null goto B45;   
+  +B29:   #1
+        vR3 = (java/awt/peer/ChoicePeer)(vR0.peer);    
+        vR3.add(vR1,vi2);   [R  . iRR] 
+  +B45:   #1
+        if vR0.getItemCount@this()==1 goto B61;   
+  +B53:   #1
+        if vR0.selectedIndex<vi2 goto B66;   
+  +B61:   #1
+        vR0.select@this(0);   [R  . iR.] 
+  +B66:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 13/13 wr 3 swaps 0 any 1 found 1 insert
+ 
+ method remove(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR0.pItems.indexOf@extra(vR1);    [ RRR  RR] 
+        if vi2!=-1 goto B46;   
+  -B14:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra("item "").append@extra(vR1).append@extra("" not found in Choice").toString@extra());   [i RRR iii.. RR..] 
+        throw b0;   
+  +B46:   #1
+        vR0.remove@this(vi2);   [i RRR ..... iR..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 10 swaps 3 any 2 found 0 remove
+ 
+ method remove(I)V {
+  +START:   #1
+        vR0.pItems.removeElementAt@extra(vi1);   [   iR] 
+        if vR0.peer==null goto B30;   
+  +B15:   #1
+        vR2 = (java/awt/peer/ChoicePeer)(vR0.peer);    
+        vR2.remove(vi1);   [R  . iR] 
+  +B30:   #1
+        if vi1!=vR0.selectedIndex goto B46;   
+  +B38:   #1
+        vR0.select@this(0);   [R  . iR] 
+        goto +B64;   forward return[R  . ..]
+  +B46:   #1
+        if vR0.selectedIndex<=vi1 goto B64;   
+  +B54:   #1
+        vR0.selectedIndex = (vR0.selectedIndex-1);   
+  +B64:   #2
+        return;   
+  +END:   #1
+ }
+// Register: rd 12/12 wr 2 swaps 0 any 1 found 0 remove
+ 
+ method removeAll()V {
+  +START:   #1
+        vi1 = vR0.getItemCount@this();    [   R] 
+        vi2 = 0;    
+  +B7:   #1
+        if vi2>=vi1 goto B23;   
+  +B12:   #1
+        vR0.remove@this(0);   [ii   iR] 
+        vi2++;   
+        goto +B7;   [ii   ..]
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 3 swaps 0 any 2 found 0 removeAll
+ 
+ method getSelectedItem()Ljava/lang/String; {
+  +START:   #1
+        if vR0.selectedIndex!=-1 goto B12;   
+  +B8:   #1
+        b0 = 0;    
+        goto +B26b0;   forward return[ R  ]
+  +B12:   #1
+        b0 = (java/lang/String)(vR0.pItems.elementAt(vR0.selectedIndex));    
+  +B26b0:   #1 reference
+        return b0;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 4 swaps 1 any 0 found 0 getSelectedItem
+ 
+ method getSelectedObjects()[Ljava/lang/Object; {
+  +START:   #1
+        if vR0.selectedIndex!=-1 goto B10;   
+  +B8:   #1
+        return 0;   
+  +B10:   #1
+        vR1 = new java/lang/Object()[1];    
+        vR1[0] = vR0.pItems.elementAt(vR0.selectedIndex);   
+        return vR1;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 2 swaps 1 any 0 found 0 getSelectedObjects
+ 
+ method getSelectedIndex()I {
+  +START:   #1
+        return vR0.selectedIndex;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getSelectedIndex
+ 
+ method select(I)V {
+  +START:   #1
+        if vi1< 0 goto B12;   
+  +B4:   #1
+        if vi1<=vR0.getItemCount@this() goto B39;   
+  -B12:   #1
+        b0 = new java/lang/IllegalArgumentException;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i][ RRR  iR]
+        b1.<init>@special(b2.append@extra("Bad index: ").append@extra(vi1).toString@extra());   [ RRR ii. RR.] 
+        throw b0;   
+  +B39:   #1
+        vR0.selectedIndex = vi1;   
+        if vR0.peer==null goto B66;   
+  +B51:   #1
+        vR2 = (java/awt/peer/ChoicePeer)(vR0.peer);    
+        vR2.select(vi1);   [R RRR ... iR.] 
+  +B66:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 14/14 wr 9 swaps 2 any 3 found 1 select
+ 
+ method select(Ljava/lang/String;)V {
+  +START:   #1
+        vi2 = vR0.pItems.indexOf@extra(vR1);    [   RR] 
+        if vi2< 0 goto B18;   
+  +B13:   #1
+        vR0.select@this(vi2);   [i   iR] 
+  +B18:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 1 swaps 0 any 1 found 0 select
+ 
+ method addNotify()V {
+  +START:   #1
+        vR0.addNotify@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 addNotify
+ 
+ method addItemListener(Ljava/awt/event/ItemListener;)V {
+  +START:   #1
+        vR0.item_listeners = add@special(vR0.item_listeners,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 addItemListener
+ 
+ method removeItemListener(Ljava/awt/event/ItemListener;)V {
+  +START:   #1
+        vR0.item_listeners = remove@special(vR0.item_listeners,vR1);   
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 1 swaps 0 any 0 found 0 removeItemListener
+ 
+ method processEvent(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        if (vR1 instanceof java/awt/event/ItemEvent)==0 goto B18;   
+  +B7:   #1
+        vR0.processItemEvent@this((java/awt/event/ItemEvent)(vR1));   [   RR] 
+        goto +B23;   forward return[   ..]
+  +B18:   #1
+        vR0.processEvent@special(vR1);   [   RR] 
+  +B23:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 1 processEvent
+ 
+ method processItemEvent(Ljava/awt/event/ItemEvent;)V {
+  +START:   #1
+        if vR0.item_listeners==null goto B17;   
+  +B7:   #1
+        vR0.item_listeners.itemStateChanged(vR1);   [   RR] 
+  +B17:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 processItemEvent
+ 
+ method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
+  +START:   #1
+        vR0.dispatchEventImpl@special(vR1);   [   RR] 
+        if vR1.id>701 goto B50;   
+  +B15:   #1
+        if vR1.id<701 goto B50;   
+  +B25:   #1
+        if vR0.item_listeners!=null goto B45;   
+  +B32:   #1
+        if compare((vR0.eventMask & 512),0)==0 goto B50;   
+  +B45:   #1
+        vR0.processEvent@this(vR1);   [   RR] 
+  +B50:   #3
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+ 
+ method paramString()Ljava/lang/String; {
+  +START:   #1
+        b0 = new java/lang/StringBuilder();    [ R  i][ R  iR]
+        return b0.append@extra("selectedIndex=").append@extra(vR0.selectedIndex).append@extra(",").append@extra(vR0.paramString@special()).toString@extra();   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 9 swaps 4 any 0 found 0 paramString
+ 
+ method getFont()Ljava/awt/Font; {
+  -START:   #1
+        throw new java/lang/UnsupportedOperationException("Not supported yet.");   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 getFont
+}

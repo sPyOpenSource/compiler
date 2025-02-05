@@ -1,0 +1,17 @@
+class jx/wm/message/WQuitMessage {
+ 
+ method <init>()V {
+  +START:   #1
+        vR0.<init>@special(32);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method toString()Ljava/lang/String; {
+  +START:   #1
+        return "MSG(QUIT)";   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 toString
+}

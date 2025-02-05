@@ -1,0 +1,18 @@
+class jx/vis/EventAnalyzer$1Edge {
+ 
+ method <init>(Ljx/vis/EventAnalyzer;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.<init>@special();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 3/3 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method hashcode()I {
+  +START:   #1
+        return ((vR0.from << 16) | (vR0.to & 65535));   
+  +END:   #1
+ }
+// Register: rd 2/2 wr 0 swaps 0 any 0 found 0 hashcode
+}

@@ -1,0 +1,594 @@
+class jx/wm/WWindow {
+ 
+ method <init>(Ljava/lang/String;Ljx/devices/fb/PixelRect;Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.<init>@special();   [ ?RR  R] 
+        b1 = new jx/devices/fb/PixelRect();    [ ?RR  i][ ?RR  iR]
+        vR0.m_cFrame = b1;   
+        if s_cWindowManager!=null goto B39;   
+  +B21:   #1
+        vR4 = getInitialNaming@special();    
+        s_cWindowManager = (jx/wm/WindowManager)(waitUntilPortalAvailable@special(vR4,"WindowManager"));   
+  +B39:   #1
+        vR4 = (jx/zero/DomainManager)(getInitialNaming@special().lookup("DomainManager"));    
+        vi5 = vR4.getCurrentDomain().getID();    [R ?RR i. R.] [R ?RR iR R.] 
+        b1 = s_cWindowManager;    
+        b2 = new java/lang/StringBuilder();    [ ?RR i. i.][ ?RR i. iR]
+        vR0.m_cWindow = b1.createWindow(b2.append@extra(vR1).append@extra(" (Domain ").append@extra(vi5).append@extra(")").toString@extra(),vR2,vR3);   
+        vR0.m_cFrame.setTo@extra(vR2);   [Ri ?RR iiii... RR...] 
+        b1 = new java/lang/Thread(vR0,vR1);    [ ?RR iiii... i....][ ?RR iiii... iRRR.]
+        vR0.m_cThread = b1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 16/16 wr 22 swaps 4 any 0 found 0 <init>
+ 
+ method show(Z)V {
+  +START:   #1
+        if vi1!=1 goto B25;   
+  +B5:   #1
+        vR0.m_cThread.start();   [   R] 
+        vR0.m_cWindow.show(1);   [   iR] 
+        goto +B42;   forward return[   ..]
+  +B25:   #1
+        vR0.m_cWindow.show(0);   [   iR] 
+        vR0.m_cThread.stop@extra();   [   R.] 
+  +B42:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 5/5 wr 0 swaps 0 any 1 found 0 show
+ 
+ method run()V {
+  +START:   #1
+        vi1 = 1;    
+  +B2:   #1
+        if vi1!=1 goto B443;   
+  +B7:   #1
+        vR2 = vR0.m_cWindow.peekMessage();    [i RR  R] 
+        lswitch (vR2.getCode()) { 
+           1:B120
+           2:B192
+           3:B216
+           4:B240
+           5:B321
+           6:B337
+           7:B357
+           8:B377
+           16:B397
+           32:B430
+           64:B423
+           ::B435
+        };   
+  +B120:   #1
+        vR3 = (jx/wm/message/WPaintMessage)(vR2);    
+        vR0.m_cWindow.startRepaint();   [iRR RR  R.] 
+        vR0.m_cWindow.startUpdate();   [iRR RR  R.] 
+        if vR3.m_cRegion!=null goto B160;   
+  -B150:   #1
+        throw new java/lang/Error("No region info in paint message");   
+  +B160:   #1
+        vR0.paint@this(vR3.m_cRegion.getBounds());   [iRR RR i RR.] 
+        vR0.m_cWindow.endUpdate();   [iRR RR i R..] 
+        vR0.m_cWindow.endRepaint();   [iRR RR i R..] 
+        goto +B440;   [iRR RR i ...]
+  +B192:   #1
+        vR3 = (jx/wm/message/WKeyDownMessage)(vR2);    
+        vR0.keyDown@this(vR3.m_eKeyCode,vR3.m_eRawCode,vR3.m_eQual);   [iRR RR iRR RRRR] 
+        goto +B440;   [iRR RR iRR ....]
+  +B216:   #1
+        vR3 = (jx/wm/message/WKeyUpMessage)(vR2);    
+        vR0.keyUp@this(vR3.m_eKeyCode,vR3.m_eRawCode,vR3.m_eQual);   [iRR RR iRR RRRR] 
+        goto +B440;   [iRR RR iRR ....]
+  +B240:   #1
+        vR3 = (jx/wm/message/WWindowFrameChangedMessage)(vR2);    
+        if vR3.m_cFrame.width@extra()!=vR0.m_cFrame.width@extra() goto B279;   
+  +B262:   #1
+        if vR3.m_cFrame.height@extra()==vR0.m_cFrame.height@extra() goto B290;   
+  +B279:   #1
+        vR0.windowResized@this(vR3.m_cFrame);   [iRR RR i.. RR..] 
+        goto +B298;   [iRR RR i.. ....]
+  +B290:   #1
+        vR0.windowMoved@this(vR3.m_cFrame);   [iRR RR i.. RR..] 
+  +B298:   #1
+        vR0.m_cFrame.setTo@extra(vR3.m_cFrame);   [iRR RR i.. RR..] 
+        vR0.m_cWindow.moveReply();   [iRR RR i.. R...] 
+        goto +B440;   [iRR RR i.. ....]
+  +B321:   #1
+        vR3 = (jx/wm/message/WWindowActivatedMessage)(vR2);    
+        vR0.windowActivated@this(vR3.m_bActivated);   [iRR RR i.. bR..] 
+        goto +B440;   [iRR RR i.. ....]
+  +B337:   #1
+        vR3 = (jx/wm/message/WMouseDownMessage)(vR2);    
+        vR0.mouseDown@this(vR3.m_cPos,vR3.m_nButton);   [iRR RR ii. iRR.] 
+        goto +B440;   [iRR RR ii. ....]
+  +B357:   #1
+        vR3 = (jx/wm/message/WMouseUpMessage)(vR2);    
+        vR0.mouseUp@this(vR3.m_cPos,vR3.m_nButton);   [iRR RR ii. iRR.] 
+        goto +B440;   [iRR RR ii. ....]
+  +B377:   #1
+        vR3 = (jx/wm/message/WMouseMovedMessage)(vR2);    
+        vR0.mouseMoved@this(vR3.m_cPos,vR3.m_nTransit);   [iRR RR ii. iRR.] 
+        goto +B440;   [iRR RR ii. ....]
+  +B397:   #1
+        vR3 = (jx/wm/message/WShowMessage)(vR2);    
+        if vR3.m_bShow==0 goto B416;   
+  +B409:   #1
+        vR0.windowShown@this();   [iRR RR ... R...] 
+        goto +B440;   [iRR RR ... ....]
+  +B416:   #1
+        vR0.windowClosed@this();   [iRR RR ... R...] 
+        goto +B440;   [iRR RR ... ....]
+  +B423:   #1
+        vR0.closeRequested@this();   [iRR RR ... R...] 
+        goto +B440;   [iRR RR ... ....]
+  +B430:   #1
+        vi1 = 0;    
+        goto +B440;   [iRR RR ... ....]
+  +B435:   #1
+        vR0.handleMessage@this(vR2);   [iR RR ... RR..] 
+  +B440:   #12
+        goto +B2;   [iR RR ... ....]
+  +B443:   #1
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RR ... i...][ RR ... iR..]
+        b0.println(b1.append@extra("MyWindow::run(").append@extra(vR0.m_cWindow).append@extra(") stopping").toString@extra());   [iRR RR iiii.. RR..] 
+        vR0.m_cWindow = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 70/70 wr 40 swaps 14 any 10 found 9 run
+ 
+ method paint(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 paint
+ 
+ method handleMessage(Ljx/wm/message/WMessage;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 handleMessage
+ 
+ method windowResized(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowResized
+ 
+ method windowMoved(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowMoved
+ 
+ method keyDown(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 keyDown
+ 
+ method keyUp(Ljx/wm/Keycode;Ljx/wm/Keycode;Ljx/wm/Qualifiers;)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 keyUp
+ 
+ method mouseDown(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseDown
+ 
+ method mouseUp(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseUp
+ 
+ method mouseMoved(Ljx/devices/fb/PixelPoint;I)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 mouseMoved
+ 
+ method windowShown()V {
+  +START:   #1
+        out.println("WWindow::windowShown()");   [  i. RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 2 swaps 1 any 0 found 0 windowShown
+ 
+ method windowClosed()V {
+  +START:   #1
+        out.println("WWindow::windowClosed()");   [  i. RR] 
+        vR0.quit@this();   [  i. R.] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 2 swaps 1 any 0 found 0 windowClosed
+ 
+ method windowActivated(Z)V {
+  +START:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 0 swaps 0 any 0 found 0 windowActivated
+ 
+ method closeRequested()V {
+  +START:   #1
+        vR0.show@this(0);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 closeRequested
+ 
+ method quit()V {
+  +START:   #1
+        vR0.m_cWindow.quit();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 quit
+ 
+ method postMessage(Ljx/wm/message/WMessage;)V {
+  +START:   #1
+        vR0.m_cWindow.postMessage(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 postMessage
+ 
+ method invalidate(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_cWindow.startUpdate();   [ ?R  R] 
+        b1 = new jx/devices/fb/PixelRect(vR1);    [ ?R  i][ ?R . iRR]
+        vR0.paint@this(b1);   [ ?R . RR.] 
+        vR0.m_cWindow.endUpdate();   [ ?R . R..] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 2 swaps 0 any 0 found 0 invalidate
+ 
+ method startUpdate()V {
+  +START:   #1
+        vR0.m_cWindow.startUpdate();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 startUpdate
+ 
+ method endUpdate()V {
+  +START:   #1
+        vR0.m_cWindow.endUpdate();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 endUpdate
+ 
+ method movePenTo(II)V {
+  +START:   #1
+        vR0.m_cWindow.movePenTo(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 movePenTo
+ 
+ method drawLine(II)V {
+  +START:   #1
+        vR0.m_cWindow.drawLine(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawLine
+ 
+ method invertLine(II)V {
+  +START:   #1
+        vR0.m_cWindow.invertLine(vi1,vi2);   [   iiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 invertLine
+ 
+ method getFrame()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cWindow.getFrame(0);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrame
+ 
+ method getFrame(Z)Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cWindow.getFrame(vi1);   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFrame
+ 
+ method setFrame(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_cWindow.setFrame(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFrame
+ 
+ method setTitle(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.m_cWindow.setTitle(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setTitle
+ 
+ method movePenTo(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cWindow.movePenTo(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 movePenTo
+ 
+ method movePenBy(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cWindow.movePenBy(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 movePenBy
+ 
+ method drawLine(Ljx/devices/fb/PixelPoint;)V {
+  +START:   #1
+        vR0.m_cWindow.drawLine(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawLine
+ 
+ method setFgColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWindow.setFgColor(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWindow.setBgColor(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(Ljx/devices/fb/PixelColor;)V {
+  +START:   #1
+        vR0.m_cWindow.setEraseColor(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setEraseColor
+ 
+ method setFgColor(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.setFgColor(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.setBgColor(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.setEraseColor(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setEraseColor
+ 
+ method setFgColor(III)V {
+  +START:   #1
+        vR0.m_cWindow.setFgColor(vi1,vi2,vi3);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFgColor
+ 
+ method setBgColor(III)V {
+  +START:   #1
+        vR0.m_cWindow.setBgColor(vi1,vi2,vi3);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBgColor
+ 
+ method setEraseColor(III)V {
+  +START:   #1
+        vR0.m_cWindow.setEraseColor(vi1,vi2,vi3);   [   iiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setEraseColor
+ 
+ method fillRect(Ljx/devices/fb/PixelRect;)V {
+  +START:   #1
+        vR0.m_cWindow.fillRect(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 fillRect
+ 
+ method fillRect(Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cWindow.fillRect(vR1,vR2);   [   RRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 fillRect
+ 
+ method fillRect(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.fillRect(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 fillRect
+ 
+ method drawBitmap(Ljx/wm/WBitmap;II)V {
+  +START:   #1
+        vR0.m_cWindow.drawBitmap(vR1,vi2,vi3);   [   iiRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelPoint;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cWindow.drawBitmap(vR1,vR2,vR3);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawBitmap(Ljx/wm/WBitmap;Ljx/devices/fb/PixelRect;Ljx/devices/fb/PixelRect;Ljx/devices/fb/DrawingMode;)V {
+  +START:   #1
+        vR0.m_cWindow.drawBitmap(vR1,vR2,vR3,vR4);   [   RRRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawBitmap
+ 
+ method drawString(Ljava/lang/String;)V {
+  +START:   #1
+        vR0.m_cWindow.drawString(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawString
+ 
+ method drawString(Ljava/lang/String;I)V {
+  +START:   #1
+        vR0.m_cWindow.drawString(vR1,vi2);   [   iRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawString
+ 
+ method setClip(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.setClip(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setClip
+ 
+ method getBorderSize()Ljx/devices/fb/PixelRect; {
+  +START:   #1
+        return vR0.m_cWindow.getBorderSize();   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getBorderSize
+ 
+ method setFlags(Ljx/wm/WindowFlags;)V {
+  +START:   #1
+        vR0.m_cWindow.setFlags(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setFlags
+ 
+ method makeFocus(Z)V {
+  +START:   #1
+        vR0.m_cWindow.makeFocus(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 makeFocus
+ 
+ method moveToFront()V {
+  +START:   #1
+        vR0.m_cWindow.moveToFront();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 moveToFront
+ 
+ method getDisplayWidth()I {
+  +START:   #1
+        return s_cWindowManager.getDisplayWidth();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDisplayWidth
+ 
+ method getDisplayHeight()I {
+  +START:   #1
+        return s_cWindowManager.getDisplayHeight();   
+  +END:   #1
+ }
+// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDisplayHeight
+ 
+ method invertRect(IIII)V {
+  +START:   #1
+        vR0.m_cWindow.invertRect(vi1,vi2,vi3,vi4);   [   iiiiR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 invertRect
+ 
+ method setBitmap(Ljx/wm/WBitmap;)V {
+  +START:   #1
+        vR0.m_cWindow.setBitmap(vR1);   [   RR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 setBitmap
+ 
+ method enableBackBuffer(Z)V {
+  +START:   #1
+        vR0.m_cWindow.enableBackBuffer(vi1);   [   iR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 enableBackBuffer
+ 
+ method resetBackBuffer()V {
+  +START:   #1
+        vR0.m_cWindow.resetBackBuffer();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 resetBackBuffer
+ 
+ method drawBackBuffer()V {
+  +START:   #1
+        vR0.m_cWindow.drawBackBuffer();   [   R] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 drawBackBuffer
+ 
+ method <clinit>()V {
+  +START:   #1
+        s_cWindowManager = 0;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 1 swaps 0 any 0 found 0 <clinit>
+}

@@ -233,7 +233,6 @@ EXCEPTIONHANDLER-TABLE:
         vR2 = (jx/zero/MemoryManager)(vR0.lookup("MemoryManager"));    
         vR3 = (jx/timer/TimerManager)(waitUntilPortalAvailable@special(vR0,"TimerManager"));    
         vR4 = (jx/devices/pci/PCIAccess)(waitUntilPortalAvailable@special(vR0,"PCIAccess"));    
-        vR4.dumpDevices();   [RRR RR?R iRR. R.] 
         out.println("scanning PCIBus for network devices...");   [RRR RR?R iRRi. RR] 
         b0 = new jx/net/devices/lance/LanceFinder()[1];    
         b1 = b0;    
@@ -244,46 +243,46 @@ EXCEPTIONHANDLER-TABLE:
         vR7 = vR5;    
         vi8 = vR7.length;    
         vi9 = 0;    
+  +B75:   #1
+        if vi9>=vi8 goto B120;   
   +B82:   #1
-        if vi9>=vi8 goto B130;   
-  +B89:   #1
         vR10 = vR7[vi9];    
-        vR6 = ([Ljx/devices/net/NetworkDevice;)(vR10.find(new java/lang/String()[0]));    
-        if vR6==null goto B124;   
-  +B115:   #1
-        if vR6.length==0 goto B124;   
-  +B121:   #1
-        goto +B130;   [RRRRRRiiR RR?R ..... ..]
-  +B124:   #2
+        vR6 = ([Ljx/devices/net/NetworkDevice;)(vR10.find(vR0));    
+        if vR6==null goto B114;   
+  +B105:   #1
+        if vR6.length==0 goto B114;   
+  +B111:   #1
+        goto +B120;   [RRRRRRiiR RR?R ..... ..]
+  +B114:   #2
         vi9++;   
-        goto +B82;   [RRRRRRRii RR?R ..... ..]
-  +B130:   #2
+        goto +B75;   [RRRRRRRii RR?R ..... ..]
+  +B120:   #2
         vR7 = vR6[0];    
         vR7.setReceiveMode(1);   [RRRRRRiiR RR?R ..... iR] 
         out.print("Ethernet address: ");   [RRRRRRiiR RR?R i.... RR] 
         xdump@special(vR7.getMACAddress(),6);   [RRRRRRiiR RR?R iR... iR]
-  +B165:   #1
+  +B155:   #1
         vR9 = new jx/zero/Memory()[30];    
         vi10 = 0;    
-  +B175:   #1
-        if vi10>=vR9.length goto B203;   
-  +B183:   #1
+  +B165:   #1
+        if vi10>=vR9.length goto B193;   
+  +B173:   #1
         vR9[vi10] = vR2.alloc(1514);   
         vi10++;   
-        goto +B175;   [RRRRRRiRi RR?R ..... ..]
-  +B203:   #1
+        goto +B165;   [RRRRRRiRi RR?R ..... ..]
+  +B193:   #1
         vR8 = new jx/netmanager/NetInit(vR7,vR3,vR9);    [ RR?R ..... i.][ RR?R ..... iRRRR]
-        registerPortal@special(vR8,vR1[0]);   [RRRRRRRRi RR?R R.... RR...]
-  +B225:   #1
-        goto +B241;   forward return[RRRRRRRRi RR?R ..... .....]
-  -H228<caught exception>:   #1 reference
+        vR0.registerPortal(vR8,vR1[0]);   [RRRRRRRRi RR?R i.... RRR..] 
+  +B218:   #1
+        goto +B234;   forward return[RRRRRRRRi RR?R ..... .....]
+  -H221<caught exception>:   #1 reference
         vR9 = <caught exception>;    
         throw new java/lang/Error("Could not setup");   
-  +B241:   #1
+  +B234:   #1
         return;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-165 - 225 handler 228 type 370
+155 - 218 handler 221 type 362
  }
-// Register: rd 35/35 wr 36 swaps 4 any 9 found 0 init
+// Register: rd 35/35 wr 35 swaps 4 any 9 found 0 init
 }

@@ -1,0 +1,45 @@
+class jx/awt/peer/FocusHandler {
+ 
+ method <init>(Ljx/awt/JXToolkit;)V {
+  +START:   #1
+        vR0.<init>@special();   [   R] 
+        vR0.focusedComponent = 0;   
+        vR0.toolkit = vR1;   
+        return;   
+  +END:   #1
+ }
+// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method getFocusedComponent()Ljava/awt/Component; {
+  +START:   #1
+        return vR0.focusedComponent;   
+  +END:   #1
+ }
+// Register: rd 1/1 wr 0 swaps 0 any 0 found 0 getFocusedComponent
+ 
+ method setFocusedComponent(Ljava/awt/Component;)V {
+  +START:   #1
+        if vR0.focusedComponent==null goto B18;   
+  +B7:   #1
+        vR0.sendFocusEvent@special(vR0.focusedComponent,1005);   [  i iRR] 
+  +B18:   #1
+        vR0.focusedComponent = vR1;   
+        if vR0.focusedComponent==null goto B41;   
+  +B30:   #1
+        vR0.sendFocusEvent@special(vR0.focusedComponent,1004);   [  i iRR] 
+  +B41:   #1
+        return;   
+  +END:   #1
+ }
+// Register: rd 8/8 wr 2 swaps 2 any 0 found 0 setFocusedComponent
+ 
+ method sendFocusEvent(Ljava/awt/Component;I)V {
+  +START:   #1
+        vR3 = vR0.toolkit.getSystemEventQueue();    [ ?R  R] 
+        b1 = new java/awt/event/FocusEvent(vR1,vi2,0);    [ ?R  i][ ?R . iiiRR]
+        vR3.postEvent(b1);   [R ?R . RR...] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 3 swaps 0 any 0 found 0 sendFocusEvent
+}

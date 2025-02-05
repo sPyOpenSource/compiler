@@ -1,0 +1,33 @@
+class org/jnode/fs/ntfs/FileRecord$2 {
+ 
+ method <init>(Lorg/jnode/fs/ntfs/FileRecord;Ljava/util/Iterator;ILjava/lang/String;)V {
+  +START:   #1
+        vR0.this$0 = vR1;   
+        vR0.val$attrTypeID = vi3;   
+        vR0.val$name = vR4;   
+        vR0.<init>@special(vR1,vR2,0);   [   RRRR] 
+        return;   
+  +END:   #1
+ }
+// Register: rd 7/7 wr 0 swaps 0 any 0 found 0 <init>
+ 
+ method matches(Lorg/jnode/fs/ntfs/attribute/NTFSAttribute;)Z {
+  +START:   #1
+        if vR1.getAttributeType()!=vR0.val$attrTypeID goto B43;   
+  +B11:   #1
+        vR2 = vR1.getAttributeName();    [   R] 
+        if vR0.val$name!=null goto B30;   
+  +B23:   #1
+        if vR2!=null goto B43;   
+  +B27:   #1
+        goto +B41;   forward return[R   .]
+  +B30:   #1
+        if vR0.val$name.equals@extra(vR2)==0 goto B43;   
+  +B41:   #1
+        return 1;   
+  +B43:   #3
+        return 0;   
+  +END:   #1
+ }
+// Register: rd 6/6 wr 1 swaps 0 any 1 found 0 matches
+}
