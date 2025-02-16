@@ -261,20 +261,20 @@ class java/awt/Choice {
  method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
   +START:   #1
         vR0.dispatchEventImpl@special(vR1);   [   RR] 
-        if vR1.id>701 goto B50;   
+        if vR1.id>701 goto B48;   
   +B15:   #1
-        if vR1.id<701 goto B50;   
+        if vR1.id<701 goto B48;   
   +B25:   #1
-        if vR0.item_listeners!=null goto B45;   
+        if vR0.item_listeners!=null goto B43;   
   +B32:   #1
-        if compare((vR0.eventMask & 512),0)==0 goto B50;   
-  +B45:   #1
+        if (vR0.eventMask & 512)==0 goto B48;   
+  +B43:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-  +B50:   #3
+  +B48:   #3
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
  
  method paramString()Ljava/lang/String; {
   +START:   #1

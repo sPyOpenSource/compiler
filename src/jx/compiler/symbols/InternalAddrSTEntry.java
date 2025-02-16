@@ -4,12 +4,13 @@ package jx.compiler.symbols;
 import jx.zero.Debug;
 import jx.compiler.execenv.ExtendedDataOutputStream;
 import java.io.IOException;
+import jx.compiler.execenv.ExtendedDataInputStream;
 
 /** 
    for jumps with target inside of this method 
 */ 
 public class InternalAddrSTEntry extends SymbolTableEntryBase {
-  protected int targetNCIndex=-1; 
+  protected int targetNCIndex = -1; 
     // this entry is resolved when targetNCIndex and nextInstrNCIndex are known
 
   public InternalAddrSTEntry() {
@@ -18,7 +19,7 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
 
   @Override
     public String getDescription() {
-	return super.getDescription()+",nativecode.InternalAddr="+targetNCIndex;
+	return super.getDescription() + ",nativecode.InternalAddr=" + targetNCIndex;
     }
 
   @Override
@@ -67,7 +68,12 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
       super.writeEntry(out);
       out.writeInt(targetNCIndex);
   }
-
+  
+  @Override
+  public void readEntry(ExtendedDataInputStream in) throws IOException {
+      super.readEntry(in);
+      targetNCIndex = in.readInt();
+  }
 
   @Override
     public void dump() {

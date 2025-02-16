@@ -461,23 +461,23 @@ EXCEPTIONHANDLER-TABLE:
  
  method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
   +START:   #1
-        if vR1.id>301 goto B48;   
+        if vR1.id>301 goto B44;   
   +B10:   #1
-        if vR1.id<300 goto B48;   
+        if vR1.id<300 goto B44;   
   +B20:   #1
-        if vR0.containerListener!=null goto B40;   
+        if vR0.containerListener!=null goto B36;   
   +B27:   #1
-        if compare((vR0.eventMask & 2),0)==0 goto B48;   
-  +B40:   #1
+        if (vR0.eventMask & 2)==0 goto B44;   
+  +B36:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-        goto +B53;   forward return[   ..]
-  +B48:   #3
+        goto +B49;   forward return[   ..]
+  +B44:   #3
         vR0.dispatchEventImpl@special(vR1);   [   RR] 
-  +B53:   #1
+  +B49:   #1
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
  
  method addContainerListener(Ljava/awt/event/ContainerListener;)V {
   +START:   #1

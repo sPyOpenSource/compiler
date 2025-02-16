@@ -7,10 +7,35 @@ class java/awt/Toolkit {
         return toolkit;   
   +B10:   #1
         vR0 = "jx.awt.JXToolkit";    
-        return toolkit;   
+  +B13:   #1
+        vR1 = forName@special(vR0);    [R RRR  R]
+        vR2 = vR1.newInstance@extra();    [RR RRR  R] 
+        if (vR2 instanceof java/awt/Toolkit)!=0 goto B57;   
+  -B30:   #1
+        b0 = new java/awt/AWTError;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR  i.][ RRR  iR]
+        b1.<init>@special(b2.append@extra(vR0).append@extra(" is not a subclass of java.awt.Toolkit").toString@extra());   [RRR RRR ii. RR.] 
+        throw b0;   
+  +B57:   #1
+        toolkit = (java/awt/Toolkit)(vR2);   
+        b0 = toolkit;    
+  +B67b0:   #1 reference
+        return b0;   
+  -H68<caught exception>:   #1 reference
+        vR1 = <caught exception>;    
+        b0 = new java/awt/AWTError;    
+        b1 = b0;    
+        b2 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
+        b1.<init>@special(b2.append@extra("Cannot load AWT toolkit: ").append@extra(vR1.getMessage()).toString@extra());   [RRR RRR iii. RR.] 
+        throw b0;   
   +END:   #1
+EXCEPTIONHANDLER-TABLE:
+13 - 67 handler 68 type 40
+13 - 67 handler 68 type 42
+13 - 67 handler 68 type 44
  }
-// Register: rd 0/0 wr 1 swaps 0 any 0 found 0 getDefaultToolkit
+// Register: rd 15/15 wr 20 swaps 5 any 2 found 2 getDefaultToolkit
  
  method getNativeContainer(Ljava/awt/Component;)Ljava/awt/Container; {
   +START:   #1

@@ -200,7 +200,7 @@ class jx/awt/peer/JXMenuPeer {
            37:B185
            38:B131
            39:B152
-           40:B110
+           56:B110
            ::B187
         };   
   +B60:   #1

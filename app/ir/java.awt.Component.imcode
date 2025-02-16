@@ -856,7 +856,7 @@ class java/awt/Component {
         vR0.processEvent@this(vR1);   [   RR] 
         goto +B219;   forward return[   ..]
   +B87:   #3
-        if vR1.id>507 goto B139;   
+        if vR1.id>506 goto B139;   
   +B97:   #1
         if vR1.id<500 goto B139;   
   +B107:   #1

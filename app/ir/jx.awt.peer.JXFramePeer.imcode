@@ -91,7 +91,7 @@ class jx/awt/peer/JXFramePeer {
            37:B160
            38:B72
            39:B211
-           40:B72
+           56:B72
            ::B259
         };   
   +B72:   #3

@@ -8,12 +8,15 @@ import jx.compiler.execenv.ExtendedDataOutputStream;
 
 import jx.classfile.ExceptionHandlerData;
 import jx.classfile.constantpool.*;
+import jx.compiler.execenv.ExtendedDataInputStream;
 
 public class ExceptionTableSTEntry extends UnresolvedJump {
     ExceptionHandlerData handler;    
     String  className;
     int     stringID;
     boolean validID;
+    
+    public ExceptionTableSTEntry() {}
 
     public ExceptionTableSTEntry(ConstantPool cPool, ExceptionHandlerData handler) {
 	int cpIndex = handler.getCatchTypeCPIndex();	
@@ -52,10 +55,17 @@ public class ExceptionTableSTEntry extends UnresolvedJump {
 	super.writeEntry(out);
 	out.writeInt(handler.getStartBCIndex());
 	out.writeInt(handler.getEndBCIndex());
-	//out.writeString(className);
 	if (!validID) throw new Error("invalid String ID");
 	out.writeInt(stringID);
-    }  
+    }
+    
+    @Override
+    public void readEntry(ExtendedDataInputStream in) throws IOException {
+        super.readEntry(in);
+        in.readInt();
+        in.readInt();
+        stringID = in.readInt();
+    }
 
     @Override
     public void registerStrings(StringTable stringTable) {

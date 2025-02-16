@@ -54,7 +54,7 @@ public class StringSTEntry extends SymbolTableEntryBase {
     @Override
     public void readEntry(ExtendedDataInputStream in) throws IOException {
 	super.readEntry(in);
-	value = in.readString();
+	stringID = in.readInt();
     }
 
     @Override
