@@ -24,7 +24,7 @@ public class StringSTEntry extends SymbolTableEntryBase {
 
     @Override
     public String getDescription() {
-	return super.getDescription()+",String:"+value;
+	return super.getDescription() + ",String:" + value;
     }
     
     @Override
@@ -40,7 +40,7 @@ public class StringSTEntry extends SymbolTableEntryBase {
 
     @Override
     public String toGASFormat() {
-	return "0x"+Integer.toHexString(getValue());
+	return "0x" + Integer.toHexString(getValue());
     }
 
     @Override

@@ -14,29 +14,27 @@ public class StaticFieldSTEntry extends SymbolTableEntryBase {
     public final static int TOTAL_OFFSET  = 2;
     public final static int STACK_TOP_MAP = 3;
 
-    String className;
-    int     stringID;
+    String  className;
+    int     stringID, kind, offset;
     boolean validID;
-    int kind;
-    int offset;
 
     public StaticFieldSTEntry() {}
 
     public StaticFieldSTEntry(String className, int offset) {
 	this.className = className;
-	this.offset = offset;
-	this.kind   = FIELD_OFFSET;
+	this.offset    = offset;
+	this.kind      = FIELD_OFFSET;
     }
 
     public StaticFieldSTEntry(String className, int kind, int offset) {
 	this.className = className;
-	this.kind   = kind;
-	this.offset = offset;
+	this.kind      = kind;
+	this.offset    = offset;
     }  
     
     @Override
     public String getDescription() {
-	return super.getDescription()+",StaticField:"+className+ "."+ offset;
+	return super.getDescription() + ",StaticField:" + className + "." + offset;
     }
     
     @Override
@@ -52,7 +50,7 @@ public class StaticFieldSTEntry extends SymbolTableEntryBase {
 
     @Override
     public String toGASFormat() {
-	return "0x"+Integer.toHexString(getValue());
+	return "0x" + Integer.toHexString(getValue());
     }
 
     @Override

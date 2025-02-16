@@ -47,13 +47,13 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
   public void apply(byte[] code, int codeBase) {
     //Debug.assert(isReadyForApply());
     applyValue(code, codeBase, targetNCIndex + codeBase); 
-    Debug.out.println("InternalAddrSTEntry::apply "+(targetNCIndex + codeBase));
+    Debug.out.println("InternalAddrSTEntry::apply " + (targetNCIndex + codeBase));
   }
 
   public void applyRelative(byte[] code) {
     //Debug.assert(isReadyForApply());
     applyRelativeValue(code, targetNCIndex); 
-    Debug.out.println("InternalAddrSTEntry::applyRelative "+targetNCIndex);
+    Debug.out.println("InternalAddrSTEntry::applyRelative " + targetNCIndex);
   }
 
   @Override
@@ -79,6 +79,6 @@ public class InternalAddrSTEntry extends SymbolTableEntryBase {
     public void dump() {
 	super.dump();
 	Debug.out.println(" InternalAddrSTEntry");
-	Debug.out.println("  targetNCIndex: "+ targetNCIndex);
+	Debug.out.println("  targetNCIndex: " + targetNCIndex);
     }
 }

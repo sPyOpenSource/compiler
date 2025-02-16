@@ -24,7 +24,7 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
     
     @Override
     public String getDescription() {
-	return super.getDescription()+",DirectMethodCall";
+	return super.getDescription() + ",DirectMethodCall";
     }
     
     @Override
@@ -35,7 +35,7 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
     
     @Override
     public String toGASFormat() {
-	return "0x"+Integer.toHexString(getValue());
+	return "0x" + Integer.toHexString(getValue());
     }
     
     @Override
@@ -50,16 +50,16 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
     @Override
     public void readEntry(ExtendedDataInputStream in) throws IOException {
 	super.readEntry(in);
-	classID = in.readInt();
+	classID  = in.readInt();
 	methodID = in.readInt();
-	sigID = in.readInt();
+	sigID    = in.readInt();
     }    
 
     @Override
     public void registerStrings(StringTable stringTable) {
-	classID = stringTable.getIdentifier(className);
+	classID  = stringTable.getIdentifier(className);
 	methodID = stringTable.getIdentifier(methodName);
-	sigID   = stringTable.getIdentifier(methodSignature);	
+	sigID    = stringTable.getIdentifier(methodSignature);	
 	validID  = true;
     }
     

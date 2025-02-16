@@ -99,7 +99,6 @@ public class CodeFile {
         this.meta = meta;
     }
 
-    //public void write(ExtendedDataOutputStream out, ClassStore classStore, CompilerOptions opts) throws IOException {
     public void write(ExtendedDataOutputStream out, ClassStore classStore) throws IOException {
         this.out = out;
         
@@ -128,7 +127,7 @@ public class CodeFile {
                 try {
                     //Debug.out.println("\""+libs[i]+"\"");
                     out.writeString(lib);
-                }catch (IOException ex) {
+                } catch (IOException ex) {
                     throw new Error(ex.getClass().getName());
                 }
             }
@@ -205,13 +204,13 @@ public class CodeFile {
         String codeType = in.readString();
         
         /*
-	   reserved for option fields
+	 * reserved for option fields
 	 */
 
 	in.readInt();
 
 	/*
-	   load needed libs
+	 * load needed libs
 	 */
 
 	int numberOfNeededLibs = in.readInt();
@@ -221,7 +220,7 @@ public class CodeFile {
 	}
 
 	/*
-	   load meta
+	 * load meta
 	 */
 	int numberOfMeta = in.readInt();
 
@@ -231,7 +230,7 @@ public class CodeFile {
 	}
 
 	/*
-	   read string table
+	 * read string table
 	 */
 
 	int n = in.readInt();
@@ -240,7 +239,7 @@ public class CodeFile {
         }
 
 	/*
-	   vmsymbol-table
+	 * vmsymbol-table
 	 */
 
 	n = in.readInt();
@@ -305,13 +304,10 @@ public class CodeFile {
         BCClassInfo info = (BCClassInfo)aClass.getInfo();
         if (saveHeader) { 
             if (verbose) Debug.out.println("***** Saving header class: " + aClass.getClassName());
-            //out.writeString(aClass.getClassName());
             strTable.writeStringID(out, aClass.getClassName());
             if (info.superClass != null) {
-                //out.writeString(info.superClass.getClassName());
                 strTable.writeStringID(out, info.superClass.getClassName());
             } else {
-                //out.writeString("");
                 strTable.writeStringID(out, "");
             }
             if (aClass.isInterface())
@@ -320,7 +316,6 @@ public class CodeFile {
                 out.writeInt(0); // isinterface
             out.writeInt(info.interfaces.length); // number of implemented interfaces
             for (BCClass intf : info.interfaces) {
-                //out.writeString(info.interfaces[i].getClassName());
                 strTable.writeStringID(out, intf.getClassName());
             }
             out.writeInt(info.nativeCode.length);
@@ -353,7 +348,6 @@ public class CodeFile {
         }
         int len = info.nativeCode.length;
         for(int i = 0; i < len; i++) {
-            //for (int i=0;i<info.methods.length;i++) {
             if (saveHeader) {
                 if (verbose) Debug.out.println("**  Saving header method " + i + "/" + len + " "
                            + aClass.getClassName() + "." + info.methods[i].getName());
@@ -467,7 +461,6 @@ public class CodeFile {
     }
     
     private void saveCodeToFile(BCMethod method, 
-                //IMCode nativeCode) {
                 NativeCodeContainer nativeCode) {
         try {
             if (method.isAbstract() || nativeCode==null) {
@@ -499,24 +492,17 @@ public class CodeFile {
 
     private CompiledClass readHeaderFromFile() throws Exception {
         Integer className = in.readInt();
-        //System.out.println("name:" + className);
         Integer superName = in.readInt();
-        ///Debug.out.println(className + " - " +superName);
+        ///Debug.out.println(className + " - " + superName);
         int isInterface = in.readInt();
         int objectSize = in.readInt();
         for(int i = 0; i < objectSize; i++) in.readInt();
         //int vtableSize = in.readInt();
         int numberOfMethods = in.readInt();
-        //System.out.println("super:" + superName);
-        //System.out.println("inteface:" + isInterface);
-        //System.out.println("methods:" + numberOfMethods);
-        //System.out.println(vtableSize);
-        //System.out.println("size:" + objectSize);
         in.readInt();
 
         FieldLayout.readMap(in); // object map
         int classSize = in.readInt();
-        //System.out.println("class:" + classSize);
         for(int i = 0; i < classSize; i++) {
             in.readInt();
             in.readInt();
@@ -526,18 +512,14 @@ public class CodeFile {
 
         FieldLayout.readMap(in); // statics map
         int numberOfBytecodes = in.readInt();
-        //System.out.println("N:" + numberOfBytecodes);
         int Type = in.readInt();
         int Msize = in.readInt();
-        //System.out.println("T:" + Type);
-        //System.out.println("M:" + Msize);
         for(int i = 0; i < Msize; i++){
             in.readInt();
             in.readInt();
             in.readInt();
             in.readInt();
         }
-        //System.out.println("-----------");
 
         //Debug.out.println("Ml " + numberOfMethods);    
         CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
