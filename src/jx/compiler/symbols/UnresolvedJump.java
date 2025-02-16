@@ -38,7 +38,7 @@ public class UnresolvedJump extends InternalAddrSTEntry {
 
         @Override
     public String toGASFormat() {
-	return ".L"+targetNCIndex;
+	return ".L" + targetNCIndex;
     }
 
 

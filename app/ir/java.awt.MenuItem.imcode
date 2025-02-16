@@ -178,20 +178,20 @@ class java/awt/MenuItem {
  
  method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
   +START:   #1
-        if vR1.id>1001 goto B46;   
+        if vR1.id>1001 goto B43;   
   +B10:   #1
-        if vR1.id<1001 goto B46;   
+        if vR1.id<1001 goto B43;   
   +B20:   #1
-        if vR0.action_listeners!=null goto B41;   
+        if vR0.action_listeners!=null goto B38;   
   +B27:   #1
-        if compare(((long)vR0.eventMask & 128),0)==0 goto B46;   
-  +B41:   #1
+        if (vR0.eventMask & 128)==0 goto B43;   
+  +B38:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-  +B46:   #3
+  +B43:   #3
         return;   
   +END:   #1
  }
-// Register: rd 4/4 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
  
  method processEvent(Ljava/awt/AWTEvent;)V {
   +START:   #1

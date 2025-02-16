@@ -231,30 +231,18 @@ public abstract class SymbolTableEntryBase {
 	out.writeInt(immediateNCIndex);
 	out.writeInt(numBytes);
 	out.writeInt(nextInstrNCIndex);
-	/*
-	out.writeShort((short)nr);
-	out.writeShort((short)immediateNCIndex);
-	out.writeShort((short)numBytes);
-	out.writeShort((short)nextInstrNCIndex);
-	*/
     }
     
     public void readEntry(ExtendedDataInputStream in) throws IOException {
 	immediateNCIndex = in.readInt();
 	numBytes = in.readInt();
 	nextInstrNCIndex = in.readInt();
-	/*
-	immediateNCIndex = in.readShort();
-	numBytes = in.readShort();
-	nextInstrNCIndex = in.readShort();
-	*/
     }
     
     public static SymbolTableEntryBase readUnknownEntry(ExtendedDataInputStream in)  throws Exception {
 	int nr = in.readInt();
-	//int nr = in.readShort();
-        System.out.println(nr);
         String entryName = ENTRY_TYPES[nr];
+        //System.out.println(entryName);
         Class entryClass = Class.forName(entryName);
         SymbolTableEntryBase entryInstance = (SymbolTableEntryBase)entryClass.newInstance();
         entryInstance.readEntry(in);

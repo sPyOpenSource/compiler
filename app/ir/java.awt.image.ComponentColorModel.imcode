@@ -153,7 +153,7 @@ class java/awt/image/ComponentColorModel {
  
  method getRGB([F)I {
   +START:   #1
-        vi2 = ((((int)(vR1[0]*jx.classfile.datatypes.BCFloat@57576994) << 16) | ((int)(vR1[1]*jx.classfile.datatypes.BCFloat@57576994) << 8)) | ((int)(vR1[2]*jx.classfile.datatypes.BCFloat@57576994) << 0));    
+        vi2 = ((((int)(vR1[0]*jx.classfile.datatypes.BCFloat@285d851a) << 16) | ((int)(vR1[1]*jx.classfile.datatypes.BCFloat@285d851a) << 8)) | ((int)(vR1[2]*jx.classfile.datatypes.BCFloat@285d851a) << 0));    
         return vi2;   
   +END:   #1
  }
@@ -175,16 +175,16 @@ class java/awt/image/ComponentColorModel {
  method getDataElements(ILjava/lang/Object;)Ljava/lang/Object; {
   +START:   #1
         b0 = new float[3];    
-        b0[0] = ((float)((vi1 >> 16) & 255)/jx.classfile.datatypes.BCFloat@57576994);   
-        b0[1] = ((float)((vi1 >> 8) & 255)/jx.classfile.datatypes.BCFloat@57576994);   
-        b0[2] = ((float)((vi1 >> 0) & 255)/jx.classfile.datatypes.BCFloat@57576994);   
+        b0[0] = ((float)((vi1 >> 16) & 255)/jx.classfile.datatypes.BCFloat@285d851a);   
+        b0[1] = ((float)((vi1 >> 8) & 255)/jx.classfile.datatypes.BCFloat@285d851a);   
+        b0[2] = ((float)((vi1 >> 0) & 255)/jx.classfile.datatypes.BCFloat@285d851a);   
         vR3 = b0;    
         vR4 = vR0.cspace.fromRGB(vR3);    [R R  RR] 
         vR5 = createBuffer@special(vR0.transferType,vR2,vR0.getNumComponents@this());    [RR R ii iRi]
         vi6 = vR0.getNumColorComponents@this();    [RRR R ii R..] 
         if vR0.hasAlpha@this()==0 goto B158;   
   +B85:   #1
-        vl7 = ((float)((vi1 >> 24) & 255)/jx.classfile.datatypes.BCFloat@57576994);    
+        vl7 = ((float)((vi1 >> 24) & 255)/jx.classfile.datatypes.BCFloat@285d851a);    
         if vR0.isAlphaPremultiplied@this()==0 goto B132;   
   +B106:   #1
         vi8 = 0;    

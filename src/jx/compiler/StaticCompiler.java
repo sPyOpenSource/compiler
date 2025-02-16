@@ -176,9 +176,7 @@ public class StaticCompiler implements ClassFinder {
                         if (name.startsWith("AI/Models/ByteCode")) continue;
                         if (name.startsWith("java/nio")) continue;
                         if (name.startsWith("java/math")) continue;
-                        if (name.startsWith("java/awt")) continue;
                         if (name.startsWith("java/applet")) continue;
-                        if (name.startsWith("gnu/java/awt")) continue;
                         if (name.startsWith("test/portal/perf")) continue;
                         System.out.println(name); 
                         try (InputStream is = jar.getInputStream(entry)) {
@@ -479,7 +477,7 @@ public class StaticCompiler implements ClassFinder {
 	createClassInfo(libClassStore);
 	createClassInfo(domClassStore);
 
-	domClassStore = sortClasses(domClassStore); // we dont need to sort the classes anymore
+	domClassStore = sortClasses(domClassStore); // we don't need to sort the classes anymore
 	libClassStore = sortClasses(libClassStore);
 
 	ConstraintChecker.check(domClassStore.classSourceIterator());
@@ -492,7 +490,9 @@ public class StaticCompiler implements ClassFinder {
 	    BCClassInfo info = (BCClassInfo)c.getInfo();
 	    info.methodTable = mtableFactory.getMethodTable(c.getClassName());
 	    //Debug.out.println(" setting mtable for " + c.getClassName());
-	    if (info.methodTable == null) Debug.throwError("No Methodtable for " + c.getClassName());
+	    if (info.methodTable == null) {
+                Debug.throwError("No Methodtable for " + c.getClassName());
+            }
 	}
 
 	iter = domClassStore.iterator();

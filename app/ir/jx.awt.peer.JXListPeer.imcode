@@ -51,7 +51,7 @@ class jx/awt/peer/JXListPeer {
            10:B201
            32:B183
            38:B88
-           40:B131
+           56:B131
            ::B212
         };   
   +B88:   #1

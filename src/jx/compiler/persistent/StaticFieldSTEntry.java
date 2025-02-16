@@ -68,7 +68,7 @@ public class StaticFieldSTEntry extends SymbolTableEntryBase {
     @Override
     public void readEntry(ExtendedDataInputStream in) throws IOException {
       super.readEntry(in);
-      className = in.readString();
+      stringID = in.readInt();
       kind   = in.readInt();
       offset = in.readInt();
     }

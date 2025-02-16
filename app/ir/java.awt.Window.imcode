@@ -199,23 +199,23 @@ class java/awt/Window {
  
  method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
   +START:   #1
-        if vR1.id>206 goto B48;   
+        if vR1.id>206 goto B45;   
   +B10:   #1
-        if vR1.id<200 goto B48;   
+        if vR1.id<200 goto B45;   
   +B20:   #1
-        if vR0.windowListener!=null goto B40;   
+        if vR0.windowListener!=null goto B37;   
   +B27:   #1
-        if compare((vR0.eventMask & 64),0)==0 goto B48;   
-  +B40:   #1
+        if (vR0.eventMask & 64)==0 goto B45;   
+  +B37:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-        goto +B53;   forward return[   ..]
-  +B48:   #3
+        goto +B50;   forward return[   ..]
+  +B45:   #3
         vR0.dispatchEventImpl@special(vR1);   [   RR] 
-  +B53:   #1
+  +B50:   #1
         return;   
   +END:   #1
  }
-// Register: rd 5/5 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+// Register: rd 6/6 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
  
  method processEvent(Ljava/awt/AWTEvent;)V {
   +START:   #1

@@ -41,11 +41,6 @@ public class DirectMethodCallSTEntry extends SymbolTableEntryBase {
     @Override
     public void writeEntry(ExtendedDataOutputStream out) throws IOException {
 	super.writeEntry(out);
-	/*
-	out.writeString(className);
-	out.writeString(methodName);
-	out.writeString(methodSignature);
-	*/
 	if (!validID) throw new Error("invalid String ID");
 	out.writeInt(classID);
 	out.writeInt(methodID);

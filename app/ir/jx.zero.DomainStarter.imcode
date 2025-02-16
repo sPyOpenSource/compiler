@@ -247,106 +247,110 @@ class jx/zero/DomainStarter {
         vR20 = 0;    
         setupDomain@special();   [???RR RRR  ]
         vR22 = (jx/zero/DomainManager)(vR11.lookup("DomainManager"));    
-        b0 = vR1.indexOf@extra(".zip");    [???RR?R iRR ii RR] 
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR i. i.][ RRR i. iR]
+        b0.println(b1.append@extra("create Domain ").append@extra(vR1).append@extra(" via DomainStarter").toString@extra());   [???RR?R RRR iiii.. RR..] 
+        b0 = vR1.indexOf@extra(".zip");    [???RR?R iRR iiiii. RR..] 
         vi21 = b0;    
-        if b0<=0 goto B73;   
-  +B36:   #1
-        vR16 = vR1.substring@extra(0,vi21);    [???RRiR iRR .. iiR] 
-        b0 = new java/lang/StringBuilder();    [ RRR .. i..][ RRR .. iR.]
-        vR17 = b0.append@extra(vR16).append@extra(".jll").toString@extra();    [R??RRiR RRR i.. R..] [R??RRiR RRR iR. RR.] [R??RRiR RRR iRR RRR] 
+        if b0<=0 goto B103;   
+  +B66:   #1
+        vR16 = vR1.substring@extra(0,vi21);    [???RRiR iRR ...... iiR.] 
+        b0 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        vR17 = b0.append@extra(vR16).append@extra(".jll").toString@extra();    [R??RRiR RRR i..... R...] [R??RRiR RRR iR.... RR..] [R??RRiR RRR iRR... RRR.] 
         vR18 = vR1;    
-        goto +B218;   [RRRRRiR RRR i.. ...]
-  +B73:   #1
-        b0 = vR1.indexOf@extra(".jll");    [RRRRRiRRR iRR i.. RR.] 
+        goto +B248;   [RRRRRiR RRR i..... ....]
+  +B103:   #1
+        b0 = vR1.indexOf@extra(".jll");    [RRRRRiRRR iRR i..... RR..] 
         vi21 = b0;    
-        if b0<=0 goto B122;   
-  +B85:   #1
-        vR16 = vR1.substring@extra(0,vi21);    [RRRRRiRRR iRR ... iiR] 
+        if b0<=0 goto B152;   
+  +B115:   #1
+        vR16 = vR1.substring@extra(0,vi21);    [RRRRRiRRR iRR ...... iiR.] 
         vR17 = vR1;    
-        b0 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
-        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR i.. R..] [RRRRRiRRR RRR iR. RR.] [RRRRRiRRR RRR iRR RRR] 
-        goto +B218;   [RRRRRiRRR RRR i.. ...]
-  +B122:   #1
-        b0 = vR1.indexOf@extra(".jxd");    [RRRRRiRRR iRR i.. RR.] 
+        b0 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR i..... R...] [RRRRRiRRR RRR iR.... RR..] [RRRRRiRRR RRR iRR... RRR.] 
+        goto +B248;   [RRRRRiRRR RRR i..... ....]
+  +B152:   #1
+        b0 = vR1.indexOf@extra(".jxd");    [RRRRRiRRR iRR i..... RR..] 
         vi21 = b0;    
-        if b0<=0 goto B171;   
-  +B134:   #1
-        vR16 = vR1.substring@extra(0,vi21);    [RRRRRiRRR iRR ... iiR] 
+        if b0<=0 goto B201;   
+  +B164:   #1
+        vR16 = vR1.substring@extra(0,vi21);    [RRRRRiRRR iRR ...... iiR.] 
         vR17 = vR1;    
-        b0 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
-        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR i.. R..] [RRRRRiRRR RRR iR. RR.] [RRRRRiRRR RRR iRR RRR] 
-        goto +B218;   [RRRRRiRRR RRR i.. ...]
-  +B171:   #1
+        b0 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR i..... R...] [RRRRRiRRR RRR iR.... RR..] [RRRRRiRRR RRR iRR... RRR.] 
+        goto +B248;   [RRRRRiRRR RRR i..... ....]
+  +B201:   #1
         vR16 = vR1;    
-        b0 = new java/lang/StringBuilder();    [ RRR ... i..][ RRR ... iR.]
-        vR17 = b0.append@extra(vR16).append@extra(".jll").toString@extra();    [RRRRRiRRR RRR i.. R..] [RRRRRiRRR RRR iR. RR.] [RRRRRiRRR RRR iRR RRR] 
-        b0 = new java/lang/StringBuilder();    [ RRR i.. i..][ RRR i.. iR.]
-        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR ii.. R..] [RRRRRiRRR RRR iiR. RR.] [RRRRRiRRR RRR iiRR RRR] 
-  +B218:   #3
-        if bootfs==null goto B384;   
-  +B224:   #1
-        if bootfs.lookup(vR17)!=0 goto B384;   
-  +B237:   #1
-        b0 = new java/lang/StringBuilder();    [ RRR .... i..][ RRR .... iR.]
-        message@special(b0.append@extra("lib ").append@extra(vR17).append@extra(" not found").toString@extra());   [RRRRRiR RRR iiR.. R...]
-        if bootfs.lookup(vR18)==0 goto B351;   
-  +B278:   #1
-        if onc!=null goto B300;   
-  +B284:   #1
-        if initDomainStarter@special()!=0 goto B300;   
-  -B290:   #1
+        b0 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        vR17 = b0.append@extra(vR16).append@extra(".jll").toString@extra();    [RRRRRiRRR RRR i..... R...] [RRRRRiRRR RRR iR.... RR..] [RRRRRiRRR RRR iRR... RRR.] 
+        b0 = new java/lang/StringBuilder();    [ RRR i..... i...][ RRR i..... iR..]
+        vR18 = b0.append@extra(vR16).append@extra(".zip").toString@extra();    [RRRRRiRRR RRR ii.... R...] [RRRRRiRRR RRR iiR... RR..] [RRRRRiRRR RRR iiRR.. RRR.] 
+  +B248:   #3
+        if bootfs==null goto B414;   
+  +B254:   #1
+        if bootfs.lookup(vR17)!=0 goto B414;   
+  +B267:   #1
+        b0 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        message@special(b0.append@extra("lib ").append@extra(vR17).append@extra(" not found").toString@extra());   [RRRRRiR RRR iiR... R...]
+        if bootfs.lookup(vR18)==0 goto B381;   
+  +B308:   #1
+        if onc!=null goto B330;   
+  +B314:   #1
+        if initDomainStarter@special()!=0 goto B330;   
+  -B320:   #1
         throw new java/lang/Error("can't init domain starter");   
-  +B300:   #3
-        onc.translate(vR18,vR17);   [RRRRRiR RRR ..... RRR.] 
-  +B312:   #1
-        goto +B407;   [RRRRRiR RRR ..... ....]
-  -H315<caught exception>:   #1 reference
+  +B330:   #3
+        onc.translate(vR18,vR17);   [RRRRRiR RRR ...... RRR.] 
+  +B342:   #1
+        goto +B440;   [RRRRRiR RRR ...... ....]
+  -H345<caught exception>:   #1 reference
         vR23 = <caught exception>;    
         b0 = new java/lang/Error;    
         b1 = b0;    
-        b2 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
-        b1.<init>@special(b2.append@extra("can't init domain starter: ").append@extra(vR23.getClass().getName@extra()).toString@extra());   [RRRRRiRRR RRR iii.. RR..] 
+        b2 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        b1.<init>@special(b2.append@extra("can't init domain starter: ").append@extra(vR23.getClass().getName@extra()).toString@extra());   [RRRRRiRRR RRR iii... RR..] 
         throw b0;   
-  -B351:   #1
+  -B381:   #1
         b0 = new java/lang/Error;    
         b1 = b0;    
-        b2 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
-        b1.<init>@special(b2.append@extra("zip ").append@extra(vR18).append@extra(" not found (can't create domain)").toString@extra());   [RRRRRiRRR RRR iii.. RR..] 
+        b2 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        b1.<init>@special(b2.append@extra("zip ").append@extra(vR18).append@extra(" not found (can't create domain)").toString@extra());   [RRRRRiRRR RRR iii... RR..] 
         throw b0;   
-  +B384:   #2
-        b0 = new java/lang/StringBuilder();    [ RRR ..... i...][ RRR ..... iR..]
-        message@special(b0.append@extra("use library ").append@extra(vR17).toString@extra());   [RRRRRiRRR RRR iR... R...]
-  +B407:   #1
-        if vR3==null goto B432;   
-  +B411:   #1
+  +B414:   #2
+        b0 = out;    
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i...][ RRR ...... iR..]
+        b0.println(b1.append@extra("use library ").append@extra(vR17).toString@extra());   [RRRRRiRRR RRR ii.... RR..] 
+  +B440:   #1
+        if vR3==null goto B465;   
+  +B444:   #1
         b0 = new java/lang/String()[1];    
         b0[0] = vR3;   
         vR19 = b0;    
         b0 = new java/lang/String()[1];    
         b0[0] = "scheduler.jll";   
         vR20 = b0;    
-  +B432:   #1
-        vR23 = vR22.createDomain(vR0,0,vR19,vR17,vR20,vR2,vi4,vi5,vi6,vR7,vi8,vi9,vR10,vR11,vR13,vi14,vR15);    [RRRRRiR RRR ..... RiRRRiiRiiiRRRRRRR] 
+  +B465:   #1
+        vR23 = vR22.createDomain(vR0,0,vR19,vR17,vR20,vR2,vi4,vi5,vi6,vR7,vi8,vi9,vR10,vR11,vR13,vi14,vR15);    [RRRRRiR RRR ...... RiRRRiiRiiiRRRRRRR] 
         vR24 = (jx/zero/CentralSecurityManager)(vR11.lookup("SecurityManager"));    
-        if vR24==null goto B578;   
-  +B491:   #1
+        if vR24==null goto B611;   
+  +B524:   #1
         b0 = out;    
-        b1 = new java/lang/StringBuilder();    [ RRR ..... i.................][ RRR ..... iR................]
-        b0.println(b1.append@extra("!!!!current Domain: ").append@extra(vR22.getCurrentDomain().getName()).toString@extra());   [RRRRRiRRR RRR iii.. RR................] 
-        vR24.inheritPrincipal(vR22.getCurrentDomain(),vR23);   [RRRRRiRRR RRR iiii. RRR...............] 
-        if vR12!=null goto B567;   
-  +B548:   #1
-        vR24.inheritInterceptor(vR22.getCurrentDomain(),vR23);   [RRRRRiRRR RRR i.... RRR...............] 
-        goto +B578;   forward return[RRRRRiRRR RRR i.... ..................]
-  +B567:   #1
-        vR24.installInterceptor(vR23,vR12);   [RRRRRiRRR RRR ..... RRR...............] 
-  +B578:   #2
+        b1 = new java/lang/StringBuilder();    [ RRR ...... i.................][ RRR ...... iR................]
+        b0.println(b1.append@extra("!!!!current Domain: ").append@extra(vR22.getCurrentDomain().getName()).toString@extra());   [RRRRRiRRR RRR iii... RR................] 
+        vR24.inheritPrincipal(vR22.getCurrentDomain(),vR23);   [RRRRRiRRR RRR iiii.. RRR...............] 
+        if vR12!=null goto B600;   
+  +B581:   #1
+        vR24.inheritInterceptor(vR22.getCurrentDomain(),vR23);   [RRRRRiRRR RRR i..... RRR...............] 
+        goto +B611;   forward return[RRRRRiRRR RRR i..... ..................]
+  +B600:   #1
+        vR24.installInterceptor(vR23,vR12);   [RRRRRiRRR RRR ...... RRR...............] 
+  +B611:   #2
         return vR23;   
   +END:   #1
 EXCEPTIONHANDLER-TABLE:
-300 - 312 handler 315 type 121
+330 - 342 handler 345 type 134
  }
-// Register: rd 55/55 wr 99 swaps 24 any 18 found 0 createDomain
+// Register: rd 58/58 wr 108 swaps 28 any 18 found 0 createDomain
  
  method initDomainStarter()Z {
   +START:   #1

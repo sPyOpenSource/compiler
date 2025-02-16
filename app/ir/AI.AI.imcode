@@ -78,10 +78,13 @@ class AI/AI {
   +START:   #1
         vR1 = new AI/AI(vR0);    [ R  i][ R . iRR]
         vR1.start@extra();   [R R . R..] 
+        b0 = new java/lang/String()[1];    
+        b0[0] = "boot.rc";   
+        main@special(b0);   [R R . R..]
         return;   
   +END:   #1
  }
-// Register: rd 3/3 wr 2 swaps 0 any 0 found 0 init
+// Register: rd 5/5 wr 3 swaps 0 any 0 found 0 init
  
  method main([Ljava/lang/String;)V {
   +START:   #1

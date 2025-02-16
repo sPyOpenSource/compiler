@@ -555,30 +555,30 @@ class java/awt/List {
  method dispatchEventImpl(Ljava/awt/AWTEvent;)V {
   +START:   #1
         vR0.dispatchEventImpl@special(vR1);   [   RR] 
-        if vR1.id>1001 goto B50;   
+        if vR1.id>1001 goto B48;   
   +B15:   #1
-        if vR1.id<1001 goto B50;   
+        if vR1.id<1001 goto B48;   
   +B25:   #1
-        if vR0.action_listeners!=null goto B45;   
+        if vR0.action_listeners!=null goto B43;   
   +B32:   #1
-        if compare((vR0.eventMask & 128),0)==0 goto B50;   
-  +B45:   #1
+        if (vR0.eventMask & 128)==0 goto B48;   
+  +B43:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-  +B50:   #3
-        if vR1.id>701 goto B95;   
-  +B60:   #1
-        if vR1.id<701 goto B95;   
-  +B70:   #1
-        if vR0.item_listeners!=null goto B90;   
-  +B77:   #1
-        if compare((vR0.eventMask & 512),0)==0 goto B95;   
-  +B90:   #1
+  +B48:   #3
+        if vR1.id>701 goto B91;   
+  +B58:   #1
+        if vR1.id<701 goto B91;   
+  +B68:   #1
+        if vR0.item_listeners!=null goto B86;   
+  +B75:   #1
+        if (vR0.eventMask & 512)==0 goto B91;   
+  +B86:   #1
         vR0.processEvent@this(vR1);   [   RR] 
-  +B95:   #3
+  +B91:   #3
         return;   
   +END:   #1
  }
-// Register: rd 9/9 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
+// Register: rd 11/11 wr 0 swaps 0 any 0 found 0 dispatchEventImpl
  
  method processItemEvent(Ljava/awt/event/ItemEvent;)V {
   +START:   #1

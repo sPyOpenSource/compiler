@@ -29,7 +29,7 @@ class jx/awt/peer/KeyMap {
   +B116:   #1
         return 38;   
   +B119:   #1
-        return 40;   
+        return 56;   
   +B122:   #1
         return 37;   
   +B125:   #1

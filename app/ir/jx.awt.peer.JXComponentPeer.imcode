@@ -150,16 +150,16 @@ class jx/awt/peer/JXComponentPeer {
   +B53:   #1
         vR0.queue = vR0.toolkit.getSystemEventQueue();   
         b0 = vR0.queue;    
-        b1 = new java/awt/event/KeyEvent(vR0.parent,0,(long)vi1,vi6,vi5);    [ RR  i.][ RR .. iiiliRR]
-        b0.postEvent(b1);   [ii RR .. RR.....] 
+        b1 = new java/awt/event/KeyEvent(vR0.parent,vi1,vi6,vi5);    [ RR  i.][ RR . iiiiRR]
+        b0.postEvent(b1);   [ii RR . RR....] 
         return;   
   +END:   #1
  }
-// Register: rd 12/12 wr 9 swaps 0 any 3 found 0 sendKeyEvent
+// Register: rd 13/13 wr 8 swaps 0 any 3 found 0 sendKeyEvent
  
  method sendMouseEvent(IIII)V {
   +START:   #1
-        vR5 = vR0.getLocationRelativeToComponent@this(vi2,vi3);    [ RRRRil_iiiii  iiR] 
+        vR5 = vR0.getLocationRelativeToComponent@this(vi2,vi3);    [ RRRRiiiiii  iiR] 
         vi6 = 0;    
         if vi4!=1 goto B24;   
   +B17:   #1
@@ -174,25 +174,24 @@ class jx/awt/peer/JXComponentPeer {
         b1 = new java/awt/event/MouseEvent;    
         b2 = b1;    
         b3 = vR0.parent;    
-        b4 = 0;    
-        b5 = (long)vi1;    
-        b6 = vi6;    
-        b7 = vR5.x;    
-        b8 = vR5.y;    
+        b4 = vi1;    
+        b5 = vi6;    
+        b6 = vR5.x;    
+        b7 = vR5.y;    
+        b8 = 0;    
+        if vi4!=2 goto B83;   
+  +B79b0b1b2b3b4b5b6b7b8:   #1 reference reference reference reference int int int int int
+        b9 = 1;    
+        goto +B84b0b1b2b3b4b5b6b7b8b9;   [Ri RRRRiiiiii  ...]
+  +B83b0b1b2b3b4b5b6b7b8:   #1 reference reference reference reference int int int int int
         b9 = 0;    
-        if vi4!=2 goto B85;   
-  +B81b0b1b2b3b4b5b6b7b8b9:   #1 reference reference reference reference int long int int int int
-        b10 = 1;    
-        goto +B86b0b1b2b3b4b5b6b7b8b9b10;   [Ri RRRRil_iiiii  ...]
-  +B85b0b1b2b3b4b5b6b7b8b9:   #1 reference reference reference reference int long int int int int
-        b10 = 0;    
-  +B86b0b1b2b3b4b5b6b7b8b9b10:   #1 reference reference reference reference int long int int int int int
-        b2.<init>@special(b3,b4,b5,b6,b7,b8,b9,b10);   [Ri RRRRil_iiiii  iiiii??iRR] 
-        b0.postEvent(b1);   [Ri RRRRil_iiiii  RR........] 
+  +B84b0b1b2b3b4b5b6b7b8b9:   #1 reference reference reference reference int int int int int int
+        b2.<init>@special(b3,b4,b5,b6,b7,b8,b9);   [Ri RRRRiiiiii  iiiiiiRR] 
+        b0.postEvent(b1);   [Ri RRRRiiiiii  RR......] 
         return;   
   +END:   #1
  }
-// Register: rd 25/25 wr 14 swaps 0 any 7 found 0 sendMouseEvent
+// Register: rd 26/26 wr 14 swaps 0 any 8 found 0 sendMouseEvent
  
  method sendComponentEvent(I)V {
   +START:   #1

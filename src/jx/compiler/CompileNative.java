@@ -52,17 +52,6 @@ public class CompileNative {
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	//compile("os", opts);
         
-	jllname = libdir + "wm.jll";
-        jlnname = libdir + "wm.jln";
-        neededLibs = new String[]{
-            "zero", "jdk0"
-        };
-        for (String neededLib : neededLibs) {
-            jlns.add(libdir + neededLib + ".jln");
-        }
-        opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("wm", opts);
-        
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
         neededLibs = new String[]{
@@ -73,6 +62,18 @@ public class CompileNative {
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
 	compile("init2", opts);
+        
+        jllname = libdir + "wm.jll";
+        jlnname = libdir + "wm.jln";
+        neededLibs = new String[]{
+            "zero", "jdk0", "init2"
+        };
+        for (String neededLib : neededLibs) {
+            jlns.add(libdir + neededLib + ".jln");
+        }
+        opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
+	//compile("wm", opts);
+        
         createISO();
     }
 
@@ -156,14 +157,16 @@ public class CompileNative {
             };
         } else if(path.endsWith("wm")){
             domClasses = new String[]{
-                "../test/WM/dist/JavaWM.jar"
+                "../test/WM/dist/JavaWM.jar",
+                new URL("https://github.com/sPyOpenSource/applications/raw/simulator/WM/META").toString()
             };
             libClasses = new String[]{
                 "../Zero/dist/Zero.jar",
                 "../OS/dist/OS.jar",
                 "../test/ifOS/dist/ifOS.jar",
                 "../test/APP/dist/testOS.jar",
-                "../test/HCI/dist/testHCI.jar"
+                "../test/HCI/dist/testHCI.jar",
+                "../AIZero/dist/AIZero.jar"
             };
         } else if(path.endsWith("os")){
             domClasses = new String[]{
@@ -213,11 +216,15 @@ public class CompileNative {
     }
     
     static void createISO(){
+        String file1 = "app/isodir/code/wm.jll";
         String file2 = "app/isodir/code/init2.jll";
         String file3 = "app/isodir/code/jdk0.jll";
         String file4 = "app/isodir/code/zero.jll";
         String file5 = "app/isodir/code/realmode";
-        final List<String> srcFiles = Arrays.asList(file2, file3, file4, file5);
+        String file6 = "app/isodir/code/boot.rc";
+        //String file7 = "app/isodir/code/wm_impl.jll";
+        
+        final List<String> srcFiles = Arrays.asList(file1, file2, file3, file4, file5, file6);
 
         try {
             ZipFile zipFile = new ZipFile("app/isodir/code/uncompressed.zip");

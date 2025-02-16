@@ -55,7 +55,7 @@ import jx.zero.Debug;
      * FIELDOFFSET        ::= int
      * NUMBER_OF_METHODS  ::= int
 
-     * METHODHEADER      ::= METHODNAME METHODSIGNATURE 
+     * METHODHEADER       ::= METHODNAME METHODSIGNATURE 
                              SIZE_LOCAL_VARS NUMBER_CODEBYTES ARGUMENTMAP RETURNTYPE FLAGS
                              NUMBER_OF_SYMBOLS SYMBOL* LINENUMBERINFO
 
@@ -77,6 +77,7 @@ import jx.zero.Debug;
 
 public class CodeFile {
     public static final int VERSION = 9;
+    private int codesize = 0;
     public static final boolean verbose = false;
 
     ExtendedDataInputStream in;
@@ -202,12 +203,51 @@ public class CodeFile {
             Debug.throwError("Wrong version");
         }
         String codeType = in.readString();
-        for(int i = 0; i < 168+11803; i++){
-            int c = in.read();
-            if(c == 13) continue;
-            System.out.print((char)c);
+        
+        /*
+	   reserved for option fields
+	 */
+
+	in.readInt();
+
+	/*
+	   load needed libs
+	 */
+
+	int numberOfNeededLibs = in.readInt();
+
+	for (int i = 0; i < numberOfNeededLibs; i++) {
+		in.readString();
+	}
+
+	/*
+	   load meta
+	 */
+	int numberOfMeta = in.readInt();
+
+	for (int j = 0; j < numberOfMeta; j++) {
+		in.readString();
+		in.readString();
+	}
+
+	/*
+	   read string table
+	 */
+
+	int n = in.readInt();
+        for (int j = 0; j < n; j++){
+                in.readString();
         }
-        System.out.println("-------");
+
+	/*
+	   vmsymbol-table
+	 */
+
+	n = in.readInt();
+        for (int j = 0; j < n; j++) {
+                in.readString();
+	}
+        
         int size = in.readInt();
         for(int i = 0; i < size; i++) {
             CompiledClass compiledClass = readHeaderFromFile();
@@ -314,7 +354,7 @@ public class CodeFile {
         int len = info.nativeCode.length;
         for(int i = 0; i < len; i++) {
             //for (int i=0;i<info.methods.length;i++) {
-            if (saveHeader) {        
+            if (saveHeader) {
                 if (verbose) Debug.out.println("**  Saving header method " + i + "/" + len + " "
                            + aClass.getClassName() + "." + info.methods[i].getName());
                 saveHeaderToFile(strTable, aClass.getClassName(), info.methods[i].getName(), 
@@ -449,7 +489,7 @@ public class CodeFile {
                 }
             }
 
-            out.write(code,0,numCodeBytes);
+            out.write(code, 0, numCodeBytes);
             //Disassembler disass = new Disassembler(code, 0, numCodeBytes);
             //disass.disasm();
         } catch(IOException e) {
@@ -459,7 +499,7 @@ public class CodeFile {
 
     private CompiledClass readHeaderFromFile() throws Exception {
         Integer className = in.readInt();
-        System.out.println("name:"+className);
+        //System.out.println("name:" + className);
         Integer superName = in.readInt();
         ///Debug.out.println(className + " - " +superName);
         int isInterface = in.readInt();
@@ -467,16 +507,16 @@ public class CodeFile {
         for(int i = 0; i < objectSize; i++) in.readInt();
         //int vtableSize = in.readInt();
         int numberOfMethods = in.readInt();
-        System.out.println("super:"+superName);
-        System.out.println("inteface:"+isInterface);
-        System.out.println("methods:"+numberOfMethods);
+        //System.out.println("super:" + superName);
+        //System.out.println("inteface:" + isInterface);
+        //System.out.println("methods:" + numberOfMethods);
         //System.out.println(vtableSize);
-        System.out.println("size:"+objectSize);
+        //System.out.println("size:" + objectSize);
         in.readInt();
 
         FieldLayout.readMap(in); // object map
         int classSize = in.readInt();
-        System.out.println("class:"+classSize);
+        //System.out.println("class:" + classSize);
         for(int i = 0; i < classSize; i++) {
             in.readInt();
             in.readInt();
@@ -486,21 +526,20 @@ public class CodeFile {
 
         FieldLayout.readMap(in); // statics map
         int numberOfBytecodes = in.readInt();
-        System.out.println("N:"+numberOfBytecodes);
-        //in.readInt();
+        //System.out.println("N:" + numberOfBytecodes);
         int Type = in.readInt();
         int Msize = in.readInt();
-        System.out.println("T:"+Type);
-        System.out.println("M:"+Msize);
+        //System.out.println("T:" + Type);
+        //System.out.println("M:" + Msize);
         for(int i = 0; i < Msize; i++){
             in.readInt();
             in.readInt();
             in.readInt();
             in.readInt();
         }
-        System.out.println("-----------");
+        //System.out.println("-----------");
 
-        //Debug.out.println("Ml " +numberOfMethods);    
+        //Debug.out.println("Ml " + numberOfMethods);    
         CompiledMethod[] methods = new CompiledMethod[numberOfMethods];
         for(int i = 0; i < numberOfMethods; i++) {
             methods[i] = readMethodHeaderFromFile();
@@ -512,11 +551,11 @@ public class CodeFile {
     private CompiledMethod readMethodHeaderFromFile() throws Exception {
         Integer methodName = in.readInt();
         Integer methodType = in.readInt();
-        //Debug.out.println("Method:"+methodName + " - " +methodType);
+        //Debug.out.println("Method:" + methodName + " - " + methodType);
         in.readInt();
         int numCodeBytes = in.readInt();
         FieldLayout.readMap(in);
-                in.readInt();
+        in.readInt();
 
         int vtableIndex = in.readInt(); // -1 means: no virtual method
         if (numCodeBytes > 0) { // not an abstract method
@@ -556,7 +595,12 @@ public class CodeFile {
             return;
         }
         byte[] code = new byte[method.numCodeBytes];
+        codesize += method.numCodeBytes;
         method.setCode(code);
         in.read(code, 0, method.numCodeBytes);
+    }
+    
+    public void size(){
+        System.out.println("codesize:" + codesize);
     }
 }
