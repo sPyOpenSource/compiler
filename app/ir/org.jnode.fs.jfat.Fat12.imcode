@@ -10,7 +10,7 @@ class org/jnode/fs/jfat/Fat12 {
  
  method offset(I)I {
   +START:   #1
-        return (int)floor@special((jx.classfile.datatypes.BCDouble@63611043*(double)vi1));   
+        return (int)floor@special((jx.classfile.datatypes.BCDouble@21fd5faa*(double)vi1));   
   +END:   #1
  }
 // Register: rd 0/0 wr 0 swaps 0 any 0 found 0 offset
