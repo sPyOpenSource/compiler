@@ -40,7 +40,7 @@ public class OutputFactory {
   }
   
   public static OutputFormat getOutputFormat(String name) {
-    if (name==null || name.equals("raw")) return new RawOut();
+    if (name == null || name.equals("raw")) return new RawOut();
     if (name.equals("boot")) return new BootOut();
     return null;
   }

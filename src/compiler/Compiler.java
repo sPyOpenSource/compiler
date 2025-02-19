@@ -18,6 +18,8 @@ public class Compiler {
 
     /**
      * compiles a java source file with the given <code>fileName</code>
+     * @param srcPath
+     * @param outputPath
      */
     static public void compile(String srcPath, String outputPath) {
         List<File> files = new ArrayList<>();
@@ -64,7 +66,6 @@ public class Compiler {
      */
     static public void compile(List<File> srcList, String outputPath) {
 // simp compiler
-//        JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 //        compiler.run(System.in, System.out, System.err,
 //                "-encoding", "UTF-8", "-d", outputPath, files);
 

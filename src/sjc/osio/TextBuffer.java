@@ -31,60 +31,65 @@ package sjc.osio;
  */
 
 public class TextBuffer extends TextPrinter {
-  private final static int INITSIZE=2000;
+  private final static int INITSIZE = 2000;
   
   public char[] data;
   public int used;
   
   public TextBuffer() {
-    data=new char[INITSIZE];
+    data = new char[INITSIZE];
   }
   
   public void reset() {
-    used=0;
+    used = 0;
   }
   
   public void replace(char old, char now) {
-    int i=0;
+    int i = 0;
     
-    while (i<used) {
-      if (data[i]==old) data[i]=now;
+    while (i < used) {
+      if (data[i] == old) data[i] = now;
       i++;
     }
   }
   
+  @Override
   public String toString() {
     return new String(data, 0, used);
   }
   
+  @Override
   public void close() {
   }
 
+  @Override
   public void print(char c) {
-    writeByte((int)c&0xFFFF);
+    writeByte((int)c & 0xFFFF);
   }
   
+  @Override
   public void print(int i) {
-    if (i<0) {
+    if (i < 0) {
       writeByte(45);
-      i=-i;
+      i = -i;
     }
-    if (i==0) writeByte(48);
+    if (i == 0) writeByte(48);
     else {
-      if (i>=10) print(i/10);
-      writeByte(48+i%10);
+      if (i >= 10) print(i / 10);
+      writeByte(48 + i % 10);
     }
   }
   
+  @Override
   public void print(long l) {
-    if (l<0L) {
+    if (l < 0L) {
       writeByte(45);
-      l=-l;
+      l = -l;
     }
-    if (l==0L) writeByte(48);
+    if (l == 0L) writeByte(48);
     else {
-      if (l>=10L) print(l/10L);
-      writeByte(48+(int)(l%10L));
+      if (l >= 10L) print(l / 10L);
+      writeByte(48 + (int)(l % 10L));
     }
   }
   
@@ -93,17 +98,17 @@ public class TextBuffer extends TextPrinter {
   }
   
   public void printHexLong(long l) {
-    printHexFix((int)(l>>>32), 8);
+    printHexFix((int)(l >>> 32), 8);
     printHexFix((int)l, 8);
   }
   
-  public void print(String what) {
-    int i, m;
-    
-    m=what.length();
-    for (i=0; i<m; i++) writeByte((int)what.charAt(i));
+  @Override
+  public void print(String what) {    
+    int m = what.length();
+    for (int i = 0; i < m; i++) writeByte((int)what.charAt(i));
   }
   
+  @Override
   public void println() {
     writeByte((int)'\n');
   }
@@ -112,11 +117,11 @@ public class TextBuffer extends TextPrinter {
     char[] tmp;
     int i;
     
-    if (used+1==data.length) {
-      tmp=data;
-      data=new char[data.length<<1];
-      for (i=0; i<used; i++) data[i]=tmp[i];
+    if (used + 1 == data.length) {
+      tmp = data;
+      data = new char[data.length << 1];
+      for (i = 0; i < used; i++) data[i] = tmp[i];
     }
-    data[used++]=(char)what;
+    data[used++] = (char)what;
   }
 }

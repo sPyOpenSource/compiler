@@ -41,7 +41,7 @@ public class ImageContainer extends MemoryImage {
   
   protected static class Location {
     protected int address;
-    protected Location(int ia) { address=ia; }
+    protected Location(int ia) { address = ia; }
   }
   protected static class OutputLocation extends Location {
     protected OutputLocation indirObj;
@@ -56,56 +56,56 @@ public class ImageContainer extends MemoryImage {
   public int baseAddress, startUnit, startCode;
   
   public void setRelocation(long newRelocation) {
-    relocation=newRelocation;
+    relocation = newRelocation;
   }
   
   @Override
   public void alignBlock(int alignmentMask) {
-    memBlockLen=(memBlockLen+alignmentMask)&~alignmentMask;
+    memBlockLen = (memBlockLen + alignmentMask) & ~alignmentMask;
   }
   
   @Override
   public boolean checkMemoryLocation(Object loc, int offset, int len) {
-    int addr=getAddrAsInt(loc, offset)-baseAddress;
-    return addr>=0 && addr+len-1<memBlockLen;
+    int addr = getAddrAsInt(loc, offset)-baseAddress;
+    return addr >= 0 && addr + len - 1 < memBlockLen;
   }
   
   @Override
   public void putByte(Object loc, int offset, byte val) {
-    putValue(getAddrAsInt(loc, offset)-baseAddress, (int)val, 1);
+    putValue(getAddrAsInt(loc, offset) - baseAddress, (int)val, 1);
   }
   
   @Override
   public void putByteArray(Object loc, int offset, byte[] code, int size) {
-    int addr=getAddrAsInt(loc, offset)-baseAddress, i=0;
-    if (addr<0 || addr+size>memBlockLen) reportInternalMemoryError();
-    else while (i<size) memBlock[addr++]=code[i++];
+    int addr = getAddrAsInt(loc, offset) - baseAddress, i = 0;
+    if (addr < 0 || addr + size > memBlockLen) reportInternalMemoryError();
+    else while (i < size) memBlock[addr++] = code[i++];
   }
   
   @Override
   public void putShort(Object loc, int offset, short val) {
-    putValue(getAddrAsInt(loc, offset)-baseAddress, (int)val, 2);
+    putValue(getAddrAsInt(loc, offset) - baseAddress, (int)val, 2);
   }
   
   @Override
   public void putInt(Object loc, int offset, int val) {
-    putValue(getAddrAsInt(loc, offset)-baseAddress, val, 4);
+    putValue(getAddrAsInt(loc, offset) - baseAddress, val, 4);
   }
   
   @Override
   public void putLong(Object loc, int offset, long val) {
     putInt(loc, offset, (int)val);
-    putInt(loc, offset+4, (int)(val>>>32));
+    putInt(loc, offset + 4, (int)(val >>> 32));
   }
   
   @Override
   public int getAddrAsInt(Object loc, int offset) {
-    return loc==null ? offset : ((Location)loc).address+offset;
+    return loc == null ? offset : ((Location)loc).address + offset;
   }
   
   @Override
   public long getAddrAsLong(Object loc, int offset) {
-    return loc==null ? (long)offset : (long)((Location)loc).address+(long)offset+relocation;
+    return loc == null ? (long)offset : (long)((Location)loc).address + (long)offset + relocation;
   }
   
   @Override
@@ -130,19 +130,19 @@ public class ImageContainer extends MemoryImage {
   
   @Override
   public void appendImagePart(BinWriter fw, Object loc, int startOff, int size) {
-    if (size==0) return;
-    fw.write(memBlock, ((OutputLocation)loc).address+startOff-baseAddress, size);
+    if (size == 0) return;
+    fw.write(memBlock, ((OutputLocation)loc).address + startOff - baseAddress, size);
   }
   
   public int getCRC(int poly, int blockSize) {
-    int i, j, stop, crc=-1;
+    int i, j, stop, crc = -1;
     
-    stop=(memBlockLen+ --blockSize)&~blockSize;
-    for (i=0; i<stop; i++) {
-      if (i<memBlockLen) crc^=((int)memBlock[i])&0xFF;
-      for (j=0; j<8; j++) {
-        if ((crc&1)!=0) crc=(crc>>>1)^poly;
-        else crc=crc>>>1;
+    stop = (memBlockLen + --blockSize) & ~blockSize;
+    for (i = 0; i < stop; i++) {
+      if (i < memBlockLen) crc ^= ((int)memBlock[i]) & 0xFF;
+      for (j = 0; j < 8; j++) {
+        if ((crc & 1) != 0) crc = (crc >>> 1) ^ poly;
+        else crc = crc >>> 1;
       }
     }
     return crc;
@@ -153,10 +153,10 @@ public class ImageContainer extends MemoryImage {
   }
 
   private void putValue(int index, int value, int bytes) {
-    if (index<0 || index+bytes>memBlockLen) reportInternalMemoryError();
-    else while (bytes-->0) {
-      memBlock[index++]=(byte)value;
-      value=value>>>8;
+    if (index < 0 || index + bytes > memBlockLen) reportInternalMemoryError();
+    else while (bytes-- > 0) {
+      memBlock[index++] = (byte)value;
+      value = value >>> 8;
     }
   }
 }

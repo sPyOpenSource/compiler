@@ -36,25 +36,25 @@ package sjc.osio;
  */
 
 public class TextReader {
-	public char nextChar, lookAhead;
-	public int line, col, pos;
-  public byte[] data;
-	
-  protected boolean errorOccurred;
+    public char nextChar, lookAhead;
+    public int line, col, pos;
+    public byte[] data;
+
+    protected boolean errorOccurred;
 
   public boolean initData(byte[] idata) {
-    line=1;
-    col=1;
-    pos=0;
-    nextChar='\0';
-    lookAhead='\0';
-    if ((data=idata)==null) {
-      errorOccurred=true;
+    line = 1;
+    col = 1;
+    pos = 0;
+    nextChar = '\0';
+    lookAhead = '\0';
+    if ((data = idata) == null) {
+      errorOccurred = true;
       return false;
     }
-    if (data.length>=1) {
-      nextChar=(char)((int)data[0]&0xFF);
-      if (data.length>=2) lookAhead=(char)((int)data[1]&0xFF);
+    if (data.length >= 1) {
+      nextChar = (char)((int)data[0] & 0xFF);
+      if (data.length >= 2) lookAhead = (char)((int)data[1] & 0xFF);
     }
     return true;
   }
@@ -62,20 +62,20 @@ public class TextReader {
   public void readChar() {
     if (errorOccurred) return;
     pos++;
-    switch (nextChar=lookAhead) {
+    switch (nextChar = lookAhead) {
       case '\n':
         line++;
-        col=0;
+        col = 0;
         break;
       case '\0':
-        if (pos>data.length) errorOccurred=true;
+        if (pos > data.length) errorOccurred = true;
         return;
       case '\r':
         break;
       default:
         col++;
     }
-    if (pos+1>=data.length) lookAhead='\0';
-    else lookAhead=(char)data[pos+1];
+    if (pos + 1 >= data.length) lookAhead = '\0';
+    else lookAhead = (char)data[pos + 1];
   }
 }

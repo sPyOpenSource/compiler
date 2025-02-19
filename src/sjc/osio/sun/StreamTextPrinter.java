@@ -47,19 +47,17 @@ public class StreamTextPrinter extends TextPrinter {
   private final boolean canClose;
   
   public StreamTextPrinter(String filename, OutputStream stdOut) { //default: to standard out
-    if (filename==null) {
-      ps=new PrintStream(stdOut);
-      canClose=false;
-    }
-    else {
+    if (filename == null) {
+      ps = new PrintStream(stdOut);
+      canClose = false;
+    } else {
       try {
-        ps=new PrintStream(new FileOutputStream(filename));
-      }
-      catch (FileNotFoundException e) {
-        System.out.println("could not create output file "+filename+": "+e.getMessage());
+        ps = new PrintStream(new FileOutputStream(filename));
+      } catch (FileNotFoundException e) {
+        System.out.println("could not create output file " + filename + ": " + e.getMessage());
         System.exit(-1);
       }
-      canClose=true;
+      canClose = true;
     }
   }
   
@@ -71,7 +69,7 @@ public class StreamTextPrinter extends TextPrinter {
   @Override
 	public void print(int i) { ps.print(i); }
   @Override
-	public void print(long l) { ps.print("0x"); printHexFix((int)(l>>>32), 8); printHexFix((int)l, 8);}
+	public void print(long l) { ps.print("0x"); printHexFix((int)(l >>> 32), 8); printHexFix((int)l, 8);}
   @Override
 	public void print(char c) { ps.print(c); }
   @Override

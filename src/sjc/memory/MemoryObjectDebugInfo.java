@@ -26,8 +26,8 @@ package sjc.memory;
  */
 
 public class MemoryObjectDebugInfo {
-  public MemoryObjectDebugInfo next; //next info
-  public Object location; //"official" output location of allocated object
+  public MemoryObjectDebugInfo next;      //next info
+  public Object location;                 //"official" output location of allocated object
   public int pointer, relocs, scalarSize; //basic memory object debug info
-  public Object source; //generating source object
+  public Object source;                   //generating source object
 }

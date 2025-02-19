@@ -81,8 +81,8 @@ public class BootOut extends OutputFormat {
   private final static int LINELENGTH = 255;
   private final static String ERR_IMAGEDONE = "image already appended, give blow/fill after maximagesize";
   
-  private final static String DEFFILE="bootconf.txt";
-  private final static String DEFSECT="default";
+  private final static String DEFFILE = "bootconf.txt";
+  private final static String DEFSECT = "default";
   private String file, sect;
   private boolean gotParm;
   
@@ -113,13 +113,13 @@ public class BootOut extends OutputFormat {
       v.println("BootOut expects only one parameter containing file and section");
       return false;
     }
-    gotParm=true;
-    splitter=parm.indexOf('#');
-    if (splitter==-1) file=parm;
+    gotParm = true;
+    splitter = parm.indexOf('#');
+    if (splitter == -1) file = parm;
     else {
-      if (splitter>0) file=parm.substring(0, splitter);
-      sect=parm.substring(splitter+1, parm.length());
-      if (sect.indexOf('#')!=-1) {
+      if (splitter > 0) file = parm.substring(0, splitter);
+      sect = parm.substring(splitter + 1, parm.length());
+      if (sect.indexOf('#') != -1) {
         v.println("BootOut with invalid parameter (multiple \"#\")");
         return false;
       }
@@ -131,17 +131,17 @@ public class BootOut extends OutputFormat {
   public boolean checkParameter(OsIO io, TextPrinter v) {
     TextReader configFile;
     
-    osio=io;
-    out=v;
-    configFile=new TextReader();
-    if (file==null) file=DEFFILE;
-    if (sect==null) sect=DEFSECT;
+    osio = io;
+    out = v;
+    configFile = new TextReader();
+    if (file == null) file = DEFFILE;
+    if (sect == null) sect = DEFSECT;
     if (!configFile.initData(osio.readFile(file))) { //file not found
       out.print("BootOut could not open configuration file ");
       out.println(file);
       return false;
     }
-    buffer=new char[LINELENGTH];
+    buffer = new char[LINELENGTH];
     if (!init(configFile, sect)) { //section not found
       out.print(" for BootOut in file ");
       out.println(file);
@@ -154,17 +154,17 @@ public class BootOut extends OutputFormat {
   @Override
   public boolean writeOutput(ImageContainer iic, ImageContainer iciic, int icil) {
     String strDummy;
-    BinWriter w=null;
-    int i, scratchSize, blockSize=1, byteCnt, maxSize=-1;
+    BinWriter w = null;
+    int i, scratchSize, blockSize = 1, byteCnt, maxSize = -1;
     int pos, len, crcPoly, filler=0;
     char lb;
-    boolean blowImage=false, fillImage=false, imageDone=false;
-    byte[] scratch=null;
+    boolean blowImage = false, fillImage = false, imageDone = false;
+    byte[] scratch = null;
     
-    img=iic;
-    imageSize=img.memBlockLen;
-    compressedImg=iciic;
-    compressedImageOrigLen=icil;
+    img = iic;
+    imageSize = img.memBlockLen;
+    compressedImg = iciic;
+    compressedImageOrigLen = icil;
     do {
       switch (getKey()) {
         case K_INVALID:
@@ -176,17 +176,17 @@ public class BootOut extends OutputFormat {
           bufPos=bufLen; //skip rest of line
           break;
         case K_ENDSECT:
-          if (w!=null) w.close();
+          if (w != null) w.close();
           return true;
         case K_DESTFILE:
-          if ((w=openDestFile(w, K_DESTFILE))==null) return false; //output already done
+          if ((w = openDestFile(w, K_DESTFILE)) == null) return false; //output already done
           break;
         case K_HEXDFILE:
-          if ((w=openDestFile(w, K_HEXDFILE))==null) return false; //output already done
+          if ((w = openDestFile(w, K_HEXDFILE)) == null) return false; //output already done
           break;
         case K_SETADDR:
           removeBlanks();
-          if ((i=getValue())<0) {
+          if ((i = getValue()) < 0) {
             out.print("Invalid address");
             errCloseLine();
             return false;
@@ -199,24 +199,24 @@ public class BootOut extends OutputFormat {
           break;
         case K_BLOCKSIZE:
           removeBlanks();
-          if ((blockSize=getNum())<1) {
+          if ((blockSize = getNum()) < 1) {
             out.print("Invalid blocksize");
             errCloseLine();
             return false;
           }
-          blockCnt=(imageSize+blockSize-1)/blockSize;
+          blockCnt = (imageSize + blockSize - 1) / blockSize;
           break;
         case K_MAXIMGSIZE:
           removeBlanks();
-          maxSize=getNum();
-          if (maxSize<1) {
+          maxSize = getNum();
+          if (maxSize < 1) {
             out.print("Invalid maximum image size");
             errCloseLine();
             return false;
           }
-          if (imageSize>maxSize) {
+          if (imageSize > maxSize) {
             out.print("Image to big for destination, reduce below ");
-            out.print(maxSize>>>10);
+            out.print(maxSize >>> 10);
             out.println(" KB");
             return false;
           }
@@ -232,7 +232,7 @@ public class BootOut extends OutputFormat {
             errCloseLine();
             return false;
           }
-          blowImage=true;
+          blowImage = true;
           break;
         case K_FILLIMAGE:
           if (blowImage) {
@@ -245,17 +245,17 @@ public class BootOut extends OutputFormat {
             errCloseLine();
             return false;
           }
-          fillImage=true;
+          fillImage = true;
           removeBlanks();
-          filler=getNum();
-          if (filler<0 || filler>255) {
+          filler = getNum();
+          if (filler < 0 || filler > 255) {
             out.print("Invalid or no filler given, specify 0-0xFF as filling byte");
             errCloseLine();
             return false;
           }
           break;
         case K_APPENDIMG:
-          if (w==null) {
+          if (w == null) {
             out.print("No file given before write");
             errCloseLine();
             return false;
@@ -264,70 +264,69 @@ public class BootOut extends OutputFormat {
             out.println("Error writing to destination");
             return false;
           }
-          byteCnt=imageSize;
-          if (blockSize>1) {
-            if (scratch==null || scratch.length<blockSize)
-              scratch=new byte[blockSize];
-            for (i=0; i<blockSize; i++) scratch[i]=(byte)0;
-            i=blockSize-(imageSize%blockSize);
-            if (i==blockSize) i=0;
+          byteCnt = imageSize;
+          if (blockSize > 1) {
+            if (scratch == null || scratch.length < blockSize)
+              scratch = new byte[blockSize];
+            for (i = 0; i < blockSize; i++) scratch[i] = (byte)0;
+            i = blockSize - (imageSize % blockSize);
+            if (i == blockSize) i = 0;
             else if (!w.write(scratch, 0, i)) {
               out.println("Error writing to destination for block-fill");
               return false;
             }
-            byteCnt+=i;
+            byteCnt += i;
           }
           if (blowImage) {
-            if (maxSize==-1) {
+            if (maxSize == -1) {
               out.print("Give image size before appending blown image");
               errCloseLine();
               return false;
             }
-            if (!w.setSize(maxSize-byteCnt)) {
+            if (!w.setSize(maxSize - byteCnt)) {
               out.print("Error blowing destination file");
               return false;
             }
           }
           if (fillImage) {
-            if (maxSize==-1) {
+            if (maxSize == -1) {
               out.print("Give image size before appending filled image");
               errCloseLine();
               return false;
             }
-            if (blockSize<512) scratchSize=512;
-            else scratchSize=blockSize;
-            if (scratch==null || scratch.length<scratchSize)
-              scratch=new byte[scratchSize];
-            for (i=0; i<scratchSize; i++) scratch[i]=(byte)filler;
-            byteCnt=maxSize-byteCnt;
-            while (byteCnt>0) {
-              if (byteCnt>=scratchSize) {
+            if (blockSize < 512) scratchSize = 512;
+            else scratchSize = blockSize;
+            if (scratch == null || scratch.length < scratchSize)
+              scratch = new byte[scratchSize];
+            for (i = 0; i < scratchSize; i++) scratch[i] = (byte)filler;
+            byteCnt = maxSize - byteCnt;
+            while (byteCnt > 0) {
+              if (byteCnt >= scratchSize) {
                 w.write(scratch, 0, scratchSize);
-                byteCnt-=scratchSize;
-              }
-              else {
+                byteCnt -= scratchSize;
+              } else {
                 w.write(scratch, 0, byteCnt);
                 break;
               }
             }
           }
-          imageDone=true;
+          imageDone = true;
           break;
         case K_READBUF:
           removeBlanks();
-          if ((strDummy=getString())==null) {
+          if ((strDummy = getString()) == null) {
             out.print("No filename given");
             errCloseLine();
             return false;
           }
-          if ((scratch=osio.readFile(strDummy))==null) {
+          if ((scratch = osio.readFile(strDummy)) == null) {
             out.print("Error reading file ");
             out.println(strDummy);
             return false;
           }
           break;
         case K_WRITEBUF:
-          if (w==null) {
+          if (w == null) {
             out.print("No file given before write");
             errCloseLine();
             return false;
@@ -336,9 +335,9 @@ public class BootOut extends OutputFormat {
           break;
         case K_OFFSET:
           removeBlanks();
-          if ((pos=getNum())<0 || getChar()!='.'
-              || ((lb=getChar())!='b' && lb!='l')
-              || ((len=getNum())!=1 && len!=2 && len!=4)) {
+          if ((pos = getNum()) < 0 || getChar() != '.'
+              || ((lb = getChar()) != 'b' && lb != 'l')
+              || ((len = getNum()) != 1 && len != 2 && len != 4)) {
             out.print("Expected position, '.', l/b and size for offset");
             errCloseLine();
             return false;
@@ -347,8 +346,8 @@ public class BootOut extends OutputFormat {
           switch (getKey()) {
             case K_CRC:
               removeBlanks();
-              crcPoly=getNum();
-              if (crcPoly==-1) {
+              crcPoly = getNum();
+              if (crcPoly == -1) {
                 out.print("Invalid or no crc");
                 errCloseLine();
                 return false;
@@ -361,7 +360,7 @@ public class BootOut extends OutputFormat {
               break;
             case K_VALUE:
               removeBlanks();
-              i=getValue();
+              i = getValue();
               if (error) {
                 out.print("Invalid value to write");
                 errCloseLine();
@@ -384,7 +383,7 @@ public class BootOut extends OutputFormat {
           return false;
       }
       removeBlanks();
-      if (bufPos!=bufLen) {
+      if (bufPos != bufLen) {
         out.print("Extra characters");
         errCloseLine();
         return false;
@@ -398,18 +397,18 @@ public class BootOut extends OutputFormat {
   private BinWriter openDestFile(BinWriter w, int type) {
     String strDummy;
     
-    if (w!=null) {
+    if (w != null) {
       out.print("Destination already given");
       errCloseLine();
       return null;
     }
     removeBlanks();
-    if ((strDummy=getString())==null) {
+    if ((strDummy = getString()) == null) {
       out.print("No filename given");
       errCloseLine();
       return null;
     }
-    w=osio.getNewBinWriter();
+    w = osio.getNewBinWriter();
     if (!w.open(strDummy)) {
       out.print("Could not open destination file ");
       out.print(strDummy);
@@ -418,7 +417,7 @@ public class BootOut extends OutputFormat {
     }
     switch (type) {
       case K_DESTFILE: break;
-      case K_HEXDFILE: w=new HexOut(out, w); break;
+      case K_HEXDFILE: w = new HexOut(out, w); break;
       default:
         out.println("### internal error in BootOut");
         return null;
@@ -429,17 +428,17 @@ public class BootOut extends OutputFormat {
   private boolean placeValue(byte[] buf, int pos, char lb, int len, int val, TextPrinter v) {
     int i, addr;
     
-    if (buf.length<pos+len) {
+    if (buf.length < pos + len) {
       v.print("Offset to high for buffer");
       return false;
     }
-    for (i=0; i<len; i++) {
-      if (lb=='l') addr=i; //little endian
-      else addr=len-1-i; //big endian
-      buf[pos+addr]=(byte)val;
-      val=val>>8;
+    for (i = 0; i < len; i++) {
+      if (lb == 'l') addr = i; //little endian
+      else addr = len - 1 - i; //big endian
+      buf[pos + addr] = (byte)val;
+      val = val >> 8;
     }
-    if (val!=0 && val!=-1) {
+    if (val != 0 && val != -1) {
       v.print("Value exceeds variable size");
       return false;
     }
@@ -455,12 +454,12 @@ public class BootOut extends OutputFormat {
   
   private boolean init(TextReader ir, String section) {
     int type;
-    r=ir; //exptect r to be at the correct position, do not seek
-    curLine=0;
-    error=false;
+    r = ir; //exptect r to be at the correct position, do not seek
+    curLine = 0;
+    error = false;
     while (nextLine()) {
-      type=getKey();
-      if (type==K_SECTION) {
+      type = getKey();
+      if (type == K_SECTION) {
         removeBlanks();
         if (checkName(section)) return true; //section found
       }
@@ -472,27 +471,27 @@ public class BootOut extends OutputFormat {
   }
 
   private boolean nextLine() {
-    boolean noComment=true; 
+    boolean noComment = true; 
     
-    bufLen=0;
-    if (r.nextChar=='\0') return false;
-    while (r.nextChar=='\n') r.readChar(); //skip line feeds
-    curLine=r.line;
-    bufPos=0;
-    while (r.nextChar!='\n') { //search next line feed
-      if (r.nextChar!='\r') { //ignore carriage return
+    bufLen = 0;
+    if (r.nextChar == '\0') return false;
+    while (r.nextChar == '\n') r.readChar(); //skip line feeds
+    curLine = r.line;
+    bufPos = 0;
+    while (r.nextChar != '\n') { //search next line feed
+      if (r.nextChar != '\r') { //ignore carriage return
         if (noComment) {
-          if (r.nextChar=='#') noComment=false;
-          else buffer[bufLen++]=r.nextChar;
+          if (r.nextChar == '#') noComment = false;
+          else buffer[bufLen++] = r.nextChar;
         }
-        if (bufLen>=LINELENGTH) {
+        if (bufLen >= LINELENGTH) {
           out.print("BootOut: line too long, reduce below ");
           out.print(LINELENGTH);
           errCloseLine();
           return false;
         }
       }
-      if (r.nextChar=='\0') return true;
+      if (r.nextChar == '\0') return true;
       r.readChar();
     }
     return true;
@@ -500,65 +499,65 @@ public class BootOut extends OutputFormat {
   
   private int getKey() {
     removeBlanks();
-    if (bufPos>=bufLen) return K_NONE;
-    if (checkInternalIdent("section")) return K_SECTION;
-    if (checkInternalIdent("endsection")) return K_ENDSECT;
-    if (checkInternalIdent("destfile")) return K_DESTFILE;
-    if (checkInternalIdent("hexdestfile")) return K_HEXDFILE;
-    if (checkInternalIdent("setaddr")) return K_SETADDR;
-    if (checkInternalIdent("blocksize")) return K_BLOCKSIZE;
+    if (bufPos >= bufLen) return K_NONE;
+    if (checkInternalIdent("section"))      return K_SECTION;
+    if (checkInternalIdent("endsection"))   return K_ENDSECT;
+    if (checkInternalIdent("destfile"))     return K_DESTFILE;
+    if (checkInternalIdent("hexdestfile"))  return K_HEXDFILE;
+    if (checkInternalIdent("setaddr"))      return K_SETADDR;
+    if (checkInternalIdent("blocksize"))    return K_BLOCKSIZE;
     if (checkInternalIdent("maximagesize")) return K_MAXIMGSIZE;
-    if (checkInternalIdent("blowimage")) return K_BLOWIMAGE;
-    if (checkInternalIdent("fillimage")) return K_FILLIMAGE;
-    if (checkInternalIdent("appendimage")) return K_APPENDIMG;
-    if (checkInternalIdent("readbuf")) return K_READBUF;
-    if (checkInternalIdent("writebuf")) return K_WRITEBUF;
-    if (checkInternalIdent("offset")) return K_OFFSET;
-    if (checkInternalIdent("value")) return K_VALUE;
-    if (checkInternalIdent("imageaddr")) return K_IMAGEADDR;
-    if (checkInternalIdent("imagesize")) return K_IMAGESIZE;
-    if (checkInternalIdent("blockcnt")) return K_BLOCKCNT;
-    if (checkInternalIdent("crc")) return K_CRC;
-    if (checkInternalIdent("unitaddr")) return K_UNITADDR;
-    if (checkInternalIdent("codeaddr")) return K_CODEADDR;
-    if (checkInternalIdent("compraddr")) return K_COMPRADDR;
-    if (checkInternalIdent("comprsize")) return K_COMPRSIZE;
-    error=true;
+    if (checkInternalIdent("blowimage"))    return K_BLOWIMAGE;
+    if (checkInternalIdent("fillimage"))    return K_FILLIMAGE;
+    if (checkInternalIdent("appendimage"))  return K_APPENDIMG;
+    if (checkInternalIdent("readbuf"))      return K_READBUF;
+    if (checkInternalIdent("writebuf"))     return K_WRITEBUF;
+    if (checkInternalIdent("offset"))       return K_OFFSET;
+    if (checkInternalIdent("value"))        return K_VALUE;
+    if (checkInternalIdent("imageaddr"))    return K_IMAGEADDR;
+    if (checkInternalIdent("imagesize"))    return K_IMAGESIZE;
+    if (checkInternalIdent("blockcnt"))     return K_BLOCKCNT;
+    if (checkInternalIdent("crc"))          return K_CRC;
+    if (checkInternalIdent("unitaddr"))     return K_UNITADDR;
+    if (checkInternalIdent("codeaddr"))     return K_CODEADDR;
+    if (checkInternalIdent("compraddr"))    return K_COMPRADDR;
+    if (checkInternalIdent("comprsize"))    return K_COMPRSIZE;
+    error = true;
     return K_INVALID;
   }
   
   private int getNum() {
-    int base=10, num=0;
+    int base = 10, num = 0;
     char c;
-    boolean hasValue=false;
+    boolean hasValue = false;
     
-    if (bufPos+2<bufLen && buffer[bufPos]=='0' &&
-        (buffer[bufPos+1]=='x' || buffer[bufPos+1]=='X')) {
-      base=16;
-      bufPos+=2;
+    if (bufPos + 2 < bufLen && buffer[bufPos] == '0' &&
+        (buffer[bufPos + 1] == 'x' || buffer[bufPos + 1] == 'X')) {
+      base = 16;
+      bufPos += 2;
     }
-    else if (bufPos>=bufLen) {
-      error=true;
+    else if (bufPos >= bufLen) {
+      error = true;
       return -1;
     }
-    while (bufPos<bufLen) {
-      c=buffer[bufPos];
-      if (c>='0' && c<='9') num=num*base+((int)(c-'0'));
+    while (bufPos < bufLen) {
+      c = buffer[bufPos];
+      if (c >= '0' && c <= '9') num = num * base + ((int)(c - '0'));
       else {
-        if (base==10) {
+        if (base == 10) {
           if (hasValue) return num;
-          error=true;
+          error = true;
           return -1;
         }
-        if (c>='A' && c<='F') num=num*base+(int)(c-'A')+10;
-        else if (c>='a' && c<='f') num=num*base+(int)(c-'a')+10;
+        if (c >= 'A' && c <= 'F') num = num * base + (int)(c - 'A') + 10;
+        else if (c >= 'a' && c <= 'f') num = num * base + (int)(c - 'a') + 10;
         else {
           if (hasValue) return num;
-          error=true;
+          error = true;
           return -1;
         }
       }
-      hasValue=true;
+      hasValue = true;
       bufPos++;
     }
     return num;
@@ -568,13 +567,13 @@ public class BootOut extends OutputFormat {
     int val;
     char op;
     
-    val=getFak();
+    val = getFak();
     removeBlanks();
-    while (!error && bufPos<bufLen && ((op=buffer[bufPos])=='+' || op=='-')) {
+    while (!error && bufPos < bufLen && ((op = buffer[bufPos]) == '+' || op == '-')) {
       bufPos++;
       removeBlanks();
-      if (op=='+') val+=getFak();
-      else val-=getFak();
+      if (op == '+') val += getFak();
+      else val -= getFak();
       removeBlanks();
     }
     return val;
@@ -584,28 +583,28 @@ public class BootOut extends OutputFormat {
     int val1, val2;
     char op;
     
-    val1=getOperand();
+    val1 = getOperand();
     removeBlanks();
-    while (!error && bufPos<bufLen && ((op=buffer[bufPos])=='*' || op=='/' || op=='%'
-        || op=='&' || op=='|')) {
+    while (!error && bufPos < bufLen && ((op = buffer[bufPos]) == '*' || op == '/' || op == '%'
+        || op == '&' || op == '|')) {
       bufPos++;
       removeBlanks();
-      val2=getOperand();
+      val2 = getOperand();
         switch (op) {
             case '*':
-                val1*=val2;
+                val1 *= val2;
                 break;
             case '/':
-                if (val2==0) { error=true; return 0; } else val1/=val2;
+                if (val2 == 0) { error = true; return 0; } else val1 /= val2;
                 break;
             case '%':
-                if (val2==0) { error=true; return 0; } else val1%=val2;
+                if (val2 == 0) { error = true; return 0; } else val1 %= val2;
                 break;
             case '&':
-                val1&=val2;
+                val1 &= val2;
                 break;
             default:
-                val1|=val2;
+                val1 |= val2;
                 break;
         }
       removeBlanks();
@@ -617,18 +616,18 @@ public class BootOut extends OutputFormat {
     char c;
     int val;
     
-    if (error || bufPos>=bufLen) {
-      error=true;
+    if (error || bufPos >= bufLen) {
+      error = true;
       return 0;
     }
-    c=buffer[bufPos]; //do not consume the character, needed elsewhere
-    if (c>='0' && c<='9') return getNum();
-    if (c=='(') {
+    c = buffer[bufPos]; //do not consume the character, needed elsewhere
+    if (c >= '0' && c <= '9') return getNum();
+    if (c == '(') {
       bufPos++;
       removeBlanks();
-      val=getValue();
-      if (error || bufPos>=bufLen || buffer[bufPos++]!=')') {
-        error=true;
+      val = getValue();
+      if (error || bufPos >= bufLen || buffer[bufPos++] != ')') {
+        error = true;
         return -1;
       }
       return val;
@@ -645,41 +644,41 @@ public class BootOut extends OutputFormat {
       case K_CODEADDR:
         return img.startCode;
       case K_COMPRADDR:
-        if (compressedImg!=null) return compressedImg.baseAddress;
+        if (compressedImg != null) return compressedImg.baseAddress;
         out.print("no compressed image available for COMPRADDR");
         errCloseLine();
         break;
       case K_COMPRSIZE:
-        if (compressedImg!=null) return compressedImageOrigLen;
+        if (compressedImg != null) return compressedImageOrigLen;
         out.print("no compressed image available for COMPRSIZE");
         errCloseLine();
         break;
     }
     //invalid keyword
-    error=true;
+    error = true;
     return -1;
   }
   
   private char getChar() {
-    if (bufPos>=bufLen) return '\0';
+    if (bufPos >= bufLen) return '\0';
     return buffer[bufPos++];
   }
   
   private String getString() {
     int start;
-    boolean quote=false;
+    boolean quote = false;
     
-    if (bufPos>=bufLen) return null;
+    if (bufPos >= bufLen) return null;
     removeBlanks();
-    if (buffer[start=bufPos]=='"') {
-      quote=true;
-      start=++bufPos;
+    if (buffer[start = bufPos] == '"') {
+      quote = true;
+      start = ++bufPos;
     }
-    while (bufPos<bufLen && (quote || (buffer[bufPos]!=' ' && buffer[bufPos]!='\t'))) {
-      if (buffer[bufPos]=='"') {
+    while (bufPos < bufLen && (quote || (buffer[bufPos] != ' ' && buffer[bufPos] != '\t'))) {
+      if (buffer[bufPos] == '"') {
         bufPos++;
-        if (quote && (bufPos>=bufLen || buffer[bufPos]==' ' || buffer[bufPos]=='\t'))
-          return new String(buffer, start, bufPos-1-start);
+        if (quote && (bufPos >= bufLen || buffer[bufPos] == ' ' || buffer[bufPos] == '\t'))
+          return new String(buffer, start, bufPos - 1 - start);
         out.println("BootOut: quotes not supported between chars of string");
         return null;
       }
@@ -689,13 +688,13 @@ public class BootOut extends OutputFormat {
       out.println("BootOut: string not closed by quote");
       return null;
     }
-    return new String(buffer, start, bufPos-start);
+    return new String(buffer, start, bufPos - start);
   }
   
   private void removeBlanks() {
-    if (bufPos>=bufLen) return;
-    while (buffer[bufPos]==' ' || buffer[bufPos]=='\t') {
-      if (bufPos>=bufLen) return;
+    if (bufPos >= bufLen) return;
+    while (buffer[bufPos] == ' ' || buffer[bufPos] == '\t') {
+      if (bufPos >= bufLen) return;
       bufPos++;
     }
   }
@@ -704,29 +703,29 @@ public class BootOut extends OutputFormat {
   private boolean checkInternalIdent(String key) {
     int i;
     char c;
-    for (i=0; i<key.length(); i++) {
-      if (bufPos+i>=bufLen) return false; //input exceeded
-      c=buffer[bufPos+i];
-      if (c>='A' && c<='Z') c=(char)(c-('A'+'a')); //lower case check
-      if (c!=key.charAt(i)) return false; //wrong char
+    for (i = 0; i < key.length(); i++) {
+      if (bufPos + i >= bufLen) return false; //input exceeded
+      c = buffer[bufPos + i];
+      if (c >= 'A' && c <= 'Z') c = (char)(c - ('A' + 'a')); //lower case check
+      if (c != key.charAt(i)) return false; //wrong char
     }
     //string found
-    bufPos+=i; //move current position
+    bufPos += i; //move current position
     //check if alpha-string in file also ends
-    return (bufPos==bufLen || !(buffer[bufPos]>='a' && buffer[bufPos]<='z')
-        || !(buffer[bufPos]>='A' && buffer[bufPos]<='Z'));
+    return (bufPos == bufLen || !(buffer[bufPos] >= 'a' && buffer[bufPos] <= 'z')
+        || !(buffer[bufPos] >= 'A' && buffer[bufPos] <= 'Z'));
   }
   
   //checks if name equals remaining string in line discarding blanks
   private boolean checkName(String name) {
     int i;
-    for (i=0; i<name.length(); i++) {
-      if (bufPos+i>=bufLen) return false; //input exceeded
-      if (buffer[bufPos+i]!=name.charAt(i)) return false; //wrong char
+    for (i = 0; i < name.length(); i++) {
+      if (bufPos + i >= bufLen) return false; //input exceeded
+      if (buffer[bufPos + i] != name.charAt(i)) return false; //wrong char
     }
     //string found
-    bufPos+=i; //move current position
+    bufPos += i; //move current position
     removeBlanks(); //remove remaining spaces
-    return bufPos==bufLen; //hit only if string in file also ends
+    return bufPos == bufLen; //hit only if string in file also ends
   }
 }

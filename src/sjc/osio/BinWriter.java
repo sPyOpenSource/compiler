@@ -31,12 +31,12 @@ package sjc.osio;
  */
 
 public abstract class BinWriter {
-	public abstract boolean open(String fname);
-	public abstract void close();
-	public abstract boolean write(byte[] what, int offset, int len);
-  public abstract boolean setSize(int addBytes);
-  
-  public boolean setAddress(int address) {
-    return false; //not supported
-  }
+    public abstract boolean open(String fname);
+    public abstract void close();
+    public abstract boolean write(byte[] what, int offset, int len);
+    public abstract boolean setSize(int addBytes);
+
+    public boolean setAddress(int address) {
+        return false; //not supported
+    }
 }

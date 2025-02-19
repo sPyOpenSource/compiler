@@ -212,8 +212,8 @@ public class CompilerTest {
             byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
             int minor_version = fileContent[4] << 8 | fileContent[5];
             int major_version = fileContent[6] << 8 | fileContent[7];
-            for(byte b:magic_number){
-                System.out.printf("%X",b);
+            for(byte b : magic_number){
+                System.out.printf("%X", b);
             }
             System.out.println(minor_version);
             System.out.println(major_version);
@@ -236,9 +236,9 @@ public class CompilerTest {
             /*for(MethodNode method: cn.methods){
                 System.out.println(method.name);
             }*/
-            for(Attribute attr:cn.attrs){
+            /*for(Attribute attr : cn.attrs){
                 System.out.println(attr.type);
-            }
+            }*/
         } catch (IOException ex) {
             Logger.getLogger(CompilerTest.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -71,9 +71,9 @@ public abstract class MemoryImage {
   }
   
   public void putByteArray(Object loc, int offset, byte[] arr, int size) {
-    int i=0;
+    int i = 0;
     //copy each single byte, should be overwritten for better performance
-    while (i<size) putByte(loc, offset++, arr[i++]);
+    while (i < size) putByte(loc, offset++, arr[i++]);
   }
   
   public Object allocate(int scalarSize, int indirScalarSize, int relocEntries, Object typeLoc) {

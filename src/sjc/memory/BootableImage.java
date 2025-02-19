@@ -77,46 +77,44 @@ public class BootableImage extends ImageContainer {
   public void init(int size, int base, boolean iSH, byte[] headerData, Context ictx) {
     int i;
     
-    ctx=ictx;
-    memBlock=new byte[size];
-    baseAddress=base; //this is the offset to which the image should be loaded to
-    firstObj=lastObj=null;
-    startOfImage=new OutputLocation(base);
-    if (standardHeader=iSH) {
-      memBlockLen=(32+ctx.arch.allocClearBits)&~ctx.arch.allocClearBits; //reserve memory for info above
+    ctx = ictx;
+    memBlock = new byte[size];
+    baseAddress = base; //this is the offset to which the image should be loaded to
+    firstObj = lastObj = null;
+    startOfImage = new OutputLocation(base);
+    if (standardHeader = iSH) {
+      memBlockLen = (32 + ctx.arch.allocClearBits) & ~ctx.arch.allocClearBits; //reserve memory for info above
       putInt(startOfImage, 0, base);
-      putInt(startOfImage, 28, 0x550000AA|(ctx.arch.allocClearBits<<16)|(ctx.arch.relocBytes<<8));
-    }
-    else {
-      if (headerData!=null) {
-        if (headerData.length>memBlock.length) {
+      putInt(startOfImage, 28, 0x550000AA | (ctx.arch.allocClearBits << 16) | (ctx.arch.relocBytes << 8));
+    } else {
+      if (headerData != null) {
+        if (headerData.length > memBlock.length) {
           ctx.out.print("header is bigger than image container, ");
           memError();
-        }
-        else {
+        } else {
           ctx.arch.setHeaderLength(headerData.length);
-          memBlockLen=headerData.length;
-          for (i=0; i<memBlockLen; i++) memBlock[i]=headerData[i];
+          memBlockLen = headerData.length;
+          for (i = 0; i < memBlockLen; i++) memBlock[i] = headerData[i];
         }
       }
-      else memBlockLen=0;
+      else memBlockLen = 0;
     }
     if (debugListerSupportEnabled) {
-      lastObjDebugInfo=firstObjDebugInfo=new MemoryObjectDebugInfo();
-      firstObjDebugInfo.pointer=base;
-      firstObjDebugInfo.relocs=0;
-      firstObjDebugInfo.scalarSize=memBlockLen;
-      firstObjDebugInfo.location=startOfImage;
+      lastObjDebugInfo = firstObjDebugInfo = new MemoryObjectDebugInfo();
+      firstObjDebugInfo.pointer = base;
+      firstObjDebugInfo.relocs = 0;
+      firstObjDebugInfo.scalarSize = memBlockLen;
+      firstObjDebugInfo.location = startOfImage;
     }
   }
   
   @Override
   public void finalizeImage(Object startUnitLoc, Object startMthdCodeLoc, int relCodeStart) {
-    startUnit=getAddrAsInt(startUnitLoc, 0);
-    startCode=getAddrAsInt(startMthdCodeLoc, 0)+relCodeStart;
+    startUnit = getAddrAsInt(startUnitLoc, 0);
+    startCode = getAddrAsInt(startMthdCodeLoc, 0) + relCodeStart;
     if (standardHeader) {
-      putInt(startOfImage, 4, memBlockLen); //enter used size
-      putInt(startOfImage, 8, startUnit); //enter and remember startup-unit
+      putInt(startOfImage,  4, memBlockLen); //enter used size
+      putInt(startOfImage,  8, startUnit); //enter and remember startup-unit
       putInt(startOfImage, 12, startCode); //enter and remember address to exec
       putInt(startOfImage, 16, getAddrAsInt(firstObj, 0)); //enter address of first object
       putInt(startOfImage, 24, relCodeStart); //enter relative start of code
@@ -125,12 +123,12 @@ public class BootableImage extends ImageContainer {
   
   public byte[] getInfoBlock(String appendSig) {
     byte[] data;
-    int i, appLen=0;
+    int i, appLen = 0;
     
-    if (appendSig!=null) appLen=appendSig.length();
-    data=new byte[32+appLen];
-    for (i=0; i<32; i++) data[i]=memBlock[i];
-    for (i=0; i<appLen; i++) data[i+32]=(byte)appendSig.charAt(i);
+    if (appendSig != null) appLen = appendSig.length();
+    data = new byte[32 + appLen];
+    for (i = 0; i < 32; i++) data[i] = memBlock[i];
+    for (i = 0; i < appLen; i++) data[i + 32] = (byte)appendSig.charAt(i);
     return data;
   }
   
@@ -141,81 +139,81 @@ public class BootableImage extends ImageContainer {
     MemoryObjectDebugInfo modi;
     
     if (memBad) return null;
-    relocSize=relocEntries*ctx.arch.relocBytes;
-    size=(relocSize+scalarSize+ctx.arch.allocClearBits)&~ctx.arch.allocClearBits;
-    if (memBlockLen+size>memBlock.length) { //no space left
+    relocSize = relocEntries * ctx.arch.relocBytes;
+    size = (relocSize + scalarSize + ctx.arch.allocClearBits) & ~ctx.arch.allocClearBits;
+    if (memBlockLen + size > memBlock.length) { //no space left
       memError();
       return null;
     }
-    ret=new OutputLocation(memBlockLen+relocSize+baseAddress); //calculate address
-    memBlockLen+=size; //increase "used memory" 
+    ret = new OutputLocation(memBlockLen + relocSize + baseAddress); //calculate address
+    memBlockLen += size; //increase "used memory" 
     if (!streamObjects) {
-      if (lastObj!=null) ctx.arch.putRef(lastObj, -2*ctx.arch.relocBytes, ret, 0); //enter in next-pointer of last object
-      else firstObj=ret;
+      if (lastObj != null) ctx.arch.putRef(lastObj, -2 * ctx.arch.relocBytes, ret, 0); //enter in next-pointer of last object
+      else firstObj = ret;
       if (!noSizeScalars) {
         putInt(ret, 0, relocEntries); //remember relocSize on first scalar
         putInt(ret, 4, scalarSize); //remember scalarSize on second scalar
       }
-      lastObj=ret; //remember for next allocate
+      lastObj = ret; //remember for next allocate
     }
-    if (indirScalarSize!=0) {
-      indirScalarSize=(indirScalarSize+ctx.arch.allocClearBits)&~ctx.arch.allocClearBits;
-      if (memBlockLen+indirScalarSize>memBlock.length) { //no space left
+    if (indirScalarSize != 0) {
+      indirScalarSize = (indirScalarSize + ctx.arch.allocClearBits) & ~ctx.arch.allocClearBits;
+      if (memBlockLen + indirScalarSize > memBlock.length) { //no space left
         memError();
         return null;
       }
       putInt(ret, ctx.indirScalarSizeOff, indirScalarSize); //remember indirScalarSize
-      ret.indirObj=new OutputLocation(baseAddress+memBlockLen);
+      ret.indirObj = new OutputLocation(baseAddress + memBlockLen);
       ctx.arch.putRef(ret, ctx.indirScalarAddrOff, ret.indirObj, 0); //remember indirScalarAddr
-      memBlockLen+=indirScalarSize;
+      memBlockLen += indirScalarSize;
     }
     //enter type
-    if (typeLoc!=null) ctx.arch.putRef(ret, -ctx.arch.relocBytes, typeLoc, 0);
+    if (typeLoc != null) ctx.arch.putRef(ret, -ctx.arch.relocBytes, typeLoc, 0);
     //statistics and debugging info
     objectsAllocated++;
     if (debugListerSupportEnabled) {
-      modi=new MemoryObjectDebugInfo();
-      modi.location=ret;
-      modi.relocs=relocEntries;
-      modi.pointer=ret.address;
-      modi.scalarSize=size-relocSize;
-      lastObjDebugInfo.next=modi;
-      lastObjDebugInfo=modi;
+      modi = new MemoryObjectDebugInfo();
+      modi.location = ret;
+      modi.relocs = relocEntries;
+      modi.pointer = ret.address;
+      modi.scalarSize = size - relocSize;
+      lastObjDebugInfo.next = modi;
+      lastObjDebugInfo = modi;
     }
     return ret;
   }
   
   @Override
   public void allocationDebugHint(Object source) {
-    if (!debugListerSupportEnabled || lastObjDebugInfo==null) return;
-    lastObjDebugInfo.source=source;
+    if (!debugListerSupportEnabled || lastObjDebugInfo == null) return;
+    lastObjDebugInfo.source = source;
   }
   
   private void memError() {
     ctx.out.println("no space left in memory block");
-    memBad=ctx.err=true;
+    memBad = ctx.err = true;
   }
   
   @Override
   public Object allocateArray(int entries, int dim, int entrySize, int stdType, Object extTypeLoc) {
     Object obj;
-    Unit array=ctx.rteSArray;
+    Unit array = ctx.rteSArray;
     
-    if (dim>1 || entrySize<0) {
-      obj=allocate(
+    if (dim > 1 || entrySize < 0) {
+      obj = allocate(
         array.instScalarTableSize, array.instIndirScalarTableSize,
-        array.instRelocTableEntries+entries*ctx.arch.relocBytes, array.outputLocation);
+        array.instRelocTableEntries + entries * ctx.arch.relocBytes, array.outputLocation);
     }
     else {
-      if (stdType==0) return null; //positive entrySize requires stdType to be set
-      if (ctx.indirScalars) obj=allocate(
-          array.instScalarTableSize, array.instIndirScalarTableSize+entries*entrySize,
+      if (stdType == 0) return null; //positive entrySize requires stdType to be set
+      if (ctx.indirScalars) obj = allocate(
+          array.instScalarTableSize, array.instIndirScalarTableSize + entries * entrySize,
           array.instRelocTableEntries, array.outputLocation);
-      else obj=allocate(
-          array.instScalarTableSize+entries*entrySize, 0,
+      else obj = allocate(
+          array.instScalarTableSize + entries * entrySize, 0,
           array.instRelocTableEntries, array.outputLocation);
     }
-    if (obj==null) return null; //allocation failed
+    if (obj == null) return null; //allocation failed
     putInt(obj, ctx.rteSArrayLength, entries);
     putInt(obj, ctx.rteSArrayDim, dim);
     putInt(obj, ctx.rteSArrayStd, stdType);
@@ -236,12 +234,12 @@ public class BootableImage extends ImageContainer {
   @Override
   protected void reportInternalMemoryError() {
     ctx.out.println("invalid memory access");
-    ctx.err=true;
+    ctx.err = true;
   }
   
   @Override
   public void enableDebugListerSupport() {
-    debugListerSupportEnabled=true;
+    debugListerSupportEnabled = true;
   }
   
   @Override

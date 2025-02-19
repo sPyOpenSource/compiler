@@ -30,112 +30,124 @@ package sjc.real;
  */
 
 public class NativeReal extends Real {
+  @Override
   public int buildFloat(long mant, int exp) {
-    return Float.floatToRawIntBits((float)mant*pow10Float(exp));
+    return Float.floatToRawIntBits((float)mant * pow10Float(exp));
   }
   
+  @Override
   public int negateFloat(int number) {
     return Float.floatToRawIntBits(-Float.intBitsToFloat(number));
   }
   
+  @Override
   public int binOpFloat(int op1, int op2, int op) {
-    float o1=Float.intBitsToFloat(op1), o2=Float.intBitsToFloat(op2), res=0.0f;
+    float o1 = Float.intBitsToFloat(op1), o2 = Float.intBitsToFloat(op2), res = 0.0f;
     switch (op) {
-      case A_MINUS: res=o1-o2; break;
-      case A_PLUS:  res=o1+o2; break;
-      case A_MUL:   res=o1*o2; break;
-      case A_DIV:   res=o1/o2; break;
+      case A_MINUS: res = o1 - o2; break;
+      case A_PLUS:  res = o1 + o2; break;
+      case A_MUL:   res = o1 * o2; break;
+      case A_DIV:   res = o1 / o2; break;
     }
     return Float.floatToRawIntBits(res);
   }
   
+  @Override
   public int compareConstFloat(int le, int ri, int op) {
-    float l=Float.intBitsToFloat(le), r=Float.intBitsToFloat(ri);
+    float l = Float.intBitsToFloat(le), r = Float.intBitsToFloat(ri);
     switch (op) {
-      case C_LW: if (l<r) return 1; else return 0;
-      case C_LE: if (l<=r) return 1; else return 0;
-      case C_EQ: if (l==r) return 1; else return 0;
-      case C_GE: if (l>=r) return 1; else return 0;
-      case C_GT: if (l>r) return 1; else return 0;
-      case C_NE: if (l!=r) return 1; else return 0;
+      case C_LW: if (l <  r) return 1; else return 0;
+      case C_LE: if (l <= r) return 1; else return 0;
+      case C_EQ: if (l == r) return 1; else return 0;
+      case C_GE: if (l >= r) return 1; else return 0;
+      case C_GT: if (l >  r) return 1; else return 0;
+      case C_NE: if (l != r) return 1; else return 0;
     }
     return 0;
   }
   
+  @Override
   public long getLongOfFloat(int number) {
     return (long)Float.intBitsToFloat(number);
   }
   
+  @Override
   public long buildDouble(long mant, int exp) {
-    return Double.doubleToRawLongBits((double)mant*pow10Double(exp));
+    return Double.doubleToRawLongBits((double)mant * pow10Double(exp));
   }
   
+  @Override
   public long negateDouble(long number) {
     return Double.doubleToRawLongBits(-Double.longBitsToDouble(number));
   }
   
+  @Override
   public long binOpDouble(long op1, long op2, int op) {
-    double o1=Double.longBitsToDouble(op1), o2=Double.longBitsToDouble(op2), res=0.0;
+    double o1 = Double.longBitsToDouble(op1), o2 = Double.longBitsToDouble(op2), res = 0.0;
     switch (op) {
-      case A_MINUS: res=o1-o2; break;
-      case A_PLUS:  res=o1+o2; break;
-      case A_MUL:   res=o1*o2; break;
-      case A_DIV:   res=o1/o2; break;
+      case A_MINUS: res = o1 - o2; break;
+      case A_PLUS:  res = o1 + o2; break;
+      case A_MUL:   res = o1 * o2; break;
+      case A_DIV:   res = o1 / o2; break;
     }
     return Double.doubleToRawLongBits(res);
   }
   
+  @Override
   public int compareConstDouble(long le, long ri, int op) {
-    double l=Double.longBitsToDouble(le), r=Double.longBitsToDouble(ri);
+    double l = Double.longBitsToDouble(le), r = Double.longBitsToDouble(ri);
     switch (op) {
-      case C_LW: if (l<r) return 1; else return 0;
-      case C_LE: if (l<=r) return 1; else return 0;
-      case C_EQ: if (l==r) return 1; else return 0;
-      case C_GE: if (l>=r) return 1; else return 0;
-      case C_GT: if (l>r) return 1; else return 0;
-      case C_NE: if (l!=r) return 1; else return 0;
+      case C_LW: if (l <  r) return 1; else return 0;
+      case C_LE: if (l <= r) return 1; else return 0;
+      case C_EQ: if (l == r) return 1; else return 0;
+      case C_GE: if (l >= r) return 1; else return 0;
+      case C_GT: if (l >  r) return 1; else return 0;
+      case C_NE: if (l != r) return 1; else return 0;
     }
     return 0;
   }
   
+  @Override
   public long getLongOfDouble(long number) {
     return (long)Double.longBitsToDouble(number);
   }
   
+  @Override
   public int buildFloatFromDouble(long number) {
     return Float.floatToRawIntBits((float)Double.longBitsToDouble(number));
   }
   
+  @Override
   public long buildDoubleFromFloat(int number) {
     return Double.doubleToRawLongBits((double)Float.intBitsToFloat(number));
   }
   
   public float pow10Float(int exp) {
-    float res=1.0f, mul=10.0f;
+    float res = 1.0f, mul = 10.0f;
     
-    if (exp<0) {
-      exp=-exp;
-      mul=1.0f/mul;
+    if (exp < 0) {
+      exp = -exp;
+      mul = 1.0f / mul;
     }
-    while (exp>0) {
-      if ((exp&1)!=0) res*=mul;
-      exp=exp>>>1;
-      mul*=mul;
+    while (exp > 0) {
+      if ((exp & 1) != 0) res *= mul;
+      exp = exp >>> 1;
+      mul *= mul;
     }
     return res;
   }
   
   public double pow10Double(int exp) {
-    double res=1.0, mul=10.0;
+    double res = 1.0, mul = 10.0;
     
-    if (exp<0) {
-      exp=-exp;
-      mul=1.0/mul;
+    if (exp < 0) {
+      exp = -exp;
+      mul = 1.0 / mul;
     }
-    while (exp>0) {
-      if ((exp&1)!=0) res*=mul;
-      exp=exp>>>1;
-      mul*=mul;
+    while (exp > 0) {
+      if ((exp&1) != 0) res *= mul;
+      exp = exp >>> 1;
+      mul *= mul;
     }
     return res;
   }

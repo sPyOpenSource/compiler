@@ -24,6 +24,7 @@ import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -79,7 +80,7 @@ public class SCG extends JFrame {
         new SCG();
       }
     });
-	}
+  }
   
   private static class LabelComp extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -95,7 +96,7 @@ public class SCG extends JFrame {
     public ThreeComp(JComponent center, JComponent southWest, JComponent southEast) {
       setLayout(new BorderLayout(2, 0));
       add(center, BorderLayout.CENTER);
-      JPanel south=new JPanel(new GridLayout(1, 1, 2, 0));
+      JPanel south = new JPanel(new GridLayout(1, 1, 2, 0));
       south.add(southWest);
       south.add(southEast);
       add(south, BorderLayout.SOUTH);
@@ -111,63 +112,63 @@ public class SCG extends JFrame {
   private final JTabbedPane preselect;
   
   //expert options
-  private JCheckBox v_verbose, V_verboseTiming;
-  private JCheckBox L_flat, l_streamline;
-  private JCheckBox M_indirect, m_dynaMem;
-  private JTextField i_options, H_listFiles;
-  private JCheckBox h_heapAssign, c_allAssign;
-  private JCheckBox w_alternateNew, x_stackExtreme;
-  private JCheckBox C_skipArrayCheck, B_skipBoundCheck;
-  private JCheckBox b_rteBound, n_rteNull;
-  private JCheckBox X_explicitConv, d_mthdDebug;
-  private JCheckBox g_genAllUnits, G_genAllMthds;
-  private JCheckBox j_genIntfParents;
-  private JCheckBox q_relManager, Q_srcHint;
-  private JCheckBox W_printCode;
-  private JCheckBox F_profiler, f_throwWithoutCatch, R_skipSync;
-  private JCheckBox y_byteString, k_skipInlineMthd;
-  private JCheckBox Y_nativeFloatInComp;
-  private JTextField N_startMthd;
-  private JTextField I_maxInlLev, S_autoInlStmts;
-  private JTextField K_allocMask, s_imgSize;
-  private JComboBox t_arch;
-  private JTextField T_archOpt;
-  private JTextField a_addr, Z_reloc;
-  private JTextField e_embAddr;
-  private JCheckBox E_constInRam;
-  private JTextField P_specialHeader, p_namePrefix;
-  private JComboBox o_out;
-  private JTextField O_outPar;
-  private JComboBox u_sym;
-  private JTextField U_symPar;
-  private JTextField D_code, D_gcc, D_mthd, D_sym, D_rel;
+  private final JCheckBox v_verbose, V_verboseTiming;
+  private final JCheckBox L_flat, l_streamline;
+  private final JCheckBox M_indirect, m_dynaMem;
+  private final JTextField i_options, H_listFiles;
+  private final JCheckBox h_heapAssign, c_allAssign;
+  private final JCheckBox w_alternateNew, x_stackExtreme;
+  private final JCheckBox C_skipArrayCheck, B_skipBoundCheck;
+  private final JCheckBox b_rteBound, n_rteNull;
+  private final JCheckBox X_explicitConv, d_mthdDebug;
+  private final JCheckBox g_genAllUnits, G_genAllMthds;
+  private final JCheckBox j_genIntfParents;
+  private final JCheckBox q_relManager, Q_srcHint;
+  private final JCheckBox W_printCode;
+  private final JCheckBox F_profiler, f_throwWithoutCatch, R_skipSync;
+  private final JCheckBox y_byteString, k_skipInlineMthd;
+  private final JCheckBox Y_nativeFloatInComp;
+  private final JTextField N_startMthd;
+  private final JTextField I_maxInlLev, S_autoInlStmts;
+  private final JTextField K_allocMask, s_imgSize;
+  private final JComboBox t_arch;
+  private final JTextField T_archOpt;
+  private final JTextField a_addr, Z_reloc;
+  private final JTextField e_embAddr;
+  private final JCheckBox E_constInRam;
+  private final JTextField P_specialHeader, p_namePrefix;
+  private final JComboBox o_out;
+  private final JTextField O_outPar;
+  private final JComboBox u_sym;
+  private final JTextField U_symPar;
+  private final JTextField D_code, D_gcc, D_mthd, D_sym, D_rel;
   
   //simplified ATmega options
-  private JRadioButton sAT_m8, sAT_m16, sAT_m32, sAT_m64;
-  private JRadioButton sAT_skipBoundCheck, sAT_rteBound;
-  private JCheckBox sAT_skipArrayCheck, sAT_explicitConv;
-  private JTextField sAT_headerFile, sAT_bootConf;
-  private JCheckBox sAT_skipInlineMthd, sAT_byteString;
-  private JCheckBox sAT_optimEnabled;
-  private JButton sAT_initDefault;
+  private final JRadioButton sAT_m8, sAT_m16, sAT_m32, sAT_m64;
+  private final JRadioButton sAT_skipBoundCheck, sAT_rteBound;
+  private final JCheckBox sAT_skipArrayCheck, sAT_explicitConv;
+  private final JTextField sAT_headerFile, sAT_bootConf;
+  private final JCheckBox sAT_skipInlineMthd, sAT_byteString;
+  private final JCheckBox sAT_optimEnabled;
+  private final JButton sAT_initDefault;
   
   //files and directories to compile
-  private JList files, dirs, dirsNonRec;
-  private DefaultListModel filesList, dirsList, dirsNonRecList;
-  private JButton fileAdd, fileDel, dirAdd, dirDel, dirNRAdd, dirNRDel;
-  private JTextField workDir;
+  private final JList files, dirs, dirsNonRec;
+  private final DefaultListModel filesList, dirsList, dirsNonRecList;
+  private final JButton fileAdd, fileDel, dirAdd, dirDel, dirNRAdd, dirNRDel;
+  private final JTextField workDir;
   
-  private ActionListener sAT_OptionChangedListener=new ActionListener() {
+  private final ActionListener sAT_OptionChangedListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       triggerATmegaEvaluation(e.getSource());
     }
   };
-  private ActionListener expertOptionChangedListener=new ActionListener() {
+  private final ActionListener expertOptionChangedListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       triggerExpertEvaluation(e.getSource());
     }
   };
-  private DocumentListener expertTextChangedListener=new DocumentListener() {
+  private final DocumentListener expertTextChangedListener = new DocumentListener() {
     public void removeUpdate(DocumentEvent e) {
       triggerExpertEvaluation(e.getDocument());
     }
@@ -177,227 +178,227 @@ public class SCG extends JFrame {
     public void changedUpdate(DocumentEvent e) {
     }
   };
-  private ActionListener butAddDelListener=new ActionListener() {
+  private final ActionListener butAddDelListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       triggerAddDel(e.getSource());
     }
   };
-  private ActionListener runListener=new ActionListener() {
+  private final ActionListener runListener = new ActionListener() {
     public void actionPerformed(ActionEvent e) {
       doCompile();
     }
   };
   
   private SCG() {
-    super("smfCompiler option selector GUI");
+    super("Compiler option selector GUI");
     setDefaultCloseOperation(EXIT_ON_CLOSE);
     setLayout(new BorderLayout());
     JPanel tmpPanel;
     ButtonGroup bg;
     
     //preselection pane
-    add(preselect=new JTabbedPane(), BorderLayout.NORTH);
+    add(preselect = new JTabbedPane(), BorderLayout.NORTH);
     
     //expert tab
-    tmpPanel=new JPanel();
+    tmpPanel = new JPanel();
     tmpPanel.setLayout(new GridLayout(0, 4, 2, 2));
-    tmpPanel.add(L_flat=new JCheckBox("flat memory"));
+    tmpPanel.add(L_flat = new JCheckBox("flat memory"));
     L_flat.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(l_streamline=new JCheckBox("streamline objects"));
+    tmpPanel.add(l_streamline = new JCheckBox("streamline objects"));
     l_streamline.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(M_indirect=new JCheckBox("indirect scalars"));
+    tmpPanel.add(M_indirect = new JCheckBox("indirect scalars"));
     M_indirect.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(m_dynaMem=new JCheckBox("movable objects"));
+    tmpPanel.add(m_dynaMem = new JCheckBox("movable objects"));
     m_dynaMem.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(v_verbose=new JCheckBox("verbose"));
+    tmpPanel.add(v_verbose = new JCheckBox("verbose"));
     v_verbose.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(V_verboseTiming=new JCheckBox("verbose timing"));
+    tmpPanel.add(V_verboseTiming = new JCheckBox("verbose timing"));
     V_verboseTiming.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("options from file", i_options=new JTextField()));
+    tmpPanel.add(new LabelComp("options from file", i_options = new JTextField()));
     i_options.getDocument().addDocumentListener(expertTextChangedListener);
-    tmpPanel.add(new LabelComp("log compiled files to file", H_listFiles=new JTextField()));
+    tmpPanel.add(new LabelComp("log compiled files to file", H_listFiles = new JTextField()));
     H_listFiles.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(h_heapAssign=new JCheckBox("rte-call for heap pointer assignments"));
+    tmpPanel.add(h_heapAssign = new JCheckBox("rte-call for heap pointer assignments"));
     h_heapAssign.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(c_allAssign=new JCheckBox("rte-call for all pointer assignments"));
+    tmpPanel.add(c_allAssign = new JCheckBox("rte-call for all pointer assignments"));
     c_allAssign.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(w_alternateNew=new JCheckBox("alternate object layout"));
+    tmpPanel.add(w_alternateNew = new JCheckBox("alternate object layout"));
     w_alternateNew.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(x_stackExtreme=new JCheckBox("stack extreme check"));
+    tmpPanel.add(x_stackExtreme = new JCheckBox("stack extreme check"));
     x_stackExtreme.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(C_skipArrayCheck=new JCheckBox("skip array check"));
+    tmpPanel.add(C_skipArrayCheck = new JCheckBox("skip array check"));
     C_skipArrayCheck.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(B_skipBoundCheck=new JCheckBox("skip bound check"));
+    tmpPanel.add(B_skipBoundCheck = new JCheckBox("skip bound check"));
     B_skipBoundCheck.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(b_rteBound=new JCheckBox("rte-call for bound exception"));
+    tmpPanel.add(b_rteBound = new JCheckBox("rte-call for bound exception"));
     b_rteBound.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(n_rteNull=new JCheckBox("rte-call for null exception"));
+    tmpPanel.add(n_rteNull = new JCheckBox("rte-call for null exception"));
     n_rteNull.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(X_explicitConv=new JCheckBox("require explicit conversion"));
+    tmpPanel.add(X_explicitConv = new JCheckBox("require explicit conversion"));
     X_explicitConv.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(d_mthdDebug=new JCheckBox("create method binary debug files"));
+    tmpPanel.add(d_mthdDebug = new JCheckBox("create method binary debug files"));
     d_mthdDebug.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(g_genAllUnits=new JCheckBox("create all units (don't skip)"));
+    tmpPanel.add(g_genAllUnits = new JCheckBox("create all units (don't skip)"));
     g_genAllUnits.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(G_genAllMthds=new JCheckBox("create all methods (don't skip)"));
+    tmpPanel.add(G_genAllMthds = new JCheckBox("create all methods (don't skip)"));
     G_genAllMthds.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(j_genIntfParents=new JCheckBox("generate interface parents array"));
+    tmpPanel.add(j_genIntfParents = new JCheckBox("generate interface parents array"));
     j_genIntfParents.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(q_relManager=new JCheckBox("enable relation manager"));
+    tmpPanel.add(q_relManager = new JCheckBox("enable relation manager"));
     q_relManager.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(Q_srcHint=new JCheckBox("integrate source hints"));
+    tmpPanel.add(Q_srcHint = new JCheckBox("integrate source hints"));
     Q_srcHint.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(W_printCode=new JCheckBox("print code of methods"));
+    tmpPanel.add(W_printCode = new JCheckBox("print code of methods"));
     W_printCode.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(F_profiler=new JCheckBox("enable profiler call for every method"));
+    tmpPanel.add(F_profiler = new JCheckBox("enable profiler call for every method"));
     F_profiler.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(f_throwWithoutCatch=new JCheckBox("disable throw-frames (no catch)"));
+    tmpPanel.add(f_throwWithoutCatch = new JCheckBox("disable throw-frames (no catch)"));
     f_throwWithoutCatch.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(R_skipSync=new JCheckBox("do not encode rte-calls for synchronized"));
+    tmpPanel.add(R_skipSync = new JCheckBox("do not encode rte-calls for synchronized"));
     R_skipSync.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(y_byteString=new JCheckBox("Strings with byte-value (not char)"));
+    tmpPanel.add(y_byteString = new JCheckBox("Strings with byte-value (not char)"));
     y_byteString.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(k_skipInlineMthd=new JCheckBox("skip method objects for inline methods"));
+    tmpPanel.add(k_skipInlineMthd = new JCheckBox("skip method objects for inline methods"));
     k_skipInlineMthd.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("start code in method", N_startMthd=new JTextField()));
+    tmpPanel.add(new LabelComp("start code in method", N_startMthd = new JTextField()));
     N_startMthd.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("maximum inline level", I_maxInlLev=new JTextField()));
+    tmpPanel.add(new LabelComp("maximum inline level", I_maxInlLev = new JTextField()));
     I_maxInlLev.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("max. stmt. count for auto-inline", S_autoInlStmts=new JTextField()));
+    tmpPanel.add(new LabelComp("max. stmt. count for auto-inline", S_autoInlStmts = new JTextField()));
     S_autoInlStmts.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("align-mask for allocated block", K_allocMask=new JTextField()));
+    tmpPanel.add(new LabelComp("align-mask for allocated block", K_allocMask = new JTextField()));
     K_allocMask.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("memory image size", s_imgSize=new JTextField()));
+    tmpPanel.add(new LabelComp("memory image size", s_imgSize = new JTextField()));
     s_imgSize.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("architecture", t_arch=new JComboBox(new Object[] {"ia32", "ia32opt", "amd64", "atmega", "atmegaOpt", "ssa32", "ssa64"})));
+    tmpPanel.add(new LabelComp("architecture", t_arch = new JComboBox(new Object[] {"ia32", "ia32opt", "amd64", "atmega", "atmegaOpt", "ssa32", "ssa64"})));
     t_arch.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("architecture options", T_archOpt=new JTextField()));
+    tmpPanel.add(new LabelComp("architecture options", T_archOpt = new JTextField()));
     T_archOpt.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("address", a_addr=new JTextField()));
+    tmpPanel.add(new LabelComp("address", a_addr = new JTextField()));
     a_addr.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("relocate by GB", Z_reloc=new JTextField()));
+    tmpPanel.add(new LabelComp("relocate by GB", Z_reloc = new JTextField()));
     Z_reloc.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("embedded RAM address", e_embAddr=new JTextField()));
+    tmpPanel.add(new LabelComp("embedded RAM address", e_embAddr = new JTextField()));
     e_embAddr.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(E_constInRam=new JCheckBox("constant objects in RAM"));
+    tmpPanel.add(E_constInRam = new JCheckBox("constant objects in RAM"));
     E_constInRam.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("image header (or \"none\")", P_specialHeader=new JTextField()));
+    tmpPanel.add(new LabelComp("image header (or \"none\")", P_specialHeader = new JTextField()));
     P_specialHeader.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("output name prefix", p_namePrefix=new JTextField()));
+    tmpPanel.add(new LabelComp("output name prefix", p_namePrefix = new JTextField()));
     p_namePrefix.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("output format", o_out=new JComboBox(new Object[] {"raw", "boot"})));
+    tmpPanel.add(new LabelComp("output format", o_out = new JComboBox(new Object[] {"raw", "boot"})));
     o_out.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("output options", O_outPar=new JTextField()));
+    tmpPanel.add(new LabelComp("output options", O_outPar = new JTextField()));
     O_outPar.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("in-system symbol generator", u_sym=new JComboBox(new Object[] {"none", "raw", "rte", "mthd", "reflect"})));
+    tmpPanel.add(new LabelComp("in-system symbol generator", u_sym = new JComboBox(new Object[] {"none", "raw", "rte", "mthd", "reflect"})));
     u_sym.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("symbol generator options", U_symPar=new JTextField()));
+    tmpPanel.add(new LabelComp("symbol generator options", U_symPar = new JTextField()));
     U_symPar.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("debug writer \"code\" file", D_code=new JTextField()));
+    tmpPanel.add(new LabelComp("debug writer \"code\" file", D_code = new JTextField()));
     D_code.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("debug writer \"gcc\" file", D_gcc=new JTextField()));
+    tmpPanel.add(new LabelComp("debug writer \"gcc\" file", D_gcc = new JTextField()));
     D_gcc.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("debug writer \"mthd\" file", D_mthd=new JTextField()));
+    tmpPanel.add(new LabelComp("debug writer \"mthd\" file", D_mthd = new JTextField()));
     D_mthd.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("debug writer \"sym\" file", D_sym=new JTextField()));
+    tmpPanel.add(new LabelComp("debug writer \"sym\" file", D_sym = new JTextField()));
     D_sym.addActionListener(expertOptionChangedListener);
-    tmpPanel.add(new LabelComp("debug writer \"rel\" file", D_rel=new JTextField()));
+    tmpPanel.add(new LabelComp("debug writer \"rel\" file", D_rel = new JTextField()));
     D_rel.addActionListener(expertOptionChangedListener);
     preselect.addTab("expert", tmpPanel);
-    tmpPanel.add(Y_nativeFloatInComp=new JCheckBox("prefer native float code in compiler"));
+    tmpPanel.add(Y_nativeFloatInComp = new JCheckBox("prefer native float code in compiler"));
     Y_nativeFloatInComp.addActionListener(expertOptionChangedListener);
     
     //ATmega tab
-    tmpPanel=new JPanel();
+    tmpPanel = new JPanel();
     tmpPanel.setLayout(new GridLayout(0, 4, 2, 2));
-    bg=new ButtonGroup();
-    tmpPanel.add(sAT_m8=new JRadioButton("8k flash"));
+    bg = new ButtonGroup();
+    tmpPanel.add(sAT_m8 = new JRadioButton("8k flash"));
     sAT_m8.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_m8);
-    tmpPanel.add(sAT_m16=new JRadioButton("16k flash"));
+    tmpPanel.add(sAT_m16 = new JRadioButton("16k flash"));
     sAT_m16.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_m16);
-    tmpPanel.add(sAT_m32=new JRadioButton("32k flash"));
+    tmpPanel.add(sAT_m32 = new JRadioButton("32k flash"));
     sAT_m32.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_m32);
-    tmpPanel.add(sAT_m64=new JRadioButton("64k flash"));
+    tmpPanel.add(sAT_m64 = new JRadioButton("64k flash"));
     sAT_m64.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_m64);
     bg=new ButtonGroup();
-    tmpPanel.add(sAT_rteBound=new JRadioButton("rte array bound check"));
+    tmpPanel.add(sAT_rteBound = new JRadioButton("rte array bound check"));
     sAT_rteBound.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_rteBound);
-    tmpPanel.add(sAT_skipBoundCheck=new JRadioButton("skip array bound check"));
+    tmpPanel.add(sAT_skipBoundCheck = new JRadioButton("skip array bound check"));
     sAT_skipBoundCheck.addActionListener(sAT_OptionChangedListener);
     bg.add(sAT_skipBoundCheck);
-    tmpPanel.add(sAT_skipArrayCheck=new JCheckBox("skip array store check"));
+    tmpPanel.add(sAT_skipArrayCheck = new JCheckBox("skip array store check"));
     sAT_skipArrayCheck.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(sAT_explicitConv=new JCheckBox("require explicit conversion"));
+    tmpPanel.add(sAT_explicitConv = new JCheckBox("require explicit conversion"));
     sAT_explicitConv.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(new LabelComp("header file", sAT_headerFile=new JTextField()));
+    tmpPanel.add(new LabelComp("header file", sAT_headerFile = new JTextField()));
     sAT_headerFile.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(new LabelComp("boot configuration", sAT_bootConf=new JTextField()));
+    tmpPanel.add(new LabelComp("boot configuration", sAT_bootConf = new JTextField()));
     sAT_bootConf.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(sAT_skipInlineMthd=new JCheckBox("skip method objects for inline methods"));
+    tmpPanel.add(sAT_skipInlineMthd = new JCheckBox("skip method objects for inline methods"));
     sAT_skipInlineMthd.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(sAT_byteString=new JCheckBox("Strings with byte-value (not char)"));
+    tmpPanel.add(sAT_byteString = new JCheckBox("Strings with byte-value (not char)"));
     sAT_byteString.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(sAT_optimEnabled=new JCheckBox("enable code optimizer"));
+    tmpPanel.add(sAT_optimEnabled = new JCheckBox("enable code optimizer"));
     sAT_optimEnabled.addActionListener(sAT_OptionChangedListener);
-    tmpPanel.add(sAT_initDefault=new JButton("init defaults for selected chip"));
+    tmpPanel.add(sAT_initDefault = new JButton("init defaults for selected chip"));
     sAT_initDefault.addActionListener(sAT_OptionChangedListener);
     preselect.addTab("ATmega", tmpPanel);
     
     //south panel
-    tmpPanel=new JPanel();
+    tmpPanel = new JPanel();
     tmpPanel.setLayout(new GridLayout(0, 4, 2, 2));
-    tmpPanel.add(new ThreeComp(new LabelComp("compile files", new JScrollPane(files=new JList(filesList=new DefaultListModel()))),
-        fileAdd=new JButton("add"), fileDel=new JButton("del")));
+    tmpPanel.add(new ThreeComp(new LabelComp("compile files", new JScrollPane(files = new JList(filesList = new DefaultListModel()))),
+        fileAdd=new JButton("add"), fileDel = new JButton("del")));
     filesList.addElement("a"); filesList.addElement("a"); filesList.addElement("a"); filesList.addElement("a"); filesList.addElement("a");//insert dummy entries for later pack-call
     files.setVisibleRowCount(5);
     fileAdd.addActionListener(butAddDelListener);
     fileDel.addActionListener(butAddDelListener);
-    tmpPanel.add(new ThreeComp(new LabelComp("directories", new JScrollPane(dirs=new JList(dirsList=new DefaultListModel()))),
-        dirAdd=new JButton("add"), dirDel=new JButton("del")));
+    tmpPanel.add(new ThreeComp(new LabelComp("directories", new JScrollPane(dirs = new JList(dirsList = new DefaultListModel()))),
+        dirAdd = new JButton("add"), dirDel = new JButton("del")));
     dirs.setVisibleRowCount(5);
     dirAdd.addActionListener(butAddDelListener);
     dirDel.addActionListener(butAddDelListener);
-    tmpPanel.add(new ThreeComp(new LabelComp("dir. non-rec.", new JScrollPane(dirsNonRec=new JList(dirsNonRecList=new DefaultListModel()))),
-        dirNRAdd=new JButton("add"), dirNRDel=new JButton("del")));
+    tmpPanel.add(new ThreeComp(new LabelComp("dir. non-rec.", new JScrollPane(dirsNonRec=new JList(dirsNonRecList = new DefaultListModel()))),
+        dirNRAdd = new JButton("add"), dirNRDel=new JButton("del")));
     dirsNonRec.setVisibleRowCount(5);
     dirNRAdd.addActionListener(butAddDelListener);
     dirNRDel.addActionListener(butAddDelListener);
-    JPanel tmpTmpPanel=new JPanel();
+    JPanel tmpTmpPanel = new JPanel();
     tmpTmpPanel.setLayout(new GridLayout(0, 1, 2, 2));
-    tmpTmpPanel.add(new LabelComp("work.dir.", workDir=new JTextField(System.getProperty("user.dir"))));
+    tmpTmpPanel.add(new LabelComp("work.dir.", workDir = new JTextField(System.getProperty("user.dir"))));
     workDir.setEditable(false);
-    tmpTmpPanel.add(run=new JButton("run"));
+    tmpTmpPanel.add(run = new JButton("run"));
     run.addActionListener(runListener);
     tmpPanel.add(tmpTmpPanel);
     add(tmpPanel, BorderLayout.CENTER);
-    add(new LabelComp("command line:", result=new JTextField()), BorderLayout.SOUTH);
+    add(new LabelComp("command line:", result = new JTextField()), BorderLayout.SOUTH);
     result.setEditable(false);
     pack();
-    Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-    int width=getWidth();
-    int height=getHeight();
-    if (width>screen.getWidth()) width=(int)screen.getWidth();
-    if (height>screen.getHeight()) height=(int)screen.getHeight();
+    Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = getWidth();
+    int height = getHeight();
+    if (width > screen.getWidth()) width = (int)screen.getWidth();
+    if (height > screen.getHeight()) height = (int)screen.getHeight();
     setSize(width, height);
     filesList.removeAllElements(); //clear dummy list
     setVisible(true);
-    fileChooser=new JFileChooser();
-    args=new Vector<>();
+    fileChooser = new JFileChooser();
+    args = new Vector<>();
   }
   
   private void appendOption(StringBuffer line, String option) {
-    if (line.length()>0) line.append(' ');
+    if (line.length() > 0) line.append(' ');
     line.append(option);
     args.add(option);
   }
   
   private void appendOption(StringBuffer line, String opt1, String opt2) {
-    if (line.length()>0) line.append(' ');
+    if (line.length() > 0) line.append(' ');
     line.append(opt1);
     line.append(' ');
     line.append(opt2);
@@ -406,7 +407,7 @@ public class SCG extends JFrame {
   }
   
   private void appendOption(StringBuffer line, String opt1, String opt2, String opt3) {
-    if (line.length()>0) line.append(' ');
+    if (line.length() > 0) line.append(' ');
     line.append(opt1);
     line.append(' ');
     line.append(opt2);
@@ -418,21 +419,21 @@ public class SCG extends JFrame {
   }
   
   private void triggerATmegaEvaluation(Object source) {
-    int size=0;
-    if (sAT_m8.isSelected()) size=8;
-    else if (sAT_m16.isSelected()) size=16;
-    else if (sAT_m32.isSelected()) size=32;
-    else if (sAT_m64.isSelected()) size=64;
-    if (size==0) {
+    int size = 0;
+    if (sAT_m8.isSelected()) size = 8;
+    else if (sAT_m16.isSelected()) size = 16;
+    else if (sAT_m32.isSelected()) size = 32;
+    else if (sAT_m64.isSelected()) size = 64;
+    if (size == 0) {
       sAT_m32.setSelected(true);
-      size=32;
+      size = 32;
     }
-    if (source==sAT_initDefault) {
+    if (source == sAT_initDefault) {
       sAT_skipBoundCheck.setSelected(true);
       sAT_skipArrayCheck.setSelected(true);
       sAT_explicitConv.setSelected(true);
       sAT_optimEnabled.setSelected(false);
-      sAT_headerFile.setText("batmel"+size+".bin");
+      sAT_headerFile.setText("batmel" + size + ".bin");
       sAT_skipInlineMthd.setSelected(true);
       sAT_byteString.setSelected(true);
     }
@@ -441,7 +442,7 @@ public class SCG extends JFrame {
     e_embAddr.setText("0x60");
     E_constInRam.setSelected(true);
     a_addr.setText("0");
-    s_imgSize.setText(size+"k");
+    s_imgSize.setText(size + "k");
     if (sAT_skipBoundCheck.isSelected()) B_skipBoundCheck.setSelected(true);
     else b_rteBound.setSelected(true);
     if (sAT_skipArrayCheck.isSelected()) C_skipArrayCheck.setSelected(true);
@@ -513,23 +514,23 @@ public class SCG extends JFrame {
   
   private void triggerExpertEvaluation(Object source) {
     //check for invalid combinations
-    if (source==L_flat || source==l_streamline || source==e_embAddr || source==E_constInRam) {
+    if (source == L_flat || source == l_streamline || source == e_embAddr || source == E_constInRam) {
       M_indirect.setSelected(false);
       m_dynaMem.setSelected(false);
     }
-    else if (source==M_indirect || source==m_dynaMem) {
+    else if (source == M_indirect || source == m_dynaMem) {
       L_flat.setSelected(false);
       l_streamline.setSelected(false);
       e_embAddr.setText("");
       E_constInRam.setSelected(false);
     }
-    else if (source==h_heapAssign) c_allAssign.setSelected(false);
-    else if (source==c_allAssign) h_heapAssign.setSelected(false);
-    else if (source==B_skipBoundCheck) b_rteBound.setSelected(false);
-    else if (source==b_rteBound) B_skipBoundCheck.setSelected(false);
+    else if (source == h_heapAssign) c_allAssign.setSelected(false);
+    else if (source == c_allAssign) h_heapAssign.setSelected(false);
+    else if (source == B_skipBoundCheck) b_rteBound.setSelected(false);
+    else if (source == b_rteBound) B_skipBoundCheck.setSelected(false);
     //build new command line
     args.clear();
-    StringBuffer line=new StringBuffer();
+    StringBuffer line = new StringBuffer();
     String text;
     if (v_verbose.isSelected()) appendOption(line, "-v");
     if (V_verboseTiming.isSelected()) appendOption(line, "-V");
@@ -537,8 +538,8 @@ public class SCG extends JFrame {
     if (l_streamline.isSelected()) appendOption(line, "-l");
     if (M_indirect.isSelected()) appendOption(line, "-M");
     if (m_dynaMem.isSelected()) appendOption(line, "-m");
-    if ((text=i_options.getText()).length()>0) appendOption(line, "-i", text);
-    if ((text=H_listFiles.getText()).length()>0) appendOption(line, "-H", text);
+    if ((text = i_options.getText()).length() > 0) appendOption(line, "-i", text);
+    if ((text = H_listFiles.getText()).length() > 0) appendOption(line, "-H", text);
     if (h_heapAssign.isSelected()) appendOption(line, "-h");
     if (c_allAssign.isSelected()) appendOption(line, "-c");
     if (w_alternateNew.isSelected()) appendOption(line, "-w");
@@ -561,34 +562,34 @@ public class SCG extends JFrame {
     if (y_byteString.isSelected()) appendOption(line, "-y");
     if (k_skipInlineMthd.isSelected()) appendOption(line, "-k");
     if (Y_nativeFloatInComp.isSelected()) appendOption(line, "-Y");
-    if ((text=N_startMthd.getText()).length()>0) appendOption(line, "-N", text);
-    if ((text=I_maxInlLev.getText()).length()>0) appendOption(line, "-I", text);
-    if ((text=S_autoInlStmts.getText()).length()>0) appendOption(line, "-S", text);
-    if ((text=K_allocMask.getText()).length()>0) appendOption(line, "-K", text);
-    if ((text=s_imgSize.getText()).length()>0) appendOption(line, "-s", text);
-    if (!(text=(String)t_arch.getSelectedItem()).equals("ia32")) appendOption(line, "-t", text);
-    if ((text=T_archOpt.getText()).length()>0) appendOption(line, "-T", text);
-    if ((text=a_addr.getText()).length()>0) appendOption(line, "-a", text);
-    if ((text=Z_reloc.getText()).length()>0) appendOption(line, "-Z", text);
-    if ((text=e_embAddr.getText()).length()>0) appendOption(line, "-e", text);
+    if ((text = N_startMthd.getText()).length() > 0) appendOption(line, "-N", text);
+    if ((text = I_maxInlLev.getText()).length() > 0) appendOption(line, "-I", text);
+    if ((text = S_autoInlStmts.getText()).length() > 0) appendOption(line, "-S", text);
+    if ((text = K_allocMask.getText()).length() > 0) appendOption(line, "-K", text);
+    if ((text = s_imgSize.getText()).length() > 0) appendOption(line, "-s", text);
+    if (!(text = (String)t_arch.getSelectedItem()).equals("ia32")) appendOption(line, "-t", text);
+    if ((text = T_archOpt.getText()).length() > 0) appendOption(line, "-T", text);
+    if ((text = a_addr.getText()).length() > 0) appendOption(line, "-a", text);
+    if ((text = Z_reloc.getText()).length() > 0) appendOption(line, "-Z", text);
+    if ((text = e_embAddr.getText()).length() > 0) appendOption(line, "-e", text);
     if (E_constInRam.isSelected()) appendOption(line, "-E");
-    if ((text=P_specialHeader.getText()).length()>0) appendOption(line, "-P", text);
-    if ((text=p_namePrefix.getText()).length()>0) appendOption(line, "-p", text);
-    if (!(text=(String)o_out.getSelectedItem()).equals("raw")) appendOption(line, "-o", text);
-    if ((text=O_outPar.getText()).length()>0) appendOption(line, "-O", text);
-    if (!(text=(String)u_sym.getSelectedItem()).equals("none")) appendOption(line, "-u", text);
-    if ((text=U_symPar.getText()).length()>0) appendOption(line, "-U", text);
-    if ((text=D_code.getText()).length()>0) appendOption(line, "-D", "code", text);
-    if ((text=D_gcc.getText()).length()>0) appendOption(line, "-D", "gcc", text);
-    if ((text=D_mthd.getText()).length()>0) appendOption(line, "-D", "mthd", text);
-    if ((text=D_sym.getText()).length()>0) appendOption(line, "-D", "sym", text);
-    if ((text=D_rel.getText()).length()>0) appendOption(line, "-D", "rel", text);
-    Enumeration<?> elements=filesList.elements();
+    if ((text = P_specialHeader.getText()).length() > 0) appendOption(line, "-P", text);
+    if ((text = p_namePrefix.getText()).length() > 0) appendOption(line, "-p", text);
+    if (!(text = (String)o_out.getSelectedItem()).equals("raw")) appendOption(line, "-o", text);
+    if ((text = O_outPar.getText()).length() > 0) appendOption(line, "-O", text);
+    if (!(text = (String)u_sym.getSelectedItem()).equals("none")) appendOption(line, "-u", text);
+    if ((text = U_symPar.getText()).length() > 0) appendOption(line, "-U", text);
+    if ((text = D_code.getText()).length() > 0) appendOption(line, "-D", "code", text);
+    if ((text = D_gcc.getText()).length() > 0) appendOption(line, "-D", "gcc", text);
+    if ((text = D_mthd.getText()).length() > 0) appendOption(line, "-D", "mthd", text);
+    if ((text = D_sym.getText()).length() > 0) appendOption(line, "-D", "sym", text);
+    if ((text = D_rel.getText()).length() > 0) appendOption(line, "-D", "rel", text);
+    Enumeration<?> elements = filesList.elements();
     while (elements.hasMoreElements()) appendOption(line, (String)elements.nextElement());
-    elements=dirsList.elements();
+    elements = dirsList.elements();
     while (elements.hasMoreElements()) appendOption(line, (String)elements.nextElement());
-    elements=dirsNonRecList.elements();
-    while (elements.hasMoreElements()) appendOption(line, (String)elements.nextElement()+":");
+    elements = dirsNonRecList.elements();
+    while (elements.hasMoreElements()) appendOption(line, (String)elements.nextElement() + ":");
     result.setText(line.toString());
   }
   
@@ -601,25 +602,24 @@ public class SCG extends JFrame {
     if (filesNotDirs) {
       fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
       fileChooser.setMultiSelectionEnabled(true);
-    }
-    else {
+    } else {
       fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
       fileChooser.setMultiSelectionEnabled(false);
     }
-    if (fileChooser.showOpenDialog(this)==JFileChooser.APPROVE_OPTION) {
-      DefaultListModel model=(DefaultListModel)list.getModel();
-      for (File f: fileChooser.getSelectedFiles())
+    if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+      DefaultListModel model = (DefaultListModel)list.getModel();
+      for (File f : fileChooser.getSelectedFiles())
         model.addElement(f.getAbsolutePath());
     }
   }
   
   private void triggerAddDel(Object source) {
-    if (source==fileAdd) tryAddItem(files, true);
-    else if (source==fileDel) tryDelItems(files);
-    else if (source==dirAdd) tryAddItem(dirs, false);
-    else if (source==dirDel) tryDelItems(dirs);
-    else if (source==dirNRAdd) tryAddItem(dirsNonRec, false);
-    else if (source==dirNRDel) tryDelItems(dirsNonRec);
+    if (source == fileAdd) tryAddItem(files, true);
+    else if (source == fileDel) tryDelItems(files);
+    else if (source == dirAdd) tryAddItem(dirs, false);
+    else if (source == dirDel) tryDelItems(dirs);
+    else if (source == dirNRAdd) tryAddItem(dirsNonRec, false);
+    else if (source == dirNRDel) tryDelItems(dirsNonRec);
     else {
       JOptionPane.showMessageDialog(this, "internal SCG error");
       return;
@@ -629,32 +629,32 @@ public class SCG extends JFrame {
   
   private void doCompile() {
     setEnabled(false);
-    final String[] argv=new String[args.size()];
-    final String argString=result.getText();
+    final String[] argv = new String[args.size()];
+    final String argString = result.getText();
     args.copyInto(argv);
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {
         final JTextArea text;
-        JFrame myWindow=new JFrame("SJC output");
-        myWindow.add(new JScrollPane(text=new JTextArea()));
+        JFrame myWindow = new JFrame("SJC output");
+        myWindow.add(new JScrollPane(text = new JTextArea()));
         text.append("calling SJC with parameters:\n");
-        text.append(argString+"\n\n");
+        text.append(argString + "\n\n");
         text.setWrapStyleWord(false);
         text.setEditable(false);
         myWindow.setSize(400, 500);
         myWindow.setVisible(true);
-        OutputStream textOut=new OutputStream() {
+        OutputStream textOut = new OutputStream() {
           @Override
           public void write(int b) throws IOException {
             text.append((new Character((char)b)).toString());
           }
         };
         int res;
-        Context ctx=new Context(new SunOS(textOut));
-        SymbolFactory.preparedReflectionSymbols=new ReflectionSymbols();
-        if ((res=ctx.compile(argv, "vJRE"))==0) ctx.writeSymInfo();
-        else ctx.out.println("\ncompiler result: "+res);
+        Context ctx = new Context(new SunOS(textOut));
+        SymbolFactory.preparedReflectionSymbols = new ReflectionSymbols();
+        if ((res = ctx.compile(argv, "vJRE")) == 0) ctx.writeSymInfo();
+        else ctx.out.println("\ncompiler result: " + res);
       }
     });
     setEnabled(true);

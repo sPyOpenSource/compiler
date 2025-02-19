@@ -49,19 +49,19 @@ public class RawOut extends OutputFormat {
   
   @Override
   public boolean setParameter(String parm, TextPrinter v) {
-    if (fname!=null) {
+    if (fname != null) {
       v.println("filename already set for RawOut");
       return false;
     }
-    fname=parm;
+    fname = parm;
     return true;
   }
   
   @Override
   public boolean checkParameter(OsIO iO, TextPrinter errOut) {
     //nothing to check, just remember
-    bin=iO.getNewBinWriter();
-    out=errOut;
+    bin = iO.getNewBinWriter();
+    out = errOut;
     return true;
   }
   
@@ -69,14 +69,14 @@ public class RawOut extends OutputFormat {
   public boolean writeOutput(ImageContainer img, ImageContainer cimg, int cilen) {
     boolean res;
     
-    if (fname==null) fname=DEF_FNAME;
+    if (fname == null) fname = DEF_FNAME;
     
     if (!bin.open(fname)) {
       out.print("Error opening output-file ");
       out.println(fname);
       return false;
     }
-    res=img.appendImage(bin);
+    res = img.appendImage(bin);
     bin.close();
     return res;
   }

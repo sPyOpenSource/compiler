@@ -38,17 +38,16 @@ public class FileBinWriter extends BinWriter {
 	private boolean error;
 	
 	public FileBinWriter() {
-		file=null;
-		error=false;
+		file = null;
+		error = false;
 	}
 	
   @Override
 	public boolean open(String fname) {
 		try {
-			file=new RandomAccessFile(fname, "rw");
+			file = new RandomAccessFile(fname, "rw");
       file.setLength(0);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			return false;
 		}
 		return true;
@@ -56,12 +55,11 @@ public class FileBinWriter extends BinWriter {
 	
   @Override
 	public void close() {
-		if (file!=null) {
+		if (file != null) {
 			try {
 				file.close();
-			}
-			catch (IOException e) {}
-			file=null;
+			} catch (IOException e) {}
+			file = null;
 		}
 	}
 	
@@ -70,9 +68,8 @@ public class FileBinWriter extends BinWriter {
 	  if (error) return false;
 	  try {
       file.write(what, offset, len);
-	  }
-	  catch (IOException e) {
-	    error=true;
+	  } catch (IOException e) {
+	    error = true;
 	    return false;
 	  }
 	  return true;
@@ -82,9 +79,8 @@ public class FileBinWriter extends BinWriter {
   public boolean setSize(int addBytes) {
     try {
       file.setLength(file.getFilePointer()+addBytes);
-    }
-    catch (IOException e) {
-      error=true;
+    } catch (IOException e) {
+      error = true;
       return false;
     }
     return true;
