@@ -682,71 +682,71 @@ $      36 | D      68 | d    100
   private boolean checkKeyword(char buf[], int len) {
     switch (len) {
       case 2:
-        if (equalTo(buf, "if")) { l2aSym.type=S_FLC; l2aSym.par=F_IF;    return true; }
-        if (equalTo(buf, "do")) { l2aSym.type=S_FLC; l2aSym.par=F_DO;    return true; }
+        if (equalTo(buf, "if")) { l2aSym.type = S_FLC; l2aSym.par = F_IF;    return true; }
+        if (equalTo(buf, "do")) { l2aSym.type = S_FLC; l2aSym.par = F_DO;    return true; }
         break;
       case 3:
-        if (equalTo(buf, "int")) { l2aSym.type=S_TYP; l2aSym.par=T_INT;   return true; }
-        if (equalTo(buf, "new")) { l2aSym.type=S_OKE; l2aSym.par=O_NEW;   return true; }
-        if (equalTo(buf, "for")) { l2aSym.type=S_FLC; l2aSym.par=F_FOR;   return true; }
-        if (equalTo(buf, "try")) { l2aSym.type=S_FLC; l2aSym.par=F_TRY;   return true; }
+        if (equalTo(buf, "int")) { l2aSym.type = S_TYP; l2aSym.par = T_INT;   return true; }
+        if (equalTo(buf, "new")) { l2aSym.type = S_OKE; l2aSym.par = O_NEW;   return true; }
+        if (equalTo(buf, "for")) { l2aSym.type = S_FLC; l2aSym.par = F_FOR;   return true; }
+        if (equalTo(buf, "try")) { l2aSym.type = S_FLC; l2aSym.par = F_TRY;   return true; }
         break;
       case 4:
-        if (equalTo(buf, "else")) { l2aSym.type=S_FLC; l2aSym.par=F_ELSE;  return true; }
-        if (equalTo(buf, "null")) { l2aSym.type=S_NUM; l2aSym.par=T_NULL;  return true; }
-        if (equalTo(buf, "true")) { l2aSym.type=S_NUM; l2aSym.par=T_BOOL;  l2aSym.intBuf=1; return true; }
-        if (equalTo(buf, "byte")) { l2aSym.type=S_TYP; l2aSym.par=T_BYTE;  return true; }
-        if (equalTo(buf, "long")) { l2aSym.type=S_TYP; l2aSym.par=T_LONG;  return true; }
-        if (equalTo(buf, "char")) { l2aSym.type=S_TYP; l2aSym.par=T_CHAR;  return true; }
-        if (equalTo(buf, "case")) { l2aSym.type=S_FLC; l2aSym.par=F_CASE;  return true; }
-        if (equalTo(buf, "void")) { l2aSym.type=S_OKE; l2aSym.par=O_VOID;  return true; }
+        if (equalTo(buf, "else")) { l2aSym.type = S_FLC; l2aSym.par = F_ELSE;  return true; }
+        if (equalTo(buf, "null")) { l2aSym.type = S_NUM; l2aSym.par = T_NULL;  return true; }
+        if (equalTo(buf, "true")) { l2aSym.type = S_NUM; l2aSym.par = T_BOOL;  l2aSym.intBuf = 1; return true; }
+        if (equalTo(buf, "byte")) { l2aSym.type = S_TYP; l2aSym.par = T_BYTE;  return true; }
+        if (equalTo(buf, "long")) { l2aSym.type = S_TYP; l2aSym.par = T_LONG;  return true; }
+        if (equalTo(buf, "char")) { l2aSym.type = S_TYP; l2aSym.par = T_CHAR;  return true; }
+        if (equalTo(buf, "case")) { l2aSym.type = S_FLC; l2aSym.par = F_CASE;  return true; }
+        if (equalTo(buf, "void")) { l2aSym.type = S_OKE; l2aSym.par = O_VOID;  return true; }
         break;
       case 5:
-        if (equalTo(buf, "false")) { l2aSym.type=S_NUM; l2aSym.par=T_BOOL;  l2aSym.intBuf=0; return true; }
-        if (equalTo(buf, "while")) { l2aSym.type=S_FLC; l2aSym.par=F_WHILE; return true; }
-        if (equalTo(buf, "short")) { l2aSym.type=S_TYP; l2aSym.par=T_SHRT;  return true; }
-        if (equalTo(buf, "final")) { l2aSym.type=S_MOD; l2aSym.par=M_FIN;   return true; }
-        if (equalTo(buf, "break")) { l2aSym.type=S_FLC; l2aSym.par=F_BRK;   return true; }
-        if (equalTo(buf, "class")) { l2aSym.type=S_OKE; l2aSym.par=O_CLSS;  return true; }
-        if (equalTo(buf, "float")) { l2aSym.type=S_TYP; l2aSym.par=T_FLT;   return true; }
-        if (equalTo(buf, "catch")) { l2aSym.type=S_FLC; l2aSym.par=F_CATCH; return true; }
-        if (equalTo(buf, "throw")) { l2aSym.type=S_FLC; l2aSym.par=F_THROW; return true; }
+        if (equalTo(buf, "false")) { l2aSym.type = S_NUM; l2aSym.par = T_BOOL;  l2aSym.intBuf = 0; return true; }
+        if (equalTo(buf, "while")) { l2aSym.type = S_FLC; l2aSym.par = F_WHILE; return true; }
+        if (equalTo(buf, "short")) { l2aSym.type = S_TYP; l2aSym.par = T_SHRT;  return true; }
+        if (equalTo(buf, "final")) { l2aSym.type = S_MOD; l2aSym.par = M_FIN;   return true; }
+        if (equalTo(buf, "break")) { l2aSym.type = S_FLC; l2aSym.par = F_BRK;   return true; }
+        if (equalTo(buf, "class")) { l2aSym.type = S_OKE; l2aSym.par = O_CLSS;  return true; }
+        if (equalTo(buf, "float")) { l2aSym.type = S_TYP; l2aSym.par = T_FLT;   return true; }
+        if (equalTo(buf, "catch")) { l2aSym.type = S_FLC; l2aSym.par = F_CATCH; return true; }
+        if (equalTo(buf, "throw")) { l2aSym.type = S_FLC; l2aSym.par = F_THROW; return true; }
         break;
       case 6:
-        if (equalTo(buf, "public")) { l2aSym.type=S_MOD; l2aSym.par=M_PUB;    return true; }
-        if (equalTo(buf, "static")) { l2aSym.type=S_MOD; l2aSym.par=M_STAT;   return true; }
-        if (equalTo(buf, "native")) { l2aSym.type=S_MOD; l2aSym.par=M_NAT;    return true; }
-        if (equalTo(buf, "switch")) { l2aSym.type=S_FLC; l2aSym.par=F_SWTCH;  return true; }
-        if (equalTo(buf, "return")) { l2aSym.type=S_FLC; l2aSym.par=F_RET;    return true; }
-        if (equalTo(buf, "import")) { l2aSym.type=S_OKE; l2aSym.par=O_IMPT;   return true; }
-        if (equalTo(buf, "double")) { l2aSym.type=S_TYP; l2aSym.par=T_DBL;    return true; }
-        if (equalTo(buf, "throws")) { l2aSym.type=S_FLC; l2aSym.par=F_THRWS;  return true; }
-        if (equalTo(buf, "assert")) { l2aSym.type=S_FLC; l2aSym.par=F_ASSRT;  return true; }
+        if (equalTo(buf, "public")) { l2aSym.type = S_MOD; l2aSym.par = M_PUB;    return true; }
+        if (equalTo(buf, "static")) { l2aSym.type = S_MOD; l2aSym.par = M_STAT;   return true; }
+        if (equalTo(buf, "native")) { l2aSym.type = S_MOD; l2aSym.par = M_NAT;    return true; }
+        if (equalTo(buf, "switch")) { l2aSym.type = S_FLC; l2aSym.par = F_SWTCH;  return true; }
+        if (equalTo(buf, "return")) { l2aSym.type = S_FLC; l2aSym.par = F_RET;    return true; }
+        if (equalTo(buf, "import")) { l2aSym.type = S_OKE; l2aSym.par = O_IMPT;   return true; }
+        if (equalTo(buf, "double")) { l2aSym.type = S_TYP; l2aSym.par = T_DBL;    return true; }
+        if (equalTo(buf, "throws")) { l2aSym.type = S_FLC; l2aSym.par = F_THRWS;  return true; }
+        if (equalTo(buf, "assert")) { l2aSym.type = S_FLC; l2aSym.par = F_ASSRT;  return true; }
         break;
       case 7:
-        if (equalTo(buf, "private")) { l2aSym.type=S_MOD; l2aSym.par=M_PRIV;  return true; }
-        if (equalTo(buf, "boolean")) { l2aSym.type=S_TYP; l2aSym.par=T_BOOL;  return true; }
-        if (equalTo(buf, "default")) { l2aSym.type=S_FLC; l2aSym.par=F_DFLT;  return true; }
-        if (equalTo(buf, "package")) { l2aSym.type=S_OKE; l2aSym.par=O_PACK;  return true; }
-        if (equalTo(buf, "extends")) { l2aSym.type=S_OKE; l2aSym.par=O_EXTS;  return true; }
-        if (equalTo(buf, "finally")) { l2aSym.type=S_FLC; l2aSym.par=F_FIN;   return true; }
+        if (equalTo(buf, "private")) { l2aSym.type = S_MOD; l2aSym.par = M_PRIV;  return true; }
+        if (equalTo(buf, "boolean")) { l2aSym.type = S_TYP; l2aSym.par = T_BOOL;  return true; }
+        if (equalTo(buf, "default")) { l2aSym.type = S_FLC; l2aSym.par = F_DFLT;  return true; }
+        if (equalTo(buf, "package")) { l2aSym.type = S_OKE; l2aSym.par = O_PACK;  return true; }
+        if (equalTo(buf, "extends")) { l2aSym.type = S_OKE; l2aSym.par = O_EXTS;  return true; }
+        if (equalTo(buf, "finally")) { l2aSym.type = S_FLC; l2aSym.par = F_FIN;   return true; }
         break;
       case 8:
-        if (equalTo(buf, "abstract")) { l2aSym.type=S_MOD; l2aSym.par=M_ABSTR; return true; }
-        if (equalTo(buf, "continue")) { l2aSym.type=S_FLC; l2aSym.par=F_CNT;   return true; }
-        if (equalTo(buf, "volatile")) { l2aSym.type=S_MOD; l2aSym.par=M_VOLAT; return true; }
+        if (equalTo(buf, "abstract")) { l2aSym.type = S_MOD; l2aSym.par = M_ABSTR; return true; }
+        if (equalTo(buf, "continue")) { l2aSym.type = S_FLC; l2aSym.par = F_CNT;   return true; }
+        if (equalTo(buf, "volatile")) { l2aSym.type = S_MOD; l2aSym.par = M_VOLAT; return true; }
         break;
       case 9:
-        if (equalTo(buf, "protected")) { l2aSym.type=S_MOD; l2aSym.par=M_PROT;  return true; }
-        if (equalTo(buf, "interface")) { l2aSym.type=S_OKE; l2aSym.par=O_INTF;  return true; }
-        if (equalTo(buf, "transient")) { l2aSym.type=S_MOD; l2aSym.par=M_TRANS; return true; }
+        if (equalTo(buf, "protected")) { l2aSym.type = S_MOD; l2aSym.par = M_PROT;  return true; }
+        if (equalTo(buf, "interface")) { l2aSym.type = S_OKE; l2aSym.par = O_INTF;  return true; }
+        if (equalTo(buf, "transient")) { l2aSym.type = S_MOD; l2aSym.par = M_TRANS; return true; }
         break;
       case 10:
-        if (equalTo(buf, "instanceof")) { l2aSym.type=S_CMP; l2aSym.par=C_INOF;  return true; }
-        if (equalTo(buf, "implements")) { l2aSym.type=S_OKE; l2aSym.par=O_IMPL;  return true; }
+        if (equalTo(buf, "instanceof")) { l2aSym.type = S_CMP; l2aSym.par = C_INOF;  return true; }
+        if (equalTo(buf, "implements")) { l2aSym.type = S_OKE; l2aSym.par = O_IMPL;  return true; }
         break;
       case 12:
-        if (equalTo(buf, "synchronized")) { l2aSym.type=S_MOD; l2aSym.par=M_SYNC; return true; }
+        if (equalTo(buf, "synchronized")) { l2aSym.type = S_MOD; l2aSym.par = M_SYNC; return true; }
         break;
     }
     return false;

@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=SymbolFactory
-comment0.text=\n\ SymbolAdmin\:\ handling\ of\ symbol\ informer\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091123\ removed\ BootStrapSymbols\n\ \ version\ 091009\ added\ support\ for\ os-dependent\ ReflectionSymbols\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080118\ added\ MthdSymbols\n\ \ version\ 070727\ added\ BootStrapSymbols\n\ \ version\ 070714\ added\ RTESymbols\n\ \ version\ 070713\ initial\ version\n
-comment1.params=v
-comment1.target=void\ printKnownOutputFormats(sjc.osio.TextPrinter)
-comment2.params=name
-comment2.target=SymbolInformer\ getSymbolGenerator(java.lang.String)
-numComments=3

@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=ATmegaOptInstr
-comment0.text=\n\ ATmegaOptInstr\:\ adds\ a\ jmpSrc\ to\ LittleEInstr\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 100805\ added\ cleanup\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 081015\ initial\ version\n
-comment1.params=maxInstrSize
-comment1.target=ATmegaOptInstr(int)
-comment2.params=
-comment2.target=void\ cleanup()
-numComments=3

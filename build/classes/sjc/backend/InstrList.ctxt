@@ -1,4 +1,0 @@
-#BlueJ class context
-comment0.target=InstrList
-comment0.text=\n\ InstrList\:\ list\ of\ instructions\ to\ be\ fixed\ up\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 081015\ made\ fields\ public\ to\ allow\ reusage\ in\ optimizers\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 060627\ initial\ version\n
-numComments=1

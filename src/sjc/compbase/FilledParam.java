@@ -29,23 +29,23 @@ import sjc.osio.TextPrinter;
  */
 
 public class FilledParam extends Token {
-	public Expr expr;
-	public FilledParam nextParam;
-	
-	public FilledParam(Expr e, int fid, int il, int ic) {
-		super(fid, il, ic);
-		expr=e;
-	}
-	
-	public void printTypes(TextPrinter v) {
-	  FilledParam pars;
-	  
-	  expr.printType(v);
-	  pars=nextParam;
-	  while (pars!=null) {
-			v.print(",");
-			pars.expr.printType(v);
-			pars=pars.nextParam;
-	  }
-	}
+    public Expr expr;
+    public FilledParam nextParam;
+
+    public FilledParam(Expr e, int fid, int il, int ic) {
+        super(fid, il, ic);
+        expr = e;
+    }
+
+    public void printTypes(TextPrinter v) {
+        FilledParam pars;
+
+        expr.printType(v);
+        pars = nextParam;
+        while (pars != null) {
+            v.print(",");
+            pars.expr.printType(v);
+            pars = pars.nextParam;
+        }
+    }
 }

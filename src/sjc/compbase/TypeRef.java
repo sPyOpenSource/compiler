@@ -70,14 +70,14 @@ import sjc.osio.TextPrinter;
 public class TypeRef extends Token {
   //internal types
   public final static int T_RES  = 0;
-	public final static int T_BYTE = StdTypes.T_BYTE; //"byte"
-	public final static int T_SHRT = StdTypes.T_SHRT; //"short"
-	public final static int T_INT  = StdTypes.T_INT;  //"int"
-	public final static int T_LONG = StdTypes.T_LONG; //"long"
-	public final static int T_FLT  = StdTypes.T_FLT;  //"float"
-	public final static int T_DBL  = StdTypes.T_DBL;  //"double"
-	public final static int T_CHAR = StdTypes.T_CHAR; //"char"
-	public final static int T_BOOL = StdTypes.T_BOOL; //"boolean"
+    public final static int T_BYTE = StdTypes.T_BYTE; //"byte"
+    public final static int T_SHRT = StdTypes.T_SHRT; //"short"
+    public final static int T_INT  = StdTypes.T_INT;  //"int"
+    public final static int T_LONG = StdTypes.T_LONG; //"long"
+    public final static int T_FLT  = StdTypes.T_FLT;  //"float"
+    public final static int T_DBL  = StdTypes.T_DBL;  //"double"
+    public final static int T_CHAR = StdTypes.T_CHAR; //"char"
+    public final static int T_BOOL = StdTypes.T_BOOL; //"boolean"
   public final static int T_NULL = StdTypes.T_NULL; //null-type, unresolved
   public final static int T_NNPT = StdTypes.T_NNPT; //null-type, pointer
   public final static int T_NDPT = StdTypes.T_NDPT; //null-type, double sized pointer

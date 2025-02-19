@@ -39,14 +39,14 @@ public class Token {
   public final static String ERR_UNREACHABLE_CODE = "unreachable code";
   
   public Token(int fid, int il, int ic) {
-    fileID=fid;
-    line=il;
-    col=ic;
+    fileID = fid;
+    line = il;
+    col = ic;
   }
 
   public void printPos(Context ctx, String msg) {
     ctx.printPos(fileID, line, col);
-    if (msg!=null) {
+    if (msg != null) {
       ctx.out.print(':');
       ctx.out.print(' ');
       ctx.out.print(msg);
@@ -56,13 +56,13 @@ public class Token {
   public void compErr(Context ctx, String msg) {
     ctx.out.print("### compile-error at ");
     ctx.printPos(fileID, line, col);
-    if (msg!=null) {
+    if (msg != null) {
       ctx.out.print(':');
       ctx.out.print(' ');
       ctx.out.println(msg);
     }
     else ctx.out.println();
-    ctx.err=true;
+    ctx.err = true;
   }
   
   public void flowWarn(Context ctx, String msg) {

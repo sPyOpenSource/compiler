@@ -49,13 +49,13 @@ package sjc.compbase;
 
 public class Modifier {
   //modifier order is important for visibility check, assumption: pub<prot<pacp<priv
-	public final static int M_PUB           = 0x00000001; //"public"
-	public final static int M_PROT          = 0x00000002; //"protected"
-	public final static int M_PACP          = 0x00000004; //package private (without modifier in java)
-	public final static int M_PRIV          = 0x00000008; //"private"
-	public final static int M_FIN           = 0x00000010; //"final"
-	public final static int M_STAT          = 0x00000020; //"static"
-	public final static int M_ABSTR         = 0x00000040; //"abstract"
+    public final static int M_PUB           = 0x00000001; //"public"
+    public final static int M_PROT          = 0x00000002; //"protected"
+    public final static int M_PACP          = 0x00000004; //package private (without modifier in java)
+    public final static int M_PRIV          = 0x00000008; //"private"
+    public final static int M_FIN           = 0x00000010; //"final"
+    public final static int M_STAT          = 0x00000020; //"static"
+    public final static int M_ABSTR         = 0x00000040; //"abstract"
   public final static int M_NAT           = 0x00000080; //"native"
   public final static int M_TRANS         = 0x00000200; //"transient"
   public final static int M_ANNO          = 0x00000400; //"@" for annotation modifier

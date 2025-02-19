@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=CompressionFactory
-comment0.text=\n\ CompressionFactory\:\ creation\ of\ compressors\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 080701\ fixed\ comment\n\ \ version\ 060817\ initial\ version\n
-comment1.params=v
-comment1.target=void\ printKnownCompressors(sjc.osio.TextPrinter)
-comment2.params=name
-comment2.target=Compressor\ getCompressor(java.lang.String)
-numComments=3

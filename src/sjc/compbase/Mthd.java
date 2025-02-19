@@ -100,9 +100,9 @@ public abstract class Mthd extends Token {
   
   public Mthd(String in, int im, int fid, int il, int ic) {
     super(fid, il, ic);
-    name=in;
-    modifier=im;
-    relOff=INV_RELOFF;
+    name = in;
+    modifier = im;
+    relOff = INV_RELOFF;
   }
   
   public abstract Mthd copy();
@@ -116,27 +116,27 @@ public abstract class Mthd extends Token {
   }
   
   public void resetResolveState() {
-    varSize=0;
-    stmtCnt=0;
-    isResolved=false;
+    varSize = 0;
+    stmtCnt = 0;
+    isResolved = false;
   }
   
   public void printSig(TextPrinter v) {
-    if (retType!=null) retType.printType(v);
+    if (retType != null) retType.printType(v);
     else v.print("#constr#");
     v.print(" ");
     printNamePar(v);
   }
   
   public void printNamePar(TextPrinter v) {
-    Param par=param;
+    Param par = param;
     
     v.print(name);
     v.print("(");
-    if (par!=null) while (true) {
+    if (par != null) while (true) {
       par.type.printType(v);
-      par=par.nextParam;
-      if (par!=null) v.print(',');
+      par = par.nextParam;
+      if (par != null) v.print(',');
       else break;
     }
     v.print(")");
@@ -144,36 +144,36 @@ public abstract class Mthd extends Token {
   
   public int checkParamConversions(FilledParam cmpPar, boolean doBaseConversions, Context ctx) {
     Param myPar;
-    int cmpRes, count=0;
+    int cmpRes, count = 0;
     
-    myPar=param;
-    while (myPar!=null && cmpPar!=null) {
-      cmpRes=cmpPar.expr.compareType(myPar.type, true, ctx);
-      if (cmpRes==TypeRef.C_NP || cmpRes==TypeRef.C_TT) {
-        if (!doBaseConversions || cmpPar.expr.getBaseTypeConvertionType(myPar.type, false)==null) {
+    myPar = param;
+    while (myPar != null && cmpPar != null) {
+      cmpRes = cmpPar.expr.compareType(myPar.type, true, ctx);
+      if (cmpRes == TypeRef.C_NP || cmpRes == TypeRef.C_TT) {
+        if (!doBaseConversions || cmpPar.expr.getBaseTypeConvertionType(myPar.type, false) == null) {
           return -1; //parameter not convertable to our required type
         }
       }
-      if (cmpRes!=TypeRef.C_EQ) count++;
-      myPar=myPar.nextParam;
-      cmpPar=cmpPar.nextParam;
+      if (cmpRes != TypeRef.C_EQ) count++;
+      myPar = myPar.nextParam;
+      cmpPar = cmpPar.nextParam;
     }
-    if (myPar==null && cmpPar==null) return count; //everything matches, return needed conversions
+    if (myPar == null && cmpPar == null) return count; //everything matches, return needed conversions
     return -1; //different param-count
   }
   
   public boolean checkVarWriteState(Token checkPosition, Context ctx) {
-    VrblList vrblList=owner.writeCheckFinalVars;
-    boolean all=true;
-    while (vrblList!=null) {
-      if ((vrblList.vrbl.modifier&Modifier.MF_ISWRITTEN)==0) {
+    VrblList vrblList = owner.writeCheckFinalVars;
+    boolean all = true;
+    while (vrblList != null) {
+      if ((vrblList.vrbl.modifier & Modifier.MF_ISWRITTEN) == 0) {
         if (!all) ctx.out.println(); //already printed a variable
         checkPosition.printPos(ctx, "final variable ");
         ctx.out.print(vrblList.vrbl.name);
         ctx.out.print(" needs to be initialized in constructor");
-        all=false;
+        all = false;
       }
-      vrblList=vrblList.next;
+      vrblList = vrblList.next;
     }
     return all;
   }
@@ -182,21 +182,22 @@ public abstract class Mthd extends Token {
     Param myPar, cmpPar;
     
     if (!name.equals(cmp.name)) return false; //name different
-    myPar=param;
-    cmpPar=cmp.param;
-    while (myPar!=null && cmpPar!=null) {
-      if (myPar.type.compareType(cmpPar.type, false, ctx)!=TypeRef.C_EQ) return false; //other signature
-      myPar=myPar.nextParam;
-      cmpPar=cmpPar.nextParam;
+    myPar = param;
+    cmpPar = cmp.param;
+    while (myPar != null && cmpPar != null) {
+      if (myPar.type.compareType(cmpPar.type, false, ctx) != TypeRef.C_EQ) return false; //other signature
+      myPar = myPar.nextParam;
+      cmpPar = cmpPar.nextParam;
     }
-    if (myPar==null && cmpPar==null) return true; //everything matches
-    return false; //different param-count
+      //everything matches
+      //different param-count
+    return myPar == null && cmpPar == null; 
   }
   
   public boolean isOverloadedBy(Mthd overloader) {
-    while (overloader.ovldMthd!=null) {
-      if (overloader.ovldMthd==this) return true;
-      overloader=overloader.ovldMthd;
+    while (overloader.ovldMthd != null) {
+      if (overloader.ovldMthd == this) return true;
+      overloader = overloader.ovldMthd;
     }
     return false;
   }
@@ -204,16 +205,16 @@ public abstract class Mthd extends Token {
   public boolean handlesThrowable(Token whom, Unit thrown, Context ctx) {
     QualIDList thr;
     
-    if (thrown==null) {
+    if (thrown == null) {
       compErr(ctx, "uninitialized thrown in Mthd.handlesThrowable");
       return false;
     }
     if (!ctx.excChecked.isParent(thrown, ctx)) return true; //not a checked Throwable
     //check declared throwables
-    thr=throwsList;
-    while (thr!=null) {
+    thr = throwsList;
+    while (thr != null) {
       if (thr.qid.unitDest.isParent(thrown, ctx)) return true;
-      thr=thr.nextQualID;
+      thr = thr.nextQualID;
     }
     //not declared, print error (not done by caller)
     whom.printPos(ctx, "thrown and checked exception ");
@@ -225,29 +226,29 @@ public abstract class Mthd extends Token {
   public void enterCodeRef(Object loc, int offset, Context ctx) {
     AddrList fixupObject;
     
-    if (outputLocation!=null) ctx.arch.putCodeRef(loc, offset, outputLocation, ctx.codeStart);
+    if (outputLocation != null) ctx.arch.putCodeRef(loc, offset, outputLocation, ctx.codeStart);
     else {
-      if (ctx.freeAddrLists==null) fixupObject=new AddrList();
+      if (ctx.freeAddrLists == null) fixupObject = new AddrList();
       else {
-        fixupObject=ctx.freeAddrLists;
-        ctx.freeAddrLists=ctx.freeAddrLists.next;
+        fixupObject = ctx.freeAddrLists;
+        ctx.freeAddrLists = ctx.freeAddrLists.next;
       }
-      fixupObject.loc=loc;
-      fixupObject.off=offset;
-      fixupObject.next=fixupList;
-      fixupList=fixupObject;
+      fixupObject.loc = loc;
+      fixupObject.off = offset;
+      fixupObject.next = fixupList;
+      fixupList = fixupObject;
     }
   }
   
   public void enterOutputAddr(Object validOutputLocation, Context ctx) {
     AddrList toRelease;
     
-    outputLocation=validOutputLocation;
-    while ((toRelease=fixupList)!=null) {
-      fixupList=fixupList.next;
+    outputLocation = validOutputLocation;
+    while ((toRelease = fixupList) != null) {
+      fixupList = fixupList.next;
       ctx.arch.putCodeRef(toRelease.loc, toRelease.off, outputLocation, ctx.codeStart);
-      toRelease.next=ctx.freeAddrLists;
-      ctx.freeAddrLists=toRelease;
+      toRelease.next = ctx.freeAddrLists;
+      ctx.freeAddrLists = toRelease;
     }
   }
 }

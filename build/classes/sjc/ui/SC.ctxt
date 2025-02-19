@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=SC
-comment0.text=\n\ SC\:\ manage\ a\ compilation\n\ \n\ @author\ S.\ Frenz\n\ @version\ 100422\ adopted\ changed\ SunOS\n\ \ version\ 091009\ added\ support\ for\ os-dependent\ symbol\ informer\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ sjc.structure\n\ \ version\ 090227\ adopted\ changed\ compile-interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080712\ adopted\ changed\ compile-interface\n\ \ version\ 080702\ adopted\ changed\ symInfo-debug-interface\n\ \ version\ 060720\ moved\ functionallity\ to\ Context\n\ \ version\ 060714\ added\ support\ for\ runtime\ call\ on\ bound\ exception\n\ \ version\ 060628\ added\ support\ for\ static\ compilation\n\ \ version\ 060607\ initial\ version\n
-comment1.params=argv
-comment1.target=void\ main(java.lang.String[])
-numComments=2

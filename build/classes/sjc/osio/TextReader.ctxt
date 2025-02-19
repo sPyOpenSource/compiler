@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=TextReader
-comment0.text=\n\ TextReader\:\ interface\ to\ read\ text\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 100513\ changed\ initData\ and\ removed\ abstract\ modifier\n\ \ version\ 100114\ removed\ len\ as\ data\ now\ must\ not\ contain\ extra\ bytes\ \n\ \ version\ 091109\ fixed\ column\n\ \ version\ 091102\ made\ pos\ and\ data\ public\ to\ be\ read\ outside\ package\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ structure\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080202\ removed\ eof\ as\ it\ is\ not\ required\ anymore\n\ \ version\ 070331\ got\ system\ independent\ code\n\ \ version\ 060712\ streamlined\ version\n\ \ version\ 060607\ initial\ version\n
-comment1.params=idata
-comment1.target=boolean\ initData(byte[])
-comment2.params=
-comment2.target=void\ readChar()
-numComments=3

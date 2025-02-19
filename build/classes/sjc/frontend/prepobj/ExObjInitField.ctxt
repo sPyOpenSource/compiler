@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=ExObjInitField
-comment0.text=\n\ ExObjInitField\:\ field\ that\ was\ explicitly\ set\ for\ ExObjInit\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 091209\ initial\ version\n
-comment1.params=fid\ il\ ic
-comment1.target=ExObjInitField(int,\ int,\ int)
-numComments=2

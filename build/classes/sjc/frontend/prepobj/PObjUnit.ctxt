@@ -1,8 +1,0 @@
-#BlueJ class context
-comment0.target=PObjUnit
-comment0.text=\n\ PObjUnit\:\ placeholder\ for\ a\ single\ class\ containing\ references\ to\ compile-time\ prepared\ objects\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121020\ added\ support\ for\ getSourceType\n\ \ version\ 091215\ adopted\ changed\ Unit\n\ \ version\ 091209\ initial\ version\n
-comment1.params=
-comment1.target=java.lang.String\ getSourceType()
-comment2.params=ctx\ dbw
-comment2.target=void\ writeDebug(sjc.compbase.Context,\ sjc.debug.DebugWriter)
-numComments=3

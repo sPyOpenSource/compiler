@@ -76,11 +76,11 @@ public abstract class AccVar extends Token {
   private final static String NAMEOFVRBL = "name of variable ";
   private final static String ALREADYUSED = " already used";
   
-	public String name;
-	public TypeRef type;
+    public String name;
+    public TypeRef type;
   public Unit owner;
-	//required fields for interface-checks, overloading and code-generation
-	public int minSize, relOff, location; //varPos is offset for scalars and relocs
+    //required fields for interface-checks, overloading and code-generation
+    public int minSize, relOff, location; //varPos is offset for scalars and relocs
   public int modifier; //modifier of variable
   //note: for inline-arrays varPos contains offset of length field,
   //   the real array offset is defined through instScalarSize of containing unit
