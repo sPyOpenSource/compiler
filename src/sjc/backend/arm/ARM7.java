@@ -71,6 +71,7 @@ public class ARM7 extends Architecture {
   public final static int IT_ADDpatched  = 6;
   public final static int IT_HELPER      = 7;
   public final static int IT_STEX        = 8;
+  
   //condition codes
   public final static int IC_EQ = 0x00000000; //equal
   public final static int IC_NE = 0x10000000; //not equal
@@ -87,6 +88,7 @@ public class ARM7 extends Architecture {
   public final static int IC_GT = 0xC0000000; //signed greater
   public final static int IC_LE = 0xD0000000; //signed less than or equal
   public final static int IC_AL = 0xE0000000; //always (unconditional)
+  
   //instruction opcodes
   public final static int IOB_BRANCHwoLink = 0x0A000000;
   public final static int IOB_BRANCHwtLink = 0x0B000000;
@@ -561,6 +563,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type in genConvertVal");
   }
   
+  @Override
   public void genDup(int dst, int src, int type) {
     int dstReg, srcReg;
     if ((dstReg=getReg(1, dst, true))==-1 || (srcReg=getReg(1, src, false))==-1) return;
@@ -572,25 +575,30 @@ public class ARM7 extends Architecture {
     }
   }
   
+  @Override
   public void genPushConstVal(int val, int type) {
     insMoveConst(IC_AL, RegHLP, val, 0);
     insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1<<RegHLP);
   }
   
+  @Override
   public void genPushConstDoubleOrLongVal(long val, boolean asDouble) {
     insMoveConst(IC_AL, RegHLP, (int)val, 0);
     insMoveConst(IC_AL, RegLR, (int)(val>>>32), 0);
     insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, (1<<RegHLP)|(1<<RegLR));
   }
   
+  @Override
   public void genPush(int src, int type) {
     insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, src); //src is already a mask
   }
   
+  @Override
   public void genPop(int dst, int type) {
     insBlockTransfer(IC_AL, IOBT_LDMFDu, RegSP, dst); //dst is already a mask
   }
   
+  @Override
   public void genAssign(int dst, int srcReg, int type) {
     int src, src2;
     if ((dst=getReg(1, dst, false))==-1 || (src=getReg(1, srcReg, false))==-1) return;
@@ -612,6 +620,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type in genAssign ");
   }
   
+  @Override
   public void genBinOp(int dst, int src1, int src2, int op, int type) {
     Instruction t1, t2;
     int dstHi, src1Hi, src2Hi=0;
@@ -779,6 +788,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type or op in genBinOp");
   }
   
+  @Override
   public void genUnaOp(int dst, int src, int op, int type) {
     int dstHi, srcHi;
     switch (type) {
@@ -818,6 +828,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type or op in genUnaOp");
   }
   
+  @Override
   public void genIncMem(int dst, int type) {
     if ((dst=getReg(1, dst, false))==-1) return;
     switch (type) {
@@ -848,6 +859,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type in genIncMem");
   }
   
+  @Override
   public void genDecMem(int dst, int type) {
     if ((dst=getReg(1, dst, false))==-1) return;
     switch (type) {
@@ -878,14 +890,17 @@ public class ARM7 extends Architecture {
     fatalError("unsupported type in genDecMem");
   }
   
+  @Override
   public void genSaveUnitContext() {
     insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, (1<<RegCLSS));
   }
   
+  @Override
   public void genRestUnitContext() {
     insBlockTransfer(IC_AL, IOBT_LDMFDu, RegSP, (1<<RegCLSS));
   }
   
+  @Override
   public void genLoadUnitContext(int dst, int off) {
     if ((dst=getReg(1, dst, true))==-1) return;
     insSingleTransfer(IC_AL, IOST_LDRi32, dst, RegCLSS, off);
@@ -910,22 +925,27 @@ public class ARM7 extends Architecture {
     insSingleTransfer(IC_AL, IOST_LDRi32, RegCLSS, RegINST, -4);
   }
   
+  @Override
   public void genCall(int off, int clssReg, int parSize) {
     fatalError("unsupported function genCall");
   }
   
+  @Override
   public void genCallIndexed(int intfReg, int off, int parSize) {
     fatalError("unsupported function genCallIndexed");
   }
   
+  @Override
   public void genCallConst(Mthd obj, int parSize) {
     insPatchedCall(obj, parSize);
   }
   
+  @Override
   public void genJmp(Instruction dest) {
     insBranch(IC_AL, dest);
   }
   
+  @Override
   public void genCondJmp(Instruction dest, int condHnd) {
     int cond;
     switch (condHnd) {
@@ -943,6 +963,7 @@ public class ARM7 extends Architecture {
     insBranch(cond, dest);
   }
   
+  @Override
   public int genComp(int src1, int src2, int type, int cond) {
     int src1Hi, src2Hi;
     switch (type) {
@@ -965,6 +986,7 @@ public class ARM7 extends Architecture {
     return 0;
   }
   
+  @Override
   public int genCompValToConstVal(int src, int val, int type, int cond) {
     if (type==StdTypes.T_FLT) {
       fatalError("float not supported");
@@ -976,6 +998,7 @@ public class ARM7 extends Architecture {
     return cond;
   }
   
+  @Override
   public int genCompValToConstDoubleOrLongVal(int src, long val, boolean asDouble, int cond) {
     int srcHi, srcLo;
     if (asDouble) {

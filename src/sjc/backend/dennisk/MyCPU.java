@@ -428,13 +428,11 @@ public class MyCPU extends Architecture {
     if ((curMthd.marker&Marks.K_INTR)!=0) {
       fatalError("interrupt methods not supported yet in codeEpilog");
       curMthd=null;
-    }
-    else if (outline!=null) {
+    } else if (outline!=null) {
       if (--curInlineLevel==0) curVarOffParam=VAROFF_PARAM_NRM;
       --curInlineLevel;
       curMthd=outline;
-    }
-    else {
+    } else {
       ins(I_RTS);
       curMthd=null;
     }
@@ -588,13 +586,11 @@ public class MyCPU extends Architecture {
         ins(I_LDAzp, src2);
         ins(I_ADCimm, (pos>>>8)&0xFF);
         ins(I_TAY);
-      }
-      else {
+      } else {
         ins(I_LDXzp, src1);
         ins(I_LDYzp, src2);
       }
-    }
-    else {
+    } else {
       ins(I_LDXimm, pos&0xFF);
       ins(I_LDYimm, (pos>>>8)&0xFF);
     }
@@ -696,6 +692,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genAssign(int dst, int src, int type) {
     int i, regCount, reg1, reg2, srcReg;
     regCount=getByteCount(type);
@@ -712,6 +709,7 @@ public class MyCPU extends Architecture {
     ins(I_PLX);
   }
 
+  @Override
   public void genBinOp(int dst, int src1, int src2, int op, int type) {
     int opType=op>>>16, opPar=op&0xFFFF;
     int dstR, srcR1, srcR2, i, count;
@@ -846,6 +844,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genUnaOp(int dst, int src, int op, int type) {
     int opPar=op&0xFFFF, dstR, srcR, count, i=1;
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
@@ -926,6 +925,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genDecMem(int dst, int type) {
     int i, regCount, reg1, reg2;
     regCount=getByteCount(type);
@@ -954,16 +954,19 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genSaveUnitContext() {
     ins(I_PUSHzp, ZPAddrClssHi);
     ins(I_PUSHzp, ZPAddrClssLo);
   }
 
+  @Override
   public void genRestUnitContext() {
     ins(I_POPzp, ZPAddrClssLo);
     ins(I_POPzp, ZPAddrClssHi);
   }
 
+  @Override
   public void genLoadUnitContext(int dst, int off) {
     fatalError("genLoadUnitContext not implemented yet");
   }
@@ -1026,8 +1029,7 @@ public class MyCPU extends Architecture {
       ins(I_STAzp, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
-    }
-    else {
+    } else {
       ins(I_CLC);
       ins(I_LPA);
       ins(I_ADCimm, ctx.codeStart&0xFF);
@@ -1072,8 +1074,7 @@ public class MyCPU extends Architecture {
       ins(I_STAzp, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
-    }
-    else {
+    } else {
       ins(I_CLC);
       ins(I_LPA);
       ins(I_ADCimm, ctx.codeStart&0xFF);
@@ -1087,15 +1088,18 @@ public class MyCPU extends Architecture {
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genCallConst(Mthd obj, int parSize) {
     insPatchedCall(obj, parSize);
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genJmp(Instruction dest) {
     insPatchedJmp(I_JMPimm, dest);
   }
 
+  @Override
   public void genCondJmp(Instruction dest, int cond) {
     Instruction here;
     switch (cond) {
@@ -1117,7 +1121,7 @@ public class MyCPU extends Architecture {
         insPatchedJmp(I_JPZimm, dest);
         break;
       case Ops.C_GT: //">"
-        here=getUnlinkedInstruction();
+        here = getUnlinkedInstruction();
         insPatchedJmp(I_JPZimm, here);
         insPatchedJmp(I_JPCimm, dest);
         appendInstruction(here);
@@ -1127,6 +1131,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public int genComp(int src1, int src2, int type, int cond) {
     int i, max, r1, r2;
     Instruction zeroKeeper;
@@ -1162,6 +1167,7 @@ public class MyCPU extends Architecture {
     return cond;
   }
 
+  @Override
   public int genCompValToConstVal(int src, int val, int type, int cond) {
     int i, max, r;
     Instruction zeroKeeper;
@@ -1194,6 +1200,7 @@ public class MyCPU extends Architecture {
     return cond;
   }
 
+  @Override
   public int genCompValToConstDoubleOrLongVal(int src, long val, boolean asDouble, int cond) {
     int i, r;
     Instruction zeroKeeper;
@@ -1223,6 +1230,7 @@ public class MyCPU extends Architecture {
     return cond;
   }
 
+  @Override
   public int genCompPtrToNull(int reg, int cond) {
     int cr1, cr2;
     if ((cr1=getRegZPAddr(1, reg, StdTypes.T_PTR, false))==-1
@@ -1232,14 +1240,17 @@ public class MyCPU extends Architecture {
     return cond;
   }
 
+  @Override
   public void genWriteIO(int dst, int src, int type, int memLoc) {
     // TODO Auto-generated method stub
   }
 
+  @Override
   public void genReadIO(int dst, int src, int type, int memLoc) {
     // TODO Auto-generated method stub
   }
 
+  @Override
   public void genMoveToPrimary(int src, int type) {
     int tempReg, primReg, i=1, count;
     for (count=getByteCount(type); i<=count; i++) {
@@ -1279,6 +1290,7 @@ public class MyCPU extends Architecture {
     for (primReg=count-1; count>0; primReg--, count--) ins(I_POPzp, getZPAddrOfReg(primReg));
   }
 
+  @Override
   public void genCheckBounds(int addrReg, int offReg, int checkToOffset, Instruction onSuccess) {
     int addrR1, addrR2, offR1, offR2; //although offReg is of type INT, we use only lower 2 bytes
     if ((addrR1=getRegZPAddr(1, addrReg, StdTypes.T_PTR, false))==-1
@@ -1451,6 +1463,7 @@ public class MyCPU extends Architecture {
     fatalError("inlining of variable offsets is not supported");
   }
   
+  @Override
   public void inlineCodeAddress(boolean defineHere, int addOffset) {
     Instruction i;
     appendInstruction(i=getUnlinkedInstruction());
@@ -1541,6 +1554,7 @@ public class MyCPU extends Architecture {
     }
   }
   
+  @Override
   public void genStoreVarConstDoubleOrLongVal(int objReg, Object loc, int off, long val, boolean asDouble) {
     int objR, i;
     int pos=mem.getAddrAsInt(loc, off);
@@ -1551,14 +1565,12 @@ public class MyCPU extends Architecture {
         ins(I_LDAimm, ((int)(val>>>(i<<3)))&0xFF);
         ins(I_STAabsx, pos+i);
       }
-    }
-    else {
+    } else {
       ins(I_PHX);
       if (objReg==0) {
         ins(I_LDXimm, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
-      }
-      else {
+      } else {
         ins(I_CLC);
         if ((objR=getRegZPAddr(1, objReg, StdTypes.T_PTR, false))==-1) return;
         ins(I_LDAzp, objR);
@@ -1577,6 +1589,7 @@ public class MyCPU extends Architecture {
     }
   }
   
+  @Override
   public void genBinOpConstRi(int dst, int src1, int val, int op, int type) { //may destroy src1
     int opType=op>>>16, opPar=op&0xFFFF;
     int dstR, srcR1, i, count, tmpVal;

@@ -169,11 +169,13 @@ public class IA32 extends X86Base {
     mem.putInt(loc, offset, mem.getAddrAsInt(ptr, ptrOff));
   }
 
+  @Override
   public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putInt(loc, offset, mem.getAddrAsInt(ptr, ptrOff)-mem.getAddrAsInt(loc, offset)-4);
   }
   
   //register allocation and de-allocation
+  @Override
   protected int freeRegSearch(int mask, int type) {
     int ret, ret2;
     
@@ -185,6 +187,7 @@ public class IA32 extends X86Base {
     return ret;
   }
   
+  @Override
   protected int storeReg(int regs) {
     int stored=0;
     regs&=usedRegs&writtenRegs;
@@ -195,6 +198,7 @@ public class IA32 extends X86Base {
     return stored;
   }
   
+  @Override
   protected void restoreReg(int regs) {
     usedRegs|=regs;
     writtenRegs|=regs;
@@ -204,6 +208,7 @@ public class IA32 extends X86Base {
     if ((regs&RegA)!=0) ins(I_POPreg, R_EAX);
   }
   
+  @Override
   protected int internalGetReg(int nr, int reg, int type, boolean firstWrite) { //never called for float or double
     reg=bitSearch(reg, nr, 0);
     if (firstWrite) {
@@ -250,14 +255,14 @@ public class IA32 extends X86Base {
     return lastMthd;
   }
   
+  @Override
   public void codeProlog() {
     int i;
     
     if ((curMthd.marker&Marks.K_INTR)==0) {
       curVarOffParam=curInlineLevel>0 ? VAROFF_PARAM_INL : VAROFF_PARAM_NRM;
       if (curMthd.varSize==0 && curMthd.parSize==0 && !noStackOptimization) return; //no intr, no parameters, no local vars -> no ebp
-    }
-    else {
+    } else {
       if (curInlineLevel>0) {
         fatalError(ERR_INTNOINLINE);
         return;
@@ -280,6 +285,7 @@ public class IA32 extends X86Base {
     }
   }
 
+  @Override
   public void codeEpilog(Mthd outline) {
     int var, par;
     
@@ -337,6 +343,7 @@ public class IA32 extends X86Base {
   }
 
   //general purpose instructions
+  @Override
   public void genLoadConstVal(int dst, int val, int type) { //type not of interest here
     if (type==StdTypes.T_FLT) {
       if (dst!=curFPUReg) {
@@ -604,6 +611,7 @@ public class IA32 extends X86Base {
     fatalError(ERR_UNSTYPE_GENCONVERTVAL);
   }
 
+  @Override
   public void genDup(int dstR, int srcR, int type) {
     int dst, src;
     if (dstR==srcR) /*nothing to do*/ return;
@@ -790,6 +798,7 @@ public class IA32 extends X86Base {
     if (dstLo!=R_EAX) ins(I_MOVregreg, dstLo, R_EAX);
   }
   
+  @Override
   public void genBinOp(int dstR, int src1R, int src2R, int op, int type) { //may destroy src2R
     Instruction dummy1, dummy2, dummy3, neg1, udiv, done;
     int opType=op>>>16, opPar=op&0xFFFF;
@@ -1178,6 +1187,7 @@ public class IA32 extends X86Base {
     fatalError(ERR_UNSTYPE_GENBINOP);
   }
   
+  @Override
   public void genBinOpConstRi(int dstR, int src1R, int val, int op, int type) {
     int opType=op>>>16, opPar=op&0xFFFF, dst, dstL, tmp;
     if (dstR!=src1R) {
@@ -1244,6 +1254,7 @@ public class IA32 extends X86Base {
     super.genBinOpConstRi(dstR, src1R, val, op, type);
   }
   
+  @Override
   public void genUnaOp(int dstR, int srcR, int op, int type) {
     int dst, dst2;
     if (dstR!=srcR) {
@@ -1333,6 +1344,7 @@ public class IA32 extends X86Base {
     ins(I_MOVregimm, dst, 0, 0, mem.getAddrAsInt(unitLoc, 0));
   }
   
+  @Override
   public void genCall(int off, int clssReg, int parSize) {
     if ((clssReg=getReg(1, clssReg, StdTypes.T_PTR, false))==0) return;
     if (ctx.codeStart==0) ins(I_CALLmem, clssReg, 0, off, 0, parSize);
@@ -1343,6 +1355,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genCallIndexed(int intfReg, int off, int parSize) {
     if ((intfReg=getReg(2, intfReg, StdTypes.T_DPTR, false))==0) return;
     ins(I_MOVregmem, R_EAX, intfReg, off);
@@ -1351,10 +1364,12 @@ public class IA32 extends X86Base {
     ins(I_CALLreg, R_EAX, 0, 0, 0, parSize);
   }
   
+  @Override
   public void genCallConst(Mthd mthd, int parSize) {
     insPatchedCall(mthd, parSize);
   }
   
+  @Override
   public int genComp(int src1R, int src2R, int type, int cond) {
     Instruction dummy;
     int src1, src2, src1L, src2L;
@@ -1552,6 +1567,7 @@ public class IA32 extends X86Base {
     ins(I_POPreg, R_EAX);
   }
   
+  @Override
   public void genCallNative(Object loc, int off, boolean relative, int parSize, boolean noCleanUp) {
     if (relative) {
       ins(I_CALLmem, R_EDI, 0, off, 0, parSize);
@@ -1586,6 +1602,7 @@ public class IA32 extends X86Base {
   }
   
   //here the internal coding of the instructions takes place
+  @Override
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm) {
     return ins(type, reg0, reg1, disp, imm, 0);
   }
@@ -1601,6 +1618,7 @@ public class IA32 extends X86Base {
     return i;
   }
   
+  @Override
   protected void internalFixStackExtremeAdd(Instruction me, int stackCells) {
     me.size=0;
     code(me, me.type=I_ADDregimm, me.reg0, 0, 0, stackCells<<2, 0);
@@ -2261,19 +2279,16 @@ public class IA32 extends X86Base {
       i.putByte(0x04|((reg0>>>4)<<3)); //escape to two bytes
       i.putByte(0x05|scaleBits|((reg2>>>4)<<3));
       i.putInt(disp);
-    }
-    else { //relative to register
+    } else { //relative to register
       reg1ex=reg1|0x7; //map to 32-bit e*-register
       if (disp==0 && reg1ex!=R_EBP) { //no displacement
         i.putByte(0x04|((reg0>>>4)<<3)); //escape to two bytes
         i.putByte(scaleBits|((reg2>>>4)<<3)|(reg1>>>4));
-      }
-      else if (disp>=-128 && disp<128) { //8 bit displacement
+      } else if (disp>=-128 && disp<128) { //8 bit displacement
         i.putByte(0x44|((reg0>>>4)<<3)); //escape to two bytes
         i.putByte(scaleBits|((reg2>>>4)<<3)|(reg1>>>4));
         i.putByte(disp);
-      }
-      else { //32 bit displacement
+      } else { //32 bit displacement
         i.putByte(0x84|((reg0>>>4)<<3)); //escape to two bytes
         i.putByte(scaleBits|((reg2>>>4)<<3)|(reg1>>>4));
         i.putInt(disp);
