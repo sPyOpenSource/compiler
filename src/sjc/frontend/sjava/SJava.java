@@ -134,8 +134,7 @@ public class SJava extends Language {
       ctx.out.print("Error opening input-file: ");
       ctx.out.println(fileName.str);
       success=false;
-    }
-    else {
+    } else {
       ctx.attachSource(fileName.tablePos, inText.data);
       s.init(inText, fileName.tablePos, ctx);
       if (!p.tokenize(s, fileName.tablePos, ctx)) {

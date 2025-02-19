@@ -101,10 +101,12 @@ public abstract class JUnit extends Unit {
     super(fid, il, ic);
   }
   
+  @Override
   public boolean hasValidInterface() {
     return intfResolveState==R_SUCCESS;
   }
   
+  @Override
   public QualIDList getImportList() {
     return impt;
   }
@@ -123,6 +125,7 @@ public abstract class JUnit extends Unit {
     return true; //default: nothing to do
   }
   
+  @Override
   public Unit searchUnitInView(StringList what, boolean isRecursion) {
     Unit res;
     StringList cur;
@@ -201,6 +204,7 @@ public abstract class JUnit extends Unit {
     return null;
   }
   
+  @Override
   public boolean validateModifier(Context ctx) {
     boolean error=false;
     QualIDList qidList;
@@ -260,6 +264,7 @@ public abstract class JUnit extends Unit {
     return true;
   }
   
+  @Override
   public boolean resolveInterface(Context ctx) {
     boolean error=false;
     Vrbl var;
@@ -347,6 +352,7 @@ public abstract class JUnit extends Unit {
     return true;
   }
   
+  @Override
   public boolean resolveMethodBlocks(Context ctx) {
     Vrbl var;
     Mthd mthd;
@@ -453,6 +459,7 @@ public abstract class JUnit extends Unit {
     }
   }
   
+  @Override
   public String getSourceType() {
     return "java";
   }

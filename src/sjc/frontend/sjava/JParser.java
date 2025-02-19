@@ -150,8 +150,7 @@ public class JParser {
           parserError("missing \";\" after package");
           return false;
         }
-      }
-      else {
+      } else {
         pack=new QualID(null, QualID.Q_PACKAGE, curFID, syl, syc); //no explicit package, create dummy-root-package
         pack.srcStart=syp;
         pack.srcLength=s.endOfLastSymbol-syp;

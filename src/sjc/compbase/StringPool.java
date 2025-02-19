@@ -29,47 +29,49 @@ package sjc.compbase;
  */
 
 public class StringPool {
-	//private StringList s, last; //for pools based on StringList
-  //private String str; //for pools with tree
-  //private StringPool left, right; //for pools with binary tree
+    //private StringList s, last; //for pools based on StringList
+    //private String str; //for pools with tree
+    //private StringPool left, right; //for pools with binary tree
   
-  private BinaryStringPool[] hashmap; //for hashmap pools
+    private BinaryStringPool[] hashmap; //for hashmap pools
+  
   private static class BinaryStringPool {
     private String str; //for pools with tree
     private BinaryStringPool left, right; //for pools with binary tree
+    
     public String getString(char buf[], int len) {
-      int i,  diff=0, max, strLen;
+      int i,  diff = 0, max, strLen;
       
-      if (str==null) {
-        str=new String(buf, 0, len);
+      if (str == null) {
+        str = new String(buf, 0, len);
         return str;
       }
-      strLen=str.length();
-      if (len<=strLen) max=len;
-      else max=strLen;
-      for (i=0; i<max; i++) {
-        if ((diff=(int)(buf[i]-str.charAt(i)))!=0) break; //different character
+      strLen = str.length();
+      if (len <= strLen) max = len;
+      else max = strLen;
+      for (i = 0; i < max; i++) {
+        if ((diff = (int)(buf[i] - str.charAt(i))) != 0) break; //different character
       }
-      if (i==len && i==strLen) return str;
-      if (diff<0) {
-        if (right==null) right=new BinaryStringPool();
+      if (i == len && i == strLen) return str;
+      if (diff < 0) {
+        if (right == null) right = new BinaryStringPool();
         return right.getString(buf, len);
       }
-      if (left==null) left=new BinaryStringPool();
+      if (left == null) left = new BinaryStringPool();
       return left.getString(buf, len);
     }
   }
   
   //pool with hash map as entry and then a binary tree
   public StringPool() {
-    if (hashmap==null) {
-      hashmap=new BinaryStringPool[1024];
-      for (int i=0; i<1024; i++) hashmap[i]=new BinaryStringPool();
+    if (hashmap == null) {
+      hashmap = new BinaryStringPool[1024];
+      for (int i = 0; i < 1024; i++) hashmap[i] = new BinaryStringPool();
     }
   }
   public String getString(char buf[], int len) {
-    if (len==0) return "";
-    return hashmap[((int)buf[0]&0x3F)+((len&0xF)<<6)].getString(buf, len);
+    if (len == 0) return "";
+    return hashmap[((int)buf[0] & 0x3F) + ((len & 0xF) << 6)].getString(buf, len);
   }
   
   //pool as binary tree with length as first criterium

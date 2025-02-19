@@ -33,6 +33,6 @@ public class UnitList {
   public int relOff; //relative offset in class descriptor
   
   public UnitList(Unit iu) {
-    unit=iu;
+    unit = iu;
   }
 }
