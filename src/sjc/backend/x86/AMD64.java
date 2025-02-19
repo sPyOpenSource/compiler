@@ -196,6 +196,7 @@ public class AMD64 extends X86Base {
     mem.putLong(loc, offset, mem.getAddrAsLong(ptr, ptrOff));
   }
 
+  @Override
   public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
     long destPtr=mem.getAddrAsLong(ptr, ptrOff)-mem.getAddrAsLong(loc, offset)-4l;
     long testBits=destPtr&0xFFFFFFFF80000000l;

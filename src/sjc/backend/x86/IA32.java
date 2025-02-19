@@ -119,17 +119,18 @@ public class IA32 extends X86Base {
   
   //initialization
   public IA32() {
-    relocBytes=4;
-    allocClearBits=stackClearBits=3;
-    maxInstrCodeSize=10;
-    rAll=RegA|RegB|RegC|RegD;
-    rClss=R_EDI;
-    rInst=R_ESI;
-    rBase=R_EBP;
-    fullIPChangeBytes=4;
-    mPtr=RS_E;
+    relocBytes = 4;
+    allocClearBits = stackClearBits = 3;
+    maxInstrCodeSize = 10;
+    rAll = RegA | RegB | RegC | RegD;
+    rClss = R_EDI;
+    rInst = R_ESI;
+    rBase = R_EBP;
+    fullIPChangeBytes = 4;
+    mPtr = RS_E;
   }
   
+  @Override
   public boolean setParameter(String parm, TextPrinter v) {
     if ("sse3".equals(parm)) {
       v.println("using instructions FCOMPIP and FISTTP available since P4-SSE3");
@@ -163,6 +164,7 @@ public class IA32 extends X86Base {
   }
   
   //references are treated as normal integers
+  @Override
   public void putRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putInt(loc, offset, mem.getAddrAsInt(ptr, ptrOff));
   }

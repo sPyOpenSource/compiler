@@ -60,7 +60,7 @@ public class ARM7 extends Architecture {
   private final static int RegSP   = 13;
   private final static int RegLR   = 14; //may be used as secondary helper register
   private final static int RegPC   = 15;
-  private final static int RegALL = 0x01FF; //mask for general purpose registers (0..8)
+  private final static int RegALL  = 0x01FF; //mask for general purpose registers (0..8)
   
   //instruction types
   public final static int IT_FIX         = 1;
@@ -441,6 +441,7 @@ public class ARM7 extends Architecture {
     }
   }
   
+  @Override
   public void genLoadVarVal(int dstReg, int src, Object loc, int off, int type) {
     int srcReg, dst2Reg;
     if (src==0) { //absolute address
@@ -481,6 +482,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported case in genLoadVarVal");
   }
   
+  @Override
   public void genConvertVal(int dst, int src, int toType, int fromType) {
     int dstReg, dst2Reg, srcReg, src2Reg;
     switch (toType) {
@@ -1036,6 +1038,7 @@ public class ARM7 extends Architecture {
     fatalError("unsupported function genRestPrimary");
   }
   
+  @Override
   public void genCheckBounds(int addr, int off, int checkToOffset, Instruction onSuccess) {
     if ((addr=getReg(1, addr, false))==-1 || (off=getReg(1, off, false))==-1) return;
     insSingleTransfer(IC_AL, IOST_LDRi32, RegHLP, addr, checkToOffset);

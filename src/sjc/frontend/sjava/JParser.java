@@ -580,8 +580,7 @@ public class JParser {
           ctx.staticInitMthds=tmp;
           tmp.block=new StBlock(null, null, c.fileID, c.line, c.col);
           tmp.block.stmts=sb;
-        }
-        else { //go through other blocks, append current static block (keep order)
+        } else { //go through other blocks, append current static block (keep order)
           ss=tmp.block.stmts;
           while (ss.nextStmt!=null) ss=ss.nextStmt;
           ss.nextStmt=sb;
@@ -592,8 +591,7 @@ public class JParser {
           return false;
         }
         curMthd=oldCurMthd;
-      }
-      else {
+      } else {
         if ((mod&(Scanner.M_PUB|Scanner.M_PROT|Scanner.M_PRIV))==0) mod|=Modifier.M_PACP; //default: package private
         if (has(Scanner.S_OKE, Scanner.O_CLSS) || has(Scanner.S_OKE, Scanner.O_INTF)
             || has(Scanner.S_OKE, Scanner.O_ANDC)) {
@@ -1440,14 +1438,12 @@ public class JParser {
         if (qid==null) {
           qid=new StringList(ev.id);
           lqid=qid;
-        }
-        else {
+        } else {
           lqid=new StringList(ev.id);
           lqid.next=qid;
           qid=lqid;
         }
-      }
-      else {
+      } else {
         parserError("invalid typedecl or missing \";\" after expression-statement");
         return null;
       }
@@ -1462,14 +1458,12 @@ public class JParser {
       if (qid==null) {
         qid=new StringList(ev.id);
         lqid=qid;
-      }
-      else {
+      } else {
         lqid=new StringList(ev.id);
         lqid.next=qid;
         qid=lqid;
       }
-    }
-    else {
+    } else {
       parserError("invalid typedecl or missing \";\" after expression-statement");
       return null;
     }

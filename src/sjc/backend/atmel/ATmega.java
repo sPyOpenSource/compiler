@@ -266,7 +266,7 @@ public class ATmega extends Architecture {
   protected final static int VAROFF_PARAM_INL =  3;
   protected final static int VAROFF_PARAM_NRM =  5;
   
-	protected int usedRegs, writtenRegs, nextAllocReg, stackLevel;
+    protected int usedRegs, writtenRegs, nextAllocReg, stackLevel;
   protected Mthd mthdContainer; //remember current method container, not available in finalizeInstructions
   private int curVarOffParam, headerLength;
   private String outestMthdName;
@@ -296,12 +296,12 @@ public class ATmega extends Architecture {
     v.println("   rjih - use rjmp in header");
   }
   
+  @Override
   public boolean setParameter(String parm, TextPrinter v) {
     if ("rjih".equals(parm)) {
       v.println("using rjmp in header");
       headerWithRJMP=true;
-    }
-    else {
+    } else {
       v.println("invalid parameter for ATmega, possible parameters:");
       printParameter(v);
       return false;
@@ -309,14 +309,17 @@ public class ATmega extends Architecture {
     return true;
   }
   
+  @Override
   public void setHeaderLength(int length) {
     headerLength=length;
   }
 
+  @Override
   public void putRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putShort(loc, offset, (short)mem.getAddrAsInt(ptr, ptrOff));
   }
   
+  @Override
   public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
     int destAddr;
     if (headerWithRJMP && (destAddr=mem.getAddrAsInt(loc, offset))<headerLength) {
@@ -327,6 +330,7 @@ public class ATmega extends Architecture {
     else mem.putShort(loc, offset, (short)(mem.getAddrAsInt(ptr, ptrOff)>>>1));
   }
   
+  @Override
   public int prepareFreeReg(int avoidReg1, int avoidReg2, int reUseReg, int type) {
     int toStore, ret, mask, i;
     //first: try to reuse given regs
@@ -367,6 +371,7 @@ public class ATmega extends Architecture {
     return 0;
   }
   
+  @Override
   public int allocReg() {
     return nextAllocReg;
   }
@@ -462,18 +467,21 @@ public class ATmega extends Architecture {
     return -1;
   }
 
+  @Override
   public void deallocRestoreReg(int deallocRegs, int keepRegs, int restore) {
     deallocReg(deallocRegs&~(keepRegs|restore));
     restoreReg(restore);
     usedRegs|=(keepRegs|restore)&RegAll;
   }
   
+  @Override
   public int ensureFreeRegs(int ignoreReg1, int ignoreReg2, int keepReg1, int keepReg2) {
     int restore=storeReg(RegAll&~(ignoreReg1|ignoreReg2));
     usedRegs=(keepReg1|keepReg2)&RegAll;
     return restore;
   }
   
+  @Override
   public Mthd prepareMethodCoding(Mthd mthd) {
     Mthd lastMthd;
     
@@ -481,8 +489,7 @@ public class ATmega extends Architecture {
     if ((lastMthd=curMthd)!=null) {
       curVarOffParam=VAROFF_PARAM_INL;
       curInlineLevel++;
-    }
-    else {
+    } else {
       mthdContainer=mthd;
       curVarOffParam=VAROFF_PARAM_NRM;
       stackLevel=0;
@@ -492,6 +499,7 @@ public class ATmega extends Architecture {
     return lastMthd;
   }
 
+  @Override
   public void codeProlog() {
     Instruction loopDest;
     int i;
@@ -533,6 +541,7 @@ public class ATmega extends Architecture {
     ins(I_INregimm, R_YH, 0, 0x3E);
   }
 
+  @Override
   public void codeEpilog(Mthd outline) {
     int i;
     
@@ -579,6 +588,7 @@ public class ATmega extends Architecture {
     }
   }
   
+  @Override
   public void finalizeInstructions(Instruction first) {
     Instruction now;
     boolean redo;
@@ -606,6 +616,7 @@ public class ATmega extends Architecture {
     if (ctx.printCode || (mthdContainer.marker&Marks.K_PRCD)!=0) printCode(first, "ATmega-out");
   }
   
+  @Override
   public void genAssign(int dst, int src, int type) {
     int i, regCount, reg1, reg2;
     regCount=getByteCount(type);
@@ -625,6 +636,7 @@ public class ATmega extends Architecture {
     }
   }
   
+  @Override
   public void genBinOp(int dst, int src1, int src2, int op, int type) {
     int opType=op>>>16, opPar=op&0xFFFF;
     int dstR, srcR, stored, i, count;
@@ -735,6 +747,7 @@ public class ATmega extends Architecture {
     }
   }
   
+  @Override
   public void genCall(int off, int clssReg, int parSize) {
     int i, j;
     if ((i=getReg(1, clssReg, StdTypes.T_PTR, false))==-1
@@ -761,11 +774,13 @@ public class ATmega extends Architecture {
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genCallConst(Mthd obj, int parSize) {
     insPatchedCall(obj, parSize);
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genCallIndexed(int intfReg, int off, int parSize) {
     int i, j;
     if ((i=getReg(1, intfReg, StdTypes.T_DPTR, false))==-1) return;
@@ -795,6 +810,7 @@ public class ATmega extends Architecture {
     insCleanStackAfterCall(parSize);
   }
 
+  @Override
   public void genCheckBounds(int addrReg, int offReg, int checkToOffset, Instruction onSuccess) {
     int i, j;
     if ((i=getReg(1, addrReg, StdTypes.T_PTR, false))==-1
@@ -815,6 +831,7 @@ public class ATmega extends Architecture {
     nextValInFlash=false;
   }
   
+  @Override
   public void genCheckStackExtreme(int maxValueReg, Instruction onSuccess) {
   	if (maxValueReg!=0x00030000) {
   	  fatalError("invalid maxValueReg for genCheckStackExtreme");
@@ -829,6 +846,7 @@ public class ATmega extends Architecture {
     insJump(onSuccess, Ops.C_BO); //if not below or equal, jump to success mark
   }
 
+  @Override
   public int genCompPtrToNull(int reg, int cond) {
     int tmp;
     if ((tmp=getReg(1, reg, StdTypes.T_PTR, false))==-1
@@ -838,6 +856,7 @@ public class ATmega extends Architecture {
     return cond;
   }
 
+  @Override
   public int genComp(int src1, int src2, int type, int cond) {
     int i, max, r1, r2;
     boolean withCarry=false;
@@ -868,6 +887,7 @@ public class ATmega extends Architecture {
     return cond;
   }
 
+  @Override
   public int genCompValToConstVal(int src, int val, int type, int cond) {
     int i, max, v, r1, r2;
     boolean withCarry=false;
@@ -882,6 +902,7 @@ public class ATmega extends Architecture {
     return cond;
   }
 
+  @Override
   public int genCompValToConstDoubleOrLongVal(int src, long val, boolean asDouble, int cond) {
     boolean withCarry=false;
     int i, v, r1, r2;
@@ -1378,6 +1399,7 @@ public class ATmega extends Architecture {
     //do nothing for Ops.A_PLUS
   }
 
+  @Override
   public void genReadIO(int dst, int src, int type, int memLoc) {
     int cnt=1, count, tempReg, i, j;
     if ((i=getReg(1, src, StdTypes.T_PTR, false))==-1
@@ -1402,10 +1424,10 @@ public class ATmega extends Architecture {
       default:
         curMthd.printPos(ctx, INVALID_IO_LOC);
         fatalError(null);
-        return;
     }
   }
 
+  @Override
   public void genWriteIO(int dst, int src, int type, int memLoc) {
     int cnt, tempReg, i, j;
     if ((i=getReg(1, dst, StdTypes.T_PTR, false))==-1
@@ -1425,14 +1447,15 @@ public class ATmega extends Architecture {
       default:
         curMthd.printPos(ctx, INVALID_IO_LOC);
         fatalError(null);
-        return;
     }
   }
   
+  @Override
   public void nextValInFlash() {
     nextValInFlash=true;
   }
 
+  @Override
   public void inlineVarOffset(int inlineMode, int objReg, Object loc, int offset, int baseValue) {
     Instruction i=null;
     int byteCount=0, pos=mem.getAddrAsInt(loc, offset);
@@ -1727,44 +1750,43 @@ public class ATmega extends Architecture {
   }
   
   protected boolean codeJump(Instruction jump, int relative) {
-    int opcode=0;
+    int opcode = 0;
     
-    if (jump.iPar1==0) {
-      if (relative<-2048 || relative>2047) {
+    if (jump.iPar1 == 0) {
+      if (relative < -2048 || relative > 2047) {
         fatalError("unconditional jump destination too far away");
         return false;
       }
-      relative&=0xFFF;
-      opcode=0xC000;
-    }
-    else {
-      if (relative<-64 || relative>63) {
+      relative &= 0xFFF;
+      opcode = 0xC000;
+    } else {
+      if (relative < -64 || relative > 63) {
         fatalError("conditional jump destination too far away");
         return false;
       }
-      relative=(relative&0x7F)<<3;
+      relative = (relative & 0x7F) << 3;
       switch (jump.iPar1) {
         case Ops.C_GE: //jump if greater or equal (signed)
-          opcode=0xF404;
+          opcode = 0xF404;
           break;
         case Ops.C_LW: //jump if lower (signed)
-          opcode=0xF004;
+          opcode = 0xF004;
           break;
         case Ops.C_BO: //jump if below (unsigned)
-          opcode=0xF000;
+          opcode = 0xF000;
           break;
         case Ops.C_NE: //jump if not equal
-          opcode=0xF401;
+          opcode = 0xF401;
           break;
         case Ops.C_EQ: //jump if equal
-          opcode=0xF001;
+          opcode = 0xF001;
           break;
         default:
           fatalError("conditional jump with unsupported condition");
           return false;
       }
     }
-    jump.replaceShort(0, opcode|relative);
+    jump.replaceShort(0, opcode | relative);
     return false;
   }
   
@@ -1786,13 +1808,12 @@ public class ATmega extends Architecture {
     me.size=0; //reset instruction size
     if (relative<=63) {
       me.putShort(0x9610|(relative&0xF)|((relative&0x30)<<2)); //ADDIWregimm X
-    }
-    else {
+    } else {
     	//TODO: this is possible without LDI through I_SUBI and I_SBCI
-      me.putShort(0xE000|((16-16)<<4)|(relative&0xF)|((relative&0xF0)<<4)); //LDIregimm
+      me.putShort(0xE000|(relative&0xF)|((relative&0xF0)<<4)); //LDIregimm
       relative=relative>>>8;
       me.putShort(0xE000|((17-16)<<4)|(relative&0xF)|((relative&0xF0)<<4)); //LDIregimm
-      me.putShort(0x0C00|(R_XL<<4)|(16&0xF)|((16&0x10)<<5)); //ADDregreg
+      me.putShort(0x0C00|(R_XL<<4)|((16&0x10)<<5)); //ADDregreg
       me.putShort(0x1C00|(R_XH<<4)|(17&0xF)|((17&0x10)<<5)); //ADCregreg
     }
     return me.size!=oldSize;
@@ -2291,8 +2312,8 @@ public class ATmega extends Architecture {
   }
   
   protected void printCode(Instruction first, String comment) {
-	  Instruction now;
-	  int insCnt;
+	Instruction now;
+	int insCnt;
     mthdContainer.owner.printNameWithOuter(ctx.out);
     ctx.out.print('.');
     mthdContainer.printNamePar(ctx.out);
