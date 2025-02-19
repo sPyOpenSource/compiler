@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=ExConstStruct
+comment0.text=\n\ ExConstStruct\:\ constant\ reference\n\ \n\ @author\ S.\ Frenz\n\ @version\ 190322\ added\ scalar\ const\ handling\ to\ support\ non-final\ static\ struct\ initialization\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100312\ adopted\ changed\ ExConstInitObj\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 100113\ initial\ version\n
+comment1.params=constantAddress\ fid\ il\ ic
+comment1.target=ExConstStruct(int,\ int,\ int,\ int)
+comment2.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment2.target=boolean\ resolve(Unit,\ Mthd,\ int,\ TypeRef,\ Context)
+comment3.params=ctx\ doFlash
+comment3.target=boolean\ generateObject(Context,\ boolean)
+comment4.params=ctx
+comment4.target=int\ getOutputLocationOffset(Context)
+comment5.params=ctx
+comment5.target=int\ calcConstantType(Context)
+comment6.params=ctx
+comment6.target=int\ getConstIntValue(Context)
+comment7.params=ctx
+comment7.target=long\ getConstLongValue(Context)
+comment8.params=
+comment8.target=java.lang.String\ getDebugValue()
+numComments=9

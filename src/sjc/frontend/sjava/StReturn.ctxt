@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StReturn
+comment0.text=\n\ StReturn\:\ return-statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 110705\ hardened\ return\ value\ check\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100504\ added\ support\ for\ StBreakable.genOutputCleanup\n\ \ version\ 091111\ added\ support\ for\ instance\ final-var-init\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 091005\ adopted\ changed\ Expr\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090718\ adopted\ changed\ Expr\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090507\ added\ flow\ analysis\ information\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080711\ fixed\ insertion\ of\ implicit\ conversion\ for\ interface\ return\ value\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve,\ adopted\ StBlock\ extends\ StBreakable\n\ \ version\ 070908\ optimized\ signature\ of\ Stmt.resolve\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061111\ minor\ changes\n\ \ version\ 060620\ added\ test\ for\ implicit\ conversion\n\ \ version\ 060607\ initial\ version\n
+comment1.params=io\ fid\ il\ ic
+comment1.target=StReturn(StBreakable,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=5

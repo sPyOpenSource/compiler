@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=ExCall
+comment0.text=\n\ ExCall\:\ implementation\ of\ method-calls\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120925\ added\ support\ for\ code\ printer\n\ \ version\ 120404\ replaced\ RF_IN_SUPER\ by\ special\ parameter\n\ \ version\ 120402\ added\ RF_IN_SUPER\ flag\ in\ resolving\ of\ super\ (special\ visibility\ checks\ required)\n\ \ version\ 110624\ adopted\ changed\ Context\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100504\ removed\ unneccessary\ Clss\ type\ cast,\ adopted\ changed\ Expr\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091020\ adopted\ changes\ of\ RelationManager\ &\ bugfix\n\ \ version\ 091009\ added\ support\ for\ relation\ tracking\n\ \ version\ 091005\ adopted\ changed\ Expr\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090718\ adopted\ changed\ Expr\n\ \ version\ 090616\ changed\ type\ of\ id\ from\ PureID\ to\ String\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080613\ adopted\ hasEffect->effectType\n\ \ version\ 071227\ clearified\ resolving,\ added\ support\ for\ inner\ units\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve\n\ \ version\ 070905\ added\ support\ for\ this(.)-calls\n\ \ version\ 070829\ got\ magicType\ from\ Expr\n\ \ version\ 070727\ replaced\ exSubResolve\ by\ resolve\ as\ there\ is\ nothing\ done\ anymore\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 070106\ removed\ genOutputAddr\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061228\ setting\ mark\ in\ method\ on\ call\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061129\ static\ TypeRef\ object\ moved\ dynamically\ to\ Context\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=ExCall(int,\ int,\ int)
+comment2.params=codePrnt
+comment2.target=void\ printExpression(sjc.debug.CodePrinter)
+comment3.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment3.target=boolean\ resolve(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ int,\ sjc.compbase.TypeRef,\ sjc.compbase.Context)
+comment4.params=inUnit\ inMthd\ unitContext\ mthdContext\ resolveFlags\ partOfSuper\ ctx
+comment4.target=boolean\ mthdResolve(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ int,\ boolean,\ sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=boolean\ isSuperThisCall(sjc.compbase.Context)
+comment6.params=inUnit\ inMthd\ ctx
+comment6.target=boolean\ resolveSuperThisCall(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment7.params=reg\ ctx
+comment7.target=void\ genOutputVal(int,\ sjc.compbase.Context)
+numComments=8

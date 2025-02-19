@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Vrbl
+comment0.text=\n\ Vrbl\:\ platform\ and\ language\ independent\ declaration\ of\ a\ variable\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 160324\ fixed\ flash\ final\ variable\ check\n\ \ version\ 151018\ added\ check\ for\ flash\ variables\ to\ be\ final\n\ \ version\ 120504\ fixed\ size\ of\ struct\ references\n\ \ version\ 120501\ added\ special\ struct\ reference\ case\ with\ non-recursive-resolving\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100920\ sending\ insertZeroHint\ only\ on\ explicit\ initialization\n\ \ version\ 100823\ added\ support\ for\ insertZeroHint\n\ \ version\ 100504\ added\ support\ for\ getInitExpr\n\ \ version\ 100401\ added\ getAnnotation\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091123\ removed\ no\ longer\ needed\ symHint\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091013\ adopted\ changed\ method\ signature\ of\ genStore*\n\ \ version\ 091005\ added\ support\ for\ preferredType\ in\ init-resolving\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090718\ added\ support\ for\ non-static\ final\ variables,\ optimized\ genInitCode,\ adopted\ changed\ Expr\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090507\ added\ checks\ for\ struct\ variables\ minSize\ to\ support\ correct\ offset\ calculation\ of\ struct-arrays\n\ \ version\ 090209\ fixed\ usage\ of\ genStoreVarConstVal\ if\ type\ is\ T_LONG\ or\ T_DBL\n\ \ version\ 090208\ using\ genStoreVarConstVal\ instead\ of\ genClearMem\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080802\ changed\ register\ allocation\ strategy\ in\ genInitCode\ to\ reduce\ register\ copy\ after\ method\ calls\n\ \ version\ 080614\ removed\ copy\n\ \ version\ 070917\ added\ optimization\ to\ skip\ zero-initialization\n\ \ version\ 070913\ added\ support\ for\ genInitCode\ with\ init\=\=null\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve\n\ \ version\ 070903\ removed\ checkNameAndType\n\ \ version\ 070731\ adopted\ change\ of\ renaming\ id\ to\ name\n\ \ version\ 070727\ added\ symHint\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070526\ added\ flag\ for\ length\ of\ inline-arrays\n\ \ version\ 070331\ added\ initialization\ of\ movable\ indirect\ scalars,\ fixed\ location\ assignment\n\ \ version\ 070127\ added\ generic\ genInitCode\n\ \ version\ 070114\ added\ flags\ to\ optimize\ visibility\ level\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 070106\ removed\ access\ to\ inlinedArraySize\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061101\ added\ support\ for\ structs\n\ \ version\ 060607\ initial\ version\n
+comment1.params=ii\ im\ fid\ il\ ic
+comment1.target=Vrbl(java.lang.String,\ int,\ int,\ int,\ int)
+comment2.params=
+comment2.target=FilledAnno\ getAnnotation()
+comment3.params=owner\ ctx
+comment3.target=boolean\ resolveConstant(Unit,\ Context)
+comment4.params=ctx
+comment4.target=Expr\ getInitExpr(Context)
+comment5.params=ctx
+comment5.target=ExConstInitObj\ getConstInitObj(Context)
+comment6.params=loc\ ctx
+comment6.target=boolean\ enterSize(int,\ Context)
+comment7.params=forceInit\ ctx
+comment7.target=void\ genInitCode(boolean,\ Context)
+numComments=8

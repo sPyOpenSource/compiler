@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=FilledParam
+comment0.text=\n\ FilledParam\:\ platform\ and\ language\ independent\ filled\ parameter\ for\ a\ call\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 060607\ initial\ version\n
+comment1.params=e\ fid\ il\ ic
+comment1.target=FilledParam(Expr,\ int,\ int,\ int)
+comment2.params=v
+comment2.target=void\ printTypes(sjc.osio.TextPrinter)
+numComments=3

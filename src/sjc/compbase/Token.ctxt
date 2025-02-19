@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Token
+comment0.text=\n\ Token\:\ basic\ entity\ that\ may\ be\ created\ by\ a\ language\ parser\ and\ that\ may\ be\ a\ jump\ destination\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091109\ got\ flowWarn\ from\ Stmt\n\ \ version\ 091102\ added\ srcStart\ and\ srcEnd\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070111\ added\ "\:\ "\ in\ printPos\ and\ compErr\n\ \ version\ 070104\ added\ newline\ in\ compErr\n\ \ version\ 061229\ removed\ firstInstr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=Token(int,\ int,\ int)
+comment2.params=ctx\ msg
+comment2.target=void\ printPos(Context,\ java.lang.String)
+comment3.params=ctx\ msg
+comment3.target=void\ compErr(Context,\ java.lang.String)
+comment4.params=ctx\ msg
+comment4.target=void\ flowWarn(Context,\ java.lang.String)
+numComments=5

@@ -1,0 +1,34 @@
+#BlueJ class context
+comment0.target=ExBin
+comment0.text=\n\ ExBin\:\ binary\ expression\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120924\ added\ support\ for\ code\ printer\n\ \ version\ 110610\ allowed\ struct\ compare\ to\ null\n\ \ version\ 110509\ added\ struct\ check\ in\ null\ type\ assignment\n\ \ version\ 110307\ fixed\ check\ for\ invalid\ types\n\ \ version\ 101210\ adopted\ changed\ Architecture\n\ \ version\ 101102\ made\ value\ output\ of\ boolean\ operation\ conforming\ to\ write\ once\ semantic\n\ \ version\ 101028\ added\ implicit\ conversions\ for\ assign+op\ if\ not\ in\ explicitConversion\ mode\n\ \ version\ 101027\ fixed\ implicit\ shift\ conversion\ check,\ adopted\ changed\ assign+op,\ added\ support\ for\ assign+bitshift\n\ \ version\ 101024\ fixed\ op\ in\ call\ to\ genUnaOp\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100929\ made\ use\ of\ implicit\ conversion\ code\ in\ TypeRef\n\ \ version\ 100927\ fixed\ unsignedness\ of\ chars\n\ \ version\ 100512\ adopted\ changed\ Modifier/Marks\n\ \ version\ 100127\ adopted\ renaming\ of\ *ariCall\ into\ binAriCall\ \n\ \ version\ 100126\ fixed\ implicit\ conversion\ for\ char\ types\n\ \ version\ 091112\ added\ support\ for\ explicitTypeConversion\n\ \ version\ 091026\ using\ new\ genBinOpConst*\ in\ Architecture\n\ \ version\ 091005\ adopted\ changed\ Expr\ with\ support\ for\ preferredType\ in\ resolving\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090719\ adopted\ changed\ Expr\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090401\ fixed\ register\ allocation\ in\ genOutputVal\ for\ reg\=\=0\ in\ assign\ with\ call\n\ \ version\ 090219\ fixed\ bug\ in\ genCondJmp\ for\ C_ISIMPL\n\ \ version\ 090207\ added\ copyright\ notice,\ changed\ genPushNull\ to\ genPushConstVal,\ optimized\ assign\n\ \ version\ 090206\ optimized\ assign\ structure\ to\ make\ use\ of\ changed\ Expr\ and\ Architecture\n\ \ version\ 081023\ optimized\ genOutputVal\ for\ assignments\ to\ addresses\ on\ stack\n\ \ version\ 081021\ adopted\ changed\ Architecture.genComp/genCondJmp\n\ \ version\ 080727\ fixed\ checkGenAriCall\ for\ parameterized\ assignments\n\ \ version\ 080624\ added\ object-test\ for\ arithmetic\ operators\n\ \ version\ 080613\ adopted\ hasEffect->effectType,\ optimized\ handling\ of\ constants\n\ \ version\ 080525\ adopted\ changed\ genCondJmp\ signature\n\ \ version\ 080520\ fixed\ different\ targets\ for\ ariCalls\n\ \ version\ 080518\ added\ check\ for\ constant\ expression\ before\ setting\ of\ dynamicAri-request,\ changed\ ariCall-op-par\ to\ byte\n\ \ version\ 080517\ optimized\ multiple-if\ towards\ single-switch,\ adopted\ changes\ of\ Architecture.ariLongCall\ to\ ariCall\n\ \ version\ 080203\ fixed\ genOutputVal\ for\ constant\ double\ expressions\n\ \ version\ 080119\ adopted\ changed\ signature\ of\ Expr.canGenAddr\n\ \ version\ 080118\ added\ support\ for\ type-checking\ in\ assign\n\ \ version\ 070910\ adopted\ changes\ in\ TypeRef.compareType\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve\n\ \ version\ 070828\ fixed\ implicit\ conversion\ for\ interface\ assignments\n\ \ version\ 070813\ fixed\ getConstLongVal\n\ \ version\ 070812\ added\ support\ for\ constant\ float/double\ results,\ basic\ checks\ for\ float/double\n\ \ version\ 070809\ adopted\ changed\ for\ float/double\n\ \ version\ 070727\ replaced\ exSubResolve\ by\ resolve\ as\ there\ is\ nothing\ done\ anymore\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070625\ renamed\ TypeRef.S_*\ to\ T_*\ to\ conform\ with\ StdTypes\n\ \ version\ 070531\ adopted\ removal\ of\ Architecture.genLoadFromMem\n\ \ version\ 070526\ better\ error\ message\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 070106\ removed\ genOutputAddr\n\ \ version\ 070101\ adopted\ change\ in\ genCall\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061202\ adopted\ change\ of\ genCall\n\ \ version\ 061102\ added\ checks\ to\ prohibit\ instanceof-call\ for\ structs\n\ \ version\ 060807\ added\ support\ for\ call\ on\ arithmetic\ operation\n\ \ version\ 060629\ added\ support\ for\ call\ instead\ of\ ptr-assign\n\ \ version\ 060628\ added\ support\ for\ static\ compilation\n\ \ version\ 060621\ implicit\ conversion\ for\ object->interface\n\ \ version\ 060607\ initial\ version\n
+comment1.params=iop\ ira\ fid\ il\ ic
+comment1.target=ExBin(int,\ int,\ int,\ int,\ int)
+comment10.params=ctx
+comment10.target=long\ getConstLongValue(sjc.compbase.Context)
+comment11.params=ctx
+comment11.target=void\ noImplicitConvert(sjc.compbase.Context)
+comment12.params=reg\ ctx
+comment12.target=void\ genOutputVal(int,\ sjc.compbase.Context)
+comment13.params=reg\ reg1\ reg2\ ctx
+comment13.target=void\ genOutAriCall(int,\ int,\ int,\ sjc.compbase.Context)
+comment14.params=ctx
+comment14.target=boolean\ chkAriErr(sjc.compbase.Context)
+comment15.params=jumpDest\ isTrue\ elseDest\ ctx
+comment15.target=void\ genOutputCondJmp(sjc.backend.Instruction,\ boolean,\ sjc.backend.Instruction,\ sjc.compbase.Context)
+comment2.params=codePrnt
+comment2.target=void\ printExpression(sjc.debug.CodePrinter)
+comment3.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment3.target=boolean\ resolve(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ int,\ sjc.compbase.TypeRef,\ sjc.compbase.Context)
+comment4.params=unitContext\ ctx
+comment4.target=boolean\ checkImplicitIntBaseTypeConversion(sjc.compbase.Unit,\ sjc.compbase.Context)
+comment5.params=opPar\ unitContext\ ctx
+comment5.target=boolean\ checkAriBasicsAndCall(int,\ sjc.compbase.Unit,\ sjc.compbase.Context)
+comment6.params=ctx
+comment6.target=boolean\ assignNullType(sjc.compbase.Context)
+comment7.params=ctx
+comment7.target=int\ calcConstantType(sjc.compbase.Context)
+comment8.params=ctx
+comment8.target=int\ getConstIntValue(sjc.compbase.Context)
+comment9.params=v
+comment9.target=int\ checkBits(int)
+numComments=16

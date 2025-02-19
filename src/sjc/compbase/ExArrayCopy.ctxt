@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=ExArrayCopy
+comment0.text=\n\ ExArrayCopy\:\ runtime\ call\ to\ deliver\ a\ deep\ array\ copy\ of\ a\ constant\ array\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121014\ added\ support\ for\ code\ printer\n\ \ version\ 101210\ adopted\ changed\ Architecture\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100409\ adopted\ changed\ TypeRef\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091210\ added\ restrictive\ check\ of\ forcedType\n\ \ version\ 091208\ initial\ version\n
+comment1.params=constArray\ type\ implicit
+comment1.target=ExArrayCopy(ExArrayInit,\ TypeRef,\ boolean)
+comment2.params=prnt
+comment2.target=void\ printExpression(sjc.debug.CodePrinter)
+comment3.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment3.target=boolean\ resolve(Unit,\ Mthd,\ int,\ TypeRef,\ Context)
+comment4.params=reg\ ctx
+comment4.target=void\ genOutputVal(int,\ Context)
+numComments=5

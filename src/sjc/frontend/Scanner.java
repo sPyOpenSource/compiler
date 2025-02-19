@@ -55,159 +55,169 @@ import sjc.osio.TextPrinter;
  */
 
 public class Scanner {
-	public final static int MAX_SYMBOL_LENGTH = 255;
-	public final static int RES      = 0;
-	
-	//symbols and symbol-sets
-	public final static int S_ERR    = -2; //error in symbol
-	public final static int S_EOF    = -1; //end of input-file reached
-	public final static int S_ID     =  1; //identifier
-	public final static int S_NUM    =  2; //numeric value (subtypes from S_TYP)
-	public final static int S_SCT    =  3; //string-constants
-	public final static int S_MOD    =  4; //modifiers
-	public final static int S_FLC    =  5; //flow-control in statement
-	public final static int S_OKE    =  6; //other keywords
-	public final static int S_TYP    =  7; //standard-types (subtypes also for S_NUM)
-	public final static int S_DEL    =  8; //delimiter
-	public final static int S_ENC    =  9; //enclosure-characters
-        public final static int S_ASK    = 10; //choose-operator "?"
-	public final static int S_ASN    = Ops.S_ASN; //assignment (pure, see S_ASNARI and S_ASNBSH)
-	public final static int S_PFX    = Ops.S_PFX; //prefix and postfix
-	public final static int S_CMP    = Ops.S_CMP; //compares
-	public final static int S_ARI    = Ops.S_ARI; //arithmetic operators
-	public final static int S_BSH    = Ops.S_BSH; //bitshift operators
-	public final static int S_LOG    = Ops.S_LOG; //logical operators
-        public final static int S_ASNARI = Ops.S_ASNARI; //assignment with implicit arithmentic operation
-        public final static int S_ASNBSH = Ops.S_ASNBSH; //assignment with implicit bitshift operation
-	
-	//types for set MOD, bitfields (used in Parser)
-	public final static int M_PUB    = Modifier.M_PUB;   //"public"
-	public final static int M_PROT   = Modifier.M_PROT;  //"protect"
-	public final static int M_PRIV   = Modifier.M_PRIV;  //"private"
-	public final static int M_FIN    = Modifier.M_FIN;   //"final"
-	public final static int M_STAT   = Modifier.M_STAT;  //"static"
-	public final static int M_ABSTR  = Modifier.M_ABSTR; //"abstract"
-        public final static int M_NAT    = Modifier.M_NAT;   //"native"
-        public final static int M_TRANS  = Modifier.M_TRANS; //"transient"
-        public final static int M_ANNO   = Modifier.M_ANNO;  //annotation "@"
-        public final static int M_SYNC   = Modifier.M_SYNC;  //"synchronized"
-        public final static int M_VOLAT  = Modifier.M_VOLAT; //"volatile"
-	//types for set TYP
-	public final static int T_BYTE  = StdTypes.T_BYTE; //"byte"
-	public final static int T_SHRT  = StdTypes.T_SHRT; //"short"
-	public final static int T_INT   = StdTypes.T_INT;  //"int"
-	public final static int T_LONG  = StdTypes.T_LONG; //"long"
-	public final static int T_FLT   = StdTypes.T_FLT;  //"float"
-	public final static int T_DBL   = StdTypes.T_DBL;  //"double"
-	public final static int T_CHAR  = StdTypes.T_CHAR; //"char"
-	public final static int T_BOOL  = StdTypes.T_BOOL; //"boolean"
-	public final static int T_NULL  = StdTypes.T_NULL; //null-type
-	//types for set FLC
-	public final static int F_IF    =  1; //"if"
-	public final static int F_ELSE  =  2; //"else"
-	public final static int F_FOR   =  3; //"for"
-	public final static int F_WHILE =  4; //"while"
-	public final static int F_DO    =  5; //"do"
-	public final static int F_SWTCH =  6; //"switch"
-	public final static int F_CASE  =  7; //"case"
-	public final static int F_DFLT  =  8; //"default"
-	public final static int F_RET   =  9; //"return"
-	public final static int F_BRK   = 10; //"break"
-	public final static int F_CNT   = 11; //"continue"
-	public final static int F_TRY   = 12; //"try"
-	public final static int F_CATCH = 13; //"catch"
-	public final static int F_FIN   = 14; //"finally"
-	public final static int F_THROW = 15; //"throw"
-	public final static int F_THRWS = 16; //"throws"
-	public final static int F_ASSRT = 17; //"assert"
-	//type for set OKE
-	public final static int O_NEW   =  1; //"new"
-	public final static int O_VOID  =  2; //"void"
-	public final static int O_PACK  =  3; //"package"
-	public final static int O_IMPT  =  4; //"import"
-	public final static int O_CLSS  =  5; //"class"
-	public final static int O_INTF  =  6; //"interface"
-	public final static int O_EXTS  =  7; //"extends"
-	public final static int O_IMPL  =  8; //"implements"
-	public final static int O_ANDC  =  9; //annotation "@interface"
-	//types for set DEL
-	public final static int D_SEM   =  1; //";"
-	public final static int D_COL   =  2; //":"
-	public final static int D_COM   =  3; //","
-	public final static int D_DOT   =  4; //"."
-	//types for set CMP
-	public final static int C_LW    = Ops.C_LW; //"<"
-	public final static int C_LE    = Ops.C_LE; //"<="
-	public final static int C_EQ    = Ops.C_EQ; //"=="
-	public final static int C_GE    = Ops.C_GE; //">="
-	public final static int C_GT    = Ops.C_GT; //">"
-	public final static int C_NE    = Ops.C_NE; //"!="
-	public final static int C_INOF  = Ops.C_INOF; //"instanceof"
-	//types for set ARI
-	public final static int A_AND   = Ops.A_AND;   //"&"
-	public final static int A_OR    = Ops.A_OR;    //"|"
-	public final static int A_XOR   = Ops.A_XOR;   //"^"
-	public final static int A_CPL   = Ops.A_CPL;   //"~"
-	public final static int A_PLUS  = Ops.A_PLUS;  //"+"
-	public final static int A_MINUS = Ops.A_MINUS; //"-"
-	public final static int A_MUL   = Ops.A_MUL;   //"*" (also used in import-statement as wildcard)
-	public final static int A_DIV   = Ops.A_DIV;   //"/"
-	public final static int A_MOD   = Ops.A_MOD;   //"%"
-	//types for PFX                   
-	public final static int P_INC   = Ops.P_INC; //"++"
-	public final static int P_DEC   = Ops.P_DEC; //"--"
-	//types for set BSH
-	public final static int B_SHL   = Ops.B_SHL;  //"<<"
-	public final static int B_SHRL  = Ops.B_SHRL; //">>>"
-	public final static int B_SHRA  = Ops.B_SHRA; //">>"
-	//types for set LOG
-	public final static int L_NOT   = Ops.L_NOT; //"!"
-	public final static int L_AND   = Ops.L_AND; //"&&"
-	public final static int L_OR    = Ops.L_OR;  //"||"
-	//types for set ENC
-	public final static int E_RO    =  1; //"(" round open
-	public final static int E_RC    =  2; //")" round close
-	public final static int E_BO    =  3; //"{" bracket open
-	public final static int E_BC    =  4; //"}" bracket close
-	public final static int E_SO    =  5; //"[" squared bracket open
-	public final static int E_SC    =  6; //"]" squared bracket close
-	public final static int E_SOC   =  7; //"[]" squared brackets open and close
-	
-	//internally used categories of characters
-        private final static int CCT_OTHER    = 0;
-        private final static int CCT_CTRL     = 1; //' ' and below
-        private final static int CCT_ALPHAEXT = 2; //'A'..'Z', 'a'..'z', '_', '$'
-        private final static int CCT_BASEOP1  = 3; //'!', '"', '#', '%', '&', '''
-        private final static int CCT_BASEOP2  = 4; //'(', ')', '*', '+', ',', '-', '.', '/'
-        private final static int CCT_BASEOP3  = 5; //':', ';', '<', '=', '>', '?'
+    public final static int MAX_SYMBOL_LENGTH = 255;
+    public final static int RES      = 0;
 
-        public ScanSym nxtSym, lahSym; //next and lookahead symbol
-        public int endOfLastSymbol; //position of end of last symbol in file
-        private Context ctx; //calling java-compiler 
-	private TextReader r; //Input-Reader
-	private int curFID; //current file-id
-	private TextPrinter v; //for outputs
-	private StringPool sp; //Pool for strings
-	private ScanSym l2aSym; //look-2-ahead symbol for internal recognition of identifier
-	private char chrBuf[];
-	private int bufLen;
+    //symbols and symbol-sets
+    public final static int S_ERR    = -2; //error in symbol
+    public final static int S_EOF    = -1; //end of input-file reached
+    public final static int S_ID     =  1; //identifier
+    public final static int S_NUM    =  2; //numeric value (subtypes from S_TYP)
+    public final static int S_SCT    =  3; //string-constants
+    public final static int S_MOD    =  4; //modifiers
+    public final static int S_FLC    =  5; //flow-control in statement
+    public final static int S_OKE    =  6; //other keywords
+    public final static int S_TYP    =  7; //standard-types (subtypes also for S_NUM)
+    public final static int S_DEL    =  8; //delimiter
+    public final static int S_ENC    =  9; //enclosure-characters
+    public final static int S_ASK    = 10; //choose-operator "?"
+    public final static int S_ASN    = Ops.S_ASN; //assignment (pure, see S_ASNARI and S_ASNBSH)
+    public final static int S_PFX    = Ops.S_PFX; //prefix and postfix
+    public final static int S_CMP    = Ops.S_CMP; //compares
+    public final static int S_ARI    = Ops.S_ARI; //arithmetic operators
+    public final static int S_BSH    = Ops.S_BSH; //bitshift operators
+    public final static int S_LOG    = Ops.S_LOG; //logical operators
+    public final static int S_ASNARI = Ops.S_ASNARI; //assignment with implicit arithmentic operation
+    public final static int S_ASNBSH = Ops.S_ASNBSH; //assignment with implicit bitshift operation
+
+    //types for set MOD, bitfields (used in Parser)
+    public final static int M_PUB    = Modifier.M_PUB;   //"public"
+    public final static int M_PROT   = Modifier.M_PROT;  //"protect"
+    public final static int M_PRIV   = Modifier.M_PRIV;  //"private"
+    public final static int M_FIN    = Modifier.M_FIN;   //"final"
+    public final static int M_STAT   = Modifier.M_STAT;  //"static"
+    public final static int M_ABSTR  = Modifier.M_ABSTR; //"abstract"
+    public final static int M_NAT    = Modifier.M_NAT;   //"native"
+    public final static int M_TRANS  = Modifier.M_TRANS; //"transient"
+    public final static int M_ANNO   = Modifier.M_ANNO;  //annotation "@"
+    public final static int M_SYNC   = Modifier.M_SYNC;  //"synchronized"
+    public final static int M_VOLAT  = Modifier.M_VOLAT; //"volatile"
+    
+    //types for set TYP
+    public final static int T_BYTE  = StdTypes.T_BYTE; //"byte"
+    public final static int T_SHRT  = StdTypes.T_SHRT; //"short"
+    public final static int T_INT   = StdTypes.T_INT;  //"int"
+    public final static int T_LONG  = StdTypes.T_LONG; //"long"
+    public final static int T_FLT   = StdTypes.T_FLT;  //"float"
+    public final static int T_DBL   = StdTypes.T_DBL;  //"double"
+    public final static int T_CHAR  = StdTypes.T_CHAR; //"char"
+    public final static int T_BOOL  = StdTypes.T_BOOL; //"boolean"
+    public final static int T_NULL  = StdTypes.T_NULL; //null-type
+    
+    //types for set FLC
+    public final static int F_IF    =  1; //"if"
+    public final static int F_ELSE  =  2; //"else"
+    public final static int F_FOR   =  3; //"for"
+    public final static int F_WHILE =  4; //"while"
+    public final static int F_DO    =  5; //"do"
+    public final static int F_SWTCH =  6; //"switch"
+    public final static int F_CASE  =  7; //"case"
+    public final static int F_DFLT  =  8; //"default"
+    public final static int F_RET   =  9; //"return"
+    public final static int F_BRK   = 10; //"break"
+    public final static int F_CNT   = 11; //"continue"
+    public final static int F_TRY   = 12; //"try"
+    public final static int F_CATCH = 13; //"catch"
+    public final static int F_FIN   = 14; //"finally"
+    public final static int F_THROW = 15; //"throw"
+    public final static int F_THRWS = 16; //"throws"
+    public final static int F_ASSRT = 17; //"assert"
+    
+    //type for set OKE
+    public final static int O_NEW   =  1; //"new"
+    public final static int O_VOID  =  2; //"void"
+    public final static int O_PACK  =  3; //"package"
+    public final static int O_IMPT  =  4; //"import"
+    public final static int O_CLSS  =  5; //"class"
+    public final static int O_INTF  =  6; //"interface"
+    public final static int O_EXTS  =  7; //"extends"
+    public final static int O_IMPL  =  8; //"implements"
+    public final static int O_ANDC  =  9; //annotation "@interface"
+    
+    //types for set DEL
+    public final static int D_SEM   =  1; //";"
+    public final static int D_COL   =  2; //":"
+    public final static int D_COM   =  3; //","
+    public final static int D_DOT   =  4; //"."
+    
+    //types for set CMP
+    public final static int C_LW    = Ops.C_LW; //"<"
+    public final static int C_LE    = Ops.C_LE; //"<="
+    public final static int C_EQ    = Ops.C_EQ; //"=="
+    public final static int C_GE    = Ops.C_GE; //">="
+    public final static int C_GT    = Ops.C_GT; //">"
+    public final static int C_NE    = Ops.C_NE; //"!="
+    public final static int C_INOF  = Ops.C_INOF; //"instanceof"
+    
+    //types for set ARI
+    public final static int A_AND   = Ops.A_AND;   //"&"
+    public final static int A_OR    = Ops.A_OR;    //"|"
+    public final static int A_XOR   = Ops.A_XOR;   //"^"
+    public final static int A_CPL   = Ops.A_CPL;   //"~"
+    public final static int A_PLUS  = Ops.A_PLUS;  //"+"
+    public final static int A_MINUS = Ops.A_MINUS; //"-"
+    public final static int A_MUL   = Ops.A_MUL;   //"*" (also used in import-statement as wildcard)
+    public final static int A_DIV   = Ops.A_DIV;   //"/"
+    public final static int A_MOD   = Ops.A_MOD;   //"%"
+    
+    //types for PFX                   
+    public final static int P_INC   = Ops.P_INC; //"++"
+    public final static int P_DEC   = Ops.P_DEC; //"--"
+    
+    //types for set BSH
+    public final static int B_SHL   = Ops.B_SHL;  //"<<"
+    public final static int B_SHRL  = Ops.B_SHRL; //">>>"
+    public final static int B_SHRA  = Ops.B_SHRA; //">>"
+    
+    //types for set LOG
+    public final static int L_NOT   = Ops.L_NOT; //"!"
+    public final static int L_AND   = Ops.L_AND; //"&&"
+    public final static int L_OR    = Ops.L_OR;  //"||"
+    
+    //types for set ENC
+    public final static int E_RO    =  1; //"(" round open
+    public final static int E_RC    =  2; //")" round close
+    public final static int E_BO    =  3; //"{" bracket open
+    public final static int E_BC    =  4; //"}" bracket close
+    public final static int E_SO    =  5; //"[" squared bracket open
+    public final static int E_SC    =  6; //"]" squared bracket close
+    public final static int E_SOC   =  7; //"[]" squared brackets open and close
+
+    //internally used categories of characters
+    private final static int CCT_OTHER    = 0;
+    private final static int CCT_CTRL     = 1; //' ' and below
+    private final static int CCT_ALPHAEXT = 2; //'A'..'Z', 'a'..'z', '_', '$'
+    private final static int CCT_BASEOP1  = 3; //'!', '"', '#', '%', '&', '''
+    private final static int CCT_BASEOP2  = 4; //'(', ')', '*', '+', ',', '-', '.', '/'
+    private final static int CCT_BASEOP3  = 5; //':', ';', '<', '=', '>', '?'
+
+    public ScanSym nxtSym, lahSym; //next and lookahead symbol
+    public int endOfLastSymbol; //position of end of last symbol in file
+    private Context ctx; //calling java-compiler 
+    private TextReader r; //Input-Reader
+    private int curFID; //current file-id
+    private TextPrinter v; //for outputs
+    private StringPool sp; //Pool for strings
+    private ScanSym l2aSym; //look-2-ahead symbol for internal recognition of identifier
+    private char chrBuf[];
+    private int bufLen;
 	
 	public Scanner() {
-		sp=new StringPool();
-		chrBuf=new char[MAX_SYMBOL_LENGTH+1];
-		nxtSym=new ScanSym();
-		lahSym=new ScanSym();
-		l2aSym=new ScanSym();
+		sp = new StringPool();
+		chrBuf = new char[MAX_SYMBOL_LENGTH + 1];
+		nxtSym = new ScanSym();
+		lahSym = new ScanSym();
+		l2aSym = new ScanSym();
 	}
 	
 	public void init(TextReader ir, int fid, Context ic) {
-		r=ir;
-		curFID=fid;
-                ctx=ic;
-                v=ctx.out;
-		nxtSym.type=RES; nxtSym.par=RES;
-		lahSym.type=RES; lahSym.par=RES;
-		l2aSym.type=RES; l2aSym.par=RES;
+		r = ir;
+		curFID = fid;
+                ctx = ic;
+                v = ctx.out;
+		nxtSym.type = RES; nxtSym.par = RES;
+		lahSym.type = RES; lahSym.par = RES;
+		l2aSym.type = RES; l2aSym.par = RES;
 		next(); //initialize internal look-2-ahead
 		next(); //initialize lookahead
 		next(); //initialize next
@@ -216,24 +226,24 @@ public class Scanner {
 	public boolean next() {
 		ScanSym dumSym;
 		
-		endOfLastSymbol=nxtSym.syposE;
-		if (nxtSym.type==S_ERR || nxtSym.type==S_EOF) return false;
-		if (l2aSym.type==S_EOF) {
-			if (lahSym.type==S_EOF) {
-				nxtSym.type=S_EOF;
+		endOfLastSymbol = nxtSym.syposE;
+		if (nxtSym.type == S_ERR || nxtSym.type == S_EOF) return false;
+		if (l2aSym.type == S_EOF) {
+			if (lahSym.type == S_EOF) {
+				nxtSym.type = S_EOF;
 				return false;
 			}
-			dumSym=nxtSym;
-			nxtSym=lahSym;
-			lahSym=dumSym;
-			lahSym.type=S_EOF;
+			dumSym = nxtSym;
+			nxtSym = lahSym;
+			lahSym = dumSym;
+			lahSym.type = S_EOF;
 			return true;
 		}
 		//exchange actual / next symbol if no error
-		dumSym=nxtSym;
-		nxtSym=lahSym;
-		lahSym=l2aSym;
-		l2aSym=dumSym;
+		dumSym = nxtSym;
+		nxtSym = lahSym;
+		lahSym = l2aSym;
+		l2aSym = dumSym;
 		//get the symbol
 		if (!getSym()) return false;
 		//check if square brackets open+close
@@ -668,8 +678,7 @@ $      36 | D      68 | d    100
   }
   
   private boolean isNum(char c) {
-    if (c>='0' && c<='9') return true;
-    return false;
+    return c >= '0' && c <= '9';
   }
   
   private boolean isAlphaNum(char c) {
@@ -909,10 +918,8 @@ $      36 | D      68 | d    100
   }
 
   private boolean equalTo(char buf[], String to) {
-    int i;
-    
     //length checked already, else: if (to.length()!=len) return false; //not the same length
-    for (i=to.length()-1; i>=0; i--) if (buf[i]!=to.charAt(i)) return false; //different character
+    for (int i = to.length() - 1; i >= 0; i--) if (buf[i] != to.charAt(i)) return false; //different character
     return true;
   }
 }

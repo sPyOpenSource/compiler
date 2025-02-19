@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=Pack
+comment0.text=\n\ Pack\:\ nameservice\ directory\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 110512\ re-invented\ NamedObject\n\ \ version\ 101231\ removed\ never\ used\ reference\ to\ NamedObject\n\ \ version\ 101219\ added\ reference\ to\ NamedObject\n\ \ version\ 101218\ replaced\ getTypeTo\ by\ getQIDTo\n\ \ version\ 091123\ removed\ no\ longer\ needed\ symHint\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 071222\ added\ support\ for\ inner\ units\n\ \ version\ 070909\ added\ getTypeTo\ to\ avoid\ multiple\ creation\ of\ types\n\ \ version\ 070727\ renamed\ "parent"\ to\ "outer"\ to\ match\ runtime\ symbol\ information,\ added\ symHint\n\ \ version\ 070713\ publicated\ access\ levels\ to\ support\ symbol\ informer,\ avoid\ printing\ "root."\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 060607\ initial\ version\n
+comment1.params=in\ ip
+comment1.target=Pack(java.lang.String,\ Pack)
+comment2.params=
+comment2.target=QualID\ getQIDTo()
+comment3.params=v
+comment3.target=void\ printFullName(sjc.osio.TextPrinter)
+comment4.params=what
+comment4.target=Pack\ searchSubPackage(java.lang.String)
+comment5.params=what\ createIfNew
+comment5.target=Pack\ searchSubPackage(StringList,\ boolean)
+comment6.params=what
+comment6.target=Unit\ searchUnit(java.lang.String)
+comment7.params=what
+comment7.target=Unit\ searchUnit(StringList)
+comment8.params=c
+comment8.target=boolean\ addUnit(Unit)
+comment9.params=name
+comment9.target=java.lang.Object\ searchNamedObject(java.lang.String)
+numComments=10

@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=QualID
+comment0.text=\n\ QualID\:\ qualified\ identifier\ (list\ of\ strings)\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 080707\ adopted\ changed\ signature\ of\ Unit.searchUnitInView\n\ \ version\ 080603\ got\ resolveAsUnit\ from\ TypeRef\n\ \ version\ 070714\ printing\ resolved\ QID\ if\ possible\n\ \ version\ 060607\ initial\ version\n
+comment1.params=is\ it\ fid\ il\ ic
+comment1.target=QualID(StringList,\ int,\ int,\ int,\ int)
+comment2.params=
+comment2.target=java.lang.String\ getLastPID()
+comment3.params=v
+comment3.target=void\ printFullQID(sjc.osio.TextPrinter)
+comment4.params=inUnit\ ctx
+comment4.target=boolean\ resolveAsUnit(Unit,\ Context)
+numComments=5

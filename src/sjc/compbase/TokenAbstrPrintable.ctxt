@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=TokenAbstrPrintable
+comment0.text=\n\ TokenAbstrPrintable\:\ basic\ code\ entity\ that\ may\ be\ printed\ by\ a\ CodePrinter\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120925\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=TokenAbstrPrintable(int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+numComments=3

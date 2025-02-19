@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=StTryCaFi
+comment0.text=\n\ StTryCaFi\:\ try-catch-finally\ block\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121020\ fixed\ method\ hierarchy\n\ \ version\ 121016\ added\ support\ for\ code\ printer\n\ \ version\ 121014\ added\ dummy\ for\ code\ printer\n\ \ version\ 100526\ fixed\ register\ saving\ on\ cleanup\n\ \ version\ 100504\ extension\ of\ StBreakable\ to\ support\ cleanup\ code\ generation\n\ \ version\ 100409\ adopted\ changed\ TypeRef\n\ \ version\ 091111\ added\ support\ for\ instance\ final-var-init\n\ \ version\ 091109\ rewriting\ of\ var's\ written\ state\ checks\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091013\ adopted\ changed\ method\ signature\ of\ genStore*\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090724\ added\ support\ for\ detailed\ flow\ analysis\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090507\ added\ flow\ analysis\ information\n\ \ version\ 090208\ using\ genStoreVarConstVal\ instead\ of\ genClearMem\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 081021\ adopted\ changed\ Architecture.genComp/genCondJmp\n\ \ version\ 080616\ fixed\ kill-hints,\ added\ support\ for\ ctx.noThrowFrames\n\ \ version\ 080615\ added\ catch-reachable-checking,\ adopted\ changed\ Architecture.throwFrame*\n\ \ version\ 080610\ added\ throwable-checking\n\ \ version\ 080603\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StTryCaFi(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=thrown\ ctx
+comment4.target=boolean\ handlesThrowable(sjc.compbase.Unit,\ sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=void\ genOutput(sjc.compbase.Context)
+comment6.params=ctx
+comment6.target=void\ innerGenOutputCleanup(sjc.compbase.Context)
+comment7.params=ctx
+comment7.target=int\ buildGlobalAddress(sjc.compbase.Context)
+numComments=8

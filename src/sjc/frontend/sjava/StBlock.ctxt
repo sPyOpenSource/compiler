@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=StBlock
+comment0.text=\n\ StBlock\:\ block\ of\ statements\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121020\ added\ support\ for\ "report\ block\ end"\ option\ in\ printBreakableStatement\n\ \ version\ 121017\ added\ code\ printer\ support\ for\ labels\n\ \ version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 100504\ adopted\ changed\ StBreakable,\ got\ this-/super-call\ checks\ from\ JMthd\n\ \ version\ 091111\ added\ support\ for\ instance\ final-var-init\n\ \ version\ 091109\ added\ support\ for\ abbreviation\n\ \ version\ 091103\ overwrote\ genOutput\ to\ avoid\ source\ hinting\ for\ blocks\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090718\ added\ break\ on\ first\ erroneous\ statement,\ added\ support\ for\ unwrittenVars\n\ \ version\ 090616\ adopted\ changed\ ExCall\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090507\ added\ flow\ analysis\n\ \ version\ 090505\ added\ basic\ flow\ analysis\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080610\ removed\ conversion\ to\ JMthd\ as\ it\ is\ no\ longer\ required\n\ \ version\ 070913\ added\ support\ for\ spread\ local\ variable\ declaration\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve,\ made\ StBlock\ breakable\n\ \ version\ 070908\ optimized\ signature\ of\ Stmt.resolve\n\ \ version\ 070905\ added\ support\ for\ this(.)-calls\n\ \ version\ 070903\ adopted\ changes\ in\ AccVar.checkNameAgainst*,\ now\ also\ checking\ locals\ against\ parameter\n\ \ version\ 070812\ added\ support\ for\ double\n\ \ version\ 070701\ added\ hint\ for\ architecture\ when\ local\ variables\ pushed\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070527\ added\ possibility\ to\ save\ instance\ context\ for\ inline\ array\ constructors\n\ \ version\ 070127\ moved\ complex\ initialization\ of\ variables\ to\ Vrbl.genInitCode\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061128\ added\ comments\n\ \ version\ 061027\ optimized\ check\ for\ special\ names\n\ \ version\ 060621\ inserted\ missing\ type-test\ for\ initialized\ variables\n\ \ version\ 060607\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StBlock(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=flowEntryCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=flowCode\ isOutestInConstr\ unitContext\ mthdContext\ ctx
+comment4.target=int\ innerResolve(int,\ boolean,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment5.params=named\ contNotBreak
+comment5.target=boolean\ isBreakContDest(boolean,\ boolean)
+comment6.params=ctx
+comment6.target=void\ genOutput(sjc.compbase.Context)
+comment7.params=ctx
+comment7.target=void\ innerGenOutput(sjc.compbase.Context)
+comment8.params=ctx\ saveInstContext
+comment8.target=void\ genOutput(sjc.compbase.Context,\ boolean)
+numComments=9

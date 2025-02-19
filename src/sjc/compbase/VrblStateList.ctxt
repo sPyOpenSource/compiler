@@ -1,0 +1,4 @@
+#BlueJ class context
+comment0.target=VrblStateList
+comment0.text=\n\ VrblStateList\:\ linear\ list\ of\ variables\ (independent\ of\ Vrbl.nextVrbl)\ with\ modCopy\ field\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091109\ initial\ version\n
+numComments=1

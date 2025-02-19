@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=StSync
+comment0.text=\n\ StSync\:\ synchronized-statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121017\ added\ code\ printer\ support\ for\ labels\n\ \ version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 110223\ added\ "descriptor\ needed"\ if\ sync\ depends\ on\ class\ descriptor\n\ \ version\ 110221\ removed\ buggy\ cleanup\ optimization\n\ \ version\ 101220\ added\ support\ for\ noSyncCall\n\ \ version\ 101210\ adopted\ changed\ Architecture\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100916\ fixed\ class\ context\ loading\ in\ static\ compilation\ environment\n\ \ version\ 100526\ added\ normal\ cleanup\ check,\ fixed\ register\ saving\ on\ cleanup\n\ \ version\ 100504\ extension\ of\ StBreakable\ to\ support\ cleanup,\ simplified\ compErr-messages\n\ \ version\ 100114\ adopted\ changed\ Architecture\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 091013\ adopted\ changed\ method\ signature\ of\ genStore*\n\ \ version\ 091005\ adopted\ changed\ Expr\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090718\ adopted\ changed\ Expr\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090616\ changed\ "enter"\ into\ "leave"\ to\ conform\ with\ profiler\ parameters\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090506\ added\ flow\ analysis\ information\n\ \ version\ 090218\ initial\ version\n
+comment1.params=io\ is\ fid\ il\ ic
+comment1.target=StSync(StBreakable,\ int,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=named\ contNotBreak
+comment4.target=boolean\ isBreakContDest(boolean,\ boolean)
+comment5.params=ctx
+comment5.target=void\ innerGenOutput(sjc.compbase.Context)
+comment6.params=ctx
+comment6.target=void\ innerGenOutputCleanup(sjc.compbase.Context)
+comment7.params=regSyncObj\ leave\ ctx
+comment7.target=void\ genOutputDoSyncCall(int,\ int,\ sjc.compbase.Context)
+numComments=8

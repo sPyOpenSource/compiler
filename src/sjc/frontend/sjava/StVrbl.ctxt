@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StVrbl
+comment0.text=\n\ StVrbl\:\ statement\ containing\ variable\ declaration\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100826\ added\ code\ for\ in-system\ compilation\n\ \ version\ 100512\ adopted\ changed\ JMthd\n\ \ version\ 100411\ made\ varList\ protected\ to\ allow\ access\ from\ StForEnh\n\ \ version\ 100409\ adopted\ changed\ TypeRef\n\ \ version\ 091112\ added\ support\ for\ implicit\ conversion\ and\ explicitTypeConversion\n\ \ version\ 091109\ adopted\ changed\ written-checks\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091005\ adopted\ changed\ Expr\ with\ support\ for\ preferredType\ in\ resolving\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090724\ adopted\ changed\ Expr\n\ \ version\ 090718\ added\ support\ for\ MF_WRITTEN\ flag,\ adopted\ changed\ Expr\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080610\ removed\ conversion\ to\ JMthd\ as\ it\ is\ no\ longer\ required\n\ \ version\ 080106\ added\ support\ for\ direct\ non-interface\ descendants\ in\ variable\ initialization\n\ \ version\ 070920\ fixed\ declaration\ with\ cross-reference\ in\ varList\n\ \ version\ 070917\ added\ support\ for\ optimized\ initialization\ (skip\ zero-init)\n\ \ version\ 070913\ initial\ version\n
+comment1.params=iv\ ifi
+comment1.target=StVrbl(sjc.compbase.Vrbl,\ boolean)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=5

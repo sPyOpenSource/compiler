@@ -1,0 +1,32 @@
+#BlueJ class context
+comment0.target=ExAccVrbl
+comment0.text=\n\ ExAccVrbl\:\ expression\ referring\ to\ a\ memory-variable\n\ \n\ @author\ S.\ Frenz\n\ @version\ 181016\ optimized\ and\ fixed\ genOutputAddr\ with\ outer\ variable\ \n\ \ version\ 140507\ added\ support\ for\ RefToFlash\n\ \ version\ 140124\ added\ more\ support\ for\ local\ /\ param\ variables\ pointing\ to\ flash\ memory\n\ \ version\ 120504\ completed\ support\ for\ struct\ references\n\ \ version\ 120502\ added\ support\ to\ assign\ struct\ references\n\ \ version\ 110624\ made\ outerLevel\ and\ outerAccessStart\ public\ to\ enable\ access\ in\ ExDeRef,\ added\ support\ for\ outerLevel\ to\ generate\ this\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100813\ added\ dest-null-check\n\ \ version\ 100504\ adopted\ changed\ Expr,\ reduced\ compErr-messages\n\ \ version\ 100312\ adopted\ changed\ TypeRef\ and\ added\ support\ for\ flash\ values\n\ \ version\ 100114\ adopted\ changed\ Architecture\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091013\ adopted\ changed\ method\ signature\ of\ genStore*\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090916\ fixed\ indirect\ scalar\ addressing\n\ \ version\ 090724\ adopted\ changed\ Expr\ and\ added\ support\ for\ insideLoop-check\ for\ final\ variables\n\ \ version\ 090718\ added\ support\ for\ non-static\ final\ variables\n\ \ version\ 090625\ fixed\ indirect\ scalar\ addressing\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090219\ adopted\ changed\ Architecture\n\ \ version\ 090207\ added\ copyright\ notice\ and\ inserted\ check\ for\ reg\=\=0\ in\ genOutputAssignTo\n\ \ version\ 090206\ added\ isAddrOnStack\ and\ genOutputAssignTo\n\ \ version\ 080614\ simplified\ int\ accMode\ to\ boolean\ useResu,\ adopted\ changed\ Unit.searchVariable\n\ \ version\ 080523\ better\ error\ message\ for\ invalid\ genOutputAddr\n\ \ version\ 080331\ added\ support\ for\ L_STRUCTREF\n\ \ version\ 080119\ adopted\ changed\ signature\ of\ Expr.canGenAddr\n\ \ version\ 072224\ added\ support\ for\ inner\ classes\n\ \ version\ 070909\ removed\ not\ needed\ isSuper\ and\ destUnit\n\ \ version\ 070823\ added\ support\ for\ constant\ double\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070527\ optimized\ inline\ array\ access,\ added\ support\ for\ instance\ inline\ arrays\n\ \ version\ 070511\ added\ support\ for\ constant\ objects\n\ \ version\ 070505\ adopted\ change\ in\ Architecture\n\ \ version\ 070331\ fixed\ comment\n\ \ version\ 070303\ added\ support\ for\ indirect\ movable\ scalars\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 070107\ fixed\ inline\ array\ detection\n\ \ version\ 070106\ removed\ array\ stuff\n\ \ version\ 070101\ adopted\ change\ in\ genCall\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061228\ added\ bound\ check\ skipping\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061202\ adopted\ change\ of\ genCall\n\ \ version\ 061130\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=ExAccVrbl(int,\ int,\ int)
+comment10.params=reg\ obj\ ctx
+comment10.target=void\ genOutputVal(int,\ int,\ Context)
+comment11.params=newValueReg\ newValue\ ctx
+comment11.target=void\ genOutputAssignTo(int,\ Expr,\ Context)
+comment12.params=obj\ newValueReg\ newValue\ ctx
+comment12.target=void\ genOutputAssignTo(int,\ int,\ Expr,\ Context)
+comment13.params=reuseReg\ obj\ ctx
+comment13.target=int\ genDeOuter(int,\ int,\ Context)
+comment14.params=reg\ ctx
+comment14.target=void\ cleanUpDeOuter(int,\ Context)
+comment2.params=ctx
+comment2.target=int\ calcConstantType(Context)
+comment3.params=ctx
+comment3.target=boolean\ isCompInitConstObject(Context)
+comment4.params=
+comment4.target=AccVar\ getDestVar()
+comment5.params=
+comment5.target=boolean\ isAddrOnStack()
+comment6.params=unitContext\ allowSpecialWriteAccess\ resolveFlags\ ctx
+comment6.target=boolean\ canGenAddr(Unit,\ boolean,\ int,\ Context)
+comment7.params=reg\ ctx
+comment7.target=void\ genOutputAddr(int,\ Context)
+comment8.params=reg\ obj\ ctx
+comment8.target=void\ genOutputAddr(int,\ int,\ Context)
+comment9.params=reg\ ctx
+comment9.target=void\ genOutputVal(int,\ Context)
+numComments=15

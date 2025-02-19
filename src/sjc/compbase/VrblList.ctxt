@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=VrblList
+comment0.text=\n\ VrblList\:\ linear\ list\ of\ variables\ (independent\ of\ Vrbl.nextVrbl)\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 070127\ initial\ version\n
+comment1.params=iv
+comment1.target=VrblList(Vrbl)
+numComments=2

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=IndirUnitMapList
+comment0.text=\n\ IndirUnitMapList\:\ list\ of\ interfaces\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 071215\ renamed\ from\ JIntfList\ to\ IndirUnitMapList\ and\ moved\ to\ compbase\n\ \ version\ 070730\ changed\ Intf\ to\ Unit\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 060607\ initial\ version\n
+comment1.params=ii\ in
+comment1.target=IndirUnitMapList(Unit,\ IndirUnitMapList)
+numComments=2

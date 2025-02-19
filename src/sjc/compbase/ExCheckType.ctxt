@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=ExCheckType
+comment0.text=\n\ ExConv\:\ basix\ routines\ to\ support\ conversion\ and\ typecheck\ of\ objects\n\ \n\ @author\ S.\ Frenz\n\ @version\ 101210\ adopted\ changed\ Architecture\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100429\ added\ check\ for\ genIntfParents\ if\ interface\ arrays\ are\ converted\n\ \ version\ 100426\ made\ class\ non-abstract\ and\ methods\ public\ to\ support\ special\ conversions\n\ \ version\ 100420\ added\ check\ for\ flash\ types\n\ \ version\ 091215\ fixed\ reg-prepare\ for\ std-type-arrays\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090619\ adopted\ changed\ architecture\n\ \ version\ 090207\ added\ copyright\ notice\ and\ changed\ genPushNull\ to\ genPushConstVal\n\ \ version\ 081203\ fixed\ reference\ to\ array\ of\ base\ types\n\ \ version\ 080604\ made\ main\ functionallity\ of\ genIsType\ static\ to\ provide\ global\ functionallity\ \n\ \ version\ 080121\ relaxed\ handling\ of\ conversions\ from/to\ basic\ type\ arrays\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070522\ added\ support\ to\ check\ unit\ descriptor\ necessity\n\ \ version\ 070505\ adopted\ change\ in\ Architecture\n\ \ version\ 070330\ bugfixed\ array\ to\ object\ conversion\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070113\ changed\ runtime\ environment\ to\ support\ conversion\ to\ array\n\ \ version\ 070111\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=ExCheckType(int,\ int,\ int)
+comment2.params=reg\ ctx
+comment2.target=void\ genOutputVal(int,\ Context)
+comment3.params=unitContext\ mthdContext\ resolveFlags\ preferredType\ ctx
+comment3.target=boolean\ resolve(Unit,\ Mthd,\ int,\ TypeRef,\ Context)
+comment4.params=srcType\ destType\ unitContext\ ctx
+comment4.target=boolean\ prepareObjectConversion(TypeRef,\ TypeRef,\ Unit,\ Context)
+comment5.params=dst\ src\ asCast\ ctx
+comment5.target=void\ genIsType(int,\ int,\ boolean,\ Context)
+comment6.params=dst\ src\ asCast\ dstType\ checkMode\ runtimeClass\ importedClass\ ctx
+comment6.target=void\ genIsType(int,\ int,\ boolean,\ TypeRef,\ int,\ UnitList,\ UnitList,\ Context)
+numComments=7

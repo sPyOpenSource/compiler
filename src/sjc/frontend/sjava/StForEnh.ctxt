@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StForEnh
+comment0.text=\n\ StForEnh\:\ enhanced\ for-loop\ of\ jdk1.5\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121017\ added\ code\ printer\ support\ for\ labels\n\ \ version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100922\ added\ F_LOOPEND\n\ \ version\ 100813\ removed\ unneeded\ variables\n\ \ version\ 100413\ added\ source\ hint\ for\ condition\ test\n\ \ version\ 100412\ adopted\ changed\ ExDeArray\n\ \ version\ 100411\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StForEnh(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=5

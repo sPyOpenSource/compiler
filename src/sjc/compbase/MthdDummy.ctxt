@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=MthdDummy
+comment0.text=\n\ MthdDummy\:\ dummy-implementation\ of\ Mthd\ as\ placeholder\n\ \n\ @author\ S.\ Frenz\n\ @version\ 091116\ adopted\ simplified\ Mthd-signature\n\ \ version\ 091111\ adopted\ optimized\ resolve-signature\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080414\ adopted\ change\ in\ Mthd\n\ \ version\ 071215\ adopted\ change\ in\ Mthd\n\ \ version\ 070913\ adopted\ change\ in\ Mthd\n\ \ version\ 070727\ changed\ id\ from\ PureID\ to\ String\n\ \ version\ 070127\ adopted\ change\ in\ genOutput\n\ \ version\ 061225\ added\ genInlineOutput\n\ \ version\ 060607\ initial\ version\n
+comment1.params=ii\ im\ fid\ il\ ic
+comment1.target=MthdDummy(java.lang.String,\ int,\ int,\ int,\ int)
+comment2.params=
+comment2.target=Mthd\ copy()
+comment3.params=owner\ ctx
+comment3.target=boolean\ checkNameAndType(Unit,\ Context)
+comment4.params=ctx
+comment4.target=boolean\ resolve(Context)
+comment5.params=ctx
+comment5.target=void\ genOutput(Context)
+comment6.params=ctx
+comment6.target=void\ genInlineOutput(Context)
+numComments=7

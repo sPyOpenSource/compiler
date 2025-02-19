@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Param
+comment0.text=\n\ Param\:\ declaration\ of\ a\ parameter\ inside\ a\ method\ declaration\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 070903\ removed\ checkNameAndType\n\ \ version\ 070731\ adopted\ renaming\ of\ id\ to\ name\n\ \ version\ 070727\ adopted\ change\ of\ type\ of\ id\n\ \ version\ 070111\ adopted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=Param(int,\ int,\ int)
+numComments=2

@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=FilledAnno
+comment0.text=\n\ FilledAnno\:\ container\ for\ complex\ annotations\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 100401\ initial\ version\n
+comment1.params=iNext\ in\ fid\ il\ ic
+comment1.target=FilledAnno(FilledAnno,\ java.lang.String,\ int,\ int,\ int)
+numComments=2

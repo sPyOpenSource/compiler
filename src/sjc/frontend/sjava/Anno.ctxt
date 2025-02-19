@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.target=Anno
+comment0.text=\n\ Anno\:\ placeholder\ for\ annotation\ declarations\n\ \n\ @author\ S.\ Frenz\n\ @version\ 100312\ removed\ not\ needed\ methods\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080702\ adopted\ changed\ symInfo-debug-interface\n\ \ version\ 080118\ initial\ version\n
+comment1.params=ip\ ii\ im\ fid\ il\ ic
+comment1.target=Anno(sjc.compbase.QualID,\ sjc.compbase.QualIDList,\ int,\ int,\ int,\ int)
+comment10.params=refUnit\ insert
+comment10.target=sjc.compbase.UnitList\ getRefUnit(sjc.compbase.Unit,\ boolean)
+comment11.params=ctx\ v
+comment11.target=void\ writeDebug(sjc.compbase.Context,\ sjc.debug.DebugWriter)
+comment2.params=ctx
+comment2.target=boolean\ checkDeclarations(sjc.compbase.Context)
+comment3.params=var\ ctx
+comment3.target=boolean\ checkInstVarInit(sjc.compbase.Vrbl,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=boolean\ resolveIntfExtsIpls(sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=boolean\ resolveMthdExtsIpls(sjc.compbase.Context)
+comment6.params=doClssOff\ ctx
+comment6.target=boolean\ assignOffsets(boolean,\ sjc.compbase.Context)
+comment7.params=objLoc\ lastIntf\ ctx
+comment7.target=sjc.compbase.IndirUnitMapList\ enterInheritableReferences(java.lang.Object,\ sjc.compbase.IndirUnitMapList,\ sjc.compbase.Context)
+comment8.params=ctx
+comment8.target=boolean\ genDescriptor(sjc.compbase.Context)
+comment9.params=ctx
+comment9.target=boolean\ genOutput(sjc.compbase.Context)
+numComments=12

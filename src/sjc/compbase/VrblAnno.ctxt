@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=VrblAnno
+comment0.text=\n\ VrblAnno\:\ annotated\ Vrbl\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 100401\ initial\ version\n
+comment1.params=ii\ im\ ia\ fid\ il\ ic
+comment1.target=VrblAnno(java.lang.String,\ int,\ FilledAnno,\ int,\ int,\ int)
+comment2.params=
+comment2.target=FilledAnno\ getAnnotation()
+numComments=3

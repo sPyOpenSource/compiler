@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=AccVar
+comment0.text=\n\ AccVar\:\ platform\ and\ language\ independent\ variable\ that\ may\ be\ accessed\ in\ any\ way\ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 140507\ added\ support\ for\ MM_REFTOFLASH\n\ \ version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 100504\ added\ getInitExpr\n\ \ version\ 100428\ removed\ structAsReference\ case\n\ \ version\ 100419\ added\ checks\ for\ Flash-modifier\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090918\ added\ support\ for\ package\ private\n\ \ version\ 090718\ added\ support\ for\ non-static\ final\ variables\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080816\ changed\ access\ to\ M_STRUCT\ via\ Modifier\ instead\ of\ Unit\n\ \ version\ 080331\ added\ L_STRUCTREF\n\ \ version\ 071222\ added\ checkNameAgainstUnits\n\ \ version\ 070903\ added\ checkNameAgainst*\n\ \ version\ 070731\ renamed\ id\ to\ name\n\ \ version\ 070727\ changed\ type\ of\ id\ from\ PureID\ to\ String\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070526\ added\ support\ for\ instance\ inline\ arrays\n\ \ version\ 070303\ added\ support\ for\ indirect\ movable\ scalars\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 070106\ moved\ inlinedArraySize\ to\ TypeRef\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 061109\ added\ inlinedArraySize\n\ \ version\ 061101\ added\ support\ of\ variables\ in\ struct\n\ \ version\ 061030\ changed\ detection\ of\ indirectCall\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=AccVar(int,\ int,\ int)
+comment2.params=loc\ ctx
+comment2.target=boolean\ enterSize(int,\ Context)
+comment3.params=ctx
+comment3.target=Expr\ getInitExpr(Context)
+comment4.params=ctx
+comment4.target=ExConstInitObj\ getConstInitObj(Context)
+comment5.params=ov\ ctx
+comment5.target=boolean\ checkNameAgainstVrbl(Vrbl,\ Context)
+comment6.params=ou\ ctx
+comment6.target=boolean\ checkNameAgainstUnits(Unit,\ Context)
+comment7.params=op\ ctx
+comment7.target=boolean\ checkNameAgainstParam(Param,\ Context)
+numComments=8

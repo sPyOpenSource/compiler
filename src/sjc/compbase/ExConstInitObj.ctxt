@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=ExConstInitObj
+comment0.text=\n\ ExConstInitObj\:\ parent\ of\ constant\ objects\ created\ at\ compile\ time\n\ \n\ @author\ S.\ Frenz\n\ @version\ 100312\ added\ support\ for\ flash\ objects\n\ \ version\ 100114\ reorganized\ constant\ object\ handling\n\ \ version\ 091209\ added\ generateObject\n\ \ version\ 091021\ adopted\ changed\ modifier\ declarations\n\ \ version\ 091005\ moved\ to\ compbase-package\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090718\ adopted\ move\ of\ modifier\ flags\ from\ Vrbl\ to\ AccVar\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080616\ added\ dependsOn,\ got\ getCompInitConstObjectVrbl\n\ \ version\ 070918\ initial\ version\n
+comment1.params=ctx\ doFlash
+comment1.target=boolean\ generateObject(Context,\ boolean)
+comment2.params=
+comment2.target=java.lang.String\ getDebugValue()
+comment3.params=fid\ il\ ic
+comment3.target=ExConstInitObj(int,\ int,\ int)
+comment4.params=ctx
+comment4.target=boolean\ isCompInitConstObject(Context)
+comment5.params=ctx
+comment5.target=ExConstInitObj\ getConstInitObj(Context)
+comment6.params=ctx
+comment6.target=int\ getOutputLocationOffset(Context)
+numComments=7

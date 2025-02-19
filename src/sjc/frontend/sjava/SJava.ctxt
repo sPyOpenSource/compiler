@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=SJava
+comment0.text=\n\ SJava\:\ administration\ of\ the\ SJava-language\ and\ access\ to\ the\ SJava-routines\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121017\ added\ ignore-unit-flag\ for\ struct\ and\ flash\ dummy\ units\n\ \ version\ 120227\ fixed\ implicit\ basetype\ var\ init\ conversion\ check,\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 110705\ made\ internally\ created\ units\ static\n\ \ version\ 110624\ fixed\ package\ of\ internally\ created\ units\n\ \ version\ 110429\ fixed\ implicit\ conversion\ check\ and\ error\ message\n\ \ version\ 100513\ adopted\ changed\ TextReader\n\ \ version\ 100512\ clarified\ checkVarInitType,\ adopted\ changed\ Clss\n\ \ version\ 100402\ added\ SJC-special\n\ \ version\ 100401\ removed\ MARKER-\ and\ DEFINE-special,\ added\ FLASH-special\n\ \ version\ 100113\ fixed\ modifier\ of\ struct\ dummy\ class\n\ \ version\ 091209\ adopted\ movement\ of\ Scanner\ to\ frontend\ package\n\ \ version\ 091112\ added\ support\ for\ unified\ vrbl\ init\ checks\n\ \ version\ 091102\ added\ support\ for\ attaching\ source\ to\ Context\n\ \ version\ 090303\ adopted\ changed\ osio\ package\ structure\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070801\ added\ test\ to\ avoid\ re-creation\ of\ STRUCT-dummy\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 061222\ dynamized\ Marker\n\ \ version\ 061211\ setting\ CALLED-flag\ of\ runtime\ methods\n\ \ version\ 061202\ minimal\ changes\n\ \ version\ 061129\ dynamized\ Magic\n\ \ version\ 061027\ added\ support\ for\ STRUCT\n\ \ version\ 060628\ added\ support\ for\ static\ compilation\n\ \ version\ 060607\ initial\ version\n
+comment1.params=name
+comment1.target=boolean\ isSpecialName(java.lang.String)
+comment2.params=var\ explConv\ unitContext\ ctx
+comment2.target=boolean\ checkVarInitType(sjc.compbase.Vrbl,\ boolean,\ sjc.compbase.Unit,\ sjc.compbase.Context)
+comment3.params=iCtx
+comment3.target=void\ init(sjc.compbase.Context)
+comment4.params=name
+comment4.target=boolean\ fileCompetence(java.lang.String)
+comment5.params=fileName
+comment5.target=boolean\ scanparseFile(sjc.compbase.StringList)
+numComments=6
