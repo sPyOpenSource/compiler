@@ -39,7 +39,7 @@ public class CompileNative {
 	String jlnname = libdir + "zero.jln";
         
         CompilerOptions opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-        //compile("zero", opts);
+        compile("zero", opts);
         
 	jllname = libdir + "jdk0.jll";
         jlnname = libdir + "jdk0.jln";
@@ -50,7 +50,7 @@ public class CompileNative {
             jlns.add(libdir + neededLib + ".jln");
         }
         opts = getCompilerOptions(null, jlns, null, jlnname, jllname, "JC_CONFIG");
-	//compile("os", opts);
+	compile("os", opts);
         
 	jllname = libdir + "init2.jll";
         jlnname = libdir + "init2.jln";
@@ -237,7 +237,7 @@ public class CompileNative {
             GZIPOutputStream gzipOS = new GZIPOutputStream(fos);
             byte[] buffer = new byte[1024];
             int len;
-            while((len=fis.read(buffer)) != -1){
+            while((len = fis.read(buffer)) != -1){
                 gzipOS.write(buffer, 0, len);
             }
             

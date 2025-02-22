@@ -36,9 +36,11 @@ public class StringTable {
     
     public void writeStringTable(ExtendedDataOutputStream out) throws IOException {
 	int number = strings.size();
+        for(String str:strings) number += str.length();
+        
 	//out.writeInt(number+1);
 	out.writeInt(number);
-	for (int i = 0; i < number; i++) {
+	for (int i = 0; i < strings.size(); i++) {
 	    String str = strings.get(i);
 	    /*
 	    if (str.equals("STRING-TABLE:")) {
@@ -46,7 +48,8 @@ public class StringTable {
 		continue;
 	    } else {
 	    */
-	    out.writeString(strings.get(i));
+	    out.writeString(str);
+            //out.writeByte((byte)0);
 	}
 	//out.writeString("END OF STRING-TABLE");
     }

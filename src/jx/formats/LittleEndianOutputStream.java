@@ -34,10 +34,11 @@ public class LittleEndianOutputStream extends FilterOutputStream {
 	int len = s.length();
 	char[] buf = new char[len];
 	s.getChars(0, len, buf, 0);
-	writeInt(len);
+	//writeInt(len);
 	for (int i = 0; i < len; i++) {
 	    write(buf[i] & 0xff); // truncate character to byte
 	}
+        write(0);
     }
 
     public final void writeChecksum() throws IOException {
@@ -51,4 +52,5 @@ public class LittleEndianOutputStream extends FilterOutputStream {
 	if (doChecksum) checksum = (checksum ^ b) & 0xff;
 	super.write(b);
     }
+    
 }

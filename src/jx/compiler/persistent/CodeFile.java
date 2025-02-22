@@ -235,7 +235,7 @@ public class CodeFile {
 
 	int n = in.readInt();
         for (int j = 0; j < n; j++){
-                in.readString();
+                in.readByte();
         }
 
 	/*
