@@ -68,14 +68,15 @@ public class LittleEndianInputStream extends FilterInputStream {
     }
     
     public final String readString() throws IOException {
-	int len = readInt();
+	int len = 0;//readInt();
 
 	if (str_buffer == null || str_buffer.length < len) {
-	    str_buffer = new char[len + 10];
+	    str_buffer = new char[280];
 	}
 
-	for (int i = 0; i < len; i++) {
-	    str_buffer[i] = (char) (read() & 0xff); 
+	while ((str_buffer[len] = (char) (read() & 0xff)) != 0) {
+	    //str_buffer[len] = (char) (read() & 0xff); 
+            len++;
 	}
 
 	return new String(str_buffer, 0, len);

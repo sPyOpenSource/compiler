@@ -143,7 +143,7 @@ class java/util/HashMap {
         vl6 = ((float)vi4*vR0.loadFactor);    
         if vi4>=1073741824 goto B121;   
   +B107:   #1
-        if compare(vl6,jx.classfile.datatypes.BCFloat@39d76cb5)>=0 goto B121;   
+        if compare(vl6,jx.classfile.datatypes.BCFloat@7674b62c)>=0 goto B121;   
   +B115:   #1
         b0 = (int)vl6;    
         goto +B123b0;   [Riiiil i  .]
@@ -322,7 +322,7 @@ class java/util/HashMap {
         if vR0.table!=null goto B68;   
   +B18:   #1
         vl4 = (((float)vi3/vR0.loadFactor)+1);    
-        if compare(vl4,jx.classfile.datatypes.BCFloat@39d76cb5)>=0 goto B43;   
+        if compare(vl4,jx.classfile.datatypes.BCFloat@7674b62c)>=0 goto B43;   
   +B37:   #1
         b0 = (int)vl4;    
         goto +B45b0;   [il i  .]
@@ -711,7 +711,7 @@ class java/util/HashMap {
         vR0.size = 0;   
         vR0.modCount = 0;   
         vR0.capacity = vi1;   
-        vR0.loadFactor = jx.classfile.datatypes.BCFloat@4a00d9cf;   
+        vR0.loadFactor = jx.classfile.datatypes.BCFloat@19e7a160;   
         vR0.threshold = 8;   
         vR0.buckets = new java/util/Bucket()[vR0.capacity];   
         return;   

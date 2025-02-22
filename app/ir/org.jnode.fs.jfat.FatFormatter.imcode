@@ -82,7 +82,7 @@ class org/jnode/fs/jfat/FatFormatter {
         vR9.setReserve2();   [Riiii RR iiiiii R.....] 
         vR9.setFsInfo_TrailSig(-1437270016);   [Riiii RR iiiiii iR....] 
         vl14 = (long)(vi12/vi11);    
-        if compare((double)vl14,pow@special(jx.classfile.datatypes.BCDouble@2766ca9d,jx.classfile.datatypes.BCDouble@5460cf3a))<=0 goto B508;   
+        if compare((double)vl14,pow@special(jx.classfile.datatypes.BCDouble@5be067de,jx.classfile.datatypes.BCDouble@7383eae2))<=0 goto B508;   
   +B508:   #1
         vi16 = (((2*vR0.FatSize)+32)+vi11);    
   +B522:   #1
