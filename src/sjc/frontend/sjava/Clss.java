@@ -165,7 +165,7 @@ public class Clss extends JUnit {
 		marker=imark;
 		initStat=new JMthd(null, Modifier.M_STAT|Modifier.M_PUB, fid, il, ic);
 		initDyna=new JMthd(null, Modifier.M_PUB, fid, il, ic);
-    initStat.owner=initDyna.owner=this;
+        initStat.owner=initDyna.owner=this;
 	}
 	
 	public boolean validateModifierAfterImportResolve(Context ctx) {
@@ -377,6 +377,7 @@ public class Clss extends JUnit {
 	  return false;
 	}
 	
+        @Override
   protected boolean checkInstVarInit(Vrbl var, Context ctx) {
     JMthd addedConstr;
     VrblList lastInit;

@@ -1413,7 +1413,7 @@ public class ARM7 extends Architecture {
       fatalError("unsupported local stack size for stack extreme check");
       return;
     }
-    me.replaceInt(0, IC_AL|0x02000000|IOD_ADD|(0<<16)|(0<<12)|(30<<(8-1))|maxStackUsage);
+    me.replaceInt(0, IC_AL|0x02000000|IOD_ADD|(30<<(8-1))|maxStackUsage);
   }
   
   protected void fixLoadLit(Instruction me) {
