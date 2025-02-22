@@ -76,7 +76,7 @@ import jx.zero.Debug;
 
 
 public class CodeFile {
-    public static final int VERSION = 9;
+    public static final int VERSION = 10;
     private int codesize = 0;
     public static final boolean verbose = false;
 
