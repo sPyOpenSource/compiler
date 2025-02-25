@@ -15,19 +15,19 @@ public class BCClass implements BCClassInterface {
     String className;
     Object info;
 
-  public BCClass(ClassSource classSource, String className, Object info) {
-    this.classSource = classSource;
-    this.className = className;
-    this.info = info;
-  }
+    public BCClass(ClassSource classSource, String className, Object info) {
+        this.classSource = classSource;
+        this.className = className;
+        this.info = info;
+    }
 
   public BCClass(ClassSource classSource, String className) {
       this(classSource, className, null);
   }
 
-  public BCClass(ClassSource classSource) {
-    this(classSource, classSource.getClassName(), null);
-  }
+    public BCClass(ClassSource classSource) {
+        this(classSource, classSource.getClassName(), null);
+    }
 
     @Override
     public void setInfo(Object info) {
@@ -48,9 +48,9 @@ public class BCClass implements BCClassInterface {
     public ClassSource getClassSource() { return classSource; }
 
     @Override
-  public BCMethod getMethod(String name, String type) {
-    return new BCMethod(classSource.getMethod(name, type)); 
-  }
+    public BCMethod getMethod(String name, String type) {
+        return new BCMethod(classSource.getMethod(name, type)); 
+    }
 
     @Override
     public String getClassName() {
@@ -99,14 +99,14 @@ public class BCClass implements BCClassInterface {
   }
 
     @Override
-  public ConstantPool getConstantPool() {
-    return classSource.getConstantPool();
-  }
+    public ConstantPool getConstantPool() {
+        return classSource.getConstantPool();
+    }
 
     @Override
-  public void invalidateMethod(BCMethod method) {
-    // invalidate method, if cached 
-  }
+    public void invalidateMethod(BCMethod method) {
+        // invalidate method, if cached 
+    }
 
     @Override
     public String toString() {

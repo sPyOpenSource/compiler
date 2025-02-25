@@ -941,32 +941,22 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	  UnresolvedJump jumpForward = new UnresolvedJump();  
 
 	  regs.readIntRegister(objRef);
-	  //value = regs.chooseIntRegister(objRef);
-	  //regs.allocIntRegister(value,BCBasicDatatype.BOOLEAN);
-	  regs.allocIntRegister(regEAX,BCBasicDatatype.BOOLEAN);
+	  regs.allocIntRegister(regEAX, BCBasicDatatype.BOOLEAN);     
 
-	  /*
-	  code.movl(1,regEAX);
-	  code.test(objRef,objRef);
-	  code.je();
-	  code.cmpl(new ClassSTEntry(classCPEntry.getClassName()),objRef.rdisp(classDescOffset));
-	  code.je();
-	  */	      
-
-	  code.xorl(regEAX,regEAX);
-	  code.test(objRef,objRef);
+	  code.xorl(regEAX, regEAX);
+	  code.test(objRef, objRef);
 	  code.sete(regEAX);
-	  code.cmpl(new ClassSTEntry(classCPEntry.getClassName()),objRef.rdisp(classDescOffset));
+	  code.cmpl(new ClassSTEntry(classCPEntry.getClassName()), objRef.rdisp(classDescOffset));
 	  code.sete(regEAX);
 	  code.je(jumpForward);
 	  regs.freeIntRegister(regEAX);
 	  regs.saveIntRegister();
 	  int offset = frame.start();
-	  frame.push(-1,new ClassSTEntry(classCPEntry.getClassName()));
-	  frame.push(BCBasicDatatype.REFERENCE,objRef);
+	  frame.push(-1, new ClassSTEntry(classCPEntry.getClassName()));
+	  frame.push(BCBasicDatatype.REFERENCE, objRef);
 	  code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_INSTANCEOF));
 	  frame.cleanup(offset);
-	  regs.allocIntRegister(regEAX,BCBasicDatatype.BOOLEAN);
+	  regs.allocIntRegister(regEAX, BCBasicDatatype.BOOLEAN);
 	  if (regEAX.value != 0) {
 	      code.movl(Reg.eax, regEAX);
 	  }
@@ -975,12 +965,12 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    regs.saveIntRegister();
 
 	    int offset=frame.start();
-	    frame.push(-1,new ClassSTEntry(classCPEntry.getClassName()));
-	    frame.push(BCBasicDatatype.REFERENCE,objRef);
+	    frame.push(-1, new ClassSTEntry(classCPEntry.getClassName()));
+	    frame.push(BCBasicDatatype.REFERENCE, objRef);
 	    code.call(new VMSupportSTEntry(VMSupportSTEntry.VM_INSTANCEOF));
 	    frame.cleanup(offset);
 
-	    regs.allocIntRegister(regEAX,Reg.eax,BCBasicDatatype.BOOLEAN);
+	    regs.allocIntRegister(regEAX,Reg.eax, BCBasicDatatype.BOOLEAN);
 	    if (regEAX.value != 0) {
 		code.movl(Reg.eax, regEAX);
 	    }

@@ -376,15 +376,15 @@ public class StaticCompiler implements ClassFinder {
 		    info.nativeCode[i] = imCode;
 		    */
 		    info.nativeCode[i] = new NativeCodeContainer() {
-                            @Override
-			    public BinaryCode getMachineCode() {
-                                throw new Error("NATIVE");
-                            }
-                            @Override
-			    public ArrayList  getInstructionTable() {throw new Error("NATIVE");}
-                            @Override
-			    public int        getLocalVarSize() {throw new Error("NATIVE");}
-			};
+                        @Override
+                        public BinaryCode getMachineCode() {
+                            throw new Error("NATIVE");
+                        }
+                        @Override
+                        public ArrayList  getInstructionTable() {throw new Error("NATIVE");}
+                        @Override
+                        public int        getLocalVarSize() {throw new Error("NATIVE");}
+                    };
 		    continue;
 		}
 
