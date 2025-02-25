@@ -28,16 +28,15 @@ import sjc.backend.Instruction;
  */
 
 public class SSAoptInstruction extends Instruction {
-	public boolean moved;
-	
-	public SSAoptInstruction(int maxInstrSize) {
-		
-		super(maxInstrSize);
-	}
-	
-	public void cleanup() {
-		
-		super.cleanup();
-		moved = false;
-	}
+    public boolean moved;
+
+    public SSAoptInstruction(int maxInstrSize) {
+        super(maxInstrSize);
+    }
+
+    @Override
+    public void cleanup() {
+        super.cleanup();
+        moved = false;
+    }
 }

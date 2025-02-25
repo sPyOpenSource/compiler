@@ -54,9 +54,9 @@ import sjc.frontend.Language;
  */
 
 public class SJava extends Language {
-  public final static String KEY_THIS="this", KEY_SUPER="super";
-  public final static String KEY_MAGIC="MAGIC", KEY_STRUCT="STRUCT";
-  public final static String KEY_FLASH="FLASH", KEY_SJC="SJC";
+  public final static String KEY_THIS = "this", KEY_SUPER = "super";
+  public final static String KEY_MAGIC = "MAGIC", KEY_STRUCT = "STRUCT";
+  public final static String KEY_FLASH = "FLASH", KEY_SJC = "SJC";
   private Context ctx;
   private Scanner s;
   private JParser p;
@@ -70,7 +70,7 @@ public class SJava extends Language {
   
   protected static boolean checkVarInitType(Vrbl var, boolean explConv, Unit unitContext, Context ctx) {
     int cmpRes;
-    boolean success=true;
+    boolean success = true;
     
     if (var.init!=null && (cmpRes=var.type.compareType(var.init, true, ctx))!=TypeRef.C_EQ && cmpRes!=TypeRef.C_TT) {
       TypeRef destType=null;

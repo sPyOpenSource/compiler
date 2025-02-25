@@ -119,15 +119,13 @@ public class JParser {
   private int mod_marker; //SJC special modifiers delivered by getModifier
   private FilledAnno mod_anno; //SJC special annotation modifier delivered by getModifier
     
-  protected boolean tokenize(Scanner is, int fileID, Context ic) {
-    boolean success;
-    
-    s=is;
-    curFID=fileID;
-    ctx=ic;
-    progressCounter=0;
-    success=doTokenize();
-    if (progressCounter>7) ctx.out.println();
+  protected boolean tokenize(Scanner is, int fileID, Context ic) {    
+    s = is;
+    curFID = fileID;
+    ctx = ic;
+    progressCounter = 0;
+    boolean success = doTokenize();
+    if (progressCounter > 7) ctx.out.println();
     return success;
   }
   

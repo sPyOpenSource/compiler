@@ -199,15 +199,15 @@ public class ARM7 extends Architecture {
   }
   
   protected int freeRegSearch(int mask, int type) {
-    int ret, ret2;
+    int ret1, ret2;
     
     mask&=RegALL;
-    if ((ret=bitSearch(mask, 1, 0))==0) return 0;
+    if ((ret1=bitSearch(mask, 1, 0))==0) return 0;
     if (type==StdTypes.T_LONG || type==StdTypes.T_DPTR) {
-      if ((ret2=bitSearch(mask&~ret, 1, 0))==0) return 0;
-      ret|=ret2;
+      if ((ret2=bitSearch(mask&~ret1, 1, 0))==0) return 0;
+      ret1|=ret2;
     }
-    return ret;
+    return ret1;
   }
   
   protected int storeReg(int regs) {
@@ -600,21 +600,21 @@ public class ARM7 extends Architecture {
   
   @Override
   public void genAssign(int dst, int srcReg, int type) {
-    int src, src2;
-    if ((dst=getReg(1, dst, false))==-1 || (src=getReg(1, srcReg, false))==-1) return;
+    int src1, src2;
+    if ((dst=getReg(1, dst, false))==-1 || (src1=getReg(1, srcReg, false))==-1) return;
     switch (type) {
       case StdTypes.T_BOOL: case StdTypes.T_BYTE:
-        insSingleTransfer(IC_AL, IOST_STRu08, src, dst, 0);
+        insSingleTransfer(IC_AL, IOST_STRu08, src1, dst, 0);
         return;
       case StdTypes.T_CHAR: case StdTypes.T_SHRT:
-        insSingleReducedTransfer(IC_AL, IOSR_STRH, src, dst, 0);
+        insSingleReducedTransfer(IC_AL, IOSR_STRH, src1, dst, 0);
         return;
       case StdTypes.T_LONG:
         if ((src2=getReg(2, srcReg, false))==-1) return;
         insSingleTransfer(IC_AL, IOST_STRi32, src2, dst, 4);
         //has to do INT, too
       case StdTypes.T_INT:  case StdTypes.T_PTR:
-        insSingleTransfer(IC_AL, IOST_STRi32, src, dst, 0);
+        insSingleTransfer(IC_AL, IOST_STRi32, src1, dst, 0);
         return;
     }
     fatalError("unsupported type in genAssign ");
@@ -623,7 +623,7 @@ public class ARM7 extends Architecture {
   @Override
   public void genBinOp(int dst, int src1, int src2, int op, int type) {
     Instruction t1, t2;
-    int dstHi, src1Hi, src2Hi=0;
+    int dstHi, src1Hi, src2Hi = 0;
     switch (type) {
       case StdTypes.T_BOOL:
       case StdTypes.T_BYTE: case StdTypes.T_SHRT: case StdTypes.T_CHAR: case StdTypes.T_INT:
@@ -906,19 +906,23 @@ public class ARM7 extends Architecture {
     insSingleTransfer(IC_AL, IOST_LDRi32, dst, RegCLSS, off);
   }
   
+  @Override
   public void genLoadConstUnitContext(int dst, Object unitLoc) {
     if ((dst=getReg(1, dst, true))==-1) return;
     insMoveConst(IC_AL, dst, mem.getAddrAsInt(unitLoc, 0), 0);
   }
   
+  @Override
   public void genSaveInstContext() {
     insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, (1<<RegINST)|(1<<RegCLSS));
   }
   
+  @Override
   public void genRestInstContext() {
     insBlockTransfer(IC_AL, IOBT_LDMFDu, RegSP, (1<<RegINST)|(1<<RegCLSS));
   }
   
+  @Override
   public void genLoadInstContext(int src) {
     if ((src=getReg(1, src, false))==-1) return;
     insDataReg(IC_AL, IOD_MOV, RegINST, 0, src);
@@ -1015,20 +1019,24 @@ public class ARM7 extends Architecture {
     return cond;
   }
   
+  @Override
   public int genCompPtrToNull(int reg, int cond) {
     if ((reg=getReg(1, reg, false))==-1) return 0;
     insDataImm(IC_AL, IOD_CMPupd, 0, reg, 0, 0);
     return cond;
   }
   
+  @Override
   public void genWriteIO(int dst, int src, int type, int memLoc) {
     fatalError("unsupported function genWriteIO");
   }
   
+  @Override
   public void genReadIO(int dst, int src, int type, int memLoc) {
     fatalError("unsupported function genReadIO");
   }
   
+  @Override
   public void genMoveToPrimary(int srcR, int type) {
     int reg;
     if ((reg=getReg(1, srcR, false))==-1) return;
@@ -1039,6 +1047,7 @@ public class ARM7 extends Architecture {
     }
   }
   
+  @Override
   public void genMoveFromPrimary(int dstR, int type) {
     int reg;
     if (type==StdTypes.T_LONG || type==StdTypes.T_DPTR) {
@@ -1049,14 +1058,17 @@ public class ARM7 extends Architecture {
     if (reg!=0) insDataReg(IC_AL, IOD_MOV, reg, 0, 0);
   }
   
+  @Override
   public void genMoveIntfMapFromPrimary(int dst) {
     fatalError("unsupported function genMoveIntfMapFromPrimary");
   }
   
+  @Override
   public void genSavePrimary(int type) {
     fatalError("unsupported function genSavePrimary");
   }
   
+  @Override
   public void genRestPrimary(int type) {
     fatalError("unsupported function genRestPrimary");
   }
@@ -1165,7 +1177,7 @@ public class ARM7 extends Architecture {
   
   @Override
   public void genThrowFrameReset(int globalAddrReg, int throwBlockOffset) {
-    if (globalAddrReg!=1 || usedRegs!=1) { //globalAddrReg is the only allocated register, it is r0
+    if (globalAddrReg != 1 || usedRegs != 1) { //globalAddrReg is the only allocated register, it is r0
       fatalError(ERR_INVREGTHR);
       return;
     }
@@ -1187,18 +1199,18 @@ public class ARM7 extends Architecture {
   // ---------- internal methods ----------
   
   protected int rotateLeft(int value, int bits) {
-    return (value<<bits)|(value>>>(32-bits));
+    return (value << bits) | (value >>> (32 - bits));
   }
   
   protected int getEvenByteRol(int val) {
-    for (int i=0; i<32; i+=2) if ((rotateLeft(val, i)&0xFFFFFF00)==0) return i;
+    for (int i = 0; i < 32; i += 2) if ((rotateLeft(val, i) & 0xFFFFFF00) == 0) return i;
     return -1;
   }
   
   protected Instruction ins(int code) {
-    Instruction i=getUnlinkedInstruction();
+    Instruction i = getUnlinkedInstruction();
     appendInstruction(i);
-    i.type=IT_FIX;
+    i.type = IT_FIX;
     i.putInt(code);
     return i;
   }
@@ -1332,15 +1344,15 @@ public class ARM7 extends Architecture {
   
   protected void encodeSingleTransfer(Instruction i, int cond, int op, int valReg, int memReg, int memOff) {
     //works with op being IOST_*, they are coded as "add offset" having bit 0x00800000 set
-    if (memOff<0) {
-      op&=~0x00800000; //clear flag "add" to get "sub offset"
-      memOff=-memOff; //negate memory offset
+    if (memOff < 0) {
+      op &= ~0x00800000; //clear flag "add" to get "sub offset"
+      memOff = -memOff; //negate memory offset
     }
-    if ((memOff&0xFFFFF000)!=0) {
+    if ((memOff & 0xFFFFF000) != 0) {
       fatalError("memory offset too far away");
       return;
     }
-    i.replaceInt(0, cond|op|(memReg<<16)|(valReg<<12)|memOff);
+    i.replaceInt(0, cond | op | (memReg << 16) | (valReg << 12) | memOff);
   }
   
   protected boolean fixBranch(Instruction me) {
@@ -1417,33 +1429,32 @@ public class ARM7 extends Architecture {
   }
   
   protected void fixLoadLit(Instruction me) {
-    int relative=getRelative(me, me.jDest)-4;
+    int relative = getRelative(me, me.jDest) - 4;
     encodeSingleTransfer(me, me.iPar1, IOST_LDRi32, me.reg0, RegPC, relative);
   }
   
   protected int getRelative(Instruction from, Instruction to) {
-    int relative=0;
-    if (from==null || to==null) {
+    int relative = 0;
+    if (from == null || to == null) {
       fatalError("from or to is null");
       return 0;
     }
-    if (from.instrNr>=to.instrNr) { //get destination before us
-      relative-=from.size;
-      while (from!=to) {
-        from=from.prev;
-        if (from==null) {
+    if (from.instrNr >= to.instrNr) { //get destination before us
+      relative -= from.size;
+      while (from != to) {
+        from = from.prev;
+        if (from == null) {
           fatalError("dest before not found");
           return 0;
         }
-        relative-=from.size;
+        relative -= from.size;
       }
-    }
-    else { //get destination behind us
-      from=from.next;
-      while (from!=to) {
-        relative+=from.size;
-        from=from.next;
-        if (from==null) {
+    } else { //get destination behind us
+      from = from.next;
+      while (from != to) {
+        relative += from.size;
+        from = from.next;
+        if (from == null) {
           fatalError("dest behind not found");
           return 0;
         }

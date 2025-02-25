@@ -172,8 +172,7 @@ public class AMD64 extends X86Base {
     if ("nsop".equals(parm)) {
       v.println("always building complete stack frame");
       noStackOptimization=true;
-    }
-    else {
+    } else {
       v.println("invalid parameter for AMD64, possible parameters:");
       printParameter(v);
       return false;
@@ -217,6 +216,7 @@ public class AMD64 extends X86Base {
     return ret;
   }
   
+  @Override
   protected int freeRegSearch(int mask, int type) {
     int ret, ret2;
     
@@ -330,8 +330,7 @@ public class AMD64 extends X86Base {
     if ((curMthd.marker&Marks.K_INTR)==0) {
       curVarOffParam=curInlineLevel>0 ? VAROFF_PARAM_INL : VAROFF_PARAM_NRM;
       if (curMthd.varSize==0 && curMthd.parSize==0 && !noStackOptimization) return; //no intr, no parameters, no local vars -> no ebp
-    }
-    else {
+    } else {
       if (curInlineLevel>0) {
         fatalError(ERR_INTNOINLINE);
         return;
@@ -464,6 +463,7 @@ public class AMD64 extends X86Base {
     ins(I_MOVregimm, dst, 0, 0, val);
   }
 
+  @Override
   public void genLoadConstDoubleOrLongVal(int dst, long val, boolean asDouble) {
     if (asDouble) {
       if (dst!=curFPUReg) {
@@ -473,8 +473,7 @@ public class AMD64 extends X86Base {
       genPushConstDoubleOrLongVal(val, true);
       ins(I_FLDmem, REX|R_ESP, 0, 0, 0, 0l, FPU64);
       ins(I_ADDregimm, REX|R_ESP, 0, 0, 8); //pseudo-pop
-    }
-    else {
+    } else {
       if ((dst=getReg(1, dst, StdTypes.T_LONG, true))==0) return;
       if (val==0l) ins(I_XORregreg, dst, dst);
       else if ((val&0xFFFFFFFF00000000l)==0l) ins(I_MOVregimm, dst&~REX, 0, 0, (int)val);
@@ -482,6 +481,7 @@ public class AMD64 extends X86Base {
     }
   }
   
+  @Override
   public void genLoadVarAddr(int dst, int src, Object loc, int off) {
     int pos=mem.getAddrAsInt(loc, off);
     if ((dst=getReg(1, dst, StdTypes.T_PTR, true))==0) return;
@@ -666,6 +666,7 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSTYPE_GENCONVERTVAL);
   }
 
+  @Override
   public void genDup(int dstR, int srcR, int type) {
     int dst, src;
     if (dstR==srcR) /*nothing to do*/ return;
@@ -686,10 +687,12 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSTYPE_GENDUP);
   }
 
+  @Override
   public void genPushConstVal(int val, int type) { //type is not of interest here
     ins(I_PUSHimm, 0, 0, 0, val);
   }
   
+  @Override
   public void genPushConstDoubleOrLongVal(long val, boolean asDouble) {
     int iVal=(int)val, reg, regR;
     if (val==(long)iVal) {
@@ -704,6 +707,7 @@ public class AMD64 extends X86Base {
     deallocReg(regR);
   }
   
+  @Override
   public void genPush(int srcR, int type) {
     int src;
     boolean isDouble=false;
@@ -735,6 +739,7 @@ public class AMD64 extends X86Base {
     ins(I_PUSHreg, src);
   }
   
+  @Override
   public void genPop(int dstR, int type) {
     int dst, dummyType;
     boolean isDouble=false;
@@ -759,6 +764,7 @@ public class AMD64 extends X86Base {
     }
   }
   
+  @Override
   public void genAssign(int dst, int srcR, int type) {
     int src;
     boolean isDouble=false;
@@ -838,6 +844,7 @@ public class AMD64 extends X86Base {
     genStoreVarConstVal(objReg, loc, off, (int)val, StdTypes.T_INT);
   }
   
+  @Override
   public void genBinOp(int dstR, int src1, int src2, int op, int type) { //may destroy src1/2
     int opType=op>>>16, opPar=op&0xFFFF, dst;
     int usedMask, saveRegs, tmp;
@@ -1124,6 +1131,7 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSTYPE_GENBINOP);
   }
   
+  @Override
   public void genBinOpConstRi(int dstR, int src1R, int val, int op, int type) {
     int opType=op>>>16, opPar=op&0xFFFF, dst, tmp;
     if (dstR!=src1R) {
@@ -1173,6 +1181,7 @@ public class AMD64 extends X86Base {
     super.genBinOpConstRi(dstR, src1R, val, op, type);
   }
   
+  @Override
   public void genUnaOp(int dstR, int srcR, int op, int type) {
     int dst;
     if (dstR!=srcR) {
@@ -1215,6 +1224,7 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSOP_GENUNAOP);
   }
   
+  @Override
   public void genIncMem(int dst, int type) {
     if ((dst=getReg(1, dst, StdTypes.T_PTR, false))==0) return;
     switch (type) {
@@ -1226,6 +1236,7 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSTYPE_GENINCDECMEM);
   }
 
+  @Override
   public void genDecMem(int dst, int type) {
     if ((dst=getReg(1, dst, StdTypes.T_PTR, false))==0) return;
     switch (type) {
@@ -1237,6 +1248,7 @@ public class AMD64 extends X86Base {
     fatalError(ERR_UNSTYPE_GENINCDECMEM);
   }
 
+  @Override
   public void genLoadConstUnitContext(int dst, Object unitLoc) {
     long unitAddr=mem.getAddrAsLong(unitLoc, 0);
     if ((dst=getReg(1, dst, StdTypes.T_PTR, true))==0) return;
@@ -1244,6 +1256,7 @@ public class AMD64 extends X86Base {
     else ins(I_MOVregimmL, dst, 0, 0, 0, unitAddr, 0);
   }
   
+  @Override
   public void genCall(int off, int clssReg, int parSize) {
     if ((clssReg=getReg(1, clssReg, StdTypes.T_PTR, false))==0) return;
     if (ctx.codeStart==0) ins(I_CALLmem, clssReg, 0, off);
@@ -1331,6 +1344,7 @@ public class AMD64 extends X86Base {
     return cond;
   }
   
+  @Override
   public int genCompValToConstDoubleOrLongVal(int srcR, long val, boolean asDouble, int cond) {
     int src, tmpR, tmp, src2, restore;
     if (asDouble) { //no direct compare available
@@ -1528,6 +1542,7 @@ public class AMD64 extends X86Base {
     }
   }
 
+  @Override
   protected String getRegName(int reg) {
     switch (reg) {
       case REX|R_EAX: return "RAX";
@@ -1575,10 +1590,12 @@ public class AMD64 extends X86Base {
   }
   
   //here the internal coding of the instructions takes place
+  @Override
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm) {
     return ins(type, reg0, reg1, disp, imm, 0l, 0);
   }
   
+  @Override
   protected void internalFixStackExtremeAdd(Instruction me, int stackCells) {
     boolean sizeprefix=false;
     int wordflag=0, tmp=me.reg0&0x0F; //register 0 gives operation size (exception: MOVSXregmem, INC, DEC)

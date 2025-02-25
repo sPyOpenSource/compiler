@@ -140,11 +140,11 @@ public class FrontAdmin {
     ctx.intType.baseType=TypeRef.T_INT;
 
     //sort the languages in descending file amount
-    langs=new Language[4];
-    langs[0]=new SJava();
-    langs[1]=new BinImp();
-    langs[2]=new CList();
-    langs[3]=new PrepObj();
+    langs = new Language[4];
+    langs[0] = new SJava();
+    langs[1] = new BinImp();
+    langs[2] = new CList();
+    langs[3] = new PrepObj();
     for (i=0; i<langs.length; i++) langs[i].init(ctx);
   }
   
@@ -564,14 +564,14 @@ public class FrontAdmin {
     int res;
     switch (type) {
       case StdTypes.T_PTR:
-        res=ctx.arch.relocBytes;
+        res = ctx.arch.relocBytes;
         break;
       case StdTypes.T_DPTR:
-        res=2*ctx.arch.relocBytes;
+        res = 2 * ctx.arch.relocBytes;
       default:
-        res=TypeRef.getMinSize(type);
+        res = TypeRef.getMinSize(type);
     }
-    return (res+ctx.arch.stackClearBits)&~ctx.arch.stackClearBits;
+    return (res + ctx.arch.stackClearBits) & ~ctx.arch.stackClearBits;
   }
   
   private Mthd checkMthd(Unit inUnit, String name, int reqParSize) {

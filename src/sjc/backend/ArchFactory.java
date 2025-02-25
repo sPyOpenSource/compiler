@@ -85,7 +85,7 @@ public class ArchFactory {
     if (currentArchitecture!=null) {
       v.println("unknown filter, trying primary architectures...");
     }
-    if (name==null || name.equals("ia32")) return new IA32();
+    if (name == null || name.equals("ia32")) return new IA32();
     if (name.equals("ia32opt")) return new IA32Opti();
     if (name.equals("ia32rm")) return new IA32RM();
     if (name.equals("amd64")) return new AMD64();

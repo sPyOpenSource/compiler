@@ -50,7 +50,7 @@ public class BinImp extends Language {
 
   @Override
   protected void init(Context iCtx) {
-    ctx=iCtx;
+    ctx = iCtx;
   }
   
   @Override
@@ -93,13 +93,13 @@ public class BinImp extends Language {
     Vrbl newVar;
     TypeRef type;
     
-    if (myUnit==null) {
+    if (myUnit == null) {
       //create unit
-      myUnit=new BImUnit();
-      myUnit.name="ByteData";
+      myUnit = new BImUnit();
+      myUnit.name = "ByteData";
       //enter unit in package
-      myUnit.pack=new QualID(new StringList("binimp"), QualID.Q_PACKAGE, fileID, -1, -1);
-      if ((myUnit.pack.packDest=ctx.root.searchSubPackage(myUnit.pack.name, true))==null) {
+      myUnit.pack = new QualID(new StringList("binimp"), QualID.Q_PACKAGE, fileID, -1, -1);
+      if ((myUnit.pack.packDest = ctx.root.searchSubPackage(myUnit.pack.name, true)) == null) {
         ctx.out.println("name-conflict for package binimp");
         return false;
       }
@@ -107,29 +107,29 @@ public class BinImp extends Language {
       ctx.addUnit(myUnit);
     }
     //create variable
-    if (name==null) name=ctx.getPlainNameOfFile(fileID);
-    if (name==null) {
+    if (name == null) name = ctx.getPlainNameOfFile(fileID);
+    if (name == null) {
       ctx.out.println("invalid name during import");
       return false;
     }
-    newVar=new Vrbl(name, Modifier.M_FIN|Modifier.M_PUB|Modifier.M_STAT|Modifier.MF_ISWRITTEN, fileID, -1, -1);
-    newVar.type=type=new TypeRef(fileID, -1, -1);
-    newVar.location=Vrbl.L_CONSTDC;
-    newVar.owner=myUnit;
-    type.baseType=StdTypes.T_BYTE;
-    type.arrDim=1;
-    newVar.init=new BImExpr(data, fileID);
-    newVar.nextVrbl=myUnit.vars;
-    myUnit.vars=newVar;
+    newVar = new Vrbl(name, Modifier.M_FIN|Modifier.M_PUB|Modifier.M_STAT|Modifier.MF_ISWRITTEN, fileID, -1, -1);
+    newVar.type = type = new TypeRef(fileID, -1, -1);
+    newVar.location = Vrbl.L_CONSTDC;
+    newVar.owner = myUnit;
+    type.baseType = StdTypes.T_BYTE;
+    type.arrDim = 1;
+    newVar.init = new BImExpr(data, fileID);
+    newVar.nextVrbl = myUnit.vars;
+    myUnit.vars = newVar;
     return true;
   }
   
   private boolean importMthdData(byte[] data, int fileID) {
     DataBlockList newData;
-    String name=ctx.getPlainNameOfFile(fileID);
+    String name = ctx.getPlainNameOfFile(fileID);
     
-    newData=ctx.codeBlocks;
-    while (newData!=null) {
+    newData = ctx.codeBlocks;
+    while (newData != null) {
       if (newData.name.equals(name)) {
         ctx.out.print("name conflict for binary imported machine-code ");
         ctx.printPos(fileID, -1, -1);
@@ -137,13 +137,13 @@ public class BinImp extends Language {
         ctx.out.println(name);
         return false;
       }
-      newData=newData.nextDataBlock;
+      newData = newData.nextDataBlock;
     }
-    newData=new DataBlockList();
-    newData.data=data;
-    newData.name=name;
-    newData.nextDataBlock=ctx.codeBlocks;
-    ctx.codeBlocks=newData;
+    newData = new DataBlockList();
+    newData.data = data;
+    newData.name = name;
+    newData.nextDataBlock = ctx.codeBlocks;
+    ctx.codeBlocks = newData;
     return true;
   }
 }

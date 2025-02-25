@@ -132,26 +132,31 @@ public class IA32 extends X86Base {
   
   @Override
   public boolean setParameter(String parm, TextPrinter v) {
-    if ("sse3".equals(parm)) {
-      v.println("using instructions FCOMPIP and FISTTP available since P4-SSE3");
-      useFISTTP=true;
-    }
-    else if ("i487".equals(parm)) {
-      v.println("avoiding FCOMPIP and inserting FWAIT for i487");
-      useOnly487=true;
-    }
-    else if ("nsop".equals(parm)) {
-      v.println("always building complete stack frame");
-      noStackOptimization=true;
-    }
-    else if ("rtlc".equals(parm)) {
-      v.println("using runtime call for long-div and -mod");
-      binAriCall[StdTypes.T_LONG]|=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    }
-    else {
-      v.println("invalid parameter for IA32, possible parameters:");
-      printParameter(v);
-      return false;
+    if (null == parm) {
+        v.println("invalid parameter for IA32, possible parameters:");
+        printParameter(v);
+        return false;
+    } else switch (parm) {
+          case "sse3":
+              v.println("using instructions FCOMPIP and FISTTP available since P4-SSE3");
+              useFISTTP = true;
+              break;
+          case "i487":
+              v.println("avoiding FCOMPIP and inserting FWAIT for i487");
+              useOnly487 = true;
+              break;
+          case "nsop":
+              v.println("always building complete stack frame");
+              noStackOptimization = true;
+              break;
+          case "rtlc":
+              v.println("using runtime call for long-div and -mod");
+              binAriCall[StdTypes.T_LONG] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+              break;
+          default:
+              v.println("invalid parameter for IA32, possible parameters:");
+              printParameter(v);
+              return false;
     }
     return true;
   }
@@ -177,14 +182,14 @@ public class IA32 extends X86Base {
   //register allocation and de-allocation
   @Override
   protected int freeRegSearch(int mask, int type) {
-    int ret, ret2;
+    int ret1, ret2;
     
-    if ((ret=bitSearch(mask, 1, RegA|RegB|RegC))==0) return 0;
+    if ((ret1=bitSearch(mask, 1, RegA|RegB|RegC))==0) return 0;
     if (type==StdTypes.T_LONG || type==StdTypes.T_DPTR) {
-      if ((ret2=bitSearch(mask&~ret, 1, RegD))==0) return 0;
-      ret|=ret2;
+      if ((ret2=bitSearch(mask&~ret1, 1, RegD))==0) return 0;
+      ret1|=ret2;
     }
-    return ret;
+    return ret1;
   }
   
   @Override
@@ -242,6 +247,7 @@ public class IA32 extends X86Base {
   }
   
   //here the real code-generation starts
+  @Override
   public Mthd prepareMethodCoding(Mthd mthd) {
     Mthd lastMthd;
     
@@ -256,9 +262,7 @@ public class IA32 extends X86Base {
   }
   
   @Override
-  public void codeProlog() {
-    int i;
-    
+  public void codeProlog() {    
     if ((curMthd.marker&Marks.K_INTR)==0) {
       curVarOffParam=curInlineLevel>0 ? VAROFF_PARAM_INL : VAROFF_PARAM_NRM;
       if (curMthd.varSize==0 && curMthd.parSize==0 && !noStackOptimization) return; //no intr, no parameters, no local vars -> no ebp
@@ -281,7 +285,7 @@ public class IA32 extends X86Base {
       case 4: ins(I_PUSHimm); break;
       default:
         ins(I_XORregreg, R_EBX, R_EBX);
-        for (i=curMthd.varSize; i>0; i-=4) ins(I_PUSHreg, R_EBX);
+        for (int i=curMthd.varSize; i>0; i-=4) ins(I_PUSHreg, R_EBX);
     }
   }
 
@@ -375,6 +379,7 @@ public class IA32 extends X86Base {
     }
   }
 
+  @Override
   public void genLoadConstDoubleOrLongVal(int dst, long val, boolean asDouble) {
     int reg1, reg2;
     if (asDouble) {
@@ -394,6 +399,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genLoadVarAddr(int dst, int src, Object loc, int off) {
     int pos=mem.getAddrAsInt(loc, off);
     if ((dst=getReg(1, dst, StdTypes.T_PTR, true))==0) return;
@@ -407,6 +413,7 @@ public class IA32 extends X86Base {
     ins(I_LEAregmem, dst, src, pos);
   }
 
+  @Override
   public void genLoadVarVal(int dstR, int src, Object loc, int off, int type) {
     int dst, dstL, pos=mem.getAddrAsInt(loc, off);
     if (src==regBase && pos>=0) pos+=curVarOffParam;
@@ -441,6 +448,7 @@ public class IA32 extends X86Base {
     fatalError(ERR_INVTYPE_GENLOADVARVAL);
   }
 
+  @Override
   public void genConvertVal(int dstR, int srcR, int toType, int fromType) {
     int dst, dstL, src, srcL;
     
@@ -631,10 +639,12 @@ public class IA32 extends X86Base {
     fatalError(ERR_UNSTYPE_GENDUP);
   }
   
+  @Override
   public void genPushConstVal(int val, int type) { //type is not of interest here
     ins(I_PUSHimm, 0, 0, 0, val);
   }
   
+  @Override
   public void genPushConstDoubleOrLongVal(long val, boolean asDouble) { //type is not of interest here
     ins(I_PUSHimm, 0, 0, 0, (int)(val>>>32));
     ins(I_PUSHimm, 0, 0, 0, (int)val);
@@ -1274,8 +1284,7 @@ public class IA32 extends X86Base {
           /*nothing to do*/
           return;
       }
-    }
-    else {
+    } else {
       if (type!=StdTypes.T_LONG) {
         genDefaultUnaOp(dstR, srcR, op, type!=StdTypes.T_BOOL ? type=StdTypes.T_INT : type);
         return;
@@ -1301,6 +1310,7 @@ public class IA32 extends X86Base {
     return;
   }
   
+  @Override
   public void genIncMem(int dst, int type) {
     Instruction after;
     if ((dst=getReg(1, dst, StdTypes.T_PTR, false))==0) return;
@@ -1320,6 +1330,7 @@ public class IA32 extends X86Base {
     fatalError(ERR_UNSTYPE_GENINCDECMEM);
   }
 
+  @Override
   public void genDecMem(int dst, int type) {
     Instruction after;
     if ((dst=getReg(1, dst, StdTypes.T_PTR, false))==0) return;
@@ -1611,8 +1622,8 @@ public class IA32 extends X86Base {
     Instruction i;
     
     //get a new instruction and insert it
-    i=getUnlinkedInstruction();
-    i.type=type;
+    i = getUnlinkedInstruction();
+    i.type = type;
     appendInstruction(i);
     code(i, type, reg0, reg1, disp, imm, par);
     return i;

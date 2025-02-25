@@ -57,10 +57,12 @@ import sjc.debug.DebugWriter;
  */
 
 public class BImUnit extends UnitDummy {
+  @Override
   public String getSourceType() {
     return "bim";
   }
   
+  @Override
   public void writeDebug(Context ctx, DebugWriter dbw) {
     dbw.startUnit("unit for binary imported data", this);
     dbw.hasUnitOutputLocation(outputLocation);

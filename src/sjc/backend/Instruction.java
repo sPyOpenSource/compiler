@@ -50,25 +50,25 @@ public class Instruction {
   public long lPar; //one long-parameter
   public Instruction jDest; //the destination in case of a jump
   public Mthd refMthd; //referenced method object (only used for staticMem compilation)
-  public Token token; //generating source-token
+  public Token token;  //generating source-token
   public String asmText; //optional assembler text to be used *instead* of code
   
   public Instruction(int maxInstrSize) {
-    code=new byte[maxInstrSize]; //maximum length of a single instruction
+    code = new byte[maxInstrSize]; //maximum length of a single instruction
   }
   
   public void cleanup() {
-    type=Architecture.I_NONE;
-    size=instrNr=0;
-    reg0=reg1=reg2=0;
-    iPar1=iPar2=iPar3=0;
-    lPar=0l;
-    jDest=null;
-    isDest=false;
-    refMthd=null;
-    prev=next=null;
-    token=null;
-    asmText=null;
+    type = Architecture.I_NONE;
+    size = instrNr = 0;
+    reg0 = reg1 = reg2 = 0;
+    iPar1 = iPar2 = iPar3 = 0;
+    lPar = 0l;
+    jDest = null;
+    isDest = false;
+    refMthd = null;
+    prev = next = null;
+    token = null;
+    asmText = null;
   }
   
   public void replaceShort(int off, int val) {

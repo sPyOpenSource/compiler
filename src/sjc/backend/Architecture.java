@@ -150,8 +150,8 @@ public abstract class Architecture {
   
   //call runtime method on given arithmetic operations
   //  if used, highest bit will be set by user (resulting in ariCall[.]<0 for a specific baseType)
-  public int[] binAriCall=new int[StdTypes.MAXBASETYPE+1];
-  public int[] unaAriCall=new int[StdTypes.MAXBASETYPE+1];
+  public int[] binAriCall = new int[StdTypes.MAXBASETYPE + 1];
+  public int[] unaAriCall = new int[StdTypes.MAXBASETYPE + 1];
   
   protected Mthd curMthd;
   protected int curInlineLevel;
@@ -389,7 +389,7 @@ public abstract class Architecture {
 	
 	public void copyMethodCode(Mthd generatingMthd, Object loc, int offset) {
 	  Instruction ins=firstInstr.next, last;
-    InstrList temp;
+        InstrList temp;
 	  int i, lastOffset=-1, lastLine=0, nextFreeIndex=0;
 	  boolean slhi=false;
 	  int[] tmpArray;

@@ -31,45 +31,45 @@ import sjc.memory.MemoryImage;
 
 public class SSAopt2amd extends AMD64 implements SSAopt2bin {
 
+        @Override
 	public void doInit(MemoryImage imem, int ilev, Context ictx) {
-		  
-		  init(imem, ilev, ictx);
-		  ctx.out.println("ssa2amd backend doInit done");
-	  }
+            init(imem, ilev, ictx);
+            ctx.out.println("ssa2amd backend doInit done");
+	}
 	
-	  public void doPrepareMethod(Mthd mthd) {
-			
-		  prepareMethodCoding(mthd);
-	  }
+        @Override
+	public void doPrepareMethod(Mthd mthd) {
+            prepareMethodCoding(mthd);
+	}
 
-	  public int doMethodSize() {
-			
-		  return getMethodSize(); 
-	  }
+        @Override
+	public int doMethodSize() {
+            return getMethodSize(); 
+	}
 	
-	  public void doPutRef(Object loc, int offset, Object ptr, int ptrOff) {
-			
-		  putRef(loc, offset, ptr, ptrOff);
-	  }
+        @Override
+	public void doPutRef(Object loc, int offset, Object ptr, int ptrOff) {
+            putRef(loc, offset, ptr, ptrOff);
+	}
 
-	  public void doPutCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
-		  
-		  putCodeRef(loc, offset, ptr, ptrOff);
-	  }
+        @Override
+	public void doPutCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
+            putCodeRef(loc, offset, ptr, ptrOff);
+	}
 	
-	  public void doCopyMethod(Mthd generatingMthd, Object loc, int offset) {
-			
-		  copyMethodCode(generatingMthd, loc, offset);
-	  }
+        @Override
+	public void doCopyMethod(Mthd generatingMthd, Object loc, int offset) {
+            copyMethodCode(generatingMthd, loc, offset);
+	}
 
-	  public void doEnumerate() {
-		
-		  enumerateInstructions();
-	  }
+        @Override
+	public void doEnumerate() {
+            enumerateInstructions();
+	}
 	
-	  public void doFinalizeMethod() {
-			
-		  finalizeMethodCoding();
-	  }
+        @Override
+	public void doFinalizeMethod() {
+            finalizeMethodCoding();
+	}
 
 }

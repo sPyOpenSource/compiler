@@ -46,16 +46,19 @@ public class PrepObj extends Language {
   
   //---###--- language interface ---###---
   
+  @Override
   protected void init(Context ictx) {
     ctx=ictx;
     inText=new TextReader();
     s=new Scanner();
   }
 
+  @Override
   protected boolean fileCompetence(String name) {
     return name.endsWith(".pob");
   }
 
+  @Override
   protected boolean scanparseFile(StringList fileName) {
     boolean success=true;
     
@@ -77,8 +80,7 @@ public class PrepObj extends Language {
       ctx.out.print("Error opening input-file: ");
       ctx.out.println(fileName.str);
       success=false;
-    }
-    else {
+    } else {
       s.init(inText, curFID=fileName.tablePos, ctx);
       if (!tokenize()) {
         ctx.out.print("...parsing ");

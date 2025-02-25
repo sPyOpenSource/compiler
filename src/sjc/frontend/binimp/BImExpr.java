@@ -53,9 +53,10 @@ public class BImExpr extends ExConstInitObj {
   
   protected BImExpr(byte[] id, int fid) {
     super(fid, -1, -1);
-    data=id;
+    data = id;
   }
   
+  @Override
   public void printExpression(CodePrinter prnt) {
     FilledParam cur, last=null;
     ExVal val;
@@ -70,6 +71,7 @@ public class BImExpr extends ExConstInitObj {
     prnt.exprArrayInit(this, par);
   }
   
+  @Override
   public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags,
       TypeRef preferredType, Context ctx) {
     dest.owner=unitContext;
@@ -89,6 +91,7 @@ public class BImExpr extends ExConstInitObj {
     return true;
   }
   
+  @Override
   public boolean generateObject(Context ctx, boolean doFlash) {
     Object arr;
     int off, arrOff;
@@ -108,6 +111,7 @@ public class BImExpr extends ExConstInitObj {
     return true;
   }
   
+  @Override
   public String getDebugValue() {
     return "binimp-data";
   }

@@ -84,7 +84,7 @@ import sjc.osio.TextPrinter;
  *  version 060703 initial version
  */
 
-public abstract class X86Base extends Architecture {
+public abstract class X86Base extends Architecture{
   //map for general purpose registers of all childs, used by tokens and in alloc/dealloc-functions
   protected final static int RegA = 0x0001; //EAX
   protected final static int RegD = 0x0002; //EDX
@@ -394,33 +394,38 @@ public abstract class X86Base extends Architecture {
   private boolean alreadyPrintedFltDblError;
   private TextBuffer asmTmpTextBuffer;
   
+  @Override
   public void init(MemoryImage imem, int ilev, Context ictx) {
     super.init(imem, ilev, ictx);
     //all x86-architectures use throw-frame as shown in Architecture
-    throwFrameSize=relocBytes*7;
-    throwFrameExcOff=relocBytes*6;
-    regClss=RegClss;
-    regInst=RegInst;
-    regBase=RegBase;
+    throwFrameSize = relocBytes * 7;
+    throwFrameExcOff = relocBytes * 6;
+    regClss = RegClss;
+    regInst = RegInst;
+    regBase = RegBase;
   }
   
+  @Override
   public String checkBuildAssembler(Context preInitCtx) {
-    asmTmpTextBuffer=new TextBuffer();
+    asmTmpTextBuffer = new TextBuffer();
     return "x86";
   }
   
+  @Override
   protected void attachMethodAssemblerText(Mthd generatingMthd, Instruction first) {
     printCode(asmTmpTextBuffer, first, null, true);
-    generatingMthd.asmCode=asmTmpTextBuffer.toString();
+    generatingMthd.asmCode = asmTmpTextBuffer.toString();
     asmTmpTextBuffer.reset();
   }
   
+  @Override
   public int ensureFreeRegs(int ignoreReg1, int ignoreReg2, int keepReg1, int keepReg2) {
     int restore=storeReg(rAll&~(ignoreReg1|ignoreReg2));
     usedRegs=(keepReg1|keepReg2)&rAll;
     return restore;
   }
   
+  @Override
   public int prepareFreeReg(int avoidReg1, int avoidReg2, int reUseReg, int type) {
     int toStore, ret;
     
@@ -462,12 +467,14 @@ public abstract class X86Base extends Architecture {
     return 0;
   }
   
+  @Override
   public int allocReg() {
-    int ret=nextAllocReg;
-    nextAllocReg=0;
+    int ret = nextAllocReg;
+    nextAllocReg = 0;
     return ret;
   }
   
+  @Override
   public void deallocRestoreReg(int deallocRegs, int keepRegs, int restore) {
     if (deallocRegs<0) { //FPU-register
       if (deallocRegs!=keepRegs) {
@@ -530,6 +537,7 @@ public abstract class X86Base extends Architecture {
     return 0;
   }
 
+  @Override
   public void finalizeInstructions(Instruction first) {
     Instruction now;
     boolean redo;
@@ -627,6 +635,7 @@ public abstract class X86Base extends Architecture {
     insJump(dest, cond);
   }
 
+  @Override
   public void genWriteIO(int addrR, int valR, int type, int memLoc) {
     int addr, val, typedRegA, restore1=0, restore2=0;
     if ((type!=StdTypes.T_BYTE && type!=StdTypes.T_SHRT && type!=StdTypes.T_CHAR
@@ -673,6 +682,7 @@ public abstract class X86Base extends Architecture {
     restoreReg(restore1);
   }
   
+  @Override
   public void genReadIO(int valR, int addrR, int type, int memLoc) {
     int addr, val, typedRegA, restore1=0, restore2=0;
     if ((type!=StdTypes.T_BYTE && type!=StdTypes.T_SHRT && type!=StdTypes.T_CHAR
@@ -750,6 +760,7 @@ public abstract class X86Base extends Architecture {
     }
   }
   
+  @Override
   public void genThrowFrameBuild(int globalAddrReg, Instruction dest, int throwBlockOffset) {
     Instruction relaDummy;
     int rA=mPtr|R_AX, rB=mPtr|R_BX, rC=mPtr|R_CX;
@@ -780,10 +791,12 @@ public abstract class X86Base extends Architecture {
     ins(I_MOVmemreg, rA, rC);
   }
 
+  @Override
   public void genThrowFrameUpdate(Instruction oldDest, Instruction newDest, int throwBlockOffset) {
     insPatchedAdd(throwBlockOffset+relocBytes, oldDest, newDest);
   }
   
+  @Override
   public void genThrowFrameReset(int globalAddrReg, int throwBlockOffset) {
     int rA=mPtr|R_AX, rB=mPtr|R_BX, rP=mPtr|R_BP;
     if (globalAddrReg!=RegA || usedRegs!=RegA) { //globalAddrReg is the only allocated register

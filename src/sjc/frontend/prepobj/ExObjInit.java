@@ -44,6 +44,7 @@ public class ExObjInit extends ExConstInitObj {
     type=requestedType;
   }
   
+  @Override
   public boolean resolve(Unit unitContext, Mthd mthdContext,
       int resolveFlags, TypeRef preferredType, Context ctx) {
     ExObjInitField var, tmp;
@@ -116,21 +117,22 @@ public class ExObjInit extends ExConstInitObj {
     return true;
   }
   
+  @Override
   public boolean generateObject(Context ctx, boolean doFlash) {
     Object obj, objAcc;
     ExConstInitObj initObj;
     int off;
     ExObjInitField var;
-    ExArrayInit arr=null;
+    ExArrayInit arr = null;
     boolean ids;
-    int instSTS=typeUnit.instScalarTableSize;
+    int instSTS = typeUnit.instScalarTableSize;
     
-    if (inFlash!=doFlash) return true;
-    if (inlineArrayDefVar!=null) {
+    if (inFlash != doFlash) return true;
+    if (inlineArrayDefVar != null) {
       //very special case - therefore remember:
       //inline-variable and indirScalar are not enabled at the same time
       //at the moment only basetype-arrays are supported
-      instSTS+=(arr=(ExArrayInit)inlineArrayDefVar.init).len*TypeRef.getMinSize(inlineArrayDefVar.init.baseType);
+      instSTS += (arr = (ExArrayInit)inlineArrayDefVar.init).len * TypeRef.getMinSize(inlineArrayDefVar.init.baseType);
     }
     if ((outputLocation=obj=ctx.mem.allocate(instSTS, typeUnit.instIndirScalarTableSize,
         typeUnit.instRelocTableEntries, typeUnit.outputLocation))==null) {
@@ -195,6 +197,7 @@ public class ExObjInit extends ExConstInitObj {
     return true;
   }
   
+  @Override
   public String getDebugValue() {
     return "prepared object";
   }

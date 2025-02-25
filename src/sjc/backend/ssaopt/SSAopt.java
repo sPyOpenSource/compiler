@@ -22,8 +22,6 @@ import sjc.compbase.*;
 import sjc.memory.MemoryImage;
 import sjc.backend.Instruction;
 import sjc.backend.ssa.SSA;
-import sjc.backend.ssaopt.SSAopt2bin;
-import sjc.backend.ssaopt.SSAoptInstruction;
 
 /**
  * SSAopt: backend independent optimizer on SSA basis
@@ -33,10 +31,9 @@ import sjc.backend.ssaopt.SSAoptInstruction;
  */
 
 public class SSAopt extends SSA {
-	private SSAopt2bin Backend;
+	private final SSAopt2bin Backend;
 
 	public SSAopt(SSAopt2bin Backend, int iRB) {
-		
 		super(iRB);
 		this.Backend = Backend;
 	}
@@ -45,18 +42,19 @@ public class SSAopt extends SSA {
 	 * overwrite createNewInstruction
 	 * to force the use of SSAoptInstruction
 	 */
+        @Override
 	public Instruction createNewInstruction() {
-		
 		return new SSAoptInstruction(maxInstrCodeSize);
 	}
 
 	/**
 	 * glue logic for init
 	 * 
-	 * @param MemoryImage imem
-	 * @param int ilev max inline level
-	 * @param Context ictx 
+	 * @param imem
+	 * @param ilev max inline level
+	 * @param ictx 
 	 */
+        @Override
 	public void init(MemoryImage imem, int ilev, Context ictx) {
 		super.init(imem, ilev, ictx);
 		Backend.doInit(imem, ilev, ictx);
@@ -65,9 +63,10 @@ public class SSAopt extends SSA {
 	/**
 	 * glue logic for prepareMethodCoding
 	 * 
-	 * @param Mthd mthd Method to be coded
+	 * @param mthd Method to be coded
 	 * @return Mthd Method to be coded
 	 */
+        @Override
 	public Mthd prepareMethodCoding(Mthd mthd) {
 		ctx.out.print("SSAopt prepareMethodCoding for: ");
 		ctx.out.println(mthd.name);
@@ -75,18 +74,22 @@ public class SSAopt extends SSA {
 		return super.prepareMethodCoding(mthd);
 	}
 
+        @Override
 	public int getMethodSize() {
 		return Backend.doMethodSize();
 	}
 
+        @Override
 	public void putRef(Object loc, int offset, Object ptr, int ptrOff) {
 		Backend.doPutRef(loc, offset, ptr, ptrOff);
 	}
 	
+        @Override
 	public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
 		Backend.doPutCodeRef(loc, offset, ptr, ptrOff);
 	}
 	
+        @Override
 	public void copyMethodCode(Mthd generatingMthd, Object loc, int offset) {
 		ctx.out.print("SSAopt copyMethodCode for: ");
 		ctx.out.println(generatingMthd.name);
@@ -97,6 +100,7 @@ public class SSAopt extends SSA {
 	/**
 	 * add funny stuff here
 	 */
+        @Override
 	public void finalizeMethodCoding() {
 		super.finalizeMethodCoding();
 		Backend.doEnumerate();

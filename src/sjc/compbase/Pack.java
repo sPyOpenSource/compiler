@@ -48,10 +48,10 @@ public class Pack {
   
   private QualID qidOfThis;
 	
-	public Pack(String in, Pack ip) {
-		name=in;
-		outer=ip;
-	}
+    public Pack(String in, Pack ip) {
+        name = in;
+        outer = ip;
+    }
 	
   public QualID getQIDTo() {
     if (qidOfThis==null) {
