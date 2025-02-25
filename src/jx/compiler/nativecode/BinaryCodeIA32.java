@@ -1143,9 +1143,9 @@ public final class BinaryCodeIA32 {
 	makeRelative(entry);
     }
 
-    public void jmp(Reg index, SymbolTableEntryBase[] table) {
+    public void jmp(Reg index, SymbolTableEntryBase[] tables) {
 	UnresolvedJump tableStart = new UnresolvedJump();
-	realloc(50 + table.length * 4);
+	realloc(50 + tables.length * 4);
 
 	insertByte(0xff);
 	insertByte(0x24);
@@ -1153,8 +1153,8 @@ public final class BinaryCodeIA32 {
 	insertConst4(tableStart);
 
 	addJumpTarget(tableStart);
-        for (SymbolTableEntryBase table1 : table) {
-            insertConst4(table1);
+        for (SymbolTableEntryBase table : tables) {
+            insertConst4(table);
         }
     }
 

@@ -146,8 +146,6 @@ public class StaticCompiler implements ClassFinder {
                     continue;
                 }
             }
-            //String sd = x.getVar("SUBDIRS");
-            //String[] sds = MetaInfo.split(sd);
             
             try {
                 JarFile jar = null;
@@ -358,7 +356,7 @@ public class StaticCompiler implements ClassFinder {
 	    if (options.doPrintIMCode()) {
 		try {
 		    imOut = new PrintStream(ioSystem.getOutputStream(aClass.getClassName().replace("/", ".") + ".imcode"));	
-		} catch (java.io.IOException ex) {
+		} catch (IOException ex) {
 		    Logger.getLogger(StaticCompiler.class.getName()).log(Level.SEVERE, null, ex); 
 		    Debug.throwError(); 
 		}

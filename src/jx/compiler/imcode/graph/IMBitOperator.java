@@ -4,7 +4,6 @@ package jx.compiler.imcode.graph;
 import jx.classfile.*;
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
-import jx.compiler.imcode.graph.inst.*;
 import jx.compiler.imcode.graph.inst.ALU.IMBitAnd;
 import jx.compiler.imcode.graph.inst.ALU.IMBitOr;
 import jx.compiler.imcode.graph.inst.ALU.IMBitXor;
