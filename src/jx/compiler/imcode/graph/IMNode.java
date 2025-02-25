@@ -89,12 +89,11 @@ public class IMNode {
     }
 
     /*********************** TAGS
-     * @return  *************************/
-
+     * @return  
+     *************************/
     public int getTag() {
 	return tag;
     }
-
 
     public boolean isBasicBlock() {
 	return (tag & IMNode.BASICBLOCK) != 0;
@@ -251,10 +250,10 @@ public class IMNode {
 	return bytecode;
     }
 
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) throws CompileException {
-	throw new CompileException("operation not implemented! in"+
-				   container.getBCMethod().getName()+
-				   " BC: "+bytecode+" Pos: "+bcPosition);
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) throws CompileException {
+	throw new CompileException("operation not implemented! in" +
+				   container.getBCMethod().getName() +
+				   " BC: " + bytecode + " Pos: " + bcPosition);
     }
 
     public IMNode constant_folding() throws CompileException {

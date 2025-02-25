@@ -15,7 +15,6 @@ import jx.compiler.symbols.*;
 // ***** IMBasicBlock *****
 
 public class IMBasicBlock extends IMNode {
-
     public  boolean done;
 
     private String dbgString;
@@ -126,15 +125,15 @@ public class IMBasicBlock extends IMNode {
         // first process stack for current bytecode
 
         try {
-        instr = ((IMNode)node).processStack(stack, this);
+            instr = ((IMNode)node).processStack(stack, this);
         } catch (CompileException ex) {
-        if (verbose) {
-            System.err.println("process basic block: " + this);
-            System.err.println("Exception (1): " + node.toString());
-            //System.err.println(node.toReadableString());
-        }
-                Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
-        System.exit(-1);
+            if (verbose) {
+                System.err.println("process basic block: " + this);
+                System.err.println("Exception (1): " + node.toString());
+                //System.err.println(node.toReadableString());
+            }
+            Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(-1);
         }
         // second do we reach end of basic block ?
 
@@ -159,9 +158,9 @@ public class IMBasicBlock extends IMNode {
             }
         }
         } catch (Exception ex) {
-        if (verbose) System.err.println("2: " + node.toString());
-        Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
-        System.exit(-1);
+            if (verbose) System.err.println("2: " + node.toString());
+            Logger.getLogger(IMBasicBlock.class.getName()).log(Level.SEVERE, null, ex);
+            System.exit(-1);
         }
         if (node.isEndOfBasicBlock()) {
         // node is no branch but end of basicblock

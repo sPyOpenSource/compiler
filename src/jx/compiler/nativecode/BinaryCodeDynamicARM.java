@@ -5,11 +5,25 @@ import java.util.Enumeration;
 
 import java.io.PrintStream;
 import java.util.Collections;
+import jx.classfile.constantpool.ClassCPEntry;
+import jx.classfile.constantpool.FieldRefCPEntry;
+import jx.classfile.constantpool.InterfaceMethodRefCPEntry;
+import jx.classfile.constantpool.MethodRefCPEntry;
+import jx.classfile.constantpool.StringCPEntry;
+import jx.compiler.CompileException;
+import jx.compiler.execenv.BCClass;
+import jx.compiler.execenv.BCMethod;
+import jx.compiler.execenv.CompilerOptionsInterface;
+import jx.compiler.imcode.CodeContainer;
+import jx.compiler.imcode.ExecEnvironmentInterface;
+import jx.compiler.imcode.graph.IMNode;
+import jx.compiler.imcode.graph.IMOperant;
 
 import jx.compiler.symbols.*;
 import jx.zero.Debug;
+import sjc.backend.arm.ARM7;
 
-public final class BinaryCodeDynamicARM {
+public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentInterface {
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -23,7 +37,7 @@ public final class BinaryCodeDynamicARM {
     int bcIndex, startIP;
 
     // native code array reallocation 
-    private static final int INITSIZE  = 100; 
+    private static final int INITSIZE  = 100;
     private static final int CHUNKSIZE = 200;
 
     /** 
@@ -36,18 +50,18 @@ public final class BinaryCodeDynamicARM {
         allow the storing of compiled code between JVM invocations 
     - actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private ArrayList symbolTable; 
+    private ArrayList symbolTable;
   
     /** 
     contains the native exception handlers
     */ 
-    private final ArrayList exceptionHandlers; 
+    private final ArrayList exceptionHandlers;
 
     public BinaryCodeDynamicARM() {
-        code = new byte[INITSIZE]; 
+        code = new byte[INITSIZE];
         ip = 0;
-        symbolTable = new ArrayList(); 
-        exceptionHandlers = new ArrayList(); 
+        symbolTable = new ArrayList();
+        exceptionHandlers = new ArrayList();
     }
 
     /** 
@@ -107,8 +121,8 @@ public final class BinaryCodeDynamicARM {
     // ***** Code Generation ***** 
     
     /** 
-    Insert a single byte
-    */ 
+     * Insert a single byte
+     */ 
     void insertByte(int value) {
         code[ip++] = (byte)value;
     }
@@ -197,7 +211,7 @@ public final class BinaryCodeDynamicARM {
        Insert return
     */
     public void ret() {
-    realloc();
+        realloc();
         insertByte(0xc3);
     }
 
@@ -214,9 +228,9 @@ public final class BinaryCodeDynamicARM {
      * @param opr
      */
     public void decb(Opr opr) {
-    realloc();
-    insertByte(0xfe);
-    insertModRM(1, opr);
+        realloc();
+        insertByte(0xfe);
+        insertModRM(1, opr);
     }
     
     /**
@@ -308,9 +322,9 @@ public final class BinaryCodeDynamicARM {
     /** 
       lock prefix
      */
-  public void lock() {
-    insertByte(0xf0);
-  }
+    public void lock() {
+        insertByte(0xf0);
+    }
 
     /**
        Integer Subtraction
@@ -381,7 +395,7 @@ public final class BinaryCodeDynamicARM {
     }
     
     /**
-       Integer Unsigned Multiplication of eax  (10 clk)
+     * Integer Unsigned Multiplication of eax (10 clk)
      * @param src
      */
     public void mul(Opr src) {
@@ -391,7 +405,7 @@ public final class BinaryCodeDynamicARM {
     }
 
     /**
-       Integer Signed Multiplication (10 clk)
+     * Integer Signed Multiplication (10 clk)
      * @param src
      * @param des
      */
@@ -438,11 +452,9 @@ public final class BinaryCodeDynamicARM {
     }
 
     /** 
-    lea Load Effective Address (1 clk)
-  
-        m = index * [0,1,2,4,8] + base + disp
-
-        base.disp(disp,index,[0,1,2,4,8])
+     * lea Load Effective Address (1 clk)
+     * m = index * [0,1,2,4,8] + base + disp
+     * base.disp(disp,index,[0,1,2,4,8])
      * @param opr        
      * @param reg        
      */
@@ -453,7 +465,7 @@ public final class BinaryCodeDynamicARM {
     }
 
     /**
-       SHL/SAL Shift left (1/3 clks)
+     * SHL/SAL Shift left (1/3 clks)
      * @param immd
      * @param des
      */
@@ -1446,5 +1458,285 @@ public final class BinaryCodeDynamicARM {
     
     public ArrayList getInstructionTable() {
     return instructionTable;
+    }
+
+    @Override
+    public void setCodeContainer(CodeContainer container) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void setCurrentlyCompiling(BCClass aClass) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean doOptimize(int level) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public CompilerOptionsInterface getCompilerOptions() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int getExtraStackSpace() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeEpilog() throws CompileException {
+        super.codeEpilog(null);
+    }
+
+    @Override
+    public void codeCheckReference(IMNode node, Reg reg, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCheckMagic(IMNode node, Reg reg, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCheckDivZero(IMNode node, Reg reg, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCheckArrayRange(IMNode node, Reg array, int index, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCheckArrayRange(IMNode node, Reg array, Reg index, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeNewObject(IMNode node, ClassCPEntry classCPEntry, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCompactNew(IMNode node, ClassCPEntry classCPEntry, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeNewArray(IMNode node, int type, IMOperant size, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeNewObjectArray(IMNode node, ClassCPEntry classCPEntry, IMOperant size, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetArrayField(IMNode node, Reg array, int datatype, int index, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetArrayField(IMNode node, Reg array, int datatype, Reg index, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetArrayFieldLong(IMNode node, Reg array, int datatype, Reg index, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutArrayField(IMNode node, Reg array, int datatype, int index, Reg value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutArrayField(IMNode node, Reg array, int datatype, Reg index, Reg value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeNewMultiArray(IMNode node, ClassCPEntry type, IMOperant[] oprs, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetArrayLength(IMNode node, Reg array, Reg result) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeThrow(IMNode node, int exception, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeThrow(IMNode node, IMOperant exception, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeCheckCast(IMNode node, ClassCPEntry classCPEntry, Reg objRef, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeInstanceOf(IMNode node, ClassCPEntry classCPEntry, Reg objRef, Reg regEAX, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeMonitorEnter(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeMonitorLeave(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public SymbolTableEntryBase getStringRef(StringCPEntry cpEntry) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLoadStringRef(StringCPEntry cpEntry, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeGetStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 value, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongMul(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+       // insMulLong(IC_AL, IOML_UMULL, result.high.value, result.low.value, lOpr., rOpr.);
+    }
+
+    @Override
+    public void codeLongDiv(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongRem(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongShl(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongUShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeLongCompare(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeVirtualCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
+        genCallConst(null, 0);
+    }
+
+    @Override
+    public void codeSpecialCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
+        genCallConst(null, 0);
+    }
+
+    @Override
+    public void codeInterfaceCall(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
+        genCallConst(null, 0);
+    }
+
+    @Override
+    public void codeStaticCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
+        genCallConst(null, 0);
+    }
+
+    @Override
+    public void codeVirtualCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeSpecialCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeInterfaceCallLong(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeStaticCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void codeStackMap(IMNode node, int InstructionPointer) throws CompileException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public UnresolvedJump createExceptionCall(int exception, int bcPosition) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

@@ -67,15 +67,15 @@ final public class IMReadLocalVariable extends IMVarAccess {
 
     @Override
     public IMNode constant_forwarding(IMNodeList varList) throws CompileException {	
-	for (int i=0; i<varList.size(); i++) {
+	for (int i = 0; i < varList.size(); i++) {
 	    IMStoreLocalVariable svar = (IMStoreLocalVariable)varList.at(i);	    
-	    if (svar.getVarIndex()==ivar) {
+	    if (svar.getVarIndex() == ivar) {
 		if (lazyForwarding) {
-		    if (opts.doVerbose("cfor")) Debug.out.println("#: "+svar.toString());
+		    if (opts.doVerbose("cfor")) Debug.out.println("#: " + svar.toString());
 		    constValue = svar.getOperant().nodeToConstant();
 		    return this;
 		} else {
-		    if (opts.doVerbose("cfor")) Debug.out.println("## "+svar.toString());
+		    if (opts.doVerbose("cfor")) Debug.out.println("## " + svar.toString());
 		    return svar.getOperant();
 		}
 	    }

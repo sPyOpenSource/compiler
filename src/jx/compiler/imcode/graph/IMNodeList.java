@@ -13,14 +13,14 @@ final public class IMNodeList {
     }
 
     public void add(IMNode node) {
-    if (free < nodes.length) {
-        nodes[free++] = node;
-    } else {
-        IMNode[] nnodes = new IMNode[nodes.length+block];
-        System.arraycopy(nodes, 0, nnodes, 0, nodes.length);
-        nodes = nnodes;
-        nodes[free++] = node;
-    }
+        if (free < nodes.length) {
+            nodes[free++] = node;
+        } else {
+            IMNode[] nnodes = new IMNode[nodes.length + block];
+            System.arraycopy(nodes, 0, nnodes, 0, nodes.length);
+            nodes = nnodes;
+            nodes[free++] = node;
+        }
     }
 
     public IMNode at(int i) {

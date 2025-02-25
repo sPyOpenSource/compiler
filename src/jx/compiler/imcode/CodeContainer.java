@@ -522,20 +522,20 @@ public class CodeContainer implements NativeCodeContainer {
         FieldRefCPEntry cpEntry = cPool.fieldRefEntryAt(cpIndex);
         IMNode opr;
 
-                switch (current) {
-                    case Opcodes.GETFIELD:
-                        opr = new IMGetField(this, current, ip, cpEntry);
-                        break;
-                    case Opcodes.GETSTATIC:
-                        opr = new IMGetStatic(this, current, ip, cpEntry);
-                        break;
-                    case Opcodes.PUTFIELD:
-                        opr = new IMPutField(this, current, ip, cpEntry);
-                        break;
-                    default:
-                        opr = new IMPutStatic(this, current, ip, cpEntry);
-                        break;
-                }
+            switch (current) {
+                case Opcodes.GETFIELD:
+                    opr = new IMGetField(this, current, ip, cpEntry);
+                    break;
+                case Opcodes.GETSTATIC:
+                    opr = new IMGetStatic(this, current, ip, cpEntry);
+                    break;
+                case Opcodes.PUTFIELD:
+                    opr = new IMPutField(this, current, ip, cpEntry);
+                    break;
+                default:
+                    opr = new IMPutStatic(this, current, ip, cpEntry);
+                    break;
+            }
 
         insertBCList(opr);
         continue;

@@ -9,14 +9,14 @@ import java.util.ArrayList;
 // BCClass stimmt nicht unbedingt mit ClassData ueberein to subclassen etc ! 
 // vorerst: Schnittstellen sind wichtig 
 public class BCClass implements BCClassInterface {
-    BCMethod[] method; 
+    BCMethod[] method;
     
-    ClassSource classSource; 
+    ClassSource classSource;
     String className;
     Object info;
 
   public BCClass(ClassSource classSource, String className, Object info) {
-    this.classSource = classSource; 
+    this.classSource = classSource;
     this.className = className;
     this.info = info;
   }
@@ -100,7 +100,7 @@ public class BCClass implements BCClassInterface {
 
     @Override
   public ConstantPool getConstantPool() {
-    return classSource.getConstantPool(); 
+    return classSource.getConstantPool();
   }
 
     @Override

@@ -46,7 +46,7 @@ public class IMBinaryOperator extends IMOperator {
     }
 
     @Override
-    public IMNode processStack(VirtualOperantenStack stack,IMBasicBlock basicBlock) {
+    public IMNode processStack(VirtualOperantenStack stack, IMBasicBlock basicBlock) {
 	rOpr = stack.pop();
 	lOpr = stack.pop();
 	stack.push(this);
@@ -54,7 +54,7 @@ public class IMBinaryOperator extends IMOperator {
     }
 
     @Override
-    public IMNode inlineCode(CodeVector iCode,int depth, boolean forceInline) throws CompileException {
+    public IMNode inlineCode(CodeVector iCode, int depth, boolean forceInline) throws CompileException {
 	rOpr = (IMOperant)rOpr.inlineCode(iCode, depth, forceInline);
 	lOpr = (IMOperant)lOpr.inlineCode(iCode, depth, forceInline);
 	return this;
