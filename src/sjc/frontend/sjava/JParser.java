@@ -141,6 +141,7 @@ public class JParser {
       syl=s.nxtSym.syline;
       syc=s.nxtSym.sycol;
       syp=s.nxtSym.sypos;
+      
       //package
       if (accept(Scanner.S_OKE, Scanner.O_PACK)) {
         if ((pack=qualIdent(QualID.Q_PACKAGE))==null) return false;
@@ -156,6 +157,7 @@ public class JParser {
         syc=s.nxtSym.sycol;
         syp=s.nxtSym.sypos;
       }
+      
       //import
       impt=null;
       while (accept(Scanner.S_OKE, Scanner.O_IMPT)) {
@@ -170,45 +172,44 @@ public class JParser {
           return false;
         }
       }
+      
       //modifiers
       if (!getModifier(true, true)) return false;
-      mod=mod_modifier;
-      insertUnit=true; //default: insert unit
-      if ((mod_marker&Marks.K_IGNU)!=0) {
-        insertUnit=false;
-        mark=0;
+      mod = mod_modifier;
+      insertUnit = true; //default: insert unit
+      if ((mod_marker & Marks.K_IGNU) != 0) {
+        insertUnit = false;
+        mark = 0;
       }
-      else mark=mod_marker;
-      if (mod_anno!=null) {
+      else mark = mod_marker;
+      if (mod_anno != null) {
         parserError("invalid SJC-annotation for unit");
         return false;
       }
+      
       //class or interface or annotation
       if (accept(Scanner.S_OKE, Scanner.O_CLSS)) {
-        if ((mod&~(Modifier.M_PUB|Modifier.M_PROT|Modifier.M_ABSTR|Modifier.M_FIN))!=0) {
+        if ((mod & ~(Modifier.M_PUB | Modifier.M_PROT | Modifier.M_ABSTR | Modifier.M_FIN)) != 0) {
           parserError("invalid modifier for class");
           return false;
         }
-        mod|=Modifier.M_STAT; //all top-level classes are static
-        if ((mod&(Modifier.M_PUB|Modifier.M_PROT))==0) mod|=Modifier.M_PACP; //default: package private
-        if ((c=clssDecl(pack, impt, mod, mark, syl, syc))==null) return false;
-      }
-      else if (accept(Scanner.S_OKE, Scanner.O_INTF)) {
+        mod |= Modifier.M_STAT; //all top-level classes are static
+        if ((mod & (Modifier.M_PUB | Modifier.M_PROT)) == 0) mod |= Modifier.M_PACP; //default: package private
+        if ((c = clssDecl(pack, impt, mod, mark, syl, syc)) == null) return false;
+      } else if (accept(Scanner.S_OKE, Scanner.O_INTF)) {
         if ((mod&~(Scanner.M_PUB|Scanner.M_PROT|Scanner.M_FIN))!=0) {
           parserError("invalid modifier for interface");
           return false;
         }
         if ((mod&(Scanner.M_PUB|Scanner.M_PROT))==0) mod|=Modifier.M_PACP; //default: package private
         if ((c=intfDecl(pack, impt, mod, syl, syc))==null) return false;
-      }
-      else if (accept(Scanner.S_OKE, Scanner.O_ANDC)) {
+      } else if (accept(Scanner.S_OKE, Scanner.O_ANDC)) {
         if ((mod&~(Scanner.M_PUB|Scanner.M_PROT|Scanner.M_FIN))!=0) {
           parserError("invalid modifier for annotation");
           return false;
         }
         if ((c=annoDecl(pack, impt, mod, syl, syc))==null) return false;
-      }
-      else {
+      } else {
         parserError("class or interface or annotation expected");
         return false;
       }
@@ -256,127 +257,126 @@ public class JParser {
   private boolean getModifier(boolean allowAllModifiers, boolean allowFinalModifier) {
     int i;
     
-    mod_marker=mod_modifier=0;
-    mod_anno=null;
+    mod_marker = mod_modifier = 0;
+    mod_anno = null;
     //get modifier
     while (has(Scanner.S_MOD)) {
       if (accept(Scanner.S_MOD, Scanner.M_ANNO)) { //annotation modifier
         TypeRef type;
-        if ((type=typeRef(false, false))==null) {
+        if ((type = typeRef(false, false)) == null) {
           parserError("annotation type expected");
           return false;
         }
         //only handle SJC-annotations
         if (type.qid.name.str.equals("SJC")) { //SJC-annotation
           String aName;
-          if (type.qid.name.next==null) aName="";
+          if (type.qid.name.next == null) aName = "";
           else {
-            if (type.qid.name.next!=null && type.qid.name.next.next!=null) {
+            if (type.qid.name.next != null && type.qid.name.next.next != null) {
               parserError("invalid SJC-annotation");
               return false;
             }
-            aName=type.qid.name.next.str;
+            aName = type.qid.name.next.str;
           }
-          boolean annoDone=false;
+          boolean annoDone = false;
           if (!has(Scanner.S_ENC, Scanner.E_RO)) { //trivial annotation to switch a flag
-            annoDone=true; //all if-statements result in annoDone=true (except else-case, where it is reset)
+            annoDone = true; //all if-statements result in annoDone=true (except else-case, where it is reset)
               switch (aName) {
                   case "Interrupt":
-                      mod_marker|=Marks.K_INTR;
+                      mod_marker |= Marks.K_INTR;
                       break;
                   case "Debug":
-                      mod_marker|=Marks.K_DEBG;
+                      mod_marker |= Marks.K_DEBG;
                       break;
                   case "Inline":
-                      mod_marker|=Marks.K_FINL;
+                      mod_marker |= Marks.K_FINL;
                       break;
                   case "NoInline":
-                      mod_marker|=Marks.K_NINL;
+                      mod_marker |= Marks.K_NINL;
                       break;
                   case "Profile":
-                      mod_marker|=Marks.K_PROF;
+                      mod_marker |= Marks.K_PROF;
                       break;
                   case "NoProfile":
-                      mod_marker|=Marks.K_NPRF;
+                      mod_marker |= Marks.K_NPRF;
                       break;
                   case "StackExtreme":
-                      mod_marker|=Marks.K_SEPC;
+                      mod_marker |= Marks.K_SEPC;
                       break;
                   case "NoStackExtreme":
-                      mod_marker|=Marks.K_NSPC;
+                      mod_marker |= Marks.K_NSPC;
                       break;
                   case "PrintCode":
-                      mod_marker|=Marks.K_PRCD;
+                      mod_marker |= Marks.K_PRCD;
                       break;
                   case "NoOptimization":
-                      mod_marker|=Marks.K_NOPT;
+                      mod_marker |= Marks.K_NOPT;
                       break;
                   case "GenCode":
-                      mod_marker|=Marks.K_FCDG;
+                      mod_marker |= Marks.K_FCDG;
                       break;
                   case "SourceLines":
-                      mod_marker|=Marks.K_SLHI;
+                      mod_marker |= Marks.K_SLHI;
                       break;
                   case "ExplicitConversion":
-                      mod_marker|=Marks.K_EXPC;
+                      mod_marker |= Marks.K_EXPC;
                       break;
                   case "WinDLL":
-                      mod_marker|=Marks.K_NWIN;
+                      mod_marker |= Marks.K_NWIN;
                       break;
                   case "IgnoreUnit":
-                      mod_marker|=Marks.K_IGNU;
+                      mod_marker |= Marks.K_IGNU;
                       break;
                   case "GenDesc":
-                      mod_marker|=Marks.K_FOCD;
+                      mod_marker |= Marks.K_FOCD;
                       break;
                   case "CheckAssert":
-                      mod_marker|=Marks.K_ASRT;
+                      mod_marker |= Marks.K_ASRT;
                       break;
                   case "NativeCallback":
-                      mod_marker|=Marks.K_NTCB;
+                      mod_marker |= Marks.K_NTCB;
                       break;
                   case "Flash":
-                      mod_modifier|=Modifier.MM_FLASH; //this one is not transitive
+                      mod_modifier |= Modifier.MM_FLASH; //this one is not transitive
                       break;
                   case "RefToFlash":
-                      mod_modifier|=Modifier.MM_REFTOFLASH; //this one is not transitive
+                      mod_modifier |= Modifier.MM_REFTOFLASH; //this one is not transitive
                       break;
                   default:
-                      annoDone=false; //unknown flag, create full-blown annotation 
+                      annoDone = false; //unknown flag, create full-blown annotation 
                       break;
               }
           }
           if (!annoDone) { //unknown or non-trivial SJC-annotation
-            mod_anno=new FilledAnno(mod_anno, aName, curFID, s.nxtSym.syline, s.nxtSym.sycol);
-            StringList lastID=null;
-            FilledParam lastPar=null;
+            mod_anno = new FilledAnno(mod_anno, aName, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+            StringList lastID = null;
+            FilledParam lastPar = null;
             if (accept(Scanner.S_ENC, Scanner.E_RO)) {
               do { //collect multiple parameters
                 String key;
-                if ((key=ident())==null) {
+                if ((key = ident()) == null) {
                   parserError("expected identifier for annotation parameter");
                   return false;
                 }
-                StringList nextID=new StringList(key);
+                StringList nextID = new StringList(key);
                 if (!accept(Scanner.S_ASN, Scanner.RES)) {
                   parserError("expected \"=\" in annotation parameter");
                   return false;
                 }
-                int syl=s.nxtSym.syline;
-                int syc=s.nxtSym.sycol;
+                int syl = s.nxtSym.syline;
+                int syc = s.nxtSym.sycol;
                 Expr e;
-                if ((e=expr())==null) return false;
-                FilledParam nextPar=new FilledParam(e, curFID, syl, syc);
-                if (lastID==null) {
-                  mod_anno.keys=nextID;
-                  mod_anno.values=nextPar;
+                if ((e = expr()) == null) return false;
+                FilledParam nextPar = new FilledParam(e, curFID, syl, syc);
+                if (lastID == null) {
+                  mod_anno.keys = nextID;
+                  mod_anno.values = nextPar;
+                } else {
+                  lastID.next = nextID;
+                  lastPar.nextParam = nextPar;
                 }
-                else {
-                  lastID.next=nextID;
-                  lastPar.nextParam=nextPar;
-                }
-                lastID=nextID;
-                lastPar=nextPar;
+                lastID = nextID;
+                lastPar = nextPar;
               } while (accept(Scanner.S_DEL, Scanner.D_COM));
               if (!accept(Scanner.S_ENC, Scanner.E_RC)) {
                 parserError("expected \")\" after annotation parameters");
@@ -384,37 +384,34 @@ public class JParser {
               }
             }
           }
-        }
-        else if (accept(Scanner.S_ENC, Scanner.E_RO)) { //skip over non-SJC-annotation
-          i=1;
-          while (i>0) {
+        } else if (accept(Scanner.S_ENC, Scanner.E_RO)) { //skip over non-SJC-annotation
+          i = 1;
+          while (i > 0) {
             if (accept(Scanner.S_ENC, Scanner.E_RO)) i++;
             else if (accept(Scanner.S_ENC, Scanner.E_RC)) i--;
             else accept();
           }
         }
-      }
-      else { //normal modifier
-        if (allowAllModifiers || (allowFinalModifier && s.nxtSym.par==Scanner.M_FIN)) {
-          if ((mod_modifier&s.nxtSym.par)!=0) {
+      } else { //normal modifier
+        if (allowAllModifiers || (allowFinalModifier && s.nxtSym.par == Scanner.M_FIN)) {
+          if ((mod_modifier & s.nxtSym.par) != 0) {
             parserError("modifier already given");
             return false;
           }
-          mod_modifier|=s.nxtSym.par;
+          mod_modifier |= s.nxtSym.par;
           accept();
-        }
-        else {
+        } else {
           parserError("invalid modifier in this context");
           return false;
         }
       }
     }
     //check modifier: only one of public/protected/private
-    i=0;
-    if ((mod_modifier&Scanner.M_PUB)!=0) i++;
-    if ((mod_modifier&Scanner.M_PROT)!=0) i++;
-    if ((mod_modifier&Scanner.M_PRIV)!=0) i++;
-    if (i>1) {
+    i = 0;
+    if ((mod_modifier&Scanner.M_PUB)  != 0) i++;
+    if ((mod_modifier&Scanner.M_PROT) != 0) i++;
+    if ((mod_modifier&Scanner.M_PRIV) != 0) i++;
+    if (i > 1) {
       parserError("more than one modifier public/protected/private");
       return false;
     }
@@ -522,15 +519,15 @@ public class JParser {
       parserError("missing identifier after \"class\"");
       return null;
     }
-    (r=new Clss(ip, ii, imod, imark, curFID, il, ic)).name=s.nxtSym.strBuf;
+    (r = new Clss(ip, ii, imod, imark, curFID, il, ic)).name = s.nxtSym.strBuf;
     accept();
     if (accept(Scanner.S_OKE, Scanner.O_EXTS)) {
-      if ((r.extsID=qualIdent(QualID.Q_UNIT))==null) {
+      if ((r.extsID = qualIdent(QualID.Q_UNIT)) == null) {
         parserError("missing identifier after \"extends\"");
         return null;
       }
     }
-    if (accept(Scanner.S_OKE, Scanner.O_IMPL) && (r.extsImplIDList=qualIDList())==null)
+    if (accept(Scanner.S_OKE, Scanner.O_IMPL) && (r.extsImplIDList = qualIDList()) == null)
       return null;
     if (!accept(Scanner.S_ENC, Scanner.E_BO)) {
       parserError("missing \"{\" after class-identifier");
@@ -548,107 +545,104 @@ public class JParser {
     int mod, mark, syl, syc, type;
     FilledAnno anno;
     TypeRef trf;
-    JMthd nm, lm=null, tmp;
-    Vrbl nv, lv=null;
+    JMthd nm, lm = null, tmp;
+    Vrbl nv, lv = null;
     Clss oldCurClass;
     Mthd oldCurMthd;
     StBlock sb;
     Stmt ss;
     
-    oldCurClass=curClass;
-    curClass=c;
+    oldCurClass = curClass;
+    curClass = c;
     while (!has(Scanner.S_ENC, Scanner.E_BC)) {
       while (accept(Scanner.S_DEL, Scanner.D_SEM)) /* discard empty fields */;
-      syl=s.nxtSym.syline;
-      syc=s.nxtSym.sycol;
+      syl = s.nxtSym.syline;
+      syc = s.nxtSym.sycol;
       if (!getModifier(true, true)) return false;
-      mod=mod_modifier;
-      mark=mod_marker;
-      anno=mod_anno;
-      if (mod==Scanner.M_STAT && accept(Scanner.S_ENC, Scanner.E_BO)) {
-        tmp=((JMthd)c.initStat);
-        tmp.name=Unit.STATICMTHDNAME;
-        loopLevel=mthdStmtCnt=0;
-        oldCurMthd=curMthd;
-        curMthd=tmp;
-        if ((sb=stmtBlock(null, null, false))==null) return false;
-        if (tmp.block==null) { //first static block in current class
-          tmp.modifier|=Modifier.M_NDCODE;
-          tmp.nextMthd=ctx.staticInitMthds;
-          ctx.staticInitMthds=tmp;
-          tmp.block=new StBlock(null, null, c.fileID, c.line, c.col);
-          tmp.block.stmts=sb;
+      mod = mod_modifier;
+      mark = mod_marker;
+      anno = mod_anno;
+      if (mod == Scanner.M_STAT && accept(Scanner.S_ENC, Scanner.E_BO)) {
+        tmp = ((JMthd)c.initStat);
+        tmp.name = Unit.STATICMTHDNAME;
+        loopLevel = mthdStmtCnt = 0;
+        oldCurMthd = curMthd;
+        curMthd = tmp;
+        if ((sb = stmtBlock(null, null, false)) == null) return false;
+        if (tmp.block == null) { //first static block in current class
+          tmp.modifier |= Modifier.M_NDCODE;
+          tmp.nextMthd = ctx.staticInitMthds;
+          ctx.staticInitMthds = tmp;
+          tmp.block = new StBlock(null, null, c.fileID, c.line, c.col);
+          tmp.block.stmts = sb;
         } else { //go through other blocks, append current static block (keep order)
-          ss=tmp.block.stmts;
-          while (ss.nextStmt!=null) ss=ss.nextStmt;
-          ss.nextStmt=sb;
+          ss = tmp.block.stmts;
+          while (ss.nextStmt != null) ss = ss.nextStmt;
+          ss.nextStmt = sb;
         }
-        tmp.stmtCnt+=mthdStmtCnt;
+        tmp.stmtCnt += mthdStmtCnt;
         if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
           parserError("missing \"}\" after static-init-block");
           return false;
         }
-        curMthd=oldCurMthd;
+        curMthd = oldCurMthd;
       } else {
-        if ((mod&(Scanner.M_PUB|Scanner.M_PROT|Scanner.M_PRIV))==0) mod|=Modifier.M_PACP; //default: package private
+        if ((mod & (Scanner.M_PUB | Scanner.M_PROT | Scanner.M_PRIV)) == 0) mod |= Modifier.M_PACP; //default: package private
         if (has(Scanner.S_OKE, Scanner.O_CLSS) || has(Scanner.S_OKE, Scanner.O_INTF)
             || has(Scanner.S_OKE, Scanner.O_ANDC)) {
-          type=s.nxtSym.par;
+          type = s.nxtSym.par;
           accept();
           if (!innerUnit(c, mod, mark, type, syl, syc)) return false; //inner class or interface
-        }
-        else if (lookAhead(Scanner.S_ENC, Scanner.E_RO)) { //constructor
-          if ((mod&(Scanner.M_PUB|Scanner.M_PROT|Modifier.M_PACP|Scanner.M_PRIV))!=mod) {
+        } else if (lookAhead(Scanner.S_ENC, Scanner.E_RO)) { //constructor
+          if ((mod & (Scanner.M_PUB | Scanner.M_PROT | Modifier.M_PACP | Scanner.M_PRIV)) != mod) {
             parserError("missing return-type of method or invalid constructor");
             return false;
           }
-          if ((nm=methodDecl(mod, anno, null, false, syl, syc))==null) return false;
-          nm.marker=mark;
-          if (lm!=null) lm.nextMthd=nm; //not first methoddecl
-          else c.mthds=nm; //store first methoddecl
-          lm=nm;
-        }
-        else { //vardecl or methoddecl
-          if ((trf=typeRef(true, true))==null) return false;
+          if ((nm = methodDecl(mod, anno, null, false, syl, syc)) == null) return false;
+          nm.marker = mark;
+          if (lm != null) lm.nextMthd = nm; //not first methoddecl
+          else c.mthds = nm; //store first methoddecl
+          lm = nm;
+        } else { //vardecl or methoddecl
+          if ((trf = typeRef(true, true)) == null) return false;
           if (lookAhead(Scanner.S_ENC, Scanner.E_RO)) { //methoddecl
-            if ((mod&(Scanner.M_PUB|Scanner.M_PROT|Modifier.M_PACP|Scanner.M_PRIV
-                |Scanner.M_FIN|Scanner.M_STAT
-                |Scanner.M_ABSTR|Scanner.M_NAT|Scanner.M_SYNC
-                |Modifier.M_NDCODE))!=mod) {
+            if ((mod & (Scanner.M_PUB | Scanner.M_PROT | Modifier.M_PACP | Scanner.M_PRIV
+                | Scanner.M_FIN | Scanner.M_STAT
+                | Scanner.M_ABSTR | Scanner.M_NAT | Scanner.M_SYNC
+                | Modifier.M_NDCODE)) != mod) {
               parserError("invalid modifier for method");
               return false;
             }
-            if ((mod&(Scanner.M_ABSTR|Scanner.M_NAT))==(Scanner.M_ABSTR|Scanner.M_NAT)) {
+            if ((mod & (Scanner.M_ABSTR | Scanner.M_NAT)) == (Scanner.M_ABSTR | Scanner.M_NAT)) {
               parserError("method can not be both abstract and native");
               return false;
             }
-            if ((nm=methodDecl(mod, anno, trf, false, syl, syc))==null) return false;
-            nm.marker=mark;
-            if (lm!=null) lm.nextMthd=nm; //not first methoddecl
-            else c.mthds=nm; //store first methoddecl
-            lm=nm;
-          }
-          else { //vardecl
-            if ((mod&(Modifier.M_PUB|Modifier.M_PROT|Modifier.M_PACP|Modifier.M_PRIV|Modifier.M_FIN|Modifier.M_STAT
-                |Modifier.M_TRANS|Modifier.M_VOLAT|Modifier.MM_FLASH|Modifier.MM_REFTOFLASH))!=mod) {
+            if ((nm = methodDecl(mod, anno, trf, false, syl, syc)) == null) return false;
+            nm.marker = mark;
+            if (lm != null) lm.nextMthd = nm; //not first methoddecl
+            else c.mthds = nm; //store first methoddecl
+            lm = nm;
+          } else { //vardecl
+            if ((mod & (Modifier.M_PUB | Modifier.M_PROT | Modifier.M_PACP | Modifier.M_PRIV | Modifier.M_FIN | Modifier.M_STAT
+                | Modifier.M_TRANS | Modifier.M_VOLAT | Modifier.MM_FLASH | Modifier.MM_REFTOFLASH)) != mod) {
               parserError("invalid modifier for variable");
               return false;
             }
-            mod|=Modifier.MF_ISWRITTEN; //all global variables are treated as already written (special handling of final variables is done later)
-            if ((nv=varDecl(c, mod, mod_anno, trf))==null) return false;
+            mod |= Modifier.MF_ISWRITTEN; //all global variables are treated as already written (special handling of final variables is done later)
+            if ((nv = varDecl(c, mod, mod_anno, trf)) == null) return false;
             if (!accept(Scanner.S_DEL, Scanner.D_SEM)) {
               parserError(MISSING_SEM_AFTER_VRBL);
               return false;
             }
-            if (lv!=null) lv.nextVrbl=nv; //not first vardecl
-            else c.vars=nv; //store first vardecl
-            lv=nv;
-            while (lv.nextVrbl!=null) lv=lv.nextVrbl; //search last vardecl
+            if (lv != null) lv.nextVrbl = nv; //not first vardecl
+            else c.vars = nv; //store first vardecl
+            lv = nv;
+            while (lv.nextVrbl != null) lv = lv.nextVrbl; //search last vardecl
           }
         }
       }
     }
-    curClass=oldCurClass;
+    curClass = oldCurClass;
     return true;
   }
   
@@ -734,36 +728,36 @@ public class JParser {
       parserError("missing identifier of constructor or type of method");
       return null;
     }
-    id=s.nxtSym.strBuf;
+    id = s.nxtSym.strBuf;
     accept();
     if (!accept(Scanner.S_ENC, Scanner.E_RO)) {
       parserError("internal: methodDecl called without \"(\"");
       return null;
     }
-    m=new JMthd(id, mod, curFID, s.nxtSym.syline, s.nxtSym.sycol);
-    m.anno=anno;
-    if (retType==null) m.isConstructor=true;
-    else m.retType=retType;
+    m = new JMthd(id, mod, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    m.anno = anno;
+    if (retType == null) m.isConstructor = true;
+    else m.retType = retType;
     if (!has(Scanner.S_ENC, Scanner.E_RC)) { //there is at least one parameter
-      if ((p=getParam())==null) return null;
-      p.modifier|=Modifier.MF_ISWRITTEN; //all parameters are already written when the method is called
-      m.param=p;
+      if ((p = getParam()) == null) return null;
+      p.modifier |= Modifier.MF_ISWRITTEN; //all parameters are already written when the method is called
+      m.param = p;
       while (accept(Scanner.S_DEL, Scanner.D_COM)) { //comma-separated list
-        p.nextParam=getParam();
-        if ((p=p.nextParam)==null) return null;
-        p.modifier|=Modifier.MF_ISWRITTEN; //all parameters are already written when the method is called
+        p.nextParam = getParam();
+        if ((p = p.nextParam) == null) return null;
+        p.modifier |= Modifier.MF_ISWRITTEN; //all parameters are already written when the method is called
       }
     }
     if (!accept(Scanner.S_ENC, Scanner.E_RC)) {
       parserError("missing \")\"");
       return null;
     }
-    if (retType!=null) retType.arrDim+=getArrDim(); //alternative array dimension declaration
+    if (retType != null) retType.arrDim += getArrDim(); //alternative array dimension declaration
     if (accept(Scanner.S_FLC, Scanner.F_THRWS)) {
-      ctx.throwUsed=true;
-      if ((m.throwsList=qualIDList())==null) return null;
+      ctx.throwUsed = true;
+      if ((m.throwsList = qualIDList()) == null) return null;
     }
-    if (inIntf || (mod&(Scanner.M_ABSTR|Scanner.M_NAT))!=0) {
+    if (inIntf || (mod & (Scanner.M_ABSTR | Scanner.M_NAT)) != 0) {
       if (!accept(Scanner.S_DEL, Scanner.D_SEM)) {
         parserError("missing \";\" after abstract or native method declaration");
         return null;
@@ -780,52 +774,52 @@ public class JParser {
       parserError("missing \"{\" after non-abstract and non-native method declaration");
       return false;
     }
-    loopLevel=mthdStmtCnt=0;
-    oldCurMthd=curMthd;
-    curMthd=m;
-    if ((m.block=stmtBlock(null, null, m.retType!=null && m.retType.baseType!=StdTypes.T_VOID))==null) return false;
-    m.stmtCnt=mthdStmtCnt;
+    loopLevel = mthdStmtCnt = 0;
+    oldCurMthd = curMthd;
+    curMthd = m;
+    if ((m.block = stmtBlock(null, null, m.retType != null && m.retType.baseType != StdTypes.T_VOID)) == null) return false;
+    m.stmtCnt = mthdStmtCnt;
     if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
       parserError("missing \"}\" after method-block");
       return false;
     }
-    curMthd=oldCurMthd;
+    curMthd = oldCurMthd;
     return true;
   }
   
   private ExArrayInit arrayInit() {
     ExArrayInit init;
     Expr ex;
-    FilledParam last=null;
+    FilledParam last = null;
     int syl, syc;
     
-    init=new ExArrayInit(curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    init = new ExArrayInit(curFID, s.nxtSym.syline, s.nxtSym.sycol);
     do {
       if (has(Scanner.S_ENC, Scanner.E_BC)) break; //ignore comma if followed by a closing bracket, support empty array initialization 
-      syl=s.nxtSym.syline;
-      syc=s.nxtSym.sycol;
+      syl = s.nxtSym.syline;
+      syc = s.nxtSym.sycol;
       if (accept(Scanner.S_ENC, Scanner.E_BO)) {
-        if ((ex=arrayInit())==null) return null;
+        if ((ex = arrayInit()) == null) return null;
         if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
           parserError(MISSING_BC_AFTER_ARRAY_INIT);
           return null;
         }
       }
-      else if ((ex=expr())==null) return null;
-      if (last==null) last=init.par=new FilledParam(ex, curFID, syl, syc);
-      else last=last.nextParam=new FilledParam(ex, curFID, syl, syc);
+      else if ((ex = expr()) == null) return null;
+      if (last == null) last = init.par = new FilledParam(ex, curFID, syl, syc);
+      else last = last.nextParam = new FilledParam(ex, curFID, syl, syc);
     } while (accept(Scanner.S_DEL, Scanner.D_COM));
     return init;
   }
   
   private Vrbl varDecl(Unit owner, int mod, FilledAnno anno, TypeRef varType) {
     String id;
-    Vrbl first=null, lf=null, now;
-    boolean resetCurMthd=false;
-    int origArrDim=varType.arrDim;
+    Vrbl first = null, lf = null, now;
+    boolean resetCurMthd = false;
+    int origArrDim = varType.arrDim;
     ExArrayInit ai;
     
-    if (varType.baseType==TypeRef.T_VOID) {
+    if (varType.baseType == TypeRef.T_VOID) {
       parserError("void not allowed for variables");
       return null;
     }
@@ -838,39 +832,38 @@ public class JParser {
         parserError("missing identifier");
         return null;
       }
-      if (first!=null) {
-        varType=varType.copy();
-        varType.arrDim=origArrDim;
+      if (first != null) {
+        varType = varType.copy();
+        varType.arrDim = origArrDim;
       }
-      id=s.nxtSym.strBuf;
+      id = s.nxtSym.strBuf;
       accept();
-      if (anno!=null) now=new VrblAnno(id, mod, anno, curFID, s.nxtSym.syline, s.nxtSym.sycol);
-      else now=new Vrbl(id, mod, curFID, s.nxtSym.syline, s.nxtSym.sycol);
-      now.owner=owner;
-      now.type=varType;
-      now.type.arrDim+=getArrDim();
+      if (anno != null) now = new VrblAnno(id, mod, anno, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+      else now = new Vrbl(id, mod, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+      now.owner = owner;
+      now.type = varType;
+      now.type.arrDim += getArrDim();
       if (accept(Scanner.S_ASN, Scanner.RES)) {
         if (accept(Scanner.S_ENC, Scanner.E_BO)) { //array init
-          if ((ai=arrayInit())==null) return null;
-          if ((now.modifier&Modifier.M_STAT)==0) now.init=new ExArrayCopy(ai, varType, true); //use copy of constant array
-          else now.init=ai; //use constant array directly
+          if ((ai=arrayInit()) == null) return null;
+          if ((now.modifier & Modifier.M_STAT) == 0) now.init = new ExArrayCopy(ai, varType, true); //use copy of constant array
+          else now.init = ai; //use constant array directly
           if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
             parserError(MISSING_BC_AFTER_ARRAY_INIT);
             return null;
           }
-        }
-        else { //normal init
-          if (curMthd==null) {
-            resetCurMthd=true;
-            curMthd=(now.modifier&Modifier.M_STAT)!=0 ? owner.initStat : owner.initDyna;
+        } else { //normal init
+          if (curMthd == null) {
+            resetCurMthd = true;
+            curMthd = (now.modifier & Modifier.M_STAT) != 0 ? owner.initStat : owner.initDyna;
           }
-          if ((now.init=expr())==null) return null;
-          if (resetCurMthd) curMthd=null;
+          if ((now.init = expr()) == null) return null;
+          if (resetCurMthd) curMthd = null;
         }
       }
-      if (first==null) first=now;
-      if (lf!=null) lf.nextVrbl=now;
-      lf=now;
+      if (first == null) first = now;
+      if (lf != null) lf.nextVrbl = now;
+      lf = now;
     } while (accept(Scanner.S_DEL, Scanner.D_COM));
     return first;
   }
@@ -980,19 +973,19 @@ public class JParser {
   
   private StBlock stmtBlock(StBreakable outer, StringList labels, boolean addReturnMissingStatement) {
     StBlock b;
-    Stmt ns, ls=null;
+    Stmt ns, ls = null;
     
-    b=new StBlock(outer, labels, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    b = new StBlock(outer, labels, curFID, s.nxtSym.syline, s.nxtSym.sycol);
     while (!has(Scanner.S_ENC, Scanner.E_BC)) {
-      if ((ns=stmt(b, false))==null) return null;
-      if (ls!=null) ls.nextStmt=ns;
-      else b.stmts=ns;
-      ls=ns;
+      if ((ns = stmt(b, false)) == null) return null;
+      if (ls != null) ls.nextStmt = ns;
+      else b.stmts = ns;
+      ls = ns;
     }
     if (addReturnMissingStatement) {
-      ns=new StRetMissing(curFID, s.nxtSym.syline, s.nxtSym.sycol);
-      if (ls!=null) ls.nextStmt=ns;
-      else b.stmts=ns;
+      ns = new StRetMissing(curFID, s.nxtSym.syline, s.nxtSym.sycol);
+      if (ls != null) ls.nextStmt = ns;
+      else b.stmts = ns;
     }
     return b;
   }
@@ -1012,32 +1005,32 @@ public class JParser {
     StThrow sh;
     StSync sy;
     StAssert sa;
-    Stmt init=null;
-    CatchBlock lastCatch=null, thisCatch;
+    Stmt init = null;
+    CatchBlock lastCatch = null, thisCatch;
     TypeRef type;
-    String singleLabel=null;
-    StringList labels=null, tmpStrList;
+    String singleLabel = null;
+    StringList labels = null, tmpStrList;
     
     while (has(Scanner.S_ID) && lookAhead(Scanner.S_DEL, Scanner.D_COL)) {
-      tmpStrList=labels;
-      labels=new StringList(s.nxtSym.strBuf);
-      labels.next=tmpStrList;
+      tmpStrList = labels;
+      labels = new StringList(s.nxtSym.strBuf);
+      labels.next = tmpStrList;
       accept(); //consume label
       accept(); //consume colon
     }
-    syl=s.nxtSym.syline;
-    syc=s.nxtSym.sycol;
-    syp=s.nxtSym.sypos;
+    syl = s.nxtSym.syline;
+    syc = s.nxtSym.sycol;
+    syp = s.nxtSym.sypos;
     //empty statement
     if (accept(Scanner.S_DEL, Scanner.D_SEM)) {
-      if (labels!=null) parserWarning(UNREACHABLE_LABEL);
+      if (labels != null) parserWarning(UNREACHABLE_LABEL);
       return new StEmpty(curFID, syl, syc);
     }
     //update method statement statistic
     mthdStmtCnt++; //do not count empty statement
     //block
     if (accept(Scanner.S_ENC, Scanner.E_BO)) {
-      sb=stmtBlock(outer, labels, false);
+      sb = stmtBlock(outer, labels, false);
       if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
         parserError("missing \"}\" after block");
         return null;
@@ -1048,23 +1041,23 @@ public class JParser {
     if (has(Scanner.S_FLC)) switch (s.nxtSym.par) {
       case Scanner.F_IF: //if-else
         accept();
-        if (labels!=null) parserWarning(UNREACHABLE_LABEL);
-        si=new StIf(curFID, syl, syc);
-        si.srcStart=syp;
+        if (labels != null) parserWarning(UNREACHABLE_LABEL);
+        si = new StIf(curFID, syl, syc);
+        si.srcStart = syp;
         if (!accept(Scanner.S_ENC, Scanner.E_RO)) {
           parserError("missing \"(\" in if-statement");
           return null;
         }
-        if ((si.cond=expr())==null) return null;
+        if ((si.cond = expr()) == null) return null;
         if (!accept(Scanner.S_ENC, Scanner.E_RC)) {
           parserError("missing \")\" in if-statement");
           return null;
         }
-        if ((si.trStmt=stmt(outer, true))==null) return null;
+        if ((si.trStmt = stmt(outer, true)) == null) return null;
         if (accept(Scanner.S_FLC, Scanner.F_ELSE)) {
-          if ((si.faStmt=stmt(outer, true))==null) return null;
+          if ((si.faStmt = stmt(outer, true)) == null) return null;
         }
-        si.srcLength=s.endOfLastSymbol-syp;
+        si.srcLength = s.endOfLastSymbol - syp;
         return si;
       case Scanner.F_FOR: //for
         accept();
@@ -1472,31 +1465,30 @@ public class JParser {
   }
   
   private boolean switchList(StSwitch ss) {
-    CondStmt ncs, lcs=null, lhcs=null;
-    Stmt ns, ls=null;
-    boolean defDone=false;
+    CondStmt ncs, lcs = null, lhcs = null;
+    Stmt ns, ls = null;
+    boolean defDone = false;
     int syl, syc;
     
     while (!has(Scanner.S_ENC, Scanner.E_BC)) {
-      syl=s.nxtSym.syline;
-      syc=s.nxtSym.sycol;
+      syl = s.nxtSym.syline;
+      syc = s.nxtSym.sycol;
       if (accept(Scanner.S_FLC, Scanner.F_CASE)) {
-        ncs=new CondStmt(curFID, syl, syc);
-        if ((ncs.cond=expr())==null) return false;
+        ncs = new CondStmt(curFID, syl, syc);
+        if ((ncs.cond = expr()) == null) return false;
         if (!accept(Scanner.S_DEL, Scanner.D_COL)) {
           parserError("missing \":\" after case");
           return false;
         }
-        if (lcs!=null) lcs.nextCondStmt=ncs; //enter in list, if not first condition
-        else ss.caseConds=ncs; //store first condition
-        lcs=ncs;
-        if (lhcs==null) lhcs=lcs;
-        lcs.stmt=new StEmpty(curFID, syl, syc);
-        if (ls!=null) ls.nextStmt=lcs.stmt; //enter in list if not first statement
-        else ss.stmts=lcs.stmt; //store first statement
-        ls=lcs.stmt;
-      }
-      else if (accept(Scanner.S_FLC, Scanner.F_DFLT)) {
+        if (lcs != null) lcs.nextCondStmt = ncs; //enter in list, if not first condition
+        else ss.caseConds = ncs; //store first condition
+        lcs = ncs;
+        if (lhcs == null) lhcs = lcs;
+        lcs.stmt = new StEmpty(curFID, syl, syc);
+        if (ls != null) ls.nextStmt = lcs.stmt; //enter in list if not first statement
+        else ss.stmts = lcs.stmt; //store first statement
+        ls = lcs.stmt;
+      } else if (accept(Scanner.S_FLC, Scanner.F_DFLT)) {
         if (defDone) {
           parserError("more than one default-block");
           return false;
@@ -1505,24 +1497,23 @@ public class JParser {
           parserError("missing \":\" after default");
           return false;
         }
-        defDone=true;
-        ss.def=new StEmpty(curFID, syl, syc);
-        if (ls!=null) ls.nextStmt=ss.def; //enter in list if not first statement
-        else ss.stmts=ss.def; //store first statement
-        ls=ss.def;
-      }
-      else {
-        if (lcs==null && !defDone) {
+        defDone = true;
+        ss.def = new StEmpty(curFID, syl, syc);
+        if (ls != null) ls.nextStmt = ss.def; //enter in list if not first statement
+        else ss.stmts = ss.def; //store first statement
+        ls = ss.def;
+      } else {
+        if (lcs == null && !defDone) {
           parserError("case expected before statements in switch-list");
           return false;
         }
-        if ((ns=stmt(ss, true))==null) {
+        if ((ns = stmt(ss, true)) == null) {
           parserError("statement expected in switch-list");
           return false;
         }
-        if (ls!=null) ls.nextStmt=ns; //enter in list if not first statement
-        else ss.stmts=ns; //store first statement
-        ls=ns;
+        if (ls != null) ls.nextStmt = ns; //enter in list if not first statement
+        else ss.stmts = ns; //store first statement
+        ls = ns;
       }
     }
     return true;

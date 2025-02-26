@@ -3,25 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/ArchFactory.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/binimp/BImExpr.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/prepobj/ExObjInit.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/X86Base.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/arm/ARM7.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/AMD64.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/binimp/BImUnit.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/binimp/BinImp.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/FrontAdmin.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/prepobj/PrepObj.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/SJava.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/IA32.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Pack.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JParser.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/ssaopt/SSAoptInstruction.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/ssaopt/SSAopt2amd.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Context.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/Instruction.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/FrontAdmin.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/SJava.java</file>
         </group>
     </open-files>
 </project-private>

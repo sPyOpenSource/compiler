@@ -158,25 +158,25 @@ public class Clss extends JUnit {
 	public UnitList referenced;
 	
 	protected Clss(QualID ip, QualIDList ii, int imod, int imark, int fid, int il, int ic) {
-		super(fid, il, ic);
-		pack=ip;
-		impt=ii;
-		modifier=imod;
-		marker=imark;
-		initStat=new JMthd(null, Modifier.M_STAT|Modifier.M_PUB, fid, il, ic);
-		initDyna=new JMthd(null, Modifier.M_PUB, fid, il, ic);
-        initStat.owner=initDyna.owner=this;
+            super(fid, il, ic);
+            pack = ip;
+            impt = ii;
+            modifier = imod;
+            marker = imark;
+            initStat = new JMthd(null, Modifier.M_STAT|Modifier.M_PUB, fid, il, ic);
+            initDyna = new JMthd(null, Modifier.M_PUB, fid, il, ic);
+            initStat.owner = initDyna.owner = this;
 	}
 	
+        @Override
 	public boolean validateModifierAfterImportResolve(Context ctx) {
-	  if (this==ctx.langRoot) { //language-root must not extend anything
+	  if (this == ctx.langRoot) { //language-root must not extend anything
       if (extsID!=null) {
         printPos(ctx, "lang-root must extend not extend anything");
         ctx.out.println();
         return false;
       }
-    }
-    else {
+    } else {
       if (extsID==null && this!=ctx.structClass) extsID=ctx.langRoot.getQIDTo(); //objects must extend language-root
       if (extsID!=null) { //this class extends another class
         if (!resolveExtsIplsQID(extsID, ctx)) return false;
@@ -191,6 +191,7 @@ public class Clss extends JUnit {
 	  return true;
 	}
   
+        @Override
 	protected boolean resolveIntfExtsIpls(Context ctx) {
     Vrbl checkVrbl;
     QualIDList list;
@@ -262,6 +263,7 @@ public class Clss extends JUnit {
     return true;
 	}
   
+        @Override
 	protected boolean checkAnnotations(Vrbl v, FilledAnno a, Context ctx) {
 	  StringList keys;
 	  FilledParam values;
@@ -299,8 +301,7 @@ public class Clss extends JUnit {
               return false;
             }
             v.type.typeSpecial=iValue;
-          }
-          else {
+          } else {
             a.printPos(ctx, "unknown parameter ");
             ctx.out.print(keys.str);
             return false;
@@ -308,8 +309,7 @@ public class Clss extends JUnit {
           keys=keys.next;
           values=values.nextParam;
         }
-      }
-      else if (a.name.equals("Ref")) {
+      } else if (a.name.equals("Ref")) {
         if (a.keys!=null) {
           a.printPos(ctx, "Ref does not need any parameter");
           return false;
@@ -319,8 +319,7 @@ public class Clss extends JUnit {
           return false;
         }
         v.location=AccVar.L_STRUCTREF;
-      }
-      else if (a.name.equals("InlineArrayVar")) {
+      } else if (a.name.equals("InlineArrayVar")) {
         if ((modifier&Modifier.M_STRUCT)!=0 || ctx.indirScalars) {
           a.printPos(ctx, "inline arrays not allowed for STRUCTs nor in indir scalar mode");
           return false;
@@ -336,8 +335,7 @@ public class Clss extends JUnit {
         inlArr=v;
         v.location=AccVar.L_INLARR;
         v.type.typeSpecial=TypeRef.S_INSTINLARR;
-      }
-      else if (a.name.equals("InlineArrayCount")) {
+      } else if (a.name.equals("InlineArrayCount")) {
         if ((v.modifier&(Modifier.M_STAT|Modifier.M_STRUCT))!=0) {
           v.printPos(ctx, "static or struct variable not allowed as count for inline array");
           return false;
@@ -347,8 +345,7 @@ public class Clss extends JUnit {
           return false;
         }
         v.modifier|=Modifier.M_ARRLEN;
-      }
-      else if (a.name.equals("Head")) {
+      } else if (a.name.equals("Head")) {
         if (a.keys!=null) {
           a.printPos(ctx, "Head does not need any parameter");
           return false;
@@ -358,8 +355,7 @@ public class Clss extends JUnit {
 	        return false;
 	      }
 	      v.location=AccVar.L_INSTSCL;
-	    }
-      else {
+    } else {
         a.printPos(ctx, "unknown SJC-Clss-Annotation");
         return false;
       }
@@ -417,6 +413,7 @@ public class Clss extends JUnit {
     return true;
   }
   
+        @Override
   protected boolean resolveMthdExtsIpls(Context ctx) {
     if (extsID!=null) { //this class extends another class, interface is resolved successfully
       if (!extsID.unitDest.resolveMethodBlocks(ctx)) return false;
@@ -424,6 +421,7 @@ public class Clss extends JUnit {
     return true;
   }
   
+        @Override
 	protected boolean checkDeclarations(Context ctx) {
 	  QualIDList chkIntfParentList;
     Unit checkClss;
@@ -642,6 +640,7 @@ public class Clss extends JUnit {
 	  return (fulfilled && sigOK);
 	}
   
+        @Override
 	public UnitList getRefUnit(Unit refUnit, boolean insert) {
 	  UnitList check, last;
 	  
@@ -671,31 +670,30 @@ public class Clss extends JUnit {
 	  return last;
 	}
   
+        @Override
   public boolean assignOffsets(boolean doClssOff, Context ctx) {
-    Unit parent=null;
-    boolean doInstOff=true;
-    Vrbl checkVrbl, inlArrVrbl=null;
+    Unit parent = null;
+    boolean doInstOff = true;
+    Vrbl checkVrbl, inlArrVrbl = null;
     Mthd checkMthd, omthd;
     UnitList imported;
     int offTmp;
-    int mthdPtrCnt=ctx.dynaMem ? 2 : 1; //additionally need to remember owner of method in dynamic environment
+    int mthdPtrCnt = ctx.dynaMem ? 2 : 1; //additionally need to remember owner of method in dynamic environment
     
     if (offsetsAssigned) return true; //not called for struct, already set in checkStructSpecials
     if (offsetError) return false;
-    if (extsID==null) {
-      if (this==ctx.langRoot) { //java.lang.Object
+    if (extsID == null) {
+      if (this == ctx.langRoot) { //java.lang.Object
         if (doClssOff) { //second step
           clssScalarTableSize=ctx.rteSClassDesc.instScalarTableSize;
           clssRelocTableEntries=ctx.rteSClassDesc.instRelocTableEntries;
           doInstOff=false; //do not change already entered inst-offs
-        }
-        else { //this is the first call, just enter required inst-offs
+        } else { //this is the first call, just enter required inst-offs
           instScalarTableSize=instRelocTableEntries=0;
         }
       }
       //else: special internal class, everything set already
-    }
-    else {
+    } else {
       parent=extsID.unitDest;
       if (this==ctx.rteSClassDesc) { //java.rte.SClassDesc
         if (ctx.leanRTE) {
@@ -905,6 +903,7 @@ public class Clss extends JUnit {
     return true;
   }
   
+        @Override
   public boolean genDescriptor(Context ctx) {
     Vrbl checkVrbl;
     
@@ -955,6 +954,7 @@ public class Clss extends JUnit {
     return true;
   }
   
+        @Override
 	public boolean genOutput(Context ctx) {
 	  int tmpOff;
 	  Object tmp, addr;
@@ -1126,6 +1126,7 @@ public class Clss extends JUnit {
 	  return outputGenerated=true;
 	}
   
+        @Override
   public IndirUnitMapList enterInheritableReferences(Object objLoc, IndirUnitMapList lastIntf, Context ctx) { //returns pointer to first interface map
     UnitList refc;
     IndirUnitMapList inheritedIntfMaps=null;
@@ -1166,6 +1167,7 @@ public class Clss extends JUnit {
     return implemented!=null ? implemented : inheritedIntfMaps;
   }
   
+        @Override
 	public void writeDebug(Context ctx, DebugWriter dbw) {
 	  Mthd mthd;
 	  UnitList clst;

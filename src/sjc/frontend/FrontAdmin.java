@@ -114,9 +114,7 @@ public class FrontAdmin {
     v.println(" *.pob  - compile-time prepared objects");
   }
   
-  public FrontAdmin(Context iCtx) {
-    int i;
-    
+  public FrontAdmin(Context iCtx) {    
     ctx=iCtx;
     if (ctx.root==null) ctx.root=new Pack(null, null);
     ctx.rte=ctx.root.searchSubPackage(new StringList("rte"), true);
@@ -145,7 +143,9 @@ public class FrontAdmin {
     langs[1] = new BinImp();
     langs[2] = new CList();
     langs[3] = new PrepObj();
-    for (i=0; i<langs.length; i++) langs[i].init(ctx);
+    for (Language lang : langs) {
+        lang.init(ctx);
+    }
   }
   
   public void activateListCompiledFiles(String filename) {
@@ -201,18 +201,16 @@ public class FrontAdmin {
   }
   
   private boolean scanparseFile(StringList what, boolean mayBeIgnored) {
-    int i;
-    
-    for (i=0; i<langs.length; i++) {
-      //check if current language wants to parse the file
-      if (langs[i].fileCompetence(what.str)) {
-        //enter file in our list and set unique ID (==counter)
-        ctx.addFile(what);
-        //add file in filelist if requested
-        if (filelister!=null) filelister.println(what.str);
-        //try to scan and parse the file
-        return langs[i].scanparseFile(what);
-      }
+    for (Language lang : langs) {
+        //check if current language wants to parse the file
+        if (lang.fileCompetence(what.str)) {
+            //enter file in our list and set unique ID (==counter)
+            ctx.addFile(what);
+            //add file in filelist if requested
+            if (filelister != null) filelister.println(what.str);
+            //try to scan and parse the file
+            return lang.scanparseFile(what);
+        }
     }
     //no language for this particular file found, success depends on caller
     if (mayBeIgnored) return true;
@@ -225,7 +223,6 @@ public class FrontAdmin {
   
   public boolean checkCompEnvironment() {
     boolean error=false;
-    int i;
     
     error|=(ctx.langRoot=ctx.defUnits.searchUnit("Object"))==null;
     error|=(ctx.langString=checkUnit(ctx.defUnits, "String", false))==null;
@@ -235,7 +232,7 @@ public class FrontAdmin {
     error|=(ctx.rteSIntfMap=checkUnit(ctx.rte, "SIntfMap", true))==null;
     error|=(ctx.rteSMthdBlock=checkUnit(ctx.rte, "SMthdBlock", false))==null;
     error|=(ctx.rteDynamicRuntime=checkUnit(ctx.rte, "DynamicRuntime", false))==null;
-    for (i=1; i<StdTypes.MAXBASETYPE+1; i++) if (ctx.arch.binAriCall[i]!=0 || ctx.arch.unaAriCall[i]!=0) {
+    for (int i=1; i<StdTypes.MAXBASETYPE+1; i++) if (ctx.arch.binAriCall[i]!=0 || ctx.arch.unaAriCall[i]!=0) {
       error|=(ctx.rteDynamicAri=checkUnit(ctx.rte, "DynamicAri", false))==null;
       break;
     }

@@ -89,35 +89,35 @@ public class SJava extends Language {
     Magic magic;
     
     //store required variables
-    ctx=iCtx;
-    inText=new TextReader();
-    s=new Scanner();
-    p=new JParser();
-    strTmp=new StringList(null, "java");
-    strTmp.next=new StringList(null, "lang");
+    ctx = iCtx;
+    inText = new TextReader();
+    s = new Scanner();
+    p = new JParser();
+    strTmp = new StringList(null, "java");
+    strTmp.next = new StringList(null, "lang");
     //if there is another language that defines the default package, insert check here
-    ctx.defUnits=ctx.root.searchSubPackage(strTmp, true);
+    ctx.defUnits = ctx.root.searchSubPackage(strTmp, true);
     //add dummy-class for STRUCT-extension
-    if (ctx.defUnits.searchUnit(KEY_STRUCT)==null) {
-      ctx.structClass=new Clss(new QualID(strTmp, 0, -1, 0, 0), null,
+    if (ctx.defUnits.searchUnit(KEY_STRUCT) == null) {
+      ctx.structClass = new Clss(new QualID(strTmp, 0, -1, 0, 0), null,
           Modifier.M_ABSTR|Modifier.M_PUB|Modifier.M_STRUCT|Modifier.M_STAT, Marks.K_IGNU, -1, 0, 0);
-      ctx.structClass.name=KEY_STRUCT;
-      ctx.structClass.pack=ctx.defUnits.getQIDTo();
+      ctx.structClass.name = KEY_STRUCT;
+      ctx.structClass.pack = ctx.defUnits.getQIDTo();
       ctx.defUnits.addUnit(ctx.structClass);
       ctx.addUnit(ctx.structClass);
     }
     //add dummy-class for FLASH-extension
-    if (ctx.defUnits.searchUnit(KEY_FLASH)==null) {
-      ctx.flashClass=new Clss(new QualID(strTmp, 0, -1, 0, 0), null,
+    if (ctx.defUnits.searchUnit(KEY_FLASH) == null) {
+      ctx.flashClass = new Clss(new QualID(strTmp, 0, -1, 0, 0), null,
           Modifier.M_ABSTR|Modifier.M_PUB|Modifier.MM_FLASH|Modifier.M_STAT, Marks.K_IGNU, -1, 0, 0);
-      ctx.flashClass.name=KEY_FLASH;
-      ctx.flashClass.pack=ctx.defUnits.getQIDTo();
+      ctx.flashClass.name = KEY_FLASH;
+      ctx.flashClass.pack = ctx.defUnits.getQIDTo();
       ctx.defUnits.addUnit(ctx.flashClass);
       ctx.addUnit(ctx.flashClass);
     }
     //initialize internal special functions
-    (magic=new Magic(ctx)).nextConfig=ctx.config;
-    ctx.config=magic;
+    (magic = new Magic(ctx)).nextConfig = ctx.config;
+    ctx.config = magic;
   }
   
   @Override
