@@ -146,11 +146,11 @@ public class JMthd extends Mthd {
   public boolean checkNameAndType(Unit inUnit, Context ctx) {
     Mthd om;
     Param par;
-    int offset=0;
+    int offset = 0;
     QualIDList curThrows;
     
     //set owner
-    owner=inUnit;
+    owner = inUnit;
     //check abstract method in abstract class and non-final modifier
     if ((modifier&(Modifier.M_ABSTR|Modifier.M_FIN))==(Modifier.M_ABSTR|Modifier.M_FIN)) {
       printPos(ctx, "abstract method can not be final ");

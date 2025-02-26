@@ -35,45 +35,45 @@ import sjc.osio.TextPrinter;
  */
 
 public class StdTypes {
-	public final static int T_BYTE =  1; //"byte"
-	public final static int T_SHRT =  2; //"short"
-  public final static int T_CHAR =  3; //"char"
-	public final static int T_INT  =  4; //"int"
-	public final static int T_LONG =  5; //"long"
-	public final static int T_FLT  =  6; //"float"
-	public final static int T_DBL  =  7; //"double"
-	public final static int T_BOOL =  8; //"boolean"
-	public final static int MAXBASETYPE = 8; //max number of real basic type
-	public final static int T_NULL =  -1; //null-type, unresolved
-  public final static int T_NNPT =  -2; //null-type, pointer
-  public final static int T_NDPT =  -3; //null-type, double sized pointer
-	public final static int T_PACK =  -4; //package (internal use during dereferenzation only)
-	public final static int T_DESC =  -5; //class (internal use during dereferenzation only)
-	public final static int T_PTR  =  -6; //single pointer
-	public final static int T_DPTR =  -7; //double sized pointer (interfaces...)
-  public final static int T_MAGC =  -8; //magic (internal use during dereferenzation only)
-  public final static int T_VOID =  -9;
-  public final static int T_QID  = -10;
+    public final static int T_BYTE =  1; //"byte"
+    public final static int T_SHRT =  2; //"short"
+    public final static int T_CHAR =  3; //"char"
+    public final static int T_INT  =  4; //"int"
+    public final static int T_LONG =  5; //"long"
+    public final static int T_FLT  =  6; //"float"
+    public final static int T_DBL  =  7; //"double"
+    public final static int T_BOOL =  8; //"boolean"
+    public final static int MAXBASETYPE = 8; //max number of real basic type
+    public final static int T_NULL =  -1; //null-type, unresolved
+    public final static int T_NNPT =  -2; //null-type, pointer
+    public final static int T_NDPT =  -3; //null-type, double sized pointer
+    public final static int T_PACK =  -4; //package (internal use during dereferenzation only)
+    public final static int T_DESC =  -5; //class (internal use during dereferenzation only)
+    public final static int T_PTR  =  -6; //single pointer
+    public final static int T_DPTR =  -7; //double sized pointer (interfaces...)
+    public final static int T_MAGC =  -8; //magic (internal use during dereferenzation only)
+    public final static int T_VOID =  -9;
+    public final static int T_QID  = -10;
 
-	public static void printStdType(int type, TextPrinter v) {
-		switch (type) {
-			case T_BYTE: v.print("byte"); return;
-			case T_SHRT: v.print("short"); return;
-			case T_INT:  v.print("int"); return;
-			case T_LONG: v.print("long"); return;
-			case T_FLT:  v.print("float"); return;
-			case T_DBL:  v.print("double"); return;
-			case T_CHAR: v.print("char"); return;
-			case T_BOOL: v.print("boolean"); return;
-			case T_NULL: v.print("null-u"); return;
-      case T_NNPT: v.print("null-p"); return;
-      case T_NDPT: v.print("null-d"); return;
-			case T_PACK: v.print("Tpackage"); return;
-			case T_DESC: v.print("Tdesc"); return;
-			case T_PTR:  v.print("TPTR"); return;
-			case T_DPTR: v.print("TDPTR"); return;
-      case T_MAGC: v.print("TMAGIC"); return;
-		}
-		v.print("!invType!");
+    public static void printStdType(int type, TextPrinter v) {
+        switch (type) {
+            case T_BYTE: v.print("byte");     return;
+            case T_SHRT: v.print("short");    return;
+            case T_INT:  v.print("int");      return;
+            case T_LONG: v.print("long");     return;
+            case T_FLT:  v.print("float");    return;
+            case T_DBL:  v.print("double");   return;
+            case T_CHAR: v.print("char");     return;
+            case T_BOOL: v.print("boolean");  return;
+            case T_NULL: v.print("null-u");   return;
+            case T_NNPT: v.print("null-p");   return;
+            case T_NDPT: v.print("null-d");   return;
+            case T_PACK: v.print("Tpackage"); return;
+            case T_DESC: v.print("Tdesc");    return;
+            case T_PTR:  v.print("TPTR");     return;
+            case T_DPTR: v.print("TDPTR");    return;
+            case T_MAGC: v.print("TMAGIC");   return;
 	}
+	v.print("!invType!");
+    }
 }

@@ -32,32 +32,32 @@ import sjc.osio.TextPrinter;
  */
 
 public class QualID extends Token {
-  public final static int Q_PACKAGE = 1;
-  public final static int Q_IMPORTPACK = 2;
-  public final static int Q_IMPORTUNIT = 3;
-  public final static int Q_UNIT = 4;
+    public final static int Q_PACKAGE = 1;
+    public final static int Q_IMPORTPACK = 2;
+    public final static int Q_IMPORTUNIT = 3;
+    public final static int Q_UNIT = 4;
   
-	public StringList name;
-	public int type;
-	public Pack packDest; //used for PACKAGE and IMPORTPACK
-	public Unit unitDest; //used for UNIT and IMPORTUNIT
+    public StringList name;
+    public int type;
+    public Pack packDest; //used for PACKAGE and IMPORTPACK
+    public Unit unitDest; //used for UNIT and IMPORTUNIT
+
+    public QualID(StringList is, int it, int fid, int il, int ic) {
+        super(fid, il, ic);
+        name=is;
+        type=it;
+    }
+
+    public String getLastPID() {
+        StringList check;
+
+        if (name==null) return null;
+        check=name;
+        while (check.next!=null) check=check.next;
+        return check.str;
+    }
 	
-	public QualID(StringList is, int it, int fid, int il, int ic) {
-		super(fid, il, ic);
-		name=is;
-		type=it;
-	}
-	
-	public String getLastPID() {
-	  StringList check;
-	  
-	  if (name==null) return null;
-	  check=name;
-	  while (check.next!=null) check=check.next;
-	  return check.str;
-	}
-	
-	public void printFullQID(TextPrinter v) {
+    public void printFullQID(TextPrinter v) {
     StringList s;
     
     if (packDest!=null) packDest.printFullName(v);
@@ -75,10 +75,10 @@ public class QualID extends Token {
         s=s.next;
         v.print(s.str);
       }
-		  if (type==Q_IMPORTPACK) v.print(".*");
-		}
-		else v.print("root");
-	}
+        if (type==Q_IMPORTPACK) v.print(".*");
+    }
+    else v.print("root");
+    }
 
   public boolean resolveAsUnit(Unit inUnit, Context ctx) {
     if ((unitDest=inUnit.searchUnitInView(name, false))==null

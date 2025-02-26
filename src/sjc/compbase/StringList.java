@@ -28,15 +28,15 @@ package sjc.compbase;
  */
 
 public class StringList {
-	public String str;
-	public StringList next;
-	//required fields code-generation in ExStr and Clss
-	public int tablePos; //this is the index in the corresponding class-reloc-table
-	
-	public StringList(String istr) {
-	  str=istr;
-    tablePos=-1;
-	}
+    public String str;
+    public StringList next;
+    //required fields code-generation in ExStr and Clss
+    public int tablePos; //this is the index in the corresponding class-reloc-table
+
+    public StringList(String istr) {
+	str = istr;
+        tablePos = -1;
+    }
 	
 	public StringList(StringList last, String istr) {
 		if (last!=null) last.next=this;

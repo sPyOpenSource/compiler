@@ -154,19 +154,19 @@ import sjc.debug.DebugWriter;
 
 public class Clss extends JUnit {
   //required fields for resolving
-	public IndirUnitMapList implemented;
-	public UnitList referenced;
-	
-	protected Clss(QualID ip, QualIDList ii, int imod, int imark, int fid, int il, int ic) {
-            super(fid, il, ic);
-            pack = ip;
-            impt = ii;
-            modifier = imod;
-            marker = imark;
-            initStat = new JMthd(null, Modifier.M_STAT | Modifier.M_PUB, fid, il, ic);
-            initDyna = new JMthd(null, Modifier.M_PUB, fid, il, ic);
-            initStat.owner = initDyna.owner = this;
-	}
+    public IndirUnitMapList implemented;
+    public UnitList referenced;
+
+    protected Clss(QualID ip, QualIDList ii, int imod, int imark, int fid, int il, int ic) {
+        super(fid, il, ic);
+        pack = ip;
+        impt = ii;
+        modifier = imod;
+        marker = imark;
+        initStat = new JMthd(null, Modifier.M_STAT | Modifier.M_PUB, fid, il, ic);
+        initDyna = new JMthd(null, Modifier.M_PUB, fid, il, ic);
+        initStat.owner = initDyna.owner = this;
+    }
 	
         @Override
 	public boolean validateModifierAfterImportResolve(Context ctx) {

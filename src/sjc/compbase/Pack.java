@@ -41,12 +41,12 @@ import sjc.osio.TextPrinter;
  */
 
 public class Pack {
-  public String name;
-  public Pack outer, subPacks, nextPack;
-  public Unit units;
-  public NamedObject objs;
-  
-  private QualID qidOfThis;
+    public String name;
+    public Pack outer, subPacks, nextPack;
+    public Unit units;
+    public NamedObject objs;
+
+    private QualID qidOfThis;
 	
     public Pack(String in, Pack ip) {
         name = in;

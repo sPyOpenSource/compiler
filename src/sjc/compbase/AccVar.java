@@ -52,38 +52,38 @@ package sjc.compbase;
  */
 
 public abstract class AccVar extends Token {
-  //valid locations
-  public final static int L_UNIT      = -3; //declared variable, needs checks
-  public final static int L_CONSTTR   = -2; //trying to resolve this constant at the moment
-  public final static int L_CONSTDC   = -1; //declared constant, needs checks and resolving
-  public final static int L_NOTRDY    =  0;
-  public final static int L_CONST     =  1; //resolved constant
-  public final static int L_CLSSSCL   =  2; //scalar inside class
-  public final static int L_CLSSREL   =  3; //reloc inside class
-  public final static int L_INSTSCL   =  4; //scalar inside instance
-  public final static int L_INSTIDS   =  5; //indirect accessed scalar inside instance
-  public final static int L_INSTREL   =  6; //reloc inside instance
-  public final static int L_LOCAL     =  7; //local variable of method
-  public final static int L_PARAM     =  8; //parameter of method
-  public final static int L_STRUCT    =  9; //variable used in struct
-  public final static int L_STRUCTREF = 10; //variable used in struct point to another struct
-  public final static int L_INLARR    = 11; //variable is name of inline-array in instance 
-  
-  //default relOff
-  public final static int INV_RELOFF = 0x7FFFFFFF;
-  
-  //internal error strings
-  private final static String NAMEOFVRBL = "name of variable ";
-  private final static String ALREADYUSED = " already used";
+    //valid locations
+    public final static int L_UNIT      = -3; //declared variable, needs checks
+    public final static int L_CONSTTR   = -2; //trying to resolve this constant at the moment
+    public final static int L_CONSTDC   = -1; //declared constant, needs checks and resolving
+    public final static int L_NOTRDY    =  0;
+    public final static int L_CONST     =  1; //resolved constant
+    public final static int L_CLSSSCL   =  2; //scalar inside class
+    public final static int L_CLSSREL   =  3; //reloc inside class
+    public final static int L_INSTSCL   =  4; //scalar inside instance
+    public final static int L_INSTIDS   =  5; //indirect accessed scalar inside instance
+    public final static int L_INSTREL   =  6; //reloc inside instance
+    public final static int L_LOCAL     =  7; //local variable of method
+    public final static int L_PARAM     =  8; //parameter of method
+    public final static int L_STRUCT    =  9; //variable used in struct
+    public final static int L_STRUCTREF = 10; //variable used in struct point to another struct
+    public final static int L_INLARR    = 11; //variable is name of inline-array in instance 
+
+    //default relOff
+    public final static int INV_RELOFF = 0x7FFFFFFF;
+
+    //internal error strings
+    private final static String NAMEOFVRBL = "name of variable ";
+    private final static String ALREADYUSED = " already used";
   
     public String name;
     public TypeRef type;
-  public Unit owner;
+    public Unit owner;
     //required fields for interface-checks, overloading and code-generation
     public int minSize, relOff, location; //varPos is offset for scalars and relocs
-  public int modifier; //modifier of variable
-  //note: for inline-arrays varPos contains offset of length field,
-  //   the real array offset is defined through instScalarSize of containing unit
+    public int modifier; //modifier of variable
+    //note: for inline-arrays varPos contains offset of length field,
+    //   the real array offset is defined through instScalarSize of containing unit
   
 	public AccVar(int fid, int il, int ic) {
 		super(fid, il, ic);

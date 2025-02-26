@@ -2026,11 +2026,9 @@ public class JParser {
     return 0;
   }
   
-  private int getPrePstOperator() {
-    int i;
-    
+  private int getPrePstOperator() {    
     if (has(Scanner.S_PFX)) {
-      i=(s.nxtSym.type<<16)|(s.nxtSym.par);
+      int i = (s.nxtSym.type << 16) | (s.nxtSym.par);
       accept();
       return i;
     }

@@ -52,16 +52,16 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExStr extends ExConstInitObj {
-  public String value;
+    public String value;
 	
-	public ExStr(String is, int fid, int il, int ic) {
-		super(fid, il, ic);
-		value=is;
-	}
-	
-	public void printExpression(CodePrinter prnt) {
-	  prnt.exprString(value);
-	}
+    public ExStr(String is, int fid, int il, int ic) {
+        super(fid, il, ic);
+        value=is;
+    }
+
+    public void printExpression(CodePrinter prnt) {
+        prnt.exprString(value);
+    }
 	
 	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags,
 	    TypeRef preferredType, Context ctx) {

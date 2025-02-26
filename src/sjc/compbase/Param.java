@@ -32,9 +32,9 @@ package sjc.compbase;
  */
 
 public class Param extends AccVar {
-	public Param nextParam;
-	
-	public Param(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    public Param nextParam;
+
+    public Param(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 }
