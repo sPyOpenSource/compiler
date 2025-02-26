@@ -163,7 +163,7 @@ public class Clss extends JUnit {
             impt = ii;
             modifier = imod;
             marker = imark;
-            initStat = new JMthd(null, Modifier.M_STAT|Modifier.M_PUB, fid, il, ic);
+            initStat = new JMthd(null, Modifier.M_STAT | Modifier.M_PUB, fid, il, ic);
             initDyna = new JMthd(null, Modifier.M_PUB, fid, il, ic);
             initStat.owner = initDyna.owner = this;
 	}
@@ -204,8 +204,7 @@ public class Clss extends JUnit {
             extsImplIDList=new QualIDList(); //current extsImplIDList is empty
             extsImplIDList.qid=extsID; //move already resolved qid
             extsID=ctx.langRoot.getQIDTo(); //reset "extends"-field
-          }
-          else {
+          } else {
             printPos(ctx, "interface can not be extended by class ");
             ctx.out.println(name);
             return false;

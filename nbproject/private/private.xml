@@ -5,8 +5,12 @@
         <group>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JParser.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Magic.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Context.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/FrontAdmin.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JMthd.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Clss.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JUnit.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/SJava.java</file>
         </group>
     </open-files>

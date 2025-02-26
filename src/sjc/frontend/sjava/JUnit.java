@@ -103,7 +103,7 @@ public abstract class JUnit extends Unit {
   
   @Override
   public boolean hasValidInterface() {
-    return intfResolveState==R_SUCCESS;
+    return intfResolveState == R_SUCCESS;
   }
   
   @Override
@@ -175,38 +175,37 @@ public abstract class JUnit extends Unit {
     QualIDList list;
     StringList cur;
     
-    list=impt;
-    while (list!=null) {
+    list = impt;
+    while (list != null) {
       if (packagesNotUnits) { //search only in packages
-        if (list.qid.type==QualID.Q_IMPORTPACK) { //import package
-          if ((res=list.qid.packDest.searchUnit(what))!=null) return res;
+        if (list.qid.type == QualID.Q_IMPORTPACK) { //import package
+          if ((res = list.qid.packDest.searchUnit(what)) != null) return res;
         }
-      }
-      else { //search only in units
-        if (list.qid.type==QualID.Q_IMPORTUNIT) { //import unit
+      } else { //search only in units
+        if (list.qid.type == QualID.Q_IMPORTUNIT) { //import unit
           if (what.str.equals(list.qid.unitDest.name)) {
-            if (what.next==null) return list.qid.unitDest; //direct match
+            if (what.next == null) return list.qid.unitDest; //direct match
             //search inner units
-            cur=what.next;
-            res=list.qid.unitDest.innerUnits;
-            while (res!=null) {
+            cur = what.next;
+            res = list.qid.unitDest.innerUnits;
+            while (res != null) {
               if (cur.str.equals(res.name)) { //found current inner unit
-                if ((cur=cur.next)==null) return res; //found all
-                res=res.innerUnits; //get next level
+                if ((cur = cur.next) == null) return res; //found all
+                res = res.innerUnits; //get next level
               }
-              else res=res.nextUnit; //try next unit
+              else res = res.nextUnit; //try next unit
             }
           }
         }
       }
-      list=list.nextQualID;
+      list = list.nextQualID;
     }
     return null;
   }
   
   @Override
   public boolean validateModifier(Context ctx) {
-    boolean error=false;
+    boolean error = false;
     QualIDList qidList;
     
     switch (intfResolveState) {
@@ -221,40 +220,40 @@ public abstract class JUnit extends Unit {
         return false;
       case R_MODVALID: case R_STARTED: case R_SUCCESS: return true;
     }
-    intfResolveState=R_MODSTARTED;
+    intfResolveState = R_MODSTARTED;
     //test for special names
     if (SJava.isSpecialName(name)
-        && this!=ctx.structClass && this!=ctx.flashClass) { //internally assigned STRUCT and FLASH are valid
+        && this != ctx.structClass && this != ctx.flashClass) { //internally assigned STRUCT and FLASH are valid
       printPos(ctx, "invalid use of keyword for class ");
       ctx.out.println(name);
-      intfResolveState=R_ERROR;
+      intfResolveState = R_ERROR;
       return false;
     }
     //check if root entered
-    if (ctx.root==null) {
+    if (ctx.root == null) {
       ctx.out.print("error: resolving invalid unit ");
       ctx.out.print(name);
       ctx.out.println(" not possible");
-      intfResolveState=R_ERROR;
+      intfResolveState = R_ERROR;
       return false;
     }
     //check import-statements
-    qidList=impt;
-    while (qidList!=null) {
-      if (qidList.qid.type==QualID.Q_IMPORTPACK) qidList.qid.packDest=ctx.root.searchSubPackage(qidList.qid.name, false);
-      else qidList.qid.unitDest=ctx.root.searchUnit(qidList.qid.name);
-      if (qidList.qid.packDest==null && qidList.qid.unitDest==null) {
+    qidList = impt;
+    while (qidList != null) {
+      if (qidList.qid.type == QualID.Q_IMPORTPACK) qidList.qid.packDest = ctx.root.searchSubPackage(qidList.qid.name, false);
+      else qidList.qid.unitDest = ctx.root.searchUnit(qidList.qid.name);
+      if (qidList.qid.packDest == null && qidList.qid.unitDest == null) {
         qidList.qid.printPos(ctx, "could not resolve import-statement ");
         qidList.qid.printFullQID(ctx.out);
         ctx.out.print(" in unit ");
         ctx.out.println(name);
-        error=true;
+        error = true;
       }
-      else if (ctx.relations!=null) ctx.relations.addImport(qidList.qid.unitDest, this);
-      qidList=qidList.nextQualID;
+      else if (ctx.relations != null) ctx.relations.addImport(qidList.qid.unitDest, this);
+      qidList = qidList.nextQualID;
     }
     //get state of ctx.explicitConversion
-    if (ctx.explicitTypeConversion) marker|=Marks.K_EXPC;
+    if (ctx.explicitTypeConversion) marker |= Marks.K_EXPC;
     //basic checks done, do unit dependant checks
     if (error || !validateModifierAfterImportResolve(ctx)) {
       intfResolveState=R_ERROR;

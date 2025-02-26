@@ -128,19 +128,21 @@ public class JMthd extends Mthd {
     super(ii, im, fid, il, ic);
   }
   
+  @Override
   public Mthd copy() {
     JMthd n;
     
-    n=new JMthd(name, modifier, fileID, line, col);
-    n.retType=retType;
-    n.param=param;
-    n.parCnt=parCnt; //if already resolved, this will be valid, too
-    n.parSize=parSize; //if already resolved, this will be valid, too
-    n.block=block;
+    n = new JMthd(name, modifier, fileID, line, col);
+    n.retType = retType;
+    n.param = param;
+    n.parCnt = parCnt; //if already resolved, this will be valid, too
+    n.parSize = parSize; //if already resolved, this will be valid, too
+    n.block = block;
     //leave other fields blank
     return n;
   }
   
+  @Override
   public boolean checkNameAndType(Unit inUnit, Context ctx) {
     Mthd om;
     Param par;
@@ -197,8 +199,7 @@ public class JMthd extends Mthd {
       //set state of owner-class (if no constructor is here, state will be copied in checkDeclarations)
       inUnit.explConstr=true; //tell them we have an explicit constructor
       if (param==null) inUnit.explStdConstr=true; //there is an explicit standard constructor
-    }
-    else {
+    } else {
       if (isConstructor) {
         printPos(ctx, "constructor can not have return-type in method ");
         printNamePar(ctx.out);
@@ -258,6 +259,7 @@ public class JMthd extends Mthd {
     return true;
   }
 
+  @Override
   public boolean resolve(Context ctx) {
     ExCall call=null;
     Stmt cs;
@@ -424,8 +426,7 @@ public class JMthd extends Mthd {
           }
         }
       }
-    }
-    else { //check if inlining is possible and wanted
+    } else { //check if inlining is possible and wanted
       if (stmtCnt<=ctx.maxStmtAutoInline && (modifier&(Modifier.M_ABSTR|Modifier.M_OVERLD|Modifier.M_HSCALL))==0
           && (marker&Marks.K_NINL)==0 && (owner.modifier&Modifier.M_INDIR)==0) {
         if (ctx.verbose) {
@@ -462,6 +463,7 @@ public class JMthd extends Mthd {
     return true;
   }
   
+  @Override
   public void printCode(CodePrinter prnt) {
     if (block!=null) block.printToken(prnt);
   }
@@ -476,6 +478,7 @@ public class JMthd extends Mthd {
     }
   }
   
+  @Override
   public boolean handlesThrowable(Token whom, Unit thrown, Context ctx) {
     TryCaFiContainer trb=curTryFrame;
     
@@ -486,25 +489,25 @@ public class JMthd extends Mthd {
     return super.handlesThrowable(whom, thrown, ctx);
   }
   
+  @Override
   public void genOutput(Context ctx) {
-    int mthdID=0;
+    int mthdID = 0;
     VrblList inits;
     Object obj;
     
-    if (redirect!=null) {
-      if ((obj=redirect.outputLocation)==null) { //redirection active
+    if (redirect != null) {
+      if ((obj = redirect.outputLocation) == null) { //redirection active
         ctx.out.println("destination of redirected method not built yet");
-        ctx.err=true;
+        ctx.err = true;
         return;
       }
-    }
-    else { //generate code
+    } else { //generate code
       if (inGenOutput) {
         ctx.out.println("can not recursively generate output");
-        ctx.err=true;
+        ctx.err = true;
         return;
       }
-      inGenOutput=true;
+      inGenOutput = true;
       ctx.arch.prepareMethodCoding(this);
       if (tryStackExtreme && (marker&(Marks.K_NSPC|Marks.K_INTR))==0) genStackExtremeCheck(ctx);
       ctx.arch.codeProlog();
@@ -548,6 +551,7 @@ public class JMthd extends Mthd {
     enterOutputAddr(obj, ctx);
   }
   
+  @Override
   public void genInlineOutput(Context ctx) {
     Mthd outline;
     

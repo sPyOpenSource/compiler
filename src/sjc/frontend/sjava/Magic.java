@@ -225,21 +225,21 @@ public class Magic extends CtxBasedConfig {
   private ExVal comprRelocationVal;
   
   protected Magic(Context ctx) {
-    relocBytes=ctx.arch.relocBytes;
+    relocBytes = ctx.arch.relocBytes;
     //create dummy entry for ptrSize
-    ptrSizeVal=new ExVal(-1, -1, -1);
+    ptrSizeVal = new ExVal(-1, -1, -1);
     ptrSizeVal.intValue=relocBytes;
-    ptrSizeVrbl=new Vrbl(ID_PTRSIZE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
-    ptrSizeVrbl.init=ptrSizeVal;
-    ptrSizeVrbl.location=AccVar.L_CONST;
+    ptrSizeVrbl = new Vrbl(ID_PTRSIZE, Modifier.M_PUB | Modifier.M_FIN | Modifier.M_STAT, -1, -1, -1);
+    ptrSizeVrbl.init = ptrSizeVal;
+    ptrSizeVrbl.location = AccVar.L_CONST;
     //create dummy entry for movable
-    movableVal=new ExVal(-1, -1, -1);
-    if (ctx.dynaMem) movableVal.intValue=1; //else: already initialized to 0
-    movableVrbl=new Vrbl(ID_MOVABLE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
-    movableVrbl.init=movableVal;
-    movableVrbl.location=AccVar.L_CONST;
+    movableVal = new ExVal(-1, -1, -1);
+    if (ctx.dynaMem) movableVal.intValue = 1; //else: already initialized to 0
+    movableVrbl = new Vrbl(ID_MOVABLE, Modifier.M_PUB | Modifier.M_FIN | Modifier.M_STAT, -1, -1, -1);
+    movableVrbl.init = movableVal;
+    movableVrbl.location = AccVar.L_CONST;
     //create dummy entry for indirScalars
-    indirScalarsVal=new ExVal(-1, -1, -1);
+    indirScalarsVal = new ExVal(-1, -1, -1);
     if (ctx.indirScalars) indirScalarsVal.intValue=1; //else: already initialized to 0
     indirScalarsVrbl=new Vrbl(ID_INDIRSCALARS, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     indirScalarsVrbl.init=indirScalarsVal;
@@ -314,14 +314,14 @@ public class Magic extends CtxBasedConfig {
   
   public void printExpression(Expr ex, CodePrinter prnt) {
     ExCall call;
-    if (ex instanceof ExVar) prnt.magcVar(((ExVar)ex).dest);
-    else if (ex instanceof ExCall) {
-      call=(ExCall)ex;
+    if (ex instanceof ExVar exVar) prnt.magcVar(exVar.dest);
+    else if (ex instanceof ExCall exCall) {
+      call = exCall;
       prnt.magcCall(call.id, call.par);
     }
-    else if (ex instanceof ExConstStruct) prnt.exprConstStruct((ExConstStruct)ex);
-    else if (ex instanceof ExArrayInit) prnt.exprArrayInit(ex, ((ExArrayInit)ex).par);
-    else if (ex instanceof ExStr) prnt.exprString(((ExStr)ex).value);
+    else if (ex instanceof ExConstStruct exConstStruct) prnt.exprConstStruct(exConstStruct);
+    else if (ex instanceof ExArrayInit exArrayInit) prnt.exprArrayInit(ex, exArrayInit.par);
+    else if (ex instanceof ExStr exStr) prnt.exprString(exStr.value);
     else prnt.reportError(ex, "not yet supported MAGIC");
   }
   
@@ -332,75 +332,76 @@ public class Magic extends CtxBasedConfig {
     Expr ret;
     String name;
     
-    if (ex instanceof ExVar) {
-      var=(ExVar)ex;
+    if (ex instanceof ExVar exVar) {
+      var=exVar;
       name=var.id;
-      if (name.equals(ID_PTRSIZE)) {
-        var.baseType=StdTypes.T_INT;
-        var.dest=ptrSizeVrbl;
-      }
-      else if (name.equals(ID_MOVABLE)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=movableVrbl;
-      }
-      else if (name.equals(ID_INDIRSCALARS)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=indirScalarsVrbl;
-      }
-      else if (name.equals(ID_STREAMLINE)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=streamVrbl;
-      }
-      else if (name.equals(ID_ASSIGNCALL)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=assignVrbl;
-      }
-      else if (name.equals(ID_ASSIGNHEAPCALL)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=assignHeapVrbl;
-      }
-      else if (name.equals(ID_RUNTIMEBOUNDEXCEPTION)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=rtBoundExcVrbl;
-      }
-      else if (name.equals(ID_RUNTIMENULLEXCEPTION)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=rtNullExcVrbl;
-      }
-      else if (name.equals(ID_IMAGEBASE)) {
-        var.baseType=StdTypes.T_INT;
-        var.dest=imgBaseVrbl;
-      }
-      else if (name.equals(ID_COMPRESSEDIMAGEBASE)) {
-        var.baseType=StdTypes.T_INT;
-        var.dest=comprImgBaseVrbl;
-      }
-      else if (name.equals(ID_EMBEDDED)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=embeddedVrbl;
-      }
-      else if (name.equals(ID_EMBCONSTRAM)) {
-        var.baseType=StdTypes.T_BOOL;
-        var.dest=embConstRAMVrbl;
-      }
-      else if (name.equals(ID_RELOCATION)) {
-        var.baseType=StdTypes.T_INT;
-        var.dest=relocationVrbl;
-      }
-      else if (name.equals(ID_COMPRRELOCATION)) {
-        var.baseType=StdTypes.T_INT;
-        var.dest=comprRelocationVrbl;
-      }
-      else {
-        ex.printPos(ctx, "unknown MAGIC-variable ");
-        ctx.out.print(name);
-        return null;
-      }
+        switch (name) {
+            case ID_PTRSIZE:
+                var.baseType=StdTypes.T_INT;
+                var.dest=ptrSizeVrbl;
+                break;
+            case ID_MOVABLE:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=movableVrbl;
+                break;
+            case ID_INDIRSCALARS:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=indirScalarsVrbl;
+                break;
+            case ID_STREAMLINE:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=streamVrbl;
+                break;
+            case ID_ASSIGNCALL:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=assignVrbl;
+                break;
+            case ID_ASSIGNHEAPCALL:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=assignHeapVrbl;
+                break;
+            case ID_RUNTIMEBOUNDEXCEPTION:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=rtBoundExcVrbl;
+                break;
+            case ID_RUNTIMENULLEXCEPTION:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=rtNullExcVrbl;
+                break;
+            case ID_IMAGEBASE:
+                var.baseType=StdTypes.T_INT;
+                var.dest=imgBaseVrbl;
+                break;
+            case ID_COMPRESSEDIMAGEBASE:
+                var.baseType=StdTypes.T_INT;
+                var.dest=comprImgBaseVrbl;
+                break;
+            case ID_EMBEDDED:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=embeddedVrbl;
+                break;
+            case ID_EMBCONSTRAM:
+                var.baseType=StdTypes.T_BOOL;
+                var.dest=embConstRAMVrbl;
+                break;
+            case ID_RELOCATION:
+                var.baseType=StdTypes.T_INT;
+                var.dest=relocationVrbl;
+                break;
+            case ID_COMPRRELOCATION:
+                var.baseType=StdTypes.T_INT;
+                var.dest=comprRelocationVrbl;
+                break;
+            default:
+                ex.printPos(ctx, "unknown MAGIC-variable ");
+                ctx.out.print(name);
+                return null;
+        }
       var.constType=StdTypes.T_INT; //all variables are constant
     }
-    else if (ex instanceof ExCall) {
-      (call=(ExCall)ex).magicType=M_INVALID; //will be set anew if all parameters are sane
-      name=call.id;
+    else if (ex instanceof ExCall exCall) {
+      (call = exCall).magicType=M_INVALID; //will be set anew if all parameters are sane
+      name = call.id;
       if (name.equals("inline")) {
         if (!resolveInline(StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
         call.magicType=M_INLINE8;
@@ -616,14 +617,12 @@ public class Magic extends CtxBasedConfig {
       else if (name.equals("assign")) {
         if (!resolveAssign(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
         call.magicType=M_ASSIGN;
-      }
-      else {
+      } else {
         ex.printPos(ctx, "unknown MAGIC-method ");
         ctx.out.print(name);
         return null;
       }
-    }
-    else {
+    } else {
       ex.printPos(ctx, "unknown MAGIC-deref");
       return null;
     }
@@ -633,7 +632,7 @@ public class Magic extends CtxBasedConfig {
   protected void genOutput(int reg, Expr ex, Context ctx) {
     ExCall call;
     
-    if (ex instanceof ExCall) switch ((call=(ExCall)ex).magicType) {
+    if (ex instanceof ExCall exCall) switch ((call = exCall).magicType) {
       case M_INLINE8:  genOutputInline(StdTypes.T_BYTE, call, ctx); return;
       case M_INLINE16: genOutputInline(StdTypes.T_SHRT, call, ctx); return;
       case M_INLINE32: genOutputInline(StdTypes.T_INT, call, ctx); return;
@@ -750,8 +749,8 @@ public class Magic extends CtxBasedConfig {
 	  Expr paEx;
     
 	  //resolve all parameters, check if all parameters are constant integers
-	  pa=call.par;
-	  if (pa==null) {
+	  pa = call.par;
+	  if (pa == null) {
 	    call.printPos(ctx, "MAGIC.wMemX needs address");
 	    return false;
 	  }
@@ -762,20 +761,17 @@ public class Magic extends CtxBasedConfig {
         call.printPos(ctx, "MAGIC.wMemX needs int or short value as destination");
         return false;
       }
-    }
-    else if (relocBytes==4) {
+    } else if (relocBytes==4) {
       if (!paEx.isIntType()) {
         call.printPos(ctx, "MAGIC.wMemX needs int value as destination");
         return false;
       }
-    }
-    else if (relocBytes==8) {
+    } else if (relocBytes==8) {
       if (!paEx.isIntType() && !paEx.isLongType()) {
         call.printPos(ctx, "MAGIC.wMemX needs int or long value as destination");
         return false;
       }
-    }
-    else {
+    } else {
       call.printPos(ctx, "MAGIC.wMemX could not determine size of pointer");
       return false;
     }

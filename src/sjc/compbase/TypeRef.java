@@ -68,8 +68,8 @@ import sjc.osio.TextPrinter;
  */
 
 public class TypeRef extends Token {
-  //internal types
-  public final static int T_RES  = 0;
+    //internal types
+    public final static int T_RES  = 0;
     public final static int T_BYTE = StdTypes.T_BYTE; //"byte"
     public final static int T_SHRT = StdTypes.T_SHRT; //"short"
     public final static int T_INT  = StdTypes.T_INT;  //"int"
@@ -101,37 +101,37 @@ public class TypeRef extends Token {
   //variables required for resolving
   public int baseType, arrDim;
   public int typeSpecial; //required to check struct and inline arrays and flash-objects, initialized to 0 "everything normal"
-	public QualID qid; //used if type is non-standard
-	
-	public TypeRef(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
-	
-	public void printType(TextPrinter v) {
-		int i;
-		
-		switch (baseType) {
-			case T_RES: v.print("resType"); return;
-			case T_VOID: v.print("void"); return;
-			case T_QID: qid.printFullQID(v); break;
-			default: StdTypes.printStdType(baseType, v);
-		}
-    switch (typeSpecial) {
-      case S_STRUCTARRDONTCHECK: case S_STRUCTARRNOTSPEC: v.print("(S)"); break;
-      case S_INSTINLARR: v.print("(I)"); break;
-      case S_FLASHREF: v.print("(F)"); break;
-      case S_FLASHINLARR: v.print("(FI)"); break;
+    public QualID qid; //used if type is non-standard
+
+    public TypeRef(int fid, int il, int ic) {
+        super(fid, il, ic);
     }
-    for (i=0; i<arrDim; i++) v.print("[]");
-	}
 	
-	public TypeRef copy() {
-		TypeRef n;
-		
-		n=new TypeRef(fileID, line, col);
-		n.getTypeOf(this);
-		return n;
-	}
+    public void printType(TextPrinter v) {
+        int i;
+
+        switch (baseType) {
+            case T_RES: v.print("resType"); return;
+            case T_VOID: v.print("void"); return;
+            case T_QID: qid.printFullQID(v); break;
+            default: StdTypes.printStdType(baseType, v);
+        }
+        switch (typeSpecial) {
+          case S_STRUCTARRDONTCHECK: case S_STRUCTARRNOTSPEC: v.print("(S)"); break;
+          case S_INSTINLARR: v.print("(I)"); break;
+          case S_FLASHREF: v.print("(F)"); break;
+          case S_FLASHINLARR: v.print("(FI)"); break;
+        }
+        for (i=0; i<arrDim; i++) v.print("[]");
+    }
+	
+    public TypeRef copy() {
+        TypeRef n;
+
+        n = new TypeRef(fileID, line, col);
+        n.getTypeOf(this);
+        return n;
+    }
 	
 	public boolean resolveType(Unit inUnit, Context ctx) {
 	  if (baseType!=T_QID) return true;
@@ -292,8 +292,8 @@ public class TypeRef extends Token {
   }
   
   public char getSig() {
-    if (baseType==T_VOID) return 'v';
-    if (arrDim!=0) return 'a';
+    if (baseType == T_VOID) return 'v';
+    if (arrDim != 0) return 'a';
     switch (baseType) {
       case T_BOOL: return 'b';
       case T_BYTE: case T_SHRT: case T_CHAR:
