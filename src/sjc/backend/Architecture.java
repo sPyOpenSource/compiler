@@ -312,9 +312,9 @@ public abstract class Architecture {
   public void insertKillHint(int deallocRegs) {} //needed only for emulated architectures
   public int insertFlowHint(int hint, int id) { return 0; } //needed only for emulated architectures
   public void insertSourceHint(Token token) { //insert nop with hint to token
-    Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.token=token;
+    Instruction i = getUnlinkedInstruction();
+    appendInstruction(i);
+    i.token = token;
   }
   public void insertZeroHint(int objReg, int offset, int type) { } //needed only for architectures that do not zero local variables
   //called at end of compilation, implementing classes may report some statistics there
@@ -322,23 +322,23 @@ public abstract class Architecture {
   //optionally try to build assembler output
   public String checkBuildAssembler(Context preInitCtx) {
     preInitCtx.out.println("assembler output not supported");
-    preInitCtx.err=true;
+    preInitCtx.err = true;
     return null;
   }
   protected void attachMethodAssemblerText(Mthd generatingMthd, Instruction first) { }
   
   public void init(MemoryImage imem, int ilev, Context ictx) {
-    mem=imem;
-    maxInlineLevels=ilev;
-    ctx=ictx;
-    lastInstr=firstInstr=getUnlinkedInstruction();
+    mem = imem;
+    maxInlineLevels = ilev;
+    ctx = ictx;
+    lastInstr = firstInstr = getUnlinkedInstruction();
   }
   
   public void fatalError(String msg) {
     ctx.out.print("fatal arch error ");
-    if (msg!=null) ctx.out.print(msg);
+    if (msg != null) ctx.out.print(msg);
     ctx.out.println();
-    ctx.err=true;
+    ctx.err = true;
   }
   
   //generic common methods
@@ -366,12 +366,12 @@ public abstract class Architecture {
   	return res;
     }
 	
-	public void appendInstruction(Instruction who) {
-	  who.prev=lastInstr;
-	  lastInstr.next=who;
-	  lastInstr=who;
-    while (lastInstr.next!=null) lastInstr=lastInstr.next; //support for appending list of instructions
-	}
+    public void appendInstruction(Instruction who) {
+	who.prev = lastInstr;
+	lastInstr.next = who;
+	lastInstr = who;
+        while (lastInstr.next != null) lastInstr = lastInstr.next; //support for appending list of instructions
+    }
 	
 	public void finalizeMethodCoding() {
 	  enumerateInstructions();
@@ -466,15 +466,15 @@ public abstract class Architecture {
     ctx.mthdCount++;
   }
 	
-	protected void enumerateInstructions() {
-	  int nr=0;
-	  Instruction ins=firstInstr;
-	  
-	  while (ins!=null) {
-	    ins.instrNr=nr++;
-	    ins=ins.next;
-	  }
-	}
+    protected void enumerateInstructions() {
+      int nr = 0;
+      Instruction ins = firstInstr;
+
+      while (ins != null) {
+        ins.instrNr = nr++;
+        ins = ins.next;
+      }
+    }
   
   protected void addToCodeRefFixupList(Instruction i, int offset) {
     InstrList dest;

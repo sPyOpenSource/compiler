@@ -5,8 +5,12 @@
         <group>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/X86Base.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/Architecture.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/atmel/ATmega.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/output/BootOut.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/Instruction.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/AMD64.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/dennisk/MyCPU.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/ssa/SSA.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/x86/IA32.java</file>
         </group>
     </open-files>

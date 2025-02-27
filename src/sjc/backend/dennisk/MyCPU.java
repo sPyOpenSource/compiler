@@ -971,15 +971,18 @@ public class MyCPU extends Architecture {
     fatalError("genLoadUnitContext not implemented yet");
   }
 
+  @Override
   public void genLoadConstUnitContext(int dst, Object unitLoc) {
     genLoadConstVal(dst, mem.getAddrAsInt(unitLoc, 0), StdTypes.T_SHRT);
   }
 
+  @Override
   public void genSaveInstContext() {
     ins(I_PUSHzp, ZPAddrInstHi);
     ins(I_PUSHzp, ZPAddrInstLo);
   }
 
+  @Override
   public void genRestInstContext() {
     ins(I_POPzp, ZPAddrInstLo);
     ins(I_POPzp, ZPAddrInstHi);
@@ -1260,6 +1263,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genMoveFromPrimary(int dst, int type) {
     int tempReg, primReg, i=getByteCount(type);
     while (i>0) {
@@ -1270,6 +1274,7 @@ public class MyCPU extends Architecture {
     }
   }
 
+  @Override
   public void genMoveIntfMapFromPrimary(int dst) {
     int r1, r2;
     if ((r1=getRegZPAddr(3, dst, StdTypes.T_DPTR, true))==0
@@ -1278,12 +1283,14 @@ public class MyCPU extends Architecture {
     ins(I_MOVzpzp, r2, getZPAddrOfReg(1)); //  is never in r0/r1, so always move
   }
 
+  @Override
   public void genSavePrimary(int type) {
     int primReg, count;
     count=getByteCount(type);
     for (primReg=0; count>0; primReg++, count--) ins(I_PUSHzp, getZPAddrOfReg(primReg));
   }
 
+  @Override
   public void genRestPrimary(int type) {
     int primReg, count;
     count=getByteCount(type);
@@ -1317,10 +1324,12 @@ public class MyCPU extends Architecture {
     insPatchedJmp(I_JNCimm, onSuccess); //if (off<limit) jump everything is ok
   }
 
+  @Override
   public void genCheckStackExtreme(int maxValueReg, Instruction onSuccess) {
     fatalError("stack extreme check not supported");
   }
 
+  @Override
   public void genLoadDerefAddr(int destReg, int objReg, int indReg, int baseOffset, int entrySize) {
     int dstR1, dstR2, objR1, objR2, indR1, indR2;
     if ((dstR1=getRegZPAddr(1, destReg, StdTypes.T_SHRT, true))==-1
@@ -1338,8 +1347,7 @@ public class MyCPU extends Architecture {
       ins(I_SBCzp, indR2);
       ins(I_STAzp, ZPAddrTmpHi);
       entrySize=-entrySize;
-    }
-    else {
+    } else {
       ins(I_MOVzpzp, ZPAddrTmpLo, indR1);
       ins(I_MOVzpzp, ZPAddrTmpHi, indR2);
     }
@@ -1381,6 +1389,7 @@ public class MyCPU extends Architecture {
   //  excOffset +  4: unit context of current try-block
   //  excOffset +  2: code-byte to jump to if exception is thrown
   //  excOffset     : pointer to last excStackFrame
+  @Override
   public void genThrowFrameBuild(int globalAddrReg, Instruction dest, int throwBlockOffset) {
     if (globalAddrReg!=0x0003 || usedRegs!=0x0003 || throwBlockOffset>=0) { //globalAddrReg is the only allocated register, throwBlockOffset is in local vars
       fatalError(ERR_INVGLOBADDRREG);
@@ -1431,6 +1440,7 @@ public class MyCPU extends Architecture {
     ins(I_STAabsx, throwBlockOffset+11);
   }
 
+  @Override
   public void genThrowFrameUpdate(Instruction oldDest, Instruction newDest, int throwBlockOffset) {
     if (throwBlockOffset>=0) { //throwBlockOffset is in local vars
       fatalError(ERR_INVGLOBADDRREG);
@@ -1444,6 +1454,7 @@ public class MyCPU extends Architecture {
     ins(I_STAabsx, throwBlockOffset+3);
   }
 
+  @Override
   public void genThrowFrameReset(int globalAddrReg, int throwBlockOffset) {
     if (globalAddrReg!=0x0003 || usedRegs!=0x0003 || throwBlockOffset>=0) { //globalAddrReg is the only allocated register, throwBlockOffset is in local vars
       fatalError(ERR_INVGLOBADDRREG);
@@ -1459,6 +1470,7 @@ public class MyCPU extends Architecture {
     ins(I_STAizpy, ZPAddrBase);
   }
 
+  @Override
   public void inlineVarOffset(int inlineMode, int objReg, Object loc, int offset, int baseValue) {
     fatalError("inlining of variable offsets is not supported");
   }
@@ -1489,14 +1501,12 @@ public class MyCPU extends Architecture {
         ins(I_LDAzp, valR);
         ins(I_STAabsx, pos+i);
       }
-    }
-    else {
+    } else {
       ins(I_PHX);
       if (objReg==0) {
         ins(I_LDXimm, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
-      }
-      else {
+      } else {
         ins(I_CLC);
         if ((objR=getRegZPAddr(1, objReg, StdTypes.T_PTR, false))==-1) return;
         ins(I_LDAzp, objR);
