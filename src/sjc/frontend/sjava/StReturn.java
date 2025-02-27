@@ -51,13 +51,13 @@ import sjc.debug.CodePrinter;
  */
 
 public class StReturn extends Stmt {
-	protected Expr retVal;
-	private StBreakable outer, outest;
-	
-	protected StReturn(StBreakable io, int fid, int il, int ic) {
-		super(fid, il, ic);
-		outer=io;
-	}
+    protected Expr retVal;
+    private StBreakable outer, outest;
+
+    protected StReturn(StBreakable io, int fid, int il, int ic) {
+        super(fid, il, ic);
+        outer=io;
+    }
 	
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtReturn(retVal);

@@ -33,13 +33,13 @@ import sjc.backend.Instruction;
  */
 
 public class StAssert extends Stmt {
-	protected Expr cond, msg;
-  private UnitList runtimeClass;
-  private boolean skipEncode;
+    protected Expr cond, msg;
+    private UnitList runtimeClass;
+    private boolean skipEncode;
 	
-	protected StAssert(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected StAssert(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtAssert(cond, msg);

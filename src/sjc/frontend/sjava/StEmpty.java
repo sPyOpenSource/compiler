@@ -37,9 +37,9 @@ import sjc.debug.CodePrinter;
  */
 
 public class StEmpty extends Stmt {
-	protected StEmpty(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected StEmpty(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtEmpty();

@@ -61,11 +61,11 @@ import sjc.debug.CodePrinter;
  */
 
 public class StBlock extends StBreakable {
-	protected Stmt stmts;
-	
-	protected StBlock(StBreakable io, StringList ila, int fid, int il, int ic) {
-		super(io, ila, fid, il, ic);
-	}
+    protected Stmt stmts;
+
+    protected StBlock(StBreakable io, StringList ila, int fid, int il, int ic) {
+        super(io, ila, fid, il, ic);
+    }
 	
   public void printBreakableStatement(CodePrinter prnt) {
     Stmt stmt=stmts;

@@ -81,18 +81,18 @@ import sjc.compbase.*;
  */
 
 public abstract class ExAbsCall extends Expr {
-  private static final String UNCLEARREGS = "ExAbsCall.genOutputPar has not enough free regs (reduce complexity)";
+    private static final String UNCLEARREGS = "ExAbsCall.genOutputPar has not enough free regs (reduce complexity)";
   
-	protected FilledParam par;
-	protected Mthd dest;
-  protected int outerLevel; //used for access of outer units
-  protected Unit outerAccessStart; //used for access of outer units
-  protected boolean implContextSwitch;
-	private boolean callViaIntf;
-	
-	protected ExAbsCall(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected FilledParam par;
+    protected Mthd dest;
+    protected int outerLevel; //used for access of outer units
+    protected Unit outerAccessStart; //used for access of outer units
+    protected boolean implContextSwitch;
+    private boolean callViaIntf;
+
+    protected ExAbsCall(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	protected boolean resolveInMthd(String name, boolean asConstr, Unit inUnit,
 	    Mthd inMthd, Unit unitContext, Mthd mthdContext, int resolveFlags, boolean partOfSuper, Context ctx) {

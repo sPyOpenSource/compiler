@@ -67,15 +67,15 @@ import sjc.debug.DebugWriter;
  */
 
 public class Intf extends JUnit {
-	protected Intf(QualID ip, QualIDList ii, int im, int fid, int il, int ic) {
-		super(fid, il, ic);
-		pack=ip;
-		impt=ii;
-		modifier=im|Modifier.M_INDIR;
-		initStat=new JMthd(null, Modifier.M_STAT, fid, il, ic);
-		//note: there is no dynamic initialization, but method calls are dynamic (needed for resolve)
-		initDyna=new JMthd(null, 0, fid, il, ic);
-	}
+    protected Intf(QualID ip, QualIDList ii, int im, int fid, int il, int ic) {
+        super(fid, il, ic);
+        pack=ip;
+        impt=ii;
+        modifier=im|Modifier.M_INDIR;
+        initStat=new JMthd(null, Modifier.M_STAT, fid, il, ic);
+        //note: there is no dynamic initialization, but method calls are dynamic (needed for resolve)
+        initDyna=new JMthd(null, 0, fid, il, ic);
+    }
 	
 	protected boolean resolveIntfExtsIpls(Context ctx) {
 	  QualIDList list, cmp;

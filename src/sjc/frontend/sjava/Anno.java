@@ -35,9 +35,9 @@ import sjc.debug.DebugWriter;
 public class Anno extends JUnit {
   protected Anno(QualID ip, QualIDList ii, int im, int fid, int il, int ic) {
     super(fid, il, ic);
-    pack=ip;
-    impt=ii;
-    modifier=im;
+    pack = ip;
+    impt = ii;
+    modifier = im;
   }
   
   @Override

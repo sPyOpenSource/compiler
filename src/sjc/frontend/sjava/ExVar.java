@@ -88,15 +88,15 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExVar extends ExAccVrbl {
-  private final static String NOTINITIALIZED1 = "variable ";
-  private final static String NOTINITIALIZED2 = " may not have been initialized";
+    private final static String NOTINITIALIZED1 = "variable ";
+    private final static String NOTINITIALIZED2 = " may not have been initialized";
   
-	protected String id;
-  
-	protected ExVar(String ip, int fid, int il, int ic) {
-		super(fid, il, ic);
-		id=ip;
-	}
+    protected String id;
+
+    protected ExVar(String ip, int fid, int il, int ic) {
+        super(fid, il, ic);
+        id=ip;
+    }
 	
 	public void printExpression(CodePrinter codePrnt) {
 	  codePrnt.exprVar(dest, id, isThis);
@@ -220,8 +220,7 @@ public class ExVar extends ExAccVrbl {
           qid.unitDest.modifier|=accessLevel;
         }
             
-  	  }
-  	  else { //check unit-variable
+  	  } else { //check unit-variable
   	    dvar=(Vrbl)dest;
         if (inMthd==null || dvar==null) {
           compErr(ctx, "inMthd/dvar==null");

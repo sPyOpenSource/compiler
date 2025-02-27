@@ -51,12 +51,12 @@ import sjc.backend.Instruction;
  */
 
 public class StIf extends Stmt {
-	protected Expr cond;
-	protected Stmt trStmt, faStmt;
-	
-	protected StIf(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected Expr cond;
+    protected Stmt trStmt, faStmt;
+
+    protected StIf(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtIf(cond, trStmt, faStmt);

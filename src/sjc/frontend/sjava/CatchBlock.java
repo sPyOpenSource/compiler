@@ -33,14 +33,14 @@ import sjc.compbase.UnitList;
  */
 
 public class CatchBlock extends Token {
-	protected CatchBlock nextCatchDecl;
-	protected Vrbl catchVar;
-  protected Stmt stmts;
-  protected Instruction stIns;
-  protected UnitList importedClass;
-  protected boolean isValid;
+    protected CatchBlock nextCatchDecl;
+    protected Vrbl catchVar;
+    protected Stmt stmts;
+    protected Instruction stIns;
+    protected UnitList importedClass;
+    protected boolean isValid;
 	
-	protected CatchBlock(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected CatchBlock(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 }

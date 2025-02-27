@@ -134,8 +134,7 @@ public class ExBin extends ExCheckType {
         }
         if (ri.baseType==T_NULL) { //assign null-type
           if (!assignNullType(ctx)) return false;
-        }
-        else {
+        } else {
           if (opType!=Ops.S_ASN) {
             if (opType==Ops.S_ASNARI) cmpType=le;
             else cmpType=ctx.intType;
@@ -143,15 +142,13 @@ public class ExBin extends ExCheckType {
             if (cmpRes==TypeRef.C_NP || cmpRes==TypeRef.C_OT) {
               if ((mthdContext.marker&Marks.K_EXPC)==0) {
                 if ((ri=ExEnc.getConvertedResolvedExpr(ri, cmpType, unitContext, ctx))==null) return false;
-              }
-              else {
+              } else {
                 if (opType==Ops.S_ASNBSH) printPos(ctx, "right type of shift has to be int");
                 else noImplicitConvert(ctx);
                 return false;
               }
             }
-          }
-          else {
+          } else {
             cmpRes=le.compareType(ri, true, ctx); //get type-compare
             if (cmpRes==TypeRef.C_NP || cmpRes==TypeRef.C_OT) {
               if ((mthdContext.marker&Marks.K_EXPC)==0) {
@@ -399,6 +396,7 @@ public class ExBin extends ExCheckType {
     return false;
   }
   
+  @Override
   public int calcConstantType(Context ctx) {
     int opType;
     
@@ -417,6 +415,7 @@ public class ExBin extends ExCheckType {
     return 0;
   }
   
+  @Override
   public int getConstIntValue(Context ctx) {
     int l, r;
     long ll, lr;

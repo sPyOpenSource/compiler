@@ -35,9 +35,9 @@ import sjc.debug.CodePrinter;
  */
 
 public class StRetMissing extends Stmt {
-	protected StRetMissing(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected StRetMissing(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtReturnMissing();

@@ -40,20 +40,20 @@ import sjc.compbase.*;
  */
 
 public abstract class Stmt extends TokenAbstrPrintable {
-  protected final static int FA_NO_FLOWCHANGE       = 0;
-  protected final static int FA_HAS_ENDBLOCK        = 0x01;
-  protected final static int FA_HAS_CONTINUE        = 0x02;
-  protected final static int FA_HAS_SHORTCUT        = 0x04;
-  protected final static int FA_INSIDE_LOOP         = 0x08;
-  protected final static int FA_NEXT_IS_UNREACHABLE = 0x10;
-  protected final static int FA_DEAD_CODE           = 0x20;
-  protected final static int FA_ERROR               = 0x40;
+    protected final static int FA_NO_FLOWCHANGE       = 0;
+    protected final static int FA_HAS_ENDBLOCK        = 0x01;
+    protected final static int FA_HAS_CONTINUE        = 0x02;
+    protected final static int FA_HAS_SHORTCUT        = 0x04;
+    protected final static int FA_INSIDE_LOOP         = 0x08;
+    protected final static int FA_NEXT_IS_UNREACHABLE = 0x10;
+    protected final static int FA_DEAD_CODE           = 0x20;
+    protected final static int FA_ERROR               = 0x40;
   
-	protected Stmt nextStmt;
-	
-	protected Stmt(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected Stmt nextStmt;
+
+    protected Stmt(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
   protected abstract int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx);
   protected abstract void innerGenOutput(Context ctx);

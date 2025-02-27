@@ -48,16 +48,16 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExUna extends Expr {
-	protected Expr ex;
-	private int op;
-	private char ariCallOp;
-	private boolean genAriCall;
-	private UnitList runtimeClass;
-	
-	protected ExUna(int iop, int fid, int il, int ic) {
-		super(fid, il, ic);
-		op=iop;
-	}
+    protected Expr ex;
+    private int op;
+    private char ariCallOp;
+    private boolean genAriCall;
+    private UnitList runtimeClass;
+
+    protected ExUna(int iop, int fid, int il, int ic) {
+        super(fid, il, ic);
+        op=iop;
+    }
 	
 	public void printExpression(CodePrinter codePrnt) {
 	  codePrnt.exprUna(ex, op>>>16, op&0xFFFF);
@@ -120,6 +120,7 @@ public class ExUna extends Expr {
 	  return true;
 	}
 	
+    @Override
 	public int calcConstantType(Context ctx) {
 		return ex.calcConstantType(ctx);
 	}

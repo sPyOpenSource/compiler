@@ -34,12 +34,12 @@ import sjc.backend.Instruction;
  */
 
 public class CondStmt extends Token {
-	protected Expr cond;
-        protected Instruction stIns;
-	protected Stmt stmt;
-	protected CondStmt nextCondStmt;
-	
-	protected CondStmt(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    protected Expr cond;
+    protected Instruction stIns;
+    protected Stmt stmt;
+    protected CondStmt nextCondStmt;
+
+    protected CondStmt(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 }
