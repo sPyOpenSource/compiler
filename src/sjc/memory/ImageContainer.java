@@ -66,7 +66,7 @@ public class ImageContainer extends MemoryImage {
   
   @Override
   public boolean checkMemoryLocation(Object loc, int offset, int len) {
-    int addr = getAddrAsInt(loc, offset)-baseAddress;
+    int addr = getAddrAsInt(loc, offset) - baseAddress;
     return addr >= 0 && addr + len - 1 < memBlockLen;
   }
   

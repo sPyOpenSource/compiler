@@ -74,9 +74,7 @@ public class BootableImage extends ImageContainer {
   // off=24: 32 Bit: int: codeStart
   // off=28: 32 Bit: int: lo to hi: 0xAA relocBytes stackClearBits 0x55 (arch parameters incl. endianess)
   
-  public void init(int size, int base, boolean iSH, byte[] headerData, Context ictx) {
-    int i;
-    
+  public void init(int size, int base, boolean iSH, byte[] headerData, Context ictx) {    
     ctx = ictx;
     memBlock = new byte[size];
     baseAddress = base; //this is the offset to which the image should be loaded to
@@ -94,7 +92,7 @@ public class BootableImage extends ImageContainer {
         } else {
           ctx.arch.setHeaderLength(headerData.length);
           memBlockLen = headerData.length;
-          for (i = 0; i < memBlockLen; i++) memBlock[i] = headerData[i];
+            System.arraycopy(headerData, 0, memBlock, 0, memBlockLen);
         }
       }
       else memBlockLen = 0;

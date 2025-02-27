@@ -72,45 +72,45 @@ public class Instruction {
   }
   
   public void replaceShort(int off, int val) {
-    code[off++]=(byte)val;
-    code[off  ]=(byte)(val>>8);
+    code[off++] = (byte)val;
+    code[off  ] = (byte)(val >> 8);
   }
   
   public void replaceInt(int off, int val) {
-    code[off++]=(byte)val;
-    code[off++]=(byte)(val>>8);
-    code[off++]=(byte)(val>>16);
-    code[off  ]=(byte)(val>>24);
+    code[off++] = (byte)val;
+    code[off++] = (byte)(val >> 8);
+    code[off++] = (byte)(val >> 16);
+    code[off  ] = (byte)(val >> 24);
   }
   
   public void replaceLong(int off, long val) {
-    code[off++]=(byte)val;
-    code[off++]=(byte)(val>>8);
-    code[off++]=(byte)(val>>16);
-    code[off++]=(byte)(val>>24);
-    code[off++]=(byte)(val>>32);
-    code[off++]=(byte)(val>>40);
-    code[off++]=(byte)(val>>48);
-    code[off  ]=(byte)(val>>56);
+    code[off++] = (byte)val;
+    code[off++] = (byte)(val >> 8);
+    code[off++] = (byte)(val >> 16);
+    code[off++] = (byte)(val >> 24);
+    code[off++] = (byte)(val >> 32);
+    code[off++] = (byte)(val >> 40);
+    code[off++] = (byte)(val >> 48);
+    code[off  ] = (byte)(val >> 56);
   
   }
   
   public void putByte(int val) {
-    code[size++]=(byte)val;
+    code[size++] = (byte)val;
   }
   
   public void putShort(int val) {
     replaceShort(size, val);
-    size+=2;
+    size += 2;
   }
   
   public void putInt(int val) {
     replaceInt(size, val);
-    size+=4;
+    size += 4;
   }
   
   public void putLong(long val) {
     replaceLong(size, val);
-    size+=8;
+    size += 8;
   }
 }

@@ -357,8 +357,7 @@ public class IA32 extends X86Base {
       ins(I_PUSHimm, 0, 0, 0, val);
       ins(I_FLDmem, R_ESP, 0, 0, 0, FPU32);
       ins(I_ADDregimm, R_ESP, 0, 0, 4); //pseudo-pop
-    }
-    else {
+    } else {
       if ((dst=getReg(1, dst, StdTypes.T_INT, true))==0) return;
       if (val==0) {
         ins(I_XORregreg, dst, dst);
@@ -390,8 +389,7 @@ public class IA32 extends X86Base {
       genPushConstDoubleOrLongVal(val, true);
       ins(I_FLDmem, R_ESP, 0, 0, 0, FPU64);
       ins(I_ADDregimm, R_ESP, 0, 0, 8); //pseudo-pop
-    }
-    else {
+    } else {
       if ((reg1=getReg(1, dst, StdTypes.T_LONG, true))==0
           || (reg2=getReg(2, dst, StdTypes.T_LONG, true))==0) return;
       ins(I_MOVregimm, reg1, 0, 0, (int)val);
@@ -650,6 +648,7 @@ public class IA32 extends X86Base {
     ins(I_PUSHimm, 0, 0, 0, (int)val);
   }
 
+  @Override
   public void genPush(int srcR, int type) {
     int src;
     boolean isDouble=false;
@@ -683,6 +682,7 @@ public class IA32 extends X86Base {
     ins(I_PUSHreg, src);
   }
   
+  @Override
   public void genPop(int dstR, int type) {
     int dst;
     boolean isDouble=false;
@@ -705,6 +705,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genAssign(int dst, int srcR, int type) {
     int src;
     boolean isDouble=false;
@@ -736,6 +737,7 @@ public class IA32 extends X86Base {
     fatalError(ERR_UNSTYPE_GENASSIGN);
   }
   
+  @Override
   public void genStoreVarVal(int objReg, Object loc, int off, int src, int type) {
     int srcR;
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
@@ -754,6 +756,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genStoreVarConstVal(int objReg, Object loc, int off, int val, int type) {
     int pos=mem.getAddrAsInt(loc, off);
     if (objReg==regBase && pos>=0) pos+=curVarOffParam;
@@ -773,6 +776,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genStoreVarConstDoubleOrLongVal(int objReg, Object loc, int off, long val, boolean asDouble) {
     genStoreVarConstVal(objReg, loc, off+4, (int)(val>>>32), StdTypes.T_INT);
     genStoreVarConstVal(objReg, loc, off, (int)val, StdTypes.T_INT);

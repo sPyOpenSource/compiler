@@ -67,6 +67,7 @@ public class StBlock extends StBreakable {
         super(io, ila, fid, il, ic);
     }
 	
+    @Override
   public void printBreakableStatement(CodePrinter prnt) {
     Stmt stmt=stmts;
     boolean reportEnd=prnt.stmtBlockStart();
@@ -77,6 +78,7 @@ public class StBlock extends StBreakable {
     if (reportEnd) prnt.stmtBlockEnd();
   }
 
+    @Override
   protected int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx) {
     return innerResolve(flowEntryCode, false, unitContext, mthdContext, ctx); //call is not from mthd
   }
@@ -131,14 +133,17 @@ public class StBlock extends StBreakable {
 		return flowCode;
 	}
 	
+    @Override
 	protected boolean isBreakContDest(boolean named, boolean contNotBreak) {
 	  return !contNotBreak && named; //only breakable (not continuable) and only if named
 	}
 	
+    @Override
   protected void genOutput(Context ctx) {
     genOutput(ctx, false);
   }
   
+    @Override
   protected void innerGenOutput(Context ctx) {
     genOutput(ctx, false);
   }

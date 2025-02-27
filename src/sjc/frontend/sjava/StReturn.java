@@ -127,22 +127,23 @@ public class StReturn extends Stmt {
 	  return flowCode|FA_NEXT_IS_UNREACHABLE;
 	}
 	
-	protected void innerGenOutput(Context ctx) {
-	  int reg, type;
+    @Override
+    protected void innerGenOutput(Context ctx) {
+	int reg, type;
 	  
-    if (retVal!=null) {
-      type=retVal.getRegType(ctx);
-  	  if (ctx.arch.prepareFreeReg(0, 0, 0, type)!=0) { //there must be free registers
-  	    compErr(ctx, "no free reg at beginning of return-statement");
-  	    return;
-  	  }
-  	  reg=ctx.arch.allocReg();
-  	  retVal.genOutputVal(reg, ctx);
-  	  outer.genOutputCleanup(null, ctx);
-      ctx.arch.genMoveToPrimary(reg, type);
-  	  ctx.arch.deallocRestoreReg(reg, 0, 0);
+        if (retVal != null) {
+            type = retVal.getRegType(ctx);
+            if (ctx.arch.prepareFreeReg(0, 0, 0, type) != 0) { //there must be free registers
+                compErr(ctx, "no free reg at beginning of return-statement");
+                return;
+            }
+            reg = ctx.arch.allocReg();
+            retVal.genOutputVal(reg, ctx);
+            outer.genOutputCleanup(null, ctx);
+            ctx.arch.genMoveToPrimary(reg, type);
+            ctx.arch.deallocRestoreReg(reg, 0, 0);
   	}
-    else outer.genOutputCleanup(null, ctx);
-  	ctx.arch.genJmp(outest.breakDest);
-	}
+        else outer.genOutputCleanup(null, ctx);
+        ctx.arch.genJmp(outest.breakDest);
+    }
 }

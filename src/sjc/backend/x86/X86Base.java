@@ -830,12 +830,12 @@ public abstract class X86Base extends Architecture{
     Instruction i;
     
     //get a new instruction and insert it
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=I_CALLimm;
-    i.refMthd=refMthd;
+    appendInstruction(i = getUnlinkedInstruction());
+    i.type = I_CALLimm;
+    i.refMthd = refMthd;
     //code instruction
     i.putByte(0xE8);
-    i.size+=fullIPChangeBytes;
+    i.size += fullIPChangeBytes;
     addToCodeRefFixupList(i, 1);
   }
   
