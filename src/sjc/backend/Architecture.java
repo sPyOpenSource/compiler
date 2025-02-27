@@ -356,15 +356,15 @@ public abstract class Architecture {
     return new Instruction(maxInstrCodeSize);
   }
   
-	//generic code-generation methods
-	public Instruction getUnlinkedInstruction() {
-	  Instruction res;
+    //generic code-generation methods
+    public Instruction getUnlinkedInstruction() {
+	Instruction res;
 	  
-    if ((res=nextFreeInstr)==null) res=createNewInstruction();
-    else nextFreeInstr=nextFreeInstr.next;
-    res.cleanup();
+        if ((res = nextFreeInstr) == null) res = createNewInstruction();
+        else nextFreeInstr = nextFreeInstr.next;
+        res.cleanup();
   	return res;
-	}
+    }
 	
 	public void appendInstruction(Instruction who) {
 	  who.prev=lastInstr;

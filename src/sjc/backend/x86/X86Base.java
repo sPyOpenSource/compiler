@@ -925,8 +925,7 @@ public abstract class X86Base extends Architecture{
       }
       me.code[0]=(byte)0xE9;
       pos=1;
-    }
-    else {
+    } else {
       switch (me.iPar1) { //contains condition
         case SC_BE: bbbb=0x6; break; //jump if below or equal
         case SC_AE: bbbb=0x3; break; //jump if above or equal

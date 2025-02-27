@@ -1612,13 +1612,12 @@ public class AMD64 extends X86Base {
   }
   
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, long immL, int par) {
-    Instruction i;
     int tmp;
     int wordflag=0, prefix;
     boolean sizeprefix=false, rex0, rex1, nrg0, nrg1;
     
     //get a new instruction and insert ist
-    i=getUnlinkedInstruction();
+    Instruction i=getUnlinkedInstruction();
     appendInstruction(i);
     //get parameters and remember them
     i.type=type;

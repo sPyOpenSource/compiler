@@ -620,8 +620,8 @@ public class IA32 extends X86Base {
   @Override
   public void genDup(int dstR, int srcR, int type) {
     int dst, src;
-    if (dstR==srcR) /*nothing to do*/ return;
-    if ((dst=getReg(1, dstR, StdTypes.T_INT, true))==0 || (src=getReg(1, srcR, StdTypes.T_INT, false))==0) return;
+    if (dstR == srcR) /*nothing to do*/ return;
+    if ((dst = getReg(1, dstR, StdTypes.T_INT, true)) == 0 || (src = getReg(1, srcR, StdTypes.T_INT, false)) == 0) return;
     switch (type) {
       case StdTypes.T_BOOL: case StdTypes.T_BYTE:
       case StdTypes.T_SHRT: case StdTypes.T_CHAR:
@@ -630,7 +630,7 @@ public class IA32 extends X86Base {
         return;
       case StdTypes.T_LONG: case StdTypes.T_DPTR:
         ins(I_MOVregreg, dst, src);
-        if ((dst=getReg(2, dstR, StdTypes.T_LONG, true))==0 || (src=getReg(2, srcR, StdTypes.T_LONG, false))==0) return;
+        if ((dst = getReg(2, dstR, StdTypes.T_LONG, true)) == 0 || (src = getReg(2, srcR, StdTypes.T_LONG, false)) == 0) return;
         ins(I_MOVregreg, dst, src);
         return;
     }
@@ -758,9 +758,9 @@ public class IA32 extends X86Base {
   
   @Override
   public void genStoreVarConstVal(int objReg, Object loc, int off, int val, int type) {
-    int pos=mem.getAddrAsInt(loc, off);
-    if (objReg==regBase && pos>=0) pos+=curVarOffParam;
-    if (objReg!=0 && (objReg=getReg(1, objReg, StdTypes.T_PTR, false))==0) return;
+    int pos = mem.getAddrAsInt(loc, off);
+    if (objReg == regBase && pos >= 0) pos += curVarOffParam;
+    if (objReg != 0 && (objReg = getReg(1, objReg, StdTypes.T_PTR, false)) == 0) return;
     switch (type) {
       case StdTypes.T_BYTE: case StdTypes.T_BOOL:
         ins(I_MOVmemimm, objReg, 0, pos, val, 1);
@@ -778,7 +778,7 @@ public class IA32 extends X86Base {
   
   @Override
   public void genStoreVarConstDoubleOrLongVal(int objReg, Object loc, int off, long val, boolean asDouble) {
-    genStoreVarConstVal(objReg, loc, off+4, (int)(val>>>32), StdTypes.T_INT);
+    genStoreVarConstVal(objReg, loc, off + 4, (int)(val >>> 32), StdTypes.T_INT);
     genStoreVarConstVal(objReg, loc, off, (int)val, StdTypes.T_INT);
   }
   
@@ -787,48 +787,47 @@ public class IA32 extends X86Base {
     //  with special case src2Hi==0, then use ECX as single second
     //there are only the registers EAX, EBX, ECX and EDX used, so shuffle them as wanted
     //this is brute force - xchg would be nicer, shorter, faster... ;-)
-    if (src1Hi!=R_EDX || src1Lo!=R_EAX) {
+    if (src1Hi != R_EDX || src1Lo != R_EAX) {
       ins(I_PUSHreg, src1Hi);
       ins(I_PUSHreg, src1Lo);
     }
-    if (src2Hi!=0) { //normal case
+    if (src2Hi != 0) { //normal case
       ins(I_PUSHreg, src2Hi);
-      if (src2Lo!=R_EBX) {
+      if (src2Lo != R_EBX) {
         ins(I_MOVregreg, R_EBX, src2Lo);
       }
       ins(I_POPreg, R_ECX);
+    } else { //special case without src2Hi and where src2Lo has to go to ECX for shift
+      if (src2Lo != R_ECX) ins(I_MOVregreg, R_ECX, src2Lo);
     }
-    else { //special case without src2Hi and where src2Lo has to go to ECX for shift
-      if (src2Lo!=R_ECX) ins(I_MOVregreg, R_ECX, src2Lo);
-    }
-    if (src1Hi!=R_EDX || src1Lo!=R_EAX) {
+    if (src1Hi != R_EDX || src1Lo != R_EAX) {
       ins(I_POPreg, R_EAX);
       ins(I_POPreg, R_EDX);
     }
   }
   
   private void longMoveRes(int dstHi, int dstLo) {
-    if (dstHi!=R_EDX) ins(I_MOVregreg, dstHi, R_EDX); //hi can not be R_EAX, so move this one first
-    if (dstLo!=R_EAX) ins(I_MOVregreg, dstLo, R_EAX);
+    if (dstHi != R_EDX) ins(I_MOVregreg, dstHi, R_EDX); //hi can not be R_EAX, so move this one first
+    if (dstLo != R_EAX) ins(I_MOVregreg, dstLo, R_EAX);
   }
   
   @Override
   public void genBinOp(int dstR, int src1R, int src2R, int op, int type) { //may destroy src2R
     Instruction dummy1, dummy2, dummy3, neg1, udiv, done;
-    int opType=op>>>16, opPar=op&0xFFFF;
+    int opType = op >>> 16, opPar = op & 0xFFFF;
     int dst, src2, dstL, src2L, saveRegs, usedMask, tmp;
     boolean xchg;
     
-    if (dstR!=src1R || dstR==src2R) {
+    if (dstR != src1R || dstR == src2R) {
       fatalError(ERR_UNSCASE_GENBINOP);
       return;
     }
-    if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
-      if (src2R!=curFPUReg || dstR!=curFPUReg-FPUREGINC) {
+    if (type == StdTypes.T_FLT || type == StdTypes.T_DBL) {
+      if (src2R != curFPUReg || dstR != curFPUReg - FPUREGINC) {
         errorFPU();
         return;
       }
-      dupFPUIns=null;
+      dupFPUIns = null;
       popFPUDone++;
       switch (opPar) {
         case Ops.A_PLUS:  ins(I_FADDP); return;
@@ -840,10 +839,10 @@ public class IA32 extends X86Base {
       return;
     }
     //no floating point operation
-    if ((dst=getReg(1, dstR, StdTypes.T_INT, false))==0 || (src2=getReg(1, src2R, StdTypes.T_INT, false))==0) return;
+    if ((dst = getReg(1, dstR, StdTypes.T_INT, false)) == 0 || (src2 = getReg(1, src2R, StdTypes.T_INT, false)) == 0) return;
     switch (type) {
       case StdTypes.T_BOOL:
-        if (opType!=Ops.S_ARI || !(opPar==Ops.A_AND || opPar==Ops.A_OR || opPar==Ops.A_XOR)) {
+        if (opType != Ops.S_ARI || !(opPar == Ops.A_AND || opPar == Ops.A_OR || opPar == Ops.A_XOR)) {
           fatalError(ERR_UNSOP_GENBINOP);
           return;
         }
@@ -856,72 +855,66 @@ public class IA32 extends X86Base {
             switch (opPar) {
               case Ops.A_AND:   ins(I_ANDregreg, dst, src2); break;
               case Ops.A_XOR:   ins(I_XORregreg, dst, src2); break;
-              case Ops.A_OR:    ins(I_ORregreg, dst, src2); break;
+              case Ops.A_OR:    ins(I_ORregreg,  dst, src2); break;
               case Ops.A_PLUS:  ins(I_ADDregreg, dst, src2); break;
               case Ops.A_MINUS: ins(I_SUBregreg, dst, src2); break;
               case Ops.A_MUL:
-                if (dst!=R_EAX && src2!=R_EAX) saveRegs=RegA;
-                else saveRegs=0;
-                if (dst!=R_EDX && src2!=R_EDX) saveRegs|=RegD;
-                usedMask=storeReg(saveRegs);
-                if (dst!=R_EAX) {
-                  if (src2!=R_EAX) ins(I_MOVregreg, R_EAX, dst);
-                  else src2=dst; //we don't need the original src2 anymore
+                if (dst != R_EAX && src2 != R_EAX) saveRegs = RegA;
+                else saveRegs = 0;
+                if (dst != R_EDX && src2 != R_EDX) saveRegs |= RegD;
+                usedMask = storeReg(saveRegs);
+                if (dst != R_EAX) {
+                  if (src2 != R_EAX) ins(I_MOVregreg, R_EAX, dst);
+                  else src2 = dst; //we don't need the original src2 anymore
                 }
                 //else: dstsrc1==R_EAX && src2!=R_EAX, nothing needed
                 ins(I_IMULreg, src2);
-                if (dst!=R_EAX) ins(I_MOVregreg, dst, R_EAX);
+                if (dst != R_EAX) ins(I_MOVregreg, dst, R_EAX);
                 restoreReg(usedMask);
                 break;
               case Ops.A_DIV:
               case Ops.A_MOD:
-                if (dst!=R_EAX) { //dstsrc1!=R_EAX
-                  if (src2==R_EAX) { //dstsrc1!=R_EAX && src2==R_EAX
-                    if (dst==R_EDX) { //dstsrc1==R_EDX && src2==R_EAX
-                      usedMask=storeReg(RegB);
+                if (dst != R_EAX) { //dstsrc1!=R_EAX
+                  if (src2 == R_EAX) { //dstsrc1!=R_EAX && src2==R_EAX
+                    if (dst == R_EDX) { //dstsrc1==R_EDX && src2==R_EAX
+                      usedMask = storeReg(RegB);
                       ins(I_MOVregreg, R_EBX, src2);
                       ins(I_MOVregreg, R_EAX, dst);
                       src2=R_EBX;
-                    }
-                    else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2==R_EAX
-                      usedMask=storeReg(RegD);
+                    } else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2==R_EAX
+                      usedMask = storeReg(RegD);
                       ins(I_XCHGregreg, dst, src2);
-                      src2=dst;
+                      src2 = dst;
                     }
-                  }
-                  else { //dstsrc1!=R_EAX && src2!=R_EAX
-                    if (dst==R_EDX) { //dstsrc1==R_EDX && src2!=R_EAX (&& src2!=R_EDX)
-                      usedMask=storeReg(RegA);
+                  } else { //dstsrc1!=R_EAX && src2!=R_EAX
+                    if (dst == R_EDX) { //dstsrc1==R_EDX && src2!=R_EAX (&& src2!=R_EDX)
+                      usedMask = storeReg(RegA);
                       ins(I_MOVregreg, R_EAX, dst);
-                    }
-                    else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2!=R_EAX
-                      if (src2==R_EDX) { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2==R_EDX
-                        usedMask=storeReg(RegA);
+                    } else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2!=R_EAX
+                      if (src2 == R_EDX) { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2==R_EDX
+                        usedMask = storeReg(RegA);
                         ins(I_MOVregreg, R_EAX, dst);
                         ins(I_MOVregreg, dst, src2);
-                        src2=dst;
-                      }
-                      else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2!=R_EAX && src2!=R_EDX
+                        src2 = dst;
+                      } else { //dstsrc1!=R_EAX && dstsrc1!=R_EDX && src2!=R_EAX && src2!=R_EDX
                         //==> dstsrc1 and src2 reside in R_EBX and R_ECX (somehow)
-                        usedMask=storeReg(RegA|RegD);
+                        usedMask = storeReg(RegA | RegD);
                         ins(I_MOVregreg, R_EAX, dst);
                       }
                     }
                   }
-                }
-                else if (src2==R_EDX) { //dstsrc1==R_EAX && src2==R_EDX
-                  usedMask=storeReg(RegB);
+                } else if (src2 == R_EDX) { //dstsrc1==R_EAX && src2==R_EDX
+                  usedMask = storeReg(RegB);
                   ins(I_MOVregreg, R_EBX, src2);
-                  src2=R_EBX;
+                  src2 = R_EBX;
                 }
-                else usedMask=storeReg(RegD); //dstsrc1==R_EAX && src2!=R_EDX, save to be destroyed R_EDX
+                else usedMask = storeReg(RegD); //dstsrc1==R_EAX && src2!=R_EDX, save to be destroyed R_EDX
                 ins(I_CDQ);
                 ins(I_IDIVreg, src2);
-                if (opPar==Ops.A_DIV) {
-                  if (dst!=R_EAX) ins(I_MOVregreg, dst, R_EAX);
-                }
-                else { //COps.A_MOD
-                  if (dst!=R_EDX) ins(I_MOVregreg, dst, R_EDX);
+                if (opPar == Ops.A_DIV) {
+                  if (dst != R_EAX) ins(I_MOVregreg, dst, R_EAX);
+                } else { //COps.A_MOD
+                  if (dst != R_EDX) ins(I_MOVregreg, dst, R_EDX);
                 }
                 restoreReg(usedMask);
                 break;
@@ -1622,11 +1615,9 @@ public class IA32 extends X86Base {
     return ins(type, reg0, reg1, disp, imm, 0);
   }
   
-  protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, int par) {
-    Instruction i;
-    
+  protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, int par) {    
     //get a new instruction and insert it
-    i = getUnlinkedInstruction();
+    Instruction i = getUnlinkedInstruction();
     i.type = type;
     appendInstruction(i);
     code(i, type, reg0, reg1, disp, imm, par);
@@ -1635,23 +1626,23 @@ public class IA32 extends X86Base {
   
   @Override
   protected void internalFixStackExtremeAdd(Instruction me, int stackCells) {
-    me.size=0;
-    code(me, me.type=I_ADDregimm, me.reg0, 0, 0, stackCells<<2, 0);
+    me.size = 0;
+    code(me, me.type = I_ADDregimm, me.reg0, 0, 0, stackCells << 2, 0);
   }
   
   protected void code(Instruction i, int type, int reg0, int reg1, int disp, int imm, int par) {
-    int tmp, wordflag=0;
-    boolean sizeprefix=false;
+    int tmp, wordflag = 0;
+    boolean sizeprefix = false;
     
     //if instruction has a refObj, it is already coded
-    if (i.refMthd!=null) return;
+    if (i.refMthd != null) return;
     //get parameters and remember them
-    if (type<=0) return; //not a "real" instruction that has to be coded
-    i.reg0=reg0;
-    i.reg1=reg1;
-    i.iPar1=disp;
-    i.iPar2=imm;
-    i.iPar3=par;
+    if (type <= 0) return; //not a "real" instruction that has to be coded
+    i.reg0  = reg0;
+    i.reg1  = reg1;
+    i.iPar1 = disp;
+    i.iPar2 = imm;
+    i.iPar3 = par;
     //check wordflag and sizeprefix for most instructions (check only, do not code)
     if ((type&IM_P0)==I_reg0 || (type&IM_P1)==I_reg1) {
       if ((type&IM_P0)==I_reg0) tmp=reg0&0x0F; //register 0 gives operation size (exception: MOVSXregmem, ADDmemimm, SUBmemimm, INC, DEC)

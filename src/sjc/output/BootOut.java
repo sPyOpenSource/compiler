@@ -156,7 +156,7 @@ public class BootOut extends OutputFormat {
     String strDummy;
     BinWriter w = null;
     int i, scratchSize, blockSize = 1, byteCnt, maxSize = -1;
-    int pos, len, crcPoly, filler=0;
+    int pos, len, crcPoly, filler = 0;
     char lb;
     boolean blowImage = false, fillImage = false, imageDone = false;
     byte[] scratch = null;

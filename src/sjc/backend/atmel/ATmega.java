@@ -1874,35 +1874,35 @@ public class ATmega extends Architecture {
   
   
   protected void ins(int type, int reg0, int reg1, int imm) {
-    Instruction i;
+    Instruction i = getUnlinkedInstruction();
 
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=type;
-    i.reg0=reg0;
-    i.reg1=reg1;
-    i.iPar1=imm;
+    appendInstruction(i);
+    i.type = type;
+    i.reg0 = reg0;
+    i.reg1 = reg1;
+    i.iPar1 = imm;
     code(i);
   }
   
   protected void ins(int type, int reg0, int reg1, int imm, Instruction dest) {
-    Instruction i;
+    Instruction i = getUnlinkedInstruction();
     
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=type;
-    i.reg0=reg0;
-    i.reg1=reg1;
-    i.iPar1=imm;
-    i.jDest=dest;
+    appendInstruction(i);
+    i.type = type;
+    i.reg0 = reg0;
+    i.reg1 = reg1;
+    i.iPar1 = imm;
+    i.jDest = dest;
     code(i);
   }
   
   protected void code(Instruction i) {
     int reg0, reg1, imm;
     
-    reg0=i.reg0;
-    reg1=i.reg1;
-    imm=i.iPar1;
-    if (reg0>31 || reg1>31) {
+    reg0 = i.reg0;
+    reg1 = i.reg1;
+    imm = i.iPar1;
+    if (reg0 > 31 || reg1 > 31) {
       fatalError("invalid register number in code");
       return;
     }

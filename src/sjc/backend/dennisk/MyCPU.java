@@ -73,9 +73,9 @@ public class MyCPU extends Architecture {
   public final static int ZPAddrTmpHi  = 27 + ZPAddrBase;
   public final static int ZPAddrTmpLo  = 26 + ZPAddrBase;
   
-  public final static int RegMaskINST = (1<<RegInstHi)|(1<<RegInstLo);
-  public final static int RegMaskCLSS = (1<<RegClssHi)|(1<<RegClssLo);
-  public final static int RegMaskGP   = (1<<(RegMaxGP+1))-1;
+  public final static int RegMaskINST = (1 << RegInstHi) | (1 << RegInstLo);
+  public final static int RegMaskCLSS = (1 << RegClssHi) | (1 << RegClssLo);
+  public final static int RegMaskGP   = (1 << (RegMaxGP + 1)) - 1;
   
   public final static int PAR_MASK    = 0x00FF0000;
   public final static int PAR_NONE    = 0x00010000;
@@ -1827,26 +1827,26 @@ public class MyCPU extends Architecture {
   
   //internal instruction coding
   private void ins(int op) {
-    if ((op&PAR_MASK)!=PAR_NONE) {
+    if ((op & PAR_MASK) != PAR_NONE) {
       fatalError("invalid call to ins(op)");
       return;
     }
-    Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=IT_NORM;
+    Instruction i = getUnlinkedInstruction();
+    appendInstruction(i);
+    i.type = IT_NORM;
     i.putByte(op);
   }
   
   private void ins(int op, int par) {
-    Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=IT_NORM;
+    Instruction i = getUnlinkedInstruction();
+    appendInstruction(i);
+    i.type = IT_NORM;
     i.putByte(op);
-    if ((op&PAR_MASK)==PAR_BYTE) {
+    if ((op & PAR_MASK) == PAR_BYTE) {
       i.putByte(par);
       return;
     }
-    if ((op&PAR_MASK)==PAR_WORD) {
+    if ((op & PAR_MASK) == PAR_WORD) {
       i.putShort(par);
       return;
     }
@@ -1854,13 +1854,13 @@ public class MyCPU extends Architecture {
   }
   
   private void ins(int op, int par1, int par2) {
-    if ((op&PAR_MASK)!=(PAR_BYTE|PAR_SECBYTE)) {
+    if ((op & PAR_MASK) != (PAR_BYTE | PAR_SECBYTE)) {
       fatalError("invalid call to ins(op,par,par)");
       return;
     }
-    Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=IT_NORM;
+    Instruction i = getUnlinkedInstruction();
+    appendInstruction(i);
+    i.type = IT_NORM;
     i.putByte(op);
     i.putByte(par1);
     i.putByte(par2);

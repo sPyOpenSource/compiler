@@ -748,35 +748,35 @@ public class SSA extends Architecture {
   private Instruction ins(int type, int reg0, int reg1, int reg2, int iPar1, long lPar) { return ins(type, reg0, reg1, reg2, iPar1, lPar, 0); }
   
   private Instruction ins(int type, int reg0, int reg1, int reg2, int iPar1, long lPar, int iPar2) {
-    Instruction i=getUnlinkedInstruction();
+    Instruction i = getUnlinkedInstruction();
     appendInstruction(i);
-    i.type=type;
-    i.reg0=reg0;
-    i.reg1=reg1;
-    i.reg2=reg2;
-    i.iPar1=iPar1;
-    i.iPar2=iPar2;
-    i.lPar=lPar;
+    i.type = type;
+    i.reg0 = reg0;
+    i.reg1 = reg1;
+    i.reg2 = reg2;
+    i.iPar1 = iPar1;
+    i.iPar2 = iPar2;
+    i.lPar = lPar;
     //i.isDest is already initialized by Architecture
     //i.refObj is already initialized by Architecture
     return i;
   }
   
   private void codeInstruction(Instruction i) {
-    int opts=i.type&~SSADef.ICODEMASK, pre, pos;
+    int opts = i.type & ~SSADef.ICODEMASK, pre, pos;
     
     switch (i.type) {
       case I_NONE: //nop-instruction
-        i.size=0;
+        i.size = 0;
         if (i.isDest) { //just a dummy, move jump-destination
-          while (i.type==I_NONE) {
-            i=i.next;
-            if (i==null) {
+          while (i.type == I_NONE) {
+            i = i.next;
+            if (i == null) {
               fatalError("jump-dest behind last instruction");
               return;
             }
           }
-          i.isDest=true;
+          i.isDest = true;
         }
         return;
       case SSADef.I_JUMP: //jump-instruction
