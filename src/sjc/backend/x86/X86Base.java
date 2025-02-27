@@ -567,30 +567,37 @@ public abstract class X86Base extends Architecture{
       printCode(ctx.out, first, "X86", false);
   }
 
+  @Override
   public void genSaveUnitContext() {
     ins(I_PUSHreg, rClss);
   }
 
+  @Override
   public void genRestUnitContext() {
     ins(I_POPreg, rClss);
   }
 
+  @Override
   public void genLoadUnitContext(int dst, int off) {
-    if ((dst=getReg(1, dst, StdTypes.T_PTR, true))==0) return;
-    else ins(I_MOVregmem, dst, rClss, off);
+    if ((dst = getReg(1, dst, StdTypes.T_PTR, true)) != 0) {
+        ins(I_MOVregmem, dst, rClss, off);
+    }
   }
   
+  @Override
   public void genLoadInstContext(int src) {
-    if ((src=getReg(1, src, StdTypes.T_PTR, false))==0) return;
+    if ((src = getReg(1, src, StdTypes.T_PTR, false)) == 0) return;
     ins(I_MOVregreg, rInst, src);
     ins(I_MOVregmem, rClss, src, -relocBytes);
   }
   
+  @Override
   public void genSaveInstContext() {
     ins(I_PUSHreg, rInst);
     ins(I_PUSHreg, rClss);
   }
 
+  @Override
   public void genRestInstContext() {
     ins(I_POPreg, rClss);
     ins(I_POPreg, rInst);
@@ -717,12 +724,14 @@ public abstract class X86Base extends Architecture{
     restoreReg(restore1);
   }
 
+  @Override
   public void genCheckBounds(int addr, int off, int checkToOffset, Instruction onSuccess) {
     if ((addr=getReg(1, addr, StdTypes.T_PTR, false))==0 || (off=getReg(1, off, StdTypes.T_INT, false))==0) return;
     ins(I_CMPregmem, off, addr, checkToOffset);
     insJump(onSuccess, Ops.C_BO);
   }
   
+  @Override
   public void genCheckStackExtreme(int maxValueReg, Instruction onSuccess) {
     if (maxValueReg!=RegA) {
       fatalError("invalid maxValueReg for genCheckStackExtreme");
@@ -733,16 +742,19 @@ public abstract class X86Base extends Architecture{
     insJump(onSuccess, Ops.C_BO);
   }
   
+  @Override
   public void genNativeBoundException() {
     ins(I_BOUNDEXC);
   }
   
+  @Override
   public int genCompPtrToNull(int reg, int cond) {
     if ((reg=getReg(1, reg, StdTypes.T_PTR, false))==0) return cond;
     ins(I_ORregreg, reg, reg);
     return cond;
   }
   
+  @Override
   public void inlineVarOffset(int byteCount, int objReg, Object loc, int offset, int additionalOffset) {
     Instruction i=null;
     int pos=mem.getAddrAsInt(loc, offset);

@@ -56,13 +56,15 @@ public class StReturn extends Stmt {
 
     protected StReturn(StBreakable io, int fid, int il, int ic) {
         super(fid, il, ic);
-        outer=io;
+        outer = io;
     }
 	
+    @Override
 	public void printToken(CodePrinter prnt) {
 	  prnt.stmtReturn(retVal);
 	}
 	
+    @Override
 	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
 	  int res;
 	  ExEnc enc; //enclosure for implicit conversion
@@ -87,8 +89,7 @@ public class StReturn extends Stmt {
           ctx.out.print(")");
           return FA_ERROR;
         }
-      }
-      else {
+      } else {
         res=retVal.compareType(mthdContext.retType, true, ctx); //get type-compare
         if (res==TypeRef.C_NP || res==TypeRef.C_TT) {
           printPos(ctx, "type of return-expression (");
@@ -109,8 +110,7 @@ public class StReturn extends Stmt {
           retVal=enc;
         }
       }
-	  }
-	  else { //the programmer wants to return nothing, check context
+	  } else { //the programmer wants to return nothing, check context
 	    if (!mthdContext.isConstructor && mthdContext.retType.baseType!=TypeRef.T_VOID) {
         printPos(ctx, "method needs to return something (");
         mthdContext.retType.printType(ctx.out);

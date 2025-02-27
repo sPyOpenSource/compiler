@@ -55,16 +55,16 @@ public abstract class Stmt extends TokenAbstrPrintable {
         super(fid, il, ic);
     }
 	
-  protected abstract int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx);
-  protected abstract void innerGenOutput(Context ctx);
+    protected abstract int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx);
+    protected abstract void innerGenOutput(Context ctx);
   
-	protected int resolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-    if ((flowCode&FA_NEXT_IS_UNREACHABLE)!=0) {
-      flowWarn(ctx, ERR_UNREACHABLE_CODE);
-      flowCode&=~FA_NEXT_IS_UNREACHABLE; //print warning only once
+    protected int resolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
+        if ((flowCode&FA_NEXT_IS_UNREACHABLE)!=0) {
+            flowWarn(ctx, ERR_UNREACHABLE_CODE);
+            flowCode&=~FA_NEXT_IS_UNREACHABLE; //print warning only once
+        }
+        return innerResolve(flowCode, unitContext, mthdContext, ctx);
     }
-    return innerResolve(flowCode, unitContext, mthdContext, ctx);
-	}
 	
 	protected boolean isSuperThisCallStmt(Context ctx) {
 	  //default: not special statement

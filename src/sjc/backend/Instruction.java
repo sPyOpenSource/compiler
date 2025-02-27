@@ -92,7 +92,6 @@ public class Instruction {
     code[off++] = (byte)(val >> 40);
     code[off++] = (byte)(val >> 48);
     code[off  ] = (byte)(val >> 56);
-  
   }
   
   public void putByte(int val) {
