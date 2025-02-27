@@ -21,7 +21,7 @@ package sjc.backend;
 import sjc.backend.arm.ARM7;
 import sjc.backend.atmel.ATmega;
 import sjc.backend.atmel.ATmegaOpti;
-import sjc.backend.dennisk.MyCPU;
+import sjc.backend.dennisk.JVM;
 import sjc.backend.dennisk.MyVCPU2;
 import sjc.backend.ssa.SSA;
 import sjc.backend.ssaopt.SSAopt;
@@ -76,7 +76,7 @@ public class ArchFactory {
     ATmega.printParameter(v);
     v.println("  atmegaopt - optimized Atmel ATmega");
     v.println("  arm7      - ARM7 (experimental)");
-    v.println("  mycpu     - MyCPU (very exp.)");
+    v.println("  jvm       - JVM (very exp.)");
     v.println("  myvcpu2   - MyVCPU2 (alpha)");
   }
   
@@ -95,7 +95,7 @@ public class ArchFactory {
     if (name.equals("atmega")) return new ATmega();
     if (name.equals("atmegaopt")) return new ATmegaOpti();
     if (name.equals("arm7")) return new ARM7();
-    if (name.equals("mycpu")) return new MyCPU();
+    if (name.equals("jvm")) return new JVM();
     if (name.equals("myvcpu2")) return new MyVCPU2();
     v.println("unknown architecture");
     return null;

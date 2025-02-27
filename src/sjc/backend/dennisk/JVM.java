@@ -42,7 +42,7 @@ import sjc.compbase.StdTypes;
  *  version 150915 added basic behavior
  *  version 150831 initial version
  */
-public class MyCPU extends Architecture {
+public class JVM extends Architecture {
   //basic concept: JVM
   //  register A and Y are just dummies
   //  register X holds stack base
@@ -65,7 +65,7 @@ public class MyCPU extends Architecture {
   public final static int RegMaxGP  = 25;
   
   //addresses of memory mapped registers
-  public final static int ZPAddrBase = 0xC0;
+  public final static int ZPAddrBase   = 0xC0;
   public final static int ZPAddrInstHi = 31 + ZPAddrBase;
   public final static int ZPAddrInstLo = 30 + ZPAddrBase;
   public final static int ZPAddrClssHi = 29 + ZPAddrBase;
@@ -191,11 +191,11 @@ public class MyCPU extends Architecture {
   private int usedRegs, writtenRegs, nextAllocReg, curVarOffParam;
   
   //initialization
-  public MyCPU() {
-    relocBytes = 2;
+  public JVM() {
+    relocBytes = 4;
     stackClearBits = 0;
     allocClearBits = 1;
-    maxInstrCodeSize = 3;
+    maxInstrCodeSize = 6;
     throwFrameSize = 12;
     throwFrameExcOff = 10;
     regClss = RegMaskCLSS;
@@ -1837,10 +1837,10 @@ public class MyCPU extends Architecture {
   
   //internal instruction coding
   private void ins(int op) {
-    if ((op & PAR_MASK) != PAR_NONE) {
+    /*if ((op & PAR_MASK) != PAR_NONE) {
       fatalError("invalid call to ins(op)");
       return;
-    }
+    }*/
     Instruction i = getUnlinkedInstruction();
     appendInstruction(i);
     i.type = IT_NORM;
@@ -1860,14 +1860,14 @@ public class MyCPU extends Architecture {
       i.putShort(par);
       return;
     }
-    fatalError("invalid call to ins(op,par)");
+    //fatalError("invalid call to ins(op,par)");
   }
   
   private void ins(int op, int par1, int par2) {
-    if ((op & PAR_MASK) != (PAR_BYTE | PAR_SECBYTE)) {
+    /*if ((op & PAR_MASK) != (PAR_BYTE | PAR_SECBYTE)) {
       fatalError("invalid call to ins(op,par,par)");
       return;
-    }
+    }*/
     Instruction i = getUnlinkedInstruction();
     appendInstruction(i);
     i.type = IT_NORM;

@@ -26,6 +26,7 @@ import sjc.debug.DebugFactory;
 import sjc.debug.DebugLister;
 import sjc.debug.DebugWriter;
 import sjc.frontend.FrontAdmin;
+import sjc.frontend.sjava.JUnit;
 import sjc.memory.BootableImage;
 import sjc.memory.MemoryImage;
 
@@ -191,6 +192,7 @@ public class Context {
   public RelationManager relations;
   public FrontAdmin fa;
   public Architecture arch;
+  private String t;
   public MemoryImage mem;
   public BootableImage bootMem; //if mem instanceof BootableImage, then bootMem==mem
   public boolean embedded, embConstRAM, leanRTE, dynaMem, indirScalars, noSyncCalls, noThrowFrames, noInlineMthdObj;
@@ -280,6 +282,7 @@ public class Context {
     doBoundCheck = true;
     doArrayStoreCheck = true;
     startMethod = "kernel.Kernel.main";
+    startMethod = "demo.main";
     if (fileList == null) fileList = new StringList("internal init"); //tablePos is initialized with -1
   }
   
@@ -437,10 +440,14 @@ public class Context {
       t2 = osio.getTimeInfo();
     }
     if (verbose || timing) out.println("Checking environment...");
-    if (!fa.checkCompEnvironment()) {
-      out.println("...minimalistic environment not existing");
-      return 2;
-    }
+    //if(!"jvm".equals(t)){
+        if (!fa.checkCompEnvironment()) {
+          out.println("...minimalistic environment not existing");
+          return 2;
+        }
+    //} else {
+        //langRoot = new JUnit;
+    //}
     
     //tell in-system-recompiler that we are before unit resolving
     if (!beforeUnitResolving()) {
@@ -1116,6 +1123,7 @@ public class Context {
             out.println("Missing parameter for \"-t\"");
             return false;
           }
+          t = argv[curPar];
           if ((arch = ArchFactory.getArchitecture(argv[curPar], arch, out)) == null) {
             out.println("Unknown target architecture, currently available:");
             ArchFactory.printKnownArchitectures(out);

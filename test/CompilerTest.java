@@ -16,6 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+import compiler.Compiler;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -35,6 +36,7 @@ import org.json.JSONObject;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
+import sjc.ui.SC;
 
 /**
  *
@@ -44,6 +46,9 @@ public class CompilerTest {
     @Test
     public void hello() {
         //SC.main(new String[]{"-t", "atmega", "-L", "-P", "batmel32.bin", "-y", "-e", "0x60", "-E", "-a", "0", "-o", "boot", "-B", "-C", "-k", "/Users/xuyi/Source/Java/atbasenw/src"});
+        //compiler.Compiler compiler = new compiler.Compiler();
+        Compiler.compile("./", "./");
+        //SC.main(new String[]{"-t", "jvm", "-k", "./"});
     }
     
     @Test

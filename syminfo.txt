@@ -1,10 +1,10 @@
 # --- SJC syminfo--- #
-LlCByeEk
-BaseAddress: 0x00000000
-Image size: 1076 b = 2 kb
-Code size: 950 b = 1 kb in 9 methods
+k
+BaseAddress: 0x00100000
+Image size: 642 b = 1 kb
+Code size: 319 b = 1 kb in 9 methods
 Strings: 0 with 0 characters using 0 b = 0 kb
-ramInitAddr: 0x0000007E, ramInitSize: 0 b, constMemorySize: 0 b = 0 kb
+ramInitAddr: 0x00000000, ramInitSize: 0 b, constMemorySize: 0 b = 0 kb
 In-image symbol size: 0 b = 0 kb
 
 ----------
@@ -21,9 +21,9 @@ instRelocTableEntries: 0, instScalarTableSize: 0, instIndirScalarTableSize: 0
 
 ----------
 class java.lang.FLASH 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
@@ -32,89 +32,23 @@ instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
 - added interface-maps:
 
 ----------
-class kernel.ATmega32 (may be reduced to package private) 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class root.demo 
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
-        unres/inv.: short TIMSK (skip candidate)
-        unres/inv.: short TIFR (skip candidate)
-        unres/inv.: short TCCR1A (skip candidate)
-        unres/inv.: short TCCR1B (skip candidate)
-        unres/inv.: short TCNT1 (skip candidate)
-        unres/inv.: short ICR1L (skip candidate)
-        unres/inv.: short TCCR2 (skip candidate)
-        unres/inv.: short TCNT2 (skip candidate)
-        unres/inv.: short WDTCR (skip candidate)
-        unres/inv.: short UCSRC (skip candidate)
-          cnst-c/0: short PORTA (may be reduced to package private)
-          cnst-c/0: short DDRA (may be reduced to package private)
-        unres/inv.: short PINA (skip candidate)
-        unres/inv.: short PORTB (skip candidate)
-        unres/inv.: short DDRB (skip candidate)
-        unres/inv.: short PINB (skip candidate)
-        unres/inv.: short PORTC (skip candidate)
-        unres/inv.: short DDRC (skip candidate)
-        unres/inv.: short PINC (skip candidate)
-        unres/inv.: short PORTD (skip candidate)
-        unres/inv.: short DDRD (skip candidate)
-        unres/inv.: short PIND (skip candidate)
-        unres/inv.: short SPDR (skip candidate)
-        unres/inv.: short SPSR (skip candidate)
-        unres/inv.: short SPCR (skip candidate)
-        unres/inv.: short UDR (skip candidate)
-        unres/inv.: short UCSRA (skip candidate)
-        unres/inv.: short UCSRB (skip candidate)
-        unres/inv.: short UBRRL (skip candidate)
-        unres/inv.: short ADMUX (skip candidate)
-        unres/inv.: short ADCSRA (skip candidate)
-        unres/inv.: short ADCH (skip candidate)
-        unres/inv.: short ADCL (skip candidate)
-        unres/inv.: int IRQ_TIMER2_OVF (skip candidate)
-        unres/inv.: int IRQ_TIMER1_CAPT (skip candidate)
-        unres/inv.: int IRQ_TIMER1_OVF (skip candidate)
-        unres/inv.: int IRQ_TIMER0_OVF (skip candidate)
-        unres/inv.: int IRQ_RXCOMPLETE (skip candidate)
-        unres/inv.: int IRQ_TXCOMPLETE (skip candidate)
-        unres/inv.: int IRQ_ADC (skip candidate)
-          cnst-c/0: int STARTMETHOD (may be reduced to package private)
 - added statically allocated objects:
 - methods:
-- size of code for methods: 0 bytes
+no entry->001000B8: void main(java.lang.String[]) (statCall) (stmtCnt==0, 4 bytes)
+- size of code for methods: 4 bytes
 - added imports:
 - added interface-maps:
 
 ----------
-class kernel.Kernel 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class rte.SIntfDesc at 00100048
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
-- added vars:
-- added statically allocated objects:
-- methods:
-no entry->0000007E: void main() (statCall) (stmtCnt==10, 384 bytes)
-no entry->000001FE: void initRAM() (statCall) (stmtCnt==5, 204 bytes)
-- size of code for methods: 588 bytes
-- added imports:
-- added interface-maps:
-
-----------
-class kernel.AVR extends kernel.ATmega32 (may be reduced to package private) 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
-statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
-- added vars:
-- added statically allocated objects:
-- methods:
-- size of code for methods: 0 bytes
-- added imports:
-- added interface-maps:
-
-----------
-class rte.SIntfDesc at 00000066
-clssRelocTableEntries: 2, clssScalarTableSize: 0
-statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
@@ -124,25 +58,25 @@ instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
 
 ----------
 class rte.DynamicAri 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
 no entry->00000000: byte binByte(byte,byte,byte) (skip candidate) (statCall) (stmtCnt==31, 0 bytes)
 no entry->00000000: short binShort(short,short,byte) (skip candidate) (statCall) (stmtCnt==1, 0 bytes)
-no entry->000002CA: int binInt(int,int,byte) (may be reduced to private) (statCall) (stmtCnt==114, 262 bytes)
+no entry->001000CC: int binInt(int,int,byte) (may be reduced to private) (statCall) (stmtCnt==114, 248 bytes)
 no entry->00000000: long binLong(long,long,byte) (skip candidate) (statCall) (stmtCnt==186, 0 bytes)
-- size of code for methods: 262 bytes
+- size of code for methods: 248 bytes
 - added imports:
 - added interface-maps:
 
 ----------
-class rte.SMthdBlock 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class rte.SMthdBlock at 00100078
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 0, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
@@ -151,13 +85,13 @@ instRelocTableEntries: 0, instScalarTableSize: 0, instIndirScalarTableSize: 0
 - added interface-maps:
 
 ----------
-class rte.SIntfMap at 0000006A
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class rte.SIntfMap at 00100060
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 3, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 4, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
-FFFFFFFC->inst-r/1: rte.SIntfDesc owner (skip candidate)
-FFFFFFFA->inst-r/1: rte.SIntfMap next (skip candidate)
+FFFFFFF4->inst-r/1: rte.SIntfDesc owner (skip candidate)
+FFFFFFF0->inst-r/1: rte.SIntfMap next (skip candidate)
 - added statically allocated objects:
 - methods:
 - size of code for methods: 0 bytes
@@ -165,15 +99,15 @@ FFFFFFFA->inst-r/1: rte.SIntfMap next (skip candidate)
 - added interface-maps:
 
 ----------
-class rte.SArray at 0000006E
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class rte.SArray at 00100090
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 2, instScalarTableSize: 12, instIndirScalarTableSize: 0
+instRelocTableEntries: 3, instScalarTableSize: 20, instIndirScalarTableSize: 0
 - added vars:
-00000000->inst-s/4: int length (skip candidate)
-00000004->inst-s/4: int _r_dim (skip candidate)
-00000008->inst-s/4: int _r_stdType (skip candidate)
-FFFFFFFC->inst-r/1: rte.SClassDesc _r_unitType (skip candidate)
+00000008->inst-s/4: int length (skip candidate)
+0000000C->inst-s/4: int _r_dim (skip candidate)
+00000010->inst-s/4: int _r_stdType (skip candidate)
+FFFFFFF4->inst-r/1: rte.SClassDesc _r_unitType (skip candidate)
 - added statically allocated objects:
 - methods:
 - size of code for methods: 0 bytes
@@ -181,13 +115,13 @@ FFFFFFFC->inst-r/1: rte.SClassDesc _r_unitType (skip candidate)
 - added interface-maps:
 
 ----------
-class rte.SClassDesc at 00000062
-clssRelocTableEntries: 0, clssScalarTableSize: 0
+class rte.SClassDesc at 00100030
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 2, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 4, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
-FFFFFFFE->inst-r/1: rte.SClassDesc parent (skip candidate)
-FFFFFFFC->inst-r/1: rte.SIntfMap implementations (skip candidate)
+FFFFFFF4->inst-r/1: rte.SClassDesc parent (skip candidate)
+FFFFFFF0->inst-r/1: rte.SIntfMap implementations (skip candidate)
 - added statically allocated objects:
 - methods:
 - size of code for methods: 0 bytes
@@ -196,30 +130,31 @@ FFFFFFFC->inst-r/1: rte.SIntfMap implementations (skip candidate)
 
 ----------
 class rte.DynamicRuntime 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
-no entry->000003D0: java.lang.Object newInstance(int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 18 bytes)
-no entry->000003E2: rte.SArray newArray(int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 18 bytes)
-no entry->000003F4: void newMultArray(rte.SArray[],int,int,int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==0, 14 bytes)
-no entry->00000402: boolean isInstance(java.lang.Object,rte.SClassDesc,boolean) (statCall) (stmtCnt==1, 16 bytes)
-no entry->00000412: rte.SIntfMap isImplementation(java.lang.Object,rte.SIntfDesc,boolean) (statCall) (stmtCnt==1, 18 bytes)
-no entry->00000424: boolean isArray(rte.SArray,int,rte.SClassDesc,int,boolean) (statCall) (stmtCnt==1, 16 bytes)
-- size of code for methods: 100 bytes
+no entry->001001D4: java.lang.Object newInstance(int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
+no entry->001001F2: rte.SArray newArray(int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
+no entry->00100210: void newMultArray(rte.SArray[],int,int,int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==0, 4 bytes)
+no entry->00100224: boolean isInstance(java.lang.Object,rte.SClassDesc,boolean) (statCall) (stmtCnt==1, 10 bytes)
+no entry->0010023E: rte.SIntfMap isImplementation(java.lang.Object,rte.SIntfDesc,boolean) (statCall) (stmtCnt==1, 13 bytes)
+no entry->0010025C: boolean isArray(rte.SArray,int,rte.SClassDesc,int,boolean) (statCall) (stmtCnt==1, 10 bytes)
+no entry->00100276: void checkArrayStore() (statCall) (stmtCnt==0, 4 bytes)
+- size of code for methods: 67 bytes
 - added imports:
 - added interface-maps:
 
 ----------
-class java.lang.String 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+class java.lang.String at 001000A8
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 4, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 12, instIndirScalarTableSize: 0
 - added vars:
-      inline array: byte(I)[] value (skip candidate)
-00000000->inst-s/4: int count (skip candidate)
+      inline array: char(I)[] value (skip candidate)
+00000008->inst-s/4: int count (skip candidate)
 - added statically allocated objects:
 - methods:
 - size of code for methods: 0 bytes
@@ -228,11 +163,14 @@ instRelocTableEntries: 1, instScalarTableSize: 4, instIndirScalarTableSize: 0
 
 ----------
 class java.lang.Object (may be reduced to protected) 
-clssRelocTableEntries: 2, clssScalarTableSize: 0
+clssRelocTableEntries: 4, clssScalarTableSize: 8
 statRelocTableEntries: 0, statScalarTableSize: 0
-instRelocTableEntries: 1, instScalarTableSize: 0, instIndirScalarTableSize: 0
+instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
-FFFFFFFE->inst-r/1: rte.SClassDesc _r_type (skip candidate)
+FFFFFFFC->inst-r/1: rte.SClassDesc _r_type (skip candidate)
+FFFFFFF8->inst-r/1: java.lang.Object _r_next (skip candidate)
+00000000->inst-s/4: int _r_relocEntries (skip candidate)
+00000004->inst-s/4: int _r_scalarSize (skip candidate)
 - added statically allocated objects:
 - methods:
 - size of code for methods: 0 bytes

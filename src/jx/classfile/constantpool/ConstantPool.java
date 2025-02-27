@@ -95,7 +95,7 @@ public class ConstantPool {
     numEntries = input.readUnsignedShort();
     entry = new ConstantPoolEntry[numEntries]; 
     entry[0] = new DummyCPEntry(); 
-    int i = 1; 
+    int i = 1;
  
     while (i < numEntries) {
       ConstantPoolEntry newEntry = null;     
