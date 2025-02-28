@@ -162,7 +162,7 @@ public class ARM7 extends Architecture {
   
   @Override
   public void putCodeRef(Object loc, int offset, Object ptr, int ptrOff) {
-    int destAddr=mem.getAddrAsInt(loc, offset);
+    int destAddr = mem.getAddrAsInt(loc, offset);
     //encode a relative branch including opcode with link
     mem.putInt(loc, offset, IC_AL|IOB_BRANCHwtLink|(((mem.getAddrAsInt(ptr, ptrOff)-destAddr-8)>>>2)&0xFFFFFF));
   }

@@ -377,20 +377,19 @@ public class JVM extends Architecture {
   @Override
   public void codeProlog() {
     Instruction loopDest;
-    int i;
-    if (curInlineLevel>0 && curMthd.parSize==0 && curMthd.varSize==0) { //optimize inline methods without parameters and variables
+    if (curInlineLevel > 0 && curMthd.parSize == 0 && curMthd.varSize == 0) { //optimize inline methods without parameters and variables
       return;
     }
-    if (curMthd.parSize+curMthd.varSize>253) {
+    if (curMthd.parSize + curMthd.varSize > 253) {
       fatalError("method has more than 253 bytes var+par on stack");
       return;
     }
-    if ((curMthd.marker&Marks.K_INTR)!=0) {
-      if (curInlineLevel>0) {
+    if ((curMthd.marker & Marks.K_INTR) != 0) {
+      if (curInlineLevel > 0) {
         fatalError("interrupt method can not be inlined");
         return;
       }
-      if (curMthd.parSize!=0) {
+      if (curMthd.parSize != 0) {
         fatalError("interrupt method can not have parameters");
         return;
       }
@@ -398,16 +397,16 @@ public class JVM extends Architecture {
     }
     ins(I_PHX);
     ins(I_TSX); //stack pointer in BSE
-    if (curMthd.varSize>0) {
+    if (curMthd.varSize > 0) {
       ins(I_CLA);
-      if (curMthd.varSize<=4) for (i=0; i<curMthd.varSize; i++) ins(I_PHA);
+      if (curMthd.varSize <= 4) for (int i = 0; i < curMthd.varSize; i++) ins(I_PHA);
       else {
-        if (curMthd.varSize>255) {
+        if (curMthd.varSize > 255) {
           fatalError("maximum of 255 bytes for local variables allowed");
           return;
         }
         ins(I_LDYimm, curMthd.varSize);
-        appendInstruction(loopDest=getUnlinkedInstruction());
+        appendInstruction(loopDest = getUnlinkedInstruction());
         ins(I_PHA);
         insPatchedJmp(I_DYJPimm, loopDest);
       }
@@ -416,25 +415,25 @@ public class JVM extends Architecture {
 
   @Override
   public void codeEpilog(Mthd outline) {
-    if (outline!=null && curMthd.parSize==0 && curMthd.varSize==0) { //optimize inline methods without parameters and variables
+    if (outline != null && curMthd.parSize == 0 && curMthd.varSize == 0) { //optimize inline methods without parameters and variables
       --curInlineLevel;
-      curMthd=outline;
+      curMthd = outline;
       return;
     }
-    if (curMthd.varSize!=0) {
+    if (curMthd.varSize != 0) {
       ins(I_INS, curMthd.varSize);
     }
     ins(I_PLX);
-    if ((curMthd.marker&Marks.K_INTR)!=0) {
+    if ((curMthd.marker & Marks.K_INTR) != 0) {
       fatalError("interrupt methods not supported yet in codeEpilog");
-      curMthd=null;
-    } else if (outline!=null) {
-      if (--curInlineLevel==0) curVarOffParam=VAROFF_PARAM_NRM;
+      curMthd = null;
+    } else if (outline != null) {
+      if (--curInlineLevel == 0) curVarOffParam = VAROFF_PARAM_NRM;
       --curInlineLevel;
-      curMthd=outline;
+      curMthd = outline;
     } else {
       ins(I_RTS);
-      curMthd=null;
+      curMthd = null;
     }
   }
   
@@ -445,10 +444,10 @@ public class JVM extends Architecture {
 
   @Override
   public void finalizeInstructionAddresses(Mthd generatingMthd, Instruction first, Object loc, int offset) {
-    int baseInlineCodeAddress=-1;
-    Instruction now=first;
-    int base=mem.getAddrAsInt(loc, offset);
-    if ((generatingMthd.marker&Marks.K_DEBG)!=0) {
+    int baseInlineCodeAddress = -1;
+    Instruction now = first;
+    int base = mem.getAddrAsInt(loc, offset);
+    if ((generatingMthd.marker & Marks.K_DEBG) != 0) {
       ctx.out.print(" ---> base code address of debugged method ");
       generatingMthd.printNamePar(ctx.out);
       ctx.out.print(" is 0x");
@@ -456,30 +455,30 @@ public class JVM extends Architecture {
       ctx.out.println();
     }
     //fix jumps
-    while (now!=null) {
+    while (now != null) {
       switch (now.type) {
         case IT_INTJMP:
-          now.replaceShort(1, base+getRelativeAddressOfInstruction(first, now.jDest));
+          now.replaceShort(1, base + getRelativeAddressOfInstruction(first, now.jDest));
           break;
         case IT_DEFICA:
-          baseInlineCodeAddress=base+getRelativeAddressOfInstruction(first, now);
+          baseInlineCodeAddress = base + getRelativeAddressOfInstruction(first, now);
           break;
         case IT_INLCODA:
-          if (baseInlineCodeAddress==-1) fatalError("inline code address needs reference");
-          else now.replaceShort(0, baseInlineCodeAddress+now.iPar1);
+          if (baseInlineCodeAddress == -1) fatalError("inline code address needs reference");
+          else now.replaceShort(0, baseInlineCodeAddress + now.iPar1);
           break;
       }
-      now=now.next;
+      now = now.next;
     }
   }
   
   private int getRelativeAddressOfInstruction(Instruction first, Instruction dest) {
-    Instruction now=first;
-    int offset=0;
-    while (now!=null) {
-      if (now==dest) return offset;
-      offset+=now.size;
-      now=now.next;
+    Instruction now = first;
+    int offset = 0;
+    while (now != null) {
+      if (now == dest) return offset;
+      offset += now.size;
+      now = now.next;
     }
     fatalError("could not find relative address of instruction");
     return 0;
@@ -489,28 +488,28 @@ public class JVM extends Architecture {
   @Override
   public void genLoadConstVal(int dst, int val, int type) {
     int reg, count, i;
-    if (dst==regBase) {
+    if (dst == regBase) {
       fatalError("invalid use of BaseReg in genLoadVarConstVal");
       return;
     }
-    if ((count=getByteCount(type))==-1) return;
-    for (i=0; i<count; i++) {
-      if ((reg=getRegZPAddr(i+1, dst, type, true))==-1) return;
-      ins(I_MOVzpimm, reg, (val>>>(i<<3))&0xFF);
+    if ((count = getByteCount(type)) == -1) return;
+    for (i = 0; i < count; i++) {
+      if ((reg = getRegZPAddr(i + 1, dst, type, true)) == -1) return;
+      ins(I_MOVzpimm, reg, (val >>> (i << 3)) & 0xFF);
     }
   }
 
   @Override
   public void genLoadConstDoubleOrLongVal(int dst, long val, boolean asDouble) {
     int reg, i, tempVal;
-    if (dst==regBase) {
+    if (dst == regBase) {
       fatalError("invalid use of BaseReg in genLoadConstDoubleOrLongVal");
       return;
     }
-    for (i=0; i<8; i++) {
-      if ((reg=getRegZPAddr(i+1, dst, StdTypes.T_LONG, true))==-1) return;
-      tempVal=(int)(val>>>(i<<3))&0xFF; //determine value to load
-      if (tempVal==0) ins(I_CLA);
+    for (i = 0; i < 8; i++) {
+      if ((reg = getRegZPAddr(i + 1, dst, StdTypes.T_LONG, true)) == -1) return;
+      tempVal = (int)(val >>> (i << 3)) & 0xFF; //determine value to load
+      if (tempVal == 0) ins(I_CLA);
       else ins(I_LDAimm, tempVal);
       ins(I_STAzp, reg);
     }
@@ -518,18 +517,18 @@ public class JVM extends Architecture {
 
   @Override
   public void genLoadVarAddr(int dst, int src, Object loc, int off) {
-    int pos=mem.getAddrAsInt(loc, off);
+    int pos = mem.getAddrAsInt(loc, off);
     int dst1, dst2;
-    if (dst==regBase) {
+    if (dst == regBase) {
       fatalError("invalid use of BaseReg in genLoadVarAddr");
       return;
     }
-    if (pos==0 && src==dst) return;
-    if ((dst1=getRegZPAddr(1, dst, StdTypes.T_PTR, true))==-1
-        || (dst2=getRegZPAddr(2, dst, StdTypes.T_PTR, true))==-1) return;
-    if (src==regBase) {
-      if (pos>=0) pos+=curVarOffParam;
-      pos+=STACKMEM_OFF;
+    if (pos == 0 && src == dst) return;
+    if ((dst1 = getRegZPAddr(1, dst, StdTypes.T_PTR, true)) == -1
+        || (dst2 = getRegZPAddr(2, dst, StdTypes.T_PTR, true)) == -1) return;
+    if (src == regBase) {
+      if (pos >= 0) pos += curVarOffParam;
+      pos += STACKMEM_OFF;
       ins(I_TXA);
       ins(I_CLC);
       ins(I_ADCimm, pos&0xFF);
@@ -537,65 +536,63 @@ public class JVM extends Architecture {
       ins(I_CLA);
       ins(I_ADCimm, (pos>>>8)&0xFF);
       ins(I_STAzp, dst2);
-    }
-    else if (src!=0) {
+    } else if (src != 0) {
       int src1, src2;
-      if ((src1=getRegZPAddr(1, src, StdTypes.T_PTR, true))==-1
-          || (src2=getRegZPAddr(2, src, StdTypes.T_PTR, true))==-1) return;
+      if ((src1 = getRegZPAddr(1, src, StdTypes.T_PTR, true)) == -1
+          || (src2 = getRegZPAddr(2, src, StdTypes.T_PTR, true)) == -1) return;
       ins(I_LDAzp, src1);
-      if (pos!=0) {
+      if (pos != 0) {
         ins(I_CLC);
-        if ((pos&0xFF)!=0) ins(I_ADCimm, pos&0xFF);
+        if ((pos & 0xFF) != 0) ins(I_ADCimm, pos & 0xFF);
       }
       ins(I_STAzp, dst1);
       ins(I_LDAzp, src2);
-      if (pos!=0) ins(I_ADCimm, (pos>>>8)&0xFF);
+      if (pos != 0) ins(I_ADCimm, (pos >>> 8) & 0xFF);
       ins(I_STAzp, dst2);
-    }
-    else {
-      ins(I_LDAimm, pos&0xFF);
+    } else {
+      ins(I_LDAimm, pos & 0xFF);
       ins(I_STAzp, dst1);
-      ins(I_LDAimm, (pos>>>8)&0xFF);
+      ins(I_LDAimm, (pos >>> 8) & 0xFF);
       ins(I_STAzp, dst2);
     }
   }
 
   @Override
   public void genLoadVarVal(int dst, int src, Object loc, int off, int type) {
-    int dstReg, count, i=0, pos=mem.getAddrAsInt(loc, off), src1, src2;
-    count=getByteCount(type);
-    if (src==regBase) {
-      if (pos>=0) pos+=curVarOffParam;
-      pos+=STACKMEM_OFF;
-      while (i<count) {
-        ins(I_LDAabsx, pos+i);
-        if ((dstReg=getRegZPAddr(++i, dst, type, true))==-1) return;
+    int dstReg, count, i = 0, pos = mem.getAddrAsInt(loc, off), src1, src2;
+    count = getByteCount(type);
+    if (src == regBase) {
+      if (pos >= 0) pos += curVarOffParam;
+      pos += STACKMEM_OFF;
+      while (i < count) {
+        ins(I_LDAabsx, pos + i);
+        if ((dstReg = getRegZPAddr(++i, dst, type, true)) == -1) return;
         ins(I_STAzp, dstReg);
       }
       return;
     }
     ins(I_PHX);
-    if (src!=0) {
-      if ((src1=getRegZPAddr(1, src, StdTypes.T_PTR, true))==-1
-          || (src2=getRegZPAddr(2, src, StdTypes.T_PTR, true))==-1) return;
-      if (pos!=0) {
+    if (src != 0) {
+      if ((src1 = getRegZPAddr(1, src, StdTypes.T_PTR, true)) == -1
+          || (src2 = getRegZPAddr(2, src, StdTypes.T_PTR, true)) == -1) return;
+      if (pos != 0) {
         ins(I_CLC);
         ins(I_LDAzp, src1);
-        ins(I_ADCimm, pos&0xFF);
+        ins(I_ADCimm, pos & 0xFF);
         ins(I_TAX);
         ins(I_LDAzp, src2);
-        ins(I_ADCimm, (pos>>>8)&0xFF);
+        ins(I_ADCimm, (pos >>> 8) & 0xFF);
         ins(I_TAY);
       } else {
         ins(I_LDXzp, src1);
         ins(I_LDYzp, src2);
       }
     } else {
-      ins(I_LDXimm, pos&0xFF);
-      ins(I_LDYimm, (pos>>>8)&0xFF);
+      ins(I_LDXimm, pos & 0xFF);
+      ins(I_LDYimm, (pos >>> 8) & 0xFF);
     }
-    while (i<count) {
-      if ((dstReg=getRegZPAddr(++i, dst, type, true))==-1) return;
+    while (i < count) {
+      if ((dstReg = getRegZPAddr(++i, dst, type, true)) == -1) return;
       ins(I_LPA);
       ins(I_STAzp, dstReg);
     }
@@ -991,8 +988,8 @@ public class JVM extends Architecture {
   @Override
   public void genLoadInstContext(int src) {
     int src1, src2;
-    if ((src1=getRegZPAddr(1, src, StdTypes.T_PTR, false))==-1
-        || (src2=getRegZPAddr(2, src, StdTypes.T_PTR, false))==-1) return;
+    if ((src1 = getRegZPAddr(1, src, StdTypes.T_PTR, false)) == -1
+        || (src2 = getRegZPAddr(2, src, StdTypes.T_PTR, false)) == -1) return;
     ins(I_MOVzpzp, ZPAddrInstLo, src1);
     ins(I_MOVzpzp, ZPAddrInstHi, src2);
     ins(I_PHX);
@@ -1049,15 +1046,15 @@ public class JVM extends Architecture {
   @Override
   public void genCallIndexed(int intfReg, int off, int parSize) {
     int cr1, cr2;
-    if ((cr1=getRegZPAddr(3, intfReg, StdTypes.T_DPTR, false))==-1
-        || (cr2=getRegZPAddr(4, intfReg, StdTypes.T_DPTR, false))==-1) return;
+    if ((cr1 = getRegZPAddr(3, intfReg, StdTypes.T_DPTR, false)) == -1
+        || (cr2 = getRegZPAddr(4, intfReg, StdTypes.T_DPTR, false)) == -1) return;
     ins(I_PHX);
     ins(I_CLC);
     ins(I_LDAzp, cr1);
-    ins(I_ADCimm, off&0xFF);
+    ins(I_ADCimm, off & 0xFF);
     ins(I_TAX);
     ins(I_LDAzp, cr2);
-    ins(I_ADCimm, off>>>8);
+    ins(I_ADCimm, off >>> 8);
     ins(I_TAY);
     ins(I_LPA);
     ins(I_STAzp, ZPAddrTmpLo);
@@ -1070,7 +1067,7 @@ public class JVM extends Architecture {
     ins(I_LDAzp, ZPAddrTmpHi);
     ins(I_ADCzp, ZPAddrClssHi);
     ins(I_TAY);
-    if (ctx.codeStart==0) {
+    if (ctx.codeStart == 0) {
       ins(I_LPA);
       ins(I_STAzp, ZPAddrTmpLo);
       ins(I_LPA);
@@ -1080,10 +1077,10 @@ public class JVM extends Architecture {
     } else {
       ins(I_CLC);
       ins(I_LPA);
-      ins(I_ADCimm, ctx.codeStart&0xFF);
+      ins(I_ADCimm, ctx.codeStart & 0xFF);
       ins(I_STAzp, ZPAddrTmpLo);
       ins(I_LPA);
-      ins(I_ADCimm, (ctx.codeStart>>>8)&0xFF);
+      ins(I_ADCimm, (ctx.codeStart >>> 8) & 0xFF);
       ins(I_STAzp, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
@@ -1104,7 +1101,6 @@ public class JVM extends Architecture {
 
   @Override
   public void genCondJmp(Instruction dest, int cond) {
-    Instruction here;
     switch (cond) {
       case Ops.C_EQ: //"=="
         insPatchedJmp(I_JPZimm, dest);
@@ -1124,7 +1120,7 @@ public class JVM extends Architecture {
         insPatchedJmp(I_JPZimm, dest);
         break;
       case Ops.C_GT: //">"
-        here = getUnlinkedInstruction();
+        Instruction here = getUnlinkedInstruction();
         insPatchedJmp(I_JPZimm, here);
         insPatchedJmp(I_JPCimm, dest);
         appendInstruction(here);

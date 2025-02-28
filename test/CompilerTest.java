@@ -33,10 +33,8 @@ import java.util.logging.Logger;
 
 import org.junit.Test;
 import org.json.JSONObject;
-import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
-import sjc.ui.SC;
 
 /**
  *
@@ -46,8 +44,7 @@ public class CompilerTest {
     @Test
     public void hello() {
         //SC.main(new String[]{"-t", "atmega", "-L", "-P", "batmel32.bin", "-y", "-e", "0x60", "-E", "-a", "0", "-o", "boot", "-B", "-C", "-k", "/Users/xuyi/Source/Java/atbasenw/src"});
-        //compiler.Compiler compiler = new compiler.Compiler();
-        Compiler.compile("./", "./");
+        Compiler.compile("./app", "./app");
         //SC.main(new String[]{"-t", "jvm", "-k", "./"});
     }
     
@@ -213,7 +210,7 @@ public class CompilerTest {
     @Test
     public void testClass(){
         try {
-            byte[] fileContent = Files.readAllBytes(Paths.get("/Users/xuyi/Source/Java/V0191/build/classes/jCPU/JavaVM/vm/AttributeInfo.class"));
+            byte[] fileContent = Files.readAllBytes(Paths.get("./app/demo.class"));
             byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
             int minor_version = fileContent[4] << 8 | fileContent[5];
             int major_version = fileContent[6] << 8 | fileContent[7];
