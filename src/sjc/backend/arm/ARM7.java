@@ -298,36 +298,36 @@ public class ARM7 extends Architecture {
     
     //fix jumps and stex (potentially multiple times)
     do {
-      now=first;
-      redo=false;
-      while (now!=null) {
+      now = first;
+      redo = false;
+      while (now != null) {
         switch (now.type) {
           case IT_BRANCH:
-            redo|=fixBranch(now);
+            redo |= fixBranch(now);
             break;
           case IT_ADDpatched:
-            redo|=fixAddPatched(now, false); //do not insert literals so far, may be they change or are not used
-            now=now.next; //skip helper after ADDpatched
-            hasAddPatched=true;
+            redo |= fixAddPatched(now, false); //do not insert literals so far, may be they change or are not used
+            now = now.next; //skip helper after ADDpatched
+            hasAddPatched = true;
             break;
           case IT_STEX:
             fixStex(now);
             break;
         }
-        now=now.next;
+        now = now.next;
       }
     } while (redo);
     //handle literals (only once) and finalize patched add
-    if (literals!=null || hasAddPatched) {
-      if (literals!=null) {
+    if (literals != null || hasAddPatched) {
+      if (literals != null) {
         //append literals
         appendInstruction(literals);
         //enumerate them
         enumerateInstructions();
       }
       //handle corresponding ldr instructions
-      now=first;
-      while (now!=null) {
+      now = first;
+      while (now != null) {
         switch (now.type) {
           case IT_LDR_LIT:
             fixLoadLit(now);
@@ -336,13 +336,13 @@ public class ARM7 extends Architecture {
             fixAddPatched(now, true); //now insert literal if it is neccessary
             break;
         }
-        now=now.next;
+        now = now.next;
       }
       //dismiss literals, cleanup is done by instruction list cleanup
-      lastLiteral=literals=null; //literals are no longer literals
+      lastLiteral=literals = null; //literals are no longer literals
     }
     //print disassembly if wanted
-    if (ctx.printCode || (mthdContainer.marker&Marks.K_PRCD)!=0) printCode(first, "ARM-out");
+    if (ctx.printCode || (mthdContainer.marker & Marks.K_PRCD) != 0) printCode(first, "ARM-out");
   }
   
   @Override
@@ -358,22 +358,21 @@ public class ARM7 extends Architecture {
   
   @Override
   public void codeProlog() {
-    usedRegs=0;
-    if (curMthd.varSize>0 || curMthd.parSize>0) insDataReg(IC_AL, IOD_MOV, RegBASE, 0, RegSP);
-    if (curMthd.varSize>0) {
+    usedRegs = 0;
+    if (curMthd.varSize > 0 || curMthd.parSize > 0) insDataReg(IC_AL, IOD_MOV, RegBASE, 0, RegSP);
+    if (curMthd.varSize > 0) {
       insDataImm(IC_AL, IOD_MOV, RegHLP, 0, 0, 0);
-      if (curMthd.varSize==4) insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1<<RegHLP);
+      if (curMthd.varSize == 4) insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1 << RegHLP);
       else {
-        if (curMthd.varSize==8) {
-          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1<<RegHLP);
-          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1<<RegHLP);
-        }
-        else {
-          insDataImm(IC_AL, IOD_MOV, 0, 0, curMthd.varSize>>>2, 0);
-          Instruction redo=getUnlinkedInstruction();
+        if (curMthd.varSize == 8) {
+          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1 << RegHLP);
+          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1 << RegHLP);
+        } else {
+          insDataImm(IC_AL, IOD_MOV, 0, 0, curMthd.varSize >>> 2, 0);
+          Instruction redo = getUnlinkedInstruction();
           appendInstruction(redo);
-          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1<<RegHLP);
-          insDataImm(IC_AL, IOD_SUB|IOD_M_updFlags, 0, 0, 1, 0);
+          insBlockTransfer(IC_AL, IOBT_STMFDu, RegSP, 1 << RegHLP);
+          insDataImm(IC_AL, IOD_SUB | IOD_M_updFlags, 0, 0, 1, 0);
           insBranch(IC_NE, redo);
         }
       }
@@ -1464,22 +1463,20 @@ public class ARM7 extends Architecture {
   }
   
   protected void printCode(Instruction first, String comment) {
-    Instruction now;
-    int insCnt;
     mthdContainer.owner.printNameWithOuter(ctx.out);
     ctx.out.print('.');
     mthdContainer.printNamePar(ctx.out);
     ctx.out.print(": //");
     ctx.out.println(comment);
-    now=first;
-    insCnt=0;
-    while (now!=null) {
-      if (now.token!=null) ctx.printSourceHint(now.token);
-      if (now.type!=I_NONE) {
-        insCnt+=print(now);
+    Instruction now = first;
+    int insCnt = 0;
+    while (now != null) {
+      if (now.token != null) ctx.printSourceHint(now.token);
+      if (now.type != I_NONE) {
+        insCnt += print(now);
         ctx.out.println();
       }
-      now=now.next;
+      now = now.next;
     }
     ctx.out.print("//instruction count ");
     ctx.out.print(comment);
@@ -1489,7 +1486,7 @@ public class ARM7 extends Architecture {
   
   protected int print(Instruction i) { //returns number of real instructions
     int cnt;
-    if (i.type==I_NONE) return 0;
+    if (i.type == I_NONE) return 0;
     ctx.out.print(i.instrNr); ctx.out.print(": ");
     switch (i.type) {
       case IT_FIX:
@@ -1498,11 +1495,11 @@ public class ARM7 extends Architecture {
       case IT_HELPER:
       case IT_STEX:
         ctx.out.print("CONST");
-        for (cnt=0; cnt<i.size; cnt++) {
+        for (cnt = 0; cnt < i.size; cnt++) {
           ctx.out.print(" 0x");
           ctx.out.printHexFix((int)i.code[cnt], 2);
         }
-        return cnt>>>2;
+        return cnt >>> 2;
       case IT_BRANCH:
         ctx.out.print("branch to i");
         ctx.out.print(i.jDest.instrNr);
