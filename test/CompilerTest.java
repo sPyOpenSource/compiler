@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,7 +45,9 @@ public class CompilerTest {
     @Test
     public void hello() {
         //SC.main(new String[]{"-t", "atmega", "-L", "-P", "batmel32.bin", "-y", "-e", "0x60", "-E", "-a", "0", "-o", "boot", "-B", "-C", "-k", "/Users/xuyi/Source/Java/atbasenw/src"});
-        Compiler.compile("./app", "./app");
+        List<File> list = new ArrayList();
+        list.add(new File("./app/demo.java"));
+        Compiler.compile(list, "./app");
         //SC.main(new String[]{"-t", "jvm", "-k", "./"});
     }
     

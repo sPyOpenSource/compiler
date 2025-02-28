@@ -26,7 +26,6 @@ import sjc.debug.DebugFactory;
 import sjc.debug.DebugLister;
 import sjc.debug.DebugWriter;
 import sjc.frontend.FrontAdmin;
-import sjc.frontend.sjava.JUnit;
 import sjc.memory.BootableImage;
 import sjc.memory.MemoryImage;
 

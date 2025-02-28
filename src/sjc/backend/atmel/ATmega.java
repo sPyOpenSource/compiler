@@ -273,23 +273,23 @@ public class ATmega extends Architecture {
   private boolean nextValInFlash, headerWithRJMP;
 	
   public ATmega() {
-    relocBytes=2;
-    stackClearBits=0;
-    allocClearBits=1;
-    maxInstrCodeSize=8;
-    throwFrameSize=2*6; //for description of throw-frame see genThrowFrameBuild
-    throwFrameExcOff=2*5;
-    regClss=RegCLSS;
-    regInst=RegINST;
-    regBase=RegY;
-    binAriCall[StdTypes.T_BYTE]|=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_SHRT]|=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_INT]|=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_LONG]|=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_FLT]|=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE))|(1<<(Ops.A_PLUS-Ops.MSKBSE))|(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    binAriCall[StdTypes.T_DBL]|=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE))|(1<<(Ops.A_PLUS-Ops.MSKBSE))|(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    unaAriCall[StdTypes.T_FLT]|=(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    unaAriCall[StdTypes.T_DBL]|=(1<<(Ops.A_MINUS-Ops.MSKBSE));
+    relocBytes = 2;
+    stackClearBits = 0;
+    allocClearBits = 1;
+    maxInstrCodeSize = 8;
+    throwFrameSize = 2 * 6; //for description of throw-frame see genThrowFrameBuild
+    throwFrameExcOff = 2 * 5;
+    regClss = RegCLSS;
+    regInst = RegINST;
+    regBase = RegY;
+    binAriCall[StdTypes.T_BYTE] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_SHRT] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_INT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_LONG] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    binAriCall[StdTypes.T_DBL]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    unaAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    unaAriCall[StdTypes.T_DBL]  |= (1 << (Ops.A_MINUS - Ops.MSKBSE));
   }
   
   public static void printParameter(TextPrinter v) {

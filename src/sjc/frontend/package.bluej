@@ -1,12 +1,12 @@
 #BlueJ package file
-dependency1.from=FrontAdmin
-dependency1.to=Language
+dependency1.from=Scanner
+dependency1.to=ScanSym
 dependency1.type=UsesDependency
-dependency2.from=Scanner
-dependency2.to=ScanSym
+dependency2.from=ScanSym
+dependency2.to=Scanner
 dependency2.type=UsesDependency
-dependency3.from=ScanSym
-dependency3.to=Scanner
+dependency3.from=FrontAdmin
+dependency3.to=Language
 dependency3.type=UsesDependency
 objectbench.height=138
 objectbench.width=1416

@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=StringPool
+comment0.text=\n\ StringPool\:\ pool\ for\ strings\ re-usage,\ may\ reduce\ memory\ requirements\n\ \n\ @author\ S.\ Frenz\n\ @version\ 100505\ added\ binary\ tree\ mode\ with\ length\ criterium,\ streamlined\ getString\ signature,\ added\ hashmap\ pool\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 060608\ inserted\ different\ pooling\ strategies\n\ \ version\ 060607\ initial\ version\n
+comment1.params=
+comment1.target=StringPool()
+comment2.params=buf\ len
+comment2.target=java.lang.String\ getString(char[],\ int)
+numComments=3

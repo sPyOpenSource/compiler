@@ -145,14 +145,14 @@ public class ARM7 extends Architecture {
     regInst = 1 << RegINST;
     regBase = 1 << RegBASE;
     needsAlignedVrbls = true;
-    binAriCall[StdTypes.T_BYTE] |=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_SHRT] |=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_INT]  |=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_LONG] |=(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE));
-    binAriCall[StdTypes.T_FLT]  |=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE))|(1<<(Ops.A_PLUS-Ops.MSKBSE))|(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    binAriCall[StdTypes.T_DBL]  |=(1<<(Ops.A_MUL-Ops.MSKBSE))|(1<<(Ops.A_DIV-Ops.MSKBSE))|(1<<(Ops.A_MOD-Ops.MSKBSE))|(1<<(Ops.A_PLUS-Ops.MSKBSE))|(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    unaAriCall[StdTypes.T_FLT]  |=(1<<(Ops.A_MINUS-Ops.MSKBSE));
-    unaAriCall[StdTypes.T_DBL]  |=(1<<(Ops.A_MINUS-Ops.MSKBSE));
+    binAriCall[StdTypes.T_BYTE] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_SHRT] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_INT]  |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_LONG] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    binAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    binAriCall[StdTypes.T_DBL]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    unaAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MINUS - Ops.MSKBSE));
+    unaAriCall[StdTypes.T_DBL]  |= (1 << (Ops.A_MINUS - Ops.MSKBSE));
   }
   
   @Override

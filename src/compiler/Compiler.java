@@ -65,19 +65,12 @@ public class Compiler {
      * @param outputPath
      */
     static public void compile(List<File> srcList, String outputPath) {
-// simp compiler
-//        compiler.run(System.in, System.out, System.err,
-//                "-encoding", "UTF-8", "-d", outputPath, files);
-
         /*
          * the compiler will send its messages to this listener
          */
         DiagnosticListener listener = new DiagnosticListener() {
             @Override
             public void report(Diagnostic diagnostic) {
-//                System.out.println("compile: " + diagnostic);
-//                System.out.println(diagnostic.getSource().toString());
-//                System.out.println("line: " + diagnostic.getLineNumber());
                 System.out.println("compile :" + diagnostic + "\n  " + diagnostic.getLineNumber() + "\n  " + diagnostic.getSource().toString());
             }
         };

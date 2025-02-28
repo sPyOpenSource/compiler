@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=StringList
+comment0.text=\n\ StringList\:\ linear\ list\ of\ strings\ \ \n\ \n\ @author\ S.\ Frenz\n\ @version\ 110607\ got\ buildStringList\ from\ FrontAdmin\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 060607\ initial\ version\n
+comment1.params=istr
+comment1.target=StringList(java.lang.String)
+comment2.params=last\ istr
+comment2.target=StringList(StringList,\ java.lang.String)
+comment3.params=source
+comment3.target=StringList\ buildStringList(java.lang.String)
+numComments=4
