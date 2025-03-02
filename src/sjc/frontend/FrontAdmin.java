@@ -222,47 +222,49 @@ public class FrontAdmin {
   }
   
   public boolean checkCompEnvironment() {
-    boolean error=false;
+    boolean error = false;
     
-    error|=(ctx.langRoot=ctx.defUnits.searchUnit("Object"))==null;
-    error|=(ctx.langString=checkUnit(ctx.defUnits, "String", false))==null;
-    error|=(ctx.rteSArray=checkUnit(ctx.rte, "SArray", false))==null;
-    error|=(ctx.rteSClassDesc=checkUnit(ctx.rte, "SClassDesc", true))==null;
-    error|=(ctx.rteSIntfDesc=checkUnit(ctx.rte, "SIntfDesc", true))==null;
-    error|=(ctx.rteSIntfMap=checkUnit(ctx.rte, "SIntfMap", true))==null;
-    error|=(ctx.rteSMthdBlock=checkUnit(ctx.rte, "SMthdBlock", false))==null;
-    error|=(ctx.rteDynamicRuntime=checkUnit(ctx.rte, "DynamicRuntime", false))==null;
-    for (int i=1; i<StdTypes.MAXBASETYPE+1; i++) if (ctx.arch.binAriCall[i]!=0 || ctx.arch.unaAriCall[i]!=0) {
-      error|=(ctx.rteDynamicAri=checkUnit(ctx.rte, "DynamicAri", false))==null;
-      break;
+    error |= (ctx.langRoot = ctx.defUnits.searchUnit("Object")) == null;
+    error |= (ctx.langString = checkUnit(ctx.defUnits, "String", false)) == null;
+    error |= (ctx.rteSArray = checkUnit(ctx.rte, "SArray", false)) == null;
+    error |= (ctx.rteSClassDesc = checkUnit(ctx.rte, "SClassDesc", true)) == null;
+    error |= (ctx.rteSIntfDesc = checkUnit(ctx.rte, "SIntfDesc", true)) == null;
+    error |= (ctx.rteSIntfMap = checkUnit(ctx.rte, "SIntfMap", true)) == null;
+    error |= (ctx.rteSMthdBlock = checkUnit(ctx.rte, "SMthdBlock", false)) == null;
+    error |= (ctx.rteDynamicRuntime = checkUnit(ctx.rte, "DynamicRuntime", false)) == null;
+    for (int i = 1; i < StdTypes.MAXBASETYPE + 1; i++) {
+        if (ctx.arch.binAriCall[i] != 0 || ctx.arch.unaAriCall[i] != 0) {
+            error |= (ctx.rteDynamicAri = checkUnit(ctx.rte, "DynamicAri", false)) == null;
+            break;
+        }
     }
     if (error) return false;
     if (ctx.throwUsed) {
-      if ((ctx.excThrowable=ctx.defUnits.searchUnit("Throwable"))==null
-          || (ctx.excChecked=ctx.defUnits.searchUnit("Exception"))==null) {
+      if ((ctx.excThrowable = ctx.defUnits.searchUnit("Throwable")) == null
+          || (ctx.excChecked = ctx.defUnits.searchUnit("Exception")) == null) {
         ctx.out.println("to use exceptions at least declare Exception extends Throwable");
         return false;
       }
     }
-    ctx.objectType.qid.unitDest=ctx.langRoot;
-    ctx.stringType.qid.unitDest=ctx.langString;
-    ctx.clssType.qid.unitDest=ctx.rteSClassDesc;
-    ctx.intfType.qid.unitDest=ctx.rteSIntfDesc;
+    ctx.objectType.qid.unitDest = ctx.langRoot;
+    ctx.stringType.qid.unitDest = ctx.langString;
+    ctx.clssType.qid.unitDest = ctx.rteSClassDesc;
+    ctx.intfType.qid.unitDest = ctx.rteSIntfDesc;
     return true;
   }
   
   public boolean precheckLangEnvironment() { //do only basic existance-checks, offsets are not assigned yet
     Unit root;
-    boolean error=false;
+    boolean error = false;
     
-    root=ctx.langRoot;
-    error|=!checkVrbl(root, "_r_type", Vrbl.L_INSTREL, 0, false);
+    root = ctx.langRoot;
+    error |= !checkVrbl(root, "_r_type", Vrbl.L_INSTREL, 0, false);
     if (!ctx.mem.streamObjects) {
       if (!ctx.alternateObjNew) {
-        error|=!checkVrbl(root, "_r_relocEntries", Vrbl.L_INSTSCL, 0, false);
-        error|=!checkVrbl(root, "_r_scalarSize", Vrbl.L_INSTSCL, 0, false);
+        error |= !checkVrbl(root, "_r_relocEntries", Vrbl.L_INSTSCL, 0, false);
+        error |= !checkVrbl(root, "_r_scalarSize", Vrbl.L_INSTSCL, 0, false);
       }
-      error|=!checkVrbl(root, "_r_next", Vrbl.L_INSTREL, 0, false);
+      error |= !checkVrbl(root, "_r_next", Vrbl.L_INSTREL, 0, false);
     }
     if (error) {
       ctx.out.println("Missing variables in header of root object, required fields are (ordered):");
@@ -272,8 +274,8 @@ public class FrontAdmin {
       return false;
     }
     if (ctx.indirScalars) {
-      error|=(ctx.indirScalarSizeOff=checkVrbl(root, "_r_indirScalarSize", true))==AccVar.INV_RELOFF;
-      error|=(ctx.indirScalarAddrOff=checkVrbl(root, "_r_indirScalarAddr", true))==AccVar.INV_RELOFF;
+      error |= (ctx.indirScalarSizeOff = checkVrbl(root, "_r_indirScalarSize", true)) == AccVar.INV_RELOFF;
+      error |= (ctx.indirScalarAddrOff = checkVrbl(root, "_r_indirScalarAddr", true)) == AccVar.INV_RELOFF;
       if (error) {
         ctx.out.println("Missing indir-variables in header of root object:");
         ctx.out.println("   int _r_indirScalarSize, _r_indirScalarAddr");
@@ -284,21 +286,21 @@ public class FrontAdmin {
   }
   
   public boolean checkLangEnvironment() {
-    boolean error=false;
+    boolean error = false;
     Unit root;
     Pack kernelPck;
     StringList strTmp, strPck;
     Vrbl varTmp;
     String strUnit, strMthd;
     
-    root=ctx.langRoot;
-    error|=!checkVrbl(root, "_r_type", Vrbl.L_INSTREL, -ctx.arch.relocBytes, true);
+    root = ctx.langRoot;
+    error |= !checkVrbl(root, "_r_type", Vrbl.L_INSTREL, -ctx.arch.relocBytes, true);
     if (!ctx.mem.streamObjects) {
       if (!ctx.alternateObjNew) {
-        error|=!checkVrbl(root, "_r_relocEntries", Vrbl.L_INSTSCL, 0, true);
-        error|=!checkVrbl(root, "_r_scalarSize", Vrbl.L_INSTSCL, 4, true);
+        error |= !checkVrbl(root, "_r_relocEntries", Vrbl.L_INSTSCL, 0, true);
+        error |= !checkVrbl(root, "_r_scalarSize", Vrbl.L_INSTSCL, 4, true);
       }
-      error|=!checkVrbl(root, "_r_next", Vrbl.L_INSTREL, -2*ctx.arch.relocBytes, true);
+      error |= !checkVrbl(root, "_r_next", Vrbl.L_INSTREL, -2 * ctx.arch.relocBytes, true);
     }
     if (error) {
       ctx.out.println("Missing variables in header of root object, required fields are (ordered):");
@@ -308,8 +310,8 @@ public class FrontAdmin {
       return false;
     }
     if (ctx.indirScalars) {
-      error|=(ctx.indirScalarSizeOff=checkVrbl(root, "_r_indirScalarSize", true))==AccVar.INV_RELOFF;
-      error|=(ctx.indirScalarAddrOff=checkVrbl(root, "_r_indirScalarAddr", true))==AccVar.INV_RELOFF;
+      error |= (ctx.indirScalarSizeOff = checkVrbl(root, "_r_indirScalarSize", true)) == AccVar.INV_RELOFF;
+      error |= (ctx.indirScalarAddrOff = checkVrbl(root, "_r_indirScalarAddr", true)) == AccVar.INV_RELOFF;
       if (error) {
         ctx.out.println("Missing indir-variables in header of root object:");
         ctx.out.println("   int _r_indirScalarSize, _r_indirScalarAddr");
@@ -317,45 +319,43 @@ public class FrontAdmin {
       }
     }
     
-    if ((ctx.langStrVal=checkVrbl(ctx.langString, "value", true))==AccVar.INV_RELOFF) error=true;
+    if ((ctx.langStrVal = checkVrbl(ctx.langString, "value", true)) == AccVar.INV_RELOFF) error = true;
     else { //additionally check size
-      varTmp=ctx.langString.searchVariable("value", ctx); //existing as checked above
-      if (varTmp.type.arrDim!=1 || (varTmp.modifier&(Modifier.M_STAT|Modifier.M_STRUCT))!=0) {
+      varTmp = ctx.langString.searchVariable("value", ctx); //existing as checked above
+      if (varTmp.type.arrDim != 1 || (varTmp.modifier & (Modifier.M_STAT|Modifier.M_STRUCT)) != 0) {
         ctx.out.println("java.lang.String.value has to be dynamic array with dim==1");
-        error=true;
-      }
-      else if (ctx.byteString) {
-        if (varTmp.type.baseType!=StdTypes.T_BYTE) {
+        error = true;
+      } else if (ctx.byteString) {
+        if (varTmp.type.baseType != StdTypes.T_BYTE) {
           ctx.out.println("java.lang.String.value has to be byte[] if compiled with byteString");
-          error=true;
+          error = true;
         }
-      }
-      else {
-        if (varTmp.type.baseType!=StdTypes.T_CHAR) {
+      } else {
+        if (varTmp.type.baseType != StdTypes.T_CHAR) {
           ctx.out.println("java.lang.String.value has to be char[] if not compiled with byteString");
-          error=true;
+          error = true;
         }
       }
     }
-    if ((ctx.langStrCnt=checkVrbl(ctx.langString, "count", false))==AccVar.INV_RELOFF && ctx.langString.inlArr!=null) {
+    if ((ctx.langStrCnt = checkVrbl(ctx.langString, "count", false)) == AccVar.INV_RELOFF && ctx.langString.inlArr != null) {
       ctx.out.println("String.count is not optional if String is implemented with inline array");
-      error=true;
+      error = true;
     }
-    error|=(ctx.rteSClassParent=checkVrbl(ctx.rteSClassDesc, "parent", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSClassImpl=checkVrbl(ctx.rteSClassDesc, "implementations", true))==AccVar.INV_RELOFF;
+    error |= (ctx.rteSClassParent = checkVrbl(ctx.rteSClassDesc, "parent", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSClassImpl = checkVrbl(ctx.rteSClassDesc, "implementations", true)) == AccVar.INV_RELOFF;
     if (ctx.alternateObjNew) {
-      error|=(ctx.rteSClassInstScalarSize=checkVrbl(ctx.rteSClassDesc, "instScalarSize", true))==AccVar.INV_RELOFF;
-      error|=(ctx.rteSClassInstRelocTableEntries=checkVrbl(ctx.rteSClassDesc, "instRelocEntries", true))==AccVar.INV_RELOFF;
-      if (ctx.indirScalars) error|=(ctx.rteSClassInstIndirScalarSize=checkVrbl(ctx.rteSClassDesc, "instIndirScalarSize", true))==AccVar.INV_RELOFF;
+      error |= (ctx.rteSClassInstScalarSize = checkVrbl(ctx.rteSClassDesc, "instScalarSize", true)) == AccVar.INV_RELOFF;
+      error |= (ctx.rteSClassInstRelocTableEntries = checkVrbl(ctx.rteSClassDesc, "instRelocEntries", true)) == AccVar.INV_RELOFF;
+      if (ctx.indirScalars) error |= (ctx.rteSClassInstIndirScalarSize = checkVrbl(ctx.rteSClassDesc, "instIndirScalarSize", true)) == AccVar.INV_RELOFF;
     }
-    if (ctx.genIntfParents) error|=(ctx.rteSIntfParents=checkVrbl(ctx.rteSIntfDesc, "parents", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSIMowner=checkVrbl(ctx.rteSIntfMap, "owner", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSIMnext=checkVrbl(ctx.rteSIntfMap, "next", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSArrayLength=checkVrbl(ctx.rteSArray, "length", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSArrayDim=checkVrbl(ctx.rteSArray, "_r_dim", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSArrayStd=checkVrbl(ctx.rteSArray, "_r_stdType", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteSArrayExt=checkVrbl(ctx.rteSArray, "_r_unitType", true))==AccVar.INV_RELOFF;
-    error|=(ctx.rteDRNewInstMd=checkMthd(ctx.rteDynamicRuntime, "newInstance", ctx.alternateObjNew ? parSize(StdTypes.T_PTR) //type
+    if (ctx.genIntfParents) error |= (ctx.rteSIntfParents = checkVrbl(ctx.rteSIntfDesc, "parents", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSIMowner = checkVrbl(ctx.rteSIntfMap, "owner", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSIMnext = checkVrbl(ctx.rteSIntfMap, "next", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSArrayLength = checkVrbl(ctx.rteSArray, "length", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSArrayDim = checkVrbl(ctx.rteSArray, "_r_dim", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSArrayStd = checkVrbl(ctx.rteSArray, "_r_stdType", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteSArrayExt = checkVrbl(ctx.rteSArray, "_r_unitType", true)) == AccVar.INV_RELOFF;
+    error |= (ctx.rteDRNewInstMd = checkMthd(ctx.rteDynamicRuntime, "newInstance", ctx.alternateObjNew ? parSize(StdTypes.T_PTR) //type
         : parSize(StdTypes.T_INT)+(ctx.indirScalars?parSize(StdTypes.T_INT):0)+parSize(StdTypes.T_INT)+parSize(StdTypes.T_PTR)))==null; //scalarSize, (indirScalarSize), relocEntries, type
     error|=(ctx.rteDRNewArrayMd=checkMthd(ctx.rteDynamicRuntime, "newArray", //length, dimension, entrySize, basicType, extType
         parSize(StdTypes.T_INT)+parSize(StdTypes.T_INT)+parSize(StdTypes.T_INT)
@@ -572,34 +572,34 @@ public class FrontAdmin {
   }
   
   private Mthd checkMthd(Unit inUnit, String name, int reqParSize) {
-    Mthd mthd, foundMthd=null;
+    Mthd mthd, foundMthd = null;
     
-    mthd=inUnit.mthds;
-    while (mthd!=null) {
-      if (mthd.name!=null && mthd.name.equals(name)) {
-        if (foundMthd!=null) {
+    mthd = inUnit.mthds;
+    while (mthd != null) {
+      if (mthd.name != null && mthd.name.equals(name)) {
+        if (foundMthd != null) {
           ctx.out.print("warning: ambiguous");
           printMthdUnit(inUnit, name);
         }
-        foundMthd=mthd;
+        foundMthd = mthd;
       }
-      mthd=mthd.nextMthd;
+      mthd = mthd.nextMthd;
     }
-    if (foundMthd==null) {
+    if (foundMthd == null) {
       ctx.out.print("missing");
       printMthdUnit(inUnit, name);
       return null;
     }
-    if (foundMthd.relOff==Mthd.INV_RELOFF) {
+    if (foundMthd.relOff == Mthd.INV_RELOFF) {
       ctx.out.print("invalid");
       printMthdUnit(inUnit, name);
       return null;
     }
-    if (reqParSize!=-1 && foundMthd.parSize!=reqParSize) {
+    if (reqParSize != -1 && foundMthd.parSize != reqParSize) {
       ctx.out.print("warning: non-matching signature of");
       printMthdUnit(inUnit, name);
     }
-    foundMthd.modifier|=Modifier.MA_ACCSSD|Modifier.M_NDCODE;
+    foundMthd.modifier |= Modifier.MA_ACCSSD | Modifier.M_NDCODE;
     return foundMthd;
   }
   

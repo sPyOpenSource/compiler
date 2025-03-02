@@ -36,7 +36,6 @@ public class DynamicAri {
           //modop:
         MAGIC.inline16(0xfc37); //sbrc r3,7      ; test sign bit, skip next negate if clear
         MAGIC.inline16(0x9501); //neg  r16       ; negate
-//        MAGIC.inline16(0x830f); //std  y+7,r16   ; store result
         break;
     }
     MAGIC.stopBlockCoding();
@@ -88,11 +87,6 @@ public class DynamicAri {
         MAGIC.inline16(0x0d30); //add r19,r0
         MAGIC.inline16(0x9e84); //mul r8,r20 ;a4*b1
         MAGIC.inline16(0x0d30); //add r19,r0
-        //allDone
-//        MAGIC.inline16(0x870a); //std  y+10,r16
-//        MAGIC.inline16(0x871b); //std  y+11,r17
-//        MAGIC.inline16(0x872c); //std  y+12,r18
-//        MAGIC.inline16(0x873d); //std  y+13,r19
         break;
       case (byte)'/': case (byte)'%': //allmost the same code for / and %
         //adopted from http://www.mikrocontroller.net/topic/48511
@@ -178,11 +172,6 @@ public class DynamicAri {
         MAGIC.inline16(0x1d1b); //adc  r17,r11
         MAGIC.inline16(0x1d2b); //adc  r18,r11
         MAGIC.inline16(0x1d3b); //adc  r19,r11
-          //allDone:
-//        MAGIC.inline16(0x870a); //std  y+10,r16
-//        MAGIC.inline16(0x871b); //std  y+11,r17
-//        MAGIC.inline16(0x872c); //std  y+12,r18
-//        MAGIC.inline16(0x873d); //std  y+13,r19
       break;
     }
     MAGIC.stopBlockCoding();
@@ -248,15 +237,6 @@ public class DynamicAri {
         MAGIC.inline16(0x1c77); //rol  r7
         MAGIC.inline16(0x95fa); //dec  r31
         MAGIC.inline16(0xf729); //brne nextBit
-           //;allDone
-//        MAGIC.inline16(0x870e); //std  y+14,r16
-//        MAGIC.inline16(0x871f); //std  y+15,r17
-//        MAGIC.inline16(0x8b28); //std  y+16,r18
-//        MAGIC.inline16(0x8b39); //std  y+17,r19
-//        MAGIC.inline16(0x8b4a); //std  y+18,r20
-//        MAGIC.inline16(0x8b5b); //std  y+19,r21
-//        MAGIC.inline16(0x8b6c); //std  y+20,r22
-//        MAGIC.inline16(0x8b7d); //std  y+21,r23
         break;
       case (byte)'/': case (byte)'%': //almost the same code for / and %
         //adopted from http://www.mikrocontroller.net/topic/48511
@@ -398,15 +378,6 @@ public class DynamicAri {
         MAGIC.inline16(0x1d5b); //adc  r21,r11
         MAGIC.inline16(0x1d6b); //adc  r22,r11
         MAGIC.inline16(0x1d7b); //adc  r23,r11
-          //allDone:
-//        MAGIC.inline16(0x870e); //std  y+14,r16
-//        MAGIC.inline16(0x871f); //std  y+15,r17
-//        MAGIC.inline16(0x8b28); //std  y+16,r18
-//        MAGIC.inline16(0x8b39); //std  y+17,r19
-//        MAGIC.inline16(0x8b4a); //std  y+18,r20
-//        MAGIC.inline16(0x8b5b); //std  y+19,r21
-//        MAGIC.inline16(0x8b6c); //std  y+20,r22
-//        MAGIC.inline16(0x8b7d); //std  y+21,r23
         break;
     }
     MAGIC.stopBlockCoding();

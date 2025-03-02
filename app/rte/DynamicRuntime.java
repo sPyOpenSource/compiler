@@ -27,7 +27,7 @@ public class DynamicRuntime {
     return false;
   }
   
-  public void checkArrayStore(){
+  public void checkArrayStore(int address, int newValue){
       
   }
 }

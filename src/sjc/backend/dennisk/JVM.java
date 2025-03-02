@@ -17,6 +17,7 @@
  */
 package sjc.backend.dennisk;
 
+import jx.classfile.constantpool.ConstantPool;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
 import sjc.compbase.Marks;
@@ -25,7 +26,7 @@ import sjc.compbase.Ops;
 import sjc.compbase.StdTypes;
 
 /**
- * MyCPU: Architecture backend for MyCPU by Dennis Kuschel
+ * JVM: Architecture backend for JVM by Dennis Kuschel
  * 
  * @author S. Frenz
  * @version 160522 fixed error messages
@@ -189,6 +190,7 @@ public class JVM extends Architecture {
   protected final static String ERR_INVGLOBADDRREG = "invalid register for address";
   
   private int usedRegs, writtenRegs, nextAllocReg, curVarOffParam;
+  private ConstantPool cp;
   
   //initialization
   public JVM() {
@@ -232,7 +234,7 @@ public class JVM extends Architecture {
     int i, j;
     for (i = 0; i <= RegMax; i++) {
       j = 1 << i;
-      if ((value&j) != 0) {
+      if ((value & j) != 0) {
         if (--hit == 0) return j;
       }
     }
@@ -250,26 +252,26 @@ public class JVM extends Architecture {
   }
   
   private int freeRegSearch(int mask, int type) {
-    int ret=0, temp, regCount;
-    regCount=getByteCount(type);
-    while (regCount-->0) {
-      if ((temp=bitSearch(mask, 1))==0) return 0;
-      ret|=temp;
-      mask&=~temp;
+    int ret = 0, temp, regCount;
+    regCount = getByteCount(type);
+    while (regCount-- > 0) {
+      if ((temp = bitSearch(mask, 1)) == 0) return 0;
+      ret |= temp;
+      mask &= ~temp;
     }
     return ret;
   }
   
   protected int storeReg(int regs) {
-    regs&=usedRegs&writtenRegs;
-    for (int i=0; i<=RegMaxGP; i++) if ((regs&(1<<i))!=0) ins(I_PUSHzp, getZPAddrOfReg(i));
+    regs &= usedRegs & writtenRegs;
+    for (int i = 0; i <= RegMaxGP; i++) if ((regs & (1 << i)) != 0) ins(I_PUSHzp, getZPAddrOfReg(i));
     return regs;
   }
   
   protected void restoreReg(int regs) {
-    usedRegs|=regs;
-    writtenRegs|=regs;
-    for (int i=RegMaxGP; i>=0; i--) if ((regs&(1<<i))!=0) ins(I_POPzp, getZPAddrOfReg(i));
+    usedRegs |= regs;
+    writtenRegs |= regs;
+    for (int i = RegMaxGP; i >= 0; i--) if ((regs & (1 << i)) != 0) ins(I_POPzp, getZPAddrOfReg(i));
   }
   
   protected int getByteCount(int type) {
@@ -285,8 +287,8 @@ public class JVM extends Architecture {
   
   @Override
   public int ensureFreeRegs(int ignoreReg1, int ignoreReg2, int keepReg1, int keepReg2) {
-    int restore=storeReg(RegMaskGP&~(ignoreReg1|ignoreReg2));
-    usedRegs=(keepReg1|keepReg2)&RegMaskGP;
+    int restore = storeReg(RegMaskGP & ~(ignoreReg1 | ignoreReg2));
+    usedRegs = (keepReg1 | keepReg2) & RegMaskGP;
     return restore;
   }
   
@@ -294,14 +296,14 @@ public class JVM extends Architecture {
   public int prepareFreeReg(int avoidReg1, int avoidReg2, int reUseReg, int type) {
     int toStore, ret;
     //basereg can not be allocated
-    if (avoidReg1==regBase) avoidReg1=0;
-    if (avoidReg2==regBase) avoidReg2=0;
-    if (reUseReg==regBase) reUseReg=0;
+    if (avoidReg1 == regBase) avoidReg1 = 0;
+    if (avoidReg2 == regBase) avoidReg2 = 0;
+    if (reUseReg == regBase) reUseReg = 0;
     //first: try to reuse given regs
-    reUseReg&=RegMaskGP;
-    if (reUseReg!=0) {
-      if ((ret=freeRegSearch(reUseReg, type))!=0) {
-        usedRegs|=(nextAllocReg=ret);
+    reUseReg &= RegMaskGP;
+    if (reUseReg != 0) {
+      if ((ret = freeRegSearch(reUseReg, type)) != 0) {
+        usedRegs |= (nextAllocReg = ret);
         return 0; //nothing has to be freed, reuse given registers
       }
     }
@@ -364,13 +366,13 @@ public class JVM extends Architecture {
   @Override
   public Mthd prepareMethodCoding(Mthd mthd) {
     Mthd lastMthd;
-    writtenRegs=usedRegs=0;
-    if ((lastMthd=curMthd)!=null) {
-      curVarOffParam=VAROFF_PARAM_INL;
+    writtenRegs = usedRegs = 0;
+    if ((lastMthd = curMthd) != null) {
+      curVarOffParam = VAROFF_PARAM_INL;
       curInlineLevel++;
     }
-    else curVarOffParam=VAROFF_PARAM_NRM;
-    curMthd=mthd;
+    else curVarOffParam = VAROFF_PARAM_NRM;
+    curMthd = mthd;
     return lastMthd;
   }
 
@@ -818,8 +820,7 @@ public class JVM extends Architecture {
                 }
                 else ins(I_ROLzp, dstR);
                 i++;
-              }
-              else {
+              } else {
                 if (dstR!=srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROR);
@@ -856,8 +857,7 @@ public class JVM extends Architecture {
         ins(I_EORimm, 1);
         ins(I_STAzp, dstR);
         return;
-      }
-      else {
+      } else {
         fatalError("unsupported bool-operation for genUnaOp");
         return;
       }
@@ -1183,8 +1183,7 @@ public class JVM extends Architecture {
       if (i==max && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
         ins(i==1 ? I_CMPimm : I_SBCimm, ((val>>>((i-1)<<3))&0xFF)^0x80);
-      }
-      else {
+      } else {
         ins(I_LDAzp, r);
         ins(i==1 ? I_CMPimm : I_SBCimm, (val>>>((i-1)<<3))&0xFF);
       }
@@ -1215,8 +1214,7 @@ public class JVM extends Architecture {
       if (i==1 && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
         ins(i==1 ? I_CMPimm : I_SBCimm, ((int)((val>>>((i-1)<<3)))&0xFF)^0x80);
-      }
-      else {
+      } else {
         ins(I_LDAzp, r);
         ins(i==1 ? I_CMPimm : I_SBCimm, ((int)(val>>>((i-1)<<3)))&0xFF);
       }
@@ -1534,14 +1532,12 @@ public class JVM extends Architecture {
         ins(I_LDAimm, (val>>>(i<<3))&0xFF);
         ins(I_STAabsx, pos+i);
       }
-    }
-    else {
+    } else {
       ins(I_PHX);
       if (objReg==0) {
         ins(I_LDXimm, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
-      }
-      else {
+      } else {
         ins(I_CLC);
         if ((objR=getRegZPAddr(1, objReg, StdTypes.T_PTR, false))==-1) return;
         ins(I_LDAzp, objR);
@@ -1894,7 +1890,7 @@ public class JVM extends Architecture {
   }
   
   private void insCleanStackAfterCall(int parSize) {
-    if (parSize!=0) { //clean parameters from stack
+    if (parSize != 0) { //clean parameters from stack
       ins(I_INS, parSize);
     }
   }

@@ -46,8 +46,8 @@ public class CompilerTest {
     public void hello() {
         //SC.main(new String[]{"-t", "atmega", "-L", "-P", "batmel32.bin", "-y", "-e", "0x60", "-E", "-a", "0", "-o", "boot", "-B", "-C", "-k", "/Users/xuyi/Source/Java/atbasenw/src"});
         List<File> list = new ArrayList();
-        list.add(new File("./app/demo.java"));
-        Compiler.compile(list, "./app");
+        list.add(new File("app/demo.java"));
+        Compiler.compile(list, "app");
         //SC.main(new String[]{"-t", "jvm", "-k", "./"});
     }
     
@@ -213,7 +213,7 @@ public class CompilerTest {
     @Test
     public void testClass(){
         try {
-            byte[] fileContent = Files.readAllBytes(Paths.get("./app/demo.class"));
+            byte[] fileContent = Files.readAllBytes(Paths.get("app/demo.class"));
             byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
             int minor_version = fileContent[4] << 8 | fileContent[5];
             int major_version = fileContent[6] << 8 | fileContent[7];
@@ -225,7 +225,7 @@ public class CompilerTest {
             //VmCP cp = new VmCP((fileContent[8] & 0xff) << 8 | (fileContent[9] & 0xff), fileContent);
 
             //System.out.println(cp.getLength());
-            File file = new File("/Users/xuyi/Source/OS/armOS/lib/jcore/AIZero/src/AI/Models/Vector.class");
+            File file = new File("build/classes/compiler/Compiler.class");
             InputStream is = new FileInputStream(file);
             /*ClassData data = new ClassData(new DataInputStream(is));
             ConstantPool cp = data.getConstantPool();
