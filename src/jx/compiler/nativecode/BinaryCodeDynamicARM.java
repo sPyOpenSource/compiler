@@ -2,14 +2,14 @@ package jx.compiler.nativecode;
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
-
-import java.io.PrintStream;
 import java.util.Collections;
+
 import jx.classfile.constantpool.ClassCPEntry;
 import jx.classfile.constantpool.FieldRefCPEntry;
 import jx.classfile.constantpool.InterfaceMethodRefCPEntry;
 import jx.classfile.constantpool.MethodRefCPEntry;
 import jx.classfile.constantpool.StringCPEntry;
+
 import jx.compiler.CompileException;
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
@@ -50,12 +50,12 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         allow the storing of compiled code between JVM invocations 
     - actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private ArrayList symbolTable;
+    private ArrayList<SymbolTableEntryBase> symbolTable;
   
     /** 
     contains the native exception handlers
     */ 
-    private final ArrayList exceptionHandlers;
+    private final ArrayList<NCExceptionHandler> exceptionHandlers;
 
     public BinaryCodeDynamicARM() {
         code = new byte[INITSIZE];
@@ -113,7 +113,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
             newSize += requiredSpace;
             }
             byte[] newCode = new byte[newSize];
-                System.arraycopy(code, 0, newCode, 0, ip);
+            System.arraycopy(code, 0, newCode, 0, ip);
             code = newCode;
         }
     }
@@ -290,7 +290,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        (5 clks)
     */
     public void pushal() { /* 5 clks */
-    realloc();
+        realloc();
         insertByte(0x60);
     }
 
@@ -1144,7 +1144,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-    Insert a single byte constant 
+     * Insert a single byte constant 
      */ 
     public void insertConst1(int value) {
     realloc();
@@ -1152,7 +1152,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }    
   
     /** 
-    Insert a four byte constant 
+     * Insert a four byte constant 
      */ 
     public void insertConst4(int value) {
     realloc();
@@ -1187,40 +1187,17 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-    Insert a 0 byte constant with an unknown value. 
-    (contains information about current code position, i.e., a stack map) 
+     * Insert a 0 byte constant with an unknown value. 
+     * (contains information about current code position, i.e., a stack map) 
      */ 
     public void insertConst0(SymbolTableEntryBase entry) {
     entry.initNCIndex(ip, 0);  // size is always 0 bytes 
     symbolTable.add(entry);
     }
-
-
-    /**
-       Intel Architecture Optimization. Reference Manual (chapter 2,page 11)
-       "Pentium II and III processors have a cache line size of 32 byte.
-       Since the instruction prefetch buffers fetch 16-byte boundaries,
-       code alignment has a direct impact on prefetch buffer efficiency"
-       
-       * Loop entry labels should be 16-byte-aligned when less then 
-       eight byte away from a 16-byte boundary.
-       
-       * Labels that follow an unconditional branch of function call
-       should be aligend as above.
-       
-       * Labels that follow a conditional branch need _not_ be aligned.
-     */
-    
-    public void alignCode() {
-    int drift = ip % 16;
-    if (drift < 8) {
-        for (int i = 0; i < drift; i++) nop();
-    }
-    }
     
     /** 
-    Initialized the target position of 'jumpObject'. 
-    (Call insertConst4() for corresponding jump instruction) 
+     * Initialized the target position of 'jumpObject'. 
+     * (Call insertConst4() for corresponding jump instruction) 
      */
     public void addJumpTarget(UnresolvedJump jumpObject) {
     if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
@@ -1252,212 +1229,128 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-    Make a symbol table entry relative. 
-    If you use insertConst4(), this class assumes that 
-    the value to be inserted is absolute. But if the 
-    inserted value is a jump offset it is relative to 
-    the instruction pointer of the next instruction. 
-    That is what you can tell the compiler with this 
-    method. 
+     * Make a symbol table entry relative. 
+     * If you use insertConst4(), this class assumes that 
+     * the value to be inserted is absolute. But if the 
+     * inserted value is a jump offset it is relative to 
+     * the instruction pointer of the next instruction. 
+     * That is what you can tell the compiler with this 
+     * method. 
      */ 
     public void makeRelative(SymbolTableEntryBase entry) {
     entry.makeRelative(ip);
     }
     
-    /**
-       Called after each instruction. 
-     */ 
-    public void endInstr() {
-    //if (DebugConf.doPrintBinaryCode) Debug.out.println(""); 
-    //      currentInstruction.machinecode = new byte[numBytesMachinecode];
-    //      System.arraycopy(currentMachinecode, 0, currentInstruction.machinecode, 0, numBytesMachinecode);
-    //      numBytesMachinecode = 0;
-    }
-
-    // ***** Management stuff ***** 
-    
-    public void finishCode() {
-    }
-    
     /** 
-    Apply all resolveable symbol table entries.
-    (e.g. insert jump offsets ....)
-    After calling this method, the vector 'symbolTable' 
-    contains all symbol table entries that are not resolveable.
-    If you want to install the compiled code after calling this 
-    method, this vector should be empty. 
+     * Apply all resolveable symbol table entries.
+     * (e.g. insert jump offsets ....)
+     * After calling this method, the vector 'symbolTable' 
+     * contains all symbol table entries that are not resolveable.
+     * If you want to install the compiled code after calling this 
+     * method, this vector should be empty. 
      * @param codeBase
      */ 
     public void resolve(int codeBase) {
-    Enumeration enume = Collections.enumeration(symbolTable); 
-    ArrayList unresolvedEntries = new ArrayList(); 
-    while(enume.hasMoreElements()) {
-        SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement(); 
-        if (entry.isReadyForApply())
-        entry.apply(code, codeBase);
-        else
-        unresolvedEntries.add(entry);
+        Enumeration<SymbolTableEntryBase> enume = Collections.enumeration(symbolTable); 
+        ArrayList<SymbolTableEntryBase> unresolvedEntries = new ArrayList(); 
+        while(enume.hasMoreElements()) {
+            SymbolTableEntryBase entry = enume.nextElement(); 
+            if (entry.isReadyForApply())
+                entry.apply(code, codeBase);
+            else
+                unresolvedEntries.add(entry);
+        }
+        symbolTable = unresolvedEntries;
     }
-    symbolTable = unresolvedEntries;
-    }
-
-    // ***** Building of Debug messages ****** 
-    
-    private static final String[] REGNAME = {
-    "ax", "cx", "dx", "bx", "sp", "bp", "si", "di"
-    };
-    
-    public static String regToString(int reg) {
-    return "%e" + REGNAME[reg];
-    }
-    
-    public static final int EAX = 0;
-    public static final int ECX = 1;
-    public static final int EDX = 2;
-    public static final int EBX = 3;
-    public static final int ESP = 4;
-    public static final int EBP = 5;
-    public static final int ESI = 6;
-    public static final int EDI = 7;
     
     // ***** Exceptions *****
     
     public void addExceptionRangeStart(NCExceptionHandler handler) {
-    handler.setRangeStart(ip); 
+        handler.setRangeStart(ip);
     }
 
     public void addExceptionRangeEnd(NCExceptionHandler handler) {
-    handler.setRangeEnd(ip); 
+        handler.setRangeEnd(ip); 
     }
     
     /**
-    add a start of an exception handler.
+     * add a start of an exception handler.
      * @param handler
      */
     public void addExceptionHandler(NCExceptionHandler handler) {
-    handler.setHandlerStart(ip); 
-    exceptionHandlers.add(handler); 
+        handler.setHandlerStart(ip); 
+        exceptionHandlers.add(handler); 
     }
     
     /**
-    return an array of all exception handlers of this 
-    method. (these handlers contain the native code indices 
-    of the range start, range end and of the handler start 
-     * @return
+     * @return an array of all exception handlers of this 
+     * method. (these handlers contain the native code indices 
+     * of the range start, range end and of the handler start 
      */
     public NCExceptionHandler[] getExceptionHandlers() {
-    NCExceptionHandler[] handlerArray = 
-    new NCExceptionHandler[exceptionHandlers.size()]; 
-    for(int i = 0; i < exceptionHandlers.size(); i++) {
-        handlerArray[i] = (NCExceptionHandler)exceptionHandlers.get(i); 
-        //Debug.assert(handlerArray[i].isFinished()); 
-    }
-    return handlerArray;
+        NCExceptionHandler[] handlerArray = 
+        new NCExceptionHandler[exceptionHandlers.size()]; 
+        for(int i = 0; i < exceptionHandlers.size(); i++) {
+            handlerArray[i] = exceptionHandlers.get(i); 
+            //Debug.assert(handlerArray[i].isFinished()); 
+        }
+        return handlerArray;
     }
 
     // ***** Printing ***** 
     
     public String getBinaryCodeAsHex(int firstByte, int stopByte) {
-    String s = ""; 
-    for(int i = firstByte; i < stopByte; i++) {
-        String hex = Integer.toHexString(code[i] & 0xff); 
-        if (hex.length() == 1) hex = "0" + hex; 
-        s = s + hex  + " "; 
-    }
-    return s; 
+        String s = ""; 
+        for(int i = firstByte; i < stopByte; i++) {
+            String hex = Integer.toHexString(code[i] & 0xff); 
+            if (hex.length() == 1) hex = "0" + hex; 
+            s = s + hex  + " "; 
+        }
+        return s;
     }
     
     // returns a hexdump of the compiled function 
     public String getBinaryCodeAsHex() {
-    return getBinaryCodeAsHex(0, ip); 
+        return getBinaryCodeAsHex(0, ip); 
     }
     
     private String getBinaryCodeAsAssembler(int firstByte, int stopByte) {
-    String s = ""; 
-    for(int i = firstByte; i < stopByte; i++) {
-      String hex = Integer.toHexString(code[i] & 0xff); 
-      if (hex.length() == 1) hex = "0" + hex; 
-      s = s + hex  + " "; 
-    }
-    return s; 
+        String s = ""; 
+        for(int i = firstByte; i < stopByte; i++) {
+          String hex = Integer.toHexString(code[i] & 0xff); 
+          if (hex.length() == 1) hex = "0" + hex; 
+          s = s + hex  + " "; 
+        }
+        return s; 
     }
     
     // returns a hexdump of the compiled function 
     public String getBinaryCodeAsAssembler() {
-    return getBinaryCodeAsAssembler(0, ip); 
-    }
-    
-    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-        //      instructions.addElement(currentInstruction);
-    }
-
-    public void printInstr(String instr, SymbolTableEntryBase arg1, String arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2, String arg3) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2, arg3);
-    //      instructions.addElement(currentInstruction);
-    }
-
-    public void printInstr(String instr) {
-    //      currentInstruction = new DisassInstr(ip, instr);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, String arg1, String arg2) {
-    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printInstr(String instr, SymbolTableEntryBase arg1) {
-        //      currentInstruction = new DisassInstr(ip, instr, arg1);
-    //      instructions.addElement(currentInstruction);
-    }
-    
-    public void printJumpTarget(UnresolvedJump entry) {
-    //      currentInstruction = new DisassInstr(ip, entry);
-    //      instructions.addElement(currentInstruction);
-        endInstr();
+        return getBinaryCodeAsAssembler(0, ip); 
     }
     
     public void printHexByte(int value) {
-    String hex = Integer.toHexString(value & 0xff); 
-    if (hex.length() == 1) hex = "0" + hex; 
-    Debug.out.print(hex + " "); 
+        String hex = Integer.toHexString(value & 0xff); 
+        if (hex.length() == 1) hex = "0" + hex; 
+        Debug.out.print(hex + " "); 
     }    
     
     public void printHexInt(int value) {
-    String hex = Long.toHexString(value & 0xffffffffL);         
-    Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
-    }
-    
-
-    public void printInstructions() {
-    //    for(int i=0; i<instructions.size(); i++) {
-    //        Debug.out.println(instructions.elementAt(i));
-    //    }
-    }
-    
-    public void printGASInstructions(PrintStream out) {
-    //    for(int i=0; i<instructions.size(); i++) {
-    //        out.println(((DisassInstr)instructions.elementAt(i)).toGASFormat());
-    //    }
+        String hex = Long.toHexString(value & 0xffffffffL);         
+        Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
     }
     
     public void startBC(int bcPosition) {
-    bcIndex = bcPosition;
-    startIP = ip;
+        bcIndex = bcPosition;
+        startIP = ip;
     }
     
     public void endBC() {
-    instructionTable.add(new int[] { bcIndex, startIP, ip });    
+        instructionTable.add(new int[] { bcIndex, startIP, ip });    
     }
     
     public ArrayList getInstructionTable() {
-    return instructionTable;
+        return instructionTable;
     }
 
     @Override

@@ -1,18 +1,18 @@
 
 package test;
 
-import j2ll.ClassHelper;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import jx.classfile.ClassData;
 import jx.classfile.MethodData;
-import jx.classfile.MethodSource;
+import j2ll.ClassHelper;
+
 import org.junit.Test;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.ClassReader;
@@ -27,9 +27,9 @@ public class JUnitTest {
     public void testLLVM(){
         ClassHelper ch = new ClassHelper();
         ch.openClasses();
-        for(String nam:ch.getAllClass()){
-            if(nam.endsWith(".class")){
-                byte[] is = ch.getClassFileStream(nam);
+        for(String name:ch.getAllClass()){
+            if(name.endsWith(".class")){
+                byte[] is = ch.getClassFileStream(name);
                 ClassReader cr = new ClassReader(is);
                 ClassNode cn = new ClassNode();
                 //Attribute[] attrs = new Attribute[]{new Attribute("SourceFile")};
@@ -48,7 +48,7 @@ public class JUnitTest {
     
     @Test
     public void testIM(){
-        File file = new File("/Users/xuyi/Source/Java/V0191/src/sjc/ui/Boot.class");
+        File file = new File("build/classes/gui/Compiler.class");
         InputStream is;
         try {
             is = new FileInputStream(file);
