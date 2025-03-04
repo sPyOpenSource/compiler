@@ -109,7 +109,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	BCClass aClass = classStore.findClass(methodRefCPEntry.getClassName());
 	if (aClass != null) {
-	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
+	    BCClassInfo info = aClass.getInfo();
 
 	    String name = methodRefCPEntry.getMemberName();
 	    String sig  = methodRefCPEntry.getMemberTypeDesc();
@@ -1080,7 +1080,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	int offset = getFieldOffset(fieldRefCPEntry);
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	BCClass mapIf = classStore.findClass("jx/zero/MappedLittleEndianObject");
 	if (classStore.implementsInterface(mapIf, aClass)) {
 	    Debug.out.println("       **"+className);
@@ -1138,7 +1138,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     public void codeGetStaticField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg result, int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	if (offset == -1) {
@@ -1158,7 +1158,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     public void codeGetStaticFieldLong(IMNode node,FieldRefCPEntry fieldRefCPEntry,Reg64 result,int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	if (offset == -1) {
@@ -1182,7 +1182,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    int offset = getFieldOffset(fieldRefCPEntry);
 	    String className = fieldRefCPEntry.getClassName();
 	    BCClass aClass = classStore.findClass(className);
-	    BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	    BCClassInfo info = aClass.getInfo();
 	    BCClass mapIf = classStore.findClass("jx/zero/MappedLittleEndianObject");
 	    if (classStore.implementsInterface(mapIf, aClass)) {
 		Debug.out.println("       **"+className);
@@ -1233,7 +1233,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg value, int bcPosition) throws CompileException {
 	    String className = fieldRefCPEntry.getClassName();
 	    BCClass aClass = classStore.findClass(className);
-	    BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	    BCClassInfo info = aClass.getInfo();
 	    int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	    if (offset == -1) {
@@ -1264,7 +1264,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
     public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg64 value, int bcPosition) throws CompileException {
 	String className = fieldRefCPEntry.getClassName();
 	BCClass aClass = classStore.findClass(className);
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	int offset = info.classLayout.getFieldOffset(fieldRefCPEntry.getMemberName());
 
 	if (offset == -1) {
@@ -1539,7 +1539,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	    if (aClass == null) {
                 System.out.println("Can't find ClassInfo for " + className);
             }
-	    BCClassInfo info = (BCClassInfo) aClass.getInfo();
+	    BCClassInfo info = aClass.getInfo();
 	    int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName() + methodRefCPEntry.getMemberTypeDesc());	    
 
 	    Reg objRef = regs.chooseIntRegister(null);
@@ -1661,7 +1661,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	/* normal IF call */
 	BCClass aClass = classStore.findClass(className);
 	if (aClass == null) Debug.out.println("Can't find ClassInfo for "+className);
-	BCClassInfo info = (BCClassInfo) aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 
 	int index = info.methodTable.getIndex(methodName+interfaceRefCPEntry.getMemberTypeDesc());
 	if (index == 0) {
@@ -1815,7 +1815,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
 	BCClass aClass = classStore.findClass(className);
 	if (aClass == null) Debug.out.println("Can't find ClassInfo for "+className);
-	BCClassInfo info = (BCClassInfo) aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	int index = info.methodTable.getIndex(methodRefCPEntry.getMemberName()+methodRefCPEntry.getMemberTypeDesc());
 
 	Reg objRef = regs.chooseIntRegister(null);
@@ -1910,7 +1910,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	/* normal IF call */
 	BCClass aClass = classStore.findClass(className);
 	if (aClass == null) Debug.out.println("Can't find ClassInfo for "+className);
-	BCClassInfo info = (BCClassInfo) aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 
 	int index = info.methodTable.getIndex(methodName + interfaceRefCPEntry.getMemberTypeDesc());
 	if (index == 0) {
@@ -2298,7 +2298,7 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 
     private int getFieldOffset(FieldRefCPEntry fieldRefCPEntry) {
 	BCClass aClass = classStore.findClass(fieldRefCPEntry.getClassName());
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	return (1  + info.objectLayout.getFieldOffset(fieldRefCPEntry.getMemberName())) * 4;
     }
 

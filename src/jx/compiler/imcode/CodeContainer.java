@@ -425,15 +425,14 @@ public class CodeContainer implements NativeCodeContainer {
         if (current == Opcodes.UNUSED) {
             return null;
         }
-        boolean hasWidePrefix;
+        boolean hasWidePrefix = false;
         int ip = bcStream.getCurrentPosition() - 1;
         if (current == Opcodes.WIDE) {
             hasWidePrefix = true;
             current = bcStream.readUnsignedByte();
             ip = bcStream.getCurrentPosition();
-        } else {
-            hasWidePrefix = false;
         }
+        
         // should we implement the nop operation ?!?
         // public static const int BC.NOP 0x00;
         if (current == Opcodes.NOP) {

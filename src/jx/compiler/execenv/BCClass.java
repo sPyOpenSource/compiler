@@ -13,9 +13,9 @@ public class BCClass implements BCClassInterface {
     
     ClassSource classSource;
     String className;
-    Object info;
+    BCClassInfo info;
 
-    public BCClass(ClassSource classSource, String className, Object info) {
+    public BCClass(ClassSource classSource, String className, BCClassInfo info) {
         this.classSource = classSource;
         this.className = className;
         this.info = info;
@@ -30,12 +30,12 @@ public class BCClass implements BCClassInterface {
     }
 
     @Override
-    public void setInfo(Object info) {
+    public void setInfo(BCClassInfo info) {
 	this.info = info;
     }
 
     @Override
-    public Object getInfo() {
+    public BCClassInfo getInfo() {
 	return info;
     }
 

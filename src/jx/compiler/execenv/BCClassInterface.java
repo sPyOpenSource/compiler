@@ -4,11 +4,12 @@ package jx.compiler.execenv;
 import jx.classfile.constantpool.*; 
 import jx.classfile.*; 
 import jx.compiler.CompileException;
+import jx.compiler.BCClassInfo;
 import java.util.ArrayList;
 
 public interface BCClassInterface {
-    public void setInfo(Object info);
-    public Object getInfo();
+    public void setInfo(BCClassInfo info);
+    public BCClassInfo getInfo();
 
     public boolean isInterface();
     public ClassSource getClassSource();

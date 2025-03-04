@@ -266,7 +266,7 @@ public class CodeFile {
         BinaryCode mc;
         BCMethod   method;
 
-        BCClassInfo info = (BCClassInfo)aClass.getInfo();
+        BCClassInfo info = aClass.getInfo();
 
         strTable.register(aClass.getClassName());
         if (info.superClass != null)
@@ -301,7 +301,7 @@ public class CodeFile {
     }
 
     private void saveToFile(BCClass aClass, StringTable strTable, boolean saveHeader) throws IOException {
-        BCClassInfo info = (BCClassInfo)aClass.getInfo();
+        BCClassInfo info = aClass.getInfo();
         if (saveHeader) { 
             if (verbose) Debug.out.println("***** Saving header class: " + aClass.getClassName());
             strTable.writeStringID(out, aClass.getClassName());

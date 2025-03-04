@@ -119,7 +119,7 @@ public class StaticCompiler implements ClassFinder {
             predefinedClasses[0].addAll(objectMtable);
 
             createClassInfoForClass(objectClass);
-            BCClassInfo oinfo = (BCClassInfo) objectClass.getInfo();
+            BCClassInfo oinfo = objectClass.getInfo();
             oinfo.objectLayout = new FieldLayout();
             oinfo.classLayout = new FieldLayout();
             oinfo.methodTable = new MethodTable(objectMtable, "java/lang/Object");
@@ -285,7 +285,7 @@ public class StaticCompiler implements ClassFinder {
 	List sorted = new List();
 	for(int i = 0; i < all.size(); i++) {
 	    BCClass c = (BCClass) all.get(i);
-	    BCClassInfo info = (BCClassInfo)c.getInfo();
+	    BCClassInfo info = c.getInfo();
 	    BCClass s = info.superClass;
 	    if (s == null) { // Object class
 		sorted.add(c);
@@ -297,7 +297,7 @@ public class StaticCompiler implements ClassFinder {
 	for(int i = 0; i < all.size(); i++) {
 	    BCClass c = (BCClass) all.get(i);
 	    if (c == null) continue;
-	    BCClassInfo info = (BCClassInfo)c.getInfo();
+	    BCClassInfo info = c.getInfo();
 	    BCClass s = info.superClass;
 	    for(int j = 0; j < sorted.size(); j++) {
 		if ((BCClass) all.get(i) == s) {
@@ -313,14 +313,14 @@ public class StaticCompiler implements ClassFinder {
 	    ArrayList classesToAdd = new ArrayList();
 	    classesToAdd.add(c);
 	    all.set(i, null);
-	    c = ((BCClassInfo)c.getInfo()).superClass;
+	    c = c.getInfo().superClass;
 	searchloop:
 	    while(true) {
 		for(int j = i; j < all.size(); j++) {
 		    if (c == (BCClass) all.get(j)) {
 			classesToAdd.add(c);
 			all.set(j, null);
-			c = ((BCClassInfo)c.getInfo()).superClass;
+			c = c.getInfo().superClass;
 			continue searchloop;
 		    }
 		}
@@ -350,7 +350,7 @@ public class StaticCompiler implements ClassFinder {
 	    execEnvNew.setCurrentlyCompiling(aClass);
 
 	    ConstantPool cPool = aClass.getConstantPool(); 
-	    BCClassInfo info = (BCClassInfo)aClass.getInfo();		
+	    BCClassInfo info = aClass.getInfo();		
 
 	    PrintStream imOut = null;
 	    if (options.doPrintIMCode()) {
@@ -485,7 +485,7 @@ public class StaticCompiler implements ClassFinder {
 	Iterator iter = libClassStore.iterator();
 	while(iter.hasNext()) {
 	    BCClass c = (BCClass) iter.next();
-	    BCClassInfo info = (BCClassInfo)c.getInfo();
+	    BCClassInfo info = c.getInfo();
 	    info.methodTable = mtableFactory.getMethodTable(c.getClassName());
 	    //Debug.out.println(" setting mtable for " + c.getClassName());
 	    if (info.methodTable == null) {
@@ -496,7 +496,7 @@ public class StaticCompiler implements ClassFinder {
 	iter = domClassStore.iterator();
 	while(iter.hasNext()) {
 	    BCClass c = (BCClass) iter.next();
-	    BCClassInfo info = (BCClassInfo)c.getInfo();
+	    BCClassInfo info = c.getInfo();
 	    info.methodTable = mtableFactory.getMethodTable(c.getClassName());
 	    if (dumpAll) { 
 		Debug.out.println(" setting mtable for " + c.getClassName());
@@ -543,19 +543,19 @@ public class StaticCompiler implements ClassFinder {
     }
 
     private void computeObjectAndClassLayout(BCClass aClass) {
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	if (info.objectLayout != null && info.classLayout != null) return;
 	info.objectLayout = new FieldLayout();
 	info.classLayout = new FieldLayout();
 	BCClass s = info.superClass;
 
 	if (s != null) {
-	    FieldLayout superLayout = ((BCClassInfo)s.getInfo()).objectLayout;
+	    FieldLayout superLayout = s.getInfo().objectLayout;
 	    if (superLayout == null) {
 		Debug.throwError("FieldLayout of class " + s.getClassName() + " not initialized.");
 	    }
 	    info.objectLayout.addFields(superLayout);
-            superLayout = ((BCClassInfo)s.getInfo()).classLayout;
+            superLayout = s.getInfo().classLayout;
 	    if (superLayout == null) {
 		Debug.throwError("FieldLayout of class " + s.getClassName() + " not initialized.");
 	    }
@@ -584,12 +584,12 @@ public class StaticCompiler implements ClassFinder {
     private void computeMappedLayout(BCClass aClass) {
 	BCClass mapClass = findClass("jx/zero/MappedLittleEndianObject");
 	if (!(mapClass != null && isAssignableTo(aClass, mapClass))) return;
-	BCClassInfo info = (BCClassInfo)aClass.getInfo();
+	BCClassInfo info = aClass.getInfo();
 	if (info.mappedLayout != null) return;
 	info.mappedLayout = new CompactFieldLayout();
 	BCClass s = info.superClass;
 	if (s != null)
-	    info.mappedLayout.addFields(((BCClassInfo)aClass.getInfo()).mappedLayout);
+	    info.mappedLayout.addFields(aClass.getInfo().mappedLayout);
 	ClassSource source = aClass.getClassSource();
 	FieldData[] fields = source.getFields();
         for (FieldData field : fields) {

@@ -108,7 +108,7 @@ public class ClassStore implements ClassFinder {
 	//Debug.out.println("IMPLI: "+ifClass+"  "+clClass);
 	if (! ifClass.isInterface()) return false;
 	if (ifClass == clClass) return true;	
-	BCClassInfo info = (BCClassInfo)clClass.getInfo();
+	BCClassInfo info = clClass.getInfo();
         for (BCClass intf : info.interfaces) {
             //Debug.out.println("   IMPLICHECK: "+ifClass+"  "+info.interfaces[i]);
             if (isAssignableTo(intf, ifClass)) {
@@ -136,7 +136,7 @@ public class ClassStore implements ClassFinder {
 		//System.out.println("SUBCLASS: "+bc.getClassName()+", "+sc.getClassName());
 		return true;	
 	    }
-	    BCClassInfo info = (BCClassInfo)testClass.getInfo();
+	    BCClassInfo info = testClass.getInfo();
 	    testClass = info.superClass;
 	}
 	//System.out.println("NOT A SUBCLASS: "+bc.getClassName()+", "+sc.getClassName());

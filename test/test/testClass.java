@@ -75,6 +75,7 @@ public class testClass {
             Logger.getLogger(testClass.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     @Test
     public void testZip() throws FileNotFoundException {
         String file2 = "app/isodir/code/init2.jll";
@@ -106,6 +107,7 @@ public class testClass {
             fos.close();
         } catch (IOException e){}
     }
+    
     @Test
     public void testGzipFile() {
         try {
@@ -125,6 +127,7 @@ public class testClass {
             Logger.getLogger(testClass.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
     @Test
     public void testISO() {
         System.out.println("Start");
