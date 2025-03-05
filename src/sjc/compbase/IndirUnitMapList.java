@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.memory.ImageContainer.Location;
+
 
 /**
  * IndirUnitMapList: list of interfaces
@@ -36,7 +38,7 @@ public class IndirUnitMapList {
   public IndirUnitMapList next;
   public Mthd[] map; //needed for generating the corresponding SIntfMap
   public boolean outputGenerated; //needed for generating the corresponding SIntfMap
-  public Object outputLocation; //needed for generating the corresponding SIntfMap
+  public Location outputLocation; //needed for generating the corresponding SIntfMap
   
   public IndirUnitMapList(Unit ii, IndirUnitMapList in) {
     intf=ii;

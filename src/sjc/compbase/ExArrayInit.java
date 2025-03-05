@@ -19,6 +19,7 @@
 package sjc.compbase;
 
 import sjc.debug.CodePrinter;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * ExArrayInit: expression containing constant array initialization
@@ -151,7 +152,7 @@ public class ExArrayInit extends ExConstInitObj {
 
   public boolean generateObject(Context ctx, boolean doFlash) {
     int arrOff;
-    Object arr, extType;
+    Location arr, extType;
     boolean objElements;
     
     if (inFlash!=doFlash) return true; //don't do it if not in correct phase

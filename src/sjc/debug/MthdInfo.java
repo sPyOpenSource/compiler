@@ -27,6 +27,7 @@ import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * MthdInfo: symbol information writer containing method information
@@ -125,7 +126,8 @@ public class MthdInfo extends DebugWriter {
   public void markUnitAsNotUsed() {
   }
   
-  public void hasUnitOutputLocation(Object outputLocation) {
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {
   }
   
   public void hasUnitFields(int clssRelocTableEntries, int clssScalarTableSize,

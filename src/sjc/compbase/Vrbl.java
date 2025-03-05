@@ -113,8 +113,9 @@ public class Vrbl extends AccVar {
 	  return init;
 	}
 	
+  @Override
 	public ExConstInitObj getConstInitObj(Context ctx) {
-	  return init!=null && init.isCompInitConstObject(ctx) ? init.getConstInitObj(ctx) : null;
+	  return init != null && init.isCompInitConstObject(ctx) ? init.getConstInitObj(ctx) : null;
 	}
 	
   public boolean enterSize(int loc, Context ctx) {

@@ -23,6 +23,7 @@ import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * DebugWriter: interface for debug-writers
@@ -51,7 +52,7 @@ public abstract class DebugWriter {
   //unit handling
   public abstract void startUnit(String unitType, Unit unit);
   public abstract void markUnitAsNotUsed();
-  public abstract void hasUnitOutputLocation(Object outputLocation);
+  public abstract void hasUnitOutputLocation(Location outputLocation);
   public abstract void hasUnitFields(int clssRelocTableEntries, int clssScalarTableSize,
       int statRelocTableEntries, int statScalarTableSize,
       int instRelocTableEntries, int instScalarTableSize, int instIndirScalarTableSize);

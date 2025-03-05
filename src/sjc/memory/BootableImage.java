@@ -131,7 +131,7 @@ public class BootableImage extends ImageContainer {
   }
   
   @Override
-  public Object allocate(int scalarSize, int indirScalarSize, int relocEntries, Object typeLoc) {
+  public Location allocate(int scalarSize, int indirScalarSize, int relocEntries, Location typeLoc) {
     int relocSize, size;
     OutputLocation ret;
     MemoryObjectDebugInfo modi;
@@ -193,16 +193,15 @@ public class BootableImage extends ImageContainer {
   }
   
   @Override
-  public Object allocateArray(int entries, int dim, int entrySize, int stdType, Object extTypeLoc) {
-    Object obj;
+  public Location allocateArray(int entries, int dim, int entrySize, int stdType, Location extTypeLoc) {
+    Location obj;
     Unit array = ctx.rteSArray;
     
     if (dim > 1 || entrySize < 0) {
       obj = allocate(
         array.instScalarTableSize, array.instIndirScalarTableSize,
         array.instRelocTableEntries + entries * ctx.arch.relocBytes, array.outputLocation);
-    }
-    else {
+    } else {
       if (stdType == 0) return null; //positive entrySize requires stdType to be set
       if (ctx.indirScalars) obj = allocate(
           array.instScalarTableSize, array.instIndirScalarTableSize + entries * entrySize,

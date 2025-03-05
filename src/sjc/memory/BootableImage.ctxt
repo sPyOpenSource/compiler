@@ -1,0 +1,24 @@
+#BlueJ class context
+comment0.target=BootableImage
+comment0.text=\n\ BootableImage\:\ container\ of\ a\ to\ be\ compiled\ image\n\ \n\ @author\ S.\ Frenz\n\ @version\ 151108\ added\ support\ for\ debug\ lister\n\ \ version\ 120228\ moved\ getNewOutputLocation\ to\ ImageContainer\n\ \ version\ 120227\ cleaned\ up\ "package\ sjc."\ typo\n\ \ version\ 101124\ moved\ memBlockLen\ increase\ to\ allow\ memory\ access\ check\n\ \ version\ 100619\ adde\ call\ to\ architecture\ if\ headerData\ is\ given\n\ \ version\ 100510\ fixed\ too\ restrictive\ allocateArray\n\ \ version\ 100507\ renamed\ misleading\ parameters\ in\ newArray\n\ \ version\ 100112\ added\ support\ for\ reportInternalMemoryError\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 080202\ added\ support\ for\ noSizeScalars-flag\n\ \ version\ 070920\ fixed\ bug\ in\ finalizeImage\n\ \ version\ 070918\ added\ support\ for\ multidimensional\ arrays\n\ \ version\ 070729\ added\ image\ block\ size\ check\ for\ indirect\ scalar\ allocation\n\ \ version\ 070703\ replaced\ statistic\ method\ by\ a\ more\ versatile\ one\n\ \ version\ 070628\ changed\ stackClearBits\ to\ allocClearBits\n\ \ version\ 070615\ added\ method\ to\ request\ the\ indirect\ part\ of\ the\ last\ allocated\ object\n\ \ version\ 070528\ added\ statistic\ method\n\ \ version\ 070526\ adopted\ removal\ of\ Context.rteSArray*\ short-paths\n\ \ version\ 070506\ added\ support\ for\ runtime\ environment\ without\ objects\n\ \ version\ 070504\ added\ support\ for\ self-allocation\ of\ ctx.rteSClassDesc\ without\ backfixing\n\ \ version\ 070331\ added\ support\ for\ additional\ indirect\ scalars\ in\ SArray\n\ \ version\ 070127\ optimized\ access\ to\ err-flag\n\ \ version\ 061222\ option\ to\ have\ header\ replaced\n\ \ version\ 061220\ fixed\ entering\ of\ type.outputAddr\n\ \ version\ 061217\ made\ header\ optional\n\ \ version\ 061128\ added\ enterInitObject\n\ \ version\ 060902\ moved\ to\ memory\ package\ to\ support\ bootstrapped\ compilation\n\ \ version\ 060817\ removed\ abstraction\ to\ make\ compression\ easier\n\ \ version\ 060817\ added\ version\ history\n
+comment1.params=size\ base\ iSH\ headerData\ ictx
+comment1.target=void\ init(int,\ int,\ boolean,\ byte[],\ sjc.compbase.Context)
+comment10.params=
+comment10.target=MemoryObjectDebugInfo\ getFirstDebugListerObject()
+comment2.params=startUnitLoc\ startMthdCodeLoc\ relCodeStart
+comment2.target=void\ finalizeImage(java.lang.Object,\ java.lang.Object,\ int)
+comment3.params=appendSig
+comment3.target=byte[]\ getInfoBlock(java.lang.String)
+comment4.params=source
+comment4.target=void\ allocationDebugHint(java.lang.Object)
+comment5.params=
+comment5.target=void\ memError()
+comment6.params=loc
+comment6.target=void\ enterInitObject(java.lang.Object)
+comment7.params=
+comment7.target=int\ getCurrentAllocAmountHint()
+comment8.params=
+comment8.target=void\ reportInternalMemoryError()
+comment9.params=
+comment9.target=void\ enableDebugListerSupport()
+numComments=11

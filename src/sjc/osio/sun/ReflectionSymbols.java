@@ -35,6 +35,7 @@ import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;
 import sjc.symbols.SymbolInformer;
 
@@ -276,7 +277,7 @@ public class ReflectionSymbols extends SymbolInformer {
      * @param arrayRef the Sun-Java-array to be converted
      * @return a memory-interface-corresponding output location of the sjc-array
      */
-    private Object createSJCArray(Object arrayRef) {
+    private Location createSJCArray(Object arrayRef) {
       if (sjcClass.inlArr != null) {
         ctx.out.println("inline-arrays currently not supported in symbol generator");
         ctx.err = true;
@@ -284,7 +285,7 @@ public class ReflectionSymbols extends SymbolInformer {
       }
       int arrayLength = Array.getLength(arrayRef), arrayType;
       String arrayTypeName = arrayRef.getClass().getName();
-      Object outputLocation, indirOutputLocation;
+      Location outputLocation, indirOutputLocation;
       //handle 1-dimensional arrays
       if (arrDim(arrayTypeName) != 1) {
         ctx.out.println("multi-dimensional arrays currently not supported");
@@ -401,7 +402,7 @@ public class ReflectionSymbols extends SymbolInformer {
       Class<?> clss = instance.getClass();
       String fieldName, fieldType;
       int i, offset;
-      Object location, targetAddr, indirAddr;
+      Location location, targetAddr, indirAddr;
       Object listAccess, value;
       VrblOffset variable;
       //check whether this instance has already been transformed

@@ -19,6 +19,7 @@
 package sjc.frontend.prepobj;
 
 import sjc.compbase.*;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * ExObjInit: to be created object 
@@ -119,7 +120,7 @@ public class ExObjInit extends ExConstInitObj {
   
   @Override
   public boolean generateObject(Context ctx, boolean doFlash) {
-    Object obj, objAcc;
+    Location obj, objAcc;
     ExConstInitObj initObj;
     int off;
     ExObjInitField var;

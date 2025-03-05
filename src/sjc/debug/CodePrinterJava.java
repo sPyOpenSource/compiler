@@ -37,6 +37,7 @@ import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;
 
 /**
@@ -727,7 +728,8 @@ public class CodePrinterJava extends DebugWriter {
   public void markUnitAsNotUsed() {
   }
   
-  public void hasUnitOutputLocation(Object outputLocation) {
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {
   }
   
   public void hasUnitFields(int clssRelocTableEntries, int clssScalarTableSize,

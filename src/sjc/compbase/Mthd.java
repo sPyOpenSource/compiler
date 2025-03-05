@@ -19,6 +19,7 @@
 package sjc.compbase;
 
 import sjc.debug.CodePrinter;
+import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;
 
 /**
@@ -89,7 +90,7 @@ public abstract class Mthd extends Token {
   //required fields for interface-checks, overloading and code-generation
   public int parSize, parCnt, varSize, retRegType, codeSize, stmtCnt;
   public boolean inGenOutput;
-  public Object outputLocation;
+  public Location outputLocation;
   //required fields for line-number information
   public int[] lineInCodeOffset;
   //required field for attached assembler output
@@ -240,7 +241,7 @@ public abstract class Mthd extends Token {
     }
   }
   
-  public void enterOutputAddr(Object validOutputLocation, Context ctx) {
+  public void enterOutputAddr(Location validOutputLocation, Context ctx) {
     AddrList toRelease;
     
     outputLocation = validOutputLocation;

@@ -18,6 +18,7 @@
 
 package sjc.memory;
 
+import sjc.memory.ImageContainer.Location;
 import sjc.osio.BinWriter;
 
 /**
@@ -77,12 +78,12 @@ public abstract class MemoryImage {
     while (i < size) putByte(loc, offset++, arr[i++]);
   }
   
-  public Object allocate(int scalarSize, int indirScalarSize, int relocEntries, Object typeLoc) {
+  public Location allocate(int scalarSize, int indirScalarSize, int relocEntries, Location typeLoc) {
     //not all children have to implement this, return "no object allocated"
     return null;
   }
   
-  public Object allocateArray(int entries, int dim, int entrySize, int stdType, Object extTypeLoc) {
+  public Location allocateArray(int entries, int dim, int entrySize, int stdType, Location extTypeLoc) {
     //not all children have to implement this, return "no array allocated"
     return null;
   }
@@ -99,12 +100,12 @@ public abstract class MemoryImage {
     //not all children have to implement this, do nothing
   }
   
-  public Object getStructOutputObject(Object loc, int offset) {
+  public Location getStructOutputObject(Object loc, int offset) {
     //not all children have to implement this, do nothing
     return null;
   }
   
-  public Object getIndirScalarObject(Object loc) {
+  public Location getIndirScalarObject(Location loc) {
     //not all children have to implement this, return "no indirect address"
     return null;
   }

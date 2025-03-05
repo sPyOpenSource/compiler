@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.memory.ImageContainer.Location;
+
 /**
  * ExConstNew: container for "new" that can be done at compile-time, created by ExNew
  * 
@@ -73,7 +75,7 @@ public class ExConstNew extends ExConstInitObj {
   }
   
   public boolean generateObject(Context ctx, boolean doFlash) {
-    Object extType;
+    Location extType;
     boolean objElements;
     
     if (inFlash!=doFlash) return true;

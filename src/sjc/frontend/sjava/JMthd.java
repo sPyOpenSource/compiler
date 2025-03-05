@@ -36,6 +36,7 @@ import sjc.compbase.UnitList;
 import sjc.compbase.VrblList;
 import sjc.debug.CodePrinter;
 import sjc.memory.ImageContainer;
+import sjc.memory.ImageContainer.Location;
 import sjc.output.HexOut;
 
 /**
@@ -497,7 +498,7 @@ public class JMthd extends Mthd {
       System.out.println(name);
     int mthdID = 0;
     VrblList inits;
-    Object obj;
+    Location obj;
     
     if (redirect != null) {
       if ((obj = redirect.outputLocation) == null) { //redirection active
@@ -549,7 +550,7 @@ public class JMthd extends Mthd {
       ctx.mem.allocationDebugHint(this);
       //copy generated code and cleanup tokens
       ctx.arch.copyMethodCode(this, obj, ctx.codeStart);
-      int location = ((ImageContainer.Location)obj).address - ctx.mem.getBaseAddress();
+      int location = obj.address - ctx.mem.getBaseAddress();
       /*for(int i = 0; i < codeSize; i++)
         System.out.print(ctx.mem.memBlock[location + i]+" ");*/
       System.out.println(codeSize);

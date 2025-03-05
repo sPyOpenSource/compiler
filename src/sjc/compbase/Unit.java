@@ -21,6 +21,7 @@ package sjc.compbase;
 import sjc.osio.TextPrinter;
 import sjc.relations.RelationElement;
 import sjc.debug.DebugWriter;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * Unit: basic abstraction for a class or interface 
@@ -101,7 +102,7 @@ public abstract class Unit extends Token {
   public QualIDList extsImplIDList; //extended/implemented indirect units
   public String name;
   public int modifier, marker;
-  public Object outputLocation;
+  public Location outputLocation;
   public boolean explConstr, explStdConstr; //needs or has explicit constructors, has expl std-constr
   public Vrbl vars, inlArr; //declared vars, special inline var
   public VrblList instInitVars; //declared and initialized vars that have to coded in constructor
@@ -280,7 +281,7 @@ public abstract class Unit extends Token {
     return extsID.unitDest.searchMethod(cmp, ctx);
   }
   
-  protected boolean allocateDescriptor(int scalarSize, int relocEntries, Object typeLoc, Context ctx) {
+  protected boolean allocateDescriptor(int scalarSize, int relocEntries, Location typeLoc, Context ctx) {
     //check if already prepared
     if (outputLocation!=null) return true;
     //allocate space for class-descriptor
@@ -294,21 +295,20 @@ public abstract class Unit extends Token {
   }
   
   public boolean genConstObj(Context ctx, boolean secondRun) {
-    ExConstInitObj obj=constObjList;
-    while (obj!=null) {
-      if (obj.dependsOn==null || (obj.dependsOn.modifier&Modifier.M_NDCODE)!=0) {
+    ExConstInitObj obj = constObjList;
+    while (obj != null) {
+      if (obj.dependsOn == null || (obj.dependsOn.modifier & Modifier.M_NDCODE) != 0) {
         if (!obj.generateObject(ctx, secondRun)) {
-          outputError=true;
+          outputError = true;
           return false;
         }
         if (ctx.dynaMem) ctx.arch.putRef(outputLocation, obj.dest.relOff,
             obj.outputLocation, 0);
-      }
-      else if (ctx.verbose) {
+      } else if (ctx.verbose) {
         obj.printPos(ctx, "skipping constant object in unit ");
         ctx.out.println(name);
       }
-      obj=obj.nextConstInit;
+      obj = obj.nextConstInit;
     }
     //everything done
     return true;
@@ -331,20 +331,20 @@ public abstract class Unit extends Token {
     ExConstInitObj obj;
     
     dbw.startVariableList();
-    var=vars;
-    while (var!=null) {
+    var = vars;
+    while (var != null) {
       dbw.hasVariable(var);
-      var=var.nextVrbl;
+      var = var.nextVrbl;
     }
     dbw.endVariableList();
     dbw.startStatObjList();
-    obj=constObjList;
-    while (obj!=null) {
-      if (obj.dependsOn==null || (obj.dependsOn.modifier&Modifier.M_NDCODE)!=0) {
+    obj = constObjList;
+    while (obj != null) {
+      if (obj.dependsOn == null || (obj.dependsOn.modifier & Modifier.M_NDCODE) != 0) {
         dbw.hasStatObj(ctx.dynaMem ? obj.dest.relOff : -1, obj.outputLocation, obj.getDebugValue(), obj.inFlash);
       }
       else dbw.hasStatObj(-1, null, obj.getDebugValue(), false);
-      obj=obj.nextConstInit;
+      obj = obj.nextConstInit;
     }
     dbw.endStatObjList();
   }

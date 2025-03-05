@@ -108,12 +108,12 @@ public class ImageContainer extends MemoryImage {
   }
   
   @Override
-  public Object getIndirScalarObject(Object loc) {
+  public Location getIndirScalarObject(Location loc) {
     return loc instanceof OutputLocation ? ((OutputLocation)loc).indirObj : null;
   }
   
   @Override
-  public Object getStructOutputObject(Object loc, int offset) {
+  public Location getStructOutputObject(Object loc, int offset) {
     return new StructLocation(getAddrAsInt(loc, offset));
   }
   

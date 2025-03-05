@@ -25,6 +25,7 @@ import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * CodeInfo: symbol information writer containing code information
@@ -76,7 +77,8 @@ public class CodeInfo extends DebugWriter {
   public void markUnitAsNotUsed() {
   }
   
-  public void hasUnitOutputLocation(Object outputLocation) {
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {
   }
   
   public void hasUnitFields(int clssRelocTableEntries, int clssScalarTableSize,

@@ -21,6 +21,7 @@ package sjc.symbols;
 import sjc.osio.TextBuffer;
 import sjc.osio.TextPrinter;
 import sjc.compbase.*;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * RawSymbols: generate output for all packages, units and methods; append byte stream to image
@@ -73,7 +74,7 @@ public class RawSymbols extends SymbolInformer {
     Unit myUnit;
     Vrbl myVar;
     StringList list;
-    Object addr;
+    Location addr;
     int off=0, addrOff;
     
     //remember Context

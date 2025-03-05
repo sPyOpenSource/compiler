@@ -26,6 +26,7 @@ import sjc.compbase.StringList;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 import sjc.osio.BinWriter;
 import sjc.osio.TextBuffer;
 
@@ -1029,7 +1030,8 @@ public class Dwarf extends DebugWriter {
   public void markUnitAsNotUsed() {
   }
 
-  public void hasUnitOutputLocation(Object outputLocation) {
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {
   }
 
   public void hasUnitFields(int clssRelocTableEntries, int clssScalarTableSize,

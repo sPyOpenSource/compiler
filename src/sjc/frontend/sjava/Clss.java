@@ -20,6 +20,7 @@ package sjc.frontend.sjava;
 
 import sjc.compbase.*;
 import sjc.debug.DebugWriter;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * Clss: class-dependent part of java-units
@@ -1287,7 +1288,7 @@ public class Clss extends JUnit {
   
   private boolean genIntfOutput(IndirUnitMapList current, Context ctx) {
     int i, cnt, base;
-    Object intfLoc;
+    Location intfLoc;
     
     //check if owner is generated
     if (!current.intf.genOutput(ctx)) return false;

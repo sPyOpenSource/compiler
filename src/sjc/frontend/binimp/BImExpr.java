@@ -21,6 +21,7 @@ package sjc.frontend.binimp;
 import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.frontend.ExVal;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * BImExpr: dummy expression pointing to binary imported data
@@ -93,11 +94,11 @@ public class BImExpr extends ExConstInitObj {
   
   @Override
   public boolean generateObject(Context ctx, boolean doFlash) {
-    Object arr;
+    Location arr;
     int off, arrOff;
     
-    if (inFlash!=doFlash) return true;
-    if ((outputLocation=arr=ctx.mem.allocateArray(data.length, 1, 1, StdTypes.T_BYTE, null))==null) {
+    if (inFlash != doFlash) return true;
+    if ((outputLocation = arr = ctx.mem.allocateArray(data.length, 1, 1, StdTypes.T_BYTE, null)) == null) {
       ctx.out.println("error in allocating memory while creating binary imported array");
       return false;
     }

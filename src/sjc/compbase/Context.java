@@ -27,6 +27,7 @@ import sjc.debug.DebugLister;
 import sjc.debug.DebugWriter;
 import sjc.frontend.FrontAdmin;
 import sjc.memory.BootableImage;
+import sjc.memory.ImageContainer.Location;
 import sjc.memory.MemoryImage;
 
 import sjc.osio.OsIO;
@@ -1580,9 +1581,9 @@ public class Context {
     v.println();
   }
   
-  public Object allocateString(String what) {
+  public Location allocateString(String what) {
     int off, len, tmp, destOff=0;
-    Object str, arr, dest;
+    Location str, arr, dest;
     
     if (what == null || err) return null;
     len = what.length();
@@ -1637,8 +1638,8 @@ public class Context {
     return str;
   }
   
-  public Object allocateIntArray(int[] array) {
-    Object arrayObj = null, arrayAcc;
+  public Location allocateIntArray(int[] array) {
+    Location arrayObj = null, arrayAcc;
     int len, off, arrOff;
     
     if (array != null) {
@@ -1655,10 +1656,10 @@ public class Context {
     return arrayObj;
   }
   
-  public Object allocateMultiArray(int curDim, FilledParam sizes,
-      int entrySize, int stdType, Object extTypeLoc) {
+  public Location allocateMultiArray(int curDim, FilledParam sizes,
+      int entrySize, int stdType, Location extTypeLoc) {
     int i, max, arrOff;
-    Object obj;
+    Location obj;
     
     if (sizes == null || sizes.expr == null) return null;
     max = sizes.expr.getConstIntValue(this);

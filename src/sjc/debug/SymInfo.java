@@ -29,6 +29,7 @@ import sjc.compbase.StringList;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 
 import sjc.osio.BinWriter;
 import sjc.osio.TextPrinter;
@@ -189,7 +190,8 @@ public class SymInfo extends DebugWriter {
     out.println("never used");
   }
   
-  public void hasUnitOutputLocation(Object outputLocation) {
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {
     if (outputLocation!=null) {
       out.print("at ");
       out.printHexFix(ctx.mem.getAddrAsInt(outputLocation, 0), 8);
@@ -221,6 +223,7 @@ public class SymInfo extends DebugWriter {
     out.println("- added vars:");
   }
   
+  @Override
   public void hasVariable(Vrbl var) {
     switch (var.location) {
       case AccVar.L_CONST: //resolved constant
@@ -276,7 +279,7 @@ public class SymInfo extends DebugWriter {
       out.print(SKIPCAND);
     }
     else printMinimumAccessLevel(var.modifier);
-    if (var.location==AccVar.L_CONST && var.init!=null && var.init.isCompInitConstObject(ctx)) {
+    if (var.location == AccVar.L_CONST && var.init != null && var.init.isCompInitConstObject(ctx)) {
       out.print(" (const init obj at 0x");
       out.printHexFix(ctx.mem.getAddrAsInt(var.getConstInitObj(ctx).outputLocation, 0), 8);
       if (var.getConstInitObj(ctx).inFlash) out.print(" in Flash");

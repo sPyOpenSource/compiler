@@ -28,6 +28,7 @@ import sjc.compbase.Pack;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.Vrbl;
+import sjc.memory.ImageContainer.Location;
 
 /**
  * RelationInfo: Relation information writer
@@ -93,7 +94,8 @@ public class RelationInfo extends DebugWriter {
       int instRelocTableEntries, int instScalarTableSize,
       int instIndirScalarTableSize) {}
 
-  public void hasUnitOutputLocation(Object outputLocation) {}
+  @Override
+  public void hasUnitOutputLocation(Location outputLocation) {}
 
   public void hasVariable(Vrbl var) {}
 

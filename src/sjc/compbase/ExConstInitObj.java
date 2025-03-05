@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.memory.ImageContainer.Location;
+
 /**
  * ExConstInitObj: parent of constant objects created at compile time
  * 
@@ -35,7 +37,7 @@ package sjc.compbase;
  */
 
 public abstract class ExConstInitObj extends ExAccVrbl {
-  public Object outputLocation;
+  public Location outputLocation;
   public Mthd dependsOn; //if set, check if method code is generated
   public ExConstInitObj nextConstInit;
   public boolean inFlash;
@@ -46,8 +48,8 @@ public abstract class ExConstInitObj extends ExAccVrbl {
   public ExConstInitObj(int fid, int il, int ic) {
     super(fid, il, ic);
     Vrbl tmp;
-    dest=tmp=new Vrbl(null, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT|Modifier.MF_ISWRITTEN, fid, il, ic);
-    tmp.init=this;
+    dest = tmp = new Vrbl(null, Modifier.M_PUB | Modifier.M_FIN | Modifier.M_STAT | Modifier.MF_ISWRITTEN, fid, il, ic);
+    tmp.init = this;
   }
   
   public boolean isCompInitConstObject(Context ctx) {
