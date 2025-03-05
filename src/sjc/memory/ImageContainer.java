@@ -39,8 +39,8 @@ import sjc.osio.BinWriter;
 public class ImageContainer extends MemoryImage {
   private long relocation;
   
-  protected static class Location {
-    protected int address;
+  public static class Location {
+    public int address;
     protected Location(int ia) { address = ia; }
   }
   protected static class OutputLocation extends Location {
@@ -51,7 +51,6 @@ public class ImageContainer extends MemoryImage {
     protected StructLocation(int ia) { super(ia); }
   }
   
-  public byte[] memBlock;
   public int memBlockLen;
   public int baseAddress, startUnit, startCode;
   

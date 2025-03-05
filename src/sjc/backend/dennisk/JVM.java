@@ -95,30 +95,33 @@ public class JVM extends Architecture {
   public final static int I_CLA      = 0x2C; //clear Accu
   public final static int I_CLY      = 0x2E; //clear Y-Register
   
-  public final static int I_LDAimm   = 0x2a; //load Accu immediate
-  public final static int I_LDXimm   = 0x2b; //load X-Register immediate
-  public final static int I_LDYimm   = 0x2c; //load Y-Register immediate
-  public final static int I_LDAzp    = 0x31; //load content of RAM addressed by ZP (8bit) into Accu
-  public final static int I_LDAizpy  = 0x34; //load content of RAM indirectly addressed by 16bit pointer stored in zeropage plus Y into Accu
-  public final static int I_LDAabsx  = 0x35; //load content of RAM addressed by abs (16bit) plus X into Accu
-  public final static int I_LDXzp    = 0x51; //load content of RAM addressed by ZP (8bit) into X-Register
-  public final static int I_LDYzp    = 0x58; //load content of RAM addressed by ZP (8bit) into Y-Register
-  public final static int I_LPA      = 0xEA; //load content of RAM addressed by X- and Y-Register into Accu and increment 16 bit pointer
-  public final static int I_MOVzpimm = 0x48; //load data immediate to zeropage
+  public final static int I_LDAimm   = 0x2a; //aload_0
+  public final static int I_LDXimm   = 0x15; //iload
+  public final static int I_LDYimm   = 0x1b; //iload_0
+  public final static int I_LDAzp    = 0x1c; //iload_1
+  public final static int I_LDAizpy  = 0x1d; //iload_2
+  
+  public final static int I_LDAabsx  = 0x16; //lload
+  public final static int I_LDXzp    = 0x17; //fload
+  public final static int I_LDYzp    = 0x18; //dload
+  public final static int I_LPA      = 0x19; //aload
+  public final static int I_MOVzpimm = 0x2e; //iaload
   public final static int I_MOVzpzp  = 0x47; //copy content of RAM addressed by ZP2 (8bit) into RAM addressed by ZP1 (8bit)
-  public final static int I_PLA      = 0x0C; //load Accu from stack
-  public final static int I_PLX      = 0x0D; //load X-Register from stack
-  public final static int I_POPzp    = 0xAA; //load data from stack and write it into RAM addressed by ZP (8bit)
+  public final static int I_PLA      = 0x2f; //laload
+  public final static int I_PLX      = 0x30; //faload
+  public final static int I_POPzp    = 0x31; //daload
   
-  public final static int I_STAzp    = 0x41; //store Accu into RAM addressed by ZP (8bit)
-  public final static int I_STAabsx  = 0x45; //store Accu into RAM addressed by abs (16bit) plus X
-  public final static int I_STAizpy  = 0x44; //store Accu into RAM indirectly addressed by 16bit pointer stored in zeropage plus Y
-  public final static int I_STXzp    = 0x54; //store X-Register into RAM addressed by ZP (8bit)
-  public final static int I_STYzp    = 0x5B; //store Y-Register into RAM addressed by ZP (8bit
-  public final static int I_SPA      = 0x3A; //store Accu into RAM addressed by X- and Y-Register and increment 16 bit pointer
+  public final static int I_STAzp    = 0x36; //istore
+  public final static int I_STAabsx  = 0x3c; //istore_0
+  public final static int I_STAizpy  = 0x3d; //istore_1
+  public final static int I_STXzp    = 0x3e; //istore_2
   
-  public final static int I_PHA      = 0x11; //push Accu to stack
-  public final static int I_PHX      = 0x09; //push X-Register to stack
+  public final static int I_STYzp    = 0x37; //lstore
+  public final static int I_SPA      = 0x38; //fstore
+  
+  public final static int I_PHA      = 0x11; //sipush
+  public final static int I_PHX      = 0x10; //bipush
+  
   public final static int I_PUSHimm  = 0xBA; //push immediate 8 bit data to stack
   public final static int I_PUSHzp   = 0x9A; //push content of RAM addressed by ZP (8bit) to stack
   public final static int I_PUSAimm  = 0xCA; //push immediate 16 bit data to stack
@@ -138,35 +141,35 @@ public class JVM extends Architecture {
   public final static int I_TXY      = 0x24; //transfer X-Register into Y-Register
   public final static int I_TYX      = 0x25; //transfer Y-Register into X-Register
   
-  public final static int I_RTS      = 0xB1; //return from subroutine
+  public final static int I_RTS      = 0xB1; //return
   
-  public final static int I_ADCimm   = 0x60; //add immediate data to Accu
-  public final static int I_ADCzp    = 0x81; //add content of RAM addressed by ZP (8bit) to Accu
-  public final static int I_SBCimm   = 0x64; //subtract immediate data from Accu
-  public final static int I_SBCzp    = 0x91; //subtract content of RAM addressed by ZP (8bit) from Accu
+  public final static int I_ADCimm   = 0x60; //iadd
+  public final static int I_ADCzp    = 0x63; //dadd
+  public final static int I_SBCimm   = 0x64; //isub
+  public final static int I_SBCzp    = 0x65; //lsub
   
-  public final static int I_ANDimm   = 0x7E; //logical AND with Accu and immediate data
-  public final static int I_ANDzp    = 0xD1; //logical AND with Accu and content of RAM addressed by ZP (8bit)
-  public final static int I_ORimm    = 0x80; //logical OR with Accu and immediate data
-  public final static int I_ORzp     = 0xE1; //logical OR with Accu and content of RAM addressed by ZP (8bit)
+  public final static int I_ANDimm   = 0x7E; //iAND
+  public final static int I_ANDzp    = 0x7f; //lAND
+  public final static int I_ORimm    = 0x80; //iOR
+  public final static int I_ORzp     = 0x81; //lOR
   public final static int I_EORimm   = 0x82; //logical AND with Accu and immediate data
-  public final static int I_EORzp    = 0xF1; //logical exclusive OR with Accu and content of RAM addressed by ZP (8bit)
+  public final static int I_EORzp    = 0x83; //ixor
   public final static int I_BITzpimm = 0x5E; //logical AND with RAM (ZP = 8bit address) and immediate data
 
-  public final static int I_MULimm   = 0x68; //multiply Accu with immediate data
-  public final static int I_MULzp    = 0xA1; //multiply Accu with content of RAM addressed by ZP (8bit)
+  public final static int I_MULimm   = 0x68; //imul
+  public final static int I_MULzp    = 0x6b; //dmul
   
-  public final static int I_SHL      = 0x78; //shift left Accu, highest bit will be stored in carry
-  public final static int I_SHLzp    = 0xAC; //shift left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
-  public final static int I_SHR      = 0x7A; //shift right Accu, lowest bit will be stored in carry
-  public final static int I_SHRzp    = 0xBC; //shift right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
+  public final static int I_SHL      = 0x78; //ishift left
+  public final static int I_SHLzp    = 0x79; //lshift left
+  public final static int I_SHR      = 0x7A; //ishift right
+  public final static int I_SHRzp    = 0x7B; //lshift right
   
   public final static int I_ROL      = 0xEB; //rotate left Accu, highest bit will be stored in carry
   public final static int I_ROLzp    = 0xDC; //rotate left the content of RAM addressed by ZP (8bit), highest bit will be stored in carry
   public final static int I_ROR      = 0xFB; //rotate right Accu, lowest bit will be stored in carry
   public final static int I_RORzp    = 0xEC; //rotate right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
   
-  public final static int I_CMPimm   = 0xA5; //compare Accu with immediate data
+  public final static int I_CMPimm   = 0x94; //compare Accu with immediate data
   public final static int I_CMPzp    = 0x9F; //compare Accu with content of RAM addressed by ZP (8bit)
   public final static int I_CAY      = 0x69; //compare Accu with Y-Register
   
@@ -308,15 +311,15 @@ public class JVM extends Architecture {
       }
     }
     //second: try to alloc everywhere normally
-    if ((ret=freeRegSearch((RegMaskGP&~usedRegs&~(avoidReg1|avoidReg2))|reUseReg, type))!=0) {
-      usedRegs|=(nextAllocReg=ret);
+    if ((ret = freeRegSearch((RegMaskGP & ~usedRegs & ~(avoidReg1 | avoidReg2)) | reUseReg, type)) != 0) {
+      usedRegs |= (nextAllocReg = ret);
       return 0; //nothing has to be freed, use newly allocated registers
     }
     //third: try to free a register
-    if ((ret=freeRegSearch((RegMaskGP&~(avoidReg1|avoidReg2))|reUseReg, type))!=0) {
-      toStore=storeReg(ret);
+    if ((ret = freeRegSearch((RegMaskGP & ~(avoidReg1 | avoidReg2)) | reUseReg, type)) != 0) {
+      toStore = storeReg(ret);
       deallocReg(toStore);
-      usedRegs|=(nextAllocReg=ret);
+      usedRegs |= (nextAllocReg = ret);
       return toStore;
     }
     //no possibility found to free registers
@@ -325,8 +328,8 @@ public class JVM extends Architecture {
   }
   
   protected void deallocReg(int regs) {
-    usedRegs&=~regs;
-    writtenRegs&=~regs;
+    usedRegs &= ~regs;
+    writtenRegs &= ~regs;
   }
   
   @Override
@@ -336,28 +339,28 @@ public class JVM extends Architecture {
   
   @Override
   public void deallocRestoreReg(int deallocRegs, int keepRegs, int restore) {
-    deallocReg(deallocRegs&~(keepRegs|restore));
+    deallocReg(deallocRegs & ~(keepRegs | restore));
     restoreReg(restore);
-    usedRegs|=(keepRegs|restore)&RegMaskGP;
+    usedRegs |= (keepRegs | restore) & RegMaskGP;
   }
   
   protected int getRegZPAddr(int nr, int reg, int type, boolean firstWrite) {
-    if (nr<1 || nr>8) {
+    if (nr < 1 || nr > 8) {
       fatalError("invalid call to getReg");
       return -1;
     }
-    if (reg==regBase) {
+    if (reg == regBase) {
       fatalError("regBase not detected before getRegZPAddr");
       return -1;
     }
-    reg=bitSearch(reg, nr);
-    if (reg==0) {
+    reg = bitSearch(reg, nr);
+    if (reg == 0) {
       fatalError("register not found in getRegZPAddr");
       return -1;
     }
     if (firstWrite) {
-      writtenRegs|=reg&RegMaskGP;
-      usedRegs|=reg&RegMaskGP;
+      writtenRegs |= reg & RegMaskGP;
+      usedRegs |= reg & RegMaskGP;
     }
     return getZPAddrOfReg(getBitPos(reg));
   }
@@ -533,10 +536,10 @@ public class JVM extends Architecture {
       pos += STACKMEM_OFF;
       ins(I_TXA);
       ins(I_CLC);
-      ins(I_ADCimm, pos&0xFF);
+      ins(I_ADCimm, pos & 0xFF);
       ins(I_STAzp, dst1);
       ins(I_CLA);
-      ins(I_ADCimm, (pos>>>8)&0xFF);
+      ins(I_ADCimm, (pos >>> 8) & 0xFF);
       ins(I_STAzp, dst2);
     } else if (src != 0) {
       int src1, src2;
@@ -603,27 +606,27 @@ public class JVM extends Architecture {
 
   @Override
   public void genConvertVal(int dst, int src, int toType, int fromType) {
-    int countFrom, countTo, regDst, regSrc=0, i=1, temp;
+    int countFrom, countTo, regDst, regSrc = 0, i = 1, temp;
     Instruction dest;
-    countFrom=getByteCount(fromType);
-    countTo=getByteCount(toType);
-    temp=countFrom>=countTo ? countTo : countFrom; //determine minimum value
-    for (; i<=temp; i++) { //take care of lower bytes, regSrc is highest valid register
-      if ((regDst=getRegZPAddr(i, dst, toType, true))==-1 || 
-        (regSrc=getRegZPAddr(i, src, fromType, false))==-1) return;
-      if (regDst!=regSrc) ins(I_MOVzpzp, regDst, regSrc);
+    countFrom = getByteCount(fromType);
+    countTo = getByteCount(toType);
+    temp = countFrom >= countTo ? countTo : countFrom; //determine minimum value
+    for (; i <= temp; i++) { //take care of lower bytes, regSrc is highest valid register
+      if ((regDst = getRegZPAddr(i, dst, toType, true)) == -1 || 
+        (regSrc = getRegZPAddr(i, src, fromType, false)) == -1) return;
+      if (regDst != regSrc) ins(I_MOVzpzp, regDst, regSrc);
     }
-    if (countTo>countFrom) { //conversion was an expansion
+    if (countTo > countFrom) { //conversion was an expansion
       ins(I_CLA);
-      if (fromType!=StdTypes.T_CHAR) { //not char -> sign extension
+      if (fromType != StdTypes.T_CHAR) { //not char -> sign extension
         ins(I_BITzpimm, regSrc, 0x80);
-        insPatchedJmp(I_JPZimm, dest=getUnlinkedInstruction());
+        insPatchedJmp(I_JPZimm, dest = getUnlinkedInstruction());
         ins(I_DEC);
         appendInstruction(dest);
       }
       //else //char -> zero extension
-      for (; i<=countTo; i++) {
-        if ((regDst=getRegZPAddr(i, dst, toType, true))==-1) return;
+      for (; i <= countTo; i++) {
+        if ((regDst = getRegZPAddr(i, dst, toType, true)) == -1) return;
         ins(I_STAzp, regDst);
       }
     }
@@ -632,12 +635,12 @@ public class JVM extends Architecture {
   @Override
   public void genDup(int dst, int src, int type) {
     int srcReg, dstReg, regCount, i;
-    if (dst==src) return;
-    regCount=getByteCount(type);
-    for (i=1; i<=regCount; i++) {
-      if ((dstReg=getRegZPAddr(i, dst, type, true))==-1
-          || (srcReg=getRegZPAddr(i, src, type, false))==-1) return;
-      if (dstReg!=srcReg) {
+    if (dst == src) return;
+    regCount = getByteCount(type);
+    for (i = 1; i <= regCount; i++) {
+      if ((dstReg = getRegZPAddr(i, dst, type, true)) == -1
+          || (srcReg = getRegZPAddr(i, src, type, false)) == -1) return;
+      if (dstReg != srcReg) {
         ins(I_MOVzpzp, dstReg, srcReg);
       }
     }
@@ -646,16 +649,16 @@ public class JVM extends Architecture {
   @Override
   public void genPushConstVal(int val, int type) {
     int count, shortVal;
-    count=getByteCount(type);
-    if (count==1) ins(I_PUSHimm, val&0xFF);
+    count = getByteCount(type);
+    if (count == 1) ins(I_PUSHimm, val & 0xFF);
     else {
-      if ((count&1)!=0) {
+      if ((count & 1) != 0) {
         fatalError("odd regCount>=2 in genPushConstVal");
         return;
       }
-      while (count>0) {
-        count-=2;
-        shortVal=(val>>>(count<<3))&0xFFFF;
+      while (count > 0) {
+        count -= 2;
+        shortVal = (val >>> (count << 3)) & 0xFFFF;
         ins(I_PUSAimm, shortVal);
       }
     }
@@ -663,10 +666,10 @@ public class JVM extends Architecture {
 
   @Override
   public void genPushConstDoubleOrLongVal(long val, boolean asDouble) {
-    int count=8, shortVal;
-    while (count>0) {
-      count-=2;
-      shortVal=((int)(val>>>(count<<3)))&0xFFFF;
+    int count = 8, shortVal;
+    while (count > 0) {
+      count -= 2;
+      shortVal = ((int)(val >>> (count << 3))) & 0xFFFF;
       ins(I_PUSAimm, shortVal);
     }
   }
@@ -674,19 +677,19 @@ public class JVM extends Architecture {
   @Override
   public void genPush(int src, int type) {
     int count, reg;
-    count=getByteCount(type);
-    while (count>0) {
-      if ((reg=getRegZPAddr(count--, src, type, false))==-1) return;
+    count = getByteCount(type);
+    while (count > 0) {
+      if ((reg = getRegZPAddr(count--, src, type, false)) == -1) return;
       ins(I_PUSHzp, reg);
     }
   }
 
   @Override
   public void genPop(int dst, int type) {
-    int count, reg, i=0;
-    count=getByteCount(type);
-    while (i<count) {
-      if ((reg=getRegZPAddr(++i, dst, type, true))==-1) return;
+    int count, reg, i = 0;
+    count = getByteCount(type);
+    while (i < count) {
+      if ((reg = getRegZPAddr(++i, dst, type, true)) == -1) return;
       ins(I_POPzp, reg);
     }
   }
@@ -694,14 +697,14 @@ public class JVM extends Architecture {
   @Override
   public void genAssign(int dst, int src, int type) {
     int i, regCount, reg1, reg2, srcReg;
-    regCount=getByteCount(type);
-    if ((reg1=getRegZPAddr(1, dst, StdTypes.T_PTR, false))==-1
-        || (reg2=getRegZPAddr(2, dst, StdTypes.T_PTR, false))==-1) return;
+    regCount = getByteCount(type);
+    if ((reg1 = getRegZPAddr(1, dst, StdTypes.T_PTR, false)) == -1
+        || (reg2 = getRegZPAddr(2, dst, StdTypes.T_PTR, false)) == -1) return;
     ins(I_PHX);
     ins(I_LDXzp, reg1);
     ins(I_LDYzp, reg2);
-    for (i=1; i<=regCount; i++) {
-      if ((srcReg=getRegZPAddr(i, src, type, false))==-1) return;
+    for (i = 1; i <= regCount; i++) {
+      if ((srcReg = getRegZPAddr(i, src, type, false)) == -1) return;
       ins(I_LDAzp, srcReg);
       ins(I_SPA);
     }
@@ -710,10 +713,10 @@ public class JVM extends Architecture {
 
   @Override
   public void genBinOp(int dst, int src1, int src2, int op, int type) {
-    int opType=op>>>16, opPar=op&0xFFFF;
+    int opType = op >>> 16, opPar = op & 0xFFFF;
     int dstR, srcR1, srcR2, i, count;
     Instruction end, redo;
-    count=getByteCount(type);
+    count = getByteCount(type);
     switch (type) {
       case StdTypes.T_BOOL:
         if (opType!=Ops.S_ARI || !(opPar==Ops.A_AND || opPar==Ops.A_OR || opPar==Ops.A_XOR)) {
@@ -1723,7 +1726,7 @@ public class JVM extends Architecture {
   
   @Override
   public void genBinOpConstDoubleOrLongRi(int dst, int src1, long val, int op, boolean asDouble) {
-    int opType=op>>>16, opPar=op&0xFFFF;
+    int opType = op >>> 16, opPar = op & 0xFFFF;
     int dstR, srcR1, i, tmpVal, count;
     Instruction redo;
     if (asDouble) super.genBinOpConstDoubleOrLongRi(dst, src1, val, opPar, asDouble);
@@ -1870,9 +1873,9 @@ public class JVM extends Architecture {
   
   private Instruction insPatchedCall(Mthd refMthd, int parSize) {
     Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=IT_EXTCALL;
-    i.refMthd=refMthd;
+    appendInstruction(i = getUnlinkedInstruction());
+    i.type = IT_EXTCALL;
+    i.refMthd = refMthd;
     i.putByte(I_JSRimm);
     i.putShort(0); //dummy address
     addToCodeRefFixupList(i, 1);
@@ -1881,9 +1884,9 @@ public class JVM extends Architecture {
   
   private Instruction insPatchedJmp(int op, Instruction dest) {
     Instruction i;
-    appendInstruction(i=getUnlinkedInstruction());
-    i.type=IT_INTJMP;
-    i.jDest=dest;
+    appendInstruction(i = getUnlinkedInstruction());
+    i.type = IT_INTJMP;
+    i.jDest = dest;
     i.putByte(op);
     i.putShort(0); //dummy address
     return i;

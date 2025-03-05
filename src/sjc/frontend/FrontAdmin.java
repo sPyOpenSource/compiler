@@ -203,6 +203,7 @@ public class FrontAdmin {
   private boolean scanparseFile(StringList what, boolean mayBeIgnored) {
     for (Language lang : langs) {
         //check if current language wants to parse the file
+        if(what.str.endsWith("SunRaytrace.java")) continue;
         if (lang.fileCompetence(what.str)) {
             //enter file in our list and set unique ID (==counter)
             ctx.addFile(what);

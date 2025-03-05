@@ -388,10 +388,10 @@ public abstract class Architecture {
 	}
 	
 	public void copyMethodCode(Mthd generatingMthd, Object loc, int offset) {
-	  Instruction ins=firstInstr.next, last;
+	  Instruction ins = firstInstr.next, last;
         InstrList temp;
-	  int i, lastOffset=-1, lastLine=0, nextFreeIndex=0;
-	  boolean slhi=false;
+	  int i, lastOffset = -1, lastLine = 0, nextFreeIndex = 0;
+	  boolean slhi = false;
 	  int[] tmpArray;
 	  
 	  //report destination if architecture needs absolute calls inside itself
@@ -399,47 +399,47 @@ public abstract class Architecture {
     //attach assembler text to method if requested
     if (ctx.buildAssemblerText) attachMethodAssemblerText(generatingMthd, firstInstr.next);
     //insert the bytes of all instructions
-	  if (ctx.globalSourceLineHints || (generatingMthd.marker&Marks.K_SLHI)!=0) {
-	    slhi=true;
-	    lastLine=generatingMthd.line;
-	    if (sourceLineOffsetTempArray==null) sourceLineOffsetTempArray=new int[60];
+	  if (ctx.globalSourceLineHints || (generatingMthd.marker & Marks.K_SLHI) != 0) {
+	    slhi = true;
+	    lastLine = generatingMthd.line;
+	    if (sourceLineOffsetTempArray == null) sourceLineOffsetTempArray = new int[60];
 	  }
-	  while (ins!=null) {
-	    if (slhi && ins.token!=null) { //add source hint
-	      if (lastLine!=ins.token.line) {
-	        if (lastOffset==offset && nextFreeIndex>=2) nextFreeIndex-=2; //last hint has no code, overwrite it
-	        else if (sourceLineOffsetTempArray.length<nextFreeIndex+2) { //array is too small
-	          tmpArray=new int[sourceLineOffsetTempArray.length*2];
-	          for (i=0; i<nextFreeIndex; i++) tmpArray[i]=sourceLineOffsetTempArray[i];
-	          sourceLineOffsetTempArray=tmpArray;
+	  while (ins != null) {
+	    if (slhi && ins.token != null) { //add source hint
+	      if (lastLine != ins.token.line) {
+	        if (lastOffset == offset && nextFreeIndex >= 2) nextFreeIndex -= 2; //last hint has no code, overwrite it
+	        else if (sourceLineOffsetTempArray.length < nextFreeIndex + 2) { //array is too small
+	          tmpArray = new int[sourceLineOffsetTempArray.length * 2];
+	          for (i = 0; i < nextFreeIndex; i++) tmpArray[i] = sourceLineOffsetTempArray[i];
+	          sourceLineOffsetTempArray = tmpArray;
 	        }
-	        sourceLineOffsetTempArray[nextFreeIndex++]=lastOffset=offset; //remember offset
-	        sourceLineOffsetTempArray[nextFreeIndex++]=lastLine=ins.token.line; //remember line
+	        sourceLineOffsetTempArray[nextFreeIndex++] = lastOffset = offset; //remember offset
+	        sourceLineOffsetTempArray[nextFreeIndex++] = lastLine = ins.token.line; //remember line
 	      }
 	    }
-      ins.iPar1=offset; //iPar1 will not be used anymore, recycle it
+      ins.iPar1 = offset; //iPar1 will not be used anymore, recycle it
       mem.putByteArray(loc, offset, ins.code, ins.size); //copy code of current instruction
-      offset+=ins.size; //increase offset by size of last instruction
-	    ins=(last=ins).next; //get next instruction
-      last.next=nextFreeInstr; //recycle instruction
-      nextFreeInstr=last;
+      offset += ins.size; //increase offset by size of last instruction
+	    ins = (last = ins).next; //get next instruction
+      last.next = nextFreeInstr; //recycle instruction
+      nextFreeInstr = last;
 	  }
-	  if (slhi && nextFreeIndex>0) { //copy temporary array into method-array
-	    generatingMthd.lineInCodeOffset=tmpArray=new int[nextFreeIndex];
-	    for (i=0; i<nextFreeIndex; i++) tmpArray[i]=sourceLineOffsetTempArray[i];
+	  if (slhi && nextFreeIndex > 0) { //copy temporary array into method-array
+	    generatingMthd.lineInCodeOffset = tmpArray = new int[nextFreeIndex];
+	    for (i = 0; i < nextFreeIndex; i++) tmpArray[i] = sourceLineOffsetTempArray[i];
 	  }
 	  //reset lastInstr for next method
-    (lastInstr=firstInstr).next=null;
+    (lastInstr = firstInstr).next = null;
     //replace the to be fixed up code-references
-    while (fixupCodeRefList!=null) {
+    while (fixupCodeRefList != null) {
       //enter the reference if instruction is still in use
-      if (fixupCodeRefList.instr.size>0) fixupCodeRefList.instr.refMthd.enterCodeRef(
-          loc, fixupCodeRefList.instr.iPar1+fixupCodeRefList.offset, ctx);
+      if (fixupCodeRefList.instr.size > 0) fixupCodeRefList.instr.refMthd.enterCodeRef(
+          loc, fixupCodeRefList.instr.iPar1 + fixupCodeRefList.offset, ctx);
       //recycle the list element, as it is used no more
-      temp=fixupCodeRefList.next;
-      fixupCodeRefList.next=emptyList;
-      emptyList=fixupCodeRefList;
-      fixupCodeRefList=temp;
+      temp = fixupCodeRefList.next;
+      fixupCodeRefList.next = emptyList;
+      emptyList = fixupCodeRefList;
+      fixupCodeRefList = temp;
     }
 	}
 	

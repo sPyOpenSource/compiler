@@ -18,6 +18,7 @@
 
 package sjc.frontend.sjava;
 
+import java.util.Arrays;
 import sjc.backend.Instruction;
 import sjc.compbase.Context;
 import sjc.compbase.Expr;
@@ -34,6 +35,8 @@ import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.VrblList;
 import sjc.debug.CodePrinter;
+import sjc.memory.ImageContainer;
+import sjc.output.HexOut;
 
 /**
  * JMthd: java-specific behaviour of methods
@@ -465,7 +468,7 @@ public class JMthd extends Mthd {
   
   @Override
   public void printCode(CodePrinter prnt) {
-    if (block!=null) block.printToken(prnt);
+    if (block != null) block.printToken(prnt);
   }
   
   private void setWriteCheckState(boolean state) {
@@ -491,6 +494,7 @@ public class JMthd extends Mthd {
   
   @Override
   public void genOutput(Context ctx) {
+      System.out.println(name);
     int mthdID = 0;
     VrblList inits;
     Object obj;
@@ -509,43 +513,53 @@ public class JMthd extends Mthd {
       }
       inGenOutput = true;
       ctx.arch.prepareMethodCoding(this);
-      if (tryStackExtreme && (marker&(Marks.K_NSPC|Marks.K_INTR))==0) genStackExtremeCheck(ctx);
+      if (tryStackExtreme && (marker & (Marks.K_NSPC | Marks.K_INTR)) == 0) genStackExtremeCheck(ctx);
       ctx.arch.codeProlog();
-      if (tryProfiling && (marker&Marks.K_NPRF)==0) genProfilingCall(mthdID=ctx.mem.getCurrentAllocAmountHint()+ctx.mem.getBaseAddress()
-            +ctx.rteSMthdBlock.instRelocTableEntries*ctx.arch.relocBytes, 0, ctx); //generate call and remember method ID
+      if (tryProfiling && (marker & Marks.K_NPRF) == 0) genProfilingCall(mthdID = ctx.mem.getCurrentAllocAmountHint() + ctx.mem.getBaseAddress()
+            + ctx.rteSMthdBlock.instRelocTableEntries * ctx.arch.relocBytes, 0, ctx); //generate call and remember method ID
       if (isConstructor) { //to be initialized instance variables
-        inits=owner.instInitVars; 
-        while (inits!=null) {
+        inits = owner.instInitVars; 
+        while (inits != null) {
           inits.vrbl.genInitCode(false, ctx); //zero variables already initialized by runtime environment
-          inits=inits.next;
+          inits = inits.next;
         }
       }
-      if (block!=null) block.genOutput(ctx, isConstructor && (modifier&Modifier.M_EXINIT)!=0);
+      if (block != null) block.genOutput(ctx, isConstructor && (modifier & Modifier.M_EXINIT) != 0);
       if (ctx.err) return;
-      if (isConstructor && (modifier&Modifier.M_EXINIT)!=0) {
+      if (isConstructor && (modifier & Modifier.M_EXINIT) != 0) {
         ctx.arch.genMoveToPrimary(ctx.arch.regInst, StdTypes.T_PTR);
         ctx.arch.genRestInstContext(); //restore saved instance context (done in block.genOutput)
       }
-      if (tryProfiling && (marker&Marks.K_NPRF)==0) {
-        if (retRegType!=0) ctx.arch.genSavePrimary(retRegType);
+      if (tryProfiling && (marker & Marks.K_NPRF) == 0) {
+        if (retRegType != 0) ctx.arch.genSavePrimary(retRegType);
         genProfilingCall(mthdID, 1, ctx); //generate call with already generated method id
-        if (retRegType!=0) ctx.arch.genRestPrimary(retRegType);
+        if (retRegType != 0) ctx.arch.genRestPrimary(retRegType);
       }
       ctx.arch.codeEpilog(null);
       ctx.arch.finalizeMethodCoding();
-      codeSize=ctx.arch.getMethodSize();
+      codeSize = ctx.arch.getMethodSize();
       //allocate space for method-block
-      if ((obj=ctx.mem.allocate(ctx.rteSMthdBlock.instScalarTableSize+codeSize, 0,
+      if ((obj = ctx.mem.allocate(ctx.rteSMthdBlock.instScalarTableSize + codeSize, 0,
         ctx.rteSMthdBlock.instRelocTableEntries,
-        ctx.leanRTE ? null : ctx.rteSMthdBlock.outputLocation))==null) {
+        ctx.leanRTE ? null : ctx.rteSMthdBlock.outputLocation)) == null) {
         ctx.out.println("error while allocating memory for method code");
-        ctx.err=true;
+        ctx.err = true;
         return;
       }
       ctx.mem.allocationDebugHint(this);
       //copy generated code and cleanup tokens
       ctx.arch.copyMethodCode(this, obj, ctx.codeStart);
-      inGenOutput=false;
+      int location = ((ImageContainer.Location)obj).address - ctx.mem.getBaseAddress();
+      /*for(int i = 0; i < codeSize; i++)
+        System.out.print(ctx.mem.memBlock[location + i]+" ");*/
+      System.out.println(codeSize);
+      byte[] what = new byte[codeSize];
+      System.arraycopy(ctx.mem.memBlock, location, what, 0, codeSize);
+      HexOut hex = new HexOut(null, null);
+      hex.setAddress(0);
+      hex.write(what, 0, codeSize);
+      System.out.println(hex);
+      inGenOutput = false;
     }
     //everything done, check if we were referenced and enter valid output address
     enterOutputAddr(obj, ctx);

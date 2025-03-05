@@ -20,6 +20,7 @@ package sjc.output;
 
 import sjc.osio.BinWriter;
 import sjc.osio.TextPrinter;
+import java.util.ArrayList;
 
 /**
  * HexOut: write the created image as intel or atmel hex file
@@ -39,11 +40,12 @@ import sjc.osio.TextPrinter;
 public class HexOut extends BinWriter {
   private final byte[] dataBuffer;
   private final byte[] textBuffer;
+  private final ArrayList<String> list = new ArrayList<>();
   private int checkSum, addr;
   private final TextPrinter out;
   private final BinWriter destFile;
   
-  protected HexOut(TextPrinter errOut, BinWriter iDF) {
+  public HexOut(TextPrinter errOut, BinWriter iDF) {
     out = errOut;
     destFile = iDF;
     dataBuffer = new byte[16];
@@ -110,6 +112,8 @@ public class HexOut extends BinWriter {
       i = 11 + (realLen << 1);
     }
     else i = 9 + (realLen << 1); //no checksum
+    list.add(new String(textBuffer, 0, i));
+    if(destFile == null) return true;
     textBuffer[i] = (byte)10; //new line
     return destFile.write(textBuffer, 0, i + 1); //write buffer
   }
@@ -123,5 +127,10 @@ public class HexOut extends BinWriter {
     else textBuffer[bPos++] = (byte)(d + 55);
     if ((d = value & 0xF) < 10) textBuffer[bPos] = (byte)(d + 48);
     else textBuffer[bPos] = (byte)(d + 55);
+  }
+  
+  @Override
+  public String toString(){
+      return list.toString();
   }
 }

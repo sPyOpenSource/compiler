@@ -281,7 +281,7 @@ public class Context {
     doBoundCheck = true;
     doArrayStoreCheck = true;
     startMethod = "kernel.Kernel.main";
-    startMethod = "demo.main";
+    //startMethod = "demo.main";
     if (fileList == null) fileList = new StringList("internal init"); //tablePos is initialized with -1
   }
   

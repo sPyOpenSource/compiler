@@ -36,6 +36,7 @@ import org.junit.Test;
 import org.json.JSONObject;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.ClassNode;
+import sjc.output.HexOut;
 
 /**
  *
@@ -49,6 +50,15 @@ public class CompilerTest {
         list.add(new File("app/demo.java"));
         Compiler.compile(list, "app");
         //SC.main(new String[]{"-t", "jvm", "-k", "./"});
+    }
+    
+    @Test
+    public void hex(){
+        byte[] what = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+        HexOut out = new HexOut(null, null);
+        out.setAddress(0);
+        out.write(what, 0, what.length);
+        System.out.println(out);
     }
     
     @Test

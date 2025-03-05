@@ -47,7 +47,8 @@ import sjc.osio.BinWriter;
 public abstract class MemoryImage {
   public boolean streamObjects, noSizeScalars;
   public int objectsAllocated;
-  
+  public byte[] memBlock;
+
   public abstract boolean checkMemoryLocation(Object loc, int offset, int len);
   
   public abstract int getAddrAsInt(Object loc, int offset);
