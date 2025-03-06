@@ -16,7 +16,7 @@ class AI/Models/Vector3D {
   +B30:   #1
         if compare((java/lang/Double)(vR0.z).doubleValue@extra(),0)==0 goto B99;   
   +B45:   #2
-        return sqrt@special(((pow@special((java/lang/Double)(vR0.x).doubleValue@extra(),jx.classfile.datatypes.BCDouble@61eaec38)+pow@special((java/lang/Double)(vR0.y).doubleValue@extra(),jx.classfile.datatypes.BCDouble@61eaec38))+pow@special((java/lang/Double)(vR0.z).doubleValue@extra(),jx.classfile.datatypes.BCDouble@61eaec38)));   
+        return sqrt@special(((pow@special((java/lang/Double)(vR0.x).doubleValue@extra(),jx.classfile.datatypes.BCDouble@57576994)+pow@special((java/lang/Double)(vR0.y).doubleValue@extra(),jx.classfile.datatypes.BCDouble@57576994))+pow@special((java/lang/Double)(vR0.z).doubleValue@extra(),jx.classfile.datatypes.BCDouble@57576994)));   
   +B99:   #1
         return 1;   
   +END:   #1
