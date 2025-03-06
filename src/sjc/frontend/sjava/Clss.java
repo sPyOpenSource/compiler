@@ -474,8 +474,7 @@ public class Clss extends JUnit {
           ctx.out.println(name);
           ctx.out.println();
 	        sigOK=false;
-	      }
-        else {
+	      } else {
           if ((checkMthd.modifier&(Modifier.M_PUB|Modifier.M_PROT|Modifier.M_PACP|Modifier.M_PRIV))
               >(destMthd.modifier&(Modifier.M_PUB|Modifier.M_PROT|Modifier.M_PACP|Modifier.M_PRIV))) {
             checkMthd.printPos(ctx, "method ");
@@ -551,8 +550,7 @@ public class Clss extends JUnit {
           ctx.out.println(name);
           fulfilled=false;
         }
-      }
-      else { //no outer unit so far, add "$outer" variable
+      } else { //no outer unit so far, add "$outer" variable
         checkVrbl=new Vrbl(OUTERVARNAME, 0, fileID, line, col);
         checkVrbl.owner=this;
         checkVrbl.type=ctx.objectType;
@@ -700,25 +698,21 @@ public class Clss extends JUnit {
           if (doClssOff) { //second step
             clssScalarTableSize=clssRelocTableEntries=0;
             doInstOff=false; //do not change already entered inst-offs
-          }
-          else { //this is the first call
+          } else { //this is the first call
             instScalarTableSize=instRelocTableEntries=instIndirScalarTableSize=0;
           }
-        }
-        else {
+        } else {
           if (doClssOff) { //second step
             clssScalarTableSize=parent.clssScalarTableSize;
             clssRelocTableEntries=parent.clssRelocTableEntries;
             doInstOff=false; //do not change already entered inst-offs
-          }
-          else { //this is the first call, get inst-values of java.lang.Object
+          } else { //this is the first call, get inst-values of java.lang.Object
             instScalarTableSize=parent.instScalarTableSize;
             instRelocTableEntries=parent.instRelocTableEntries;
             instIndirScalarTableSize=parent.instIndirScalarTableSize;
           }
         }
-      }
-      else { //all other objects
+      } else { //all other objects
         if (!doClssOff) { //all other must enter everything at once
           ctx.out.println("invalid call to Clss.assignOffsets for normal class");
           offsetError=true;
@@ -731,8 +725,7 @@ public class Clss extends JUnit {
         clssRelocTableEntries=parent.clssRelocTableEntries;
         if (ctx.leanRTE && this==ctx.rteSMthdBlock) { //reduce size of method blocks
           instScalarTableSize=instRelocTableEntries=instIndirScalarTableSize=0;
-        }
-        else { //normal object
+        } else { //normal object
           instScalarTableSize=parent.instScalarTableSize;
           instRelocTableEntries=parent.instRelocTableEntries;
           instIndirScalarTableSize=parent.instIndirScalarTableSize;
@@ -775,8 +768,7 @@ public class Clss extends JUnit {
               checkMthd.relOff=-(clssRelocTableEntries+=mthdPtrCnt)*ctx.arch.relocBytes; //new method, two references required to remember owner of class
             }
             else checkMthd.relOff=0; //no class descriptor entry needed
-          }
-          else {
+          } else {
             modifier|=Modifier.MA_ACCSSD;
             checkMthd.relOff=checkMthd.ovldMthd.relOff; //overloaded method, copy table index
           }
@@ -800,8 +792,7 @@ public class Clss extends JUnit {
               //get space
               checkVrbl.relOff=ctx.ramSize;
               ctx.ramSize+=checkVrbl.minSize;
-            }
-            else {
+            } else {
               //align
               offTmp=checkVrbl.minSize-1;
               statScalarTableSize=(statScalarTableSize+offTmp)&~offTmp;
@@ -956,58 +947,59 @@ public class Clss extends JUnit {
   
         @Override
 	public boolean genOutput(Context ctx) {
+            //System.out.println(pack.name.str);
+            //System.out.println("Class: " + name);
 	  int tmpOff;
 	  Object tmp, addr;
 	  Mthd mthd;
-	  IndirUnitMapList chkIntf, lastIntf=null, firstIntf=null;
+	  IndirUnitMapList chkIntf, lastIntf = null, firstIntf = null;
     Vrbl var;
 	  
 	  //check if we are not yet done and parents OK
 	  if (outputError) return false;
 	  if (outputGenerated) return true;
     //check parents
-	  if (extsID!=null && !extsID.unitDest.genOutput(ctx)) {
-	    outputError=true;
+	  if (extsID != null && !extsID.unitDest.genOutput(ctx)) {
+	    outputError = true;
 	    return false;
 	  }
 	  //check if not everything has to be done
-    if ((modifier&Modifier.M_STRUCT)!=0) return outputGenerated=true; //break if struct
-    if (extsID!=null && outputLocation==extsID.unitDest.outputLocation) { //there is no extra class descriptor, just generate methods
-      mthd=mthds;
-      while (mthd!=null) {
-        if ((mthd.modifier&Modifier.M_NDCODE)!=0) {
+    if ((modifier & Modifier.M_STRUCT) != 0) return outputGenerated = true; //break if struct
+    if (extsID != null && outputLocation == extsID.unitDest.outputLocation) { //there is no extra class descriptor, just generate methods
+      mthd = mthds;
+      while (mthd != null) {
+        if ((mthd.modifier & Modifier.M_NDCODE) != 0) {
           mthd.genOutput(ctx);
           if (ctx.err) {
-            outputError=true;
+            outputError = true;
             return false;
           }
         }
-        mthd=mthd.nextMthd;
+        mthd = mthd.nextMthd;
       }
-      return outputGenerated=true; //do not write to (not existing) class descriptor
+      return outputGenerated = true; //do not write to (not existing) class descriptor
     }
     //handle interface implementations
-    chkIntf=implemented;
-	  while (chkIntf!=null) {
+    chkIntf = implemented;
+	  while (chkIntf != null) {
 	    //generate output for this particular interface-map
-	    if ((chkIntf.intf.modifier&Modifier.MA_ACCSSD)!=0) {
+	    if ((chkIntf.intf.modifier & Modifier.MA_ACCSSD) != 0) {
 	      if (!genIntfOutput(chkIntf, ctx)) {
-	        outputError=true;
+	        outputError = true;
 	        return false;
-	      }
-	      else {
-	        if (lastIntf!=null) { //set next pointer of last interface map to current interface map
+	      } else {
+	        if (lastIntf != null) { //set next pointer of last interface map to current interface map
 	          ctx.arch.putRef(lastIntf.outputLocation, ctx.rteSIMnext, chkIntf.outputLocation, 0);
 	        }
-	        else firstIntf=chkIntf; //remember this interface as first interface
-	        lastIntf=chkIntf; //remember this interface as done 
+	        else firstIntf = chkIntf; //remember this interface as first interface
+	        lastIntf = chkIntf; //remember this interface as done 
 	      }
 	    }
 	    //check next one
-	    chkIntf=chkIntf.next;
+	    chkIntf = chkIntf.next;
 	  }
 	  //enter parent pointer
-    if (extsID!=null && extsID.unitDest.outputLocation!=null) {
+    if (extsID != null && extsID.unitDest.outputLocation != null) {
       ctx.arch.putRef(outputLocation, ctx.rteSClassParent, extsID.unitDest.outputLocation, 0);
 	  }
     //enter size if required
@@ -1017,21 +1009,21 @@ public class Clss extends JUnit {
       if (ctx.indirScalars) ctx.mem.putInt(outputLocation, ctx.rteSClassInstIndirScalarSize, instIndirScalarTableSize);
     }
     //create method-objects
-    mthd=mthds;
-    while (mthd!=null) {
-      if (ctx.noInlineMthdObj && (mthd.marker&Marks.K_FINL)!=0) {
-        if ((mthd.modifier&Modifier.MA_INTFMD)!=0) {
+    mthd = mthds;
+    while (mthd != null) {
+      if (ctx.noInlineMthdObj && (mthd.marker & Marks.K_FINL) != 0) {
+        if ((mthd.modifier & Modifier.MA_INTFMD) != 0) {
           mthd.printPos(ctx, "method is used in interface, skipping output is not possible");
           ctx.out.println();
           outputError=true;
           return false;
         }
-        mthd.modifier&=~Modifier.M_NDCODE;
+        mthd.modifier &= ~Modifier.M_NDCODE;
       }
-      if ((mthd.modifier&Modifier.M_NDCODE)!=0) {
+      if ((mthd.modifier & Modifier.M_NDCODE) != 0) {
         mthd.genOutput(ctx);
         if (ctx.err) {
-          outputError=true;
+          outputError = true;
           return false;
         }
         //enter pointers of static methods (others are done by enterInheritableReferences)

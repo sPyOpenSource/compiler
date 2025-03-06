@@ -18,8 +18,7 @@
 
 package sjc.frontend.sjava;
 
-import java.util.Arrays;
-import sjc.backend.Instruction;
+import org.json.JSONArray;
 import sjc.compbase.Context;
 import sjc.compbase.Expr;
 import sjc.compbase.FilledAnno;
@@ -34,10 +33,11 @@ import sjc.compbase.Token;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 import sjc.compbase.VrblList;
+
 import sjc.debug.CodePrinter;
-import sjc.memory.ImageContainer;
 import sjc.memory.ImageContainer.Location;
 import sjc.output.HexOut;
+import sjc.backend.Instruction;
 
 /**
  * JMthd: java-specific behaviour of methods
@@ -495,7 +495,12 @@ public class JMthd extends Mthd {
   
   @Override
   public void genOutput(Context ctx) {
-      System.out.println(name);
+      String aname = "";
+      if(owner.pack.name != null){
+        aname += owner.pack.name.str + ".";
+      }
+      aname += owner.name + ".";
+      aname += name;
     int mthdID = 0;
     VrblList inits;
     Location obj;
@@ -559,7 +564,9 @@ public class JMthd extends Mthd {
       HexOut hex = new HexOut(null, null);
       hex.setAddress(0);
       hex.write(what, 0, codeSize);
-      System.out.println(hex);
+      //System.out.println(hex);
+      JSONArray array = new JSONArray(hex.toString().replace(":", ""));
+      ctx.object.put(aname, array);
       inGenOutput = false;
     }
     //everything done, check if we were referenced and enter valid output address

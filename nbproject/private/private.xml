@@ -3,21 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/binimp/BImExpr.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/prepobj/ExObjInit.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Unit.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/ExConstNew.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/memory/MemoryImage.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/binimp/BImUnit.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Clss.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/symbols/RawSymbols.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/memory/ImageContainer.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/dennisk/JVM.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/memory/BootableImage.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/ExBin.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/StVrbl.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Context.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/osio/sun/ReflectionSymbols.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/ExArrayInit.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/StBlock.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Stmt.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Vrbl.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JMthd.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/app/demo.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Clss.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/test/CompilerTest.java</file>
         </group>
     </open-files>
 </project-private>

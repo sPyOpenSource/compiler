@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.target=StBreakable
+comment0.text=\n\ StBreakable\:\ base\ type\ of\ construct\ that\ may\ be\ broken\ or\ continued\n\ \n\ @author\ S.\ Frenz\n\ @version\ 121017\ added\ code\ printer\ support\ for\ labels\n\ \ version\ 100504\ added\ genOutputCleanup\ and\ isBreakContDest\n\ \ version\ 090506\ added\ flowAnalysisBuffer\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070909\ added\ support\ for\ labels\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 061229\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StBreakable(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=prnt
+comment3.target=void\ printToken(sjc.debug.CodePrinter)
+comment4.params=named\ contNotBreak
+comment4.target=boolean\ isBreakContDest(boolean,\ boolean)
+comment5.params=ctx
+comment5.target=void\ innerGenOutputCleanup(sjc.compbase.Context)
+comment6.params=stopBefore\ ctx
+comment6.target=void\ genOutputCleanup(StBreakable,\ sjc.compbase.Context)
+numComments=7

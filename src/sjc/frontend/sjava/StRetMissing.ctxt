@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=StRetMissing
+comment0.text=\n\ StRetMissing\:\ pseudo-statement\ to\ handle\ "return\ missing"\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 100424\ removed\ support\ for\ runtime\ check\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 091001\ adopted\ changed\ memory\ interface\n\ \ version\ 090619\ adopted\ changed\ Architecture\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090506\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=StRetMissing(int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ resolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=flowCode\ unitContext\ mthdContext\ ctx
+comment4.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=6

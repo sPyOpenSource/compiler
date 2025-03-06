@@ -43,12 +43,13 @@ import sjc.symbols.SymbolFactory;
 public class SC {
     public static void main(String argv[]) {
         //argv = new String[]{"-t", "atmega", "-L", "-P", "batmel32.bin", "-y", "-e", "0x60", "-E", "-a", "0", "-o", "boot", "-B", "-C", "-k", "/Users/xuyi/Source/Java/atbasenw/src"};
-        argv = new String[]{"-t", "amd64", "-o", "boot", "-O", "bootconf.txt#floppy64", "/Users/xuyi/Source/Java/picos/src"};
-        //argv = new String[]{"-W", "-k", "./app", "-t", "jvm"};
+        //argv = new String[]{"-t", "amd64", "-o", "boot", "-O", "bootconf.txt#floppy64", "/Users/xuyi/Source/Java/picos/src"};
+        argv = new String[]{"-W", "-k", "./app", "-t", "jvm"};
         int res;
         Context ctx = new Context(new SunOS(System.out));
         SymbolFactory.preparedReflectionSymbols = new ReflectionSymbols();
         if ((res = ctx.compile(argv, "vJRE")) == 0) ctx.writeSymInfo();
-            System.exit(res);
+        System.out.println(ctx.object.toString(4));
+        System.exit(res);
     }
 }

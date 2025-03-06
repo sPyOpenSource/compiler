@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=StSwitch
+comment0.text=\n\ StSwitch\:\ switch-case-statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 150926\ added\ test\ for\ unique\ case\ constants\n\ \ version\ 121017\ added\ code\ printer\ support\ for\ labels\n\ \ version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 101015\ adopted\ changed\ Expr\n\ \ version\ 100616\ fixed\ unreachable\ warning\n\ \ version\ 100504\ adopted\ changed\ StBreakable\n\ \ version\ 091111\ added\ support\ for\ instance\ final-var-init\n\ \ version\ 091109\ added\ variable-write\ analysis\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 091005\ adopted\ changed\ Expr\n\ \ version\ 090809\ adopted\ changed\ Expr,\ added\ support\ for\ detailed\ flow\ analysis\n\ \ version\ 090718\ adopted\ changed\ Expr\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090506\ added\ flow\ analysis\ information\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 081021\ adopted\ changed\ Architecture.genComp/genCondJmp\n\ \ version\ 080604\ better\ internal\ error\ message\n\ \ version\ 080525\ adopted\ changed\ genCondJmp\ signature\n\ \ version\ 080508\ added\ flow\ hints\n\ \ version\ 071108\ fixed\ check\ for\ exact\ type\ match\ for\ constant\ case-expression\n\ \ version\ 070913\ added\ support\ for\ spread\ local\ variable\ declaration\n\ \ version\ 070909\ optimized\ signature\ of\ Expr.resolve,\ adopted\ changes\ in\ StBreakable\n\ \ version\ 070908\ optimized\ signature\ of\ Stmt.resolve\n\ \ version\ 070809\ adopted\ changed\ for\ float/double\n\ \ version\ 070628\ adopted\ changes\ for\ "Expr\ extends\ TypeRef"\n\ \ version\ 070625\ using\ StdTypes\ instead\ of\ TypeRef\ for\ standard\ types\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 070111\ adapted\ change\ in\ printPos\ and\ compErr\n\ \ version\ 061231\ optimized\ genOutput\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061203\ optimized\ calls\ to\ printPos\ and\ compErr\n\ \ version\ 060620\ added\ kill-on-jump\n\ \ version\ 060607\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StSwitch(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printBreakableStatement(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=named\ contNotBreak
+comment4.target=boolean\ isBreakContDest(boolean,\ boolean)
+comment5.params=ctx
+comment5.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=6

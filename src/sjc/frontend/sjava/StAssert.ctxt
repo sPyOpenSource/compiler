@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=StAssert
+comment0.text=\n\ StAssert\:\ assert-statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 101210\ adopted\ changed\ Architecture\n\ \ version\ 101021\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=StAssert(int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=5

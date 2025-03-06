@@ -559,6 +559,7 @@ public class ExBin extends ExCheckType {
     ri.printType(ctx.out);
   }
   
+  @Override
   public void genOutputVal(int reg, Context ctx) {
     Instruction trueDest, falseDest, after;
     int opType=op>>>16, opPar=op&0xFFFF, riConstType=0;
@@ -709,8 +710,7 @@ public class ExBin extends ExCheckType {
           if (genAriCall) genOutAriCall(reg, reg1, reg2, ctx);
           else ctx.arch.genBinOp(reg, reg1, reg2, (Ops.S_ARI<<16)|opPar, baseType);
           ctx.arch.deallocRestoreReg(reg2, 0, restore2);
-        }
-        else {
+        } else {
           if (riConstType==T_INT) ctx.arch.genBinOpConstRi(reg, reg1, ri.getConstIntValue(ctx), (Ops.S_ARI<<16)|opPar, baseType);
           else ctx.arch.genBinOpConstDoubleOrLongRi(reg, reg1, ri.getConstLongValue(ctx), (Ops.S_ARI<<16)|opPar, baseType==T_DBL);
         }

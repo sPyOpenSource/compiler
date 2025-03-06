@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=StLoop
+comment0.text=\n\ StLoop\:\ loop\ container\n\ \n\ @author\ S.\ Frenz\n\ @version\ 100504\ adopted\ changed\ StBreakable\n\ \ version\ 100411\ initial\ version\n
+comment1.params=io\ ila\ fid\ il\ ic
+comment1.target=StLoop(StBreakable,\ sjc.compbase.StringList,\ int,\ int,\ int)
+comment2.params=named\ contNotBreak
+comment2.target=boolean\ isBreakContDest(boolean,\ boolean)
+numComments=3

@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Stmt
+comment0.text=\n\ Stmt\:\ basic\ abstraction\ of\ a\ statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120925\ added\ support\ for\ code\ printer\n\ \ version\ 101015\ adopted\ changed\ Expr\ and\ added\ dead\ code\ flag\n\ \ version\ 100504\ added\ isSuperThisCallStmt\ and\ resolveSuperThisCallStmt\n\ \ version\ 091109\ added\ FA_HAS_SHORTCUT\ and\ FA_HAS_CONTINUE\n\ \ version\ 091102\ inserted\ source-hint-generation\ in\ genOutput\n\ \ version\ 090724\ added\ FA_INSIDE_LOOP\n\ \ version\ 090508\ merged\ resolve\ and\ doStmtFlowAnalysis\n\ \ version\ 090506\ adopted\ FA_*\ constants\ to\ basic\ flow\ analysis\n\ \ version\ 090505\ added\ support\ for\ doFlowAnalysis\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070908\ optimized\ signature\ of\ resolve\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=Stmt(int,\ int,\ int)
+comment2.params=flowEntryCode\ unitContext\ mthdContext\ ctx
+comment2.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment3.params=ctx
+comment3.target=void\ innerGenOutput(sjc.compbase.Context)
+comment4.params=flowCode\ unitContext\ mthdContext\ ctx
+comment4.target=int\ resolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=boolean\ isSuperThisCallStmt(sjc.compbase.Context)
+comment6.params=unitContext\ mthdContext\ ctx
+comment6.target=boolean\ resolveSuperThisCallStmt(sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment7.params=stmtFlowCode
+comment7.target=int\ getExprFromStmtFlowCode(int)
+comment8.params=ctx
+comment8.target=void\ genOutput(sjc.compbase.Context)
+numComments=9

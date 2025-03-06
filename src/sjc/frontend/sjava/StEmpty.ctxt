@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=StEmpty
+comment0.text=\n\ StEmpty\:\ empty\ statement\n\ \n\ @author\ S.\ Frenz\n\ @version\ 120923\ added\ support\ for\ code\ printer\n\ \ version\ 091103\ overwrote\ genOutput\ to\ avoid\ source\ hinting\ for\ empty\ statement\n\ \ version\ 091102\ adopted\ changed\ Stmt\n\ \ version\ 090508\ adopted\ changes\ in\ Stmt\n\ \ version\ 090207\ added\ copyright\ notice\n\ \ version\ 070908\ optimized\ signature\ of\ Stmt.resolve\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=StEmpty(int,\ int,\ int)
+comment2.params=prnt
+comment2.target=void\ printToken(sjc.debug.CodePrinter)
+comment3.params=flowCode\ unitContext\ mthdContext\ ctx
+comment3.target=int\ innerResolve(int,\ sjc.compbase.Unit,\ sjc.compbase.Mthd,\ sjc.compbase.Context)
+comment4.params=ctx
+comment4.target=void\ genOutput(sjc.compbase.Context)
+comment5.params=ctx
+comment5.target=void\ innerGenOutput(sjc.compbase.Context)
+numComments=6

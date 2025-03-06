@@ -59,33 +59,33 @@ public abstract class Stmt extends TokenAbstrPrintable {
     protected abstract void innerGenOutput(Context ctx);
   
     protected int resolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-        if ((flowCode&FA_NEXT_IS_UNREACHABLE)!=0) {
+        if ((flowCode & FA_NEXT_IS_UNREACHABLE) != 0) {
             flowWarn(ctx, ERR_UNREACHABLE_CODE);
-            flowCode&=~FA_NEXT_IS_UNREACHABLE; //print warning only once
+            flowCode &= ~FA_NEXT_IS_UNREACHABLE; //print warning only once
         }
         return innerResolve(flowCode, unitContext, mthdContext, ctx);
     }
 	
-	protected boolean isSuperThisCallStmt(Context ctx) {
-	  //default: not special statement
-	  return false;
-	}
+    protected boolean isSuperThisCallStmt(Context ctx) {
+        //default: not special statement
+        return false;
+    }
+
+    protected boolean resolveSuperThisCallStmt(Unit unitContext, Mthd mthdContext, Context ctx) {
+	//default: current statement is not the required special first constructor statement (call to this or super)
+        printPos(ctx, "expected call to this(.) or super(.)");
+        return false;
+    }
 	
-	protected boolean resolveSuperThisCallStmt(Unit unitContext, Mthd mthdContext, Context ctx) {
-	  //default: current statement is not the required special first constructor statement (call to this or super)
-    printPos(ctx, "expected call to this(.) or super(.)");
-    return false;
-	}
+    protected int getExprFromStmtFlowCode(int stmtFlowCode) {
+        int exprResolveFlags = Expr.RF_NONE;
+        if ((stmtFlowCode & FA_INSIDE_LOOP) != 0) exprResolveFlags |= Expr.RF_INSIDE_LOOP;
+        if ((stmtFlowCode & FA_DEAD_CODE)   != 0) exprResolveFlags |= Expr.RF_DEAD_CODE;
+        return exprResolveFlags;
+    }
 	
-	protected int getExprFromStmtFlowCode(int stmtFlowCode) {
-    int exprResolveFlags=Expr.RF_NONE;
-    if ((stmtFlowCode&FA_INSIDE_LOOP)!=0) exprResolveFlags|=Expr.RF_INSIDE_LOOP;
-    if ((stmtFlowCode&FA_DEAD_CODE)!=0) exprResolveFlags|=Expr.RF_DEAD_CODE;
-    return exprResolveFlags;
-	}
-	
-  protected void genOutput(Context ctx) {
-    ctx.arch.insertSourceHint(this);
-    innerGenOutput(ctx);
-  }
+    protected void genOutput(Context ctx) {
+        ctx.arch.insertSourceHint(this);
+        innerGenOutput(ctx);
+    }
 }

@@ -108,11 +108,9 @@ public class StVrbl extends Stmt {
     return flowCode;
   }
   
+  @Override
   protected void innerGenOutput(Context ctx) {
-    Vrbl var;
-    int i;
-    
-    var=varList;
-    for (i=0; i<varCount; i++, var=var.nextVrbl) var.genInitCode(forceInit, ctx);
+    Vrbl var = varList;
+    for (int i = 0; i < varCount; i++, var = var.nextVrbl) var.genInitCode(forceInit, ctx);
   }
 }

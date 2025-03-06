@@ -221,8 +221,7 @@ public class Vrbl extends AccVar {
         toInit.genOutputVal(value, ctx);
         ctx.arch.genStoreVarVal(reg, null, relOff, value, regType);
         ctx.arch.deallocRestoreReg(value, 0, 0);
-    }
-    else { //clear memory
+    } else { //clear memory
       switch (regType) {
         case StdTypes.T_DBL:
           asDouble=true; //no break
@@ -234,6 +233,6 @@ public class Vrbl extends AccVar {
       }
     }
     //clean up indirect scalar if required
-    if (location==L_INSTIDS) ctx.arch.deallocRestoreReg(addr, 0, restore);
+    if (location == L_INSTIDS) ctx.arch.deallocRestoreReg(addr, 0, restore);
   }
 }

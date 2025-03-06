@@ -79,10 +79,10 @@ public class JVM extends Architecture {
   public final static int RegMaskGP   = (1 << (RegMaxGP + 1)) - 1;
   
   public final static int PAR_MASK    = 0x00FF0000;
-  public final static int PAR_NONE    = 0x00010000;
+  //public final static int PAR_NONE    = 0x00010000;
   public final static int PAR_BYTE    = 0x00020000;
   public final static int PAR_WORD    = 0x00030000;
-  public final static int PAR_SECBYTE = 0x00100000;
+  //public final static int PAR_SECBYTE = 0x00100000;
   
   public final static int IT_NORM    = 1;
   public final static int IT_EXTCALL = 2;
@@ -742,10 +742,10 @@ public class JVM extends Architecture {
       case StdTypes.T_LONG:
         switch (opType) {
           case Ops.S_ARI:
-            for (i=1; i<=count; i++) {
-              if ((dstR=getRegZPAddr(i, dst, type, true))==-1
-                  || (srcR1=getRegZPAddr(i, src1, type, false))==-1
-                  || (srcR2=getRegZPAddr(i, src2, type, false))==-1) return;
+            for (i = 1; i <= count; i++) {
+              if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
+                  || (srcR1 = getRegZPAddr(i, src1, type, false)) == -1
+                  || (srcR2 = getRegZPAddr(i, src2, type, false)) == -1) return;
               ins(I_LDAzp, srcR1);
               switch (opPar) {
                 case Ops.A_AND:
@@ -762,7 +762,7 @@ public class JVM extends Architecture {
                   ins(I_SBCzp, srcR2);
                   break;
                 case Ops.A_PLUS:
-                  if (i==1) ins(I_CLC);
+                  if (i == 1) ins(I_CLC);
                   ins(I_ADCzp, srcR2);
                   break;
                 default:
@@ -847,7 +847,7 @@ public class JVM extends Architecture {
 
   @Override
   public void genUnaOp(int dst, int src, int op, int type) {
-    int opPar=op&0xFFFF, dstR, srcR, count, i=1;
+    int opPar = op & 0xFFFF, dstR, srcR, count, i = 1;
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
       fatalError("unary operator not yet supported for float and double");
       return;
@@ -1702,8 +1702,7 @@ public class JVM extends Architecture {
                 }
                 else ins(I_ROLzp, dstR);
                 i++;
-              }
-              else {
+              } else {
                 if (dstR!=srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROR);

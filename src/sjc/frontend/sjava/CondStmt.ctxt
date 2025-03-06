@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=CondStmt
+comment0.text=\n\ CondStmt\:\ conditional\ statement\ used\ in\ switch-case-statements\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 070114\ reduced\ access\ level\ where\ possible\n\ \ version\ 061229\ removed\ access\ to\ firstInstr\n\ \ version\ 061202\ minimal\ changes\n\ \ version\ 060607\ initial\ version\n
+comment1.params=fid\ il\ ic
+comment1.target=CondStmt(int,\ int,\ int)
+numComments=2

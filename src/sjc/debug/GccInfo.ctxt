@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=GccInfo
+comment0.text=\n\ GccInfo\:\ symbol\ information\ writer\ for\ gcc\n\ \n\ @author\ S.\ Frenz\n\ @version\ 090207\ added\ copyright\ notice\n\ \ version\ 080718\ writing\ real\ values\ out\ of\ created\ image\n\ \ version\ 080717\ moved\ most\ methods\ to\ newly\ created\ MthdInfo,\ added\ filling\ bytes\n\ \ version\ 080712\ initial\ version\n
+comment1.params=filename\ ic
+comment1.target=GccInfo(java.lang.String,\ sjc.compbase.Context)
+comment2.params=baseAddress\ memBlockLen
+comment2.target=void\ globalMemoryInfo(int,\ int)
+comment3.params=
+comment3.target=void\ finalizeImageInfo()
+comment4.params=start\ nextBlockStart\ defaultValue
+comment4.target=void\ fillBlock(int,\ int,\ int)
+numComments=5

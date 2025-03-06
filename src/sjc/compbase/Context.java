@@ -18,6 +18,7 @@
 
 package sjc.compbase;
 
+import org.json.JSONObject;
 import sjc.backend.ArchFactory;
 import sjc.backend.Architecture;
 import sjc.compression.CompressionFactory;
@@ -186,6 +187,7 @@ import sjc.symbols.SymbolInformer;
 public class Context {
   public TextPrinter out;
   public OsIO osio;
+  public JSONObject object = new JSONObject();
   
   public OutputFormat imgOut;
   public SymbolInformer symGen;
@@ -282,7 +284,7 @@ public class Context {
     doBoundCheck = true;
     doArrayStoreCheck = true;
     startMethod = "kernel.Kernel.main";
-    //startMethod = "demo.main";
+    startMethod = "demo.main";
     if (fileList == null) fileList = new StringList("internal init"); //tablePos is initialized with -1
   }
   
