@@ -24,7 +24,7 @@ import sjc.compbase.IndirUnitMapList;
 import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 
 /**

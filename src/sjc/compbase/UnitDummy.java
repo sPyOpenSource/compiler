@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.compbase.expr.ExConstInitObj;
+import sjc.compbase.variable.Vrbl;
 import sjc.debug.DebugWriter;
 
 /**

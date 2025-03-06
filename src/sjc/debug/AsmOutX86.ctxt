@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=AsmOutX86
+comment0.text=\n\ AsmOutX86\:\ symbol\ information\ writer\ for\ x86\ assembler\ output\n\ \n\ @author\ S.\ Frenz\n\ @version\ 161117\ adopted\ changed\ AsmOut\n\ \ version\ 160328\ added\ calculation\ of\ scalar\ method\ code\ size,\ now\ extending\ AsmOut\ for\ code\ sharing\ reasons\n\ \ version\ 160201\ fixed\ scalar\ size\ for\ objects\ of\ unknown\ type,\ now\ explicitly\ extending\ unicode\ strings\n\ \ version\ 160109\ assemble-ready\ reloc/scalar/string\ distinctive\ output\n\ \ version\ 160102\ added\ support\ for\ structured\ unit\ output\n\ \ version\ 151108\ initial\ version\n
+comment1.params=filename\ ictx
+comment1.target=AsmOutX86(java.lang.String,\ sjc.compbase.Context)
+comment2.params=mem
+comment2.target=void\ printHeader(sjc.memory.MemoryImage)
+comment3.params=nextIsMthd
+comment3.target=void\ setMthdFlag(boolean)
+comment4.params=now\ mthd
+comment4.target=void\ printMthdHead(sjc.memory.MemoryObjectDebugInfo,\ sjc.compbase.Mthd)
+comment5.params=now\ mthd
+comment5.target=void\ printMthdTail(sjc.memory.MemoryObjectDebugInfo,\ sjc.compbase.Mthd)
+numComments=6

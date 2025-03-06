@@ -20,6 +20,7 @@ package sjc.frontend;
 
 import sjc.backend.Instruction;
 import sjc.compbase.*;
+import sjc.compbase.expr.Expr;
 import sjc.debug.CodePrinter;
 
 /**

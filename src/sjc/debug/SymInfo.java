@@ -18,7 +18,7 @@
 
 package sjc.debug;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.IndirUnitMapList;
 import sjc.compbase.Marks;
@@ -28,7 +28,7 @@ import sjc.compbase.Param;
 import sjc.compbase.StringList;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 
 import sjc.osio.BinWriter;

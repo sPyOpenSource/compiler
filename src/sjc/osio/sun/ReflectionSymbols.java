@@ -25,7 +25,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.Marks;
 import sjc.compbase.Modifier;
@@ -34,7 +34,7 @@ import sjc.compbase.StdTypes;
 import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;
 import sjc.symbols.SymbolInformer;

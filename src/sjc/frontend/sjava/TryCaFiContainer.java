@@ -18,6 +18,8 @@
 
 package sjc.frontend.sjava;
 
+import sjc.frontend.sjava.st.StTryCaFi;
+
 /**
  * TryCaFiContainer: container for current try-block and allocated throw-frames
  * 
@@ -27,7 +29,7 @@ package sjc.frontend.sjava;
  */
 
 public class TryCaFiContainer {
-  protected StTryCaFi stTryCaFi;
-  protected TryCaFiContainer nextTryCaFiBlock;
-  protected int excFrameOffset;
+  public StTryCaFi stTryCaFi;
+  public TryCaFiContainer nextTryCaFiBlock;
+  public int excFrameOffset;
 }

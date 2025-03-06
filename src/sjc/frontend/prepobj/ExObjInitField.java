@@ -19,6 +19,8 @@
 package sjc.frontend.prepobj;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.Expr;
+import sjc.compbase.variable.Vrbl;
 
 /**
  * ExObjInitField: field that was explicitly set for ExObjInit 

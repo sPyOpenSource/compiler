@@ -21,14 +21,14 @@ package sjc.frontend.sjava;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.CtxBasedConfig;
 import sjc.compbase.DataBlockList;
-import sjc.compbase.ExArrayInit;
-import sjc.compbase.ExConstStruct;
-import sjc.compbase.ExStr;
-import sjc.compbase.Expr;
+import sjc.compbase.expr.ExArrayInit;
+import sjc.compbase.expr.ExConstStruct;
+import sjc.compbase.expr.ExStr;
+import sjc.compbase.expr.Expr;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Marks;
 import sjc.compbase.Modifier;
@@ -37,10 +37,14 @@ import sjc.compbase.Ops;
 import sjc.compbase.StdTypes;
 import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.debug.CodePrinter;
 
 import sjc.frontend.ExVal;
+import sjc.frontend.sjava.expr.ExCall;
+import sjc.frontend.sjava.expr.ExClssMthdName;
+import sjc.frontend.sjava.expr.ExVar;
+import sjc.frontend.sjava.st.StExpr;
 
 /**
  * Magic: all the magic functionality used for system programming
@@ -325,7 +329,7 @@ public class Magic extends CtxBasedConfig {
     else prnt.reportError(ex, "not yet supported MAGIC");
   }
   
-  protected Expr resolve(Expr ex, Unit unitContext, Mthd mthdContext,
+  public Expr resolve(Expr ex, Unit unitContext, Mthd mthdContext,
       int resolveFlags, TypeRef preferredType, Context ctx) {
     ExCall call;
     ExVar var;
@@ -629,7 +633,7 @@ public class Magic extends CtxBasedConfig {
     return ex; //default: unmodified expression
   }
   
-  protected void genOutput(int reg, Expr ex, Context ctx) {
+  public void genOutput(int reg, Expr ex, Context ctx) {
     ExCall call;
     
     if (ex instanceof ExCall exCall) switch ((call = exCall).magicType) {

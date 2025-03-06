@@ -21,6 +21,7 @@ package sjc.symbols;
 import sjc.osio.TextBuffer;
 import sjc.osio.TextPrinter;
 import sjc.compbase.*;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 
 /**

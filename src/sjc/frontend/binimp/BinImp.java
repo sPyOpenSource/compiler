@@ -19,6 +19,7 @@
 package sjc.frontend.binimp;
 
 import sjc.compbase.*;
+import sjc.compbase.variable.Vrbl;
 import sjc.frontend.Language;
 
 /**

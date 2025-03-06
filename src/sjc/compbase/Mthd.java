@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.compbase.variable.Vrbl;
+import sjc.compbase.variable.VrblList;
 import sjc.debug.CodePrinter;
 import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;

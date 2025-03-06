@@ -18,6 +18,9 @@
 
 package sjc.compbase;
 
+import sjc.compbase.expr.ExConstInitObj;
+import sjc.compbase.variable.Vrbl;
+import sjc.compbase.variable.VrblList;
 import sjc.osio.TextPrinter;
 import sjc.relations.RelationElement;
 import sjc.debug.DebugWriter;

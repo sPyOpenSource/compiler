@@ -20,7 +20,7 @@ package sjc.frontend.sjava;
 
 import org.json.JSONArray;
 import sjc.compbase.Context;
-import sjc.compbase.Expr;
+import sjc.compbase.expr.Expr;
 import sjc.compbase.FilledAnno;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Marks;
@@ -32,12 +32,19 @@ import sjc.compbase.StdTypes;
 import sjc.compbase.Token;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.VrblList;
+import sjc.compbase.variable.VrblList;
 
 import sjc.debug.CodePrinter;
 import sjc.memory.ImageContainer.Location;
 import sjc.output.HexOut;
 import sjc.backend.Instruction;
+import sjc.frontend.sjava.expr.ExCall;
+import sjc.frontend.sjava.expr.ExVar;
+import sjc.frontend.sjava.st.StBlock;
+import sjc.frontend.sjava.st.StEmpty;
+import sjc.frontend.sjava.st.StExpr;
+import sjc.frontend.sjava.st.StSync;
+import sjc.frontend.sjava.st.Stmt;
 
 /**
  * JMthd: java-specific behaviour of methods
@@ -123,7 +130,7 @@ public class JMthd extends Mthd {
   
   //required fields for resolving
   protected StBlock block;
-  protected TryCaFiContainer curTryFrame, freeTryFrames;
+  public TryCaFiContainer curTryFrame, freeTryFrames;
   private boolean tryProfiling, tryStackExtreme;
   private UnitList runtimeClass;
   protected FilledAnno anno;

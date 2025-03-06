@@ -18,6 +18,8 @@
 
 package sjc.compbase;
 
+import sjc.compbase.variable.AccVar;
+
 /**
  * Param: declaration of a parameter inside a method declaration 
  * 

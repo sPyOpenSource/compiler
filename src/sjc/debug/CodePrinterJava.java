@@ -18,10 +18,10 @@
 
 package sjc.debug;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
-import sjc.compbase.ExConstStruct;
-import sjc.compbase.Expr;
+import sjc.compbase.expr.ExConstStruct;
+import sjc.compbase.expr.Expr;
 import sjc.compbase.FilledParam;
 import sjc.compbase.IndirUnitMapList;
 import sjc.compbase.Marks;
@@ -36,7 +36,7 @@ import sjc.compbase.TokenAbstrPrintable;
 import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 import sjc.osio.TextPrinter;
 

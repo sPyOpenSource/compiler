@@ -19,6 +19,7 @@
 package sjc.frontend.sjava;
 
 import sjc.compbase.*;
+import sjc.compbase.variable.Vrbl;
 import sjc.debug.DebugWriter;
 
 /**

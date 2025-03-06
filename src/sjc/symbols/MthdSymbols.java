@@ -21,7 +21,7 @@ package sjc.symbols;
 import sjc.osio.TextBuffer;
 import sjc.osio.TextPrinter;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.Mthd;
 import sjc.compbase.Unit;

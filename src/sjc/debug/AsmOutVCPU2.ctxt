@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=AsmOutVCPU2
+comment0.text=\n\ AsmOutVCpu2\:\ symbol\ information\ writer\ for\ vCpu2\ assembler\ output\n\ \n\ @author\ S.\ Frenz\n\ @version\ 161222\ added\ p1/p2\ push\ before\ jump\ to\ main\n\ \ version\ 161129\ added\ codeStart\ check\n\ \ version\ 161118\ fixed\ segment\ keywords\n\ \ version\ 161117\ inserted\ code/data\ segment\ statements\n\ \ version\ 160909\ replaced\ header\ by\ include\ statement\n\ \ version\ 160818\ added\ jump\ to\ start\ method\n\ \ version\ 160526\ added\ assembler\ header\ for\ vCpu2\n\ \ version\ 160328\ added\ calculation\ of\ scalar\ method\ code\ size,\ now\ extending\ AsmOut\ for\ code\ sharing\ reasons\n\ \ version\ 160324\ initial\ version\n
+comment1.params=filename\ ictx
+comment1.target=AsmOutVCPU2(java.lang.String,\ sjc.compbase.Context)
+comment2.params=mem
+comment2.target=void\ printHeader(sjc.memory.MemoryImage)
+comment3.params=nextIsMthd
+comment3.target=void\ setMthdFlag(boolean)
+comment4.params=now\ mthd
+comment4.target=void\ printMthdHead(sjc.memory.MemoryObjectDebugInfo,\ sjc.compbase.Mthd)
+comment5.params=now\ mthd
+comment5.target=void\ printMthdTail(sjc.memory.MemoryObjectDebugInfo,\ sjc.compbase.Mthd)
+numComments=6

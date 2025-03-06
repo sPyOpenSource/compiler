@@ -18,7 +18,7 @@
 
 package sjc.relations;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;

@@ -18,16 +18,16 @@
 
 package sjc.debug;
 
-import sjc.compbase.AccVar;
-import sjc.compbase.ExConstStruct;
-import sjc.compbase.Expr;
+import sjc.compbase.variable.AccVar;
+import sjc.compbase.expr.ExConstStruct;
+import sjc.compbase.expr.Expr;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Mthd;
 import sjc.compbase.Token;
 import sjc.compbase.TokenAbstrPrintable;
 import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 
 /**
  * CodePrinter: print supported statements and expressions

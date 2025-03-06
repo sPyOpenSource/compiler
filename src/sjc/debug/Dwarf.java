@@ -25,7 +25,7 @@ import sjc.compbase.Mthd;
 import sjc.compbase.StringList;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 import sjc.osio.BinWriter;
 import sjc.osio.TextBuffer;

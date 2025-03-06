@@ -19,6 +19,7 @@
 package sjc.frontend.binimp;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.ExConstInitObj;
 import sjc.debug.CodePrinter;
 import sjc.frontend.ExVal;
 import sjc.memory.ImageContainer.Location;

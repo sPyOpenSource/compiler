@@ -19,7 +19,43 @@
 package sjc.frontend.sjava;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.ExArrayCopy;
+import sjc.compbase.expr.ExArrayInit;
+import sjc.compbase.expr.ExStr;
+import sjc.compbase.expr.Expr;
+import sjc.compbase.variable.Vrbl;
+import sjc.compbase.variable.VrblAnno;
 import sjc.frontend.*;
+import sjc.frontend.sjava.expr.ExBin;
+import sjc.frontend.sjava.expr.ExCall;
+import sjc.frontend.sjava.expr.ExChoose;
+import sjc.frontend.sjava.expr.ExClssMthdName;
+import sjc.frontend.sjava.expr.ExDeArray;
+import sjc.frontend.sjava.expr.ExDeRef;
+import sjc.frontend.sjava.expr.ExEnc;
+import sjc.frontend.sjava.expr.ExNew;
+import sjc.frontend.sjava.expr.ExPrePst;
+import sjc.frontend.sjava.expr.ExUna;
+import sjc.frontend.sjava.expr.ExVar;
+import sjc.frontend.sjava.st.StAssert;
+import sjc.frontend.sjava.st.StBlock;
+import sjc.frontend.sjava.st.StBreakable;
+import sjc.frontend.sjava.st.StEmpty;
+import sjc.frontend.sjava.st.StEndLoop;
+import sjc.frontend.sjava.st.StExpr;
+import sjc.frontend.sjava.st.StFor;
+import sjc.frontend.sjava.st.StForEnh;
+import sjc.frontend.sjava.st.StIf;
+import sjc.frontend.sjava.st.StLoop;
+import sjc.frontend.sjava.st.StRetMissing;
+import sjc.frontend.sjava.st.StReturn;
+import sjc.frontend.sjava.st.StSwitch;
+import sjc.frontend.sjava.st.StSync;
+import sjc.frontend.sjava.st.StThrow;
+import sjc.frontend.sjava.st.StTryCaFi;
+import sjc.frontend.sjava.st.StVrbl;
+import sjc.frontend.sjava.st.StWhile;
+import sjc.frontend.sjava.st.Stmt;
 
 /**
  * JParser: parser for the SJava-language

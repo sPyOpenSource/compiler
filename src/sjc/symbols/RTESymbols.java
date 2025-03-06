@@ -21,6 +21,8 @@ package sjc.symbols;
 import sjc.osio.TextBuffer;
 import sjc.osio.TextPrinter;
 import sjc.compbase.*;
+import sjc.compbase.variable.AccVar;
+import sjc.compbase.variable.Vrbl;
 
 /**
  * RawSymbols: generate output for all packages, append information at units and methods

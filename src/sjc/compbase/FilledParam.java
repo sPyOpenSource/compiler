@@ -18,6 +18,7 @@
 
 package sjc.compbase;
 
+import sjc.compbase.expr.Expr;
 import sjc.osio.TextPrinter;
 
 /**

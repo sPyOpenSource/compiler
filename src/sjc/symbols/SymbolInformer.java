@@ -19,11 +19,11 @@
 package sjc.symbols;
 
 import sjc.osio.TextPrinter;
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 
 /**
  * SymbolInformer: interface to generate in-system symbols

@@ -20,6 +20,10 @@ package sjc.frontend.prepobj;
 
 import sjc.osio.TextReader;
 import sjc.compbase.*;
+import sjc.compbase.expr.ExArrayInit;
+import sjc.compbase.expr.ExStr;
+import sjc.compbase.expr.Expr;
+import sjc.compbase.variable.Vrbl;
 import sjc.frontend.ExVal;
 import sjc.frontend.Language;
 import sjc.frontend.Scanner;

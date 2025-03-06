@@ -19,7 +19,12 @@
 package sjc.frontend.sjava;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.Expr;
+import sjc.compbase.variable.AccVar;
+import sjc.compbase.variable.Vrbl;
+import sjc.compbase.variable.VrblList;
 import sjc.debug.DebugWriter;
+import sjc.frontend.sjava.st.StBlock;
 import sjc.memory.ImageContainer.Location;
 
 /**

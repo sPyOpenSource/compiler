@@ -20,8 +20,9 @@ package sjc.frontend.sjava;
 
 import sjc.backend.Instruction;
 import sjc.compbase.Token;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.compbase.UnitList;
+import sjc.frontend.sjava.st.Stmt;
 
 /**
  * CatchBlock: helper for catch block in try-catch-statement
@@ -33,12 +34,12 @@ import sjc.compbase.UnitList;
  */
 
 public class CatchBlock extends Token {
-    protected CatchBlock nextCatchDecl;
-    protected Vrbl catchVar;
-    protected Stmt stmts;
-    protected Instruction stIns;
-    protected UnitList importedClass;
-    protected boolean isValid;
+    public CatchBlock nextCatchDecl;
+    public Vrbl catchVar;
+    public Stmt stmts;
+    public Instruction stIns;
+    public UnitList importedClass;
+    public boolean isValid;
 	
     protected CatchBlock(int fid, int il, int ic) {
         super(fid, il, ic);

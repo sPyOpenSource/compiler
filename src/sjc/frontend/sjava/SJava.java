@@ -20,8 +20,10 @@ package sjc.frontend.sjava;
 
 import sjc.osio.TextReader;
 import sjc.compbase.*;
+import sjc.compbase.variable.Vrbl;
 import sjc.frontend.Scanner;
 import sjc.frontend.Language;
+import sjc.frontend.sjava.expr.ExEnc;
 
 /**
  * SJava: administration of the SJava-language and access to the SJava-routines
@@ -62,13 +64,13 @@ public class SJava extends Language {
   private JParser p;
   private TextReader inText;
   
-  protected static boolean isSpecialName(String name) {
+  public static boolean isSpecialName(String name) {
     return name.equals(KEY_THIS) || name.equals(KEY_SUPER)
       || name.equals(KEY_MAGIC) || name.equals(KEY_STRUCT)
       || name.equals(KEY_FLASH) || name.equals(KEY_SJC);
   }
   
-  protected static boolean checkVarInitType(Vrbl var, boolean explConv, Unit unitContext, Context ctx) {
+  public static boolean checkVarInitType(Vrbl var, boolean explConv, Unit unitContext, Context ctx) {
     int cmpRes;
     boolean success = true;
     

@@ -19,6 +19,8 @@
 package sjc.frontend;
 
 import sjc.compbase.*;
+import sjc.compbase.variable.AccVar;
+import sjc.compbase.variable.Vrbl;
 import sjc.frontend.binimp.BinImp;
 import sjc.frontend.clist.CList;
 import sjc.frontend.sjava.SJava;

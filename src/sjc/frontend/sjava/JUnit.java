@@ -19,6 +19,10 @@
 package sjc.frontend.sjava;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.ExConstInitObj;
+import sjc.compbase.expr.Expr;
+import sjc.compbase.variable.Vrbl;
+import sjc.compbase.variable.VrblList;
 
 /**
  * JUnit: java-specific behaviour of units

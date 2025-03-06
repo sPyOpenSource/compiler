@@ -18,12 +18,12 @@
 
 package sjc.debug;
 
-import sjc.compbase.AccVar;
+import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.Modifier;
 import sjc.compbase.Mthd;
 import sjc.compbase.Unit;
-import sjc.compbase.Vrbl;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer;
 import sjc.memory.MemoryImage;
 import sjc.memory.MemoryObjectDebugInfo;

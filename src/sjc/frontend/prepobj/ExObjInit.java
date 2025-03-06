@@ -19,6 +19,9 @@
 package sjc.frontend.prepobj;
 
 import sjc.compbase.*;
+import sjc.compbase.expr.ExArrayInit;
+import sjc.compbase.expr.ExConstInitObj;
+import sjc.compbase.variable.Vrbl;
 import sjc.memory.ImageContainer.Location;
 
 /**
