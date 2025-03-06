@@ -280,10 +280,10 @@ class jx/vis/IOZoneDiagram {
         vR28.recordsize = vR26.recordsize;   
         if vR0.better==0 goto B1145;   
   +B1113:   #1
-        vR28.reread_compare = (float)(((double)(vR26.reread-vR27.reread)*jx.classfile.datatypes.BCDouble@3276732)/(double)vR27.reread);   
+        vR28.reread_compare = (float)(((double)(vR26.reread-vR27.reread)*jx.classfile.datatypes.BCDouble@5be067de)/(double)vR27.reread);   
         goto +B1168;   [RiiiiiiRiiRiiiiRRRRiRRRiRRRRi RRR ..... .....]
   +B1145:   #1
-        vR28.reread_compare = (float)(((double)vR27.reread*jx.classfile.datatypes.BCDouble@3276732)/(double)vR26.reread);   
+        vR28.reread_compare = (float)(((double)vR27.reread*jx.classfile.datatypes.BCDouble@5be067de)/(double)vR26.reread);   
   +B1168:   #1
         if vR0.opt_verbose==0 goto B1225;   
   +B1175:   #1
@@ -527,7 +527,7 @@ class jx/vis/IOZoneDiagram {
         vR12 = new jx/vis/IOZoneDiagram$Result(vR0);    [ R . i..][ R . iRR]
         vR12.filesize = vi10;   
         vR12.recordsize = vi11;   
-        vR12.reread = (int)((((double)vi10*jx.classfile.datatypes.BCDouble@3f28bd56)*jx.classfile.datatypes.BCDouble@3f28bd56)/(double)vR2.readInt@extra());   
+        vR12.reread = (int)((((double)vi10*jx.classfile.datatypes.BCDouble@7383eae2)*jx.classfile.datatypes.BCDouble@7383eae2)/(double)vR2.readInt@extra());   
         vR8.results.addElement@extra(vR12);   [RiiiiRRiiiR R .. RR.] 
         vi11 = (vi11*2);    
         goto +B85;   [RiiiiRRiiiR R .. ...]
@@ -647,7 +647,7 @@ class jx/vis/IOZoneDiagram {
         goto +B499;   [RRiRiRiiRiiRiRRRl RRR ...... .....]
   +B621:   #1
         vR14.deviation = (float)sqrt@special((double)vR14.variance);   
-        vd15 = ((double)(int)(((double)vR14.deviation*jx.classfile.datatypes.BCDouble@31e3250d)/(double)vR14.reread)/jx.classfile.datatypes.BCDouble@19fe4644);    
+        vd15 = ((double)(int)(((double)vR14.deviation*jx.classfile.datatypes.BCDouble@18245eb0)/(double)vR14.reread)/jx.classfile.datatypes.BCDouble@7c7d3c46);    
         if compare(vd15,vR0.max_deviation)<=0 goto B677;   
   +B671:   #1
         vR0.max_deviation = vd15;   

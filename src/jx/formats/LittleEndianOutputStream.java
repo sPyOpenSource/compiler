@@ -11,10 +11,12 @@ public class LittleEndianOutputStream extends FilterOutputStream {
 
     int checksum;
     boolean doChecksum = true;
+    String path;
 
-	public LittleEndianOutputStream(OutputStream out) {
-		super(out);
-	}
+    public LittleEndianOutputStream(String path) throws FileNotFoundException {
+        super(new BufferedOutputStream(new FileOutputStream(path)));
+        this.path = path;
+    }
 
     public final void writeByte(byte v) throws IOException {
 	write(v);
@@ -53,4 +55,8 @@ public class LittleEndianOutputStream extends FilterOutputStream {
 	super.write(b);
     }
     
+    @Override
+    public String toString(){
+        return path;
+    }
 }

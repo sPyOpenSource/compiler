@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 public class CompileNative {
     public static void main(String[] args) throws Exception {
-	String libdir = "./app/isodir/code";
+	String libdir = "app/isodir/code";
 	if (!libdir.endsWith("/")) libdir = libdir + "/";
 
 	String jllname = libdir + "zero.jll";
@@ -88,8 +88,8 @@ public class CompileNative {
 	ExtendedDataOutputStream tableOut;
 	if (opts.doDebug()) Debug.out.println("Compiling domain to " + opts.getOutputFile());       
 	if (opts.doDebug()) Debug.out.println("Writing linker output to " + opts.getLinkerOutputFile());	    
-	codeFile = new ExtendedDataOutputStream(new BufferedOutputStream(new FileOutputStream(opts.getOutputFile())));
-	tableOut = new ExtendedDataOutputStream(new BufferedOutputStream(new FileOutputStream(opts.getLinkerOutputFile())));
+	codeFile = new ExtendedDataOutputStream(opts.getOutputFile());
+	tableOut = new ExtendedDataOutputStream(opts.getLinkerOutputFile());
 	
 	if (opts.doDebug()) Debug.out.println("Reading domain classes from " + opts.getClassFile());
 

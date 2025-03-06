@@ -3,8 +3,8 @@ class AI/AILogic {
  method <init>(LAI/AIMemory;)V {
   +START:   #1
         vR0.<init>@special(vR1);   [ ?R  RR] 
-        vR0.threshold = jx.classfile.datatypes.BCDouble@1992eaf4;   
-        vR0.filter = jx.classfile.datatypes.BCDouble@f74e835;   
+        vR0.threshold = jx.classfile.datatypes.BCDouble@19fe4644;   
+        vR0.filter = jx.classfile.datatypes.BCDouble@21d8bcbe;   
         vR0.irq = (jx/zero/IRQ)(getInitialNaming@special().lookup("IRQ"));   
         b1 = new jx/timerpc/TimerManagerImpl();    [ ?R i. i.][ ?R i. iR]
         vR0.timerManager = b1;   

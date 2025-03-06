@@ -6,10 +6,18 @@
  */
 package jx.compiler.persistent;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import sjc.output.HexOut;
+import sjc.ui.SC;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import jx.compiler.*;
 import jx.compiler.execenv.*;
@@ -79,7 +87,8 @@ public class CodeFile {
     public static final int VERSION = 10;
     private int codesize = 0;
     public static final boolean verbose = false;
-
+    private JSONObject object = new JSONObject();
+    
     ExtendedDataInputStream in;
     ExtendedDataOutputStream out;
 
@@ -182,6 +191,14 @@ public class CodeFile {
         out.writeChecksum();
 
         if (verbose) System.out.println("**********Finished saving!");
+        try {
+            FileWriter f = new FileWriter(out.toString().replace(".jll", ".json"));
+            f.write(object.toString(4));
+            f.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(object.toString(4));
     }
 
     /**
@@ -471,18 +488,24 @@ public class CodeFile {
             int numCodeBytes = mc.getNumCodeBytes();
             // apply the symbols that already are resolved
             ArrayList unresolvedAddresses = mc.getUnresolvedAddresses();
-            Enumeration elements = Collections.enumeration(unresolvedAddresses); 
+            Enumeration<SymbolTableEntryBase> elements = Collections.enumeration(unresolvedAddresses); 
             while (elements.hasMoreElements()) {
-                SymbolTableEntryBase entry =(SymbolTableEntryBase)elements.nextElement();
+                SymbolTableEntryBase entry = elements.nextElement();
                 if(entry.isRelative()) {
                     if(entry.isResolved()) {
                         // this entry must be applied before the code is saved
                         entry.apply(code, 0);
-                    } 
+                    }
                 }
             }
-
+            String name = method.getClassName() + ".";
+            name += method.getName();
             out.write(code, 0, numCodeBytes);
+            HexOut hex = new HexOut(null, null);
+            hex.setAddress(0);
+            hex.write(code, 0, numCodeBytes);
+            JSONArray array = new JSONArray(hex.toString().replace(":", ""));
+            object.put(name.replace("/", "."), array);
             //Disassembler disass = new Disassembler(code, 0, numCodeBytes);
             //disass.disasm();
         } catch(IOException e) {
