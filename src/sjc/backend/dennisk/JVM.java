@@ -143,8 +143,8 @@ public class JVM extends Architecture {
   
   public final static int I_RTS      = 0xB1; //return
   
-  public final static int I_ADCimm   = 0x60; //iadd
-  public final static int I_ADCzp    = 0x63; //dadd
+  public final static int I_ADCzp    = 0x60; //iadd
+  public final static int I_ADCimm   = 0x63; //dadd
   public final static int I_SBCimm   = 0x64; //isub
   public final static int I_SBCzp    = 0x65; //lsub
   
@@ -158,6 +158,7 @@ public class JVM extends Architecture {
 
   public final static int I_MULimm   = 0x68; //imul
   public final static int I_MULzp    = 0x6b; //dmul
+  public final static int I_DIV      = 0x6c;
   
   public final static int I_SHL      = 0x78; //ishift left
   public final static int I_SHLzp    = 0x79; //lshift left
@@ -208,7 +209,7 @@ public class JVM extends Architecture {
     regBase = RegBaseMark;
     binAriCall[StdTypes.T_BYTE] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_SHRT] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
-    binAriCall[StdTypes.T_INT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
+    //binAriCall[StdTypes.T_INT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_LONG] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE))
         | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
@@ -536,10 +537,10 @@ public class JVM extends Architecture {
       pos += STACKMEM_OFF;
       ins(I_TXA);
       ins(I_CLC);
-      ins(I_ADCimm, pos & 0xFF);
+      //ins(I_ADCimm, pos & 0xFF);
       ins(I_STAzp, dst1);
       ins(I_CLA);
-      ins(I_ADCimm, (pos >>> 8) & 0xFF);
+      //ins(I_ADCimm, (pos >>> 8) & 0xFF);
       ins(I_STAzp, dst2);
     } else if (src != 0) {
       int src1, src2;
@@ -569,11 +570,11 @@ public class JVM extends Architecture {
     if (src == regBase) {
       if (pos >= 0) pos += curVarOffParam;
       pos += STACKMEM_OFF;
-      while (i < count) {
+      //while (i < count) {
         ins(I_LDAabsx, pos + i);
         if ((dstReg = getRegZPAddr(++i, dst, type, true)) == -1) return;
         ins(I_STAzp, dstReg);
-      }
+      //}
       return;
     }
     ins(I_PHX);
@@ -719,16 +720,16 @@ public class JVM extends Architecture {
     count = getByteCount(type);
     switch (type) {
       case StdTypes.T_BOOL:
-        if (opType!=Ops.S_ARI || !(opPar==Ops.A_AND || opPar==Ops.A_OR || opPar==Ops.A_XOR)) {
+        if (opType != Ops.S_ARI || !(opPar == Ops.A_AND || opPar == Ops.A_OR || opPar == Ops.A_XOR)) {
           fatalError("unsupported operation for bool-genBinOp");
           return;
         }
         //has to do the following, too!
       case StdTypes.T_BYTE:
-        if (opPar==Ops.A_MUL) { //special case: mul for byte is supported
-          if ((dstR=getRegZPAddr(1, dst, StdTypes.T_BYTE, true))==-1
-              || (srcR1=getRegZPAddr(1, src1, StdTypes.T_BYTE, false))==-1
-              || (srcR2=getRegZPAddr(1, src2, StdTypes.T_BYTE, false))==-1) return;
+        if (opPar == Ops.A_MUL) { //special case: mul for byte is supported
+          if ((dstR = getRegZPAddr(1, dst, StdTypes.T_BYTE, true)) == -1
+              || (srcR1 = getRegZPAddr(1, src1, StdTypes.T_BYTE, false)) == -1
+              || (srcR2 = getRegZPAddr(1, src2, StdTypes.T_BYTE, false)) == -1) return;
           ins(I_PHX);
           ins(I_LDAzp, srcR1);
           ins(I_MULzp, srcR2);
@@ -742,10 +743,10 @@ public class JVM extends Architecture {
       case StdTypes.T_LONG:
         switch (opType) {
           case Ops.S_ARI:
-            for (i = 1; i <= count; i++) {
-              if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
-                  || (srcR1 = getRegZPAddr(i, src1, type, false)) == -1
-                  || (srcR2 = getRegZPAddr(i, src2, type, false)) == -1) return;
+            //for (i = 1; i <= count; i++) {
+              if ((dstR = getRegZPAddr(1, dst, type, true)) == -1
+                  || (srcR1 = getRegZPAddr(1, src1, type, false)) == -1
+                  || (srcR2 = getRegZPAddr(1, src2, type, false)) == -1) return;
               ins(I_LDAzp, srcR1);
               switch (opPar) {
                 case Ops.A_AND:
@@ -758,47 +759,53 @@ public class JVM extends Architecture {
                   ins(I_EORzp, srcR2);
                   break;
                 case Ops.A_MINUS:
-                  if (i==1) ins(I_SEC);
+                  //if (i==1) ins(I_SEC);
                   ins(I_SBCzp, srcR2);
                   break;
                 case Ops.A_PLUS:
-                  if (i == 1) ins(I_CLC);
+                  //if (i == 1) ins(I_CLC);
                   ins(I_ADCzp, srcR2);
                   break;
+                case Ops.A_MUL:
+                    ins(I_MULimm, srcR2);
+                    break;
+                case Ops.A_DIV:
+                    ins(I_DIV, srcR2);
+                    break;
                 default:
                   fatalError("unsupported ari-operation for genBinOp");
                   return;
               }
               ins(I_STAzp, dstR);
-            }
+            //}
             return;
           case Ops.S_BSH:
-            end=getUnlinkedInstruction();
-            if ((srcR2=getRegZPAddr(1, src2, type, false))==-1) return;
+            end = getUnlinkedInstruction();
+            if ((srcR2 = getRegZPAddr(1, src2, type, false)) == -1) return;
             ins(I_LDYzp, srcR2);
             insPatchedJmp(I_JPZimm, end);
-            redo=getUnlinkedInstruction();
+            redo = getUnlinkedInstruction();
             appendInstruction(redo);
-            if ((dstR=getRegZPAddr(opPar==Ops.B_SHL ? 1 : count, dst, type, true))==-1
-                || (srcR1=getRegZPAddr(opPar==Ops.B_SHL ? 1 : count, src1, type, false))==-1) return;
+            if ((dstR = getRegZPAddr(opPar == Ops.B_SHL ? 1 : count, dst, type, true)) == -1
+                || (srcR1 = getRegZPAddr(opPar == Ops.B_SHL ? 1 : count, src1, type, false)) == -1) return;
             switch (opPar) {
               case Ops.B_SHL:
-                if (srcR1!=dstR) {
+                if (srcR1 != dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHL);
                   ins(I_STAzp, dstR);
                 }
                 else ins(I_SHLzp, dstR);
-                i=2;
+                i = 2;
                 break;
               case Ops.B_SHRL:
-                if (srcR1!=dstR) {
+                if (srcR1 != dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHR);
                   ins(I_STAzp, dstR);
                 }
                 else ins(I_SHRzp, dstR);
-                i=count-1;
+                i = count - 1;
                 break;
               case Ops.B_SHRA:
                 ins(I_LDAzp, srcR1);
@@ -806,17 +813,17 @@ public class JVM extends Architecture {
                 ins(I_LDAzp, srcR1);
                 ins(I_ROR);
                 ins(I_STAzp, dstR);
-                i=count-1;
+                i = count - 1;
                 break;
               default:
                 fatalError("unsupported bsh-operation for genBinOp");
                 return;
             }
-            while (--count>0) { //higher bytes - respect carry
-              if ((dstR=getRegZPAddr(i, dst, type, true))==-1
-                  || (srcR1=getRegZPAddr(i, src1, type, false))==-1) return;
-              if (opPar==Ops.B_SHL) {
-                if (dstR!=srcR1) {
+            while (--count > 0) { //higher bytes - respect carry
+              if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
+                  || (srcR1 = getRegZPAddr(i, src1, type, false)) == -1) return;
+              if (opPar == Ops.B_SHL) {
+                if (dstR != srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROL);
                   ins(I_STAzp, dstR);
@@ -824,7 +831,7 @@ public class JVM extends Architecture {
                 else ins(I_ROLzp, dstR);
                 i++;
               } else {
-                if (dstR!=srcR1) {
+                if (dstR != srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROR);
                   ins(I_STAzp, dstR);
@@ -848,14 +855,14 @@ public class JVM extends Architecture {
   @Override
   public void genUnaOp(int dst, int src, int op, int type) {
     int opPar = op & 0xFFFF, dstR, srcR, count, i = 1;
-    if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
+    if (type == StdTypes.T_FLT || type == StdTypes.T_DBL) {
       fatalError("unary operator not yet supported for float and double");
       return;
     }
-    if ((dstR=getRegZPAddr(1, dst, type, true))==-1
-        || (srcR=getRegZPAddr(1, src, type, false))==-1) return;
-    if (type==StdTypes.T_BOOL) {
-      if (opPar==Ops.L_NOT) {
+    if ((dstR = getRegZPAddr(1, dst, type, true)) == -1
+        || (srcR = getRegZPAddr(1, src, type, false)) == -1) return;
+    if (type == StdTypes.T_BOOL) {
+      if (opPar == Ops.L_NOT) {
         ins(I_LDAzp, srcR);
         ins(I_EORimm, 1);
         ins(I_STAzp, dstR);
@@ -865,33 +872,33 @@ public class JVM extends Architecture {
         return;
       }
     }
-    else if (opPar==Ops.A_MINUS) {
+    else if (opPar == Ops.A_MINUS) {
       ins(I_CLA);
       ins(I_SEC);
       ins(I_SBCzp, srcR);
       ins(I_STAzp, dstR);
-      count=getByteCount(type);
-      for (i=2; i<=count; i++) {
-        if ((dstR=getRegZPAddr(i, dst, type, true))==-1
-            || (srcR=getRegZPAddr(i, src, type, false))==-1) return;
+      count = getByteCount(type);
+      for (i = 2; i <= count; i++) {
+        if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
+            || (srcR = getRegZPAddr(i, src, type, false)) == -1) return;
         ins(I_CLA);
         ins(I_SBCzp, srcR);
         ins(I_STAzp, dstR);
       }
       return;
     }
-    else if (opPar==Ops.A_CPL) {
-      count=getByteCount(type);
-      for (; i<=count; i++) {
-        if ((dstR=getRegZPAddr(i, dst, type, true))==-1
-            || (srcR=getRegZPAddr(i, src, type, false))==-1) return;
+    else if (opPar == Ops.A_CPL) {
+      count = getByteCount(type);
+      for (; i <= count; i++) {
+        if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
+            || (srcR = getRegZPAddr(i, src, type, false)) == -1) return;
         ins(I_LDAzp, srcR);
         ins(I_EORimm, 0xFF);
         ins(I_STAzp, dstR);
       }
       return;
     }
-    if (opPar!=Ops.A_PLUS) { //do nothing for Ops.A_PLUS
+    if (opPar != Ops.A_PLUS) { //do nothing for Ops.A_PLUS
       fatalError("unsupported operation for genUnaOp");
     }
   }
@@ -917,12 +924,12 @@ public class JVM extends Architecture {
     ins(I_LDAizpy, reg1);
     ins(I_ADCimm, 1);
     ins(I_STAizpy, reg1);
-    for (i=1; i<regCount; i++) {
+    //for (i=1; i<regCount; i++) {
       ins(I_INY);
       ins(I_LDAizpy, reg1);
       ins(I_ADCimm, 0);
       ins(I_STAizpy, reg1);
-    }
+    //}
   }
 
   @Override
@@ -946,12 +953,12 @@ public class JVM extends Architecture {
     ins(I_LDAizpy, reg1);
     ins(I_SBCimm, 1);
     ins(I_STAizpy, reg1);
-    for (i=1; i<regCount; i++) {
+    //for (i=1; i<regCount; i++) {
       ins(I_INY);
       ins(I_LDAizpy, reg1);
       ins(I_SBCimm, 0);
       ins(I_STAizpy, reg1);
-    }
+    //}
   }
 
   @Override
@@ -1493,11 +1500,11 @@ public class JVM extends Architecture {
     if (objReg==regBase) {
       if (pos>=0) pos+=curVarOffParam;
       pos+=STACKMEM_OFF;
-      for (i=0; i<count; i++) {
-        if ((valR=getRegZPAddr(i+1, valReg, type, false))==-1) return;
+      //for (i=0; i<count; i++) {
+        if ((valR=getRegZPAddr(1, valReg, type, false))==-1) return;
         ins(I_LDAzp, valR);
-        ins(I_STAabsx, pos+i);
-      }
+        ins(I_STAabsx, pos);
+      //}
     } else {
       ins(I_PHX);
       if (objReg==0) {

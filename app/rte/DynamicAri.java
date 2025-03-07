@@ -42,7 +42,7 @@ public class DynamicAri {
     return a;
   }
 
-  public static short binShort(short a, short b, byte op) {
+  /*public static short binShort(short a, short b, byte op) {
     return (short)binInt((int)a, (int)b, op); //use implementation for int
   }
 
@@ -176,7 +176,7 @@ public class DynamicAri {
     }
     MAGIC.stopBlockCoding();
     return a;
-  }
+  }*/
   
   public long binLong(long a, long b, byte op) {
     switch (op) {

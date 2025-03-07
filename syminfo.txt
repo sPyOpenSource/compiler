@@ -1,8 +1,8 @@
 # --- SJC syminfo--- #
 k
 BaseAddress: 0x00100000
-Image size: 1032 b = 2 kb
-Code size: 709 b = 1 kb in 9 methods
+Image size: 608 b = 1 kb
+Code size: 301 b = 1 kb in 8 methods
 Strings: 0 with 0 characters using 0 b = 0 kb
 ramInitAddr: 0x00000000, ramInitSize: 0 b, constMemorySize: 0 b = 0 kb
 In-image symbol size: 0 b = 0 kb
@@ -39,8 +39,8 @@ instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
-no entry->001000B8: void main(java.lang.String[]) (statCall) (stmtCnt==12, 394 bytes)
-- size of code for methods: 394 bytes
+no entry->001000B8: void main(java.lang.String[]) (statCall) (stmtCnt==12, 234 bytes)
+- size of code for methods: 234 bytes
 - added imports:
 - added interface-maps:
 
@@ -65,10 +65,8 @@ instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added statically allocated objects:
 - methods:
 no entry->00000000: byte binByte(byte,byte,byte) (skip candidate) (statCall) (stmtCnt==31, 0 bytes)
-no entry->00000000: short binShort(short,short,byte) (skip candidate) (statCall) (stmtCnt==1, 0 bytes)
-no entry->00100252: int binInt(int,int,byte) (may be reduced to private) (statCall) (stmtCnt==114, 248 bytes)
 no entry->00000000: long binLong(long,long,byte) (skip candidate) (statCall) (stmtCnt==186, 0 bytes)
-- size of code for methods: 248 bytes
+- size of code for methods: 0 bytes
 - added imports:
 - added interface-maps:
 
@@ -136,13 +134,13 @@ instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
 - added vars:
 - added statically allocated objects:
 - methods:
-no entry->0010035A: java.lang.Object newInstance(int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
-no entry->00100378: rte.SArray newArray(int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
-no entry->00100396: void newMultArray(rte.SArray[],int,int,int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==0, 4 bytes)
-no entry->001003AA: boolean isInstance(java.lang.Object,rte.SClassDesc,boolean) (statCall) (stmtCnt==1, 10 bytes)
-no entry->001003C4: rte.SIntfMap isImplementation(java.lang.Object,rte.SIntfDesc,boolean) (statCall) (stmtCnt==1, 13 bytes)
-no entry->001003E2: boolean isArray(rte.SArray,int,rte.SClassDesc,int,boolean) (statCall) (stmtCnt==1, 10 bytes)
-no entry->001003FC: void checkArrayStore(int,int) (statCall) (stmtCnt==0, 4 bytes)
+no entry->001001B2: java.lang.Object newInstance(int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
+no entry->001001D0: rte.SArray newArray(int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==1, 13 bytes)
+no entry->001001EE: void newMultArray(rte.SArray[],int,int,int,int,int,int,rte.SClassDesc) (statCall) (stmtCnt==0, 4 bytes)
+no entry->00100202: boolean isInstance(java.lang.Object,rte.SClassDesc,boolean) (statCall) (stmtCnt==1, 10 bytes)
+no entry->0010021C: rte.SIntfMap isImplementation(java.lang.Object,rte.SIntfDesc,boolean) (statCall) (stmtCnt==1, 13 bytes)
+no entry->0010023A: boolean isArray(rte.SArray,int,rte.SClassDesc,int,boolean) (statCall) (stmtCnt==1, 10 bytes)
+no entry->00100254: void checkArrayStore(int,int) (statCall) (stmtCnt==0, 4 bytes)
 - size of code for methods: 67 bytes
 - added imports:
 - added interface-maps:

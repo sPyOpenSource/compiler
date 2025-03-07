@@ -27,6 +27,7 @@ import sjc.compbase.variable.VrblList;
 import sjc.compbase.variable.VrblStateList;
 import sjc.compression.CompressionFactory;
 import sjc.compression.Compressor;
+
 import sjc.debug.DebugFactory;
 import sjc.debug.DebugLister;
 import sjc.debug.DebugWriter;
@@ -1588,7 +1589,7 @@ public class Context {
   }
   
   public Location allocateString(String what) {
-    int off, len, tmp, destOff=0;
+    int off, len, tmp, destOff;
     Location str, arr, dest;
     
     if (what == null || err) return null;

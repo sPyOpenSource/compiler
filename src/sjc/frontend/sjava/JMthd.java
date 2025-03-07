@@ -562,7 +562,7 @@ public class JMthd extends Mthd {
       ctx.mem.allocationDebugHint(this);
       //copy generated code and cleanup tokens
       ctx.arch.copyMethodCode(this, obj, ctx.codeStart);
-      int location = obj.address - ctx.mem.getBaseAddress();
+      int location = obj.address - ctx.mem.getBaseAddress() + ctx.codeStart;
       /*for(int i = 0; i < codeSize; i++)
         System.out.print(ctx.mem.memBlock[location + i]+" ");*/
       System.out.println(codeSize);
@@ -572,7 +572,7 @@ public class JMthd extends Mthd {
       hex.setAddress(0);
       hex.write(what, 0, codeSize);
       //System.out.println(hex);
-      JSONArray array = new JSONArray(hex.toString().replace(":", ""));
+      JSONArray array = new JSONArray(hex.toString().replace(":", "'").replace(",", "',").replace("]", "']"));
       ctx.object.put(aname, array);
       inGenOutput = false;
     }

@@ -3,16 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/variable/Vrbl.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/dennisk/JVM.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/expr/ExBin.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JParser.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/expr/ExNew.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Context.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JMthd.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/app/demo.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Clss.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JMthd.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/test/CompilerTest.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/variable/ExAccVrbl.java</file>
         </group>
     </open-files>
 </project-private>
