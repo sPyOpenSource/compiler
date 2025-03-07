@@ -96,7 +96,7 @@ public class JVM extends Architecture {
   public final static int I_CLY      = 0x2E; //clear Y-Register
   
   public final static int I_LDAimm   = 0x2a; //aload_0
-  public final static int I_LDXimm   = 0x15; //iload
+  public final static int I_LD       = 0x15; //iload
   public final static int I_LDYimm   = 0x1b; //iload_0
   public final static int I_LDAzp    = 0x1c; //iload_1
   public final static int I_LDAizpy  = 0x1d; //iload_2
@@ -111,16 +111,16 @@ public class JVM extends Architecture {
   public final static int I_PLX      = 0x30; //faload
   public final static int I_POPzp    = 0x31; //daload
   
-  public final static int I_STAzp    = 0x36; //istore
+  public final static int I_ST       = 0x36; //istore
   public final static int I_STAabsx  = 0x3c; //istore_0
   public final static int I_STAizpy  = 0x3d; //istore_1
   public final static int I_STXzp    = 0x3e; //istore_2
   
   public final static int I_STYzp    = 0x37; //lstore
-  public final static int I_SPA      = 0x38; //fstore
+  public final static int F_ST       = 0x38; //fstore
   
-  public final static int I_PHA      = 0x11; //sipush
-  public final static int I_PHX      = 0x10; //bipush
+  public final static int S_PH       = 0x11; //sipush
+  public final static int B_PH       = 0x10; //bipush
   
   public final static int I_PUSHimm  = 0xBA; //push immediate 8 bit data to stack
   public final static int I_PUSHzp   = 0x9A; //push content of RAM addressed by ZP (8bit) to stack
@@ -143,20 +143,20 @@ public class JVM extends Architecture {
   
   public final static int I_RTS      = 0xB1; //return
   
-  public final static int I_ADCzp    = 0x60; //iadd
+  public final static int I_AD       = 0x60; //iadd
   public final static int I_ADCimm   = 0x63; //dadd
-  public final static int I_SBCimm   = 0x64; //isub
+  public final static int I_SB       = 0x64; //isub
   public final static int I_SBCzp    = 0x65; //lsub
   
-  public final static int I_ANDimm   = 0x7E; //iAND
+  public final static int I_AND      = 0x7E; //iAND
   public final static int I_ANDzp    = 0x7f; //lAND
-  public final static int I_ORimm    = 0x80; //iOR
+  public final static int I_OR       = 0x80; //iOR
   public final static int I_ORzp     = 0x81; //lOR
   public final static int I_EORimm   = 0x82; //logical AND with Accu and immediate data
-  public final static int I_EORzp    = 0x83; //ixor
+  public final static int I_EOR      = 0x83; //ixor
   public final static int I_BITzpimm = 0x5E; //logical AND with RAM (ZP = 8bit address) and immediate data
 
-  public final static int I_MULimm   = 0x68; //imul
+  public final static int I_MUL      = 0x68; //imul
   public final static int I_MULzp    = 0x6b; //dmul
   public final static int I_DIV      = 0x6c;
   
@@ -209,7 +209,6 @@ public class JVM extends Architecture {
     regBase = RegBaseMark;
     binAriCall[StdTypes.T_BYTE] |= (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_SHRT] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
-    //binAriCall[StdTypes.T_INT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_LONG] |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE)) | (1 << (Ops.A_MOD - Ops.MSKBSE));
     binAriCall[StdTypes.T_FLT]  |= (1 << (Ops.A_MUL - Ops.MSKBSE)) | (1 << (Ops.A_DIV - Ops.MSKBSE))
         | (1 << (Ops.A_MOD - Ops.MSKBSE)) | (1 << (Ops.A_PLUS - Ops.MSKBSE)) | (1 << (Ops.A_MINUS - Ops.MSKBSE));
@@ -401,11 +400,11 @@ public class JVM extends Architecture {
       }
       fatalError("interrupt methods not supported yet in codeProlog");
     }
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_TSX); //stack pointer in BSE
     if (curMthd.varSize > 0) {
       ins(I_CLA);
-      if (curMthd.varSize <= 4) for (int i = 0; i < curMthd.varSize; i++) ins(I_PHA);
+      if (curMthd.varSize <= 4) for (int i = 0; i < curMthd.varSize; i++) ins(S_PH);
       else {
         if (curMthd.varSize > 255) {
           fatalError("maximum of 255 bytes for local variables allowed");
@@ -413,7 +412,7 @@ public class JVM extends Architecture {
         }
         ins(I_LDYimm, curMthd.varSize);
         appendInstruction(loopDest = getUnlinkedInstruction());
-        ins(I_PHA);
+        ins(S_PH);
         insPatchedJmp(I_DYJPimm, loopDest);
       }
     }
@@ -426,10 +425,10 @@ public class JVM extends Architecture {
       curMthd = outline;
       return;
     }
-    if (curMthd.varSize != 0) {
+    /*if (curMthd.varSize != 0) {
       ins(I_INS, curMthd.varSize);
     }
-    ins(I_PLX);
+    ins(I_PLX);*/
     if ((curMthd.marker & Marks.K_INTR) != 0) {
       fatalError("interrupt methods not supported yet in codeEpilog");
       curMthd = null;
@@ -517,7 +516,7 @@ public class JVM extends Architecture {
       tempVal = (int)(val >>> (i << 3)) & 0xFF; //determine value to load
       if (tempVal == 0) ins(I_CLA);
       else ins(I_LDAimm, tempVal);
-      ins(I_STAzp, reg);
+      ins(I_ST, reg);
     }
   }
 
@@ -538,10 +537,10 @@ public class JVM extends Architecture {
       ins(I_TXA);
       ins(I_CLC);
       //ins(I_ADCimm, pos & 0xFF);
-      ins(I_STAzp, dst1);
+      ins(I_ST, dst1);
       ins(I_CLA);
       //ins(I_ADCimm, (pos >>> 8) & 0xFF);
-      ins(I_STAzp, dst2);
+      ins(I_ST, dst2);
     } else if (src != 0) {
       int src1, src2;
       if ((src1 = getRegZPAddr(1, src, StdTypes.T_PTR, true)) == -1
@@ -551,15 +550,15 @@ public class JVM extends Architecture {
         ins(I_CLC);
         if ((pos & 0xFF) != 0) ins(I_ADCimm, pos & 0xFF);
       }
-      ins(I_STAzp, dst1);
+      ins(I_ST, dst1);
       ins(I_LDAzp, src2);
       if (pos != 0) ins(I_ADCimm, (pos >>> 8) & 0xFF);
-      ins(I_STAzp, dst2);
+      ins(I_ST, dst2);
     } else {
       ins(I_LDAimm, pos & 0xFF);
-      ins(I_STAzp, dst1);
+      ins(I_ST, dst1);
       ins(I_LDAimm, (pos >>> 8) & 0xFF);
-      ins(I_STAzp, dst2);
+      ins(I_ST, dst2);
     }
   }
 
@@ -573,11 +572,11 @@ public class JVM extends Architecture {
       //while (i < count) {
         ins(I_LDAabsx, pos + i);
         if ((dstReg = getRegZPAddr(++i, dst, type, true)) == -1) return;
-        ins(I_STAzp, dstReg);
+        ins(I_ST, dstReg);
       //}
       return;
     }
-    ins(I_PHX);
+    ins(B_PH);
     if (src != 0) {
       if ((src1 = getRegZPAddr(1, src, StdTypes.T_PTR, true)) == -1
           || (src2 = getRegZPAddr(2, src, StdTypes.T_PTR, true)) == -1) return;
@@ -594,13 +593,13 @@ public class JVM extends Architecture {
         ins(I_LDYzp, src2);
       }
     } else {
-      ins(I_LDXimm, pos & 0xFF);
+      ins(I_LD, pos & 0xFF);
       ins(I_LDYimm, (pos >>> 8) & 0xFF);
     }
     while (i < count) {
       if ((dstReg = getRegZPAddr(++i, dst, type, true)) == -1) return;
       ins(I_LPA);
-      ins(I_STAzp, dstReg);
+      ins(I_ST, dstReg);
     }
     ins(I_PLX);
   }
@@ -628,7 +627,7 @@ public class JVM extends Architecture {
       //else //char -> zero extension
       for (; i <= countTo; i++) {
         if ((regDst = getRegZPAddr(i, dst, toType, true)) == -1) return;
-        ins(I_STAzp, regDst);
+        ins(I_ST, regDst);
       }
     }
   }
@@ -701,13 +700,13 @@ public class JVM extends Architecture {
     regCount = getByteCount(type);
     if ((reg1 = getRegZPAddr(1, dst, StdTypes.T_PTR, false)) == -1
         || (reg2 = getRegZPAddr(2, dst, StdTypes.T_PTR, false)) == -1) return;
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_LDXzp, reg1);
     ins(I_LDYzp, reg2);
     for (i = 1; i <= regCount; i++) {
       if ((srcReg = getRegZPAddr(i, src, type, false)) == -1) return;
       ins(I_LDAzp, srcReg);
-      ins(I_SPA);
+      ins(F_ST);
     }
     ins(I_PLX);
   }
@@ -730,10 +729,10 @@ public class JVM extends Architecture {
           if ((dstR = getRegZPAddr(1, dst, StdTypes.T_BYTE, true)) == -1
               || (srcR1 = getRegZPAddr(1, src1, StdTypes.T_BYTE, false)) == -1
               || (srcR2 = getRegZPAddr(1, src2, StdTypes.T_BYTE, false)) == -1) return;
-          ins(I_PHX);
+          ins(B_PH);
           ins(I_LDAzp, srcR1);
           ins(I_MULzp, srcR2);
-          ins(I_STAzp, dstR);
+          ins(I_ST, dstR);
           ins(I_PLX);
           return;
         }
@@ -756,7 +755,7 @@ public class JVM extends Architecture {
                   ins(I_ORzp, srcR2);
                   break;
                 case Ops.A_XOR:
-                  ins(I_EORzp, srcR2);
+                  ins(I_EOR, srcR2);
                   break;
                 case Ops.A_MINUS:
                   //if (i==1) ins(I_SEC);
@@ -764,10 +763,10 @@ public class JVM extends Architecture {
                   break;
                 case Ops.A_PLUS:
                   //if (i == 1) ins(I_CLC);
-                  ins(I_ADCzp, srcR2);
+                  ins(I_AD, srcR2);
                   break;
                 case Ops.A_MUL:
-                    ins(I_MULimm, srcR2);
+                    ins(I_MUL, srcR2);
                     break;
                 case Ops.A_DIV:
                     ins(I_DIV, srcR2);
@@ -776,7 +775,7 @@ public class JVM extends Architecture {
                   fatalError("unsupported ari-operation for genBinOp");
                   return;
               }
-              ins(I_STAzp, dstR);
+              ins(I_ST, dstR);
             //}
             return;
           case Ops.S_BSH:
@@ -793,7 +792,7 @@ public class JVM extends Architecture {
                 if (srcR1 != dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHL);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_SHLzp, dstR);
                 i = 2;
@@ -802,7 +801,7 @@ public class JVM extends Architecture {
                 if (srcR1 != dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHR);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_SHRzp, dstR);
                 i = count - 1;
@@ -812,7 +811,7 @@ public class JVM extends Architecture {
                 ins(I_SHL);
                 ins(I_LDAzp, srcR1);
                 ins(I_ROR);
-                ins(I_STAzp, dstR);
+                ins(I_ST, dstR);
                 i = count - 1;
                 break;
               default:
@@ -826,7 +825,7 @@ public class JVM extends Architecture {
                 if (dstR != srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROL);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_ROLzp, dstR);
                 i++;
@@ -834,7 +833,7 @@ public class JVM extends Architecture {
                 if (dstR != srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROR);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_RORzp, dstR);
                 i--;
@@ -865,7 +864,7 @@ public class JVM extends Architecture {
       if (opPar == Ops.L_NOT) {
         ins(I_LDAzp, srcR);
         ins(I_EORimm, 1);
-        ins(I_STAzp, dstR);
+        ins(I_ST, dstR);
         return;
       } else {
         fatalError("unsupported bool-operation for genUnaOp");
@@ -876,14 +875,14 @@ public class JVM extends Architecture {
       ins(I_CLA);
       ins(I_SEC);
       ins(I_SBCzp, srcR);
-      ins(I_STAzp, dstR);
+      ins(I_ST, dstR);
       count = getByteCount(type);
       for (i = 2; i <= count; i++) {
         if ((dstR = getRegZPAddr(i, dst, type, true)) == -1
             || (srcR = getRegZPAddr(i, src, type, false)) == -1) return;
         ins(I_CLA);
         ins(I_SBCzp, srcR);
-        ins(I_STAzp, dstR);
+        ins(I_ST, dstR);
       }
       return;
     }
@@ -894,7 +893,7 @@ public class JVM extends Architecture {
             || (srcR = getRegZPAddr(i, src, type, false)) == -1) return;
         ins(I_LDAzp, srcR);
         ins(I_EORimm, 0xFF);
-        ins(I_STAzp, dstR);
+        ins(I_ST, dstR);
       }
       return;
     }
@@ -951,12 +950,12 @@ public class JVM extends Architecture {
     }
     ins(I_SEC);
     ins(I_LDAizpy, reg1);
-    ins(I_SBCimm, 1);
+    ins(I_SB, 1);
     ins(I_STAizpy, reg1);
     //for (i=1; i<regCount; i++) {
       ins(I_INY);
       ins(I_LDAizpy, reg1);
-      ins(I_SBCimm, 0);
+      ins(I_SB, 0);
       ins(I_STAizpy, reg1);
     //}
   }
@@ -1002,20 +1001,20 @@ public class JVM extends Architecture {
         || (src2 = getRegZPAddr(2, src, StdTypes.T_PTR, false)) == -1) return;
     ins(I_MOVzpzp, ZPAddrInstLo, src1);
     ins(I_MOVzpzp, ZPAddrInstHi, src2);
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_LDAzp, src1);
-    ins(I_STAzp, ZPAddrInstLo);
+    ins(I_ST, ZPAddrInstLo);
     ins(I_CLC);
     ins(I_ADCimm, 0xFE);
     ins(I_TAX);
     ins(I_LDAzp, src2);
-    ins(I_STAzp, ZPAddrInstHi);
+    ins(I_ST, ZPAddrInstHi);
     ins(I_ADCimm, 0xFF);
     ins(I_TAY);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrClssLo);
+    ins(I_ST, ZPAddrClssLo);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrClssHi);
+    ins(I_ST, ZPAddrClssHi);
     ins(I_PLX);
   }
 
@@ -1024,7 +1023,7 @@ public class JVM extends Architecture {
     int cr1, cr2;
     if ((cr1=getRegZPAddr(1, clssReg, StdTypes.T_PTR, false))==-1
         || (cr2=getRegZPAddr(2, clssReg, StdTypes.T_PTR, false))==-1) return;
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_CLC);
     ins(I_LDAzp, cr1);
     ins(I_ADCimm, off&0xFF);
@@ -1034,19 +1033,19 @@ public class JVM extends Architecture {
     ins(I_TAY);
     if (ctx.codeStart==0) {
       ins(I_LPA);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LPA);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
     } else {
       ins(I_CLC);
       ins(I_LPA);
       ins(I_ADCimm, ctx.codeStart&0xFF);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LPA);
       ins(I_ADCimm, (ctx.codeStart>>>8)&0xFF);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
     }
@@ -1058,7 +1057,7 @@ public class JVM extends Architecture {
     int cr1, cr2;
     if ((cr1 = getRegZPAddr(3, intfReg, StdTypes.T_DPTR, false)) == -1
         || (cr2 = getRegZPAddr(4, intfReg, StdTypes.T_DPTR, false)) == -1) return;
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_CLC);
     ins(I_LDAzp, cr1);
     ins(I_ADCimm, off & 0xFF);
@@ -1067,31 +1066,31 @@ public class JVM extends Architecture {
     ins(I_ADCimm, off >>> 8);
     ins(I_TAY);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrTmpLo);
+    ins(I_ST, ZPAddrTmpLo);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrTmpHi);
+    ins(I_ST, ZPAddrTmpHi);
     ins(I_CLC);
     ins(I_LDAzp, ZPAddrTmpLo);
-    ins(I_ADCzp, ZPAddrClssLo);
+    ins(I_AD, ZPAddrClssLo);
     ins(I_TAX);
     ins(I_LDAzp, ZPAddrTmpHi);
-    ins(I_ADCzp, ZPAddrClssHi);
+    ins(I_AD, ZPAddrClssHi);
     ins(I_TAY);
     if (ctx.codeStart == 0) {
       ins(I_LPA);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LPA);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
     } else {
       ins(I_CLC);
       ins(I_LPA);
       ins(I_ADCimm, ctx.codeStart & 0xFF);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LPA);
       ins(I_ADCimm, (ctx.codeStart >>> 8) & 0xFF);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
       ins(I_PLX);
       ins(I_JSRmem, ZPAddrTmpLo);
     }
@@ -1150,10 +1149,10 @@ public class JVM extends Architecture {
           (r2=getRegZPAddr(max, src2, type, false))==-1) return 0;
       ins(I_LDAzp, r1);
       ins(I_EORimm, 0x80);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LDAzp, r2);
       ins(I_EORimm, 0x80);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
     }
     if (max>1) ins(I_CLY);
     for (i=1; i<=max; i++) {
@@ -1185,17 +1184,17 @@ public class JVM extends Architecture {
       if ((r=getRegZPAddr(max, src, type, false))==-1) return 0;
       ins(I_LDAzp, r);
       ins(I_EORimm, 0x80);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
     }
     if (max>1) ins(I_CLY);
     for (i=1; i<=max; i++) {
       if ((r=getRegZPAddr(i, src, type, false))==-1) return 0;
       if (i==max && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
-        ins(i==1 ? I_CMPimm : I_SBCimm, ((val>>>((i-1)<<3))&0xFF)^0x80);
+        ins(i==1 ? I_CMPimm : I_SB, ((val>>>((i-1)<<3))&0xFF)^0x80);
       } else {
         ins(I_LDAzp, r);
-        ins(i==1 ? I_CMPimm : I_SBCimm, (val>>>((i-1)<<3))&0xFF);
+        ins(i==1 ? I_CMPimm : I_SB, (val>>>((i-1)<<3))&0xFF);
       }
       if (max>1) {
         zeroKeeper=getUnlinkedInstruction();
@@ -1216,17 +1215,17 @@ public class JVM extends Architecture {
       if ((r=getRegZPAddr(8, src, StdTypes.T_LONG, false))==-1) return 0;
       ins(I_LDAzp, r);
       ins(I_EORimm, 0x80);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
     }
     ins(I_CLY);
     for (i=1; i<=8; i++) {
       if ((r=getRegZPAddr(i, src, StdTypes.T_LONG, false))==-1) return 0;
       if (i==1 && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
-        ins(i==1 ? I_CMPimm : I_SBCimm, ((int)((val>>>((i-1)<<3)))&0xFF)^0x80);
+        ins(i==1 ? I_CMPimm : I_SB, ((int)((val>>>((i-1)<<3)))&0xFF)^0x80);
       } else {
         ins(I_LDAzp, r);
-        ins(i==1 ? I_CMPimm : I_SBCimm, ((int)(val>>>((i-1)<<3)))&0xFF);
+        ins(i==1 ? I_CMPimm : I_SB, ((int)(val>>>((i-1)<<3)))&0xFF);
       }
       zeroKeeper=getUnlinkedInstruction();
       insPatchedJmp(I_JPZimm, zeroKeeper);
@@ -1259,22 +1258,22 @@ public class JVM extends Architecture {
 
   @Override
   public void genMoveToPrimary(int src, int type) {
-    int tempReg, primReg, i=1, count;
-    for (count=getByteCount(type); i<=count; i++) {
-      if ((tempReg=getRegZPAddr(i, src, type, false))==-1) return;
-      primReg=getZPAddrOfReg(i-1);
-      if (tempReg!=primReg) ins(I_MOVzpzp, primReg, tempReg);
+    int tempReg, primReg, i = 1, count;
+    for (count = getByteCount(type); i <= count; i++) {
+      if ((tempReg = getRegZPAddr(i, src, type, false)) == -1) return;
+      primReg = getZPAddrOfReg(i - 1);
+      if (tempReg != primReg) ins(I_MOVzpzp, primReg, tempReg);
     }
   }
 
   @Override
   public void genMoveFromPrimary(int dst, int type) {
-    int tempReg, primReg, i=getByteCount(type);
-    while (i>0) {
-      if ((tempReg=getRegZPAddr(i, dst, type, true))==-1) return;
-      writtenRegs|=(1<<tempReg);
-      primReg=getZPAddrOfReg(--i);
-      if (primReg!=tempReg) ins(I_MOVzpzp, tempReg, primReg);
+    int tempReg, primReg, i = getByteCount(type);
+    while (i > 0) {
+      if ((tempReg = getRegZPAddr(i, dst, type, true)) == -1) return;
+      writtenRegs |= (1 << tempReg);
+      primReg = getZPAddrOfReg(--i);
+      if (primReg != tempReg) ins(I_MOVzpzp, tempReg, primReg);
     }
   }
 
@@ -1308,7 +1307,7 @@ public class JVM extends Architecture {
         || (addrR2=getRegZPAddr(2, addrReg, StdTypes.T_PTR, false))==-1
         || (offR1=getRegZPAddr(1, offReg, StdTypes.T_PTR, false))==-1
         || (offR2=getRegZPAddr(2, offReg, StdTypes.T_PTR, false))==-1) return;
-    ins(I_PHX);
+    ins(B_PH);
     ins(I_CLC);
     ins(I_LDAzp, addrR1);
     ins(I_ADCimm, checkToOffset&0xFF);
@@ -1317,9 +1316,9 @@ public class JVM extends Architecture {
     ins(I_ADCimm, (checkToOffset>>>8)&0xFF);
     ins(I_TAY);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrTmpLo);
+    ins(I_ST, ZPAddrTmpLo);
     ins(I_LPA);
-    ins(I_STAzp, ZPAddrTmpHi);
+    ins(I_ST, ZPAddrTmpHi);
     ins(I_PLX);
     ins(I_LDAzp, offR1);
     ins(I_CMPzp, ZPAddrTmpLo);
@@ -1346,10 +1345,10 @@ public class JVM extends Architecture {
       ins(I_CLA);
       ins(I_SEC);
       ins(I_SBCzp, indR1);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_CLA);
       ins(I_SBCzp, indR2);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
       entrySize=-entrySize;
     } else {
       ins(I_MOVzpzp, ZPAddrTmpLo, indR1);
@@ -1370,19 +1369,19 @@ public class JVM extends Architecture {
     if (baseOffset!=0) {
       ins(I_CLC);
       ins(I_LDAimm, baseOffset&0xFF);
-      ins(I_ADCzp, ZPAddrTmpLo);
-      ins(I_STAzp, ZPAddrTmpLo);
+      ins(I_AD, ZPAddrTmpLo);
+      ins(I_ST, ZPAddrTmpLo);
       ins(I_LDAimm, (baseOffset>>>8)&0xFF);
-      ins(I_ADCzp, ZPAddrTmpHi);
-      ins(I_STAzp, ZPAddrTmpHi);
+      ins(I_AD, ZPAddrTmpHi);
+      ins(I_ST, ZPAddrTmpHi);
     }
     ins(I_CLC);
     ins(I_LDAzp, objR1);
-    ins(I_ADCzp, ZPAddrTmpLo);
-    ins(I_STAzp, dstR1);
+    ins(I_AD, ZPAddrTmpLo);
+    ins(I_ST, dstR1);
     ins(I_LDAzp, objR2);
-    ins(I_ADCzp, ZPAddrTmpHi);
-    ins(I_STAzp, dstR2);
+    ins(I_AD, ZPAddrTmpHi);
+    ins(I_ST, dstR2);
   }
   
   //throw frame:
@@ -1506,9 +1505,9 @@ public class JVM extends Architecture {
         ins(I_STAabsx, pos);
       //}
     } else {
-      ins(I_PHX);
+      ins(B_PH);
       if (objReg==0) {
-        ins(I_LDXimm, pos&0xFF);
+        ins(I_LD, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
       } else {
         ins(I_CLC);
@@ -1524,7 +1523,7 @@ public class JVM extends Architecture {
       for (i=0; i<count; i++) {
         if ((valR=getRegZPAddr(i+1, valReg, type, false))==-1) return;
         ins(I_LDAzp, valR);
-        ins(I_SPA);
+        ins(F_ST);
       }
       ins(I_PLX);
     }
@@ -1543,9 +1542,9 @@ public class JVM extends Architecture {
         ins(I_STAabsx, pos+i);
       }
     } else {
-      ins(I_PHX);
+      ins(B_PH);
       if (objReg==0) {
-        ins(I_LDXimm, pos&0xFF);
+        ins(I_LD, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
       } else {
         ins(I_CLC);
@@ -1560,7 +1559,7 @@ public class JVM extends Architecture {
       }
       for (i=0; i<count; i++) {
         ins(I_LDAimm, (val>>>(i<<3))&0xFF);
-        ins(I_SPA);
+        ins(F_ST);
       }
       ins(I_PLX);
     }
@@ -1578,9 +1577,9 @@ public class JVM extends Architecture {
         ins(I_STAabsx, pos+i);
       }
     } else {
-      ins(I_PHX);
+      ins(B_PH);
       if (objReg==0) {
-        ins(I_LDXimm, pos&0xFF);
+        ins(I_LD, pos&0xFF);
         ins(I_LDYimm, pos>>>8);
       } else {
         ins(I_CLC);
@@ -1595,7 +1594,7 @@ public class JVM extends Architecture {
       }
       for (i=0; i<8; i++) {
         ins(I_LDAimm, ((int)(val>>>(i<<3)))&0xFF);
-        ins(I_SPA);
+        ins(F_ST);
       }
       ins(I_PLX);
     }
@@ -1618,10 +1617,10 @@ public class JVM extends Architecture {
         if (opPar==Ops.A_MUL) { //special case: mul for byte is supported
           if ((dstR=getRegZPAddr(1, dst, StdTypes.T_BYTE, true))==-1
               || (srcR1=getRegZPAddr(1, src1, StdTypes.T_BYTE, false))==-1) return;
-          ins(I_PHX);
+          ins(B_PH);
           ins(I_LDAzp, srcR1);
-          ins(I_MULimm, val&0xFF);
-          ins(I_STAzp, dstR);
+          ins(I_MUL, val & 0xFF);
+          ins(I_ST, dstR);
           ins(I_PLX);
           return;
         }
@@ -1630,35 +1629,35 @@ public class JVM extends Architecture {
       case StdTypes.T_INT: case StdTypes.T_LONG:
         switch (opType) {
           case Ops.S_ARI:
-            for (i=0; i<count; i++) {
-              if ((dstR=getRegZPAddr(i+1, dst, type, true))==-1
-                  || (srcR1=getRegZPAddr(i+1, src1, type, false))==-1) return;
-              tmpVal=(val>>>(i<<3))&0xFF;
+            //for (i=0; i<count; i++) {
+              if ((dstR=getRegZPAddr(1, dst, type, true))==-1
+                  || (srcR1=getRegZPAddr(1, src1, type, false))==-1) return;
+              //tmpVal=(val>>>(i<<3))&0xFF;
               ins(I_LDAzp, srcR1);
               switch (opPar) {
                 case Ops.A_AND:
-                  ins(I_ANDimm, tmpVal);
+                  ins(I_AND, val);
                   break;
                 case Ops.A_OR:
-                  ins(I_ORimm, tmpVal);
+                  ins(I_OR, val);
                   break;
                 case Ops.A_XOR:
-                  ins(I_EORimm, tmpVal);
+                  ins(I_EORimm, val);
                   break;
                 case Ops.A_MINUS:
-                  if (i==0) ins(I_SEC);
-                  ins(I_SBCimm, tmpVal);
+                  //if (i==0) ins(I_SEC);
+                  ins(I_SB, val);
                   break;
                 case Ops.A_PLUS:
-                  if (i==0) ins(I_CLC);
-                  ins(I_ADCimm, tmpVal);
+                  //if (i==0) ins(I_CLC);
+                  ins(I_ADCimm, val);
                   break;
                 default:
                   fatalError("unsupported ari-operation for genBinOpConstRi");
                   return;
               }
-              ins(I_STAzp, dstR);
-            }
+              ins(I_ST, dstR);
+            //}
             return;
           case Ops.S_BSH:
             if (val==0) return; //do not shift
@@ -1672,7 +1671,7 @@ public class JVM extends Architecture {
                 if (srcR1!=dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHL);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_SHLzp, dstR);
                 i=2;
@@ -1681,7 +1680,7 @@ public class JVM extends Architecture {
                 if (srcR1!=dstR) {
                   ins(I_LDAzp, srcR1);
                   ins(I_SHR);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_SHRzp, dstR);
                 i=count-1;
@@ -1691,7 +1690,7 @@ public class JVM extends Architecture {
                 ins(I_SHL);
                 ins(I_LDAzp, srcR1);
                 ins(I_ROR);
-                ins(I_STAzp, dstR);
+                ins(I_ST, dstR);
                 i=count-1;
                 break;
               default:
@@ -1705,7 +1704,7 @@ public class JVM extends Architecture {
                 if (dstR!=srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROL);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_ROLzp, dstR);
                 i++;
@@ -1713,7 +1712,7 @@ public class JVM extends Architecture {
                 if (dstR!=srcR1) {
                   ins(I_LDAzp, srcR1);
                   ins(I_ROR);
-                  ins(I_STAzp, dstR);
+                  ins(I_ST, dstR);
                 }
                 else ins(I_RORzp, dstR);
                 i--;
@@ -1745,17 +1744,17 @@ public class JVM extends Architecture {
           ins(I_LDAzp, srcR1);
           switch (opPar) {
             case Ops.A_AND:
-              ins(I_ANDimm, tmpVal);
+              ins(I_AND, tmpVal);
               break;
             case Ops.A_OR:
-              ins(I_ORimm, tmpVal);
+              ins(I_OR, tmpVal);
               break;
             case Ops.A_XOR:
               ins(I_EORimm, tmpVal);
               break;
             case Ops.A_MINUS:
               if (i==0) ins(I_SEC);
-              ins(I_SBCimm, tmpVal);
+              ins(I_SB, tmpVal);
               break;
             case Ops.A_PLUS:
               if (i==0) ins(I_CLC);
@@ -1765,7 +1764,7 @@ public class JVM extends Architecture {
               fatalError("unsupported ari-operation for genBinOpConstDoubleOrLongRi");
               return;
           }
-          ins(I_STAzp, dstR);
+          ins(I_ST, dstR);
         }
         return;
       case Ops.S_BSH:
@@ -1780,7 +1779,7 @@ public class JVM extends Architecture {
             if (srcR1!=dstR) {
               ins(I_LDAzp, srcR1);
               ins(I_SHL);
-              ins(I_STAzp, dstR);
+              ins(I_ST, dstR);
             }
             else ins(I_SHLzp, dstR);
             i=2;
@@ -1789,7 +1788,7 @@ public class JVM extends Architecture {
             if (srcR1!=dstR) {
               ins(I_LDAzp, srcR1);
               ins(I_SHR);
-              ins(I_STAzp, dstR);
+              ins(I_ST, dstR);
             }
             else ins(I_SHRzp, dstR);
             i=7;
@@ -1799,7 +1798,7 @@ public class JVM extends Architecture {
             ins(I_SHL);
             ins(I_LDAzp, srcR1);
             ins(I_ROR);
-            ins(I_STAzp, dstR);
+            ins(I_ST, dstR);
             i=7;
             break;
           default:
@@ -1814,7 +1813,7 @@ public class JVM extends Architecture {
             if (dstR!=srcR1) {
               ins(I_LDAzp, srcR1);
               ins(I_ROL);
-              ins(I_STAzp, dstR);
+              ins(I_ST, dstR);
             }
             else ins(I_ROLzp, dstR);
             i++;
@@ -1823,7 +1822,7 @@ public class JVM extends Architecture {
             if (dstR!=srcR1) {
               ins(I_LDAzp, srcR1);
               ins(I_ROR);
-              ins(I_STAzp, dstR);
+              ins(I_ST, dstR);
             }
             else ins(I_RORzp, dstR);
             i--;
