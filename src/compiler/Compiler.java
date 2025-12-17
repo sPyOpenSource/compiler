@@ -13,7 +13,6 @@ import java.util.*;
  */
 public class Compiler {
     public static String srcFileEncode = "utf-8";
-
     public static final String JAVA_EXT = ".java";
 
     /**

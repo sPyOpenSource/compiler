@@ -180,60 +180,60 @@ public class Vrbl extends AccVar {
   }
   
   public void genInitCode(boolean forceInit, Context ctx) {
-    int addr=0, restore=0, regType, reg;
+    int addr = 0, restore = 0, regType, reg;
     Expr toInit;
     int value;
-    boolean asDouble=false;
+    boolean asDouble = false;
     
     //check if initialization is really required
-    if ((toInit=init)!=null && toInit.isConstZero()) toInit=null; //constant zero
+    if ((toInit = init) != null && toInit.isConstZero()) toInit = null; //constant zero
     //get type and position of initialization
-    regType=type.getRegType(ctx);
+    regType = type.getRegType(ctx);
     switch (location) {
       case L_INSTREL:
-        reg=ctx.arch.regInst;
+        reg = ctx.arch.regInst;
         break;
       case L_INSTSCL:
-        reg=ctx.arch.regInst;
+        reg = ctx.arch.regInst;
         break;
       case L_INSTIDS: //very special case: scalar variable addressed indirectly
-        restore=ctx.arch.prepareFreeReg(0, 0, 0, StdTypes.T_PTR);
-        reg=addr=ctx.arch.allocReg();
+        restore = ctx.arch.prepareFreeReg(0, 0, 0, StdTypes.T_PTR);
+        reg = addr = ctx.arch.allocReg();
         ctx.arch.genLoadVarVal(addr, ctx.arch.regInst, null, ctx.indirScalarAddrOff, StdTypes.T_PTR);
         break;
       case L_LOCAL:
-        reg=ctx.arch.regBase;
+        reg = ctx.arch.regBase;
         break;
       default:
         compErr(ctx, "can not initialize variable beside instance or local");
         return;
     }
     //no initialization needed for zero values, in all cases report to backend
-    if (toInit==null && !forceInit) {
-      if (init!=null) ctx.arch.insertZeroHint(reg, relOff, regType);
+    if (toInit == null && !forceInit) {
+      if (init != null) ctx.arch.insertZeroHint(reg, relOff, regType);
       return;
     }
     //do initialization
-    if (toInit!=null) switch (toInit.calcConstantType(ctx)) { //value-init
+    if (toInit != null) switch (toInit.calcConstantType(ctx)) { //value-init
       case StdTypes.T_INT: //constant 8/16/32 bit value
         ctx.arch.genStoreVarConstVal(reg, null, relOff, toInit.getConstIntValue(ctx), regType);
         break;
       case StdTypes.T_LONG: //constant 64 bit value
-        ctx.arch.genStoreVarConstDoubleOrLongVal(reg, null, relOff, toInit.getConstLongValue(ctx), regType==StdTypes.T_DBL);
+        ctx.arch.genStoreVarConstDoubleOrLongVal(reg, null, relOff, toInit.getConstLongValue(ctx), regType == StdTypes.T_DBL);
         break;
       default: //not a constant value
         if (ctx.arch.prepareFreeReg(0, 0, 0, regType)!=0) {
           compErr(ctx, NOREGFREE);
           return;
         }
-        value=ctx.arch.allocReg(); //address of variable does not change, value is generatable already
+        value = ctx.arch.allocReg(); //address of variable does not change, value is generatable already
         toInit.genOutputVal(value, ctx);
         ctx.arch.genStoreVarVal(reg, null, relOff, value, regType);
         ctx.arch.deallocRestoreReg(value, 0, 0);
     } else { //clear memory
       switch (regType) {
         case StdTypes.T_DBL:
-          asDouble=true; //no break
+          asDouble = true; //no break
         case StdTypes.T_LONG:
           ctx.arch.genStoreVarConstDoubleOrLongVal(reg, null, relOff, 0l, asDouble);
           break;

@@ -170,14 +170,14 @@ public class JVM extends Architecture {
   public final static int I_ROR      = 0xFB; //rotate right Accu, lowest bit will be stored in carry
   public final static int I_RORzp    = 0xEC; //rotate right the content of RAM addressed by ZP (8bit), lowest bit will be stored in carry
   
-  public final static int I_CMPimm   = 0x94; //compare Accu with immediate data
+  public final static int L_CMP   = 0x94; //compare Accu with immediate data
   public final static int I_CMPzp    = 0x9F; //compare Accu with content of RAM addressed by ZP (8bit)
   public final static int I_CAY      = 0x69; //compare Accu with Y-Register
   
   public final static int I_JSRmem   = 0xA8; //jump to indirectly addressed  subroutine, the pointer to the subroutine is stored in RAM
   public final static int I_JSRimm   = 0xC9; //jump to direct addressed subroutine
   public final static int I_JMPimm   = 0x10; //jump to direct address
-  public final static int I_JNCimm   = 0x16; //jump if carry clear
+  public final static int I_JNCimm   = 0xa3; //jump if carry clear
   public final static int I_JNVimm   = 0x14; //jump if sign clear
   public final static int I_JNZimm   = 0x18; //jump if zero clear
   public final static int I_JPCimm   = 0x17; //jump if carry set
@@ -1143,10 +1143,10 @@ public class JVM extends Architecture {
   public int genComp(int src1, int src2, int type, int cond) {
     int i, max, r1, r2;
     Instruction zeroKeeper;
-    max=getByteCount(type);
-    if (cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO && type!=StdTypes.T_CHAR) {
-      if ((r1=getRegZPAddr(max, src1, type, false))==-1 ||
-          (r2=getRegZPAddr(max, src2, type, false))==-1) return 0;
+    max = getByteCount(type);
+    if (cond != Ops.C_EQ && cond != Ops.C_NE && cond != Ops.C_BO && type != StdTypes.T_CHAR) {
+      if ((r1 = getRegZPAddr(max, src1, type, false)) == -1 ||
+          (r2 = getRegZPAddr(max, src2, type, false)) == -1) return 0;
       ins(I_LDAzp, r1);
       ins(I_EORimm, 0x80);
       ins(I_ST, ZPAddrTmpLo);
@@ -1154,24 +1154,24 @@ public class JVM extends Architecture {
       ins(I_EORimm, 0x80);
       ins(I_ST, ZPAddrTmpHi);
     }
-    if (max>1) ins(I_CLY);
-    for (i=1; i<=max; i++) {
-      if (i==max && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO && type!=StdTypes.T_CHAR) {
-        r1=ZPAddrTmpLo;
-        r2=ZPAddrTmpHi;
+    if (max > 1) ins(I_CLY);
+    for (i = 1; i <= max; i++) {
+      if (i == max && cond != Ops.C_EQ && cond != Ops.C_NE && cond != Ops.C_BO && type != StdTypes.T_CHAR) {
+        r1 = ZPAddrTmpLo;
+        r2 = ZPAddrTmpHi;
       }
-      else if ((r1=getRegZPAddr(i, src1, type, false))==-1 ||
-          (r2=getRegZPAddr(i, src2, type, false))==-1) return 0;
+      else if ((r1 = getRegZPAddr(i, src1, type, false)) == -1 ||
+          (r2 = getRegZPAddr(i, src2, type, false)) == -1) return 0;
       ins(I_LDAzp, r1);
-      ins(i==1 ? I_CMPzp : I_SBCzp, r2);
-      if (max>1) {
-        zeroKeeper=getUnlinkedInstruction();
+      ins(i == 1 ? I_CMPzp : I_SBCzp, r2);
+      if (max > 1) {
+        zeroKeeper = getUnlinkedInstruction();
         insPatchedJmp(I_JPZimm, zeroKeeper);
         ins(I_INY);
         appendInstruction(zeroKeeper);
       }
     }
-    if (max>1) ins(I_TYA);
+    if (max > 1) ins(I_TYA);
     return cond;
   }
 
@@ -1179,31 +1179,31 @@ public class JVM extends Architecture {
   public int genCompValToConstVal(int src, int val, int type, int cond) {
     int i, max, r;
     Instruction zeroKeeper;
-    max=getByteCount(type);
-    if (cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
-      if ((r=getRegZPAddr(max, src, type, false))==-1) return 0;
+    max = getByteCount(type);
+    if (cond != Ops.C_EQ && cond != Ops.C_NE && cond != Ops.C_BO) {
+      if ((r = getRegZPAddr(max, src, type, false)) == -1) return 0;
       ins(I_LDAzp, r);
       ins(I_EORimm, 0x80);
       ins(I_ST, ZPAddrTmpLo);
     }
-    if (max>1) ins(I_CLY);
-    for (i=1; i<=max; i++) {
-      if ((r=getRegZPAddr(i, src, type, false))==-1) return 0;
-      if (i==max && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
+    if (max > 1) ins(I_CLY);
+    for (i = 1; i <= max; i++) {
+      if ((r = getRegZPAddr(i, src, type, false)) == -1) return 0;
+      if (i == max && cond != Ops.C_EQ && cond != Ops.C_NE && cond != Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
-        ins(i==1 ? I_CMPimm : I_SB, ((val>>>((i-1)<<3))&0xFF)^0x80);
+        ins(i == 1 ? L_CMP : I_SB, ((val >>> ((i - 1) << 3)) & 0xFF) ^ 0x80);
       } else {
         ins(I_LDAzp, r);
-        ins(i==1 ? I_CMPimm : I_SB, (val>>>((i-1)<<3))&0xFF);
+        ins(i == 1 ? L_CMP : I_SB, (val >>> ((i - 1) << 3)) & 0xFF);
       }
-      if (max>1) {
-        zeroKeeper=getUnlinkedInstruction();
+      if (max > 1) {
+        zeroKeeper = getUnlinkedInstruction();
         insPatchedJmp(I_JPZimm, zeroKeeper);
         ins(I_INY);
         appendInstruction(zeroKeeper);
       }
     }
-    if (max>1) ins(I_TYA);
+    if (max > 1) ins(I_TYA);
     return cond;
   }
 
@@ -1222,10 +1222,10 @@ public class JVM extends Architecture {
       if ((r=getRegZPAddr(i, src, StdTypes.T_LONG, false))==-1) return 0;
       if (i==1 && cond!=Ops.C_EQ && cond!=Ops.C_NE && cond!=Ops.C_BO) {
         ins(I_LDAzp, ZPAddrTmpLo);
-        ins(i==1 ? I_CMPimm : I_SB, ((int)((val>>>((i-1)<<3)))&0xFF)^0x80);
+        ins(i==1 ? L_CMP : I_SB, ((int)((val>>>((i-1)<<3)))&0xFF)^0x80);
       } else {
         ins(I_LDAzp, r);
-        ins(i==1 ? I_CMPimm : I_SB, ((int)(val>>>((i-1)<<3)))&0xFF);
+        ins(i==1 ? L_CMP : I_SB, ((int)(val>>>((i-1)<<3)))&0xFF);
       }
       zeroKeeper=getUnlinkedInstruction();
       insPatchedJmp(I_JPZimm, zeroKeeper);
@@ -1445,31 +1445,31 @@ public class JVM extends Architecture {
 
   @Override
   public void genThrowFrameUpdate(Instruction oldDest, Instruction newDest, int throwBlockOffset) {
-    if (throwBlockOffset>=0) { //throwBlockOffset is in local vars
-      fatalError(ERR_INVGLOBADDRREG);
+    if (throwBlockOffset >= 0) { //throwBlockOffset is in local vars
+      fatalError(ERR_INVGLOBADDRREG); 
       return;
     }
-    throwBlockOffset+=STACKMEM_OFF;
+    throwBlockOffset += STACKMEM_OFF;
     insPatchedJmp(I_PUSAimm, newDest);
     ins(I_PLA);
-    ins(I_STAabsx, throwBlockOffset+2);
+    ins(I_STAabsx, throwBlockOffset + 2);
     ins(I_PLA);
-    ins(I_STAabsx, throwBlockOffset+3);
+    ins(I_STAabsx, throwBlockOffset + 3);
   }
 
   @Override
   public void genThrowFrameReset(int globalAddrReg, int throwBlockOffset) {
-    if (globalAddrReg!=0x0003 || usedRegs!=0x0003 || throwBlockOffset>=0) { //globalAddrReg is the only allocated register, throwBlockOffset is in local vars
+    if (globalAddrReg != 0x0003 || usedRegs != 0x0003 || throwBlockOffset >= 0) { //globalAddrReg is the only allocated register, throwBlockOffset is in local vars
       fatalError(ERR_INVGLOBADDRREG);
       return;
     }
     //load previous pointer from current frame and store in global variable
-    throwBlockOffset+=STACKMEM_OFF;
+    throwBlockOffset += STACKMEM_OFF;
     ins(I_CLY);
     ins(I_LDAabsx, throwBlockOffset);
     ins(I_STAizpy, ZPAddrBase);
     ins(I_INY);
-    ins(I_LDAabsx, throwBlockOffset+1);
+    ins(I_LDAabsx, throwBlockOffset + 1);
     ins(I_STAizpy, ZPAddrBase);
   }
 
@@ -1650,7 +1650,7 @@ public class JVM extends Architecture {
                   break;
                 case Ops.A_PLUS:
                   //if (i==0) ins(I_CLC);
-                  ins(I_ADCimm, val);
+                  ins(I_AD, val);
                   break;
                 default:
                   fatalError("unsupported ari-operation for genBinOpConstRi");

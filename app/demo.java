@@ -10,6 +10,8 @@ public class demo {
             case 0:
             case 1:
                 break;
+            case 2:
+                break;
         }
         //try {z = 1/y;} catch (Exception e){}
         for(int o = 0; o < 8; o++){
