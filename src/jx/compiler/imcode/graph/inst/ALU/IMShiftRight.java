@@ -3,11 +3,12 @@ package jx.compiler.imcode.graph.inst.ALU;
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
 import jx.zero.Debug; 
+
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.graph.*;
 import jx.compiler.imcode.graph.inst.IMConstant;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 // ***** IMShiftRight *****
 final public class IMShiftRight extends IMBitOperator {

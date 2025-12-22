@@ -2,7 +2,7 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.constantpool.*; 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.execenv.*;
 import jx.compiler.imcode.CodeContainer;
 

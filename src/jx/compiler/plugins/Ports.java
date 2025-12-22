@@ -4,7 +4,7 @@ import jx.zero.Debug;
 import jx.compiler.*;
 import jx.classfile.constantpool.*;
 
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.execenv.*;
 import jx.compiler.imcode.graph.inst.IMConstant;
 import jx.compiler.imcode.graph.IMNode;

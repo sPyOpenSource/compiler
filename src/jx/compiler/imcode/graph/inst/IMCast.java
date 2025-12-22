@@ -11,7 +11,7 @@ import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMUnaryOperator;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 final  public class IMCast extends IMUnaryOperator {
     private int shortOpr;

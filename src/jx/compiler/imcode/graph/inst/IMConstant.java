@@ -4,13 +4,14 @@ package jx.compiler.imcode.graph.inst;
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
+
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMOperant;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 // ***** IMConstant *****
 

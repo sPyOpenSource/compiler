@@ -4,9 +4,10 @@ package jx.compiler.imcode.graph.inst;
 import jx.classfile.datatypes.*; 
 import jx.classfile.*;
 import jx.zero.Debug; 
-import jx.compiler.*;
-import jx.compiler.nativecode.*;
 import java.util.ArrayList;
+
+import jx.compiler.*;
+import jx.compiler.backend.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 

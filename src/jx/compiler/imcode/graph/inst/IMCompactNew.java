@@ -4,8 +4,9 @@ package jx.compiler.imcode.graph.inst;
 import jx.classfile.constantpool.*; 
 import jx.classfile.datatypes.*; 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import java.util.ArrayList;
+
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.CodeVector;
 import jx.compiler.imcode.VirtualOperantenStack;

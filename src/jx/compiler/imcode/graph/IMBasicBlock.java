@@ -9,7 +9,7 @@ import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.inst.IMBranch;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.symbols.*;
 
 // ***** IMBasicBlock *****

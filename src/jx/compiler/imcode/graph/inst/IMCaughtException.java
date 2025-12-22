@@ -8,7 +8,7 @@ import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMOperant;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 final public class IMCaughtException extends IMOperant {
 

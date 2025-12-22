@@ -2,7 +2,7 @@
 package jx.compiler.imcode.graph.inst; 
 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 import java.util.ArrayList;

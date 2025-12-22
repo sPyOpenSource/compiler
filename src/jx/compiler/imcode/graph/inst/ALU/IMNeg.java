@@ -9,7 +9,7 @@ import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.*;
 import jx.compiler.imcode.graph.inst.IMConstant;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 final  public class IMNeg extends IMUnaryOperator {
 
