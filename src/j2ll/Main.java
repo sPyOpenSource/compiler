@@ -2,6 +2,8 @@
 package j2ll;
 
 import compiler.Compiler;
+import j2ll.frontend.CV;
+import j2ll.frontend.ClassHelper;
 import j2ll.utils.Statistics;
 import j2ll.utils.StatisticsCollector;
 import j2ll.utils.Util;

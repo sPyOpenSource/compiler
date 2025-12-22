@@ -1,7 +1,7 @@
 
 package j2ll.utils;
 
-import j2ll.LocalVarTable;
+import j2ll.frontend.LocalVarTable;
 import java.util.HashMap;
 import java.util.Map;
 

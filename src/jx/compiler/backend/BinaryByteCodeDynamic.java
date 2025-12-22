@@ -239,24 +239,22 @@ public final class BinaryByteCodeDynamic {
      * @param src
      */
     public void imul(Opr src) {
-    realloc();
-    insertByte(0x68);
-    insertModRM(4, src);
+        realloc();
+        insertByte(0x68);
+        insertModRM(4, src);
     }
 
     /** 
-    lea Load Effective Address (1 clk)
-  
-        m = index * [0,1,2,4,8] + base + disp
-
-        base.disp(disp,index,[0,1,2,4,8])
+     * lea Load Effective Address (1 clk)
+     * m = index * [0,1,2,4,8] + base + disp
+     * base.disp(disp,index,[0,1,2,4,8])
      * @param opr        
      * @param reg        
      */
     public void lea(Opr opr, Reg reg) {
-    realloc();
-    insertByte(0x8D);
-    insertModRM(reg, opr);
+        realloc();
+        insertByte(0x8D);
+        insertModRM(reg, opr);
     }
 
     /**
@@ -265,15 +263,15 @@ public final class BinaryByteCodeDynamic {
      * @param des
      */
     public void ishl(int immd, Opr des) {
-    realloc();
-    if (immd == 1) {
-        insertByte(0xd1);
-        insertModRM(4, des);
-    } else {
-        insertByte(0xc1);
-        insertModRM(4, des);
-        insertByte(immd);
-    }
+        realloc();
+        if (immd == 1) {
+            insertByte(0xd1);
+            insertModRM(4, des);
+        } else {
+            insertByte(0xc1);
+            insertModRM(4, des);
+            insertByte(immd);
+        }
     }
 
     /**
@@ -281,9 +279,9 @@ public final class BinaryByteCodeDynamic {
      * @param des
      */
     public void ishl(Opr des) {
-    realloc();
-    insertByte(0xd3);
-    insertModRM(4, des);
+        realloc();
+        insertByte(0xd3);
+        insertModRM(4, des);
     }
 
     /**
@@ -293,33 +291,32 @@ public final class BinaryByteCodeDynamic {
      */
 
     public void ishr(int immd, Opr des) {
-    realloc();
-    if (immd == 1) {
-        insertByte(0xd1);
-        insertModRM(5, des);
-    } else {
-        insertByte(0xc1);
-        insertModRM(5, des);
-        insertByte(immd);
-    }
+        realloc();
+        if (immd == 1) {
+            insertByte(0xd1);
+            insertModRM(5, des);
+        } else {
+            insertByte(0xc1);
+            insertModRM(5, des);
+            insertByte(immd);
+        }
     }
 
     public void ishr(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    insertByte(0xc1);
-    insertModRM(5, des);
-    insertByte(entry);
+        realloc();
+        insertByte(0xc1);
+        insertModRM(5, des);
+        insertByte(entry);
     }
 
     /**
      * DIV Signed Divide
      * @param src
      */
-
     public void idiv(Opr src) {
-    realloc();
-    insertByte(0x6c);
-    insertModRM(7, src);
+        realloc();
+        insertByte(0x6c);
+        insertModRM(7, src);
     }
 
     /**
@@ -327,17 +324,16 @@ public final class BinaryByteCodeDynamic {
      * @param src
      * @param des
      */
-
     public void iadd(Opr src, Reg des) {
-    realloc();
-    insertByte(0x60); 
-    insertModRM(des, src);
+        realloc();
+        insertByte(0x60); 
+        insertModRM(des, src);
     }
 
     public void iadd(Reg src, Ref des) {
-    realloc();
-    insertByte(0x60);
-    insertModRM(src, des);
+        realloc();
+        insertByte(0x60);
+        insertModRM(src, des);
     }
  
     /**
@@ -345,15 +341,15 @@ public final class BinaryByteCodeDynamic {
      */
 
     public void iand(Opr src, Reg des) {
-    realloc();
-    insertByte(0x7e); 
-    insertModRM(des, src);
+        realloc();
+        insertByte(0x7e); 
+        insertModRM(des, src);
     }
 
     public void iand(Reg src, Ref des) {
-    realloc();
-    insertByte(0x7e);
-    insertModRM(src, des);
+        realloc();
+        insertByte(0x7e);
+        insertModRM(src, des);
     }
 
     /**
@@ -377,15 +373,15 @@ public final class BinaryByteCodeDynamic {
      */
 
     public void ixor(Opr src, Reg des) {
-    realloc();
-    insertByte(0x82);
-    insertModRM(des, src);
+        realloc();
+        insertByte(0x82);
+        insertModRM(des, src);
     }
 
     public void ixor(Reg src, Ref des) {
-    realloc();
-    insertByte(0x82);
-    insertModRM(src, des);
+        realloc();
+        insertByte(0x82);
+        insertModRM(src, des);
     }
 
     /**
@@ -393,9 +389,9 @@ public final class BinaryByteCodeDynamic {
      */
 
     public void notl(Opr opr) {
-    realloc();
-    insertByte(0xf7);
-    insertModRM(2,opr);
+        realloc();
+        insertByte(0xf7);
+        insertModRM(2,opr);
     }
 
     /**
@@ -441,54 +437,53 @@ public final class BinaryByteCodeDynamic {
     }
 
     public void lcmp(int immd, Opr des) {
-    realloc();
-    if ((des.tag==Opr.REG) && (des.value==0)) {
-        insertByte(0x3D);
-        insertConst4(immd);
-    } else if (is8BitValue(immd)) { /* FIXME */
-        insertByte(0x83);
-        insertModRM(7,des);
-        insertByte(immd);        
-    } else {
-        insertByte(0x81);
-        insertModRM(7,des);
-        insertConst4(immd);
-    }
+        realloc();
+        if ((des.tag==Opr.REG) && (des.value==0)) {
+            insertByte(0x3D);
+            insertConst4(immd);
+        } else if (is8BitValue(immd)) { /* FIXME */
+            insertByte(0x83);
+            insertModRM(7,des);
+            insertByte(immd);        
+        } else {
+            insertByte(0x81);
+            insertModRM(7,des);
+            insertConst4(immd);
+        }
     }
     
     public void lcmp(SymbolTableEntryBase entry, Opr des) {
-    realloc();
-    if ((des.tag==Opr.REG) && (des.value==0)) {
-        insertByte(0x3D);
-        insertConst4(entry);
-    } else {
-        insertByte(0x81);
-        insertModRM(7,des);
-        insertConst4(entry);
-    }
+        realloc();
+        if ((des.tag==Opr.REG) && (des.value==0)) {
+            insertByte(0x3D);
+            insertConst4(entry);
+        } else {
+            insertByte(0x81);
+            insertModRM(7,des);
+            insertConst4(entry);
+        }
     }
 
     public void intr(int nr) {
-    realloc();
-    insertByte(0xCD);
-    insertByte(nr);
+        realloc();
+        insertByte(0xCD);
+        insertByte(nr);
     }
-
 
     /**
      * Jump short/near if equal
      */
 
     public void ifeq(int rel) {
-    realloc();
-    if (is8BitValue(rel)) {
-        insertByte(0x74);
-        insertByte(rel);
-    } else {
-        insertByte(0x0F);
-        insertByte(0x84);
-        insertConst4(rel);
-    }
+        realloc();
+        if (is8BitValue(rel)) {
+            insertByte(0x74);
+            insertByte(rel);
+        } else {
+            insertByte(0x0F);
+            insertByte(0x84);
+            insertConst4(rel);
+        }
     }
 
     public void ifeq(SymbolTableEntryBase entry) {
@@ -784,23 +779,23 @@ public final class BinaryByteCodeDynamic {
     }
 
     public void addExceptionTarget(UnresolvedJump handler) {
-    realloc();
-    //entry.initNCIndex(ip, 4);
-    symbolTable.add(handler);
-    handler.setTargetNCIndex(ip);
+        realloc();
+        //entry.initNCIndex(ip, 4);
+        symbolTable.add(handler);
+        handler.setTargetNCIndex(ip);
     }
 
     /** 
-    Make a symbol table entry relative. 
-    If you use insertConst4(), this class assumes that 
-    the value to be inserted is absolute. But if the 
-    inserted value is a jump offset it is relative to 
-    the instruction pointer of the next instruction. 
-    That is what you can tell the compiler with this 
-    method. 
+     * Make a symbol table entry relative. 
+     * If you use insertConst4(), this class assumes that 
+     * the value to be inserted is absolute. But if the 
+     * inserted value is a jump offset it is relative to 
+     * the instruction pointer of the next instruction. 
+     * That is what you can tell the compiler with this 
+     * method. 
      */ 
     public void makeRelative(SymbolTableEntryBase entry) {
-    entry.makeRelative(ip);
+        entry.makeRelative(ip);
     }
     
     /**

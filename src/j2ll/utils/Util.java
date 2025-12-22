@@ -1,13 +1,13 @@
 
 package j2ll.utils;
 
-import j2ll.ClassHelper;
+import j2ll.frontend.ClassHelper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
 import static j2ll.Internals.*;
-import j2ll.JSignature;
+import j2ll.frontend.JSignature;
 import jx.classfile.ClassData;
 import jx.classfile.FieldData;
 

@@ -13,10 +13,6 @@ public class RuntimeStack {
     StackValue[] imm2 = new StackValue[SIZE];
     int pos = 0;
 
-    RuntimeStack() {
-
-    }
-
     public String push(String type) {
         String s = push_impl(type);
         if (type.equals(Internals.LONG) || type.equals(Internals.DOUBLE)) {

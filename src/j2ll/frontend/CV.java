@@ -1,6 +1,7 @@
 
-package j2ll;
+package j2ll.frontend;
 
+import j2ll.AssistLLVM;
 import j2ll.utils.Resolver;
 import j2ll.utils.Statistics;
 import j2ll.utils.Util;
@@ -24,10 +25,10 @@ public class CV extends ClassVisitor {
     private final List<MV> methods = new ArrayList<>();
     
     // shared states
-    Set<String> declares = new HashSet<>();
+    public Set<String> declares = new HashSet<>();
     Set<String> assistFunc = new HashSet<>();
 
-    Map<String, String> staticStrs = new HashMap();
+    public Map<String, String> staticStrs = new HashMap();
 
     public CV(PrintStream ps, Statistics statistics) {
         super(Opcodes.ASM5);
