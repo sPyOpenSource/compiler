@@ -218,22 +218,22 @@ class java/security/Identity {
  method hashCode()I {
   +START:   #1
         vi1 = vR0.name.hashCode@extra();    [   R] 
-        if vR0.publicKey==null goto B25;   
+        if vR0.publicKey==null goto B27;   
   +B15:   #1
         vi1 = (vi1 | vR0.publicKey.hashCode());    
-  +B25:   #1
-        if vR0.scope==null goto B42;   
-  +B32:   #1
+  +B27:   #1
+        if vR0.scope==null goto B44;   
+  +B34:   #1
         vi1 = (vi1 | vR0.scope.hashCode());    
-  +B42:   #1
-        if vR0.info==null goto B59;   
-  +B49:   #1
+  +B44:   #1
+        if vR0.info==null goto B61;   
+  +B51:   #1
         vi1 = (vi1 | vR0.info.hashCode@extra());    
-  +B59:   #1
-        if vR0.certificates==null goto B76;   
-  +B66:   #1
+  +B61:   #1
+        if vR0.certificates==null goto B78;   
+  +B68:   #1
         vi1 = (vi1 | vR0.certificates.hashCode());    
-  +B76:   #1
+  +B78:   #1
         return vi1;   
   +END:   #1
  }

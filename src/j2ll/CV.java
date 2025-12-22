@@ -18,15 +18,16 @@ public class CV extends ClassVisitor {
     // state
     String className;
     String superName;
+    
     private final Set<JField> staticFields = new HashSet<>();
     private final List<JField> fields = new ArrayList<>();
-
     private final List<MV> methods = new ArrayList<>();
+    
     // shared states
     Set<String> declares = new HashSet<>();
+    Set<String> assistFunc = new HashSet<>();
 
     Map<String, String> staticStrs = new HashMap();
-    Set<String> assistFunc = new HashSet<>();
 
     public CV(PrintStream ps, Statistics statistics) {
         super(Opcodes.ASM5);

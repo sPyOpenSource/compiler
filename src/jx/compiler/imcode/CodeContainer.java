@@ -236,8 +236,7 @@ public class CodeContainer implements NativeCodeContainer {
     }
 
     while (bcStream.hasMore()) {
-        IMNode node = BCParser(bcStream);
-        if(node != null) insertBCList(node);
+        BCParser(bcStream);
     }
         
     // ===============================================
@@ -420,10 +419,10 @@ public class CodeContainer implements NativeCodeContainer {
     }
     }
 
-    public IMNode BCParser(BytecodeInputStream bcStream) throws CompileException {
+    public void BCParser(BytecodeInputStream bcStream) throws CompileException {
         int current = bcStream.readUnsignedByte();
         if (current == Opcodes.UNUSED) {
-            return null;
+            return;
         }
         boolean hasWidePrefix = false;
         int ip = bcStream.getCurrentPosition() - 1;
@@ -436,7 +435,8 @@ public class CodeContainer implements NativeCodeContainer {
         // should we implement the nop operation ?!?
         // public static const int BC.NOP 0x00;
         if (current == Opcodes.NOP) {
-            return(new IMNop(this, ip));
+            insertBCList(new IMNop(this, ip));
+            return;
         }
         // immediate constants
         if (current >= Opcodes.ACONST_NULL && current <= Opcodes.SIPUSH) {
@@ -450,7 +450,8 @@ public class CodeContainer implements NativeCodeContainer {
                 int si = bcStream.readShort();
                 opr = new IMConstant(this, current, ip, si);
             }   
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         // constants form constantpool
         // read constants from pool [index 1-2]
@@ -459,7 +460,8 @@ public class CodeContainer implements NativeCodeContainer {
             if (current == Opcodes.LDC) cpIndex = bcStream.readUnsignedByte();
             else cpIndex = bcStream.readUnsignedShort();
             ConstantPoolEntry cpEntry = cPool.constantEntryAt(cpIndex);
-            return new IMConstant(this, current, ip, cpEntry);
+            insertBCList(new IMConstant(this, current, ip, cpEntry));
+            return;
         }
         // read local variables
         if (current >= Opcodes.ILOAD && current <= Opcodes.ALOAD_3) {
@@ -474,7 +476,8 @@ public class CodeContainer implements NativeCodeContainer {
             } else {
                 opr = new IMReadLocalVariable(this, current, ip);
             }   
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         if (current == Opcodes.IINC) {
             int vIndex, value;
@@ -485,11 +488,13 @@ public class CodeContainer implements NativeCodeContainer {
                 vIndex = bcStream.readUnsignedByte();
                 value  = bcStream.readByte();
             }   
-            return(new IMInc(this, current, ip, vIndex, value));
+            insertBCList(new IMInc(this, current, ip, vIndex, value));
+            return;
         }
         // read array values
         if (current >= Opcodes.IALOAD && current <= Opcodes.SALOAD) {
-            return new IMReadArray(this, current, ip);
+            insertBCList(new IMReadArray(this, current, ip));
+            return;
         }
         if (current >= Opcodes.ISTORE && current <= Opcodes.ASTORE_3) {
             IMStoreLocalVariable opr;
@@ -503,13 +508,16 @@ public class CodeContainer implements NativeCodeContainer {
             } else {
                 opr = new IMStoreLocalVariable(this, current, ip);
             }   
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         if (current >= Opcodes.IASTORE && current <= Opcodes.SASTORE) {
-            return new IMStoreArray(this, current, ip);
+            insertBCList(new IMStoreArray(this, current, ip));
+            return;
         }
         if (current >= Opcodes.POP && current <= Opcodes.SWAP) {
-            return new IMStackOperation(this, current, ip);
+            insertBCList(new IMStackOperation(this, current, ip));
+            return;
         }
         // arithmetic types
         // IMArithmetic
@@ -526,21 +534,26 @@ public class CodeContainer implements NativeCodeContainer {
             } else {
                 opr = new IMRem(this, current, ip);
             }   
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         if (current <= Opcodes.DNEG) {
-            return new IMNeg(this, current, ip);
+            insertBCList(new IMNeg(this, current, ip));
+            return;
         }
         if (current <= Opcodes.LXOR) {
-            return IMBitOperator.getIMOperator(this, current, ip);
+            insertBCList(IMBitOperator.getIMOperator(this, current, ip));
+            return;
         }
         // type casting
         if (current <= Opcodes.I2S) {
-            return new IMCast(this, current, ip);
+            insertBCList(new IMCast(this, current, ip));
+            return;
         }
         // compare long,float and double read spec carefuly !!!
         if (current <= Opcodes.DCMPG) {
-            return new IMCompare(this, current, ip);
+            insertBCList(new IMCompare(this, current, ip));
+            return;
         }
         // conditinal branch
         IMBasicBlock des;
@@ -550,21 +563,24 @@ public class CodeContainer implements NativeCodeContainer {
             int offset = bcStream.readShort();
             des = createBasicBlock(ip, offset);
             if (offset < 0) des.setLoopEntry(true);
-            return new IMConditionalBranch(this, current, ip, des);
+            insertBCList(new IMConditionalBranch(this, current, ip, des));
+            return;
         }
         if (current == Opcodes.GOTO || current == Opcodes.GOTO_W) {
             int offset;
             if (current == Opcodes.GOTO) offset = bcStream.readShort();
             else offset = bcStream.readInt();
             des = createBasicBlock(ip, offset);
-            return new IMGoto(this, current, ip, des);
+            insertBCList(new IMGoto(this, current, ip, des));
+            return;
         }
         if (current == Opcodes.JSR || current == Opcodes.JSR_W) {
             int offset;
             if (current == Opcodes.JSR) offset = bcStream.readShort();
             else offset = bcStream.readInt();
             des = createBasicBlock(ip, offset);
-            return new IMCall(this, current, ip, des);
+            insertBCList(new IMCall(this, current, ip, des));
+            return;
         }
         if (current == Opcodes.RET) {
             int vindex;
@@ -572,7 +588,8 @@ public class CodeContainer implements NativeCodeContainer {
                 vindex = bcStream.readUnsignedShort();
             else
                 vindex = bcStream.readUnsignedByte();
-            return new IMReturnSubroutine(this, current, ip, vindex);
+            insertBCList(new IMReturnSubroutine(this, current, ip, vindex));
+            return;
         }
         if (current == Opcodes.TABLESWITCH) {
             // skip padding zeroes
@@ -584,7 +601,8 @@ public class CodeContainer implements NativeCodeContainer {
             IMBasicBlock[] offsets = new IMBasicBlock[size];
             for (int i = 0; i < size; i++)
                 offsets[i] = createBasicBlock(ip, bcStream.readInt());
-            return new IMTableSwitch(this, current, ip, doff, low, high, offsets);
+            insertBCList(new IMTableSwitch(this, current, ip, doff, low, high, offsets));
+            return;
         }
         if (current == Opcodes.LOOKUPSWITCH) {
             // skip padding zeroes
@@ -597,10 +615,12 @@ public class CodeContainer implements NativeCodeContainer {
                 mpairs[i] = bcStream.readInt();
                 opairs[i] = createBasicBlock(ip, bcStream.readInt());
             }   
-            return new IMLookupSwitch(this, current, ip, doff, npairs, mpairs, opairs);
+            insertBCList(new IMLookupSwitch(this, current, ip, doff, npairs, mpairs, opairs));
+            return;
         }
         if (current <= Opcodes.RETURN) {
-            return new IMReturn(this, current, ip);
+            insertBCList(new IMReturn(this, current, ip));
+            return;
         }
         if (current <= Opcodes.PUTFIELD) {
             int cpIndex = bcStream.readUnsignedShort();
@@ -620,7 +640,8 @@ public class CodeContainer implements NativeCodeContainer {
                     opr = new IMPutStatic(this, current, ip, cpEntry);
                     break;
             }
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         if (current < Opcodes.INVOKEINTERFACE) {
             int cpIndex = bcStream.readUnsignedShort();
@@ -640,7 +661,8 @@ public class CodeContainer implements NativeCodeContainer {
                     throw new CompileException("unknown invokation -- not implemented yet! ");
             }   
             leafMethod = false;
-            return(opr);
+            insertBCList(opr);
+            return;
         }
         if (current == Opcodes.INVOKEINTERFACE) {
             int cpIndex = bcStream.readUnsignedShort();
@@ -648,12 +670,14 @@ public class CodeContainer implements NativeCodeContainer {
             bcStream.readByte(); // read usless padding zero
             InterfaceMethodRefCPEntry cpEntry = cPool.InterfaceMethodRefEntryAt(cpIndex);
             leafMethod = false;
-            return new IMInvokeInterface(this, current, ip, cpEntry); // pop 1-x
+            insertBCList(new IMInvokeInterface(this, current, ip, cpEntry)); // pop 1-x
+            return;
         }
         if (current == Opcodes.NEW) {
             int cpIndex = bcStream.readUnsignedShort();
             ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
-            return new IMNew(this, current, ip, cpEntry);
+            insertBCList(new IMNew(this, current, ip, cpEntry));
+            return;
         }
         if (current == Opcodes.NEWARRAY) {
             int aType = bcStream.readByte();
@@ -683,38 +707,46 @@ public class CodeContainer implements NativeCodeContainer {
                     aType = BCBasicDatatype.LONG;
                     break;
             }   
-            return new IMNewArray(this, current, ip, aType);
+            insertBCList(new IMNewArray(this, current, ip, aType));
+            return;
         }
         if (current == Opcodes.ANEWARRAY) {
             int cpIndex = bcStream.readUnsignedShort();
             ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
-            return new IMNewObjArray(this, current, ip, cpEntry);
+            insertBCList(new IMNewObjArray(this, current, ip, cpEntry));
+            return;
         }
         if (current == Opcodes.ARRAYLENGTH) {
-            return new IMArrayLength(this, current, ip);
+            insertBCList(new IMArrayLength(this, current, ip));
+            return;
         }
         if (current == Opcodes.ATHROW) {
-            return new IMThrow(this, current, ip);
+            insertBCList(new IMThrow(this, current, ip));
+            return;
         }
         if (current == Opcodes.CHECKCAST) {
             int cpIndex = bcStream.readUnsignedShort();
             ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
-            return new IMCheckCast(this, current, ip, cpEntry);
+            insertBCList(new IMCheckCast(this, current, ip, cpEntry));
+            return;
         }
         if (current == Opcodes.INSTANCEOF) {
             int cpIndex = bcStream.readUnsignedShort();
             ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
-            return new IMInstanceOf(this, current, ip, cpEntry);
+            insertBCList(new IMInstanceOf(this, current, ip, cpEntry));
+            return;
         }
         if (current == Opcodes.MONITORENTER || 
                 current == Opcodes.MONITOREXIT) {
-            return new IMMonitor(this, current, ip);
+            insertBCList(new IMMonitor(this, current, ip));
+            return;
         }
         if (current == Opcodes.MULTIANEWARRAY) {
             int cpIndex = bcStream.readUnsignedShort();
             int dim     = bcStream.readUnsignedByte();
             ClassCPEntry cpEntry = cPool.classEntryAt(cpIndex);
-            return new IMNewMultiArray(this, current, ip, cpEntry, dim);
+            insertBCList(new IMNewMultiArray(this, current, ip, cpEntry, dim));
+            return;
         }
         throw new CompileException("unknown bytecode (" + Integer.toString(current) + ")");
         // Reserved opcodes:

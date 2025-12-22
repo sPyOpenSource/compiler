@@ -13,6 +13,7 @@ class Mapping {
     int [] offsets;
     int [] sizes;
     Object object;
+    
     Mapping(Class objectType, int start) {
 	this.objectType = objectType;
 	this.start = start;

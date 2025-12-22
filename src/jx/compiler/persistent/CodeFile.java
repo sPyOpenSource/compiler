@@ -223,17 +223,15 @@ public class CodeFile {
         /*
 	 * reserved for option fields
 	 */
-
 	in.readInt();
 
 	/*
 	 * load needed libs
 	 */
-
 	int numberOfNeededLibs = in.readInt();
 
 	for (int i = 0; i < numberOfNeededLibs; i++) {
-		in.readString();
+            in.readString();
 	}
 
 	/*
@@ -242,26 +240,24 @@ public class CodeFile {
 	int numberOfMeta = in.readInt();
 
 	for (int j = 0; j < numberOfMeta; j++) {
-		in.readString();
-		in.readString();
+            in.readString();
+            in.readString();
 	}
 
 	/*
 	 * read string table
 	 */
-
 	int n = in.readInt();
         for (int j = 0; j < n; j++){
-                in.readByte();
+            in.readByte();
         }
 
 	/*
 	 * vmsymbol-table
 	 */
-
 	n = in.readInt();
         for (int j = 0; j < n; j++) {
-                in.readString();
+            in.readString();
 	}
         
         int size = in.readInt();

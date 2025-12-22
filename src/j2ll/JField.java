@@ -29,9 +29,9 @@ public class JField {
     @Override
     public boolean equals(Object o) {
         if (o instanceof JField f) {
-            if (className != null && className.equals(f.className) || className == f.className) {
-                if (name != null && name.equals(f.name) || name == f.name) {
-                    if (javaSignature != null && javaSignature.equals(f.javaSignature) || javaSignature == f.javaSignature) {
+            if (className != null && className.equals(f.className) || className.equals(f.className)) {
+                if (name != null && name.equals(f.name) || name.equals(f.name)) {
+                    if (javaSignature != null && javaSignature.equals(f.javaSignature) || javaSignature.equals(f.javaSignature)) {
                         return true;
                     }
                 }
