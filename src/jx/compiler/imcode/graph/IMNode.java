@@ -7,7 +7,7 @@ import jx.zero.Debug;
 import java.util.ArrayList;
 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.execenv.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.CodeVector;

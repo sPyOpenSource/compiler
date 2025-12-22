@@ -1,4 +1,4 @@
-package jx.compiler.nativecode;
+package jx.compiler.backend;
 
 import jx.compiler.*;
 import jx.compiler.imcode.*;
@@ -7,7 +7,6 @@ import jx.classfile.datatypes.*;
 /**
  * 
  */
-
 public class RegManager {
 
     private CodeContainer    container;

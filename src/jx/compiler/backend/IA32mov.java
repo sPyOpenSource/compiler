@@ -1,5 +1,5 @@
 
-package jx.compiler.nativecode; 
+package jx.compiler.backend; 
 
 public class IA32mov extends IA32Node {
 }

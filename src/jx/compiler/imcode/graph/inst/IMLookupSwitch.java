@@ -3,7 +3,7 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.zero.Debug; 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.symbols.*;
 import java.util.ArrayList;
 import jx.compiler.imcode.CodeContainer;

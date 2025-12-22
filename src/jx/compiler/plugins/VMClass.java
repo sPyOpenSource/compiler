@@ -7,7 +7,7 @@ import jx.classfile.constantpool.*;
 
 import jx.compiler.imcode.graph.IMNode;
 import jx.compiler.imcode.graph.IMOperant;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.persistent.*;
 
 public class VMClass implements CompilerPlugin {

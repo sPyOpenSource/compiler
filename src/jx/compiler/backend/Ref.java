@@ -1,7 +1,7 @@
 /**
  * X86-Register Class
  */
-package jx.compiler.nativecode;
+package jx.compiler.backend;
 
 import jx.compiler.symbols.SymbolTableEntryBase;
 

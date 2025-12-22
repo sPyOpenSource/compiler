@@ -1,29 +1,24 @@
-package jx.compiler.nativecode; 
+package jx.compiler.backend; 
 
 import java.util.ArrayList; 
 import java.util.Enumeration; 
+
+import java.io.PrintStream;
 import java.util.Collections;
 
-import jx.classfile.constantpool.ClassCPEntry;
-import jx.classfile.constantpool.FieldRefCPEntry;
-import jx.classfile.constantpool.InterfaceMethodRefCPEntry;
-import jx.classfile.constantpool.MethodRefCPEntry;
-import jx.classfile.constantpool.StringCPEntry;
-
-import jx.compiler.CompileException;
-import jx.compiler.execenv.BCClass;
-import jx.compiler.execenv.BCMethod;
-import jx.compiler.execenv.CompilerOptionsInterface;
-import jx.compiler.imcode.CodeContainer;
-import jx.compiler.imcode.ExecEnvironmentInterface;
-import jx.compiler.imcode.graph.IMNode;
-import jx.compiler.imcode.graph.IMOperant;
-
 import jx.compiler.symbols.*;
-import jx.zero.Debug;
-import sjc.backend.arm.ARM7;
+import jx.zero.Debug; 
 
-public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentInterface {
+
+/** 
+    Parallel to this class there is a class 
+    nativeCode.Binarycode. 
+    In this version of the compiler, the second class 
+    is used as a mere container, while this class 
+    is used to assemble the binary code. 
+*/ 
+
+public final class BinaryCodeDynamicRiscV {
     private final boolean doAlignJumpTargets = false;
 
     // not private, so that javac can do inlining 
@@ -37,7 +32,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     int bcIndex, startIP;
 
     // native code array reallocation 
-    private static final int INITSIZE  = 100;
+    private static final int INITSIZE  = 100; 
     private static final int CHUNKSIZE = 200;
 
     /** 
@@ -50,18 +45,18 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         allow the storing of compiled code between JVM invocations 
     - actually all subclasses of nativecode.SymbolTableEntryBase
     */ 
-    private ArrayList<SymbolTableEntryBase> symbolTable;
+    private ArrayList symbolTable; 
   
     /** 
     contains the native exception handlers
     */ 
-    private final ArrayList<NCExceptionHandler> exceptionHandlers;
+    private final ArrayList exceptionHandlers; 
 
-    public BinaryCodeDynamicARM() {
-        code = new byte[INITSIZE];
+    public BinaryCodeDynamicRiscV() {
+        code = new byte[INITSIZE]; 
         ip = 0;
-        symbolTable = new ArrayList();
-        exceptionHandlers = new ArrayList();
+        symbolTable = new ArrayList(); 
+        exceptionHandlers = new ArrayList(); 
     }
 
     /** 
@@ -113,7 +108,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
             newSize += requiredSpace;
             }
             byte[] newCode = new byte[newSize];
-            System.arraycopy(code, 0, newCode, 0, ip);
+                System.arraycopy(code, 0, newCode, 0, ip);
             code = newCode;
         }
     }
@@ -121,8 +116,8 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     // ***** Code Generation ***** 
     
     /** 
-     * Insert a single byte
-     */ 
+    Insert a single byte
+    */ 
     void insertByte(int value) {
         code[ip++] = (byte)value;
     }
@@ -189,7 +184,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        Insert call near indirect (reg/mem) (2 clks)
      * @param opr
      */
-    public void call(Opr opr) {
+    public void ecall(Opr opr) {
         realloc();
         insertByte(0xff);
         insertModRM(2, opr);
@@ -199,7 +194,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        Insert call near (Symbol) (1 clks)
      * @param entry
      */
-    public void call(SymbolTableEntryBase entry) {
+    public void ecall(SymbolTableEntryBase entry) {
         realloc();
         insertByte(0xe8); 
         entry.initNCIndexRelative(ip, 4, ip + 4); // size is always 4 bytes 
@@ -211,7 +206,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        Insert return
     */
     public void ret() {
-        realloc();
+    realloc();
         insertByte(0xc3);
     }
 
@@ -228,9 +223,9 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
      * @param opr
      */
     public void decb(Opr opr) {
-        realloc();
-        insertByte(0xfe);
-        insertModRM(1, opr);
+    realloc();
+    insertByte(0xfe);
+    insertModRM(1, opr);
     }
     
     /**
@@ -262,13 +257,13 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     public void push(Ref ref) {
-        realloc();
+    realloc();
         insertByte(0xff);
         insertModRM(6, ref);
     }
 
     public void push(int immd) {
-        realloc();
+    realloc();
         insertByte(0x68);
         insertConst4(immd);
     }
@@ -290,7 +285,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        (5 clks)
     */
     public void pushal() { /* 5 clks */
-        realloc();
+    realloc();
         insertByte(0x60);
     }
 
@@ -307,7 +302,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        pop stack into eflags register (4 clks)
     */
     public void popfl() {
-        realloc();
+    realloc();
         insertByte(0x9d);
     }
 
@@ -315,15 +310,8 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
        pop all general register
     */
     public void popal() {
-        realloc();
+    realloc();
         insertByte(0x61);
-    }
-
-    /** 
-      lock prefix
-     */
-    public void lock() {
-        insertByte(0xf0);
     }
 
     /**
@@ -382,20 +370,20 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
      * @param src
      * @param des
      */
-    public void sbbl(Opr src, Reg des) {
+    public void subw(Opr src, Reg des) {
     realloc();
     insertByte(0x1B);
     insertModRM(des, src);
     }
 
-    public void sbbl(Reg src, Ref des) {
+    public void subw(Reg src, Ref des) {
     realloc();
     insertByte(0x19);
     insertModRM(src, des);
     }
     
     /**
-     * Integer Unsigned Multiplication of eax (10 clk)
+       Integer Unsigned Multiplication of eax  (10 clk)
      * @param src
      */
     public void mul(Opr src) {
@@ -405,7 +393,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /**
-     * Integer Signed Multiplication (10 clk)
+       Integer Signed Multiplication (10 clk)
      * @param src
      * @param des
      */
@@ -452,9 +440,11 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-     * lea Load Effective Address (1 clk)
-     * m = index * [0,1,2,4,8] + base + disp
-     * base.disp(disp,index,[0,1,2,4,8])
+    lea Load Effective Address (1 clk)
+  
+        m = index * [0,1,2,4,8] + base + disp
+
+        base.disp(disp,index,[0,1,2,4,8])
      * @param opr        
      * @param reg        
      */
@@ -465,7 +455,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /**
-     * SHL/SAL Shift left (1/3 clks)
+       SHL/SAL Shift left (1/3 clks)
      * @param immd
      * @param des
      */
@@ -1144,7 +1134,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-     * Insert a single byte constant 
+    Insert a single byte constant 
      */ 
     public void insertConst1(int value) {
     realloc();
@@ -1152,7 +1142,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }    
   
     /** 
-     * Insert a four byte constant 
+    Insert a four byte constant 
      */ 
     public void insertConst4(int value) {
     realloc();
@@ -1187,17 +1177,40 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-     * Insert a 0 byte constant with an unknown value. 
-     * (contains information about current code position, i.e., a stack map) 
+    Insert a 0 byte constant with an unknown value. 
+    (contains information about current code position, i.e., a stack map) 
      */ 
     public void insertConst0(SymbolTableEntryBase entry) {
     entry.initNCIndex(ip, 0);  // size is always 0 bytes 
     symbolTable.add(entry);
     }
+
+
+    /**
+       Intel Architecture Optimization. Reference Manual (chapter 2,page 11)
+       "Pentium II and III processors have a cache line size of 32 byte.
+       Since the instruction prefetch buffers fetch 16-byte boundaries,
+       code alignment has a direct impact on prefetch buffer efficiency"
+       
+       * Loop entry labels should be 16-byte-aligned when less then 
+       eight byte away from a 16-byte boundary.
+       
+       * Labels that follow an unconditional branch of function call
+       should be aligend as above.
+       
+       * Labels that follow a conditional branch need _not_ be aligned.
+     */
+    
+    public void alignCode() {
+    int drift = ip % 16;
+    if (drift < 8) {
+        for (int i = 0; i < drift; i++) nop();
+    }
+    }
     
     /** 
-     * Initialized the target position of 'jumpObject'. 
-     * (Call insertConst4() for corresponding jump instruction) 
+    Initialized the target position of 'jumpObject'. 
+    (Call insertConst4() for corresponding jump instruction) 
      */
     public void addJumpTarget(UnresolvedJump jumpObject) {
     if (doAlignJumpTargets) while ((ip % 4) != 0) nop();
@@ -1229,407 +1242,211 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     }
 
     /** 
-     * Make a symbol table entry relative. 
-     * If you use insertConst4(), this class assumes that 
-     * the value to be inserted is absolute. But if the 
-     * inserted value is a jump offset it is relative to 
-     * the instruction pointer of the next instruction. 
-     * That is what you can tell the compiler with this 
-     * method. 
+    Make a symbol table entry relative. 
+    If you use insertConst4(), this class assumes that 
+    the value to be inserted is absolute. But if the 
+    inserted value is a jump offset it is relative to 
+    the instruction pointer of the next instruction. 
+    That is what you can tell the compiler with this 
+    method. 
      */ 
     public void makeRelative(SymbolTableEntryBase entry) {
     entry.makeRelative(ip);
     }
     
+    /**
+       Called after each instruction. 
+     */ 
+    public void endInstr() {
+    //if (DebugConf.doPrintBinaryCode) Debug.out.println(""); 
+    //      currentInstruction.machinecode = new byte[numBytesMachinecode];
+    //      System.arraycopy(currentMachinecode, 0, currentInstruction.machinecode, 0, numBytesMachinecode);
+    //      numBytesMachinecode = 0;
+    }
+
+    // ***** Management stuff ***** 
+    
+    public void finishCode() {
+    }
+    
     /** 
-     * Apply all resolveable symbol table entries.
-     * (e.g. insert jump offsets ....)
-     * After calling this method, the vector 'symbolTable' 
-     * contains all symbol table entries that are not resolveable.
-     * If you want to install the compiled code after calling this 
-     * method, this vector should be empty. 
+    Apply all resolveable symbol table entries.
+    (e.g. insert jump offsets ....)
+    After calling this method, the vector 'symbolTable' 
+    contains all symbol table entries that are not resolveable.
+    If you want to install the compiled code after calling this 
+    method, this vector should be empty. 
      * @param codeBase
      */ 
     public void resolve(int codeBase) {
-        Enumeration<SymbolTableEntryBase> enume = Collections.enumeration(symbolTable); 
-        ArrayList<SymbolTableEntryBase> unresolvedEntries = new ArrayList(); 
-        while(enume.hasMoreElements()) {
-            SymbolTableEntryBase entry = enume.nextElement(); 
-            if (entry.isReadyForApply())
-                entry.apply(code, codeBase);
-            else
-                unresolvedEntries.add(entry);
-        }
-        symbolTable = unresolvedEntries;
+    Enumeration enume = Collections.enumeration(symbolTable); 
+    ArrayList unresolvedEntries = new ArrayList(); 
+    while(enume.hasMoreElements()) {
+        SymbolTableEntryBase entry = (SymbolTableEntryBase)enume.nextElement(); 
+        if (entry.isReadyForApply())
+        entry.apply(code, codeBase);
+        else
+        unresolvedEntries.add(entry);
     }
+    symbolTable = unresolvedEntries;
+    }
+
+    // ***** Building of Debug messages ****** 
+    
+    private static final String[] REGNAME = {
+    "ax", "cx", "dx", "bx", "sp", "bp", "si", "di"
+    };
+    
+    public static String regToString(int reg) {
+    return "%e" + REGNAME[reg];
+    }
+    
+    public static final int EAX = 0;
+    public static final int ECX = 1;
+    public static final int EDX = 2;
+    public static final int EBX = 3;
+    public static final int ESP = 4;
+    public static final int EBP = 5;
+    public static final int ESI = 6;
+    public static final int EDI = 7;
     
     // ***** Exceptions *****
     
     public void addExceptionRangeStart(NCExceptionHandler handler) {
-        handler.setRangeStart(ip);
+    handler.setRangeStart(ip); 
     }
 
     public void addExceptionRangeEnd(NCExceptionHandler handler) {
-        handler.setRangeEnd(ip); 
+    handler.setRangeEnd(ip); 
     }
     
     /**
-     * add a start of an exception handler.
+    add a start of an exception handler.
      * @param handler
      */
     public void addExceptionHandler(NCExceptionHandler handler) {
-        handler.setHandlerStart(ip); 
-        exceptionHandlers.add(handler); 
+    handler.setHandlerStart(ip); 
+    exceptionHandlers.add(handler); 
     }
     
     /**
-     * @return an array of all exception handlers of this 
-     * method. (these handlers contain the native code indices 
-     * of the range start, range end and of the handler start 
+    return an array of all exception handlers of this 
+    method. (these handlers contain the native code indices 
+    of the range start, range end and of the handler start 
+     * @return
      */
     public NCExceptionHandler[] getExceptionHandlers() {
-        NCExceptionHandler[] handlerArray = 
-        new NCExceptionHandler[exceptionHandlers.size()]; 
-        for(int i = 0; i < exceptionHandlers.size(); i++) {
-            handlerArray[i] = exceptionHandlers.get(i); 
-            //Debug.assert(handlerArray[i].isFinished()); 
-        }
-        return handlerArray;
+    NCExceptionHandler[] handlerArray = 
+    new NCExceptionHandler[exceptionHandlers.size()]; 
+    for(int i = 0; i < exceptionHandlers.size(); i++) {
+        handlerArray[i] = (NCExceptionHandler)exceptionHandlers.get(i); 
+        //Debug.assert(handlerArray[i].isFinished()); 
+    }
+    return handlerArray;
     }
 
     // ***** Printing ***** 
     
     public String getBinaryCodeAsHex(int firstByte, int stopByte) {
-        String s = ""; 
-        for(int i = firstByte; i < stopByte; i++) {
-            String hex = Integer.toHexString(code[i] & 0xff); 
-            if (hex.length() == 1) hex = "0" + hex; 
-            s = s + hex  + " "; 
-        }
-        return s;
+    String s = ""; 
+    for(int i = firstByte; i < stopByte; i++) {
+        String hex = Integer.toHexString(code[i] & 0xff); 
+        if (hex.length() == 1) hex = "0" + hex; 
+        s = s + hex  + " "; 
+    }
+    return s; 
     }
     
     // returns a hexdump of the compiled function 
     public String getBinaryCodeAsHex() {
-        return getBinaryCodeAsHex(0, ip); 
+    return getBinaryCodeAsHex(0, ip); 
     }
     
     private String getBinaryCodeAsAssembler(int firstByte, int stopByte) {
-        String s = ""; 
-        for(int i = firstByte; i < stopByte; i++) {
-          String hex = Integer.toHexString(code[i] & 0xff); 
-          if (hex.length() == 1) hex = "0" + hex; 
-          s = s + hex  + " "; 
-        }
-        return s; 
+    String s = ""; 
+    for(int i = firstByte; i < stopByte; i++) {
+      String hex = Integer.toHexString(code[i] & 0xff); 
+      if (hex.length() == 1) hex = "0" + hex; 
+      s = s + hex  + " "; 
+    }
+    return s; 
     }
     
     // returns a hexdump of the compiled function 
     public String getBinaryCodeAsAssembler() {
-        return getBinaryCodeAsAssembler(0, ip); 
+    return getBinaryCodeAsAssembler(0, ip); 
+    }
+    
+    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2) {
+    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
+        //      instructions.addElement(currentInstruction);
+    }
+
+    public void printInstr(String instr, SymbolTableEntryBase arg1, String arg2) {
+    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
+    //      instructions.addElement(currentInstruction);
+    }
+    
+    public void printInstr(String instr, String arg1, SymbolTableEntryBase arg2, String arg3) {
+    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2, arg3);
+    //      instructions.addElement(currentInstruction);
+    }
+
+    public void printInstr(String instr) {
+    //      currentInstruction = new DisassInstr(ip, instr);
+    //      instructions.addElement(currentInstruction);
+    }
+    
+    public void printInstr(String instr, String arg1, String arg2) {
+    //      currentInstruction = new DisassInstr(ip, instr, arg1, arg2);
+    //      instructions.addElement(currentInstruction);
+    }
+    
+    public void printInstr(String instr, SymbolTableEntryBase arg1) {
+        //      currentInstruction = new DisassInstr(ip, instr, arg1);
+    //      instructions.addElement(currentInstruction);
+    }
+    
+    public void printJumpTarget(UnresolvedJump entry) {
+    //      currentInstruction = new DisassInstr(ip, entry);
+    //      instructions.addElement(currentInstruction);
+        endInstr();
     }
     
     public void printHexByte(int value) {
-        String hex = Integer.toHexString(value & 0xff); 
-        if (hex.length() == 1) hex = "0" + hex; 
-        Debug.out.print(hex + " "); 
+    String hex = Integer.toHexString(value & 0xff); 
+    if (hex.length() == 1) hex = "0" + hex; 
+    Debug.out.print(hex + " "); 
     }    
     
     public void printHexInt(int value) {
-        String hex = Long.toHexString(value & 0xffffffffL);         
-        Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
+    String hex = Long.toHexString(value & 0xffffffffL);         
+    Debug.out.print( "00000000".substring(Math.min(hex.length(), 8)) + hex + " "); 
+    }
+    
+
+    public void printInstructions() {
+    //    for(int i=0; i<instructions.size(); i++) {
+    //        Debug.out.println(instructions.elementAt(i));
+    //    }
+    }
+    
+    public void printGASInstructions(PrintStream out) {
+    //    for(int i=0; i<instructions.size(); i++) {
+    //        out.println(((DisassInstr)instructions.elementAt(i)).toGASFormat());
+    //    }
     }
     
     public void startBC(int bcPosition) {
-        bcIndex = bcPosition;
-        startIP = ip;
+    bcIndex = bcPosition;
+    startIP = ip;
     }
     
     public void endBC() {
-        instructionTable.add(new int[] { bcIndex, startIP, ip });    
+    instructionTable.add(new int[] { bcIndex, startIP, ip });    
     }
     
     public ArrayList getInstructionTable() {
-        return instructionTable;
-    }
-
-    @Override
-    public void setCodeContainer(CodeContainer container) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void setCurrentlyCompiling(BCClass aClass) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public BCMethod getBCMethod(MethodRefCPEntry methodRefCPEntry) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean doOptimize(int level) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public CompilerOptionsInterface getCompilerOptions() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public int getExtraStackSpace() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeEpilog() throws CompileException {
-        super.codeEpilog(null);
-    }
-
-    @Override
-    public void codeCheckReference(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCheckMagic(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCheckDivZero(IMNode node, Reg reg, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCheckArrayRange(IMNode node, Reg array, int index, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCheckArrayRange(IMNode node, Reg array, Reg index, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeNewObject(IMNode node, ClassCPEntry classCPEntry, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCompactNew(IMNode node, ClassCPEntry classCPEntry, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeNewArray(IMNode node, int type, IMOperant size, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeNewObjectArray(IMNode node, ClassCPEntry classCPEntry, IMOperant size, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetArrayField(IMNode node, Reg array, int datatype, int index, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetArrayField(IMNode node, Reg array, int datatype, Reg index, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetArrayFieldLong(IMNode node, Reg array, int datatype, Reg index, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutArrayField(IMNode node, Reg array, int datatype, int index, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutArrayField(IMNode node, Reg array, int datatype, Reg index, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeNewMultiArray(IMNode node, ClassCPEntry type, IMOperant[] oprs, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetArrayLength(IMNode node, Reg array, Reg result) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeThrow(IMNode node, int exception, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeThrow(IMNode node, IMOperant exception, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeCheckCast(IMNode node, ClassCPEntry classCPEntry, Reg objRef, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeInstanceOf(IMNode node, ClassCPEntry classCPEntry, Reg objRef, Reg regEAX, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeMonitorEnter(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeMonitorLeave(IMNode node, IMOperant obj, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public SymbolTableEntryBase getStringRef(StringCPEntry cpEntry) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLoadStringRef(StringCPEntry cpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutField(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutStaticField(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeGetStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutFieldLong(IMNode node, FieldRefCPEntry fieldRefCPEntry, Reg objRef, Reg64 value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codePutStaticFieldLong(IMNode node, FieldRefCPEntry fieldRefCpEntry, Reg64 value, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongMul(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-       // insMulLong(IC_AL, IOML_UMULL, result.high.value, result.low.value, lOpr., rOpr.);
-    }
-
-    @Override
-    public void codeLongDiv(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongRem(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongShl(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongUShr(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeLongCompare(IMNode node, IMOperant lOpr, IMOperant rOpr, Reg result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeVirtualCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
-    }
-
-    @Override
-    public void codeSpecialCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
-    }
-
-    @Override
-    public void codeInterfaceCall(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
-    }
-
-    @Override
-    public void codeStaticCall(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg result, int bcPosition) throws CompileException {
-        genCallConst(null, 0);
-    }
-
-    @Override
-    public void codeVirtualCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeSpecialCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeInterfaceCallLong(IMNode node, InterfaceMethodRefCPEntry interfaceRefCPEntry, IMOperant obj, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeStaticCallLong(IMNode node, MethodRefCPEntry methodRefCPEntry, IMOperant[] args, int datatype, Reg64 result, int bcPosition) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void codeStackMap(IMNode node, int InstructionPointer) throws CompileException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public UnresolvedJump createExceptionCall(int exception, int bcPosition) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    return instructionTable;
     }
 }

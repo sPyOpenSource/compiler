@@ -6,7 +6,7 @@ import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.VirtualOperantenStack;
 import jx.compiler.imcode.graph.IMBasicBlock;
 import jx.compiler.imcode.graph.IMNode;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.symbols.*;
 
 // ***** IMGoto *****

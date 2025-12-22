@@ -6,7 +6,7 @@ import jx.classfile.datatypes.*;
 import java.util.ArrayList;
 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 

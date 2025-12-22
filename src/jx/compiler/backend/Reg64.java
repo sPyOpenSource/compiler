@@ -2,7 +2,7 @@
  * X86-Register Paar for 64 Bit 
  */
 
-package jx.compiler.nativecode;
+package jx.compiler.backend;
 
 import jx.classfile.datatypes.BCBasicDatatype;
 import jx.compiler.imcode.*;

@@ -3,8 +3,9 @@ package jx.compiler.imcode.graph.inst;
 
 import jx.classfile.datatypes.*; 
 import jx.compiler.*;
-import jx.compiler.nativecode.*;
 import java.util.ArrayList;
+
+import jx.compiler.backend.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.CodeVector;
 import jx.compiler.imcode.LocalVariable;

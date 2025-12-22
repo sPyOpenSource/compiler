@@ -7,7 +7,7 @@ import jx.zero.Debug;
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.graph.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 // ***** IMCompare *****
 

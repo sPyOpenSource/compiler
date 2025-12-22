@@ -5,7 +5,7 @@ package jx.compiler.imcode.graph.inst;
 import jx.compiler.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 // ***** IMNop ***** 
 public class IMNop extends IMOperant {

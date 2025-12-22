@@ -21,7 +21,7 @@ import jx.compiler.imcode.graph.inst.ALU.IMMul;
 import jx.compiler.imcode.graph.inst.ALU.IMNeg;
 import jx.compiler.imcode.graph.inst.ALU.IMRem;
 import jx.compiler.imcode.graph.inst.ALU.IMSub;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.symbols.*;
 
 class JumpStack {
@@ -174,7 +174,7 @@ public class CodeContainer implements NativeCodeContainer {
     return code;
     }
 
-    public jx.compiler.nativecode.RegManager getRegManager() {
+    public RegManager getRegManager() {
     return regs;
     }
 

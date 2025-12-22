@@ -2,9 +2,10 @@
 package jx.compiler.imcode.graph.inst.ALU; 
 
 import jx.classfile.datatypes.*; 
-import jx.compiler.*;
-import jx.compiler.nativecode.*;
 import java.util.ArrayList;
+
+import jx.compiler.*;
+import jx.compiler.backend.*;
 import jx.compiler.imcode.*;
 import jx.compiler.imcode.graph.*;
 

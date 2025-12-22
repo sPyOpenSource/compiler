@@ -4,7 +4,7 @@ import jx.classfile.constantpool.*;
 import jx.compiler.*;
 import jx.compiler.imcode.CodeContainer;
 import jx.compiler.imcode.graph.IMNode;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 
 // ***** IMInvokeStatic *****
 

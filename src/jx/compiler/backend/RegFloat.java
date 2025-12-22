@@ -1,14 +1,14 @@
-/**
- * X86-Register for floating-point 
- */
 
-package jx.compiler.nativecode;
+package jx.compiler.backend;
 
 import jx.classfile.datatypes.BCBasicDatatype;
 import jx.compiler.imcode.MethodStackFrame;
 
+/**
+ * X86-Register for floating-point 
+ */
 final public class RegFloat extends Opr implements RegObj, Cloneable {
-public static RegFloat any = new RegFloat(-1);
+    public static RegFloat any = new RegFloat(-1);
 
     public static RegFloat xmm0 = new RegFloat(0);
     public static RegFloat xmm1 = new RegFloat(1);
@@ -23,7 +23,7 @@ public static RegFloat any = new RegFloat(-1);
 	throw new Error("wrong RegFloat constuctor");
     }
     
-public RegFloat(int reg) {
+    public RegFloat(int reg) {
 	if (reg == -1) value = -1;
 	else this.value = reg & 0x07;
 	this.tag   = Opr.REG;

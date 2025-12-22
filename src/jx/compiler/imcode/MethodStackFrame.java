@@ -2,7 +2,7 @@ package jx.compiler.imcode;
 
 import jx.compiler.*;
 import jx.compiler.symbols.*;
-import jx.compiler.nativecode.*;
+import jx.compiler.backend.*;
 import jx.compiler.execenv.*;
 
 import jx.classfile.datatypes.*;
