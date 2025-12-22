@@ -103,8 +103,8 @@ import sjc.osio.TextPrinter;
  */
 
 public class FrontAdmin {
-  private Context ctx;
-  private Language[] langs;
+  private final Context ctx;
+  private final Language[] langs;
   private TextPrinter filelister;
   
   public static void printKnownLanguages(TextPrinter v) {
@@ -568,6 +568,7 @@ public class FrontAdmin {
         break;
       case StdTypes.T_DPTR:
         res = 2 * ctx.arch.relocBytes;
+        break;
       default:
         res = TypeRef.getMinSize(type);
     }

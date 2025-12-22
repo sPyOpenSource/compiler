@@ -18,7 +18,6 @@
 
 package sjc.frontend;
 
-
 /**
  * ScanSym: a symbol used as transfer between Scanner and parsers
  * 
@@ -30,7 +29,6 @@ package sjc.frontend;
  *  version 070114 reduced access level where possible
  *  version 060607 initial version
  */
-
 public class ScanSym {
 	public int type, par; //type and parameter of symbol
 	public int syline, sycol; //line and column of start of symbol

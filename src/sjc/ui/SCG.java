@@ -29,7 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -106,7 +106,7 @@ public class SCG extends JFrame {
   private final JTextField result;
   private final JButton run;
   private final JFileChooser fileChooser;
-  private final Vector<String> args;
+  private final ArrayList<String> args;
   
   //preselect / expert pane
   private final JTabbedPane preselect;
@@ -388,7 +388,7 @@ public class SCG extends JFrame {
     filesList.removeAllElements(); //clear dummy list
     setVisible(true);
     fileChooser = new JFileChooser();
-    args = new Vector<>();
+    args = new ArrayList<>();
   }
   
   private void appendOption(StringBuffer line, String option) {
@@ -631,7 +631,7 @@ public class SCG extends JFrame {
     setEnabled(false);
     final String[] argv = new String[args.size()];
     final String argString = result.getText();
-    args.copyInto(argv);
+    args.toArray(argv);
     SwingUtilities.invokeLater(new Runnable() {
       @Override
       public void run() {

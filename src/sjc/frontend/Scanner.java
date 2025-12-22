@@ -197,9 +197,9 @@ public class Scanner {
     private TextReader r; //Input-Reader
     private int curFID; //current file-id
     private TextPrinter v; //for outputs
-    private StringPool sp; //Pool for strings
+    private final StringPool sp; //Pool for strings
     private ScanSym l2aSym; //look-2-ahead symbol for internal recognition of identifier
-    private char chrBuf[];
+    private final char chrBuf[];
     private int bufLen;
 	
 	public Scanner() {
@@ -762,9 +762,9 @@ $      36 | D      68 | d    100
   }
   
   private int getNumericExt(char c, int base) { //valid values for base: 10..26
-    if (c>='0' && c<='9') return (int)(c-'0');
-    if (c>='A' && c<='A'+(char)(base-10)) return (int)(c-'A')+10;
-    if (c>='a' && c<='a'+(char)(base-10)) return (int)(c-'a')+10;
+    if (c >= '0' && c <= '9') return (int)(c - '0');
+    if (c >= 'A' && c <= 'A' + (char)(base - 10)) return (int)(c - 'A') + 10;
+    if (c >= 'a' && c <= 'a' + (char)(base - 10)) return (int)(c - 'a') + 10;
     return -1;
   }
   

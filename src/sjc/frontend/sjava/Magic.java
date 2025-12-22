@@ -38,8 +38,8 @@ import sjc.compbase.StdTypes;
 import sjc.compbase.TypeRef;
 import sjc.compbase.Unit;
 import sjc.compbase.variable.Vrbl;
-import sjc.debug.CodePrinter;
 
+import sjc.debug.CodePrinter;
 import sjc.frontend.ExVal;
 import sjc.frontend.sjava.expr.ExCall;
 import sjc.frontend.sjava.expr.ExClssMthdName;
@@ -198,35 +198,15 @@ public class Magic extends CtxBasedConfig {
   private final static String ID_RUNTIMENULLEXCEPTION = "runtimeNullException";
   private final static String ID_STREAMLINE = "streamline";
   
-  private int relocBytes;
-  private Vrbl ptrSizeVrbl;
-  private ExVal ptrSizeVal;
-  private Vrbl movableVrbl;
-  private ExVal movableVal;
-  private Vrbl indirScalarsVrbl;
-  private ExVal indirScalarsVal;
-  private Vrbl streamVrbl;
-  private ExVal streamVal;
-  private Vrbl assignVrbl;
-  private ExVal assignVal;
-  private Vrbl assignHeapVrbl;
-  private ExVal assignHeapVal;
-  private Vrbl rtBoundExcVrbl;
-  private ExVal rtBoundExcVal;
-  private Vrbl rtNullExcVrbl;
-  private ExVal rtNullExcVal;
-  private Vrbl imgBaseVrbl;
-  private ExVal imgBaseVal;
-  private Vrbl comprImgBaseVrbl;
-  private ExVal comprImgBaseVal;
-  private Vrbl embeddedVrbl;
-  private ExVal embeddedVal;
-  private Vrbl embConstRAMVrbl;
-  private ExVal embConstRAMVal;
-  private Vrbl relocationVrbl;
-  private ExVal relocationVal;
-  private Vrbl comprRelocationVrbl;
-  private ExVal comprRelocationVal;
+  private final int relocBytes;
+  private final ExVal ptrSizeVal, movableVal, indirScalarsVal;
+  private final Vrbl movableVrbl, indirScalarsVrbl, streamVrbl;
+  private final ExVal streamVal, assignVal, assignHeapVal;
+  private final Vrbl assignVrbl, assignHeapVrbl, rtBoundExcVrbl;
+  private final ExVal rtBoundExcVal, rtNullExcVal, imgBaseVal, comprRelocationVal;
+  private final Vrbl rtNullExcVrbl, imgBaseVrbl, comprImgBaseVrbl, ptrSizeVrbl;
+  private final ExVal comprImgBaseVal, embeddedVal, embConstRAMVal, relocationVal;
+  private final Vrbl embeddedVrbl, embConstRAMVrbl, relocationVrbl, comprRelocationVrbl;
   
   protected Magic(Context ctx) {
     relocBytes = ctx.arch.relocBytes;
@@ -244,19 +224,19 @@ public class Magic extends CtxBasedConfig {
     movableVrbl.location = AccVar.L_CONST;
     //create dummy entry for indirScalars
     indirScalarsVal = new ExVal(-1, -1, -1);
-    if (ctx.indirScalars) indirScalarsVal.intValue=1; //else: already initialized to 0
-    indirScalarsVrbl=new Vrbl(ID_INDIRSCALARS, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
-    indirScalarsVrbl.init=indirScalarsVal;
-    indirScalarsVrbl.location=AccVar.L_CONST;
+    if (ctx.indirScalars) indirScalarsVal.intValue = 1; //else: already initialized to 0
+    indirScalarsVrbl = new Vrbl(ID_INDIRSCALARS, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
+    indirScalarsVrbl.init = indirScalarsVal;
+    indirScalarsVrbl.location = AccVar.L_CONST;
     //create dummy entry for streamline
-    streamVal=new ExVal(-1, -1, -1);
-    if (ctx.mem.streamObjects) streamVal.intValue=1; //else: already initialized to 0
-    streamVrbl=new Vrbl(ID_STREAMLINE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
-    streamVrbl.init=streamVal;
-    streamVrbl.location=AccVar.L_CONST;
+    streamVal = new ExVal(-1, -1, -1);
+    if (ctx.mem.streamObjects) streamVal.intValue = 1; //else: already initialized to 0
+    streamVrbl = new Vrbl(ID_STREAMLINE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
+    streamVrbl.init = streamVal;
+    streamVrbl.location = AccVar.L_CONST;
     //create dummy entry for assignCall
-    assignVal=new ExVal(-1, -1, -1);
-    if (ctx.assignCall) assignVal.intValue=1; //else: already initialized to 0
+    assignVal = new ExVal(-1, -1, -1);
+    if (ctx.assignCall) assignVal.intValue = 1; //else: already initialized to 0
     assignVrbl=new Vrbl(ID_ASSIGNCALL, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     assignVrbl.init=assignVal;
     assignVrbl.location=AccVar.L_CONST;
@@ -406,226 +386,228 @@ public class Magic extends CtxBasedConfig {
     else if (ex instanceof ExCall exCall) {
       (call = exCall).magicType=M_INVALID; //will be set anew if all parameters are sane
       name = call.id;
-      if (name.equals("inline")) {
-        if (!resolveInline(StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLINE8;
-        mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
-      }
-      else if (name.equals("inline16")) {
-        if (!resolveInline(StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLINE16;
-        mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
-      }
-      else if (name.equals("inline32")) {
-        if (!resolveInline(StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLINE32;
-        mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
-      }
-      else if (name.equals("inlineBlock")) {
-        if (!resolveInlineBlock(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLINEBK;
-        mthdContext.marker|=Marks.K_NINL;
-      }
-      else if (name.equals("wMem64")) {
-        if (!resolveWMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WMEM64;
-      }
-      else if (name.equals("rMem64")) {
-        if (!resolveRMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RMEM64;
-      }
-      else if (name.equals("wMem32")) {
-        if (!resolveWMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WMEM32;
-      }
-      else if (name.equals("rMem32")) {
-        if (!resolveRMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RMEM32;
-      }
-      else if (name.equals("wMem16")) {
-        if (!resolveWMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WMEM16;
-      }
-      else if (name.equals("rMem16")) {
-        if (!resolveRMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RMEM16;
-      }
-      else if (name.equals("wMem8")) {
-        if (!resolveWMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WMEM8;
-      }
-      else if (name.equals("rMem8")) {
-        if (!resolveRMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RMEM8;
-      }
-      else if (name.equals("wIOs64")) {
-        if (!resolveWMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WIOS64;
-      }
-      else if (name.equals("rIOs64")) {
-        if (!resolveRMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RIOS64;
-      }
-      else if (name.equals("wIOs32")) {
-        if (!resolveWMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WIOS32;
-      }
-      else if (name.equals("rIOs32")) {
-        if (!resolveRMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RIOS32;
-      }
-      else if (name.equals("wIOs16")) {
-        if (!resolveWMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WIOS16;
-      }
-      else if (name.equals("rIOs16")) {
-        if (!resolveRMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RIOS16;
-      }
-      else if (name.equals("wIOs8")) {
-        if (!resolveWMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_WIOS8;
-      }
-      else if (name.equals("rIOs8")) {
-        if (!resolveRMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_RIOS8;
-      }
-      else if (name.equals("cast2Ref")) {
-        if (!resolveCast2Ref(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_CST2REF;
-      }
-      else if (name.equals("cast2Obj")) {
-        if (resolveCast2ObjStruct(true, call, unitContext, mthdContext, resolveFlags, preferredType, ctx)==null) return null;
-        call.magicType=M_CST2OBJ;
-      }
-      else if (name.equals("addr")) {
-        if (!resolveAddr(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_ADDR;
-      }
-      else if (name.equals("clssDesc")) {
-        if (!resolveClssIntfDesc(false, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_CLINDESC;
-      }
-      else if (name.equals("intfDesc")) {
-        if (!resolveClssIntfDesc(true, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_CLINDESC;
-      }
-      else if (name.equals("mthdOff")) {
-        if (!resolveMthdOff(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_MTHDOFF;
-      }
-      else if (name.equals("getCodeOff")) {
-        if (!resolveNoParam("getCodeOff", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_GETCDOF;
-      }
-      else if (name.equals("getInstScalarSize")) {
-        if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_I_SCLSZ;
-      }
-      else if (name.equals("getInstIndirScalarSize")) {
-        if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_I_ISCSZ;
-      }
-      else if (name.equals("getInstRelocEntries")) {
-        if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_I_RLCEN;
-      }
-      else if (name.equals("bitMem8")) {
-        if (!resolveBtsMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITMEM8;
-      }
-      else if (name.equals("bitMem16")) {
-        if (!resolveBtsMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITMEM16;
-      }
-      else if (name.equals("bitMem32")) {
-        if (!resolveBtsMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITMEM32;
-      }
-      else if (name.equals("bitMem64")) {
-        if (!resolveBtsMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITMEM64;
-      }
-      else if (name.equals("bitIOs8")) {
-        if (!resolveBtsMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITIOS8;
-      }
-      else if (name.equals("bitIOs16")) {
-        if (!resolveBtsMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITIOS16;
-      }
-      else if (name.equals("bitIOs32")) {
-        if (!resolveBtsMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITIOS32;
-      }
-      else if (name.equals("bitIOs64")) {
-        if (!resolveBtsMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_BITIOS64;
-      }
-      else if (name.equals("cast2Struct")) {
-        if ((ret=resolveCast2ObjStruct(false, call, unitContext, mthdContext, resolveFlags, preferredType, ctx))==null) return null;
-        if (ret!=call) return ret;
-        call.magicType=M_CST2OBJ;
-      }
-      else if (name.equals("getRamAddr")) {
-        if (!resolveNoParam("getRamAddr", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_GETRAMAD;
-      }
-      else if (name.equals("getRamSize")) {
-        if (!resolveNoParam("getRamSize", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_GETRAMSZ;
-      }
-      else if (name.equals("getRamInitAddr")) {
-        if (!resolveNoParam("getRamInitAddr", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_GETRINAD;
-      }
-      else if (name.equals("useAsThis")) {
-        if (!resolveUseAsThis(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_USEASTHS;
-      }
-      else if (name.equals("getConstMemorySize")) {
-        if (!resolveNoParam("getConstMemorySize", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_GETCNSTM;
-      }
-      else if (name.equals("inlineOffset")) {
-        if (!resolveInlineOffset(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLOFFST;
-      }
-      else if (name.equals("inlineCodeAddress")) {
-        if (!resolveInlineCodeAddress(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_INLCODAD;
-      }
-      else if (name.equals("doStaticInit")) {
-        if (!resolveDoStaticInit(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_STATINIT;
-      }
-      else if (name.equals("toByteArray")) { //replaces right side of MAGIC
-        return resolveStringToArray(StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx);
-      }
-      else if (name.equals("toCharArray")) { //replaces right side of MAGIC
-        return resolveStringToArray(StdTypes.T_CHAR, call, unitContext, mthdContext, resolveFlags, ctx);
-      }
-      else if (name.equals("getNamedString")) { //replaces right side of MAGIC
-        return resolveGetNamedString(call, unitContext, mthdContext, resolveFlags, ctx);
-      }
-      else if (name.equals("ignore")) {
-        call.magicType=M_IGNORE; //just ignore
-        call.baseType=StdTypes.T_VOID;
-        call.effectType=Expr.EF_NORM;
-      }
-      else if (name.equals("stopBlockCoding")) {
-        if (!resolveNoParam("stopBlockCoding", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_STOPCODE;
-        call.effectType=StExpr.EF_STOP;
-      }
-      else if (name.equals("assign")) {
-        if (!resolveAssign(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
-        call.magicType=M_ASSIGN;
-      } else {
-        ex.printPos(ctx, "unknown MAGIC-method ");
-        ctx.out.print(name);
-        return null;
-      }
+        switch (name) {
+            case "inline":
+                if (!resolveInline(StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLINE8;
+                mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
+                break;
+            case "inline16":
+                if (!resolveInline(StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLINE16;
+                mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
+                break;
+            case "inline32":
+                if (!resolveInline(StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLINE32;
+                mthdContext.marker|=Marks.K_NINL; //avoid automatic inlining
+                break;
+            case "inlineBlock":
+                if (!resolveInlineBlock(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLINEBK;
+                mthdContext.marker|=Marks.K_NINL;
+                break;
+            case "wMem64":
+                if (!resolveWMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WMEM64;
+                break;
+            case "rMem64":
+                if (!resolveRMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RMEM64;
+                break;
+            case "wMem32":
+                if (!resolveWMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WMEM32;
+                break;
+            case "rMem32":
+                if (!resolveRMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RMEM32;
+                break;
+            case "wMem16":
+                if (!resolveWMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WMEM16;
+                break;
+            case "rMem16":
+                if (!resolveRMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RMEM16;
+                break;
+            case "wMem8":
+                if (!resolveWMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WMEM8;
+                break;
+            case "rMem8":
+                if (!resolveRMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RMEM8;
+                break;
+            case "wIOs64":
+                if (!resolveWMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WIOS64;
+                break;
+            case "rIOs64":
+                if (!resolveRMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RIOS64;
+                break;
+            case "wIOs32":
+                if (!resolveWMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WIOS32;
+                break;
+            case "rIOs32":
+                if (!resolveRMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RIOS32;
+                break;
+            case "wIOs16":
+                if (!resolveWMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WIOS16;
+                break;
+            case "rIOs16":
+                if (!resolveRMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RIOS16;
+                break;
+            case "wIOs8":
+                if (!resolveWMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_WIOS8;
+                break;
+            case "rIOs8":
+                if (!resolveRMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_RIOS8;
+                break;
+            case "cast2Ref":
+                if (!resolveCast2Ref(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_CST2REF;
+                break;
+            case "cast2Obj":
+                if (resolveCast2ObjStruct(true, call, unitContext, mthdContext, resolveFlags, preferredType, ctx)==null) return null;
+                call.magicType=M_CST2OBJ;
+                break;
+            case "addr":
+                if (!resolveAddr(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_ADDR;
+                break;
+            case "clssDesc":
+                if (!resolveClssIntfDesc(false, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_CLINDESC;
+                break;
+            case "intfDesc":
+                if (!resolveClssIntfDesc(true, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_CLINDESC;
+                break;
+            case "mthdOff":
+                if (!resolveMthdOff(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_MTHDOFF;
+                break;
+            case "getCodeOff":
+                if (!resolveNoParam("getCodeOff", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_GETCDOF;
+                break;
+            case "getInstScalarSize":
+                if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_I_SCLSZ;
+                break;
+            case "getInstIndirScalarSize":
+                if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_I_ISCSZ;
+                break;
+            case "getInstRelocEntries":
+                if (!resolveClsDest(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_I_RLCEN;
+                break;
+            case "bitMem8":
+                if (!resolveBtsMem(false, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITMEM8;
+                break;
+            case "bitMem16":
+                if (!resolveBtsMem(false, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITMEM16;
+                break;
+            case "bitMem32":
+                if (!resolveBtsMem(false, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITMEM32;
+                break;
+            case "bitMem64":
+                if (!resolveBtsMem(false, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITMEM64;
+                break;
+            case "bitIOs8":
+                if (!resolveBtsMem(true, StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITIOS8;
+                break;
+            case "bitIOs16":
+                if (!resolveBtsMem(true, StdTypes.T_SHRT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITIOS16;
+                break;
+            case "bitIOs32":
+                if (!resolveBtsMem(true, StdTypes.T_INT, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITIOS32;
+                break;
+            case "bitIOs64":
+                if (!resolveBtsMem(true, StdTypes.T_LONG, call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_BITIOS64;
+                break;
+            case "cast2Struct":
+                if ((ret=resolveCast2ObjStruct(false, call, unitContext, mthdContext, resolveFlags, preferredType, ctx))==null) return null;
+                if (ret!=call) return ret;
+                call.magicType=M_CST2OBJ;
+                break;
+            case "getRamAddr":
+                if (!resolveNoParam("getRamAddr", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_GETRAMAD;
+                break;
+            case "getRamSize":
+                if (!resolveNoParam("getRamSize", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_GETRAMSZ;
+                break;
+            case "getRamInitAddr":
+                if (!resolveNoParam("getRamInitAddr", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_GETRINAD;
+                break;
+            case "useAsThis":
+                if (!resolveUseAsThis(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_USEASTHS;
+                break;
+            case "getConstMemorySize":
+                if (!resolveNoParam("getConstMemorySize", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_GETCNSTM;
+                break;
+            case "inlineOffset":
+                if (!resolveInlineOffset(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLOFFST;
+                break;
+            case "inlineCodeAddress":
+                if (!resolveInlineCodeAddress(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_INLCODAD;
+                break;
+            case "doStaticInit":
+                if (!resolveDoStaticInit(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_STATINIT;
+                break;
+            case "toByteArray":
+                //replaces right side of MAGIC
+                return resolveStringToArray(StdTypes.T_BYTE, call, unitContext, mthdContext, resolveFlags, ctx);
+            case "toCharArray":
+                //replaces right side of MAGIC
+                return resolveStringToArray(StdTypes.T_CHAR, call, unitContext, mthdContext, resolveFlags, ctx);
+            case "getNamedString":
+                //replaces right side of MAGIC
+                return resolveGetNamedString(call, unitContext, mthdContext, resolveFlags, ctx);
+            case "ignore":
+                call.magicType=M_IGNORE; //just ignore
+                call.baseType=StdTypes.T_VOID;
+                call.effectType=Expr.EF_NORM;
+                break;
+            case "stopBlockCoding":
+                if (!resolveNoParam("stopBlockCoding", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_STOPCODE;
+                call.effectType=StExpr.EF_STOP;
+                break;
+            case "assign":
+                if (!resolveAssign(call, unitContext, mthdContext, resolveFlags, ctx)) return null;
+                call.magicType=M_ASSIGN;
+                break;
+            default:
+                ex.printPos(ctx, "unknown MAGIC-method ");
+                ctx.out.print(name);
+                return null;
+        }
     } else {
       ex.printPos(ctx, "unknown MAGIC-deref");
       return null;
@@ -760,25 +742,29 @@ public class Magic extends CtxBasedConfig {
 	  }
     paEx=pa.expr;
     if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
-    if (relocBytes==2) {
-      if (!paEx.isIntType() && !paEx.isShortType()) {
-        call.printPos(ctx, "MAGIC.wMemX needs int or short value as destination");
-        return false;
+      switch (relocBytes) {
+          case 2:
+              if (!paEx.isIntType() && !paEx.isShortType()) {
+                  call.printPos(ctx, "MAGIC.wMemX needs int or short value as destination");
+                  return false;
+              }       
+              break;
+          case 4:
+              if (!paEx.isIntType()) {
+                  call.printPos(ctx, "MAGIC.wMemX needs int value as destination");
+                  return false;
+              }       
+              break;
+          case 8:
+              if (!paEx.isIntType() && !paEx.isLongType()) {
+                  call.printPos(ctx, "MAGIC.wMemX needs int or long value as destination");
+                  return false;
+              }       
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.wMemX could not determine size of pointer");
+              return false;
       }
-    } else if (relocBytes==4) {
-      if (!paEx.isIntType()) {
-        call.printPos(ctx, "MAGIC.wMemX needs int value as destination");
-        return false;
-      }
-    } else if (relocBytes==8) {
-      if (!paEx.isIntType() && !paEx.isLongType()) {
-        call.printPos(ctx, "MAGIC.wMemX needs int or long value as destination");
-        return false;
-      }
-    } else {
-      call.printPos(ctx, "MAGIC.wMemX could not determine size of pointer");
-      return false;
-    }
     pa=pa.nextParam;
     if (pa==null) {
       call.printPos(ctx, "MAGIC.wMemX needs value");
@@ -829,28 +815,29 @@ public class Magic extends CtxBasedConfig {
 	  }
     paEx=pa.expr;
     if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
-    if (relocBytes==2) {
-      if (!paEx.isIntType() && !paEx.isShortType()) {
-        call.printPos(ctx, "MAGIC.rMemX needs int or short value as destination");
-        return false;
+      switch (relocBytes) {
+          case 2:
+              if (!paEx.isIntType() && !paEx.isShortType()) {
+                  call.printPos(ctx, "MAGIC.rMemX needs int or short value as destination");
+                  return false;
+              }       
+              break;
+          case 4:
+              if (!paEx.isIntType()) {
+                  call.printPos(ctx, "MAGIC.rMemX needs int value as destination");
+                  return false;
+              }       
+              break;
+          case 8:
+              if (!paEx.isIntType() && !paEx.isLongType()) {
+                  call.printPos(ctx, "MAGIC.rMemX needs int or long value as destination");
+                  return false;
+              }       
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.rMemX could not determine size of pointer");
+              return false;
       }
-    }
-    else if (relocBytes==4) {
-      if (!paEx.isIntType()) {
-        call.printPos(ctx, "MAGIC.rMemX needs int value as destination");
-        return false;
-      }
-    }
-    else if (relocBytes==8) {
-      if (!paEx.isIntType() && !paEx.isLongType()) {
-        call.printPos(ctx, "MAGIC.rMemX needs int or long value as destination");
-        return false;
-      }
-    }
-    else {
-      call.printPos(ctx, "MAGIC.rMemX could not determine size of pointer");
-      return false;
-    }
     if (pa.nextParam!=null) {
       if (!isIO) {
         call.printPos(ctx, "MAGIC.rMemX needs only one parameter");
@@ -889,14 +876,21 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, "MAGIC.cast2Ref needs object/struct parameter");
       return false;
     }
-    //everthing ok, set type corresponding to architecture
-    if (relocBytes==2) call.baseType=StdTypes.T_SHRT;
-    else if (relocBytes==4) call.baseType=StdTypes.T_INT;
-    else if (relocBytes==8) call.baseType=StdTypes.T_LONG;
-    else {
-      call.printPos(ctx, "MAGIC.cast2Ref could not determine size of pointer");
-      return false;
-    }
+      //everthing ok, set type corresponding to architecture
+      switch (relocBytes) {
+          case 2:
+              call.baseType=StdTypes.T_SHRT;
+              break;
+          case 4:
+              call.baseType=StdTypes.T_INT;
+              break;
+          case 8:
+              call.baseType=StdTypes.T_LONG;
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.cast2Ref could not determine size of pointer");
+              return false;
+      }
     return true;
   }
   
@@ -913,28 +907,29 @@ public class Magic extends CtxBasedConfig {
     }
     paEx=pa.expr;
     if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return null;
-    if (relocBytes==2) {
-      if (!paEx.isIntType() && !paEx.isShortType()) {
-        call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int or short value as destination");
-        return null;
+      switch (relocBytes) {
+          case 2:
+              if (!paEx.isIntType() && !paEx.isShortType()) {
+                  call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int or short value as destination");
+                  return null;
+              }       
+              break;
+          case 4:
+              if (!paEx.isIntType() && !paEx.isLongType()) { //long type will be checked in genOutputCast2ObjStruct
+                  call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int pointer for this architecture");
+                  return null;
+              }       
+              break;
+          case 8:
+              if (!paEx.isIntType() && !paEx.isLongType()) {
+                  call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int or long pointer for this architecture");
+                  return null;
+              }       
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.cast2Obj/Struct could not determine size of pointer");
+              return null;
       }
-    }
-    else if (relocBytes==4) {
-      if (!paEx.isIntType() && !paEx.isLongType()) { //long type will be checked in genOutputCast2ObjStruct
-        call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int pointer for this architecture");
-        return null;
-      }
-    }
-    else if (relocBytes==8) {
-      if (!paEx.isIntType() && !paEx.isLongType()) {
-        call.printPos(ctx, "MAGIC.cast2Obj/Struct needs int or long pointer for this architecture");
-        return null;
-      }
-    }
-    else {
-      call.printPos(ctx, "MAGIC.cast2Obj/Struct could not determine size of pointer");
-      return null;
-    }
     //everthing ok
     //if struct, check if address is constant integer so expression can be handled as constant object
     if (!obj && paEx.calcConstantType(ctx)==StdTypes.T_INT) {
@@ -964,14 +959,21 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, "MAGIC.addr not allowed for constant parameter");
       return false;
     }
-    //everthing ok, set type corresponding to architecture
-    if (relocBytes==2) call.baseType=StdTypes.T_SHRT;
-    else if (relocBytes==4) call.baseType=StdTypes.T_INT;
-    else if (relocBytes==8) call.baseType=StdTypes.T_LONG;
-    else {
-      call.printPos(ctx, "MAGIC.addr could not determine size of pointer");
-      return false;
-    }
+      //everthing ok, set type corresponding to architecture
+      switch (relocBytes) {
+          case 2:
+              call.baseType=StdTypes.T_SHRT;
+              break;
+          case 4:
+              call.baseType=StdTypes.T_INT;
+              break;
+          case 8:
+              call.baseType=StdTypes.T_LONG;
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.addr could not determine size of pointer");
+              return false;
+      }
     return true;
   }
   
@@ -1105,28 +1107,29 @@ public class Magic extends CtxBasedConfig {
     }
     paEx=pa.expr;
     if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
-    if (relocBytes==2) {
-      if (!paEx.isIntType() && !paEx.isShortType()) {
-        call.printPos(ctx, "MAGIC.btsMemX needs int or short value as destination");
-        return false;
+      switch (relocBytes) {
+          case 2:
+              if (!paEx.isIntType() && !paEx.isShortType()) {
+                  call.printPos(ctx, "MAGIC.btsMemX needs int or short value as destination");
+                  return false;
+              }       
+              break;
+          case 4:
+              if (!paEx.isIntType()) {
+                  call.printPos(ctx, "MAGIC.btsMemX needs int value as destination");
+                  return false;
+              }       
+              break;
+          case 8:
+              if (!paEx.isIntType() && !paEx.isLongType()) {
+                  call.printPos(ctx, "MAGIC.btsMemX needs int or long value as destination");
+                  return false;
+              }       
+              break;
+          default:
+              call.printPos(ctx, "MAGIC.btsMemX could not determine size of pointer");
+              return false;
       }
-    }
-    else if (relocBytes==4) {
-      if (!paEx.isIntType()) {
-        call.printPos(ctx, "MAGIC.btsMemX needs int value as destination");
-        return false;
-      }
-    }
-    else if (relocBytes==8) {
-      if (!paEx.isIntType() && !paEx.isLongType()) {
-        call.printPos(ctx, "MAGIC.btsMemX needs int or long value as destination");
-        return false;
-      }
-    }
-    else {
-      call.printPos(ctx, "MAGIC.btsMemX could not determine size of pointer");
-      return false;
-    }
     pa=pa.nextParam;
     if (pa==null) {
       call.printPos(ctx, "MAGIC.btsMemX needs value");
@@ -1338,7 +1341,7 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, "MAGIC.toXArray needs constant boolean as second (i.e. last) parameter");
       return null;
     }
-    trailingZero=pa.expr.getConstIntValue(ctx)==0 ? false : true;
+    trailingZero = pa.expr.getConstIntValue(ctx) != 0;
     //everything ok, insert new variable in unit and return replacement variable
     fid=call.fileID;
     line=call.line;
@@ -1629,9 +1632,17 @@ public class Magic extends CtxBasedConfig {
         pa.expr.isIntfType() ? StdTypes.T_DPTR : StdTypes.T_PTR);
     addrEx=ctx.arch.allocReg();
     pa.expr.genOutputVal(addrEx, ctx); //will generate an int or long depending on architecture, nothing else needed
-    if (relocBytes==2) ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_SHRT, StdTypes.T_PTR);
-    else if (relocBytes==4) ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_INT, StdTypes.T_PTR);
-    else ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_LONG, StdTypes.T_PTR);
+      switch (relocBytes) {
+          case 2:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_SHRT, StdTypes.T_PTR);
+              break;
+          case 4:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_INT, StdTypes.T_PTR);
+              break;
+          default:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_LONG, StdTypes.T_PTR);
+              break;
+      }
     ctx.arch.deallocRestoreReg(addrEx, reg, restore);
   }
   
@@ -1661,9 +1672,17 @@ public class Magic extends CtxBasedConfig {
     restore=ctx.arch.prepareFreeReg(0, 0, reg, StdTypes.T_PTR);
     addrEx=ctx.arch.allocReg();
     pa.expr.genOutputAddr(addrEx, ctx); //will generate an int or long depending on architecture, nothing else needed
-    if (relocBytes==2) ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_SHRT, StdTypes.T_PTR);
-    else if (relocBytes==4) ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_INT, StdTypes.T_PTR);
-    else ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_LONG, StdTypes.T_PTR);
+      switch (relocBytes) {
+          case 2:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_SHRT, StdTypes.T_PTR);
+              break;
+          case 4:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_INT, StdTypes.T_PTR);
+              break;
+          default:
+              ctx.arch.genConvertVal(reg, addrEx, StdTypes.T_LONG, StdTypes.T_PTR);
+              break;
+      }
     ctx.arch.deallocRestoreReg(addrEx, reg, restore);
   }
   

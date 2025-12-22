@@ -50,22 +50,24 @@ import sjc.debug.CodePrinter;
 
 public class ExUna extends Expr {
     public Expr ex;
-    private int op;
+    private final int op;
     private char ariCallOp;
     private boolean genAriCall;
     private UnitList runtimeClass;
 
     public ExUna(int iop, int fid, int il, int ic) {
         super(fid, il, ic);
-        op=iop;
+        op = iop;
     }
 	
-	public void printExpression(CodePrinter codePrnt) {
-	  codePrnt.exprUna(ex, op>>>16, op&0xFFFF);
-	}
+    @Override
+    public void printExpression(CodePrinter codePrnt) {
+	codePrnt.exprUna(ex, op>>>16, op&0xFFFF);
+    }
 	
-	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
-    int opType, opPar;
+    @Override
+    public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
+        int opType, opPar;
     
 	  //check normal expressions
 	  if (!ex.resolve(unitContext, mthdContext, resolveFlags|RF_CHECKREAD, preferredType, ctx)) return false;
@@ -119,20 +121,21 @@ public class ExUna extends Expr {
     }
 	  //everything OK
 	  return true;
-	}
+    }
 	
     @Override
-	public int calcConstantType(Context ctx) {
-		return ex.calcConstantType(ctx);
-	}
+    public int calcConstantType(Context ctx) {
+        return ex.calcConstantType(ctx);
+    }
 	
-	public int getConstIntValue(Context ctx) {
-	  int v;
-	  int opType, par;
+    @Override
+    public int getConstIntValue(Context ctx) {
+	int v;
+	int opType, par;
 	  
-	  v=ex.getConstIntValue(ctx);
-    opType=op>>>16;
-    par=op&0xFFFF;
+	v=ex.getConstIntValue(ctx);
+        opType=op>>>16;
+        par=op&0xFFFF;
 	  switch (opType) {
 	    case Ops.S_ARI:
 	      switch (par) {
@@ -150,7 +153,8 @@ public class ExUna extends Expr {
 	  return 0;
 	}
 	
-	public long getConstLongValue(Context ctx) {
+    @Override
+    public long getConstLongValue(Context ctx) {
     long v;
     int opType, par;
     
@@ -170,6 +174,7 @@ public class ExUna extends Expr {
     return 0l;
 	}
 	
+    @Override
 	public void genOutputVal(int reg, Context ctx) {
 	  int opType=op>>>16, opPar=op&0xFFFF, constType;
 	  int preVal, restore;
@@ -219,9 +224,9 @@ public class ExUna extends Expr {
         return;
     }
     ctx.arch.deallocRestoreReg(preVal, reg, restore);
-	}
+    }
 	
-	private void genOutAriCall(int reg, int reg1, Context ctx) {
+    private void genOutAriCall(int reg, int reg1, Context ctx) {
     int restore;
     Mthd target=ctx.rteDABinAriCallMds[baseType];
     
@@ -239,7 +244,7 @@ public class ExUna extends Expr {
     ctx.arch.deallocRestoreReg(0, reg, restore);
   }
   
-	public void genOutputCondJmp(Instruction jumpDest, boolean isTrue, Instruction elseDest, Context ctx) {
+    public void genOutputCondJmp(Instruction jumpDest, boolean isTrue, Instruction elseDest, Context ctx) {
     if (baseType!=T_BOOL) {
       compErr(ctx, "ExUna.genOutputCondJump needs boolean type");
       return;

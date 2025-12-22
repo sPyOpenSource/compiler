@@ -314,13 +314,13 @@ public class AMD64 extends X86Base {
   public Mthd prepareMethodCoding(Mthd mthd) {
     Mthd lastMthd;
     
-    if ((lastMthd=curMthd)!=null) curInlineLevel++;
+    if ((lastMthd = curMthd) != null) curInlineLevel++;
     else {
-      mthdContainer=mthd; //remember outest level method
-      curFPUReg=FPUREGSTART; //reset only if not inlining
+      mthdContainer = mthd; //remember outest level method
+      curFPUReg = FPUREGSTART; //reset only if not inlining
     }
-    popFPUDone=writtenRegs=usedRegs=0;
-    curMthd=mthd;
+    popFPUDone = writtenRegs = usedRegs = 0;
+    curMthd = mthd;
     return lastMthd;
   }
   
@@ -497,6 +497,7 @@ public class AMD64 extends X86Base {
     ins(I_LEAregmem, dst, src, pos);
   }
 
+  @Override
   public void genLoadVarVal(int dstR, int src, Object loc, int off, int type) {
     int dst, dst2, pos=mem.getAddrAsInt(loc, off);
     if (src==regBase && pos>=0) if (pos>=0) pos+=curVarOffParam;
@@ -536,10 +537,10 @@ public class AMD64 extends X86Base {
         return;
       default:
         fatalError(ERR_INVTYPE_GENLOADVARVAL);
-        return;
     }
   }
 
+  @Override
   public void genConvertVal(int dst, int src, int toType, int fromType) {
     if (toType==StdTypes.T_FLT || toType==StdTypes.T_DBL) {
       if (dst!=curFPUReg) {
@@ -787,6 +788,7 @@ public class AMD64 extends X86Base {
     }
   }
   
+  @Override
   public void genStoreVarVal(int objReg, Object loc, int off, int src, int type) {
     int srcR, pos=mem.getAddrAsInt(loc, off);
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
@@ -810,6 +812,7 @@ public class AMD64 extends X86Base {
     }
   }
   
+  @Override
   public void genStoreVarConstVal(int objReg, Object loc, int off, int val, int type) {
     int pos=mem.getAddrAsInt(loc, off);
     if (objReg==regBase && pos>=0) pos+=curVarOffParam;
@@ -835,10 +838,10 @@ public class AMD64 extends X86Base {
         break;
       default:
         fatalError(ERR_INVMODE_GENSTOREVARX);
-        return;
     }
   }
   
+  @Override
   public void genStoreVarConstDoubleOrLongVal(int objReg, Object loc, int off, long val, boolean asDouble) {
     genStoreVarConstVal(objReg, loc, off+4, (int)(val>>>32), StdTypes.T_INT);
     genStoreVarConstVal(objReg, loc, off, (int)val, StdTypes.T_INT);
@@ -1099,8 +1102,7 @@ public class AMD64 extends X86Base {
               dst=tmp;
               usedMask=0;
               xchg=true;
-            }
-            else {
+            } else {
               xchg=false;
               if (src2!=(REX|R_ECX)) {
                 usedMask=storeReg(RegC);
@@ -1613,38 +1615,38 @@ public class AMD64 extends X86Base {
   
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, long immL, int par) {
     int tmp;
-    int wordflag=0, prefix;
-    boolean sizeprefix=false, rex0, rex1, nrg0, nrg1;
+    int wordflag = 0, prefix;
+    boolean sizeprefix = false, rex0, rex1, nrg0, nrg1;
     
     //get a new instruction and insert ist
-    Instruction i=getUnlinkedInstruction();
+    Instruction i = getUnlinkedInstruction();
     appendInstruction(i);
     //get parameters and remember them
-    i.type=type;
-    i.reg0=reg0;
-    i.reg1=reg1;
-    i.iPar1=disp;
-    i.iPar2=imm;
-    i.lPar=immL;
-    i.iPar3=par;
+    i.type = type;
+    i.reg0 = reg0;
+    i.reg1 = reg1;
+    i.iPar1 = disp;
+    i.iPar2 = imm;
+    i.lPar = immL;
+    i.iPar3 = par;
     //check rex => 64 bit instead of 32 bit
-    rex0=(reg0&REX)!=0;
-    rex1=(reg1&REX)!=0;
-    reg0&=~REX;
-    reg1&=~REX;
+    rex0 = (reg0 & REX) != 0;
+    rex1 = (reg1 & REX) != 0;
+    reg0 &= ~REX;
+    reg1 &= ~REX;
     //check new registers
-    nrg0=(reg0&NRG)!=0;
-    nrg1=(reg1&NRG)!=0;
-    reg0&=~NRG;
-    reg1&=~NRG;
+    nrg0 = (reg0 & NRG) != 0;
+    nrg1 = (reg1 & NRG) != 0;
+    reg0 &= ~NRG;
+    reg1 &= ~NRG;
     //wordflag and sizeprefix for most instructions (check only, do not code)
-    if ((type&IM_P0)==I_reg0 || (type&IM_P1)==I_reg1) {
-      if ((type&IM_P0)==I_reg0) tmp=reg0&0x0F; //register 0 gives operation size (exception: MOVSXregmem, INC, DEC)
-      else tmp=reg1&0x0F; //register 1 gives operation size
-      if (tmp==RS_E) wordflag=1; //EAX, EBX, ...
-      else if (tmp==RS_X) { //AX, BX, ...
-        wordflag=1;
-        sizeprefix=true;
+    if ((type & IM_P0) == I_reg0 || (type & IM_P1) == I_reg1) {
+      if ((type & IM_P0) == I_reg0) tmp = reg0 & 0x0F; //register 0 gives operation size (exception: MOVSXregmem, INC, DEC)
+      else tmp = reg1 & 0x0F; //register 1 gives operation size
+      if (tmp == RS_E) wordflag = 1; //EAX, EBX, ...
+      else if (tmp == RS_X) { //AX, BX, ...
+        wordflag = 1;
+        sizeprefix = true;
       }
       //else: AL, BL, ... have wordflag==0 and sizeprefix==false
     }

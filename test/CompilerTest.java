@@ -62,7 +62,7 @@ public class CompilerTest {
     }
     
     @Test
-    public void nasm() {
+    public void nasm2json() {
         ArrayList<String> comments = new ArrayList<>();
         String rootpath = "/Users/xuyi/Source/OS/armOS/lib/jcore/src/Assembly/";
         Path filePath = Paths.get(rootpath + "asm.S");
@@ -221,7 +221,7 @@ public class CompilerTest {
     }
     
     @Test
-    public void testClass(){
+    public void testASM(){
         try {
             byte[] fileContent = Files.readAllBytes(Paths.get("app/demo.class"));
             byte[] magic_number = new byte[]{fileContent[0], fileContent[1], fileContent[2], fileContent[3]};
