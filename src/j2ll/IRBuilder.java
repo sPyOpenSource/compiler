@@ -9,6 +9,8 @@ import java.util.Stack;
 import java.util.StringJoiner;
 
 import static j2ll.Internals.*;
+import j2ll.frontend.CV;
+import j2ll.frontend.JSignature;
 import j2ll.utils.Resolver;
 import j2ll.utils.Util;
 
@@ -17,7 +19,7 @@ import j2ll.utils.Util;
  */
 public class IRBuilder {
 
-    int tmp;
+    public int tmp;
 
     private final List<String> strings = new ArrayList<>();
 

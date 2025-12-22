@@ -1,7 +1,7 @@
 
 package j2ll.utils;
 
-import j2ll.LocalVarTable;
+import j2ll.frontend.LocalVarTable;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;

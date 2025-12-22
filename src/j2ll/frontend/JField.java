@@ -1,5 +1,5 @@
 
-package j2ll;
+package j2ll.frontend;
 
 /**
  * Java Field

@@ -1,12 +1,19 @@
 
-package j2ll;
+package j2ll.frontend;
 
+import j2ll.AssistLLVM;
+import j2ll.IR;
+import j2ll.IRBuilder;
+import j2ll.Internals;
 import org.objectweb.asm.*;
 import java.io.PrintStream;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static j2ll.Internals.*;
+import j2ll.Prefix;
+import j2ll.RuntimeStack;
+import j2ll.StackValue;
 import j2ll.utils.Util;
 import j2ll.graph.IrFunction;
 
