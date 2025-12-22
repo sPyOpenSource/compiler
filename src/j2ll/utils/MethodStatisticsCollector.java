@@ -1,8 +1,8 @@
 
 package j2ll.utils;
 
-import j2ll.frontend.LocalVar;
-import j2ll.frontend.LocalVarTable;
+import j2ll.asm.LocalVar;
+import j2ll.asm.LocalVarTable;
 import org.objectweb.asm.*;
 
 /**

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 import jx.classfile.ClassData;
 import jx.classfile.MethodData;
-import j2ll.frontend.ClassHelper;
+import j2ll.asm.ClassHelper;
 
 import org.junit.Test;
 import org.objectweb.asm.Attribute;

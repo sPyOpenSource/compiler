@@ -1,12 +1,12 @@
 
-package j2ll.frontend;
+package j2ll.asm;
 
 import j2ll.AssistLLVM;
 import j2ll.utils.Resolver;
 import j2ll.utils.Statistics;
 import j2ll.utils.Util;
-import org.objectweb.asm.*;
 
+import org.objectweb.asm.*;
 import java.io.PrintStream;
 import java.lang.reflect.Modifier;
 import java.util.*;

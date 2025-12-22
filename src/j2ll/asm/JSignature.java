@@ -1,5 +1,5 @@
 
-package j2ll.frontend;
+package j2ll.asm;
 
 import j2ll.utils.Resolver;
 import j2ll.utils.Util;

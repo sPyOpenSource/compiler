@@ -9,8 +9,8 @@ import java.util.Stack;
 import java.util.StringJoiner;
 
 import static j2ll.Internals.*;
-import j2ll.frontend.CV;
-import j2ll.frontend.JSignature;
+import j2ll.asm.CV;
+import j2ll.asm.JSignature;
 import j2ll.utils.Resolver;
 import j2ll.utils.Util;
 

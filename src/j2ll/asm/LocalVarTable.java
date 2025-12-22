@@ -1,5 +1,5 @@
 
-package j2ll.frontend;
+package j2ll.asm;
 
 import java.util.*;
 
@@ -9,7 +9,6 @@ import java.util.*;
 public final class LocalVarTable {
 
     List<LocalVar> all = new ArrayList<>(); // a slot maybe 2 or more var in deference bytecode range
-
     List<String> labelsForParse = new ArrayList<>();
     List<String> labelsForUse = new ArrayList<>();
 

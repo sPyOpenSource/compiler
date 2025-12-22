@@ -1,6 +1,7 @@
 
-package j2ll.frontend;
+package j2ll.asm;
 
+import jx.classfile.ClassData;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.io.FileNotFoundException;
@@ -13,7 +14,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import jx.classfile.ClassData;
 
 /**
  *
