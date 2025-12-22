@@ -10,5 +10,5 @@ import jx.formats.*;
  * then the *bytes* of the string (no unicode support up to now)
  */
 public class ExtendedDataOutputStream extends LittleEndianOutputStream implements jx.compiler.execenv.ExtendedDataOutputStream {
-    public ExtendedDataOutputStream(String path) { super(path); }
+    public ExtendedDataOutputStream(String path) throws FileNotFoundException { super(path); }
 }

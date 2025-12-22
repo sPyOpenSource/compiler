@@ -29,7 +29,6 @@ public class IRBuilder {
         strings.add("; " + str);
     }
 
-
     public String getSignatureCall(String className, String methodName, RuntimeStack stack, String prefix, JSignature sig) {
         StringJoiner joiner = new StringJoiner(", ", sig.getResult() + " @" + sig.getID(className, methodName) + "(", ")");
         if (prefix != null) joiner.add(prefix);
@@ -55,7 +54,6 @@ public class IRBuilder {
         }
         return joiner.toString();
     }
-
 
     public String floatToString(Object value) {
         if (value instanceof Float f) {
@@ -264,7 +262,6 @@ public class IRBuilder {
         load(result, Internals.INT, reg, stack);
     }
 
-
     public void _new(RuntimeStack stack, Resolver resolver, String name) {
         // state
         String struct = resolver.resolveStruct(name);
@@ -289,7 +286,6 @@ public class IRBuilder {
             add(res + " = fsub " + value.getIR() + " 0.0, " + value);
         }
     }
-
 
     public void branch(RuntimeStack stack, Stack<String> commands, Label label, int op, int popCount) {
         if (commands.isEmpty()) {
@@ -460,7 +456,6 @@ public class IRBuilder {
         String resultType = Util.detype(arrayRef.getIR());
         getelementptr(sp, resultType, arrayRef, 0, 1, index.fullName()); // pointer to element of array
         load(value, type, sp, stack);
-
     }
 
     public void aaload(RuntimeStack stack) {
@@ -485,7 +480,6 @@ public class IRBuilder {
     public void sitofp(RuntimeStack stack, String type) {
         operationto(stack, "sitofp", type);
     }
-
 
     public void operationto(RuntimeStack stack, String op, String type) {
         StackValue f = stack.pop();

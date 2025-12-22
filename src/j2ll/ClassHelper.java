@@ -67,7 +67,7 @@ public class ClassHelper {
         openClasses();
         try {
             return new ClassData(new DataInputStream(new ByteArrayInputStream(getClassFileStream(className))));
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             //Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;

@@ -1,15 +1,14 @@
 
 package j2ll;
 
-import j2ll.graph.IrFunction;
 import org.objectweb.asm.*;
-
 import java.io.PrintStream;
 import java.lang.reflect.Modifier;
 import java.util.*;
 
 import static j2ll.Internals.*;
 import j2ll.utils.Util;
+import j2ll.graph.IrFunction;
 
 /**
  *
@@ -68,7 +67,6 @@ public class MV extends MethodVisitor {
     public MV(int i, MethodVisitor methodVisitor) {
         super(i, methodVisitor);
     }
-
 
     boolean isNative() {
         return (access & Modifier.NATIVE) != 0;
@@ -562,7 +560,6 @@ public class MV extends MethodVisitor {
                 break;
             // =============================================== misc ==
             case Opcodes.ARRAYLENGTH: // 190
-
                 out.arrayLength(stack);
                 break;
             case Opcodes.ATHROW: // 191
@@ -696,9 +693,9 @@ public class MV extends MethodVisitor {
     }
 
     @Override
-    public void visitMethodInsn(int opcode, String s, String s1, String s2) {
+    public void visitMethodInsn(int opcode, String s0, String s1, String s2) {
         //System.out.println("visitMethodInsn " + opcode + " " + s);
-        visitMethodInsn(opcode, s, s1, s2, true);
+        visitMethodInsn(opcode, s0, s1, s2, true);
     }
 
     @Override
@@ -907,7 +904,6 @@ public class MV extends MethodVisitor {
         out.add("store i32 %__tmpv" + (out.tmp - 1) + ", i32* %" + var.name + "; inc ");
     }
 
-
     @Override
     public void visitTableSwitchInsn(int from, int to, Label label, Label... labels) {
         usedLabels.add(label.toString());
@@ -993,7 +989,6 @@ public class MV extends MethodVisitor {
     public void visitEnd() {
     }
 
-
     public void out(PrintStream ps) {
         // 0) info
         JSignature ss = new JSignature(this.cv.getStatistics().getResolver(), this.javaSignature);
@@ -1005,7 +1000,6 @@ public class MV extends MethodVisitor {
         ps.print("; args: ");
         ps.println(this._argTypes.size());
 
-
         String methodIrName = this._resType + " @" + Util.classMethodSignature2id(this.cv.className, this.methodName, ss) + "(" + Util.enumArgs(this._argTypes, "%s") + ")";
         if (methodName.equals("<clinit>")) {
             AssistLLVM.addClinit(methodIrName);
@@ -1013,7 +1007,6 @@ public class MV extends MethodVisitor {
 
         String define = "define " + methodIrName + "{";
         ps.println(define);
-
 
         String[] result = out.getStrings().toArray(new String[0]);
 

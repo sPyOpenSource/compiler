@@ -1660,10 +1660,10 @@ public class ExecEnvironmentIA32 implements ExecEnvironmentInterface {
 	
 	/* normal IF call */
 	BCClass aClass = classStore.findClass(className);
-	if (aClass == null) Debug.out.println("Can't find ClassInfo for "+className);
+	if (aClass == null) Debug.out.println("Can't find ClassInfo for " + className);
 	BCClassInfo info = aClass.getInfo();
 
-	int index = info.methodTable.getIndex(methodName+interfaceRefCPEntry.getMemberTypeDesc());
+	int index = info.methodTable.getIndex(methodName + interfaceRefCPEntry.getMemberTypeDesc());
 	if (index == 0) {
 	    System.out.println("Interface method index = 0");
 	    info.methodTable.print();
