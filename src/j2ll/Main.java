@@ -65,7 +65,7 @@ public class Main {
     static void class2ll(String llvmPath) throws IOException {
         for (String key:Util.helper.getAllClass()) {
             try {
-                conv(Util.helper.getClassFileStream(key), key, llvmPath);
+                conv(Util.helper.getClassFile(key).getClassFileStream(), key, llvmPath);
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -89,13 +89,13 @@ public class Main {
     System.out.println(attr.type);
 }*/
         cr.accept(cv, 0);
-        ClassNode cn = new ClassNode();
+        /*ClassNode cn = new ClassNode();
         cr.accept(cn, ClassReader.EXPAND_FRAMES);
         if(cn.attrs != null){
             for(Attribute attr:cn.attrs){
                 System.out.println(attr.type);
             }
-        }
+        }*/
         ps.flush();
     }
 

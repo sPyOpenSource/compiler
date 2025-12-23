@@ -51,7 +51,10 @@ public final class Util {
         try {
             if (type.endsWith("*")) {
                 return type.substring(0, type.length() - 1);
-            }else if(type.startsWith("%..")){
+            } else if(type.startsWith("%..")) {
+                String s = "%" + type.substring(2) + "*";
+                return s;
+            } else if(type.startsWith("%.L")) {
                 String s = "%" + type.substring(2) + "*";
                 return s;
             } else {

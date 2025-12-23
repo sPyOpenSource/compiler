@@ -29,7 +29,7 @@ public class JUnitTest {
         ch.openClasses();
         for(String name:ch.getAllClass()){
             if(name.endsWith(".class")){
-                byte[] is = ch.getClassFileStream(name);
+                byte[] is = ch.getClassFile(name).getClassFileStream();
                 ClassReader cr = new ClassReader(is);
                 ClassNode cn = new ClassNode();
                 //Attribute[] attrs = new Attribute[]{new Attribute("SourceFile")};

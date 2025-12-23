@@ -93,7 +93,7 @@ final  public class IMSub extends IMBinaryOperator {
         } else {    
             // case ((x1+c1)-(x2+c2)) => ((x1-x2)+c)
             if (opts.doVerbose("cf")) 
-            Debug.out.println("++ folding  ((x+c)-(x+c)) " + toString());
+                Debug.out.println("++ folding  ((x+c)-(x+c)) " + toString());
 
             IMOperant  x1 = lOpr.getLeftOperant();
             IMConstant c1 = lOpr.getRightOperant().nodeToConstant();
@@ -109,7 +109,7 @@ final  public class IMSub extends IMBinaryOperator {
             rOpr = c1;
 
             if (opts.doVerbose("cf")) 
-            Debug.out.println("++ folding  => " + toString());
+                Debug.out.println("++ folding  => " + toString());
 
             return this;
         }
@@ -135,55 +135,54 @@ final  public class IMSub extends IMBinaryOperator {
     // IMSub
     @Override
     public void translate(Reg result) throws CompileException {
-    if (rOpr.isRealConstant()) {
-        int value = ((IMConstant)rOpr).getIntValue();
-        lOpr.translate(result);
+        if (rOpr.isRealConstant()) {
+            int value = ((IMConstant)rOpr).getIntValue();
+            lOpr.translate(result);
 
-        code.startBC(bcPosition);
-        regs.writeIntRegister(result);
+            code.startBC(bcPosition);
+            regs.writeIntRegister(result);
 
-        switch (value) {
-        case 0:
-        return;
-        case 1:
-        code.decl(result);
-        break;
-        default:
-        code.subl(value,result);
+            switch (value) {
+                case 0:
+                    return;
+                case 1:
+                    code.decl(result);
+                    break;
+                default:
+                    code.subl(value,result);
+            }
+        } else {
+            Reg reg;
+            lOpr.translate(result);
+
+            code.startBC(bcPosition);
+
+            reg = regs.chooseIntRegister(result);
+            rOpr.translate(reg);
+            regs.writeIntRegister(result);
+            code.subl(reg,result);
+            regs.freeIntRegister(reg);
         }
-    } else {
-        
-        Reg reg;
-        lOpr.translate(result);
 
-        code.startBC(bcPosition);
-
-        reg = regs.chooseIntRegister(result);
-        rOpr.translate(reg);
-        regs.writeIntRegister(result);
-        code.subl(reg,result);
-        regs.freeIntRegister(reg);
-        }
-
-    code.endBC();
+        code.endBC();
     }
 
     @Override
     public void translate(Reg64 result) throws CompileException {
-    Reg64 reg;
-    lOpr.translate(result);
+        Reg64 reg;
+        lOpr.translate(result);
 
-    reg = regs.chooseLongRegister(result);
-    rOpr.translate(reg);
+        reg = regs.chooseLongRegister(result);
+        rOpr.translate(reg);
 
-    code.startBC(bcPosition);
-    
-    regs.writeLongRegister(result);
-    code.subl(reg.low,result.low);
-    code.sbbl(reg.high,result.high);
+        code.startBC(bcPosition);
 
-    regs.freeLongRegister(reg);
+        regs.writeLongRegister(result);
+        code.subl(reg.low,result.low);
+        code.sbbl(reg.high,result.high);
 
-    code.endBC();
+        regs.freeLongRegister(reg);
+
+        code.endBC();
     }
 }

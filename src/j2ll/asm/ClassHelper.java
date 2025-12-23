@@ -2,8 +2,6 @@
 package j2ll.asm;
 
 import jx.classfile.ClassData;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -22,7 +20,7 @@ import java.util.logging.Logger;
 public class ClassHelper {
     private String path;
     private String[] classes;
-    private HashMap<String, byte[]> map = new HashMap<>();
+    private HashMap<String, ClassData> map = new HashMap<>();
     private JarFile[] files;
     
     public ClassHelper(String string, String[] toArray) {
@@ -34,9 +32,9 @@ public class ClassHelper {
         try {
             files = new JarFile[]{
                 new JarFile("../Zero/dist/Zero.jar"),
-                //new JarFile("../OS/dist/OS.jar"),
+                new JarFile("../OS/dist/OS.jar"),
                 //new JarFile("../AIZero/dist/AIZero.jar"),
-                //new JarFile("../test/ifOS/dist/ifOS.jar"),
+                new JarFile("../test/ifOS/dist/ifOS.jar"),
                 //new JarFile("/Users/xuyi/Source/Java/lib/jSerialComm-2.7.0.jar")
             };
         } catch (IOException ex) {
@@ -52,7 +50,7 @@ public class ClassHelper {
                     JarEntry entry = entries.nextElement();
                     String name = entry.getName();
                     if (name.endsWith(".class")){
-                        map.put(name, file.getInputStream(entry).readAllBytes());
+                        map.put(name, new ClassData(file.getInputStream(entry).readAllBytes()));
                     }
                 }
             }
@@ -64,17 +62,11 @@ public class ClassHelper {
     }
 
     public ClassData getClassFile(String className) {
-        openClasses();
-        try {
-            return new ClassData(new DataInputStream(new ByteArrayInputStream(getClassFileStream(className))));
-        } catch (IOException ex) {
-            //Logger.getLogger(ClassHelper.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-    
-    public byte[] getClassFileStream(String className){
-        return map.get(className);
+        if(className == null) return null;
+        if(className.endsWith(".class")){
+            //System.out.println(className);
+            return map.get(className);
+        } else return map.get(className+".class");
     }
     
     public Set<String> getAllClass(){

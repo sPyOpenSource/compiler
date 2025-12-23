@@ -83,6 +83,7 @@ public class CV extends ClassVisitor {
 
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
+        System.out.println(this.className);
         MV mv = new MV(access, name, desc, this);
         this.methods.add(mv);
         return mv;
