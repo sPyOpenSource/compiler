@@ -1,4 +1,5 @@
 package com.ebsee.classparser;
+
 import java.io.*;
 
 /**
@@ -68,7 +69,6 @@ public abstract class CPEntry
     public int getEntryCount() { return 1; }
 }
 
-
 /** Represents a CONSTANT_Utf8 entry (tag == 1). */
 class ConstantUtf8 extends CPEntry
 {
@@ -91,7 +91,6 @@ class ConstantUtf8 extends CPEntry
     }
 }
 
-
 /** Represents a CONSTANT_Integer entry (tag == 3). */
 class ConstantInteger extends CPEntry
 {
@@ -107,7 +106,6 @@ class ConstantInteger extends CPEntry
     public String getValues()    { return String.format("value=%d", value); }
 }
 
-
 /** Represents a CONSTANT_Float entry (tag == 4). */
 class ConstantFloat extends CPEntry
 {
@@ -122,7 +120,6 @@ class ConstantFloat extends CPEntry
     public String getTagString() { return "Float"; }
     public String getValues()    { return String.format("value=%f", value); }
 }
-
 
 /**
  * Represents a CONSTANT_Long entry (tag == 5). This class overrides
@@ -144,7 +141,6 @@ class ConstantLong extends CPEntry
 
     public String getValues() { return String.format("value=%d", value); }
 }
-
 
 /**
  * Represents a CONSTANT_Double entry (tag == 6). This class overrides
@@ -198,7 +194,6 @@ class ConstantClass extends CPEntry
     }
 }
 
-
 /**
  * Represents a CONSTANT_String entry (tag == 8). This holds a reference to a
  * Utf8 entry containing the string itself (just a raw index until
@@ -229,7 +224,6 @@ class ConstantString extends CPEntry
         return String.format("string_index=0x%02x", stringIndex);
     }
 }
-
 
 /**
  * Abstract superclass for the three CONSTANT_xxxref entry types. These
@@ -346,7 +340,6 @@ class ConstantNameAndType extends CPEntry
     }
 }
 
-
 /**
  * Represents a CONSTANT_MethodHandle entry (tag == 15).
  */
@@ -379,7 +372,6 @@ class ConstantMethodHandle extends CPEntry
                 kind, index);
     }
 }
-
 
 /**
  * Represents a CONSTANT_MethodType entry (tag == 16).
@@ -449,7 +441,6 @@ class ConstantInvokeDynamic extends CPEntry
                 bootstrapMethodIndex, nameAndTypeIndex);
     }
 }
-
 
 /**
  * Thrown when an unknown tag value is encountered (i.e. one that does not

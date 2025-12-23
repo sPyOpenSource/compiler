@@ -1,13 +1,12 @@
 package com.ebsee.j2c;
 
-import com.ebsee.classparser.Method;
 import j2ll.asm.JField;
 import org.objectweb.asm.*;
+import jx.classfile.MethodSource;
 
 import java.io.PrintStream;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import jx.classfile.MethodSource;
 
 public class CV extends ClassVisitor {
 
