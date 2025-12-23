@@ -199,6 +199,7 @@ public enum Opcode
             {
                 /** Tableswitch instructions have a variable size, calculated by this
                  method. */
+                @Override
                 public int getSize(byte[] code, int offset)
                 {
                     int operandOffset = 4 - (offset % 4);
@@ -207,6 +208,7 @@ public enum Opcode
                     return operandOffset + (3 + high - low + 1) * 4;
                 }
 
+                @Override
                 public String[] getByteLabels(byte[] code, int offset)
                 {
                     final String[] byteLabels = new String[]{"pad", "pad", "pad",

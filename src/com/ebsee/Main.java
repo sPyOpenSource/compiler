@@ -54,13 +54,12 @@ public class Main {
     public static void main(String[] args) throws IOException {
         String jsrcPath = "../app/java/"
 //                + File.pathSeparator + "../../miniJVM/desktop/awtk_gui/java/src/main/java/"//
-                + File.pathSeparator + "../option_pack/test/src/main/java/"//
+//                + File.pathSeparator + "../option_pack/test/src/main/java/"//
 //                + File.pathSeparator + "../option_pack/luaj/core/src/"//
 //                + File.pathSeparator + "../option_pack/luaj/luncher/src/"//
                 ;
         String classesPath = "./app/out/classes/";
         String csrcPath = "./app/c/";
-
 
         if (args.length < 3) {
             System.out.println("Posix :");
