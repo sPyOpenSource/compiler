@@ -221,8 +221,8 @@ define void @jx_zero_VMSupport_arraycopy_byte_left__BI_BII(%.B* %s0, i32 %s1, %.
             %stack6 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack6, i32* %i_3_4
-            br label %L379886033
-        L379886033:
+            br label %L1821268676
+        L1821268676:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ; i32load 5
@@ -230,7 +230,7 @@ define void @jx_zero_VMSupport_arraycopy_byte_left__BI_BII(%.B* %s0, i32 %s1, %.
             ; i32load 4
             %stack8 = load i32, i32* %count_0_5
             %__tmpc1 = icmp sge i32 %stack7, %stack8
-            br i1 %__tmpc1, label %L46092193, label %_if.else1
+            br i1 %__tmpc1, label %L402702819, label %_if.else1
         _if.else1:
     ;2
             ; %.B*load 2
@@ -256,8 +256,8 @@ define void @jx_zero_VMSupport_arraycopy_byte_left__BI_BII(%.B* %s0, i32 %s1, %.
             %__tmpv8 = load i32, i32* %i_3_4
             %__tmpv9 = add i32 %__tmpv8, 1
             store i32 %__tmpv9, i32* %i_3_4; inc 
-            br label %L379886033
-        L46092193:
+            br label %L1821268676
+        L402702819:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ret void
@@ -294,8 +294,8 @@ define void @jx_zero_VMSupport_arraycopy_byte_right__BI_BII(%.B* %s0, i32 %s1, %
             %stack0 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack0, i32* %i_1_2
-            br label %L1962449837
-        L1962449837:
+            br label %L285646508
+        L285646508:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ; i32load 5
@@ -303,7 +303,7 @@ define void @jx_zero_VMSupport_arraycopy_byte_right__BI_BII(%.B* %s0, i32 %s1, %
             ; i32load 4
             %stack2 = load i32, i32* %count_0_3
             %__tmpc1 = icmp sge i32 %stack1, %stack2
-            br i1 %__tmpc1, label %L1523911426, label %_if.else1
+            br i1 %__tmpc1, label %L1493772379, label %_if.else1
         _if.else1:
     ;2
             ; %.B*load 2
@@ -329,8 +329,8 @@ define void @jx_zero_VMSupport_arraycopy_byte_right__BI_BII(%.B* %s0, i32 %s1, %
             %__tmpv4 = load i32, i32* %i_1_2
             %__tmpv5 = add i32 %__tmpv4, 1
             store i32 %__tmpv5, i32* %i_1_2; inc 
-            br label %L1962449837
-        L1523911426:
+            br label %L285646508
+        L1493772379:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ret void
@@ -383,8 +383,8 @@ define void @jx_zero_VMSupport_arraycopy_char_left__CI_CII(%.C* %s0, i32 %s1, %.
             %stack6 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack6, i32* %i_3_4
-            br label %L169571657
-        L169571657:
+            br label %L1120735174
+        L1120735174:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ; i32load 5
@@ -392,7 +392,7 @@ define void @jx_zero_VMSupport_arraycopy_char_left__CI_CII(%.C* %s0, i32 %s1, %.
             ; i32load 4
             %stack8 = load i32, i32* %count_0_5
             %__tmpc1 = icmp sge i32 %stack7, %stack8
-            br i1 %__tmpc1, label %L2057715536, label %_if.else1
+            br i1 %__tmpc1, label %L240673986, label %_if.else1
         _if.else1:
     ;2
             ; %.C*load 2
@@ -418,8 +418,8 @@ define void @jx_zero_VMSupport_arraycopy_char_left__CI_CII(%.C* %s0, i32 %s1, %.
             %__tmpv8 = load i32, i32* %i_3_4
             %__tmpv9 = add i32 %__tmpv8, 1
             store i32 %__tmpv9, i32* %i_3_4; inc 
-            br label %L169571657
-        L2057715536:
+            br label %L1120735174
+        L240673986:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ret void
@@ -456,8 +456,8 @@ define void @jx_zero_VMSupport_arraycopy_char_right__CI_CII(%.C* %s0, i32 %s1, %
             %stack0 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack0, i32* %i_1_2
-            br label %L633103787
-        L633103787:
+            br label %L1765223454
+        L1765223454:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ; i32load 5
@@ -465,7 +465,7 @@ define void @jx_zero_VMSupport_arraycopy_char_right__CI_CII(%.C* %s0, i32 %s1, %
             ; i32load 4
             %stack2 = load i32, i32* %count_0_3
             %__tmpc1 = icmp sge i32 %stack1, %stack2
-            br i1 %__tmpc1, label %L1856738035, label %_if.else1
+            br i1 %__tmpc1, label %L612641678, label %_if.else1
         _if.else1:
     ;2
             ; %.C*load 2
@@ -491,8 +491,8 @@ define void @jx_zero_VMSupport_arraycopy_char_right__CI_CII(%.C* %s0, i32 %s1, %
             %__tmpv4 = load i32, i32* %i_1_2
             %__tmpv5 = add i32 %__tmpv4, 1
             store i32 %__tmpv5, i32* %i_1_2; inc 
-            br label %L633103787
-        L1856738035:
+            br label %L1765223454
+        L612641678:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ret void
@@ -545,8 +545,8 @@ define void @jx_zero_VMSupport_arraycopy_left__Ljava_lang_Object_I_Ljava_lang_Ob
             %stack6 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack6, i32* %i_3_4
-            br label %L1008273608
-        L1008273608:
+            br label %L900666712
+        L900666712:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ; i32load 5
@@ -554,7 +554,7 @@ define void @jx_zero_VMSupport_arraycopy_left__Ljava_lang_Object_I_Ljava_lang_Ob
             ; i32load 4
             %stack8 = load i32, i32* %count_0_5
             %__tmpc1 = icmp sge i32 %stack7, %stack8
-            br i1 %__tmpc1, label %L1808149433, label %_if.else1
+            br i1 %__tmpc1, label %L593573468, label %_if.else1
         _if.else1:
     ;2
             ; %.Ljava_lang_Object_*load 2
@@ -573,15 +573,15 @@ define void @jx_zero_VMSupport_arraycopy_left__Ljava_lang_Object_I_Ljava_lang_Ob
             %stack12 = load i32, i32* %srcOffset_0_5
             ; aaload %.Ljava_lang_Object_*
             %__tmp6 = getelementptr %.Ljava_lang_Object_, %.Ljava_lang_Object_* %stack11, i32 0, i32 1, i32 %stack12
-            %stack13 = load %.Ljava_lang_Object_, %.Ljava_lang_Object_* %__tmp6
-            ; aastore %.Ljava_lang_Object_
+            %stack13 = load %Ljava_lang_Object_*, %Ljava_lang_Object_** %__tmp6
+            ; aastore %Ljava_lang_Object_*
             %__tmp7 = getelementptr %.Ljava_lang_Object_, %.Ljava_lang_Object_* %stack9, i32 0, i32 1, i32 %stack10
-            store %.Ljava_lang_Object_ %stack13, %.Ljava_lang_Object_* %__tmp7
+            store %Ljava_lang_Object_* %stack13, %Ljava_lang_Object_** %__tmp7
             %__tmpv8 = load i32, i32* %i_3_4
             %__tmpv9 = add i32 %__tmpv8, 1
             store i32 %__tmpv9, i32* %i_3_4; inc 
-            br label %L1008273608
-        L1808149433:
+            br label %L900666712
+        L593573468:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null]
             ret void
@@ -618,8 +618,8 @@ define void @jx_zero_VMSupport_arraycopy_right__Ljava_lang_Object_I_Ljava_lang_O
             %stack0 = load i32, i32* %_imm_0
             ; i32store 5
             store i32 %stack0, i32* %i_1_2
-            br label %L939523827
-        L939523827:
+            br label %L124900571
+        L124900571:
     ;1
             ; type 1, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ; i32load 5
@@ -627,7 +627,7 @@ define void @jx_zero_VMSupport_arraycopy_right__Ljava_lang_Object_I_Ljava_lang_O
             ; i32load 4
             %stack2 = load i32, i32* %count_0_3
             %__tmpc1 = icmp sge i32 %stack1, %stack2
-            br i1 %__tmpc1, label %L1779524436, label %_if.else1
+            br i1 %__tmpc1, label %L763937215, label %_if.else1
         _if.else1:
     ;2
             ; %.Ljava_lang_Object_*load 2
@@ -646,15 +646,15 @@ define void @jx_zero_VMSupport_arraycopy_right__Ljava_lang_Object_I_Ljava_lang_O
             %stack10 = add i32 %stack8, %stack9
             ; aaload %.Ljava_lang_Object_*
             %__tmp2 = getelementptr %.Ljava_lang_Object_, %.Ljava_lang_Object_* %stack7, i32 0, i32 1, i32 %stack10
-            %stack11 = load %.Ljava_lang_Object_, %.Ljava_lang_Object_* %__tmp2
-            ; aastore %.Ljava_lang_Object_
+            %stack11 = load %Ljava_lang_Object_*, %Ljava_lang_Object_** %__tmp2
+            ; aastore %Ljava_lang_Object_*
             %__tmp3 = getelementptr %.Ljava_lang_Object_, %.Ljava_lang_Object_* %stack3, i32 0, i32 1, i32 %stack6
-            store %.Ljava_lang_Object_ %stack11, %.Ljava_lang_Object_* %__tmp3
+            store %Ljava_lang_Object_* %stack11, %Ljava_lang_Object_** %__tmp3
             %__tmpv4 = load i32, i32* %i_1_2
             %__tmpv5 = add i32 %__tmpv4, 1
             store i32 %__tmpv5, i32* %i_1_2; inc 
-            br label %L939523827
-        L1779524436:
+            br label %L124900571
+        L763937215:
     ;3
             ; type 2, local 1 [1, null, null, null, null, null], stack 0 [null, null, null, null, null]
             ret void

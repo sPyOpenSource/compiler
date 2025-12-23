@@ -6,12 +6,12 @@ package j2ll;
  */
 public class RuntimeStack {
 
-    int ord = 0;
     private final int SIZE = 1024;
+    int ord = 0;
+    int pos = 0;
 
     int[] names = new int[SIZE];
     StackValue[] imm2 = new StackValue[SIZE];
-    int pos = 0;
 
     public String push(String type) {
         String s = push_impl(type);

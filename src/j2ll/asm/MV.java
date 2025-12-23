@@ -53,6 +53,7 @@ public class MV extends MethodVisitor {
         super(Opcodes.ASM5);
         this.access = access;
         this.methodName = methodName;
+        System.out.println(methodName);
         this.javaSignature = javaSignature;
         this.vars = cv.getStatistics().get(methodName + javaSignature);
         this.cv = cv;
@@ -193,7 +194,8 @@ public class MV extends MethodVisitor {
                 break;
             // =============================================== Constants ==
             case Opcodes.ACONST_NULL: // 1
-                out.add("const null"); //todo
+                out.add("; const null"); //todo
+                out.addImm(null, "null", stack);
                 break;
             case Opcodes.ICONST_M1: // 2
             case Opcodes.ICONST_0: // 3
@@ -570,7 +572,7 @@ public class MV extends MethodVisitor {
                 out.arrayLength(stack);
                 break;
             case Opcodes.ATHROW: // 191
-                out.add("athrow"); // todo
+                out.add("; athrow"); // todo
                 break;
             case Opcodes.MONITORENTER: // 194
                 out.add("monitorenter");

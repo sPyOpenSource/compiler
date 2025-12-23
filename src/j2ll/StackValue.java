@@ -59,6 +59,7 @@ public class StackValue {
         if (value instanceof Double f) {
             return "0x" + Long.toHexString(Double.doubleToRawLongBits(f));
         }
+        if(value == null) return "null";
         return value.toString(); // imm ??
     }
 

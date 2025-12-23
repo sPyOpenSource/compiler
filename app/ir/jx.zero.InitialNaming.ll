@@ -7,7 +7,6 @@ declare void @print_ptr(i64)
 declare i32 @ptr_size()
 
 
-declare %jx_zero_Naming* @jx_zero_InitialNaming_getInitialNaming()
 declare void @java_lang_Object__init_(%java_lang_Object*)
 
 ; first generation
@@ -33,6 +32,21 @@ define void @jx_zero_InitialNaming__init_(%jx_zero_InitialNaming* %s0){
             call void @java_lang_Object__init_(%java_lang_Object* %stack1); special call private or <init>
             ret void
             ; 
+}
+
+; locals: 0
+; stack: 1
+; args: 0
+define %jx_zero_Naming* @jx_zero_InitialNaming_getInitialNaming(){
+        __MethodEntry:
+    ;0
+            ; 
+            ; const null
+            %_imm_0 = alloca null
+            store null null, null* %_imm_0
+            %stack0 = load null, null* %_imm_0
+            %stack1 = bitcast null %stack0 to %jx_zero_Naming*
+            ret %jx_zero_Naming* %stack1
 }
 
 

@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SourceToken {
+    
+    List<IrSentence> code = new ArrayList<>();
+    public int pos;
+    
     public SourceToken(String[] strs) {
         for (String str : strs) {
             IrSentence irs = IrSentence.parseInst(str);
@@ -12,6 +16,4 @@ public class SourceToken {
         }
     }
 
-    List<IrSentence> code = new ArrayList<>();
-    public int pos;
 }
