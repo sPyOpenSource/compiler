@@ -140,7 +140,6 @@ public class CV extends ClassVisitor {
             this.ps.println(s);
         }
         this.ps.println();
-
     }
 
     public Set<JField> getStaticFields() {
