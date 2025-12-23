@@ -2,7 +2,6 @@ package jx.compiler;
 
 import jx.zero.*;
 import jx.compiler.execenv.BCClass;
-
 import java.util.*;
 
 import jx.collections.Iterator;

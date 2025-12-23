@@ -7,7 +7,6 @@ import j2ll.asm.ClassHelper;
 import j2ll.utils.Statistics;
 import j2ll.utils.StatisticsCollector;
 import j2ll.utils.Util;
-import org.objectweb.asm.ClassReader;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.objectweb.asm.Attribute;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.ClassReader;
 
 /**
  *

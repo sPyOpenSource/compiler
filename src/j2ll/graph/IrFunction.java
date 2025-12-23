@@ -66,7 +66,6 @@ public class IrFunction {
                 ib.fintOuter();
                 ib.findOperandCreatedByOther();
                 ib.fixOperandNeeds();
-
             }
         }
 

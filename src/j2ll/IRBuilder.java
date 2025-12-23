@@ -205,7 +205,6 @@ public class IRBuilder {
         op1 = pair.p1;
         op2 = pair.p2;
 
-
         String res = stack.push(op2.getIR());
         StringBuilder tmp = new StringBuilder();
         tmp.append(res);
