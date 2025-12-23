@@ -12,17 +12,15 @@ import jx.classfile.constantpool.*;
 final public class CodeData {
     int maxStack;
     int maxLocals;
+    int numHandlers;
 
     byte[] codeBytes;
-    int numHandlers;
     ExceptionHandlerData[] exceptionHandler;
-
     LineAttributeData []lineNumberTable;
 
     //needed by jx.verifier.wcet.WCETAnalysis.createETCheckedMethod
     public void increaseMaxLocals() {maxLocals++;}
     public void increaseMaxStack() {maxStack++;}
-
     public void setCodeBytes(byte[] newCode) {codeBytes = newCode;}
 
     public CodeData() {}
@@ -92,31 +90,35 @@ final public class CodeData {
         }
     }
 
-  private void readAttribute(DataInput input, ConstantPool cPool)
-    throws IOException {
-      int attrNameCPIndex = input.readUnsignedShort();
-      int numBytes = input.readInt();
-      String attrName = cPool.getUTF8StringAt(attrNameCPIndex);
-      if (attrName.equals("LineNumberTable")) {
-	  int numLines = input.readShort();
-	  lineNumberTable = new LineAttributeData[numLines];
-	  for(int i=0; i<numLines; i++) {
-	      lineNumberTable[i] = new LineAttributeData(input.readShort(), input.readShort());
-	  }
-      } else {
-	  input.skipBytes(numBytes);
-      }
-  }
+    private void readAttribute(DataInput input, ConstantPool cPool)
+        throws IOException {
+        int attrNameCPIndex = input.readUnsignedShort();
+        int numBytes = input.readInt();
+        String attrName = cPool.getUTF8StringAt(attrNameCPIndex);
+        if (attrName.equals("LineNumberTable")) {
+            int numLines = input.readShort();
+            lineNumberTable = new LineAttributeData[numLines];
+            for(int i = 0; i < numLines; i++) {
+                lineNumberTable[i] = new LineAttributeData(input.readShort(), input.readShort());
+            }
+        } else {
+            input.skipBytes(numBytes);
+        }
+    }
 
-  @Override
-  public String toString() {
-    return super.toString() + "\n" + 
-      "MaxStack     : " + maxStack + "\n" + 
-      "maxLocals    : " + maxLocals + "\n" + 
-      "numCodeBytes : " + codeBytes.length + "\n";
-  }
+    @Override
+    public String toString() {
+        return super.toString() + "\n" + 
+          "MaxStack     : " + maxStack + "\n" + 
+          "maxLocals    : " + maxLocals + "\n" + 
+          "numCodeBytes : " + codeBytes.length + "\n";
+    }
 
-  public String getDescription(ConstantPool cPool) {
-    return toString();
-  }
+    public String getDescription(ConstantPool cPool) {
+        return toString();
+    }
+
+    public int getExceptionTableLength() {
+        return exceptionHandler.length;
+    }
 }

@@ -34,6 +34,7 @@ public class MethodData extends MethodSource {
     ClassData declaringClass;
 
     private boolean allowNative = false;
+    String signatureAttribute;
     
     public ClassData getDeclaringClass() {return declaringClass;}
     @Override
@@ -221,6 +222,9 @@ attributes = new AttributeInfo[numAttributes];
 	if (attributeName.equals("Code")) {
 	    codeData = new CodeData();
 	    codeData.readFromClassFile(input, cPool);
+        } else if (attributeName.equals("Signature")) {
+            int sfutfIndex = input.readUnsignedShort();
+            signatureAttribute = cPool.getUTF8StringAt(sfutfIndex);
 	} else {
 	    input.skipBytes(numBytes);
         }
@@ -291,5 +295,20 @@ attributes = new AttributeInfo[numAttributes];
 		return res;
 	}
 	return null;
+    }
+
+    @Override
+    public boolean isSync() {
+        return (accessFlags & java.lang.reflect.Modifier.SYNCHRONIZED) != 0;
+    }
+
+    @Override
+    public String getSignature() {
+        return signatureAttribute;
+    }
+
+    @Override
+    public CodeData getCodeAttribute() {
+        return codeData;
     }
 }      

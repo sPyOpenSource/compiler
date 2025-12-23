@@ -11,7 +11,7 @@ abstract public class MethodSource {
   abstract public ClassSource getDeclaringClassSource();
   abstract public String getMethodName(); 
   abstract public String getMethodType(); 
-
+    abstract public int getModifiers();
   abstract public boolean isPublic();
   abstract public boolean isPrivate();
   abstract public boolean isProtected();
@@ -21,6 +21,7 @@ abstract public class MethodSource {
   abstract public boolean isNative();
 
   abstract public byte[] getBytecode();
+  abstract public CodeData getCodeAttribute();
   abstract public int getNumInstr();
   abstract public int getNumLocalVariables(); 
   abstract public int getNumStackSlots(); 
@@ -29,4 +30,7 @@ abstract public class MethodSource {
 
   abstract public VerifyResult getVerifyResult(int type);
   abstract public void setVerifyResult(VerifyResult newElm);
+
+    abstract public boolean isSync();
+    abstract public String getSignature();
 }

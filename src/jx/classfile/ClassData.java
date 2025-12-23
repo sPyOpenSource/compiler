@@ -1,6 +1,8 @@
 package jx.classfile; 
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import jx.classfile.constantpool.*;
 
 /** 
@@ -20,19 +22,27 @@ public class ClassData extends ClassSource {
     
     int numInterfaces;
     int[] interfaceCPIndex;
-
+    byte[] data;
+            
     int numFields;
     FieldData[] field;
 
     int numMethods;
     MethodData[] method;
-
+    private MethodData virtualMethods[];
+    
     String sourceFile;
+    String signatureAttribute;
 
     private boolean allowNative = false;
 
     public int getThisClassCPIndex() {
 	return thisClassCPIndex;
+    }
+    
+    public ClassData(byte[] data) throws IOException{
+        this(new DataInputStream(new ByteArrayInputStream(data)));
+        this.data = data;
     }
 
     public ClassData(DataInput input) throws IOException, EOFException {
@@ -41,7 +51,7 @@ public class ClassData extends ClassSource {
 
     public ClassData(DataInput input, boolean allowNative) throws IOException, EOFException {
 	this.allowNative = allowNative;
-	readFromClassFile(input); 
+	readFromClassFile(input);
     }
   
     @Override
@@ -135,6 +145,15 @@ public class ClassData extends ClassSource {
 	    for(int i = 0; i < numAttributes; i++) {
 		readAttribute(input, constantPool); 
             }
+            //gust
+            virtualMethods = Arrays.asList(method).stream().filter(m -> {
+                return !m.isStatic()
+                        //&& (acc & Modifier.FINAL) == 0 //final can't override
+                        && !m.isPrivate()
+                        //&& (acc & Modifier.ABSTRACT) == 0
+                        && !m.getMethodName().contains("<") //construct
+                        ;
+            }).collect(Collectors.toList()).toArray(new MethodData[0]);
 	} catch(EOFException ex) {
 	    throw new Error("Unexpected EOF");
 	}
@@ -145,10 +164,13 @@ public class ClassData extends ClassSource {
 	int attrNameCPIndex = input.readUnsignedShort();
 	int numBytes = input.readInt();
 	String attrName = constantPool.getUTF8StringAt(attrNameCPIndex);
-        System.out.println(attrName);
+        //System.out.println(attrName);
 	if (attrName.equals("SourceFile")) {
 	    int sourceFileCPIndex = input.readUnsignedShort();
 	    sourceFile = constantPool.getUTF8StringAt(sourceFileCPIndex);
+        } else if (attrName.equals("Signature")) {
+            int sfutfIndex = input.readUnsignedShort();
+            signatureAttribute = constantPool.getUTF8StringAt(sfutfIndex);
 	} else {
 	    input.skipBytes(numBytes);
 	}
@@ -271,4 +293,16 @@ public class ClassData extends ClassSource {
     public boolean isVolatile()  {return ClassData.isVolatile(accessFlags);}
     @Override
     public boolean isTransient() {return ClassData.isTransient(accessFlags);}
+
+    public String getSignature() {
+        return signatureAttribute;
+    }
+
+    public MethodSource[] getVirtualMethods() {
+        return virtualMethods;
+    }
+
+    public byte[] getClassFileStream() {
+        return data;
+    }
 }

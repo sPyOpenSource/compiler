@@ -48,7 +48,7 @@ public abstract class Stmt extends TokenAbstrPrintable {
     protected final static int FA_INSIDE_LOOP         = 0x08;
     protected final static int FA_NEXT_IS_UNREACHABLE = 0x10;
     protected final static int FA_DEAD_CODE           = 0x20;
-    public final static int FA_ERROR               = 0x40;
+    public final static int FA_ERROR                  = 0x40;
   
     public Stmt nextStmt;
 

@@ -19,7 +19,8 @@ public class FieldData {
     private int constantValueCPIndex; 
     private final  ConstantPool constantPool; 
     ClassData declaringClass;
-
+    String signatureAttribute;
+    
     public FieldData(ClassData declaringClass, DataInput input, ConstantPool cPool) throws IOException {
 	this.constantPool = cPool;
 	this.declaringClass = declaringClass;
@@ -35,7 +36,7 @@ public class FieldData {
 	hasInitialValue = false; 
 
 	int numAttributes = input.readUnsignedShort(); 
-	for(int i=0; i<numAttributes; i++) {
+	for(int i = 0; i < numAttributes; i++) {
 	    readAttribute(input, cPool); 
         }
     }
@@ -44,7 +45,11 @@ public class FieldData {
 	throws IOException {
 	int attrNameCPIndex = input.readUnsignedShort(); 
 	int numBytes = input.readInt(); 
-	input.skipBytes(numBytes); 
+        if (cPool.getUTF8StringAt(attrNameCPIndex).equals("Signature")) {
+            int sfutfIndex = input.readUnsignedShort();
+            signatureAttribute = cPool.getUTF8StringAt(sfutfIndex);
+        } else
+            input.skipBytes(numBytes); 
     }
 
     public String getName(ConstantPool cPool) {
@@ -81,11 +86,14 @@ public class FieldData {
     public boolean isStatic() {return ClassData.isStatic(accessFlags);}
     public boolean isFinal() {return ClassData.isFinal(accessFlags);}
 
-
     /* ------
      * Java Reflection "compatible" methods
      */
 
     public int getModifiers() { return accessFlags; }
     public ClassData getDeclaringClass() { return declaringClass; }
+
+    public String getSignature() {
+        return signatureAttribute;
+    }
 }
