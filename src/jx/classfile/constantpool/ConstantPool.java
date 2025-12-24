@@ -21,24 +21,23 @@ public class ConstantPool {
 
     static boolean noLongs = false;
 
-  // the entries of the constant pool 
-  private int numEntries; 
-  private ConstantPoolEntry[] entry; 
+    // the entries of the constant pool 
+    private int numEntries; 
+    private ConstantPoolEntry[] entry; 
 
-  // deprecated 
+    // deprecated 
     /*private ClassInterface classInterface; */
 
-  /** 
-      necessary to access string entries of this constantpool through 
-      the interface in bytecode.execenv.ExecEnvironment
-  */ 
-  private String className, superClassName; 
+    /** 
+     * necessary to access string entries of this constantpool through 
+     * the interface in bytecode.execenv.ExecEnvironment
+     */ 
+    private String className, superClassName; 
 
   // deprecated 
     /*  ConstantPool(ClassInterface classInterface) {
    this.classInterface = classInterface; 
    }*/
-  
   
   /**  
        constructors for reading from classFile 
@@ -58,11 +57,11 @@ public class ConstantPool {
     //throw new RuntimeException();
   }
 
-  /** 
-      set the index of the entry that contains the name of the 
-      constantpools class. 
+    /** 
+     * set the index of the entry that contains the name of the 
+     * constantpools class. 
      * @param thisClassCPIndex
-  */ 
+     */ 
   public void setThisClassCPIndex(int thisClassCPIndex) {
     className = ((ClassCPEntry)entryAt(thisClassCPIndex)).getClassName(); 
   }
@@ -72,12 +71,12 @@ public class ConstantPool {
       superClassName = ((ClassCPEntry)entryAt(cpIndex)).getClassName(); 
   }
 
-  /** 
-      this method is necessay to access the address of 
-      strings in the constant pool through the interface int
-      bytecode.execenv.ExecEnvironment
+    /** 
+     * this method is necessay to access the address of 
+     * strings in the constant pool through the interface int
+     * bytecode.execenv.ExecEnvironment
      * @return 
-  */ 
+     */ 
   public String getClassName() {
     return className; 
   }
@@ -86,11 +85,11 @@ public class ConstantPool {
     return superClassName; 
   }
 
-  /** 
-      read all entries from a class file 
+    /** 
+     * read all entries from a class file 
      * @param input
      * @throws java.io.IOException
-  */
+     */
   public void readFromClassFile(DataInput input) throws IOException {
     numEntries = input.readUnsignedShort();
     entry = new ConstantPoolEntry[numEntries]; 
@@ -307,11 +306,12 @@ public class ConstantPool {
 
 // Google tranlator
 /* Constant Pool must be reconstructable, i.e. you should be able to convert 
-it back to the format for execution
+ * it back to the format for execution
 
-Currently the ConstantPoolEntries are referenced via their indices.
-It would be more efficient if there were direct references to the CPoolEntries
-save. The CPoolEntries themselves would then also have to go to other CPoolEntries
-access via references.
-(Link phase after loading the pool to internally, the indices are still necessary.)
-Problem: line numbers */
+ * Currently the ConstantPoolEntries are referenced via their indices.
+ * It would be more efficient if there were direct references to the CPoolEntries
+ * save. The CPoolEntries themselves would then also have to go to other CPoolEntries
+ * access via references.
+ * (Link phase after loading the pool to internally, the indices are still necessary.)
+ * Problem: line numbers 
+ */

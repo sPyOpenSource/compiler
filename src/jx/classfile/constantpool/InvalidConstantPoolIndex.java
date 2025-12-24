@@ -15,18 +15,16 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package jCPU.JavaVM.vm;
+package jx.classfile.constantpool;
+
+import jx.classfile.ClassFileParserException;
 
 /**
- *
- * @author xuyi
+ * Thrown when an invalid index into the constant pool is given. That is,
+ * index is zero (or negative), greater than the index of the last entry, or
+ * represents the (unused) entry following a Long or Double.
  */
-public class AttributeInfo{
-    public int attribute_name_index, attribute_length;
-    public char[] info;
-    public AttributeInfo(int name, int length, char[] info){
-        attribute_name_index = name;
-        attribute_length = length;
-        this.info = info;
-    }
+public class InvalidConstantPoolIndex extends ClassFileParserException
+{
+    public InvalidConstantPoolIndex(String msg) { super(msg); }
 }

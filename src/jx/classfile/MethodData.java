@@ -1,6 +1,6 @@
 package jx.classfile; 
 
-import jCPU.JavaVM.vm.AttributeInfo;
+import jCPU.JavaVM.vm.Attribute;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class MethodData extends MethodSource {
     int methodNameCPIndex;
     int methodTypeCPIndex;
     public int attributes_count;
-    public AttributeInfo[] attributes;
+    public Attribute[] attributes;
     
     UTF8CPEntry methodNameCPEntry;
     UTF8CPEntry methodTypeCPEntry;
@@ -190,7 +190,7 @@ public class MethodData extends MethodSource {
 
 	int numAttributes = input.readUnsignedShort();
 attributes_count = numAttributes;
-attributes = new AttributeInfo[numAttributes];
+attributes = new Attribute[numAttributes];
 	// System.out.println(getDescription(cPool));
       
 	for(int i = 0; i < numAttributes; i++){
@@ -213,22 +213,26 @@ attributes = new AttributeInfo[numAttributes];
 	}
     }
 
-    private AttributeInfo readAttribute(DataInput input, ConstantPool cPool)
+    private Attribute readAttribute(DataInput input, ConstantPool cPool)
 	throws IOException {
 	int attrNameCPIndex = input.readUnsignedShort();
 	int numBytes = input.readInt();
 
 	String attributeName = cPool.getUTF8StringAt(attrNameCPIndex);
-	if (attributeName.equals("Code")) {
-	    codeData = new CodeData();
-	    codeData.readFromClassFile(input, cPool);
-        } else if (attributeName.equals("Signature")) {
-            int sfutfIndex = input.readUnsignedShort();
-            signatureAttribute = cPool.getUTF8StringAt(sfutfIndex);
-	} else {
-	    input.skipBytes(numBytes);
+        switch (attributeName) {
+            case "Code":
+                codeData = new CodeData();
+                codeData.readFromClassFile(input, cPool);
+                break;
+            case "Signature":
+                int sfutfIndex = input.readUnsignedShort();
+                signatureAttribute = cPool.getUTF8StringAt(sfutfIndex);
+                break;
+            default:
+                input.skipBytes(numBytes);
+                break;
         }
-        return new AttributeInfo(attrNameCPIndex, numBytes, null);
+        return null;
     }
 
     // reads the Exception  Method Attribute
