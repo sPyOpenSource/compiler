@@ -5,6 +5,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import jx.classfile.ExceptionHandlerData;
+import jx.classfile.constantpool.ClassMemberCPEntry;
+import jx.classfile.constantpool.ConstantPool;
+import jx.classfile.constantpool.ConstantPoolEntry;
 import jx.classfile.constantpool.InvalidConstantPoolIndex;
 
 /**
@@ -23,7 +27,7 @@ public class CodeAttribute extends Attribute {
     private final int codeLength;
     private final byte[] code;
     private final int exceptionTableLength;
-    private final ExceptionTableEntry[] exceptionTables;
+    private final ExceptionHandlerData[] exceptionTables;
     private final int attributesCount;
     private Attribute attributes[];
 
@@ -32,7 +36,7 @@ public class CodeAttribute extends Attribute {
     private String returnStr;
     private boolean invoked;
     private int invokeCountPerMethod;
-    private CPEntry beingCalledMethod;                  // todo fix grammar being -> been
+    private ConstantPoolEntry beingCalledMethod;                  // todo fix grammar being -> been
     private int beingCalledMethodNameIndex;
     private String beingCalledMethodName;
     private String beingCalledMethodType;
@@ -41,7 +45,7 @@ public class CodeAttribute extends Attribute {
     private final List<String> beingCalledMethodSignatures;
     private String beingCalledMethodSignature;
     private final MethodFormatter mf;
-    private ConstantRef constantRef;
+    private ClassMemberCPEntry constantRef;
     private boolean overridden;
     private boolean returnValue;
 
@@ -70,9 +74,9 @@ public class CodeAttribute extends Attribute {
 
         /* Parsing the exception table */
         exceptionTableLength = dis.readUnsignedShort();
-        exceptionTables = new ExceptionTableEntry[exceptionTableLength];
+        exceptionTables = new ExceptionHandlerData[exceptionTableLength];
         for (int i = 0; i < exceptionTableLength; i++) {
-            exceptionTables[i] = new ExceptionTableEntry(dis);
+            exceptionTables[i] = new ExceptionHandlerData(dis, cp);
         }
 
         /* Discard unwanted bytes */
@@ -143,11 +147,11 @@ public class CodeAttribute extends Attribute {
         beingCalledMethodNameIndex = Integer.parseInt(String.format("%02x", code[loc + 2]), 16);
 
         if (beingCalledMethodNameIndex > 0) {
-            beingCalledMethod = cp.getEntry(beingCalledMethodNameIndex);
-            constantRef = (ConstantRef) beingCalledMethod;
+            beingCalledMethod = cp.entryAt(beingCalledMethodNameIndex);
+            constantRef = (ClassMemberCPEntry) beingCalledMethod;
 
-            beingCalledMethodName = constantRef.getName();
-            beingCalledMethodType = constantRef.getType();
+            beingCalledMethodName = constantRef.getMemberName();
+            beingCalledMethodType = constantRef.getMemberTypeDesc();
 
             beingCalledMethodParameters = mf.parseParameters(beingCalledMethodType);
 

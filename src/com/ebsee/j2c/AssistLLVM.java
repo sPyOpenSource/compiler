@@ -1,6 +1,6 @@
 package com.ebsee.j2c;
 
-import com.ebsee.compiler.MyCompiler;
+import compiler.Compiler;
 import org.objectweb.asm.ClassReader;
 import java.io.*;
 import java.lang.reflect.Modifier;
@@ -94,9 +94,9 @@ public class AssistLLVM {
         if (!f.exists()) {
             f.mkdirs();
         }
-        MyCompiler.compile(srcPath, classesPath);
+        Compiler.compile(srcPath, classesPath);
         List<String> files = new ArrayList<>();
-        MyCompiler.find(classesPath, files, null, ".class");
+        Compiler.find(classesPath, files, null, ".class");
 
         ClassManger.init(files);
 

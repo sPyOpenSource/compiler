@@ -85,51 +85,52 @@ public class MethodFormatter {
 
                 firstChar = allParams.charAt(0);
 
-                if (firstChar == 'B' || firstChar == 'C' || firstChar == 'D' || firstChar == 'F' ||
-                        firstChar == 'I' || firstChar == 'J' || firstChar == 'S' || firstChar == 'Z') {
-                    tempStr = String.valueOf(firstChar);
-
-                    if (isArray) {
-                        parameterList.add(parseDataType(tempStr) + "[]");
-                    } else {
-                        parameterList.add(parseDataType(tempStr));
-                    }
-
-                    if (allParams.length() > 1) {
-                        allParams = allParams.substring(1);
-                        hasMore = true;
-                    } else {
-                        hasMore = false;
-                    }
-
-                    isArray = false;
-
-                } else if (firstChar == 'L') {
-                    tempStr = allParams.substring(0, allParams.indexOf(";") + 1);
-                    if (isArray) {
-                        parameterList.add(parseDataType(tempStr) + "[]");
-                    } else {
-                        if (parseDataType(tempStr).equals("List") || parseDataType(tempStr).equals("ArrayList")) {
-                            getGenericType(parseDataType(tempStr));  //todo this is where get generic type called
-                            parameterList.add(parseDataType(tempStr) + "<" + genericType + ">");
+                switch (firstChar) {
+                    case 'B':
+                    case 'C':
+                    case 'D':
+                    case 'F':
+                    case 'I':
+                    case 'J':
+                    case 'S':
+                    case 'Z':
+                        tempStr = String.valueOf(firstChar);
+                        if (isArray) {
+                            parameterList.add(parseDataType(tempStr) + "[]");
                         } else {
                             parameterList.add(parseDataType(tempStr));
-                        }
-                    }
-
-                    if (allParams.length() > allParams.indexOf(";") + 1) {
-                        allParams = allParams.substring(allParams.indexOf(";") + 1);
+                        }   if (allParams.length() > 1) {
+                            allParams = allParams.substring(1);
+                            hasMore = true;
+                        } else {
+                            hasMore = false;
+                        }   isArray = false;
+                        break;
+                    case 'L':
+                        tempStr = allParams.substring(0, allParams.indexOf(";") + 1);
+                        if (isArray) {
+                            parameterList.add(parseDataType(tempStr) + "[]");
+                        } else {
+                            if (parseDataType(tempStr).equals("List") || parseDataType(tempStr).equals("ArrayList")) {
+                                getGenericType(parseDataType(tempStr));  //todo this is where get generic type called
+                                parameterList.add(parseDataType(tempStr) + "<" + genericType + ">");
+                            } else {
+                                parameterList.add(parseDataType(tempStr));
+                            }
+                        }   if (allParams.length() > allParams.indexOf(";") + 1) {
+                            allParams = allParams.substring(allParams.indexOf(";") + 1);
+                            hasMore = true;
+                        } else {
+                            hasMore = false;
+                        }   isArray = false;
+                        break;
+                    case '[':
+                        allParams = allParams.substring(1);
+                        isArray = true;
                         hasMore = true;
-                    } else {
-                        hasMore = false;
-                    }
-
-                    isArray = false;
-
-                } else if (firstChar == '[') {
-                    allParams = allParams.substring(1);
-                    isArray = true;
-                    hasMore = true;
+                        break;
+                    default:
+                        break;
                 }
 
             } while (hasMore);
@@ -194,7 +195,7 @@ public class MethodFormatter {
         dataType = dataType.substring(dataType.lastIndexOf("/") + 1);
 
         /* Remove tailing ";" */
-        if (dataType.indexOf(";") < 0) {
+        if (!dataType.contains(";")) {
             int debug = 1;
         }
         dataType = dataType.substring(0, dataType.indexOf(";"));
