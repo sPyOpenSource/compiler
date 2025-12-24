@@ -8,10 +8,10 @@ import java.io.IOException;
  */
 public class ExceptionTableEntry extends Exception{
     
-    private int startPC;
-    private int endPC;
-    private int handlerPC;
-    private int catchType;
+    private final int startPC;
+    private final int endPC;
+    private final int handlerPC;
+    private final int catchType;
 
     public ExceptionTableEntry(DataInputStream dis) throws IOException {
         startPC = dis.readUnsignedShort();

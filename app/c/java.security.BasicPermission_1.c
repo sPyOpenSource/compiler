@@ -59,7 +59,7 @@ void func_java_security_BasicPermission_000241__init___Ljava_security_BasicPermi
     StackFrame *__frame = method_enter(runtime, 430, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 221 , L652176954 , bytecode index = 
+    //  line no 221 , L1513608173 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 221;
     rstack[sp++].obj = rlocal[0].obj;
@@ -84,7 +84,7 @@ void func_java_security_BasicPermission_000241__init___Ljava_security_BasicPermi
         }
     }
     ; 
-    //  line no 222 , L1245065720 , bytecode index = 
+    //  line no 222 , L652176954 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/Hashtable
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 65);
@@ -111,7 +111,7 @@ void func_java_security_BasicPermission_000241__init___Ljava_security_BasicPermi
     sp -= 2;
     ((struct java_security_BasicPermission_000241*)rstack[sp + 0].obj)->permissions_2 = rstack[sp + 1].obj;
     ; 
-    //  line no 223 , L1800976873 , bytecode index = 
+    //  line no 223 , L1245065720 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -119,7 +119,7 @@ void func_java_security_BasicPermission_000241__init___Ljava_security_BasicPermi
     sp -= 2;
     ((struct java_security_BasicPermission_000241*)rstack[sp + 0].obj)->allAllowed_3 = stack[sp + 1].i;
     ; 
-    //  line no 221 , L253011924 , bytecode index = 
+    //  line no 221 , L1800976873 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -150,7 +150,7 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
     StackFrame *__frame = method_enter(runtime, 431, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 227 , L698741991 , bytecode index = 
+    //  line no 227 , L1390913202 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 227;
     rstack[sp++].obj = rlocal[0].obj;
@@ -170,9 +170,9 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L127702987;
+    if(stack[--sp].i  == 0) goto L698741991;
     ; 
-    //  line no 228 , L765242091 , bytecode index = 
+    //  line no 228 , L127702987 , bytecode index = 
     // new java/lang/IllegalStateException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 23);
     // dup
@@ -197,15 +197,15 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
         }
     }
     // athrow
-    //     L765242091 in labeltable is :L765242091
+    //     L127702987 in labeltable is :L127702987
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 228;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L127702987:
-    //  line no 230 , L127702987 , bytecode index = 
+    L698741991:
+    //  line no 230 , L698741991 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/security/BasicPermission
     {
@@ -217,7 +217,7 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 231 , L1117871068 , bytecode index = 
+    //  line no 231 , L765242091 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/security/BasicPermission.getName()Ljava/lang/String;
     {
@@ -237,7 +237,7 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 232 , L1151704483 , bytecode index = 
+    //  line no 232 , L1117871068 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 1060);
@@ -257,17 +257,17 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L669284403;
+    if(stack[--sp].i  == 0) goto L1151704483;
     ; 
-    //  line no 233 , L1869039062 , bytecode index = 
+    //  line no 233 , L669284403 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
     // putfield java/security/BasicPermission$1 allAllowed Z
     sp -= 2;
     ((struct java_security_BasicPermission_000241*)rstack[sp + 0].obj)->allAllowed_3 = stack[sp + 1].i;
-    L669284403:
-    //  line no 234 , L669284403 , bytecode index = 
+    L1151704483:
+    //  line no 234 , L1151704483 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/BasicPermission$1 permissions Ljava/util/Hashtable;
     rstack[sp - 1].obj = ((struct java_security_BasicPermission_000241*)rstack[sp - 1].obj)->permissions_2;
@@ -292,7 +292,7 @@ void func_java_security_BasicPermission_000241_add__Ljava_security_Permission_2_
     }
     --sp; //pop
     ; 
-    //  line no 235 , L659590237 , bytecode index = 
+    //  line no 235 , L1869039062 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -323,34 +323,34 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     StackFrame *__frame = method_enter(runtime, 432, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 239 , L1263634860 , bytecode index = 
+    //  line no 239 , L1332757905 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 239;
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof java/security/BasicPermission
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 1055);
-    if(stack[--sp].i  != 0) goto L508378341;
+    if(stack[--sp].i  != 0) goto L1263634860;
     ; 
-    //  line no 240 , L1037854997 , bytecode index = 
+    //  line no 240 , L508378341 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L508378341:
-    //  line no 242 , L508378341 , bytecode index = 
+    L1263634860:
+    //  line no 242 , L1263634860 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/BasicPermission$1 allAllowed Z
     stack[sp - 1].i = ((struct java_security_BasicPermission_000241*)rstack[sp - 1].obj)->allAllowed_3;
     sp += 0;
-    if(stack[--sp].i  == 0) goto L1884155890;
+    if(stack[--sp].i  == 0) goto L1037854997;
     ; 
-    //  line no 243 , L932582590 , bytecode index = 
+    //  line no 243 , L1884155890 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1884155890:
-    //  line no 245 , L1884155890 , bytecode index = 
+    L1037854997:
+    //  line no 245 , L1037854997 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/security/BasicPermission
     {
@@ -362,7 +362,7 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 246 , L1078705341 , bytecode index = 
+    //  line no 246 , L932582590 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/security/BasicPermission.getName()Ljava/lang/String;
     {
@@ -382,7 +382,7 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 247 , L511832416 , bytecode index = 
+    //  line no 247 , L1078705341 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 1060);
@@ -402,15 +402,15 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L28094269;
+    if(stack[--sp].i  == 0) goto L511832416;
     ; 
-    //  line no 248 , L110651474 , bytecode index = 
+    //  line no 248 , L28094269 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L28094269:
-    //  line no 250 , L28094269 , bytecode index = 
+    L511832416:
+    //  line no 250 , L511832416 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual java/lang/String.length()I
     {
@@ -430,7 +430,7 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 251 , L464224872 , bytecode index = 
+    //  line no 251 , L110651474 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 1060);
@@ -450,13 +450,13 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L170949260;
+    if(stack[--sp].i  == 0) goto L464224872;
     ; 
-    //  line no 252 , L1845623216 , bytecode index = 
+    //  line no 252 , L170949260 , bytecode index = 
     // iinc slot 4 value -2
     local[4].i += -2;
-    L170949260:
-    //  line no 255 , L170949260 , bytecode index = 
+    L464224872:
+    //  line no 255 , L464224872 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/BasicPermission$1 permissions Ljava/util/Hashtable;
     rstack[sp - 1].obj = ((struct java_security_BasicPermission_000241*)rstack[sp - 1].obj)->permissions_2;
@@ -478,15 +478,15 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
             goto __ExceptionHandler;
         }
     }
-    if(rstack[--sp].obj  == NULL) goto L731829978;
+    if(rstack[--sp].obj  == NULL) goto L1845623216;
     ; 
-    //  line no 256 , L1818339587 , bytecode index = 
+    //  line no 256 , L731829978 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L731829978:
-    //  line no 258 , L731829978 , bytecode index = 
+    L1845623216:
+    //  line no 258 , L1845623216 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     //  bipush 46
     stack[sp++].i = 46;
@@ -509,17 +509,17 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 259 , L1703696921 , bytecode index = 
+    //  line no 259 , L1818339587 , bytecode index = 
     stack[sp++].i = local[4].i;
-    if(stack[--sp].i  >= 0) goto L69329761;
+    if(stack[--sp].i  >= 0) goto L1703696921;
     ; 
-    //  line no 260 , L1507118393 , bytecode index = 
+    //  line no 260 , L69329761 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L69329761:
-    //  line no 261 , L69329761 , bytecode index = 
+    L1703696921:
+    //  line no 261 , L1703696921 , bytecode index = 
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
     // dup
@@ -617,7 +617,7 @@ s8 func_java_security_BasicPermission_000241_implies__Ljava_security_Permission_
     }
     rlocal[3].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L170949260;
+    goto L464224872;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
@@ -645,7 +645,7 @@ struct java_util_Enumeration* func_java_security_BasicPermission_000241_elements
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 433, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 267 , L1070044969 , bytecode index = 
+    //  line no 267 , L949767857 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 267;
     rstack[sp++].obj = rlocal[0].obj;

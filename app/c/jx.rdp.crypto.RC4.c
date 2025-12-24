@@ -52,7 +52,7 @@ void func_jx_rdp_crypto_RC4__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 691, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 89 , L989889899 , bytecode index = 
+    //  line no 89 , L1003206025 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 89;
     rstack[sp++].obj = rlocal[0].obj;
@@ -60,7 +60,7 @@ void func_jx_rdp_crypto_RC4__init____V(JThreadRuntime *runtime){
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 64 , L806813022 , bytecode index = 
+    //  line no 64 , L989889899 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  sipush 256
     stack[sp++].i = 256;
@@ -76,7 +76,7 @@ void func_jx_rdp_crypto_RC4__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->sBox_3 = rstack[sp + 1].obj;
     ; 
-    //  line no 79 , L902860396 , bytecode index = 
+    //  line no 79 , L806813022 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 1758);
@@ -84,7 +84,7 @@ void func_jx_rdp_crypto_RC4__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->cipherName_8 = rstack[sp + 1].obj;
     ; 
-    //  line no 91 , L1406206626 , bytecode index = 
+    //  line no 91 , L902860396 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -114,7 +114,7 @@ struct java_lang_Object* func_jx_rdp_crypto_RC4_clone___Ljava_lang_Object_2(JThr
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 692, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 98 , L1799230133 , bytecode index = 
+    //  line no 98 , L1816522350 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 98;
     // new java/lang/CloneNotSupportedException
@@ -139,7 +139,7 @@ struct java_lang_Object* func_jx_rdp_crypto_RC4_clone___Ljava_lang_Object_2(JThr
         }
     }
     // athrow
-    //     L1799230133 in labeltable is :L1799230133
+    //     L1816522350 in labeltable is :L1816522350
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 98;
@@ -173,7 +173,7 @@ s32 func_jx_rdp_crypto_RC4_engineBlockSize___I(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 693, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 110 , L20156341 , bytecode index = 
+    //  line no 110 , L1521238608 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 110;
     // iconst_1
@@ -208,7 +208,7 @@ void func_jx_rdp_crypto_RC4_engineInitEncrypt___3B_V(JThreadRuntime *runtime, JA
     StackFrame *__frame = method_enter(runtime, 694, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 121 , L1509309988 , bytecode index = 
+    //  line no 121 , L1111897955 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 121;
     rstack[sp++].obj = rlocal[0].obj;
@@ -229,7 +229,7 @@ void func_jx_rdp_crypto_RC4_engineInitEncrypt___3B_V(JThreadRuntime *runtime, JA
         }
     }
     ; 
-    //  line no 122 , L1643141512 , bytecode index = 
+    //  line no 122 , L1509309988 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -237,7 +237,7 @@ void func_jx_rdp_crypto_RC4_engineInitEncrypt___3B_V(JThreadRuntime *runtime, JA
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->state_7 = stack[sp + 1].i;
     ; 
-    //  line no 123 , L2091072548 , bytecode index = 
+    //  line no 123 , L1643141512 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -268,7 +268,7 @@ void func_jx_rdp_crypto_RC4_engineInitDecrypt___3B_V(JThreadRuntime *runtime, JA
     StackFrame *__frame = method_enter(runtime, 695, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 134 , L1740826931 , bytecode index = 
+    //  line no 134 , L263053820 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 134;
     rstack[sp++].obj = rlocal[0].obj;
@@ -289,7 +289,7 @@ void func_jx_rdp_crypto_RC4_engineInitDecrypt___3B_V(JThreadRuntime *runtime, JA
         }
     }
     ; 
-    //  line no 135 , L69062746 , bytecode index = 
+    //  line no 135 , L1740826931 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -297,7 +297,7 @@ void func_jx_rdp_crypto_RC4_engineInitDecrypt___3B_V(JThreadRuntime *runtime, JA
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->state_7 = stack[sp + 1].i;
     ; 
-    //  line no 136 , L1631227617 , bytecode index = 
+    //  line no 136 , L69062746 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -332,11 +332,11 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
     rlocal[3].obj = p3;
     local[4].i = p4;
     ; 
-    //  line no 155 , L1896074070 , bytecode index = 
+    //  line no 155 , L24650043 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 155;
     stack[sp++].i = local[3].i;
-    if(stack[--sp].i  >= 0) goto L460741164;
+    if(stack[--sp].i  >= 0) goto L1896074070;
     // new java/lang/IllegalArgumentException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 2);
     // dup
@@ -361,15 +361,15 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
         }
     }
     // athrow
-    //     L1896074070 in labeltable is :L1896074070
+    //     L24650043 in labeltable is :L24650043
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 155;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L460741164:
-    //  line no 157 , L460741164 , bytecode index = 
+    L1896074070:
+    //  line no 157 , L1896074070 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual jx/rdp/crypto/RC4.getState()I
     {
@@ -390,46 +390,46 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
     // iconst_1
     stack[sp++].i = 1;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L781091365;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L460741164;
     // iconst_1
     stack[sp++].i = 1;
-    goto L1858015030;
-    L781091365:
+    goto L781091365;
+    L460741164:
     // iconst_0
     stack[sp++].i = 0;
-    L1858015030:
+    L781091365:
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 160 , L25764044 , bytecode index = 
+    //  line no 160 , L1858015030 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[4].obj;
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L671596011;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L25764044;
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[2].i;
-    sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1925352804;
-    stack[sp++].i = local[5].i;
-    stack[sp++].i = local[2].i;
-    stack[sp++].i = local[3].i;
-    stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
-    --sp;
-    sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1687354037;
-    L1925352804:
-    stack[sp++].i = local[2].i;
-    stack[sp++].i = local[5].i;
     sp -= 2;
     if(stack[sp + 0].i  < stack[sp + 1].i) goto L671596011;
+    stack[sp++].i = local[5].i;
+    stack[sp++].i = local[2].i;
+    stack[sp++].i = local[3].i;
+    stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
+    --sp;
+    sp -= 2;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1925352804;
+    L671596011:
+    stack[sp++].i = local[2].i;
+    stack[sp++].i = local[5].i;
+    sp -= 2;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L25764044;
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L671596011;
-    L1687354037:
-    //  line no 162 , L1687354037 , bytecode index = 
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L25764044;
+    L1925352804:
+    //  line no 162 , L1925352804 , bytecode index = 
     stack[sp++].i = local[3].i;
     // ; newarray/multiarray Dimension Array: [B 1
     {
@@ -441,7 +441,7 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
     }
     rlocal[7].obj = rstack[--sp].obj;
     ; 
-    //  line no 163 , L743778731 , bytecode index = 
+    //  line no 163 , L1687354037 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[7].obj;
@@ -459,16 +459,16 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
         }
     }
     ; 
-    //  line no 164 , L967323951 , bytecode index = 
+    //  line no 164 , L743778731 , bytecode index = 
     rstack[sp++].obj = rlocal[7].obj;
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 165 , L1600594643 , bytecode index = 
+    //  line no 165 , L967323951 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L671596011:
-    //  line no 168 , L671596011 , bytecode index = 
+    L25764044:
+    //  line no 168 , L25764044 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
@@ -491,7 +491,7 @@ s32 func_jx_rdp_crypto_RC4_engineUpdate___3BII_3BI_I(JThreadRuntime *runtime, JA
         }
     }
     ; 
-    //  line no 170 , L743648472 , bytecode index = 
+    //  line no 170 , L1600594643 , bytecode index = 
     stack[sp++].i = local[3].i;
     method_exit(runtime);
     return stack[sp - 1].i;
@@ -527,19 +527,19 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     rlocal[3].obj = p3;
     local[4].i = p4;
     ; 
-    //  line no 191 , L1368862151 , bytecode index = 
+    //  line no 191 , L692998280 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 191;
     // iconst_0
     stack[sp++].i = 0;
     local[8].i = stack[--sp].i;
-    L922807452:
+    L1368862151:
     stack[sp++].i = local[8].i;
     stack[sp++].i = local[3].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L33563464;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L922807452;
     ; 
-    //  line no 192 , L1494346128 , bytecode index = 
+    //  line no 192 , L33563464 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 x I
@@ -557,7 +557,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->x_4 = stack[sp + 1].i;
     ; 
-    //  line no 193 , L822087264 , bytecode index = 
+    //  line no 193 , L1494346128 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
@@ -567,7 +567,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     // getfield jx/rdp/crypto/RC4 x I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->x_4;
     sp += 0;
-    // arrload s32  ,  L822087264 bc index = 
+    // arrload s32  ,  L1494346128 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -595,7 +595,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->y_5 = stack[sp + 1].i;
     ; 
-    //  line no 195 , L30699728 , bytecode index = 
+    //  line no 195 , L822087264 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
@@ -604,7 +604,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     // getfield jx/rdp/crypto/RC4 x I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->x_4;
     sp += 0;
-    // arrload s32  ,  L30699728 bc index = 
+    // arrload s32  ,  L822087264 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -620,7 +620,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     }
     local[7].i = stack[--sp].i;
     ; 
-    //  line no 196 , L38603201 , bytecode index = 
+    //  line no 196 , L30699728 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
@@ -637,7 +637,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     // getfield jx/rdp/crypto/RC4 y I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->y_5;
     sp += 0;
-    // arrload s32  ,  L38603201 bc index = 
+    // arrload s32  ,  L30699728 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -651,6 +651,32 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
         stack[sp].i = arr->prop.as_s32_arr[idx];
         sp += 1;
     }
+    // arrstore s32  ,  L30699728 bc index = 
+    {
+        ;
+        s32 value = stack[--sp].i;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_s32_arr[idx] = value;
+    }
+    ; 
+    //  line no 197 , L38603201 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield jx/rdp/crypto/RC4 sBox [I
+    rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
+    sp += 0;
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield jx/rdp/crypto/RC4 y I
+    stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->y_5;
+    sp += 0;
+    stack[sp++].i = local[7].i;
     // arrstore s32  ,  L38603201 bc index = 
     {
         ;
@@ -667,33 +693,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
         arr->prop.as_s32_arr[idx] = value;
     }
     ; 
-    //  line no 197 , L1422273905 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield jx/rdp/crypto/RC4 sBox [I
-    rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
-    sp += 0;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield jx/rdp/crypto/RC4 y I
-    stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->y_5;
-    sp += 0;
-    stack[sp++].i = local[7].i;
-    // arrstore s32  ,  L1422273905 bc index = 
-    {
-        ;
-        s32 value = stack[--sp].i;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_s32_arr[idx] = value;
-    }
-    ; 
-    //  line no 199 , L1694784135 , bytecode index = 
+    //  line no 199 , L1422273905 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
@@ -702,7 +702,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     // getfield jx/rdp/crypto/RC4 x I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->x_4;
     sp += 0;
-    // arrload s32  ,  L1694784135 bc index = 
+    // arrload s32  ,  L1422273905 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -724,7 +724,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     // getfield jx/rdp/crypto/RC4 y I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->y_5;
     sp += 0;
-    // arrload s32  ,  L1694784135 bc index = 
+    // arrload s32  ,  L1422273905 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -746,7 +746,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     --sp;
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 200 , L1207231495 , bytecode index = 
+    //  line no 200 , L1694784135 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     stack[sp++].i = local[5].i;
     // iinc slot 5 value 1
@@ -755,7 +755,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     stack[sp++].i = local[2].i;
     // iinc slot 2 value 1
     local[2].i += 1;
-    // arrload s8  ,  L1207231495 bc index = 
+    // arrload s8  ,  L1694784135 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -774,7 +774,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
     sp += 0;
     stack[sp++].i = local[6].i;
-    // arrload s32  ,  L1207231495 bc index = 
+    // arrload s32  ,  L1694784135 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -791,7 +791,7 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
     stack[sp - 2].i = stack[sp - 2].i ^ stack[sp - 1].i; 
     --sp;
     stack[sp - 1].i = (s8)stack[sp - 1].i; 
-    // arrstore s8  ,  L1207231495 bc index = 
+    // arrstore s8  ,  L1694784135 bc index = 
     {
         ;
         s8 value = stack[--sp].i;
@@ -807,13 +807,13 @@ void func_jx_rdp_crypto_RC4_rc4___3BII_3BI_V(JThreadRuntime *runtime, JArray * p
         arr->prop.as_s8_arr[idx] = value;
     }
     ; 
-    //  line no 191 , L756936249 , bytecode index = 
+    //  line no 191 , L1207231495 , bytecode index = 
     // iinc slot 8 value 1
     local[8].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L922807452;
-    L33563464:
-    //  line no 202 , L33563464 , bytecode index = 
+    goto L1368862151;
+    L922807452:
+    //  line no 202 , L922807452 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -844,13 +844,13 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     StackFrame *__frame = method_enter(runtime, 698, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 222 , L264394929 , bytecode index = 
+    //  line no 222 , L1221981006 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 222;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L1878413714;
+    if(rstack[--sp].obj  != NULL) goto L264394929;
     ; 
-    //  line no 223 , L769132147 , bytecode index = 
+    //  line no 223 , L1878413714 , bytecode index = 
     // new jx/rdp/crypto/CryptoException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 43);
     // dup
@@ -961,17 +961,17 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
         }
     }
     // athrow
-    //     L769132147 in labeltable is :L769132147
+    //     L1878413714 in labeltable is :L1878413714
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 223;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1878413714:
-    //  line no 225 , L1878413714 , bytecode index = 
+    L264394929:
+    //  line no 225 , L264394929 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1878413714
+    // arraylength  label  L264394929
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -979,11 +979,11 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 226 , L1257299717 , bytecode index = 
+    //  line no 226 , L769132147 , bytecode index = 
     stack[sp++].i = local[2].i;
-    if(stack[--sp].i  != 0) goto L1474957626;
+    if(stack[--sp].i  != 0) goto L1257299717;
     ; 
-    //  line no 227 , L181252244 , bytecode index = 
+    //  line no 227 , L1474957626 , bytecode index = 
     // new jx/rdp/crypto/CryptoException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 43);
     // dup
@@ -1094,15 +1094,15 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
         }
     }
     // athrow
-    //     L181252244 in labeltable is :L181252244
+    //     L1474957626 in labeltable is :L1474957626
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 227;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1474957626:
-    //  line no 229 , L1474957626 , bytecode index = 
+    L1257299717:
+    //  line no 229 , L1257299717 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
@@ -1122,25 +1122,25 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     sp -= 2;
     ((struct jx_rdp_crypto_RC4*)rstack[sp + 0].obj)->x_4 = stack[sp + 1].i;
     ; 
-    //  line no 230 , L1733022752 , bytecode index = 
+    //  line no 230 , L181252244 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L722417467:
+    L1733022752:
     stack[sp++].i = local[3].i;
     //  sipush 256
     stack[sp++].i = 256;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L753631393;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L722417467;
     ; 
-    //  line no 231 , L1262869688 , bytecode index = 
+    //  line no 231 , L753631393 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
     sp += 0;
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[3].i;
-    // arrstore s32  ,  L1262869688 bc index = 
+    // arrstore s32  ,  L753631393 bc index = 
     {
         ;
         s32 value = stack[--sp].i;
@@ -1156,13 +1156,13 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
         arr->prop.as_s32_arr[idx] = value;
     }
     ; 
-    //  line no 230 , L1914108708 , bytecode index = 
+    //  line no 230 , L1262869688 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L722417467;
-    L753631393:
-    //  line no 233 , L753631393 , bytecode index = 
+    goto L1733022752;
+    L722417467:
+    //  line no 233 , L722417467 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
@@ -1171,21 +1171,21 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 235 , L1357700757 , bytecode index = 
+    //  line no 235 , L544386226 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[6].i = stack[--sp].i;
-    L900298796:
+    L1357700757:
     stack[sp++].i = local[6].i;
     //  sipush 256
     stack[sp++].i = 256;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1889757798;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L900298796;
     ; 
-    //  line no 236 , L1166106620 , bytecode index = 
+    //  line no 236 , L1889757798 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[3].i;
-    // arrload s8  ,  L1166106620 bc index = 
+    // arrload s8  ,  L1889757798 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1208,7 +1208,7 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
     sp += 0;
     stack[sp++].i = local[6].i;
-    // arrload s32  ,  L1166106620 bc index = 
+    // arrload s32  ,  L1889757798 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1233,13 +1233,13 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 238 , L1932470703 , bytecode index = 
+    //  line no 238 , L1166106620 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
     sp += 0;
     stack[sp++].i = local[6].i;
-    // arrload s32  ,  L1932470703 bc index = 
+    // arrload s32  ,  L1166106620 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1255,7 +1255,7 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     }
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 239 , L221861886 , bytecode index = 
+    //  line no 239 , L1932470703 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 sBox [I
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
@@ -1266,7 +1266,7 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload s32  ,  L221861886 bc index = 
+    // arrload s32  ,  L1932470703 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1280,6 +1280,29 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
         stack[sp].i = arr->prop.as_s32_arr[idx];
         sp += 1;
     }
+    // arrstore s32  ,  L1932470703 bc index = 
+    {
+        ;
+        s32 value = stack[--sp].i;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_s32_arr[idx] = value;
+    }
+    ; 
+    //  line no 240 , L221861886 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield jx/rdp/crypto/RC4 sBox [I
+    rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
+    sp += 0;
+    stack[sp++].i = local[4].i;
+    stack[sp++].i = local[5].i;
     // arrstore s32  ,  L221861886 bc index = 
     {
         ;
@@ -1296,30 +1319,7 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
         arr->prop.as_s32_arr[idx] = value;
     }
     ; 
-    //  line no 240 , L1713568869 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield jx/rdp/crypto/RC4 sBox [I
-    rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->sBox_3;
-    sp += 0;
-    stack[sp++].i = local[4].i;
-    stack[sp++].i = local[5].i;
-    // arrstore s32  ,  L1713568869 bc index = 
-    {
-        ;
-        s32 value = stack[--sp].i;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_s32_arr[idx] = value;
-    }
-    ; 
-    //  line no 242 , L697508322 , bytecode index = 
+    //  line no 242 , L1713568869 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1334,13 +1334,13 @@ void func_jx_rdp_crypto_RC4_makeKey___3B_V(JThreadRuntime *runtime, JArray * p0)
     --sp;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 235 , L603658030 , bytecode index = 
+    //  line no 235 , L697508322 , bytecode index = 
     // iinc slot 6 value 1
     local[6].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L900298796;
-    L1889757798:
-    //  line no 244 , L1889757798 , bytecode index = 
+    goto L1357700757;
+    L900298796:
+    //  line no 244 , L900298796 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1369,7 +1369,7 @@ struct java_lang_String* func_jx_rdp_crypto_RC4_getAlgorithm___Ljava_lang_String
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 256 , L361380654 , bytecode index = 
+    //  line no 256 , L1689924104 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 cipherName Ljava/lang/String;
     rstack[sp - 1].obj = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->cipherName_8;
@@ -1394,7 +1394,7 @@ s32 func_jx_rdp_crypto_RC4_getState___I(JThreadRuntime *runtime){
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 278 , L1579132337 , bytecode index = 
+    //  line no 278 , L631673932 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rdp/crypto/RC4 state I
     stack[sp - 1].i = ((struct jx_rdp_crypto_RC4*)rstack[sp - 1].obj)->state_7;
@@ -1423,7 +1423,7 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3BII__3B(JThreadRuntime *runtime, JArray
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 281 , L790094605 , bytecode index = 
+    //  line no 281 , L1795225096 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 281;
     stack[sp++].i = local[3].i;
@@ -1437,7 +1437,7 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3BII__3B(JThreadRuntime *runtime, JArray
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 282 , L1048712791 , bytecode index = 
+    //  line no 282 , L790094605 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
@@ -1463,7 +1463,7 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3BII__3B(JThreadRuntime *runtime, JArray
     }
     --sp; //pop
     ; 
-    //  line no 283 , L487792155 , bytecode index = 
+    //  line no 283 , L1048712791 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
@@ -1495,11 +1495,11 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3B__3B(JThreadRuntime *runtime, JArray *
     StackFrame *__frame = method_enter(runtime, 702, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 287 , L1632670136 , bytecode index = 
+    //  line no 287 , L1909398279 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 287;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1632670136
+    // arraylength  label  L1909398279
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -1515,13 +1515,13 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3B__3B(JThreadRuntime *runtime, JArray *
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 288 , L1338905451 , bytecode index = 
+    //  line no 288 , L1632670136 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // iconst_0
     stack[sp++].i = 0;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1338905451
+    // arraylength  label  L1632670136
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -1548,7 +1548,7 @@ JArray * func_jx_rdp_crypto_RC4_crypt___3B__3B(JThreadRuntime *runtime, JArray *
     }
     --sp; //pop
     ; 
-    //  line no 289 , L1252540239 , bytecode index = 
+    //  line no 289 , L1338905451 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
@@ -1584,7 +1584,7 @@ void func_jx_rdp_crypto_RC4_crypt___3BII_3BI_V(JThreadRuntime *runtime, JArray *
     rlocal[3].obj = p3;
     local[4].i = p4;
     ; 
-    //  line no 293 , L638486177 , bytecode index = 
+    //  line no 293 , L1136005694 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 293;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1611,7 +1611,7 @@ void func_jx_rdp_crypto_RC4_crypt___3BII_3BI_V(JThreadRuntime *runtime, JArray *
     }
     --sp; //pop
     ; 
-    //  line no 294 , L426019904 , bytecode index = 
+    //  line no 294 , L638486177 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

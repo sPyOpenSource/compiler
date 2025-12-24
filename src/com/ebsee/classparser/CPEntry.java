@@ -1,6 +1,8 @@
 package com.ebsee.classparser;
 
 import java.io.*;
+import jx.classfile.ClassFileParserException;
+import jx.classfile.constantpool.InvalidConstantPoolIndex;
 
 /**
  * Parses and stores an entry from the constant pool table (in a Java .class

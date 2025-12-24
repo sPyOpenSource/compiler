@@ -58,7 +58,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 564, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 31 , L838812606 , bytecode index = 
+    //  line no 31 , L1075803699 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 31;
     rstack[sp++].obj = rlocal[0].obj;
@@ -66,7 +66,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 32 , L1533985074 , bytecode index = 
+    //  line no 32 , L838812606 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new jx/secmgr/Principal_impl
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 226);
@@ -97,7 +97,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->tcb_3 = rstack[sp + 1].obj;
     ; 
-    //  line no 33 , L1548010882 , bytecode index = 
+    //  line no 33 , L1533985074 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokestatic jx/zero/InitialNaming.getInitialNaming()Ljx/zero/Naming;
     {
@@ -113,7 +113,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->naming_4 = rstack[sp + 1].obj;
     ; 
-    //  line no 34 , L1741786839 , bytecode index = 
+    //  line no 34 , L1548010882 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy naming Ljx/zero/Naming;
@@ -149,12 +149,12 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->secMgr_6 = rstack[sp + 1].obj;
     ; 
-    //  line no 35 , L746115872 , bytecode index = 
+    //  line no 35 , L1741786839 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy secMgr Ljx/zero/CentralSecurityManager;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->secMgr_6;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L20111564;
+    if(rstack[--sp].obj  != NULL) goto L746115872;
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -179,15 +179,15 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
         }
     }
     // athrow
-    //     L746115872 in labeltable is :L746115872
+    //     L1741786839 in labeltable is :L1741786839
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 35;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L20111564:
-    //  line no 36 , L20111564 , bytecode index = 
+    L746115872:
+    //  line no 36 , L746115872 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy naming Ljx/zero/Naming;
@@ -223,7 +223,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->cpuManager_5 = rstack[sp + 1].obj;
     ; 
-    //  line no 39 , L2065718717 , bytecode index = 
+    //  line no 39 , L20111564 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
@@ -251,7 +251,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->refFilesystemImpl_7 = rstack[sp + 1].obj;
     ; 
-    //  line no 40 , L275563320 , bytecode index = 
+    //  line no 40 , L2065718717 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
@@ -279,7 +279,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->refDirectoryImpl_8 = rstack[sp + 1].obj;
     ; 
-    //  line no 41 , L2053628870 , bytecode index = 
+    //  line no 41 , L275563320 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
@@ -307,7 +307,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->refRegularFileImpl_9 = rstack[sp + 1].obj;
     ; 
-    //  line no 42 , L1824872646 , bytecode index = 
+    //  line no 42 , L2053628870 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy refRegularFileImpl Ljx/zero/VMClass;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->refRegularFileImpl_9;
@@ -330,26 +330,26 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 43 , L359742806 , bytecode index = 
+    //  line no 43 , L1824872646 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L1676827075:
+    L359742806:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1676827075
+    // arraylength  label  L359742806
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L651100072;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1676827075;
     ; 
-    //  line no 44 , L1611370719 , bytecode index = 
+    //  line no 44 , L651100072 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1611370719 bc index = 
+    // arrload __refer  ,  L651100072 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -397,13 +397,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L2089589253;
+    if(stack[--sp].i  == 0) goto L1611370719;
     ; 
-    //  line no 45 , L222427158 , bytecode index = 
+    //  line no 45 , L2089589253 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L222427158 bc index = 
+    // arrload __refer  ,  L2089589253 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -420,12 +420,12 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy read_RegularFile Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->read_1RegularFile_10 = rstack[sp + 1].obj;
-    goto L1545827753;
-    L2089589253:
-    //  line no 46 , L2089589253 , bytecode index = 
+    goto L222427158;
+    L1611370719:
+    //  line no 46 , L1611370719 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L2089589253 bc index = 
+    // arrload __refer  ,  L1611370719 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -473,13 +473,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1545827753;
+    if(stack[--sp].i  == 0) goto L222427158;
     ; 
-    //  line no 47 , L1611832218 , bytecode index = 
+    //  line no 47 , L1545827753 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1611832218 bc index = 
+    // arrload __refer  ,  L1545827753 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -496,14 +496,14 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy write_RegularFile Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->write_1RegularFile_11 = rstack[sp + 1].obj;
-    L1545827753:
-    //  line no 43 , L1545827753 , bytecode index = 
+    L222427158:
+    //  line no 43 , L222427158 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1676827075;
-    L651100072:
-    //  line no 48 , L651100072 , bytecode index = 
+    goto L359742806;
+    L1676827075:
+    //  line no 48 , L1676827075 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy refDirectoryImpl Ljx/zero/VMClass;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->refDirectoryImpl_8;
@@ -526,26 +526,26 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 49 , L2027317551 , bytecode index = 
+    //  line no 49 , L1611832218 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L2052435819:
+    L2027317551:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L2052435819
+    // arraylength  label  L2027317551
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1033638837;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2052435819;
     ; 
-    //  line no 50 , L1227264471 , bytecode index = 
+    //  line no 50 , L1033638837 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1227264471 bc index = 
+    // arrload __refer  ,  L1033638837 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -593,13 +593,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L41031373;
+    if(stack[--sp].i  == 0) goto L1227264471;
     ; 
-    //  line no 51 , L1435229983 , bytecode index = 
+    //  line no 51 , L41031373 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1435229983 bc index = 
+    // arrload __refer  ,  L41031373 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -616,12 +616,12 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy openRW_Directory Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->openRW_1Directory_12 = rstack[sp + 1].obj;
-    goto L139947936;
-    L41031373:
-    //  line no 52 , L41031373 , bytecode index = 
+    goto L1435229983;
+    L1227264471:
+    //  line no 52 , L1227264471 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L41031373 bc index = 
+    // arrload __refer  ,  L1227264471 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -669,13 +669,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L139947936;
+    if(stack[--sp].i  == 0) goto L1435229983;
     ; 
-    //  line no 53 , L1971519316 , bytecode index = 
+    //  line no 53 , L139947936 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1971519316 bc index = 
+    // arrload __refer  ,  L139947936 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -692,14 +692,14 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy create_Directory Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->create_1Directory_13 = rstack[sp + 1].obj;
-    L139947936:
-    //  line no 49 , L139947936 , bytecode index = 
+    L1435229983:
+    //  line no 49 , L1435229983 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L2052435819;
-    L1033638837:
-    //  line no 54 , L1033638837 , bytecode index = 
+    goto L2027317551;
+    L2052435819:
+    //  line no 54 , L2052435819 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy refFilesystemImpl Ljx/zero/VMClass;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->refFilesystemImpl_7;
@@ -722,26 +722,26 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 55 , L1733581655 , bytecode index = 
+    //  line no 55 , L1971519316 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L1814827909:
+    L1733581655:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1814827909
+    // arraylength  label  L1733581655
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1597328335;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1814827909;
     ; 
-    //  line no 56 , L1034909474 , bytecode index = 
+    //  line no 56 , L1597328335 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1034909474 bc index = 
+    // arrload __refer  ,  L1597328335 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -789,13 +789,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L2019826979;
+    if(stack[--sp].i  == 0) goto L1034909474;
     ; 
-    //  line no 57 , L1951963537 , bytecode index = 
+    //  line no 57 , L2019826979 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1951963537 bc index = 
+    // arrload __refer  ,  L2019826979 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -812,12 +812,12 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy getDefaultPermission_FilesystemInterface Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->getDefaultPermission_1FilesystemInterface_14 = rstack[sp + 1].obj;
-    goto L21422054;
-    L2019826979:
-    //  line no 58 , L2019826979 , bytecode index = 
+    goto L1951963537;
+    L1034909474:
+    //  line no 58 , L1034909474 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L2019826979 bc index = 
+    // arrload __refer  ,  L1034909474 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -865,13 +865,13 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L21422054;
+    if(stack[--sp].i  == 0) goto L1951963537;
     ; 
-    //  line no 59 , L1192672907 , bytecode index = 
+    //  line no 59 , L21422054 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1192672907 bc index = 
+    // arrload __refer  ,  L21422054 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -888,14 +888,14 @@ void func_jx_secmgr_FileSystemSecurityPolicy__init____V(JThreadRuntime *runtime)
     // putfield jx/secmgr/FileSystemSecurityPolicy openRootDirectoryRW_FilesystemInterface Ljx/zero/VMMethod;
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->openRootDirectoryRW_1FilesystemInterface_15 = rstack[sp + 1].obj;
-    L21422054:
-    //  line no 55 , L21422054 , bytecode index = 
+    L1951963537:
+    //  line no 55 , L1951963537 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1814827909;
-    L1597328335:
-    //  line no 60 , L1597328335 , bytecode index = 
+    goto L1733581655;
+    L1814827909:
+    //  line no 60 , L1814827909 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -926,7 +926,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     StackFrame *__frame = method_enter(runtime, 565, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 71 , L795326519 , bytecode index = 
+    //  line no 71 , L532885071 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 71;
     rstack[sp++].obj = rlocal[1].obj;
@@ -948,7 +948,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 72 , L409598930 , bytecode index = 
+    //  line no 72 , L795326519 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy secMgr Ljx/zero/CentralSecurityManager;
@@ -999,7 +999,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     sp -= 2;
     ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp + 0].obj)->curPrincipal_16 = rstack[sp + 1].obj;
     ; 
-    //  line no 73 , L1794768050 , bytecode index = 
+    //  line no 73 , L409598930 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->cpuManager_5;
@@ -1041,9 +1041,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1825445620;
+    if(stack[--sp].i  == 0) goto L1794768050;
     ; 
-    //  line no 75 , L2130357594 , bytecode index = 
+    //  line no 75 , L1825445620 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // checkcast jx/fs/RegularFile
@@ -1088,8 +1088,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1825445620:
-    //  line no 76 , L1825445620 , bytecode index = 
+    L1794768050:
+    //  line no 76 , L1794768050 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->cpuManager_5;
@@ -1131,9 +1131,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L689602108;
+    if(stack[--sp].i  == 0) goto L2130357594;
     ; 
-    //  line no 77 , L212011969 , bytecode index = 
+    //  line no 77 , L689602108 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // checkcast jx/fs/FileSystemInterface
@@ -1178,8 +1178,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L689602108:
-    //  line no 78 , L689602108 , bytecode index = 
+    L2130357594:
+    //  line no 78 , L2130357594 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->cpuManager_5;
@@ -1221,9 +1221,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L273077527;
+    if(stack[--sp].i  == 0) goto L212011969;
     ; 
-    //  line no 79 , L998062648 , bytecode index = 
+    //  line no 79 , L273077527 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // checkcast jx/fs/Directory
@@ -1252,8 +1252,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_inBound__Ljx_zero_InterceptInboundInf
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L273077527:
-    //  line no 80 , L273077527 , bytecode index = 
+    L212011969:
+    //  line no 80 , L212011969 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -1290,9 +1290,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
     StackFrame *__frame = method_enter(runtime, 566, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
-    // try catch :L1426435610 L1942828992 L557023099 (
+    // try catch :L1097619701 L1426435610 L1942828992 (
     ; 
-    //  line no 84 , L45822040 , bytecode index = 
+    //  line no 84 , L557023099 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 84;
     rstack[sp++].obj = rlocal[2].obj;
@@ -1316,15 +1316,15 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L2050370411;
+    if(stack[--sp].i  == 0) goto L45822040;
     ; 
-    //  line no 85 , L1625252058 , bytecode index = 
+    //  line no 85 , L2050370411 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L2050370411:
-    //  line no 86 , L2050370411 , bytecode index = 
+    L45822040:
+    //  line no 86 , L45822040 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy openRootDirectoryRW_FilesystemInterface Ljx/zero/VMMethod;
@@ -1346,10 +1346,10 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1512903453;
-    L1426435610:
+    if(stack[--sp].i  == 0) goto L1625252058;
+    L1097619701:
     __frame->bytecodeIndex = 
-    //  line no 89 , L1426435610 , bytecode index = 
+    //  line no 89 , L1097619701 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface jx/fs/FileSystemInterface.openRootDirectoryRW()Ljx/fs/FSObject;
     {
@@ -1377,7 +1377,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 90 , L22004208 , bytecode index = 
+    //  line no 90 , L1512903453 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[3].obj;
     //  bipush 7
@@ -1397,12 +1397,12 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
             goto __ExceptionHandler;
         }
     }
-    L1942828992:
+    L1426435610:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L557023099:
-    //  line no 91 , L557023099 , bytecode index = 
+    L1942828992:
+    //  line no 91 , L1942828992 , bytecode index = 
     rlocal[3].obj = rstack[--sp].obj;
     ; 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -1426,8 +1426,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
             goto __ExceptionHandler;
         }
     }
-    L1512903453:
-    //  line no 93 , L1512903453 , bytecode index = 
+    L1625252058:
+    //  line no 93 , L1625252058 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -1435,7 +1435,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1FilesystemInterface__Ljx_fs_Fi
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L557023099;
+        case 0 : goto L1942828992;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1466,10 +1466,10 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     StackFrame *__frame = method_enter(runtime, 567, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
-    // try catch :L1663888181 L479459041 L402695541 (
-    // try catch :L341372316 L279566689 L402695541 (
+    // try catch :L1361817590 L1663888181 L479459041 (
+    // try catch :L402695541 L341372316 L479459041 (
     ; 
-    //  line no 97 , L319689067 , bytecode index = 
+    //  line no 97 , L279566689 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 97;
     rstack[sp++].obj = rlocal[2].obj;
@@ -1491,7 +1491,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 98 , L238564722 , bytecode index = 
+    //  line no 98 , L319689067 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy openRW_Directory Ljx/zero/VMMethod;
@@ -1513,9 +1513,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1574898980;
+    if(stack[--sp].i  == 0) goto L238564722;
     ; 
-    //  line no 100 , L56861999 , bytecode index = 
+    //  line no 100 , L1574898980 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy cpuManager Ljx/zero/CPUManager;
     rstack[sp - 1].obj = ((struct jx_secmgr_FileSystemSecurityPolicy*)rstack[sp - 1].obj)->cpuManager_5;
@@ -1538,7 +1538,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 101 , L1619356001 , bytecode index = 
+    //  line no 101 , L56861999 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // invokeinterface jx/zero/InterceptInboundInfo.getFirstParameter(Ljx/zero/VMObject;)Z
@@ -1558,9 +1558,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
         }
     }
     --sp; //pop
-    L1663888181:
+    L1361817590:
     __frame->bytecodeIndex = 
-    //  line no 103 , L1663888181 , bytecode index = 
+    //  line no 103 , L1361817590 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // invokeinterface jx/zero/VMObject.getString()Ljava/lang/String;
@@ -1597,18 +1597,18 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 104 , L802771878 , bytecode index = 
+    //  line no 104 , L1619356001 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
-    if(rstack[--sp].obj  != NULL) goto L341372316;
+    if(rstack[--sp].obj  != NULL) goto L402695541;
     // iconst_1
     stack[sp++].i = 1;
-    L479459041:
+    L1663888181:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L341372316:
+    L402695541:
     __frame->bytecodeIndex = 
-    //  line no 105 , L341372316 , bytecode index = 
+    //  line no 105 , L402695541 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[5].obj;
     //  bipush 6
@@ -1628,12 +1628,12 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
             goto __ExceptionHandler;
         }
     }
-    L279566689:
+    L341372316:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L402695541:
-    //  line no 106 , L402695541 , bytecode index = 
+    L479459041:
+    //  line no 106 , L479459041 , bytecode index = 
     rlocal[5].obj = rstack[--sp].obj;
     ; 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -1658,9 +1658,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
         }
     }
     ; 
-    //  line no 107 , L337533935 , bytecode index = 
-    goto L1604052588;
-    L1574898980:
+    //  line no 107 , L172678484 , bytecode index = 
+    goto L337533935;
+    L238564722:
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy create_Directory Ljx/zero/VMMethod;
@@ -1682,9 +1682,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1604052588;
+    if(stack[--sp].i  == 0) goto L337533935;
     ; 
-    //  line no 109 , L985324122 , bytecode index = 
+    //  line no 109 , L1604052588 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     //  bipush 7
@@ -1706,8 +1706,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1604052588:
-    //  line no 111 , L1604052588 , bytecode index = 
+    L337533935:
+    //  line no 111 , L337533935 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
@@ -1715,8 +1715,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1Directory__Ljx_fs_Directory_2L
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L402695541;
-        case 1 : goto L402695541;
+        case 0 : goto L479459041;
+        case 1 : goto L479459041;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1743,7 +1743,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1RegularFile__Ljx_fs_RegularFil
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 115 , L6422064 , bytecode index = 
+    //  line no 115 , L1724256292 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 115;
     rstack[sp++].obj = rlocal[2].obj;
@@ -1767,9 +1767,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1RegularFile__Ljx_fs_RegularFil
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L13226198;
+    if(stack[--sp].i  == 0) goto L6422064;
     ; 
-    //  line no 117 , L1825419935 , bytecode index = 
+    //  line no 117 , L13226198 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // iconst_4
@@ -1791,8 +1791,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1RegularFile__Ljx_fs_RegularFil
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L13226198:
-    //  line no 118 , L13226198 , bytecode index = 
+    L6422064:
+    //  line no 118 , L6422064 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/secmgr/FileSystemSecurityPolicy read_RegularFile Ljx/zero/VMMethod;
@@ -1814,9 +1814,9 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1RegularFile__Ljx_fs_RegularFil
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L987547666;
+    if(stack[--sp].i  == 0) goto L1825419935;
     ; 
-    //  line no 120 , L893591815 , bytecode index = 
+    //  line no 120 , L987547666 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // iconst_2
@@ -1838,8 +1838,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_check_1RegularFile__Ljx_fs_RegularFil
     }
     method_exit(runtime);
     return stack[sp - 1].i;
-    L987547666:
-    //  line no 122 , L987547666 , bytecode index = 
+    L1825419935:
+    //  line no 122 , L1825419935 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -1876,10 +1876,10 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     StackFrame *__frame = method_enter(runtime, 569, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     local[1].i = p1;
-    // try catch :L2048529572 L643489709 L171809144 (
-    L2048529572:
+    // try catch :L2067925017 L2048529572 L643489709 (
+    L2067925017:
     __frame->bytecodeIndex = 
-    //  line no 127 , L2048529572 , bytecode index = 
+    //  line no 127 , L2067925017 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 127;
     rstack[sp++].obj = rlocal[1].obj;
@@ -1909,7 +1909,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 128 , L1632914150 , bytecode index = 
+    //  line no 128 , L171809144 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface jx/fs/FSObject.getPermission()Ljx/fs/Permission;
     {
@@ -1937,7 +1937,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 131 , L1262607708 , bytecode index = 
+    //  line no 131 , L1632914150 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     //  bipush 6
     stack[sp++].i = 6;
@@ -1962,10 +1962,10 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     --sp;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L999736366;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1262607708;
     rstack[sp++].obj = rlocal[3].obj;
     ; 
-    //  line no 132 , L1560702077 , bytecode index = 
+    //  line no 132 , L999736366 , bytecode index = 
     // invokevirtual jx/fs/EXT2Attribute.getUserID()I
     {
         sp -= 0;
@@ -1990,19 +1990,19 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     stack[sp - 1].i = ((struct jx_secmgr_Principal_1impl*)rstack[sp - 1].obj)->uid_1;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L999736366;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1262607708;
     ; 
-    //  line no 133 , L507911745 , bytecode index = 
+    //  line no 133 , L1560702077 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
-    L643489709:
+    L2048529572:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L999736366:
-    //  line no 134 , L999736366 , bytecode index = 
-    goto L1537772520;
-    L171809144:
+    L1262607708:
+    //  line no 134 , L1262607708 , bytecode index = 
+    goto L507911745;
+    L643489709:
     rlocal[3].obj = rstack[--sp].obj;
     ; 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -2026,8 +2026,8 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
             goto __ExceptionHandler;
         }
     }
-    L1537772520:
-    //  line no 135 , L1537772520 , bytecode index = 
+    L507911745:
+    //  line no 135 , L507911745 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -2035,7 +2035,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_checkPerm__Ljx_fs_FSObject_2I_Z(JThre
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L171809144;
+        case 0 : goto L643489709;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -2061,7 +2061,7 @@ s8 func_jx_secmgr_FileSystemSecurityPolicy_createPortal__Ljx_zero_PortalInfo_2_Z
     StackFrame *__frame = method_enter(runtime, 570, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 140 , L369347944 , bytecode index = 
+    //  line no 140 , L949581868 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 140;
     // iconst_1
@@ -2096,7 +2096,7 @@ void func_jx_secmgr_FileSystemSecurityPolicy_destroyPortal__Ljx_zero_PortalInfo_
     StackFrame *__frame = method_enter(runtime, 571, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 144 , L1260634890 , bytecode index = 
+    //  line no 144 , L166454155 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 144;
     method_exit(runtime);

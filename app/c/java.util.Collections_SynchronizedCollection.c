@@ -84,7 +84,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     StackFrame *__frame = method_enter(runtime, 229, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 2020 , L1426963578 , bytecode index = 
+    //  line no 2020 , L1727361096 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2020;
     rstack[sp++].obj = rlocal[0].obj;
@@ -92,7 +92,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 2021 , L556281560 , bytecode index = 
+    //  line no 2021 , L1426963578 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokestatic java/util/Objects.requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
@@ -117,14 +117,14 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     sp -= 2;
     ((struct java_util_Collections_00024SynchronizedCollection*)rstack[sp + 0].obj)->c_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 2022 , L915500720 , bytecode index = 
+    //  line no 2022 , L556281560 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // putfield java/util/Collections$SynchronizedCollection mutex Ljava/lang/Object;
     sp -= 2;
     ((struct java_util_Collections_00024SynchronizedCollection*)rstack[sp + 0].obj)->mutex_2 = rstack[sp + 1].obj;
     ; 
-    //  line no 2023 , L2074820378 , bytecode index = 
+    //  line no 2023 , L915500720 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -156,7 +156,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 2025 , L599984672 , bytecode index = 
+    //  line no 2025 , L1132307065 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2025;
     rstack[sp++].obj = rlocal[0].obj;
@@ -164,7 +164,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 2026 , L505021446 , bytecode index = 
+    //  line no 2026 , L599984672 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokestatic java/util/Objects.requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
@@ -189,7 +189,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     sp -= 2;
     ((struct java_util_Collections_00024SynchronizedCollection*)rstack[sp + 0].obj)->c_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 2027 , L1022081840 , bytecode index = 
+    //  line no 2027 , L505021446 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // invokestatic java/util/Objects.requireNonNull(Ljava/lang/Object;)Ljava/lang/Object;
@@ -206,7 +206,7 @@ void func_java_util_Collections_00024SynchronizedCollection__init___Ljava_util_C
     sp -= 2;
     ((struct java_util_Collections_00024SynchronizedCollection*)rstack[sp + 0].obj)->mutex_2 = rstack[sp + 1].obj;
     ; 
-    //  line no 2028 , L313239742 , bytecode index = 
+    //  line no 2028 , L1022081840 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -240,10 +240,10 @@ s32 func_java_util_Collections_00024SynchronizedCollection_size___I(JThreadRunti
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 231, &rstack[0], &rlocal[0], &sp);
-    // try catch :L1744189907 L103103526 L1225038340 (
-    // try catch :L1225038340 L658909832 L1225038340 (
+    // try catch :L688005825 L1744189907 L103103526 (
+    // try catch :L103103526 L1906879951 L103103526 (
     ; 
-    //  line no 2031 , L137225802 , bytecode index = 
+    //  line no 2031 , L658909832 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2031;
     rstack[sp++].obj = rlocal[0].obj;
@@ -258,7 +258,7 @@ s32 func_java_util_Collections_00024SynchronizedCollection_size___I(JThreadRunti
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1744189907:
+    L688005825:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -284,22 +284,22 @@ s32 func_java_util_Collections_00024SynchronizedCollection_size___I(JThreadRunti
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L103103526:
+    L1744189907:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1225038340:
+    L103103526:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L658909832:
+    L1906879951:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L658909832 in labeltable is :L658909832
+    //     L1906879951 in labeltable is :L1906879951
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2031;
@@ -309,8 +309,8 @@ s32 func_java_util_Collections_00024SynchronizedCollection_size___I(JThreadRunti
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1225038340;
-        case 1 : goto L1225038340;
+        case 0 : goto L103103526;
+        case 1 : goto L103103526;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -339,10 +339,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_isEmpty___Z(JThreadRun
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 232, &rstack[0], &rlocal[0], &sp);
-    // try catch :L1374066265 L1206051975 L538592647 (
-    // try catch :L538592647 L1627396964 L538592647 (
+    // try catch :L1704237553 L1374066265 L1206051975 (
+    // try catch :L1206051975 L538592647 L1206051975 (
     ; 
-    //  line no 2034 , L70323523 , bytecode index = 
+    //  line no 2034 , L1627396964 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2034;
     rstack[sp++].obj = rlocal[0].obj;
@@ -357,7 +357,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_isEmpty___Z(JThreadRun
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1374066265:
+    L1704237553:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -383,22 +383,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_isEmpty___Z(JThreadRun
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1206051975:
+    L1374066265:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L538592647:
+    L1206051975:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1627396964:
+    L538592647:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L1627396964 in labeltable is :L1627396964
+    //     L538592647 in labeltable is :L538592647
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2034;
@@ -408,8 +408,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_isEmpty___Z(JThreadRun
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L538592647;
-        case 1 : goto L538592647;
+        case 0 : goto L1206051975;
+        case 1 : goto L1206051975;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -439,10 +439,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_contains__Ljava_lang_O
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 233, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L652433136 L1205445235 L1267655902 (
-    // try catch :L1267655902 L670663110 L1267655902 (
+    // try catch :L1420232606 L652433136 L1205445235 (
+    // try catch :L1205445235 L1267655902 L1205445235 (
     ; 
-    //  line no 2037 , L454104863 , bytecode index = 
+    //  line no 2037 , L670663110 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2037;
     rstack[sp++].obj = rlocal[0].obj;
@@ -457,7 +457,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_contains__Ljava_lang_O
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L652433136:
+    L1420232606:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -484,22 +484,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_contains__Ljava_lang_O
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1205445235:
+    L652433136:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1267655902:
+    L1205445235:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L670663110:
+    L1267655902:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L670663110 in labeltable is :L670663110
+    //     L1267655902 in labeltable is :L1267655902
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2037;
@@ -509,8 +509,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_contains__Ljava_lang_O
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1267655902;
-        case 1 : goto L1267655902;
+        case 0 : goto L1205445235;
+        case 1 : goto L1205445235;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -539,10 +539,10 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray____3Ljav
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 234, &rstack[0], &rlocal[0], &sp);
-    // try catch :L767904468 L1180244251 L1432569632 (
-    // try catch :L1432569632 L1259174396 L1432569632 (
+    // try catch :L290579508 L767904468 L1180244251 (
+    // try catch :L1180244251 L1432569632 L1180244251 (
     ; 
-    //  line no 2040 , L1276709283 , bytecode index = 
+    //  line no 2040 , L1259174396 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2040;
     rstack[sp++].obj = rlocal[0].obj;
@@ -557,7 +557,7 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray____3Ljav
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L767904468:
+    L290579508:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -583,22 +583,22 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray____3Ljav
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1180244251:
+    L767904468:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1432569632:
+    L1180244251:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1259174396:
+    L1432569632:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L1259174396 in labeltable is :L1259174396
+    //     L1432569632 in labeltable is :L1432569632
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2040;
@@ -608,8 +608,8 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray____3Ljav
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1432569632;
-        case 1 : goto L1432569632;
+        case 0 : goto L1180244251;
+        case 1 : goto L1180244251;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -634,7 +634,7 @@ struct java_util_Iterator* func_java_util_Collections_00024SynchronizedCollectio
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 235, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 2047 , L227755469 , bytecode index = 
+    //  line no 2047 , L1116094714 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2047;
     rstack[sp++].obj = rlocal[0].obj;
@@ -691,10 +691,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_add__Ljava_lang_Object
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 236, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L690052870 L1498438472 L1325056130 (
-    // try catch :L1325056130 L1809194904 L1325056130 (
+    // try catch :L762384154 L690052870 L1498438472 (
+    // try catch :L1498438472 L1325056130 L1498438472 (
     ; 
-    //  line no 2051 , L1219273867 , bytecode index = 
+    //  line no 2051 , L1809194904 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2051;
     rstack[sp++].obj = rlocal[0].obj;
@@ -709,7 +709,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_add__Ljava_lang_Object
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L690052870:
+    L762384154:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -736,22 +736,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_add__Ljava_lang_Object
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1498438472:
+    L690052870:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1325056130:
+    L1498438472:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1809194904:
+    L1325056130:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1809194904 in labeltable is :L1809194904
+    //     L1325056130 in labeltable is :L1325056130
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2051;
@@ -761,8 +761,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_add__Ljava_lang_Object
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1325056130;
-        case 1 : goto L1325056130;
+        case 0 : goto L1498438472;
+        case 1 : goto L1498438472;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -792,10 +792,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_remove__Ljava_lang_Obj
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 237, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L194707680 L1349182676 L2102368942 (
-    // try catch :L2102368942 L120478350 L2102368942 (
+    // try catch :L335359181 L194707680 L1349182676 (
+    // try catch :L1349182676 L2102368942 L1349182676 (
     ; 
-    //  line no 2054 , L1424082571 , bytecode index = 
+    //  line no 2054 , L120478350 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2054;
     rstack[sp++].obj = rlocal[0].obj;
@@ -810,7 +810,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_remove__Ljava_lang_Obj
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L194707680:
+    L335359181:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -837,22 +837,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_remove__Ljava_lang_Obj
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1349182676:
+    L194707680:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L2102368942:
+    L1349182676:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L120478350:
+    L2102368942:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L120478350 in labeltable is :L120478350
+    //     L2102368942 in labeltable is :L2102368942
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2054;
@@ -862,8 +862,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_remove__Ljava_lang_Obj
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L2102368942;
-        case 1 : goto L2102368942;
+        case 0 : goto L1349182676;
+        case 1 : goto L1349182676;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -893,10 +893,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_containsAll__Ljava_uti
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 238, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L1387380406 L658404420 L2108763062 (
-    // try catch :L2108763062 L2017085051 L2108763062 (
+    // try catch :L1403700359 L1387380406 L658404420 (
+    // try catch :L658404420 L2108763062 L658404420 (
     ; 
-    //  line no 2058 , L656479172 , bytecode index = 
+    //  line no 2058 , L2017085051 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2058;
     rstack[sp++].obj = rlocal[0].obj;
@@ -911,7 +911,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_containsAll__Ljava_uti
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1387380406:
+    L1403700359:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -938,22 +938,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_containsAll__Ljava_uti
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L658404420:
+    L1387380406:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L2108763062:
+    L658404420:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L2017085051:
+    L2108763062:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L2017085051 in labeltable is :L2017085051
+    //     L2108763062 in labeltable is :L2108763062
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2058;
@@ -963,8 +963,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_containsAll__Ljava_uti
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L2108763062;
-        case 1 : goto L2108763062;
+        case 0 : goto L658404420;
+        case 1 : goto L658404420;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -994,10 +994,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_addAll__Ljava_util_Col
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 239, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L124888672 L760357227 L37926966 (
-    // try catch :L37926966 L1064265473 L37926966 (
+    // try catch :L1944702768 L124888672 L760357227 (
+    // try catch :L760357227 L37926966 L760357227 (
     ; 
-    //  line no 2061 , L891786282 , bytecode index = 
+    //  line no 2061 , L1064265473 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2061;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1012,7 +1012,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_addAll__Ljava_util_Col
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L124888672:
+    L1944702768:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1039,22 +1039,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_addAll__Ljava_util_Col
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L760357227:
+    L124888672:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L37926966:
+    L760357227:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1064265473:
+    L37926966:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1064265473 in labeltable is :L1064265473
+    //     L37926966 in labeltable is :L37926966
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2061;
@@ -1064,8 +1064,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_addAll__Ljava_util_Col
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L37926966;
-        case 1 : goto L37926966;
+        case 0 : goto L760357227;
+        case 1 : goto L760357227;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1095,10 +1095,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_removeAll__Ljava_util_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 240, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L517355658 L1514476350 L1397381784 (
-    // try catch :L1397381784 L1333810223 L1397381784 (
+    // try catch :L155361948 L517355658 L1514476350 (
+    // try catch :L1514476350 L1397381784 L1514476350 (
     ; 
-    //  line no 2064 , L1623009085 , bytecode index = 
+    //  line no 2064 , L1333810223 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2064;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1113,7 +1113,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_removeAll__Ljava_util_
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L517355658:
+    L155361948:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1140,22 +1140,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_removeAll__Ljava_util_
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1514476350:
+    L517355658:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1397381784:
+    L1514476350:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1333810223:
+    L1397381784:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1333810223 in labeltable is :L1333810223
+    //     L1397381784 in labeltable is :L1397381784
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2064;
@@ -1165,8 +1165,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_removeAll__Ljava_util_
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1397381784;
-        case 1 : goto L1397381784;
+        case 0 : goto L1514476350;
+        case 1 : goto L1514476350;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1196,10 +1196,10 @@ s8 func_java_util_Collections_00024SynchronizedCollection_retainAll__Ljava_util_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 241, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L319558327 L1583353301 L1466785259 (
-    // try catch :L1466785259 L1565740893 L1466785259 (
+    // try catch :L303240439 L319558327 L1583353301 (
+    // try catch :L1583353301 L1466785259 L1583353301 (
     ; 
-    //  line no 2067 , L775514090 , bytecode index = 
+    //  line no 2067 , L1565740893 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2067;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1214,7 +1214,7 @@ s8 func_java_util_Collections_00024SynchronizedCollection_retainAll__Ljava_util_
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L319558327:
+    L303240439:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1241,22 +1241,22 @@ s8 func_java_util_Collections_00024SynchronizedCollection_retainAll__Ljava_util_
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1583353301:
+    L319558327:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1466785259:
+    L1583353301:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1565740893:
+    L1466785259:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1565740893 in labeltable is :L1565740893
+    //     L1466785259 in labeltable is :L1466785259
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2067;
@@ -1266,8 +1266,8 @@ s8 func_java_util_Collections_00024SynchronizedCollection_retainAll__Ljava_util_
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1466785259;
-        case 1 : goto L1466785259;
+        case 0 : goto L1583353301;
+        case 1 : goto L1583353301;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1296,10 +1296,10 @@ void func_java_util_Collections_00024SynchronizedCollection_clear___V(JThreadRun
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 242, &rstack[0], &rlocal[0], &sp);
-    // try catch :L1297502382 L171493374 L1876682596 (
-    // try catch :L1876682596 L1371957475 L1876682596 (
+    // try catch :L1894369629 L1297502382 L171493374 (
+    // try catch :L171493374 L1876682596 L171493374 (
     ; 
-    //  line no 2070 , L778731861 , bytecode index = 
+    //  line no 2070 , L1371957475 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2070;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1314,7 +1314,7 @@ void func_java_util_Collections_00024SynchronizedCollection_clear___V(JThreadRun
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1297502382:
+    L1894369629:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1340,36 +1340,36 @@ void func_java_util_Collections_00024SynchronizedCollection_clear___V(JThreadRun
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L171493374:
+    L1297502382:
     __frame->bytecodeIndex = 
-    goto L1646371921;
-    L1876682596:
+    goto L778731861;
+    L171493374:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1371957475:
+    L1876682596:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L1371957475 in labeltable is :L1371957475
+    //     L1876682596 in labeltable is :L1876682596
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2070;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1646371921:
-    //  line no 2071 , L1646371921 , bytecode index = 
+    L778731861:
+    //  line no 2071 , L778731861 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1876682596;
-        case 1 : goto L1876682596;
+        case 0 : goto L171493374;
+        case 1 : goto L171493374;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1398,10 +1398,10 @@ struct java_lang_String* func_java_util_Collections_00024SynchronizedCollection_
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 243, &rstack[0], &rlocal[0], &sp);
-    // try catch :L806511723 L1250442005 L627318073 (
-    // try catch :L627318073 L2067180044 L627318073 (
+    // try catch :L1383178166 L806511723 L1250442005 (
+    // try catch :L1250442005 L627318073 L1250442005 (
     ; 
-    //  line no 2073 , L1478797373 , bytecode index = 
+    //  line no 2073 , L2067180044 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2073;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1416,7 +1416,7 @@ struct java_lang_String* func_java_util_Collections_00024SynchronizedCollection_
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L806511723:
+    L1383178166:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1442,22 +1442,22 @@ struct java_lang_String* func_java_util_Collections_00024SynchronizedCollection_
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1250442005:
+    L806511723:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L627318073:
+    L1250442005:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L2067180044:
+    L627318073:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L2067180044 in labeltable is :L2067180044
+    //     L627318073 in labeltable is :L627318073
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2073;
@@ -1467,8 +1467,8 @@ struct java_lang_String* func_java_util_Collections_00024SynchronizedCollection_
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L627318073;
-        case 1 : goto L627318073;
+        case 0 : goto L1250442005;
+        case 1 : goto L1250442005;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1498,10 +1498,10 @@ void func_java_util_Collections_00024SynchronizedCollection_forEach__Ljava_util_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 244, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L1450652220 L417301556 L1707582034 (
-    // try catch :L1707582034 L1293241549 L1707582034 (
+    // try catch :L1400856767 L1450652220 L417301556 (
+    // try catch :L417301556 L1707582034 L417301556 (
     ; 
-    //  line no 2078 , L580673921 , bytecode index = 
+    //  line no 2078 , L1293241549 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2078;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1516,7 +1516,7 @@ void func_java_util_Collections_00024SynchronizedCollection_forEach__Ljava_util_
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1450652220:
+    L1400856767:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$SynchronizedCollection c Ljava/util/Collection;
@@ -1543,36 +1543,36 @@ void func_java_util_Collections_00024SynchronizedCollection_forEach__Ljava_util_
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L417301556:
+    L1450652220:
     __frame->bytecodeIndex = 
-    goto L1183231938;
-    L1707582034:
+    goto L580673921;
+    L417301556:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1293241549:
+    L1707582034:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1293241549 in labeltable is :L1293241549
+    //     L1707582034 in labeltable is :L1707582034
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2078;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1183231938:
-    //  line no 2079 , L1183231938 , bytecode index = 
+    L580673921:
+    //  line no 2079 , L580673921 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1707582034;
-        case 1 : goto L1707582034;
+        case 0 : goto L417301556;
+        case 1 : goto L417301556;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1597,7 +1597,7 @@ struct java_util_Spliterator* func_java_util_Collections_00024SynchronizedCollec
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 245, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 2086 , L2032079962 , bytecode index = 
+    //  line no 2086 , L504053874 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2086;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1654,10 +1654,10 @@ void func_java_util_Collections_00024SynchronizedCollection_writeObject__Ljava_i
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 246, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
-    // try catch :L1262854901 L252277567 L238357312 (
-    // try catch :L238357312 L1101048445 L238357312 (
+    // try catch :L953082513 L1262854901 L252277567 (
+    // try catch :L252277567 L238357312 L252277567 (
     ; 
-    //  line no 2097 , L664070838 , bytecode index = 
+    //  line no 2097 , L1101048445 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2097;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1672,7 +1672,7 @@ void func_java_util_Collections_00024SynchronizedCollection_writeObject__Ljava_i
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1262854901:
+    L953082513:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/io/ObjectOutputStream.defaultWriteObject()V
@@ -1695,36 +1695,36 @@ void func_java_util_Collections_00024SynchronizedCollection_writeObject__Ljava_i
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L252277567:
+    L1262854901:
     __frame->bytecodeIndex = 
-    goto L1665197552;
-    L238357312:
+    goto L664070838;
+    L252277567:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1101048445:
+    L238357312:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1101048445 in labeltable is :L1101048445
+    //     L238357312 in labeltable is :L238357312
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2097;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1665197552:
-    //  line no 2098 , L1665197552 , bytecode index = 
+    L664070838:
+    //  line no 2098 , L664070838 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L238357312;
-        case 1 : goto L238357312;
+        case 0 : goto L252277567;
+        case 1 : goto L252277567;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1750,7 +1750,7 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray___3Ljava
     StackFrame *__frame = method_enter(runtime, 247, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 2102 , L20853837 , bytecode index = 
+    //  line no 2102 , L1158258131 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2102;
     // new java/lang/UnsupportedOperationException
@@ -1777,7 +1777,7 @@ JArray * func_java_util_Collections_00024SynchronizedCollection_toArray___3Ljava
         }
     }
     // athrow
-    //     L20853837 in labeltable is :L20853837
+    //     L1158258131 in labeltable is :L1158258131
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2102;

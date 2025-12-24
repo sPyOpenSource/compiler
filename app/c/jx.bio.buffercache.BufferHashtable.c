@@ -51,7 +51,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     local[0].i = p0;
     local[1].i = p1;
     ; 
-    //  line no 41 , L255944888 , bytecode index = 
+    //  line no 41 , L708890004 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 41;
     rstack[sp++].obj = rlocal[0].obj;
@@ -59,7 +59,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 42 , L376416077 , bytecode index = 
+    //  line no 42 , L270397815 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -82,16 +82,16 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
         }
     }
     ; 
-    //  line no 45 , L1313532469 , bytecode index = 
+    //  line no 45 , L843467284 , bytecode index = 
     stack[sp++].i = local[2].i;
-    if(stack[--sp].i  <= 0) goto L339924917;
+    if(stack[--sp].i  <= 0) goto L1313532469;
     stack[sp++].i = local[2].i;
     //  bipush 100
     stack[sp++].i = 100;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L520022247;
-    L339924917:
-    //  line no 46 , L339924917 , bytecode index = 
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L339924917;
+    L1313532469:
+    //  line no 46 , L1313532469 , bytecode index = 
     // new java/lang/IllegalArgumentException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 2);
     // dup
@@ -196,22 +196,22 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
         }
     }
     // athrow
-    //     L339924917 in labeltable is :L339924917
+    //     L1313532469 in labeltable is :L1313532469
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 46;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L520022247:
-    //  line no 48 , L520022247 , bytecode index = 
+    L339924917:
+    //  line no 48 , L339924917 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield jx/bio/buffercache/BufferHashtable fillPercent I
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->fillPercent_4 = stack[sp + 1].i;
     ; 
-    //  line no 50 , L518522822 , bytecode index = 
+    //  line no 50 , L520022247 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  bipush 100
     stack[sp++].i = 100;
@@ -241,7 +241,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     }
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 51 , L124407148 , bytecode index = 
+    //  line no 51 , L518522822 , bytecode index = 
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[3].i;
     // iconst_1
@@ -260,7 +260,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     --sp;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 52 , L85445963 , bytecode index = 
+    //  line no 52 , L124407148 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -353,7 +353,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
         }
     }
     ; 
-    //  line no 55 , L1825027294 , bytecode index = 
+    //  line no 55 , L85445963 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
@@ -374,7 +374,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->entryLimit_5 = stack[sp + 1].i;
     ; 
-    //  line no 56 , L852445367 , bytecode index = 
+    //  line no 56 , L1825027294 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     // ; newarray/multiarray Dimension Array: [Ljx/bio/buffercache/BufferHead; 1
@@ -389,14 +389,14 @@ void func_jx_bio_buffercache_BufferHashtable__init___II_V(JThreadRuntime *runtim
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->hashTable_6 = rstack[sp + 1].obj;
     ; 
-    //  line no 57 , L1738236591 , bytecode index = 
+    //  line no 57 , L852445367 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     // putfield jx/bio/buffercache/BufferHashtable hashTable_length I
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->hashTable_1length_7 = stack[sp + 1].i;
     ; 
-    //  line no 58 , L1558021762 , bytecode index = 
+    //  line no 58 , L1738236591 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -427,7 +427,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___I_V(JThreadRuntime *runtime
     StackFrame *__frame = method_enter(runtime, 1, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 69 , L1169146729 , bytecode index = 
+    //  line no 69 , L225290371 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 69;
     rstack[sp++].obj = rlocal[0].obj;
@@ -450,7 +450,7 @@ void func_jx_bio_buffercache_BufferHashtable__init___I_V(JThreadRuntime *runtime
         }
     }
     ; 
-    //  line no 70 , L2040352617 , bytecode index = 
+    //  line no 70 , L1169146729 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -480,7 +480,7 @@ void func_jx_bio_buffercache_BufferHashtable__init____V(JThreadRuntime *runtime)
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 2, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 77 , L688766789 , bytecode index = 
+    //  line no 77 , L1237598030 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 77;
     rstack[sp++].obj = rlocal[0].obj;
@@ -504,7 +504,7 @@ void func_jx_bio_buffercache_BufferHashtable__init____V(JThreadRuntime *runtime)
         }
     }
     ; 
-    //  line no 78 , L302155142 , bytecode index = 
+    //  line no 78 , L688766789 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -533,7 +533,7 @@ s32 func_jx_bio_buffercache_BufferHashtable_size___I(JThreadRuntime *runtime){
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 88 , L1772160903 , bytecode index = 
+    //  line no 88 , L24606376 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable entryCount I
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->entryCount_3;
@@ -559,14 +559,14 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 4, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 99 , L733672688 , bytecode index = 
+    //  line no 99 , L756185697 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 99;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
-    // arraylength  label  L733672688
+    // arraylength  label  L756185697
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -582,7 +582,7 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     --sp;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 100 , L297927961 , bytecode index = 
+    //  line no 100 , L733672688 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -675,7 +675,7 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
         }
     }
     ; 
-    //  line no 101 , L1891546521 , bytecode index = 
+    //  line no 101 , L297927961 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[0].obj;
@@ -696,14 +696,14 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->entryLimit_5 = stack[sp + 1].i;
     ; 
-    //  line no 102 , L1312884893 , bytecode index = 
+    //  line no 102 , L1891546521 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 103 , L849373393 , bytecode index = 
+    //  line no 103 , L1312884893 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // ; newarray/multiarray Dimension Array: [Ljx/bio/buffercache/BufferHead; 1
@@ -718,18 +718,18 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->hashTable_6 = rstack[sp + 1].obj;
     ; 
-    //  line no 104 , L868964689 , bytecode index = 
+    //  line no 104 , L849373393 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // putfield jx/bio/buffercache/BufferHashtable hashTable_length I
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->hashTable_1length_7 = stack[sp + 1].i;
     ; 
-    //  line no 106 , L912011468 , bytecode index = 
+    //  line no 106 , L868964689 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[3].obj;
-    // arraylength  label  L912011468
+    // arraylength  label  L868964689
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -739,14 +739,14 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     // iconst_0
     stack[sp++].i = 0;
     local[5].i = stack[--sp].i;
-    L1881129850:
+    L912011468:
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[4].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1095293768;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1881129850;
     rstack[sp++].obj = rlocal[3].obj;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1881129850 bc index = 
+    // arrload __refer  ,  L912011468 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -762,11 +762,11 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 107 , L673186785 , bytecode index = 
+    //  line no 107 , L1095293768 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
-    if(rstack[--sp].obj  == NULL) goto L2142080121;
+    if(rstack[--sp].obj  == NULL) goto L673186785;
     ; 
-    //  line no 108 , L1906808037 , bytecode index = 
+    //  line no 108 , L2142080121 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[6].obj;
     // invokespecial jx/bio/buffercache/BufferHashtable.putInTable(Ljx/bio/buffercache/BufferHead;)V
@@ -784,8 +784,8 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
             goto __ExceptionHandler;
         }
     }
-    L1983025922:
-    //  line no 109 , L1983025922 , bytecode index = 
+    L1906808037:
+    //  line no 109 , L1906808037 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
@@ -795,9 +795,9 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
     rstack[sp].obj = rstack[sp - 1].obj; 
     ++sp;
     rlocal[6].obj = rstack[--sp].obj;
-    if(rstack[--sp].obj  == NULL) goto L2142080121;
+    if(rstack[--sp].obj  == NULL) goto L673186785;
     ; 
-    //  line no 110 , L1579526446 , bytecode index = 
+    //  line no 110 , L1983025922 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[6].obj;
     // invokespecial jx/bio/buffercache/BufferHashtable.putInTable(Ljx/bio/buffercache/BufferHead;)V
@@ -816,15 +816,15 @@ void func_jx_bio_buffercache_BufferHashtable_expandTable___V(JThreadRuntime *run
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1983025922;
-    L2142080121:
-    //  line no 106 , L2142080121 , bytecode index = 
+    goto L1906808037;
+    L673186785:
+    //  line no 106 , L673186785 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1881129850;
-    L1095293768:
-    //  line no 115 , L1095293768 , bytecode index = 
+    goto L912011468;
+    L1881129850:
+    //  line no 115 , L1881129850 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -855,7 +855,7 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
     StackFrame *__frame = method_enter(runtime, 5, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 118 , L11902257 , bytecode index = 
+    //  line no 118 , L1308109015 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 118;
     rstack[sp++].obj = rlocal[1].obj;
@@ -874,13 +874,13 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 119 , L1660794022 , bytecode index = 
+    //  line no 119 , L11902257 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1660794022 bc index = 
+    // arrload __refer  ,  L11902257 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -894,15 +894,15 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L300031246;
+    if(rstack[--sp].obj  == NULL) goto L1660794022;
     ; 
-    //  line no 120 , L500179317 , bytecode index = 
+    //  line no 120 , L300031246 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L500179317 bc index = 
+    // arrload __refer  ,  L300031246 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -917,31 +917,31 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
         sp += 1;
     }
     rlocal[3].obj = rstack[--sp].obj;
-    L824208363:
-    //  line no 121 , L824208363 , bytecode index = 
+    L500179317:
+    //  line no 121 , L500179317 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L1048027629;
+    if(rstack[--sp].obj  == NULL) goto L824208363;
     ; 
-    //  line no 122 , L1073533248 , bytecode index = 
+    //  line no 122 , L1048027629 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
     rlocal[3].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L824208363;
-    L1048027629:
-    //  line no 124 , L1048027629 , bytecode index = 
+    goto L500179317;
+    L824208363:
+    //  line no 124 , L824208363 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHead*)rstack[sp + 0].obj)->hashtable_1nextInChain_10 = rstack[sp + 1].obj;
     ; 
-    //  line no 125 , L599491651 , bytecode index = 
+    //  line no 125 , L1073533248 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -949,17 +949,17 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHead*)rstack[sp + 0].obj)->hashtable_1nextInChain_10 = rstack[sp + 1].obj;
     ; 
-    //  line no 126 , L293002476 , bytecode index = 
-    goto L302870502;
-    L300031246:
-    //  line no 127 , L300031246 , bytecode index = 
+    //  line no 126 , L599491651 , bytecode index = 
+    goto L293002476;
+    L1660794022:
+    //  line no 127 , L1660794022 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arrstore __refer  ,  L300031246 bc index = 
+    // arrstore __refer  ,  L1660794022 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -974,8 +974,8 @@ void func_jx_bio_buffercache_BufferHashtable_putInTable__Ljx_bio_buffercache_Buf
         }
         arr->prop.as_obj_arr[idx] = value;
     }
-    L302870502:
-    //  line no 129 , L302870502 , bytecode index = 
+    L293002476:
+    //  line no 129 , L293002476 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1006,7 +1006,7 @@ void func_jx_bio_buffercache_BufferHashtable_put__Ljx_bio_buffercache_BufferHead
     StackFrame *__frame = method_enter(runtime, 6, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 139 , L876926621 , bytecode index = 
+    //  line no 139 , L1268959798 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 139;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1037,9 +1037,9 @@ void func_jx_bio_buffercache_BufferHashtable_put__Ljx_bio_buffercache_BufferHead
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->entryLimit_5;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L326298949;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L876926621;
     ; 
-    //  line no 140 , L1786364562 , bytecode index = 
+    //  line no 140 , L326298949 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual jx/bio/buffercache/BufferHashtable.expandTable()V
     {
@@ -1057,8 +1057,8 @@ void func_jx_bio_buffercache_BufferHashtable_put__Ljx_bio_buffercache_BufferHead
             goto __ExceptionHandler;
         }
     }
-    L326298949:
-    //  line no 142 , L326298949 , bytecode index = 
+    L876926621:
+    //  line no 142 , L876926621 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokespecial jx/bio/buffercache/BufferHashtable.putInTable(Ljx/bio/buffercache/BufferHead;)V
@@ -1077,7 +1077,7 @@ void func_jx_bio_buffercache_BufferHashtable_put__Ljx_bio_buffercache_BufferHead
         }
     }
     ; 
-    //  line no 143 , L928466577 , bytecode index = 
+    //  line no 143 , L1786364562 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1108,7 +1108,7 @@ struct jx_bio_buffercache_BufferHead* func_jx_bio_buffercache_BufferHashtable_ge
     StackFrame *__frame = method_enter(runtime, 7, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 153 , L564742142 , bytecode index = 
+    //  line no 153 , L624271064 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 153;
     stack[sp++].i = local[1].i;
@@ -1124,13 +1124,13 @@ struct jx_bio_buffercache_BufferHead* func_jx_bio_buffercache_BufferHashtable_ge
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 155 , L90205195 , bytecode index = 
+    //  line no 155 , L564742142 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L90205195 bc index = 
+    // arrload __refer  ,  L564742142 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1145,34 +1145,34 @@ struct jx_bio_buffercache_BufferHead* func_jx_bio_buffercache_BufferHashtable_ge
         sp += 1;
     }
     rlocal[3].obj = rstack[--sp].obj;
-    L135184888:
+    L90205195:
     rstack[sp++].obj = rlocal[3].obj;
-    if(rstack[--sp].obj  == NULL) goto L21257599;
+    if(rstack[--sp].obj  == NULL) goto L135184888;
     ; 
-    //  line no 156 , L1782148126 , bytecode index = 
+    //  line no 156 , L21257599 , bytecode index = 
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_hashkey I
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1hashkey_9;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1816089958;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1782148126;
     ; 
-    //  line no 157 , L306206744 , bytecode index = 
+    //  line no 157 , L1816089958 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1816089958:
-    //  line no 155 , L1816089958 , bytecode index = 
+    L1782148126:
+    //  line no 155 , L1782148126 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
     rlocal[3].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L135184888;
-    L21257599:
-    //  line no 160 , L21257599 , bytecode index = 
+    goto L90205195;
+    L135184888:
+    //  line no 160 , L135184888 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -1205,7 +1205,7 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     StackFrame *__frame = method_enter(runtime, 8, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 170 , L280265505 , bytecode index = 
+    //  line no 170 , L827084938 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 170;
     rstack[sp++].obj = rlocal[1].obj;
@@ -1224,13 +1224,13 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 172 , L112619572 , bytecode index = 
+    //  line no 172 , L280265505 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L112619572 bc index = 
+    // arrload __refer  ,  L280265505 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1246,9 +1246,9 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 173 , L371619938 , bytecode index = 
+    //  line no 173 , L112619572 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
-    if(rstack[--sp].obj  != NULL) goto L1161667116;
+    if(rstack[--sp].obj  != NULL) goto L371619938;
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -1273,15 +1273,15 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
         }
     }
     // athrow
-    //     L371619938 in labeltable is :L371619938
+    //     L112619572 in labeltable is :L112619572
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 173;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1161667116:
-    //  line no 174 , L1161667116 , bytecode index = 
+    L371619938:
+    //  line no 174 , L371619938 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_hashkey I
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1hashkey_9;
@@ -1291,9 +1291,9 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1hashkey_9;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1898220577;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1161667116;
     ; 
-    //  line no 176 , L1143371233 , bytecode index = 
+    //  line no 176 , L1898220577 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
@@ -1303,7 +1303,7 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
-    // arrstore __refer  ,  L1143371233 bc index = 
+    // arrstore __refer  ,  L1898220577 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -1319,7 +1319,7 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 177 , L1634132079 , bytecode index = 
+    //  line no 177 , L1143371233 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1336,16 +1336,16 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->entryCount_3 = stack[sp + 1].i;
     ; 
-    //  line no 178 , L1239548589 , bytecode index = 
+    //  line no 178 , L1634132079 , bytecode index = 
     method_exit(runtime);
     return;
-    L1898220577:
-    //  line no 181 , L1898220577 , bytecode index = 
+    L1161667116:
+    //  line no 181 , L1161667116 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L477289012;
+    if(rstack[--sp].obj  == NULL) goto L1239548589;
     rstack[sp++].obj = rlocal[1].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_hashkey I
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1hashkey_9;
@@ -1358,23 +1358,23 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     stack[sp - 1].i = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1hashkey_9;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L477289012;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1239548589;
     ; 
-    //  line no 183 , L1795960102 , bytecode index = 
+    //  line no 183 , L477289012 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
     rlocal[3].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1898220577;
-    L477289012:
-    //  line no 185 , L477289012 , bytecode index = 
+    goto L1161667116;
+    L1239548589:
+    //  line no 185 , L1239548589 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L1027591600;
+    if(rstack[--sp].obj  != NULL) goto L1795960102;
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -1399,15 +1399,15 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
         }
     }
     // athrow
-    //     L477289012 in labeltable is :L477289012
+    //     L1239548589 in labeltable is :L1239548589
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 185;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1027591600:
-    //  line no 186 , L1027591600 , bytecode index = 
+    L1795960102:
+    //  line no 186 , L1795960102 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
@@ -1420,7 +1420,7 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHead*)rstack[sp + 0].obj)->hashtable_1nextInChain_10 = rstack[sp + 1].obj;
     ; 
-    //  line no 187 , L1678854096 , bytecode index = 
+    //  line no 187 , L1027591600 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1437,7 +1437,7 @@ void func_jx_bio_buffercache_BufferHashtable_remove__Ljx_bio_buffercache_BufferH
     sp -= 2;
     ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp + 0].obj)->entryCount_3 = stack[sp + 1].i;
     ; 
-    //  line no 188 , L1849201180 , bytecode index = 
+    //  line no 188 , L1678854096 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1467,7 +1467,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 9, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 192 , L667346055 , bytecode index = 
+    //  line no 192 , L1691875296 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 192;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -1516,7 +1516,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
-    // arraylength  label  L667346055
+    // arraylength  label  L1691875296
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -1571,52 +1571,52 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 193 , L1225197672 , bytecode index = 
+    //  line no 193 , L667346055 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 194 , L1669712678 , bytecode index = 
+    //  line no 194 , L1225197672 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 195 , L943081537 , bytecode index = 
+    //  line no 195 , L1669712678 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 196 , L683962652 , bytecode index = 
+    //  line no 196 , L943081537 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 197 , L1500608548 , bytecode index = 
+    //  line no 197 , L683962652 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[5].i = stack[--sp].i;
-    L341853399:
+    L1500608548:
     stack[sp++].i = local[5].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
-    // arraylength  label  L341853399
+    // arraylength  label  L1500608548
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L513700442;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L341853399;
     ; 
-    //  line no 198 , L366590980 , bytecode index = 
+    //  line no 198 , L513700442 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L366590980 bc index = 
+    // arrload __refer  ,  L513700442 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1630,20 +1630,20 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1195067075;
+    if(rstack[--sp].obj  == NULL) goto L366590980;
     ; 
-    //  line no 199 , L1366025231 , bytecode index = 
+    //  line no 199 , L1195067075 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 200 , L1007309018 , bytecode index = 
+    //  line no 200 , L1366025231 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bio/buffercache/BufferHashtable hashTable [Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHashtable*)rstack[sp - 1].obj)->hashTable_6;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1007309018 bc index = 
+    // arrload __refer  ,  L1366025231 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1658,35 +1658,35 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         sp += 1;
     }
     rlocal[7].obj = rstack[--sp].obj;
-    L1684792003:
-    //  line no 201 , L1684792003 , bytecode index = 
+    L1007309018:
+    //  line no 201 , L1007309018 , bytecode index = 
     rstack[sp++].obj = rlocal[7].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L2038148563;
+    if(rstack[--sp].obj  == NULL) goto L1684792003;
     ; 
-    //  line no 202 , L2008966511 , bytecode index = 
+    //  line no 202 , L2038148563 , bytecode index = 
     rstack[sp++].obj = rlocal[7].obj;
     // getfield jx/bio/buffercache/BufferHead hashtable_nextInChain Ljx/bio/buffercache/BufferHead;
     rstack[sp - 1].obj = ((struct jx_bio_buffercache_BufferHead*)rstack[sp - 1].obj)->hashtable_1nextInChain_10;
     sp += 0;
     rlocal[7].obj = rstack[--sp].obj;
     ; 
-    //  line no 203 , L433874882 , bytecode index = 
+    //  line no 203 , L2008966511 , bytecode index = 
     // iinc slot 6 value 1
     local[6].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1684792003;
-    L2038148563:
-    //  line no 205 , L2038148563 , bytecode index = 
+    goto L1007309018;
+    L1684792003:
+    //  line no 205 , L1684792003 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[6].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 206 , L572191680 , bytecode index = 
+    //  line no 206 , L433874882 , bytecode index = 
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[6].i;
     // iconst_1
@@ -1697,15 +1697,15 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
     --sp;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 207 , L103536485 , bytecode index = 
+    //  line no 207 , L572191680 , bytecode index = 
     stack[sp++].i = local[6].i;
     stack[sp++].i = local[4].i;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L37380050;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L103536485;
     stack[sp++].i = local[6].i;
     local[4].i = stack[--sp].i;
-    L37380050:
-    //  line no 208 , L37380050 , bytecode index = 
+    L103536485:
+    //  line no 208 , L103536485 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1796,7 +1796,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[6].i;
     ; 
-    //  line no 209 , L2023938592 , bytecode index = 
+    //  line no 209 , L37380050 , bytecode index = 
     // invokestatic java/lang/Integer.toString(I)Ljava/lang/String;
     {
         sp -= 2;
@@ -1875,7 +1875,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 208 , L231977479 , bytecode index = 
+    //  line no 208 , L2023938592 , bytecode index = 
     // invokevirtual jx/zero/debug/DebugPrintStream.println(Ljava/lang/String;)V
     {
         sp -= 1;
@@ -1893,20 +1893,20 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 210 , L1427889191 , bytecode index = 
-    goto L93314457;
-    L1195067075:
-    //  line no 211 , L1195067075 , bytecode index = 
+    //  line no 210 , L231977479 , bytecode index = 
+    goto L1427889191;
+    L366590980:
+    //  line no 211 , L366590980 , bytecode index = 
     // iinc slot 1 value 1
     local[1].i += 1;
-    L93314457:
-    //  line no 197 , L93314457 , bytecode index = 
+    L1427889191:
+    //  line no 197 , L1427889191 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L341853399;
-    L513700442:
-    //  line no 214 , L513700442 , bytecode index = 
+    goto L1500608548;
+    L341853399:
+    //  line no 214 , L341853399 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1999,7 +1999,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 215 , L1796371666 , bytecode index = 
+    //  line no 215 , L93314457 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2092,7 +2092,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 216 , L2076287037 , bytecode index = 
+    //  line no 216 , L1796371666 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2185,7 +2185,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 217 , L1890627974 , bytecode index = 
+    //  line no 217 , L2076287037 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2278,7 +2278,7 @@ void func_jx_bio_buffercache_BufferHashtable_printStatistics___V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 218 , L195615004 , bytecode index = 
+    //  line no 218 , L1890627974 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2308,7 +2308,7 @@ struct jx_collections_Iterator* func_jx_bio_buffercache_BufferHashtable_iterator
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 10, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 223 , L97652294 , bytecode index = 
+    //  line no 223 , L1935972447 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 223;
     // new jx/bio/buffercache/BufferHashtable$1
@@ -2364,7 +2364,7 @@ struct java_lang_String* func_jx_bio_buffercache_BufferHashtable_alignString__Lj
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 258 , L1027007693 , bytecode index = 
+    //  line no 258 , L1889248251 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 258;
     // new java/lang/String
@@ -2390,7 +2390,7 @@ struct java_lang_String* func_jx_bio_buffercache_BufferHashtable_alignString__Lj
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 259 , L1783047508 , bytecode index = 
+    //  line no 259 , L1027007693 , bytecode index = 
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/String.length()I
@@ -2413,17 +2413,17 @@ struct java_lang_String* func_jx_bio_buffercache_BufferHashtable_alignString__Lj
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 260 , L2146608740 , bytecode index = 
+    //  line no 260 , L1783047508 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[5].i = stack[--sp].i;
-    L1381713434:
+    L2146608740:
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[4].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1489092624;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1381713434;
     ; 
-    //  line no 261 , L192881625 , bytecode index = 
+    //  line no 261 , L1489092624 , bytecode index = 
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
     // dup
@@ -2498,13 +2498,13 @@ struct java_lang_String* func_jx_bio_buffercache_BufferHashtable_alignString__Lj
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 260 , L1641313620 , bytecode index = 
+    //  line no 260 , L192881625 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1381713434;
-    L1489092624:
-    //  line no 262 , L1489092624 , bytecode index = 
+    goto L2146608740;
+    L1381713434:
+    //  line no 262 , L1381713434 , bytecode index = 
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
     // dup
