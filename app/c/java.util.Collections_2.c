@@ -56,7 +56,7 @@ void func_java_util_Collections_000242__init___Ljava_lang_Object_2_V(JThreadRunt
     StackFrame *__frame = method_enter(runtime, 710, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 4815 , L1141113940 , bytecode index = 
+    //  line no 4815 , L1711185459 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4815;
     rstack[sp++].obj = rlocal[0].obj;
@@ -69,7 +69,7 @@ void func_java_util_Collections_000242__init___Ljava_lang_Object_2_V(JThreadRunt
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 4816 , L1711185459 , bytecode index = 
+    //  line no 4816 , L25936709 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  lconst 1
     stack[sp].j = 1;
@@ -106,7 +106,7 @@ struct java_util_Spliterator* func_java_util_Collections_000242_trySplit___Ljava
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 711, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 4820 , L1123559518 , bytecode index = 
+    //  line no 4820 , L649769713 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4820;
     // aconst null
@@ -141,7 +141,7 @@ s8 func_java_util_Collections_000242_tryAdvance__Ljava_util_function_Consumer_2_
     StackFrame *__frame = method_enter(runtime, 712, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 4825 , L925150995 , bytecode index = 
+    //  line no 4825 , L1760219993 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4825;
     rstack[sp++].obj = rlocal[1].obj;
@@ -157,7 +157,7 @@ s8 func_java_util_Collections_000242_tryAdvance__Ljava_util_function_Consumer_2_
     }
     --sp; //pop
     ; 
-    //  line no 4826 , L1760219993 , bytecode index = 
+    //  line no 4826 , L1800649922 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$2 est J
     stack[sp - 1].j = ((struct java_util_Collections_000242*)rstack[sp - 1].obj)->est_0;
@@ -171,9 +171,9 @@ s8 func_java_util_Collections_000242_tryAdvance__Ljava_util_function_Consumer_2_
     stack[sp - 4].i = v2 == v1 ? 0: ( v2 > v1 ? 1 : -1); 
     sp -= 3;
     }
-    if(stack[--sp].i  <= 0) goto L1800649922;
+    if(stack[--sp].i  <= 0) goto L403547747;
     ; 
-    //  line no 4827 , L403547747 , bytecode index = 
+    //  line no 4827 , L172215878 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -191,7 +191,7 @@ s8 func_java_util_Collections_000242_tryAdvance__Ljava_util_function_Consumer_2_
     sp -= 3;
     ((struct java_util_Collections_000242*)rstack[sp + 0].obj)->est_0 = stack[sp + 1].j;
     ; 
-    //  line no 4828 , L172215878 , bytecode index = 
+    //  line no 4828 , L873309260 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$2 val$element Ljava/lang/Object;
@@ -214,13 +214,13 @@ s8 func_java_util_Collections_000242_tryAdvance__Ljava_util_function_Consumer_2_
         }
     }
     ; 
-    //  line no 4829 , L873309260 , bytecode index = 
+    //  line no 4829 , L1112456099 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1800649922:
-    //  line no 4831 , L1800649922 , bytecode index = 
+    L403547747:
+    //  line no 4831 , L403547747 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -253,7 +253,7 @@ void func_java_util_Collections_000242_forEachRemaining__Ljava_util_function_Con
     StackFrame *__frame = method_enter(runtime, 713, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 4836 , L923083575 , bytecode index = 
+    //  line no 4836 , L589363823 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4836;
     rstack[sp++].obj = rlocal[0].obj;
@@ -276,7 +276,7 @@ void func_java_util_Collections_000242_forEachRemaining__Ljava_util_function_Con
     }
     --sp; //pop
     ; 
-    //  line no 4837 , L589363823 , bytecode index = 
+    //  line no 4837 , L2052457859 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -305,7 +305,7 @@ s64 func_java_util_Collections_000242_estimateSize___J(JThreadRuntime *runtime){
     RStackItem rstack[3];
     s32 sp = 0;
     ; 
-    //  line no 4841 , L1299327689 , bytecode index = 
+    //  line no 4841 , L1408279755 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$2 est J
     stack[sp - 1].j = ((struct java_util_Collections_000242*)rstack[sp - 1].obj)->est_0;
@@ -331,24 +331,24 @@ s32 func_java_util_Collections_000242_characteristics___I(JThreadRuntime *runtim
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 715, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 4846 , L2007486296 , bytecode index = 
+    //  line no 4846 , L1033348658 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4846;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$2 val$element Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Collections_000242*)rstack[sp - 1].obj)->val_00024element_1;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L1033348658;
+    if(rstack[--sp].obj  == NULL) goto L1634723627;
     //  sipush 256
     stack[sp++].i = 256;
-    goto L1634723627;
-    L1033348658:
+    goto L938463537;
+    L1634723627:
     // iconst_0
     stack[sp++].i = 0;
-    L1634723627:
+    L938463537:
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 4848 , L938463537 , bytecode index = 
+    //  line no 4848 , L2121995675 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  bipush 64
     stack[sp++].i = 64;

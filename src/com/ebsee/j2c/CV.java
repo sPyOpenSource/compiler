@@ -82,6 +82,7 @@ public class CV extends ClassVisitor {
         return mv;
     }
 
+    @Override
     public void visitEnd() {
         AssistLLVM.getClassIndex(className);
         AssistLLVM.addDefine(Util.class2structDefine(className));

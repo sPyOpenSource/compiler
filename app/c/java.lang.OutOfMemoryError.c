@@ -63,7 +63,7 @@ void func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntim
     StackFrame *__frame = method_enter(runtime, 396, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 6 , L1020155847 , bytecode index = 
+    //  line no 6 , L485845532 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 6;
     rstack[sp++].obj = rlocal[0].obj;
@@ -84,7 +84,7 @@ void func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntim
         }
     }
     ; 
-    //  line no 7 , L485845532 , bytecode index = 
+    //  line no 7 , L871790326 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -114,7 +114,7 @@ void func_java_lang_OutOfMemoryError__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 397, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 8 , L1281025083 , bytecode index = 
+    //  line no 8 , L40170008 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 8;
     rstack[sp++].obj = rlocal[0].obj;

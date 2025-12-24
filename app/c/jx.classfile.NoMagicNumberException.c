@@ -62,7 +62,7 @@ void func_jx_classfile_NoMagicNumberException__init____V(JThreadRuntime *runtime
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 522, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 4 , L1750286943 , bytecode index = 
+    //  line no 4 , L892083096 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 4;
     rstack[sp++].obj = rlocal[0].obj;
@@ -111,7 +111,7 @@ void func_jx_classfile_NoMagicNumberException__init___Ljava_lang_String_2_V(JThr
     StackFrame *__frame = method_enter(runtime, 523, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 5 , L554868511 , bytecode index = 
+    //  line no 5 , L1520387953 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 5;
     rstack[sp++].obj = rlocal[0].obj;

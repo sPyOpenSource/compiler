@@ -44,7 +44,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     StackFrame *__frame = method_enter(runtime, 453, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 10 , L297490204 , bytecode index = 
+    //  line no 10 , L2085745483 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 10;
     rstack[sp++].obj = rlocal[0].obj;
@@ -52,7 +52,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 7 , L2085745483 , bytecode index = 
+    //  line no 7 , L1419064126 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/Vector
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 179);
@@ -79,7 +79,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->pairs_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 8 , L1419064126 , bytecode index = 
+    //  line no 8 , L706895319 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/Hashtable
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 65);
@@ -106,7 +106,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->name2value_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 33 , L706895319 , bytecode index = 
+    //  line no 33 , L1642785848 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  sipush 256
     stack[sp++].i = 256;
@@ -122,21 +122,21 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->data_6 = rstack[sp + 1].obj;
     ; 
-    //  line no 11 , L1642785848 , bytecode index = 
+    //  line no 11 , L307400933 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/bootrc/ConfigFile mem Ljx/zero/ReadOnlyMemory;
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->mem_2 = rstack[sp + 1].obj;
     ; 
-    //  line no 12 , L307400933 , bytecode index = 
+    //  line no 12 , L1872973138 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/bootrc/ConfigFile mem Ljx/zero/ReadOnlyMemory;
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->mem_2 = rstack[sp + 1].obj;
-    L1872973138:
-    //  line no 14 , L1872973138 , bytecode index = 
+    L1465346452:
+    //  line no 14 , L1465346452 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokespecial jx/bootrc/ConfigFile.readline()Ljava/lang/String;
     {
@@ -155,12 +155,12 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 15 , L1465346452 , bytecode index = 
+    //  line no 15 , L1634387050 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  != NULL) goto L1634387050;
-    goto L1740223770;
-    L1634387050:
-    //  line no 16 , L1634387050 , bytecode index = 
+    if(rstack[--sp].obj  != NULL) goto L1740223770;
+    goto L302366050;
+    L1740223770:
+    //  line no 16 , L1740223770 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/lang/String.trim()Ljava/lang/String;
     {
@@ -180,7 +180,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 17 , L302366050 , bytecode index = 
+    //  line no 17 , L2129821055 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/lang/String.length()I
     {
@@ -199,7 +199,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    if(stack[--sp].i  == 0) goto L1872973138;
+    if(stack[--sp].i  == 0) goto L1465346452;
     rstack[sp++].obj = rlocal[2].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -222,11 +222,11 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     //  bipush 35
     stack[sp++].i = 35;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L2129821055;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1225568095;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1872973138;
-    L2129821055:
-    //  line no 18 , L2129821055 , bytecode index = 
+    goto L1465346452;
+    L1225568095:
+    //  line no 18 , L1225568095 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     //  bipush 61
     stack[sp++].i = 61;
@@ -242,7 +242,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 19 , L1225568095 , bytecode index = 
+    //  line no 19 , L1664598529 , bytecode index = 
     // new jx/bootrc/Pair
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 180);
     // dup
@@ -252,7 +252,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     rstack[sp++].obj = rlocal[3].obj;
     // iconst_0
     stack[sp++].i = 0;
-    // arrload __refer  ,  L1225568095 bc index = 
+    // arrload __refer  ,  L1664598529 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -285,7 +285,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     rstack[sp++].obj = rlocal[3].obj;
     // iconst_1
     stack[sp++].i = 1;
-    // arrload __refer  ,  L1225568095 bc index = 
+    // arrload __refer  ,  L1664598529 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -332,7 +332,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 22 , L1664598529 , bytecode index = 
+    //  line no 22 , L1550228904 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile pairs Ljava/util/Vector;
     rstack[sp - 1].obj = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->pairs_0;
@@ -355,7 +355,7 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
         }
     }
     ; 
-    //  line no 23 , L1550228904 , bytecode index = 
+    //  line no 23 , L831654622 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile name2value Ljava/util/Hashtable;
     rstack[sp - 1].obj = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->name2value_1;
@@ -386,11 +386,11 @@ void func_jx_bootrc_ConfigFile__init___Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntim
     }
     --sp; //pop
     ; 
-    //  line no 24 , L831654622 , bytecode index = 
+    //  line no 24 , L491273700 , bytecode index = 
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1872973138;
-    L1740223770:
-    //  line no 25 , L1740223770 , bytecode index = 
+    goto L1465346452;
+    L302366050:
+    //  line no 25 , L302366050 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -421,7 +421,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_get__Ljava_lang_String_2_Ljav
     StackFrame *__frame = method_enter(runtime, 454, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 27 , L1077072774 , bytecode index = 
+    //  line no 27 , L684822005 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 27;
     rstack[sp++].obj = rlocal[0].obj;
@@ -482,14 +482,14 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 455, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 37 , L154449611 , bytecode index = 
+    //  line no 37 , L1439632660 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 37;
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L1439632660:
-    //  line no 38 , L1439632660 , bytecode index = 
+    L62343880:
+    //  line no 38 , L62343880 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile pos I
     stack[sp - 1].i = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->pos_3;
@@ -515,7 +515,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L62343880;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L665698670;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile mem Ljx/zero/ReadOnlyMemory;
     rstack[sp - 1].obj = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->mem_2;
@@ -549,9 +549,9 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     //  bipush 10
     stack[sp++].i = 10;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L62343880;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L665698670;
     ; 
-    //  line no 39 , L193178046 , bytecode index = 
+    //  line no 39 , L638169719 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile data [C
     rstack[sp - 1].obj = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->data_6;
@@ -559,7 +559,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[1].i;
     stack[sp - 1].i = (u16)stack[sp - 1].i; 
-    // arrstore u16  ,  L193178046 bc index = 
+    // arrstore u16  ,  L638169719 bc index = 
     {
         ;
         u16 value = stack[--sp].i;
@@ -575,7 +575,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
         arr->prop.as_u16_arr[idx] = value;
     }
     ; 
-    //  line no 40 , L638169719 , bytecode index = 
+    //  line no 40 , L533810548 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -592,13 +592,13 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->pos_3 = stack[sp + 1].i;
     ; 
-    //  line no 41 , L533810548 , bytecode index = 
+    //  line no 41 , L1446922577 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1439632660;
-    L62343880:
-    //  line no 43 , L62343880 , bytecode index = 
+    goto L62343880;
+    L665698670:
+    //  line no 43 , L665698670 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/ConfigFile pos I
     stack[sp - 1].i = ((struct jx_bootrc_ConfigFile*)rstack[sp - 1].obj)->pos_3;
@@ -624,15 +624,15 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1446922577;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1080476785;
     stack[sp++].i = local[2].i;
-    if(stack[--sp].i  != 0) goto L1446922577;
+    if(stack[--sp].i  != 0) goto L1080476785;
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1446922577:
-    //  line no 44 , L1446922577 , bytecode index = 
+    L1080476785:
+    //  line no 44 , L1080476785 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -649,7 +649,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     sp -= 2;
     ((struct jx_bootrc_ConfigFile*)rstack[sp + 0].obj)->pos_3 = stack[sp + 1].i;
     ; 
-    //  line no 45 , L1080476785 , bytecode index = 
+    //  line no 45 , L722951168 , bytecode index = 
     // new java/lang/String
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 9);
     // dup
@@ -680,7 +680,7 @@ struct java_lang_String* func_jx_bootrc_ConfigFile_readline___Ljava_lang_String_
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 46 , L722951168 , bytecode index = 
+    //  line no 46 , L1052253947 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;

@@ -55,7 +55,7 @@ void func_java_util_ListResourceBundle__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 851, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 51 , L990679445 , bytecode index = 
+    //  line no 51 , L913065088 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 51;
     rstack[sp++].obj = rlocal[0].obj;
@@ -75,7 +75,7 @@ void func_java_util_ListResourceBundle__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 52 , L913065088 , bytecode index = 
+    //  line no 52 , L746280996 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -129,7 +129,7 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
     StackFrame *__frame = method_enter(runtime, 853, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 70 , L50503805 , bytecode index = 
+    //  line no 70 , L1557989809 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 70;
     rstack[sp++].obj = rlocal[0].obj;
@@ -151,27 +151,27 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 71 , L1557989809 , bytecode index = 
+    //  line no 71 , L146874094 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L146874094:
+    L2123222442:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[2].obj;
-    // arraylength  label  L146874094
+    // arraylength  label  L2123222442
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2123222442;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1746570062;
     ; 
-    //  line no 73 , L1746570062 , bytecode index = 
+    //  line no 73 , L1555990397 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[2].obj;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L1746570062 bc index = 
+    // arrload __refer  ,  L1555990397 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -187,7 +187,7 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
     }
     // iconst_0
     stack[sp++].i = 0;
-    // arrload __refer  ,  L1746570062 bc index = 
+    // arrload __refer  ,  L1555990397 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -217,12 +217,12 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1555990397;
+    if(stack[--sp].i  == 0) goto L1544078442;
     ; 
-    //  line no 74 , L1544078442 , bytecode index = 
+    //  line no 74 , L1291367132 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L1544078442 bc index = 
+    // arrload __refer  ,  L1291367132 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -238,7 +238,7 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
     }
     // iconst_1
     stack[sp++].i = 1;
-    // arrload __refer  ,  L1544078442 bc index = 
+    // arrload __refer  ,  L1291367132 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -254,14 +254,14 @@ struct java_lang_Object* func_java_util_ListResourceBundle_handleGetObject__Ljav
     }
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1555990397:
-    //  line no 71 , L1555990397 , bytecode index = 
+    L1544078442:
+    //  line no 71 , L1544078442 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L146874094;
-    L2123222442:
-    //  line no 76 , L2123222442 , bytecode index = 
+    goto L2123222442;
+    L1746570062:
+    //  line no 76 , L1746570062 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -293,7 +293,7 @@ struct java_util_Enumeration* func_java_util_ListResourceBundle_getKeys___Ljava_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 854, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 85 , L1887699190 , bytecode index = 
+    //  line no 85 , L1479140596 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 85;
     rstack[sp++].obj = rlocal[0].obj;
@@ -315,7 +315,7 @@ struct java_util_Enumeration* func_java_util_ListResourceBundle_getKeys___Ljava_
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 87 , L1479140596 , bytecode index = 
+    //  line no 87 , L1108889615 , bytecode index = 
     // new java/util/ListResourceBundle$1
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 272);
     // dup

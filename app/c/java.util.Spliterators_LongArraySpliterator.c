@@ -85,7 +85,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JI_V(JThrea
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 1180 , L335107734 , bytecode index = 
+    //  line no 1180 , L215078753 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1180;
     rstack[sp++].obj = rlocal[0].obj;
@@ -93,7 +93,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JI_V(JThrea
     // iconst_0
     stack[sp++].i = 0;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L335107734
+    // arraylength  label  L215078753
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -116,7 +116,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JI_V(JThrea
         }
     }
     ; 
-    //  line no 1181 , L215078753 , bytecode index = 
+    //  line no 1181 , L1757317128 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -150,7 +150,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JIII_V(JThr
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 1192 , L840514538 , bytecode index = 
+    //  line no 1192 , L1804441305 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1192;
     rstack[sp++].obj = rlocal[0].obj;
@@ -158,28 +158,28 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JIII_V(JThr
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 1193 , L1804441305 , bytecode index = 
+    //  line no 1193 , L1768242710 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/util/Spliterators$LongArraySpliterator array [J
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->array_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 1194 , L1768242710 , bytecode index = 
+    //  line no 1194 , L1971783162 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield java/util/Spliterators$LongArraySpliterator index I
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->index_1 = stack[sp + 1].i;
     ; 
-    //  line no 1195 , L1971783162 , bytecode index = 
+    //  line no 1195 , L247113419 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     // putfield java/util/Spliterators$LongArraySpliterator fence I
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->fence_2 = stack[sp + 1].i;
     ; 
-    //  line no 1196 , L247113419 , bytecode index = 
+    //  line no 1196 , L151442075 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[4].i;
     //  bipush 64
@@ -194,7 +194,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator__init____3JIII_V(JThr
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->characteristics_3 = stack[sp + 1].i;
     ; 
-    //  line no 1197 , L151442075 , bytecode index = 
+    //  line no 1197 , L1238616099 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -224,7 +224,7 @@ s64 func_java_util_Spliterators_00024LongArraySpliterator_getExactSizeIfKnown___
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 629, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1201 , L70695990 , bytecode index = 
+    //  line no 1201 , L1608633989 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1201;
     //  lconst 0
@@ -260,7 +260,7 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_hasCharacteristics__I_Z
     StackFrame *__frame = method_enter(runtime, 630, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 1205 , L1615617512 , bytecode index = 
+    //  line no 1205 , L923341586 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1205;
     // iconst_0
@@ -294,7 +294,7 @@ struct java_util_Spliterator_00024OfLong* func_java_util_Spliterators_00024LongA
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 631, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1210 , L107994825 , bytecode index = 
+    //  line no 1210 , L1470868839 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1210;
     rstack[sp++].obj = rlocal[0].obj;
@@ -316,18 +316,18 @@ struct java_util_Spliterator_00024OfLong* func_java_util_Spliterators_00024LongA
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 1211 , L1426725223 , bytecode index = 
+    //  line no 1211 , L711197015 , bytecode index = 
     stack[sp++].i = local[1].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L711197015;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1384454980;
     ; 
-    //  line no 1212 , L1384454980 , bytecode index = 
+    //  line no 1212 , L1481594086 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
-    goto L1481594086;
-    L711197015:
-    //  line no 1213 , L711197015 , bytecode index = 
+    goto L1569435561;
+    L1384454980:
+    //  line no 1213 , L1384454980 , bytecode index = 
     // new java/util/Spliterators$LongArraySpliterator
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 249);
     // dup
@@ -371,8 +371,8 @@ struct java_util_Spliterator_00024OfLong* func_java_util_Spliterators_00024LongA
             goto __ExceptionHandler;
         }
     }
-    L1481594086:
-    //  line no 1211 , L1481594086 , bytecode index = 
+    L1569435561:
+    //  line no 1211 , L1569435561 , bytecode index = 
     method_exit(runtime);
     return rstack[sp - 1].obj;
     ; 
@@ -403,13 +403,13 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     StackFrame *__frame = method_enter(runtime, 632, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1219 , L1466917878 , bytecode index = 
+    //  line no 1219 , L768216420 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1219;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L768216420;
+    if(rstack[--sp].obj  != NULL) goto L260084831;
     ; 
-    //  line no 1220 , L260084831 , bytecode index = 
+    //  line no 1220 , L267814113 , bytecode index = 
     // new java/lang/NullPointerException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 1);
     // dup
@@ -432,15 +432,15 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
         }
     }
     // athrow
-    //     L260084831 in labeltable is :L260084831
+    //     L267814113 in labeltable is :L267814113
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1220;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L768216420:
-    //  line no 1221 , L768216420 , bytecode index = 
+    L260084831:
+    //  line no 1221 , L260084831 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator array [J
     rstack[sp - 1].obj = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->array_0;
@@ -451,7 +451,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     ++sp;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    // arraylength  label  L267814113
+    // arraylength  label  L598357562
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -468,7 +468,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     local[4].i = stack[--sp].i;
     ; 
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1593224710;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1440738283;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator index I
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->index_1;
@@ -479,7 +479,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     ++sp;
     local[3].i = stack[--sp].i;
     ; 
-    if(stack[--sp].i  < 0) goto L1593224710;
+    if(stack[--sp].i  < 0) goto L1440738283;
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[4].i;
@@ -495,13 +495,13 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->index_1 = stack[sp + 1].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1593224710;
-    L1849015357:
-    //  line no 1223 , L1849015357 , bytecode index = 
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1440738283;
+    L484199463:
+    //  line no 1223 , L484199463 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[2].obj;
     stack[sp++].i = local[3].i;
-    // arrload s64  ,  L1849015357 bc index = 
+    // arrload s64  ,  L484199463 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -537,9 +537,9 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     stack[sp++].i = local[4].i;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1849015357;
-    L1593224710:
-    //  line no 1225 , L1593224710 , bytecode index = 
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L484199463;
+    L1440738283:
+    //  line no 1225 , L1440738283 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -570,13 +570,13 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     StackFrame *__frame = method_enter(runtime, 633, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1230 , L2008106788 , bytecode index = 
+    //  line no 1230 , L1570470538 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1230;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L1570470538;
+    if(rstack[--sp].obj  != NULL) goto L512549200;
     ; 
-    //  line no 1231 , L512549200 , bytecode index = 
+    //  line no 1231 , L1615801298 , bytecode index = 
     // new java/lang/NullPointerException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 1);
     // dup
@@ -599,15 +599,15 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
         }
     }
     // athrow
-    //     L512549200 in labeltable is :L512549200
+    //     L1615801298 in labeltable is :L1615801298
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1231;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1570470538:
-    //  line no 1232 , L1570470538 , bytecode index = 
+    L512549200:
+    //  line no 1232 , L512549200 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator array [J
     rstack[sp - 1].obj = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->array_0;
@@ -618,7 +618,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     ++sp;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    // arraylength  label  L1615801298
+    // arraylength  label  L490391704
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -635,7 +635,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     local[4].i = stack[--sp].i;
     ; 
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L460570271;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1653361344;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator index I
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->index_1;
@@ -646,7 +646,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     ++sp;
     local[3].i = stack[--sp].i;
     ; 
-    if(stack[--sp].i  < 0) goto L460570271;
+    if(stack[--sp].i  < 0) goto L1653361344;
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[4].i;
@@ -662,9 +662,9 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->index_1 = stack[sp + 1].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L460570271;
-    L460570271:
-    //  line no 1236 , L460570271 , bytecode index = 
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1653361344;
+    L1653361344:
+    //  line no 1236 , L1653361344 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -695,13 +695,13 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
     StackFrame *__frame = method_enter(runtime, 634, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1240 , L816944408 , bytecode index = 
+    //  line no 1240 , L909132503 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1240;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L909132503;
+    if(rstack[--sp].obj  != NULL) goto L912966811;
     ; 
-    //  line no 1241 , L912966811 , bytecode index = 
+    //  line no 1241 , L1792384402 , bytecode index = 
     // new java/lang/NullPointerException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 1);
     // dup
@@ -724,20 +724,20 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
         }
     }
     // athrow
-    //     L912966811 in labeltable is :L912966811
+    //     L1792384402 in labeltable is :L1792384402
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1241;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L909132503:
-    //  line no 1242 , L909132503 , bytecode index = 
+    L912966811:
+    //  line no 1242 , L912966811 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator index I
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->index_1;
     sp += 0;
-    if(stack[--sp].i  < 0) goto L1792384402;
+    if(stack[--sp].i  < 0) goto L1458621573;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator index I
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->index_1;
@@ -747,9 +747,9 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->fence_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1792384402;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1458621573;
     ; 
-    //  line no 1243 , L1458621573 , bytecode index = 
+    //  line no 1243 , L1658980982 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator array [J
@@ -778,7 +778,7 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
     // putfield java/util/Spliterators$LongArraySpliterator index I
     sp -= 2;
     ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp + 0].obj)->index_1 = stack[sp + 1].i;
-    // arrload s64  ,  L1458621573 bc index = 
+    // arrload s64  ,  L1658980982 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -809,13 +809,13 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
         }
     }
     ; 
-    //  line no 1244 , L1658980982 , bytecode index = 
+    //  line no 1244 , L46941357 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1792384402:
-    //  line no 1246 , L1792384402 , bytecode index = 
+    L1458621573:
+    //  line no 1246 , L1458621573 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -847,7 +847,7 @@ s64 func_java_util_Spliterators_00024LongArraySpliterator_estimateSize___J(JThre
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 635, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1250 , L1152606315 , bytecode index = 
+    //  line no 1250 , L343345308 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1250;
     rstack[sp++].obj = rlocal[0].obj;
@@ -890,7 +890,7 @@ s32 func_java_util_Spliterators_00024LongArraySpliterator_characteristics___I(JT
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 1254 , L1714688478 , bytecode index = 
+    //  line no 1254 , L104716441 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Spliterators$LongArraySpliterator characteristics I
     stack[sp - 1].i = ((struct java_util_Spliterators_00024LongArraySpliterator*)rstack[sp - 1].obj)->characteristics_3;
@@ -916,7 +916,7 @@ struct java_util_Comparator* func_java_util_Spliterators_00024LongArraySpliterat
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 637, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1259 , L1506951181 , bytecode index = 
+    //  line no 1259 , L1976401987 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1259;
     rstack[sp++].obj = rlocal[0].obj;
@@ -938,15 +938,15 @@ struct java_util_Comparator* func_java_util_Spliterators_00024LongArraySpliterat
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1976401987;
+    if(stack[--sp].i  == 0) goto L867288517;
     ; 
-    //  line no 1260 , L867288517 , bytecode index = 
+    //  line no 1260 , L1528834618 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1976401987:
-    //  line no 1261 , L1976401987 , bytecode index = 
+    L867288517:
+    //  line no 1261 , L867288517 , bytecode index = 
     // new java/lang/IllegalStateException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 23);
     // dup
@@ -969,7 +969,7 @@ struct java_util_Comparator* func_java_util_Spliterators_00024LongArraySpliterat
         }
     }
     // athrow
-    //     L1976401987 in labeltable is :L1976401987
+    //     L867288517 in labeltable is :L867288517
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1261;
@@ -1004,7 +1004,7 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
     StackFrame *__frame = method_enter(runtime, 638, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1266 , L280615803 , bytecode index = 
+    //  line no 1266 , L166694583 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1266;
     // new java/lang/UnsupportedOperationException
@@ -1031,7 +1031,7 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_util_
         }
     }
     // athrow
-    //     L280615803 in labeltable is :L280615803
+    //     L166694583 in labeltable is :L166694583
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1266;
@@ -1066,7 +1066,7 @@ void func_java_util_Spliterators_00024LongArraySpliterator_forEachRemaining__Lja
     StackFrame *__frame = method_enter(runtime, 639, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1166 , L885910946 , bytecode index = 
+    //  line no 1166 , L1860591867 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1166;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1125,7 +1125,7 @@ s8 func_java_util_Spliterators_00024LongArraySpliterator_tryAdvance__Ljava_lang_
     StackFrame *__frame = method_enter(runtime, 640, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1166 , L811207775 , bytecode index = 
+    //  line no 1166 , L1161148117 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1166;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1183,7 +1183,7 @@ struct java_util_Spliterator_00024OfPrimitive* func_java_util_Spliterators_00024
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 641, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1166 , L516875052 , bytecode index = 
+    //  line no 1166 , L1131592118 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1166;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1232,7 +1232,7 @@ struct java_util_Spliterator* func_java_util_Spliterators_00024LongArraySplitera
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 642, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1166 , L589987187 , bytecode index = 
+    //  line no 1166 , L1262609629 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1166;
     rstack[sp++].obj = rlocal[0].obj;

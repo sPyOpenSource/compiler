@@ -69,7 +69,7 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
     StackFrame *__frame = method_enter(runtime, 623, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 73 , L1959239586 , bytecode index = 
+    //  line no 73 , L504336483 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 73;
     rstack[sp++].obj = rlocal[1].obj;
@@ -85,7 +85,7 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
     }
     --sp; //pop
     ; 
-    //  line no 74 , L504336483 , bytecode index = 
+    //  line no 74 , L1404932042 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface java/lang/Iterable.iterator()Ljava/util/Iterator;
     {
@@ -104,7 +104,7 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
         }
     }
     rlocal[2].obj = rstack[--sp].obj;
-    L1404932042:
+    L1984094095:
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Iterator.hasNext()Z
     {
@@ -122,7 +122,7 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1984094095;
+    if(stack[--sp].i  == 0) goto L1043358826;
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Iterator.next()Ljava/lang/Object;
     {
@@ -142,7 +142,7 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 75 , L1043358826 , bytecode index = 
+    //  line no 75 , L1558079303 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // invokeinterface java/util/function/Consumer.accept(Ljava/lang/Object;)V
@@ -162,11 +162,11 @@ void func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V(JThreadRu
         }
     }
     ; 
-    //  line no 76 , L1558079303 , bytecode index = 
+    //  line no 76 , L1671590089 , bytecode index = 
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1404932042;
-    L1984094095:
-    //  line no 77 , L1984094095 , bytecode index = 
+    goto L1984094095;
+    L1043358826:
+    //  line no 77 , L1043358826 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -196,7 +196,7 @@ struct java_util_Spliterator* func_java_lang_Iterable_spliterator___Ljava_util_S
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 624, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 101 , L58488213 , bytecode index = 
+    //  line no 101 , L1053967012 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 101;
     rstack[sp++].obj = rlocal[0].obj;

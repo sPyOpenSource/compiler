@@ -79,13 +79,13 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     local[3].i = p3;
     local[4].i = p4;
     ; 
-    //  line no 10 , L154988899 , bytecode index = 
+    //  line no 10 , L408069119 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 10;
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 11 , L408069119 , bytecode index = 
+    //  line no 11 , L1912850431 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.width()I
     {
         sp -= 0;
@@ -130,7 +130,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 12 , L1912850431 , bytecode index = 
+    //  line no 12 , L633326333 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.height()I
     {
         sp -= 0;
@@ -175,7 +175,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 13 , L633326333 , bytecode index = 
+    //  line no 13 , L1265012928 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.depth()I
     {
         sp -= 0;
@@ -194,7 +194,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 14 , L1265012928 , bytecode index = 
+    //  line no 14 , L1176932104 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.startAddress()I
     {
         sp -= 0;
@@ -257,7 +257,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     --sp;
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 15 , L1176932104 , bytecode index = 
+    //  line no 15 , L712410124 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.pixelOffset()I
     {
         sp -= 0;
@@ -276,7 +276,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 16 , L712410124 , bytecode index = 
+    //  line no 16 , L1900366749 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.scanlineOffset()I
     {
         sp -= 0;
@@ -295,7 +295,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 17 , L1900366749 , bytecode index = 
+    //  line no 17 , L249177573 , bytecode index = 
     // invokeinterface jx/framebuffer/PackedFramebuffer.memObj()Ljx/zero/Memory;
     {
         sp -= 0;
@@ -313,7 +313,7 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
         }
     }
     ; 
-    //  line no 10 , L249177573 , bytecode index = 
+    //  line no 10 , L2096539129 , bytecode index = 
     // invokespecial jx/framebuffer/PackedFramebufferImpl.<init>(IIIIIILjx/zero/Memory;)V
     {
         sp -= 7;
@@ -330,35 +330,35 @@ void func_jx_framebuffer_SubFramebuffer__init___Ljx_framebuffer_PackedFramebuffe
         }
     }
     ; 
-    //  line no 20 , L2096539129 , bytecode index = 
+    //  line no 20 , L1648232591 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield jx/framebuffer/SubFramebuffer xoff I
     sp -= 2;
     ((struct jx_framebuffer_SubFramebuffer*)rstack[sp + 0].obj)->xoff_7 = stack[sp + 1].i;
     ; 
-    //  line no 21 , L1648232591 , bytecode index = 
+    //  line no 21 , L972865270 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     // putfield jx/framebuffer/SubFramebuffer yoff I
     sp -= 2;
     ((struct jx_framebuffer_SubFramebuffer*)rstack[sp + 0].obj)->yoff_8 = stack[sp + 1].i;
     ; 
-    //  line no 22 , L972865270 , bytecode index = 
+    //  line no 22 , L1716932897 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[4].i;
     // putfield jx/framebuffer/SubFramebuffer width I
     sp -= 2;
     ((struct jx_framebuffer_SubFramebuffer*)rstack[sp + 0].obj)->width_9 = stack[sp + 1].i;
     ; 
-    //  line no 23 , L1716932897 , bytecode index = 
+    //  line no 23 , L801569151 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[5].i;
     // putfield jx/framebuffer/SubFramebuffer height I
     sp -= 2;
     ((struct jx_framebuffer_SubFramebuffer*)rstack[sp + 0].obj)->height_10 = stack[sp + 1].i;
     ; 
-    //  line no 29 , L801569151 , bytecode index = 
+    //  line no 29 , L1026483832 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -389,7 +389,7 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
     StackFrame *__frame = method_enter(runtime, 620, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 33 , L1635378213 , bytecode index = 
+    //  line no 33 , L905080434 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 33;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -578,9 +578,9 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
         }
     }
     ; 
-    //  line no 35 , L905080434 , bytecode index = 
+    //  line no 35 , L761750706 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L905080434
+    // arraylength  label  L761750706
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -596,26 +596,26 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 38 , L761750706 , bytecode index = 
+    //  line no 38 , L1731217984 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
-    L1731217984:
+    L1237762639:
     stack[sp++].i = local[4].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1731217984
+    // arraylength  label  L1237762639
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1237762639;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1877062907;
     ; 
-    //  line no 39 , L1877062907 , bytecode index = 
+    //  line no 39 , L2033524545 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1877062907 bc index = 
+    // arrload __refer  ,  L2033524545 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -631,11 +631,11 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 40 , L2033524545 , bytecode index = 
+    //  line no 40 , L473053293 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
-    if(rstack[--sp].obj  == NULL) goto L473053293;
+    if(rstack[--sp].obj  == NULL) goto L1670993182;
     ; 
-    //  line no 41 , L1670993182 , bytecode index = 
+    //  line no 41 , L20804602 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     stack[sp++].i = local[4].i;
     // new jx/framebuffer/ClippingRectangle
@@ -699,7 +699,7 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
             goto __ExceptionHandler;
         }
     }
-    // arrstore __refer  ,  L1670993182 bc index = 
+    // arrstore __refer  ,  L20804602 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -714,14 +714,14 @@ JArray * func_jx_framebuffer_SubFramebuffer_transformClippings___3Ljx_framebuffe
         }
         arr->prop.as_obj_arr[idx] = value;
     }
-    L473053293:
-    //  line no 38 , L473053293 , bytecode index = 
+    L1670993182:
+    //  line no 38 , L1670993182 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1731217984;
-    L1237762639:
-    //  line no 43 , L1237762639 , bytecode index = 
+    goto L1237762639;
+    L1877062907:
+    //  line no 43 , L1877062907 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
@@ -752,7 +752,7 @@ struct java_lang_String* func_jx_framebuffer_SubFramebuffer_framebufferType___Lj
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 621, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 48 , L1344519051 , bytecode index = 
+    //  line no 48 , L1566511282 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 48;
     //  ldc 

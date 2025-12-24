@@ -124,7 +124,7 @@ void func_java_util_Collections_00024SynchronizedRandomAccessList__init___Ljava_
     StackFrame *__frame = method_enter(runtime, 706, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 2533 , L980364771 , bytecode index = 
+    //  line no 2533 , L1233595751 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2533;
     rstack[sp++].obj = rlocal[0].obj;
@@ -145,7 +145,7 @@ void func_java_util_Collections_00024SynchronizedRandomAccessList__init___Ljava_
         }
     }
     ; 
-    //  line no 2534 , L1233595751 , bytecode index = 
+    //  line no 2534 , L1446001495 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -177,7 +177,7 @@ void func_java_util_Collections_00024SynchronizedRandomAccessList__init___Ljava_
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 2537 , L1261044180 , bytecode index = 
+    //  line no 2537 , L141110631 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2537;
     rstack[sp++].obj = rlocal[0].obj;
@@ -199,7 +199,7 @@ void func_java_util_Collections_00024SynchronizedRandomAccessList__init___Ljava_
         }
     }
     ; 
-    //  line no 2538 , L141110631 , bytecode index = 
+    //  line no 2538 , L2029372696 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -235,10 +235,10 @@ struct java_util_List* func_java_util_Collections_00024SynchronizedRandomAccessL
     StackFrame *__frame = method_enter(runtime, 708, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     local[1].i = p1;
-    // try catch :L793293778 L888611662 L1966355106 (
-    // try catch :L1966355106 L599782425 L1966355106 (
+    // try catch :L888611662 L1966355106 L599782425 (
+    // try catch :L599782425 L1233327519 L599782425 (
     ; 
-    //  line no 2541 , L1233327519 , bytecode index = 
+    //  line no 2541 , L1155769010 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2541;
     rstack[sp++].obj = rlocal[0].obj;
@@ -253,9 +253,9 @@ struct java_util_List* func_java_util_Collections_00024SynchronizedRandomAccessL
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L793293778:
+    L888611662:
     __frame->bytecodeIndex = 
-    //  line no 2542 , L793293778 , bytecode index = 
+    //  line no 2542 , L888611662 , bytecode index = 
     // new java/util/Collections$SynchronizedRandomAccessList
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 265);
     // dup
@@ -269,7 +269,7 @@ struct java_util_List* func_java_util_Collections_00024SynchronizedRandomAccessL
     stack[sp++].i = local[1].i;
     stack[sp++].i = local[2].i;
     ; 
-    //  line no 2543 , L1155769010 , bytecode index = 
+    //  line no 2543 , L269892014 , bytecode index = 
     // invokeinterface java/util/List.subList(II)Ljava/util/List;
     {
         sp -= 2;
@@ -309,24 +309,24 @@ struct java_util_List* func_java_util_Collections_00024SynchronizedRandomAccessL
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L888611662:
-    __frame->bytecodeIndex = 
-    //  line no 2542 , L888611662 , bytecode index = 
-    method_exit(runtime);
-    return rstack[sp - 1].obj;
     L1966355106:
     __frame->bytecodeIndex = 
-    //  line no 2544 , L1966355106 , bytecode index = 
+    //  line no 2542 , L1966355106 , bytecode index = 
+    method_exit(runtime);
+    return rstack[sp - 1].obj;
+    L599782425:
+    __frame->bytecodeIndex = 
+    //  line no 2544 , L599782425 , bytecode index = 
     rlocal[4].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L599782425:
+    L1233327519:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[4].obj;
     // athrow
-    //     L599782425 in labeltable is :L599782425
+    //     L1233327519 in labeltable is :L1233327519
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 2544;
@@ -336,8 +336,8 @@ struct java_util_List* func_java_util_Collections_00024SynchronizedRandomAccessL
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1966355106;
-        case 1 : goto L1966355106;
+        case 0 : goto L599782425;
+        case 1 : goto L599782425;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -362,7 +362,7 @@ struct java_lang_Object* func_java_util_Collections_00024SynchronizedRandomAcces
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 709, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 2556 , L1280641161 , bytecode index = 
+    //  line no 2556 , L489411441 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2556;
     // new java/util/Collections$SynchronizedList
