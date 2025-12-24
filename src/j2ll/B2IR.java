@@ -20,7 +20,7 @@ import org.objectweb.asm.ClassReader;
 /**
  *
  */
-public class Main {
+public class B2IR {
 
     public static void main(String[] args) throws IOException {
         String llvmPath = "./app/ir/";
@@ -67,7 +67,7 @@ public class Main {
             try {
                 conv(Util.helper.getClassFile(key).getClassFileStream(), key, llvmPath);
             } catch (IOException ex) {
-                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(B2IR.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

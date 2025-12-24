@@ -8,7 +8,7 @@ import java.io.*;
 /**
  *
  */
-public class Main {
+public class B2C {
 
     static String[][] microDefFields = {
             {"java.lang.String", "value", "[C", "value_in_string"},

@@ -1398,7 +1398,7 @@ public class MV extends MethodVisitor {
 
         max_stack += 1;//may throw exception
         int locals = max_local > signature.getSlotSizeofArgs() ? max_local : signature.getSlotSizeofArgs();
-        String stackValue = "NULL", localValue = "NULL", spPtrValue = "NULL";
+        String stackValue = "&rstack[0]", localValue = "NULL";
         if (locals > 0) {
             builder.add(insert++, "StackItem local[" + locals + "] = {0};");
             builder.add(insert++, "RStackItem rlocal[" + locals + "] = {0};");
@@ -1407,8 +1407,7 @@ public class MV extends MethodVisitor {
         builder.add(insert++, "StackItem stack[" + max_stack + "];");
         builder.add(insert++, "RStackItem rstack[" + max_stack + "];");
         builder.add(insert++, "s32 sp = 0;");
-        stackValue = "&rstack[0]";
-        spPtrValue = "&sp";//"NULL";//"&sp";
+        String spPtrValue = "&sp";//"NULL";//"&sp";
 
         if (!canSkipCodeTrack()) {
             builder.add(insert++, "StackFrame *__frame = " + AssistLLVM.FUNC_METHOD_ENTER
@@ -1441,7 +1440,6 @@ public class MV extends MethodVisitor {
         // 3) end
         ps.println("}");
         ps.println("");
-
     }
 
     public void outBridge(PrintStream ps) {
