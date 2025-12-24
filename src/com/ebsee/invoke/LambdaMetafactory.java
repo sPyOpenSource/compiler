@@ -17,11 +17,8 @@ import com.ebsee.invoke.bytecode.DynamicClassLoader;
 import com.ebsee.invoke.bytecode.LambdaUtil;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.Executable;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -36,11 +33,11 @@ import static com.ebsee.invoke.bytecode.ByteCodeStream.*;
 public class LambdaMetafactory {
 
     private static int nextNumber = 0;
+    static DynamicClassLoader dcl = new DynamicClassLoader();
 
     public static final int FLAG_SERIALIZABLE = 1;
     public static final int FLAG_MARKERS = 2;
     public static final int FLAG_BRIDGES = 4;
-    static DynamicClassLoader dcl = new DynamicClassLoader();
 
     private static Class resolveReturnInterface(MethodType type) throws ClassNotFoundException {
         int index = 1;

@@ -10,11 +10,6 @@
 package com.ebsee.invoke;
 
 import com.ebsee.invoke.bytecode.DynamicClassLoader;
-import com.ebsee.invoke.bytecode.LambdaUtil;
-
-import java.lang.reflect.Executable;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
 
 public class MethodHandle {
 

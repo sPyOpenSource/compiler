@@ -16,13 +16,13 @@ public class CV extends ClassVisitor {
     // state
     String className;
     String superName;
+    
     private final Set<JField> staticFields = new HashSet<>();
     private final List<JField> fields = new ArrayList<>();
-
     private final List<MV> methods = new ArrayList<>();
+    
     // shared states
     Set<String> declares = new HashSet<>();
-
     Set<String> assistFunc = new HashSet<>();
 
     public CV(PrintStream ps) {
@@ -30,6 +30,7 @@ public class CV extends ClassVisitor {
         this.ps = ps;
     }
 
+    @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         this.className = name;
         this.superName = superName;
@@ -40,26 +41,32 @@ public class CV extends ClassVisitor {
         }
     }
 
+    @Override
     public void visitSource(String source, String debug) {
 //        this.ps.println("src " + source);
     }
 
+    @Override
     public void visitOuterClass(String owner, String name, String desc) {
         AssistLLVM.addClassDependence(className, owner);
     }
 
+    @Override
     public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
         return null;
     }
 
+    @Override
     public void visitAttribute(Attribute attr) {
         this.ps.println(" attr " + attr);
     }
 
+    @Override
     public void visitInnerClass(String name, String outerName, String innerName, int access) {
         AssistLLVM.addClassDependence(className, name);
     }
 
+    @Override
     public FieldVisitor visitField(int access, String name, String desc, String signature, Object value) {
         if ((access & Opcodes.ACC_STATIC) != 0) {
             Util.getJavaSignatureCtype(desc);
@@ -190,6 +197,5 @@ public class CV extends ClassVisitor {
         sb.append("};\n");
         return sb.toString();
     }
-
 
 }

@@ -9,17 +9,15 @@
    details. */
 package com.ebsee.invoke.bytecode;
 
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
 import static com.ebsee.invoke.bytecode.ByteCodeStream.*;
 
-
 public class ByteCodeAssembler {
 
-    public static final int ACC_PUBLIC = 1 << 0;
+    public static final int ACC_PUBLIC = 1;
     public static final int ACC_STATIC = 1 << 3;
 
     public static final int aaload = 0x32;

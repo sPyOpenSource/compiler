@@ -1,8 +1,7 @@
 package com.ebsee.invoke.bytecode;
 
-
-
 public class DynamicClassLoader extends ClassLoader {
+    
     byte[] classdata;
 
     @Override
@@ -13,6 +12,5 @@ public class DynamicClassLoader extends ClassLoader {
     public void setBytes(byte[] classdata,int offset,int len) {
         this.classdata = classdata;
     }
-
 
 }
