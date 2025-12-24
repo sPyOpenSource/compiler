@@ -27,6 +27,7 @@ import static com.ebsee.j2c.Util.getFieldVarName;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import jx.classfile.CodeData;
 import jx.classfile.FieldData;
 import jx.classfile.MethodSource;

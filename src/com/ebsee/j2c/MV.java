@@ -3,14 +3,15 @@ package com.ebsee.j2c;
 import com.ebsee.invoke.LambdaMetafactory;
 import com.ebsee.invoke.MethodHandle;
 import com.ebsee.invoke.bytecode.ByteCodeAssembler;
-import org.objectweb.asm.*;
+import static com.ebsee.j2c.Util.*;
 
 import java.io.PrintStream;
 import java.lang.reflect.Modifier;
 import java.util.*;
-import static com.ebsee.j2c.Util.*;
+
 import jx.classfile.CodeData;
 import jx.classfile.MethodSource;
+import org.objectweb.asm.*;
 
 /**
  *
@@ -152,11 +153,9 @@ public class MV extends MethodVisitor {
 
         switch (type) {
             case Opcodes.F_APPEND: { //1
-
                 break;
             }
             case Opcodes.F_CHOP: {//2
-
                 break;
             }
             case Opcodes.F_FULL: {//0
@@ -848,7 +847,6 @@ public class MV extends MethodVisitor {
                                        final Object... bootstrapMethodArguments) {
         //System.out.println("visitInvokeDynamicInsn " + name + " " + descriptor);
         try {
-
             Type t0 = (Type) bootstrapMethodArguments[0];
             Handle h1 = (Handle) bootstrapMethodArguments[1];
             Type t2 = (Type) bootstrapMethodArguments[2];
@@ -1049,19 +1047,16 @@ public class MV extends MethodVisitor {
 //        }
 
         builder.comment(" ldc ");
-        if (o instanceof String) {
+        if (o instanceof String string) {
             // const
-            builder.newString((String) o);
+            builder.newString(string);
             AssistLLVM.addClassDependence(cv.className, CLASS_JAVA_LANG_STRING);
-        } else if (o instanceof Integer) {
-            Integer value = (Integer) o;
+        } else if (o instanceof Integer value) {
             builder.add("stack[sp++].i = 0x" + Integer.toHexString(value) + ";");
-        } else if (o instanceof Long) {
-            Long value = (Long) o;
+        } else if (o instanceof Long value) {
             builder.add("stack[sp].j = 0x" + Long.toHexString(value) + "L;");
             builder.add("sp += 2;");
-        } else if (o instanceof Float) {
-            Float value = (Float) o;
+        } else if (o instanceof Float value) {
             if (Float.intBitsToFloat(0x7f800000) == value) {
                 builder.add("stack[sp++].f = 1.0 / 0.0;");
             } else if (Float.intBitsToFloat(0xff800000) == value) {
@@ -1071,8 +1066,7 @@ public class MV extends MethodVisitor {
             } else {
                 builder.add("stack[sp++].f = " + value + ";");
             }
-        } else if (o instanceof Double) {
-            Double value = (Double) o;
+        } else if (o instanceof Double value) {
             if (Double.longBitsToDouble(0x7ff0000000000000L) == value) {
                 builder.add("stack[sp].d = 1.0 / 0.0;");
             } else if (Double.longBitsToDouble(0xfff0000000000000L) == value) {
@@ -1273,7 +1267,7 @@ public class MV extends MethodVisitor {
      */
     String codeClear(String s) {
         String r = s;
-        if (s.indexOf(";") >= 0) {
+        if (s.contains(";")) {
             r = s.substring(0, s.indexOf(";"));
         }
         r = r.trim();
@@ -1292,8 +1286,8 @@ public class MV extends MethodVisitor {
         //found tow label nearly, merge to one label
         Map<String, String> replacepair = new HashMap<>();
         String preLine = null;
-        for (int i = 0; i < result.length; i++) {
-            String cs = codeClear(result[i]);
+        for (String res : result) {
+            String cs = codeClear(res);
             if (cs.endsWith(":")) {
                 if (preLine != null) {
                     cs = cs.replace(":", "");
@@ -1303,9 +1297,7 @@ public class MV extends MethodVisitor {
                     cs = cs.replace(":", "");
                     preLine = cs;
                 }
-            } else if (cs.length() == 0) {
-                continue;
-            } else {
+            } else if (cs.length() != 0) {
                 preLine = null;
             }
         }
