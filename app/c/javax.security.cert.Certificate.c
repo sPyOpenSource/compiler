@@ -43,7 +43,7 @@ void func_javax_security_cert_Certificate__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 280, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 2 , L1594138273 , bytecode index = 
+    //  line no 2 , L1058609221 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 2;
     rstack[sp++].obj = rlocal[0].obj;
@@ -79,7 +79,7 @@ JArray * func_javax_security_cert_Certificate_getEncoded____3B(JThreadRuntime *r
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 281, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 3 , L95396809 , bytecode index = 
+    //  line no 3 , L1926004335 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 3;
     // new java/lang/Error
@@ -106,7 +106,7 @@ JArray * func_javax_security_cert_Certificate_getEncoded____3B(JThreadRuntime *r
         }
     }
     // athrow
-    //     L95396809 in labeltable is :L95396809
+    //     L1926004335 in labeltable is :L1926004335
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 3;

@@ -43,7 +43,7 @@ void func_jx_zero_debug_Dump__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 267, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 8 , L477533894 , bytecode index = 
+    //  line no 8 , L1813666644 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 8;
     rstack[sp++].obj = rlocal[0].obj;
@@ -82,39 +82,39 @@ void func_jx_zero_debug_Dump_xdump___3BI_V(JThreadRuntime *runtime, struct jx_ze
     rlocal[1].obj = p1;
     local[2].i = p2;
     ; 
-    //  line no 17 , L538185145 , bytecode index = 
+    //  line no 17 , L1611241809 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 17;
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L538185145
+    // arraylength  label  L1611241809
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L510276116;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L538185145;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L538185145
+    // arraylength  label  L1611241809
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     local[1].i = stack[--sp].i;
-    L510276116:
-    //  line no 18 , L510276116 , bytecode index = 
+    L538185145:
+    //  line no 18 , L538185145 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L914507705:
+    L510276116:
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[1].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L443384617;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L914507705;
     ; 
-    //  line no 19 , L445918232 , bytecode index = 
+    //  line no 19 , L443384617 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -159,7 +159,7 @@ void func_jx_zero_debug_Dump_xdump___3BI_V(JThreadRuntime *runtime, struct jx_ze
     }
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
-    // arrload s8  ,  L445918232 bc index = 
+    // arrload s8  ,  L443384617 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -250,7 +250,7 @@ void func_jx_zero_debug_Dump_xdump___3BI_V(JThreadRuntime *runtime, struct jx_ze
         }
     }
     ; 
-    //  line no 20 , L1436633036 , bytecode index = 
+    //  line no 20 , L445918232 , bytecode index = 
     stack[sp++].i = local[2].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -264,7 +264,39 @@ void func_jx_zero_debug_Dump_xdump___3BI_V(JThreadRuntime *runtime, struct jx_ze
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1908043086;
+    if(stack[--sp].i  != 0) goto L1436633036;
+    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
+    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
+    sp += 1;
+    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L1436633036:
+    //  line no 18 , L1436633036 , bytecode index = 
+    // iinc slot 2 value 1
+    local[2].i += 1;
+    if(runtime->suspend_count)check_suspend_and_pause(runtime);
+    goto L510276116;
+    L914507705:
+    //  line no 22 , L914507705 , bytecode index = 
+    stack[sp++].i = local[1].i;
+    //  bipush 32
+    stack[sp++].i = 32;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1908043086;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -285,39 +317,7 @@ void func_jx_zero_debug_Dump_xdump___3BI_V(JThreadRuntime *runtime, struct jx_ze
         }
     }
     L1908043086:
-    //  line no 18 , L1908043086 , bytecode index = 
-    // iinc slot 2 value 1
-    local[2].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L914507705;
-    L443384617:
-    //  line no 22 , L443384617 , bytecode index = 
-    stack[sp++].i = local[1].i;
-    //  bipush 32
-    stack[sp++].i = 32;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L121167003;
-    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
-    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
-    sp += 1;
-    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
-        __func_p(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L121167003:
-    //  line no 23 , L121167003 , bytecode index = 
+    //  line no 23 , L1908043086 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -350,7 +350,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
     rlocal[1].obj = p1;
     local[2].i = p2;
     ; 
-    //  line no 26 , L1664576493 , bytecode index = 
+    //  line no 26 , L1014486152 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 26;
     stack[sp++].i = local[1].i;
@@ -372,7 +372,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1095088856;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1664576493;
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface jx/zero/ReadOnlyMemory.size()I
     {
@@ -391,18 +391,18 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
         }
     }
     local[1].i = stack[--sp].i;
-    L1095088856:
-    //  line no 27 , L1095088856 , bytecode index = 
+    L1664576493:
+    //  line no 27 , L1664576493 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L14183023:
+    L1095088856:
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[1].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L42544488;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L14183023;
     ; 
-    //  line no 28 , L1522095831 , bytecode index = 
+    //  line no 28 , L42544488 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -540,7 +540,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 29 , L910599202 , bytecode index = 
+    //  line no 29 , L1522095831 , bytecode index = 
     stack[sp++].i = local[2].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -554,7 +554,39 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1963862935;
+    if(stack[--sp].i  != 0) goto L910599202;
+    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
+    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
+    sp += 1;
+    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L910599202:
+    //  line no 27 , L910599202 , bytecode index = 
+    // iinc slot 2 value 1
+    local[2].i += 1;
+    if(runtime->suspend_count)check_suspend_and_pause(runtime);
+    goto L1095088856;
+    L14183023:
+    //  line no 31 , L14183023 , bytecode index = 
+    stack[sp++].i = local[1].i;
+    //  bipush 32
+    stack[sp++].i = 32;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1963862935;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -575,39 +607,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2I_V(JThreadRuntime 
         }
     }
     L1963862935:
-    //  line no 27 , L1963862935 , bytecode index = 
-    // iinc slot 2 value 1
-    local[2].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L14183023;
-    L42544488:
-    //  line no 31 , L42544488 , bytecode index = 
-    stack[sp++].i = local[1].i;
-    //  bipush 32
-    stack[sp++].i = 32;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1042786867;
-    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
-    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
-    sp += 1;
-    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
-        __func_p(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L1042786867:
-    //  line no 32 , L1042786867 , bytecode index = 
+    //  line no 32 , L1963862935 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -641,39 +641,39 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2_3BI_V(JThreadRuntime 
     rlocal[2].obj = p2;
     local[3].i = p3;
     ; 
-    //  line no 35 , L769432223 , bytecode index = 
+    //  line no 35 , L775445710 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 35;
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L769432223
+    // arraylength  label  L775445710
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L696933920;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L769432223;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L769432223
+    // arraylength  label  L775445710
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     local[2].i = stack[--sp].i;
-    L696933920:
-    //  line no 36 , L696933920 , bytecode index = 
+    L769432223:
+    //  line no 36 , L769432223 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L712974096:
+    L696933920:
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1187903677;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L712974096;
     ; 
-    //  line no 37 , L252480153 , bytecode index = 
+    //  line no 37 , L1187903677 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
@@ -716,7 +716,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2_3BI_V(JThreadRuntime 
     }
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[3].i;
-    // arrload s8  ,  L252480153 bc index = 
+    // arrload s8  ,  L1187903677 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -807,7 +807,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2_3BI_V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 38 , L1946988038 , bytecode index = 
+    //  line no 38 , L252480153 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -821,7 +821,37 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2_3BI_V(JThreadRuntime 
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L651802632;
+    if(stack[--sp].i  != 0) goto L1946988038;
+    rstack[sp++].obj = rlocal[0].obj;
+    // invokevirtual java/io/PrintStream.println()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 84, 12);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L1946988038:
+    //  line no 36 , L1946988038 , bytecode index = 
+    // iinc slot 3 value 1
+    local[3].i += 1;
+    if(runtime->suspend_count)check_suspend_and_pause(runtime);
+    goto L696933920;
+    L712974096:
+    //  line no 40 , L712974096 , bytecode index = 
+    stack[sp++].i = local[2].i;
+    //  bipush 32
+    stack[sp++].i = 32;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L651802632;
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/io/PrintStream.println()V
     {
@@ -840,37 +870,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2_3BI_V(JThreadRuntime 
         }
     }
     L651802632:
-    //  line no 36 , L651802632 , bytecode index = 
-    // iinc slot 3 value 1
-    local[3].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L712974096;
-    L1187903677:
-    //  line no 40 , L1187903677 , bytecode index = 
-    stack[sp++].i = local[2].i;
-    //  bipush 32
-    stack[sp++].i = 32;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L259564670;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokevirtual java/io/PrintStream.println()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 84, 12);
-        __func_p(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L259564670:
-    //  line no 41 , L259564670 , bytecode index = 
+    //  line no 41 , L651802632 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -903,29 +903,29 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
     rlocal[1].obj = p1;
     local[2].i = p2;
     ; 
-    //  line no 50 , L1965445467 , bytecode index = 
+    //  line no 50 , L1682681674 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 50;
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L1965445467
+    // arraylength  label  L1682681674
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L517254671;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1965445467;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L1965445467
+    // arraylength  label  L1682681674
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     local[1].i = stack[--sp].i;
-    L517254671:
-    //  line no 51 , L517254671 , bytecode index = 
+    L1965445467:
+    //  line no 51 , L1965445467 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -949,23 +949,23 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 52 , L1422238463 , bytecode index = 
+    //  line no 52 , L517254671 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L1833789138:
+    L1422238463:
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[1].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L707157673;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1833789138;
     ; 
-    //  line no 53 , L288958772 , bytecode index = 
+    //  line no 53 , L707157673 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
-    // arrload s8  ,  L288958772 bc index = 
+    // arrload s8  ,  L707157673 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1006,11 +1006,11 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
         }
     }
     ; 
-    //  line no 54 , L1754444726 , bytecode index = 
+    //  line no 54 , L288958772 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
-    // arrload s8  ,  L1754444726 bc index = 
+    // arrload s8  ,  L288958772 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1054,7 +1054,7 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
     }
     --sp; //pop
     ; 
-    //  line no 55 , L1852777344 , bytecode index = 
+    //  line no 55 , L1754444726 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1068,7 +1068,7 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1990519794;
+    if(stack[--sp].i  != 0) goto L1852777344;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1090,8 +1090,8 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
             goto __ExceptionHandler;
         }
     }
-    L1990519794:
-    //  line no 56 , L1990519794 , bytecode index = 
+    L1852777344:
+    //  line no 56 , L1852777344 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1105,9 +1105,9 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L780934299;
+    if(stack[--sp].i  != 0) goto L1990519794;
     ; 
-    //  line no 57 , L1409160703 , bytecode index = 
+    //  line no 57 , L780934299 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1218,7 +1218,7 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
         }
     }
     ; 
-    //  line no 58 , L1150963491 , bytecode index = 
+    //  line no 58 , L1409160703 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -1241,19 +1241,19 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
         }
     }
     rlocal[2].obj = rstack[--sp].obj;
-    L780934299:
-    //  line no 52 , L780934299 , bytecode index = 
+    L1990519794:
+    //  line no 52 , L1990519794 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1833789138;
-    L707157673:
-    //  line no 61 , L707157673 , bytecode index = 
+    goto L1422238463;
+    L1833789138:
+    //  line no 61 , L1833789138 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  bipush 32
     stack[sp++].i = 32;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L355518265;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1150963491;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1273,8 +1273,8 @@ void func_jx_zero_debug_Dump_xdump1___3BI_V(JThreadRuntime *runtime, struct jx_z
             goto __ExceptionHandler;
         }
     }
-    L355518265:
-    //  line no 62 , L355518265 , bytecode index = 
+    L1150963491:
+    //  line no 62 , L1150963491 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1308,7 +1308,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 65 , L2028265136 , bytecode index = 
+    //  line no 65 , L1528195520 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 65;
     stack[sp++].i = local[1].i;
@@ -1333,7 +1333,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1855026648;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L2028265136;
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface jx/zero/ReadOnlyMemory.size()I
     {
@@ -1352,8 +1352,8 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
         }
     }
     local[2].i = stack[--sp].i;
-    L1855026648:
-    //  line no 66 , L1855026648 , bytecode index = 
+    L2028265136:
+    //  line no 66 , L2028265136 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -1377,19 +1377,19 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 67 , L2097905212 , bytecode index = 
+    //  line no 67 , L1855026648 , bytecode index = 
     stack[sp++].i = local[1].i;
     local[4].i = stack[--sp].i;
-    L364597300:
+    L2097905212:
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[1].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1265900909;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L364597300;
     ; 
-    //  line no 68 , L783191662 , bytecode index = 
+    //  line no 68 , L1265900909 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1438,7 +1438,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
         }
     }
     ; 
-    //  line no 69 , L150138649 , bytecode index = 
+    //  line no 69 , L783191662 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[4].i;
@@ -1488,7 +1488,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
     }
     --sp; //pop
     ; 
-    //  line no 70 , L1191654595 , bytecode index = 
+    //  line no 70 , L150138649 , bytecode index = 
     stack[sp++].i = local[4].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1502,7 +1502,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L754177595;
+    if(stack[--sp].i  != 0) goto L1191654595;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1524,8 +1524,8 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
             goto __ExceptionHandler;
         }
     }
-    L754177595:
-    //  line no 71 , L754177595 , bytecode index = 
+    L1191654595:
+    //  line no 71 , L1191654595 , bytecode index = 
     stack[sp++].i = local[4].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1539,9 +1539,9 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1987375157;
+    if(stack[--sp].i  != 0) goto L754177595;
     ; 
-    //  line no 72 , L1776374725 , bytecode index = 
+    //  line no 72 , L1987375157 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1652,7 +1652,7 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
         }
     }
     ; 
-    //  line no 73 , L389993238 , bytecode index = 
+    //  line no 73 , L1776374725 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -1675,19 +1675,19 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
         }
     }
     rlocal[3].obj = rstack[--sp].obj;
-    L1987375157:
-    //  line no 67 , L1987375157 , bytecode index = 
+    L754177595:
+    //  line no 67 , L754177595 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L364597300;
-    L1265900909:
-    //  line no 76 , L1265900909 , bytecode index = 
+    goto L2097905212;
+    L364597300:
+    //  line no 76 , L364597300 , bytecode index = 
     stack[sp++].i = local[2].i;
     //  bipush 32
     stack[sp++].i = 32;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L634297796;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L389993238;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -1707,8 +1707,8 @@ void func_jx_zero_debug_Dump_xdump1__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntim
             goto __ExceptionHandler;
         }
     }
-    L634297796:
-    //  line no 77 , L634297796 , bytecode index = 
+    L389993238:
+    //  line no 77 , L389993238 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1743,7 +1743,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
     local[3].i = p3;
     local[4].i = p4;
     ; 
-    //  line no 80 , L402009651 , bytecode index = 
+    //  line no 80 , L1961501712 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 80;
     stack[sp++].i = local[2].i;
@@ -1768,7 +1768,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1991371192;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L402009651;
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface jx/zero/ReadOnlyMemory.size()I
     {
@@ -1787,8 +1787,8 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
         }
     }
     local[3].i = stack[--sp].i;
-    L1991371192:
-    //  line no 81 , L1991371192 , bytecode index = 
+    L402009651:
+    //  line no 81 , L402009651 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -1812,19 +1812,19 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 82 , L658532887 , bytecode index = 
+    //  line no 82 , L1991371192 , bytecode index = 
     stack[sp++].i = local[2].i;
     local[5].i = stack[--sp].i;
-    L45023307:
+    L658532887:
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[2].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L613298587;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L45023307;
     ; 
-    //  line no 83 , L1561063579 , bytecode index = 
+    //  line no 83 , L613298587 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[5].i;
@@ -1871,7 +1871,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
         }
     }
     ; 
-    //  line no 84 , L2034182655 , bytecode index = 
+    //  line no 84 , L1561063579 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[5].i;
@@ -1921,7 +1921,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
     }
     --sp; //pop
     ; 
-    //  line no 85 , L65586123 , bytecode index = 
+    //  line no 85 , L2034182655 , bytecode index = 
     stack[sp++].i = local[5].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1935,7 +1935,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1446983876;
+    if(stack[--sp].i  != 0) goto L65586123;
     rstack[sp++].obj = rlocal[0].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 44);
@@ -1955,8 +1955,8 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
             goto __ExceptionHandler;
         }
     }
-    L1446983876:
-    //  line no 86 , L1446983876 , bytecode index = 
+    L65586123:
+    //  line no 86 , L65586123 , bytecode index = 
     stack[sp++].i = local[5].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -1970,9 +1970,9 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1412601264;
+    if(stack[--sp].i  != 0) goto L1446983876;
     ; 
-    //  line no 87 , L1413623320 , bytecode index = 
+    //  line no 87 , L1412601264 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
@@ -2081,7 +2081,7 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
         }
     }
     ; 
-    //  line no 88 , L292641216 , bytecode index = 
+    //  line no 88 , L1413623320 , bytecode index = 
     // new java/lang/StringBuffer
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 66);
     // dup
@@ -2104,19 +2104,19 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
         }
     }
     rlocal[4].obj = rstack[--sp].obj;
-    L1412601264:
-    //  line no 82 , L1412601264 , bytecode index = 
+    L1446983876:
+    //  line no 82 , L1446983876 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L45023307;
-    L613298587:
-    //  line no 91 , L613298587 , bytecode index = 
+    goto L658532887;
+    L45023307:
+    //  line no 91 , L45023307 , bytecode index = 
     stack[sp++].i = local[3].i;
     //  bipush 32
     stack[sp++].i = 32;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1042790962;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L292641216;
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/io/PrintStream.println()V
     {
@@ -2134,8 +2134,8 @@ void func_jx_zero_debug_Dump_xdump__Ljava_io_PrintStream_2Ljx_zero_ReadOnlyMemor
             goto __ExceptionHandler;
         }
     }
-    L1042790962:
-    //  line no 92 , L1042790962 , bytecode index = 
+    L292641216:
+    //  line no 92 , L292641216 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2169,7 +2169,7 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 95 , L990897274 , bytecode index = 
+    //  line no 95 , L2130192211 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 95;
     stack[sp++].i = local[1].i;
@@ -2177,16 +2177,16 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L990897274
+    // arraylength  label  L2130192211
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L539690370;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L990897274;
     rstack[sp++].obj = rlocal[0].obj;
-    // arraylength  label  L990897274
+    // arraylength  label  L2130192211
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -2196,18 +2196,18 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
     stack[sp - 2].i = stack[sp - 2].i - stack[sp - 1].i; 
     --sp;
     local[2].i = stack[--sp].i;
-    L539690370:
-    //  line no 96 , L539690370 , bytecode index = 
+    L990897274:
+    //  line no 96 , L990897274 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L593415583:
+    L539690370:
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L480490520;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L593415583;
     ; 
-    //  line no 97 , L1489743810 , bytecode index = 
+    //  line no 97 , L480490520 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2255,7 +2255,7 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
-    // arrload s8  ,  L1489743810 bc index = 
+    // arrload s8  ,  L480490520 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -2346,7 +2346,7 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
         }
     }
     ; 
-    //  line no 98 , L540325452 , bytecode index = 
+    //  line no 98 , L1489743810 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -2360,7 +2360,39 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1976804832;
+    if(stack[--sp].i  != 0) goto L540325452;
+    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
+    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
+    sp += 1;
+    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L540325452:
+    //  line no 96 , L540325452 , bytecode index = 
+    // iinc slot 3 value 1
+    local[3].i += 1;
+    if(runtime->suspend_count)check_suspend_and_pause(runtime);
+    goto L539690370;
+    L593415583:
+    //  line no 100 , L593415583 , bytecode index = 
+    stack[sp++].i = local[2].i;
+    //  bipush 32
+    stack[sp++].i = 32;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1976804832;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2381,39 +2413,7 @@ void func_jx_zero_debug_Dump_xdump___3BII_V(JThreadRuntime *runtime, struct jx_z
         }
     }
     L1976804832:
-    //  line no 96 , L1976804832 , bytecode index = 
-    // iinc slot 3 value 1
-    local[3].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L593415583;
-    L480490520:
-    //  line no 100 , L480490520 , bytecode index = 
-    stack[sp++].i = local[2].i;
-    //  bipush 32
-    stack[sp++].i = 32;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1959910454;
-    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
-    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
-    sp += 1;
-    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
-        __func_p(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L1959910454:
-    //  line no 101 , L1959910454 , bytecode index = 
+    //  line no 101 , L1976804832 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2445,7 +2445,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntime *
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 103 , L1961002599 , bytecode index = 
+    //  line no 103 , L1902237905 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 103;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2479,7 +2479,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2_V(JThreadRuntime *
         }
     }
     ; 
-    //  line no 104 , L485937598 , bytecode index = 
+    //  line no 104 , L1961002599 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2513,7 +2513,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 107 , L434398524 , bytecode index = 
+    //  line no 107 , L1715248762 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 107;
     stack[sp++].i = local[1].i;
@@ -2538,7 +2538,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
         }
     }
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L2035616217;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L434398524;
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface jx/zero/ReadOnlyMemory.size()I
     {
@@ -2560,18 +2560,18 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
     stack[sp - 2].i = stack[sp - 2].i - stack[sp - 1].i; 
     --sp;
     local[2].i = stack[--sp].i;
-    L2035616217:
-    //  line no 108 , L2035616217 , bytecode index = 
+    L434398524:
+    //  line no 108 , L434398524 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L1392794732:
+    L2035616217:
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1363793720;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1392794732;
     ; 
-    //  line no 109 , L1807648168 , bytecode index = 
+    //  line no 109 , L1363793720 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2712,7 +2712,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
         }
     }
     ; 
-    //  line no 110 , L980697799 , bytecode index = 
+    //  line no 110 , L1807648168 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -2726,7 +2726,39 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
     }
     stack[sp - 2].i = stack[sp - 2].i % stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  != 0) goto L1273143001;
+    if(stack[--sp].i  != 0) goto L980697799;
+    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
+    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
+    sp += 1;
+    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L980697799:
+    //  line no 108 , L980697799 , bytecode index = 
+    // iinc slot 3 value 1
+    local[3].i += 1;
+    if(runtime->suspend_count)check_suspend_and_pause(runtime);
+    goto L2035616217;
+    L1392794732:
+    //  line no 112 , L1392794732 , bytecode index = 
+    stack[sp++].i = local[2].i;
+    //  bipush 32
+    stack[sp++].i = 32;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1273143001;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -2747,39 +2779,7 @@ void func_jx_zero_debug_Dump_xdump__Ljx_zero_ReadOnlyMemory_2II_V(JThreadRuntime
         }
     }
     L1273143001:
-    //  line no 108 , L1273143001 , bytecode index = 
-    // iinc slot 3 value 1
-    local[3].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1392794732;
-    L1363793720:
-    //  line no 112 , L1363793720 , bytecode index = 
-    stack[sp++].i = local[2].i;
-    //  bipush 32
-    stack[sp++].i = 32;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1418555530;
-    // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
-    rstack[sp].obj =static_var_jx_zero_Debug.out_2;
-    sp += 1;
-    // invokevirtual jx/zero/debug/DebugPrintStream.println()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 0, 12);
-        __func_p(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L1418555530:
-    //  line no 113 , L1418555530 , bytecode index = 
+    //  line no 113 , L1273143001 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2811,14 +2811,14 @@ struct java_lang_String* func_jx_zero_debug_Dump_toHex__I_Ljava_lang_String_2(JT
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 116 , L1408974251 , bytecode index = 
+    //  line no 116 , L1258372214 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 116;
     stack[sp++].i = local[0].i;
     //  bipush 9
     stack[sp++].i = 9;
     sp -= 2;
-    if(stack[sp + 0].i  > stack[sp + 1].i) goto L212890971;
+    if(stack[sp + 0].i  > stack[sp + 1].i) goto L1408974251;
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
     // dup
@@ -2893,63 +2893,63 @@ struct java_lang_String* func_jx_zero_debug_Dump_toHex__I_Ljava_lang_String_2(JT
     }
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L212890971:
-    //  line no 117 , L212890971 , bytecode index = 
+    L1408974251:
+    //  line no 117 , L1408974251 , bytecode index = 
     stack[sp++].i = local[0].i;
     switch(stack[--sp].i){
         case 10:
-            goto L1898325501;
-        case 11:
-            goto L2075809815;
-        case 12:
-            goto L1949298838;
-        case 13:
-            goto L1967355409;
-        case 14:
-            goto L889891977;
-        case 15:
-            goto L475603167;
-        default:
             goto L856055143;
+        case 11:
+            goto L1898325501;
+        case 12:
+            goto L2075809815;
+        case 13:
+            goto L1949298838;
+        case 14:
+            goto L1967355409;
+        case 15:
+            goto L889891977;
+        default:
+            goto L212890971;
     }
-    L1898325501:
-    //  line no 118 , L1898325501 , bytecode index = 
+    L856055143:
+    //  line no 118 , L856055143 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 613);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L2075809815:
-    //  line no 119 , L2075809815 , bytecode index = 
+    L1898325501:
+    //  line no 119 , L1898325501 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 614);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1949298838:
-    //  line no 120 , L1949298838 , bytecode index = 
+    L2075809815:
+    //  line no 120 , L2075809815 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 555);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1967355409:
-    //  line no 121 , L1967355409 , bytecode index = 
+    L1949298838:
+    //  line no 121 , L1949298838 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 615);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L889891977:
-    //  line no 122 , L889891977 , bytecode index = 
+    L1967355409:
+    //  line no 122 , L1967355409 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 511);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L475603167:
-    //  line no 123 , L475603167 , bytecode index = 
+    L889891977:
+    //  line no 123 , L889891977 , bytecode index = 
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 616);
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L856055143:
-    //  line no 124 , L856055143 , bytecode index = 
+    L212890971:
+    //  line no 124 , L212890971 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -3042,7 +3042,7 @@ struct java_lang_String* func_jx_zero_debug_Dump_toHex__I_Ljava_lang_String_2(JT
         }
     }
     ; 
-    //  line no 126 , L402249858 , bytecode index = 
+    //  line no 126 , L475603167 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -3076,19 +3076,19 @@ struct java_lang_String* func_jx_zero_debug_Dump_byteToHex__B_Ljava_lang_String_
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 130 , L426394307 , bytecode index = 
+    //  line no 130 , L2045036434 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 130;
     stack[sp++].i = local[0].i;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 131 , L1281414889 , bytecode index = 
+    //  line no 131 , L426394307 , bytecode index = 
     stack[sp++].i = local[1].i;
-    if(stack[--sp].i  >= 0) goto L352598575;
+    if(stack[--sp].i  >= 0) goto L1281414889;
     // iinc slot 1 value 256
     local[1].i += 256;
-    L352598575:
-    //  line no 132 , L352598575 , bytecode index = 
+    L1281414889:
+    //  line no 132 , L1281414889 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  bipush 15
     stack[sp++].i = 15;
@@ -3096,7 +3096,7 @@ struct java_lang_String* func_jx_zero_debug_Dump_byteToHex__B_Ljava_lang_String_
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 133 , L1250142026 , bytecode index = 
+    //  line no 133 , L352598575 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  sipush 240
     stack[sp++].i = 240;
@@ -3108,7 +3108,7 @@ struct java_lang_String* func_jx_zero_debug_Dump_byteToHex__B_Ljava_lang_String_
     --sp;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 134 , L20224131 , bytecode index = 
+    //  line no 134 , L1250142026 , bytecode index = 
     // new java/lang/StringBuilder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 3);
     // dup
@@ -3231,59 +3231,59 @@ u16 func_jx_zero_debug_Dump_byteToAscii__B_C(JThreadRuntime *runtime, struct jx_
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 138 , L2135449562 , bytecode index = 
+    //  line no 138 , L1261031890 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 138;
     stack[sp++].i = local[0].i;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 139 , L673586830 , bytecode index = 
+    //  line no 139 , L2135449562 , bytecode index = 
     stack[sp++].i = local[1].i;
-    if(stack[--sp].i  >= 0) goto L225672073;
+    if(stack[--sp].i  >= 0) goto L673586830;
     // iinc slot 1 value 256
     local[1].i += 256;
-    L225672073:
-    //  line no 140 , L225672073 , bytecode index = 
+    L673586830:
+    //  line no 140 , L673586830 , bytecode index = 
     stack[sp++].i = local[1].i;
     //  bipush 65
     stack[sp++].i = 65;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L139566260;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L225672073;
     stack[sp++].i = local[1].i;
     //  bipush 90
     stack[sp++].i = 90;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L903525611;
-    L139566260:
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L139566260;
+    L225672073:
     stack[sp++].i = local[1].i;
     //  bipush 97
     stack[sp++].i = 97;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L764419760;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L903525611;
     stack[sp++].i = local[1].i;
     //  bipush 122
     stack[sp++].i = 122;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L903525611;
-    L764419760:
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L139566260;
+    L903525611:
     stack[sp++].i = local[1].i;
     //  bipush 48
     stack[sp++].i = 48;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1000966072;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L764419760;
     stack[sp++].i = local[1].i;
     //  bipush 57
     stack[sp++].i = 57;
     sp -= 2;
-    if(stack[sp + 0].i  > stack[sp + 1].i) goto L1000966072;
-    L903525611:
-    //  line no 143 , L903525611 , bytecode index = 
+    if(stack[sp + 0].i  > stack[sp + 1].i) goto L764419760;
+    L139566260:
+    //  line no 143 , L139566260 , bytecode index = 
     stack[sp++].i = local[1].i;
     stack[sp - 1].i = (u16)stack[sp - 1].i; 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1000966072:
-    //  line no 145 , L1000966072 , bytecode index = 
+    L764419760:
+    //  line no 145 , L764419760 , bytecode index = 
     //  bipush 46
     stack[sp++].i = 46;
     method_exit(runtime);

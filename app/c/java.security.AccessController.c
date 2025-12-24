@@ -43,7 +43,7 @@ void func_java_security_AccessController__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 27, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 5 , L2141179775 , bytecode index = 
+    //  line no 5 , L1151755506 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 5;
     rstack[sp++].obj = rlocal[0].obj;
@@ -79,7 +79,7 @@ struct java_security_AccessControlContext* func_java_security_AccessController_g
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 28, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 6 , L1663619914 , bytecode index = 
+    //  line no 6 , L592959754 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 6;
     // new java/lang/Error
@@ -106,7 +106,7 @@ struct java_security_AccessControlContext* func_java_security_AccessController_g
         }
     }
     // athrow
-    //     L1663619914 in labeltable is :L1663619914
+    //     L592959754 in labeltable is :L592959754
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 6;
@@ -143,7 +143,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
     rlocal[1].obj = p1;
     rlocal[2].obj = p2;
     ; 
-    //  line no 7 , L364604394 , bytecode index = 
+    //  line no 7 , L341748265 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 7;
     // new java/lang/Error
@@ -170,7 +170,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
         }
     }
     // athrow
-    //     L364604394 in labeltable is :L364604394
+    //     L341748265 in labeltable is :L341748265
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 7;
@@ -206,7 +206,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 8 , L758013696 , bytecode index = 
+    //  line no 8 , L146370526 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 8;
     // new java/lang/Error
@@ -233,7 +233,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
         }
     }
     // athrow
-    //     L758013696 in labeltable is :L758013696
+    //     L146370526 in labeltable is :L146370526
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 8;
@@ -269,7 +269,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 9 , L48914743 , bytecode index = 
+    //  line no 9 , L1279309678 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 9;
     // new java/lang/Error
@@ -296,7 +296,7 @@ struct java_lang_Object* func_java_security_AccessController_doPrivileged__Ljava
         }
     }
     // athrow
-    //     L48914743 in labeltable is :L48914743
+    //     L1279309678 in labeltable is :L1279309678
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 9;

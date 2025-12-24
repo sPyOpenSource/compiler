@@ -1,6 +1,5 @@
 package com.ebsee.j2c;
 
-import com.ebsee.classparser.Method;
 import java.io.File;
 import java.lang.reflect.Modifier;
 import java.util.*;
@@ -351,8 +350,8 @@ public final class Util {
         return sig.getResult() + " " + getMethodRawName(className, methodName, sig.javaSignature) + "(" + sig.getCTypeArgsString() + ")";
     }
 
-    public static String getBridgeMethodName(Method method) {
-        return getBridgeMethodName(method.getClassFile().getThisClassName(), method.getMethodName(), method.getDescriptor());
+    public static String getBridgeMethodName(MethodSource method) {
+        return getBridgeMethodName(method.getDeclaringClassSource().getClassName(), method.getMethodName(), method.getMethodType());
     }
 
     public static String getBridgeMethodName(String className, String methodName, String signature) {

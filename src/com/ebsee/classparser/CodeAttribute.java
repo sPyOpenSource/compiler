@@ -1,9 +1,11 @@
 package com.ebsee.classparser;
 
+import jCPU.JavaVM.vm.Attribute;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import jx.classfile.constantpool.InvalidConstantPoolIndex;
 
 /**
  * Parses and stores the attributes from Java .class file'
@@ -16,17 +18,17 @@ public class CodeAttribute extends Attribute {
     /* Method info variables */
     private int attributeNameIndex;
     private int attributeLength;
-    private int maxStack;
-    private int maxLocals;
-    private int codeLength;
-    private byte[] code;
-    private int exceptionTableLength;
-    private ExceptionTableEntry[] exceptionTables;
-    private int attributesCount;
+    private final int maxStack;
+    private final int maxLocals;
+    private final int codeLength;
+    private final byte[] code;
+    private final int exceptionTableLength;
+    private final ExceptionTableEntry[] exceptionTables;
+    private final int attributesCount;
     private Attribute attributes[];
 
     /* Other local variables */
-    private String[] opcode;
+    private final String[] opcode;
     private String returnStr;
     private boolean invoked;
     private int invokeCountPerMethod;
@@ -35,10 +37,10 @@ public class CodeAttribute extends Attribute {
     private String beingCalledMethodName;
     private String beingCalledMethodType;
     private List<String> beingCalledMethodParameters;
-    private List<String> beingCalledMethodNames;
-    private List<String> beingCalledMethodSignatures;
+    private final List<String> beingCalledMethodNames;
+    private final List<String> beingCalledMethodSignatures;
     private String beingCalledMethodSignature;
-    private MethodFormatter mf;
+    private final MethodFormatter mf;
     private ConstantRef constantRef;
     private boolean overridden;
     private boolean returnValue;
@@ -81,7 +83,6 @@ public class CodeAttribute extends Attribute {
         }
     }
 
-
     private void getInvokes(ConstantPool cp) throws InvalidConstantPoolIndex {
         for (int i = 0; i < codeLength; i++) {
             invoked = isInvoke(opcode[i]);
@@ -92,7 +93,6 @@ public class CodeAttribute extends Attribute {
             }
         }
     }
-
 
     /**
      * Count as a method invoke if bytecode is
@@ -118,7 +118,6 @@ public class CodeAttribute extends Attribute {
         return returnValue;
     }
 
-
     /**
      * If bytecode value is INVOKESPECIAL  = 0xb7
      * then that method has overridden
@@ -136,7 +135,6 @@ public class CodeAttribute extends Attribute {
 
         return returnValue;
     }
-
 
     /**
      * Parse details of the invoked method
@@ -159,7 +157,6 @@ public class CodeAttribute extends Attribute {
             beingCalledMethodSignatures.add(beingCalledMethodSignature);
         }
     }
-
 
     /**
      * =======================================================================

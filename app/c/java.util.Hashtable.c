@@ -67,8 +67,8 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     RStackItem rstack[5];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 198, &rstack[0], &rlocal[0], &sp);
-    L837108062:
-    //  line no 68 , L837108062 , bytecode index = 
+    L888473870:
+    //  line no 68 , L888473870 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 68;
     rstack[sp++].obj = rlocal[0].obj;
@@ -90,9 +90,9 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     stack[sp - 2].i = stack[sp - 2].i * stack[sp - 1].i; 
     --sp;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L170144208;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L837108062;
     ; 
-    //  line no 69 , L482052083 , bytecode index = 
+    //  line no 69 , L170144208 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -109,9 +109,9 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->capacity_2 = stack[sp + 1].i;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L837108062;
-    L170144208:
-    //  line no 70 , L170144208 , bytecode index = 
+    goto L888473870;
+    L837108062:
+    //  line no 70 , L837108062 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -125,21 +125,21 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->mask_4 = stack[sp + 1].i;
     ; 
-    //  line no 72 , L1720339 , bytecode index = 
+    //  line no 72 , L482052083 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 73 , L460201727 , bytecode index = 
+    //  line no 73 , L1720339 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 74 , L812586739 , bytecode index = 
+    //  line no 74 , L460201727 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -157,7 +157,7 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->keys_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 75 , L1881901842 , bytecode index = 
+    //  line no 75 , L812586739 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -175,7 +175,7 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->values_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 76 , L585324508 , bytecode index = 
+    //  line no 76 , L1881901842 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -183,26 +183,26 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 78 , L1234250905 , bytecode index = 
+    //  line no 78 , L585324508 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L16868310:
+    L1234250905:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L16868310
+    // arraylength  label  L1234250905
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L769530879;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L16868310;
     ; 
-    //  line no 79 , L364639279 , bytecode index = 
+    //  line no 79 , L769530879 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L364639279 bc index = 
+    // arrload __refer  ,  L769530879 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -216,13 +216,13 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1427040229;
+    if(rstack[--sp].obj  == NULL) goto L364639279;
     ; 
-    //  line no 80 , L1604002113 , bytecode index = 
+    //  line no 80 , L1427040229 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L1604002113 bc index = 
+    // arrload __refer  ,  L1427040229 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -238,7 +238,7 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
     }
     rstack[sp++].obj = rlocal[2].obj;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L1604002113 bc index = 
+    // arrload __refer  ,  L1427040229 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -269,14 +269,14 @@ void func_java_util_Hashtable_rehash___V(JThreadRuntime *runtime){
         }
     }
     --sp; //pop
-    L1427040229:
-    //  line no 78 , L1427040229 , bytecode index = 
+    L364639279:
+    //  line no 78 , L364639279 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L16868310;
-    L769530879:
-    //  line no 82 , L769530879 , bytecode index = 
+    goto L1234250905;
+    L16868310:
+    //  line no 82 , L16868310 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -306,7 +306,7 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 199, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 89 , L1217875525 , bytecode index = 
+    //  line no 89 , L38262958 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 89;
     // new java/lang/StringBuffer
@@ -334,37 +334,37 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 90 , L1787079037 , bytecode index = 
+    //  line no 90 , L1217875525 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 92 , L1813187653 , bytecode index = 
+    //  line no 92 , L1787079037 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L1353530305:
+    L1813187653:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
-    // arraylength  label  L1353530305
+    // arraylength  label  L1813187653
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L574268151;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1353530305;
     ; 
-    //  line no 93 , L1832532108 , bytecode index = 
+    //  line no 93 , L574268151 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L1832532108 bc index = 
+    // arrload __refer  ,  L574268151 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -378,19 +378,19 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L423583818;
+    if(rstack[--sp].obj  == NULL) goto L1832532108;
     ; 
-    //  line no 95 , L552936351 , bytecode index = 
+    //  line no 95 , L423583818 , bytecode index = 
     stack[sp++].i = local[2].i;
-    if(stack[--sp].i  == 0) goto L1471086700;
+    if(stack[--sp].i  == 0) goto L552936351;
     ; 
-    //  line no 96 , L1810742349 , bytecode index = 
+    //  line no 96 , L1471086700 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    goto L154319946;
-    L1471086700:
-    //  line no 98 , L1471086700 , bytecode index = 
+    goto L1810742349;
+    L552936351:
+    //  line no 98 , L552936351 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 461);
@@ -413,15 +413,15 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
         }
     }
     --sp; //pop
-    L154319946:
-    //  line no 99 , L154319946 , bytecode index = 
+    L1810742349:
+    //  line no 99 , L1810742349 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L154319946 bc index = 
+    // arrload __refer  ,  L1810742349 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -465,7 +465,7 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
     }
     --sp; //pop
     ; 
-    //  line no 100 , L13803304 , bytecode index = 
+    //  line no 100 , L154319946 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 462);
@@ -489,14 +489,14 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
     }
     --sp; //pop
     ; 
-    //  line no 101 , L802243390 , bytecode index = 
+    //  line no 101 , L13803304 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L802243390 bc index = 
+    // arrload __refer  ,  L13803304 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -539,14 +539,14 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
         }
     }
     --sp; //pop
-    L423583818:
-    //  line no 92 , L423583818 , bytecode index = 
+    L1832532108:
+    //  line no 92 , L1832532108 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1353530305;
-    L574268151:
-    //  line no 104 , L574268151 , bytecode index = 
+    goto L1813187653;
+    L1353530305:
+    //  line no 104 , L1353530305 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 463);
@@ -570,7 +570,7 @@ struct java_lang_String* func_java_util_Hashtable_toString___Ljava_lang_String_2
     }
     --sp; //pop
     ; 
-    //  line no 106 , L702061917 , bytecode index = 
+    //  line no 106 , L802243390 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/StringBuffer.toString()Ljava/lang/String;
     {
@@ -619,28 +619,28 @@ void func_java_util_Hashtable_clear___V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 200, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 128 , L556488341 , bytecode index = 
+    //  line no 128 , L890545344 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 128;
     // iconst_0
     stack[sp++].i = 0;
     local[1].i = stack[--sp].i;
-    L71706941:
+    L556488341:
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
-    // arraylength  label  L71706941
+    // arraylength  label  L556488341
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1771667101;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L71706941;
     ; 
-    //  line no 129 , L2033968586 , bytecode index = 
+    //  line no 129 , L1771667101 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
@@ -663,7 +663,7 @@ void func_java_util_Hashtable_clear___V(JThreadRuntime *runtime){
     rstack[sp - 2].obj = rstack[sp - 3].obj; 
     rstack[sp - 3].obj = rstack[sp + 0].obj; 
     ++sp;
-    // arrstore __refer  ,  L2033968586 bc index = 
+    // arrstore __refer  ,  L1771667101 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -678,7 +678,7 @@ void func_java_util_Hashtable_clear___V(JThreadRuntime *runtime){
         }
         arr->prop.as_obj_arr[idx] = value;
     }
-    // arrstore __refer  ,  L2033968586 bc index = 
+    // arrstore __refer  ,  L1771667101 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -694,13 +694,13 @@ void func_java_util_Hashtable_clear___V(JThreadRuntime *runtime){
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 128 , L48208774 , bytecode index = 
+    //  line no 128 , L2033968586 , bytecode index = 
     // iinc slot 1 value 1
     local[1].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L71706941;
-    L1771667101:
-    //  line no 130 , L1771667101 , bytecode index = 
+    goto L556488341;
+    L71706941:
+    //  line no 130 , L71706941 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -708,7 +708,7 @@ void func_java_util_Hashtable_clear___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 131 , L929383713 , bytecode index = 
+    //  line no 131 , L48208774 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -739,13 +739,13 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     StackFrame *__frame = method_enter(runtime, 201, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 136 , L865667596 , bytecode index = 
+    //  line no 136 , L363509958 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 136;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L1306834002;
+    if(rstack[--sp].obj  != NULL) goto L865667596;
     ; 
-    //  line no 137 , L1354083458 , bytecode index = 
+    //  line no 137 , L1306834002 , bytecode index = 
     // new java/lang/NullPointerException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 1);
     // dup
@@ -768,15 +768,15 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         }
     }
     // athrow
-    //     L1354083458 in labeltable is :L1354083458
+    //     L1306834002 in labeltable is :L1306834002
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 137;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1306834002:
-    //  line no 139 , L1306834002 , bytecode index = 
+    L865667596:
+    //  line no 139 , L865667596 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/Object.hashCode()I
     {
@@ -802,20 +802,20 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 141 , L270095066 , bytecode index = 
+    //  line no 141 , L1354083458 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L1806431167:
+    L270095066:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L50699452;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1806431167;
     ; 
-    //  line no 143 , L2125062626 , bytecode index = 
+    //  line no 143 , L50699452 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -828,13 +828,13 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 145 , L620557167 , bytecode index = 
+    //  line no 145 , L2125062626 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L620557167 bc index = 
+    // arrload __refer  ,  L2125062626 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -848,15 +848,15 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L285133380;
+    if(rstack[--sp].obj  == NULL) goto L620557167;
     ; 
-    //  line no 146 , L1068586139 , bytecode index = 
+    //  line no 146 , L285133380 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1068586139 bc index = 
+    // arrload __refer  ,  L285133380 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -887,15 +887,15 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L245765246;
+    if(stack[--sp].i  == 0) goto L1068586139;
     ; 
-    //  line no 148 , L1292040526 , bytecode index = 
+    //  line no 148 , L245765246 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1292040526 bc index = 
+    // arrload __refer  ,  L245765246 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -911,35 +911,35 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     }
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L285133380:
-    //  line no 155 , L285133380 , bytecode index = 
+    L620557167:
+    //  line no 155 , L620557167 , bytecode index = 
     stack[sp++].i = local[4].i;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 156 , L726181440 , bytecode index = 
+    //  line no 156 , L1292040526 , bytecode index = 
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i - stack[sp - 1].i; 
     --sp;
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 158 , L510147134 , bytecode index = 
+    //  line no 158 , L726181440 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     local[7].i = stack[--sp].i;
-    L542365801:
+    L510147134:
     stack[sp++].i = local[7].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2051120548;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L542365801;
     ; 
-    //  line no 160 , L341138954 , bytecode index = 
+    //  line no 160 , L2051120548 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[7].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -952,13 +952,13 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 162 , L1270038388 , bytecode index = 
+    //  line no 162 , L341138954 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1270038388 bc index = 
+    // arrload __refer  ,  L341138954 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -972,13 +972,13 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1973233403;
+    if(rstack[--sp].obj  == NULL) goto L1270038388;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1270038388 bc index = 
+    // arrload __refer  ,  L341138954 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -994,7 +994,7 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 163 , L63387985 , bytecode index = 
+    //  line no 163 , L1973233403 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -1011,12 +1011,12 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L1029472813;
+    if(stack[--sp].i  != 0) goto L63387985;
     ; 
-    //  line no 164 , L1866875501 , bytecode index = 
-    goto L1973233403;
-    L1029472813:
-    //  line no 166 , L1029472813 , bytecode index = 
+    //  line no 164 , L1029472813 , bytecode index = 
+    goto L1270038388;
+    L63387985:
+    //  line no 166 , L63387985 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
@@ -1027,7 +1027,7 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1029472813 bc index = 
+    // arrload __refer  ,  L63387985 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1041,7 +1041,7 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    // arrstore __refer  ,  L1029472813 bc index = 
+    // arrstore __refer  ,  L63387985 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -1057,7 +1057,7 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 167 , L1936722816 , bytecode index = 
+    //  line no 167 , L1866875501 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
@@ -1068,7 +1068,7 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1936722816 bc index = 
+    // arrload __refer  ,  L1866875501 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1082,6 +1082,30 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
+    // arrstore __refer  ,  L1866875501 bc index = 
+    {
+        ;
+        __refer value = rstack[--sp].obj;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_obj_arr[idx] = value;
+    }
+    ; 
+    //  line no 169 , L1936722816 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/Hashtable keys [Ljava/lang/Object;
+    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
+    sp += 0;
+    stack[sp++].i = local[4].i;
+    // aconst null
+    rstack[sp++].obj = NULL;
     // arrstore __refer  ,  L1936722816 bc index = 
     {
         ;
@@ -1098,10 +1122,10 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 169 , L1237825806 , bytecode index = 
+    //  line no 170 , L1237825806 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/Hashtable keys [Ljava/lang/Object;
-    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
+    // getfield java/util/Hashtable values [Ljava/lang/Object;
+    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[4].i;
     // aconst null
@@ -1122,37 +1146,13 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 170 , L282265585 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/Hashtable values [Ljava/lang/Object;
-    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
-    sp += 0;
-    stack[sp++].i = local[4].i;
-    // aconst null
-    rstack[sp++].obj = NULL;
-    // arrstore __refer  ,  L282265585 bc index = 
-    {
-        ;
-        __refer value = rstack[--sp].obj;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_obj_arr[idx] = value;
-    }
-    ; 
-    //  line no 172 , L1297836716 , bytecode index = 
+    //  line no 172 , L282265585 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1297836716 bc index = 
+    // arrload __refer  ,  L282265585 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1168,26 +1168,26 @@ struct java_lang_Object* func_java_util_Hashtable_get__Ljava_lang_Object_2_Ljava
     }
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1973233403:
-    //  line no 158 , L1973233403 , bytecode index = 
+    L1270038388:
+    //  line no 158 , L1270038388 , bytecode index = 
     // iinc slot 7 value 1
     local[7].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L542365801;
-    L2051120548:
-    //  line no 175 , L2051120548 , bytecode index = 
+    goto L510147134;
+    L542365801:
+    //  line no 175 , L542365801 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L245765246:
-    //  line no 141 , L245765246 , bytecode index = 
+    L1068586139:
+    //  line no 141 , L1068586139 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1806431167;
-    L50699452:
-    //  line no 178 , L50699452 , bytecode index = 
+    goto L270095066;
+    L1806431167:
+    //  line no 178 , L1806431167 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -1221,7 +1221,7 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 184 , L1249875355 , bytecode index = 
+    //  line no 184 , L1048855692 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 184;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1243,9 +1243,9 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     stack[sp - 2].i = stack[sp - 2].i * stack[sp - 1].i; 
     --sp;
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1117519786;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1249875355;
     ; 
-    //  line no 185 , L1409545055 , bytecode index = 
+    //  line no 185 , L1117519786 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/util/Hashtable.rehash()V
     {
@@ -1263,14 +1263,14 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
             goto __ExceptionHandler;
         }
     }
-    L1117519786:
-    //  line no 187 , L1117519786 , bytecode index = 
+    L1249875355:
+    //  line no 187 , L1249875355 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  == NULL) goto L1212116343;
+    if(rstack[--sp].obj  == NULL) goto L1409545055;
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  != NULL) goto L2119891622;
-    L1212116343:
-    //  line no 188 , L1212116343 , bytecode index = 
+    if(rstack[--sp].obj  != NULL) goto L1212116343;
+    L1409545055:
+    //  line no 188 , L1409545055 , bytecode index = 
     // new java/lang/NullPointerException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 1);
     // dup
@@ -1293,15 +1293,15 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         }
     }
     // athrow
-    //     L1212116343 in labeltable is :L1212116343
+    //     L1409545055 in labeltable is :L1409545055
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 188;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L2119891622:
-    //  line no 196 , L2119891622 , bytecode index = 
+    L1212116343:
+    //  line no 196 , L1212116343 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/Object.hashCode()I
     {
@@ -1327,20 +1327,20 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     --sp;
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 198 , L1671507048 , bytecode index = 
+    //  line no 198 , L2119891622 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
-    L687059528:
+    L1671507048:
     stack[sp++].i = local[4].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L454305524;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L687059528;
     ; 
-    //  line no 200 , L850551034 , bytecode index = 
+    //  line no 200 , L454305524 , bytecode index = 
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[4].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -1353,13 +1353,13 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     --sp;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 202 , L1478150312 , bytecode index = 
+    //  line no 202 , L850551034 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1478150312 bc index = 
+    // arrload __refer  ,  L850551034 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1373,15 +1373,15 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1833848849;
+    if(rstack[--sp].obj  == NULL) goto L1478150312;
     ; 
-    //  line no 203 , L1473771722 , bytecode index = 
+    //  line no 203 , L1833848849 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1473771722 bc index = 
+    // arrload __refer  ,  L1833848849 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1412,15 +1412,15 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1992550266;
+    if(stack[--sp].i  == 0) goto L1473771722;
     ; 
-    //  line no 204 , L2014461570 , bytecode index = 
+    //  line no 204 , L1992550266 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L2014461570 bc index = 
+    // arrload __refer  ,  L1992550266 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1436,13 +1436,36 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 206 , L1740846921 , bytecode index = 
+    //  line no 206 , L2014461570 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
     rstack[sp++].obj = rlocal[1].obj;
+    // arrstore __refer  ,  L2014461570 bc index = 
+    {
+        ;
+        __refer value = rstack[--sp].obj;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_obj_arr[idx] = value;
+    }
+    ; 
+    //  line no 207 , L1740846921 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/Hashtable values [Ljava/lang/Object;
+    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
+    sp += 0;
+    stack[sp++].i = local[5].i;
+    rstack[sp++].obj = rlocal[2].obj;
     // arrstore __refer  ,  L1740846921 bc index = 
     {
         ;
@@ -1459,42 +1482,19 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 207 , L263885523 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/Hashtable values [Ljava/lang/Object;
-    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
-    sp += 0;
-    stack[sp++].i = local[5].i;
-    rstack[sp++].obj = rlocal[2].obj;
-    // arrstore __refer  ,  L263885523 bc index = 
-    {
-        ;
-        __refer value = rstack[--sp].obj;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_obj_arr[idx] = value;
-    }
-    ; 
-    //  line no 209 , L1714113641 , bytecode index = 
+    //  line no 209 , L263885523 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1833848849:
-    //  line no 215 , L1833848849 , bytecode index = 
+    L1478150312:
+    //  line no 215 , L1478150312 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
     rstack[sp++].obj = rlocal[1].obj;
-    // arrstore __refer  ,  L1833848849 bc index = 
+    // arrstore __refer  ,  L1478150312 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -1510,14 +1510,14 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 216 , L262445056 , bytecode index = 
+    //  line no 216 , L1714113641 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[5].i;
     rstack[sp++].obj = rlocal[2].obj;
-    // arrstore __refer  ,  L262445056 bc index = 
+    // arrstore __refer  ,  L1714113641 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -1533,7 +1533,7 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 218 , L1898155970 , bytecode index = 
+    //  line no 218 , L262445056 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1550,19 +1550,19 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 220 , L710190911 , bytecode index = 
+    //  line no 220 , L1898155970 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
-    L379645464:
+    L710190911:
     stack[sp++].i = local[4].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1030684756;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L379645464;
     ; 
-    //  line no 222 , L1348453796 , bytecode index = 
+    //  line no 222 , L1030684756 , bytecode index = 
     stack[sp++].i = local[3].i;
     stack[sp++].i = local[4].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -1575,13 +1575,13 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     --sp;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 224 , L1606286799 , bytecode index = 
+    //  line no 224 , L1348453796 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1606286799 bc index = 
+    // arrload __refer  ,  L1348453796 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1595,13 +1595,13 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1325144078;
+    if(rstack[--sp].obj  == NULL) goto L1606286799;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L1606286799 bc index = 
+    // arrload __refer  ,  L1348453796 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1617,7 +1617,7 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 225 , L198499365 , bytecode index = 
+    //  line no 225 , L1325144078 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -1634,18 +1634,18 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L621300254;
+    if(stack[--sp].i  != 0) goto L198499365;
     ; 
-    //  line no 226 , L359368949 , bytecode index = 
-    goto L1325144078;
-    L621300254:
-    //  line no 228 , L621300254 , bytecode index = 
+    //  line no 226 , L621300254 , bytecode index = 
+    goto L1606286799;
+    L198499365:
+    //  line no 228 , L198499365 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[5].i;
-    // arrload __refer  ,  L621300254 bc index = 
+    // arrload __refer  ,  L198499365 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1661,10 +1661,34 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 230 , L1006227006 , bytecode index = 
+    //  line no 230 , L359368949 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
+    sp += 0;
+    stack[sp++].i = local[5].i;
+    // aconst null
+    rstack[sp++].obj = NULL;
+    // arrstore __refer  ,  L359368949 bc index = 
+    {
+        ;
+        __refer value = rstack[--sp].obj;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_obj_arr[idx] = value;
+    }
+    ; 
+    //  line no 231 , L1006227006 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/Hashtable values [Ljava/lang/Object;
+    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[5].i;
     // aconst null
@@ -1685,31 +1709,7 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 231 , L375457936 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/Hashtable values [Ljava/lang/Object;
-    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
-    sp += 0;
-    stack[sp++].i = local[5].i;
-    // aconst null
-    rstack[sp++].obj = NULL;
-    // arrstore __refer  ,  L375457936 bc index = 
-    {
-        ;
-        __refer value = rstack[--sp].obj;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_obj_arr[idx] = value;
-    }
-    ; 
-    //  line no 233 , L1910438136 , bytecode index = 
+    //  line no 233 , L375457936 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1726,30 +1726,30 @@ struct java_lang_Object* func_java_util_Hashtable_put__Ljava_lang_Object_2Ljava_
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 235 , L943454742 , bytecode index = 
+    //  line no 235 , L1910438136 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1325144078:
-    //  line no 220 , L1325144078 , bytecode index = 
+    L1606286799:
+    //  line no 220 , L1606286799 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L379645464;
-    L1030684756:
-    //  line no 238 , L1030684756 , bytecode index = 
+    goto L710190911;
+    L379645464:
+    //  line no 238 , L379645464 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1992550266:
-    //  line no 198 , L1992550266 , bytecode index = 
+    L1473771722:
+    //  line no 198 , L1473771722 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L687059528;
-    L454305524:
-    //  line no 241 , L454305524 , bytecode index = 
+    goto L1671507048;
+    L687059528:
+    //  line no 241 , L687059528 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -1782,7 +1782,7 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     StackFrame *__frame = method_enter(runtime, 203, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 247 , L1409154977 , bytecode index = 
+    //  line no 247 , L1296456465 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 247;
     rstack[sp++].obj = rlocal[1].obj;
@@ -1810,20 +1810,20 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 249 , L1432536094 , bytecode index = 
+    //  line no 249 , L1409154977 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L854487022:
+    L1432536094:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1292838001;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L854487022;
     ; 
-    //  line no 251 , L1899223686 , bytecode index = 
+    //  line no 251 , L1292838001 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -1836,13 +1836,13 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 253 , L842179210 , bytecode index = 
+    //  line no 253 , L1899223686 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L842179210 bc index = 
+    // arrload __refer  ,  L1899223686 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1856,13 +1856,13 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1944201789;
+    if(rstack[--sp].obj  == NULL) goto L842179210;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L842179210 bc index = 
+    // arrload __refer  ,  L1899223686 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1878,7 +1878,7 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 254 , L1207608476 , bytecode index = 
+    //  line no 254 , L1944201789 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -1895,18 +1895,18 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L686989583;
+    if(stack[--sp].i  != 0) goto L1207608476;
     ; 
-    //  line no 255 , L259219561 , bytecode index = 
-    goto L1944201789;
-    L686989583:
-    //  line no 257 , L686989583 , bytecode index = 
+    //  line no 255 , L686989583 , bytecode index = 
+    goto L842179210;
+    L1207608476:
+    //  line no 257 , L1207608476 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L686989583 bc index = 
+    // arrload __refer  ,  L1207608476 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -1922,10 +1922,34 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 259 , L1839337592 , bytecode index = 
+    //  line no 259 , L259219561 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
+    sp += 0;
+    stack[sp++].i = local[4].i;
+    // aconst null
+    rstack[sp++].obj = NULL;
+    // arrstore __refer  ,  L259219561 bc index = 
+    {
+        ;
+        __refer value = rstack[--sp].obj;
+        s32 idx = stack[--sp].i;
+        JArray *arr = rstack[--sp].obj;
+        if (!arr) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        } else if (idx < 0 || idx >= arr->prop.arr_length) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
+            goto __ExceptionHandler;
+        }
+        arr->prop.as_obj_arr[idx] = value;
+    }
+    ; 
+    //  line no 260 , L1839337592 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/Hashtable values [Ljava/lang/Object;
+    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[4].i;
     // aconst null
@@ -1946,31 +1970,7 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
         arr->prop.as_obj_arr[idx] = value;
     }
     ; 
-    //  line no 260 , L2146338580 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/Hashtable values [Ljava/lang/Object;
-    rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
-    sp += 0;
-    stack[sp++].i = local[4].i;
-    // aconst null
-    rstack[sp++].obj = NULL;
-    // arrstore __refer  ,  L2146338580 bc index = 
-    {
-        ;
-        __refer value = rstack[--sp].obj;
-        s32 idx = stack[--sp].i;
-        JArray *arr = rstack[--sp].obj;
-        if (!arr) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        } else if (idx < 0 || idx >= arr->prop.arr_length) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 5, 
-            goto __ExceptionHandler;
-        }
-        arr->prop.as_obj_arr[idx] = value;
-    }
-    ; 
-    //  line no 262 , L1110031167 , bytecode index = 
+    //  line no 262 , L2146338580 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1987,18 +1987,18 @@ struct java_lang_Object* func_java_util_Hashtable_remove__Ljava_lang_Object_2_Lj
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 264 , L1456339771 , bytecode index = 
+    //  line no 264 , L1110031167 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1944201789:
-    //  line no 249 , L1944201789 , bytecode index = 
+    L842179210:
+    //  line no 249 , L842179210 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L854487022;
-    L1292838001:
-    //  line no 267 , L1292838001 , bytecode index = 
+    goto L1432536094;
+    L854487022:
+    //  line no 267 , L854487022 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -2030,7 +2030,7 @@ struct java_util_Enumeration* func_java_util_Hashtable_keys___Ljava_util_Enumera
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 204, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 273 , L550302731 , bytecode index = 
+    //  line no 273 , L730923082 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 273;
     // new java/util/HashtableEnumeration
@@ -2087,7 +2087,7 @@ struct java_util_Enumeration* func_java_util_Hashtable_elements___Ljava_util_Enu
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 205, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 279 , L379478400 , bytecode index = 
+    //  line no 279 , L800281454 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 279;
     // new java/util/HashtableEnumeration
@@ -2143,7 +2143,7 @@ s32 func_java_util_Hashtable_size___I(JThreadRuntime *runtime){
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 285 , L1912960603 , bytecode index = 
+    //  line no 285 , L900636745 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable size I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->size_5;
@@ -2169,21 +2169,21 @@ s8 func_java_util_Hashtable_isEmpty___Z(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 207, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 291 , L586127428 , bytecode index = 
+    //  line no 291 , L1201173334 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 291;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable size I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->size_5;
     sp += 0;
-    if(stack[--sp].i  != 0) goto L1652807864;
+    if(stack[--sp].i  != 0) goto L586127428;
     // iconst_1
     stack[sp++].i = 1;
-    goto L997055773;
-    L1652807864:
+    goto L1652807864;
+    L586127428:
     // iconst_0
     stack[sp++].i = 0;
-    L997055773:
+    L1652807864:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -2214,19 +2214,19 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
     StackFrame *__frame = method_enter(runtime, 208, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 296 , L1628998132 , bytecode index = 
+    //  line no 296 , L1063980005 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 296;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L497208183;
+    if(rstack[--sp].obj  != NULL) goto L1628998132;
     ; 
-    //  line no 297 , L1223850219 , bytecode index = 
+    //  line no 297 , L497208183 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L497208183:
-    //  line no 299 , L497208183 , bytecode index = 
+    L1628998132:
+    //  line no 299 , L1628998132 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/Object.hashCode()I
     {
@@ -2252,20 +2252,20 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
     --sp;
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 301 , L790722099 , bytecode index = 
+    //  line no 301 , L1223850219 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L173214986:
+    L790722099:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L27362884;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L173214986;
     ; 
-    //  line no 303 , L1523553211 , bytecode index = 
+    //  line no 303 , L27362884 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
@@ -2278,13 +2278,13 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
     --sp;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 305 , L2122049087 , bytecode index = 
+    //  line no 305 , L1523553211 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L2122049087 bc index = 
+    // arrload __refer  ,  L1523553211 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -2298,13 +2298,13 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L1825738663;
+    if(rstack[--sp].obj  == NULL) goto L2122049087;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable keys [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->keys_0;
     sp += 0;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L2122049087 bc index = 
+    // arrload __refer  ,  L1523553211 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -2320,7 +2320,7 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 306 , L1632413663 , bytecode index = 
+    //  line no 306 , L1825738663 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -2337,21 +2337,21 @@ s8 func_java_util_Hashtable_containsKey__Ljava_lang_Object_2_Z(JThreadRuntime *r
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1825738663;
+    if(stack[--sp].i  == 0) goto L2122049087;
     ; 
-    //  line no 307 , L1194893830 , bytecode index = 
+    //  line no 307 , L1632413663 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1825738663:
-    //  line no 301 , L1825738663 , bytecode index = 
+    L2122049087:
+    //  line no 301 , L2122049087 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L173214986;
-    L27362884:
-    //  line no 309 , L27362884 , bytecode index = 
+    goto L790722099;
+    L173214986:
+    //  line no 309 , L173214986 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -2384,38 +2384,38 @@ s8 func_java_util_Hashtable_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runt
     StackFrame *__frame = method_enter(runtime, 209, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 314 , L503642634 , bytecode index = 
+    //  line no 314 , L1725165248 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 314;
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L452121674;
+    if(rstack[--sp].obj  != NULL) goto L503642634;
     ; 
-    //  line no 315 , L416841088 , bytecode index = 
+    //  line no 315 , L452121674 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L452121674:
-    //  line no 317 , L452121674 , bytecode index = 
+    L503642634:
+    //  line no 317 , L503642634 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L1636050357:
+    L416841088:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1483298597;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1636050357;
     ; 
-    //  line no 318 , L1412794598 , bytecode index = 
+    //  line no 318 , L1483298597 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1412794598 bc index = 
+    // arrload __refer  ,  L1483298597 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -2429,13 +2429,13 @@ s8 func_java_util_Hashtable_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runt
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    if(rstack[--sp].obj  == NULL) goto L257608605;
+    if(rstack[--sp].obj  == NULL) goto L1412794598;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable values [Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->values_1;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1412794598 bc index = 
+    // arrload __refer  ,  L1483298597 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -2451,7 +2451,7 @@ s8 func_java_util_Hashtable_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runt
     }
     rstack[sp++].obj = rlocal[1].obj;
     ; 
-    //  line no 319 , L1337192014 , bytecode index = 
+    //  line no 319 , L257608605 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -2468,21 +2468,21 @@ s8 func_java_util_Hashtable_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L257608605;
+    if(stack[--sp].i  == 0) goto L1412794598;
     ; 
-    //  line no 320 , L1567705314 , bytecode index = 
+    //  line no 320 , L1337192014 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L257608605:
-    //  line no 317 , L257608605 , bytecode index = 
+    L1412794598:
+    //  line no 317 , L1412794598 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1636050357;
-    L1483298597:
-    //  line no 322 , L1483298597 , bytecode index = 
+    goto L416841088;
+    L1636050357:
+    //  line no 322 , L1636050357 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -2516,7 +2516,7 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     local[0].i = p0;
     local[1].i = p1;
     ; 
-    //  line no 328 , L2082781203 , bytecode index = 
+    //  line no 328 , L637241618 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 328;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2536,14 +2536,14 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
         }
     }
     ; 
-    //  line no 329 , L741730375 , bytecode index = 
+    //  line no 329 , L2082781203 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield java/util/Hashtable load I
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->load_3 = stack[sp + 1].i;
     ; 
-    //  line no 330 , L2077528955 , bytecode index = 
+    //  line no 330 , L741730375 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -2551,21 +2551,21 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->size_5 = stack[sp + 1].i;
     ; 
-    //  line no 331 , L35534346 , bytecode index = 
+    //  line no 331 , L2077528955 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
     // putfield java/util/Hashtable capacity I
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->capacity_2 = stack[sp + 1].i;
-    L1537471098:
+    L35534346:
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
     stack[sp - 1].i = ((struct java_util_Hashtable*)rstack[sp - 1].obj)->capacity_2;
     sp += 0;
     stack[sp++].i = local[1].i;
     sp -= 2;
-    if(stack[sp + 0].i  > stack[sp + 1].i) goto L1490509465;
+    if(stack[sp + 0].i  > stack[sp + 1].i) goto L1537471098;
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -2582,9 +2582,9 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->capacity_2 = stack[sp + 1].i;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1537471098;
-    L1490509465:
-    //  line no 332 , L1490509465 , bytecode index = 
+    goto L35534346;
+    L1537471098:
+    //  line no 332 , L1537471098 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -2602,7 +2602,7 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->keys_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 333 , L122114483 , bytecode index = 
+    //  line no 333 , L1490509465 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -2620,7 +2620,7 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->values_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 334 , L1947896119 , bytecode index = 
+    //  line no 334 , L122114483 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Hashtable capacity I
@@ -2634,7 +2634,7 @@ void func_java_util_Hashtable__init___II_V(JThreadRuntime *runtime, s32 p0, s32 
     sp -= 2;
     ((struct java_util_Hashtable*)rstack[sp + 0].obj)->mask_4 = stack[sp + 1].i;
     ; 
-    //  line no 335 , L812553708 , bytecode index = 
+    //  line no 335 , L1947896119 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2665,7 +2665,7 @@ void func_java_util_Hashtable__init___I_V(JThreadRuntime *runtime, s32 p0){
     StackFrame *__frame = method_enter(runtime, 211, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 339 , L1876443073 , bytecode index = 
+    //  line no 339 , L1387210478 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 339;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2688,7 +2688,7 @@ void func_java_util_Hashtable__init___I_V(JThreadRuntime *runtime, s32 p0){
         }
     }
     ; 
-    //  line no 340 , L1328238652 , bytecode index = 
+    //  line no 340 , L1876443073 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2718,7 +2718,7 @@ void func_java_util_Hashtable__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 212, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 344 , L547201549 , bytecode index = 
+    //  line no 344 , L195984832 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 344;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2740,7 +2740,7 @@ void func_java_util_Hashtable__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 345 , L236304360 , bytecode index = 
+    //  line no 345 , L547201549 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

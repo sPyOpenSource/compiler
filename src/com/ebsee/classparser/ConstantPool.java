@@ -1,5 +1,7 @@
 package com.ebsee.classparser;
+
 import java.io.*;
+import jx.classfile.constantpool.InvalidConstantPoolIndex;
 
 /**
  * Parses and stores the constant pool from a Java .class file.
@@ -8,7 +10,7 @@ import java.io.*;
  */
 public class ConstantPool
 {
-    private CPEntry[] entries;
+    private final CPEntry[] entries;
 
     /**
      * Parses the constant pool, including the length, constructing a
@@ -66,11 +68,14 @@ public class ConstantPool
         return entries[index];
     }
 
-    /** Returns a formatted String representation of the constant pool. */
+    /** @return a formatted String representation of the constant pool. */
+    @Override
     public String toString()
     {
-        String s = "Index  Entry type          Entry values\n" +
-                "---------------------------------------\n";
+        String s = """
+                   Index  Entry type          Entry values
+                   ---------------------------------------
+                   """;
         for(int i = 0; i < entries.length; i++)
         {
             if(entries[i] != null)
@@ -81,14 +86,4 @@ public class ConstantPool
         }
         return s;
     }
-}
-
-/**
- * Thrown when an invalid index into the constant pool is given. That is,
- * index is zero (or negative), greater than the index of the last entry, or
- * represents the (unused) entry following a Long or Double.
- */
-class InvalidConstantPoolIndex extends ClassFileParserException
-{
-    public InvalidConstantPoolIndex(String msg) { super(msg); }
 }
