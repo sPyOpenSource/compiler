@@ -266,8 +266,7 @@ public class ByteCodeConstantPool {
         }
 
         public boolean equals(Object o) {
-            if (o instanceof InterfaceMethodRefPoolEntry) {
-                InterfaceMethodRefPoolEntry other = (InterfaceMethodRefPoolEntry) o;
+            if (o instanceof InterfaceMethodRefPoolEntry other) {
                 return other.classIndex == classIndex
                         && other.nameAndTypeIndex == nameAndTypeIndex;
             } else {

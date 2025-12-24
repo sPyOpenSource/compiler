@@ -5,14 +5,8 @@
  */
 package com.ebsee.invoke.bytecode;
 
-
-import com.ebsee.invoke.CallSite;
-import com.ebsee.invoke.MethodHandle;
-
-import java.lang.reflect.Executable;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,8 +23,6 @@ public class LambdaUtil {
         return false;
     }
 
-
-
 //    /**
 //     * 返回c MethodInfo 地址
 //     *
@@ -46,7 +38,6 @@ public class LambdaUtil {
 //        }
 //    }
 
-
     public static String getDescriptor(Method m) {
         return m.toString();
     }
@@ -59,7 +50,6 @@ public class LambdaUtil {
         return s;
     }
 
-
     public static String[] getMethodPara(String descriptor) {
         List<String> paras = splitSignature(
                 descriptor.substring(descriptor.indexOf("(") + 1, descriptor.indexOf(")"))
@@ -71,7 +61,6 @@ public class LambdaUtil {
     public static Method findMethod(DynamicClassLoader loader, String className, String methodName, String spec) {
         return null;
     }
-
 
     static public String getMethodSignature(Class<?>[] ptypes, Class<?> rtype) {
         StringBuilder sb = new StringBuilder();
@@ -104,7 +93,6 @@ public class LambdaUtil {
         }
         return null;
     }
-
 
     static public Class getClassByDescriptor(String s) {
         switch (s.charAt(0)) {
@@ -145,7 +133,6 @@ public class LambdaUtil {
                 throw new RuntimeException("class not found:" + s);
         }
     }
-
 
     //Ljava/util/List<Ljava/lang/Object;>;BII
     public static List<String> splitSignature(String signature) {

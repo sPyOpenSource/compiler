@@ -9,16 +9,12 @@
    details. */
 package com.ebsee.invoke;
 
-
 import com.ebsee.invoke.bytecode.ByteCodeAssembler;
-import com.ebsee.invoke.bytecode.DynamicClassLoader;
 import com.ebsee.invoke.bytecode.LambdaUtil;
+import static com.ebsee.invoke.bytecode.ByteCodeAssembler.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.ebsee.invoke.bytecode.ByteCodeAssembler.*;
-
 
 public final class MethodType implements java.io.Serializable {
 
@@ -251,10 +247,12 @@ public final class MethodType implements java.io.Serializable {
             return return_; // :)
         }
 
+        @Override
         public String spec() {
             return spec;
         }
 
+        @Override
         public boolean isPrimitive() {
             return LambdaUtil.isPrimitive(spec);
         }

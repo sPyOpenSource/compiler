@@ -1,6 +1,5 @@
 package com.ebsee.invoke;
 
-
 public class CallSite {
 
     MethodHandle target;
@@ -26,4 +25,5 @@ public class CallSite {
         }
         return null;
     }
+    
 }

@@ -66,7 +66,7 @@ public class ClassHelper {
         if(className.endsWith(".class")){
             //System.out.println(className);
             return map.get(className);
-        } else return map.get(className+".class");
+        } else return map.get(className + ".class");
     }
     
     public Set<String> getAllClass(){
