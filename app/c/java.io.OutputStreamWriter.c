@@ -59,7 +59,7 @@ void func_java_io_OutputStreamWriter__init___Ljava_io_OutputStream_2_V(JThreadRu
     StackFrame *__frame = method_enter(runtime, 213, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 92 , L875313400 , bytecode index = 
+    //  line no 92 , L1670546046 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 92;
     rstack[sp++].obj = rlocal[0].obj;
@@ -79,7 +79,7 @@ void func_java_io_OutputStreamWriter__init___Ljava_io_OutputStream_2_V(JThreadRu
         }
     }
     ; 
-    //  line no 94 , L210281271 , bytecode index = 
+    //  line no 94 , L785570251 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -111,7 +111,7 @@ void func_java_io_OutputStreamWriter__init___Ljava_io_OutputStream_2Ljava_lang_S
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 112 , L1213818572 , bytecode index = 
+    //  line no 112 , L1138410383 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 112;
     rstack[sp++].obj = rlocal[0].obj;
@@ -131,7 +131,7 @@ void func_java_io_OutputStreamWriter__init___Ljava_io_OutputStream_2Ljava_lang_S
         }
     }
     ; 
-    //  line no 114 , L501705927 , bytecode index = 
+    //  line no 114 , L875313400 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -161,7 +161,7 @@ void func_java_io_OutputStreamWriter_close___V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 215, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 131 , L1497018177 , bytecode index = 
+    //  line no 131 , L1560940633 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 131;
     method_exit(runtime);
@@ -193,7 +193,7 @@ void func_java_io_OutputStreamWriter_flush___V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 216, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 144 , L2087785333 , bytecode index = 
+    //  line no 144 , L501705927 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 144;
     method_exit(runtime);
@@ -225,7 +225,7 @@ struct java_lang_String* func_java_io_OutputStreamWriter_getEncoding___Ljava_lan
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 217, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 158 , L1526970878 , bytecode index = 
+    //  line no 158 , L1497018177 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 158;
     // aconst null
@@ -260,7 +260,7 @@ void func_java_io_OutputStreamWriter_write__I_V(JThreadRuntime *runtime, s32 p0)
     StackFrame *__frame = method_enter(runtime, 218, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 174 , L1128948651 , bytecode index = 
+    //  line no 174 , L2087785333 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 174;
     method_exit(runtime);
@@ -295,7 +295,7 @@ void func_java_io_OutputStreamWriter_write___3CII_V(JThreadRuntime *runtime, JAr
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 193 , L671471369 , bytecode index = 
+    //  line no 193 , L1526970878 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 193;
     method_exit(runtime);
@@ -330,7 +330,7 @@ void func_java_io_OutputStreamWriter_write__Ljava_lang_String_2II_V(JThreadRunti
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 212 , L782505238 , bytecode index = 
+    //  line no 212 , L1128948651 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 212;
     method_exit(runtime);

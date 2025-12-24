@@ -174,7 +174,7 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     StackFrame *__frame = method_enter(runtime, 497, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 56 , L464400749 , bytecode index = 
+    //  line no 56 , L194481424 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 56;
     rstack[sp++].obj = rlocal[0].obj;
@@ -196,7 +196,7 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 57 , L343563528 , bytecode index = 
+    //  line no 57 , L1534755892 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokestatic java/util/Arrays.sort([Ljava/lang/Object;Ljava/util/Comparator;)V
@@ -210,7 +210,7 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
         }
     }
     ; 
-    //  line no 58 , L1719072416 , bytecode index = 
+    //  line no 58 , L1548081008 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface java/util/List.listIterator()Ljava/util/ListIterator;
     {
@@ -230,11 +230,11 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 59 , L2092801316 , bytecode index = 
+    //  line no 59 , L753321708 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rlocal[4].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[4].obj;
-    // arraylength  label  L2092801316
+    // arraylength  label  L753321708
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -244,14 +244,14 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     // iconst_0
     stack[sp++].i = 0;
     local[6].i = stack[--sp].i;
-    L376635015:
+    L464400749:
     stack[sp++].i = local[6].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1344697180;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L343563528;
     rstack[sp++].obj = rlocal[4].obj;
     stack[sp++].i = local[6].i;
-    // arrload __refer  ,  L376635015 bc index = 
+    // arrload __refer  ,  L464400749 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -267,7 +267,7 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     }
     rlocal[7].obj = rstack[--sp].obj;
     ; 
-    //  line no 60 , L28597262 , bytecode index = 
+    //  line no 60 , L1719072416 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokeinterface java/util/ListIterator.next()Ljava/lang/Object;
     {
@@ -287,7 +287,7 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
     }
     --sp; //pop
     ; 
-    //  line no 61 , L300983713 , bytecode index = 
+    //  line no 61 , L2092801316 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[7].obj;
     // invokeinterface java/util/ListIterator.set(Ljava/lang/Object;)V
@@ -307,13 +307,13 @@ void func_java_util_List_sort__Ljava_util_Comparator_2_V(JThreadRuntime *runtime
         }
     }
     ; 
-    //  line no 59 , L284686302 , bytecode index = 
+    //  line no 59 , L376635015 , bytecode index = 
     // iinc slot 6 value 1
     local[6].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L376635015;
-    L1344697180:
-    //  line no 63 , L1344697180 , bytecode index = 
+    goto L464400749;
+    L343563528:
+    //  line no 63 , L343563528 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

@@ -64,7 +64,7 @@ void func_java_util_LinkedHashMap_00024Entry__init___ILjava_lang_Object_2Ljava_l
     rlocal[2].obj = p2;
     rlocal[3].obj = p3;
     ; 
-    //  line no 195 , L360067785 , bytecode index = 
+    //  line no 195 , L510109769 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 195;
     rstack[sp++].obj = rlocal[0].obj;
@@ -88,7 +88,7 @@ void func_java_util_LinkedHashMap_00024Entry__init___ILjava_lang_Object_2Ljava_l
         }
     }
     ; 
-    //  line no 196 , L1860250540 , bytecode index = 
+    //  line no 196 , L1473611564 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

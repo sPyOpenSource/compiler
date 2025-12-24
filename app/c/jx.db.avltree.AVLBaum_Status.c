@@ -43,7 +43,7 @@ void func_jx_db_avltree_AVLBaum_00024Status__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 465, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 26 , L194481424 , bytecode index = 
+    //  line no 26 , L1006751649 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 26;
     rstack[sp++].obj = rlocal[0].obj;
@@ -51,7 +51,7 @@ void func_jx_db_avltree_AVLBaum_00024Status__init____V(JThreadRuntime *runtime){
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 27 , L1534755892 , bytecode index = 
+    //  line no 27 , L1171434979 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -59,7 +59,7 @@ void func_jx_db_avltree_AVLBaum_00024Status__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_db_avltree_AVLBaum_00024Status*)rstack[sp + 0].obj)->unbal_0 = stack[sp + 1].i;
     ; 
-    //  line no 28 , L1548081008 , bytecode index = 
+    //  line no 28 , L1920907467 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

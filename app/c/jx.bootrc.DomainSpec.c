@@ -51,7 +51,7 @@ void func_jx_bootrc_DomainSpec__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 398, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 3 , L901205084 , bytecode index = 
+    //  line no 3 , L871790326 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 3;
     rstack[sp++].obj = rlocal[0].obj;
@@ -99,14 +99,14 @@ void func_jx_bootrc_DomainSpec_setComponents___3Ljx_bootrc_ComponentSpec_2_V(JTh
     s32 sp = 0;
     rlocal[0].obj = p0;
     ; 
-    //  line no 6 , L193388045 , bytecode index = 
+    //  line no 6 , L40170008 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/bootrc/DomainSpec comp [Ljx/bootrc/ComponentSpec;
     sp -= 2;
     ((struct jx_bootrc_DomainSpec*)rstack[sp + 0].obj)->comp_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 7 , L136157810 , bytecode index = 
+    //  line no 7 , L896982466 , bytecode index = 
     return;
     ; 
 }
@@ -127,7 +127,7 @@ JArray * func_jx_bootrc_DomainSpec_getComponents____3Ljx_bootrc_ComponentSpec_2(
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 9 , L292138977 , bytecode index = 
+    //  line no 9 , L777457133 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/bootrc/DomainSpec comp [Ljx/bootrc/ComponentSpec;
     rstack[sp - 1].obj = ((struct jx_bootrc_DomainSpec*)rstack[sp - 1].obj)->comp_1;

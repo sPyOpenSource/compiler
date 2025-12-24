@@ -74,7 +74,7 @@ void func_java_security_DigestInputStream__init___Ljava_io_InputStream_2Ljava_se
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 67 , L2024240125 , bytecode index = 
+    //  line no 67 , L1261764601 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 67;
     rstack[sp++].obj = rlocal[0].obj;
@@ -95,7 +95,7 @@ void func_java_security_DigestInputStream__init___Ljava_io_InputStream_2Ljava_se
         }
     }
     ; 
-    //  line no 55 , L1472216456 , bytecode index = 
+    //  line no 55 , L294111720 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -103,14 +103,14 @@ void func_java_security_DigestInputStream__init___Ljava_io_InputStream_2Ljava_se
     sp -= 2;
     ((struct java_security_DigestInputStream*)rstack[sp + 0].obj)->state_2 = stack[sp + 1].i;
     ; 
-    //  line no 69 , L380274260 , bytecode index = 
+    //  line no 69 , L310016558 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield java/security/DigestInputStream digest Ljava/security/MessageDigest;
     sp -= 2;
     ((struct java_security_DigestInputStream*)rstack[sp + 0].obj)->digest_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 70 , L114818087 , bytecode index = 
+    //  line no 70 , L335580595 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -139,7 +139,7 @@ struct java_security_MessageDigest* func_java_security_DigestInputStream_getMess
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 79 , L324404955 , bytecode index = 
+    //  line no 79 , L1472216456 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/DigestInputStream digest Ljava/security/MessageDigest;
     rstack[sp - 1].obj = ((struct java_security_DigestInputStream*)rstack[sp - 1].obj)->digest_1;
@@ -165,14 +165,14 @@ void func_java_security_DigestInputStream_setMessageDigest__Ljava_security_Messa
     s32 sp = 0;
     rlocal[0].obj = p0;
     ; 
-    //  line no 89 , L1745043985 , bytecode index = 
+    //  line no 89 , L114818087 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/security/DigestInputStream digest Ljava/security/MessageDigest;
     sp -= 2;
     ((struct java_security_DigestInputStream*)rstack[sp + 0].obj)->digest_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 90 , L1333041165 , bytecode index = 
+    //  line no 90 , L1168924571 , bytecode index = 
     return;
     ; 
 }
@@ -194,7 +194,7 @@ s32 func_java_security_DigestInputStream_read___I(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 448, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 105 , L1482246673 , bytecode index = 
+    //  line no 105 , L1368173251 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 105;
     rstack[sp++].obj = rlocal[0].obj;
@@ -219,7 +219,7 @@ s32 func_java_security_DigestInputStream_read___I(JThreadRuntime *runtime){
     }
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 107 , L708348097 , bytecode index = 
+    //  line no 107 , L1745043985 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/DigestInputStream state Z
     stack[sp - 1].i = ((struct java_security_DigestInputStream*)rstack[sp - 1].obj)->state_2;
@@ -227,14 +227,14 @@ s32 func_java_security_DigestInputStream_read___I(JThreadRuntime *runtime){
     // iconst_1
     stack[sp++].i = 1;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1097324923;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1333041165;
     stack[sp++].i = local[1].i;
     // iconst_-1
     stack[sp++].i = -1;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1097324923;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1333041165;
     ; 
-    //  line no 108 , L351962798 , bytecode index = 
+    //  line no 108 , L1815556070 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/DigestInputStream digest Ljava/security/MessageDigest;
     rstack[sp - 1].obj = ((struct java_security_DigestInputStream*)rstack[sp - 1].obj)->digest_1;
@@ -257,8 +257,8 @@ s32 func_java_security_DigestInputStream_read___I(JThreadRuntime *runtime){
             goto __ExceptionHandler;
         }
     }
-    L1097324923:
-    //  line no 110 , L1097324923 , bytecode index = 
+    L1333041165:
+    //  line no 110 , L1333041165 , bytecode index = 
     stack[sp++].i = local[1].i;
     method_exit(runtime);
     return stack[sp - 1].i;
@@ -292,7 +292,7 @@ s32 func_java_security_DigestInputStream_read___3BII_I(JThreadRuntime *runtime, 
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 129 , L1760670079 , bytecode index = 
+    //  line no 129 , L708348097 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 129;
     rstack[sp++].obj = rlocal[0].obj;
@@ -322,7 +322,7 @@ s32 func_java_security_DigestInputStream_read___3BII_I(JThreadRuntime *runtime, 
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 131 , L388104475 , bytecode index = 
+    //  line no 131 , L1097324923 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/DigestInputStream state Z
     stack[sp - 1].i = ((struct java_security_DigestInputStream*)rstack[sp - 1].obj)->state_2;
@@ -330,14 +330,14 @@ s32 func_java_security_DigestInputStream_read___3BII_I(JThreadRuntime *runtime, 
     // iconst_1
     stack[sp++].i = 1;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1470966439;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L351962798;
     stack[sp++].i = local[4].i;
     // iconst_-1
     stack[sp++].i = -1;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1470966439;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L351962798;
     ; 
-    //  line no 132 , L1530880511 , bytecode index = 
+    //  line no 132 , L115433442 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/DigestInputStream digest Ljava/security/MessageDigest;
     rstack[sp - 1].obj = ((struct java_security_DigestInputStream*)rstack[sp - 1].obj)->digest_1;
@@ -361,8 +361,8 @@ s32 func_java_security_DigestInputStream_read___3BII_I(JThreadRuntime *runtime, 
             goto __ExceptionHandler;
         }
     }
-    L1470966439:
-    //  line no 134 , L1470966439 , bytecode index = 
+    L351962798:
+    //  line no 134 , L351962798 , bytecode index = 
     stack[sp++].i = local[4].i;
     method_exit(runtime);
     return stack[sp - 1].i;
@@ -393,14 +393,14 @@ void func_java_security_DigestInputStream_on__Z_V(JThreadRuntime *runtime, s8 p0
     s32 sp = 0;
     local[0].i = p0;
     ; 
-    //  line no 145 , L965586344 , bytecode index = 
+    //  line no 145 , L388104475 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // putfield java/security/DigestInputStream state Z
     sp -= 2;
     ((struct java_security_DigestInputStream*)rstack[sp + 0].obj)->state_2 = stack[sp + 1].i;
     ; 
-    //  line no 146 , L130764844 , bytecode index = 
+    //  line no 146 , L1470966439 , bytecode index = 
     return;
     ; 
 }
@@ -422,7 +422,7 @@ struct java_lang_String* func_java_security_DigestInputStream_toString___Ljava_l
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 451, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 155 , L462039519 , bytecode index = 
+    //  line no 155 , L1042307502 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 155;
     // new java/lang/StringBuilder

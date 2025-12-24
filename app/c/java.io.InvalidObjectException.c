@@ -71,7 +71,7 @@ void func_java_io_InvalidObjectException__init___Ljava_lang_String_2_V(JThreadRu
     StackFrame *__frame = method_enter(runtime, 197, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 53 , L170144208 , bytecode index = 
+    //  line no 53 , L1687940142 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 53;
     rstack[sp++].obj = rlocal[0].obj;
@@ -92,7 +92,7 @@ void func_java_io_InvalidObjectException__init___Ljava_lang_String_2_V(JThreadRu
         }
     }
     ; 
-    //  line no 54 , L482052083 , bytecode index = 
+    //  line no 54 , L1765795529 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

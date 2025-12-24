@@ -43,7 +43,7 @@ void func_jx_net_protocol_tcp_TCPSocketState__init____V(JThreadRuntime *runtime)
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 303, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 3 , L1529115495 , bytecode index = 
+    //  line no 3 , L480903748 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 3;
     rstack[sp++].obj = rlocal[0].obj;

@@ -70,7 +70,7 @@ void func_java_io_StringReader__init___Ljava_lang_String_2_V(JThreadRuntime *run
     StackFrame *__frame = method_enter(runtime, 310, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 83 , L1855610584 , bytecode index = 
+    //  line no 83 , L2095486832 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 83;
     rstack[sp++].obj = rlocal[0].obj;
@@ -90,14 +90,14 @@ void func_java_io_StringReader__init___Ljava_lang_String_2_V(JThreadRuntime *run
         }
     }
     ; 
-    //  line no 84 , L2114289475 , bytecode index = 
+    //  line no 84 , L391183339 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/io/StringReader buf Ljava/lang/String;
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->buf_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 86 , L113411247 , bytecode index = 
+    //  line no 86 , L1529115495 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/String.length()I
@@ -120,7 +120,7 @@ void func_java_io_StringReader__init___Ljava_lang_String_2_V(JThreadRuntime *run
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->count_4 = stack[sp + 1].i;
     ; 
-    //  line no 87 , L1485891705 , bytecode index = 
+    //  line no 87 , L646910062 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
@@ -140,7 +140,7 @@ void func_java_io_StringReader__init___Ljava_lang_String_2_V(JThreadRuntime *run
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->markedPos_3 = stack[sp + 1].i;
     ; 
-    //  line no 88 , L1681920301 , bytecode index = 
+    //  line no 88 , L1855610584 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -174,10 +174,10 @@ void func_java_io_StringReader_close___V(JThreadRuntime *runtime){
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 311, &rstack[0], &rlocal[0], &sp);
-    // try catch :L589273327 L2081652693 L406765571 (
-    // try catch :L406765571 L2107443224 L406765571 (
+    // try catch :L113411247 L1485891705 L1681920301 (
+    // try catch :L1681920301 L837457281 L1681920301 (
     ; 
-    //  line no 92 , L572145572 , bytecode index = 
+    //  line no 92 , L589273327 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 92;
     rstack[sp++].obj = rlocal[0].obj;
@@ -192,9 +192,9 @@ void func_java_io_StringReader_close___V(JThreadRuntime *runtime){
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L589273327:
+    L113411247:
     __frame->bytecodeIndex = 
-    //  line no 94 , L589273327 , bytecode index = 
+    //  line no 94 , L113411247 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -202,41 +202,41 @@ void func_java_io_StringReader_close___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->buf_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 95 , L1158676965 , bytecode index = 
+    //  line no 95 , L2081652693 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L2081652693:
+    L1485891705:
     __frame->bytecodeIndex = 
-    goto L725680028;
-    L406765571:
+    goto L406765571;
+    L1681920301:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L2107443224:
+    L837457281:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L2107443224 in labeltable is :L2107443224
+    //     L837457281 in labeltable is :L837457281
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 95;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L725680028:
-    //  line no 96 , L725680028 , bytecode index = 
+    L406765571:
+    //  line no 96 , L406765571 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L406765571;
-        case 1 : goto L406765571;
+        case 0 : goto L1681920301;
+        case 1 : goto L1681920301;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -266,10 +266,10 @@ void func_java_io_StringReader_mark__I_V(JThreadRuntime *runtime, s32 p0){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 312, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
-    // try catch :L1293680734 L138817329 L609656250 (
-    // try catch :L609656250 L1574877131 L609656250 (
+    // try catch :L572145572 L1158676965 L725680028 (
+    // try catch :L725680028 L1040776996 L725680028 (
     ; 
-    //  line no 100 , L1894601438 , bytecode index = 
+    //  line no 100 , L1293680734 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 100;
     rstack[sp++].obj = rlocal[0].obj;
@@ -284,16 +284,16 @@ void func_java_io_StringReader_mark__I_V(JThreadRuntime *runtime, s32 p0){
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1293680734:
+    L572145572:
     __frame->bytecodeIndex = 
-    //  line no 102 , L1293680734 , bytecode index = 
+    //  line no 102 , L572145572 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L1231799381;
+    if(rstack[--sp].obj  != NULL) goto L138817329;
     ; 
-    //  line no 103 , L1497377679 , bytecode index = 
+    //  line no 103 , L609656250 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -318,15 +318,15 @@ void func_java_io_StringReader_mark__I_V(JThreadRuntime *runtime, s32 p0){
         }
     }
     // athrow
-    //     L1497377679 in labeltable is :L1497377679
+    //     L609656250 in labeltable is :L609656250
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 103;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1231799381:
-    //  line no 106 , L1231799381 , bytecode index = 
+    L138817329:
+    //  line no 106 , L138817329 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader pos I
@@ -336,41 +336,41 @@ void func_java_io_StringReader_mark__I_V(JThreadRuntime *runtime, s32 p0){
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->markedPos_3 = stack[sp + 1].i;
     ; 
-    //  line no 107 , L1904783235 , bytecode index = 
+    //  line no 107 , L1574877131 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L138817329:
+    L1158676965:
     __frame->bytecodeIndex = 
-    goto L1810458830;
-    L609656250:
+    goto L1894601438;
+    L725680028:
     __frame->bytecodeIndex = 
     rlocal[3].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1574877131:
+    L1040776996:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[3].obj;
     // athrow
-    //     L1574877131 in labeltable is :L1574877131
+    //     L1040776996 in labeltable is :L1040776996
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 107;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1810458830:
-    //  line no 108 , L1810458830 , bytecode index = 
+    L1894601438:
+    //  line no 108 , L1894601438 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L609656250;
-        case 1 : goto L609656250;
+        case 0 : goto L725680028;
+        case 1 : goto L725680028;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -395,7 +395,7 @@ s8 func_java_io_StringReader_markSupported___Z(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 313, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 112 , L611520720 , bytecode index = 
+    //  line no 112 , L1497377679 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 112;
     // iconst_1
@@ -434,11 +434,11 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
     RStackItem rstack[6];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 314, &rstack[0], &rlocal[0], &sp);
-    // try catch :L809300666 L1984513847 L1241529534 (
-    // try catch :L1082309267 L402405659 L1241529534 (
-    // try catch :L1241529534 L724608044 L1241529534 (
+    // try catch :L1810458830 L2083999882 L611520720 (
+    // try catch :L271800170 L809300666 L611520720 (
+    // try catch :L611520720 L1984513847 L611520720 (
     ; 
-    //  line no 117 , L1621002296 , bytecode index = 
+    //  line no 117 , L1241529534 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 117;
     rstack[sp++].obj = rlocal[0].obj;
@@ -453,16 +453,16 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L809300666:
+    L1810458830:
     __frame->bytecodeIndex = 
-    //  line no 119 , L809300666 , bytecode index = 
+    //  line no 119 , L1810458830 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L899543194;
+    if(rstack[--sp].obj  != NULL) goto L1082309267;
     ; 
-    //  line no 120 , L1138697171 , bytecode index = 
+    //  line no 120 , L402405659 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -487,15 +487,15 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
         }
     }
     // athrow
-    //     L1138697171 in labeltable is :L1138697171
+    //     L402405659 in labeltable is :L402405659
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 120;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L899543194:
-    //  line no 122 , L899543194 , bytecode index = 
+    L1082309267:
+    //  line no 122 , L1082309267 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader pos I
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->pos_2;
@@ -505,9 +505,9 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->count_4;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1082309267;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L271800170;
     ; 
-    //  line no 123 , L1835073088 , bytecode index = 
+    //  line no 123 , L724608044 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
@@ -559,36 +559,36 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1984513847:
+    L2083999882:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1082309267:
+    L271800170:
     __frame->bytecodeIndex = 
-    //  line no 124 , L1082309267 , bytecode index = 
+    //  line no 124 , L271800170 , bytecode index = 
     // iconst_-1
     stack[sp++].i = -1;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L402405659:
+    L809300666:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1241529534:
+    L611520720:
     __frame->bytecodeIndex = 
-    //  line no 125 , L1241529534 , bytecode index = 
+    //  line no 125 , L611520720 , bytecode index = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L724608044:
+    L1984513847:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L724608044 in labeltable is :L724608044
+    //     L1984513847 in labeltable is :L1984513847
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 125;
@@ -598,9 +598,9 @@ s32 func_java_io_StringReader_read___I(JThreadRuntime *runtime){
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1241529534;
-        case 1 : goto L1241529534;
-        case 2 : goto L1241529534;
+        case 0 : goto L611520720;
+        case 1 : goto L611520720;
+        case 2 : goto L611520720;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -633,11 +633,11 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     rlocal[0].obj = p0;
     local[1].i = p1;
     local[2].i = p2;
-    // try catch :L602423811 L429075478 L1944798106 (
-    // try catch :L1363560175 L811597470 L1944798106 (
-    // try catch :L1944798106 L808228639 L1944798106 (
+    // try catch :L899543194 L1138697171 L1835073088 (
+    // try catch :L2032891036 L602423811 L1835073088 (
+    // try catch :L1835073088 L429075478 L1835073088 (
     ; 
-    //  line no 130 , L426960147 , bytecode index = 
+    //  line no 130 , L1944798106 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 130;
     rstack[sp++].obj = rlocal[0].obj;
@@ -652,16 +652,16 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L602423811:
+    L899543194:
     __frame->bytecodeIndex = 
-    //  line no 132 , L602423811 , bytecode index = 
+    //  line no 132 , L899543194 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L2061543916;
+    if(rstack[--sp].obj  != NULL) goto L1363560175;
     ; 
-    //  line no 133 , L897848096 , bytecode index = 
+    //  line no 133 , L811597470 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -686,34 +686,34 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
         }
     }
     // athrow
-    //     L897848096 in labeltable is :L897848096
+    //     L811597470 in labeltable is :L811597470
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 133;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L2061543916:
-    //  line no 136 , L2061543916 , bytecode index = 
+    L1363560175:
+    //  line no 136 , L1363560175 , bytecode index = 
     stack[sp++].i = local[2].i;
-    if(stack[--sp].i  < 0) goto L1640296160;
+    if(stack[--sp].i  < 0) goto L808228639;
     stack[sp++].i = local[3].i;
-    if(stack[--sp].i  < 0) goto L1640296160;
+    if(stack[--sp].i  < 0) goto L808228639;
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L2061543916
+    // arraylength  label  L1363560175
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1863374262;
-    L1640296160:
-    //  line no 137 , L1640296160 , bytecode index = 
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L426960147;
+    L808228639:
+    //  line no 137 , L808228639 , bytecode index = 
     // new java/lang/ArrayIndexOutOfBoundsException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 5);
     // dup
@@ -736,15 +736,15 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
         }
     }
     // athrow
-    //     L1640296160 in labeltable is :L1640296160
+    //     L808228639 in labeltable is :L808228639
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 137;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1863374262:
-    //  line no 139 , L1863374262 , bytecode index = 
+    L426960147:
+    //  line no 139 , L426960147 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader pos I
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->pos_2;
@@ -754,22 +754,22 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->count_4;
     sp += 0;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1363560175;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L2032891036;
     ; 
-    //  line no 140 , L272678513 , bytecode index = 
+    //  line no 140 , L2061543916 , bytecode index = 
     // iconst_-1
     stack[sp++].i = -1;
     rstack[sp++].obj = rlocal[4].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L429075478:
+    L1138697171:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1363560175:
+    L2032891036:
     __frame->bytecodeIndex = 
-    //  line no 142 , L1363560175 , bytecode index = 
+    //  line no 142 , L2032891036 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader count I
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->count_4;
@@ -793,7 +793,7 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     }
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 143 , L88646218 , bytecode index = 
+    //  line no 143 , L897848096 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
@@ -822,7 +822,7 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
         }
     }
     ; 
-    //  line no 144 , L1128132589 , bytecode index = 
+    //  line no 144 , L1640296160 , bytecode index = 
     stack[sp++].i = local[5].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader pos I
@@ -832,36 +832,36 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     --sp;
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 145 , L711540569 , bytecode index = 
+    //  line no 145 , L1863374262 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[5].i;
     // putfield java/io/StringReader pos I
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->pos_2 = stack[sp + 1].i;
     ; 
-    //  line no 146 , L1062186835 , bytecode index = 
+    //  line no 146 , L272678513 , bytecode index = 
     stack[sp++].i = local[6].i;
     rstack[sp++].obj = rlocal[4].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L811597470:
+    L602423811:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1944798106:
+    L1835073088:
     __frame->bytecodeIndex = 
-    //  line no 147 , L1944798106 , bytecode index = 
+    //  line no 147 , L1835073088 , bytecode index = 
     rlocal[7].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L808228639:
+    L429075478:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[7].obj;
     // athrow
-    //     L808228639 in labeltable is :L808228639
+    //     L429075478 in labeltable is :L429075478
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 147;
@@ -871,9 +871,9 @@ s32 func_java_io_StringReader_read___3CII_I(JThreadRuntime *runtime, JArray * p0
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1944798106;
-        case 1 : goto L1944798106;
-        case 2 : goto L1944798106;
+        case 0 : goto L1835073088;
+        case 1 : goto L1835073088;
+        case 2 : goto L1835073088;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -898,16 +898,16 @@ s8 func_java_io_StringReader_ready___Z(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 316, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 161 , L1396431506 , bytecode index = 
+    //  line no 161 , L1128132589 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 161;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L810267739;
+    if(rstack[--sp].obj  != NULL) goto L711540569;
     ; 
-    //  line no 162 , L1916575798 , bytecode index = 
+    //  line no 162 , L1062186835 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -932,15 +932,15 @@ s8 func_java_io_StringReader_ready___Z(JThreadRuntime *runtime){
         }
     }
     // athrow
-    //     L1916575798 in labeltable is :L1916575798
+    //     L1062186835 in labeltable is :L1062186835
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 162;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L810267739:
-    //  line no 164 , L810267739 , bytecode index = 
+    L711540569:
+    //  line no 164 , L711540569 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
@@ -976,10 +976,10 @@ void func_java_io_StringReader_reset___V(JThreadRuntime *runtime){
     RStackItem rstack[4];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 317, &rstack[0], &rlocal[0], &sp);
-    // try catch :L685558284 L1171802656 L1391624125 (
-    // try catch :L1391624125 L79782883 L1391624125 (
+    // try catch :L1396431506 L810267739 L1916575798 (
+    // try catch :L1916575798 L633240419 L1916575798 (
     ; 
-    //  line no 174 , L1250121181 , bytecode index = 
+    //  line no 174 , L685558284 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 174;
     rstack[sp++].obj = rlocal[0].obj;
@@ -994,16 +994,16 @@ void func_java_io_StringReader_reset___V(JThreadRuntime *runtime){
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L685558284:
+    L1396431506:
     __frame->bytecodeIndex = 
-    //  line no 176 , L685558284 , bytecode index = 
+    //  line no 176 , L1396431506 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L1292738535;
+    if(rstack[--sp].obj  != NULL) goto L1171802656;
     ; 
-    //  line no 177 , L205721196 , bytecode index = 
+    //  line no 177 , L1391624125 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -1028,15 +1028,15 @@ void func_java_io_StringReader_reset___V(JThreadRuntime *runtime){
         }
     }
     // athrow
-    //     L205721196 in labeltable is :L205721196
+    //     L1391624125 in labeltable is :L1391624125
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 177;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1292738535:
-    //  line no 179 , L1292738535 , bytecode index = 
+    L1171802656:
+    //  line no 179 , L1171802656 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader markedPos I
@@ -1046,41 +1046,41 @@ void func_java_io_StringReader_reset___V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->pos_2 = stack[sp + 1].i;
     ; 
-    //  line no 180 , L51554940 , bytecode index = 
+    //  line no 180 , L79782883 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1171802656:
+    L810267739:
     __frame->bytecodeIndex = 
-    goto L1399794302;
-    L1391624125:
+    goto L1250121181;
+    L1916575798:
     __frame->bytecodeIndex = 
     rlocal[2].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L79782883:
+    L633240419:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[2].obj;
     // athrow
-    //     L79782883 in labeltable is :L79782883
+    //     L633240419 in labeltable is :L633240419
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 180;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1399794302:
-    //  line no 181 , L1399794302 , bytecode index = 
+    L1250121181:
+    //  line no 181 , L1250121181 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1391624125;
-        case 1 : goto L1391624125;
+        case 0 : goto L1916575798;
+        case 1 : goto L1916575798;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1110,10 +1110,10 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 318, &rstack[0], &rlocal[0], &sp);
     local[0].j = p0;
-    // try catch :L1721246982 L1892627171 L1515833950 (
-    // try catch :L1515833950 L1272883899 L1515833950 (
+    // try catch :L205721196 L51554940 L1399794302 (
+    // try catch :L1399794302 L1924949331 L1399794302 (
     ; 
-    //  line no 196 , L1816725203 , bytecode index = 
+    //  line no 196 , L1721246982 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 196;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1128,16 +1128,16 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     // monitorenter
     --sp;
     jthread_lock(runtime, rstack[sp].obj);
-    L1721246982:
+    L205721196:
     __frame->bytecodeIndex = 
-    //  line no 198 , L1721246982 , bytecode index = 
+    //  line no 198 , L205721196 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader buf Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_io_StringReader*)rstack[sp - 1].obj)->buf_1;
     sp += 0;
-    if(rstack[--sp].obj  != NULL) goto L1704491411;
+    if(rstack[--sp].obj  != NULL) goto L1892627171;
     ; 
-    //  line no 199 , L1896305732 , bytecode index = 
+    //  line no 199 , L1515833950 , bytecode index = 
     // new java/io/IOException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 63);
     // dup
@@ -1162,15 +1162,15 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
         }
     }
     // athrow
-    //     L1896305732 in labeltable is :L1896305732
+    //     L1515833950 in labeltable is :L1515833950
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 199;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1704491411:
-    //  line no 205 , L1704491411 , bytecode index = 
+    L1892627171:
+    //  line no 205 , L1892627171 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/io/StringReader count I
     stack[sp - 1].i = ((struct java_io_StringReader*)rstack[sp - 1].obj)->count_4;
@@ -1194,15 +1194,15 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     stack[sp - 4].i = v2 == v1 ? 0: ( v2 > v1 ? 1 : -1); 
     sp -= 3;
     }
-    if(stack[--sp].i  >= 0) goto L1802066694;
+    if(stack[--sp].i  >= 0) goto L1816725203;
     //  lconst 0
     stack[sp].j = 0;
     sp += 2;
-    goto L1293677337;
-    L1802066694:
+    goto L1704491411;
+    L1816725203:
     stack[sp].j = local[1].j;
     sp += 2;
-    L1293677337:
+    L1704491411:
     // invokestatic java/lang/Math.min(JJ)J
     {
         sp -= 5;
@@ -1216,7 +1216,7 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     sp -= 2;
     local[4].j = stack[sp].j;
     ; 
-    //  line no 206 , L116734858 , bytecode index = 
+    //  line no 206 , L1896305732 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // dup
     stack[sp].j = stack[sp - 1].j; 
@@ -1237,30 +1237,30 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     sp -= 2;
     ((struct java_io_StringReader*)rstack[sp + 0].obj)->pos_2 = stack[sp + 1].i;
     ; 
-    //  line no 207 , L1551945522 , bytecode index = 
+    //  line no 207 , L1328718765 , bytecode index = 
     stack[sp].j = local[4].j;
     sp += 2;
     rstack[sp++].obj = rlocal[3].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1892627171:
+    L51554940:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return stack[sp - 2].j;
-    L1515833950:
+    L1399794302:
     __frame->bytecodeIndex = 
-    //  line no 208 , L1515833950 , bytecode index = 
+    //  line no 208 , L1399794302 , bytecode index = 
     rlocal[6].obj = rstack[--sp].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // monitorexit
     --sp;
     jthread_unlock(runtime, rstack[sp].obj);
-    L1272883899:
+    L1924949331:
     __frame->bytecodeIndex = 
     rstack[sp++].obj = rlocal[6].obj;
     // athrow
-    //     L1272883899 in labeltable is :L1272883899
+    //     L1924949331 in labeltable is :L1924949331
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 208;
@@ -1270,8 +1270,8 @@ s64 func_java_io_StringReader_skip__J_J(JThreadRuntime *runtime, s64 p0){
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1515833950;
-        case 1 : goto L1515833950;
+        case 0 : goto L1399794302;
+        case 1 : goto L1399794302;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:

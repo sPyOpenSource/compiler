@@ -51,7 +51,7 @@ void func_jx_devices_pci_CapabilitySI__init___Ljx_devices_pci_PCIDevice_2I_V(JTh
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 5 , L1503660218 , bytecode index = 
+    //  line no 5 , L1752182275 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 5;
     rstack[sp++].obj = rlocal[0].obj;
@@ -75,7 +75,7 @@ void func_jx_devices_pci_CapabilitySI__init___Ljx_devices_pci_PCIDevice_2I_V(JTh
         }
     }
     ; 
-    //  line no 6 , L864852424 , bytecode index = 
+    //  line no 6 , L2049051802 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -105,7 +105,7 @@ struct java_lang_String* func_jx_devices_pci_CapabilitySI_toString___Ljava_lang_
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 557, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 9 , L1489933928 , bytecode index = 
+    //  line no 9 , L818493590 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 9;
     // new java/lang/StringBuilder

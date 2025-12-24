@@ -47,7 +47,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     StackFrame *__frame = method_enter(runtime, 539, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 57 , L252738640 , bytecode index = 
+    //  line no 57 , L1932536213 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 57;
     rstack[sp++].obj = rlocal[0].obj;
@@ -55,9 +55,9 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 58 , L1360215046 , bytecode index = 
+    //  line no 58 , L406375608 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    // arraylength  label  L1360215046
+    // arraylength  label  L406375608
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -69,7 +69,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     stack[sp++].i = 0;
     local[6].i = stack[--sp].i;
     ; 
-    //  line no 59 , L1111613684 , bytecode index = 
+    //  line no 59 , L2107543287 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
@@ -77,26 +77,26 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L100929741:
+    L1360215046:
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1154821602;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1260467793;
     ; 
-    //  line no 60 , L157168588 , bytecode index = 
+    //  line no 60 , L1111613684 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
-    L945834881:
+    L1321203216:
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L507819576;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L100929741;
     ; 
-    //  line no 61 , L1939022383 , bytecode index = 
+    //  line no 61 , L1154821602 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L1939022383 bc index = 
+    // arrload __refer  ,  L1154821602 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -115,7 +115,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1939022383 bc index = 
+    // arrload __refer  ,  L1154821602 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -130,37 +130,37 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
         sp += 1;
     }
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L195801026;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L157168588;
     ; 
-    //  line no 62 , L833474933 , bytecode index = 
-    goto L507819576;
-    L195801026:
-    //  line no 60 , L195801026 , bytecode index = 
+    //  line no 62 , L945834881 , bytecode index = 
+    goto L100929741;
+    L157168588:
+    //  line no 60 , L157168588 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L945834881;
-    L507819576:
-    //  line no 63 , L507819576 , bytecode index = 
+    goto L1321203216;
+    L100929741:
+    //  line no 63 , L100929741 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L182670350;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L507819576;
     ; 
-    //  line no 64 , L1611373863 , bytecode index = 
-    goto L914942811;
-    L182670350:
-    //  line no 66 , L182670350 , bytecode index = 
+    //  line no 64 , L1939022383 , bytecode index = 
+    goto L195801026;
+    L507819576:
+    //  line no 66 , L507819576 , bytecode index = 
     // iinc slot 6 value 1
     local[6].i += 1;
-    L914942811:
-    //  line no 59 , L914942811 , bytecode index = 
+    L195801026:
+    //  line no 59 , L195801026 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L100929741;
-    L1154821602:
-    //  line no 69 , L1154821602 , bytecode index = 
+    goto L1360215046;
+    L1260467793:
+    //  line no 69 , L1260467793 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[6].i;
     // ; newarray/multiarray Dimension Array: [Ljava/security/ProtectionDomain; 1
@@ -175,33 +175,33 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     sp -= 2;
     ((struct java_security_AccessControlContext*)rstack[sp + 0].obj)->protectionDomain_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 70 , L1777443462 , bytecode index = 
+    //  line no 70 , L833474933 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L2032326802:
+    L182670350:
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[6].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1165791284;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1611373863;
     ; 
-    //  line no 71 , L878668275 , bytecode index = 
+    //  line no 71 , L914942811 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
-    L1356732524:
+    L1777443462:
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1062714541;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2032326802;
     ; 
-    //  line no 72 , L512456259 , bytecode index = 
+    //  line no 72 , L1165791284 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
-    // arrload __refer  ,  L512456259 bc index = 
+    // arrload __refer  ,  L1165791284 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -220,7 +220,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L512456259 bc index = 
+    // arrload __refer  ,  L1165791284 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -235,27 +235,27 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
         sp += 1;
     }
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L1364497552;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L878668275;
     ; 
-    //  line no 73 , L1911155630 , bytecode index = 
-    goto L1062714541;
-    L1364497552:
-    //  line no 71 , L1364497552 , bytecode index = 
+    //  line no 73 , L1356732524 , bytecode index = 
+    goto L2032326802;
+    L878668275:
+    //  line no 71 , L878668275 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1356732524;
-    L1062714541:
-    //  line no 74 , L1062714541 , bytecode index = 
+    goto L1777443462;
+    L2032326802:
+    //  line no 74 , L2032326802 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1943634922;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1062714541;
     ; 
-    //  line no 75 , L916835004 , bytecode index = 
-    goto L1126185196;
-    L1943634922:
-    //  line no 77 , L1943634922 , bytecode index = 
+    //  line no 75 , L512456259 , bytecode index = 
+    goto L1364497552;
+    L1062714541:
+    //  line no 77 , L1062714541 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
@@ -265,7 +265,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
     local[3].i += 1;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L1943634922 bc index = 
+    // arrload __refer  ,  L1062714541 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -279,7 +279,7 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
         rstack[sp].obj = arr->prop.as_obj_arr[idx];
         sp += 1;
     }
-    // arrstore __refer  ,  L1943634922 bc index = 
+    // arrstore __refer  ,  L1062714541 bc index = 
     {
         ;
         __refer value = rstack[--sp].obj;
@@ -294,14 +294,14 @@ void func_java_security_AccessControlContext__init____3Ljava_security_Protection
         }
         arr->prop.as_obj_arr[idx] = value;
     }
-    L1126185196:
-    //  line no 70 , L1126185196 , bytecode index = 
+    L1364497552:
+    //  line no 70 , L1364497552 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L2032326802;
-    L1165791284:
-    //  line no 79 , L1165791284 , bytecode index = 
+    goto L182670350;
+    L1611373863:
+    //  line no 79 , L1611373863 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -333,7 +333,7 @@ void func_java_security_AccessControlContext__init___Ljava_security_AccessContro
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 92 , L1112737073 , bytecode index = 
+    //  line no 92 , L1943634922 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 92;
     rstack[sp++].obj = rlocal[0].obj;
@@ -357,14 +357,14 @@ void func_java_security_AccessControlContext__init___Ljava_security_AccessContro
         }
     }
     ; 
-    //  line no 93 , L1513867245 , bytecode index = 
+    //  line no 93 , L916835004 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield java/security/AccessControlContext combiner Ljava/security/DomainCombiner;
     sp -= 2;
     ((struct java_security_AccessControlContext*)rstack[sp + 0].obj)->combiner_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 94 , L404648734 , bytecode index = 
+    //  line no 94 , L1126185196 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -393,7 +393,7 @@ struct java_security_DomainCombiner* func_java_security_AccessControlContext_get
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 103 , L1866768727 , bytecode index = 
+    //  line no 103 , L1112737073 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext combiner Ljava/security/DomainCombiner;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->combiner_1;
@@ -420,34 +420,34 @@ void func_java_security_AccessControlContext_checkPermission__Ljava_security_Per
     StackFrame *__frame = method_enter(runtime, 542, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 116 , L2694936 , bytecode index = 
+    //  line no 116 , L404648734 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 116;
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L400064818:
+    L895766599:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
-    // arraylength  label  L400064818
+    // arraylength  label  L895766599
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1574749319;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1866768727;
     ; 
-    //  line no 117 , L384617262 , bytecode index = 
+    //  line no 117 , L1808009213 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L384617262 bc index = 
+    // arrload __refer  ,  L1808009213 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -481,19 +481,19 @@ void func_java_security_AccessControlContext_checkPermission__Ljava_security_Per
     // iconst_1
     stack[sp++].i = 1;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1593165620;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L2694936;
     ; 
-    //  line no 118 , L225909961 , bytecode index = 
+    //  line no 118 , L400064818 , bytecode index = 
     method_exit(runtime);
     return;
-    L1593165620:
-    //  line no 116 , L1593165620 , bytecode index = 
+    L2694936:
+    //  line no 116 , L2694936 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L400064818;
-    L1574749319:
-    //  line no 120 , L1574749319 , bytecode index = 
+    goto L895766599;
+    L1866768727:
+    //  line no 120 , L1866768727 , bytecode index = 
     // new java/security/AccessControlException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 217);
     // dup
@@ -518,7 +518,7 @@ void func_java_security_AccessControlContext_checkPermission__Ljava_security_Per
         }
     }
     // athrow
-    //     L1574749319 in labeltable is :L1574749319
+    //     L1866768727 in labeltable is :L1866768727
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 120;
@@ -553,15 +553,15 @@ s8 func_java_security_AccessControlContext_equals__Ljava_lang_Object_2_Z(JThread
     StackFrame *__frame = method_enter(runtime, 543, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 135 , L1181815135 , bytecode index = 
+    //  line no 135 , L384617262 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 135;
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof java/security/AccessControlContext
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 1359);
-    if(stack[--sp].i  == 0) goto L919446210;
+    if(stack[--sp].i  == 0) goto L1593165620;
     ; 
-    //  line no 136 , L57241990 , bytecode index = 
+    //  line no 136 , L225909961 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/security/AccessControlContext
     {
@@ -573,12 +573,12 @@ s8 func_java_security_AccessControlContext_equals__Ljava_lang_Object_2_Z(JThread
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 138 , L360936478 , bytecode index = 
+    //  line no 138 , L917768476 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
-    // arraylength  label  L360936478
+    // arraylength  label  L917768476
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
@@ -588,47 +588,47 @@ s8 func_java_security_AccessControlContext_equals__Ljava_lang_Object_2_Z(JThread
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
-    // arraylength  label  L360936478
+    // arraylength  label  L917768476
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1530295320;
+    if(stack[sp + 0].i  == stack[sp + 1].i) goto L1181815135;
     ; 
-    //  line no 139 , L3540494 , bytecode index = 
+    //  line no 139 , L919446210 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1530295320:
-    //  line no 141 , L1530295320 , bytecode index = 
+    L1181815135:
+    //  line no 141 , L1181815135 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[3].i = stack[--sp].i;
-    L1209770703:
+    L57241990:
     stack[sp++].i = local[3].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
-    // arraylength  label  L1209770703
+    // arraylength  label  L57241990
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1186339926;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L360936478;
     ; 
-    //  line no 142 , L776484396 , bytecode index = 
+    //  line no 142 , L1530295320 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L776484396 bc index = 
+    // arrload __refer  ,  L1530295320 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -647,7 +647,7 @@ s8 func_java_security_AccessControlContext_equals__Ljava_lang_Object_2_Z(JThread
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[3].i;
-    // arrload __refer  ,  L776484396 bc index = 
+    // arrload __refer  ,  L1530295320 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -662,27 +662,27 @@ s8 func_java_security_AccessControlContext_equals__Ljava_lang_Object_2_Z(JThread
         sp += 1;
     }
     sp -= 2;
-    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L519979933;
+    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L3540494;
     ; 
-    //  line no 143 , L199657303 , bytecode index = 
+    //  line no 143 , L1209770703 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L519979933:
-    //  line no 141 , L519979933 , bytecode index = 
+    L3540494:
+    //  line no 141 , L3540494 , bytecode index = 
     // iinc slot 3 value 1
     local[3].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1209770703;
-    L1186339926:
-    //  line no 144 , L1186339926 , bytecode index = 
+    goto L57241990;
+    L360936478:
+    //  line no 144 , L360936478 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L919446210:
-    //  line no 146 , L919446210 , bytecode index = 
+    L1593165620:
+    //  line no 146 , L1593165620 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -714,40 +714,40 @@ s32 func_java_security_AccessControlContext_hashCode___I(JThreadRuntime *runtime
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 544, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 156 , L315805187 , bytecode index = 
+    //  line no 156 , L776484396 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 156;
     // iconst_0
     stack[sp++].i = 0;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 157 , L2119992687 , bytecode index = 
+    //  line no 157 , L519979933 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[2].i = stack[--sp].i;
-    L1094674892:
+    L199657303:
     stack[sp++].i = local[2].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
-    // arraylength  label  L1094674892
+    // arraylength  label  L199657303
     if (!rstack[sp - 1].obj) {
         rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
         goto __ExceptionHandler;
     }
     stack[sp - 1].i = rstack[sp - 1].ins->prop.arr_length; 
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L525575644;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2101636817;
     ; 
-    //  line no 158 , L460702435 , bytecode index = 
+    //  line no 158 , L315805187 , bytecode index = 
     stack[sp++].i = local[1].i;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/AccessControlContext protectionDomain [Ljava/security/ProtectionDomain;
     rstack[sp - 1].obj = ((struct java_security_AccessControlContext*)rstack[sp - 1].obj)->protectionDomain_0;
     sp += 0;
     stack[sp++].i = local[2].i;
-    // arrload __refer  ,  L460702435 bc index = 
+    // arrload __refer  ,  L315805187 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -781,13 +781,13 @@ s32 func_java_security_AccessControlContext_hashCode___I(JThreadRuntime *runtime
     --sp;
     local[1].i = stack[--sp].i;
     ; 
-    //  line no 157 , L26757919 , bytecode index = 
+    //  line no 157 , L2119992687 , bytecode index = 
     // iinc slot 2 value 1
     local[2].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1094674892;
-    L525575644:
-    //  line no 160 , L525575644 , bytecode index = 
+    goto L199657303;
+    L2101636817:
+    //  line no 160 , L2101636817 , bytecode index = 
     stack[sp++].i = local[1].i;
     method_exit(runtime);
     return stack[sp - 1].i;

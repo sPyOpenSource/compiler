@@ -51,7 +51,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodHand
     StackFrame *__frame = method_enter(runtime, 21, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 43 , L700072760 , bytecode index = 
+    //  line no 43 , L1658926803 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 43;
     rstack[sp++].obj = rlocal[0].obj;
@@ -72,7 +72,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodHand
         }
     }
     ; 
-    //  line no 44 , L1461149300 , bytecode index = 
+    //  line no 44 , L210652080 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -80,7 +80,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodHand
     sp -= 2;
     ((struct java_lang_invoke_ConstantCallSite*)rstack[sp + 0].obj)->isFrozen_1 = stack[sp + 1].i;
     ; 
-    //  line no 45 , L2075495587 , bytecode index = 
+    //  line no 45 , L1652149987 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -112,7 +112,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodType
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 81 , L1997287019 , bytecode index = 
+    //  line no 81 , L700072760 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 81;
     rstack[sp++].obj = rlocal[0].obj;
@@ -134,7 +134,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodType
         }
     }
     ; 
-    //  line no 82 , L436546048 , bytecode index = 
+    //  line no 82 , L1461149300 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -142,7 +142,7 @@ void func_java_lang_invoke_ConstantCallSite__init___Ljava_lang_invoke_MethodType
     sp -= 2;
     ((struct java_lang_invoke_ConstantCallSite*)rstack[sp + 0].obj)->isFrozen_1 = stack[sp + 1].i;
     ; 
-    //  line no 83 , L1300393335 , bytecode index = 
+    //  line no 83 , L2075495587 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -172,14 +172,14 @@ struct java_lang_invoke_MethodHandle* func_java_lang_invoke_ConstantCallSite_get
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 23, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 95 , L2011791487 , bytecode index = 
+    //  line no 95 , L1997287019 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 95;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/lang/invoke/ConstantCallSite isFrozen Z
     stack[sp - 1].i = ((struct java_lang_invoke_ConstantCallSite*)rstack[sp - 1].obj)->isFrozen_1;
     sp += 0;
-    if(stack[--sp].i  != 0) goto L1150284200;
+    if(stack[--sp].i  != 0) goto L436546048;
     // new java/lang/IllegalStateException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 23);
     // dup
@@ -202,15 +202,15 @@ struct java_lang_invoke_MethodHandle* func_java_lang_invoke_ConstantCallSite_get
         }
     }
     // athrow
-    //     L2011791487 in labeltable is :L2011791487
+    //     L1997287019 in labeltable is :L1997287019
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 95;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1150284200:
-    //  line no 96 , L1150284200 , bytecode index = 
+    L436546048:
+    //  line no 96 , L436546048 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/lang/invoke/ConstantCallSite target Ljava/lang/invoke/MethodHandle;
     rstack[sp - 1].obj = ((struct java_lang_invoke_ConstantCallSite*)rstack[sp - 1].obj)->target_0;
@@ -245,7 +245,7 @@ void func_java_lang_invoke_ConstantCallSite_setTarget__Ljava_lang_invoke_MethodH
     StackFrame *__frame = method_enter(runtime, 24, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 106 , L2138564891 , bytecode index = 
+    //  line no 106 , L1627428162 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 106;
     // new java/lang/UnsupportedOperationException
@@ -270,7 +270,7 @@ void func_java_lang_invoke_ConstantCallSite_setTarget__Ljava_lang_invoke_MethodH
         }
     }
     // athrow
-    //     L2138564891 in labeltable is :L2138564891
+    //     L1627428162 in labeltable is :L1627428162
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 106;
@@ -304,7 +304,7 @@ struct java_lang_invoke_MethodHandle* func_java_lang_invoke_ConstantCallSite_dyn
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 25, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 118 , L2141179775 , bytecode index = 
+    //  line no 118 , L1150284200 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 118;
     rstack[sp++].obj = rlocal[0].obj;
@@ -353,7 +353,7 @@ struct java_lang_Object* func_java_lang_invoke_ConstantCallSite_dynamicInvoker__
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 26, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 34 , L1663619914 , bytecode index = 
+    //  line no 34 , L2138564891 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 34;
     rstack[sp++].obj = rlocal[0].obj;

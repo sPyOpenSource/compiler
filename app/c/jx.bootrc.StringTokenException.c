@@ -58,7 +58,7 @@ void func_jx_bootrc_StringTokenException__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 555, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 3 , L37887172 , bytecode index = 
+    //  line no 3 , L1541697437 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 3;
     rstack[sp++].obj = rlocal[0].obj;
