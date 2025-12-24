@@ -52,7 +52,7 @@ public class AssistLLVM {
     static List<String> fieldraw = new ArrayList<>();
     static Map<String, Integer> fieldraw2index = new HashMap();
 
-    static Set<String> lambdaClasses = new LinkedHashSet<>();//lambda classes path
+    static Map<String, byte[]> lambdaClasses = new LinkedHashMap<>();//lambda classes path
 
     static Map<Integer, String> clinitMethods = new LinkedHashMap<>();
 
@@ -61,20 +61,18 @@ public class AssistLLVM {
     static int interfaceCount = 0;
 
     static String jsrcPath;
-    static String classesPath;
     static String csrcPath;
     static String[][] microDefFields;
 
-    static public void convert(String pjsrcPath, String pclassesPath, String pcsrcPath, String[][] pmicroDefFields) throws IOException {
+    static public void convert(String pjsrcPath, String pcsrcPath, String[][] pmicroDefFields) throws IOException {
         jsrcPath = pjsrcPath;
-        classesPath = pclassesPath;
         csrcPath = pcsrcPath;
         microDefFields = pmicroDefFields;
 
         //javaSrc2class(jsrcPath, classesPath);
         ClassManger.init(null);
 
-        class2c(classesPath, csrcPath);
+        class2c(csrcPath);
 
 //        conv("java.lang.Object", classesPath, csrcPath);
 //        conv("java.io.PrintStream", classesPath, csrcPath);
@@ -104,26 +102,21 @@ public class AssistLLVM {
 
     }
 
-    static void class2c(String classesPath, String cPath) throws IOException {
-        List<String> files = new ArrayList<>();
-        MyCompiler.find(classesPath, files, null, ".class");
-        Collections.sort(files);
-
-        String classesAbsPath = new File(classesPath).getAbsolutePath();
+    static void class2c(String cPath) throws IOException {
         for (String cp : ClassManger.helper.getAllClass()) {
             //String className = cp.substring(classesAbsPath.length() + 1);
             //className = className.replaceAll("[\\\\/]{1,}", ".");
             String className = cp.replace(".class", "");
-            conv(className, classesPath, cPath);
+            conv(className, cPath);
         }
         //process lambda
-        for (String className : lambdaClasses) {
-            conv(className, classesPath, cPath);
+        for (String className : lambdaClasses.keySet()) {
+            conv(className, cPath);
         }
-        System.out.println("converted classes :" + (files.size() + lambdaClasses.size()));
+        //System.out.println("converted classes :" + (files.size() + lambdaClasses.size()));
     }
 
-    static void conv(String className, String classesPath, String cPath) throws IOException {
+    static void conv(String className, String cPath) throws IOException {
 
         String outFileName = className.replace("_", "_0005f").replace("$", "_") + ".c";
         File outFileDir = new File(cPath);
@@ -144,15 +137,14 @@ public class AssistLLVM {
     }
 
     public static void addLambdaClass(String className, byte[] bytes) {
-        lambdaClasses.add(className);
-        String path = classesPath + "/" + className + ".class";
-        try {
+        lambdaClasses.put(className, bytes);
+        /*try {
             FileOutputStream fos = new FileOutputStream(path);
             fos.write(bytes);
             fos.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //ClassManger.addClassFile(path);
     }
 

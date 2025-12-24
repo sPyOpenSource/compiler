@@ -63,7 +63,7 @@ void func_java_lang_ExceptionInInitializerError__init____V(JThreadRuntime *runti
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 650, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 66 , L1955990522 , bytecode index = 
+    //  line no 66 , L1131592118 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 66;
     rstack[sp++].obj = rlocal[0].obj;
@@ -83,7 +83,7 @@ void func_java_lang_ExceptionInInitializerError__init____V(JThreadRuntime *runti
         }
     }
     ; 
-    //  line no 67 , L69673470 , bytecode index = 
+    //  line no 67 , L589987187 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -107,7 +107,7 @@ void func_java_lang_ExceptionInInitializerError__init____V(JThreadRuntime *runti
     }
     --sp; //pop
     ; 
-    //  line no 68 , L1082411691 , bytecode index = 
+    //  line no 68 , L1262609629 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -138,7 +138,7 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_Throwable_2_V
     StackFrame *__frame = method_enter(runtime, 651, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 78 , L1533123860 , bytecode index = 
+    //  line no 78 , L1955990522 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 78;
     rstack[sp++].obj = rlocal[0].obj;
@@ -158,7 +158,7 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_Throwable_2_V
         }
     }
     ; 
-    //  line no 79 , L1718906711 , bytecode index = 
+    //  line no 79 , L69673470 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -182,14 +182,14 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_Throwable_2_V
     }
     --sp; //pop
     ; 
-    //  line no 80 , L71802912 , bytecode index = 
+    //  line no 80 , L1082411691 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/lang/ExceptionInInitializerError exception Ljava/lang/Throwable;
     sp -= 2;
     ((struct java_lang_ExceptionInInitializerError*)rstack[sp + 0].obj)->exception_13 = rstack[sp + 1].obj;
     ; 
-    //  line no 81 , L2134271532 , bytecode index = 
+    //  line no 81 , L527211736 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -220,7 +220,7 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_String_2_V(JT
     StackFrame *__frame = method_enter(runtime, 652, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 94 , L1831010686 , bytecode index = 
+    //  line no 94 , L1718906711 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 94;
     rstack[sp++].obj = rlocal[0].obj;
@@ -241,7 +241,7 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_String_2_V(JT
         }
     }
     ; 
-    //  line no 95 , L1423768154 , bytecode index = 
+    //  line no 95 , L71802912 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -265,7 +265,7 @@ void func_java_lang_ExceptionInInitializerError__init___Ljava_lang_String_2_V(JT
     }
     --sp; //pop
     ; 
-    //  line no 96 , L404222443 , bytecode index = 
+    //  line no 96 , L2134271532 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -294,7 +294,7 @@ struct java_lang_Throwable* func_java_lang_ExceptionInInitializerError_getExcept
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 112 , L61073295 , bytecode index = 
+    //  line no 112 , L1831010686 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/lang/ExceptionInInitializerError exception Ljava/lang/Throwable;
     rstack[sp - 1].obj = ((struct java_lang_ExceptionInInitializerError*)rstack[sp - 1].obj)->exception_13;
@@ -319,7 +319,7 @@ struct java_lang_Throwable* func_java_lang_ExceptionInInitializerError_getCause_
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 124 , L396485834 , bytecode index = 
+    //  line no 124 , L404222443 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/lang/ExceptionInInitializerError exception Ljava/lang/Throwable;
     rstack[sp - 1].obj = ((struct java_lang_ExceptionInInitializerError*)rstack[sp - 1].obj)->exception_13;

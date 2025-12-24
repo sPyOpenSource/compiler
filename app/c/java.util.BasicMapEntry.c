@@ -57,7 +57,7 @@ void func_java_util_BasicMapEntry__init___Ljava_lang_Object_2Ljava_lang_Object_2
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 51 , L455888635 , bytecode index = 
+    //  line no 51 , L1887699190 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 51;
     rstack[sp++].obj = rlocal[0].obj;
@@ -65,21 +65,21 @@ void func_java_util_BasicMapEntry__init___Ljava_lang_Object_2Ljava_lang_Object_2
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 52 , L204805934 , bytecode index = 
+    //  line no 52 , L1479140596 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/util/BasicMapEntry key Ljava/lang/Object;
     sp -= 2;
     ((struct java_util_BasicMapEntry*)rstack[sp + 0].obj)->key_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 53 , L204322447 , bytecode index = 
+    //  line no 53 , L1108889615 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield java/util/BasicMapEntry value Ljava/lang/Object;
     sp -= 2;
     ((struct java_util_BasicMapEntry*)rstack[sp + 0].obj)->value_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 54 , L1019484860 , bytecode index = 
+    //  line no 54 , L1275028674 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -110,15 +110,15 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     StackFrame *__frame = method_enter(runtime, 856, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 77 , L1640899500 , bytecode index = 
+    //  line no 77 , L204805934 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 77;
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof java/util/Map$Entry
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 496);
-    if(stack[--sp].i  == 0) goto L3565780;
+    if(stack[--sp].i  == 0) goto L204322447;
     ; 
-    //  line no 79 , L473666452 , bytecode index = 
+    //  line no 79 , L1019484860 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/util/Map$Entry
     {
@@ -130,7 +130,7 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 80 , L1865219266 , bytecode index = 
+    //  line no 80 , L1164365897 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/util/BasicMapEntry.getKey()Ljava/lang/Object;
     {
@@ -150,7 +150,7 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 81 , L2138005960 , bytecode index = 
+    //  line no 81 , L1640899500 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/util/BasicMapEntry.getValue()Ljava/lang/Object;
     {
@@ -170,7 +170,7 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 82 , L1278002745 , bytecode index = 
+    //  line no 82 , L3565780 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Map$Entry.getKey()Ljava/lang/Object;
     {
@@ -190,7 +190,7 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 83 , L214649627 , bytecode index = 
+    //  line no 83 , L473666452 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Map$Entry.getValue()Ljava/lang/Object;
     {
@@ -210,17 +210,45 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 84 , L67730604 , bytecode index = 
+    //  line no 84 , L1865219266 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
+    if(rstack[--sp].obj  != NULL) goto L2138005960;
+    rstack[sp++].obj = rlocal[5].obj;
+    if(rstack[--sp].obj  != NULL) goto L1278002745;
+    goto L214649627;
+    L2138005960:
+    rstack[sp++].obj = rlocal[3].obj;
+    rstack[sp++].obj = rlocal[5].obj;
+    ; 
+    //  line no 85 , L67730604 , bytecode index = 
+    // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
+    {
+        sp -= 1;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        s8 (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 10, 9);
+        stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
+        sp += 1;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    if(stack[--sp].i  == 0) goto L1278002745;
+    L214649627:
+    rstack[sp++].obj = rlocal[4].obj;
     if(rstack[--sp].obj  != NULL) goto L15477956;
-    rstack[sp++].obj = rlocal[5].obj;
-    if(rstack[--sp].obj  != NULL) goto L710623214;
-    goto L2082351661;
+    rstack[sp++].obj = rlocal[6].obj;
+    if(rstack[--sp].obj  != NULL) goto L1278002745;
+    goto L710623214;
     L15477956:
-    rstack[sp++].obj = rlocal[3].obj;
-    rstack[sp++].obj = rlocal[5].obj;
+    rstack[sp++].obj = rlocal[4].obj;
+    rstack[sp++].obj = rlocal[6].obj;
     ; 
-    //  line no 85 , L859690270 , bytecode index = 
+    //  line no 87 , L2082351661 , bytecode index = 
     // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
     {
         sp -= 1;
@@ -237,48 +265,20 @@ s8 func_java_util_BasicMapEntry_equals__Ljava_lang_Object_2_Z(JThreadRuntime *ru
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L710623214;
-    L2082351661:
-    rstack[sp++].obj = rlocal[4].obj;
-    if(rstack[--sp].obj  != NULL) goto L1389774257;
-    rstack[sp++].obj = rlocal[6].obj;
-    if(rstack[--sp].obj  != NULL) goto L710623214;
-    goto L553759818;
-    L1389774257:
-    rstack[sp++].obj = rlocal[4].obj;
-    rstack[sp++].obj = rlocal[6].obj;
-    ; 
-    //  line no 87 , L751021317 , bytecode index = 
-    // invokevirtual java/lang/Object.equals(Ljava/lang/Object;)Z
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s8 (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 10, 9);
-        stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(stack[--sp].i  == 0) goto L710623214;
-    L553759818:
+    if(stack[--sp].i  == 0) goto L1278002745;
+    L710623214:
     // iconst_1
     stack[sp++].i = 1;
-    goto L1896552614;
-    L710623214:
+    goto L859690270;
+    L1278002745:
     // iconst_0
     stack[sp++].i = 0;
-    L1896552614:
-    //  line no 84 , L1896552614 , bytecode index = 
+    L859690270:
+    //  line no 84 , L859690270 , bytecode index = 
     method_exit(runtime);
     return stack[sp - 1].i;
-    L3565780:
-    //  line no 89 , L3565780 , bytecode index = 
+    L204322447:
+    //  line no 89 , L204322447 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
@@ -309,7 +309,7 @@ struct java_lang_Object* func_java_util_BasicMapEntry_getKey___Ljava_lang_Object
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 96 , L1033856359 , bytecode index = 
+    //  line no 96 , L553759818 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/BasicMapEntry key Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_BasicMapEntry*)rstack[sp - 1].obj)->key_0;
@@ -334,7 +334,7 @@ struct java_lang_Object* func_java_util_BasicMapEntry_getValue___Ljava_lang_Obje
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 103 , L635611994 , bytecode index = 
+    //  line no 103 , L1896552614 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/BasicMapEntry value Ljava/lang/Object;
     rstack[sp - 1].obj = ((struct java_util_BasicMapEntry*)rstack[sp - 1].obj)->value_1;
@@ -360,7 +360,7 @@ s32 func_java_util_BasicMapEntry_hashCode___I(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 859, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 119 , L1930903395 , bytecode index = 
+    //  line no 119 , L1033856359 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 119;
     rstack[sp++].obj = rlocal[0].obj;
@@ -382,7 +382,7 @@ s32 func_java_util_BasicMapEntry_hashCode___I(JThreadRuntime *runtime){
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 120 , L1431710377 , bytecode index = 
+    //  line no 120 , L201677908 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual java/util/BasicMapEntry.getValue()Ljava/lang/Object;
     {
@@ -402,13 +402,13 @@ s32 func_java_util_BasicMapEntry_hashCode___I(JThreadRuntime *runtime){
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 121 , L1700721442 , bytecode index = 
+    //  line no 121 , L635611994 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L2116511124;
+    if(rstack[--sp].obj  != NULL) goto L904253669;
     // iconst_0
     stack[sp++].i = 0;
-    goto L872522004;
-    L2116511124:
+    goto L1930903395;
+    L904253669:
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/lang/Object.hashCode()I
     {
@@ -426,14 +426,14 @@ s32 func_java_util_BasicMapEntry_hashCode___I(JThreadRuntime *runtime){
             goto __ExceptionHandler;
         }
     }
-    L872522004:
-    //  line no 122 , L872522004 , bytecode index = 
+    L1930903395:
+    //  line no 122 , L1930903395 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  != NULL) goto L1348916831;
+    if(rstack[--sp].obj  != NULL) goto L1431710377;
     // iconst_0
     stack[sp++].i = 0;
-    goto L1110698130;
-    L1348916831:
+    goto L1700721442;
+    L1431710377:
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/lang/Object.hashCode()I
     {
@@ -451,11 +451,11 @@ s32 func_java_util_BasicMapEntry_hashCode___I(JThreadRuntime *runtime){
             goto __ExceptionHandler;
         }
     }
-    L1110698130:
+    L1700721442:
     stack[sp - 2].i = stack[sp - 2].i ^ stack[sp - 1].i; 
     --sp;
     ; 
-    //  line no 121 , L125644421 , bytecode index = 
+    //  line no 121 , L2116511124 , bytecode index = 
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -486,7 +486,7 @@ struct java_lang_Object* func_java_util_BasicMapEntry_setValue__Ljava_lang_Objec
     StackFrame *__frame = method_enter(runtime, 860, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 135 , L1493158871 , bytecode index = 
+    //  line no 135 , L1348916831 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 135;
     rstack[sp++].obj = rlocal[0].obj;
@@ -495,14 +495,14 @@ struct java_lang_Object* func_java_util_BasicMapEntry_setValue__Ljava_lang_Objec
     sp += 0;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 136 , L89509666 , bytecode index = 
+    //  line no 136 , L1110698130 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/util/BasicMapEntry value Ljava/lang/Object;
     sp -= 2;
     ((struct java_util_BasicMapEntry*)rstack[sp + 0].obj)->value_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 137 , L1806880779 , bytecode index = 
+    //  line no 137 , L125644421 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;

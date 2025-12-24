@@ -50,7 +50,7 @@ void func_java_security_KeyPair__init___Ljava_security_PublicKey_2Ljava_security
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 52 , L1371376476 , bytecode index = 
+    //  line no 52 , L333040629 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 52;
     rstack[sp++].obj = rlocal[0].obj;
@@ -58,21 +58,21 @@ void func_java_security_KeyPair__init___Ljava_security_PublicKey_2Ljava_security
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 53 , L2068897588 , bytecode index = 
+    //  line no 53 , L1200470358 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/security/KeyPair publicKey Ljava/security/PublicKey;
     sp -= 2;
     ((struct java_security_KeyPair*)rstack[sp + 0].obj)->publicKey_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 54 , L457247584 , bytecode index = 
+    //  line no 54 , L1822525972 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield java/security/KeyPair privateKey Ljava/security/PrivateKey;
     sp -= 2;
     ((struct java_security_KeyPair*)rstack[sp + 0].obj)->privateKey_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 55 , L610454273 , bytecode index = 
+    //  line no 55 , L208043846 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -101,7 +101,7 @@ struct java_security_PublicKey* func_java_security_KeyPair_getPublic___Ljava_sec
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 64 , L1693226694 , bytecode index = 
+    //  line no 64 , L2068897588 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/KeyPair publicKey Ljava/security/PublicKey;
     rstack[sp - 1].obj = ((struct java_security_KeyPair*)rstack[sp - 1].obj)->publicKey_0;
@@ -126,7 +126,7 @@ struct java_security_PrivateKey* func_java_security_KeyPair_getPrivate___Ljava_s
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 74 , L1164799006 , bytecode index = 
+    //  line no 74 , L610454273 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/security/KeyPair privateKey Ljava/security/PrivateKey;
     rstack[sp - 1].obj = ((struct java_security_KeyPair*)rstack[sp - 1].obj)->privateKey_1;

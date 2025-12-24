@@ -43,7 +43,7 @@ void func_jx_net_StartNetDevice__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 329, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 15 , L1534754611 , bytecode index = 
+    //  line no 15 , L120360571 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 15;
     rstack[sp++].obj = rlocal[0].obj;
@@ -81,7 +81,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 18 , L1551446957 , bytecode index = 
+    //  line no 18 , L1125964210 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 18;
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
@@ -106,7 +106,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 19 , L1471948789 , bytecode index = 
+    //  line no 19 , L944140566 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 795);
@@ -130,7 +130,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 21 , L1605851606 , bytecode index = 
+    //  line no 21 , L1534754611 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 798);
@@ -154,7 +154,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 22 , L1267556427 , bytecode index = 
+    //  line no 22 , L2030937207 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -177,7 +177,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 23 , L1585239756 , bytecode index = 
+    //  line no 23 , L1551446957 , bytecode index = 
     // new metaxa/os/devices/net/ComInit
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 111);
     // dup
@@ -206,7 +206,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 24 , L1758056825 , bytecode index = 
+    //  line no 24 , L1471948789 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual metaxa/os/devices/net/ComInit.findDevice(Ljx/devices/pci/PCIAccess;)[Lmetaxa/os/devices/net/D3C905;
@@ -227,19 +227,19 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 25 , L223693919 , bytecode index = 
+    //  line no 25 , L1605851606 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
-    if(rstack[--sp].obj  != NULL) goto L771418758;
+    if(rstack[--sp].obj  != NULL) goto L1267556427;
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L771418758:
-    //  line no 26 , L771418758 , bytecode index = 
+    L1267556427:
+    //  line no 26 , L1267556427 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     // iconst_0
     stack[sp++].i = 0;
-    // arrload __refer  ,  L771418758 bc index = 
+    // arrload __refer  ,  L1267556427 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -255,15 +255,15 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 28 , L361268035 , bytecode index = 
+    //  line no 28 , L1585239756 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
-    if(rstack[--sp].obj  != NULL) goto L871160466;
+    if(rstack[--sp].obj  != NULL) goto L1758056825;
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L871160466:
-    //  line no 30 , L871160466 , bytecode index = 
+    L1758056825:
+    //  line no 30 , L1758056825 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     // invokevirtual metaxa/os/devices/net/D3C905.NicOpen()Z
     {
@@ -281,9 +281,9 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L352083716;
+    if(stack[--sp].i  != 0) goto L223693919;
     ; 
-    //  line no 31 , L1848125895 , bytecode index = 
+    //  line no 31 , L771418758 , bytecode index = 
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -308,15 +308,15 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     // athrow
-    //     L1848125895 in labeltable is :L1848125895
+    //     L771418758 in labeltable is :L771418758
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 31;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L352083716:
-    //  line no 34 , L352083716 , bytecode index = 
+    L223693919:
+    //  line no 34 , L223693919 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -337,7 +337,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 35 , L1072377306 , bytecode index = 
+    //  line no 35 , L361268035 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     // invokevirtual metaxa/os/devices/net/D3C905.unmaskInterrupts()V
     {
@@ -356,7 +356,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 37 , L1787189503 , bytecode index = 
+    //  line no 37 , L871160466 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -379,7 +379,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 38 , L477376212 , bytecode index = 
+    //  line no 38 , L352083716 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     // invokevirtual metaxa/os/devices/net/D3C905.getMACAddress()[B
     {
@@ -410,7 +410,7 @@ struct metaxa_os_devices_net_D3C905* func_jx_net_StartNetDevice_init3com__Ljx_ze
         }
     }
     ; 
-    //  line no 40 , L859654796 , bytecode index = 
+    //  line no 40 , L1848125895 , bytecode index = 
     rstack[sp++].obj = rlocal[5].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
@@ -443,7 +443,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 45 , L231202600 , bytecode index = 
+    //  line no 45 , L1787189503 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 45;
     // invokestatic jx/zero/InitialNaming.getInitialNaming()Ljx/zero/Naming;
@@ -458,7 +458,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 48 , L821576394 , bytecode index = 
+    //  line no 48 , L477376212 , bytecode index = 
     // new jx/devices/net/emulation/EmulNetFinder
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 113);
     // dup
@@ -468,7 +468,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
-    // arrload __refer  ,  L821576394 bc index = 
+    // arrload __refer  ,  L477376212 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -485,7 +485,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_2
     stack[sp++].i = 2;
-    // arrload __refer  ,  L821576394 bc index = 
+    // arrload __refer  ,  L477376212 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -516,7 +516,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 49 , L1774720883 , bytecode index = 
+    //  line no 49 , L859654796 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual jx/devices/net/emulation/EmulNetFinder.find(Ljx/zero/Naming;)[Ljx/devices/Device;
@@ -537,7 +537,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 55 , L1293203138 , bytecode index = 
+    //  line no 55 , L1440621772 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokestatic jx/net/StartNetDevice.init3com(Ljx/zero/Naming;)Lmetaxa/os/devices/net/D3C905;
     {
@@ -555,15 +555,15 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
     ++sp;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    if(rstack[--sp].obj  == NULL) goto L201719260;
+    if(rstack[--sp].obj  == NULL) goto L821576394;
     ; 
-    //  line no 56 , L635371680 , bytecode index = 
+    //  line no 56 , L1774720883 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
-    // arrload __refer  ,  L635371680 bc index = 
+    // arrload __refer  ,  L1774720883 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -594,11 +594,11 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
         }
     }
     ; 
-    //  line no 57 , L1293226111 , bytecode index = 
+    //  line no 57 , L1293203138 , bytecode index = 
     method_exit(runtime);
     return;
-    L201719260:
-    //  line no 60 , L201719260 , bytecode index = 
+    L821576394:
+    //  line no 60 , L821576394 , bytecode index = 
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -623,7 +623,7 @@ void func_jx_net_StartNetDevice_main___3Ljava_lang_String_2_V(JThreadRuntime *ru
         }
     }
     // athrow
-    //     L201719260 in labeltable is :L201719260
+    //     L821576394 in labeltable is :L821576394
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 60;

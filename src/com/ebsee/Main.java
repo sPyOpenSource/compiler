@@ -58,7 +58,6 @@ public class Main {
 //                + File.pathSeparator + "../option_pack/luaj/core/src/"//
 //                + File.pathSeparator + "../option_pack/luaj/luncher/src/"//
                 ;
-        String classesPath = "./app/out/classes/";
         String csrcPath = "./app/c/";
 
         if (args.length < 3) {
@@ -67,27 +66,19 @@ public class Main {
             System.out.println("java -cp ./class2ir/dist/class2c.jar com.ebsee.Main ./app/java ./app/out/classes ./app/out/c/");
         } else {
             jsrcPath = args[0] + "/";
-            classesPath = args[1] + "/";
             csrcPath = args[2] + "/";
         }
 
         System.out.println("java source *.java path      : " + jsrcPath);
-        System.out.println("classes *.class output path  : " + classesPath);
         System.out.println("c *.c output path            : " + csrcPath);
 
-        File f;
-        boolean res;
-        f = new File(classesPath);
+        File f = new File(csrcPath);
         System.out.println(f.getAbsolutePath() + (f.exists() ? " exists " : " not exists"));
-        //res = Util.deleteTree(f);
-        //res = f.mkdirs();
-        f = new File(csrcPath);
-        System.out.println(f.getAbsolutePath() + (f.exists() ? " exists " : " not exists"));
-        res = Util.deleteTree(f);
+        boolean res = Util.deleteTree(f);
         res = f.mkdirs();
 
         long startAt = System.currentTimeMillis();
-        AssistLLVM.convert(jsrcPath, classesPath, csrcPath, microDefFields);
+        AssistLLVM.convert(jsrcPath, csrcPath, microDefFields);
         System.out.println("convert success , cost :" + (System.currentTimeMillis() - startAt));
     }
 

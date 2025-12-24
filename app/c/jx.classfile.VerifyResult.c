@@ -42,7 +42,7 @@ s32 func_jx_classfile_VerifyResult_getType___I(JThreadRuntime *runtime){
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 11 , L1375394559 , bytecode index = 
+    //  line no 11 , L189207010 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classfile/VerifyResult type I
     stack[sp - 1].i = ((struct jx_classfile_VerifyResult*)rstack[sp - 1].obj)->type_4;
@@ -69,7 +69,7 @@ void func_jx_classfile_VerifyResult__init___I_V(JThreadRuntime *runtime, s32 p0)
     StackFrame *__frame = method_enter(runtime, 563, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 13 , L838812606 , bytecode index = 
+    //  line no 13 , L1894788146 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 13;
     rstack[sp++].obj = rlocal[0].obj;
@@ -77,14 +77,14 @@ void func_jx_classfile_VerifyResult__init___I_V(JThreadRuntime *runtime, s32 p0)
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 14 , L1533985074 , bytecode index = 
+    //  line no 14 , L1644236636 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // putfield jx/classfile/VerifyResult type I
     sp -= 2;
     ((struct jx_classfile_VerifyResult*)rstack[sp + 0].obj)->type_4 = stack[sp + 1].i;
     ; 
-    //  line no 15 , L1548010882 , bytecode index = 
+    //  line no 15 , L1375394559 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

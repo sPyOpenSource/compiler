@@ -45,7 +45,7 @@ void func_java_lang_invoke_BoundMethodHandle_00024SpeciesData__init___Ljava_lang
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 275 , L288306765 , bytecode index = 
+    //  line no 275 , L12905860 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 275;
     rstack[sp++].obj = rlocal[0].obj;
@@ -53,7 +53,7 @@ void func_java_lang_invoke_BoundMethodHandle_00024SpeciesData__init___Ljava_lang
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 276 , L1556867940 , bytecode index = 
+    //  line no 276 , L412788346 , bytecode index = 
     // new java/lang/UnsupportedOperationException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 24);
     // dup
@@ -78,7 +78,7 @@ void func_java_lang_invoke_BoundMethodHandle_00024SpeciesData__init___Ljava_lang
         }
     }
     // athrow
-    //     L1556867940 in labeltable is :L1556867940
+    //     L412788346 in labeltable is :L412788346
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 276;
@@ -113,7 +113,7 @@ struct java_lang_invoke_LambdaForm_00024NamedFunction* func_java_lang_invoke_Bou
     StackFrame *__frame = method_enter(runtime, 661, &rstack[0], &rlocal[0], &sp);
     local[0].i = p0;
     ; 
-    //  line no 280 , L1495608502 , bytecode index = 
+    //  line no 280 , L908084672 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 280;
     // new java/lang/UnsupportedOperationException
@@ -140,7 +140,7 @@ struct java_lang_invoke_LambdaForm_00024NamedFunction* func_java_lang_invoke_Bou
         }
     }
     // athrow
-    //     L1495608502 in labeltable is :L1495608502
+    //     L908084672 in labeltable is :L908084672
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 280;
@@ -174,7 +174,7 @@ s32 func_java_lang_invoke_BoundMethodHandle_00024SpeciesData_fieldCount___I(JThr
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 662, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 284 , L843299092 , bytecode index = 
+    //  line no 284 , L1556867940 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 284;
     // new java/lang/UnsupportedOperationException
@@ -201,7 +201,7 @@ s32 func_java_lang_invoke_BoundMethodHandle_00024SpeciesData_fieldCount___I(JThr
         }
     }
     // athrow
-    //     L843299092 in labeltable is :L843299092
+    //     L1556867940 in labeltable is :L1556867940
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 284;
@@ -237,7 +237,7 @@ s32 func_java_lang_invoke_BoundMethodHandle_00024SpeciesData_access_00024100__Lj
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 270 , L1412322831 , bytecode index = 
+    //  line no 270 , L1495608502 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 270;
     rstack[sp++].obj = rlocal[0].obj;
@@ -286,7 +286,7 @@ struct java_lang_String* func_java_lang_invoke_BoundMethodHandle_00024SpeciesDat
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 270 , L1305004711 , bytecode index = 
+    //  line no 270 , L843299092 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/lang/invoke/BoundMethodHandle$SpeciesData typeChars Ljava/lang/String;
     rstack[sp - 1].obj = ((struct java_lang_invoke_BoundMethodHandle_00024SpeciesData*)rstack[sp - 1].obj)->typeChars_1;
