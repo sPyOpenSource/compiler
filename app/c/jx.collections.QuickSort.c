@@ -61,7 +61,7 @@ void func_jx_collections_QuickSort__init___Ljx_collections_Comparator_2Ljava_uti
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 10 , L674019271 , bytecode index = 
+    //  line no 10 , L2106165633 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 10;
     rstack[sp++].obj = rlocal[0].obj;
@@ -69,21 +69,21 @@ void func_jx_collections_QuickSort__init___Ljx_collections_Comparator_2Ljava_uti
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 11 , L2106165633 , bytecode index = 
+    //  line no 11 , L1221991240 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     sp -= 2;
     ((struct jx_collections_QuickSort*)rstack[sp + 0].obj)->comparator_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 12 , L1221991240 , bytecode index = 
+    //  line no 12 , L1758624236 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield jx/collections/QuickSort elements Ljava/util/Vector;
     sp -= 2;
     ((struct jx_collections_QuickSort*)rstack[sp + 0].obj)->elements_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 13 , L1758624236 , bytecode index = 
+    //  line no 13 , L630028734 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual jx/collections/QuickSort.sort()V
     {
@@ -102,7 +102,7 @@ void func_jx_collections_QuickSort__init___Ljx_collections_Comparator_2Ljava_uti
         }
     }
     ; 
-    //  line no 14 , L630028734 , bytecode index = 
+    //  line no 14 , L351877391 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -133,7 +133,7 @@ void func_jx_collections_QuickSort__init___Ljx_collections_Comparator_2_V(JThrea
     StackFrame *__frame = method_enter(runtime, 525, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 16 , L1812823171 , bytecode index = 
+    //  line no 16 , L392918519 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 16;
     rstack[sp++].obj = rlocal[0].obj;
@@ -175,7 +175,7 @@ void func_jx_collections_QuickSort__init___Ljx_collections_Comparator_2_V(JThrea
         }
     }
     ; 
-    //  line no 17 , L392918519 , bytecode index = 
+    //  line no 17 , L1499840045 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -205,7 +205,7 @@ struct jx_collections_Iterator* func_jx_collections_QuickSort_iterator___Ljx_col
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 526, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 20 , L67749199 , bytecode index = 
+    //  line no 20 , L65488937 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 20;
     // new jx/collections/QuickSort$1
@@ -259,7 +259,7 @@ void func_jx_collections_QuickSort_sort___V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 527, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 32 , L1332691311 , bytecode index = 
+    //  line no 32 , L999230073 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 32;
     rstack[sp++].obj = rlocal[0].obj;
@@ -285,11 +285,11 @@ void func_jx_collections_QuickSort_sort___V(JThreadRuntime *runtime){
     // iconst_2
     stack[sp++].i = 2;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L999230073;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1910936570;
     method_exit(runtime);
     return;
-    L999230073:
-    //  line no 33 , L999230073 , bytecode index = 
+    L1910936570:
+    //  line no 33 , L1910936570 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort elements Ljava/util/Vector;
@@ -338,7 +338,7 @@ void func_jx_collections_QuickSort_sort___V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 35 , L1910936570 , bytecode index = 
+    //  line no 35 , L1215904751 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -369,7 +369,7 @@ void func_jx_collections_QuickSort_add__Ljava_lang_Object_2_V(JThreadRuntime *ru
     StackFrame *__frame = method_enter(runtime, 528, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 38 , L2099802038 , bytecode index = 
+    //  line no 38 , L1052212904 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 38;
     rstack[sp++].obj = rlocal[0].obj;
@@ -394,7 +394,7 @@ void func_jx_collections_QuickSort_add__Ljava_lang_Object_2_V(JThreadRuntime *ru
         }
     }
     ; 
-    //  line no 39 , L1052212904 , bytecode index = 
+    //  line no 39 , L2072724423 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual jx/collections/QuickSort.sort()V
     {
@@ -413,7 +413,7 @@ void func_jx_collections_QuickSort_add__Ljava_lang_Object_2_V(JThreadRuntime *ru
         }
     }
     ; 
-    //  line no 40 , L2072724423 , bytecode index = 
+    //  line no 40 , L2058135834 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -443,7 +443,7 @@ s32 func_jx_collections_QuickSort_size___I(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 529, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 43 , L1153907750 , bytecode index = 
+    //  line no 43 , L1090541608 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 43;
     rstack[sp++].obj = rlocal[0].obj;
@@ -498,15 +498,15 @@ void func_jx_collections_QuickSort_qsort__Ljava_util_Vector_2II_V(JThreadRuntime
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 48 , L1622458036 , bytecode index = 
+    //  line no 48 , L2144284609 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 48;
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2144284609;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L34871826;
     ; 
-    //  line no 49 , L34871826 , bytecode index = 
+    //  line no 49 , L1100399456 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
@@ -528,7 +528,7 @@ void func_jx_collections_QuickSort_qsort__Ljava_util_Vector_2II_V(JThreadRuntime
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 50 , L1100399456 , bytecode index = 
+    //  line no 50 , L68326648 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
@@ -549,7 +549,7 @@ void func_jx_collections_QuickSort_qsort__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     ; 
-    //  line no 51 , L68326648 , bytecode index = 
+    //  line no 51 , L35984028 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
@@ -573,8 +573,8 @@ void func_jx_collections_QuickSort_qsort__Ljava_util_Vector_2II_V(JThreadRuntime
             goto __ExceptionHandler;
         }
     }
-    L2144284609:
-    //  line no 53 , L2144284609 , bytecode index = 
+    L34871826:
+    //  line no 53 , L34871826 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -607,17 +607,17 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 56 , L541285440 , bytecode index = 
+    //  line no 56 , L1463355115 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 56;
     stack[sp++].i = local[2].i;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 57 , L1463355115 , bytecode index = 
+    //  line no 57 , L1201466784 , bytecode index = 
     stack[sp++].i = local[3].i;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 60 , L1201466784 , bytecode index = 
+    //  line no 60 , L1829217853 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[3].i;
@@ -644,8 +644,8 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     rlocal[6].obj = rstack[--sp].obj;
-    L1829217853:
-    //  line no 66 , L1829217853 , bytecode index = 
+    L1461474945:
+    //  line no 66 , L1461474945 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -685,13 +685,13 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  >= 0) goto L1461474945;
+    if(stack[--sp].i  >= 0) goto L1217207511;
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1829217853;
-    L1461474945:
-    //  line no 70 , L1461474945 , bytecode index = 
+    goto L1461474945;
+    L1217207511:
+    //  line no 70 , L1217207511 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -731,17 +731,17 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  <= 0) goto L1217207511;
+    if(stack[--sp].i  <= 0) goto L1759250827;
     // iinc slot 5 value -1
     local[5].i += -1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1461474945;
-    L1217207511:
-    //  line no 72 , L1217207511 , bytecode index = 
+    goto L1217207511;
+    L1759250827:
+    //  line no 72 , L1759250827 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  > stack[sp + 1].i) goto L1759250827;
+    if(stack[sp + 0].i  > stack[sp + 1].i) goto L951741667;
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
@@ -765,49 +765,23 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
     local[4].i += 1;
     // iinc slot 5 value -1
     local[5].i += -1;
-    L1759250827:
-    //  line no 74 , L1759250827 , bytecode index = 
+    L951741667:
+    //  line no 74 , L951741667 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
     sp -= 2;
-    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1829217853;
+    if(stack[sp + 0].i  <= stack[sp + 1].i) goto L1461474945;
     ; 
-    //  line no 76 , L951741667 , bytecode index = 
+    //  line no 76 , L220695851 , bytecode index = 
     stack[sp++].i = local[2].i;
     stack[sp++].i = local[5].i;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L220695851;
-    rstack[sp++].obj = rlocal[0].obj;
-    rstack[sp++].obj = rlocal[1].obj;
-    stack[sp++].i = local[2].i;
-    stack[sp++].i = local[5].i;
-    // invokevirtual jx/collections/QuickSort.sort3(Ljava/util/Vector;II)V
-    {
-        sp -= 3;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *,struct java_util_Vector*,s32,s32) = find_method(__ins->vm_table, 211, 4);
-        __func_p(runtime, rstack[sp + 0].obj, stack[sp + 1].i, stack[sp + 2].i);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L220695851:
-    //  line no 78 , L220695851 , bytecode index = 
-    stack[sp++].i = local[4].i;
-    stack[sp++].i = local[3].i;
     sp -= 2;
     if(stack[sp + 0].i  >= stack[sp + 1].i) goto L762074108;
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
-    stack[sp++].i = local[4].i;
-    stack[sp++].i = local[3].i;
+    stack[sp++].i = local[2].i;
+    stack[sp++].i = local[5].i;
     // invokevirtual jx/collections/QuickSort.sort3(Ljava/util/Vector;II)V
     {
         sp -= 3;
@@ -825,7 +799,33 @@ void func_jx_collections_QuickSort_sort3__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     L762074108:
-    //  line no 80 , L762074108 , bytecode index = 
+    //  line no 78 , L762074108 , bytecode index = 
+    stack[sp++].i = local[4].i;
+    stack[sp++].i = local[3].i;
+    sp -= 2;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L636782475;
+    rstack[sp++].obj = rlocal[0].obj;
+    rstack[sp++].obj = rlocal[1].obj;
+    stack[sp++].i = local[4].i;
+    stack[sp++].i = local[3].i;
+    // invokevirtual jx/collections/QuickSort.sort3(Ljava/util/Vector;II)V
+    {
+        sp -= 3;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *,struct java_util_Vector*,s32,s32) = find_method(__ins->vm_table, 211, 4);
+        __func_p(runtime, rstack[sp + 0].obj, stack[sp + 1].i, stack[sp + 2].i);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    L636782475:
+    //  line no 80 , L636782475 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -858,7 +858,7 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 83 , L1312963234 , bytecode index = 
+    //  line no 83 , L2143139988 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 83;
     rstack[sp++].obj = rlocal[1].obj;
@@ -881,7 +881,7 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 84 , L2143139988 , bytecode index = 
+    //  line no 84 , L813823788 , bytecode index = 
     stack[sp++].i = local[2].i;
     // iconst_1
     stack[sp++].i = 1;
@@ -889,19 +889,19 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
     --sp;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 85 , L813823788 , bytecode index = 
+    //  line no 85 , L826865256 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_1
     stack[sp++].i = 1;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
     local[6].i = stack[--sp].i;
-    L826865256:
-    //  line no 88 , L826865256 , bytecode index = 
+    L1845517769:
+    //  line no 88 , L1845517769 , bytecode index = 
     // iinc slot 6 value -1
     local[6].i += -1;
     ; 
-    //  line no 89 , L1845517769 , bytecode index = 
+    //  line no 89 , L2095788421 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -942,13 +942,13 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    if(stack[--sp].i  > 0) goto L826865256;
-    L2095788421:
-    //  line no 91 , L2095788421 , bytecode index = 
+    if(stack[--sp].i  > 0) goto L1845517769;
+    L1131184547:
+    //  line no 91 , L1131184547 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     ; 
-    //  line no 92 , L1131184547 , bytecode index = 
+    //  line no 92 , L895599632 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -989,15 +989,15 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    if(stack[--sp].i  < 0) goto L2095788421;
+    if(stack[--sp].i  < 0) goto L1131184547;
     ; 
-    //  line no 93 , L895599632 , bytecode index = 
+    //  line no 93 , L1508059488 , bytecode index = 
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[6].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1508059488;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L2082557120;
     ; 
-    //  line no 94 , L2082557120 , bytecode index = 
+    //  line no 94 , L1533524862 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[5].i;
@@ -1018,9 +1018,9 @@ s32 func_jx_collections_QuickSort_quickPartition__Ljava_util_Vector_2II_I(JThrea
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L826865256;
-    L1508059488:
-    //  line no 96 , L1508059488 , bytecode index = 
+    goto L1845517769;
+    L2082557120:
+    //  line no 96 , L2082557120 , bytecode index = 
     stack[sp++].i = local[6].i;
     method_exit(runtime);
     return stack[sp - 1].i;
@@ -1054,27 +1054,27 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 102 , L1620948294 , bytecode index = 
+    //  line no 102 , L552937500 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 102;
     stack[sp++].i = local[2].i;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 103 , L552937500 , bytecode index = 
+    //  line no 103 , L1455695758 , bytecode index = 
     stack[sp++].i = local[3].i;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 104 , L1455695758 , bytecode index = 
+    //  line no 104 , L807328355 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  < stack[sp + 1].i) goto L807328355;
+    if(stack[sp + 0].i  < stack[sp + 1].i) goto L1025797795;
     ; 
-    //  line no 105 , L1025797795 , bytecode index = 
+    //  line no 105 , L873993427 , bytecode index = 
     method_exit(runtime);
     return;
-    L807328355:
-    //  line no 107 , L807328355 , bytecode index = 
+    L1025797795:
+    //  line no 107 , L1025797795 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
@@ -1105,18 +1105,18 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     rlocal[6].obj = rstack[--sp].obj;
-    L873993427:
-    //  line no 108 , L873993427 , bytecode index = 
+    L1134013833:
+    //  line no 108 , L1134013833 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1134013833;
-    L94157402:
-    //  line no 109 , L94157402 , bytecode index = 
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L94157402;
+    L466853180:
+    //  line no 109 , L466853180 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L466853180;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1863953433;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -1156,19 +1156,19 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  <= 0) goto L466853180;
+    if(stack[--sp].i  <= 0) goto L1863953433;
     ; 
-    //  line no 110 , L1863953433 , bytecode index = 
+    //  line no 110 , L295485334 , bytecode index = 
     // iinc slot 4 value 1
     local[4].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L94157402;
-    L466853180:
-    //  line no 112 , L466853180 , bytecode index = 
+    goto L466853180;
+    L1863953433:
+    //  line no 112 , L1863953433 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L295485334;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1899141525;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/collections/QuickSort comparator Ljx/collections/Comparator;
     rstack[sp - 1].obj = ((struct jx_collections_QuickSort*)rstack[sp - 1].obj)->comparator_0;
@@ -1208,22 +1208,22 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  >= 0) goto L295485334;
+    if(stack[--sp].i  >= 0) goto L1899141525;
     ; 
-    //  line no 113 , L1899141525 , bytecode index = 
+    //  line no 113 , L1989132530 , bytecode index = 
     // iinc slot 5 value -1
     local[5].i += -1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L466853180;
-    L295485334:
-    //  line no 115 , L295485334 , bytecode index = 
+    goto L1863953433;
+    L1899141525:
+    //  line no 115 , L1899141525 , bytecode index = 
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[5].i;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L873993427;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1134013833;
     ; 
-    //  line no 116 , L1989132530 , bytecode index = 
+    //  line no 116 , L1414845278 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
@@ -1244,27 +1244,27 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L873993427;
-    L1134013833:
-    //  line no 119 , L1134013833 , bytecode index = 
+    goto L1134013833;
+    L94157402:
+    //  line no 119 , L94157402 , bytecode index = 
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[4].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1414845278;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L549496397;
     ; 
-    //  line no 120 , L549496397 , bytecode index = 
+    //  line no 120 , L1163619825 , bytecode index = 
     stack[sp++].i = local[4].i;
     local[7].i = stack[--sp].i;
     ; 
-    //  line no 121 , L1163619825 , bytecode index = 
+    //  line no 121 , L1306246648 , bytecode index = 
     stack[sp++].i = local[5].i;
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 122 , L1306246648 , bytecode index = 
+    //  line no 122 , L1063737662 , bytecode index = 
     stack[sp++].i = local[4].i;
     local[5].i = stack[--sp].i;
-    L1414845278:
-    //  line no 124 , L1414845278 , bytecode index = 
+    L549496397:
+    //  line no 124 , L549496397 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[2].i;
@@ -1286,22 +1286,22 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     ; 
-    //  line no 125 , L1063737662 , bytecode index = 
+    //  line no 125 , L447767121 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[4].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L447767121;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L68857875;
     stack[sp++].i = local[4].i;
     // iconst_1
     stack[sp++].i = 1;
     stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
     --sp;
-    goto L68857875;
-    L447767121:
-    stack[sp++].i = local[4].i;
+    goto L348055829;
     L68857875:
+    stack[sp++].i = local[4].i;
+    L348055829:
     stack[sp++].i = local[3].i;
     // invokevirtual jx/collections/QuickSort.sort2(Ljava/util/Vector;II)V
     {
@@ -1320,7 +1320,7 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2II_V(JThreadRuntime
         }
     }
     ; 
-    //  line no 126 , L348055829 , bytecode index = 
+    //  line no 126 , L286649365 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1351,7 +1351,7 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2_V(JThreadRuntime *
     StackFrame *__frame = method_enter(runtime, 534, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 129 , L137275020 , bytecode index = 
+    //  line no 129 , L1508181426 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 129;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1396,7 +1396,7 @@ void func_jx_collections_QuickSort_sort2__Ljava_util_Vector_2_V(JThreadRuntime *
         }
     }
     ; 
-    //  line no 130 , L1508181426 , bytecode index = 
+    //  line no 130 , L988850650 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1429,7 +1429,7 @@ void func_jx_collections_QuickSort_swap__Ljava_util_Vector_2II_V(JThreadRuntime 
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 136 , L71016405 , bytecode index = 
+    //  line no 136 , L2044482328 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 136;
     rstack[sp++].obj = rlocal[1].obj;
@@ -1452,7 +1452,7 @@ void func_jx_collections_QuickSort_swap__Ljava_util_Vector_2II_V(JThreadRuntime 
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 137 , L2044482328 , bytecode index = 
+    //  line no 137 , L149225732 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp++].i = local[3].i;
@@ -1490,7 +1490,7 @@ void func_jx_collections_QuickSort_swap__Ljava_util_Vector_2II_V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 138 , L149225732 , bytecode index = 
+    //  line no 138 , L937744315 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[4].obj;
     stack[sp++].i = local[3].i;
@@ -1511,7 +1511,7 @@ void func_jx_collections_QuickSort_swap__Ljava_util_Vector_2II_V(JThreadRuntime 
         }
     }
     ; 
-    //  line no 139 , L937744315 , bytecode index = 
+    //  line no 139 , L1870209957 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

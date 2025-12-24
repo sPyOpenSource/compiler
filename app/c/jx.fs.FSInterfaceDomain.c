@@ -46,7 +46,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     rlocal[1].obj = p1;
     rlocal[2].obj = p2;
     ; 
-    //  line no 41 , L2068598972 , bytecode index = 
+    //  line no 41 , L1485089044 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 41;
     rstack[sp++].obj = rlocal[0].obj;
@@ -78,7 +78,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 42 , L1485089044 , bytecode index = 
+    //  line no 42 , L84113572 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 648);
@@ -108,7 +108,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 43 , L84113572 , bytecode index = 
+    //  line no 43 , L1626343059 , bytecode index = 
     // new jx/zero/debug/DebugPrintStream
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 0);
     // dup
@@ -156,11 +156,11 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     sp -= 1;
     static_var_jx_zero_Debug.out_2 = rstack[sp].obj;
     ; 
-    //  line no 45 , L1626343059 , bytecode index = 
+    //  line no 45 , L2032169857 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // iconst_0
     stack[sp++].i = 0;
-    // arrload __refer  ,  L1626343059 bc index = 
+    // arrload __refer  ,  L2032169857 bc index = 
     {
         s32 idx = stack[--sp].i;
         JArray *arr = rstack[--sp].obj;
@@ -176,7 +176,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 47 , L2032169857 , bytecode index = 
+    //  line no 47 , L76659128 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -199,7 +199,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
         }
     }
     ; 
-    //  line no 48 , L76659128 , bytecode index = 
+    //  line no 48 , L441001942 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     //  ldc 
     rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 825);
@@ -220,7 +220,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
         }
     }
     ; 
-    //  line no 50 , L441001942 , bytecode index = 
+    //  line no 50 , L2053996178 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // invokestatic jx/zero/LookupHelper.waitUntilPortalAvailable(Ljx/zero/Naming;Ljava/lang/String;)Ljx/zero/Portal;
@@ -243,7 +243,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 52 , L2053996178 , bytecode index = 
+    //  line no 52 , L11249189 , bytecode index = 
     // new jx/fs/FSInterfaceDomain
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 117);
     // dup
@@ -269,7 +269,7 @@ void func_jx_fs_FSInterfaceDomain_init__Ljx_zero_Naming_2_3Ljava_lang_String_2_V
     }
     --sp; //pop
     ; 
-    //  line no 53 , L11249189 , bytecode index = 
+    //  line no 53 , L159290353 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -304,25 +304,25 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
     StackFrame *__frame = method_enter(runtime, 336, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
-    // try catch :L1515877023 L1263668904 L370475881 (
+    // try catch :L1263668904 L370475881 L1795816257 (
     ; 
-    //  line no 55 , L1795816257 , bytecode index = 
+    //  line no 55 , L1649320501 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 55;
     rstack[sp++].obj = rlocal[0].obj;
     // invokespecial java/lang/Object.<init>()V
     sp -= 0;  //pop para
     // it's a empty method
-    L1515877023:
+    L1263668904:
     __frame->bytecodeIndex = 
-    //  line no 57 , L1515877023 , bytecode index = 
+    //  line no 57 , L1263668904 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/fs/FSInterfaceDomain naming Ljx/zero/Naming;
     sp -= 2;
     ((struct jx_fs_FSInterfaceDomain*)rstack[sp + 0].obj)->naming_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 59 , L1649320501 , bytecode index = 
+    //  line no 59 , L959629210 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -345,7 +345,7 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
         }
     }
     ; 
-    //  line no 60 , L959629210 , bytecode index = 
+    //  line no 60 , L125994398 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -454,7 +454,7 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
         }
     }
     ; 
-    //  line no 63 , L125994398 , bytecode index = 
+    //  line no 63 , L603305436 , bytecode index = 
     // new jx/fs/MyDummyClock
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 119);
     // dup
@@ -478,7 +478,7 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 69 , L603305436 , bytecode index = 
+    //  line no 69 , L884860061 , bytecode index = 
     // getstatic jx/zero/Debug out Ljx/zero/debug/DebugPrintStream;
     rstack[sp].obj =static_var_jx_zero_Debug.out_2;
     sp += 1;
@@ -500,15 +500,15 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
             goto __ExceptionHandler;
         }
     }
-    L1263668904:
-    __frame->bytecodeIndex = 
-    //  line no 75 , L1263668904 , bytecode index = 
-    goto L884860061;
     L370475881:
-    //  line no 72 , L370475881 , bytecode index = 
+    __frame->bytecodeIndex = 
+    //  line no 75 , L370475881 , bytecode index = 
+    goto L454884231;
+    L1795816257:
+    //  line no 72 , L1795816257 , bytecode index = 
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 73 , L454884231 , bytecode index = 
+    //  line no 73 , L136393487 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual java/lang/Exception.printStackTrace()V
     {
@@ -527,7 +527,7 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
         }
     }
     ; 
-    //  line no 74 , L136393487 , bytecode index = 
+    //  line no 74 , L116669570 , bytecode index = 
     // new java/lang/Error
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 7);
     // dup
@@ -550,21 +550,21 @@ void func_jx_fs_FSInterfaceDomain__init___Ljx_zero_Naming_2Ljx_devices_bio_Block
         }
     }
     // athrow
-    //     L136393487 in labeltable is :L136393487
+    //     L116669570 in labeltable is :L116669570
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 74;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L884860061:
-    //  line no 76 , L884860061 , bytecode index = 
+    L454884231:
+    //  line no 76 , L454884231 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L370475881;
+        case 0 : goto L1795816257;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:

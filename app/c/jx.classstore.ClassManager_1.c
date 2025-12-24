@@ -50,7 +50,7 @@ void func_jx_classstore_ClassManager_000241__init___Ljx_classstore_ClassManager_
     StackFrame *__frame = method_enter(runtime, 282, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 116 , L138776324 , bytecode index = 
+    //  line no 116 , L1208442275 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 116;
     rstack[sp++].obj = rlocal[0].obj;
@@ -63,7 +63,7 @@ void func_jx_classstore_ClassManager_000241__init___Ljx_classstore_ClassManager_
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 117 , L1208442275 , bytecode index = 
+    //  line no 117 , L1758008124 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classstore/ClassManager$1 this$0 Ljx/classstore/ClassManager;
@@ -92,7 +92,7 @@ void func_jx_classstore_ClassManager_000241__init___Ljx_classstore_ClassManager_
     sp -= 2;
     ((struct jx_classstore_ClassManager_000241*)rstack[sp + 0].obj)->d_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 118 , L1758008124 , bytecode index = 
+    //  line no 118 , L2050339061 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classstore/ClassManager$1 this$0 Ljx/classstore/ClassManager;
@@ -149,7 +149,7 @@ s8 func_jx_classstore_ClassManager_000241_hasNext___Z(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 283, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 120 , L1579957528 , bytecode index = 
+    //  line no 120 , L750029115 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 120;
     rstack[sp++].obj = rlocal[0].obj;
@@ -172,7 +172,7 @@ s8 func_jx_classstore_ClassManager_000241_hasNext___Z(JThreadRuntime *runtime){
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L750029115;
+    if(stack[--sp].i  != 0) goto L214187874;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classstore/ClassManager$1 l Ljx/collections/Iterator;
     rstack[sp - 1].obj = ((struct jx_classstore_ClassManager_000241*)rstack[sp - 1].obj)->l_1;
@@ -193,15 +193,15 @@ s8 func_jx_classstore_ClassManager_000241_hasNext___Z(JThreadRuntime *runtime){
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L214187874;
-    L750029115:
+    if(stack[--sp].i  == 0) goto L1528923159;
+    L214187874:
     // iconst_1
     stack[sp++].i = 1;
-    goto L1528923159;
-    L214187874:
+    goto L1683662486;
+    L1528923159:
     // iconst_0
     stack[sp++].i = 0;
-    L1528923159:
+    L1683662486:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -231,7 +231,7 @@ struct java_lang_Object* func_jx_classstore_ClassManager_000241_next___Ljava_lan
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 284, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 123 , L1823409783 , bytecode index = 
+    //  line no 123 , L1094523823 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 123;
     rstack[sp++].obj = rlocal[0].obj;
@@ -254,7 +254,7 @@ struct java_lang_Object* func_jx_classstore_ClassManager_000241_next___Ljava_lan
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1094523823;
+    if(stack[--sp].i  == 0) goto L384515747;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classstore/ClassManager$1 d Ljx/collections/Iterator;
     rstack[sp - 1].obj = ((struct jx_classstore_ClassManager_000241*)rstack[sp - 1].obj)->d_0;
@@ -277,8 +277,8 @@ struct java_lang_Object* func_jx_classstore_ClassManager_000241_next___Ljava_lan
     }
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L1094523823:
-    //  line no 124 , L1094523823 , bytecode index = 
+    L384515747:
+    //  line no 124 , L384515747 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/classstore/ClassManager$1 l Ljx/collections/Iterator;
     rstack[sp - 1].obj = ((struct jx_classstore_ClassManager_000241*)rstack[sp - 1].obj)->l_1;

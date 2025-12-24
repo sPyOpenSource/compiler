@@ -108,7 +108,7 @@ void func_java_util_Collections_00024UnmodifiableSet__init___Ljava_util_Set_2_V(
     StackFrame *__frame = method_enter(runtime, 718, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1132 , L500618423 , bytecode index = 
+    //  line no 1132 , L1458091526 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1132;
     rstack[sp++].obj = rlocal[0].obj;
@@ -158,13 +158,13 @@ s8 func_java_util_Collections_00024UnmodifiableSet_equals__Ljava_lang_Object_2_Z
     StackFrame *__frame = method_enter(runtime, 719, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1133 , L768776793 , bytecode index = 
+    //  line no 1133 , L2018260103 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1133;
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     sp -= 2;
-    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L2018260103;
+    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L1393828949;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$UnmodifiableSet c Ljava/util/Collection;
     rstack[sp - 1].obj = ((struct java_util_Collections_00024UnmodifiableSet*)rstack[sp - 1].obj)->c_1;
@@ -186,15 +186,15 @@ s8 func_java_util_Collections_00024UnmodifiableSet_equals__Ljava_lang_Object_2_Z
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1393828949;
-    L2018260103:
+    if(stack[--sp].i  == 0) goto L1088417975;
+    L1393828949:
     // iconst_1
     stack[sp++].i = 1;
-    goto L1088417975;
-    L1393828949:
+    goto L2036775591;
+    L1088417975:
     // iconst_0
     stack[sp++].i = 0;
-    L1088417975:
+    L2036775591:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -224,7 +224,7 @@ s32 func_java_util_Collections_00024UnmodifiableSet_hashCode___I(JThreadRuntime 
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 720, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1134 , L1620529408 , bytecode index = 
+    //  line no 1134 , L307488715 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1134;
     rstack[sp++].obj = rlocal[0].obj;
@@ -277,7 +277,7 @@ JArray * func_java_util_Collections_00024UnmodifiableSet_toArray___3Ljava_lang_O
     StackFrame *__frame = method_enter(runtime, 721, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1138 , L758572926 , bytecode index = 
+    //  line no 1138 , L1640612861 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1138;
     // new java/lang/UnsupportedOperationException
@@ -304,7 +304,7 @@ JArray * func_java_util_Collections_00024UnmodifiableSet_toArray___3Ljava_lang_O
         }
     }
     // athrow
-    //     L758572926 in labeltable is :L758572926
+    //     L1640612861 in labeltable is :L1640612861
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1138;

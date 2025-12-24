@@ -168,7 +168,7 @@ void func_java_util_TreeSet__init___Ljava_util_NavigableMap_2_V(JThreadRuntime *
     StackFrame *__frame = method_enter(runtime, 337, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 106 , L1572256205 , bytecode index = 
+    //  line no 106 , L554348863 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 106;
     rstack[sp++].obj = rlocal[0].obj;
@@ -188,14 +188,14 @@ void func_java_util_TreeSet__init___Ljava_util_NavigableMap_2_V(JThreadRuntime *
         }
     }
     ; 
-    //  line no 107 , L554348863 , bytecode index = 
+    //  line no 107 , L548554586 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield java/util/TreeSet m Ljava/util/NavigableMap;
     sp -= 2;
     ((struct java_util_TreeSet*)rstack[sp + 0].obj)->m_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 108 , L548554586 , bytecode index = 
+    //  line no 108 , L126189538 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -225,7 +225,7 @@ void func_java_util_TreeSet__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 338, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 124 , L1863702030 , bytecode index = 
+    //  line no 124 , L467796378 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 124;
     rstack[sp++].obj = rlocal[0].obj;
@@ -266,7 +266,7 @@ void func_java_util_TreeSet__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 125 , L467796378 , bytecode index = 
+    //  line no 125 , L702025003 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -297,7 +297,7 @@ void func_java_util_TreeSet__init___Ljava_util_Comparator_2_V(JThreadRuntime *ru
     StackFrame *__frame = method_enter(runtime, 339, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 141 , L93199773 , bytecode index = 
+    //  line no 141 , L1147805316 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 141;
     rstack[sp++].obj = rlocal[0].obj;
@@ -339,7 +339,7 @@ void func_java_util_TreeSet__init___Ljava_util_Comparator_2_V(JThreadRuntime *ru
         }
     }
     ; 
-    //  line no 142 , L1147805316 , bytecode index = 
+    //  line no 142 , L1326393666 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -370,7 +370,7 @@ void func_java_util_TreeSet__init___Ljava_util_Collection_2_V(JThreadRuntime *ru
     StackFrame *__frame = method_enter(runtime, 340, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 159 , L643290333 , bytecode index = 
+    //  line no 159 , L1396721535 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 159;
     rstack[sp++].obj = rlocal[0].obj;
@@ -390,7 +390,7 @@ void func_java_util_TreeSet__init___Ljava_util_Collection_2_V(JThreadRuntime *ru
         }
     }
     ; 
-    //  line no 160 , L1396721535 , bytecode index = 
+    //  line no 160 , L1204481453 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/util/TreeSet.addAll(Ljava/util/Collection;)Z
@@ -411,7 +411,7 @@ void func_java_util_TreeSet__init___Ljava_util_Collection_2_V(JThreadRuntime *ru
     }
     --sp; //pop
     ; 
-    //  line no 161 , L1204481453 , bytecode index = 
+    //  line no 161 , L1899600175 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -442,7 +442,7 @@ void func_java_util_TreeSet__init___Ljava_util_SortedSet_2_V(JThreadRuntime *run
     StackFrame *__frame = method_enter(runtime, 341, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 171 , L1766869737 , bytecode index = 
+    //  line no 171 , L947553027 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 171;
     rstack[sp++].obj = rlocal[0].obj;
@@ -479,7 +479,7 @@ void func_java_util_TreeSet__init___Ljava_util_SortedSet_2_V(JThreadRuntime *run
         }
     }
     ; 
-    //  line no 172 , L947553027 , bytecode index = 
+    //  line no 172 , L684566052 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/util/TreeSet.addAll(Ljava/util/Collection;)Z
@@ -500,7 +500,7 @@ void func_java_util_TreeSet__init___Ljava_util_SortedSet_2_V(JThreadRuntime *run
     }
     --sp; //pop
     ; 
-    //  line no 173 , L684566052 , bytecode index = 
+    //  line no 173 , L352367347 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -530,7 +530,7 @@ struct java_util_Iterator* func_java_util_TreeSet_iterator___Ljava_util_Iterator
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 342, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 181 , L2129442232 , bytecode index = 
+    //  line no 181 , L308433917 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 181;
     rstack[sp++].obj = rlocal[0].obj;
@@ -598,7 +598,7 @@ struct java_util_Iterator* func_java_util_TreeSet_descendingIterator___Ljava_uti
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 343, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 191 , L1473981203 , bytecode index = 
+    //  line no 191 , L1197251633 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 191;
     rstack[sp++].obj = rlocal[0].obj;
@@ -666,7 +666,7 @@ struct java_util_NavigableSet* func_java_util_TreeSet_descendingSet___Ljava_util
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 344, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 198 , L1552326679 , bytecode index = 
+    //  line no 198 , L1551629761 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 198;
     // new java/util/TreeSet
@@ -739,7 +739,7 @@ s32 func_java_util_TreeSet_size___I(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 345, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 207 , L1383519982 , bytecode index = 
+    //  line no 207 , L1902671237 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 207;
     rstack[sp++].obj = rlocal[0].obj;
@@ -791,7 +791,7 @@ s8 func_java_util_TreeSet_isEmpty___Z(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 346, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 216 , L403174823 , bytecode index = 
+    //  line no 216 , L462526099 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 216;
     rstack[sp++].obj = rlocal[0].obj;
@@ -844,7 +844,7 @@ s8 func_java_util_TreeSet_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runtim
     StackFrame *__frame = method_enter(runtime, 347, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 234 , L2142565033 , bytecode index = 
+    //  line no 234 , L1304589447 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 234;
     rstack[sp++].obj = rlocal[0].obj;
@@ -898,7 +898,7 @@ s8 func_java_util_TreeSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, st
     StackFrame *__frame = method_enter(runtime, 348, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 255 , L1783568981 , bytecode index = 
+    //  line no 255 , L2113748097 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 255;
     rstack[sp++].obj = rlocal[0].obj;
@@ -925,14 +925,14 @@ s8 func_java_util_TreeSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, st
             goto __ExceptionHandler;
         }
     }
-    if(rstack[--sp].obj  != NULL) goto L2113748097;
+    if(rstack[--sp].obj  != NULL) goto L629454893;
     // iconst_1
     stack[sp++].i = 1;
-    goto L629454893;
-    L2113748097:
+    goto L2075952726;
+    L629454893:
     // iconst_0
     stack[sp++].i = 0;
-    L629454893:
+    L2075952726:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -963,7 +963,7 @@ s8 func_java_util_TreeSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime,
     StackFrame *__frame = method_enter(runtime, 349, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 276 , L1764996806 , bytecode index = 
+    //  line no 276 , L2101249621 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 276;
     rstack[sp++].obj = rlocal[0].obj;
@@ -991,14 +991,14 @@ s8 func_java_util_TreeSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime,
     rstack[sp].obj =static_var_java_util_TreeSet.PRESENT_2;
     sp += 1;
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L2101249621;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L2113604623;
     // iconst_1
     stack[sp++].i = 1;
-    goto L2113604623;
-    L2101249621:
+    goto L1651162064;
+    L2113604623:
     // iconst_0
     stack[sp++].i = 0;
-    L2113604623:
+    L1651162064:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -1028,7 +1028,7 @@ void func_java_util_TreeSet_clear___V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 350, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 284 , L379303133 , bytecode index = 
+    //  line no 284 , L530486389 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 284;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1052,7 +1052,7 @@ void func_java_util_TreeSet_clear___V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 285 , L530486389 , bytecode index = 
+    //  line no 285 , L983595261 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1083,7 +1083,7 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
     StackFrame *__frame = method_enter(runtime, 351, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 300 , L220454978 , bytecode index = 
+    //  line no 300 , L1188401255 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 300;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1106,7 +1106,7 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L1188401255;
+    if(stack[--sp].i  != 0) goto L755210740;
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface java/util/Collection.size()I
     {
@@ -1124,20 +1124,20 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  <= 0) goto L1188401255;
+    if(stack[--sp].i  <= 0) goto L755210740;
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof java/util/SortedSet
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 851);
-    if(stack[--sp].i  == 0) goto L1188401255;
+    if(stack[--sp].i  == 0) goto L755210740;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/TreeSet m Ljava/util/NavigableMap;
     rstack[sp - 1].obj = ((struct java_util_TreeSet*)rstack[sp - 1].obj)->m_1;
     sp += 0;
     // instanceof java/util/TreeMap
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 845);
-    if(stack[--sp].i  == 0) goto L1188401255;
+    if(stack[--sp].i  == 0) goto L755210740;
     ; 
-    //  line no 303 , L755210740 , bytecode index = 
+    //  line no 303 , L350059321 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/util/SortedSet
     {
@@ -1149,7 +1149,7 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 304 , L350059321 , bytecode index = 
+    //  line no 304 , L107915280 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/TreeSet m Ljava/util/NavigableMap;
     rstack[sp - 1].obj = ((struct java_util_TreeSet*)rstack[sp - 1].obj)->m_1;
@@ -1164,7 +1164,7 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 305 , L107915280 , bytecode index = 
+    //  line no 305 , L1825719826 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/SortedSet.comparator()Ljava/util/Comparator;
     {
@@ -1184,7 +1184,7 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 306 , L1825719826 , bytecode index = 
+    //  line no 306 , L1571798597 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual java/util/TreeMap.comparator()Ljava/util/Comparator;
     {
@@ -1204,13 +1204,13 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
     }
     rlocal[5].obj = rstack[--sp].obj;
     ; 
-    //  line no 307 , L1571798597 , bytecode index = 
+    //  line no 307 , L575935098 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     rstack[sp++].obj = rlocal[5].obj;
     sp -= 2;
-    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L575935098;
+    if(rstack[sp + 0].obj  == rstack[sp + 1].obj) goto L1367937032;
     rstack[sp++].obj = rlocal[4].obj;
-    if(rstack[--sp].obj  == NULL) goto L1188401255;
+    if(rstack[--sp].obj  == NULL) goto L755210740;
     rstack[sp++].obj = rlocal[4].obj;
     rstack[sp++].obj = rlocal[5].obj;
     // invokeinterface java/util/Comparator.equals(Ljava/lang/Object;)Z
@@ -1229,15 +1229,15 @@ s8 func_java_util_TreeSet_addAll__Ljava_util_Collection_2_Z(JThreadRuntime *runt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1188401255;
-    L575935098:
-    //  line no 309 , L575935098 , bytecode index = 
+    if(stack[--sp].i  == 0) goto L755210740;
+    L1367937032:
+    //  line no 309 , L1367937032 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L1188401255:
-    //  line no 312 , L1188401255 , bytecode index = 
+    L755210740:
+    //  line no 312 , L755210740 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokespecial java/util/AbstractSet.addAll(Ljava/util/Collection;)Z
@@ -1288,7 +1288,7 @@ struct java_util_NavigableSet* func_java_util_TreeSet_subSet__Ljava_lang_Object_
     rlocal[2].obj = p2;
     local[3].i = p3;
     ; 
-    //  line no 325 , L798310141 , bytecode index = 
+    //  line no 325 , L258535644 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 325;
     // new java/util/TreeSet
@@ -1367,7 +1367,7 @@ struct java_util_NavigableSet* func_java_util_TreeSet_headSet__Ljava_lang_Object
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 338 , L221111433 , bytecode index = 
+    //  line no 338 , L347978868 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 338;
     // new java/util/TreeSet
@@ -1444,7 +1444,7 @@ struct java_util_NavigableSet* func_java_util_TreeSet_tailSet__Ljava_lang_Object
     rlocal[0].obj = p0;
     local[1].i = p1;
     ; 
-    //  line no 350 , L307829448 , bytecode index = 
+    //  line no 350 , L1518331471 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 350;
     // new java/util/TreeSet
@@ -1521,7 +1521,7 @@ struct java_util_SortedSet* func_java_util_TreeSet_subSet__Ljava_lang_Object_2Lj
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 361 , L940857381 , bytecode index = 
+    //  line no 361 , L1093864783 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 361;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1577,7 +1577,7 @@ struct java_util_SortedSet* func_java_util_TreeSet_headSet__Ljava_lang_Object_2_
     StackFrame *__frame = method_enter(runtime, 356, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 372 , L459718907 , bytecode index = 
+    //  line no 372 , L1041109062 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 372;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1630,7 +1630,7 @@ struct java_util_SortedSet* func_java_util_TreeSet_tailSet__Ljava_lang_Object_2_
     StackFrame *__frame = method_enter(runtime, 357, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 383 , L616674002 , bytecode index = 
+    //  line no 383 , L2109839984 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 383;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1682,7 +1682,7 @@ struct java_util_Comparator* func_java_util_TreeSet_comparator___Ljava_util_Comp
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 358, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 387 , L1351478315 , bytecode index = 
+    //  line no 387 , L508512860 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 387;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1734,7 +1734,7 @@ struct java_lang_Object* func_java_util_TreeSet_first___Ljava_lang_Object_2(JThr
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 359, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 394 , L925973605 , bytecode index = 
+    //  line no 394 , L1179792105 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 394;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1786,7 +1786,7 @@ struct java_lang_Object* func_java_util_TreeSet_last___Ljava_lang_Object_2(JThre
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 360, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 401 , L2038522556 , bytecode index = 
+    //  line no 401 , L502848122 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 401;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1839,7 +1839,7 @@ struct java_lang_Object* func_java_util_TreeSet_lower__Ljava_lang_Object_2_Ljava
     StackFrame *__frame = method_enter(runtime, 361, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 414 , L596910004 , bytecode index = 
+    //  line no 414 , L1954985045 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 414;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1893,7 +1893,7 @@ struct java_lang_Object* func_java_util_TreeSet_floor__Ljava_lang_Object_2_Ljava
     StackFrame *__frame = method_enter(runtime, 362, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 425 , L106999035 , bytecode index = 
+    //  line no 425 , L1569754439 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 425;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1947,7 +1947,7 @@ struct java_lang_Object* func_java_util_TreeSet_ceiling__Ljava_lang_Object_2_Lja
     StackFrame *__frame = method_enter(runtime, 363, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 436 , L1593458942 , bytecode index = 
+    //  line no 436 , L530539368 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 436;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2001,7 +2001,7 @@ struct java_lang_Object* func_java_util_TreeSet_higher__Ljava_lang_Object_2_Ljav
     StackFrame *__frame = method_enter(runtime, 364, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 447 , L479920916 , bytecode index = 
+    //  line no 447 , L1161322357 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 447;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2054,7 +2054,7 @@ struct java_lang_Object* func_java_util_TreeSet_pollFirst___Ljava_lang_Object_2(
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 365, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 454 , L1237912220 , bytecode index = 
+    //  line no 454 , L757708014 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 454;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2079,13 +2079,13 @@ struct java_lang_Object* func_java_util_TreeSet_pollFirst___Ljava_lang_Object_2(
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 455 , L757708014 , bytecode index = 
+    //  line no 455 , L1777238524 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L1777238524;
+    if(rstack[--sp].obj  != NULL) goto L1848289347;
     // aconst null
     rstack[sp++].obj = NULL;
-    goto L1848289347;
-    L1777238524:
+    goto L1865859824;
+    L1848289347:
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface java/util/Map$Entry.getKey()Ljava/lang/Object;
     {
@@ -2103,7 +2103,7 @@ struct java_lang_Object* func_java_util_TreeSet_pollFirst___Ljava_lang_Object_2(
             goto __ExceptionHandler;
         }
     }
-    L1848289347:
+    L1865859824:
     method_exit(runtime);
     return rstack[sp - 1].obj;
     ; 
@@ -2133,7 +2133,7 @@ struct java_lang_Object* func_java_util_TreeSet_pollLast___Ljava_lang_Object_2(J
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 366, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 462 , L257459516 , bytecode index = 
+    //  line no 462 , L304354378 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 462;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2158,13 +2158,13 @@ struct java_lang_Object* func_java_util_TreeSet_pollLast___Ljava_lang_Object_2(J
     }
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 463 , L304354378 , bytecode index = 
+    //  line no 463 , L704106237 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  != NULL) goto L704106237;
+    if(rstack[--sp].obj  != NULL) goto L1880078449;
     // aconst null
     rstack[sp++].obj = NULL;
-    goto L1880078449;
-    L704106237:
+    goto L993370665;
+    L1880078449:
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface java/util/Map$Entry.getKey()Ljava/lang/Object;
     {
@@ -2182,7 +2182,7 @@ struct java_lang_Object* func_java_util_TreeSet_pollLast___Ljava_lang_Object_2(J
             goto __ExceptionHandler;
         }
     }
-    L1880078449:
+    L993370665:
     method_exit(runtime);
     return rstack[sp - 1].obj;
     ; 
@@ -2215,10 +2215,10 @@ struct java_lang_Object* func_java_util_TreeSet_clone___Ljava_lang_Object_2(JThr
     RStackItem rstack[5];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 367, &rstack[0], &rlocal[0], &sp);
-    // try catch :L159475521 L504807594 L332873513 (
-    L159475521:
+    // try catch :L504807594 L332873513 L90567568 (
+    L504807594:
     __frame->bytecodeIndex = 
-    //  line no 476 , L159475521 , bytecode index = 
+    //  line no 476 , L504807594 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 476;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2246,15 +2246,15 @@ struct java_lang_Object* func_java_util_TreeSet_clone___Ljava_lang_Object_2(JThr
         }
     }
     rlocal[1].obj = rstack[--sp].obj;
-    L504807594:
-    __frame->bytecodeIndex = 
-    //  line no 479 , L504807594 , bytecode index = 
-    goto L90567568;
     L332873513:
-    //  line no 477 , L332873513 , bytecode index = 
+    __frame->bytecodeIndex = 
+    //  line no 479 , L332873513 , bytecode index = 
+    goto L131872530;
+    L90567568:
+    //  line no 477 , L90567568 , bytecode index = 
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 478 , L131872530 , bytecode index = 
+    //  line no 478 , L795321555 , bytecode index = 
     // new java/lang/InternalError
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 127);
     // dup
@@ -2278,15 +2278,15 @@ struct java_lang_Object* func_java_util_TreeSet_clone___Ljava_lang_Object_2(JThr
         }
     }
     // athrow
-    //     L131872530 in labeltable is :L131872530
+    //     L795321555 in labeltable is :L795321555
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 478;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L90567568:
-    //  line no 481 , L90567568 , bytecode index = 
+    L131872530:
+    //  line no 481 , L131872530 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // new java/util/TreeMap
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 120);
@@ -2317,14 +2317,14 @@ struct java_lang_Object* func_java_util_TreeSet_clone___Ljava_lang_Object_2(JThr
     sp -= 2;
     ((struct java_util_TreeSet*)rstack[sp + 0].obj)->m_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 482 , L795321555 , bytecode index = 
+    //  line no 482 , L98826337 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     method_exit(runtime);
     return rstack[sp - 1].obj;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L332873513;
+        case 0 : goto L90567568;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -2350,7 +2350,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
     StackFrame *__frame = method_enter(runtime, 368, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 500 , L800088638 , bytecode index = 
+    //  line no 500 , L1236444285 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 500;
     rstack[sp++].obj = rlocal[1].obj;
@@ -2371,7 +2371,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
         }
     }
     ; 
-    //  line no 503 , L1236444285 , bytecode index = 
+    //  line no 503 , L1541525668 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/TreeSet m Ljava/util/NavigableMap;
@@ -2410,7 +2410,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
         }
     }
     ; 
-    //  line no 506 , L1541525668 , bytecode index = 
+    //  line no 506 , L1096485705 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/TreeSet m Ljava/util/NavigableMap;
@@ -2449,7 +2449,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
         }
     }
     ; 
-    //  line no 509 , L1096485705 , bytecode index = 
+    //  line no 509 , L1834361038 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/TreeSet m Ljava/util/NavigableMap;
     rstack[sp - 1].obj = ((struct java_util_TreeSet*)rstack[sp - 1].obj)->m_1;
@@ -2487,7 +2487,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
         }
     }
     rlocal[2].obj = rstack[--sp].obj;
-    L1834361038:
+    L823914581:
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Iterator.hasNext()Z
     {
@@ -2505,7 +2505,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L823914581;
+    if(stack[--sp].i  == 0) goto L1680503330;
     rstack[sp++].obj = rlocal[2].obj;
     // invokeinterface java/util/Iterator.next()Ljava/lang/Object;
     {
@@ -2525,7 +2525,7 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 510 , L1680503330 , bytecode index = 
+    //  line no 510 , L2100440237 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual java/io/ObjectOutputStream.writeObject(Ljava/lang/Object;)V
@@ -2546,9 +2546,9 @@ void func_java_util_TreeSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThread
     }
     ; 
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1834361038;
-    L823914581:
-    //  line no 511 , L823914581 , bytecode index = 
+    goto L823914581;
+    L1680503330:
+    //  line no 511 , L1680503330 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2579,7 +2579,7 @@ void func_java_util_TreeSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
     StackFrame *__frame = method_enter(runtime, 369, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 520 , L1330247343 , bytecode index = 
+    //  line no 520 , L2017797638 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 520;
     rstack[sp++].obj = rlocal[1].obj;
@@ -2600,7 +2600,7 @@ void func_java_util_TreeSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
         }
     }
     ; 
-    //  line no 524 , L2017797638 , bytecode index = 
+    //  line no 524 , L343812839 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/io/ObjectInputStream.readObject()Ljava/lang/Object;
     {
@@ -2628,7 +2628,7 @@ void func_java_util_TreeSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 527 , L343812839 , bytecode index = 
+    //  line no 527 , L1150058854 , bytecode index = 
     // new java/util/TreeMap
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 120);
     // dup
@@ -2653,14 +2653,14 @@ void func_java_util_TreeSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 528 , L1150058854 , bytecode index = 
+    //  line no 528 , L1148255190 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // putfield java/util/TreeSet m Ljava/util/NavigableMap;
     sp -= 2;
     ((struct java_util_TreeSet*)rstack[sp + 0].obj)->m_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 531 , L1148255190 , bytecode index = 
+    //  line no 531 , L366252104 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/io/ObjectInputStream.readInt()I
     {
@@ -2680,7 +2680,7 @@ void func_java_util_TreeSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 534 , L366252104 , bytecode index = 
+    //  line no 534 , L1889057031 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2710,7 +2710,7 @@ struct java_util_Spliterator* func_java_util_TreeSet_spliterator___Ljava_util_Sp
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 370, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 557 , L1346343363 , bytecode index = 
+    //  line no 557 , L324169305 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 557;
     // new java/lang/Error
@@ -2737,7 +2737,7 @@ struct java_util_Spliterator* func_java_util_TreeSet_spliterator___Ljava_util_Sp
         }
     }
     // athrow
-    //     L1346343363 in labeltable is :L1346343363
+    //     L324169305 in labeltable is :L324169305
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 557;
@@ -2772,7 +2772,7 @@ JArray * func_java_util_TreeSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Obje
     StackFrame *__frame = method_enter(runtime, 371, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 564 , L573958827 , bytecode index = 
+    //  line no 564 , L391135083 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 564;
     // new java/util/UnsupportedOperationException
@@ -2799,7 +2799,7 @@ JArray * func_java_util_TreeSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Obje
         }
     }
     // athrow
-    //     L573958827 in labeltable is :L573958827
+    //     L391135083 in labeltable is :L391135083
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 564;
@@ -2834,7 +2834,7 @@ void func_java_util_TreeSet__clinit____V(JThreadRuntime *runtime, struct java_ut
     StackFrame *__frame = method_enter(runtime, 372, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 101 , L1003292107 , bytecode index = 
+    //  line no 101 , L997033037 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 101;
     // new java/lang/Object

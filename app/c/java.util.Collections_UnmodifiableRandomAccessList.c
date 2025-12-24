@@ -126,7 +126,7 @@ void func_java_util_Collections_00024UnmodifiableRandomAccessList__init___Ljava_
     StackFrame *__frame = method_enter(runtime, 506, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1420 , L1940445711 , bytecode index = 
+    //  line no 1420 , L1356840024 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1420;
     rstack[sp++].obj = rlocal[0].obj;
@@ -147,7 +147,7 @@ void func_java_util_Collections_00024UnmodifiableRandomAccessList__init___Ljava_
         }
     }
     ; 
-    //  line no 1421 , L1356840024 , bytecode index = 
+    //  line no 1421 , L1142347343 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -179,7 +179,7 @@ struct java_util_List* func_java_util_Collections_00024UnmodifiableRandomAccessL
     local[0].i = p0;
     local[1].i = p1;
     ; 
-    //  line no 1424 , L1810923540 , bytecode index = 
+    //  line no 1424 , L1581078471 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1424;
     // new java/util/Collections$UnmodifiableRandomAccessList
@@ -195,7 +195,7 @@ struct java_util_List* func_java_util_Collections_00024UnmodifiableRandomAccessL
     stack[sp++].i = local[1].i;
     stack[sp++].i = local[2].i;
     ; 
-    //  line no 1425 , L1581078471 , bytecode index = 
+    //  line no 1425 , L1932332324 , bytecode index = 
     // invokeinterface java/util/List.subList(II)Ljava/util/List;
     {
         sp -= 2;
@@ -228,7 +228,7 @@ struct java_util_List* func_java_util_Collections_00024UnmodifiableRandomAccessL
         }
     }
     ; 
-    //  line no 1424 , L1932332324 , bytecode index = 
+    //  line no 1424 , L33233312 , bytecode index = 
     method_exit(runtime);
     return rstack[sp - 1].obj;
     ; 
@@ -258,7 +258,7 @@ struct java_lang_Object* func_java_util_Collections_00024UnmodifiableRandomAcces
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 508, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1437 , L1860491691 , bytecode index = 
+    //  line no 1437 , L1515403487 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1437;
     // new java/util/Collections$UnmodifiableList

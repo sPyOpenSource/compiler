@@ -59,7 +59,7 @@ void func_java_util_UnsupportedOperationException__init___Ljava_lang_String_2_V(
     StackFrame *__frame = method_enter(runtime, 560, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 5 , L24293395 , bytecode index = 
+    //  line no 5 , L1449605932 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 5;
     rstack[sp++].obj = rlocal[0].obj;
@@ -79,7 +79,7 @@ void func_java_util_UnsupportedOperationException__init___Ljava_lang_String_2_V(
         }
     }
     ; 
-    //  line no 6 , L1449605932 , bytecode index = 
+    //  line no 6 , L664186542 , bytecode index = 
     // new java/lang/UnsupportedOperationException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 24);
     // dup
@@ -104,7 +104,7 @@ void func_java_util_UnsupportedOperationException__init___Ljava_lang_String_2_V(
         }
     }
     // athrow
-    //     L1449605932 in labeltable is :L1449605932
+    //     L664186542 in labeltable is :L664186542
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 6;
@@ -138,7 +138,7 @@ void func_java_util_UnsupportedOperationException__init____V(JThreadRuntime *run
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 561, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 9 , L189207010 , bytecode index = 
+    //  line no 9 , L530696881 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 9;
     rstack[sp++].obj = rlocal[0].obj;
@@ -158,7 +158,7 @@ void func_java_util_UnsupportedOperationException__init____V(JThreadRuntime *run
         }
     }
     ; 
-    //  line no 10 , L530696881 , bytecode index = 
+    //  line no 10 , L1894788146 , bytecode index = 
     // new java/lang/UnsupportedOperationException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 24);
     // dup
@@ -183,7 +183,7 @@ void func_java_util_UnsupportedOperationException__init____V(JThreadRuntime *run
         }
     }
     // athrow
-    //     L530696881 in labeltable is :L530696881
+    //     L1894788146 in labeltable is :L1894788146
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 10;

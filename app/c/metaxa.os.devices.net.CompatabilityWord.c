@@ -46,7 +46,7 @@ void func_metaxa_os_devices_net_CompatabilityWord__init___BB_V(JThreadRuntime *r
     local[0].i = p0;
     local[1].i = p1;
     ; 
-    //  line no 7 , L808417649 , bytecode index = 
+    //  line no 7 , L858204589 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 7;
     rstack[sp++].obj = rlocal[0].obj;
@@ -54,21 +54,21 @@ void func_metaxa_os_devices_net_CompatabilityWord__init___BB_V(JThreadRuntime *r
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 8 , L858204589 , bytecode index = 
+    //  line no 8 , L1976752685 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // putfield metaxa/os/devices/net/CompatabilityWord warninglevel B
     sp -= 2;
     ((struct metaxa_os_devices_net_CompatabilityWord*)rstack[sp + 0].obj)->warninglevel_0 = stack[sp + 1].i;
     ; 
-    //  line no 9 , L1976752685 , bytecode index = 
+    //  line no 9 , L1115170891 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield metaxa/os/devices/net/CompatabilityWord failurelevel B
     sp -= 2;
     ((struct metaxa_os_devices_net_CompatabilityWord*)rstack[sp + 0].obj)->failurelevel_1 = stack[sp + 1].i;
     ; 
-    //  line no 10 , L1115170891 , bytecode index = 
+    //  line no 10 , L156710276 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -97,7 +97,7 @@ s8 func_metaxa_os_devices_net_CompatabilityWord_get_1warninglevel___B(JThreadRun
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 13 , L53940034 , bytecode index = 
+    //  line no 13 , L1616359099 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield metaxa/os/devices/net/CompatabilityWord warninglevel B
     stack[sp - 1].i = ((struct metaxa_os_devices_net_CompatabilityWord*)rstack[sp - 1].obj)->warninglevel_0;
@@ -122,7 +122,7 @@ s8 func_metaxa_os_devices_net_CompatabilityWord_get_1failurelevel___B(JThreadRun
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 16 , L1676605578 , bytecode index = 
+    //  line no 16 , L1394940518 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield metaxa/os/devices/net/CompatabilityWord failurelevel B
     stack[sp - 1].i = ((struct metaxa_os_devices_net_CompatabilityWord*)rstack[sp - 1].obj)->failurelevel_1;

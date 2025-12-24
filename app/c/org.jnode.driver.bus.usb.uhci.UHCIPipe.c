@@ -82,7 +82,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
     local[4].i = p4;
     rlocal[5].obj = p5;
     ; 
-    //  line no 112 , L504582810 , bytecode index = 
+    //  line no 112 , L516537656 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 112;
     rstack[sp++].obj = rlocal[0].obj;
@@ -90,7 +90,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 95 , L516537656 , bytecode index = 
+    //  line no 95 , L1160649162 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/ArrayList
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 151);
@@ -117,48 +117,48 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->listeners_11 = rstack[sp + 1].obj;
     ; 
-    //  line no 113 , L1160649162 , bytecode index = 
+    //  line no 113 , L1796047085 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe pm Lorg/jnode/driver/bus/usb/uhci/UHCIPipeManager;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->pm_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 114 , L1796047085 , bytecode index = 
+    //  line no 114 , L1871612052 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe rm Ljx/zero/MemoryManager;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->rm_1 = rstack[sp + 1].obj;
     ; 
-    //  line no 115 , L1871612052 , bytecode index = 
+    //  line no 115 , L1023268896 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[3].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe device Lorg/jnode/driver/bus/usb/USBDevice;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->device_3 = rstack[sp + 1].obj;
     ; 
-    //  line no 116 , L1023268896 , bytecode index = 
+    //  line no 116 , L153646652 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->endPoint_5 = rstack[sp + 1].obj;
     ; 
-    //  line no 117 , L153646652 , bytecode index = 
+    //  line no 117 , L237344028 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[5].i;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe transferType I
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->transferType_2 = stack[sp + 1].i;
     ; 
-    //  line no 118 , L237344028 , bytecode index = 
+    //  line no 118 , L368342628 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->endPoint_5;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L368342628;
+    if(rstack[--sp].obj  == NULL) goto L1192923170;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->endPoint_5;
@@ -195,16 +195,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
             goto __ExceptionHandler;
         }
     }
-    goto L1192923170;
-    L368342628:
+    goto L231311211;
+    L1192923170:
     // iconst_0
     stack[sp++].i = 0;
-    L1192923170:
+    L231311211:
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPointNum I
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->endPointNum_4 = stack[sp + 1].i;
     ; 
-    //  line no 119 , L231311211 , bytecode index = 
+    //  line no 119 , L795242171 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new org/jnode/driver/bus/usb/uhci/QueueHead
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 154);
@@ -232,14 +232,14 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->qh_8 = rstack[sp + 1].obj;
     ; 
-    //  line no 120 , L795242171 , bytecode index = 
+    //  line no 120 , L429353573 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[6].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe skelQH Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->skelQH_7 = rstack[sp + 1].obj;
     ; 
-    //  line no 121 , L429353573 , bytecode index = 
+    //  line no 121 , L169833205 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new AI/util/AIQueue
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 155);
@@ -266,13 +266,13 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->queue_9 = rstack[sp + 1].obj;
     ; 
-    //  line no 122 , L169833205 , bytecode index = 
+    //  line no 122 , L1261198850 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->endPoint_5;
     sp += 0;
-    if(rstack[--sp].obj  == NULL) goto L1261198850;
+    if(rstack[--sp].obj  == NULL) goto L1470358122;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->endPoint_5;
@@ -309,16 +309,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe__init___Lorg_jnode_driver_bus_u
             goto __ExceptionHandler;
         }
     }
-    goto L1470358122;
-    L1261198850:
+    goto L1975873209;
+    L1470358122:
     // iconst_-1
     stack[sp++].i = -1;
-    L1470358122:
+    L1975873209:
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe maxPktSize I
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->maxPktSize_12 = stack[sp + 1].i;
     ; 
-    //  line no 123 , L1975873209 , bytecode index = 
+    //  line no 123 , L79438382 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -348,21 +348,21 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isControlPipe___Z(JThreadRuntime 
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 412, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 130 , L768192757 , bytecode index = 
+    //  line no 130 , L1697752980 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 130;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe transferType I
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->transferType_2;
     sp += 0;
-    if(stack[--sp].i  != 0) goto L1697752980;
+    if(stack[--sp].i  != 0) goto L996125997;
     // iconst_1
     stack[sp++].i = 1;
-    goto L996125997;
-    L1697752980:
+    goto L1578587450;
+    L996125997:
     // iconst_0
     stack[sp++].i = 0;
-    L996125997:
+    L1578587450:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -392,7 +392,7 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isInterruptPipe___Z(JThreadRuntim
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 413, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 138 , L1052317717 , bytecode index = 
+    //  line no 138 , L1457263953 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 138;
     rstack[sp++].obj = rlocal[0].obj;
@@ -402,14 +402,14 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isInterruptPipe___Z(JThreadRuntim
     // iconst_3
     stack[sp++].i = 3;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1457263953;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L271379554;
     // iconst_1
     stack[sp++].i = 1;
-    goto L271379554;
-    L1457263953:
+    goto L1962329560;
+    L271379554:
     // iconst_0
     stack[sp++].i = 0;
-    L271379554:
+    L1962329560:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -439,7 +439,7 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isIsochronousPipe___Z(JThreadRunt
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 414, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 146 , L41489123 , bytecode index = 
+    //  line no 146 , L884603232 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 146;
     rstack[sp++].obj = rlocal[0].obj;
@@ -449,14 +449,14 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isIsochronousPipe___Z(JThreadRunt
     // iconst_1
     stack[sp++].i = 1;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L884603232;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L1124162665;
     // iconst_1
     stack[sp++].i = 1;
-    goto L1124162665;
-    L884603232:
+    goto L26970580;
+    L1124162665:
     // iconst_0
     stack[sp++].i = 0;
-    L1124162665:
+    L26970580:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -486,7 +486,7 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isBulkPipe___Z(JThreadRuntime *ru
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 415, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 154 , L1270836494 , bytecode index = 
+    //  line no 154 , L817299424 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 154;
     rstack[sp++].obj = rlocal[0].obj;
@@ -496,14 +496,14 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isBulkPipe___Z(JThreadRuntime *ru
     // iconst_2
     stack[sp++].i = 2;
     sp -= 2;
-    if(stack[sp + 0].i  != stack[sp + 1].i) goto L817299424;
+    if(stack[sp + 0].i  != stack[sp + 1].i) goto L2031951755;
     // iconst_1
     stack[sp++].i = 1;
-    goto L2031951755;
-    L817299424:
+    goto L605420629;
+    L2031951755:
     // iconst_0
     stack[sp++].i = 0;
-    L2031951755:
+    L605420629:
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -532,7 +532,7 @@ s8 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_isOpen___Z(JThreadRuntime *runtim
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 162 , L351417028 , bytecode index = 
+    //  line no 162 , L331122245 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
@@ -558,16 +558,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_open___V(JThreadRuntime *runtim
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 417, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 171 , L38544126 , bytecode index = 
+    //  line no 171 , L154173878 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 171;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
     sp += 0;
-    if(stack[--sp].i  != 0) goto L154173878;
+    if(stack[--sp].i  != 0) goto L215082566;
     ; 
-    //  line no 172 , L215082566 , bytecode index = 
+    //  line no 172 , L2074658615 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe pm Lorg/jnode/driver/bus/usb/uhci/UHCIPipeManager;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->pm_0;
@@ -592,7 +592,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_open___V(JThreadRuntime *runtim
         }
     }
     ; 
-    //  line no 173 , L2074658615 , bytecode index = 
+    //  line no 173 , L412111214 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe skelQH Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->skelQH_7;
@@ -618,15 +618,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_open___V(JThreadRuntime *runtim
         }
     }
     ; 
-    //  line no 174 , L412111214 , bytecode index = 
+    //  line no 174 , L362827515 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->open_6 = stack[sp + 1].i;
-    L154173878:
-    //  line no 176 , L154173878 , bytecode index = 
+    L215082566:
+    //  line no 176 , L215082566 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -656,16 +656,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_close___V(JThreadRuntime *runti
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 418, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 182 , L381708767 , bytecode index = 
+    //  line no 182 , L736920911 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 182;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
     sp += 0;
-    if(stack[--sp].i  == 0) goto L736920911;
+    if(stack[--sp].i  == 0) goto L837659261;
     ; 
-    //  line no 183 , L837659261 , bytecode index = 
+    //  line no 183 , L648936749 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe skelQH Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->skelQH_7;
@@ -691,7 +691,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_close___V(JThreadRuntime *runti
         }
     }
     ; 
-    //  line no 184 , L648936749 , bytecode index = 
+    //  line no 184 , L859236022 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe pm Lorg/jnode/driver/bus/usb/uhci/UHCIPipeManager;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->pm_0;
@@ -716,15 +716,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_close___V(JThreadRuntime *runti
         }
     }
     ; 
-    //  line no 185 , L859236022 , bytecode index = 
+    //  line no 185 , L2084559714 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_0
     stack[sp++].i = 0;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->open_6 = stack[sp + 1].i;
-    L736920911:
-    //  line no 187 , L736920911 , bytecode index = 
+    L837659261:
+    //  line no 187 , L837659261 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -755,16 +755,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
     StackFrame *__frame = method_enter(runtime, 419, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 196 , L542980314 , bytecode index = 
+    //  line no 196 , L1766911337 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 196;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
     sp += 0;
-    if(stack[--sp].i  != 0) goto L1766911337;
+    if(stack[--sp].i  != 0) goto L1842853283;
     ; 
-    //  line no 197 , L1842853283 , bytecode index = 
+    //  line no 197 , L1865516976 , bytecode index = 
     // new org/jnode/driver/bus/usb/USBException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 157);
     // dup
@@ -789,21 +789,21 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     // athrow
-    //     L1842853283 in labeltable is :L1842853283
+    //     L1865516976 in labeltable is :L1865516976
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 197;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1766911337:
-    //  line no 199 , L1766911337 , bytecode index = 
+    L1842853283:
+    //  line no 199 , L1842853283 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof org/jnode/driver/bus/usb/uhci/UHCIRequest
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 1000);
-    if(stack[--sp].i  != 0) goto L1865516976;
+    if(stack[--sp].i  != 0) goto L644082020;
     ; 
-    //  line no 200 , L644082020 , bytecode index = 
+    //  line no 200 , L1219916644 , bytecode index = 
     // new java/lang/IllegalArgumentException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 2);
     // dup
@@ -828,21 +828,21 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     // athrow
-    //     L644082020 in labeltable is :L644082020
+    //     L1219916644 in labeltable is :L1219916644
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 200;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1865516976:
-    //  line no 202 , L1865516976 , bytecode index = 
+    L644082020:
+    //  line no 202 , L644082020 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof org/jnode/driver/bus/usb/spi/AbstractUSBRequest
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 1002);
-    if(stack[--sp].i  != 0) goto L1219916644;
+    if(stack[--sp].i  != 0) goto L412925308;
     ; 
-    //  line no 203 , L412925308 , bytecode index = 
+    //  line no 203 , L2079565272 , bytecode index = 
     // new java/lang/IllegalArgumentException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 2);
     // dup
@@ -867,15 +867,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     // athrow
-    //     L412925308 in labeltable is :L412925308
+    //     L2079565272 in labeltable is :L2079565272
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 203;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1219916644:
-    //  line no 205 , L1219916644 , bytecode index = 
+    L412925308:
+    //  line no 205 , L412925308 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast org/jnode/driver/bus/usb/uhci/UHCIRequest
     {
@@ -887,7 +887,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 206 , L2079565272 , bytecode index = 
+    //  line no 206 , L1122130699 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast org/jnode/driver/bus/usb/spi/AbstractUSBRequest
     {
@@ -899,7 +899,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 207 , L1122130699 , bytecode index = 
+    //  line no 207 , L968113504 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -922,7 +922,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     ; 
-    //  line no 208 , L968113504 , bytecode index = 
+    //  line no 208 , L1153302647 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -943,7 +943,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     ; 
-    //  line no 209 , L1153302647 , bytecode index = 
+    //  line no 209 , L570794077 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // iconst_0
     stack[sp++].i = 0;
@@ -964,7 +964,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     ; 
-    //  line no 210 , L570794077 , bytecode index = 
+    //  line no 210 , L1928301845 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe qh Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->qh_8;
@@ -985,9 +985,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1928301845;
+    if(stack[--sp].i  == 0) goto L1789452565;
     ; 
-    //  line no 211 , L1789452565 , bytecode index = 
+    //  line no 211 , L1579280783 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // invokespecial org/jnode/driver/bus/usb/uhci/UHCIPipe.activateRequest(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V
@@ -1005,9 +1005,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
             goto __ExceptionHandler;
         }
     }
-    goto L1579280783;
-    L1928301845:
-    //  line no 213 , L1928301845 , bytecode index = 
+    goto L1370074462;
+    L1789452565:
+    //  line no 213 , L1789452565 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe queue Ljava/util/Queue;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->queue_9;
@@ -1030,8 +1030,8 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_asyncSubmit__Lorg_jnode_driver_
         }
     }
     --sp; //pop
-    L1579280783:
-    //  line no 215 , L1579280783 , bytecode index = 
+    L1370074462:
+    //  line no 215 , L1370074462 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1063,7 +1063,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
     rlocal[0].obj = p0;
     local[1].j = p1;
     ; 
-    //  line no 225 , L1595938139 , bytecode index = 
+    //  line no 225 , L1923999715 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 225;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1087,7 +1087,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
         }
     }
     ; 
-    //  line no 226 , L1923999715 , bytecode index = 
+    //  line no 226 , L596706728 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     stack[sp].j = local[2].j;
     sp += 2;
@@ -1108,7 +1108,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
         }
     }
     ; 
-    //  line no 227 , L596706728 , bytecode index = 
+    //  line no 227 , L1070501849 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/USBRequest.isCompleted()Z
     {
@@ -1126,9 +1126,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L1070501849;
+    if(stack[--sp].i  != 0) goto L1620823990;
     ; 
-    //  line no 228 , L1620823990 , bytecode index = 
+    //  line no 228 , L2106900153 , bytecode index = 
     // new org/jnode/driver/bus/usb/USBException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 157);
     // dup
@@ -1153,15 +1153,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
         }
     }
     // athrow
-    //     L1620823990 in labeltable is :L1620823990
+    //     L2106900153 in labeltable is :L2106900153
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 228;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1070501849:
-    //  line no 230 , L1070501849 , bytecode index = 
+    L1620823990:
+    //  line no 230 , L1620823990 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/USBRequest.getStatus()I
     {
@@ -1181,15 +1181,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
     }
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 231 , L2106900153 , bytecode index = 
+    //  line no 231 , L1443055846 , bytecode index = 
     stack[sp++].i = local[4].i;
     //  bipush 63
     stack[sp++].i = 63;
     stack[sp - 2].i = stack[sp - 2].i & stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  == 0) goto L1443055846;
+    if(stack[--sp].i  == 0) goto L502838712;
     ; 
-    //  line no 232 , L502838712 , bytecode index = 
+    //  line no 232 , L589311950 , bytecode index = 
     // new org/jnode/driver/bus/usb/USBException
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 157);
     // dup
@@ -1294,15 +1294,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_syncSubmit__Lorg_jnode_driver_b
         }
     }
     // athrow
-    //     L502838712 in labeltable is :L502838712
+    //     L589311950 in labeltable is :L589311950
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 232;
         throw_exception(runtime, rstack[sp - 1].obj);
         goto __ExceptionHandler;
     }
-    L1443055846:
-    //  line no 234 , L1443055846 , bytecode index = 
+    L502838712:
+    //  line no 234 , L502838712 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1333,7 +1333,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_addListener__Lorg_jnode_driver_
     StackFrame *__frame = method_enter(runtime, 421, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 243 , L2073640037 , bytecode index = 
+    //  line no 243 , L932257672 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 243;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1359,7 +1359,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_addListener__Lorg_jnode_driver_
     }
     --sp; //pop
     ; 
-    //  line no 244 , L932257672 , bytecode index = 
+    //  line no 244 , L1864116663 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1390,7 +1390,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_removeListener__Lorg_jnode_driv
     StackFrame *__frame = method_enter(runtime, 422, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 253 , L1298146757 , bytecode index = 
+    //  line no 253 , L2133344792 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 253;
     rstack[sp++].obj = rlocal[0].obj;
@@ -1416,7 +1416,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_removeListener__Lorg_jnode_driv
     }
     --sp; //pop
     ; 
-    //  line no 254 , L2133344792 , bytecode index = 
+    //  line no 254 , L1081769770 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1450,30 +1450,30 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
     RStackItem rstack[3];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 423, &rstack[0], &rlocal[0], &sp);
-    // try catch :L1319483139 L44559647 L1067599825 (
-    // try catch :L749927456 L1330400026 L1916700921 (
+    // try catch :L44559647 L1067599825 L749927456 (
+    // try catch :L1330400026 L1916700921 L1594873248 (
     ; 
-    //  line no 260 , L1594873248 , bytecode index = 
+    //  line no 260 , L1692885405 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 260;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
     sp += 0;
-    if(stack[--sp].i  == 0) goto L1692885405;
+    if(stack[--sp].i  == 0) goto L1230955136;
     ; 
-    //  line no 261 , L1230955136 , bytecode index = 
+    //  line no 261 , L1336001042 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe activeRequest Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->activeRequest_10;
     sp += 0;
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 262 , L1336001042 , bytecode index = 
+    //  line no 262 , L1856158867 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
-    if(rstack[--sp].obj  == NULL) goto L1856158867;
+    if(rstack[--sp].obj  == NULL) goto L823575379;
     ; 
-    //  line no 263 , L823575379 , bytecode index = 
+    //  line no 263 , L258112787 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokespecial org/jnode/driver/bus/usb/uhci/UHCIPipe.handleInterrupt(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V
@@ -1492,7 +1492,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
         }
     }
     ; 
-    //  line no 264 , L258112787 , bytecode index = 
+    //  line no 264 , L1318227903 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/uhci/UHCIRequest.isCompleted()Z
     {
@@ -1510,9 +1510,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1856158867;
+    if(stack[--sp].i  == 0) goto L823575379;
     ; 
-    //  line no 265 , L1318227903 , bytecode index = 
+    //  line no 265 , L892335322 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe qh Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->qh_8;
@@ -1535,7 +1535,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
         }
     }
     ; 
-    //  line no 266 , L892335322 , bytecode index = 
+    //  line no 266 , L841262455 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // aconst null
     rstack[sp++].obj = NULL;
@@ -1543,7 +1543,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->activeRequest_10 = rstack[sp + 1].obj;
     ; 
-    //  line no 268 , L841262455 , bytecode index = 
+    //  line no 268 , L775081157 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/UHCIPipe.isInterruptPipe()Z
     {
@@ -1561,15 +1561,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1856158867;
+    if(stack[--sp].i  == 0) goto L823575379;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe open Z
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->open_6;
     sp += 0;
-    if(stack[--sp].i  == 0) goto L1856158867;
-    L1319483139:
+    if(stack[--sp].i  == 0) goto L823575379;
+    L44559647:
     __frame->bytecodeIndex = 
-    //  line no 270 , L1319483139 , bytecode index = 
+    //  line no 270 , L44559647 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/UHCIPipe.asyncSubmit(Lorg/jnode/driver/bus/usb/USBRequest;)V
@@ -1590,15 +1590,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    L44559647:
-    __frame->bytecodeIndex = 
-    //  line no 273 , L44559647 , bytecode index = 
-    goto L1856158867;
     L1067599825:
-    //  line no 271 , L1067599825 , bytecode index = 
+    __frame->bytecodeIndex = 
+    //  line no 273 , L1067599825 , bytecode index = 
+    goto L823575379;
+    L749927456:
+    //  line no 271 , L749927456 , bytecode index = 
     rlocal[2].obj = rstack[--sp].obj;
-    L1856158867:
-    //  line no 277 , L1856158867 , bytecode index = 
+    L823575379:
+    //  line no 277 , L823575379 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe queue Ljava/util/Queue;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->queue_9;
@@ -1619,7 +1619,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  != 0) goto L1692885405;
+    if(stack[--sp].i  != 0) goto L1230955136;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe qh Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->qh_8;
@@ -1640,9 +1640,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1692885405;
+    if(stack[--sp].i  == 0) goto L1230955136;
     ; 
-    //  line no 278 , L775081157 , bytecode index = 
+    //  line no 278 , L1955021259 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe queue Ljava/util/Queue;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->queue_9;
@@ -1672,9 +1672,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
         }
     }
     rlocal[2].obj = rstack[--sp].obj;
-    L749927456:
+    L1330400026:
     __frame->bytecodeIndex = 
-    //  line no 280 , L749927456 , bytecode index = 
+    //  line no 280 , L1330400026 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[2].obj;
     // invokespecial org/jnode/driver/bus/usb/uhci/UHCIPipe.activateRequest(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V
@@ -1692,15 +1692,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    L1330400026:
-    __frame->bytecodeIndex = 
-    //  line no 286 , L1330400026 , bytecode index = 
-    goto L1692885405;
     L1916700921:
-    //  line no 281 , L1916700921 , bytecode index = 
+    __frame->bytecodeIndex = 
+    //  line no 286 , L1916700921 , bytecode index = 
+    goto L1230955136;
+    L1594873248:
+    //  line no 281 , L1594873248 , bytecode index = 
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 282 , L1955021259 , bytecode index = 
+    //  line no 282 , L1044705957 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // checkcast org/jnode/driver/bus/usb/spi/AbstractUSBRequest
     {
@@ -1712,7 +1712,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
     }
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 283 , L1044705957 , bytecode index = 
+    //  line no 283 , L693958407 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     //  bipush 16
     stack[sp++].i = 16;
@@ -1733,7 +1733,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
         }
     }
     ; 
-    //  line no 284 , L693958407 , bytecode index = 
+    //  line no 284 , L288379405 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -1755,15 +1755,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt___V(JThreadRunt
             goto __ExceptionHandler;
         }
     }
-    L1692885405:
-    //  line no 289 , L1692885405 , bytecode index = 
+    L1230955136:
+    //  line no 289 , L1230955136 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L1067599825;
-        case 1 : goto L1916700921;
+        case 0 : goto L749927456;
+        case 1 : goto L1594873248;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
@@ -1789,7 +1789,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
     StackFrame *__frame = method_enter(runtime, 424, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 298 , L1601687801 , bytecode index = 
+    //  line no 298 , L1178587240 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 298;
     rstack[sp++].obj = rlocal[1].obj;
@@ -1811,11 +1811,11 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 299 , L1178587240 , bytecode index = 
+    //  line no 299 , L144040807 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  != NULL) goto L144040807;
+    if(rstack[--sp].obj  != NULL) goto L455501890;
     ; 
-    //  line no 301 , L455501890 , bytecode index = 
+    //  line no 301 , L2050462663 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // invokeinterface org/jnode/driver/bus/usb/uhci/UHCIRequest.createTDs(Lorg/jnode/driver/bus/usb/uhci/UHCIPipe;)V
@@ -1834,9 +1834,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    goto L2050462663;
-    L144040807:
-    //  line no 303 , L144040807 , bytecode index = 
+    goto L1119072377;
+    L455501890:
+    //  line no 303 , L455501890 , bytecode index = 
     // getstatic java/lang/System out Ljava/io/PrintStream;
     rstack[sp].obj =static_var_java_lang_System.out_1;
     sp += 1;
@@ -1858,12 +1858,12 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    L1119072377:
-    //  line no 305 , L1119072377 , bytecode index = 
+    L1696263571:
+    //  line no 305 , L1696263571 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  == NULL) goto L2050462663;
+    if(rstack[--sp].obj  == NULL) goto L1119072377;
     ; 
-    //  line no 306 , L1696263571 , bytecode index = 
+    //  line no 306 , L1305935114 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.resetStatus()V
     {
@@ -1882,7 +1882,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 307 , L1305935114 , bytecode index = 
+    //  line no 307 , L196732636 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.getNextTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;
     {
@@ -1902,16 +1902,16 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
     }
     rlocal[2].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1119072377;
-    L2050462663:
-    //  line no 310 , L2050462663 , bytecode index = 
+    goto L1696263571;
+    L1119072377:
+    //  line no 310 , L1119072377 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield org/jnode/driver/bus/usb/uhci/UHCIPipe activeRequest Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp + 0].obj)->activeRequest_10 = rstack[sp + 1].obj;
     ; 
-    //  line no 311 , L196732636 , bytecode index = 
+    //  line no 311 , L1414967210 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe qh Lorg/jnode/driver/bus/usb/uhci/QueueHead;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->qh_8;
@@ -1934,7 +1934,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_activateRequest__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 313 , L1414967210 , bytecode index = 
+    //  line no 313 , L1720891078 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -1965,14 +1965,14 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
     StackFrame *__frame = method_enter(runtime, 425, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 322 , L483797427 , bytecode index = 
+    //  line no 322 , L1486726131 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 322;
     // aconst null
     rstack[sp++].obj = NULL;
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 323 , L1486726131 , bytecode index = 
+    //  line no 323 , L970419381 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/uhci/UHCIRequest.getFirstTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;
     {
@@ -1992,18 +1992,18 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 324 , L970419381 , bytecode index = 
+    //  line no 324 , L1241569743 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[4].i = stack[--sp].i;
-    L1241569743:
-    //  line no 325 , L1241569743 , bytecode index = 
+    L1731656333:
+    //  line no 325 , L1731656333 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
-    if(rstack[--sp].obj  == NULL) goto L1731656333;
+    if(rstack[--sp].obj  == NULL) goto L1384210339;
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  != NULL) goto L1731656333;
+    if(rstack[--sp].obj  != NULL) goto L1384210339;
     ; 
-    //  line no 326 , L1384210339 , bytecode index = 
+    //  line no 326 , L1345401730 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isAnyError()Z
     {
@@ -2021,15 +2021,15 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1345401730;
+    if(stack[--sp].i  == 0) goto L481511146;
     ; 
-    //  line no 328 , L481511146 , bytecode index = 
+    //  line no 328 , L1275143523 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rlocal[2].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1241569743;
-    L1345401730:
-    //  line no 329 , L1345401730 , bytecode index = 
+    goto L1731656333;
+    L481511146:
+    //  line no 329 , L481511146 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isActive()Z
     {
@@ -2047,13 +2047,13 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1275143523;
+    if(stack[--sp].i  == 0) goto L346359559;
     ; 
-    //  line no 331 , L346359559 , bytecode index = 
+    //  line no 331 , L1297189682 , bytecode index = 
     method_exit(runtime);
     return;
-    L1275143523:
-    //  line no 333 , L1275143523 , bytecode index = 
+    L346359559:
+    //  line no 333 , L346359559 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.getNextTD()Lorg/jnode/driver/bus/usb/uhci/TransferDescriptor;
     {
@@ -2073,18 +2073,18 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
     }
     rlocal[3].obj = rstack[--sp].obj;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1241569743;
-    L1731656333:
-    //  line no 337 , L1731656333 , bytecode index = 
+    goto L1731656333;
+    L1384210339:
+    //  line no 337 , L1384210339 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[5].i = stack[--sp].i;
     ; 
-    //  line no 338 , L1297189682 , bytecode index = 
+    //  line no 338 , L1272123492 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
-    if(rstack[--sp].obj  == NULL) goto L1272123492;
+    if(rstack[--sp].obj  == NULL) goto L238816832;
     ; 
-    //  line no 339 , L238816832 , bytecode index = 
+    //  line no 339 , L849198527 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isStalled()Z
     {
@@ -2102,17 +2102,17 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L849198527;
+    if(stack[--sp].i  == 0) goto L1934932165;
     ; 
-    //  line no 340 , L1934932165 , bytecode index = 
+    //  line no 340 , L551016187 , bytecode index = 
     stack[sp++].i = local[5].i;
     // iconst_1
     stack[sp++].i = 1;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L849198527:
-    //  line no 342 , L849198527 , bytecode index = 
+    L1934932165:
+    //  line no 342 , L1934932165 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isDataBufferError()Z
     {
@@ -2130,17 +2130,17 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L551016187;
+    if(stack[--sp].i  == 0) goto L1324843695;
     ; 
-    //  line no 343 , L1324843695 , bytecode index = 
+    //  line no 343 , L299413131 , bytecode index = 
     stack[sp++].i = local[5].i;
     // iconst_4
     stack[sp++].i = 4;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L551016187:
-    //  line no 345 , L551016187 , bytecode index = 
+    L1324843695:
+    //  line no 345 , L1324843695 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isBabbleDetected()Z
     {
@@ -2158,17 +2158,17 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L299413131;
+    if(stack[--sp].i  == 0) goto L1201454821;
     ; 
-    //  line no 346 , L1201454821 , bytecode index = 
+    //  line no 346 , L1508038883 , bytecode index = 
     stack[sp++].i = local[5].i;
     //  bipush 32
     stack[sp++].i = 32;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L299413131:
-    //  line no 348 , L299413131 , bytecode index = 
+    L1201454821:
+    //  line no 348 , L1201454821 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isNAKReceived()Z
     {
@@ -2186,17 +2186,17 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L1508038883;
+    if(stack[--sp].i  == 0) goto L728943498;
     ; 
-    //  line no 349 , L728943498 , bytecode index = 
+    //  line no 349 , L2139788441 , bytecode index = 
     stack[sp++].i = local[5].i;
     // iconst_2
     stack[sp++].i = 2;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L1508038883:
-    //  line no 351 , L1508038883 , bytecode index = 
+    L728943498:
+    //  line no 351 , L728943498 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isCRCTimeOutError()Z
     {
@@ -2214,17 +2214,17 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L2139788441;
+    if(stack[--sp].i  == 0) goto L1564698139;
     ; 
-    //  line no 352 , L1564698139 , bytecode index = 
+    //  line no 352 , L304715920 , bytecode index = 
     stack[sp++].i = local[5].i;
     //  bipush 8
     stack[sp++].i = 8;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L2139788441:
-    //  line no 354 , L2139788441 , bytecode index = 
+    L1564698139:
+    //  line no 354 , L1564698139 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/TransferDescriptor.isBitstuffError()Z
     {
@@ -2242,26 +2242,26 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L304715920;
+    if(stack[--sp].i  == 0) goto L800735172;
     ; 
-    //  line no 355 , L800735172 , bytecode index = 
+    //  line no 355 , L79644918 , bytecode index = 
     stack[sp++].i = local[5].i;
     //  bipush 16
     stack[sp++].i = 16;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    goto L304715920;
-    L1272123492:
-    //  line no 358 , L1272123492 , bytecode index = 
+    goto L800735172;
+    L238816832:
+    //  line no 358 , L238816832 , bytecode index = 
     stack[sp++].i = local[5].i;
     //  ldc 
     stack[sp++].i = 0x8000;
     stack[sp - 2].i = stack[sp - 2].i | stack[sp - 1].i; 
     --sp;
     local[5].i = stack[--sp].i;
-    L304715920:
-    //  line no 360 , L304715920 , bytecode index = 
+    L800735172:
+    //  line no 360 , L800735172 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast org/jnode/driver/bus/usb/spi/AbstractUSBRequest
     {
@@ -2273,7 +2273,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 361 , L79644918 , bytecode index = 
+    //  line no 361 , L1107985860 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     stack[sp++].i = local[5].i;
     // invokevirtual org/jnode/driver/bus/usb/spi/AbstractUSBRequest.setStatus(I)V
@@ -2293,7 +2293,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 362 , L1107985860 , bytecode index = 
+    //  line no 362 , L473524237 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     stack[sp++].i = local[4].i;
     // invokevirtual org/jnode/driver/bus/usb/spi/AbstractUSBRequest.setActualLength(I)V
@@ -2313,7 +2313,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 363 , L473524237 , bytecode index = 
+    //  line no 363 , L1652764753 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -2336,7 +2336,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 364 , L1652764753 , bytecode index = 
+    //  line no 364 , L478489615 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/UHCIPipe.firePipeEvent(Lorg/jnode/driver/bus/usb/uhci/UHCIRequest;)V
@@ -2356,7 +2356,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_handleInterrupt__Lorg_jnode_dri
         }
     }
     ; 
-    //  line no 365 , L478489615 , bytecode index = 
+    //  line no 365 , L171421438 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2387,7 +2387,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
     StackFrame *__frame = method_enter(runtime, 426, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 373 , L1570358965 , bytecode index = 
+    //  line no 373 , L644052207 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 373;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2412,7 +2412,7 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
     }
     local[2].i = stack[--sp].i;
     ; 
-    //  line no 374 , L644052207 , bytecode index = 
+    //  line no 374 , L330551672 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/uhci/UHCIRequest.getStatus()I
     {
@@ -2432,25 +2432,25 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
     }
     local[3].i = stack[--sp].i;
     ; 
-    //  line no 375 , L330551672 , bytecode index = 
+    //  line no 375 , L616881582 , bytecode index = 
     stack[sp++].i = local[3].i;
     //  bipush 63
     stack[sp++].i = 63;
     stack[sp - 2].i = stack[sp - 2].i & stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  == 0) goto L616881582;
+    if(stack[--sp].i  == 0) goto L939199469;
     // iconst_1
     stack[sp++].i = 1;
-    goto L939199469;
-    L616881582:
+    goto L176342513;
+    L939199469:
     // iconst_0
     stack[sp++].i = 0;
-    L939199469:
+    L176342513:
     local[4].i = stack[--sp].i;
     ; 
-    //  line no 376 , L176342513 , bytecode index = 
+    //  line no 376 , L129498568 , bytecode index = 
     stack[sp++].i = local[4].i;
-    if(stack[--sp].i  == 0) goto L129498568;
+    if(stack[--sp].i  == 0) goto L85748029;
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/UHCIPipe.isInterruptPipe()Z
     {
@@ -2468,31 +2468,31 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L129498568;
+    if(stack[--sp].i  == 0) goto L85748029;
     ; 
-    //  line no 377 , L85748029 , bytecode index = 
+    //  line no 377 , L1784131088 , bytecode index = 
     stack[sp++].i = local[3].i;
     // iconst_2
     stack[sp++].i = 2;
     stack[sp - 2].i = stack[sp - 2].i & stack[sp - 1].i; 
     --sp;
-    if(stack[--sp].i  == 0) goto L129498568;
+    if(stack[--sp].i  == 0) goto L85748029;
     ; 
-    //  line no 379 , L1784131088 , bytecode index = 
+    //  line no 379 , L1986417638 , bytecode index = 
     method_exit(runtime);
     return;
-    L129498568:
-    //  line no 382 , L129498568 , bytecode index = 
+    L85748029:
+    //  line no 382 , L85748029 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     local[5].i = stack[--sp].i;
-    L1986417638:
+    L1309129055:
     stack[sp++].i = local[5].i;
     stack[sp++].i = local[2].i;
     sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1309129055;
+    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L682910755;
     ; 
-    //  line no 383 , L682910755 , bytecode index = 
+    //  line no 383 , L2143582219 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe listeners Ljava/util/ArrayList;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->listeners_11;
@@ -2524,11 +2524,11 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
     }
     rlocal[6].obj = rstack[--sp].obj;
     ; 
-    //  line no 384 , L2143582219 , bytecode index = 
+    //  line no 384 , L997850486 , bytecode index = 
     stack[sp++].i = local[4].i;
-    if(stack[--sp].i  == 0) goto L997850486;
+    if(stack[--sp].i  == 0) goto L1221027335;
     ; 
-    //  line no 385 , L1221027335 , bytecode index = 
+    //  line no 385 , L1129944640 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/USBPipeListener.requestFailed(Lorg/jnode/driver/bus/usb/USBRequest;)V
@@ -2547,9 +2547,9 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
             goto __ExceptionHandler;
         }
     }
-    goto L1129944640;
-    L997850486:
-    //  line no 387 , L997850486 , bytecode index = 
+    goto L528591360;
+    L1221027335:
+    //  line no 387 , L1221027335 , bytecode index = 
     rstack[sp++].obj = rlocal[6].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokeinterface org/jnode/driver/bus/usb/USBPipeListener.requestCompleted(Lorg/jnode/driver/bus/usb/USBRequest;)V
@@ -2568,14 +2568,14 @@ void func_org_jnode_driver_bus_usb_uhci_UHCIPipe_firePipeEvent__Lorg_jnode_drive
             goto __ExceptionHandler;
         }
     }
-    L1129944640:
-    //  line no 382 , L1129944640 , bytecode index = 
+    L528591360:
+    //  line no 382 , L528591360 , bytecode index = 
     // iinc slot 5 value 1
     local[5].i += 1;
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1986417638;
-    L1309129055:
-    //  line no 390 , L1309129055 , bytecode index = 
+    goto L1309129055;
+    L682910755:
+    //  line no 390 , L682910755 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -2611,7 +2611,7 @@ struct org_jnode_driver_bus_usb_uhci_TransferDescriptor* func_org_jnode_driver_b
     local[4].i = p4;
     local[5].i = p5;
     ; 
-    //  line no 405 , L1801942731 , bytecode index = 
+    //  line no 405 , L409195262 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 405;
     rstack[sp++].obj = rlocal[0].obj;
@@ -2636,7 +2636,7 @@ struct org_jnode_driver_bus_usb_uhci_TransferDescriptor* func_org_jnode_driver_b
     }
     local[7].i = stack[--sp].i;
     ; 
-    //  line no 406 , L409195262 , bytecode index = 
+    //  line no 406 , L394771492 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokevirtual org/jnode/driver/bus/usb/uhci/UHCIPipe.isIsochronousPipe()Z
     {
@@ -2656,7 +2656,7 @@ struct org_jnode_driver_bus_usb_uhci_TransferDescriptor* func_org_jnode_driver_b
     }
     local[8].i = stack[--sp].i;
     ; 
-    //  line no 407 , L394771492 , bytecode index = 
+    //  line no 407 , L88397182 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe device Lorg/jnode/driver/bus/usb/USBDevice;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->device_3;
@@ -2679,7 +2679,7 @@ struct org_jnode_driver_bus_usb_uhci_TransferDescriptor* func_org_jnode_driver_b
     }
     local[9].i = stack[--sp].i;
     ; 
-    //  line no 408 , L88397182 , bytecode index = 
+    //  line no 408 , L1438988851 , bytecode index = 
     // new org/jnode/driver/bus/usb/uhci/TransferDescriptor
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 163);
     // dup
@@ -2747,24 +2747,24 @@ s32 func_org_jnode_driver_bus_usb_uhci_UHCIPipe_getMaxPacketSize___I(JThreadRunt
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 428, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 416 , L1404565079 , bytecode index = 
+    //  line no 416 , L2038105753 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 416;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe maxPktSize I
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->maxPktSize_12;
     sp += 0;
-    if(stack[--sp].i  <= 0) goto L2038105753;
+    if(stack[--sp].i  <= 0) goto L1513608173;
     ; 
-    //  line no 417 , L1513608173 , bytecode index = 
+    //  line no 417 , L652176954 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe maxPktSize I
     stack[sp - 1].i = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->maxPktSize_12;
     sp += 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L2038105753:
-    //  line no 419 , L2038105753 , bytecode index = 
+    L1513608173:
+    //  line no 419 , L1513608173 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe device Lorg/jnode/driver/bus/usb/USBDevice;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->device_3;
@@ -2817,7 +2817,7 @@ struct org_jnode_driver_bus_usb_USBEndPoint* func_org_jnode_driver_bus_usb_uhci_
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 427 , L1245065720 , bytecode index = 
+    //  line no 427 , L1800976873 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/uhci/UHCIPipe endPoint Lorg/jnode/driver/bus/usb/USBEndPoint;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_uhci_UHCIPipe*)rstack[sp - 1].obj)->endPoint_5;

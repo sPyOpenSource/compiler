@@ -53,7 +53,7 @@ void func_jx_synch_nonblocking2_MPSCQueue__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 285, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 12 , L657736958 , bytecode index = 
+    //  line no 12 , L867988177 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 12;
     rstack[sp++].obj = rlocal[0].obj;
@@ -73,7 +73,7 @@ void func_jx_synch_nonblocking2_MPSCQueue__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 10 , L867988177 , bytecode index = 
+    //  line no 10 , L443934570 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokestatic jx/zero/InitialNaming.getInitialNaming()Ljx/zero/Naming;
     {
@@ -115,7 +115,7 @@ void func_jx_synch_nonblocking2_MPSCQueue__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp + 0].obj)->cpuManager_4 = rstack[sp + 1].obj;
     ; 
-    //  line no 13 , L443934570 , bytecode index = 
+    //  line no 13 , L1428475041 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue cpuManager Ljx/zero/CPUManager;
@@ -145,7 +145,7 @@ void func_jx_synch_nonblocking2_MPSCQueue__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp + 0].obj)->cas_1next_2 = rstack[sp + 1].obj;
     ; 
-    //  line no 14 , L1428475041 , bytecode index = 
+    //  line no 14 , L1345483087 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue cpuManager Ljx/zero/CPUManager;
@@ -175,7 +175,7 @@ void func_jx_synch_nonblocking2_MPSCQueue__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp + 0].obj)->cas_1tail_3 = rstack[sp + 1].obj;
     ; 
-    //  line no 15 , L1345483087 , bytecode index = 
+    //  line no 15 , L4766562 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -206,7 +206,7 @@ void func_jx_synch_nonblocking2_MPSCQueue_enqueue__Ljava_lang_Object_2_V(JThread
     StackFrame *__frame = method_enter(runtime, 286, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 19 , L892555958 , bytecode index = 
+    //  line no 19 , L1182908789 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 19;
     // new jx/synch/nonblocking2/SPSCQueue$Node
@@ -233,41 +233,41 @@ void func_jx_synch_nonblocking2_MPSCQueue_enqueue__Ljava_lang_Object_2_V(JThread
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 20 , L1182908789 , bytecode index = 
+    //  line no 20 , L91912419 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/synch/nonblocking2/SPSCQueue$Node value Ljava/lang/Object;
     sp -= 2;
     ((struct jx_synch_nonblocking2_SPSCQueue_00024Node*)rstack[sp + 0].obj)->value_0 = rstack[sp + 1].obj;
-    L91912419:
-    //  line no 24 , L91912419 , bytecode index = 
+    L1076641925:
+    //  line no 24 , L1076641925 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue tail Ljx/synch/nonblocking2/SPSCQueue$Node;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp - 1].obj)->tail_1;
     sp += 0;
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 25 , L1076641925 , bytecode index = 
+    //  line no 25 , L1873091796 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     // getfield jx/synch/nonblocking2/SPSCQueue$Node next Ljx/synch/nonblocking2/SPSCQueue$Node;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_SPSCQueue_00024Node*)rstack[sp - 1].obj)->next_1;
     sp += 0;
     rlocal[4].obj = rstack[--sp].obj;
     ; 
-    //  line no 26 , L1873091796 , bytecode index = 
+    //  line no 26 , L661119548 , bytecode index = 
     rstack[sp++].obj = rlocal[3].obj;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue tail Ljx/synch/nonblocking2/SPSCQueue$Node;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp - 1].obj)->tail_1;
     sp += 0;
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L661119548;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L1896622931;
     ; 
-    //  line no 27 , L1896622931 , bytecode index = 
+    //  line no 27 , L1401316767 , bytecode index = 
     rstack[sp++].obj = rlocal[4].obj;
-    if(rstack[--sp].obj  != NULL) goto L1401316767;
+    if(rstack[--sp].obj  != NULL) goto L335708295;
     ; 
-    //  line no 28 , L335708295 , bytecode index = 
+    //  line no 28 , L216856121 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue cas_next Ljx/zero/CAS;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp - 1].obj)->cas_1next_2;
@@ -291,12 +291,12 @@ void func_jx_synch_nonblocking2_MPSCQueue_enqueue__Ljava_lang_Object_2_V(JThread
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L661119548;
+    if(stack[--sp].i  == 0) goto L1896622931;
     ; 
-    //  line no 29 , L216856121 , bytecode index = 
-    goto L480903748;
-    L1401316767:
-    //  line no 32 , L1401316767 , bytecode index = 
+    //  line no 29 , L480903748 , bytecode index = 
+    goto L2095064787;
+    L335708295:
+    //  line no 32 , L335708295 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue cas_tail Ljx/zero/CAS;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp - 1].obj)->cas_1tail_3;
@@ -321,12 +321,12 @@ void func_jx_synch_nonblocking2_MPSCQueue_enqueue__Ljava_lang_Object_2_V(JThread
         }
     }
     --sp; //pop
-    L661119548:
-    //  line no 35 , L661119548 , bytecode index = 
+    L1896622931:
+    //  line no 35 , L1896622931 , bytecode index = 
     if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L91912419;
-    L480903748:
-    //  line no 36 , L480903748 , bytecode index = 
+    goto L1076641925;
+    L2095064787:
+    //  line no 36 , L2095064787 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/synch/nonblocking2/MPSCQueue cas_tail Ljx/zero/CAS;
     rstack[sp - 1].obj = ((struct jx_synch_nonblocking2_MPSCQueue*)rstack[sp - 1].obj)->cas_1tail_3;
@@ -352,7 +352,7 @@ void func_jx_synch_nonblocking2_MPSCQueue_enqueue__Ljava_lang_Object_2_V(JThread
     }
     --sp; //pop
     ; 
-    //  line no 37 , L2095064787 , bytecode index = 
+    //  line no 37 , L2095486832 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

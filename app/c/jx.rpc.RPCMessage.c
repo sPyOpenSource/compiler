@@ -47,7 +47,7 @@ void func_jx_rpc_RPCMessage__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 536, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 12 , L1957099969 , bytecode index = 
+    //  line no 12 , L1424698224 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 12;
     rstack[sp++].obj = rlocal[0].obj;
@@ -85,7 +85,7 @@ void func_jx_rpc_RPCMessage__init___II_V(JThreadRuntime *runtime, s32 p0, s32 p1
     local[0].i = p0;
     local[1].i = p1;
     ; 
-    //  line no 13 , L1168340825 , bytecode index = 
+    //  line no 13 , L1667305539 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 13;
     rstack[sp++].obj = rlocal[0].obj;
@@ -93,21 +93,21 @@ void func_jx_rpc_RPCMessage__init___II_V(JThreadRuntime *runtime, s32 p0, s32 p1
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 14 , L1667305539 , bytecode index = 
+    //  line no 14 , L550147359 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[1].i;
     // putfield jx/rpc/RPCMessage xid I
     sp -= 2;
     ((struct jx_rpc_RPCMessage*)rstack[sp + 0].obj)->xid_2 = stack[sp + 1].i;
     ; 
-    //  line no 15 , L550147359 , bytecode index = 
+    //  line no 15 , L762809053 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield jx/rpc/RPCMessage msgType I
     sp -= 2;
     ((struct jx_rpc_RPCMessage*)rstack[sp + 0].obj)->msgType_3 = stack[sp + 1].i;
     ; 
-    //  line no 16 , L762809053 , bytecode index = 
+    //  line no 16 , L1932536213 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -136,7 +136,7 @@ s32 func_jx_rpc_RPCMessage_getID___I(JThreadRuntime *runtime){
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 18 , L406375608 , bytecode index = 
+    //  line no 18 , L1815007437 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield jx/rpc/RPCMessage xid I
     stack[sp - 1].i = ((struct jx_rpc_RPCMessage*)rstack[sp - 1].obj)->xid_2;

@@ -72,7 +72,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___III_V(JThreadRuntime *runtime
     local[1].i = p1;
     local[2].i = p2;
     ; 
-    //  line no 8 , L613784740 , bytecode index = 
+    //  line no 8 , L271095942 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 8;
     rstack[sp++].obj = rlocal[0].obj;
@@ -131,7 +131,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___III_V(JThreadRuntime *runtime
         }
     }
     ; 
-    //  line no 10 , L271095942 , bytecode index = 
+    //  line no 10 , L1552341957 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -165,7 +165,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_DeviceMemory_2III_V(
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 13 , L1176164144 , bytecode index = 
+    //  line no 13 , L1323434987 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 13;
     rstack[sp++].obj = rlocal[0].obj;
@@ -195,7 +195,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_DeviceMemory_2III_V(
         }
     }
     ; 
-    //  line no 14 , L1323434987 , bytecode index = 
+    //  line no 14 , L442125849 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -229,7 +229,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_MemoryManager_2III_V
     local[2].i = p2;
     local[3].i = p3;
     ; 
-    //  line no 17 , L1885922916 , bytecode index = 
+    //  line no 17 , L1624972302 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 17;
     rstack[sp++].obj = rlocal[0].obj;
@@ -249,7 +249,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_MemoryManager_2III_V
     --sp;
     stack[sp++].i = local[4].i;
     ; 
-    //  line no 19 , L1624972302 , bytecode index = 
+    //  line no 19 , L1048098469 , bytecode index = 
     // invokestatic jx/framebuffer/MemoryFramebuffer.depthToBPP(I)I
     {
         sp -= 2;
@@ -281,7 +281,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_MemoryManager_2III_V
         }
     }
     ; 
-    //  line no 17 , L1048098469 , bytecode index = 
+    //  line no 17 , L1989811701 , bytecode index = 
     // invokespecial jx/framebuffer/PackedFramebufferImpl.<init>(IIIIIILjx/zero/Memory;)V
     {
         sp -= 7;
@@ -298,7 +298,7 @@ void func_jx_framebuffer_MemoryFramebuffer__init___Ljx_zero_MemoryManager_2III_V
         }
     }
     ; 
-    //  line no 20 , L1989811701 , bytecode index = 
+    //  line no 20 , L1106681476 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -328,7 +328,7 @@ struct java_lang_String* func_jx_framebuffer_MemoryFramebuffer_framebufferType__
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 378, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 24 , L2037764568 , bytecode index = 
+    //  line no 24 , L37981645 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 24;
     //  ldc 

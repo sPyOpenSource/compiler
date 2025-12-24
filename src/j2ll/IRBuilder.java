@@ -568,7 +568,6 @@ public class IRBuilder {
         add(tmp.toString());
     }
 
-
     public List<String> getStrings() {
         return strings;
     }

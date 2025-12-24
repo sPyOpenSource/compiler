@@ -35,7 +35,6 @@ public class Field {
         descriptorIndex = dis.readUnsignedShort();
         description = ((ConstantUtf8) cp.getEntry(descriptorIndex)).getBytes();
 
-
         /* Parse the field name */
         cpEntry = cp.getEntry(nameIndex);
         if (cpEntry instanceof ConstantUtf8) {

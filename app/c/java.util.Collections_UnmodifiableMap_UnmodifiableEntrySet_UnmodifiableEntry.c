@@ -57,7 +57,7 @@ void func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_0
     StackFrame *__frame = method_enter(runtime, 221, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1758 , L977552154 , bytecode index = 
+    //  line no 1758 , L1014982340 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1758;
     rstack[sp++].obj = rlocal[0].obj;
@@ -116,7 +116,7 @@ struct java_lang_Object* func_java_util_Collections_00024UnmodifiableMap_00024Un
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 222, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1760 , L424398527 , bytecode index = 
+    //  line no 1760 , L390689829 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1760;
     rstack[sp++].obj = rlocal[0].obj;
@@ -168,7 +168,7 @@ struct java_lang_Object* func_java_util_Collections_00024UnmodifiableMap_00024Un
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 223, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1761 , L252553541 , bytecode index = 
+    //  line no 1761 , L1208203046 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1761;
     rstack[sp++].obj = rlocal[0].obj;
@@ -221,7 +221,7 @@ struct java_lang_Object* func_java_util_Collections_00024UnmodifiableMap_00024Un
     StackFrame *__frame = method_enter(runtime, 224, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1763 , L268084911 , bytecode index = 
+    //  line no 1763 , L1406014249 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1763;
     // new java/util/UnsupportedOperationException
@@ -246,7 +246,7 @@ struct java_lang_Object* func_java_util_Collections_00024UnmodifiableMap_00024Un
         }
     }
     // athrow
-    //     L268084911 in labeltable is :L268084911
+    //     L1406014249 in labeltable is :L1406014249
     {
         __frame->bytecodeIndex = 
         __frame->lineNo = 1763;
@@ -280,7 +280,7 @@ s32 func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_00
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 225, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1765 , L829149076 , bytecode index = 
+    //  line no 1765 , L1678046232 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1765;
     rstack[sp++].obj = rlocal[0].obj;
@@ -333,33 +333,33 @@ s8 func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_000
     StackFrame *__frame = method_enter(runtime, 226, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 1767 , L1041365481 , bytecode index = 
+    //  line no 1767 , L501609049 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1767;
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     sp -= 2;
-    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L501609049;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L1922930974;
     ; 
-    //  line no 1768 , L1922930974 , bytecode index = 
+    //  line no 1768 , L838473569 , bytecode index = 
     // iconst_1
     stack[sp++].i = 1;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L501609049:
-    //  line no 1769 , L501609049 , bytecode index = 
+    L1922930974:
+    //  line no 1769 , L1922930974 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // instanceof java/util/Map$Entry
     stack[sp - 1].i = instance_of_classname_index(rstack[sp - 1].obj, 496);
-    if(stack[--sp].i  != 0) goto L838473569;
+    if(stack[--sp].i  != 0) goto L9797126;
     ; 
-    //  line no 1770 , L9797126 , bytecode index = 
+    //  line no 1770 , L844112759 , bytecode index = 
     // iconst_0
     stack[sp++].i = 0;
     method_exit(runtime);
     return stack[sp - 1].i;
-    L838473569:
-    //  line no 1771 , L838473569 , bytecode index = 
+    L9797126:
+    //  line no 1771 , L9797126 , bytecode index = 
     rstack[sp++].obj = rlocal[1].obj;
     // checkcast java/util/Map$Entry
     {
@@ -371,7 +371,7 @@ s8 func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_000
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 1772 , L844112759 , bytecode index = 
+    //  line no 1772 , L739973450 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry e Ljava/util/Map$Entry;
     rstack[sp - 1].obj = ((struct java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_00024UnmodifiableEntry*)rstack[sp - 1].obj)->e_0;
@@ -419,13 +419,13 @@ s8 func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_000
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L739973450;
+    if(stack[--sp].i  == 0) goto L1304117943;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/Collections$UnmodifiableMap$UnmodifiableEntrySet$UnmodifiableEntry e Ljava/util/Map$Entry;
     rstack[sp - 1].obj = ((struct java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_00024UnmodifiableEntry*)rstack[sp - 1].obj)->e_0;
     sp += 0;
     ; 
-    //  line no 1773 , L1304117943 , bytecode index = 
+    //  line no 1773 , L1727361096 , bytecode index = 
     // invokeinterface java/util/Map$Entry.getValue()Ljava/lang/Object;
     {
         sp -= 0;
@@ -469,15 +469,15 @@ s8 func_java_util_Collections_00024UnmodifiableMap_00024UnmodifiableEntrySet_000
             goto __ExceptionHandler;
         }
     }
-    if(stack[--sp].i  == 0) goto L739973450;
+    if(stack[--sp].i  == 0) goto L1304117943;
     // iconst_1
     stack[sp++].i = 1;
-    goto L1727361096;
-    L739973450:
+    goto L1426963578;
+    L1304117943:
     // iconst_0
     stack[sp++].i = 0;
-    L1727361096:
-    //  line no 1772 , L1727361096 , bytecode index = 
+    L1426963578:
+    //  line no 1772 , L1426963578 , bytecode index = 
     method_exit(runtime);
     return stack[sp - 1].i;
     ; 
@@ -507,7 +507,7 @@ struct java_lang_String* func_java_util_Collections_00024UnmodifiableMap_00024Un
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 227, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 1775 , L556281560 , bytecode index = 
+    //  line no 1775 , L915500720 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 1775;
     rstack[sp++].obj = rlocal[0].obj;

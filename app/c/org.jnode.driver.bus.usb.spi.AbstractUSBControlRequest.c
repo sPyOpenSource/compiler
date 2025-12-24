@@ -66,7 +66,7 @@ void func_org_jnode_driver_bus_usb_spi_AbstractUSBControlRequest__init___Lorg_jn
     rlocal[0].obj = p0;
     rlocal[1].obj = p1;
     ; 
-    //  line no 38 , L1890266440 , bytecode index = 
+    //  line no 38 , L1527152775 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 38;
     rstack[sp++].obj = rlocal[0].obj;
@@ -87,14 +87,14 @@ void func_org_jnode_driver_bus_usb_spi_AbstractUSBControlRequest__init___Lorg_jn
         }
     }
     ; 
-    //  line no 39 , L1527152775 , bytecode index = 
+    //  line no 39 , L1863655430 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield org/jnode/driver/bus/usb/spi/AbstractUSBControlRequest setupPacket Lorg/jnode/driver/bus/usb/SetupPacket;
     sp -= 2;
     ((struct org_jnode_driver_bus_usb_spi_AbstractUSBControlRequest*)rstack[sp + 0].obj)->setupPacket_4 = rstack[sp + 1].obj;
     ; 
-    //  line no 40 , L1863655430 , bytecode index = 
+    //  line no 40 , L976827477 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -123,7 +123,7 @@ struct org_jnode_driver_bus_usb_SetupPacket* func_org_jnode_driver_bus_usb_spi_A
     RStackItem rstack[2];
     s32 sp = 0;
     ; 
-    //  line no 46 , L324112183 , bytecode index = 
+    //  line no 46 , L2092709730 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // getfield org/jnode/driver/bus/usb/spi/AbstractUSBControlRequest setupPacket Lorg/jnode/driver/bus/usb/SetupPacket;
     rstack[sp - 1].obj = ((struct org_jnode_driver_bus_usb_spi_AbstractUSBControlRequest*)rstack[sp - 1].obj)->setupPacket_4;

@@ -1,6 +1,5 @@
 package com.ebsee.j2c;
 
-import java.lang.reflect.Modifier;
 import java.util.List;
 import jx.classfile.MethodSource;
 
@@ -14,6 +13,7 @@ public class JSignature {
     private String javaResult;
     private String result;
     private List<String> args;
+    
     int slotSize = 0;
     String javaSignature;
 

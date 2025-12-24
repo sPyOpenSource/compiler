@@ -55,7 +55,7 @@ void func_jx_rpc_AuthUnix__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 14, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 13 , L1147258851 , bytecode index = 
+    //  line no 13 , L891095110 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 13;
     rstack[sp++].obj = rlocal[0].obj;
@@ -75,7 +75,7 @@ void func_jx_rpc_AuthUnix__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 4 , L891095110 , bytecode index = 
+    //  line no 4 , L2011482127 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -83,7 +83,7 @@ void func_jx_rpc_AuthUnix__init____V(JThreadRuntime *runtime){
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->id_3 = stack[sp + 1].i;
     ; 
-    //  line no 14 , L2011482127 , bytecode index = 
+    //  line no 14 , L905735620 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -117,7 +117,7 @@ void func_jx_rpc_AuthUnix__init___Ljava_lang_String_2II_3I_V(JThreadRuntime *run
     local[2].i = p2;
     rlocal[3].obj = p3;
     ; 
-    //  line no 15 , L2145970759 , bytecode index = 
+    //  line no 15 , L577405636 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 15;
     rstack[sp++].obj = rlocal[0].obj;
@@ -137,7 +137,7 @@ void func_jx_rpc_AuthUnix__init___Ljava_lang_String_2II_3I_V(JThreadRuntime *run
         }
     }
     ; 
-    //  line no 4 , L577405636 , bytecode index = 
+    //  line no 4 , L1931444790 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // iconst_1
     stack[sp++].i = 1;
@@ -145,7 +145,7 @@ void func_jx_rpc_AuthUnix__init___Ljava_lang_String_2II_3I_V(JThreadRuntime *run
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->id_3 = stack[sp + 1].i;
     ; 
-    //  line no 16 , L1931444790 , bytecode index = 
+    //  line no 16 , L626742236 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // invokestatic java/lang/System.currentTimeMillis()J
     {
@@ -172,35 +172,35 @@ void func_jx_rpc_AuthUnix__init___Ljava_lang_String_2II_3I_V(JThreadRuntime *run
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->stamp_4 = stack[sp + 1].i;
     ; 
-    //  line no 17 , L626742236 , bytecode index = 
+    //  line no 17 , L500772834 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // putfield jx/rpc/AuthUnix machinename Ljava/lang/String;
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->machinename_5 = rstack[sp + 1].obj;
     ; 
-    //  line no 18 , L500772834 , bytecode index = 
+    //  line no 18 , L1800659519 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[2].i;
     // putfield jx/rpc/AuthUnix uid I
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->uid_6 = stack[sp + 1].i;
     ; 
-    //  line no 19 , L1800659519 , bytecode index = 
+    //  line no 19 , L1691538257 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     stack[sp++].i = local[3].i;
     // putfield jx/rpc/AuthUnix gid I
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->gid_7 = stack[sp + 1].i;
     ; 
-    //  line no 20 , L1691538257 , bytecode index = 
+    //  line no 20 , L459848100 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[4].obj;
     // putfield jx/rpc/AuthUnix gids [I
     sp -= 2;
     ((struct jx_rpc_AuthUnix*)rstack[sp + 0].obj)->gids_8 = rstack[sp + 1].obj;
     ; 
-    //  line no 21 , L459848100 , bytecode index = 
+    //  line no 21 , L1335505684 , bytecode index = 
     method_exit(runtime);
     return;
     ; 

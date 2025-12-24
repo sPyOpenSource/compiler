@@ -142,7 +142,6 @@ public class CodeAttribute extends Attribute {
      * Parse details of the invoked method
      */
     private void getInvokedMethod(ConstantPool cp, int loc) throws InvalidConstantPoolIndex {
-
         beingCalledMethodNameIndex = Integer.parseInt(String.format("%02x", code[loc + 2]), 16);
 
         if (beingCalledMethodNameIndex > 0) {

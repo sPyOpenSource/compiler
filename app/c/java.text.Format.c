@@ -55,7 +55,7 @@ void func_java_text_Format__init____V(JThreadRuntime *runtime){
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 401, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 65 , L748842359 , bytecode index = 
+    //  line no 65 , L1208532123 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 65;
     rstack[sp++].obj = rlocal[0].obj;
@@ -63,7 +63,7 @@ void func_java_text_Format__init____V(JThreadRuntime *runtime){
     sp -= 0;  //pop para
     // it's a empty method
     ; 
-    //  line no 67 , L1208532123 , bytecode index = 
+    //  line no 67 , L1893960929 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -94,7 +94,7 @@ struct java_lang_String* func_java_text_Format_format__Ljava_lang_Object_2_Ljava
     StackFrame *__frame = method_enter(runtime, 402, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 87 , L749282235 , bytecode index = 
+    //  line no 87 , L333392524 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 87;
     // new java/lang/StringBuffer
@@ -122,7 +122,7 @@ struct java_lang_String* func_java_text_Format_format__Ljava_lang_Object_2_Ljava
     }
     rlocal[2].obj = rstack[--sp].obj;
     ; 
-    //  line no 88 , L333392524 , bytecode index = 
+    //  line no 88 , L515809288 , bytecode index = 
     // new java/text/FieldPosition
     rstack[sp++].obj = new_instance_with_classraw_index(runtime, 145);
     // dup
@@ -148,7 +148,7 @@ struct java_lang_String* func_java_text_Format_format__Ljava_lang_Object_2_Ljava
     }
     rlocal[3].obj = rstack[--sp].obj;
     ; 
-    //  line no 90 , L515809288 , bytecode index = 
+    //  line no 90 , L1926673338 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     rstack[sp++].obj = rlocal[2].obj;
@@ -171,7 +171,7 @@ struct java_lang_String* func_java_text_Format_format__Ljava_lang_Object_2_Ljava
     }
     --sp; //pop
     ; 
-    //  line no 91 , L1926673338 , bytecode index = 
+    //  line no 91 , L394785440 , bytecode index = 
     rstack[sp++].obj = rlocal[2].obj;
     // invokevirtual java/lang/StringBuffer.toString()Ljava/lang/String;
     {
@@ -246,7 +246,7 @@ struct java_lang_Object* func_java_text_Format_parseObject__Ljava_lang_String_2_
     StackFrame *__frame = method_enter(runtime, 404, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 127 , L2112233878 , bytecode index = 
+    //  line no 127 , L372469954 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 127;
     rstack[sp++].obj = rlocal[0].obj;
@@ -347,10 +347,10 @@ struct java_lang_Object* func_java_text_Format_clone___Ljava_lang_Object_2(JThre
     RStackItem rstack[2];
     s32 sp = 0;
     StackFrame *__frame = method_enter(runtime, 406, &rstack[0], &rlocal[0], &sp);
-    // try catch :L1371495133 L2030411960 L899929247 (
-    L1371495133:
+    // try catch :L2030411960 L899929247 L949684105 (
+    L2030411960:
     __frame->bytecodeIndex = 
-    //  line no 158 , L1371495133 , bytecode index = 
+    //  line no 158 , L2030411960 , bytecode index = 
     __frame->bytecodeIndex = 
     __frame->lineNo = 158;
     rstack[sp++].obj = rlocal[0].obj;
@@ -369,15 +369,15 @@ struct java_lang_Object* func_java_text_Format_clone___Ljava_lang_Object_2(JThre
             goto __ExceptionHandler;
         }
     }
-    L2030411960:
+    L899929247:
     __frame->bytecodeIndex = 
     method_exit(runtime);
     return rstack[sp - 1].obj;
-    L899929247:
-    //  line no 160 , L899929247 , bytecode index = 
+    L949684105:
+    //  line no 160 , L949684105 , bytecode index = 
     rlocal[1].obj = rstack[--sp].obj;
     ; 
-    //  line no 162 , L949684105 , bytecode index = 
+    //  line no 162 , L333040629 , bytecode index = 
     // aconst null
     rstack[sp++].obj = NULL;
     method_exit(runtime);
@@ -385,7 +385,7 @@ struct java_lang_Object* func_java_text_Format_clone___Ljava_lang_Object_2(JThre
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
-        case 0 : goto L899929247;
+        case 0 : goto L949684105;
         default: goto __ExceptionHandlerNotFound;
     }
     __ExceptionHandlerNotFound:
