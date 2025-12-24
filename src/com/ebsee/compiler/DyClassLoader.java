@@ -1,13 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.ebsee.compiler;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +36,7 @@ public class DyClassLoader extends ClassLoader {
         find(f.getAbsolutePath(),s);
     }
 
-    private void find(String root,String path) {
+    private void find(String root, String path) {
         try {
             File dir = new File(path);
 
@@ -68,7 +66,7 @@ public class DyClassLoader extends ClassLoader {
      * @param className
      * @return
      */
-    public Class loadFromCustomRepository(File file,String className) {
+    public Class loadFromCustomRepository(File file, String className) {
         try {
             Class cls = this.findLoadedClass(className);
             if (cls != null) {
@@ -149,7 +147,5 @@ public class DyClassLoader extends ClassLoader {
             }
         }
         return this.defineClass(className, classBytes, 0, classBytes.length);//加载类
-
     }
 }
-
