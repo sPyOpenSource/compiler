@@ -58,7 +58,7 @@ public abstract class Node
 
     // ---------------------------------------------------------------------------------------------
 
-    int contentsBudget () {
+    public int contentsBudget () {
         return TO_STRING_CUTOFF - getClass().getSimpleName().length() - 2;
         // 2 == "()".length() - "Node".length
     }

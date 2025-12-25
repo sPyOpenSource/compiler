@@ -1,4 +1,4 @@
-package norswap.lang.rust.ast;
+package norswap.lang.rust.ast.expr;
 
 import norswap.autumn.positions.Span;
 import norswap.utils.Util;
@@ -16,7 +16,7 @@ public class ArrayLiteralNode extends ExpressionNode
 
     @Override public String contents ()
     {
-        if (components.size() == 0)
+        if (components.isEmpty())
             return "[]";
 
         int budget = contentsBudget() - 2; // 2 == "[]".length()

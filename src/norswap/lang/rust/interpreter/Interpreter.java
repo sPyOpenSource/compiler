@@ -19,6 +19,7 @@ import norswap.utils.visitors.ValuedVisitor;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import norswap.lang.rust.ast.expr.*;
 
 import static norswap.utils.Util.cast;
 import static norswap.utils.Vanilla.coIterate;

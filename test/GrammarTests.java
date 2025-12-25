@@ -4,6 +4,7 @@ import norswap.lang.rust.ast.*;
 
 import static java.util.Arrays.asList;
 import static norswap.lang.rust.ast.BinaryOperator.*;
+import norswap.lang.rust.ast.expr.*;
 import org.junit.Test;
 
 public class GrammarTests extends AutumnTestFixture {

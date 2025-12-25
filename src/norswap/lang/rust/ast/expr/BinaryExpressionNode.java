@@ -1,6 +1,7 @@
-package norswap.lang.rust.ast;
+package norswap.lang.rust.ast.expr;
 
 import norswap.autumn.positions.Span;
+import norswap.lang.rust.ast.BinaryOperator;
 import norswap.utils.Util;
 
 public final class BinaryExpressionNode extends ExpressionNode

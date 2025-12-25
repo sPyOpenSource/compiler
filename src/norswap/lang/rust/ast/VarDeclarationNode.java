@@ -1,6 +1,7 @@
 package norswap.lang.rust.ast;
 
 import norswap.autumn.positions.Span;
+import norswap.lang.rust.ast.expr.ExpressionNode;
 import norswap.utils.Util;
 
 public final class VarDeclarationNode extends DeclarationNode

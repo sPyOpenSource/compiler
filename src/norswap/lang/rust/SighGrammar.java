@@ -4,6 +4,20 @@ import norswap.autumn.Grammar;
 import norswap.lang.rust.ast.*;
 
 import static norswap.lang.rust.ast.UnaryOperator.NOT;
+import norswap.lang.rust.ast.expr.ArrayAccessNode;
+import norswap.lang.rust.ast.expr.ArrayLiteralNode;
+import norswap.lang.rust.ast.expr.AssignmentNode;
+import norswap.lang.rust.ast.expr.BinaryExpressionNode;
+import norswap.lang.rust.ast.expr.ConstructorNode;
+import norswap.lang.rust.ast.expr.ExpressionNode;
+import norswap.lang.rust.ast.expr.FieldAccessNode;
+import norswap.lang.rust.ast.expr.FloatLiteralNode;
+import norswap.lang.rust.ast.expr.FunCallNode;
+import norswap.lang.rust.ast.expr.IntLiteralNode;
+import norswap.lang.rust.ast.expr.ParenthesizedNode;
+import norswap.lang.rust.ast.expr.ReferenceNode;
+import norswap.lang.rust.ast.expr.StringLiteralNode;
+import norswap.lang.rust.ast.expr.UnaryExpressionNode;
 
 @SuppressWarnings("Convert2MethodRef")
 public class SighGrammar extends Grammar
