@@ -4,15 +4,15 @@ import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 import java.util.List;
 
-public final class FunCallNode extends ExpressionNode
+public final class FunCall extends Expression
 {
-    public final ExpressionNode function;
-    public final List<ExpressionNode> arguments;
+    public final Expression function;
+    public final List<Expression> arguments;
 
     @SuppressWarnings("unchecked")
-    public FunCallNode (Span span, Object function, Object arguments) {
+    public FunCall (Span span, Object function, Object arguments) {
         super(span);
-        this.function = Util.cast(function, ExpressionNode.class);
+        this.function = Util.cast(function, Expression.class);
         this.arguments = Util.cast(arguments, List.class);
     }
 

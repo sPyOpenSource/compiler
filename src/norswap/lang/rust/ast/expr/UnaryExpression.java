@@ -4,14 +4,14 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.UnaryOperator;
 import norswap.utils.Util;
 
-public final class UnaryExpressionNode extends ExpressionNode
+public final class UnaryExpression extends Expression
 {
-    public final ExpressionNode operand;
+    public final Expression operand;
     public final UnaryOperator operator;
 
-    public UnaryExpressionNode (Span span, Object operator, Object operand) {
+    public UnaryExpression (Span span, Object operator, Object operand) {
         super(span);
-        this.operand = Util.cast(operand, ExpressionNode.class);
+        this.operand = Util.cast(operand, Expression.class);
         this.operator = Util.cast(operator, UnaryOperator.class);
     }
 

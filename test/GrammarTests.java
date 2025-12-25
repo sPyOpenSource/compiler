@@ -15,12 +15,12 @@ public class GrammarTests extends AutumnTestFixture {
 
     // ---------------------------------------------------------------------------------------------
 
-    private static IntLiteralNode intlit (long i) {
-        return new IntLiteralNode(null, i);
+    private static IntLiteral intlit (long i) {
+        return new IntLiteral(null, i);
     }
 
-    private static FloatLiteralNode floatlit (double d) {
-        return new FloatLiteralNode(null, d);
+    private static FloatLiteral floatlit (double d) {
+        return new FloatLiteral(null, d);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -31,38 +31,38 @@ public class GrammarTests extends AutumnTestFixture {
 
         successExpect("42", intlit(42));
         successExpect("42.0", floatlit(42d));
-        successExpect("\"hello\"", new StringLiteralNode(null, "hello"));
-        successExpect("(42)", new ParenthesizedNode(null, intlit(42)));
-        successExpect("[1, 2, 3]", new ArrayLiteralNode(null, asList(intlit(1), intlit(2), intlit(3))));
-        successExpect("true", new ReferenceNode(null, "true"));
-        successExpect("false", new ReferenceNode(null, "false"));
-        successExpect("null", new ReferenceNode(null, "null"));
-        successExpect("!false", new UnaryExpressionNode(null, UnaryOperator.NOT, new ReferenceNode(null, "false")));
+        successExpect("\"hello\"", new StringLiteral(null, "hello"));
+        successExpect("(42)", new Parenthesized(null, intlit(42)));
+        successExpect("[1, 2, 3]", new ArrayLiteral(null, asList(intlit(1), intlit(2), intlit(3))));
+        successExpect("true", new Reference(null, "true"));
+        successExpect("false", new Reference(null, "false"));
+        successExpect("null", new Reference(null, "null"));
+        successExpect("!false", new UnaryExpression(null, UnaryOperator.NOT, new Reference(null, "false")));
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Test
     public void testNumericBinary () {
-        successExpect("1 + 2", new BinaryExpressionNode(null, intlit(1), ADD, intlit(2)));
-        successExpect("2 - 1", new BinaryExpressionNode(null, intlit(2), SUBTRACT,  intlit(1)));
-        successExpect("2 * 3", new BinaryExpressionNode(null, intlit(2), MULTIPLY, intlit(3)));
-        successExpect("2 / 3", new BinaryExpressionNode(null, intlit(2), DIVIDE, intlit(3)));
-        successExpect("2 % 3", new BinaryExpressionNode(null, intlit(2), REMAINDER, intlit(3)));
+        successExpect("1 + 2", new BinaryExpression(null, intlit(1), ADD, intlit(2)));
+        successExpect("2 - 1", new BinaryExpression(null, intlit(2), SUBTRACT,  intlit(1)));
+        successExpect("2 * 3", new BinaryExpression(null, intlit(2), MULTIPLY, intlit(3)));
+        successExpect("2 / 3", new BinaryExpression(null, intlit(2), DIVIDE, intlit(3)));
+        successExpect("2 % 3", new BinaryExpression(null, intlit(2), REMAINDER, intlit(3)));
 
-        successExpect("1.0 + 2.0", new BinaryExpressionNode(null, floatlit(1), ADD, floatlit(2)));
-        successExpect("2.0 - 1.0", new BinaryExpressionNode(null, floatlit(2), SUBTRACT, floatlit(1)));
-        successExpect("2.0 * 3.0", new BinaryExpressionNode(null, floatlit(2), MULTIPLY, floatlit(3)));
-        successExpect("2.0 / 3.0", new BinaryExpressionNode(null, floatlit(2), DIVIDE, floatlit(3)));
-        successExpect("2.0 % 3.0", new BinaryExpressionNode(null, floatlit(2), REMAINDER, floatlit(3)));
+        successExpect("1.0 + 2.0", new BinaryExpression(null, floatlit(1), ADD, floatlit(2)));
+        successExpect("2.0 - 1.0", new BinaryExpression(null, floatlit(2), SUBTRACT, floatlit(1)));
+        successExpect("2.0 * 3.0", new BinaryExpression(null, floatlit(2), MULTIPLY, floatlit(3)));
+        successExpect("2.0 / 3.0", new BinaryExpression(null, floatlit(2), DIVIDE, floatlit(3)));
+        successExpect("2.0 % 3.0", new BinaryExpression(null, floatlit(2), REMAINDER, floatlit(3)));
 
-        successExpect("2 * (4-1) * 4.0 / 6 % (2+1)", new BinaryExpressionNode(null,
-            new BinaryExpressionNode(null,
-                new BinaryExpressionNode(null,
-                    new BinaryExpressionNode(null,
+        successExpect("2 * (4-1) * 4.0 / 6 % (2+1)", new BinaryExpression(null,
+            new BinaryExpression(null,
+                new BinaryExpression(null,
+                    new BinaryExpression(null,
                         intlit(2),
                         MULTIPLY,
-                        new ParenthesizedNode(null, new BinaryExpressionNode(null,
+                        new Parenthesized(null, new BinaryExpression(null,
                             intlit(4),
                             SUBTRACT,
                             intlit(1)))),
@@ -71,7 +71,7 @@ public class GrammarTests extends AutumnTestFixture {
                 DIVIDE,
                 intlit(6)),
             REMAINDER,
-            new ParenthesizedNode(null, new BinaryExpressionNode(null,
+            new Parenthesized(null, new BinaryExpression(null,
                 intlit(2),
                 ADD,
                 intlit(1)))));
@@ -81,11 +81,11 @@ public class GrammarTests extends AutumnTestFixture {
 
     @Test public void testArrayStructAccess () {
         rule = grammar.expression;
-        successExpect("[1][0]", new ArrayAccessNode(null,
-            new ArrayLiteralNode(null, asList(intlit(1))), intlit(0)));
-        successExpect("[1].length", new FieldAccessNode(null,
-            new ArrayLiteralNode(null, asList(intlit(1))), "length"));
-        successExpect("p.x", new FieldAccessNode(null, new ReferenceNode(null, "p"), "x"));
+        successExpect("[1][0]", new ArrayAccess(null,
+            new ArrayLiteral(null, asList(intlit(1))), intlit(0)));
+        successExpect("[1].length", new FieldAccess(null,
+            new ArrayLiteral(null, asList(intlit(1))), "length"));
+        successExpect("p.x", new FieldAccess(null, new Reference(null, "p"), "x"));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -118,23 +118,23 @@ public class GrammarTests extends AutumnTestFixture {
         successExpect("return", new ReturnNode(null, null));
         successExpect("return 1", new ReturnNode(null, intlit(1)));
         successExpect("print(1)", new ExpressionStatementNode(null,
-            new FunCallNode(null, new ReferenceNode(null, "print"), asList(intlit(1)))));
+            new FunCall(null, new Reference(null, "print"), asList(intlit(1)))));
         successExpect("{ return }", new BlockNode(null, asList(new ReturnNode(null, null))));
 
 
-        successExpect("if true return 1 else return 2", new IfNode(null, new ReferenceNode(null, "true"),
+        successExpect("if true return 1 else return 2", new IfNode(null, new Reference(null, "true"),
             new ReturnNode(null, intlit(1)),
             new ReturnNode(null, intlit(2))));
 
         successExpect("if false return 1 else if true return 2 else return 3 ",
-            new IfNode(null, new ReferenceNode(null, "false"),
+            new IfNode(null, new Reference(null, "false"),
                 new ReturnNode(null, intlit(1)),
-                new IfNode(null, new ReferenceNode(null, "true"),
+                new IfNode(null, new Reference(null, "true"),
                     new ReturnNode(null, intlit(2)),
                     new ReturnNode(null, intlit(3)))));
 
         successExpect("while 1 < 2 { return } ", new WhileNode(null,
-            new BinaryExpressionNode(null, intlit(1), LOWER, intlit(2)),
+            new BinaryExpression(null, intlit(1), LOWER, intlit(2)),
             new BlockNode(null, asList(new ReturnNode(null, null)))));
     }
 

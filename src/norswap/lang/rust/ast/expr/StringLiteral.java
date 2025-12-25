@@ -3,11 +3,11 @@ package norswap.lang.rust.ast.expr;
 import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 
-public final class StringLiteralNode extends ExpressionNode
+public final class StringLiteral extends Expression
 {
     public final String value;
 
-    public StringLiteralNode (Span span, Object value) {
+    public StringLiteral (Span span, Object value) {
         super(span);
         this.value = Util.cast(value, String.class);
     }

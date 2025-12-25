@@ -7,11 +7,11 @@ import norswap.lang.rust.ast.StructDeclarationNode;
  * node. Such a wrapper is necessary, because the node is already used to represent the structure
  * type.
  */
-public final class Constructor
+public final class ConstructorNode
 {
     public final StructDeclarationNode declaration;
 
-    public Constructor (StructDeclarationNode declaration) {
+    public ConstructorNode (StructDeclarationNode declaration) {
         this.declaration = declaration;
     }
 
@@ -20,6 +20,6 @@ public final class Constructor
     }
 
     @Override public boolean equals (Object other) {
-        return other instanceof Constructor && ((Constructor) other).declaration == declaration;
+        return other instanceof ConstructorNode && ((ConstructorNode) other).declaration == declaration;
     }
 }

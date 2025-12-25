@@ -64,19 +64,19 @@ public final class Interpreter
         this.reactor = reactor;
 
         // expressions
-        visitor.register(IntLiteralNode.class,           this::intLiteral);
-        visitor.register(FloatLiteralNode.class,         this::floatLiteral);
-        visitor.register(StringLiteralNode.class,        this::stringLiteral);
-        visitor.register(ReferenceNode.class,            this::reference);
-        visitor.register(ConstructorNode.class,          this::constructor);
-        visitor.register(ArrayLiteralNode.class,         this::arrayLiteral);
-        visitor.register(ParenthesizedNode.class,        this::parenthesized);
-        visitor.register(FieldAccessNode.class,          this::fieldAccess);
-        visitor.register(ArrayAccessNode.class,          this::arrayAccess);
-        visitor.register(FunCallNode.class,              this::funCall);
-        visitor.register(UnaryExpressionNode.class,      this::unaryExpression);
-        visitor.register(BinaryExpressionNode.class,     this::binaryExpression);
-        visitor.register(AssignmentNode.class,           this::assignment);
+        visitor.register(IntLiteral.class,           this::intLiteral);
+        visitor.register(FloatLiteral.class,         this::floatLiteral);
+        visitor.register(StringLiteral.class,        this::stringLiteral);
+        visitor.register(Reference.class,            this::reference);
+        visitor.register(Constructor.class,          this::constructor);
+        visitor.register(ArrayLiteral.class,         this::arrayLiteral);
+        visitor.register(Parenthesized.class,        this::parenthesized);
+        visitor.register(FieldAccess.class,          this::fieldAccess);
+        visitor.register(ArrayAccess.class,          this::arrayAccess);
+        visitor.register(FunCall.class,              this::funCall);
+        visitor.register(UnaryExpression.class,      this::unaryExpression);
+        visitor.register(BinaryExpression.class,     this::binaryExpression);
+        visitor.register(Assignment.class,           this::assignment);
 
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
@@ -135,33 +135,33 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Long intLiteral (IntLiteralNode node) {
+    private Long intLiteral (IntLiteral node) {
         return node.value;
     }
 
-    private Double floatLiteral (FloatLiteralNode node) {
+    private Double floatLiteral (FloatLiteral node) {
         return node.value;
     }
 
-    private String stringLiteral (StringLiteralNode node) {
+    private String stringLiteral (StringLiteral node) {
         return node.value;
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object parenthesized (ParenthesizedNode node) {
+    private Object parenthesized (Parenthesized node) {
         return get(node.expression);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object[] arrayLiteral (ArrayLiteralNode node) {
+    private Object[] arrayLiteral (ArrayLiteral node) {
         return map(node.components, new Object[0], visitor);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object binaryExpression (BinaryExpressionNode node)
+    private Object binaryExpression (BinaryExpression node)
     {
         Type leftType  = reactor.get(node.left, "type");
         Type rightType = reactor.get(node.right, "type");
@@ -197,7 +197,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private boolean booleanOp (BinaryExpressionNode node, boolean isAnd)
+    private boolean booleanOp (BinaryExpression node, boolean isAnd)
     {
         boolean left = get(node.left);
         return isAnd
@@ -208,7 +208,7 @@ public final class Interpreter
     // ---------------------------------------------------------------------------------------------
 
     private Object numericOp
-            (BinaryExpressionNode node, boolean floating, Number left, Number right)
+            (BinaryExpression node, boolean floating, Number left, Number right)
     {
         long ileft, iright;
         double fleft, fright;
@@ -260,18 +260,18 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    public Object assignment (AssignmentNode node)
+    public Object assignment (Assignment node)
     {
-        if (node.left instanceof ReferenceNode) {
+        if (node.left instanceof Reference) {
             Scope scope = reactor.get(node.left, "scope");
-            String name = ((ReferenceNode) node.left).name;
+            String name = ((Reference) node.left).name;
             Object rvalue = get(node.right);
             assign(scope, name, rvalue, reactor.get(node, "type"));
             return rvalue;
         }
 
-        if (node.left instanceof ArrayAccessNode) {
-            ArrayAccessNode arrayAccess = (ArrayAccessNode) node.left;
+        if (node.left instanceof ArrayAccess) {
+            ArrayAccess arrayAccess = (ArrayAccess) node.left;
             Object[] array = getNonNullArray(arrayAccess.array);
             int index = getIndex(arrayAccess.index);
             try {
@@ -281,8 +281,8 @@ public final class Interpreter
             }
         }
 
-        if (node.left instanceof FieldAccessNode) {
-            FieldAccessNode fieldAccess = (FieldAccessNode) node.left;
+        if (node.left instanceof FieldAccess) {
+            FieldAccess fieldAccess = (FieldAccess) node.left;
             Object object = get(fieldAccess.stem);
             if (object == Null.INSTANCE)
                 throw new PassthroughException(
@@ -298,7 +298,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private int getIndex (ExpressionNode node)
+    private int getIndex (Expression node)
     {
         long index = get(node);
         if (index < 0)
@@ -310,7 +310,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object[] getNonNullArray (ExpressionNode node)
+    private Object[] getNonNullArray (Expression node)
     {
         Object object = get(node);
         if (object == Null.INSTANCE)
@@ -320,7 +320,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object unaryExpression (UnaryExpressionNode node)
+    private Object unaryExpression (UnaryExpression node)
     {
         // there is only NOT
         assert node.operator == UnaryOperator.NOT;
@@ -329,7 +329,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object arrayAccess (ArrayAccessNode node)
+    private Object arrayAccess (ArrayAccess node)
     {
         Object[] array = getNonNullArray(node.array);
         try {
@@ -371,9 +371,9 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Constructor constructor (ConstructorNode node) {
+    private ConstructorNode constructor (Constructor node) {
         // guaranteed safe by semantic analysis
-        return new Constructor(get(node.ref));
+        return new ConstructorNode(get(node.ref));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -385,7 +385,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object fieldAccess (FieldAccessNode node)
+    private Object fieldAccess (FieldAccess node)
     {
         Object stem = get(node.stem);
         if (stem == Null.INSTANCE)
@@ -398,7 +398,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object funCall (FunCallNode node)
+    private Object funCall (FunCall node)
     {
         Object decl = get(node.function);
         Object[] args = map(node.arguments, new Object[0], this::run);
@@ -409,8 +409,8 @@ public final class Interpreter
         if (decl instanceof SyntheticDeclarationNode)
             return builtin(((SyntheticDeclarationNode) decl).name(), args);
 
-        if (decl instanceof Constructor)
-            return buildStruct(((Constructor) decl).declaration, args);
+        if (decl instanceof ConstructorNode)
+            return buildStruct(((ConstructorNode) decl).declaration, args);
 
         ScopeStorage oldStorage = storage;
         Scope scope = reactor.get(decl, "scope");
@@ -452,8 +452,8 @@ public final class Interpreter
             return ((FunDeclarationNode) arg).name;
         else if (arg instanceof StructDeclarationNode)
             return ((StructDeclarationNode) arg).name;
-        else if (arg instanceof Constructor)
-            return "$" + ((Constructor) arg).declaration.name;
+        else if (arg instanceof ConstructorNode)
+            return "$" + ((ConstructorNode) arg).declaration.name;
         else
             return arg.toString();
     }
@@ -490,7 +490,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object reference (ReferenceNode node)
+    private Object reference (Reference node)
     {
         Scope scope = reactor.get(node, "scope");
         DeclarationNode decl = reactor.get(node, "decl");

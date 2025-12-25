@@ -4,15 +4,15 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.BinaryOperator;
 import norswap.utils.Util;
 
-public final class BinaryExpressionNode extends ExpressionNode
+public final class BinaryExpression extends Expression
 {
-    public final ExpressionNode left, right;
+    public final Expression left, right;
     public final BinaryOperator operator;
 
-    public BinaryExpressionNode (Span span, Object left, Object operator, Object right) {
+    public BinaryExpression (Span span, Object left, Object operator, Object right) {
         super(span);
-        this.left = Util.cast(left, ExpressionNode.class);
-        this.right = Util.cast(right, ExpressionNode.class);
+        this.left = Util.cast(left, Expression.class);
+        this.right = Util.cast(right, Expression.class);
         this.operator = Util.cast(operator, BinaryOperator.class);
     }
 

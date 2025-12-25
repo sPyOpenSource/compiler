@@ -3,13 +3,13 @@ package norswap.lang.rust.ast.expr;
 import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 
-public class ConstructorNode extends ExpressionNode
+public class Constructor extends Expression
 {
-    public final ReferenceNode ref;
+    public final Reference ref;
 
-    public ConstructorNode (Span span, Object ref) {
+    public Constructor (Span span, Object ref) {
         super(span);
-        this.ref = Util.cast(ref, ReferenceNode.class);
+        this.ref = Util.cast(ref, Reference.class);
     }
 
     @Override public String contents () {

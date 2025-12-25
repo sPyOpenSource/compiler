@@ -20,20 +20,20 @@ import java.util.stream.IntStream;
 
 import static java.lang.String.format;
 import static norswap.lang.rust.ast.BinaryOperator.*;
-import norswap.lang.rust.ast.expr.ArrayAccessNode;
-import norswap.lang.rust.ast.expr.ArrayLiteralNode;
-import norswap.lang.rust.ast.expr.AssignmentNode;
-import norswap.lang.rust.ast.expr.BinaryExpressionNode;
-import norswap.lang.rust.ast.expr.ConstructorNode;
-import norswap.lang.rust.ast.expr.ExpressionNode;
-import norswap.lang.rust.ast.expr.FieldAccessNode;
-import norswap.lang.rust.ast.expr.FloatLiteralNode;
-import norswap.lang.rust.ast.expr.FunCallNode;
-import norswap.lang.rust.ast.expr.IntLiteralNode;
-import norswap.lang.rust.ast.expr.ParenthesizedNode;
-import norswap.lang.rust.ast.expr.ReferenceNode;
-import norswap.lang.rust.ast.expr.StringLiteralNode;
-import norswap.lang.rust.ast.expr.UnaryExpressionNode;
+import norswap.lang.rust.ast.expr.ArrayAccess;
+import norswap.lang.rust.ast.expr.ArrayLiteral;
+import norswap.lang.rust.ast.expr.Assignment;
+import norswap.lang.rust.ast.expr.BinaryExpression;
+import norswap.lang.rust.ast.expr.Constructor;
+import norswap.lang.rust.ast.expr.Expression;
+import norswap.lang.rust.ast.expr.FieldAccess;
+import norswap.lang.rust.ast.expr.FloatLiteral;
+import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.IntLiteral;
+import norswap.lang.rust.ast.expr.Parenthesized;
+import norswap.lang.rust.ast.expr.Reference;
+import norswap.lang.rust.ast.expr.StringLiteral;
+import norswap.lang.rust.ast.expr.UnaryExpression;
 import static norswap.utils.Util.cast;
 import static norswap.utils.Vanilla.forEachIndexed;
 import static norswap.utils.Vanilla.list;
@@ -56,10 +56,10 @@ import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
  *     {@link SyntheticDeclarationNode} for types) must have their {@code declared} attribute set to
  *     an instance of the type being declared.</li>
  *
- *     <li>Every {@link ExpressionNode} instance must have its {@code type} attribute similarly
+ *     <li>Every {@link Expression} instance must have its {@code type} attribute similarly
  *     set.</li>
  *
- *     <li>Every {@link ReferenceNode} instance must have its {@code decl} attribute set to the the
+ *     <li>Every {@link Reference} instance must have its {@code decl} attribute set to the the
  *     declaration it references and its {@code scope} attribute set to the {@link Scope} in which
  *     the declaration it references lives. This speeds up lookups in the interpreter and simplifies the compiler.</li>
  *
@@ -124,19 +124,19 @@ public final class SemanticAnalysis
         SemanticAnalysis analysis = new SemanticAnalysis(reactor);
 
         // expressions
-        walker.register(IntLiteralNode.class,           PRE_VISIT,  analysis::intLiteral);
-        walker.register(FloatLiteralNode.class,         PRE_VISIT,  analysis::floatLiteral);
-        walker.register(StringLiteralNode.class,        PRE_VISIT,  analysis::stringLiteral);
-        walker.register(ReferenceNode.class,            PRE_VISIT,  analysis::reference);
-        walker.register(ConstructorNode.class,          PRE_VISIT,  analysis::constructor);
-        walker.register(ArrayLiteralNode.class,         PRE_VISIT,  analysis::arrayLiteral);
-        walker.register(ParenthesizedNode.class,        PRE_VISIT,  analysis::parenthesized);
-        walker.register(FieldAccessNode.class,          PRE_VISIT,  analysis::fieldAccess);
-        walker.register(ArrayAccessNode.class,          PRE_VISIT,  analysis::arrayAccess);
-        walker.register(FunCallNode.class,              PRE_VISIT,  analysis::funCall);
-        walker.register(UnaryExpressionNode.class,      PRE_VISIT,  analysis::unaryExpression);
-        walker.register(BinaryExpressionNode.class,     PRE_VISIT,  analysis::binaryExpression);
-        walker.register(AssignmentNode.class,           PRE_VISIT,  analysis::assignment);
+        walker.register(IntLiteral.class,           PRE_VISIT,  analysis::intLiteral);
+        walker.register(FloatLiteral.class,         PRE_VISIT,  analysis::floatLiteral);
+        walker.register(StringLiteral.class,        PRE_VISIT,  analysis::stringLiteral);
+        walker.register(Reference.class,            PRE_VISIT,  analysis::reference);
+        walker.register(Constructor.class,          PRE_VISIT,  analysis::constructor);
+        walker.register(ArrayLiteral.class,         PRE_VISIT,  analysis::arrayLiteral);
+        walker.register(Parenthesized.class,        PRE_VISIT,  analysis::parenthesized);
+        walker.register(FieldAccess.class,          PRE_VISIT,  analysis::fieldAccess);
+        walker.register(ArrayAccess.class,          PRE_VISIT,  analysis::arrayAccess);
+        walker.register(FunCall.class,              PRE_VISIT,  analysis::funCall);
+        walker.register(UnaryExpression.class,      PRE_VISIT,  analysis::unaryExpression);
+        walker.register(BinaryExpression.class,     PRE_VISIT,  analysis::binaryExpression);
+        walker.register(Assignment.class,           PRE_VISIT,  analysis::assignment);
 
         // types
         walker.register(SimpleTypeNode.class,           PRE_VISIT,  analysis::simpleType);
@@ -171,25 +171,25 @@ public final class SemanticAnalysis
     // region [Expressions]
     // =============================================================================================
 
-    private void intLiteral (IntLiteralNode node) {
+    private void intLiteral (IntLiteral node) {
         R.set(node, "type", IntType.INSTANCE);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private void floatLiteral (FloatLiteralNode node) {
+    private void floatLiteral (FloatLiteral node) {
         R.set(node, "type", FloatType.INSTANCE);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private void stringLiteral (StringLiteralNode node) {
+    private void stringLiteral (StringLiteral node) {
         R.set(node, "type", StringType.INSTANCE);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private void reference (ReferenceNode node)
+    private void reference (Reference node)
     {
         final Scope scope = this.scope;
 
@@ -235,7 +235,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void constructor (ConstructorNode node)
+    private void constructor (Constructor node)
     {
         R.rule()
         .using(node.ref, "decl")
@@ -270,7 +270,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void arrayLiteral (ArrayLiteralNode node)
+    private void arrayLiteral (ArrayLiteral node)
     {
         if (node.components.isEmpty()) { // []
             // Empty array: we need a type int to know the desired type.
@@ -281,9 +281,9 @@ public final class SemanticAnalysis
                 R.rule(node, "type")
                 .using(context, "type")
                 .by(Rule::copyFirst);
-            else if (context instanceof FunCallNode) {
+            else if (context instanceof FunCall) {
                 R.rule(node, "type")
-                .using(((FunCallNode) context).function.attr("type"), node.attr("index"))
+                .using(((FunCall) context).function.attr("type"), node.attr("index"))
                 .by(r -> {
                     FunType funType = r.get(0);
                     r.set(0, funType.paramTypes[(int) r.get(1)]);
@@ -330,7 +330,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void parenthesized (ParenthesizedNode node)
+    private void parenthesized (Parenthesized node)
     {
         R.rule(node, "type")
         .using(node.expression, "type")
@@ -339,7 +339,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void fieldAccess (FieldAccessNode node)
+    private void fieldAccess (FieldAccess node)
     {
         R.rule()
         .using(node.stem, "type")
@@ -384,7 +384,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void arrayAccess (ArrayAccessNode node)
+    private void arrayAccess (ArrayAccess node)
     {
         R.rule()
         .using(node.index, "type")
@@ -407,7 +407,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void funCall (FunCallNode node)
+    private void funCall (FunCall node)
     {
         this.inferenceContext = node;
 
@@ -432,7 +432,7 @@ public final class SemanticAnalysis
             r.set(0, funType.returnType);
 
             Type[] params = funType.paramTypes;
-            List<ExpressionNode> args = node.arguments;
+            List<Expression> args = node.arguments;
 
             if (params.length != args.size())
                 r.errorFor(format("wrong number of arguments, expected %d but got %d",
@@ -455,7 +455,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void unaryExpression (UnaryExpressionNode node)
+    private void unaryExpression (UnaryExpression node)
     {
         assert node.operator == UnaryOperator.NOT; // only one for now
         R.set(node, "type", BoolType.INSTANCE);
@@ -474,7 +474,7 @@ public final class SemanticAnalysis
     // region [Binary Expressions]
     // =============================================================================================
 
-    private void binaryExpression (BinaryExpressionNode node)
+    private void binaryExpression (BinaryExpression node)
     {
         R.rule(node, "type")
         .using(node.left.attr("type"), node.right.attr("type"))
@@ -515,7 +515,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void binaryArithmetic (Rule r, BinaryExpressionNode node, Type left, Type right)
+    private void binaryArithmetic (Rule r, BinaryExpression node, Type left, Type right)
     {
         if (left instanceof IntType)
             if (right instanceof IntType)
@@ -535,13 +535,13 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private static String arithmeticError (BinaryExpressionNode node, Object left, Object right) {
+    private static String arithmeticError (BinaryExpression node, Object left, Object right) {
         return format("Trying to %s %s with %s", node.operator.name().toLowerCase(), left, right);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private void binaryComparison (Rule r, BinaryExpressionNode node, Type left, Type right)
+    private void binaryComparison (Rule r, BinaryExpression node, Type left, Type right)
     {
         r.set(0, BoolType.INSTANCE);
 
@@ -555,7 +555,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void binaryEquality (Rule r, BinaryExpressionNode node, Type left, Type right)
+    private void binaryEquality (Rule r, BinaryExpression node, Type left, Type right)
     {
         r.set(0, BoolType.INSTANCE);
 
@@ -566,7 +566,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void binaryLogic (Rule r, BinaryExpressionNode node, Type left, Type right)
+    private void binaryLogic (Rule r, BinaryExpression node, Type left, Type right)
     {
         r.set(0, BoolType.INSTANCE);
 
@@ -580,7 +580,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void assignment (AssignmentNode node)
+    private void assignment (Assignment node)
     {
         R.rule(node, "type")
         .using(node.left.attr("type"), node.right.attr("type"))
@@ -590,9 +590,9 @@ public final class SemanticAnalysis
 
             r.set(0, r.get(0)); // the type of the assignment is the left-side type
 
-            if (node.left instanceof ReferenceNode
-            ||  node.left instanceof FieldAccessNode
-            ||  node.left instanceof ArrayAccessNode) {
+            if (node.left instanceof Reference
+            ||  node.left instanceof FieldAccess
+            ||  node.left instanceof ArrayAccess) {
                 if (!isAssignableTo(right, left))
                     r.errorFor("Trying to assign a value to a non-compatible lvalue.", node);
             }

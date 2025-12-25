@@ -4,20 +4,20 @@ import norswap.autumn.Grammar;
 import norswap.lang.rust.ast.*;
 
 import static norswap.lang.rust.ast.UnaryOperator.NOT;
-import norswap.lang.rust.ast.expr.ArrayAccessNode;
-import norswap.lang.rust.ast.expr.ArrayLiteralNode;
-import norswap.lang.rust.ast.expr.AssignmentNode;
-import norswap.lang.rust.ast.expr.BinaryExpressionNode;
-import norswap.lang.rust.ast.expr.ConstructorNode;
-import norswap.lang.rust.ast.expr.ExpressionNode;
-import norswap.lang.rust.ast.expr.FieldAccessNode;
-import norswap.lang.rust.ast.expr.FloatLiteralNode;
-import norswap.lang.rust.ast.expr.FunCallNode;
-import norswap.lang.rust.ast.expr.IntLiteralNode;
-import norswap.lang.rust.ast.expr.ParenthesizedNode;
-import norswap.lang.rust.ast.expr.ReferenceNode;
-import norswap.lang.rust.ast.expr.StringLiteralNode;
-import norswap.lang.rust.ast.expr.UnaryExpressionNode;
+import norswap.lang.rust.ast.expr.ArrayAccess;
+import norswap.lang.rust.ast.expr.ArrayLiteral;
+import norswap.lang.rust.ast.expr.Assignment;
+import norswap.lang.rust.ast.expr.BinaryExpression;
+import norswap.lang.rust.ast.expr.Constructor;
+import norswap.lang.rust.ast.expr.Expression;
+import norswap.lang.rust.ast.expr.FieldAccess;
+import norswap.lang.rust.ast.expr.FloatLiteral;
+import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.IntLiteral;
+import norswap.lang.rust.ast.expr.Parenthesized;
+import norswap.lang.rust.ast.expr.Reference;
+import norswap.lang.rust.ast.expr.StringLiteral;
+import norswap.lang.rust.ast.expr.UnaryExpression;
 
 @SuppressWarnings("Convert2MethodRef")
 public class SighGrammar extends Grammar
@@ -79,12 +79,12 @@ public class SighGrammar extends Grammar
 
     public rule integer =
         number
-        .push($ -> new IntLiteralNode($.span(), Long.parseLong($.str())))
+        .push($ -> new IntLiteral($.span(), Long.parseLong($.str())))
         .word();
 
     public rule floating =
         seq(number, '.', digit.at_least(1))
-        .push($ -> new FloatLiteralNode($.span(), Double.parseDouble($.str())))
+        .push($ -> new FloatLiteral($.span(), Double.parseDouble($.str())))
         .word();
 
     public rule string_char = choice(
@@ -97,7 +97,7 @@ public class SighGrammar extends Grammar
 
     public rule string =
         seq('"', string_content, '"')
-        .push($ -> new StringLiteralNode($.span(), $.$[0]))
+        .push($ -> new StringLiteral($.span(), $.$[0]))
         .word();
 
     public rule identifier =
@@ -108,11 +108,11 @@ public class SighGrammar extends Grammar
     
     public rule reference =
         identifier
-        .push($ -> new ReferenceNode($.span(), $.$[0]));
+        .push($ -> new Reference($.span(), $.$[0]));
 
     public rule constructor =
         seq(DOLLAR, reference)
-        .push($ -> new ConstructorNode($.span(), $.$[0]));
+        .push($ -> new Constructor($.span(), $.$[0]));
     
     public rule simple_type =
         identifier
@@ -120,15 +120,15 @@ public class SighGrammar extends Grammar
 
     public rule paren_expression = lazy(() ->
         seq(LPAREN, this.expression, RPAREN)
-        .push($ -> new ParenthesizedNode($.span(), $.$[0])));
+        .push($ -> new Parenthesized($.span(), $.$[0])));
 
     public rule expressions = lazy(() ->
         this.expression.sep(0, COMMA)
-        .as_list(ExpressionNode.class));
+        .as_list(Expression.class));
 
     public rule array =
         seq(LSQUARE, expressions, RSQUARE)
-        .push($ -> new ArrayLiteralNode($.span(), $.$[0]));
+        .push($ -> new ArrayLiteral($.span(), $.$[0]));
 
     public rule basic_expression = choice(
         constructor,
@@ -145,16 +145,16 @@ public class SighGrammar extends Grammar
     public rule suffix_expression = left_expression()
         .left(basic_expression)
         .suffix(seq(DOT, identifier),
-            $ -> new FieldAccessNode($.span(), $.$[0], $.$[1]))
+            $ -> new FieldAccess($.span(), $.$[0], $.$[1]))
         .suffix(seq(LSQUARE, lazy(() -> this.expression), RSQUARE),
-            $ -> new ArrayAccessNode($.span(), $.$[0], $.$[1]))
+            $ -> new ArrayAccess($.span(), $.$[0], $.$[1]))
         .suffix(function_args,
-            $ -> new FunCallNode($.span(), $.$[0], $.$[1]));
+            $ -> new FunCall($.span(), $.$[0], $.$[1]));
 
     public rule prefix_expression = right_expression()
         .operand(suffix_expression)
         .prefix(BANG.as_val(NOT),
-            $ -> new UnaryExpressionNode($.span(), $.$[0], $.$[1]));
+            $ -> new UnaryExpression($.span(), $.$[0], $.$[1]));
 
     public rule mult_op = choice(
         STAR        .as_val(BinaryOperator.MULTIPLY),
@@ -176,32 +176,32 @@ public class SighGrammar extends Grammar
     public rule mult_expr = left_expression()
         .operand(prefix_expression)
         .infix(mult_op,
-            $ -> new BinaryExpressionNode($.span(), $.$[0], $.$[1], $.$[2]));
+            $ -> new BinaryExpression($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule add_expr = left_expression()
         .operand(mult_expr)
         .infix(add_op,
-            $ -> new BinaryExpressionNode($.span(), $.$[0], $.$[1], $.$[2]));
+            $ -> new BinaryExpression($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule order_expr = left_expression()
         .operand(add_expr)
         .infix(cmp_op,
-            $ -> new BinaryExpressionNode($.span(), $.$[0], $.$[1], $.$[2]));
+            $ -> new BinaryExpression($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule and_expression = left_expression()
         .operand(order_expr)
         .infix(AMP_AMP.as_val(BinaryOperator.AND),
-            $ -> new BinaryExpressionNode($.span(), $.$[0], $.$[1], $.$[2]));
+            $ -> new BinaryExpression($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule or_expression = left_expression()
         .operand(and_expression)
         .infix(BAR_BAR.as_val(BinaryOperator.OR),
-            $ -> new BinaryExpressionNode($.span(), $.$[0], $.$[1], $.$[2]));
+            $ -> new BinaryExpression($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule assignment_expression = right_expression()
         .operand(or_expression)
         .infix(EQUALS,
-            $ -> new AssignmentNode($.span(), $.$[0], $.$[1]));
+            $ -> new Assignment($.span(), $.$[0], $.$[1]));
 
     public rule expression =
         seq(assignment_expression);
@@ -209,7 +209,7 @@ public class SighGrammar extends Grammar
     public rule expression_stmt =
         expression
         .filter($ -> {
-            if (!($.$[0] instanceof AssignmentNode || $.$[0] instanceof FunCallNode))
+            if (!($.$[0] instanceof Assignment || $.$[0] instanceof FunCall))
                 return false;
             $.push(new ExpressionStatementNode($.span(), $.$[0]));
             return true;

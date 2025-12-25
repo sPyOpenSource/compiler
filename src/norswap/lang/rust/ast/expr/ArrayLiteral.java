@@ -4,12 +4,12 @@ import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 import java.util.List;
 
-public class ArrayLiteralNode extends ExpressionNode
+public class ArrayLiteral extends Expression
 {
-    public final List<ExpressionNode> components;
+    public final List<Expression> components;
 
     @SuppressWarnings("unchecked")
-    public ArrayLiteralNode (Span span, Object components) {
+    public ArrayLiteral (Span span, Object components) {
         super(span);
         this.components = Util.cast(components, List.class);
     }
@@ -23,7 +23,7 @@ public class ArrayLiteralNode extends ExpressionNode
         StringBuilder b = new StringBuilder("[");
         int i = 0;
 
-        for (ExpressionNode it: components)
+        for (Expression it: components)
         {
             if (i > 0) b.append(", ");
             String contents = it.contents();

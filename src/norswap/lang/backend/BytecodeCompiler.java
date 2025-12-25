@@ -1,7 +1,7 @@
 package norswap.lang.backend;
 
 import norswap.lang.rust.ast.*;
-import norswap.lang.rust.interpreter.Constructor;
+import norswap.lang.rust.interpreter.ConstructorNode;
 import norswap.lang.rust.scopes.Scope;
 import norswap.lang.rust.scopes.SyntheticDeclarationNode;
 import norswap.lang.rust.types.*;
@@ -27,20 +27,20 @@ import static norswap.lang.backend.AsmUtils.*;
 import static norswap.lang.backend.TypeUtils.fieldDescriptor;
 import static norswap.lang.backend.TypeUtils.methodDescriptor;
 import static norswap.lang.backend.TypeUtils.*;
-import norswap.lang.rust.ast.expr.ArrayAccessNode;
-import norswap.lang.rust.ast.expr.ArrayLiteralNode;
-import norswap.lang.rust.ast.expr.AssignmentNode;
-import norswap.lang.rust.ast.expr.BinaryExpressionNode;
-import norswap.lang.rust.ast.expr.ConstructorNode;
-import norswap.lang.rust.ast.expr.ExpressionNode;
-import norswap.lang.rust.ast.expr.FieldAccessNode;
-import norswap.lang.rust.ast.expr.FloatLiteralNode;
-import norswap.lang.rust.ast.expr.FunCallNode;
-import norswap.lang.rust.ast.expr.IntLiteralNode;
-import norswap.lang.rust.ast.expr.ParenthesizedNode;
-import norswap.lang.rust.ast.expr.ReferenceNode;
-import norswap.lang.rust.ast.expr.StringLiteralNode;
-import norswap.lang.rust.ast.expr.UnaryExpressionNode;
+import norswap.lang.rust.ast.expr.ArrayAccess;
+import norswap.lang.rust.ast.expr.ArrayLiteral;
+import norswap.lang.rust.ast.expr.Assignment;
+import norswap.lang.rust.ast.expr.BinaryExpression;
+import norswap.lang.rust.ast.expr.Constructor;
+import norswap.lang.rust.ast.expr.Expression;
+import norswap.lang.rust.ast.expr.FieldAccess;
+import norswap.lang.rust.ast.expr.FloatLiteral;
+import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.IntLiteral;
+import norswap.lang.rust.ast.expr.Parenthesized;
+import norswap.lang.rust.ast.expr.Reference;
+import norswap.lang.rust.ast.expr.StringLiteral;
+import norswap.lang.rust.ast.expr.UnaryExpression;
 import static org.objectweb.asm.Opcodes.*;
 
 /**
@@ -102,19 +102,19 @@ public class BytecodeCompiler
         this.reactor = reactor;
 
         // expressions
-        visitor.register(IntLiteralNode.class,           this::intLiteral);
-        visitor.register(FloatLiteralNode.class,         this::floatLiteral);
-        visitor.register(StringLiteralNode.class,        this::stringLiteral);
-        visitor.register(ReferenceNode.class,            this::reference);
-        visitor.register(ConstructorNode.class,          this::constructor);
-        visitor.register(ArrayLiteralNode.class,         this::arrayLiteral);
-        visitor.register(ParenthesizedNode.class,        this::parenthesized);
-        visitor.register(FieldAccessNode.class,          this::fieldAccess);
-        visitor.register(ArrayAccessNode.class,          this::arrayAccess);
-        visitor.register(FunCallNode.class,              this::funCall);
-        visitor.register(UnaryExpressionNode.class,      this::unaryExpression);
-        visitor.register(BinaryExpressionNode.class,     this::binaryExpression);
-        visitor.register(AssignmentNode.class,           this::assignment);
+        visitor.register(IntLiteral.class,           this::intLiteral);
+        visitor.register(FloatLiteral.class,         this::floatLiteral);
+        visitor.register(StringLiteral.class,        this::stringLiteral);
+        visitor.register(Reference.class,            this::reference);
+        visitor.register(Constructor.class,          this::constructor);
+        visitor.register(ArrayLiteral.class,         this::arrayLiteral);
+        visitor.register(Parenthesized.class,        this::parenthesized);
+        visitor.register(FieldAccess.class,          this::fieldAccess);
+        visitor.register(ArrayAccess.class,          this::arrayAccess);
+        visitor.register(FunCall.class,              this::funCall);
+        visitor.register(UnaryExpression.class,      this::unaryExpression);
+        visitor.register(BinaryExpression.class,     this::binaryExpression);
+        visitor.register(Assignment.class,           this::assignment);
 
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
@@ -256,30 +256,30 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object intLiteral (IntLiteralNode node) {
+    private Object intLiteral (IntLiteral node) {
         method.visitLdcInsn(node.value);
         return null;
     }
 
-    private Object floatLiteral (FloatLiteralNode node) {
+    private Object floatLiteral (FloatLiteral node) {
         method.visitLdcInsn(node.value);
         return null;
     }
 
-    private Object stringLiteral (StringLiteralNode node) {
+    private Object stringLiteral (StringLiteral node) {
         method.visitLdcInsn(node.value);
         return null;
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object parenthesized (ParenthesizedNode node) {
+    private Object parenthesized (Parenthesized node) {
         return run(node.expression);
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object arrayLiteral (ArrayLiteralNode node)
+    private Object arrayLiteral (ArrayLiteral node)
     {
         ArrayType type = reactor.get(node, "type");
         Type compType = type.componentType;
@@ -313,7 +313,7 @@ public class BytecodeCompiler
         }
 
         int i = 0;
-        for (ExpressionNode component: node.components) {
+        for (Expression component: node.components) {
             method.visitInsn(DUP); // duplicate the array
             loadConstant(method, i++);
             run(component);
@@ -325,7 +325,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object binaryExpression (BinaryExpressionNode node)
+    private Object binaryExpression (BinaryExpression node)
     {
         if (isShortCircuit(node.operator))
             return shortCircuit(node);
@@ -405,7 +405,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object shortCircuit (BinaryExpressionNode node)
+    private Object shortCircuit (BinaryExpression node)
     {
         int opcode = node.operator == AND ? IFEQ /* if 0 */ : /* OR */ IFNE /* if 1 */;
         Label endLabel = new Label();
@@ -512,7 +512,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object unaryExpression (UnaryExpressionNode node)
+    private Object unaryExpression (UnaryExpression node)
     {
         // there is only NOT
         assert node.operator == UnaryOperator.NOT;
@@ -531,7 +531,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object arrayAccess (ArrayAccessNode node)
+    private Object arrayAccess (ArrayAccess node)
     {
         run(node.array);
         run(node.index);
@@ -542,14 +542,14 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object funCall (FunCallNode node)
+    private Object funCall (FunCall node)
     {
         FunType funType = reactor.get(node.function, "type");
 
         // The function part can either be a reference, in which case we emit a call,
         // or a more complex expression, which will evaluate to a lambda.
 
-        if (node.function instanceof ReferenceNode) {
+        if (node.function instanceof Reference) {
             DeclarationNode decl = reactor.get(node.function, "decl");
             if (decl instanceof SyntheticDeclarationNode) {
                 return builtin(funType, decl.name(), node.arguments);
@@ -563,8 +563,8 @@ public class BytecodeCompiler
                 throw new UnsupportedOperationException("variables or parameters containing a function value");
             }
         }
-        else if (node.function instanceof ConstructorNode) {
-            StructDeclarationNode decl = reactor.get(((ConstructorNode) node.function).ref, "decl");
+        else if (node.function instanceof Constructor) {
+            StructDeclarationNode decl = reactor.get(((Constructor) node.function).ref, "decl");
             String binaryName = structBinaryName(reactor.get(decl, "declared"));
             method.visitTypeInsn(NEW, binaryName);
             method.visitInsn(DUP);
@@ -580,7 +580,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object builtin (FunType funType, String name, List<ExpressionNode> arguments)
+    private Object builtin (FunType funType, String name, List<Expression> arguments)
     {
         assert name.equals("print"); // only one at the moment
         method.visitFieldInsn(GETSTATIC, "java/lang/System", "out",
@@ -598,7 +598,7 @@ public class BytecodeCompiler
      * Visit all argument nodes, adding implicit conversion based on the target parameter type
      * if needed.
      */
-    private void runArguments (FunType funType, List<ExpressionNode> arguments)
+    private void runArguments (FunType funType, List<Expression> arguments)
     {
         Vanilla.forEachIndexed(arguments, (i, arg) -> {
             run(arg);
@@ -610,9 +610,9 @@ public class BytecodeCompiler
 
     private Object expressionStmt (ExpressionStatementNode node) {
         run(node.expression);
-        if (node.expression instanceof AssignmentNode)
+        if (node.expression instanceof Assignment)
             pop(reactor.get(node.expression, "type"));
-        else if (node.expression instanceof FunCallNode) {
+        else if (node.expression instanceof FunCall) {
             Type type = reactor.get(node.expression, "type");
             if (!(type instanceof VoidType)) pop(type);
         }
@@ -693,7 +693,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object reference (ReferenceNode node)
+    private Object reference (Reference node)
     {
         DeclarationNode decl = reactor.get(node, "decl");
 
@@ -774,17 +774,17 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    public Object assignment (AssignmentNode node)
+    public Object assignment (Assignment node)
     {
-        if (node.left instanceof ReferenceNode) {
-            ReferenceNode left = (ReferenceNode) node.left;
+        if (node.left instanceof Reference) {
+            Reference left = (Reference) node.left;
             run(node.right);
             Type type = implicitConversion(node, node.right);
             dup(type);
             method.visitVarInsn(nodeAsmType(node).getOpcode(ISTORE), varIndex(left));
         }
-        else if (node.left instanceof ArrayAccessNode) {
-            ArrayAccessNode left = (ArrayAccessNode) node.left;
+        else if (node.left instanceof ArrayAccess) {
+            ArrayAccess left = (ArrayAccess) node.left;
             run(left.array);
             run(left.index);
             method.visitInsn(L2I);
@@ -793,8 +793,8 @@ public class BytecodeCompiler
             dup_x2(type);
             method.visitInsn(nodeAsmType(node).getOpcode(IASTORE));
         }
-        else if (node.left instanceof FieldAccessNode) {
-            FieldAccessNode left = (FieldAccessNode) node.left;
+        else if (node.left instanceof FieldAccess) {
+            FieldAccess left = (FieldAccess) node.left;
             run(left.stem);
             run(node.right);
             Type type = implicitConversion(node, node.right);
@@ -852,7 +852,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object fieldAccess (FieldAccessNode node) {
+    private Object fieldAccess (FieldAccess node) {
         run(node.stem);
         String binaryName = asmType(reactor.get(node.stem, "type")).getClassName();
         method.visitFieldInsn(GETFIELD, binaryName, node.fieldName, nodeFieldDescriptor(node));
@@ -861,7 +861,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Constructor constructor (ConstructorNode node) {
+    private ConstructorNode constructor (Constructor node) {
         // not needed - handled in funCall instead
         return null;
     }
@@ -916,7 +916,7 @@ public class BytecodeCompiler
     /**
      * Returns the variable index for the given reference, which must be a reference to a variable.
      */
-    private int varIndex (ReferenceNode node) {
+    private int varIndex (Reference node) {
         return variables.get(new Pair<>((Scope) reactor.get(node, "scope"), node.name));
     }
 

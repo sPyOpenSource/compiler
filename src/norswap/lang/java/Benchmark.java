@@ -1,4 +1,4 @@
-package lang.java;
+package norswap.lang.java;
 
 import norswap.autumn.Autumn;
 import norswap.autumn.AutumnTestFixture;
@@ -7,10 +7,6 @@ import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
 import norswap.autumn.ParseMetrics;
 
-import norswap.lang.java.JavaGrammar;
-import norswap.lang.java.JavaGrammarTokens;
-import norswap.lang.java.Lexer;
-import norswap.lang.java.Token;
 import norswap.utils.IO;
 import norswap.utils.NFiles;
 import norswap.utils.exceptions.Exceptions;
