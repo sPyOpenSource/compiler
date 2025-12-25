@@ -79,7 +79,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private final ValuedVisitor<SighNode, Object> visitor = new ValuedVisitor<>();
+    private final ValuedVisitor<Node, Object> visitor = new ValuedVisitor<>();
     private final Reactor reactor;
 
     // ---------------------------------------------------------------------------------------------
@@ -152,7 +152,7 @@ public class BytecodeCompiler
      * Compile the given source unit (given as its root AST node) into a class whose (dot-separated)
      * binary name is {@code binaryName}.
      */
-    public CompilationResult compile (String binaryName, SighNode root)
+    public CompilationResult compile (String binaryName, Node root)
     {
         this.containerName = binaryName.replace('.', '/');
         run(root);
@@ -166,7 +166,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object run (SighNode node) {
+    private Object run (Node node) {
         return visitor.apply(node);
     }
 
@@ -860,7 +860,7 @@ public class BytecodeCompiler
      * Returns the {@link org.objectweb.asm.Type ASM Type} for the {@code type} attribute of the
      * given node.
      */
-    private org.objectweb.asm.Type nodeAsmType (SighNode node) {
+    private org.objectweb.asm.Type nodeAsmType (Node node) {
         return asmType(reactor.get(node, "type"));
     }
 
@@ -869,7 +869,7 @@ public class BytecodeCompiler
     /**
      * Return the JVM field descriptor for the given node, which must have a {@code type} attribute.
      */
-    private String nodeFieldDescriptor (SighNode node) {
+    private String nodeFieldDescriptor (Node node) {
         return fieldDescriptor(reactor.get(node, "type"));
     }
 
@@ -926,7 +926,7 @@ public class BytecodeCompiler
     /**
      * Like {@link #implicitConversion(Type, Type)}, using the type attributes of the passed nodes.
      */
-    private Type implicitConversion (SighNode left, SighNode right) {
+    private Type implicitConversion (Node left, Node right) {
         return implicitConversion((Type) reactor.get(left,  "type"), reactor.get(right, "type"));
     }
 

@@ -7,13 +7,13 @@ import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.Objects;
 
-public abstract class SighNode
+public abstract class Node
 {
     // ---------------------------------------------------------------------------------------------
 
     public final Span span;
 
-    protected SighNode (Span span) {
+    protected Node (Span span) {
         this.span = span;
     }
 

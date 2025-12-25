@@ -51,7 +51,7 @@ public final class Interpreter
 {
     // ---------------------------------------------------------------------------------------------
 
-    private final ValuedVisitor<SighNode, Object> visitor = new ValuedVisitor<>();
+    private final ValuedVisitor<Node, Object> visitor = new ValuedVisitor<>();
     private final Reactor reactor;
     private ScopeStorage storage = null;
     private RootScope rootScope;
@@ -94,7 +94,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    public Object interpret (SighNode root) {
+    public Object interpret (Node root) {
         try {
             return run(root);
         } catch (PassthroughException e) {
@@ -104,7 +104,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object run (SighNode node) {
+    private Object run (Node node) {
         try {
             return visitor.apply(node);
         } catch (InterpreterException | Return | PassthroughException e) {
@@ -128,7 +128,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private <T> T get(SighNode node) {
+    private <T> T get(Node node) {
         return cast(run(node));
     }
 

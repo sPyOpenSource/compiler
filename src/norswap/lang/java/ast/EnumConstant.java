@@ -1,6 +1,8 @@
 package norswap.lang.java.ast;
 
 import java.util.List;
+import norswap.lang.java.ast.expr.Expression;
+import norswap.lang.java.ast.expr.Identifier;
 
 import static norswap.utils.Util.cast;
 

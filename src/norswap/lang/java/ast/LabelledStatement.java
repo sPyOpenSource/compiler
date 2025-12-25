@@ -1,5 +1,7 @@
 package norswap.lang.java.ast;
 
+import norswap.lang.java.ast.expr.Identifier;
+
 public record LabelledStatement (
      Identifier label,
      Statement statement)

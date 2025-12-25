@@ -1,4 +1,6 @@
-package norswap.lang.java.ast;
+package norswap.lang.java.ast.expr;
+
+import norswap.lang.java.ast.TType;
 
 public record InstanceOf (
      Expression operand,

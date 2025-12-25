@@ -85,7 +85,7 @@ public final class SemanticAnalysis
     private Scope scope;
 
     /** Current context for type inference (currently only to infer the type of empty arrays). */
-    private SighNode inferenceContext;
+    private Node inferenceContext;
 
     /** Index of the current function argument. */
     private int argumentIndex;
@@ -102,10 +102,10 @@ public final class SemanticAnalysis
      * Call this method to create a tree walker that will instantiate the typing rules defined
      * in this class when used on an AST, using the given {@code reactor}.
      */
-    public static Walker<SighNode> createWalker (Reactor reactor)
+    public static Walker<Node> createWalker (Reactor reactor)
     {
-        ReflectiveFieldWalker<SighNode> walker = new ReflectiveFieldWalker<>(
-            SighNode.class, PRE_VISIT, POST_VISIT);
+        ReflectiveFieldWalker<Node> walker = new ReflectiveFieldWalker<>(
+            Node.class, PRE_VISIT, POST_VISIT);
 
         SemanticAnalysis analysis = new SemanticAnalysis(reactor);
 
@@ -261,7 +261,7 @@ public final class SemanticAnalysis
         if (node.components.isEmpty()) { // []
             // Empty array: we need a type int to know the desired type.
 
-            final SighNode context = this.inferenceContext;
+            final Node context = this.inferenceContext;
 
             if (context instanceof VarDeclarationNode)
                 R.rule(node, "type")
@@ -700,7 +700,7 @@ public final class SemanticAnalysis
     // region [Scopes & Declarations]
     // =============================================================================================
 
-    private void popScope (SighNode node) {
+    private void popScope (Node node) {
         scope = scope.parent;
     }
 
@@ -889,7 +889,7 @@ public final class SemanticAnalysis
     {
         Scope scope = this.scope;
         while (scope != null) {
-            SighNode node = scope.node;
+            Node node = scope.node;
             if (node instanceof FunDeclarationNode)
                 return (FunDeclarationNode) node;
             scope = scope.parent;
@@ -899,7 +899,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private boolean isReturnContainer (SighNode node) {
+    private boolean isReturnContainer (Node node) {
         return node instanceof BlockNode
             || node instanceof IfNode
             || node instanceof ReturnNode;
@@ -908,7 +908,7 @@ public final class SemanticAnalysis
     // ---------------------------------------------------------------------------------------------
 
     /** Get the depedencies necessary to compute the "returns" attribute of the parent. */
-    private Attribute[] getReturnsDependencies (List<? extends SighNode> children) {
+    private Attribute[] getReturnsDependencies (List<? extends Node> children) {
         return children.stream()
             .filter(Objects::nonNull)
             .filter(this::isReturnContainer)

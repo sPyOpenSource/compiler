@@ -1,4 +1,4 @@
-package norswap.lang.java.ast;
+package norswap.lang.java.ast.expr;
 
 import java.util.List;
 

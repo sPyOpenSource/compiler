@@ -1,5 +1,7 @@
 package norswap.lang.java.ast;
 
+import norswap.lang.java.ast.expr.Expression;
+
 public record IfStatement 
     ( Expression cond,
      Statement if_true,

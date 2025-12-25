@@ -2,7 +2,7 @@ import norswap.autumn.AutumnTestFixture;
 import norswap.autumn.positions.LineMapString;
 import norswap.lang.rust.SemanticAnalysis;
 import norswap.lang.rust.SighGrammar;
-import norswap.lang.rust.ast.SighNode;
+import norswap.lang.rust.ast.Node;
 import norswap.uranium.Reactor;
 import norswap.uranium.UraniumTestFixture;
 import norswap.utils.visitors.Walker;
@@ -34,14 +34,14 @@ public final class SemanticAnalysisTests extends UraniumTestFixture
 
     @Override protected String astNodeToString (Object ast) {
         LineMapString map = new LineMapString("<test>", input);
-        return ast.toString() + " (" + ((SighNode) ast).span.startString(map) + ")";
+        return ast.toString() + " (" + ((Node) ast).span.startString(map) + ")";
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Override protected void configureSemanticAnalysis (Reactor reactor, Object ast) {
-        Walker<SighNode> walker = SemanticAnalysis.createWalker(reactor);
-        walker.walk(((SighNode) ast));
+        Walker<Node> walker = SemanticAnalysis.createWalker(reactor);
+        walker.walk(((Node) ast));
     }
 
     // ---------------------------------------------------------------------------------------------

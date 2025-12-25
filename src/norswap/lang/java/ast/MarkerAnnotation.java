@@ -2,8 +2,9 @@ package norswap.lang.java.ast;
 
 import java.util.ArrayList;
 import java.util.List;
+import norswap.lang.java.ast.expr.Identifier;
 
-public record MarkerAnnotation (List<Identifier> name)implements TAnnotation
+public record MarkerAnnotation (List<Identifier> name) implements TAnnotation
 {
     public static MarkerAnnotation mk (List<Identifier> name) {
         return new MarkerAnnotation(name);

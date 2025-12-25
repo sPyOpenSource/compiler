@@ -3,7 +3,7 @@ import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
 import norswap.lang.rust.SemanticAnalysis;
 import norswap.lang.rust.SighGrammar;
-import norswap.lang.rust.ast.SighNode;
+import norswap.lang.rust.ast.Node;
 import norswap.lang.backend.ByteArrayClassLoader;
 import norswap.lang.backend.BytecodeCompiler;
 import norswap.lang.backend.CompilationResult;
@@ -33,9 +33,9 @@ public class BytecodeTests
         ParseResult parseResult = Autumn.parse(grammar.root, input, options);
         if (!parseResult.fullMatch) throw new AssertionError(parseResult.toString());
 
-        SighNode tree = cast(parseResult.topValue());
+        Node tree = cast(parseResult.topValue());
         Reactor reactor = new Reactor();
-        Walker<SighNode> walker = SemanticAnalysis.createWalker(reactor);
+        Walker<Node> walker = SemanticAnalysis.createWalker(reactor);
         walker.walk(tree);
         reactor.run();
 

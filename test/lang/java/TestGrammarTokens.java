@@ -3,7 +3,7 @@ package lang.java;
 import norswap.lang.java.JavaGrammarTokens;
 import norswap.lang.java.Lexer;
 import norswap.lang.java.Token;
-import norswap.lang.java.ast.Literal;
+import norswap.lang.java.ast.expr.Literal;
 import java.util.Arrays;
 
 public final class TestGrammarTokens extends TestGrammar {

@@ -3,7 +3,7 @@ package norswap.lang.rust;
 import norswap.autumn.Autumn;
 import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
-import norswap.lang.rust.ast.SighNode;
+import norswap.lang.rust.ast.Node;
 import norswap.lang.rust.ast.RootNode;
 import norswap.lang.rust.interpreter.Interpreter;
 import norswap.uranium.AttributeTreeFormatter;
@@ -31,7 +31,7 @@ public final class SighRunner
 
     public Object run(String input) {
         Reactor reactor = new Reactor();
-        Walker<SighNode> walker = SemanticAnalysis.createWalker(reactor);
+        Walker<Node> walker = SemanticAnalysis.createWalker(reactor);
         Interpreter interpreter = new Interpreter(reactor);
 
         ParseResult result = Autumn.parse(grammar.root, input, parseOptions);
@@ -56,7 +56,7 @@ public final class SighRunner
                 System.err.println(error);
             }
             String tree = AttributeTreeFormatter.format(root, reactor,
-                    new ReflectiveFieldWalker<>(SighNode.class, PRE_VISIT, POST_VISIT));
+                    new ReflectiveFieldWalker<>(Node.class, PRE_VISIT, POST_VISIT));
             System.err.println(tree);
             throw new AssertionError("semantic errors");
         }

@@ -5,7 +5,7 @@ import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
 import norswap.autumn.positions.LineMap;
 import norswap.autumn.positions.LineMapString;
-import norswap.lang.rust.ast.SighNode;
+import norswap.lang.rust.ast.Node;
 import norswap.lang.rust.interpreter.Interpreter;
 import norswap.uranium.Reactor;
 import norswap.utils.IO;
@@ -30,15 +30,15 @@ public final class Test
         if (!result.fullMatch)
             return;
 
-        SighNode tree = cast(result.topValue());
+        Node tree = cast(result.topValue());
         Reactor reactor = new Reactor();
-        Walker<SighNode> walker = SemanticAnalysis.createWalker(reactor);
+        Walker<Node> walker = SemanticAnalysis.createWalker(reactor);
         walker.walk(tree);
         reactor.run();
 
         if (!reactor.errors().isEmpty()) {
             System.out.println(reactor.reportErrors(it ->
-                it.toString() + " (" + ((SighNode) it).span.startString(lineMap) + ")"));
+                it.toString() + " (" + ((Node) it).span.startString(lineMap) + ")"));
 
             // Alternatively, print the whole tree:
             // System.out.println(
