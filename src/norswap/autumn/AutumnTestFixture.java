@@ -227,7 +227,7 @@ public class AutumnTestFixture extends TestFixture
 
         List<?> tokens = lexer.apply((String) input);
 
-        if (tokens.size() > 0 && tokens.get(0) instanceof Token)
+        if (!tokens.isEmpty() && tokens.get(0) instanceof Token)
             this.map = new LineMapTokens(inputName, (String) input, cast(tokens));
 
         return parse(tokens);
