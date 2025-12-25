@@ -8,6 +8,7 @@ import norswap.lang.rust.SighGrammar;
 import norswap.lang.rust.ast.SighNode;
 import norswap.lang.rust.interpreter.Interpreter;
 import norswap.lang.rust.interpreter.Null;
+
 import norswap.uranium.Reactor;
 import norswap.uranium.SemanticError;
 import norswap.utils.IO;
@@ -210,14 +211,14 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testVarDecl () {
-        check("var x: Int = 1; return x", 1L);
-        check("var x: Float = 2.0; return x", 2d);
+        check("let x: i32 = 1; return x", 1L);
+        check("let x: f32 = 2.0; return x", 2d);
 
-        check("var x: Int = 0; return x = 3", 3L);
-        check("var x: String = \"0\"; return x = \"S\"", "S");
+        check("let x: i32 = 0; return x = 3", 3L);
+        check("let x: String = \"0\"; return x = \"S\"", "S");
 
         // implicit conversions
-        check("var x: Float = 1; x = 2; return x", 2.0d);
+        check("let x: f32 = 1; x = 2; return x", 2.0d);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -236,8 +237,8 @@ public final class InterpreterTests extends TestFixture {
         check("{ print(\"a\"); print(\"b\") }", null, "a\nb\n");
 
         check(
-            "var x: Int = 1;" +
-            "{ print(\"\" + x); var x: Int = 2; print(\"\" + x) }" +
+            "let x: i32 = 1;" +
+            "{ print(\"\" + x); let x: i32 = 2; print(\"\" + x) }" +
             "print(\"\" + x)",
             null, "1\n2\n1\n");
     }
@@ -247,7 +248,7 @@ public final class InterpreterTests extends TestFixture {
     @Test
     public void testCalls () {
         check(
-            "fun add (a: Int, b: Int): Int { return a + b } " +
+            "fn add (a: i32, b: i32): i32 { return a + b } " +
                 "return add(4, 7)",
             11L);
 
@@ -256,11 +257,11 @@ public final class InterpreterTests extends TestFixture {
         point.put("y", 2L);
 
         check(
-            "struct Point { var x: Int; var y: Int }" +
+            "struct Point { let x: i32; let y: i32 }" +
                 "return $Point(1, 2)",
             point);
 
-        check("var str: String = null; return print(str + 1)", "null1", "null1\n");
+        check("let str: String = null; return print(str + 1)", "null1", "null1\n");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -278,36 +279,36 @@ public final class InterpreterTests extends TestFixture {
         checkExpr("[1].length", 1L);
         checkExpr("[1, 2].length", 2L);
 
-        checkThrows("var array: Int[] = null; return array[0]", NullPointerException.class);
-        checkThrows("var array: Int[] = null; return array.length", NullPointerException.class);
+        checkThrows("let array: i32[] = null; return array[0]", NullPointerException.class);
+        checkThrows("let array: i32[] = null; return array.length", NullPointerException.class);
 
-        check("var x: Int[] = [0, 1]; x[0] = 3; return x[0]", 3L);
-        checkThrows("var x: Int[] = []; x[0] = 3; return x[0]",
+        check("let x: i32[] = [0, 1]; x[0] = 3; return x[0]", 3L);
+        checkThrows("let x: i32[] = []; x[0] = 3; return x[0]",
             ArrayIndexOutOfBoundsException.class);
-        checkThrows("var x: Int[] = null; x[0] = 3",
+        checkThrows("let x: i32[] = null; x[0] = 3",
             NullPointerException.class);
 
         check(
-            "struct P { var x: Int; var y: Int }" +
+            "struct P { let x: i32; let y: i32 }" +
                 "return $P(1, 2).y",
             2L);
 
         checkThrows(
-            "struct P { var x: Int; var y: Int }" +
-                "var p: P = null;" +
+            "struct P { let x: i32; let y: i32 }" +
+                "let p: P = null;" +
                 "return p.y",
             NullPointerException.class);
 
         check(
-            "struct P { var x: Int; var y: Int }" +
-                "var p: P = $P(1, 2);" +
+            "struct P { let x: i32; let y: i32 }" +
+                "let p: P = $P(1, 2);" +
                 "p.y = 42;" +
                 "return p.y",
             42L);
 
         checkThrows(
-            "struct P { var x: Int; var y: Int }" +
-                "var p: P = null;" +
+            "struct P { let x: i32; let y: i32 }" +
+                "let p: P = null;" +
                 "p.y = 42",
             NullPointerException.class);
     }
@@ -321,16 +322,16 @@ public final class InterpreterTests extends TestFixture {
         check("if (false) return 1 else if (true) return 2 else return 3 ", 2L);
         check("if (false) return 1 else if (false) return 2 else return 3 ", 3L);
 
-        check("var i: Int = 0; while (i < 3) { print(\"\" + i); i = i + 1 } ", null, "0\n1\n2\n");
+        check("let i: i32 = 0; while (i < 3) { print(\"\" + i); i = i + 1 } ", null, "0\n1\n2\n");
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Test
     public void testInference () {
-        check("var array: Int[] = []", null);
-        check("var array: String[] = []", null);
-        check("fun use_array (array: Int[]) {} ; use_array([])", null);
+        check("let array: i32[] = []", null);
+        check("let array: String[] = []", null);
+        check("fn use_array (array: i32[]) {} ; use_array([])", null);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -338,14 +339,14 @@ public final class InterpreterTests extends TestFixture {
     @Test
     public void testTypeAsValues () {
         check("struct S{} ; return \"\"+ S", "S");
-        check("struct S{} ; var type: Type = S ; return \"\"+ type", "S");
+        check("struct S{} ; let type: Type = S ; return \"\"+ type", "S");
     }
 
     // ---------------------------------------------------------------------------------------------
 
     @Test public void testUnconditionalReturn()
     {
-        check("fun f(): Int { if (true) return 1 else return 2 } ; return f()", 1L);
+        check("fn f(): i32 { if (true) return 1 else return 2 } ; return f()", 1L);
     }
 
     // ---------------------------------------------------------------------------------------------

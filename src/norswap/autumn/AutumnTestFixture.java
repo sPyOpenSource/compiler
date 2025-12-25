@@ -405,7 +405,7 @@ public class AutumnTestFixture extends TestFixture
     public ParseResult successExpect (Object input, Object value, int peel)
     {
         ParseResult r = success(input, peel + 1);
-        assertTrue(r.valueStack.size() > 0, peel + 1,
+        assertTrue(!r.valueStack.isEmpty(), peel + 1,
             () -> "Empty AST stack.");
         assertEquals(r.valueStack.peek(), value, peel + 1,
             () -> "The top of the AST stack did not match the expected value.");

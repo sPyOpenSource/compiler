@@ -32,7 +32,7 @@ public class TestGrammar extends AutumnTestFixture
      * Use this constructor in subclasses to test alternative Java grammars that use the same rule
      * names as the original.
      */
-    public TestGrammar (Object grammar) {
+    TestGrammar (Object grammar) {
         this.grammar = grammar;
         this.grammarClass = grammar.getClass();
     }
@@ -445,7 +445,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void leftAssocBinary()
+    @Test public void leftAssocBinary()
     {
         rule = rule("expr");
 
@@ -557,7 +557,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void typeDeclsNoBody()
+    @Test public void typeDeclsNoBody()
     {
         rule = rule("type_decl");
 
@@ -574,7 +574,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void classBodyDecl()
+    @Test public void classBodyDecl()
     {
         rule = rule("class_body_decl");
 
@@ -591,7 +591,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void statements()
+    @Test public void statements()
     {
         rule = rule("stmt");
 
@@ -633,7 +633,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void typeDeclsWithBodies()
+    @Test public void typeDeclsWithBodies()
     {
         rule = rule("type_decl");
 
@@ -655,7 +655,7 @@ public class TestGrammar extends AutumnTestFixture
 
     // ---------------------------------------------------------------------------------------------
 
-    @Test void constructorCallsWithBodies()
+    @Test public void constructorCallsWithBodies()
     {
         rule = rule("expr");
 
