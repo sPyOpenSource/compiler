@@ -150,8 +150,8 @@ public final class LexUtils
         // The casts are required to prevent inference + boxing to always provide a Long.
         //noinspection UnnecessaryBoxing,RedundantCast
         return Exceptional.value(is_long
-            ? (Number) Long.valueOf(out)
-            : (Number) Integer.valueOf((int) out));
+            ? (Number) out
+            : (Number) (int) out);
     }
 
     // ---------------------------------------------------------------------------------------------
