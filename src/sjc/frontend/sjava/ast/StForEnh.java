@@ -24,7 +24,7 @@ import sjc.backend.Architecture;
 import sjc.backend.Instruction;
 import sjc.compbase.expr.Expr;
 import sjc.compbase.variable.Vrbl;
-import sjc.frontend.sjava.expr.ExDeArray;
+import sjc.frontend.sjava.ast.expr.ExDeArray;
 
 /**
  * StForEnh: enhanced for-loop of jdk1.5

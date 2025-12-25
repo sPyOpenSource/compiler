@@ -23,7 +23,7 @@ import sjc.compbase.*;
 import sjc.compbase.variable.Vrbl;
 import sjc.frontend.Scanner;
 import sjc.frontend.Language;
-import sjc.frontend.sjava.expr.ExEnc;
+import sjc.frontend.sjava.ast.expr.ExEnc;
 
 /**
  * SJava: administration of the SJava-language and access to the SJava-routines

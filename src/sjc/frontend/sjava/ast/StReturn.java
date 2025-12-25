@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast;
 import sjc.compbase.*;
 import sjc.compbase.expr.Expr;
 import sjc.debug.CodePrinter;
-import sjc.frontend.sjava.expr.ExEnc;
+import sjc.frontend.sjava.ast.expr.ExEnc;
 
 /**
  * StReturn: return-statement

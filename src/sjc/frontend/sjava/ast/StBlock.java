@@ -23,7 +23,7 @@ import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblStateList;
 import sjc.debug.CodePrinter;
 import sjc.frontend.sjava.SJava;
-import sjc.frontend.sjava.expr.ExCall;
+import sjc.frontend.sjava.ast.expr.ExCall;
 
 /**
  * StBlock: block of statements

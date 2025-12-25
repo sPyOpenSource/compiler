@@ -41,9 +41,9 @@ import sjc.compbase.variable.Vrbl;
 
 import sjc.debug.CodePrinter;
 import sjc.frontend.ExVal;
-import sjc.frontend.sjava.expr.ExCall;
-import sjc.frontend.sjava.expr.ExClssMthdName;
-import sjc.frontend.sjava.expr.ExVar;
+import sjc.frontend.sjava.ast.expr.ExCall;
+import sjc.frontend.sjava.ast.expr.ExClssMthdName;
+import sjc.frontend.sjava.ast.expr.ExVar;
 import sjc.frontend.sjava.ast.StExpr;
 
 /**

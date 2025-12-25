@@ -16,7 +16,7 @@
  * along with SJC. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package sjc.frontend.sjava.expr;
+package sjc.frontend.sjava.ast.expr;
 
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
