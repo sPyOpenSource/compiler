@@ -3,23 +3,23 @@ import norswap.autumn.Grammar;
 import norswap.autumn.Grammar.rule;
 import norswap.autumn.ParseResult;
 import norswap.autumn.positions.LineMapString;
-import norswap.sigh.SemanticAnalysis;
-import norswap.sigh.SighGrammar;
-import norswap.sigh.ast.SighNode;
-import norswap.sigh.interpreter.Interpreter;
-import norswap.sigh.interpreter.Null;
+import norswap.lang.rust.SemanticAnalysis;
+import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.ast.SighNode;
+import norswap.lang.rust.interpreter.Interpreter;
+import norswap.lang.rust.interpreter.Null;
 import norswap.uranium.Reactor;
 import norswap.uranium.SemanticError;
 import norswap.utils.IO;
 import norswap.utils.TestFixture;
 import norswap.utils.data.wrappers.Pair;
 import norswap.utils.visitors.Walker;
-import org.testng.annotations.Test;
+
 import java.util.HashMap;
 import java.util.Set;
-
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertThrows;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
 
 public final class InterpreterTests extends TestFixture {
 
@@ -42,14 +42,14 @@ public final class InterpreterTests extends TestFixture {
     // ---------------------------------------------------------------------------------------------
 
     private void check (String input, Object expectedReturn) {
-        assertNotNull(rule, "You forgot to initialize the rule field.");
+        assertNotNull("You forgot to initialize the rule field.", rule);
         check(rule, input, expectedReturn, null);
     }
 
     // ---------------------------------------------------------------------------------------------
 
     private void check (String input, Object expectedReturn, String expectedOutput) {
-        assertNotNull(rule, "You forgot to initialize the rule field.");
+        assertNotNull("You forgot to initialize the rule field.", rule);
         check(rule, input, expectedReturn, expectedOutput);
     }
 

@@ -1,19 +1,19 @@
 import norswap.autumn.Autumn;
 import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
-import norswap.sigh.SemanticAnalysis;
-import norswap.sigh.SighGrammar;
-import norswap.sigh.ast.SighNode;
-import norswap.sigh.bytecode.ByteArrayClassLoader;
-import norswap.sigh.bytecode.BytecodeCompiler;
-import norswap.sigh.bytecode.CompilationResult;
+import norswap.lang.rust.SemanticAnalysis;
+import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.ast.SighNode;
+import norswap.lang.backend.ByteArrayClassLoader;
+import norswap.lang.backend.BytecodeCompiler;
+import norswap.lang.backend.CompilationResult;
 import norswap.uranium.Reactor;
 import norswap.utils.IO;
 import norswap.utils.visitors.Walker;
-import org.testng.annotations.Test;
 
 import static norswap.utils.Util.cast;
-import static org.testng.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 @SuppressWarnings("FieldCanBeLocal")
 public class BytecodeTests
@@ -192,17 +192,17 @@ public class BytecodeTests
 
     @Test
     public void testVarDecl () {
-        check("var x: Int = 1; print(\"\" + x)", "1");
-        check("var x: Float = 2.0; print(\"\" + x)", "2.0");
+        check("let x: i32 = 1; print(\"\" + x)", "1");
+        check("let x: f32 = 2.0; print(\"\" + x)", "2.0");
 
-        check("var x: Int = 0; x = 3; print(\"\" + x)", "3");
+        check("let x: i32 = 0; x = 3; print(\"\" + x)", "3");
 
         // TODO fails
         //check("var x: String = \"0\"; print(x = \"S\")", "S");
-        check("var x: String = \"0\"; x = \"S\"; print(x)", "S");
+        check("let x: String = \"0\"; x = \"S\"; print(x)", "S");
 
         // implicit conversions
-        check("var x: Float = 1; x = 2; print(\"\" + x)", "2.0");
+        check("let x: f32 = 1; x = 2; print(\"\" + x)", "2.0");
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -218,8 +218,8 @@ public class BytecodeTests
         checkExpr("[\"a\", \"b\", \"c\"][0]", "a");
         checkExpr("[\"a\", \"b\", \"c\"][2]", "c");
 
-        check("var x: Float[] = [1.0, 2.0]; x[0] = 3.0; print(\"\" + x[0])", "3.0");
-        check("var x: Float[] = [1.0, 2.0]; x[0] = 3; print(\"\" + x[0])", "3.0");
+        check("let x: f32[] = [1.0, 2.0]; x[0] = 3.0; print(\"\" + x[0])", "3.0");
+        check("let x: f32[] = [1.0, 2.0]; x[0] = 3; print(\"\" + x[0])", "3.0");
     }
 
     private final String printa = "print(\"a\")";
@@ -228,19 +228,19 @@ public class BytecodeTests
     private final String printy = "print(\"\" + (y))";
 
     @Test public void testVariables() {
-        check("var x: Int = 1;" + printx, "1");
-        check("var x: String = \"a\";" + printx, "a");
-        check("var x: Int = 1 ; " + printx + " ; x = 2 ; " + printx, "1\n2");
+        check("let x: i32 = 1;" + printx, "1");
+        check("let x: String = \"a\";" + printx, "a");
+        check("let x: i32 = 1 ; " + printx + " ; x = 2 ; " + printx, "1\n2");
 
         // longs and double have double width
-        check("var x: Int = 1 ; var y: Float = 2.0 ;" + printx + printy, "1\n2.0");
-        check("var x: Int = 1 ; var y: String = \"a\" ;" + printx + printy, "1\na");
-        check("var x: String = \"a\" ; var y: Int = 1 ;" + printx + printy, "a\n1");
-        check("var x: Float = 1.0 ; var y: String = \"a\" ;" + printx + printy, "1.0\na");
+        check("let x: i32 = 1 ; let y: f32 = 2.0 ;" + printx + printy, "1\n2.0");
+        check("let x: i32 = 1 ; let y: String = \"a\" ;" + printx + printy, "1\na");
+        check("let x: String = \"a\" ; let y: i32 = 1 ;" + printx + printy, "a\n1");
+        check("let x: f32 = 1.0 ; let y: String = \"a\" ;" + printx + printy, "1.0\na");
 
         // implicit conversion
-        check("var x: Float = 1 ;" + printx, "1.0");
-        check("var x: Float = 1 ;" + printx + "x = 2 ;" + printx, "1.0\n2.0");
+        check("let x: f32 = 1 ;" + printx, "1.0");
+        check("let x: f32 = 1 ;" + printx + "x = 2 ;" + printx, "1.0\n2.0");
     }
 
     @Test public void testIfWhile() {
@@ -248,19 +248,19 @@ public class BytecodeTests
         check("if 1 == 1 " + printa + "else " + printb, "a");
         check("if 1 == 0 " + printa + "else " + printb, "b");
 
-        check("var x: Int = 1 ; while x == 3 { " + printx + "}", "");
-        check("var x: Int = 1 ; while x <= 3 { " + printx + " ; x = x + 1 }", "1\n2\n3");
+        check("let x: i32 = 1 ; while x == 3 { " + printx + "}", "");
+        check("let x: i32 = 1 ; while x <= 3 { " + printx + " ; x = x + 1 }", "1\n2\n3");
     }
 
     @Test public void testMethod() {
-        check("fun test (x: String):String { return x } print(test(\"a\"))", "a");
-        check("fun test (x: String) { print(x) } ; test(\"a\")", "a");
-        check("fun test () { fun foo() { print(\"a\") } foo() foo() } test()", "a\na");
+        check("fn test (x: String):String { return x } print(test(\"a\"))", "a");
+        check("fn test (x: String) { print(x) } ; test(\"a\")", "a");
+        check("fn test () { fn foo() { print(\"a\") } foo() foo() } test()", "a\na");
     }
 
     private final String makePair =
-        "struct Pair { var x: Int ; var y: Float }" +
-        "var x: Pair = $Pair(1, 2.0) ;";
+        "struct Pair { let x: i32 ; let y: f32 }" +
+        "let x: Pair = $Pair(1, 2.0) ;";
 
     @Test public void testStructs() {
         check(makePair + "print(\"\" + x.x + \":\" + x.y)", "1:2.0");

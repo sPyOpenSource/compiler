@@ -41,3 +41,5 @@
 
 # Intelllij Maven
 .idea/**/gradle.xml
+/dist/
+/nbproject/private/

@@ -1,12 +1,12 @@
 import norswap.autumn.AutumnTestFixture;
 import norswap.autumn.positions.LineMapString;
-import norswap.sigh.SemanticAnalysis;
-import norswap.sigh.SighGrammar;
-import norswap.sigh.ast.SighNode;
+import norswap.lang.rust.SemanticAnalysis;
+import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.ast.SighNode;
 import norswap.uranium.Reactor;
 import norswap.uranium.UraniumTestFixture;
 import norswap.utils.visitors.Walker;
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 /**
  * NOTE(norswap): These tests were derived from the {@link InterpreterTests} and don't test anything

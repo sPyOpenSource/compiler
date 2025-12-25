@@ -1,11 +1,11 @@
 // This file showcases every single syntactic feature in the language.
 
-fun array_add (a: Int[]): Int
+fn array_add (a: i32[]): i32
 {
-    fun add (a: Int, b: Int): Int {
+    fn add (a: i32, b: i32): i32 {
         return add2(a, b) // works!
 
-        fun add2 (a: Int, b: Int): Int {
+        fn add2 (a: i32, b: i32): i32 {
             return a + b
         }
     }
@@ -13,8 +13,8 @@ fun array_add (a: Int[]): Int
     if (a.length == 0)
         return 0
 
-    var i: Int = 1
-    var result: Int = a[0]
+    let i: i32 = 1
+    let result: i32 = a[0]
 
     while i < a.length {
         result = add(result, a[i])
@@ -24,14 +24,14 @@ fun array_add (a: Int[]): Int
     return result
 }
 
-var total: Int = array_add([1, 2, 3])
-var float_total: Float = total + 0.0
+let total: i32 = array_add([1, 2, 3])
+let float_total: f32 = total + 0.0
 
-var math: Int = 1 + 3 * 4 * (1 + 3) / 12
+let math: i32 = 1 + 3 * 4 * (1 + 3) / 12
 validate5(math)
 validate5(6) // some men just want to watch the world burn
 
-fun validate5 (value: Int)
+fn validate5 (value: i32)
 {
     if (value!= 5)
         print("We wanted 5 but got: " + value)
@@ -45,21 +45,21 @@ fun validate5 (value: Int)
 }
 
 struct Pair {
-    var a: Int
-    var b: Int
+    let a: i32
+    let b: i32
 }
 
-var type: Type = Pair
+let type: Type = Pair
 print("" + type)
 
-fun sum_pair (pair: Pair): Int {
+fn sum_pair (pair: Pair): i32 {
     return pair.a + pair.b
 }
 
 validate5(sum_pair($Pair(2, 3)))
 
-fun use_array (array: Int[]) {}
+fn use_array (array: i32[]) {}
 
-var intArray: Int[] = []
-var stringArray: String[] = []
+let intArray: i32[] = []
+let stringArray: String[] = []
 use_array([])
