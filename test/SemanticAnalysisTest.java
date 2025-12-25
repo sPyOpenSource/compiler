@@ -12,7 +12,7 @@ import org.junit.Test;
  * NOTE(norswap): These tests were derived from the {@link InterpreterTests} and don't test anything
  * more, but show how to idiomatically test semantic analysis. using {@link UraniumTestFixture}.
  */
-public final class SemanticAnalysisTests extends UraniumTestFixture
+public final class SemanticAnalysisTest extends UraniumTestFixture
 {
     // ---------------------------------------------------------------------------------------------
 

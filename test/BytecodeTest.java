@@ -16,7 +16,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 @SuppressWarnings("FieldCanBeLocal")
-public class BytecodeTests
+public class BytecodeTest
 {
     // TODO test multi dimensional arrays
 
