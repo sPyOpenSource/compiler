@@ -1,5 +1,5 @@
 import norswap.autumn.AutumnTestFixture;
-import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.RustGrammar;
 import norswap.lang.rust.ast.*;
 
 import static java.util.Arrays.asList;
@@ -10,7 +10,7 @@ import org.junit.Test;
 public class GrammarTests extends AutumnTestFixture {
     // ---------------------------------------------------------------------------------------------
 
-    private final SighGrammar grammar = new SighGrammar();
+    private final RustGrammar grammar = new RustGrammar();
     private final Class<?> grammarClass = grammar.getClass();
 
     // ---------------------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ public class GrammarTests extends AutumnTestFixture {
 
         successExpect("return", new ReturnNode(null, null));
         successExpect("return 1", new ReturnNode(null, intlit(1)));
-        successExpect("print(1)", new ExpressionStatementNode(null,
+        successExpect("print(1)", new ExpressionStatement(null,
             new FunCall(null, new Reference(null, "print"), asList(intlit(1)))));
         successExpect("{ return }", new BlockNode(null, asList(new ReturnNode(null, null))));
 

@@ -156,7 +156,7 @@ public final class SemanticAnalysis
         walker.register(FunDeclarationNode.class,       POST_VISIT, analysis::popScope);
 
         // statements
-        walker.register(ExpressionStatementNode.class,  PRE_VISIT,  node -> {});
+        walker.register(ExpressionStatement.class,  PRE_VISIT,  node -> {});
         walker.register(IfNode.class,                   PRE_VISIT,  analysis::ifStmt);
         walker.register(WhileNode.class,                PRE_VISIT,  analysis::whileStmt);
         walker.register(ReturnNode.class,               PRE_VISIT,  analysis::returnStmt);
@@ -217,8 +217,7 @@ public final class SemanticAnalysis
             if (ctx == null) {
                 r.errorFor("Could not resolve: " + node.name,
                     node, node.attr("decl"), node.attr("scope"), node.attr("type"));
-            }
-            else {
+            } else {
                 r.set(node, "scope", ctx.scope);
                 r.set(node, "decl", decl);
 

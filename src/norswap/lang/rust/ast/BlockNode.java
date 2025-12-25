@@ -4,9 +4,9 @@ import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 import java.util.List;
 
-public final class BlockNode extends StatementNode
+public final class BlockNode extends Statement
 {
-    public final List<StatementNode> statements;
+    public final List<Statement> statements;
 
     @SuppressWarnings("unchecked")
     public BlockNode (Span span, Object statements) {

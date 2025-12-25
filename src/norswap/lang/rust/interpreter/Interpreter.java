@@ -85,7 +85,7 @@ public final class Interpreter
         // no need to visitor other declarations! (use fallback)
 
         // statements
-        visitor.register(ExpressionStatementNode.class,  this::expressionStmt);
+        visitor.register(ExpressionStatement.class,  this::expressionStmt);
         visitor.register(IfNode.class,                   this::ifStmt);
         visitor.register(WhileNode.class,                this::whileStmt);
         visitor.register(ReturnNode.class,               this::returnStmt);
@@ -378,7 +378,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object expressionStmt (ExpressionStatementNode node) {
+    private Object expressionStmt (ExpressionStatement node) {
         get(node.expression);
         return null;  // discard value
     }

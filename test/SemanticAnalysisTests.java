@@ -1,7 +1,7 @@
 import norswap.autumn.AutumnTestFixture;
 import norswap.autumn.positions.LineMapString;
 import norswap.lang.rust.SemanticAnalysis;
-import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.RustGrammar;
 import norswap.lang.rust.ast.Node;
 import norswap.uranium.Reactor;
 import norswap.uranium.UraniumTestFixture;
@@ -16,7 +16,7 @@ public final class SemanticAnalysisTests extends UraniumTestFixture
 {
     // ---------------------------------------------------------------------------------------------
 
-    private final SighGrammar grammar = new SighGrammar();
+    private final RustGrammar grammar = new RustGrammar();
     private final AutumnTestFixture autumnFixture = new AutumnTestFixture();
 
     {

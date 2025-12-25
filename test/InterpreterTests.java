@@ -4,7 +4,7 @@ import norswap.autumn.Grammar.rule;
 import norswap.autumn.ParseResult;
 import norswap.autumn.positions.LineMapString;
 import norswap.lang.rust.SemanticAnalysis;
-import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.RustGrammar;
 import norswap.lang.rust.ast.Node;
 import norswap.lang.rust.interpreter.Interpreter;
 import norswap.lang.rust.interpreter.Null;
@@ -28,7 +28,7 @@ public final class InterpreterTests extends TestFixture {
 
     // ---------------------------------------------------------------------------------------------
 
-    private final SighGrammar grammar = new SighGrammar();
+    private final RustGrammar grammar = new RustGrammar();
     private final AutumnTestFixture autumnFixture = new AutumnTestFixture();
 
     {

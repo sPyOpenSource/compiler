@@ -9,7 +9,7 @@ public record MethodCall(
     List<TType> type_args,
     Identifier name,
     List<Expression> args
-    ) implements Expression {
+) implements Expression {
     public static MethodCall mk
         (@Nullable Expression receiver, List<TType> type_args, Identifier name,
          List<Expression> args)

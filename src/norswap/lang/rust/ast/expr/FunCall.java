@@ -18,7 +18,7 @@ public final class FunCall extends Expression
 
     @Override public String contents ()
     {
-        String args = arguments.size() == 0 ? "()" : "(...)";
+        String args = arguments.isEmpty() ? "()" : "(...)";
         return function.contents() + args;
     }
 }

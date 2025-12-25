@@ -126,7 +126,7 @@ public class BytecodeCompiler
         visitor.register(StructDeclarationNode.class,    this::structDecl);
 
         // statements
-        visitor.register(ExpressionStatementNode.class,  this::expressionStmt);
+        visitor.register(ExpressionStatement.class,  this::expressionStmt);
         visitor.register(IfNode.class,                   this::ifStmt);
         visitor.register(WhileNode.class,                this::whileStmt);
         visitor.register(ReturnNode.class,               this::returnStmt);
@@ -608,7 +608,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object expressionStmt (ExpressionStatementNode node) {
+    private Object expressionStmt (ExpressionStatement node) {
         run(node.expression);
         if (node.expression instanceof Assignment)
             pop(reactor.get(node.expression, "type"));

@@ -20,7 +20,7 @@ import norswap.lang.rust.ast.expr.StringLiteral;
 import norswap.lang.rust.ast.expr.UnaryExpression;
 
 @SuppressWarnings("Convert2MethodRef")
-public class SighGrammar extends Grammar
+public class RustGrammar extends Grammar
 {
     // ==== LEXICAL ===========================================================
 
@@ -211,7 +211,7 @@ public class SighGrammar extends Grammar
         .filter($ -> {
             if (!($.$[0] instanceof Assignment || $.$[0] instanceof FunCall))
                 return false;
-            $.push(new ExpressionStatementNode($.span(), $.$[0]));
+            $.push(new ExpressionStatement($.span(), $.$[0]));
             return true;
         });
 
@@ -235,7 +235,7 @@ public class SighGrammar extends Grammar
 
     public rule statements =
         statement.at_least(0)
-        .as_list(StatementNode.class);
+        .as_list(Statement.class);
 
     public rule block =
         seq(LBRACE, statements, RBRACE)
@@ -285,7 +285,7 @@ public class SighGrammar extends Grammar
 
     public rule root =
         seq(ws, statement.at_least(1))
-        .as_list(StatementNode.class)
+        .as_list(Statement.class)
         .push($ -> new RootNode($.span(), $.$[0]));
 
     @Override public rule root () {

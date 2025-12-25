@@ -17,11 +17,11 @@ import java.util.Set;
 import static norswap.utils.visitors.WalkVisitType.POST_VISIT;
 import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
 
-public final class SighRunner
+public final class Runner
 {
     // ---------------------------------------------------------------------------------------------
 
-    private final SighGrammar grammar = new SighGrammar();
+    private final RustGrammar grammar = new RustGrammar();
 
     private final ParseOptions parseOptions = ParseOptions.builder()
             .wellFormednessCheck(false)

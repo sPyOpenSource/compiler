@@ -4,7 +4,7 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public class ReturnNode extends StatementNode
+public class ReturnNode extends Statement
 {
     public final Expression expression;
 

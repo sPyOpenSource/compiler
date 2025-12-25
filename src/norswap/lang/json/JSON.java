@@ -74,9 +74,9 @@ public final class JSON extends Grammar
         number,
         this.object,
         this.array,
-        word("true")  .as_val(true),
-        word("false") .as_val(false),
-        word("null")  .as_val(null)));
+        word("true") .as_val(true),
+        word("false").as_val(false),
+        word("null") .as_val(null)));
 
     public rule pair =
         seq(string, COLON, value)

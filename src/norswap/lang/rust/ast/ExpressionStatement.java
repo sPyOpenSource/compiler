@@ -4,11 +4,11 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public class ExpressionStatementNode extends StatementNode
+public class ExpressionStatement extends Statement
 {
     public final Expression expression;
 
-    public ExpressionStatementNode (Span span, Object expression) {
+    public ExpressionStatement (Span span, Object expression) {
         super(span);
         this.expression = Util.cast(expression, Expression.class);
     }

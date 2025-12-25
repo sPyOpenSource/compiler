@@ -2,7 +2,7 @@ import norswap.autumn.Autumn;
 import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
 import norswap.lang.rust.SemanticAnalysis;
-import norswap.lang.rust.SighGrammar;
+import norswap.lang.rust.RustGrammar;
 import norswap.lang.rust.ast.Node;
 import norswap.lang.backend.ByteArrayClassLoader;
 import norswap.lang.backend.BytecodeCompiler;
@@ -28,7 +28,7 @@ public class BytecodeTests
      */
     public void check (String input, String expected)
     {
-        SighGrammar grammar = new SighGrammar();
+        RustGrammar grammar = new RustGrammar();
         ParseOptions options = ParseOptions.builder().recordCallStack(true).get();
         ParseResult parseResult = Autumn.parse(grammar.root, input, options);
         if (!parseResult.fullMatch) throw new AssertionError(parseResult.toString());

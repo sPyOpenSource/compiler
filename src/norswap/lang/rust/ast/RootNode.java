@@ -6,7 +6,7 @@ import java.util.List;
 
 public final class RootNode extends Node
 {
-    public final List<StatementNode> statements;
+    public final List<Statement> statements;
 
     @SuppressWarnings("unchecked")
     public RootNode (Span span, Object statements) {

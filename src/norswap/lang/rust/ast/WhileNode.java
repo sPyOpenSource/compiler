@@ -4,15 +4,15 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public final class WhileNode extends StatementNode
+public final class WhileNode extends Statement
 {
     public final Expression condition;
-    public final StatementNode body;
+    public final Statement body;
 
     public WhileNode (Span span, Object condition, Object body) {
         super(span);
         this.condition = Util.cast(condition, Expression.class);
-        this.body = Util.cast(body, StatementNode.class);
+        this.body = Util.cast(body, Statement.class);
     }
 
     @Override public String contents ()

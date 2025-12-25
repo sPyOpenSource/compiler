@@ -2,7 +2,7 @@ package norswap.lang.rust.ast;
 
 import norswap.autumn.positions.Span;
 
-public abstract class DeclarationNode extends StatementNode
+public abstract class DeclarationNode extends Statement
 {
     public DeclarationNode (Span span) {
         super(span);

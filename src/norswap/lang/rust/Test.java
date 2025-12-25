@@ -22,7 +22,7 @@ public final class Test
         String file = "kitchensink.si";
         String path = Paths.get("examples/", file).toAbsolutePath().toString();
         String src = IO.slurp(path);
-        SighGrammar grammar = new SighGrammar();
+        RustGrammar grammar = new RustGrammar();
         ParseOptions options = ParseOptions.builder().recordCallStack(true).get();
         ParseResult result = Autumn.parse(grammar.root, src, options);
         LineMap lineMap = new LineMapString(path, src);

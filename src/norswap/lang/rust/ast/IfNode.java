@@ -4,19 +4,19 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public final class IfNode extends StatementNode
+public final class IfNode extends Statement
 {
     public final Expression condition;
-    public final StatementNode trueStatement;
-    public final StatementNode falseStatement;
+    public final Statement trueStatement;
+    public final Statement falseStatement;
 
     public IfNode (Span span, Object condition, Object trueStatement, Object falseStatement) {
         super(span);
         this.condition = Util.cast(condition, Expression.class);
-        this.trueStatement = Util.cast(trueStatement, StatementNode.class);
+        this.trueStatement = Util.cast(trueStatement, Statement.class);
         this.falseStatement = falseStatement == null
             ? null
-            : Util.cast(falseStatement, StatementNode.class);
+            : Util.cast(falseStatement, Statement.class);
     }
 
     @Override public String contents ()
