@@ -38,25 +38,25 @@ import sjc.frontend.sjava.expr.ExPrePst;
 import sjc.frontend.sjava.expr.ExUna;
 import sjc.frontend.sjava.expr.ExVar;
 
-import sjc.frontend.sjava.st.StAssert;
-import sjc.frontend.sjava.st.StBlock;
-import sjc.frontend.sjava.st.StBreakable;
-import sjc.frontend.sjava.st.StEmpty;
-import sjc.frontend.sjava.st.StEndLoop;
-import sjc.frontend.sjava.st.StExpr;
-import sjc.frontend.sjava.st.StFor;
-import sjc.frontend.sjava.st.StForEnh;
-import sjc.frontend.sjava.st.StIf;
-import sjc.frontend.sjava.st.StLoop;
-import sjc.frontend.sjava.st.StRetMissing;
-import sjc.frontend.sjava.st.StReturn;
-import sjc.frontend.sjava.st.StSwitch;
-import sjc.frontend.sjava.st.StSync;
-import sjc.frontend.sjava.st.StThrow;
-import sjc.frontend.sjava.st.StTryCaFi;
-import sjc.frontend.sjava.st.StVrbl;
-import sjc.frontend.sjava.st.StWhile;
-import sjc.frontend.sjava.st.Stmt;
+import sjc.frontend.sjava.ast.StAssert;
+import sjc.frontend.sjava.ast.StBlock;
+import sjc.frontend.sjava.ast.StBreakable;
+import sjc.frontend.sjava.ast.StEmpty;
+import sjc.frontend.sjava.ast.StEndLoop;
+import sjc.frontend.sjava.ast.StExpr;
+import sjc.frontend.sjava.ast.StFor;
+import sjc.frontend.sjava.ast.StForEnh;
+import sjc.frontend.sjava.ast.StIf;
+import sjc.frontend.sjava.ast.StLoop;
+import sjc.frontend.sjava.ast.StRetMissing;
+import sjc.frontend.sjava.ast.StReturn;
+import sjc.frontend.sjava.ast.StSwitch;
+import sjc.frontend.sjava.ast.StSync;
+import sjc.frontend.sjava.ast.StThrow;
+import sjc.frontend.sjava.ast.StTryCaFi;
+import sjc.frontend.sjava.ast.StVrbl;
+import sjc.frontend.sjava.ast.StWhile;
+import sjc.frontend.sjava.ast.Stmt;
 
 /**
  * JParser: parser for the SJava-language

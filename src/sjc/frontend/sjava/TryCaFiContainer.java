@@ -18,7 +18,7 @@
 
 package sjc.frontend.sjava;
 
-import sjc.frontend.sjava.st.StTryCaFi;
+import sjc.frontend.sjava.ast.StTryCaFi;
 
 /**
  * TryCaFiContainer: container for current try-block and allocated throw-frames

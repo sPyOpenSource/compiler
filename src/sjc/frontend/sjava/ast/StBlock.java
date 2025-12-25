@@ -16,7 +16,7 @@
  * along with SJC. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package sjc.frontend.sjava.st;
+package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
 import sjc.compbase.variable.Vrbl;
@@ -72,20 +72,20 @@ public class StBlock extends StBreakable {
     }
 	
     @Override
-  public void printBreakableStatement(CodePrinter prnt) {
-    Stmt stmt = stmts;
-    boolean reportEnd = prnt.stmtBlockStart();
-    while (stmt != null) {
-      stmt.printToken(prnt);
-      stmt = stmt.nextStmt;
+    public void printBreakableStatement(CodePrinter prnt) {
+        Stmt stmt = stmts;
+        boolean reportEnd = prnt.stmtBlockStart();
+        while (stmt != null) {
+          stmt.printToken(prnt);
+          stmt = stmt.nextStmt;
+        }
+        if (reportEnd) prnt.stmtBlockEnd();
     }
-    if (reportEnd) prnt.stmtBlockEnd();
-  }
 
     @Override
-  protected int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-    return innerResolve(flowEntryCode, false, unitContext, mthdContext, ctx); //call is not from mthd
-  }
+    protected int innerResolve(int flowEntryCode, Unit unitContext, Mthd mthdContext, Context ctx) {
+        return innerResolve(flowEntryCode, false, unitContext, mthdContext, ctx); //call is not from mthd
+    }
   
     public int innerResolve(int flowCode, boolean isOutestInConstr, Unit unitContext, Mthd mthdContext, Context ctx) {
 	Stmt stmt;

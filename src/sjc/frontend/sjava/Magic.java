@@ -44,7 +44,7 @@ import sjc.frontend.ExVal;
 import sjc.frontend.sjava.expr.ExCall;
 import sjc.frontend.sjava.expr.ExClssMthdName;
 import sjc.frontend.sjava.expr.ExVar;
-import sjc.frontend.sjava.st.StExpr;
+import sjc.frontend.sjava.ast.StExpr;
 
 /**
  * Magic: all the magic functionality used for system programming

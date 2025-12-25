@@ -21,7 +21,7 @@ package sjc.frontend.sjava;
 import sjc.compbase.expr.Expr;
 import sjc.compbase.Token;
 import sjc.backend.Instruction;
-import sjc.frontend.sjava.st.Stmt;
+import sjc.frontend.sjava.ast.Stmt;
 
 /**
  * CondStmt: conditional statement used in switch-case-statements

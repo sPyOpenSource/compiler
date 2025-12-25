@@ -24,7 +24,7 @@ import sjc.compbase.variable.AccVar;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblList;
 import sjc.debug.DebugWriter;
-import sjc.frontend.sjava.st.StBlock;
+import sjc.frontend.sjava.ast.StBlock;
 import sjc.memory.ImageContainer.Location;
 
 /**

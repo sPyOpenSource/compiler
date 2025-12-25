@@ -40,11 +40,11 @@ import sjc.output.HexOut;
 import sjc.backend.Instruction;
 import sjc.frontend.sjava.expr.ExCall;
 import sjc.frontend.sjava.expr.ExVar;
-import sjc.frontend.sjava.st.StBlock;
-import sjc.frontend.sjava.st.StEmpty;
-import sjc.frontend.sjava.st.StExpr;
-import sjc.frontend.sjava.st.StSync;
-import sjc.frontend.sjava.st.Stmt;
+import sjc.frontend.sjava.ast.StBlock;
+import sjc.frontend.sjava.ast.StEmpty;
+import sjc.frontend.sjava.ast.StExpr;
+import sjc.frontend.sjava.ast.StSync;
+import sjc.frontend.sjava.ast.Stmt;
 
 /**
  * JMthd: java-specific behaviour of methods

@@ -16,7 +16,7 @@
  * along with SJC. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package sjc.frontend.sjava.st;
+package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
 import sjc.debug.CodePrinter;
@@ -42,11 +42,13 @@ public class StAssert extends Stmt {
         super(fid, il, ic);
     }
 	
-	public void printToken(CodePrinter prnt) {
-	  prnt.stmtAssert(cond, msg);
-	}
+    @Override
+    public void printToken(CodePrinter prnt) {
+        prnt.stmtAssert(cond, msg);
+    }
 	
-	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
+    @Override
+    protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
     int myFlow=flowCode;
     
     if ((mthdContext.marker&Marks.K_ASRT)==0 && !ctx.globalAssert) {
