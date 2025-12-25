@@ -1,3 +1,5 @@
+package lang.rust;
+
 import norswap.autumn.AutumnTestFixture;
 import norswap.autumn.positions.LineMapString;
 import norswap.lang.rust.SemanticAnalysis;

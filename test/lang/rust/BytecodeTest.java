@@ -1,3 +1,5 @@
+package lang.rust;
+
 import norswap.autumn.Autumn;
 import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;

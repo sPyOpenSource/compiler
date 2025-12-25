@@ -1,3 +1,5 @@
+package lang.rust;
+
 import norswap.autumn.AutumnTestFixture;
 import norswap.lang.rust.RustGrammar;
 import norswap.lang.rust.ast.*;
