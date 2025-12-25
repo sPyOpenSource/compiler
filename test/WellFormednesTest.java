@@ -5,7 +5,7 @@ import norswap.autumn.ParseOptions;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public class TestWellFormednes extends Grammar
+public class WellFormednesTest extends Grammar
 {
     // ---------------------------------------------------------------------------------------------
 
