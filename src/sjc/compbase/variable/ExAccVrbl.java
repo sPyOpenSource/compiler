@@ -89,7 +89,6 @@ public abstract class ExAccVrbl extends Expr {
   public Unit outerAccessStart; //inner unit where to start access to outer variable
   
   private final static String ERR_INVMODE = "ExAccVrbl.genOutput* with invalid accMode";
-  
   private int[] outerObj, outerRestore;
   
   public ExAccVrbl(int fid, int il, int ic) {

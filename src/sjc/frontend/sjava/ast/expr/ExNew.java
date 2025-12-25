@@ -83,17 +83,19 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExNew extends ExAbsCall {
-  public boolean asArray;
+    public boolean asArray;
+    public TypeRef obj;
+
     protected boolean multArray, canBeDoneAtCompileTime;
-	public TypeRef obj;
-	private Unit destTypeUnit;
-	private UnitList importedClass, runtimeClass;
-	protected ExConstNew constNew;
-  private boolean callExplicitConstr;
+    protected ExConstNew constNew;
+
+    private Unit destTypeUnit;
+    private UnitList importedClass, runtimeClass;
+    private boolean callExplicitConstr;
   
-  public ExNew(int fid, int il, int ic) {
-    super(fid, il, ic);
-  }
+    public ExNew(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
   
   public void printExpression(CodePrinter codePrnt) {
     codePrnt.exprNew(this, asArray, multArray, callExplicitConstr, destTypeUnit, dest, par);

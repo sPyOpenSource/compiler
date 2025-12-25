@@ -58,21 +58,23 @@ import sjc.frontend.sjava.SJava;
  */
 
 public class ExCall extends ExAbsCall {
-	public String id;
-	public int magicType; //==0 if not a magic call
-  private boolean noCall; //only used for dummy-super()-calls
+    public String id;
+    public int magicType; //==0 if not a magic call
+    private boolean noCall; //only used for dummy-super()-calls
 	
-	public ExCall(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    public ExCall(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
-  public void printExpression(CodePrinter codePrnt) {
-    codePrnt.exprCall(dest, par);
-  }
+    @Override
+    public void printExpression(CodePrinter codePrnt) {
+        codePrnt.exprCall(dest, par);
+    }
   
-	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
-	  return mthdResolve(unitContext, mthdContext, unitContext, mthdContext, resolveFlags, false, ctx);
-	}
+    @Override
+    public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
+	return mthdResolve(unitContext, mthdContext, unitContext, mthdContext, resolveFlags, false, ctx);
+    }
 	
 	public boolean mthdResolve(Unit inUnit, Mthd inMthd, Unit unitContext, Mthd mthdContext, int resolveFlags, boolean partOfSuper, Context ctx) {
 	  if (!resolveInMthd(id, false, inUnit, inMthd, unitContext, mthdContext, resolveFlags, partOfSuper, ctx)) return false;

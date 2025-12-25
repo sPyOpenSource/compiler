@@ -27,10 +27,10 @@ package sjc.compbase.variable;
  */
 
 public class VrblList {
-  public Vrbl vrbl;
-  public VrblList next;
-  
-  public VrblList(Vrbl iv) {
-    vrbl=iv;
-  }
+    public Vrbl vrbl;
+    public VrblList next;
+
+    public VrblList(Vrbl iv) {
+        vrbl = iv;
+    }
 }

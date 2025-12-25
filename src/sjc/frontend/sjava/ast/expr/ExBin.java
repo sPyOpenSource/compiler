@@ -93,14 +93,15 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExBin extends ExCheckType {
-  private final static String INVCALLGETCONST = "invalid call to getConst*Val";
-  private final static String ARINOTOBJ = "arithmetic operators are not supported for object types";
-  public Expr le, ri;
-  protected int op;
-  public int rank;
-  private boolean genAssignCall, genAriCall;
-  private char ariCallOp;
+    private final static String INVCALLGETCONST = "invalid call to getConst*Val";
+    private final static String ARINOTOBJ = "arithmetic operators are not supported for object types";
+    private boolean genAssignCall, genAriCall;
+    private char ariCallOp;
   
+    protected int op;
+    public Expr le, ri;
+    public int rank;
+
   public ExBin(int iop, int ira, int fid, int il, int ic) {
     super(fid, il, ic);
     op=iop;

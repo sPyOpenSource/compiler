@@ -26,7 +26,7 @@ package sjc.compbase.variable;
  */
 
 public class VrblStateList {
-  public Vrbl vrbl;
-  public int modCopy;
-  public VrblStateList next;
+    public Vrbl vrbl;
+    public int modCopy;
+    public VrblStateList next;
 }

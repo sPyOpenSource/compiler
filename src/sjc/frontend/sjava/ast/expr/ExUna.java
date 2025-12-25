@@ -244,6 +244,7 @@ public class ExUna extends Expr {
     ctx.arch.deallocRestoreReg(0, reg, restore);
   }
   
+    @Override
     public void genOutputCondJmp(Instruction jumpDest, boolean isTrue, Instruction elseDest, Context ctx) {
     if (baseType!=T_BOOL) {
       compErr(ctx, "ExUna.genOutputCondJump needs boolean type");

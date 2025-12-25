@@ -73,29 +73,29 @@ import sjc.compbase.Unit;
  */
 
 public class Vrbl extends AccVar {
-  public final static String NOREGFREE = "registers not free in Vrbl.genInitCode";
+    public final static String NOREGFREE = "registers not free in Vrbl.genInitCode";
   
-	//required fields for resolving
-	public Vrbl nextVrbl;
-  public Expr init;
+    //required fields for resolving
+    public Vrbl nextVrbl;
+    public Expr init;
 	
-	public Vrbl(String ii, int im, int fid, int il, int ic) {
-		super(fid, il, ic);
-		name=ii;
-		modifier=im;
-	}
-	
-	public FilledAnno getAnnotation() { //overwritten by VrblAnno
-	  return null;
-	}
-	
-	public boolean resolveConstant(Unit owner, Context ctx) {
-	  if (location==L_CONST) return true;
-	  if (location!=L_CONSTDC) {
-      printPos(ctx, "cyclic initialization for variable ");
-      ctx.out.print(name);
-      return false; //cyclic declaration
+    public Vrbl(String ii, int im, int fid, int il, int ic) {
+        super(fid, il, ic);
+        name = ii;
+        modifier = im;
     }
+	
+    public FilledAnno getAnnotation() { //overwritten by VrblAnno
+	return null;
+    }
+	
+    public boolean resolveConstant(Unit owner, Context ctx) {
+	if (location == L_CONST) return true;
+	if (location != L_CONSTDC) {
+            printPos(ctx, "cyclic initialization for variable ");
+            ctx.out.print(name);
+            return false; //cyclic declaration
+        }
 	  location=L_CONSTTR;
 	  if (init!=null) {
 	    if (!init.resolve(owner, owner.initStat, Expr.RF_CHECKREAD, type, ctx)) {

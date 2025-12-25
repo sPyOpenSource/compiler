@@ -101,25 +101,27 @@ public class ExVar extends ExAccVrbl {
 
     public ExVar(String ip, int fid, int il, int ic) {
         super(fid, il, ic);
-        id=ip;
+        id = ip;
     }
 	
-	public void printExpression(CodePrinter codePrnt) {
-	  codePrnt.exprVar(dest, id, isThis);
-	}
+    @Override
+    public void printExpression(CodePrinter codePrnt) {
+	codePrnt.exprVar(dest, id, isThis);
+    }
 	
-	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
-    if (id.equals("this")) return varResolveThis(unitContext, mthdContext, ctx);
-	  if (!varResolve(null, unitContext, mthdContext, unitContext, mthdContext, resolveFlags,
+    @Override
+    public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
+        if (id.equals("this")) return varResolveThis(unitContext, mthdContext, ctx);
+	if (!varResolve(null, unitContext, mthdContext, unitContext, mthdContext, resolveFlags,
 	      false, preferredType, ctx)) return false;
-	  if (dest==null) { //destination is class or package
+	if (dest==null) { //destination is class or package
 	    printPos(ctx, "var ");
 	    ctx.out.print(id);
 	    ctx.out.print(" not found");
 	    return false;
+        }
+	return true;
     }
-	  return true;
-	}
   
   protected boolean varResolveThis(Unit inUnit, Mthd inMthd, Context ctx) {
     if ((inMthd.modifier&Modifier.M_STAT)!=0) {

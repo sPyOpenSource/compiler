@@ -49,16 +49,16 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExPrePst extends Expr {
-	private Expr ex;
-	private int op;
-  private boolean pre; //true for pre-, false for post-operation
+    private Expr ex;
+    private int op;
+    private boolean pre; //true for pre-, false for post-operation
 	
-	public ExPrePst(Expr iex, int iop, boolean ipr, int fid, int il, int ic) {
-		super(fid, il, ic);
-    ex=iex;
-		op=iop;
-    pre=ipr;
-	}
+    public ExPrePst(Expr iex, int iop, boolean ipr, int fid, int il, int ic) {
+        super(fid, il, ic);
+        ex = iex;
+        op = iop;
+        pre = ipr;
+    }
 	
 	public void printExpression(CodePrinter codePrnt) {
 	  codePrnt.exprPrePst(ex, op&0xFFFF, pre);

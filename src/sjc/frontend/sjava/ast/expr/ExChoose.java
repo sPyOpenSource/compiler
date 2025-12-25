@@ -52,15 +52,16 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExChoose extends ExBin {
-	public Expr ce; //extends ExBin, so le and ri are recycled
-	
-	public ExChoose(int iop, int ira, int fid, int il, int ic) {
-		super(iop, ira, fid, il, ic);
-	}
-	
-	public void printExpression(CodePrinter codePrnt) {
-	  codePrnt.exprChoose(le, ce, ri);
-	}
+    public Expr ce; //extends ExBin, so le and ri are recycled
+
+    public ExChoose(int iop, int ira, int fid, int il, int ic) {
+        super(iop, ira, fid, il, ic);
+    }
+
+    @Override
+    public void printExpression(CodePrinter codePrnt) {
+        codePrnt.exprChoose(le, ce, ri);
+    }
 	
 	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
 	  boolean trRes=false, faRes=false;
@@ -205,12 +206,17 @@ public class ExChoose extends ExBin {
     int res;
     
     res=from.getRegType(ctx);
-    if (res==StdTypes.T_PTR) to.baseType=StdTypes.T_NNPT;
-    else if (res==StdTypes.T_DPTR) to.baseType=StdTypes.T_NDPT;
-    else {
-      printPos(ctx, "not a pointer type");
-      return false;
-    }
+        switch (res) {
+            case StdTypes.T_PTR:
+                to.baseType=StdTypes.T_NNPT;
+                break;
+            case StdTypes.T_DPTR:
+                to.baseType=StdTypes.T_NDPT;
+                break;
+            default:
+                printPos(ctx, "not a pointer type");
+                return false;
+        }
     return true;
   }
 }

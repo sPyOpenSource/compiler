@@ -28,15 +28,15 @@ import sjc.compbase.FilledAnno;
  */
 
 public class VrblAnno extends Vrbl {
-  public FilledAnno anno;
+    public FilledAnno anno;
   
-  public VrblAnno(String ii, int im, FilledAnno ia, int fid, int il, int ic) {
-		super(ii, im, fid, il, ic);
-		anno=ia;
-	}
+    public VrblAnno(String ii, int im, FilledAnno ia, int fid, int il, int ic) {
+        super(ii, im, fid, il, ic);
+        anno = ia;
+    }
   
-  @Override
-  public FilledAnno getAnnotation() {
-    return anno;
-  }
+    @Override
+    public FilledAnno getAnnotation() {
+        return anno;
+    }
 }

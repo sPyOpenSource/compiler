@@ -70,21 +70,21 @@ import sjc.frontend.ExVal;
  */
 
 public class ExEnc extends ExCheckType {
-  private final static String EXCRANGE = "value exceeds range";
-  private final static String RANGEUNCH = "range in conversion unchecked";
-  private final static String WARNONLY = " (warning)";
-  private final static String INSCONV  = "inserted implicit conversion";
+    private final static String EXCRANGE = "value exceeds range";
+    private final static String RANGEUNCH = "range in conversion unchecked";
+    private final static String WARNONLY = " (warning)";
+    private final static String INSCONV  = "inserted implicit conversion";
   
-	public Expr ex;
-	public TypeRef convertTo;
-  
-	private int calcConstType; //filled in implConvResolve
-	private int constInt; //filled by getIntOfEnc and getFloatOfEnc
-	private long constLong; //filled by getLongOfEnc and getDoubleOfEnc
+    public Expr ex;
+    public TypeRef convertTo;
 
-	public ExEnc(int fid, int il, int ic) {
-		super(fid, il, ic);
-	}
+    private int calcConstType; //filled in implConvResolve
+    private int constInt; //filled by getIntOfEnc and getFloatOfEnc
+    private long constLong; //filled by getLongOfEnc and getDoubleOfEnc
+
+    public ExEnc(int fid, int il, int ic) {
+        super(fid, il, ic);
+    }
 	
 	public void printExpression(CodePrinter codePrnt) {
 	  if (convertTo==null && (ex instanceof ExVal || ex instanceof ExDeRef)) ex.printExpression(codePrnt);

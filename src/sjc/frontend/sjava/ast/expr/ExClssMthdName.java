@@ -60,17 +60,18 @@ import sjc.debug.CodePrinter;
  */
 
 public class ExClssMthdName extends Expr {
-  public TypeRef destType; //used in instanceof
-  protected String unitName, mthdName; //used in MAGIC-expressions
+    public TypeRef destType; //used in instanceof
     public Unit destUnit;
-  public Mthd destMthd;
+    public Mthd destMthd;
     public UnitList importedClass;
-  private boolean doImport; //shall we import the given unit? only false for MAGICs
+    
+    protected String unitName, mthdName; //used in MAGIC-expressions
+    private boolean doImport; //shall we import the given unit? only false for MAGICs
 	
-	public ExClssMthdName(int fid, int il, int ic) {
-		super(fid, il, ic);
-    doImport=true; //called from parser, unitType will be set there
-	}
+    public ExClssMthdName(int fid, int il, int ic) {
+        super(fid, il, ic);
+        doImport = true; //called from parser, unitType will be set there
+    }
 	
   public ExClssMthdName(String iun, String imn, boolean idi, int fid, int il, int ic) {
     super(fid, il, ic);
