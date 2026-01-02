@@ -17,21 +17,20 @@ __refer arr_vmtable_jx_zero_VMClass_from_jx_zero_VMClass[] = {
     func_jx_zero_VMClass_getMethods____3Ljx_zero_VMMethod_2  //5
 };
 __refer arr_vmtable_jx_zero_VMClass_from_java_lang_Object[] = {
-    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //0
-    func_java_lang_Object_hashCode___I,  //1
-    func_java_lang_Object_clone___Ljava_lang_Object_2,  //2
-    func_java_lang_Object_wait___V,  //3
-    func_java_lang_Object_wait__J_V,  //4
-    func_java_lang_Object_wait__JI_V,  //5
-    func_java_lang_Object_notify___V,  //6
-    func_java_lang_Object_notifyAll___V,  //7
-    func_java_lang_Object_toString___Ljava_lang_String_2,  //8
-    func_java_lang_Object_equals__Ljava_lang_Object_2_Z,  //9
-    func_java_lang_Object_finalize___V  //10
+    func_java_lang_Object_toString___Ljava_lang_String_2,  //0
+    func_java_lang_Object_wait___V,  //1
+    func_java_lang_Object_finalize___V,  //2
+    func_java_lang_Object_equals__Ljava_lang_Object_2_Z,  //3
+    func_java_lang_Object_clone___Ljava_lang_Object_2,  //4
+    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //5
+    func_java_lang_Object_wait__J_V,  //6
+    func_java_lang_Object_notify___V,  //7
+    func_java_lang_Object_notifyAll___V,  //8
+    func_java_lang_Object_hashCode___I  //9
 };
 VMTable vmtable_jx_zero_VMClass[] = {
-    {102, 6, arr_vmtable_jx_zero_VMClass_from_jx_zero_VMClass}, //0
-    {10, 11, arr_vmtable_jx_zero_VMClass_from_java_lang_Object}, //1
+    {63, 6, arr_vmtable_jx_zero_VMClass_from_jx_zero_VMClass}, //0
+    {5, 10, arr_vmtable_jx_zero_VMClass_from_java_lang_Object}, //1
 };
 
 
@@ -44,7 +43,7 @@ struct java_lang_String* func_jx_zero_VMClass_getName___Ljava_lang_String_2(JThr
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 304, &rstack[0], NULL, &sp);
+    StackFrame *__frame = method_enter(runtime, 383, &rstack[0], NULL, &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;
@@ -67,7 +66,7 @@ s8 func_jx_zero_VMClass_isPrimitive___Z(JThreadRuntime *runtime){
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 305, &rstack[0], NULL, &sp);
+    StackFrame *__frame = method_enter(runtime, 384, &rstack[0], NULL, &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;
@@ -92,7 +91,7 @@ s8 func_jx_zero_VMClass_equals__Ljx_zero_VMClass_2_Z(JThreadRuntime *runtime, st
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 306, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 385, &rstack[0], &rlocal[0], &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;
@@ -115,7 +114,7 @@ s32 func_jx_zero_VMClass_getInstanceSize___I(JThreadRuntime *runtime){
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 307, &rstack[0], NULL, &sp);
+    StackFrame *__frame = method_enter(runtime, 386, &rstack[0], NULL, &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;
@@ -138,7 +137,7 @@ struct java_lang_Object* func_jx_zero_VMClass_newInstance___Ljava_lang_Object_2(
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 308, &rstack[0], NULL, &sp);
+    StackFrame *__frame = method_enter(runtime, 387, &rstack[0], NULL, &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;
@@ -161,7 +160,7 @@ JArray * func_jx_zero_VMClass_getMethods____3Ljx_zero_VMMethod_2(JThreadRuntime 
     StackItem stack[1];
     RStackItem rstack[1];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 309, &rstack[0], NULL, &sp);
+    StackFrame *__frame = method_enter(runtime, 388, &rstack[0], NULL, &sp);
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
         default: goto __ExceptionHandlerNotFound;

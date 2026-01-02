@@ -469,7 +469,7 @@ public class MV extends MethodVisitor {
                 break;
             case Opcodes.LREM: // 113
                 builder.add("if (!stack[sp - 2].i) {");
-                builder.add("    rstack[sp++].obj = " + AssistLLVM.FUNC_CONSTRUCT_AND_THROW_EXCEPTION + "(runtime, " + AssistLLVM.getClassIndex(CLASS_JAVA_LANG_ARITHMETIC_EXCEPTION) + ", " + builder.curLabel.getOffset() + ", " + curLineNo + ");");
+                builder.add("    rstack[sp++].obj = " + AssistLLVM.FUNC_CONSTRUCT_AND_THROW_EXCEPTION + "(runtime, " + AssistLLVM.getClassIndex(CLASS_JAVA_LANG_ARITHMETIC_EXCEPTION) + ", ");// + builder.curLabel.getOffset() + ", " + curLineNo + ");");
                 builder.add("    goto " + EXCEPTION_HANDLER + ";");
                 builder.add("}");
                 builder.add("stack[sp - 4].j = stack[sp - 4].j % stack[sp - 2].j; ");
