@@ -1,4 +1,4 @@
-// CLASS: java/lang/OutOfMemoryError extends java/lang/VirtualMachineError
+// CLASS: java/lang/OutOfMemoryError extends java/lang/Error
 #include "metadata.h"
 
 
@@ -11,95 +11,35 @@
 __refer arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_OutOfMemoryError[] = {
     NULL
 };
-__refer arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_VirtualMachineError[] = {
-    NULL
-};
 __refer arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Error[] = {
     NULL
 };
 __refer arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Throwable[] = {
-    func_java_lang_Throwable_toString___Ljava_lang_String_2,  //0
-    func_java_lang_Throwable_getMessage___Ljava_lang_String_2,  //1
-    func_java_lang_Throwable_printStackTrace___V,  //2
-    func_java_lang_Throwable_printStackTrace__Ljava_io_PrintStream_2_V,  //3
-    func_java_lang_Throwable_getLocalizedMessage___Ljava_lang_String_2,  //4
-    func_java_lang_Throwable_initCause__Ljava_lang_Throwable_2_Ljava_lang_Throwable_2,  //5
-    func_java_lang_Throwable_addSuppressed__Ljava_lang_Throwable_2_V,  //6
-    func_java_lang_Throwable_getStackTrace____3Ljava_lang_StackTraceElement_2  //7
+    func_java_lang_Throwable_getMessage___Ljava_lang_String_2,  //0
+    func_java_lang_Throwable_toString___Ljava_lang_String_2,  //1
+    func_java_lang_Throwable_getStackTrace____3Ljava_lang_StackTraceElement_2,  //2
+    func_java_lang_Throwable_getCodeStack___Ljava_lang_String_2,  //3
+    func_java_lang_Throwable_printStackTrace___V  //4
 };
 __refer arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Object[] = {
-    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //0
-    func_java_lang_Object_hashCode___I,  //1
-    func_java_lang_Object_clone___Ljava_lang_Object_2,  //2
-    func_java_lang_Object_wait___V,  //3
-    func_java_lang_Object_wait__J_V,  //4
-    func_java_lang_Object_wait__JI_V,  //5
-    func_java_lang_Object_notify___V,  //6
-    func_java_lang_Object_notifyAll___V,  //7
-    func_java_lang_Throwable_toString___Ljava_lang_String_2,  //8
-    func_java_lang_Object_equals__Ljava_lang_Object_2_Z,  //9
-    func_java_lang_Object_finalize___V  //10
+    func_java_lang_Throwable_toString___Ljava_lang_String_2,  //0
+    func_java_lang_Object_wait___V,  //1
+    func_java_lang_Object_finalize___V,  //2
+    func_java_lang_Object_equals__Ljava_lang_Object_2_Z,  //3
+    func_java_lang_Object_clone___Ljava_lang_Object_2,  //4
+    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //5
+    func_java_lang_Object_wait__J_V,  //6
+    func_java_lang_Object_notify___V,  //7
+    func_java_lang_Object_notifyAll___V,  //8
+    func_java_lang_Object_hashCode___I  //9
 };
 VMTable vmtable_java_lang_OutOfMemoryError[] = {
-    {141, 0, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_OutOfMemoryError}, //0
-    {142, 0, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_VirtualMachineError}, //1
-    {7, 0, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Error}, //2
-    {22, 8, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Throwable}, //3
-    {10, 11, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Object}, //4
+    {92, 0, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_OutOfMemoryError}, //0
+    {93, 0, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Error}, //1
+    {56, 5, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Throwable}, //2
+    {5, 10, arr_vmtable_java_lang_OutOfMemoryError_from_java_lang_Object}, //3
 };
 
-
-
-// locals: 2
-// stack: 2
-// args: 1
-void func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntime *runtime, struct java_lang_String* p0){
-    
-    StackItem local[2] = {0};
-    RStackItem rlocal[2] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 396, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
-    ; 
-    //  line no 6 , L2003463579 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 6;
-    rstack[sp++].obj = rlocal[0].obj;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokespecial java/lang/VirtualMachineError.<init>(Ljava/lang/String;)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_lang_VirtualMachineError__init___Ljava_lang_String_2_V(runtime, rstack[sp + 0].obj);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 7 , L567294307 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(runtime, ins);
-}
 
 
 // locals: 1
@@ -112,27 +52,29 @@ void func_java_lang_OutOfMemoryError__init____V(JThreadRuntime *runtime){
     StackItem stack[2];
     RStackItem rstack[2];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 397, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 530, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 8 , L418179060 , bytecode index = 
+    //  line no 9 , L118394766 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 8;
+    __frame->lineNo = 9;
     rstack[sp++].obj = rlocal[0].obj;
-    // invokespecial java/lang/VirtualMachineError.<init>()V
+    // invokespecial java/lang/Error.<init>()V
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        func_java_lang_VirtualMachineError__init____V(runtime);
+        func_java_lang_Error__init____V(runtime);
         sp += 0;
         if (runtime->exception) {
             rstack[sp++].obj = runtime->exception;
             goto __ExceptionHandler;
         }
     }
+    ; 
+    //  line no 10 , L386163331 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -147,6 +89,58 @@ void func_java_lang_OutOfMemoryError__init____V(JThreadRuntime *runtime){
 
 void bridge_java_lang_OutOfMemoryError__init____V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
     func_java_lang_OutOfMemoryError__init____V(runtime, ins);
+}
+
+
+// locals: 2
+// stack: 2
+// args: 1
+void func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntime *runtime, struct java_lang_String* p0){
+    
+    StackItem local[2] = {0};
+    RStackItem rlocal[2] = {0};
+    StackItem stack[3];
+    RStackItem rstack[3];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 531, &rstack[0], &rlocal[0], &sp);
+    rlocal[0].obj = p0;
+    ; 
+    //  line no 13 , L694316372 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 13;
+    rstack[sp++].obj = rlocal[0].obj;
+    rstack[sp++].obj = rlocal[1].obj;
+    // invokespecial java/lang/Error.<init>(Ljava/lang/String;)V
+    {
+        sp -= 1;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        func_java_lang_Error__init___Ljava_lang_String_2_V(runtime, rstack[sp + 0].obj);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    ; 
+    //  line no 14 , L1516500233 , bytecode index = 
+    method_exit(runtime);
+    return;
+    ; 
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return ;
+}
+
+void bridge_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_lang_OutOfMemoryError__init___Ljava_lang_String_2_V(runtime, ins);
 }
 
 

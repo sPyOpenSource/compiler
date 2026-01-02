@@ -32,9 +32,10 @@ public class ClassHelper {
         try {
             files = new JarFile[]{
                 new JarFile("../Zero/dist/Zero.jar"),
-                new JarFile("../OS/dist/OS.jar"),
+                new JarFile("/Users/xuyi/Source/Java/tinyj2c-master/option_pack/luaj/core/dist/j2c.jar")
+                //new JarFile("../OS/dist/OS.jar"),
                 //new JarFile("../AIZero/dist/AIZero.jar"),
-                new JarFile("../test/ifOS/dist/ifOS.jar"),
+                //new JarFile("../test/ifOS/dist/ifOS.jar"),
                 //new JarFile("/Users/xuyi/Source/Java/lib/jSerialComm-2.7.0.jar")
             };
         } catch (IOException ex) {

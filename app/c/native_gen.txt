@@ -1,0 +1,362 @@
+#include <stdlib.h>
+#include "../../vm/jvm.h"
+//native methods
+void func_java_io_ConsoleOutputStream_writeImpl__II_V(JThreadRuntime *runtime, struct java_io_ConsoleOutputStream* p0, s32 p1, s32 p2){
+    return ;
+}
+
+
+s32 func_java_io_RandomAccessFile_available0__J_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_closeFile__J_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_flush0__J_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_length0__J_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1){
+    return 0;
+}
+
+
+s64 func_java_io_RandomAccessFile_openFile___3B_3B_J(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, JArray * p1, JArray * p2){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_read0__J_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_readbuf__J_3BII_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1, JArray * p3, s32 p4, s32 p5){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_seek0__JJ_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1, s64 p3){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_setLength0__JJ_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1, s64 p3){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_write0__JI_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1, s32 p3){
+    return 0;
+}
+
+
+s32 func_java_io_RandomAccessFile_writebuf__J_3BII_I(JThreadRuntime *runtime, struct java_io_RandomAccessFile* p0, s64 p1, JArray * p3, s32 p4, s32 p5){
+    return 0;
+}
+
+
+struct java_lang_Class* func_java_lang_Class_forName__Ljava_lang_String_2_Ljava_lang_Class_2(JThreadRuntime *runtime, struct java_lang_Class* p0, struct java_lang_String* p1){
+    return NULL;
+}
+
+
+struct java_lang_String* func_java_lang_Class_getName___Ljava_lang_String_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+struct java_lang_Class* func_java_lang_Class_getPrimitiveClass__Ljava_lang_String_2_Ljava_lang_Class_2(JThreadRuntime *runtime, struct java_lang_Class* p0, struct java_lang_String* p1){
+    return NULL;
+}
+
+
+struct java_lang_Class* func_java_lang_Class_getSuperclass___Ljava_lang_Class_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+void func_java_lang_Class_initReflect__Ljava_lang_Class_2_V(JThreadRuntime *runtime, struct java_lang_Class* p0, struct java_lang_Class* p1){
+    return ;
+}
+
+
+s8 func_java_lang_Class_isArray___Z(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+s8 func_java_lang_Class_isAssignableFrom__Ljava_lang_Class_2_Z(JThreadRuntime *runtime, struct java_lang_Class* p0){
+    return 0;
+}
+
+
+s8 func_java_lang_Class_isInstance__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
+    return 0;
+}
+
+
+s8 func_java_lang_Class_isInterface___Z(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+s8 func_java_lang_Class_isPrimitive___Z(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+struct java_lang_Object* func_java_lang_Class_newInstance___Ljava_lang_Object_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+s64 func_java_lang_Double_doubleToLongBits__D_J(JThreadRuntime *runtime, struct java_lang_Double* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Double_longBitsToDouble__J_D(JThreadRuntime *runtime, struct java_lang_Double* p0, s64 p1){
+    return 0;
+}
+
+
+s32 func_java_lang_Float_floatToIntBits__F_I(JThreadRuntime *runtime, struct java_lang_Float* p0, f32 p1){
+    return 0;
+}
+
+
+f32 func_java_lang_Float_intBitsToFloat__I_F(JThreadRuntime *runtime, struct java_lang_Float* p0, s32 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_acos__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_asin__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_atan__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_atan2__DD_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1, f64 p3){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_ceil__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_cos__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_exp__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_floor__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_log__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_pow__DD_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1, f64 p3){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_sin__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_sqrt__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+f64 func_java_lang_Math_tan__D_D(JThreadRuntime *runtime, struct java_lang_Math* p0, f64 p1){
+    return 0;
+}
+
+
+struct java_lang_Object* func_java_lang_Object_clone___Ljava_lang_Object_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+struct java_lang_Class* func_java_lang_Object_getClass___Ljava_lang_Class_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+s32 func_java_lang_Object_hashCode___I(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+void func_java_lang_Object_notify___V(JThreadRuntime *runtime){
+    return ;
+}
+
+
+void func_java_lang_Object_notifyAll___V(JThreadRuntime *runtime){
+    return ;
+}
+
+
+void func_java_lang_Object_wait__J_V(JThreadRuntime *runtime, s64 p0){
+    return ;
+}
+
+
+void func_java_lang_Runtime_exitInternal__I_V(JThreadRuntime *runtime, s32 p0){
+    return ;
+}
+
+
+s64 func_java_lang_Runtime_freeMemory___J(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+void func_java_lang_Runtime_gc___V(JThreadRuntime *runtime){
+    return ;
+}
+
+
+s64 func_java_lang_Runtime_totalMemory___J(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+void func_java_lang_System_arraycopy__Ljava_lang_Object_2ILjava_lang_Object_2II_V(JThreadRuntime *runtime, struct java_lang_System* p0, struct java_lang_Object* p1, s32 p2, struct java_lang_Object* p3, s32 p4, s32 p5){
+    return ;
+}
+
+
+s64 func_java_lang_System_currentTimeMillis___J(JThreadRuntime *runtime, struct java_lang_System* p0){
+    return 0;
+}
+
+
+s64 func_java_lang_System_nanoTime___J(JThreadRuntime *runtime, struct java_lang_System* p0){
+    return 0;
+}
+
+
+s32 func_java_lang_Thread_activeCount___I(JThreadRuntime *runtime, struct java_lang_Thread* p0){
+    return 0;
+}
+
+
+s64 func_java_lang_Thread_createStackFrame___J(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+struct java_lang_Thread* func_java_lang_Thread_currentThread___Ljava_lang_Thread_2(JThreadRuntime *runtime, struct java_lang_Thread* p0){
+    return NULL;
+}
+
+
+void func_java_lang_Thread_interrupt0___V(JThreadRuntime *runtime){
+    return ;
+}
+
+
+s8 func_java_lang_Thread_isAlive___Z(JThreadRuntime *runtime){
+    return 0;
+}
+
+
+void func_java_lang_Thread_setPriority0__I_V(JThreadRuntime *runtime, s32 p0){
+    return ;
+}
+
+
+void func_java_lang_Thread_sleep__J_V(JThreadRuntime *runtime, struct java_lang_Thread* p0, s64 p1){
+    return ;
+}
+
+
+void func_java_lang_Thread_start___V(JThreadRuntime *runtime){
+    return ;
+}
+
+
+void func_java_lang_Thread_yield___V(JThreadRuntime *runtime, struct java_lang_Thread* p0){
+    return ;
+}
+
+
+struct java_lang_StackTraceElement* func_java_lang_Throwable_buildStackElement___Ljava_lang_StackTraceElement_2(JThreadRuntime *runtime){
+    return NULL;
+}
+
+
+struct java_lang_String* func_java_lang_VM_doubleToString__D_Ljava_lang_String_2(JThreadRuntime *runtime, struct java_lang_VM* p0, f64 p1){
+    return NULL;
+}
+
+
+f64 func_java_lang_VM_stringToDouble__Ljava_lang_String_2_D(JThreadRuntime *runtime, struct java_lang_VM* p0, struct java_lang_String* p1){
+    return 0;
+}
+
+
+JArray * func_java_lang_VM_utf16ToUtf8__Ljava_lang_String_2__3B(JThreadRuntime *runtime, struct java_lang_VM* p0, struct java_lang_String* p1){
+    return NULL;
+}
+
+
+struct java_lang_String* func_java_lang_VM_utf8ToUtf16___3BII_Ljava_lang_String_2(JThreadRuntime *runtime, struct java_lang_VM* p0, JArray * p1, s32 p2, s32 p3){
+    return NULL;
+}
+
+
+void func_java_lang_ref_Reference_markItAsWeak__Z_V(JThreadRuntime *runtime, s8 p0){
+    return ;
+}
+
+
+struct java_lang_Object* func_java_lang_reflect_Array_multiNewArray__Ljava_lang_Class_2_3I_Ljava_lang_Object_2(JThreadRuntime *runtime, struct java_lang_reflect_Array* p0, struct java_lang_Class* p1, JArray * p2){
+    return NULL;
+}
+
+
+struct java_lang_Object* func_java_lang_reflect_Constructor_newInstanceWithoutInit__Ljava_lang_Class_2_Ljava_lang_Object_2(JThreadRuntime *runtime, struct java_lang_reflect_Constructor* p0, struct java_lang_Class* p1){
+    return NULL;
+}
+
+
+struct java_lang_Object* func_java_lang_reflect_Method_invoke__Ljava_lang_Object_2_3Ljava_lang_Object_2_Ljava_lang_Object_2(JThreadRuntime *runtime, struct java_lang_Object* p0, JArray * p1){
+    return NULL;
+}
+
+
+
+
+
+

@@ -4,20 +4,18 @@
 
 // generation
 // globals
-//struct java_util_HashSet_static {s64 serialVersionUID_2;  };
-struct java_util_HashSet_static static_var_java_util_HashSet = {0};
+//struct java_util_HashSet_static {struct java_lang_Object* PRESENT_1;  };
+struct java_util_HashSet_static static_var_java_util_HashSet = {NULL};
 
 
 __refer arr_vmtable_java_util_HashSet_from_java_util_HashSet[] = {
-    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //0
-    func_java_util_HashSet_clear___V,  //1
-    func_java_util_HashSet_clone___Ljava_lang_Object_2,  //2
+    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //0
+    func_java_util_HashSet_size___I,  //1
+    func_java_util_HashSet_isEmpty___Z,  //2
     func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //3
-    func_java_util_HashSet_isEmpty___Z,  //4
-    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //5
-    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //6
-    func_java_util_HashSet_size___I,  //7
-    func_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2  //8
+    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //4
+    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //5
+    func_java_util_HashSet_clear___V  //6
 };
 __refer arr_vmtable_java_util_HashSet_from_java_util_AbstractSet[] = {
     func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //0
@@ -25,85 +23,78 @@ __refer arr_vmtable_java_util_HashSet_from_java_util_AbstractSet[] = {
     func_java_util_AbstractSet_removeAll__Ljava_util_Collection_2_Z  //2
 };
 __refer arr_vmtable_java_util_HashSet_from_java_util_AbstractCollection[] = {
-    func_java_util_AbstractCollection_equals__Ljava_lang_Object_2Ljava_lang_Object_2_Z,  //0
-    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //1
-    func_java_util_HashSet_size___I,  //2
-    func_java_util_HashSet_clear___V,  //3
-    func_java_util_HashSet_isEmpty___Z,  //4
-    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //5
-    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //6
-    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //7
-    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //8
-    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //9
+    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //0
+    func_java_util_HashSet_size___I,  //1
+    func_java_util_HashSet_isEmpty___Z,  //2
+    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //3
+    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2,  //4
+    func_java_util_AbstractCollection_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2,  //5
+    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //6
+    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //7
+    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //8
+    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //9
     func_java_util_AbstractSet_removeAll__Ljava_util_Collection_2_Z,  //10
     func_java_util_AbstractCollection_retainAll__Ljava_util_Collection_2_Z,  //11
-    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2,  //12
-    func_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2  //13
+    func_java_util_HashSet_clear___V,  //12
+    func_java_util_AbstractCollection_toString___Ljava_lang_String_2  //13
 };
 __refer arr_vmtable_java_util_HashSet_from_java_lang_Object[] = {
-    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //0
-    func_java_util_AbstractSet_hashCode___I,  //1
-    func_java_util_HashSet_clone___Ljava_lang_Object_2,  //2
-    func_java_lang_Object_wait___V,  //3
-    func_java_lang_Object_wait__J_V,  //4
-    func_java_lang_Object_wait__JI_V,  //5
-    func_java_lang_Object_notify___V,  //6
-    func_java_lang_Object_notifyAll___V,  //7
-    func_java_lang_Object_toString___Ljava_lang_String_2,  //8
-    func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //9
-    func_java_lang_Object_finalize___V  //10
+    func_java_util_AbstractCollection_toString___Ljava_lang_String_2,  //0
+    func_java_lang_Object_wait___V,  //1
+    func_java_lang_Object_finalize___V,  //2
+    func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //3
+    func_java_lang_Object_clone___Ljava_lang_Object_2,  //4
+    func_java_lang_Object_getClass___Ljava_lang_Class_2,  //5
+    func_java_lang_Object_wait__J_V,  //6
+    func_java_lang_Object_notify___V,  //7
+    func_java_lang_Object_notifyAll___V,  //8
+    func_java_util_AbstractSet_hashCode___I  //9
 };
 __refer arr_vmtable_java_util_HashSet_from_java_util_Collection[] = {
-    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //0
-    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //1
-    func_java_util_HashSet_clear___V,  //2
-    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //3
-    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //4
-    func_java_util_HashSet_isEmpty___Z,  //5
-    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //6
+    func_java_util_HashSet_size___I,  //0
+    func_java_util_HashSet_isEmpty___Z,  //1
+    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //2
+    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //3
+    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2,  //4
+    func_java_util_AbstractCollection_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2,  //5
+    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //6
     func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //7
-    func_java_util_AbstractSet_removeAll__Ljava_util_Collection_2_Z,  //8
-    func_java_util_AbstractCollection_retainAll__Ljava_util_Collection_2_Z,  //9
-    func_java_util_HashSet_size___I,  //10
-    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2  //11
-};
-__refer arr_vmtable_java_util_HashSet_from_java_lang_Iterable[] = {
-    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //0
-    func_java_lang_Iterable_forEach__Ljava_util_function_Consumer_2_V,  //1
-    func_java_lang_Iterable_spliterator___Ljava_util_Spliterator_2  //2
-};
-__refer arr_vmtable_java_util_HashSet_from_java_util_Set[] = {
-    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //0
-    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //1
-    func_java_util_HashSet_clear___V,  //2
-    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //3
-    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //4
-    func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //5
-    func_java_util_AbstractSet_hashCode___I,  //6
-    func_java_util_HashSet_isEmpty___Z,  //7
-    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //8
-    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //9
+    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //8
+    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //9
     func_java_util_AbstractSet_removeAll__Ljava_util_Collection_2_Z,  //10
     func_java_util_AbstractCollection_retainAll__Ljava_util_Collection_2_Z,  //11
-    func_java_util_HashSet_size___I,  //12
-    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2  //13
+    func_java_util_HashSet_clear___V,  //12
+    func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //13
+    func_java_util_AbstractSet_hashCode___I  //14
 };
-__refer arr_vmtable_java_util_HashSet_from_java_lang_Cloneable[] = {
-    NULL
+__refer arr_vmtable_java_util_HashSet_from_java_lang_Iterable[] = {
+    func_java_util_HashSet_iterator___Ljava_util_Iterator_2  //0
 };
-__refer arr_vmtable_java_util_HashSet_from_java_io_Serializable[] = {
-    NULL
+__refer arr_vmtable_java_util_HashSet_from_java_util_Set[] = {
+    func_java_util_HashSet_size___I,  //0
+    func_java_util_HashSet_isEmpty___Z,  //1
+    func_java_util_HashSet_contains__Ljava_lang_Object_2_Z,  //2
+    func_java_util_HashSet_iterator___Ljava_util_Iterator_2,  //3
+    func_java_util_AbstractCollection_toArray____3Ljava_lang_Object_2,  //4
+    func_java_util_AbstractCollection_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2,  //5
+    func_java_util_HashSet_add__Ljava_lang_Object_2_Z,  //6
+    func_java_util_HashSet_remove__Ljava_lang_Object_2_Z,  //7
+    func_java_util_AbstractCollection_containsAll__Ljava_util_Collection_2_Z,  //8
+    func_java_util_AbstractCollection_addAll__Ljava_util_Collection_2_Z,  //9
+    func_java_util_AbstractCollection_retainAll__Ljava_util_Collection_2_Z,  //10
+    func_java_util_AbstractSet_removeAll__Ljava_util_Collection_2_Z,  //11
+    func_java_util_HashSet_clear___V,  //12
+    func_java_util_AbstractSet_equals__Ljava_lang_Object_2_Z,  //13
+    func_java_util_AbstractSet_hashCode___I  //14
 };
 VMTable vmtable_java_util_HashSet[] = {
-    {140, 9, arr_vmtable_java_util_HashSet_from_java_util_HashSet}, //0
-    {131, 3, arr_vmtable_java_util_HashSet_from_java_util_AbstractSet}, //1
-    {132, 14, arr_vmtable_java_util_HashSet_from_java_util_AbstractCollection}, //2
-    {10, 11, arr_vmtable_java_util_HashSet_from_java_lang_Object}, //3
-    {75, 12, arr_vmtable_java_util_HashSet_from_java_util_Collection}, //4
-    {76, 3, arr_vmtable_java_util_HashSet_from_java_lang_Iterable}, //5
-    {128, 14, arr_vmtable_java_util_HashSet_from_java_util_Set}, //6
-    {69, 0, arr_vmtable_java_util_HashSet_from_java_lang_Cloneable}, //7
-    {64, 0, arr_vmtable_java_util_HashSet_from_java_io_Serializable}, //8
+    {88, 7, arr_vmtable_java_util_HashSet_from_java_util_HashSet}, //0
+    {89, 3, arr_vmtable_java_util_HashSet_from_java_util_AbstractSet}, //1
+    {90, 14, arr_vmtable_java_util_HashSet_from_java_util_AbstractCollection}, //2
+    {5, 10, arr_vmtable_java_util_HashSet_from_java_lang_Object}, //3
+    {45, 15, arr_vmtable_java_util_HashSet_from_java_util_Collection}, //4
+    {91, 1, arr_vmtable_java_util_HashSet_from_java_lang_Iterable}, //5
+    {86, 15, arr_vmtable_java_util_HashSet_from_java_util_Set}, //6
 };
 
 
@@ -118,18 +109,18 @@ void func_java_util_HashSet__init____V(JThreadRuntime *runtime){
     StackItem stack[4];
     RStackItem rstack[4];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 379, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 517, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 66 , L1989811701 , bytecode index = 
+    //  line no 13 , L1541857308 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 66;
+    __frame->lineNo = 13;
     rstack[sp++].obj = rlocal[0].obj;
     // invokespecial java/util/AbstractSet.<init>()V
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
         func_java_util_AbstractSet__init____V(runtime);
@@ -140,10 +131,10 @@ void func_java_util_HashSet__init____V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 67 , L1106681476 , bytecode index = 
+    //  line no 14 , L479397964 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/HashMap
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 139);
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 27);
     // dup
     stack[sp].j = stack[sp - 1].j; 
     rstack[sp].obj = rstack[sp - 1].obj; 
@@ -153,7 +144,7 @@ void func_java_util_HashSet__init____V(JThreadRuntime *runtime){
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
         func_java_util_HashMap__init____V(runtime);
@@ -165,9 +156,9 @@ void func_java_util_HashSet__init____V(JThreadRuntime *runtime){
     }
     // putfield java/util/HashSet map Ljava/util/HashMap;
     sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
+    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 68 , L2037764568 , bytecode index = 
+    //  line no 15 , L1861781750 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -186,28 +177,28 @@ void bridge_java_util_HashSet__init____V(JThreadRuntime *runtime, __refer ins, P
 
 
 // locals: 2
-// stack: 4
+// stack: 5
 // args: 1
-void func_java_util_HashSet__init___I_V(JThreadRuntime *runtime, s32 p0){
+void func_java_util_HashSet__init___Ljava_util_Collection_2_V(JThreadRuntime *runtime, struct java_util_Collection* p0){
     
     StackItem local[2] = {0};
     RStackItem rlocal[2] = {0};
-    StackItem stack[5];
-    RStackItem rstack[5];
+    StackItem stack[6];
+    RStackItem rstack[6];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 380, &rstack[0], &rlocal[0], &sp);
-    local[0].i = p0;
+    StackFrame *__frame = method_enter(runtime, 518, &rstack[0], &rlocal[0], &sp);
+    rlocal[0].obj = p0;
     ; 
-    //  line no 78 , L605052357 , bytecode index = 
+    //  line no 17 , L2095303566 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 78;
+    __frame->lineNo = 17;
     rstack[sp++].obj = rlocal[0].obj;
     // invokespecial java/util/AbstractSet.<init>()V
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
         func_java_util_AbstractSet__init____V(runtime);
@@ -218,21 +209,59 @@ void func_java_util_HashSet__init___I_V(JThreadRuntime *runtime, s32 p0){
         }
     }
     ; 
-    //  line no 79 , L1365767549 , bytecode index = 
+    //  line no 18 , L2025221430 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     // new java/util/HashMap
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 139);
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 27);
     // dup
     stack[sp].j = stack[sp - 1].j; 
     rstack[sp].obj = rstack[sp - 1].obj; 
     ++sp;
-    stack[sp++].i = local[1].i;
+    rstack[sp++].obj = rlocal[1].obj;
+    // invokeinterface java/util/Collection.size()I
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 45, 0);
+        stack[sp].i = __func_p(runtime);
+        sp += 1;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    stack[sp - 1].f = (f32)stack[sp - 1].i; 
+    //  ldc 
+    stack[sp++].f = 0.75;
+    stack[sp - 2].f = stack[sp - 2].f / stack[sp - 1].f; 
+    --sp;
+    stack[sp - 1].i = (s32)stack[sp - 1].f; 
+    // iconst_1
+    stack[sp++].i = 1;
+    stack[sp - 2].i = stack[sp - 2].i + stack[sp - 1].i; 
+    --sp;
+    //  bipush 16
+    stack[sp++].i = 16;
+    // invokestatic java/lang/Math.max(II)I
+    {
+        sp -= 3;
+        stack[sp].i = func_java_lang_Math_max__II_I(runtime, rstack[sp + 0].obj, stack[sp + 1].i, stack[sp + 2].i);
+        sp += 1;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
     // invokespecial java/util/HashMap.<init>(I)V
     {
         sp -= 1;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
         func_java_util_HashMap__init___I_V(runtime, stack[sp + 0].i);
@@ -244,229 +273,9 @@ void func_java_util_HashSet__init___I_V(JThreadRuntime *runtime, s32 p0){
     }
     // putfield java/util/HashSet map Ljava/util/HashMap;
     sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
+    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_0 = rstack[sp + 1].obj;
     ; 
-    //  line no 80 , L105579928 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_util_HashSet__init___I_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet__init___I_V(runtime, ins);
-}
-
-
-// locals: 3
-// stack: 5
-// args: 2
-void func_java_util_HashSet__init___IF_V(JThreadRuntime *runtime, s32 p0, f32 p1){
-    
-    StackItem local[3] = {0};
-    RStackItem rlocal[3] = {0};
-    StackItem stack[6];
-    RStackItem rstack[6];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 381, &rstack[0], &rlocal[0], &sp);
-    local[0].i = p0;
-    local[1].f = p1;
-    ; 
-    //  line no 91 , L1042306518 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 91;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokespecial java/util/AbstractSet.<init>()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_AbstractSet__init____V(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 92 , L1342346098 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // new java/util/HashMap
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 139);
-    // dup
-    stack[sp].j = stack[sp - 1].j; 
-    rstack[sp].obj = rstack[sp - 1].obj; 
-    ++sp;
-    stack[sp++].i = local[1].i;
-    stack[sp++].f = local[2].f;
-    // invokespecial java/util/HashMap.<init>(IF)V
-    {
-        sp -= 2;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashMap__init___IF_V(runtime, stack[sp + 0].i, stack[sp + 1].f);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // putfield java/util/HashSet map Ljava/util/HashMap;
-    sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
-    ; 
-    //  line no 93 , L238762799 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_util_HashSet__init___IF_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet__init___IF_V(runtime, ins, para[0].f);
-}
-
-
-// locals: 4
-// stack: 2
-// args: 3
-void func_java_util_HashSet__init___IFZ_V(JThreadRuntime *runtime, s32 p0, f32 p1, s8 p2){
-    
-    StackItem local[4] = {0};
-    RStackItem rlocal[4] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 382, &rstack[0], &rlocal[0], &sp);
-    local[0].i = p0;
-    local[1].f = p1;
-    local[2].i = p2;
-    ; 
-    //  line no 107 , L1824837049 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 107;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokespecial java/util/AbstractSet.<init>()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_AbstractSet__init____V(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 108 , L672746064 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // aconst null
-    rstack[sp++].obj = NULL;
-    // putfield java/util/HashSet map Ljava/util/HashMap;
-    sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
-    ; 
-    //  line no 109 , L2133655103 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_util_HashSet__init___IFZ_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet__init___IFZ_V(runtime, ins, para[0].f, para[1].i);
-}
-
-
-// locals: 2
-// stack: 3
-// args: 1
-void func_java_util_HashSet__init___Ljava_util_Collection_2_V(JThreadRuntime *runtime, struct java_util_Collection* p0){
-    
-    StackItem local[2] = {0};
-    RStackItem rlocal[2] = {0};
-    StackItem stack[4];
-    RStackItem rstack[4];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 383, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
-    ; 
-    //  line no 119 , L1345900725 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 119;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokespecial java/util/AbstractSet.<init>()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_AbstractSet__init____V(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 120 , L839998248 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // new java/util/HashMap
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 139);
-    // dup
-    stack[sp].j = stack[sp - 1].j; 
-    rstack[sp].obj = rstack[sp - 1].obj; 
-    ++sp;
-    // invokespecial java/util/HashMap.<init>()V
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashMap__init____V(runtime);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // putfield java/util/HashSet map Ljava/util/HashMap;
-    sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
-    ; 
-    //  line no 121 , L718571091 , bytecode index = 
+    //  line no 19 , L1378084334 , bytecode index = 
     rstack[sp++].obj = rlocal[0].obj;
     rstack[sp++].obj = rlocal[1].obj;
     // invokevirtual java/util/HashSet.addAll(Ljava/util/Collection;)Z
@@ -474,10 +283,10 @@ void func_java_util_HashSet__init___Ljava_util_Collection_2_V(JThreadRuntime *ru
         sp -= 1;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        s8 (*__func_p) (JThreadRuntime *,struct java_util_Collection*) = find_method(__ins->vm_table, 128, 1);
+        s8 (*__func_p) (JThreadRuntime *,struct java_util_Collection*) = find_method(__ins->vm_table, 86, 9);
         stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
         sp += 1;
         if (runtime->exception) {
@@ -487,7 +296,7 @@ void func_java_util_HashSet__init___Ljava_util_Collection_2_V(JThreadRuntime *ru
     }
     --sp; //pop
     ; 
-    //  line no 122 , L1807015220 , bytecode index = 
+    //  line no 20 , L200224114 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -505,119 +314,33 @@ void bridge_java_util_HashSet__init___Ljava_util_Collection_2_V(JThreadRuntime *
 }
 
 
-// locals: 2
-// stack: 2
-// args: 1
-s8 func_java_util_HashSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
+// locals: 3
+// stack: 5
+// args: 2
+void func_java_util_HashSet__init___IF_V(JThreadRuntime *runtime, s32 p0, f32 p1){
     
-    StackItem local[2] = {0};
-    RStackItem rlocal[2] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
+    StackItem local[3] = {0};
+    RStackItem rlocal[3] = {0};
+    StackItem stack[6];
+    RStackItem rstack[6];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 384, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
+    StackFrame *__frame = method_enter(runtime, 519, &rstack[0], &rlocal[0], &sp);
+    local[0].i = p0;
+    local[1].f = p1;
     ; 
-    //  line no 135 , L1173346575 , bytecode index = 
+    //  line no 22 , L581318631 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 135;
+    __frame->lineNo = 22;
     rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/util/HashMap.containsKey(Ljava/lang/Object;)Z
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s8 (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 139, 13);
-        stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(stack[--sp].i  == 0) goto L1267149311;
-    ; 
-    //  line no 137 , L102174918 , bytecode index = 
-    // iconst_0
-    stack[sp++].i = 0;
-    method_exit(runtime);
-    return stack[sp - 1].i;
-    L1267149311:
-    //  line no 141 , L1267149311 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokespecial java/util/HashSet.internalAdd(Ljava/lang/Object;)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(runtime, rstack[sp + 0].obj);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 142 , L52514534 , bytecode index = 
-    // iconst_1
-    stack[sp++].i = 1;
-    method_exit(runtime);
-    return stack[sp - 1].i;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return 0;
-}
-
-void bridge_java_util_HashSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->i = func_java_util_HashSet_add__Ljava_lang_Object_2_Z(runtime, ins);
-}
-
-
-// locals: 1
-// stack: 1
-// args: 0
-void func_java_util_HashSet_clear___V(JThreadRuntime *runtime){
-    
-    StackItem local[1] = {0};
-    RStackItem rlocal[1] = {0};
-    StackItem stack[2];
-    RStackItem rstack[2];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 385, &rstack[0], &rlocal[0], &sp);
-    ; 
-    //  line no 151 , L1242027525 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 151;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // invokevirtual java/util/HashMap.clear()V
+    // invokespecial java/util/AbstractSet.<init>()V
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 139, 8);
-        __func_p(runtime);
+        func_java_util_AbstractSet__init____V(runtime);
         sp += 0;
         if (runtime->exception) {
             rstack[sp++].obj = runtime->exception;
@@ -625,7 +348,36 @@ void func_java_util_HashSet_clear___V(JThreadRuntime *runtime){
         }
     }
     ; 
-    //  line no 152 , L1948810915 , bytecode index = 
+    //  line no 23 , L1877453512 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // new java/util/HashMap
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 27);
+    // dup
+    stack[sp].j = stack[sp - 1].j; 
+    rstack[sp].obj = rstack[sp - 1].obj; 
+    ++sp;
+    stack[sp++].i = local[1].i;
+    stack[sp++].f = local[2].f;
+    // invokespecial java/util/HashMap.<init>(IF)V
+    {
+        sp -= 2;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        func_java_util_HashMap__init___IF_V(runtime, stack[sp + 0].i, stack[sp + 1].f);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    // putfield java/util/HashSet map Ljava/util/HashMap;
+    sp -= 2;
+    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_0 = rstack[sp + 1].obj;
+    ; 
+    //  line no 24 , L487694075 , bytecode index = 
     method_exit(runtime);
     return;
     ; 
@@ -638,250 +390,75 @@ void func_java_util_HashSet_clear___V(JThreadRuntime *runtime){
     return ;
 }
 
-void bridge_java_util_HashSet_clear___V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet_clear___V(runtime, ins);
-}
-
-
-// locals: 3
-// stack: 4
-// args: 0
-struct java_lang_Object* func_java_util_HashSet_clone___Ljava_lang_Object_2(JThreadRuntime *runtime){
-    
-    StackItem local[3] = {0};
-    RStackItem rlocal[3] = {0};
-    StackItem stack[5];
-    RStackItem rstack[5];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 386, &rstack[0], &rlocal[0], &sp);
-    ; 
-    //  line no 160 , L735937428 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 160;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokevirtual java/util/HashSet.iterator()Ljava/util/Iterator;
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_util_Iterator* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 140, 5);
-        rstack[sp].obj = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    rlocal[1].obj = rstack[--sp].obj;
-    ; 
-    //  line no 161 , L1604247316 , bytecode index = 
-    // new java/util/HashSet
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 140);
-    // dup
-    stack[sp].j = stack[sp - 1].j; 
-    rstack[sp].obj = rstack[sp - 1].obj; 
-    ++sp;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // getfield java/util/HashMap capacity I
-    stack[sp - 1].i = ((struct java_util_HashMap*)rstack[sp - 1].obj)->capacity_10;
-    sp += 0;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // getfield java/util/HashMap loadFactor F
-    stack[sp - 1].f = ((struct java_util_HashMap*)rstack[sp - 1].obj)->loadFactor_12;
-    sp += 0;
-    // invokespecial java/util/HashSet.<init>(IF)V
-    {
-        sp -= 2;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashSet__init___IF_V(runtime, stack[sp + 0].i, stack[sp + 1].f);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    rlocal[2].obj = rstack[--sp].obj;
-    L1752461090:
-    //  line no 162 , L1752461090 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokeinterface java/util/Iterator.hasNext()Z
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s8 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 129, 0);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(stack[--sp].i  == 0) goto L788625466;
-    ; 
-    //  line no 163 , L1753714541 , bytecode index = 
-    rstack[sp++].obj = rlocal[2].obj;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokeinterface java/util/Iterator.next()Ljava/lang/Object;
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_lang_Object* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 129, 1);
-        rstack[sp].obj = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // invokespecial java/util/HashSet.internalAdd(Ljava/lang/Object;)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(runtime, rstack[sp + 0].obj);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1752461090;
-    L788625466:
-    //  line no 164 , L788625466 , bytecode index = 
-    rstack[sp++].obj = rlocal[2].obj;
-    method_exit(runtime);
-    return rstack[sp - 1].obj;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return NULL;
-}
-
-void bridge_java_util_HashSet_clone___Ljava_lang_Object_2(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->obj = func_java_util_HashSet_clone___Ljava_lang_Object_2(runtime, ins);
+void bridge_java_util_HashSet__init___IF_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_util_HashSet__init___IF_V(runtime, ins, para[0].f);
 }
 
 
 // locals: 2
-// stack: 2
+// stack: 4
 // args: 1
-s8 func_java_util_HashSet_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
+void func_java_util_HashSet__init___I_V(JThreadRuntime *runtime, s32 p0){
     
     StackItem local[2] = {0};
     RStackItem rlocal[2] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
+    StackItem stack[5];
+    RStackItem rstack[5];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 387, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
+    StackFrame *__frame = method_enter(runtime, 520, &rstack[0], &rlocal[0], &sp);
+    local[0].i = p0;
     ; 
-    //  line no 174 , L177140066 , bytecode index = 
+    //  line no 26 , L1989184704 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 174;
+    __frame->lineNo = 26;
     rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/util/HashMap.containsKey(Ljava/lang/Object;)Z
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s8 (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 139, 13);
-        stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    method_exit(runtime);
-    return stack[sp - 1].i;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return 0;
-}
-
-void bridge_java_util_HashSet_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->i = func_java_util_HashSet_contains__Ljava_lang_Object_2_Z(runtime, ins);
-}
-
-
-// locals: 1
-// stack: 1
-// args: 0
-s8 func_java_util_HashSet_isEmpty___Z(JThreadRuntime *runtime){
-    
-    StackItem local[1] = {0};
-    RStackItem rlocal[1] = {0};
-    StackItem stack[2];
-    RStackItem rstack[2];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 388, &rstack[0], &rlocal[0], &sp);
-    ; 
-    //  line no 182 , L2059572982 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 182;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // invokevirtual java/util/HashMap.isEmpty()Z
+    // invokespecial java/util/AbstractSet.<init>()V
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        s8 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 139, 7);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
+        func_java_util_AbstractSet__init____V(runtime);
+        sp += 0;
         if (runtime->exception) {
             rstack[sp++].obj = runtime->exception;
             goto __ExceptionHandler;
         }
     }
+    ; 
+    //  line no 27 , L611572016 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // new java/util/HashMap
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 27);
+    // dup
+    stack[sp].j = stack[sp - 1].j; 
+    rstack[sp].obj = rstack[sp - 1].obj; 
+    ++sp;
+    stack[sp++].i = local[1].i;
+    // invokespecial java/util/HashMap.<init>(I)V
+    {
+        sp -= 1;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        func_java_util_HashMap__init___I_V(runtime, stack[sp + 0].i);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    // putfield java/util/HashSet map Ljava/util/HashMap;
+    sp -= 2;
+    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_0 = rstack[sp + 1].obj;
+    ; 
+    //  line no 28 , L889486595 , bytecode index = 
     method_exit(runtime);
-    return stack[sp - 1].i;
+    return;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
@@ -889,11 +466,93 @@ s8 func_java_util_HashSet_isEmpty___Z(JThreadRuntime *runtime){
     }
     __ExceptionHandlerNotFound:
     method_exit(runtime);
-    return 0;
+    return ;
 }
 
-void bridge_java_util_HashSet_isEmpty___Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->i = func_java_util_HashSet_isEmpty___Z(runtime, ins);
+void bridge_java_util_HashSet__init___I_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_util_HashSet__init___I_V(runtime, ins);
+}
+
+
+// locals: 4
+// stack: 5
+// args: 3
+void func_java_util_HashSet__init___IFZ_V(JThreadRuntime *runtime, s32 p0, f32 p1, s8 p2){
+    
+    StackItem local[4] = {0};
+    RStackItem rlocal[4] = {0};
+    StackItem stack[6];
+    RStackItem rstack[6];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 521, &rstack[0], &rlocal[0], &sp);
+    local[0].i = p0;
+    local[1].f = p1;
+    local[2].i = p2;
+    ; 
+    //  line no 30 , L1990160809 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 30;
+    rstack[sp++].obj = rlocal[0].obj;
+    // invokespecial java/util/AbstractSet.<init>()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        func_java_util_AbstractSet__init____V(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    ; 
+    //  line no 31 , L1285524499 , bytecode index = 
+    rstack[sp++].obj = rlocal[0].obj;
+    // new java/util/LinkedHashMap
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 87);
+    // dup
+    stack[sp].j = stack[sp - 1].j; 
+    rstack[sp].obj = rstack[sp - 1].obj; 
+    ++sp;
+    stack[sp++].i = local[1].i;
+    stack[sp++].f = local[2].f;
+    // invokespecial java/util/LinkedHashMap.<init>(IF)V
+    {
+        sp -= 2;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        func_java_util_LinkedHashMap__init___IF_V(runtime, stack[sp + 0].i, stack[sp + 1].f);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    // putfield java/util/HashSet map Ljava/util/HashMap;
+    sp -= 2;
+    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_0 = rstack[sp + 1].obj;
+    ; 
+    //  line no 32 , L1524960486 , bytecode index = 
+    method_exit(runtime);
+    return;
+    ; 
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return ;
+}
+
+void bridge_java_util_HashSet__init___IFZ_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_util_HashSet__init___IFZ_V(runtime, ins, para[0].f, para[1].i);
 }
 
 
@@ -907,24 +566,24 @@ struct java_util_Iterator* func_java_util_HashSet_iterator___Ljava_util_Iterator
     StackItem stack[2];
     RStackItem rstack[2];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 389, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 522, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 191 , L36657658 , bytecode index = 
+    //  line no 35 , L199640888 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 191;
+    __frame->lineNo = 35;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
     sp += 0;
     // invokevirtual java/util/HashMap.keySet()Ljava/util/Set;
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        struct java_util_Set* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 139, 10);
+        struct java_util_Set* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 27, 21);
         rstack[sp].obj = __func_p(runtime);
         sp += 1;
         if (runtime->exception) {
@@ -937,10 +596,10 @@ struct java_util_Iterator* func_java_util_HashSet_iterator___Ljava_util_Iterator
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        struct java_util_Iterator* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 128, 8);
+        struct java_util_Iterator* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 86, 3);
         rstack[sp].obj = __func_p(runtime);
         sp += 1;
         if (runtime->exception) {
@@ -965,68 +624,6 @@ void bridge_java_util_HashSet_iterator___Ljava_util_Iterator_2(JThreadRuntime *r
 }
 
 
-// locals: 2
-// stack: 2
-// args: 1
-s8 func_java_util_HashSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
-    
-    StackItem local[2] = {0};
-    RStackItem rlocal[2] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 390, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
-    ; 
-    //  line no 200 , L375466577 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 200;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/util/HashMap.remove(Ljava/lang/Object;)Ljava/lang/Object;
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_lang_Object* (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 139, 17);
-        rstack[sp].obj = __func_p(runtime, rstack[sp + 0].obj);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(rstack[--sp].obj  == NULL) goto L1423983012;
-    // iconst_1
-    stack[sp++].i = 1;
-    goto L746074699;
-    L1423983012:
-    // iconst_0
-    stack[sp++].i = 0;
-    L746074699:
-    method_exit(runtime);
-    return stack[sp - 1].i;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return 0;
-}
-
-void bridge_java_util_HashSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->i = func_java_util_HashSet_remove__Ljava_lang_Object_2_Z(runtime, ins);
-}
-
-
 // locals: 1
 // stack: 1
 // args: 0
@@ -1037,24 +634,24 @@ s32 func_java_util_HashSet_size___I(JThreadRuntime *runtime){
     StackItem stack[2];
     RStackItem rstack[2];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 391, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 523, &rstack[0], &rlocal[0], &sp);
     ; 
-    //  line no 208 , L405896924 , bytecode index = 
+    //  line no 39 , L1238959340 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 208;
+    __frame->lineNo = 39;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
     sp += 0;
     // invokevirtual java/util/HashMap.size()I
     {
         sp -= 0;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 139, 6);
+        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 27, 1);
         stack[sp].i = __func_p(runtime);
         sp += 1;
         if (runtime->exception) {
@@ -1079,39 +676,145 @@ void bridge_java_util_HashSet_size___I(JThreadRuntime *runtime, __refer ins, Par
 }
 
 
+// locals: 1
+// stack: 1
+// args: 0
+s8 func_java_util_HashSet_isEmpty___Z(JThreadRuntime *runtime){
+    
+    StackItem local[1] = {0};
+    RStackItem rlocal[1] = {0};
+    StackItem stack[2];
+    RStackItem rstack[2];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 524, &rstack[0], &rlocal[0], &sp);
+    ; 
+    //  line no 43 , L1030228826 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 43;
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/HashSet map Ljava/util/HashMap;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
+    sp += 0;
+    // invokevirtual java/util/HashMap.isEmpty()Z
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        s8 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 27, 2);
+        stack[sp].i = __func_p(runtime);
+        sp += 1;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    method_exit(runtime);
+    return stack[sp - 1].i;
+    ; 
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return 0;
+}
+
+void bridge_java_util_HashSet_isEmpty___Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    ret->i = func_java_util_HashSet_isEmpty___Z(runtime, ins);
+}
+
+
+// locals: 2
+// stack: 2
+// args: 1
+s8 func_java_util_HashSet_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
+    
+    StackItem local[2] = {0};
+    RStackItem rlocal[2] = {0};
+    StackItem stack[3];
+    RStackItem rstack[3];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 525, &rstack[0], &rlocal[0], &sp);
+    rlocal[0].obj = p0;
+    ; 
+    //  line no 47 , L1243806178 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 47;
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/HashSet map Ljava/util/HashMap;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
+    sp += 0;
+    rstack[sp++].obj = rlocal[1].obj;
+    // invokevirtual java/util/HashMap.containsKey(Ljava/lang/Object;)Z
+    {
+        sp -= 1;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        s8 (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 27, 4);
+        stack[sp].i = __func_p(runtime, rstack[sp + 0].obj);
+        sp += 1;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    method_exit(runtime);
+    return stack[sp - 1].i;
+    ; 
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return 0;
+}
+
+void bridge_java_util_HashSet_contains__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    ret->i = func_java_util_HashSet_contains__Ljava_lang_Object_2_Z(runtime, ins);
+}
+
+
 // locals: 2
 // stack: 3
 // args: 1
-void func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(JThreadRuntime *runtime, struct java_lang_Object* p0){
+s8 func_java_util_HashSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
     
     StackItem local[2] = {0};
     RStackItem rlocal[2] = {0};
     StackItem stack[4];
     RStackItem rstack[4];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 392, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 526, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 223 , L596470015 , bytecode index = 
+    //  line no 51 , L1099855928 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 223;
+    __frame->lineNo = 51;
     rstack[sp++].obj = rlocal[0].obj;
     // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
     sp += 0;
     rstack[sp++].obj = rlocal[1].obj;
-    // getstatic java/lang/Boolean TRUE Ljava/lang/Boolean;
-    rstack[sp].obj =static_var_java_lang_Boolean.TRUE_1;
+    // getstatic java/util/HashSet PRESENT Ljava/lang/Object;
+    rstack[sp].obj =static_var_java_util_HashSet.PRESENT_1;
     sp += 1;
     // invokevirtual java/util/HashMap.put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
     {
         sp -= 2;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        struct java_lang_Object* (*__func_p) (JThreadRuntime *,struct java_lang_Object*,struct java_lang_Object*) = find_method(__ins->vm_table, 139, 16);
+        struct java_lang_Object* (*__func_p) (JThreadRuntime *,struct java_lang_Object*,struct java_lang_Object*) = find_method(__ins->vm_table, 27, 6);
         rstack[sp].obj = __func_p(runtime, rstack[sp + 0].obj, rstack[sp + 1].obj);
         sp += 1;
         if (runtime->exception) {
@@ -1119,387 +822,16 @@ void func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(JThreadRuntime *r
             goto __ExceptionHandler;
         }
     }
-    --sp; //pop
-    ; 
-    //  line no 224 , L1267105885 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(runtime, ins);
-}
-
-
-// locals: 3
-// stack: 2
-// args: 1
-void func_java_util_HashSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThreadRuntime *runtime, struct java_io_ObjectOutputStream* p0){
-    
-    StackItem local[3] = {0};
-    RStackItem rlocal[3] = {0};
-    StackItem stack[3];
-    RStackItem rstack[3];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 393, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
-    ; 
-    //  line no 229 , L1095352419 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 229;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokevirtual java/util/HashSet.iterator()Ljava/util/Iterator;
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_util_Iterator* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 140, 5);
-        rstack[sp].obj = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    rlocal[2].obj = rstack[--sp].obj;
-    ; 
-    //  line no 230 , L164332069 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // getfield java/util/HashMap capacity I
-    stack[sp - 1].i = ((struct java_util_HashMap*)rstack[sp - 1].obj)->capacity_10;
-    sp += 0;
-    // invokevirtual java/io/ObjectOutputStream.writeInt(I)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *,s32) = find_method(__ins->vm_table, 77, 19);
-        __func_p(runtime, stack[sp + 0].i);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 231 , L1991278377 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    rstack[sp++].obj = rlocal[0].obj;
-    // getfield java/util/HashSet map Ljava/util/HashMap;
-    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_1;
-    sp += 0;
-    // getfield java/util/HashMap loadFactor F
-    stack[sp - 1].f = ((struct java_util_HashMap*)rstack[sp - 1].obj)->loadFactor_12;
-    sp += 0;
-    // invokevirtual java/io/ObjectOutputStream.writeFloat(F)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *,f32) = find_method(__ins->vm_table, 77, 21);
-        __func_p(runtime, stack[sp + 0].f);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 232 , L951031848 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    rstack[sp++].obj = rlocal[0].obj;
-    // invokevirtual java/util/HashSet.size()I
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 140, 7);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // invokevirtual java/io/ObjectOutputStream.writeInt(I)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *,s32) = find_method(__ins->vm_table, 77, 19);
-        __func_p(runtime, stack[sp + 0].i);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    L929697158:
-    //  line no 233 , L929697158 , bytecode index = 
-    rstack[sp++].obj = rlocal[2].obj;
-    // invokeinterface java/util/Iterator.hasNext()Z
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s8 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 129, 0);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(stack[--sp].i  == 0) goto L1650813924;
-    ; 
-    //  line no 234 , L400103862 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    rstack[sp++].obj = rlocal[2].obj;
-    // invokeinterface java/util/Iterator.next()Ljava/lang/Object;
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_lang_Object* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 129, 1);
-        rstack[sp].obj = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // invokevirtual java/io/ObjectOutputStream.writeObject(Ljava/lang/Object;)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        void (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 77, 0);
-        __func_p(runtime, rstack[sp + 0].obj);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L929697158;
-    L1650813924:
-    //  line no 235 , L1650813924 , bytecode index = 
-    method_exit(runtime);
-    return;
-    ; 
-    __ExceptionHandler:
-    switch (find_exception_handler_index(runtime)) {
-        default: goto __ExceptionHandlerNotFound;
-    }
-    __ExceptionHandlerNotFound:
-    method_exit(runtime);
-    return ;
-}
-
-void bridge_java_util_HashSet_writeObject__Ljava_io_ObjectOutputStream_2_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet_writeObject__Ljava_io_ObjectOutputStream_2_V(runtime, ins);
-}
-
-
-// locals: 7
-// stack: 5
-// args: 1
-void func_java_util_HashSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRuntime *runtime, struct java_io_ObjectInputStream* p0){
-    
-    StackItem local[7] = {0};
-    RStackItem rlocal[7] = {0};
-    StackItem stack[6];
-    RStackItem rstack[6];
-    s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 394, &rstack[0], &rlocal[0], &sp);
-    rlocal[0].obj = p0;
-    ; 
-    //  line no 245 , L873634936 , bytecode index = 
-    __frame->bytecodeIndex = 
-    __frame->lineNo = 245;
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/io/ObjectInputStream.readInt()I
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 130, 1);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    local[4].i = stack[--sp].i;
-    ; 
-    //  line no 246 , L2103569237 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/io/ObjectInputStream.readFloat()F
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        f32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 130, 2);
-        stack[sp].f = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    local[5].f = stack[--sp].f;
-    ; 
-    //  line no 247 , L573200870 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/io/ObjectInputStream.readInt()I
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        s32 (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 130, 1);
-        stack[sp].i = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    local[3].i = stack[--sp].i;
-    ; 
-    //  line no 249 , L1819940427 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    // new java/util/HashMap
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 139);
-    // dup
-    stack[sp].j = stack[sp - 1].j; 
-    rstack[sp].obj = rstack[sp - 1].obj; 
-    ++sp;
-    stack[sp++].i = local[4].i;
-    stack[sp++].f = local[5].f;
-    // invokespecial java/util/HashMap.<init>(IF)V
-    {
-        sp -= 2;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashMap__init___IF_V(runtime, stack[sp + 0].i, stack[sp + 1].f);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    // putfield java/util/HashSet map Ljava/util/HashMap;
-    sp -= 2;
-    ((struct java_util_HashSet*)rstack[sp + 0].obj)->map_1 = rstack[sp + 1].obj;
-    ; 
-    //  line no 251 , L1277933280 , bytecode index = 
+    if(rstack[--sp].obj  != NULL) goto L1629687658;
+    // iconst_1
+    stack[sp++].i = 1;
+    goto L1007880005;
+    L1629687658:
     // iconst_0
     stack[sp++].i = 0;
-    local[2].i = stack[--sp].i;
-    L1046665075:
-    stack[sp++].i = local[2].i;
-    stack[sp++].i = local[3].i;
-    sp -= 2;
-    if(stack[sp + 0].i  >= stack[sp + 1].i) goto L1324829744;
-    ; 
-    //  line no 253 , L1921242091 , bytecode index = 
-    rstack[sp++].obj = rlocal[1].obj;
-    // invokevirtual java/io/ObjectInputStream.readObject()Ljava/lang/Object;
-    {
-        sp -= 0;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        struct java_lang_Object* (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 130, 3);
-        rstack[sp].obj = __func_p(runtime);
-        sp += 1;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    rlocal[6].obj = rstack[--sp].obj;
-    ; 
-    //  line no 254 , L1670313965 , bytecode index = 
-    rstack[sp++].obj = rlocal[0].obj;
-    rstack[sp++].obj = rlocal[6].obj;
-    // invokespecial java/util/HashSet.internalAdd(Ljava/lang/Object;)V
-    {
-        sp -= 1;
-        JObject *__ins = rstack[sp + 0].ins;
-        if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
-            goto __ExceptionHandler;
-        }
-        func_java_util_HashSet_internalAdd__Ljava_lang_Object_2_V(runtime, rstack[sp + 0].obj);
-        sp += 0;
-        if (runtime->exception) {
-            rstack[sp++].obj = runtime->exception;
-            goto __ExceptionHandler;
-        }
-    }
-    ; 
-    //  line no 251 , L1275035040 , bytecode index = 
-    // iinc slot 2 value 1
-    local[2].i += 1;
-    if(runtime->suspend_count)check_suspend_and_pause(runtime);
-    goto L1046665075;
-    L1324829744:
-    //  line no 256 , L1324829744 , bytecode index = 
+    L1007880005:
     method_exit(runtime);
-    return;
+    return stack[sp - 1].i;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
@@ -1507,61 +839,65 @@ void func_java_util_HashSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRu
     }
     __ExceptionHandlerNotFound:
     method_exit(runtime);
-    return ;
+    return 0;
 }
 
-void bridge_java_util_HashSet_readObject__Ljava_io_ObjectInputStream_2_V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    func_java_util_HashSet_readObject__Ljava_io_ObjectInputStream_2_V(runtime, ins);
+void bridge_java_util_HashSet_add__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    ret->i = func_java_util_HashSet_add__Ljava_lang_Object_2_Z(runtime, ins);
 }
 
 
 // locals: 2
-// stack: 3
+// stack: 2
 // args: 1
-JArray * func_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2(JThreadRuntime *runtime, JArray * p0){
+s8 func_java_util_HashSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, struct java_lang_Object* p0){
     
     StackItem local[2] = {0};
     RStackItem rlocal[2] = {0};
-    StackItem stack[4];
-    RStackItem rstack[4];
+    StackItem stack[3];
+    RStackItem rstack[3];
     s32 sp = 0;
-    StackFrame *__frame = method_enter(runtime, 395, &rstack[0], &rlocal[0], &sp);
+    StackFrame *__frame = method_enter(runtime, 527, &rstack[0], &rlocal[0], &sp);
     rlocal[0].obj = p0;
     ; 
-    //  line no 260 , L1399701152 , bytecode index = 
+    //  line no 55 , L1043208434 , bytecode index = 
     __frame->bytecodeIndex = 
-    __frame->lineNo = 260;
-    // new java/util/UnsupportedOperationException
-    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 72);
-    // dup
-    stack[sp].j = stack[sp - 1].j; 
-    rstack[sp].obj = rstack[sp - 1].obj; 
-    ++sp;
-    //  ldc 
-    rstack[sp++].obj = construct_string_with_utfraw_index(runtime, 209);
-    // invokespecial java/util/UnsupportedOperationException.<init>(Ljava/lang/String;)V
+    __frame->lineNo = 55;
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/HashSet map Ljava/util/HashMap;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
+    sp += 0;
+    rstack[sp++].obj = rlocal[1].obj;
+    // invokevirtual java/util/HashMap.remove(Ljava/lang/Object;)Ljava/lang/Object;
     {
         sp -= 1;
         JObject *__ins = rstack[sp + 0].ins;
         if (!__ins) {
-            rstack[sp++].obj = construct_and_throw_exception(runtime, 1, 
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
             goto __ExceptionHandler;
         }
-        func_java_util_UnsupportedOperationException__init___Ljava_lang_String_2_V(runtime, rstack[sp + 0].obj);
-        sp += 0;
+        struct java_lang_Object* (*__func_p) (JThreadRuntime *,struct java_lang_Object*) = find_method(__ins->vm_table, 27, 11);
+        rstack[sp].obj = __func_p(runtime, rstack[sp + 0].obj);
+        sp += 1;
         if (runtime->exception) {
             rstack[sp++].obj = runtime->exception;
             goto __ExceptionHandler;
         }
     }
-    // athrow
-    //     L1399701152 in labeltable is :L1399701152
-    {
-        __frame->bytecodeIndex = 
-        __frame->lineNo = 260;
-        throw_exception(runtime, rstack[sp - 1].obj);
-        goto __ExceptionHandler;
-    }
+    // getstatic java/util/HashSet PRESENT Ljava/lang/Object;
+    rstack[sp].obj =static_var_java_util_HashSet.PRESENT_1;
+    sp += 1;
+    sp -= 2;
+    if(rstack[sp + 0].obj  != rstack[sp + 1].obj) goto L1192171522;
+    // iconst_1
+    stack[sp++].i = 1;
+    goto L1661081225;
+    L1192171522:
+    // iconst_0
+    stack[sp++].i = 0;
+    L1661081225:
+    method_exit(runtime);
+    return stack[sp - 1].i;
     ; 
     __ExceptionHandler:
     switch (find_exception_handler_index(runtime)) {
@@ -1569,11 +905,109 @@ JArray * func_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Obje
     }
     __ExceptionHandlerNotFound:
     method_exit(runtime);
-    return NULL;
+    return 0;
 }
 
-void bridge_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
-    ret->obj = func_java_util_HashSet_toArray___3Ljava_lang_Object_2__3Ljava_lang_Object_2(runtime, ins);
+void bridge_java_util_HashSet_remove__Ljava_lang_Object_2_Z(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    ret->i = func_java_util_HashSet_remove__Ljava_lang_Object_2_Z(runtime, ins);
+}
+
+
+// locals: 1
+// stack: 1
+// args: 0
+void func_java_util_HashSet_clear___V(JThreadRuntime *runtime){
+    
+    StackItem local[1] = {0};
+    RStackItem rlocal[1] = {0};
+    StackItem stack[2];
+    RStackItem rstack[2];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 528, &rstack[0], &rlocal[0], &sp);
+    ; 
+    //  line no 59 , L1049817027 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 59;
+    rstack[sp++].obj = rlocal[0].obj;
+    // getfield java/util/HashSet map Ljava/util/HashMap;
+    rstack[sp - 1].obj = ((struct java_util_HashSet*)rstack[sp - 1].obj)->map_0;
+    sp += 0;
+    // invokevirtual java/util/HashMap.clear()V
+    {
+        sp -= 0;
+        JObject *__ins = rstack[sp + 0].ins;
+        if (!__ins) {
+            rstack[sp++].obj = construct_and_throw_exception(runtime, 0, 
+            goto __ExceptionHandler;
+        }
+        void (*__func_p) (JThreadRuntime *) = find_method(__ins->vm_table, 27, 14);
+        __func_p(runtime);
+        sp += 0;
+        if (runtime->exception) {
+            rstack[sp++].obj = runtime->exception;
+            goto __ExceptionHandler;
+        }
+    }
+    ; 
+    //  line no 60 , L23211803 , bytecode index = 
+    method_exit(runtime);
+    return;
+    ; 
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return ;
+}
+
+void bridge_java_util_HashSet_clear___V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_util_HashSet_clear___V(runtime, ins);
+}
+
+
+// locals: 0
+// stack: 2
+// args: 1
+void func_java_util_HashSet__clinit____V(JThreadRuntime *runtime, struct java_util_HashSet* p0){
+    
+    StackItem local[1] = {0};
+    RStackItem rlocal[1] = {0};
+    StackItem stack[3];
+    RStackItem rstack[3];
+    s32 sp = 0;
+    StackFrame *__frame = method_enter(runtime, 529, &rstack[0], &rlocal[0], &sp);
+    rlocal[0].obj = p0;
+    ; 
+    //  line no 11 , L776700275 , bytecode index = 
+    __frame->bytecodeIndex = 
+    __frame->lineNo = 11;
+    // new java/lang/Object
+    rstack[sp++].obj = new_instance_with_classraw_index(runtime, 5);
+    // dup
+    stack[sp].j = stack[sp - 1].j; 
+    rstack[sp].obj = rstack[sp - 1].obj; 
+    ++sp;
+    // invokespecial java/lang/Object.<init>()V
+    sp -= 0;  //pop para
+    // it's a empty method
+    // putstatic java/util/HashSet PRESENT Ljava/lang/Object;
+    sp -= 1;
+    static_var_java_util_HashSet.PRESENT_1 = rstack[sp].obj;
+    method_exit(runtime);
+    return;
+    __ExceptionHandler:
+    switch (find_exception_handler_index(runtime)) {
+        default: goto __ExceptionHandlerNotFound;
+    }
+    __ExceptionHandlerNotFound:
+    method_exit(runtime);
+    return ;
+}
+
+void bridge_java_util_HashSet__clinit____V(JThreadRuntime *runtime, __refer ins, ParaItem *para, ParaItem *ret) {
+    func_java_util_HashSet__clinit____V(runtime, para[0].obj);
 }
 
 

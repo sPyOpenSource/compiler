@@ -357,7 +357,7 @@ public class AssistLLVM {
                 i = index;
             }
             return i;
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
