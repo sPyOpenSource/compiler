@@ -704,7 +704,7 @@ public final class JavaGrammar extends Grammar
 
     public rule var_decl_suffix_no_semi =
         seq(type, var_declarators)
-        .push($ -> new VarDeclaration($.$0(), $.$1(), $.$2()),
+        .push($ -> new StVar($.$0(), $.$1(), $.$2()),
             LOOKBACK(1));
 
     public rule var_decl_suffix =
