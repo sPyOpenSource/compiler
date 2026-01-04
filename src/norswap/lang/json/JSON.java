@@ -55,7 +55,7 @@ public final class JSON extends Grammar
         .push($ -> $.str());
 
     public rule string =
-        seq('"',string_content , '"')
+        seq('"', string_content , '"')
         .word();
 
     public rule LBRACE   = word("{");
@@ -112,6 +112,6 @@ public final class JSON extends Grammar
 
     public static void main (String[] args) {
         // failing parse example
-        new JSON().parse("<test>", "{ \"test\" : // }");
+        new JSON().parse("<test>", "{ \"test\" : 1 }");
     }
 }

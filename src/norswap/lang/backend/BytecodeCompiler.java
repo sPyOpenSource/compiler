@@ -1,10 +1,5 @@
 package norswap.lang.backend;
 
-import norswap.lang.rust.ast.*;
-import norswap.lang.rust.interpreter.ConstructorNode;
-import norswap.lang.rust.scopes.Scope;
-import norswap.lang.rust.scopes.SyntheticDeclarationNode;
-import norswap.lang.rust.types.*;
 import norswap.uranium.Reactor;
 import norswap.utils.Vanilla;
 import norswap.utils.data.wrappers.Pair;
@@ -14,6 +9,7 @@ import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Handle;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
+import static org.objectweb.asm.Opcodes.*;
 
 import java.lang.invoke.MethodHandle;
 import java.util.ArrayList;
@@ -41,7 +37,11 @@ import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
 import norswap.lang.rust.ast.expr.StringLiteral;
 import norswap.lang.rust.ast.expr.UnaryExpression;
-import static org.objectweb.asm.Opcodes.*;
+import norswap.lang.rust.ast.*;
+import norswap.lang.rust.interpreter.ConstructorNode;
+import norswap.lang.rust.scopes.Scope;
+import norswap.lang.rust.scopes.SyntheticDeclarationNode;
+import norswap.lang.rust.types.*;
 
 /**
  * <h2>Limitations</h2>

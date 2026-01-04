@@ -2,13 +2,13 @@ package norswap.lang.java;
 
 import norswap.autumn.Grammar;
 import norswap.autumn.actions.StackPush;
-import norswap.lang.java.ast.*;
-import norswap.lang.java.ast.TypeDeclaration.Kind;
 import norswap.utils.data.wrappers.Pair;
 
 import static java.util.Collections.emptyList;
 import static norswap.lang.java.ast.BinaryOperator.*;
 import static norswap.lang.java.ast.UnaryOperator.*;
+import static norswap.utils.Vanilla.list;
+
 import norswap.lang.java.ast.expr.ArrayAccess;
 import norswap.lang.java.ast.expr.ArrayConstructorCall;
 import norswap.lang.java.ast.expr.ArrayInitializer;
@@ -34,7 +34,8 @@ import norswap.lang.java.ast.expr.This;
 import norswap.lang.java.ast.expr.ThisCall;
 import norswap.lang.java.ast.expr.TypeMethodReference;
 import norswap.lang.java.ast.expr.UnaryExpression;
-import static norswap.utils.Vanilla.list;
+import norswap.lang.java.ast.*;
+import norswap.lang.java.ast.TypeDeclaration.Kind;
 
 /**
  * Faster version of {@link JavaGrammar} (even faster than {@link JavaGrammar}).
@@ -426,7 +427,7 @@ public final class JavaGrammarTokens extends Grammar
 
     public rule super_expr =
         seq(_super, args.or_push_null())
-        .push($ -> $.$0() == null ? new Super() : new SuperCall($.$0()));
+        .push($ -> $.$0() == null ? Super.mk() : new SuperCall($.$0()));
 
     public rule primary_expr = choice(
         lambda, par_expr, array_ctor_call, ctor_call, type_suffix_expr, iden_or_method_expr,

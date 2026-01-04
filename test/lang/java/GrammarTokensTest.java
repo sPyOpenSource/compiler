@@ -6,13 +6,13 @@ import norswap.lang.java.Token;
 import norswap.lang.java.ast.expr.Literal;
 import java.util.Arrays;
 
-public final class TestGrammarTokens extends TestGrammar {
+public final class GrammarTokensTest extends GrammarTest {
 
     // ---------------------------------------------------------------------------------------------
 
-    public TestGrammarTokens() {
+    public GrammarTokensTest() {
         super(new JavaGrammarTokens());
-        Literal.testConvertHook = TestGrammarTokens::convertLiteralValue;
+        Literal.testConvertHook = GrammarTokensTest::convertLiteralValue;
         lexer = string -> Arrays.asList(new Lexer(string).lex());
     }
 

@@ -37,7 +37,7 @@ import static norswap.utils.Vanilla.list;
 import org.junit.Test;
 
 @SuppressWarnings("FieldMayBeFinal")
-public class TestGrammar extends AutumnTestFixture
+public class GrammarTest extends AutumnTestFixture
 {
     // ---------------------------------------------------------------------------------------------
 
@@ -50,14 +50,14 @@ public class TestGrammar extends AutumnTestFixture
      * Use this constructor in subclasses to test alternative Java grammars that use the same rule
      * names as the original.
      */
-    TestGrammar (Object grammar) {
+    GrammarTest (Object grammar) {
         this.grammar = grammar;
         this.grammarClass = grammar.getClass();
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    public TestGrammar() {
+    public GrammarTest() {
         this(new JavaGrammar());
     }
 
@@ -147,7 +147,7 @@ public class TestGrammar extends AutumnTestFixture
 
         // NOTE(norswap): stopgap to account for the fact that JavaGrammar and JavaGrammarTokens are
         //   each more permissive in certain scenarios.
-        if (!getClass().equals(TestGrammarTokens.class))
+        if (!getClass().equals(GrammarTokensTest.class))
         {
             failure("42_");
 
@@ -346,7 +346,7 @@ public class TestGrammar extends AutumnTestFixture
         successExpect("this",
             This.mk());
         successExpect("super",
-            new Super());
+            Super.mk());
         successExpect("this()",
             ThisCall.mk(noArgs));
         successExpect("super()",

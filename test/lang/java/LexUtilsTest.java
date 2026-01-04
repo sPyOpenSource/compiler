@@ -7,14 +7,14 @@ import org.junit.Assert;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
-public final class TestLexUtils
+public final class LexUtilsTest
 {
     // ---------------------------------------------------------------------------------------------
 
     private static void assertEquals (Exceptional<Number> result, double value)
     {
         assertTrue(result.isValue());
-        Assert.assertEquals(result.get().doubleValue(), value);
+        Assert.assertEquals(result.get().doubleValue(), value, 0);
     }
 
     // ---------------------------------------------------------------------------------------------

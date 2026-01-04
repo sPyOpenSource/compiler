@@ -184,8 +184,7 @@ public abstract class Parser
         if (result) {
             if (parse.options.recordCallStack)
                 parse.callStack.pop();
-        }
-        else {
+        } else {
             if (!excludeErrors && parse.error <= pos0) {
                 parse.error = pos0;
                 if (parse.options.recordCallStack)
