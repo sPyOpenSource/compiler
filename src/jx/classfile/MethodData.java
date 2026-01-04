@@ -1,6 +1,5 @@
 package jx.classfile; 
 
-import jCPU.JavaVM.vm.Attribute;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,13 +9,14 @@ import java.util.logging.Logger;
 
 import jx.classfile.constantpool.*;
 import jx.classfile.datatypes.*;
+import jCPU.JavaVM.vm.Attribute;
 
 /** 
-    All data about a method, that can be found 
-    in a class file. This is a rather passive class. 
-    It only reads the data from the class file and 
-    stores it. 
-*/ 
+ * All data about a method, that can be found 
+ * in a class file. This is a rather passive class. 
+ * It only reads the data from the class file and 
+ * stores it. 
+ */ 
 public class MethodData extends MethodSource {
     private int accessFlags;
     int methodNameCPIndex;
@@ -189,8 +189,8 @@ public class MethodData extends MethodSource {
 	methodTypeCPEntry = (UTF8CPEntry)cPool.entryAt(methodTypeCPIndex);
 
 	int numAttributes = input.readUnsignedShort();
-attributes_count = numAttributes;
-attributes = new Attribute[numAttributes];
+        attributes_count = numAttributes;
+        attributes = new Attribute[numAttributes];
 	// System.out.println(getDescription(cPool));
       
 	for(int i = 0; i < numAttributes; i++){
