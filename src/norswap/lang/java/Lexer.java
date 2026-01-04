@@ -282,6 +282,7 @@ public final class Lexer
 
     /**
      * Skips past and emits the next token.
+     * @return 
      */
     public Token next()
     {
@@ -289,10 +290,8 @@ public final class Lexer
         while (true) {
             start = i;
 
-            switch (get_char(i))
-            {
-                // skip whitespace
-
+            OUTER:
+            switch (get_char(i)) {
                 case ' ':
                 case '\t':
                 case FF:
@@ -300,56 +299,95 @@ public final class Lexer
                     while (c == ' ' || c == '\t' || c == FF);
                     process_white_space();
                     break;
-
                 case LF:
                     ++i;
                     process_line_terminator();
                     break;
-
                 case CR:
                     ++i;
                     if (get_char(i) == LF) ++i;
                     process_line_terminator();
                     break;
-
-                // identifiers
-
-                case 'A': case 'B': case 'C': case 'D': case 'E':
-                case 'F': case 'G': case 'H': case 'I': case 'J':
-                case 'K': case 'L': case 'M': case 'N': case 'O':
-                case 'P': case 'Q': case 'R': case 'S': case 'T':
-                case 'U': case 'V': case 'W': case 'X': case 'Y':
+                case 'A':
+                case 'B':
+                case 'C':
+                case 'D':
+                case 'E':
+                case 'F':
+                case 'G':
+                case 'H':
+                case 'I':
+                case 'J':
+                case 'K':
+                case 'L':
+                case 'M':
+                case 'N':
+                case 'O':
+                case 'P':
+                case 'Q':
+                case 'R':
+                case 'S':
+                case 'T':
+                case 'U':
+                case 'V':
+                case 'W':
+                case 'X':
+                case 'Y':
                 case 'Z':
-                case 'a': case 'b': case 'c': case 'd': case 'e':
-                case 'f': case 'g': case 'h': case 'i': case 'j':
-                case 'k': case 'l': case 'm': case 'n': case 'o':
-                case 'p': case 'q': case 'r': case 's': case 't':
-                case 'u': case 'v': case 'w': case 'x': case 'y':
+                case 'a':
+                case 'b':
+                case 'c':
+                case 'd':
+                case 'e':
+                case 'f':
+                case 'g':
+                case 'h':
+                case 'i':
+                case 'j':
+                case 'k':
+                case 'l':
+                case 'm':
+                case 'n':
+                case 'o':
+                case 'p':
+                case 'q':
+                case 'r':
+                case 's':
+                case 't':
+                case 'u':
+                case 'v':
+                case 'w':
+                case 'x':
+                case 'y':
                 case 'z':
-                case '$': case '_':
+                case '$':
+                case '_':
                     return scan_ident();
-
-                // numbers and dots
-
                 case '0':
                     c = get_char(++i);
-                    if (c == 'x' || c == 'X') {
-                        ++i;
-                        return scan_number(16);
+                    switch (c) {
+                        case 'x':
+                        case 'X':
+                            ++i;
+                            return scan_number(16);
+                        case 'b':
+                        case 'B':
+                            ++i;
+                            return scan_number(2);
+                        default:
+                            --i;
+                            return scan_number(8);
                     }
-                    else if (c == 'b' || c == 'B') {
-                        ++i;
-                        return scan_number(2);
-                    }
-                    else {
-                        --i;
-                        return scan_number(8);
-                    }
-
-                case '1': case '2': case '3': case '4':
-                case '5': case '6': case '7': case '8': case '9':
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
                     return scan_number(10);
-
                 case '.':
                     c = get_char(++i);
                     if ('0' <= c && c <= '9') {
@@ -365,16 +403,10 @@ public final class Lexer
                         --i;
                     }
                     return operator(TokenKind.DOT);
-
-                // end of input
-
                 case EOI:
                     return (i >= string.length - 1)
-                        ? null
-                        : scan_ident();
-
-                // operators
-
+                            ? null
+                            : scan_ident();
                 case ',':
                     ++i; return operator(TokenKind.COMMA);
                 case ';':
@@ -397,22 +429,24 @@ public final class Lexer
                     ++i; return operator(TokenKind.QUES);
                 case '~':
                     ++i; return operator(TokenKind.TILDE);
-
                 case ':':
                     if (get_char(++i) == ':') {
                         ++i;
                         return operator(TokenKind.COLCOL);
                     }
                     return operator(TokenKind.COLON);
-
-                case '*': case '!': case '^': case '%': case '=':
+                case '*':
+                case '!':
+                case '^':
+                case '%':
+                case '=':
                     put_char_and_advance(get_char(i));
                     c = get_char(i);
                     if (c == '=')
                         put_char_and_advance(c);
                     return name_token();
-
-                case '<': case '>':
+                case '<':
+                case '>':
                     old = get_char(i);
                     put_char_and_advance(old);
                     c = get_char(i);
@@ -442,56 +476,49 @@ public final class Lexer
                             return gt_token(false);
                     }
                     return name_token();
-
-                case '+': case '-': case '&': case '|':
+                case '+':
+                case '-':
+                case '&':
+                case '|':
                     old = get_char(i);
                     put_char_and_advance(old);
                     c = get_char(i);
                     if (c == '=' || c == old || old == '-' && c == '>')
                         put_char_and_advance(c);
                     return name_token();
-
-                // comments and slashes
-
                 case '/':
                     c = get_char(++i);
-                    if (c == '/') {
-                        do { c = get_char(++i); }
-                        while (c != CR && c != LF && i < string.length);
-                        add_comment(Token.CommentKind.LINE);
-                        break;
-                    }
-                    else if (c == '*') {
-                        c = get_char(++i);
-                        Token.CommentKind kind = Token.CommentKind.BLOCK;
-                        if (c == '*') {
-                            c = get_char(i + 1);
-                            if (c == '*')
-                                kind = Token.CommentKind.JAVADOC;
-                        }
-                        while (i < string.length) {
+                    switch (c) {
+                        case '/':
+                            do { c = get_char(++i); }
+                            while (c != CR && c != LF && i < string.length);
+                            add_comment(Token.CommentKind.LINE);
+                            break OUTER;
+                        case '*':
+                            c = get_char(++i);
+                            Token.CommentKind kind = Token.CommentKind.BLOCK;
                             if (c == '*') {
-                                c = get_char(++i);
-                                if (c == '/') break;
-                            }
-                            else
-                                c = get_char(++i);
-                        }
-                        if (c != '/')
-                            return error("unclosed comment");
-                        ++i;
-                        add_comment(kind);
-                        break;
+                                c = get_char(i + 1);
+                                if (c == '*')
+                                    kind = Token.CommentKind.JAVADOC;
+                            }   while (i < string.length) {
+                                if (c == '*') {
+                                    c = get_char(++i);
+                                    if (c == '/') break;
+                                }
+                                else
+                                    c = get_char(++i);
+                            }   if (c != '/')
+                                return error("unclosed comment");
+                            ++i;
+                            add_comment(kind);
+                            break OUTER;
+                        case '=':
+                            ++i;
+                            return operator(TokenKind.SLASHEQ);
+                        default:
+                            return operator(TokenKind.SLASH);
                     }
-                    else if (c == '=') {
-                        ++i;
-                        return operator(TokenKind.SLASHEQ);
-                    }
-                    else
-                        return operator(TokenKind.SLASH);
-
-                // char literal
-
                 case '\'':
                     c = get_char(++i);
                     if (c == '\'')
@@ -509,9 +536,6 @@ public final class Lexer
                         } else
                             return error("unclosed char literal");
                     }
-
-                // string literal
-
                 case '\"':
                     int x;
                     c = get_char(++i);
@@ -526,9 +550,6 @@ public final class Lexer
                     }
                     ++i;
                     return str_token();
-
-                // weird identifier parts and illegal characters
-
                 default:
                     c = get_char(i);
                     if (c >= '\u0080') { // not ascii
@@ -536,8 +557,8 @@ public final class Lexer
                             return scan_ident();
                     }
                     String arg = (32 < c && c < 127) // printable ascii char?
-                        ? String.format("%s", c)
-                        : String.format("\\u%04x", c);
+                            ? String.format("%s", c)
+                            : String.format("\\u%04x", c);
                     ++i;
                     return error("illegal char: " + arg);
             }
@@ -900,6 +921,7 @@ public final class Lexer
 
     /**
      * Fully converts the input string into a series of token.
+     * @return 
      */
     public Token[] lex()
     {

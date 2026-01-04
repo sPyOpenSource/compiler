@@ -1,6 +1,6 @@
 package norswap.lang.rust.interpreter;
 
-import norswap.lang.rust.ast.StructDeclarationNode;
+import norswap.lang.rust.ast.StructDeclaration;
 
 /**
  * Class representing structure constructors in the interpreter, simply wrapping the declaration
@@ -9,9 +9,9 @@ import norswap.lang.rust.ast.StructDeclarationNode;
  */
 public final class ConstructorNode
 {
-    public final StructDeclarationNode declaration;
+    public final StructDeclaration declaration;
 
-    public ConstructorNode (StructDeclarationNode declaration) {
+    public ConstructorNode (StructDeclaration declaration) {
         this.declaration = declaration;
     }
 

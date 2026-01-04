@@ -1,9 +1,8 @@
 package norswap.lang.rust;
 
 import norswap.autumn.Grammar;
-import norswap.lang.rust.ast.*;
-
 import static norswap.lang.rust.ast.UnaryOperator.NOT;
+
 import norswap.lang.rust.ast.expr.ArrayAccess;
 import norswap.lang.rust.ast.expr.ArrayLiteral;
 import norswap.lang.rust.ast.expr.Assignment;
@@ -18,6 +17,7 @@ import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
 import norswap.lang.rust.ast.expr.StringLiteral;
 import norswap.lang.rust.ast.expr.UnaryExpression;
+import norswap.lang.rust.ast.*;
 
 @SuppressWarnings("Convert2MethodRef")
 public class RustGrammar extends Grammar
@@ -116,7 +116,7 @@ public class RustGrammar extends Grammar
     
     public rule simple_type =
         identifier
-        .push($ -> new SimpleTypeNode($.span(), $.$[0]));
+        .push($ -> new SimpleType($.span(), $.$[0]));
 
     public rule paren_expression = lazy(() ->
         seq(LPAREN, this.expression, RPAREN)
@@ -243,7 +243,7 @@ public class RustGrammar extends Grammar
 
     public rule var_decl =
         seq(_var, identifier, COLON, type, EQUALS, expression)
-        .push($ -> new VarDeclarationNode($.span(), $.$[0], $.$[1], $.$[2]));
+        .push($ -> new VarDeclaration($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule parameter =
         seq(identifier, COLON, type)
@@ -258,18 +258,18 @@ public class RustGrammar extends Grammar
 
     public rule fun_decl =
         seq(_fun, identifier, LPAREN, parameters, RPAREN, maybe_return_type, block)
-        .push($ -> new FunDeclarationNode($.span(), $.$[0], $.$[1], $.$[2], $.$[3]));
+        .push($ -> new FunDeclaration($.span(), $.$[0], $.$[1], $.$[2], $.$[3]));
 
     public rule field_decl =
         seq(_var, identifier, COLON, type)
-        .push($ -> new FieldDeclarationNode($.span(), $.$[0], $.$[1]));
+        .push($ -> new FieldDeclaration($.span(), $.$[0], $.$[1]));
 
     public rule struct_body =
         seq(LBRACE, field_decl.at_least(0).as_list(DeclarationNode.class), RBRACE);
 
     public rule struct_decl =
         seq(_struct, identifier, struct_body)
-        .push($ -> new StructDeclarationNode($.span(), $.$[0], $.$[1]));
+        .push($ -> new StructDeclaration($.span(), $.$[0], $.$[1]));
 
     public rule if_stmt =
         seq(_if, expression, statement, seq(_else, statement).or_push_null())

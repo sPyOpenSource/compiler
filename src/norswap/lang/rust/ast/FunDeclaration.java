@@ -4,7 +4,7 @@ import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 import java.util.List;
 
-public class FunDeclarationNode extends DeclarationNode
+public class FunDeclaration extends DeclarationNode
 {
     public final String name;
     public final List<ParameterNode> parameters;
@@ -12,13 +12,13 @@ public class FunDeclarationNode extends DeclarationNode
     public final Block block;
 
     @SuppressWarnings("unchecked")
-    public FunDeclarationNode
+    public FunDeclaration
             (Span span, Object name, Object parameters, Object returnType, Object block) {
         super(span);
         this.name = Util.cast(name, String.class);
         this.parameters = Util.cast(parameters, List.class);
         this.returnType = returnType == null
-            ? new SimpleTypeNode(new Span(span.start, span.start), "Void")
+            ? new SimpleType(new Span(span.start, span.start), "Void")
             : Util.cast(returnType, TypeNode.class);
         this.block = Util.cast(block, Block.class);
     }

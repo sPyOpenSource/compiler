@@ -13,13 +13,13 @@ import norswap.uranium.Reactor;
 import norswap.uranium.Rule;
 import norswap.utils.visitors.ReflectiveFieldWalker;
 import norswap.utils.visitors.Walker;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.IntStream;
-
 import static java.lang.String.format;
-import static norswap.lang.rust.ast.BinaryOperator.*;
+
 import norswap.lang.rust.ast.expr.ArrayAccess;
 import norswap.lang.rust.ast.expr.ArrayLiteral;
 import norswap.lang.rust.ast.expr.Assignment;
@@ -39,6 +39,7 @@ import static norswap.utils.Vanilla.forEachIndexed;
 import static norswap.utils.Vanilla.list;
 import static norswap.utils.visitors.WalkVisitType.POST_VISIT;
 import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
+import static norswap.lang.rust.ast.BinaryOperator.*;
 
 /**
  * Holds the logic implementing semantic analyzis for the language, including typing and name
@@ -52,7 +53,7 @@ import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
  *     instance of {@link Type} which is the type of the value declared (note that for struct
  *     declaration, this is always {@link TypeType}.</li>
  *
- *     <li>Additionally, {@link StructDeclarationNode} (and default
+ *     <li>Additionally, {@link StructDeclaration} (and default
  *     {@link SyntheticDeclarationNode} for types) must have their {@code declared} attribute set to
  *     an instance of the type being declared.</li>
  *
@@ -63,13 +64,13 @@ import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
  *     declaration it references and its {@code scope} attribute set to the {@link Scope} in which
  *     the declaration it references lives. This speeds up lookups in the interpreter and simplifies the compiler.</li>
  *
- *     <li>For the same reasons, {@link VarDeclarationNode} and {@link ParameterNode} should have
+ *     <li>For the same reasons, {@link VarDeclaration} and {@link ParameterNode} should have
  *     their {@code scope} attribute set to the scope in which they appear (this also speeds up the
  *     interpreter).</li>
  *
  *     <li>All statements introducing a new scope must have their {@code scope} attribute set to the
  *     corresponding {@link Scope} (only {@link RootNode}, {@link Block} and {@link
- *     FunDeclarationNode} (for parameters)). These nodes must also update the {@code scope}
+ *     FunDeclaration} (for parameters)). These nodes must also update the {@code scope}
  *     field to track the current scope during the walk.</li>
  *
  *     <li>Every {@link TypeNode} instance must have its {@code value} set to the {@link Type} it
@@ -139,21 +140,21 @@ public final class SemanticAnalysis
         walker.register(Assignment.class,           PRE_VISIT,  analysis::assignment);
 
         // types
-        walker.register(SimpleTypeNode.class,           PRE_VISIT,  analysis::simpleType);
+        walker.register(SimpleType.class,           PRE_VISIT,  analysis::simpleType);
         walker.register(ArrayTypeNode.class,            PRE_VISIT,  analysis::arrayType);
 
         // declarations & scopes
         walker.register(RootNode.class,                 PRE_VISIT,  analysis::root);
         walker.register(Block.class,                PRE_VISIT,  analysis::block);
-        walker.register(VarDeclarationNode.class,       PRE_VISIT,  analysis::varDecl);
-        walker.register(FieldDeclarationNode.class,     PRE_VISIT,  analysis::fieldDecl);
+        walker.register(VarDeclaration.class,       PRE_VISIT,  analysis::varDecl);
+        walker.register(FieldDeclaration.class,     PRE_VISIT,  analysis::fieldDecl);
         walker.register(ParameterNode.class,            PRE_VISIT,  analysis::parameter);
-        walker.register(FunDeclarationNode.class,       PRE_VISIT,  analysis::funDecl);
-        walker.register(StructDeclarationNode.class,    PRE_VISIT,  analysis::structDecl);
+        walker.register(FunDeclaration.class,       PRE_VISIT,  analysis::funDecl);
+        walker.register(StructDeclaration.class,    PRE_VISIT,  analysis::structDecl);
 
         walker.register(RootNode.class,                 POST_VISIT, analysis::popScope);
         walker.register(Block.class,                POST_VISIT, analysis::popScope);
-        walker.register(FunDeclarationNode.class,       POST_VISIT, analysis::popScope);
+        walker.register(FunDeclaration.class,       POST_VISIT, analysis::popScope);
 
         // statements
         walker.register(StExpr.class,  PRE_VISIT,  node -> {});
@@ -221,7 +222,7 @@ public final class SemanticAnalysis
                 r.set(node, "scope", ctx.scope);
                 r.set(node, "decl", decl);
 
-                if (decl instanceof VarDeclarationNode)
+                if (decl instanceof VarDeclaration)
                     r.errorFor("Variable used before declaration: " + node.name,
                         node, node.attr("type"));
                 else
@@ -241,7 +242,7 @@ public final class SemanticAnalysis
         .by(r -> {
             DeclarationNode decl = r.get(0);
 
-            if (!(decl instanceof StructDeclarationNode)) {
+            if (!(decl instanceof StructDeclaration)) {
                 String description =
                         "Applying the constructor operator ($) to non-struct reference for: "
                         + decl;
@@ -249,7 +250,7 @@ public final class SemanticAnalysis
                 return;
             }
 
-            StructDeclarationNode structDecl = (StructDeclarationNode) decl;
+            StructDeclaration structDecl = (StructDeclaration) decl;
 
             Attribute[] dependencies = new Attribute[structDecl.fields.size() + 1];
             dependencies[0] = decl.attr("declared");
@@ -276,7 +277,7 @@ public final class SemanticAnalysis
 
             final Node context = this.inferenceContext;
 
-            if (context instanceof VarDeclarationNode)
+            if (context instanceof VarDeclaration)
                 R.rule(node, "type")
                 .using(context, "type")
                 .by(Rule::copyFirst);
@@ -362,7 +363,7 @@ public final class SemanticAnalysis
                 return;
             }
 
-            StructDeclarationNode decl = ((StructType) type).node;
+            StructDeclaration decl = ((StructType) type).node;
 
             for (DeclarationNode field: decl.fields)
             {
@@ -605,7 +606,7 @@ public final class SemanticAnalysis
     // region [Types & Typing Utilities]
     // =============================================================================================
 
-    private void simpleType (SimpleTypeNode node)
+    private void simpleType (SimpleType node)
     {
         final Scope scope = this.scope;
 
@@ -647,7 +648,7 @@ public final class SemanticAnalysis
 
     private static boolean isTypeDecl (DeclarationNode decl)
     {
-        if (decl instanceof StructDeclarationNode) return true;
+        if (decl instanceof StructDeclaration) return true;
         if (!(decl instanceof SyntheticDeclarationNode)) return false;
         SyntheticDeclarationNode synthetic = cast(decl);
         return synthetic.kind() == DeclarationKind.TYPE;
@@ -739,7 +740,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void varDecl (VarDeclarationNode node)
+    private void varDecl (VarDeclaration node)
     {
         this.inferenceContext = node;
 
@@ -766,7 +767,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void fieldDecl (FieldDeclarationNode node)
+    private void fieldDecl (FieldDeclaration node)
     {
         R.rule(node, "type")
         .using(node.type, "value")
@@ -787,7 +788,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void funDecl (FunDeclarationNode node)
+    private void funDecl (FunDeclaration node)
     {
         scope.declare(node.name, node);
         scope = new Scope(node, scope);
@@ -820,7 +821,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void structDecl (StructDeclarationNode node) {
+    private void structDecl (StructDeclaration node) {
         scope.declare(node.name, node);
         R.set(node, "type", TypeType.INSTANCE);
         R.set(node, "declared", new StructType(node));
@@ -868,7 +869,7 @@ public final class SemanticAnalysis
     {
         R.set(node, "returns", true);
 
-        FunDeclarationNode function = currentFunction();
+        FunDeclaration function = currentFunction();
         if (function == null) // top-level return
             return;
 
@@ -898,13 +899,13 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private FunDeclarationNode currentFunction()
+    private FunDeclaration currentFunction()
     {
         Scope scope = this.scope;
         while (scope != null) {
             Node node = scope.node;
-            if (node instanceof FunDeclarationNode)
-                return (FunDeclarationNode) node;
+            if (node instanceof FunDeclaration)
+                return (FunDeclaration) node;
             scope = scope.parent;
         }
         return null;

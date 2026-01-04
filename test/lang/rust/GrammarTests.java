@@ -95,20 +95,20 @@ public class GrammarTests extends AutumnTestFixture {
     @Test public void testDeclarations() {
         rule = grammar.statement;
 
-        successExpect("let x: i32 = 1", new VarDeclarationNode(null,
-            "x", new SimpleTypeNode(null, "i32"), intlit(1)));
+        successExpect("let x: i32 = 1", new VarDeclaration(null,
+            "x", new SimpleType(null, "i32"), intlit(1)));
 
-        successExpect("struct P {}", new StructDeclarationNode(null, "P", asList()));
+        successExpect("struct P {}", new StructDeclaration(null, "P", asList()));
 
         successExpect("struct P { let x: i32; let y: i32 }",
-            new StructDeclarationNode(null, "P", asList(
-                new FieldDeclarationNode(null, "x", new SimpleTypeNode(null, "i32")),
-                new FieldDeclarationNode(null, "y", new SimpleTypeNode(null, "i32")))));
+            new StructDeclaration(null, "P", asList(
+                new FieldDeclaration(null, "x", new SimpleType(null, "i32")),
+                new FieldDeclaration(null, "y", new SimpleType(null, "i32")))));
 
         successExpect("fn f (x: i32): i32 { return 1 }",
-            new FunDeclarationNode(null, "f",
-                asList(new ParameterNode(null, "x", new SimpleTypeNode(null, "i32"))),
-                new SimpleTypeNode(null, "i32"),
+            new FunDeclaration(null, "f",
+                asList(new ParameterNode(null, "x", new SimpleType(null, "i32"))),
+                new SimpleType(null, "i32"),
                 new Block(null, asList(new StReturn(null, intlit(1))))));
     }
 

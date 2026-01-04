@@ -119,11 +119,11 @@ public class BytecodeCompiler
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
         visitor.register(Block.class,                this::block);
-        visitor.register(VarDeclarationNode.class,       this::varDecl);
-        visitor.register(FieldDeclarationNode.class,     this::fieldDecl);
+        visitor.register(VarDeclaration.class,       this::varDecl);
+        visitor.register(FieldDeclaration.class,     this::fieldDecl);
         visitor.register(ParameterNode.class,            this::parameter);
-        visitor.register(FunDeclarationNode.class,       this::funDecl);
-        visitor.register(StructDeclarationNode.class,    this::structDecl);
+        visitor.register(FunDeclaration.class,       this::funDecl);
+        visitor.register(StructDeclaration.class,    this::structDecl);
 
         // statements
         visitor.register(StExpr.class,  this::expressionStmt);
@@ -222,7 +222,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object funDecl (FunDeclarationNode node)
+    private Object funDecl (FunDeclaration node)
     {
         int surroundingVariableCounter = variableCounter;
         MethodVisitor surroundingMethod = method;
@@ -554,7 +554,7 @@ public class BytecodeCompiler
             if (decl instanceof SyntheticDeclarationNode) {
                 return builtin(funType, decl.name(), node.arguments);
             }
-            else if (decl instanceof FunDeclarationNode) {
+            else if (decl instanceof FunDeclaration) {
                 runArguments(funType, node.arguments);
                 method.visitMethodInsn(INVOKESTATIC, containerName,
                     decl.name(), methodDescriptor(funType), false);
@@ -564,7 +564,7 @@ public class BytecodeCompiler
             }
         }
         else if (node.function instanceof Constructor) {
-            StructDeclarationNode decl = reactor.get(((Constructor) node.function).ref, "decl");
+            StructDeclaration decl = reactor.get(((Constructor) node.function).ref, "decl");
             String binaryName = structBinaryName(reactor.get(decl, "declared"));
             method.visitTypeInsn(NEW, binaryName);
             method.visitInsn(DUP);
@@ -698,16 +698,16 @@ public class BytecodeCompiler
         DeclarationNode decl = reactor.get(node, "decl");
 
         // TODO distinguish local variables from closures
-        if (decl instanceof VarDeclarationNode || decl instanceof ParameterNode) {
+        if (decl instanceof VarDeclaration || decl instanceof ParameterNode) {
             method.visitVarInsn(nodeAsmType(node).getOpcode(ILOAD), varIndex(node));
         }
-        else if (decl instanceof StructDeclarationNode) {
+        else if (decl instanceof StructDeclaration) {
             // NOTE: This is not used when the reference is part of a constructor call, the
             // resolution is handled in #funCall.
             org.objectweb.asm.Type asmType = asmType(reactor.get(decl, "declared"));
             method.visitLdcInsn(asmType); // class constant for emitted type
         }
-        else if (decl instanceof FunDeclarationNode) {
+        else if (decl instanceof FunDeclaration) {
             // NOTE: This is not used when the reference is part of a function call, the resolution
             // is handled in #funCall.
 
@@ -753,7 +753,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object varDecl (VarDeclarationNode node)
+    private Object varDecl (VarDeclaration node)
     {
         org.objectweb.asm.Type type = nodeAsmType(node);
         int index = registerVariable(node, type);
@@ -809,7 +809,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object structDecl (StructDeclarationNode node)
+    private Object structDecl (StructDeclaration node)
     {
         String binaryName = node.name;
         struct = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
@@ -825,7 +825,7 @@ public class BytecodeCompiler
         init.visitVarInsn(ALOAD, 0); // this
         init.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V", false);
         int i = 1;
-        for (FieldDeclarationNode field: node.fields) {
+        for (FieldDeclaration field: node.fields) {
             init.visitVarInsn(ALOAD, 0);
             org.objectweb.asm.Type type = nodeAsmType(field);
             init.visitVarInsn(type.getOpcode(ILOAD), i);
@@ -844,7 +844,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object fieldDecl (FieldDeclarationNode node)
+    private Object fieldDecl (FieldDeclaration node)
     {
         struct.visitField(ACC_PUBLIC, node.name, nodeFieldDescriptor(node), null, null);
         return null;
@@ -891,7 +891,7 @@ public class BytecodeCompiler
 
     /**
      * Declares a variable introduce by the given declaration (which must be a {@link
-     * VarDeclarationNode} or {@link ParameterNode}, and returns its index in its JVM method
+     * VarDeclaration} or {@link ParameterNode}, and returns its index in its JVM method
      * scope.
      */
     private int registerVariable (DeclarationNode node) {

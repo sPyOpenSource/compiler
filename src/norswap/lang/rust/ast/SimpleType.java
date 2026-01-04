@@ -3,11 +3,11 @@ package norswap.lang.rust.ast;
 import norswap.autumn.positions.Span;
 import norswap.utils.Util;
 
-public final class SimpleTypeNode extends TypeNode
+public final class SimpleType extends TypeNode
 {
     public final String name;
 
-    public SimpleTypeNode (Span span, Object name) {
+    public SimpleType (Span span, Object name) {
         super(span);
         this.name = Util.cast(name, String.class);
     }

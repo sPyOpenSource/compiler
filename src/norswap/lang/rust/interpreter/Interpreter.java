@@ -42,10 +42,10 @@ import static norswap.utils.Vanilla.map;
  *     <li>{@code null}: {@link Null#INSTANCE}</li>
  *     <li>Arrays: {@code Object[]}</li>
  *     <li>Structs: {@code HashMap<String, Object>}</li>
- *     <li>Functions: the corresponding {@link DeclarationNode} ({@link FunDeclarationNode} or
+ *     <li>Functions: the corresponding {@link DeclarationNode} ({@link FunDeclaration} or
  *     {@link SyntheticDeclarationNode}), excepted structure constructors, which are
  *     represented by {@link Constructor}</li>
- *     <li>Types: the corresponding {@link StructDeclarationNode}</li>
+ *     <li>Types: the corresponding {@link StructDeclaration}</li>
  * </ul>
  */
 public final class Interpreter
@@ -81,7 +81,7 @@ public final class Interpreter
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
         visitor.register(Block.class,                this::block);
-        visitor.register(VarDeclarationNode.class,       this::varDecl);
+        visitor.register(VarDeclaration.class,       this::varDecl);
         // no need to visitor other declarations! (use fallback)
 
         // statements
@@ -416,7 +416,7 @@ public final class Interpreter
         Scope scope = reactor.get(decl, "scope");
         storage = new ScopeStorage(scope, storage);
 
-        FunDeclarationNode funDecl = (FunDeclarationNode) decl;
+        FunDeclaration funDecl = (FunDeclaration) decl;
         coIterate(args, funDecl.parameters,
                 (arg, param) -> storage.set(scope, param.name, arg));
 
@@ -448,10 +448,10 @@ public final class Interpreter
             return "null";
         else if (arg instanceof Object[])
             return Arrays.deepToString((Object[]) arg);
-        else if (arg instanceof FunDeclarationNode)
-            return ((FunDeclarationNode) arg).name;
-        else if (arg instanceof StructDeclarationNode)
-            return ((StructDeclarationNode) arg).name;
+        else if (arg instanceof FunDeclaration)
+            return ((FunDeclaration) arg).name;
+        else if (arg instanceof StructDeclaration)
+            return ((StructDeclaration) arg).name;
         else if (arg instanceof ConstructorNode)
             return "$" + ((ConstructorNode) arg).declaration.name;
         else
@@ -460,7 +460,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private HashMap<String, Object> buildStruct (StructDeclarationNode node, Object[] args)
+    private HashMap<String, Object> buildStruct (StructDeclaration node, Object[] args)
     {
         HashMap<String, Object> struct = new HashMap<>();
         for (int i = 0; i < node.fields.size(); ++i)
@@ -495,7 +495,7 @@ public final class Interpreter
         Scope scope = reactor.get(node, "scope");
         DeclarationNode decl = reactor.get(node, "decl");
 
-        if (decl instanceof VarDeclarationNode
+        if (decl instanceof VarDeclaration
         || decl instanceof ParameterNode
         || decl instanceof SyntheticDeclarationNode
                 && ((SyntheticDeclarationNode) decl).kind() == DeclarationKind.VARIABLE)
@@ -514,7 +514,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Void varDecl (VarDeclarationNode node)
+    private Void varDecl (VarDeclaration node)
     {
         Scope scope = reactor.get(node, "scope");
         assign(scope, node.name, get(node.initializer), reactor.get(node, "type"));

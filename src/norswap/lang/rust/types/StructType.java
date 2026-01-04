@@ -1,12 +1,12 @@
 package norswap.lang.rust.types;
 
-import norswap.lang.rust.ast.StructDeclarationNode;
+import norswap.lang.rust.ast.StructDeclaration;
 
 public final class StructType extends Type
 {
-    public final StructDeclarationNode node;
+    public final StructDeclaration node;
 
-    public StructType (StructDeclarationNode node) {
+    public StructType (StructDeclaration node) {
         this.node = node;
     }
 

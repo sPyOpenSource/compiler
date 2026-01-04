@@ -124,7 +124,7 @@ public final class Benchmark
             config.equals("normal")
                 ? new JavaGrammar()
             : config.equals("tokens")
-                ? new JavaGrammarTokens()
+                ? new JavaTokens()
             : Exceptions.exprThrow(
                 new IllegalArgumentException("unknown benchmark config: " + config));
 

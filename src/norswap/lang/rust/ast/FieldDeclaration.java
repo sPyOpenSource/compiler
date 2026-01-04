@@ -2,18 +2,16 @@ package norswap.lang.rust.ast;
 
 import norswap.autumn.positions.Span;
 import norswap.utils.Util;
-import java.util.List;
 
-public class StructDeclarationNode extends DeclarationNode
+public final class FieldDeclaration extends DeclarationNode
 {
     public final String name;
-    public final List<FieldDeclarationNode> fields;
+    public final TypeNode type;
 
-    @SuppressWarnings("unchecked")
-    public StructDeclarationNode (Span span, Object name, Object fields) {
+    public FieldDeclaration (Span span, Object name, Object type) {
         super(span);
         this.name = Util.cast(name, String.class);
-        this.fields = Util.cast(fields, List.class);
+        this.type = Util.cast(type, TypeNode.class);
     }
 
     @Override public String name () {
@@ -21,10 +19,10 @@ public class StructDeclarationNode extends DeclarationNode
     }
 
     @Override public String contents () {
-        return "struct " + name;
+        return "var " + name;
     }
 
     @Override public String declaredThing () {
-        return "struct";
+        return "field";
     }
 }
