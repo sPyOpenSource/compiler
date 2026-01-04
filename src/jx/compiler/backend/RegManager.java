@@ -95,22 +95,18 @@ public class RegManager {
     }
 
     /**
-       Reg chooseIntRegister
-
-       Waehlt ein physikalisches Register fuer ein virtuelles Register aus.
-    */
-
+     * Reg chooseIntRegister
+     * Waehlt ein physikalisches Register fuer ein virtuelles Register aus.
+     */
     public Reg chooseIntRegister() throws CompileException {
 	return chooseIntRegister(null, null);
     }
 
     /**
-       Reg chooseIntRegister
-
-       Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
-       der Einschraenke nicht das Register vom Argumenten zu nehmen.
-    */    
-
+     * Reg chooseIntRegister
+     * Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
+     * der Einschraenke nicht das Register vom Argumenten zu nehmen.
+     */    
     public Reg chooseIntRegister(Reg blocked) throws CompileException {
 	if (dbg_msg && blocked != null && blocked.any()) {
 	    System.err.println("     !! can`t block any");
@@ -119,12 +115,10 @@ public class RegManager {
     }  
 
     /**
-       Reg chooseIntRegister
-
-       Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
-       der Einschraenke nicht die Register der Argumente zu nehmen.
-    */ 
-
+     * Reg chooseIntRegister
+     * Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
+     * der Einschraenke nicht die Register der Argumente zu nehmen.
+     */ 
     public Reg chooseIntRegister(Reg blocked1, Reg blocked2) throws CompileException {
 	return chooseIntRegister(blocked1, blocked2, null);
     }
@@ -159,7 +153,7 @@ public class RegManager {
 	return choose;
     }
     
-public RegFloat chooseFloatRegister() throws CompileException {
+    public RegFloat chooseFloatRegister() throws CompileException {
 	RegFloat choose = null;
 	int badness = 1000;
 	
@@ -192,12 +186,10 @@ public RegFloat chooseFloatRegister() throws CompileException {
 
 
     /**
-       Reg chooseAndAllocIntRegister
-
-       Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
-       der Einschraenke nicht die Register der Argumente zu nehmen.
-    */ 
-
+     * Reg chooseAndAllocIntRegister
+     * Waehlt ein physikalisches Register fuer ein virtuelles Register aus, mit
+     * der Einschraenke nicht die Register der Argumente zu nehmen.
+     */ 
     public Reg chooseAndAllocIntRegister(Reg blocked, int datatype) throws CompileException {
 	Reg choose = chooseIntRegister(blocked, null);
 	allocIntRegister(choose, datatype);
@@ -205,12 +197,10 @@ public RegFloat chooseFloatRegister() throws CompileException {
     }
 
     /**
-       getIntRegister
-
-       Gibt ein zu einem festgelegten physikalischen Register passendes virtuelles Register
-       zurueck.
-    */
-
+     * getIntRegister
+     * Gibt ein zu einem festgelegten physikalischen Register passendes virtuelles Register
+     * zurueck.
+     */
     public Reg getIntRegister(Reg reg) {
 	Reg choose = reg.getClone();
 	choose.id = uniID++;
@@ -221,38 +211,33 @@ public RegFloat chooseFloatRegister() throws CompileException {
     }
 
     /**
-       getLongRegister
-
-       Gibt ein zu einem festgelegten physikalischen Register passendes virtuelles Register
-       zurueck.
-    */
-
+     * getLongRegister
+     * Gibt ein zu einem festgelegten physikalischen Register passendes virtuelles Register
+     * zurueck.
+     */
     public Reg64 getLongRegister(Reg64 reg) {
 	Reg64 nreg = reg.getDeepClone();
 	return nreg;
     }    
 
     /**
-       Legt ein physikalisches Register fuer den Platzhalter "any" fest.
-    */
-
+     * Legt ein physikalisches Register fuer den Platzhalter "any" fest.
+     */
     public void setAnyIntRegister(Reg any,Reg reg) {
 	if (!any.any()) throw new Error("can`t rename register");
 	any.value = reg.value;
     }
 
     /**
-       Wird am Anfang eines Basisblockes aufgerufen.
-    */
-
+     * Wird am Anfang eines Basisblockes aufgerufen.
+     */
     public void startBasicBlock() {
 	active.clear();
     }
 
     /**
-       Wird am Ende eines jeden Basisblockes aufgerufen.
-    */
-
+     * Wird am Ende eines jeden Basisblockes aufgerufen.
+     */
     public void endBasicBlock() {
 	if (dbg_msg) {
 	    System.err.println(method_name + ": end of basic block active: " + active);
@@ -264,9 +249,8 @@ public RegFloat chooseFloatRegister() throws CompileException {
     }
 
     /**
-       Dient zur Abfrage ob noch freie Register zur Verfuehgung stehen.
-    */
-
+     * Dient zur Abfrage ob noch freie Register zur Verfuehgung stehen.
+     */
     public boolean hasFreeIntRegister() {
 	int used = 0;	
 	for (Reg reg = active.top(); reg != null; reg = active.next()) {
@@ -276,16 +260,12 @@ public RegFloat chooseFloatRegister() throws CompileException {
     }
 
     /**
-       allocIntRegister(Reg reg,int datatype) 
-
-       Belegt das physikalische Register fuer ein virtuelles Register (reg). Ist das
-       physikalische Register bereits Belegt wird der Inhalt des belegenden Registers 
-       auf dem Stack gesichert. Handelt es sich beim virtuellen Register um den 
-       Platzhalter "any" so wird automatisch ein Register ausgewaehlt.
-
-    */
-       
-
+     * allocIntRegister(Reg reg,int datatype) 
+     * Belegt das physikalische Register fuer ein virtuelles Register (reg). Ist das
+     * physikalische Register bereits Belegt wird der Inhalt des belegenden Registers 
+     * auf dem Stack gesichert. Handelt es sich beim virtuellen Register um den 
+     * Platzhalter "any" so wird automatisch ein Register ausgewaehlt.
+     */
     public void allocIntRegister(Reg reg, int datatype) throws CompileException {
 	if (reg.any()) chooseAnyIntRegister(reg);
 	
@@ -305,12 +285,10 @@ public RegFloat chooseFloatRegister() throws CompileException {
     }
 
     /** 
-	allocIntRegister(Reg reg,Reg prefer,int datatype)
-
-	Verhaelt sich wie allocIntRegister(Reg reg,int datatype) mit dem Unterschied, dass fuer
-	den Platzhalter "any" ein bevorzugtes Register angegeben werden kann.
-    */
-
+     * allocIntRegister(Reg reg,Reg prefer,int datatype)
+     * Verhaelt sich wie allocIntRegister(Reg reg,int datatype) mit dem Unterschied, dass fuer
+     * den Platzhalter "any" ein bevorzugtes Register angegeben werden kann.
+     */
     public void allocIntRegister(Reg reg, Reg prefer, int datatype) throws CompileException {
 	if (reg.any()) setAnyIntRegister(reg, prefer);
 	allocIntRegister(reg, datatype);

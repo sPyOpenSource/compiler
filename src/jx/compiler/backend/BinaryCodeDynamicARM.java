@@ -41,20 +41,20 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
     private static final int CHUNKSIZE = 200;
 
     /** 
-    After compiling a method, symbolTable contains _all_ 
-    unresolved constants of the code. 
-    These include
-    - jump offsets of jumps inside the code
-    - invocations of functions 
-    - constant pool entries that should be stored to 
-        allow the storing of compiled code between JVM invocations 
-    - actually all subclasses of nativecode.SymbolTableEntryBase
-    */ 
+     * After compiling a method, symbolTable contains _all_ 
+     * unresolved constants of the code. 
+     * These include
+     * - jump offsets of jumps inside the code
+     * - invocations of functions 
+     * - constant pool entries that should be stored to 
+     *   allow the storing of compiled code between JVM invocations 
+     * - actually all subclasses of nativecode.SymbolTableEntryBase
+     */ 
     private ArrayList<SymbolTableEntryBase> symbolTable;
   
     /** 
-    contains the native exception handlers
-    */ 
+     * contains the native exception handlers
+     */ 
     private final ArrayList<NCExceptionHandler> exceptionHandlers;
 
     public BinaryCodeDynamicARM() {

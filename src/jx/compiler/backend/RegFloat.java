@@ -48,7 +48,7 @@ final public class RegFloat extends Opr implements RegObj, Cloneable {
 	return value == -1;
     }
     
-@Override
+    @Override
     public void push(MethodStackFrame frame) {
 	frame.push(getDatatype(), this);
     }
@@ -58,7 +58,7 @@ final public class RegFloat extends Opr implements RegObj, Cloneable {
 	return BCBasicDatatype.FLOAT;
     }
     
-@Override
+    @Override
     public void free() {
 	if (this == any ) throw new Error("any");
 	if (this == xmm0 ) throw new Error("eax");
