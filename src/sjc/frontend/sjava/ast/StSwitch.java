@@ -76,6 +76,7 @@ public class StSwitch extends StBreakable {
 		super(io, ila, fid, il, ic);
 	}
 	
+        @Override
 	public void printBreakableStatement(CodePrinter prnt) {
 	  Statement stmt=stmts;
 	  CondStmt cc=caseConds;
@@ -98,6 +99,7 @@ public class StSwitch extends StBreakable {
 	  prnt.stmtSwitchEnd();
 	}
 	
+        @Override
 	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
 	  Statement stmt;
 	  CondStmt cases, cmp;

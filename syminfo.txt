@@ -1,8 +1,8 @@
 # --- SJC syminfo--- #
 
 BaseAddress: 0x00100000
-Image size: 40384 b = 40 kb
-Code size: 31193 b = 31 kb in 154 methods
+Image size: 40376 b = 40 kb
+Code size: 31186 b = 31 kb in 154 methods
 Strings: 15 with 578 characters using 2464 b = 3 kb
 ramInitAddr: 0x00000000, ramInitSize: 0 b, constMemorySize: 3192 b = 4 kb
 In-image symbol size: 0 b = 0 kb
@@ -919,8 +919,8 @@ FFFFFFD0->inst-r/1: raytracer.Scene scene (may be reduced to private)
 - methods:
 no entry->00108AC8: #constr# RayTrace(raytracer.Scene,boolean) (statCall) (stmtCnt==2, 137 bytes)
 no entry->00108B70: void init(int,int) (statCall) (stmtCnt==26, 1247 bytes)
-no entry->00109068: void renderLine(int[],raytracer.CalcTAinfo) (statCall) (stmtCnt==27, 908 bytes)
-- size of code for methods: 2292 bytes
+no entry->00109068: void renderLine(int[],raytracer.CalcTAinfo) (statCall) (stmtCnt==26, 901 bytes)
+- size of code for methods: 2285 bytes
 - added imports:
 - added interface-maps:
 
@@ -933,12 +933,12 @@ instRelocTableEntries: 2, instScalarTableSize: 8, instIndirScalarTableSize: 0
           cnst-c/0: double PI
 - added statically allocated objects:
 - methods:
-no entry->00109410: double tan(double) (statCall) (stmtCnt==8, 22 bytes)
-no entry->00109440: double sqrt(double) (statCall) (stmtCnt==6, 19 bytes)
-no entry->00109470: double exp(double) (may be reduced to private) (statCall) (stmtCnt==26, 67 bytes)
-no entry->001094D0: double ln(double) (may be reduced to private) (statCall) (stmtCnt==9, 25 bytes)
-no entry->00109508: double pow(double,double) (statCall) (stmtCnt==1, 34 bytes)
-no entry->00109548: double abs(double) (statCall) (stmtCnt==6, 19 bytes)
+no entry->00109408: double tan(double) (statCall) (stmtCnt==8, 22 bytes)
+no entry->00109438: double sqrt(double) (statCall) (stmtCnt==6, 19 bytes)
+no entry->00109468: double exp(double) (may be reduced to private) (statCall) (stmtCnt==26, 67 bytes)
+no entry->001094C8: double ln(double) (may be reduced to private) (statCall) (stmtCnt==9, 25 bytes)
+no entry->00109500: double pow(double,double) (statCall) (stmtCnt==1, 34 bytes)
+no entry->00109540: double abs(double) (statCall) (stmtCnt==6, 19 bytes)
 - size of code for methods: 186 bytes
 - added imports:
 - added interface-maps:
@@ -984,14 +984,14 @@ instRelocTableEntries: 3, instScalarTableSize: 21, instIndirScalarTableSize: 0
 00000014->inst-s/1: byte HIDs
 - added statically allocated objects:
 - methods:
-no entry->00109578: #constr# EventBuffer(int) (statCall) (redirected to tools.RingBuffer)
-no entry->00109918: boolean insertEvent(byte,byte,short,int) (statCall) (stmtCnt==3, 145 bytes)
-no entry->001099C8: boolean eventAvail() (statCall) (stmtCnt==1, 22 bytes)
-no entry->001099F8: long fetchEvent() (statCall) (stmtCnt==1, 6 bytes)
+no entry->00109570: #constr# EventBuffer(int) (statCall) (redirected to tools.RingBuffer)
+no entry->00109910: boolean insertEvent(byte,byte,short,int) (statCall) (stmtCnt==3, 145 bytes)
+no entry->001099C0: boolean eventAvail() (statCall) (stmtCnt==1, 22 bytes)
+no entry->001099F0: long fetchEvent() (statCall) (stmtCnt==1, 6 bytes)
 no entry->00000000: byte extractHIDType(long) (skip candidate) (statCall) (stmtCnt==1, 0 bytes)
 no entry->00000000: byte extractHIDNr(long) (skip candidate) (statCall) (stmtCnt==1, 0 bytes)
-no entry->00109A18: short extractCode(long) (statCall) (stmtCnt==1, 26 bytes)
-no entry->00109A50: int extractCodeExt(long) (statCall) (stmtCnt==1, 23 bytes)
+no entry->00109A10: short extractCode(long) (statCall) (stmtCnt==1, 26 bytes)
+no entry->00109A48: int extractCodeExt(long) (statCall) (stmtCnt==1, 23 bytes)
 - size of code for methods: 222 bytes
 - added imports:
 - added interface-maps:
@@ -1072,9 +1072,9 @@ FFFFFFE8->inst-r/1: byte[] translation
           001010A0: const-array
           00101130: const-array
 - methods:
-no entry->00109A80: boolean useTable(int) (statCall) (stmtCnt==4, 36 bytes)
-no entry->00109AC0: char getChar(short,int) (statCall) (stmtCnt==29, 409 bytes)
-no entry->00109C78: char getKey(short,int) (statCall) (stmtCnt==20, 315 bytes)
+no entry->00109A78: boolean useTable(int) (statCall) (stmtCnt==4, 36 bytes)
+no entry->00109AB8: char getChar(short,int) (statCall) (stmtCnt==29, 409 bytes)
+no entry->00109C70: char getKey(short,int) (statCall) (stmtCnt==20, 315 bytes)
 - size of code for methods: 760 bytes
 - added imports:
 - added interface-maps:
@@ -1091,17 +1091,17 @@ FFFFFFE8->inst-r/1: byte[] buffer
 00000010->inst-s/4: int writePtr
 - added statically allocated objects:
 - methods:
-no entry->00109578: #constr# RingBuffer(int) (may be reduced to package private) (statCall) (stmtCnt==2, 35 bytes)
-no entry->001095B8: int readAvail() (may be reduced to package private) (statCall) (stmtCnt==4, 43 bytes)
-no entry->00109600: int writeAvail() (may be reduced to private) (statCall) (stmtCnt==4, 49 bytes)
-no entry->00109650: boolean putByte(byte) (may be reduced to private) (statCall) (stmtCnt==5, 75 bytes)
-no entry->001096B8: boolean putShort(short) (may be reduced to private) (statCall) (stmtCnt==5, 56 bytes)
-no entry->00109708: boolean putInt(int) (may be reduced to private) (statCall) (stmtCnt==5, 54 bytes)
-no entry->00109758: boolean putLong(long) (may be reduced to package private) (statCall) (stmtCnt==5, 58 bytes)
-no entry->001097B0: byte getByte() (may be reduced to private) (statCall) (stmtCnt==6, 74 bytes)
-no entry->00109818: short getShort() (may be reduced to private) (statCall) (stmtCnt==2, 54 bytes)
-no entry->00109868: int getInt() (may be reduced to private) (statCall) (stmtCnt==2, 51 bytes)
-no entry->001098B8: long getLong() (may be reduced to package private) (statCall) (stmtCnt==2, 66 bytes)
+no entry->00109570: #constr# RingBuffer(int) (may be reduced to package private) (statCall) (stmtCnt==2, 35 bytes)
+no entry->001095B0: int readAvail() (may be reduced to package private) (statCall) (stmtCnt==4, 43 bytes)
+no entry->001095F8: int writeAvail() (may be reduced to private) (statCall) (stmtCnt==4, 49 bytes)
+no entry->00109648: boolean putByte(byte) (may be reduced to private) (statCall) (stmtCnt==5, 75 bytes)
+no entry->001096B0: boolean putShort(short) (may be reduced to private) (statCall) (stmtCnt==5, 56 bytes)
+no entry->00109700: boolean putInt(int) (may be reduced to private) (statCall) (stmtCnt==5, 54 bytes)
+no entry->00109750: boolean putLong(long) (may be reduced to package private) (statCall) (stmtCnt==5, 58 bytes)
+no entry->001097A8: byte getByte() (may be reduced to private) (statCall) (stmtCnt==6, 74 bytes)
+no entry->00109810: short getShort() (may be reduced to private) (statCall) (stmtCnt==2, 54 bytes)
+no entry->00109860: int getInt() (may be reduced to private) (statCall) (stmtCnt==2, 51 bytes)
+no entry->001098B0: long getLong() (may be reduced to package private) (statCall) (stmtCnt==2, 66 bytes)
 - size of code for methods: 615 bytes
 - added imports:
 - added interface-maps:

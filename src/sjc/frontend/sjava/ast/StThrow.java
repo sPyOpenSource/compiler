@@ -43,8 +43,8 @@ import sjc.debug.CodePrinter;
  */
 
 public class StThrow extends Statement {
-	public Expression throwVal;
-  private UnitList runtimeClass;
+    public Expression throwVal;
+    private UnitList runtimeClass;
 	
 	public StThrow(int fid, int il, int ic) {
 		super(fid, il, ic);

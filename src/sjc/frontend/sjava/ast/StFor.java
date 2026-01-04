@@ -77,12 +77,14 @@ public class StFor extends StLoop {
     super(io, ila, fid, il, ic);
   }
   
+  @Override
   public void printBreakableStatement(CodePrinter prnt) {
     if (furtherInit==null && init!=null && init.nextStmt!=null) furtherInit=getStmtArray(init.nextStmt);
     if (furtherLupd==null && lupd!=null && lupd.nextStmt!=null) furtherLupd=getStmtArray(lupd.nextStmt);
     prnt.stmtFor(init, furtherInit, lupd, furtherLupd, cond, loStmt);
   }
   
+  @Override
   protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
     Statement jel;
     Vrbl oldVarState;
@@ -140,6 +142,7 @@ public class StFor extends StLoop {
     return (flowCode&~FA_INSIDE_LOOP)|oldLoopState;
   }
   
+  @Override
   protected void innerGenOutput(Context ctx) {
     Statement jel;
     Instruction loopDest, condDest;
@@ -179,18 +182,17 @@ public class StFor extends StLoop {
   }
   
   private static Statement[] getStmtArray(Statement list) {
-    Statement[] arr=null;
-    Statement tmp=list;
-    int cnt=0;
-    while (tmp!=null) {
+    Statement tmp = list;
+    int cnt = 0;
+    while (tmp != null) {
       cnt++;
-      tmp=tmp.nextStmt;
+      tmp = tmp.nextStmt;
     }
-    arr=new Statement[cnt];
-    cnt=0;
-    while (list!=null) {
-      arr[cnt++]=list;
-      list=list.nextStmt;
+    Statement[] arr = new Statement[cnt];
+    cnt = 0;
+    while (list != null) {
+      arr[cnt++] = list;
+      list = list.nextStmt;
     }
     return arr;
   }

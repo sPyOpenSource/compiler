@@ -27,7 +27,7 @@ import sjc.compbase.Unit;
 import sjc.compbase.UnitList;
 
 /**
- * ExConv: basix routines to support conversion and typecheck of objects
+ * ExConv: basic routines to support conversion and typecheck of objects
  * 
  * @author S. Frenz
  * @version 101210 adopted changed Architecture

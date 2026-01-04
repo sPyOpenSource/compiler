@@ -65,10 +65,12 @@ public class StWhile extends StLoop {
     super(io, ila, fid, il, ic);
   }
   
+  @Override
   public void printBreakableStatement(CodePrinter prnt) {
     prnt.stmtWhile(cond, inclusiveWhile, loStmt);
   }
   
+  @Override
   protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
     int oldLoopState=flowCode&FA_INSIDE_LOOP;
     VrblStateList preState=null;
@@ -101,6 +103,7 @@ public class StWhile extends StLoop {
     return (flowCode&~FA_INSIDE_LOOP)|oldLoopState;
   }
   
+  @Override
   protected void innerGenOutput(Context ctx) {
     Instruction loopDest;
     int id;
