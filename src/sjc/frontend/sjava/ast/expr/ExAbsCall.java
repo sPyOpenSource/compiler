@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast.expr;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.frontend.sjava.SJava;
 
@@ -83,7 +83,7 @@ import sjc.frontend.sjava.SJava;
  *  version 060607 initial version
  */
 
-public abstract class ExAbsCall extends Expr {
+public abstract class ExAbsCall extends Expression {
     private static final String UNCLEARREGS = "ExAbsCall.genOutputPar has not enough free regs (reduce complexity)";
   
     public FilledParam par;
@@ -275,7 +275,7 @@ public abstract class ExAbsCall extends Expr {
     }
   }
   
-  protected static void genOutputSinglePar(Expr paEx, Context ctx) { //called from genOutputPar and ExNew
+  protected static void genOutputSinglePar(Expression paEx, Context ctx) { //called from genOutputPar and ExNew
     int type, reg;
     
     type=paEx.getRegType(ctx);

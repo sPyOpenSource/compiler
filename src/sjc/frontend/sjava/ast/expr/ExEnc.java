@@ -22,7 +22,7 @@ import sjc.backend.Instruction;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExCheckType;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 import sjc.frontend.ExVal;
 
@@ -75,7 +75,7 @@ public class ExEnc extends ExCheckType {
     private final static String WARNONLY = " (warning)";
     private final static String INSCONV  = "inserted implicit conversion";
   
-    public Expr ex;
+    public Expression ex;
     public TypeRef convertTo;
 
     private int calcConstType; //filled in implConvResolve
@@ -91,7 +91,7 @@ public class ExEnc extends ExCheckType {
 	  else codePrnt.exprEnc(convertTo, ex);
 	}
 	
-	public static Expr getConvertedResolvedExpr(Expr ex, TypeRef destType, Unit unitContext, Context ctx) {
+	public static Expression getConvertedResolvedExpr(Expression ex, TypeRef destType, Unit unitContext, Context ctx) {
 	  ExEnc enc;
 	  enc=new ExEnc(ex.fileID, ex.line, ex.col);
     enc.convertTo=destType;

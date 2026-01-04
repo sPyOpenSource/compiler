@@ -18,7 +18,7 @@
 
 package sjc.compbase;
 
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.osio.TextPrinter;
 
 /**
@@ -30,10 +30,10 @@ import sjc.osio.TextPrinter;
  */
 
 public class FilledParam extends Token {
-    public Expr expr;
+    public Expression expr;
     public FilledParam nextParam;
 
-    public FilledParam(Expr e, int fid, int il, int ic) {
+    public FilledParam(Expression e, int fid, int il, int ic) {
         super(fid, il, ic);
         expr = e;
     }

@@ -20,7 +20,7 @@ package sjc.compbase.variable;
 
 import sjc.compbase.Context;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.Modifier;
 import sjc.compbase.StdTypes;
 import sjc.compbase.TypeRef;
@@ -78,7 +78,7 @@ import sjc.compbase.UnitList;
  *  version 061130 initial version
  */
 
-public abstract class ExAccVrbl extends Expr {
+public abstract class ExAccVrbl extends Expression {
   public AccVar dest;
   public boolean isThis, useResu; //isThis=useResu==false initialized
   public boolean constObject; //constType==false initialized
@@ -342,11 +342,11 @@ public abstract class ExAccVrbl extends Expr {
     //everything ok
   }
   
-  public void genOutputAssignTo(int newValueReg, Expr newValue, Context ctx) {
+  public void genOutputAssignTo(int newValueReg, Expression newValue, Context ctx) {
     genOutputAssignTo(0, newValueReg, newValue, ctx);
   }
   
-  public void genOutputAssignTo(int obj, int newValueReg, Expr newValue, Context ctx) {
+  public void genOutputAssignTo(int obj, int newValueReg, Expression newValue, Context ctx) {
     int pos, oldObj1=0, addrRestore1=0, oldObj2=0, addrRestore2=0;
     int regType, newValueCalcConstType=0, newValueRestore=0;
     boolean addr2Used=false, deallocNewValueReg=false;

@@ -22,7 +22,7 @@ import sjc.osio.TextReader;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExArrayInit;
 import sjc.compbase.expr.ExStr;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.frontend.ExVal;
 import sjc.frontend.Language;
@@ -215,8 +215,8 @@ public class PrepObj extends Language {
     return block;
   }
   
-  private Expr initExpr() {
-    Expr ex;
+  private Expression initExpr() {
+    Expression ex;
     TypeRef type;
     
     if (has(Scanner.S_NUM)) return num(); //numeric value
@@ -241,7 +241,7 @@ public class PrepObj extends Language {
     return ex;
   }
   
-  private Expr num() {
+  private Expression num() {
     ExVal num;
     
     if (!has(Scanner.S_NUM)) {
@@ -274,7 +274,7 @@ public class PrepObj extends Language {
   
   private ExArrayInit arrayInit(TypeRef forcedType) {
     ExArrayInit init;
-    Expr ex;
+    Expression ex;
     FilledParam last=null;
     int syl, syc;
     

@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast.expr;
 import sjc.backend.Instruction;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExCheckType;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.AccVar;
 import sjc.debug.CodePrinter;
 
@@ -73,8 +73,8 @@ import sjc.debug.CodePrinter;
  *  version 070106 initial version
  */
 
-public class ExDeArray extends Expr {
-  public Expr le, ind;
+public class ExDeArray extends Expression {
+  public Expression le, ind;
   private UnitList runtimeClass;
   private ExCheckType intfConv;
   
@@ -315,7 +315,7 @@ public class ExDeArray extends Expr {
     if (lePtr==0) ctx.arch.deallocRestoreReg(obj, addrReg, objRestore);
   }
   
-  public void genOutputPrepareAssignTo(int destReg, int newValueReg, Expr newValueEx, Context ctx) {
+  public void genOutputPrepareAssignTo(int destReg, int newValueReg, Expression newValueEx, Context ctx) {
     int lePtr, restore1, restore2;
     
     if (ctx.doArrayStoreCheck && (newValueEx.isObjType() || newValueEx.isIntfType())) {

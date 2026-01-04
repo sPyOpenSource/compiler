@@ -18,10 +18,10 @@
 
 package sjc.frontend.sjava;
 
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.Token;
 import sjc.backend.Instruction;
-import sjc.frontend.sjava.ast.Stmt;
+import sjc.frontend.sjava.ast.Statement;
 
 /**
  * CondStmt: conditional statement used in switch-case-statements
@@ -35,9 +35,9 @@ import sjc.frontend.sjava.ast.Stmt;
  */
 
 public class CondStmt extends Token {
-    public Expr cond;
+    public Expression cond;
     public Instruction stIns;
-    public Stmt stmt;
+    public Statement stmt;
     public CondStmt nextCondStmt;
 
     protected CondStmt(int fid, int il, int ic) {

@@ -52,7 +52,7 @@ import sjc.compbase.UnitList;
  *  version 070111 initial version
  */
 
-public class ExCheckType extends Expr {
+public class ExCheckType extends Expression {
   public final static int C_ISINST  = 1;
   public final static int C_ISIMPL  = 2;
   public final static int C_ISARRAY = 3;

@@ -39,7 +39,7 @@ import sjc.debug.CodePrinter;
  *  version 091208 initial version
  */
 
-public class ExArrayCopy extends Expr {
+public class ExArrayCopy extends Expression {
   private UnitList runtimeClass;
   private final ExArrayInit array;
   private TypeRef forcedType;

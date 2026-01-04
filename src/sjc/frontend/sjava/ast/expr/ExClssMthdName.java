@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast.expr;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -59,7 +59,7 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExClssMthdName extends Expr {
+public class ExClssMthdName extends Expression {
     public TypeRef destType; //used in instanceof
     public Unit destUnit;
     public Mthd destMthd;

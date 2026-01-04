@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast.expr;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -48,12 +48,12 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExPrePst extends Expr {
-    private Expr ex;
+public class ExPrePst extends Expression {
+    private Expression ex;
     private int op;
     private boolean pre; //true for pre-, false for post-operation
 	
-    public ExPrePst(Expr iex, int iop, boolean ipr, int fid, int il, int ic) {
+    public ExPrePst(Expression iex, int iop, boolean ipr, int fid, int il, int ic) {
         super(fid, il, ic);
         ex = iex;
         op = iop;

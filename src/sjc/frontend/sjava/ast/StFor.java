@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
 import sjc.compbase.Context;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.Mthd;
 import sjc.compbase.StdTypes;
 import sjc.compbase.StringList;
@@ -69,9 +69,9 @@ import sjc.debug.CodePrinter;
  */
 
 public class StFor extends StLoop {
-  public Stmt init, lupd;
-  public Expr cond;
-  private Stmt[] furtherInit, furtherLupd;
+  public Statement init, lupd;
+  public Expression cond;
+  private Statement[] furtherInit, furtherLupd;
   
   public StFor(StBreakable io, StringList ila, int fid, int il, int ic) {
     super(io, ila, fid, il, ic);
@@ -84,7 +84,7 @@ public class StFor extends StLoop {
   }
   
   protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-    Stmt jel;
+    Statement jel;
     Vrbl oldVarState;
     int oldLoopState=flowCode&FA_INSIDE_LOOP;
     VrblStateList preState=null;
@@ -97,7 +97,7 @@ public class StFor extends StLoop {
     }
     if (cond!=null) {
       if (!cond.resolve(unitContext, mthdContext,
-          getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD|Expr.RF_INSIDE_LOOP, null, ctx)) return FA_ERROR;
+          getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD|Expression.RF_INSIDE_LOOP, null, ctx)) return FA_ERROR;
       if (!cond.isBoolType()) {
         printPos(ctx, "need boolean type in for-condition");
         return FA_ERROR;
@@ -141,7 +141,7 @@ public class StFor extends StLoop {
   }
   
   protected void innerGenOutput(Context ctx) {
-    Stmt jel;
+    Statement jel;
     Instruction loopDest, condDest;
     int id;
     
@@ -178,15 +178,15 @@ public class StFor extends StLoop {
     contDest=breakDest=null;
   }
   
-  private static Stmt[] getStmtArray(Stmt list) {
-    Stmt[] arr=null;
-    Stmt tmp=list;
+  private static Statement[] getStmtArray(Statement list) {
+    Statement[] arr=null;
+    Statement tmp=list;
     int cnt=0;
     while (tmp!=null) {
       cnt++;
       tmp=tmp.nextStmt;
     }
-    arr=new Stmt[cnt];
+    arr=new Statement[cnt];
     cnt=0;
     while (list!=null) {
       arr[cnt++]=list;

@@ -22,7 +22,7 @@ import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.frontend.sjava.ast.expr.ExDeArray;
 
@@ -42,7 +42,7 @@ import sjc.frontend.sjava.ast.expr.ExDeArray;
 
 public class StForEnh extends StLoop {
   public StVrbl var; //declaration of 
-  public Expr iter;
+  public Expression iter;
   private ExDeArray iterDeArray;
   private int valOffset, iterPtrOffset, stopPtrOffset;
   
@@ -66,7 +66,7 @@ public class StForEnh extends StLoop {
     var.varList.modifier|=Modifier.MF_ISWRITTEN; //treat variable are written
     iterDeArray=new ExDeArray(fileID, line, col);
     iterDeArray.le=iter;
-    if (!iterDeArray.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, var.varList.type, ctx)) return FA_ERROR;
+    if (!iterDeArray.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, var.varList.type, ctx)) return FA_ERROR;
     if (iterDeArray.compareType(var.varList.type, true, ctx)!=TypeRef.C_EQ) {
       printPos(ctx, "types do not match in enhanced for loop");
       return FA_ERROR;

@@ -20,7 +20,7 @@ package sjc.frontend.sjava;
 
 import sjc.compbase.*;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblList;
 
@@ -388,7 +388,7 @@ public abstract class JUnit extends Unit {
       if ((var.modifier&(Modifier.M_FIN|Modifier.M_STAT))!=(Modifier.M_FIN|Modifier.M_STAT)) { //this is a not constant variable (constants resolved seperately)
         if (var.init!=null) { //check if variable initialized
           mthd=(var.modifier&Modifier.M_STAT)!=0 ? initStat : initDyna; //get static/dynamic context
-          if (!var.init.resolve(this, mthd, Expr.RF_CHECKREAD, var.type, ctx)) {
+          if (!var.init.resolve(this, mthd, Expression.RF_CHECKREAD, var.type, ctx)) {
             ctx.out.print(" in unit ");
             ctx.out.println(name);
             success=false;

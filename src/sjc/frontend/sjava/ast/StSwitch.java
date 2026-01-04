@@ -22,7 +22,7 @@ import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblStateList;
 import sjc.frontend.sjava.CondStmt;
@@ -67,8 +67,8 @@ import sjc.frontend.sjava.CondStmt;
  */
 
 public class StSwitch extends StBreakable {
-	public Expr cond;
-	public Stmt stmts, def;
+	public Expression cond;
+	public Statement stmts, def;
 	public CondStmt caseConds;
 	private int constType;
 	
@@ -77,7 +77,7 @@ public class StSwitch extends StBreakable {
 	}
 	
 	public void printBreakableStatement(CodePrinter prnt) {
-	  Stmt stmt=stmts;
+	  Statement stmt=stmts;
 	  CondStmt cc=caseConds;
 	  prnt.stmtSwitchStart(cond);
 	  while (stmt!=null) {
@@ -99,7 +99,7 @@ public class StSwitch extends StBreakable {
 	}
 	
 	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-	  Stmt stmt;
+	  Statement stmt;
 	  CondStmt cases, cmp;
     Vrbl oldVarState;
     int singleRes=FA_NO_FLOWCHANGE, complRes=FA_NO_FLOWCHANGE;
@@ -108,7 +108,7 @@ public class StSwitch extends StBreakable {
     //remember variable state
     oldVarState=mthdContext.vars;
     //resolve condition
-	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, null, ctx)) {
+	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, null, ctx)) {
 	    ctx.out.print(" in switch-condition");
 	    return FA_ERROR;
 	  }
@@ -145,7 +145,7 @@ public class StSwitch extends StBreakable {
         //resolve condition if case-statement
         if (def!=stmt) { //if def!=stmt, then cases!=null && cases.stmt==stmt
           //resolve expression
-          if (!cases.cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, cond, ctx)) {
+          if (!cases.cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, cond, ctx)) {
             ctx.out.print(" in case-condition");
             ctx.recycleVrblStatelist(preState);
             ctx.recycleVrblStatelist(sure);
@@ -216,7 +216,7 @@ public class StSwitch extends StBreakable {
 	}
 	
 	protected void innerGenOutput(Context ctx) {
-	  Stmt stmt;
+	  Statement stmt;
 	  CondStmt condstmt;
 	  int reg, id, condHnd;
     Instruction defIns=null;

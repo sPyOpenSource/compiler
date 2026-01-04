@@ -36,7 +36,7 @@ import sjc.debug.CodePrinter;
  *  version 061229 initial version
  */
 
-public abstract class StBreakable extends Stmt {
+public abstract class StBreakable extends Statement {
   protected Instruction breakDest, contDest;
   protected StBreakable outer;
   protected StringList labels;

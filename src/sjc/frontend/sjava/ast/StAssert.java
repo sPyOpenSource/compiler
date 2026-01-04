@@ -22,7 +22,7 @@ import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 
 /**
  * StAssert: assert-statement
@@ -33,8 +33,8 @@ import sjc.compbase.expr.Expr;
  *  version 101021 initial version
  */
 
-public class StAssert extends Stmt {
-    public Expr cond, msg;
+public class StAssert extends Statement {
+    public Expression cond, msg;
     private UnitList runtimeClass;
     private boolean skipEncode;
 	
@@ -55,7 +55,7 @@ public class StAssert extends Stmt {
       myFlow|=FA_DEAD_CODE;
       skipEncode=true;
     }
-	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(myFlow)|Expr.RF_CHECKREAD, null, ctx)) return FA_ERROR;
+	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(myFlow)|Expression.RF_CHECKREAD, null, ctx)) return FA_ERROR;
     if (!cond.isBoolType()) {
       printPos(ctx, "need boolean type in assert-condition");
       return FA_ERROR;
@@ -65,7 +65,7 @@ public class StAssert extends Stmt {
 	    skipEncode=true;
 	  }
     if (msg!=null) {
-      if (!msg.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(myFlow)|Expr.RF_CHECKREAD, null, ctx)) return FA_ERROR;
+      if (!msg.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(myFlow)|Expression.RF_CHECKREAD, null, ctx)) return FA_ERROR;
       if (msg.compareType(ctx.stringType, false, ctx)!=TypeRef.C_EQ) {
         printPos(ctx, "need string type in assert-message");
         return FA_ERROR;

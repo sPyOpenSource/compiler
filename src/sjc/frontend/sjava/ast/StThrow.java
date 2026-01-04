@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -42,8 +42,8 @@ import sjc.debug.CodePrinter;
  *  version 080605 initial version
  */
 
-public class StThrow extends Stmt {
-	public Expr throwVal;
+public class StThrow extends Statement {
+	public Expression throwVal;
   private UnitList runtimeClass;
 	
 	public StThrow(int fid, int il, int ic) {
@@ -55,7 +55,7 @@ public class StThrow extends Stmt {
 	}
 	
 	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-	  if (!throwVal.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, null, ctx)) return FA_ERROR;
+	  if (!throwVal.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, null, ctx)) return FA_ERROR;
 	  if (throwVal.isCheckedExceptionType(ctx)) {
       if (!mthdContext.handlesThrowable(this, throwVal.qid.unitDest, ctx))
         return FA_ERROR;

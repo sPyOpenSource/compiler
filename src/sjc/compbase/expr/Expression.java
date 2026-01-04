@@ -73,7 +73,7 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public abstract class Expr extends TypeRef {
+public abstract class Expression extends TypeRef {
   //negative values of effect type flags (EF_*) may be used by frontends
   public final static int EF_NONE = 0; //default: no effect
   public final static int EF_NORM = 1; //just do it
@@ -86,7 +86,7 @@ public abstract class Expr extends TypeRef {
   
   public int effectType; //exSubResolve will change this if it has any effect
   
-  public Expr(int fid, int il, int ic) {
+  public Expression(int fid, int il, int ic) {
     super(fid, il, ic);
   }
   
@@ -127,10 +127,10 @@ public abstract class Expr extends TypeRef {
   public boolean isConstZero() {
     return false;
   }
-  public Expr getRightMostExpr() {
+  public Expression getRightMostExpr() {
     return this;
   }
-  public Expr getLeftOfRightMostExpr() {
+  public Expression getLeftOfRightMostExpr() {
     return this;
   }
   public AccVar getDestVar() {
@@ -151,7 +151,7 @@ public abstract class Expr extends TypeRef {
     genOutputVal(0, ctx);
   }
   
-  public void genOutputPrepareAssignTo(int destReg, int newValueReg, Expr newValue, Context ctx) {
+  public void genOutputPrepareAssignTo(int destReg, int newValueReg, Expression newValue, Context ctx) {
     if (isAddrOnStack()) { //if addr is on stack, delay address calculation
       newValue.genOutputVal(newValueReg, ctx);
       genOutputAddr(destReg, ctx);
@@ -168,7 +168,7 @@ public abstract class Expr extends TypeRef {
         : baseType;
   }
   
-  public void genOutputAssignTo(int newValueReg, Expr newValue, Context ctx) {
+  public void genOutputAssignTo(int newValueReg, Expression newValue, Context ctx) {
     int addr, restore;
     int regRestore=0;
     boolean deallocReg=false;

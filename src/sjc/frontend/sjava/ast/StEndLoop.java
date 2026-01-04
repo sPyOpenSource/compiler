@@ -45,7 +45,7 @@ import sjc.backend.Instruction;
  *  version 060607 initial version
  */
 
-public class StEndLoop extends Stmt {
+public class StEndLoop extends Statement {
 	public boolean contNotBreak;
 	protected String labelToEnd;
 	private StBreakable outer, toEnd;

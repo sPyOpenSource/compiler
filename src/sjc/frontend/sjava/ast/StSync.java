@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -57,7 +57,7 @@ public class StSync extends StBreakable {
   
   private final static String ERR_NOFREEREG = "no free reg at synchronized";
   
-  public Expr syncObj;
+  public Expression syncObj;
   public StBlock syncBlock;
   private UnitList runtimeClass;
   private Unit mthdOwnerClass;
@@ -78,7 +78,7 @@ public class StSync extends StBreakable {
 	  //check and resolve syncObj
 	  switch (syncType) {
 	    case SYNC_NORM: //object to synchronize on is explicitly given
-	      if (!syncObj.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, null, ctx)) return FA_ERROR;
+	      if (!syncObj.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, null, ctx)) return FA_ERROR;
 	      if (!syncObj.isObjType()) {
 	        printPos(ctx, "need object to synchronize on");
 	        return FA_ERROR;

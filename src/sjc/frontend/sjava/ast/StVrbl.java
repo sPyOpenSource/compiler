@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.debug.CodePrinter;
 import sjc.frontend.sjava.SJava;
@@ -51,7 +51,7 @@ import sjc.frontend.sjava.SJava;
  *  version 070913 initial version
  */
 
-public class StVrbl extends Stmt {
+public class StVrbl extends Statement {
   protected Vrbl varList;
   private boolean forceInit; //needed for re-initialization of loop-variables
   private int varCount; //last variable's nextPointer will be modified, remember how many vars belong here
@@ -92,7 +92,7 @@ public class StVrbl extends Stmt {
       offset&=~ctx.arch.stackClearBits; //align inside stack
       var.relOff=offset;
       if (var.init!=null) {
-        if (!var.init.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, var.type, ctx)) {
+        if (!var.init.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, var.type, ctx)) {
           ctx.out.print(" in var-init");
           return FA_ERROR;
         }

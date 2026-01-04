@@ -20,7 +20,7 @@ package sjc.compbase.variable;
 
 import sjc.compbase.Context;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.FilledAnno;
 import sjc.compbase.Modifier;
 import sjc.compbase.StdTypes;
@@ -77,7 +77,7 @@ public class Vrbl extends AccVar {
   
     //required fields for resolving
     public Vrbl nextVrbl;
-    public Expr init;
+    public Expression init;
 	
     public Vrbl(String ii, int im, int fid, int il, int ic) {
         super(fid, il, ic);
@@ -98,7 +98,7 @@ public class Vrbl extends AccVar {
         }
 	  location=L_CONSTTR;
 	  if (init!=null) {
-	    if (!init.resolve(owner, owner.initStat, Expr.RF_CHECKREAD, type, ctx)) {
+	    if (!init.resolve(owner, owner.initStat, Expression.RF_CHECKREAD, type, ctx)) {
         ctx.out.print(" in constant initialization for variable ");
         ctx.out.print(name);
 	      return false;
@@ -118,7 +118,7 @@ public class Vrbl extends AccVar {
 	  return true;
 	}
 	
-	public Expr getInitExpr(Context ctx) {
+	public Expression getInitExpr(Context ctx) {
 	  return init;
 	}
 	
@@ -181,7 +181,7 @@ public class Vrbl extends AccVar {
   
   public void genInitCode(boolean forceInit, Context ctx) {
     int addr = 0, restore = 0, regType, reg;
-    Expr toInit;
+    Expression toInit;
     int value;
     boolean asDouble = false;
     

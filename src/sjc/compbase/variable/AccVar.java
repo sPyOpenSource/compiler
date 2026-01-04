@@ -20,7 +20,7 @@ package sjc.compbase.variable;
 
 import sjc.compbase.Context;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.Modifier;
 import sjc.compbase.Param;
 import sjc.compbase.Token;
@@ -138,7 +138,7 @@ public abstract class AccVar extends Token {
     return true;
   }
 	
-	public Expr getInitExpr(Context ctx) {
+	public Expression getInitExpr(Context ctx) {
     compErr(ctx, "invalid call to AccVar.getInitExpr");
     return null;
 	}

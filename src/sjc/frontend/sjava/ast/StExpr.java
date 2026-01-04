@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -48,10 +48,10 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class StExpr extends Stmt {
+public class StExpr extends Statement {
   public final static int EF_STOP = -1;
   
-	public Expr ex;
+	public Expression ex;
 	
 	public StExpr(int fid, int il, int ic) {
 		super(fid, il, ic);
@@ -63,7 +63,7 @@ public class StExpr extends Stmt {
 	
 	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
 	  if (!ex.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode), null, ctx)) return FA_ERROR;
-    if (ex.effectType==Expr.EF_NONE) {
+    if (ex.effectType==Expression.EF_NONE) {
       printPos(ctx, "expression without effect");
       return FA_ERROR;
     }

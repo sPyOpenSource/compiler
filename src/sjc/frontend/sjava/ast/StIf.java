@@ -22,7 +22,7 @@ import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.VrblStateList;
 
 /**
@@ -52,9 +52,9 @@ import sjc.compbase.variable.VrblStateList;
  *  version 060607 initial version
  */
 
-public class StIf extends Stmt {
-    public Expr cond;
-    public Stmt trStmt, faStmt;
+public class StIf extends Statement {
+    public Expression cond;
+    public Statement trStmt, faStmt;
 
     public StIf(int fid, int il, int ic) {
         super(fid, il, ic);
@@ -70,7 +70,7 @@ public class StIf extends Stmt {
     VrblStateList preState, trState;
     int flowTrue=flowCode, flowFalse=flowCode, flowFilter=-1;
     
-	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, null, ctx)) return FA_ERROR;
+	  if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, null, ctx)) return FA_ERROR;
     if (!cond.isBoolType()) {
       printPos(ctx, "need boolean type in if-condition");
       return FA_ERROR;

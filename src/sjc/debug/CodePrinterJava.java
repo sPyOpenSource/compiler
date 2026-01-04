@@ -21,7 +21,7 @@ package sjc.debug;
 import sjc.compbase.variable.AccVar;
 import sjc.compbase.Context;
 import sjc.compbase.expr.ExConstStruct;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.FilledParam;
 import sjc.compbase.IndirUnitMapList;
 import sjc.compbase.Marks;
@@ -85,7 +85,7 @@ public class CodePrinterJava extends DebugWriter {
     private boolean skipNextStmtLineFeed, skipNextStmtSemicolon, skipNextBlockBrackets;
     private boolean nextExprIsLeftMost, nextCallIsSuperThisCall, skipNextBlockLabels;
     
-    public void stmtAssert(Expr cond, Expr msg) {
+    public void stmtAssert(Expression cond, Expression msg) {
       spaceIndent();
       finalOut.print("assert ");
       cond.printExpression(this);
@@ -126,14 +126,14 @@ public class CodePrinterJava extends DebugWriter {
       }
       finishStmt();
     }
-    public void stmtExpr(Expr ex) {
+    public void stmtExpr(Expression ex) {
       spaceIndent();
       if (ex.isSuperThisCall(ctx)) nextCallIsSuperThisCall=true;
       ex.printExpression(this);
       finishStmt();
     }
     public void stmtFor(TokenAbstrPrintable init, TokenAbstrPrintable[] furtherInit,
-        TokenAbstrPrintable lupd, TokenAbstrPrintable[] furtherLupd, Expr cond, TokenAbstrPrintable loStmt) {
+        TokenAbstrPrintable lupd, TokenAbstrPrintable[] furtherLupd, Expression cond, TokenAbstrPrintable loStmt) {
       spaceIndent();
       finalOut.print("for (");
       if (init!=null) {
@@ -162,7 +162,7 @@ public class CodePrinterJava extends DebugWriter {
       skipNextIndent=true;
       loStmt.printToken(this);
     }
-    public void stmtForEnh(TokenAbstrPrintable var, Expr iter, TokenAbstrPrintable loStmt) {
+    public void stmtForEnh(TokenAbstrPrintable var, Expression iter, TokenAbstrPrintable loStmt) {
       spaceIndent();
       finalOut.print("for (");
       skipNextIndent=skipNextStmtLineFeed=skipNextStmtSemicolon=true;
@@ -173,7 +173,7 @@ public class CodePrinterJava extends DebugWriter {
       skipNextIndent=true;
       loStmt.printToken(this);
     }
-    public void stmtIf(Expr cond, TokenAbstrPrintable trStmt, TokenAbstrPrintable faStmt) {
+    public void stmtIf(Expression cond, TokenAbstrPrintable trStmt, TokenAbstrPrintable faStmt) {
       spaceIndent();
       finalOut.print("if (");
       cond.printExpression(this);
@@ -187,7 +187,7 @@ public class CodePrinterJava extends DebugWriter {
         faStmt.printToken(this);
       }
     }
-    public void stmtReturn(Expr retVal) {
+    public void stmtReturn(Expression retVal) {
       spaceIndent();
       finalOut.print("return");
       if (retVal!=null) {
@@ -199,14 +199,14 @@ public class CodePrinterJava extends DebugWriter {
     public void stmtReturnMissing() {
       //does not have an equivalent in java, just skip
     }
-    public void stmtSwitchStart(Expr cond) {
+    public void stmtSwitchStart(Expression cond) {
       spaceIndent();
       finalOut.print("switch (");
       cond.printExpression(this);
       finalOut.println(") {");
       indent+=2;
     }
-    public void stmtSwitchCase(Expr cond) {
+    public void stmtSwitchCase(Expression cond) {
       indent--;
       spaceIndent();
       if (cond==null) finalOut.print("default");
@@ -222,7 +222,7 @@ public class CodePrinterJava extends DebugWriter {
       spaceIndent();
       finalOut.println('}');
     }
-    public void stmtSync(Expr syncObj, TokenAbstrPrintable syncBlock) {
+    public void stmtSync(Expression syncObj, TokenAbstrPrintable syncBlock) {
       if (syncObj!=null) { //normal sync block
         spaceIndent();
         finalOut.print("synchronized (");
@@ -233,7 +233,7 @@ public class CodePrinterJava extends DebugWriter {
       else skipNextBlockBrackets=true; //complete method block in synchronized
       syncBlock.printToken(this);
     }
-    public void stmtThrow(Expr throwVal) {
+    public void stmtThrow(Expression throwVal) {
       spaceIndent();
       finalOut.print("throw ");
       throwVal.printExpression(this);
@@ -282,7 +282,7 @@ public class CodePrinterJava extends DebugWriter {
       }
       finishStmt();
     }
-    public void stmtWhile(Expr cond, boolean inclusiveWhile, TokenAbstrPrintable loStmt) {
+    public void stmtWhile(Expression cond, boolean inclusiveWhile, TokenAbstrPrintable loStmt) {
       spaceIndent();
       if (inclusiveWhile) {
         finalOut.print("do {");
@@ -318,7 +318,7 @@ public class CodePrinterJava extends DebugWriter {
       }
       finalOut.print('}');
     }
-    public void exprBin(Expr le, Expr ri, int opType, int opPar, int rank) {
+    public void exprBin(Expression le, Expression ri, int opType, int opPar, int rank) {
       le.printExpression(this);
       finalOut.print(" ");
       switch (opPar) {
@@ -383,7 +383,7 @@ public class CodePrinterJava extends DebugWriter {
       }
       finalOut.print(')');
     }
-    public void exprChoose(Expr le, Expr ce, Expr ri) {
+    public void exprChoose(Expression le, Expression ce, Expression ri) {
       le.printExpression(this);
       finalOut.print(" ? ");
       ce.printExpression(this);
@@ -400,13 +400,13 @@ public class CodePrinterJava extends DebugWriter {
       finalOut.printHexFix(ctx.mem.getAddrAsInt(constStruct.outputLocation, 0), 8);
       finalOut.print(')');
     }
-    public void exprDeArray(Expr le, Expr ind) {
+    public void exprDeArray(Expression le, Expression ind) {
       le.printExpression(this);
       finalOut.print('[');
       ind.printExpression(this);
       finalOut.print(']');
     }
-    public void exprDeref(Expr le, Expr ri, boolean leftStatic) {
+    public void exprDeref(Expression le, Expression ri, boolean leftStatic) {
       if (!leftStatic) {
         nextExprIsLeftMost=true;
         le.printExpression(this);
@@ -415,7 +415,7 @@ public class CodePrinterJava extends DebugWriter {
       }
       ri.printExpression(this);
     }
-    public void exprEnc(TypeRef convertTo, Expr ex) {
+    public void exprEnc(TypeRef convertTo, Expression ex) {
       if (convertTo!=null) {
         finalOut.print('(');
         printType(convertTo, true);
@@ -461,7 +461,7 @@ public class CodePrinterJava extends DebugWriter {
       }
       if (nextExprIsLeftMost) finalOut.print(')');
     }
-    public void exprPrePst(Expr ex, int opPar, boolean pre) {
+    public void exprPrePst(Expression ex, int opPar, boolean pre) {
       if (pre) switch (opPar) {
         case Ops.P_DEC: finalOut.print("--"); break;
         case Ops.P_INC: finalOut.print("++"); break;
@@ -483,11 +483,11 @@ public class CodePrinterJava extends DebugWriter {
       for (int i=0; i<value.length(); i++) printTextChar((int)value.charAt(i));
       finalOut.print('\"');
     }
-    public void exprSuper(Expr ri) {
+    public void exprSuper(Expression ri) {
       finalOut.print("super.");
       ri.printExpression(this);
     }
-    public void exprUna(Expr ex, int opType, int opPar) {
+    public void exprUna(Expression ex, int opType, int opPar) {
       switch (opPar) {
         case Ops.A_PLUS: finalOut.print('+'); break;
         case Ops.A_MINUS: finalOut.print('-'); break;

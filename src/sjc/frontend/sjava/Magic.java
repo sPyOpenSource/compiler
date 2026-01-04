@@ -28,7 +28,7 @@ import sjc.compbase.DataBlockList;
 import sjc.compbase.expr.ExArrayInit;
 import sjc.compbase.expr.ExConstStruct;
 import sjc.compbase.expr.ExStr;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Marks;
 import sjc.compbase.Modifier;
@@ -296,7 +296,7 @@ public class Magic extends CtxBasedConfig {
     comprRelocationVrbl.location=AccVar.L_CONST;
   }
   
-  public void printExpression(Expr ex, CodePrinter prnt) {
+  public void printExpression(Expression ex, CodePrinter prnt) {
     ExCall call;
     if (ex instanceof ExVar exVar) prnt.magcVar(exVar.dest);
     else if (ex instanceof ExCall exCall) {
@@ -309,11 +309,11 @@ public class Magic extends CtxBasedConfig {
     else prnt.reportError(ex, "not yet supported MAGIC");
   }
   
-  public Expr resolve(Expr ex, Unit unitContext, Mthd mthdContext,
+  public Expression resolve(Expression ex, Unit unitContext, Mthd mthdContext,
       int resolveFlags, TypeRef preferredType, Context ctx) {
     ExCall call;
     ExVar var;
-    Expr ret;
+    Expression ret;
     String name;
     
     if (ex instanceof ExVar exVar) {
@@ -592,7 +592,7 @@ public class Magic extends CtxBasedConfig {
             case "ignore":
                 call.magicType=M_IGNORE; //just ignore
                 call.baseType=StdTypes.T_VOID;
-                call.effectType=Expr.EF_NORM;
+                call.effectType=Expression.EF_NORM;
                 break;
             case "stopBlockCoding":
                 if (!resolveNoParam("stopBlockCoding", call, unitContext, mthdContext, resolveFlags, ctx)) return null;
@@ -615,7 +615,7 @@ public class Magic extends CtxBasedConfig {
     return ex; //default: unmodified expression
   }
   
-  public void genOutput(int reg, Expr ex, Context ctx) {
+  public void genOutput(int reg, Expression ex, Context ctx) {
     ExCall call;
     
     if (ex instanceof ExCall exCall) switch ((call = exCall).magicType) {
@@ -674,7 +674,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveInline(int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
 	  FilledParam pa;
-	  Expr paEx;
+	  Expression paEx;
     
 	  //resolve all parameters, check if all parameters are constant integers (optionally: first parameter is string)
 	  pa=call.par;
@@ -685,7 +685,7 @@ public class Magic extends CtxBasedConfig {
 	  if (pa.expr instanceof ExStr) pa=pa.nextParam; //skip over first parameter if it is a constant string
 	  while (pa!=null) {
 	    paEx=pa.expr;
-	    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+	    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
 	    if (!paEx.isIntType() || paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
 	      paEx.printPos(ctx, "MAGIC.inlineX needs constant integer values");
 	      return false;
@@ -706,7 +706,7 @@ public class Magic extends CtxBasedConfig {
 	  }
     //everything ok, set type
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
@@ -726,13 +726,13 @@ public class Magic extends CtxBasedConfig {
     //block is searched during genOutput to avoid error message on never accessed datablocks
     //everything ok, set type
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
   private boolean resolveWMem(boolean isIO, int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
 	  FilledParam pa;
-	  Expr paEx;
+	  Expression paEx;
     
 	  //resolve all parameters, check if all parameters are constant integers
 	  pa = call.par;
@@ -741,7 +741,7 @@ public class Magic extends CtxBasedConfig {
 	    return false;
 	  }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       switch (relocBytes) {
           case 2:
               if (!paEx.isIntType() && !paEx.isShortType()) {
@@ -771,7 +771,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (paEx.baseType!=type || paEx.arrDim>0) {
       paEx.printPos(ctx, "incompatible type in MAGIC.wMemX (");
       ctx.out.print(paEx.baseType);
@@ -787,7 +787,7 @@ public class Magic extends CtxBasedConfig {
       }
       pa=pa.nextParam;
       paEx=pa.expr;
-      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       if (!paEx.isIntType() || paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
         call.printPos(ctx, "MAGIC.wMemX allows only constant third parameter");
         return false;
@@ -799,13 +799,13 @@ public class Magic extends CtxBasedConfig {
     }
 	  //everything ok, set type
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
   private boolean resolveRMem(boolean isIO, int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
 	  FilledParam pa;
-	  Expr paEx;
+	  Expression paEx;
     
 	  //resolve all parameters, check if all parameters are constant integers
 	  pa=call.par;
@@ -814,7 +814,7 @@ public class Magic extends CtxBasedConfig {
 	    return false;
 	  }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       switch (relocBytes) {
           case 2:
               if (!paEx.isIntType() && !paEx.isShortType()) {
@@ -845,7 +845,7 @@ public class Magic extends CtxBasedConfig {
       }
       pa=pa.nextParam;
       paEx=pa.expr;
-      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       if (!paEx.isIntType() || paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
         call.printPos(ctx, "MAGIC.rMemX allows only constant second parameter");
         return false;
@@ -862,7 +862,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveCast2Ref(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
 
     //resolve parameter
     pa=call.par;
@@ -871,7 +871,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!paEx.isObjType() && !paEx.isIntfType() && !paEx.isStructType()) {
       call.printPos(ctx, "MAGIC.cast2Ref needs object/struct parameter");
       return false;
@@ -894,10 +894,10 @@ public class Magic extends CtxBasedConfig {
     return true;
   }
   
-  private Expr resolveCast2ObjStruct(boolean obj, ExCall call, Unit unitContext, Mthd mthdContext,
+  private Expression resolveCast2ObjStruct(boolean obj, ExCall call, Unit unitContext, Mthd mthdContext,
       int resolveFlags, TypeRef preferredType, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
 
     //resolve parameter
     pa=call.par;
@@ -906,7 +906,7 @@ public class Magic extends CtxBasedConfig {
       return null;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return null;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return null;
       switch (relocBytes) {
           case 2:
               if (!paEx.isIntType() && !paEx.isShortType()) {
@@ -934,7 +934,7 @@ public class Magic extends CtxBasedConfig {
     //if struct, check if address is constant integer so expression can be handled as constant object
     if (!obj && paEx.calcConstantType(ctx)==StdTypes.T_INT) {
       paEx=new ExConstStruct(paEx.getConstIntValue(ctx), call.fileID, call.line, call.col);
-      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, preferredType, ctx)) return null;
+      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, preferredType, ctx)) return null;
       return paEx;
     }
     //not constant, set type and return original call object
@@ -945,7 +945,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveAddr(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
 
     //resolve parameter
     pa=call.par;
@@ -954,7 +954,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags&~Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags&~Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!paEx.canGenAddr(unitContext, true, resolveFlags, ctx) || paEx.isCompInitConstObject(ctx)) {
       call.printPos(ctx, "MAGIC.addr not allowed for constant parameter");
       return false;
@@ -979,7 +979,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveClssIntfDesc(boolean isIntf, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     ExClssMthdName clss;
     String name;
 
@@ -998,7 +998,7 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, ERR_XDNSTRP);
       return false;
     }
-    if (!clss.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!clss.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     call.par.expr=clss;
     //everthing ok, set type
     call.baseType=TypeRef.T_QID;
@@ -1022,7 +1022,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveMthdOff(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     String unit, mthd;
     
     //resolve parameter;
@@ -1050,7 +1050,7 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, "MAGIC.mthdOff call with too many parameters");
       return false;
     }
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     //everthing ok, type is always int, discard no more needed parameter
     call.par.nextParam=null;
     call.baseType=StdTypes.T_INT;
@@ -1072,7 +1072,7 @@ public class Magic extends CtxBasedConfig {
 
   private boolean resolveClsDest(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     String name;
     
     pa=call.par;
@@ -1088,7 +1088,7 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, ERR_STRCLSS);
       return false;
     }
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     call.par.expr=paEx;
     //everthing ok, set type
     call.baseType=StdTypes.T_INT;
@@ -1097,7 +1097,7 @@ public class Magic extends CtxBasedConfig {
   
   private boolean resolveBtsMem(boolean isIO, int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     
     //resolve all parameters, check if all parameters are constant integers
     pa=call.par;
@@ -1106,7 +1106,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       switch (relocBytes) {
           case 2:
               if (!paEx.isIntType() && !paEx.isShortType()) {
@@ -1136,7 +1136,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (paEx.baseType!=type || paEx.arrDim>0) {
       paEx.printPos(ctx, "incompatible type in MAGIC.btsMemX (");
       ctx.out.print(paEx.baseType);
@@ -1151,7 +1151,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!paEx.isBoolType()) {
       call.printPos(ctx, "MAGIC.btsMemX needs boolean set/clear");
       return false;
@@ -1162,13 +1162,13 @@ public class Magic extends CtxBasedConfig {
     }
     //everything ok, set type
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
   private boolean resolveUseAsThis(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     
     //resolve parameter
     pa=call.par;
@@ -1177,7 +1177,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!paEx.isObjType()) {
       call.printPos(ctx, "MAGIC.useAsThis needs parameter of type Object");
       return false;
@@ -1194,13 +1194,13 @@ public class Magic extends CtxBasedConfig {
     mthdContext.modifier|=Modifier.M_EXINIT;
     //everything ok, set type and mark
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
   private boolean resolveInlineOffset(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     
     //resolve parameter
     pa=call.par;
@@ -1209,7 +1209,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
       call.printPos(ctx, "MAGIC.inlineOffset needs constant inlineMode");
       return false;
@@ -1219,7 +1219,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx=pa.expr;
-    if (!paEx.resolve(unitContext, mthdContext, resolveFlags&~Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx.resolve(unitContext, mthdContext, resolveFlags&~Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!(paEx instanceof ExVar) || !paEx.canGenAddr(unitContext, true, resolveFlags, ctx)) {
       call.printPos(ctx, "MAGIC.inlineOffset needs non-constant variable");
       return false;
@@ -1229,7 +1229,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     if (pa!=null) { //resolve optional offset
-      if (!(paEx=pa.expr).resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+      if (!(paEx=pa.expr).resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       if (paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
         call.printPos(ctx, "optional offset for MAGIC.inlineOffset has to be constant");
         return false;
@@ -1237,19 +1237,19 @@ public class Magic extends CtxBasedConfig {
     }
     //everything ok, set type and mark
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
   private boolean resolveInlineCodeAddress(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx;
+    Expression paEx;
     
     //resolve parameter
     pa=call.par;
     if (pa!=null) {
       paEx=pa.expr;
-      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+      if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
       if (paEx.calcConstantType(ctx)!=StdTypes.T_INT) {
         call.printPos(ctx, "MAGIC.inlineCodeAddress needs constant offset");
         return false;
@@ -1261,7 +1261,7 @@ public class Magic extends CtxBasedConfig {
     }
     //everything ok, set type and mark
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
@@ -1313,13 +1313,13 @@ public class Magic extends CtxBasedConfig {
     }
     //everything ok, set type and mark several targets
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     mthdContext.marker|=Marks.K_NINL;
     ctx.staticInitDone=true;
     return true;
   }
   
-  private Expr resolveStringToArray(int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
+  private Expression resolveStringToArray(int type, ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa, newPa;
     String source;
     boolean trailingZero;
@@ -1335,7 +1335,7 @@ public class Magic extends CtxBasedConfig {
     }
     source=((ExStr)pa.expr).value;
     pa=pa.nextParam;
-    if (pa==null || !pa.expr.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, ctx.stringType, ctx)
+    if (pa==null || !pa.expr.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, ctx.stringType, ctx)
         || pa.expr.calcConstantType(ctx)!=StdTypes.T_INT || pa.expr.baseType!=StdTypes.T_BOOL
         || pa.nextParam!=null) {
       call.printPos(ctx, "MAGIC.toXArray needs constant boolean as second (i.e. last) parameter");
@@ -1366,7 +1366,7 @@ public class Magic extends CtxBasedConfig {
       if (pa==null) init.par=newPa;
       else pa.nextParam=newPa;
     }
-    if (!init.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) {
+    if (!init.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) {
       ctx.out.print(" in magically created initArray");
       return null;
     }
@@ -1375,12 +1375,12 @@ public class Magic extends CtxBasedConfig {
     return replacement;
   }
   
-  private Expr resolveGetNamedString(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
+  private Expression resolveGetNamedString(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
     byte[] data;
     String source;
     ExVal nullVal;
-    Expr replacement;
+    Expression replacement;
     int fid, line, col;
     
     if ((pa=call.par)==null || !(pa.expr instanceof ExStr) || pa.nextParam!=null) {
@@ -1398,13 +1398,13 @@ public class Magic extends CtxBasedConfig {
       replacement=nullVal;
     }
     else (replacement=new ExStr(new String(data), fid, line, col)) //build string from named object
-      .resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx); //and resolve it
+      .resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx); //and resolve it
     return replacement;
   }
   
   private boolean resolveAssign(ExCall call, Unit unitContext, Mthd mthdContext, int resolveFlags, Context ctx) {
     FilledParam pa;
-    Expr paEx1, paEx2;
+    Expression paEx1, paEx2;
     
     //resolve all parameters, check if all parameters are constant integers
     pa=call.par;
@@ -1413,7 +1413,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx1=pa.expr;
-    if (!paEx1.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx1.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (!paEx1.canGenAddr(unitContext, true, resolveFlags, ctx) || paEx1.isCompInitConstObject(ctx)) {
       call.printPos(ctx, "MAGIC.assign not allowed for constant first parameter");
       return false;
@@ -1424,7 +1424,7 @@ public class Magic extends CtxBasedConfig {
       return false;
     }
     paEx2=pa.expr;
-    if (!paEx2.resolve(unitContext, mthdContext, resolveFlags|Expr.RF_CHECKREAD, null, ctx)) return false;
+    if (!paEx2.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
     if (pa.nextParam!=null) {
       call.printPos(ctx, "MAGIC.assign needs not more than two parameters");
       return false;
@@ -1435,7 +1435,7 @@ public class Magic extends CtxBasedConfig {
     }
     //everything ok, set type
     call.baseType=TypeRef.T_VOID;
-    call.effectType=Expr.EF_NORM;
+    call.effectType=Expression.EF_NORM;
     return true;
   }
   
@@ -1541,7 +1541,7 @@ public class Magic extends CtxBasedConfig {
     FilledParam pa;
     int addr, addrValType, addrVal, val, restoreAddr, restoreAddrVal, restoreVal, ioMemLoc=0;
     int addrConstType, valConstType;
-    Expr addrEx, valEx;
+    Expression addrEx, valEx;
     
     //prepare access to expressions, pa points to optional third parameter
     addrEx=(pa=call.par).expr;

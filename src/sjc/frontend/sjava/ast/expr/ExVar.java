@@ -20,7 +20,7 @@ package sjc.frontend.sjava.ast.expr;
 
 import sjc.compbase.*;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.AccVar;
 import sjc.compbase.variable.ExAccVrbl;
 import sjc.compbase.variable.Vrbl;
@@ -295,7 +295,7 @@ public class ExVar extends ExAccVrbl {
 	}
 	
   public int getConstIntValue(Context ctx) {
-    Expr init;
+    Expression init;
     if ((init=dest.getInitExpr(ctx))==null) {
       compErr(ctx, "init expr of dest is null in getConstIntValue");
       return 0;
@@ -304,7 +304,7 @@ public class ExVar extends ExAccVrbl {
 	}
 	
 	public long getConstLongValue(Context ctx) {
-    Expr init;
+    Expression init;
     if ((init=dest.getInitExpr(ctx))==null) {
       compErr(ctx, "init expr of dest is null in getConstLongValue");
       return 0;

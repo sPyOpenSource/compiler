@@ -22,7 +22,7 @@ import sjc.compbase.*;
 import sjc.debug.CodePrinter;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.VrblStateList;
 
 /**
@@ -58,7 +58,7 @@ import sjc.compbase.variable.VrblStateList;
  */
 
 public class StWhile extends StLoop {
-  public Expr cond;
+  public Expression cond;
   public boolean inclusiveWhile;
     
   public StWhile(StBreakable io, StringList ila, int fid, int il, int ic) {
@@ -76,10 +76,10 @@ public class StWhile extends StLoop {
     flowCode|=FA_INSIDE_LOOP;
     if (inclusiveWhile) { //inclusive-while is executed at least once
       flowCode=loStmt.resolve(flowCode, unitContext, mthdContext, ctx);
-      if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|(Expr.RF_CHECKREAD|Expr.RF_INSIDE_LOOP), null, ctx)) return FA_ERROR;
+      if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|(Expression.RF_CHECKREAD|Expression.RF_INSIDE_LOOP), null, ctx)) return FA_ERROR;
     }
     else {
-      if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|(Expr.RF_CHECKREAD|Expr.RF_INSIDE_LOOP), null, ctx)) return FA_ERROR;
+      if (!cond.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|(Expression.RF_CHECKREAD|Expression.RF_INSIDE_LOOP), null, ctx)) return FA_ERROR;
       if (cond.calcConstantType(ctx)!=StdTypes.T_INT || cond.getConstIntValue(ctx)!=1)
         preState=ctx.copyVrblListState(mthdContext.vars, mthdContext.checkInitVars);
       flowCode=loStmt.resolve(flowCode, unitContext, mthdContext, ctx);

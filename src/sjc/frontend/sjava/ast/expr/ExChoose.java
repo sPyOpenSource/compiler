@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast.expr;
 import sjc.backend.Architecture;
 import sjc.backend.Instruction;
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.VrblStateList;
 import sjc.debug.CodePrinter;
 
@@ -51,8 +51,8 @@ import sjc.debug.CodePrinter;
  *  version 061126 initial version
  */
 
-public class ExChoose extends ExBin {
-    public Expr ce; //extends ExBin, so le and ri are recycled
+public class ExChoose extends BinaryExpression {
+    public Expression ce; //extends ExBin, so le and ri are recycled
 
     public ExChoose(int iop, int ira, int fid, int il, int ic) {
         super(iop, ira, fid, il, ic);
@@ -202,7 +202,7 @@ public class ExChoose extends ExBin {
     ctx.arch.appendInstruction(afterwards);
   }
   
-  private boolean nullCopy(Expr to, Expr from, Context ctx) {
+  private boolean nullCopy(Expression to, Expression from, Context ctx) {
     int res;
     
     res=from.getRegType(ctx);

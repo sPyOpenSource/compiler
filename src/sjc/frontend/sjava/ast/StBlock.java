@@ -65,7 +65,7 @@ import sjc.frontend.sjava.ast.expr.ExCall;
  */
 
 public class StBlock extends StBreakable {
-    public Stmt stmts;
+    public Statement stmts;
 
     public StBlock(StBreakable io, StringList ila, int fid, int il, int ic) {
         super(io, ila, fid, il, ic);
@@ -73,7 +73,7 @@ public class StBlock extends StBreakable {
 	
     @Override
     public void printBreakableStatement(CodePrinter prnt) {
-        Stmt stmt = stmts;
+        Statement stmt = stmts;
         boolean reportEnd = prnt.stmtBlockStart();
         while (stmt != null) {
           stmt.printToken(prnt);
@@ -88,7 +88,7 @@ public class StBlock extends StBreakable {
     }
   
     public int innerResolve(int flowCode, boolean isOutestInConstr, Unit unitContext, Mthd mthdContext, Context ctx) {
-	Stmt stmt;
+	Statement stmt;
         ExCall call;
         Vrbl oldVars;
         VrblStateList sure = null;
@@ -157,7 +157,7 @@ public class StBlock extends StBreakable {
         if (saveInstContext) ctx.arch.genSaveInstContext();
 	//generate output for statements
         breakDest = ctx.arch.getUnlinkedInstruction();
-	Stmt stmt = stmts;
+	Statement stmt = stmts;
 	while (stmt != null) {
 	    stmt.genOutput(ctx);
 	    stmt = stmt.nextStmt;

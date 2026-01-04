@@ -29,7 +29,7 @@ import sjc.compbase.StringList;
  */
 
 public abstract class StLoop extends StBreakable {
-  public Stmt loStmt;
+  public Statement loStmt;
   
   protected StLoop(StBreakable io, StringList ila, int fid, int il, int ic) {
     super(io, ila, fid, il, ic);

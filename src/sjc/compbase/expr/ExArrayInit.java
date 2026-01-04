@@ -78,7 +78,7 @@ public class ExArrayInit extends ExConstInitObj {
       TypeRef preferredType, Context ctx) {
     FilledParam pa;
     TypeRef element=null;
-    Expr ex;
+    Expression ex;
     TypeRef preferredElemType=null;
     int cmpRes;
     

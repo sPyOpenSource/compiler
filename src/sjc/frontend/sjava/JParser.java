@@ -22,11 +22,11 @@ import sjc.compbase.*;
 import sjc.compbase.expr.ExArrayCopy;
 import sjc.compbase.expr.ExArrayInit;
 import sjc.compbase.expr.ExStr;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblAnno;
 import sjc.frontend.*;
-import sjc.frontend.sjava.ast.expr.ExBin;
+import sjc.frontend.sjava.ast.expr.BinaryExpression;
 import sjc.frontend.sjava.ast.expr.ExCall;
 import sjc.frontend.sjava.ast.expr.ExChoose;
 import sjc.frontend.sjava.ast.expr.ExClssMthdName;
@@ -35,7 +35,7 @@ import sjc.frontend.sjava.ast.expr.ExDeRef;
 import sjc.frontend.sjava.ast.expr.ExEnc;
 import sjc.frontend.sjava.ast.expr.ExNew;
 import sjc.frontend.sjava.ast.expr.ExPrePst;
-import sjc.frontend.sjava.ast.expr.ExUna;
+import sjc.frontend.sjava.ast.expr.UnaryExpression;
 import sjc.frontend.sjava.ast.expr.ExVar;
 
 import sjc.frontend.sjava.ast.StAssert;
@@ -56,7 +56,7 @@ import sjc.frontend.sjava.ast.StThrow;
 import sjc.frontend.sjava.ast.StTryCaFi;
 import sjc.frontend.sjava.ast.StVrbl;
 import sjc.frontend.sjava.ast.StWhile;
-import sjc.frontend.sjava.ast.Stmt;
+import sjc.frontend.sjava.ast.Statement;
 
 /**
  * JParser: parser for the SJava-language
@@ -402,7 +402,7 @@ public class JParser {
                 }
                 int syl = s.nxtSym.syline;
                 int syc = s.nxtSym.sycol;
-                Expr e;
+                Expression e;
                 if ((e = expr()) == null) return false;
                 FilledParam nextPar = new FilledParam(e, curFID, syl, syc);
                 if (lastID == null) {
@@ -587,7 +587,7 @@ public class JParser {
     Clss oldCurClass;
     Mthd oldCurMthd;
     StBlock sb;
-    Stmt ss;
+    Statement ss;
     
     oldCurClass = curClass;
     curClass = c;
@@ -826,7 +826,7 @@ public class JParser {
   
   private ExArrayInit arrayInit() {
     ExArrayInit init;
-    Expr ex;
+    Expression ex;
     FilledParam last = null;
     int syl, syc;
     
@@ -1010,7 +1010,7 @@ public class JParser {
   
   private StBlock stmtBlock(StBreakable outer, StringList labels, boolean addReturnMissingStatement) {
     StBlock b;
-    Stmt ns, ls = null;
+    Statement ns, ls = null;
     
     b = new StBlock(outer, labels, curFID, s.nxtSym.syline, s.nxtSym.sycol);
     while (!has(Scanner.S_ENC, Scanner.E_BC)) {
@@ -1027,7 +1027,7 @@ public class JParser {
     return b;
   }
   
-  private Stmt stmt(StBreakable outer, boolean noUnreadyExpr) {
+  private Statement stmt(StBreakable outer, boolean noUnreadyExpr) {
     int syl, syc, syp;
     StBlock sb;
     StReturn sr;
@@ -1042,7 +1042,7 @@ public class JParser {
     StThrow sh;
     StSync sy;
     StAssert sa;
-    Stmt init = null;
+    Statement init = null;
     CatchBlock lastCatch = null, thisCatch;
     TypeRef type;
     String singleLabel = null;
@@ -1360,8 +1360,8 @@ public class JParser {
     return exprVarDecl(false);
   }
   
-  private Stmt exprVarDecl(boolean allowSpecialsOfForLoop) {
-    Expr ex;
+  private Statement exprVarDecl(boolean allowSpecialsOfForLoop) {
+    Expression ex;
     StExpr sse;
     TypeRef vt;
     Vrbl nv;
@@ -1449,7 +1449,7 @@ public class JParser {
     return sse;
   }
   
-  private TypeRef getTypeRefOfStEx(Expr ex) {
+  private TypeRef getTypeRefOfStEx(Expression ex) {
     StringList qid=null, lqid;
     ExDeRef ed;
     ExVar ev;
@@ -1503,7 +1503,7 @@ public class JParser {
   
   private boolean switchList(StSwitch ss) {
     CondStmt ncs, lcs = null, lhcs = null;
-    Stmt ns, ls = null;
+    Statement ns, ls = null;
     boolean defDone = false;
     int syl, syc;
     
@@ -1618,7 +1618,7 @@ public class JParser {
   
   private FilledParam getCallParam() {
     int syl, syc;
-    Expr tmpEx;
+    Expression tmpEx;
     FilledParam ret, last;
     
     syl=s.nxtSym.syline;
@@ -1645,7 +1645,7 @@ public class JParser {
   private boolean getNewArrayParam(ExNew nob) {
     int syl, syc, syp, cnt;
     boolean needExpr=true, noExprAllowed=false;
-    Expr tmpEx;
+    Expression tmpEx;
     FilledParam fields, last;
     
     if (!accept(Scanner.S_ENC, Scanner.E_SO)) {
@@ -1715,7 +1715,7 @@ public class JParser {
     return new String(buf);
   }
   
-  private Expr getIDFragment() {
+  private Expression getIDFragment() {
     int syl, syc, mod;
     ExCall call;
     ExVar var;
@@ -1815,9 +1815,9 @@ public class JParser {
     return var;
   }
   
-  private TypeRef getTypeRefOfExpr(Expr ex) {
+  private TypeRef getTypeRefOfExpr(Expression ex) {
     StringList list=null, last;
-    Expr checkVar=null;
+    Expression checkVar=null;
     ExDeRef deref;
     ExVar var;
     TypeRef ret;
@@ -1856,11 +1856,11 @@ public class JParser {
     return ret;
   }
   
-  private Expr getOperandFragment(boolean acceptFurtherFragments) {
+  private Expression getOperandFragment(boolean acceptFurtherFragments) {
     int syl, syc;
     ExEnc enc;
     ExVal num;
-    Expr tmpEx;
+    Expression tmpEx;
     
     if (has(Scanner.S_OKE, Scanner.O_CLSS) || has(Scanner.S_OKE, Scanner.O_INTF)
         || has(Scanner.S_OKE, Scanner.O_ANDC)) {
@@ -1961,7 +1961,7 @@ public class JParser {
     return null;
   }
   
-  private Expr appendDeRefArray(Expr res) {
+  private Expression appendDeRefArray(Expression res) {
     ExDeRef deref;
     ExDeArray array;
     boolean ref;
@@ -1993,14 +1993,14 @@ public class JParser {
     return res;
   }
   
-  private Expr getOperand() {
+  private Expression getOperand() {
     int op;
-    Expr ret;
-    ExUna nun;
+    Expression ret;
+    UnaryExpression nun;
     
     //unary operator
     if ((op=getUnaOperator())!=0) {
-      nun=new ExUna(op, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+      nun=new UnaryExpression(op, curFID, s.nxtSym.syline, s.nxtSym.sycol);
       nun.srcStart=s.nxtSym.sypos;
       if ((nun.ex=getOperand())==null) return null;
       nun.srcLength=s.nxtSym.sypos-nun.srcStart;
@@ -2024,7 +2024,7 @@ public class JParser {
     return ret;
   }
   
-  private Expr getOperandClass() {
+  private Expression getOperandClass() {
     ExClssMthdName ncl;
     
     ncl=new ExClssMthdName(curFID, s.nxtSym.syline, s.nxtSym.sycol);
@@ -2110,10 +2110,10 @@ public class JParser {
     return true; //assign is right-associative
   }
 
-  private Expr expr() {
+  private Expression expr() {
     int op, opType, opPar, rank, syp;
-    Expr ret;
-    ExBin bin, tmpBn;
+    Expression ret;
+    BinaryExpression bin, tmpBn;
     ExChoose chs;
     
     syp=s.nxtSym.sypos;
@@ -2132,7 +2132,7 @@ public class JParser {
           }
           bin=chs;
         }
-        else bin=new ExBin(op, rank, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+        else bin=new BinaryExpression(op, rank, curFID, s.nxtSym.syline, s.nxtSym.sycol);
         if (opType==Scanner.S_CMP && opPar==Scanner.C_INOF) bin.ri=getOperandClass();
         else bin.ri=getOperand();
         if (bin.ri==null) {
@@ -2140,10 +2140,10 @@ public class JParser {
           return null;
         }
         //pay attention to ranking
-        if (ret instanceof ExBin exBin) {
+        if (ret instanceof BinaryExpression exBin) {
           tmpBn=exBin;
           if (lowerPrio(tmpBn.rank, rank)) {
-            while ((tmpBn.ri instanceof ExBin) && lowerPrio(((ExBin)tmpBn.ri).rank, rank)) tmpBn=(ExBin)tmpBn.ri;
+            while ((tmpBn.ri instanceof BinaryExpression) && lowerPrio(((BinaryExpression)tmpBn.ri).rank, rank)) tmpBn=(BinaryExpression)tmpBn.ri;
             bin.le=tmpBn.ri;
             tmpBn.ri=bin;
           }

@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 import sjc.frontend.sjava.ast.expr.ExEnc;
 
@@ -52,8 +52,8 @@ import sjc.frontend.sjava.ast.expr.ExEnc;
  *  version 060607 initial version
  */
 
-public class StReturn extends Stmt {
-    public Expr retVal;
+public class StReturn extends Statement {
+    public Expression retVal;
     private StBreakable outer, outest;
 
     public StReturn(StBreakable io, int fid, int il, int ic) {
@@ -80,7 +80,7 @@ public class StReturn extends Stmt {
 	      printPos(ctx, "can not return anything in constructor");
 	      return FA_ERROR;
 	    }
-	    if (!retVal.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expr.RF_CHECKREAD, mthdContext.retType, ctx)) return FA_ERROR;
+	    if (!retVal.resolve(unitContext, mthdContext, getExprFromStmtFlowCode(flowCode)|Expression.RF_CHECKREAD, mthdContext.retType, ctx)) return FA_ERROR;
       if (retVal.baseType==StdTypes.T_NULL) {
         res=mthdContext.retType.getRegType(ctx);
         if (res==StdTypes.T_PTR) retVal.baseType=StdTypes.T_NNPT;

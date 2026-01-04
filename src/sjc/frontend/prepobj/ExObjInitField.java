@@ -19,7 +19,7 @@
 package sjc.frontend.prepobj;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
 
 /**
@@ -31,7 +31,7 @@ import sjc.compbase.variable.Vrbl;
 
 public class ExObjInitField extends Token {
   public String name;
-  public Expr init;
+  public Expression init;
   public Vrbl destVar;
   public ExObjInitField next;
   

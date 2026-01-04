@@ -61,7 +61,7 @@ public class StTryCaFi extends StBlock {
   public final static String REGNOTFREE = "registers not clear";
   public final static String UNREACHABLE = "unreachable catch of ";
   
-  public Stmt tryBlock, finallyBlock;
+  public Statement tryBlock, finallyBlock;
   public CatchBlock catchBlocks;
   private UnitList runtimeClass;
   private int excFrameOffset;

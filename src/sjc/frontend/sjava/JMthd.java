@@ -20,7 +20,7 @@ package sjc.frontend.sjava;
 
 import org.json.JSONArray;
 import sjc.compbase.Context;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.FilledAnno;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Marks;
@@ -44,7 +44,7 @@ import sjc.frontend.sjava.ast.StBlock;
 import sjc.frontend.sjava.ast.StEmpty;
 import sjc.frontend.sjava.ast.StExpr;
 import sjc.frontend.sjava.ast.StSync;
-import sjc.frontend.sjava.ast.Stmt;
+import sjc.frontend.sjava.ast.Statement;
 
 /**
  * JMthd: java-specific behaviour of methods
@@ -273,7 +273,7 @@ public class JMthd extends Mthd {
   @Override
   public boolean resolve(Context ctx) {
     ExCall call=null;
-    Stmt cs;
+    Statement cs;
     StSync sy;
     StBlock sb;
     Param mPar;
@@ -299,7 +299,7 @@ public class JMthd extends Mthd {
           a.printPos(ctx, "only enterCodeAddr as SJC-JMthd-Annotation allowed");
           return false;
         }
-        if (!a.values.expr.resolve(owner, this, Expr.RF_CHECKREAD, null, ctx)) return false;
+        if (!a.values.expr.resolve(owner, this, Expression.RF_CHECKREAD, null, ctx)) return false;
         if (a.values.expr.calcConstantType(ctx)!=StdTypes.T_INT) {
           a.printPos(ctx, "need constant integer value for enterCodeAddr");
           return false;
@@ -381,7 +381,7 @@ public class JMthd extends Mthd {
     }
     //resolve block (also sets varSize and MF_WRITTEN-flag)
     if (block!=null) {
-      if (((block.innerResolve(0, isConstructor, owner, this, ctx))&Stmt.FA_ERROR)!=0) {
+      if (((block.innerResolve(0, isConstructor, owner, this, ctx))&Statement.FA_ERROR)!=0) {
         ctx.out.print(" in method ");
         printNamePar(ctx.out);
         if (isConstructor) setWriteCheckState(true);

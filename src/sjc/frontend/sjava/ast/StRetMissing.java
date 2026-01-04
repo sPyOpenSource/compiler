@@ -34,7 +34,7 @@ import sjc.debug.CodePrinter;
  *  version 090506 initial version
  */
 
-public class StRetMissing extends Stmt {
+public class StRetMissing extends Statement {
     public StRetMissing(int fid, int il, int ic) {
         super(fid, il, ic);
     }

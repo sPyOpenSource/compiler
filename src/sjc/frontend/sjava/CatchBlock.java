@@ -22,7 +22,7 @@ import sjc.backend.Instruction;
 import sjc.compbase.Token;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.UnitList;
-import sjc.frontend.sjava.ast.Stmt;
+import sjc.frontend.sjava.ast.Statement;
 
 /**
  * CatchBlock: helper for catch block in try-catch-statement
@@ -36,7 +36,7 @@ import sjc.frontend.sjava.ast.Stmt;
 public class CatchBlock extends Token {
     public CatchBlock nextCatchDecl;
     public Vrbl catchVar;
-    public Stmt stmts;
+    public Statement stmts;
     public Instruction stIns;
     public UnitList importedClass;
     public boolean isValid;

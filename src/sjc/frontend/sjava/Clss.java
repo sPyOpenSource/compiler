@@ -19,7 +19,7 @@
 package sjc.frontend.sjava;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.AccVar;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblList;
@@ -287,7 +287,7 @@ public class Clss extends JUnit {
         keys=a.keys;
         values=a.values;
         while (keys!=null) {
-          if (!values.expr.resolve(this, initDyna, Expr.RF_CHECKREAD, null, ctx)) return false;
+          if (!values.expr.resolve(this, initDyna, Expression.RF_CHECKREAD, null, ctx)) return false;
           if (values.expr.calcConstantType(ctx)!=StdTypes.T_INT) {
             a.printPos(ctx, "need constant integer value for parameter ");
             ctx.out.print(keys.str);

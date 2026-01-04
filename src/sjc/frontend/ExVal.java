@@ -20,7 +20,7 @@ package sjc.frontend;
 
 import sjc.backend.Instruction;
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -50,7 +50,7 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExVal extends Expr {
+public class ExVal extends Expression {
 	public int intValue; //keeps data for byte, short, char, int, float and boolean
 	public long longValue; //keeps data for long and double
 	

@@ -19,7 +19,7 @@
 package sjc.frontend.sjava.ast;
 
 import sjc.compbase.*;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 
 /**
  * Stmt: basic abstraction of a statement
@@ -40,7 +40,7 @@ import sjc.compbase.expr.Expr;
  *  version 060607 initial version
  */
 
-public abstract class Stmt extends TokenAbstrPrintable {
+public abstract class Statement extends TokenAbstrPrintable {
     protected final static int FA_NO_FLOWCHANGE       = 0;
     protected final static int FA_HAS_ENDBLOCK        = 0x01;
     protected final static int FA_HAS_CONTINUE        = 0x02;
@@ -50,9 +50,9 @@ public abstract class Stmt extends TokenAbstrPrintable {
     protected final static int FA_DEAD_CODE           = 0x20;
     public final static int FA_ERROR                  = 0x40;
   
-    public Stmt nextStmt;
+    public Statement nextStmt;
 
-    protected Stmt(int fid, int il, int ic) {
+    protected Statement(int fid, int il, int ic) {
         super(fid, il, ic);
     }
 	
@@ -79,9 +79,9 @@ public abstract class Stmt extends TokenAbstrPrintable {
     }
 	
     protected int getExprFromStmtFlowCode(int stmtFlowCode) {
-        int exprResolveFlags = Expr.RF_NONE;
-        if ((stmtFlowCode & FA_INSIDE_LOOP) != 0) exprResolveFlags |= Expr.RF_INSIDE_LOOP;
-        if ((stmtFlowCode & FA_DEAD_CODE)   != 0) exprResolveFlags |= Expr.RF_DEAD_CODE;
+        int exprResolveFlags = Expression.RF_NONE;
+        if ((stmtFlowCode & FA_INSIDE_LOOP) != 0) exprResolveFlags |= Expression.RF_INSIDE_LOOP;
+        if ((stmtFlowCode & FA_DEAD_CODE)   != 0) exprResolveFlags |= Expression.RF_DEAD_CODE;
         return exprResolveFlags;
     }
 	

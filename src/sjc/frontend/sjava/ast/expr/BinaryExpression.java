@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast.expr;
 import sjc.backend.Instruction;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExCheckType;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
 
 /**
@@ -92,17 +92,17 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExBin extends ExCheckType {
+public class BinaryExpression extends ExCheckType {
     private final static String INVCALLGETCONST = "invalid call to getConst*Val";
     private final static String ARINOTOBJ = "arithmetic operators are not supported for object types";
     private boolean genAssignCall, genAriCall;
     private char ariCallOp;
   
     protected int op;
-    public Expr le, ri;
+    public Expression le, ri;
     public int rank;
 
-  public ExBin(int iop, int ira, int fid, int il, int ic) {
+  public BinaryExpression(int iop, int ira, int fid, int il, int ic) {
     super(fid, il, ic);
     op=iop;
     rank=ira;
@@ -117,7 +117,7 @@ public class ExBin extends ExCheckType {
   public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
     int cmpRes, opType, opPar, rcType;
     boolean change;
-    Expr tmpEx;
+    Expression tmpEx;
     TypeRef cmpType;
     
     opType=op>>>16;

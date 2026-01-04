@@ -36,7 +36,7 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class StEmpty extends Stmt {
+public class StEmpty extends Statement {
     public StEmpty(int fid, int il, int ic) {
         super(fid, il, ic);
     }

@@ -21,7 +21,7 @@ package sjc.frontend.sjava.ast.expr;
 import sjc.backend.Instruction;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExConstInitObj;
-import sjc.compbase.expr.Expr;
+import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.AccVar;
 import sjc.compbase.variable.Vrbl;
 import sjc.debug.CodePrinter;
@@ -95,11 +95,11 @@ import sjc.frontend.sjava.SJava;
  *  version 060607 initial version
  */
 
-public class ExDeRef extends Expr {
+public class ExDeRef extends Expression {
   private final static String ERRQID = "ExDeref with invalid le.qid";
   private final static String ERREXT = " in deref";
   
-  public Expr le, ri;
+  public Expression le, ri;
   private UnitList leImportedClassIndexed;
   private boolean isSuper, noGenLeftSide, leftStatic;
   private UnitList runtimeClass; //used for exception-call if not native
@@ -358,11 +358,11 @@ public class ExDeRef extends Expr {
     return isCompInitConstObject(ctx) ? ri.getConstInitObj(ctx) : null;
   }
   
-  public Expr getRightMostExpr() {
+  public Expression getRightMostExpr() {
     return ri.getRightMostExpr();
   }
   
-  public Expr getLeftOfRightMostExpr() {
+  public Expression getLeftOfRightMostExpr() {
     return le.getRightMostExpr();
   }
   
@@ -544,7 +544,7 @@ public class ExDeRef extends Expr {
     }
   }
   
-  public void genOutputAssignTo(int newValueReg, Expr newValue, Context ctx) {
+  public void genOutputAssignTo(int newValueReg, Expression newValue, Context ctx) {
     ExVar asVar;
     int leRegType, extReg, restore2, condHnd;
     Instruction excCheckDone;
