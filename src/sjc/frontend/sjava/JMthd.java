@@ -130,7 +130,7 @@ public class JMthd extends Mthd {
   
   //required fields for resolving
   protected Block block;
-  public TryCaFiContainer curTryFrame, freeTryFrames;
+  public TryContainer curTryFrame, freeTryFrames;
   private boolean tryProfiling, tryStackExtreme;
   private UnitList runtimeClass;
   protected FilledAnno anno;
@@ -491,7 +491,7 @@ public class JMthd extends Mthd {
   
   @Override
   public boolean handlesThrowable(Token whom, Unit thrown, Context ctx) {
-    TryCaFiContainer trb=curTryFrame;
+    TryContainer trb=curTryFrame;
     
     while (trb!=null) {
       if (trb.stTryCaFi.handlesThrowable(thrown, ctx)) return true;

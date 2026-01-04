@@ -27,7 +27,7 @@ import sjc.compbase.variable.VrblStateList;
 import sjc.debug.CodePrinter;
 import sjc.frontend.sjava.CatchBlock;
 import sjc.frontend.sjava.JMthd;
-import sjc.frontend.sjava.TryCaFiContainer;
+import sjc.frontend.sjava.TryContainer;
 
 /**
  * StTryCaFi: try-catch-finally block
@@ -58,55 +58,56 @@ import sjc.frontend.sjava.TryCaFiContainer;
  */
 
 public class StTryCaFi extends Block {
-  public final static String REGNOTFREE = "registers not clear";
-  public final static String UNREACHABLE = "unreachable catch of ";
+    public final static String REGNOTFREE = "registers not clear";
+    public final static String UNREACHABLE = "unreachable catch of ";
+
+    public Statement tryBlock, finallyBlock;
+    public CatchBlock catchBlocks;
+    private UnitList runtimeClass;
+    private int excFrameOffset;
   
-  public Statement tryBlock, finallyBlock;
-  public CatchBlock catchBlocks;
-  private UnitList runtimeClass;
-  private int excFrameOffset;
+    //for description of throw frame, see Architecture
   
-  //for description of throw frame, see Architecture
-  
-	public StTryCaFi(StBreakable io, StringList ila, int fid, int il, int ic) {
-		super(io, ila, fid, il, ic);
-	}
+    public StTryCaFi(StBreakable io, StringList ila, int fid, int il, int ic) {
+            super(io, ila, fid, il, ic);
+    }
 	
-	public void printBreakableStatement(CodePrinter prnt) {
-	  CatchBlock c=catchBlocks;
-	  prnt.stmtTryStart(tryBlock);
-	  while (c!=null) {
+    public void printBreakableStatement(CodePrinter prnt) {
+	CatchBlock c=catchBlocks;
+	prnt.stmtTryStart(tryBlock);
+	while (c!=null) {
 	    prnt.stmtTryCatch(c.catchVar, c.stmts);
 	    c=c.nextCatchDecl;
-	  }
-	  if (finallyBlock!=null) prnt.stmtTryFinally(finallyBlock);
 	}
-	
-	protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
-    JMthd mthd;
-    TryCaFiContainer myContainer, dummyContainer=null;
-	  CatchBlock curCatch, cmpCatch;
-	  Vrbl var;
-    int singleRes, globalRes;
-    boolean allBlocksHaveNextUnreachable=false;
-    VrblStateList preState;
-	  
-	  //enter ourself in try-container of mthdContext, get exception frame offset
-	  if (!(mthdContext instanceof JMthd)) {
-      printPos(ctx, "try statement in not-java method is not supported");
-      return FA_ERROR;
+	if (finallyBlock!=null) prnt.stmtTryFinally(finallyBlock);
     }
-	  mthd=(JMthd)mthdContext;
-	  if (mthd.freeTryFrames!=null) {
+	
+    @Override
+    protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
+        JMthd mthd;
+        TryContainer myContainer;
+        TryCaFiContainer dummyContainer = null;
+	CatchBlock curCatch, cmpCatch;
+	Vrbl var;
+        int singleRes, globalRes;
+        boolean allBlocksHaveNextUnreachable=false;
+        VrblStateList preState;
+	  
+	//enter ourself in try-container of mthdContext, get exception frame offset
+	if (!(mthdContext instanceof JMthd)) {
+            printPos(ctx, "try statement in not-java method is not supported");
+            return FA_ERROR;
+        }
+	mthd=(JMthd)mthdContext;
+	if (mthd.freeTryFrames!=null) {
 	    myContainer=mthd.freeTryFrames;
 	    excFrameOffset=myContainer.excFrameOffset;
 	    dummyContainer=myContainer.nextTryCaFiBlock;
-	  }
-	  else {
-	    myContainer=new TryCaFiContainer();
+	} else {
+	    myContainer=new TryContainer();
 	    myContainer.excFrameOffset=excFrameOffset=
 	      -(mthdContext.varSize+=ctx.arch.throwFrameSize);
-	  }
+	}
 	  myContainer.stTryCaFi=this;
 	  myContainer.nextTryCaFiBlock=mthd.curTryFrame;
 	  mthd.curTryFrame=myContainer;

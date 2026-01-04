@@ -28,8 +28,8 @@ import sjc.frontend.sjava.ast.StTryCaFi;
  *  version 080610 initial version
  */
 
-public class TryCaFiContainer {
+public class TryContainer {
   public StTryCaFi stTryCaFi;
-  public TryCaFiContainer nextTryCaFiBlock;
+  public TryContainer nextTryCaFiBlock;
   public int excFrameOffset;
 }
