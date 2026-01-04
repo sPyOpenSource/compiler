@@ -30,7 +30,6 @@ public final class Test
 
         if (!result.fullMatch)
             return;
-
         Node tree = cast(result.topValue());
         Reactor reactor = new Reactor();
         Walker<Node> walker = SemanticAnalysis.createWalker(reactor);
