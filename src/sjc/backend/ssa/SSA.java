@@ -96,21 +96,23 @@ public class SSA extends Architecture {
   
   //initialization
   public SSA(int iRB) {
-    relocBytes=iRB; //save one reloc on the stack
-    allocClearBits=stackClearBits=relocBytes-1;
-    maxInstrCodeSize=24;
-    throwFrameSize=relocBytes*7;
-    throwFrameExcOff=relocBytes*6;
-    regClss=SSADef.R_CLSS;
-    regInst=SSADef.R_INST;
-    regBase=SSADef.R_BASE;
+    relocBytes = iRB; //save one reloc on the stack
+    allocClearBits = stackClearBits = relocBytes - 1;
+    maxInstrCodeSize = 24;
+    throwFrameSize = relocBytes * 7;
+    throwFrameExcOff = relocBytes * 6;
+    regClss = SSADef.R_CLSS;
+    regInst = SSADef.R_INST;
+    regBase = SSADef.R_BASE;
   }
 
+  @Override
   public Instruction createNewInstruction() {
     return new Instruction(maxInstrCodeSize+2); //for MAGIC.inline two additional bytes are required
   }
   
   //references are treated as normal integers
+  @Override
   public void putRef(Object loc, int offset, Object ptr, int ptrOff) {
     mem.putInt(loc, offset, mem.getAddrAsInt(ptr, ptrOff));
   }

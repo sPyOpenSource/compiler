@@ -26,7 +26,7 @@ import sjc.compbase.Ops;
 import sjc.compbase.StdTypes;
 
 /**
- * JVM: Architecture backend for JVM by Dennis Kuschel
+ * JVM: Architecture backend for JVM
  * 
  * @author S. Frenz
  * @version 160522 fixed error messages
