@@ -85,8 +85,7 @@ public class StTryCaFi extends Block {
     @Override
     protected int innerResolve(int flowCode, Unit unitContext, Mthd mthdContext, Context ctx) {
         JMthd mthd;
-        TryContainer myContainer;
-        TryCaFiContainer dummyContainer = null;
+        TryContainer myContainer, dummyContainer = null;
 	CatchBlock curCatch, cmpCatch;
 	Vrbl var;
         int singleRes, globalRes;
