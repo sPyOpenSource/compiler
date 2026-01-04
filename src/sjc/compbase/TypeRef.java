@@ -78,29 +78,29 @@ public class TypeRef extends Token {
     public final static int T_DBL  = StdTypes.T_DBL;  //"double"
     public final static int T_CHAR = StdTypes.T_CHAR; //"char"
     public final static int T_BOOL = StdTypes.T_BOOL; //"boolean"
-  public final static int T_NULL = StdTypes.T_NULL; //null-type, unresolved
-  public final static int T_NNPT = StdTypes.T_NNPT; //null-type, pointer
-  public final static int T_NDPT = StdTypes.T_NDPT; //null-type, double sized pointer
-  public final static int T_VOID = StdTypes.T_VOID;
-  public final static int T_QID  = StdTypes.T_QID;
-  
-  //results of comparison
-  public final static int C_NP = -1; //conversion not possible
-  public final static int C_EQ =  0; //type equal
-  public final static int C_TT =  1; //conversion possible, take this type
-  public final static int C_OT =  2; //conversion possible, take type of compared expression
-  
-  //array specials
-  public final static int S_NOSPECIAL          =  0; //no inline array, no flash object
-  public final static int S_STRUCTARRNOTSPEC   = -1; //size of struct-array not specified
-  public final static int S_STRUCTARRDONTCHECK = -2; //index of struct-array must not be checked
-  public final static int S_INSTINLARR         = -3; //normal instance-inline array
-  public final static int S_FLASHREF           = -4; //object is accessed via flash
-  public final static int S_FLASHINLARR        = -5; //object incl. inline array is accessed via flash
-  
-  //variables required for resolving
-  public int baseType, arrDim;
-  public int typeSpecial; //required to check struct and inline arrays and flash-objects, initialized to 0 "everything normal"
+    public final static int T_NULL = StdTypes.T_NULL; //null-type, unresolved
+    public final static int T_NNPT = StdTypes.T_NNPT; //null-type, pointer
+    public final static int T_NDPT = StdTypes.T_NDPT; //null-type, double sized pointer
+    public final static int T_VOID = StdTypes.T_VOID;
+    public final static int T_QID  = StdTypes.T_QID;
+
+    //results of comparison
+    public final static int C_NP = -1; //conversion not possible
+    public final static int C_EQ =  0; //type equal
+    public final static int C_TT =  1; //conversion possible, take this type
+    public final static int C_OT =  2; //conversion possible, take type of compared expression
+
+    //array specials
+    public final static int S_NOSPECIAL          =  0; //no inline array, no flash object
+    public final static int S_STRUCTARRNOTSPEC   = -1; //size of struct-array not specified
+    public final static int S_STRUCTARRDONTCHECK = -2; //index of struct-array must not be checked
+    public final static int S_INSTINLARR         = -3; //normal instance-inline array
+    public final static int S_FLASHREF           = -4; //object is accessed via flash
+    public final static int S_FLASHINLARR        = -5; //object incl. inline array is accessed via flash
+
+    //variables required for resolving
+    public int baseType, arrDim;
+    public int typeSpecial; //required to check struct and inline arrays and flash-objects, initialized to 0 "everything normal"
     public QualID qid; //used if type is non-standard
 
     public TypeRef(int fid, int il, int ic) {

@@ -97,10 +97,12 @@ public class ExNew extends ExAbsCall {
         super(fid, il, ic);
     }
   
+    @Override
   public void printExpression(CodePrinter codePrnt) {
     codePrnt.exprNew(this, asArray, multArray, callExplicitConstr, destTypeUnit, dest, par);
   }
   
+    @Override
   public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
     return resolve(mthdContext, unitContext, mthdContext, resolveFlags, preferredType, ctx);
   }
@@ -201,14 +203,17 @@ public class ExNew extends ExAbsCall {
     return true;
   }
   
+    @Override
   public boolean isCompInitConstObject(Context ctx) {
     return canBeDoneAtCompileTime;
   }
   
+    @Override
   public ExConstInitObj getConstInitObj(Context ctx) {
     return canBeDoneAtCompileTime ? constNew : null;
   }
   
+    @Override
   public void genOutputVal(int reg, Context ctx) {
     genOutputVal(reg, ctx.arch.regInst, ctx);
   }

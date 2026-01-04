@@ -39,7 +39,7 @@ import sjc.frontend.sjava.ast.expr.UnaryExpression;
 import sjc.frontend.sjava.ast.expr.ExVar;
 
 import sjc.frontend.sjava.ast.StAssert;
-import sjc.frontend.sjava.ast.StBlock;
+import sjc.frontend.sjava.ast.Block;
 import sjc.frontend.sjava.ast.StBreakable;
 import sjc.frontend.sjava.ast.StEmpty;
 import sjc.frontend.sjava.ast.StEndLoop;
@@ -586,7 +586,7 @@ public class JParser {
     Vrbl nv, lv = null;
     Clss oldCurClass;
     Mthd oldCurMthd;
-    StBlock sb;
+    Block sb;
     Statement ss;
     
     oldCurClass = curClass;
@@ -610,7 +610,7 @@ public class JParser {
           tmp.modifier |= Modifier.M_NDCODE;
           tmp.nextMthd = ctx.staticInitMthds;
           ctx.staticInitMthds = tmp;
-          tmp.block = new StBlock(null, null, c.fileID, c.line, c.col);
+          tmp.block = new Block(null, null, c.fileID, c.line, c.col);
           tmp.block.stmts = sb;
         } else { //go through other blocks, append current static block (keep order)
           ss = tmp.block.stmts;
@@ -1008,11 +1008,11 @@ public class JParser {
     return true;
   }
   
-  private StBlock stmtBlock(StBreakable outer, StringList labels, boolean addReturnMissingStatement) {
-    StBlock b;
+  private Block stmtBlock(StBreakable outer, StringList labels, boolean addReturnMissingStatement) {
+    Block b;
     Statement ns, ls = null;
     
-    b = new StBlock(outer, labels, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    b = new Block(outer, labels, curFID, s.nxtSym.syline, s.nxtSym.sycol);
     while (!has(Scanner.S_ENC, Scanner.E_BC)) {
       if ((ns = stmt(b, false)) == null) return null;
       if (ls != null) ls.nextStmt = ns;
@@ -1029,7 +1029,7 @@ public class JParser {
   
   private Statement stmt(StBreakable outer, boolean noUnreadyExpr) {
     int syl, syc, syp;
-    StBlock sb;
+    Block sb;
     StReturn sr;
     StEndLoop sel;
     StIf si;

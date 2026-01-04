@@ -24,7 +24,7 @@ import sjc.compbase.variable.AccVar;
 import sjc.compbase.variable.Vrbl;
 import sjc.compbase.variable.VrblList;
 import sjc.debug.DebugWriter;
-import sjc.frontend.sjava.ast.StBlock;
+import sjc.frontend.sjava.ast.Block;
 import sjc.memory.ImageContainer.Location;
 
 /**
@@ -393,7 +393,7 @@ public class Clss extends JUnit {
       addedConstr=new JMthd(name, Modifier.M_PUB, fileID, line, col);
       addedConstr.nextMthd=mthds;
       (mthds=addedConstr).isConstructor=true;
-      addedConstr.block=new StBlock(null, null, fileID, line, col);
+      addedConstr.block=new Block(null, null, fileID, line, col);
       if (ctx.verbose) {
         ctx.out.print("needed to insert standard constructor for initialization of instance variables in unit ");
         ctx.out.println(name);

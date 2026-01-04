@@ -95,11 +95,11 @@ public class StEndLoop extends Statement {
 	  if (toEnd.isBreakContDest(true, contNotBreak)) { //check target context
       toEnd.flowAnalysisBuffer|=contNotBreak ? FA_HAS_CONTINUE : FA_HAS_ENDBLOCK;
       //search for block to be abbreviated
-      if (toEnd instanceof StBlock || toEnd instanceof StSwitch) toEnd.flowAnalysisBuffer|=FA_HAS_SHORTCUT;
+      if (toEnd instanceof Block || toEnd instanceof StSwitch) toEnd.flowAnalysisBuffer|=FA_HAS_SHORTCUT;
       else { //toEnd is a loop, search next inner block to mark as abbreviated
         o=outer;
         while (o!=null && o.outer!=toEnd) o=o.outer;
-        if (o instanceof StBlock) o.flowAnalysisBuffer|=FA_HAS_SHORTCUT;
+        if (o instanceof Block) o.flowAnalysisBuffer|=FA_HAS_SHORTCUT;
       }
       //everything ok
       return flowCode|FA_NEXT_IS_UNREACHABLE;

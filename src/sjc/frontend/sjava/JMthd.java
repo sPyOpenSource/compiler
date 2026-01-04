@@ -40,7 +40,7 @@ import sjc.output.HexOut;
 import sjc.backend.Instruction;
 import sjc.frontend.sjava.ast.expr.ExCall;
 import sjc.frontend.sjava.ast.expr.ExVar;
-import sjc.frontend.sjava.ast.StBlock;
+import sjc.frontend.sjava.ast.Block;
 import sjc.frontend.sjava.ast.StEmpty;
 import sjc.frontend.sjava.ast.StExpr;
 import sjc.frontend.sjava.ast.StSync;
@@ -129,7 +129,7 @@ public class JMthd extends Mthd {
   public final static String REGNOTFREE = "registers not clear at beginning of method";
   
   //required fields for resolving
-  protected StBlock block;
+  protected Block block;
   public TryCaFiContainer curTryFrame, freeTryFrames;
   private boolean tryProfiling, tryStackExtreme;
   private UnitList runtimeClass;
@@ -275,7 +275,7 @@ public class JMthd extends Mthd {
     ExCall call=null;
     Statement cs;
     StSync sy;
-    StBlock sb;
+    Block sb;
     Param mPar;
     FilledParam cPar;
     ExVar ep;
@@ -372,7 +372,7 @@ public class JMthd extends Mthd {
         printPos(ctx, "can not synchronize constructor");
         return false;
       }
-      sb=new StBlock(null, null, fileID, line, col);
+      sb=new Block(null, null, fileID, line, col);
       sy=new StSync(sb, (modifier&Modifier.M_STAT)!=0 ? StSync.SYNC_CLSS : StSync.SYNC_INST, fileID, line, col);
       sy.syncBlock=block;
       sb.stmts=sy;

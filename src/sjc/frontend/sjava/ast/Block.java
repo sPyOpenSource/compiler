@@ -64,10 +64,10 @@ import sjc.frontend.sjava.ast.expr.ExCall;
  *  version 060607 initial version
  */
 
-public class StBlock extends StBreakable {
+public class Block extends StBreakable {
     public Statement stmts;
 
-    public StBlock(StBreakable io, StringList ila, int fid, int il, int ic) {
+    public Block(StBreakable io, StringList ila, int fid, int il, int ic) {
         super(io, ila, fid, il, ic);
     }
 	

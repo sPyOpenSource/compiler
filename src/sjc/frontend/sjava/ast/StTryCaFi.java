@@ -57,7 +57,7 @@ import sjc.frontend.sjava.TryCaFiContainer;
  *  version 080603 initial version
  */
 
-public class StTryCaFi extends StBlock {
+public class StTryCaFi extends Block {
   public final static String REGNOTFREE = "registers not clear";
   public final static String UNREACHABLE = "unreachable catch of ";
   

@@ -58,7 +58,7 @@ public class StSync extends StBreakable {
   private final static String ERR_NOFREEREG = "no free reg at synchronized";
   
   public Expression syncObj;
-  public StBlock syncBlock;
+  public Block syncBlock;
   private UnitList runtimeClass;
   private Unit mthdOwnerClass;
   private int syncType, syncObjOffset;
