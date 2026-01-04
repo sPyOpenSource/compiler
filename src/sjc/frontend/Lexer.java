@@ -54,7 +54,7 @@ import sjc.osio.TextPrinter;
   version 060607 initial version
  */
 
-public class Scanner {
+public class Lexer {
     public final static int MAX_SYMBOL_LENGTH = 255;
     public final static int RES      = 0;
 
@@ -202,26 +202,26 @@ public class Scanner {
     private final char chrBuf[];
     private int bufLen;
 	
-	public Scanner() {
-		sp = new StringPool();
-		chrBuf = new char[MAX_SYMBOL_LENGTH + 1];
-		nxtSym = new ScanSym();
-		lahSym = new ScanSym();
-		l2aSym = new ScanSym();
-	}
+    public Lexer() {
+        sp = new StringPool();
+        chrBuf = new char[MAX_SYMBOL_LENGTH + 1];
+        nxtSym = new ScanSym();
+        lahSym = new ScanSym();
+        l2aSym = new ScanSym();
+    }
 	
-	public void init(TextReader ir, int fid, Context ic) {
-		r = ir;
-		curFID = fid;
-                ctx = ic;
-                v = ctx.out;
-		nxtSym.type = RES; nxtSym.par = RES;
-		lahSym.type = RES; lahSym.par = RES;
-		l2aSym.type = RES; l2aSym.par = RES;
-		next(); //initialize internal look-2-ahead
-		next(); //initialize lookahead
-		next(); //initialize next
-	}
+    public void init(TextReader ir, int fid, Context ic) {
+        r = ir;
+        curFID = fid;
+        ctx = ic;
+        v = ctx.out;
+        nxtSym.type = RES; nxtSym.par = RES;
+        lahSym.type = RES; lahSym.par = RES;
+        l2aSym.type = RES; l2aSym.par = RES;
+        next(); //initialize internal look-2-ahead
+        next(); //initialize lookahead
+        next(); //initialize next
+    }
 	
 	public boolean next() {
 		ScanSym dumSym;

@@ -21,12 +21,12 @@ package sjc.frontend.prepobj;
 import sjc.osio.TextReader;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExArrayInit;
-import sjc.compbase.expr.ExStr;
+import sjc.compbase.expr.StringLiteral;
 import sjc.compbase.expr.Expression;
 import sjc.compbase.variable.Vrbl;
-import sjc.frontend.ExVal;
+import sjc.frontend.Literal;
 import sjc.frontend.Language;
-import sjc.frontend.Scanner;
+import sjc.frontend.Lexer;
 
 /**
  * PrepObj: frontend language implementation for compile-time prepared objects 
@@ -43,7 +43,7 @@ public class PrepObj extends Language {
   
   private Context ctx;
   private TextReader inText;
-  private Scanner s;
+  private Lexer s;
   private Unit myUnit;
   private Vrbl lastVar;
   private int curFID;
@@ -54,7 +54,7 @@ public class PrepObj extends Language {
   protected void init(Context ictx) {
     ctx=ictx;
     inText=new TextReader();
-    s=new Scanner();
+    s=new Lexer();
   }
 
   @Override
@@ -106,7 +106,7 @@ public class PrepObj extends Language {
     while (s.nxtSym.type>0) { //>0: no error, valid input -> compile a variable definition
       //need a type and a name
       if ((type=typeRef())==null) return false;
-      if (!has(Scanner.S_ID)) {
+      if (!has(Lexer.S_ID)) {
         parserError("name exptected");
         return false;
       }
@@ -119,12 +119,12 @@ public class PrepObj extends Language {
       myObj.owner=myUnit;
       myObj.location=Vrbl.L_CONSTDC;
       //handle assignment
-      if (!accept(Scanner.S_ASN, Scanner.RES)) {
+      if (!accept(Lexer.S_ASN, Lexer.RES)) {
         parserError("expected \"=\" after variable declaration");
         return false;
       }
       if ((myObj.init=initExpr())==null) return false;
-      if (!accept(Scanner.S_DEL, Scanner.D_SEM)) {
+      if (!accept(Lexer.S_DEL, Lexer.D_SEM)) {
         parserError("expected \";\" after variable init");
         return false;
       }
@@ -142,7 +142,7 @@ public class PrepObj extends Language {
     StringList list, last;
     int syl, syc;
     
-    if (!has(Scanner.S_ID)) {
+    if (!has(Lexer.S_ID)) {
       parserError(MISSING_IDENTIFIER);
       return null;
     }
@@ -150,8 +150,8 @@ public class PrepObj extends Language {
     syc=s.nxtSym.sycol;
     last=list=new StringList(null, s.nxtSym.strBuf);
     accept();
-    while (accept(Scanner.S_DEL, Scanner.D_DOT)) {
-      if (has(Scanner.S_ID)) {
+    while (accept(Lexer.S_DEL, Lexer.D_DOT)) {
+      if (has(Lexer.S_ID)) {
         last=new StringList(last, s.nxtSym.strBuf);
         accept();
       }
@@ -166,7 +166,7 @@ public class PrepObj extends Language {
   private TypeRef typeRef() {
     TypeRef t;
     
-    if (has(Scanner.S_TYP)) {
+    if (has(Lexer.S_TYP)) {
       (t=new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType=s.nxtSym.par;
       accept();
     }
@@ -177,7 +177,7 @@ public class PrepObj extends Language {
         return null;
       }
     }
-    while (accept(Scanner.S_ENC, Scanner.E_SOC)) t.arrDim++;
+    while (accept(Lexer.S_ENC, Lexer.E_SOC)) t.arrDim++;
     return t;
   }
   
@@ -185,11 +185,11 @@ public class PrepObj extends Language {
     ExObjInit block=new ExObjInit(requestedType, curFID, s.nxtSym.syline, s.nxtSym.sycol);
     ExObjInitField first=null, last=null;
     
-    if (!accept(Scanner.S_ENC, Scanner.E_BO)) {
+    if (!accept(Lexer.S_ENC, Lexer.E_BO)) {
       parserError("expected \"{\" before init block");
       return null;
     }
-    while (has(Scanner.S_ID)) {
+    while (has(Lexer.S_ID)) {
       if (first==null) first=last=new ExObjInitField(curFID, s.nxtSym.syline, s.nxtSym.sycol);
       else {
         last.next=new ExObjInitField(curFID, s.nxtSym.syline, s.nxtSym.sycol);
@@ -197,17 +197,17 @@ public class PrepObj extends Language {
       }
       last.name=s.nxtSym.strBuf;
       accept();
-      if (!accept(Scanner.S_ASN, Scanner.RES)) {
+      if (!accept(Lexer.S_ASN, Lexer.RES)) {
         parserError("expected \"=\" after field name");
         return null;
       }
       if ((last.init=initExpr())==null) return null;
-      if (!accept(Scanner.S_DEL, Scanner.D_SEM)) {
+      if (!accept(Lexer.S_DEL, Lexer.D_SEM)) {
         parserError("expected \";\" after value");
         return null;
       }
     }
-    if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
+    if (!accept(Lexer.S_ENC, Lexer.E_BC)) {
       parserError("expected \"}\" after init block");
       return null;
     }
@@ -219,9 +219,9 @@ public class PrepObj extends Language {
     Expression ex;
     TypeRef type;
     
-    if (has(Scanner.S_NUM)) return num(); //numeric value
-    if (has(Scanner.S_SCT)) { //constant string
-      ex=new ExStr(s.nxtSym.strBuf, curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    if (has(Lexer.S_NUM)) return num(); //numeric value
+    if (has(Lexer.S_SCT)) { //constant string
+      ex=new StringLiteral(s.nxtSym.strBuf, curFID, s.nxtSym.syline, s.nxtSym.sycol);
       accept();
       return ex;
     }
@@ -229,12 +229,12 @@ public class PrepObj extends Language {
     if ((type=typeRef())==null) return null;
     if (type.arrDim==0) return initObj(type); //create another object
     //create an array
-    if (!accept(Scanner.S_ENC, Scanner.E_BO)) {
+    if (!accept(Lexer.S_ENC, Lexer.E_BO)) {
       parserError("expected \"{\" for array init");
       return null;
     }
     if ((ex=arrayInit(type))==null) return null;
-    if (!accept(Scanner.S_ENC, Scanner.E_BC)) {
+    if (!accept(Lexer.S_ENC, Lexer.E_BC)) {
       parserError("expected \"}\" after array init");
       return null;
     }
@@ -242,27 +242,27 @@ public class PrepObj extends Language {
   }
   
   private Expression num() {
-    ExVal num;
+    Literal num;
     
-    if (!has(Scanner.S_NUM)) {
+    if (!has(Lexer.S_NUM)) {
       parserError("numeric value expected");
       return null;
     }
-    num=new ExVal(curFID, s.nxtSym.syline, s.nxtSym.sycol);
-    switch (num.baseType=s.nxtSym.par) {
-      case Scanner.T_BYTE:
-      case Scanner.T_SHRT:
-      case Scanner.T_INT:
-      case Scanner.T_CHAR:
-      case Scanner.T_BOOL:
-      case Scanner.T_FLT:
-        num.intValue=s.nxtSym.intBuf;
+    num = new Literal(curFID, s.nxtSym.syline, s.nxtSym.sycol);
+    switch (num.baseType = s.nxtSym.par) {
+      case Lexer.T_BYTE:
+      case Lexer.T_SHRT:
+      case Lexer.T_INT:
+      case Lexer.T_CHAR:
+      case Lexer.T_BOOL:
+      case Lexer.T_FLT:
+        num.intValue = s.nxtSym.intBuf;
         break;
-      case Scanner.T_LONG:
-      case Scanner.T_DBL:
-        num.longValue=s.nxtSym.longBuf;
+      case Lexer.T_LONG:
+      case Lexer.T_DBL:
+        num.longValue = s.nxtSym.longBuf;
         break;
-      case Scanner.T_NULL:
+      case Lexer.T_NULL:
         break; //nothing to copy
       default:
         parserError("### internal error in Parser.getOperandFragment: unknown S_NUM-type ###");
@@ -281,13 +281,13 @@ public class PrepObj extends Language {
     init=new ExArrayInit(curFID, s.nxtSym.syline, s.nxtSym.sycol);
     init.forcedType=forcedType;
     do {
-      if (has(Scanner.S_ENC, Scanner.E_BC)) break; //ignore comma if followed by a closing bracket, support empty array initialization 
+      if (has(Lexer.S_ENC, Lexer.E_BC)) break; //ignore comma if followed by a closing bracket, support empty array initialization 
       syl=s.nxtSym.syline;
       syc=s.nxtSym.sycol;
       if ((ex=initExpr())==null) return null;
       if (last==null) last=init.par=new FilledParam(ex, curFID, syl, syc);
       else last=last.nextParam=new FilledParam(ex, curFID, syl, syc);
-    } while (accept(Scanner.S_DEL, Scanner.D_COM));
+    } while (accept(Lexer.S_DEL, Lexer.D_COM));
     return init;
   }
   

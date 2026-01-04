@@ -38,7 +38,7 @@ public class ScanSym {
 	public String strBuf; //buffer for string-constants
 	
 	protected ScanSym() {
-		type = Scanner.RES;
-		par = Scanner.RES;
+		type = Lexer.RES;
+		par = Lexer.RES;
 	}
 }

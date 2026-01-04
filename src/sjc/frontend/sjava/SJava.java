@@ -21,7 +21,7 @@ package sjc.frontend.sjava;
 import sjc.osio.TextReader;
 import sjc.compbase.*;
 import sjc.compbase.variable.Vrbl;
-import sjc.frontend.Scanner;
+import sjc.frontend.Lexer;
 import sjc.frontend.Language;
 import sjc.frontend.sjava.ast.expr.ExEnc;
 
@@ -60,7 +60,7 @@ public class SJava extends Language {
   public final static String KEY_MAGIC = "MAGIC", KEY_STRUCT = "STRUCT";
   public final static String KEY_FLASH = "FLASH", KEY_SJC = "SJC";
   private Context ctx;
-  private Scanner s;
+  private Lexer s;
   private JParser p;
   private TextReader inText;
   
@@ -93,7 +93,7 @@ public class SJava extends Language {
     //store required variables
     ctx = iCtx;
     inText = new TextReader();
-    s = new Scanner();
+    s = new Lexer();
     p = new JParser();
     strTmp = new StringList(null, "java");
     strTmp.next = new StringList(null, "lang");

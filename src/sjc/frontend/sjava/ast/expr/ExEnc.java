@@ -24,7 +24,7 @@ import sjc.compbase.expr.ExCheckType;
 import sjc.compbase.expr.ExConstInitObj;
 import sjc.compbase.expr.Expression;
 import sjc.debug.CodePrinter;
-import sjc.frontend.ExVal;
+import sjc.frontend.Literal;
 
 /**
  * ExEnc: bracket enclosure of an expression, may be a conversion
@@ -87,7 +87,7 @@ public class ExEnc extends ExCheckType {
     }
 	
 	public void printExpression(CodePrinter codePrnt) {
-	  if (convertTo==null && (ex instanceof ExVal || ex instanceof ExDeRef)) ex.printExpression(codePrnt);
+	  if (convertTo==null && (ex instanceof Literal || ex instanceof ExDeRef)) ex.printExpression(codePrnt);
 	  else codePrnt.exprEnc(convertTo, ex);
 	}
 	

@@ -20,7 +20,7 @@ public class Attribute {
     /* Attribute info variables */
     private int attributeNameIndex;
     private int attributeLength;
-    private byte[] info;
+    public byte[] info;
 
     /* Other local variables */
     private ConstantPoolEntry cpEntry;

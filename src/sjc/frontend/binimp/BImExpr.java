@@ -21,7 +21,7 @@ package sjc.frontend.binimp;
 import sjc.compbase.*;
 import sjc.compbase.expr.ExConstInitObj;
 import sjc.debug.CodePrinter;
-import sjc.frontend.ExVal;
+import sjc.frontend.Literal;
 import sjc.memory.ImageContainer.Location;
 
 /**
@@ -61,9 +61,9 @@ public class BImExpr extends ExConstInitObj {
   @Override
   public void printExpression(CodePrinter prnt) {
     FilledParam cur, last=null;
-    ExVal val;
+    Literal val;
     if (par==null) for (int i=0; i<data.length; i++) {
-      cur=new FilledParam(val=new ExVal(fileID, -1, -1), fileID, -1, -1);
+      cur=new FilledParam(val=new Literal(fileID, -1, -1), fileID, -1, -1);
       if (i==0) par=cur;
       val.baseType=StdTypes.T_BYTE;
       val.intValue=((int)data[i])&0xFF;

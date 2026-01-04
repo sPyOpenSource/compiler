@@ -27,7 +27,7 @@ import sjc.compbase.CtxBasedConfig;
 import sjc.compbase.DataBlockList;
 import sjc.compbase.expr.ExArrayInit;
 import sjc.compbase.expr.ExConstStruct;
-import sjc.compbase.expr.ExStr;
+import sjc.compbase.expr.StringLiteral;
 import sjc.compbase.expr.Expression;
 import sjc.compbase.FilledParam;
 import sjc.compbase.Marks;
@@ -40,7 +40,7 @@ import sjc.compbase.Unit;
 import sjc.compbase.variable.Vrbl;
 
 import sjc.debug.CodePrinter;
-import sjc.frontend.ExVal;
+import sjc.frontend.Literal;
 import sjc.frontend.sjava.ast.expr.ExCall;
 import sjc.frontend.sjava.ast.expr.ExClssMthdName;
 import sjc.frontend.sjava.ast.expr.ExVar;
@@ -199,97 +199,97 @@ public class Magic extends CtxBasedConfig {
   private final static String ID_STREAMLINE = "streamline";
   
   private final int relocBytes;
-  private final ExVal ptrSizeVal, movableVal, indirScalarsVal;
+  private final Literal ptrSizeVal, movableVal, indirScalarsVal;
   private final Vrbl movableVrbl, indirScalarsVrbl, streamVrbl;
-  private final ExVal streamVal, assignVal, assignHeapVal;
+  private final Literal streamVal, assignVal, assignHeapVal;
   private final Vrbl assignVrbl, assignHeapVrbl, rtBoundExcVrbl;
-  private final ExVal rtBoundExcVal, rtNullExcVal, imgBaseVal, comprRelocationVal;
+  private final Literal rtBoundExcVal, rtNullExcVal, imgBaseVal, comprRelocationVal;
   private final Vrbl rtNullExcVrbl, imgBaseVrbl, comprImgBaseVrbl, ptrSizeVrbl;
-  private final ExVal comprImgBaseVal, embeddedVal, embConstRAMVal, relocationVal;
+  private final Literal comprImgBaseVal, embeddedVal, embConstRAMVal, relocationVal;
   private final Vrbl embeddedVrbl, embConstRAMVrbl, relocationVrbl, comprRelocationVrbl;
   
   protected Magic(Context ctx) {
     relocBytes = ctx.arch.relocBytes;
     //create dummy entry for ptrSize
-    ptrSizeVal = new ExVal(-1, -1, -1);
+    ptrSizeVal = new Literal(-1, -1, -1);
     ptrSizeVal.intValue=relocBytes;
     ptrSizeVrbl = new Vrbl(ID_PTRSIZE, Modifier.M_PUB | Modifier.M_FIN | Modifier.M_STAT, -1, -1, -1);
     ptrSizeVrbl.init = ptrSizeVal;
     ptrSizeVrbl.location = AccVar.L_CONST;
     //create dummy entry for movable
-    movableVal = new ExVal(-1, -1, -1);
+    movableVal = new Literal(-1, -1, -1);
     if (ctx.dynaMem) movableVal.intValue = 1; //else: already initialized to 0
     movableVrbl = new Vrbl(ID_MOVABLE, Modifier.M_PUB | Modifier.M_FIN | Modifier.M_STAT, -1, -1, -1);
     movableVrbl.init = movableVal;
     movableVrbl.location = AccVar.L_CONST;
     //create dummy entry for indirScalars
-    indirScalarsVal = new ExVal(-1, -1, -1);
+    indirScalarsVal = new Literal(-1, -1, -1);
     if (ctx.indirScalars) indirScalarsVal.intValue = 1; //else: already initialized to 0
     indirScalarsVrbl = new Vrbl(ID_INDIRSCALARS, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     indirScalarsVrbl.init = indirScalarsVal;
     indirScalarsVrbl.location = AccVar.L_CONST;
     //create dummy entry for streamline
-    streamVal = new ExVal(-1, -1, -1);
+    streamVal = new Literal(-1, -1, -1);
     if (ctx.mem.streamObjects) streamVal.intValue = 1; //else: already initialized to 0
     streamVrbl = new Vrbl(ID_STREAMLINE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     streamVrbl.init = streamVal;
     streamVrbl.location = AccVar.L_CONST;
     //create dummy entry for assignCall
-    assignVal = new ExVal(-1, -1, -1);
+    assignVal = new Literal(-1, -1, -1);
     if (ctx.assignCall) assignVal.intValue = 1; //else: already initialized to 0
     assignVrbl=new Vrbl(ID_ASSIGNCALL, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     assignVrbl.init=assignVal;
     assignVrbl.location=AccVar.L_CONST;
     //create dummy entry for assignHeapCall
-    assignHeapVal=new ExVal(-1, -1, -1);
+    assignHeapVal=new Literal(-1, -1, -1);
     if (ctx.assignHeapCall) assignHeapVal.intValue=1; //else: already initialized to 0
     assignHeapVrbl=new Vrbl(ID_ASSIGNHEAPCALL, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     assignHeapVrbl.init=assignHeapVal;
     assignHeapVrbl.location=AccVar.L_CONST;
     //create dummy entry for runtimeBoundException
-    rtBoundExcVal=new ExVal(-1, -1, -1);
+    rtBoundExcVal=new Literal(-1, -1, -1);
     if (ctx.runtimeBound) rtBoundExcVal.intValue=1; //else: already initialized to 0
     rtBoundExcVrbl=new Vrbl(ID_RUNTIMEBOUNDEXCEPTION, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     rtBoundExcVrbl.init=rtBoundExcVal;
     rtBoundExcVrbl.location=AccVar.L_CONST;
     //create dummy entry for runtimeNullException
-    rtNullExcVal=new ExVal(-1, -1, -1);
+    rtNullExcVal=new Literal(-1, -1, -1);
     if (ctx.runtimeNull) rtNullExcVal.intValue=1; //else: already initialized to 0
     rtNullExcVrbl=new Vrbl(ID_RUNTIMENULLEXCEPTION, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     rtNullExcVrbl.init=rtNullExcVal;
     rtNullExcVrbl.location=AccVar.L_CONST;
     //create dummy entry for imageBase
-    imgBaseVal=new ExVal(-1, -1, -1);
+    imgBaseVal=new Literal(-1, -1, -1);
     imgBaseVal.intValue=ctx.mem.getBaseAddress();
     imgBaseVrbl=new Vrbl(ID_IMAGEBASE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     imgBaseVrbl.init=imgBaseVal;
     imgBaseVrbl.location=AccVar.L_CONST;
     //if there is a compressed image, create dummy entry for compressedImageBase
-    comprImgBaseVal=new ExVal(-1, -1, -1);
+    comprImgBaseVal=new Literal(-1, -1, -1);
     comprImgBaseVal.intValue=ctx.compressedImage!=null ? ctx.compressedImage.baseAddress : -1; //address -1 is reserved for "not existing"
     comprImgBaseVrbl=new Vrbl(ID_COMPRESSEDIMAGEBASE, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     comprImgBaseVrbl.init=comprImgBaseVal;
     comprImgBaseVrbl.location=AccVar.L_CONST;
     //create dummy entry for embedded
-    embeddedVal=new ExVal(-1, -1, -1);
+    embeddedVal=new Literal(-1, -1, -1);
     if (ctx.embedded) embeddedVal.intValue=1; //else: already initialized to 0
     embeddedVrbl=new Vrbl(ID_EMBEDDED, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     embeddedVrbl.init=embeddedVal;
     embeddedVrbl.location=AccVar.L_CONST;
     //create dummy entry for embConstRAM
-    embConstRAMVal=new ExVal(-1, -1, -1);
+    embConstRAMVal=new Literal(-1, -1, -1);
     if (ctx.embConstRAM) embConstRAMVal.intValue=1; //else: already initialized to 0
     embConstRAMVrbl=new Vrbl(ID_EMBCONSTRAM, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     embConstRAMVrbl.init=embConstRAMVal;
     embConstRAMVrbl.location=AccVar.L_CONST;
     //create dummy entry for relocation
-    relocationVal=new ExVal(-1, -1, -1);
+    relocationVal=new Literal(-1, -1, -1);
     relocationVal.intValue=ctx.relocateOption;
     relocationVrbl=new Vrbl(ID_RELOCATION, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     relocationVrbl.init=relocationVal;
     relocationVrbl.location=AccVar.L_CONST;
     //if there is a compressed image, create dummy entry for comprRelocation
-    comprRelocationVal=new ExVal(-1, -1, -1);
+    comprRelocationVal=new Literal(-1, -1, -1);
     comprRelocationVal.intValue=ctx.compressedRelocateOption; //defaults to 0 if not used
     comprRelocationVrbl=new Vrbl(ID_COMPRRELOCATION, Modifier.M_PUB|Modifier.M_FIN|Modifier.M_STAT, -1, -1, -1);
     comprRelocationVrbl.init=comprRelocationVal;
@@ -305,7 +305,7 @@ public class Magic extends CtxBasedConfig {
     }
     else if (ex instanceof ExConstStruct exConstStruct) prnt.exprConstStruct(exConstStruct);
     else if (ex instanceof ExArrayInit exArrayInit) prnt.exprArrayInit(ex, exArrayInit.par);
-    else if (ex instanceof ExStr exStr) prnt.exprString(exStr.value);
+    else if (ex instanceof StringLiteral exStr) prnt.exprString(exStr.value);
     else prnt.reportError(ex, "not yet supported MAGIC");
   }
   
@@ -682,7 +682,7 @@ public class Magic extends CtxBasedConfig {
 	    call.printPos(ctx, "MAGIC.inlineX without parameter");
 	    return false;
 	  }
-	  if (pa.expr instanceof ExStr) pa=pa.nextParam; //skip over first parameter if it is a constant string
+	  if (pa.expr instanceof StringLiteral) pa=pa.nextParam; //skip over first parameter if it is a constant string
 	  while (pa!=null) {
 	    paEx=pa.expr;
 	    if (!paEx.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx)) return false;
@@ -719,7 +719,7 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, "MAGIC.inlineBlock needs name of imported data");
       return false;
     }
-    if (!(pa.expr instanceof ExStr) || pa.nextParam!=null) {
+    if (!(pa.expr instanceof StringLiteral) || pa.nextParam!=null) {
       call.printPos(ctx, "MAGIC.inlineBlock needs one constant parameter with name of imported data");
       return false;
     }
@@ -989,8 +989,8 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, ERR_XDNSTRP);
       return false;
     }
-    if (paEx instanceof ExStr) { //first resolve
-      name=((ExStr)paEx).value;
+    if (paEx instanceof StringLiteral) { //first resolve
+      name=((StringLiteral)paEx).value;
       clss=new ExClssMthdName(name, null, true, paEx.fileID, paEx.line, paEx.col);
     }
     else if (paEx instanceof ExClssMthdName) clss=(ExClssMthdName)paEx; //re-resolve
@@ -1031,14 +1031,14 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, ERR_MONSTRP);
       return false;
     }
-    if (paEx instanceof ExStr) { //first resolve
-      unit=((ExStr)paEx).value;
+    if (paEx instanceof StringLiteral) { //first resolve
+      unit=((StringLiteral)paEx).value;
       pa=pa.nextParam;
-      if (pa==null || (paEx=pa.expr)==null || !(paEx instanceof ExStr)) {
+      if (pa==null || (paEx=pa.expr)==null || !(paEx instanceof StringLiteral)) {
         call.printPos(ctx, "MAGIC.mthdOff needs second string containing method as last parameter");
         return false;
       }
-      mthd=((ExStr)paEx).value;
+      mthd=((StringLiteral)paEx).value;
       call.par.expr=paEx=new ExClssMthdName(unit, mthd, false, paEx.fileID, paEx.line, paEx.col);
     }
     else if (paEx instanceof ExClssMthdName) ((ExClssMthdName)paEx).destMthd=null; //re-resolve: reset
@@ -1080,8 +1080,8 @@ public class Magic extends CtxBasedConfig {
       call.printPos(ctx, ERR_STRCLSS);
       return false;
     }
-    if (paEx instanceof ExStr) { //first resolve otherwise already instance of ExClssMthdName
-      name=((ExStr)paEx).value;
+    if (paEx instanceof StringLiteral) { //first resolve otherwise already instance of ExClssMthdName
+      name=((StringLiteral)paEx).value;
       paEx=new ExClssMthdName(name, null, false, paEx.fileID, paEx.line, paEx.col);
     }
     else if (!(paEx instanceof ExClssMthdName)) {
@@ -1324,16 +1324,16 @@ public class Magic extends CtxBasedConfig {
     String source;
     boolean trailingZero;
     ExVar replacement;
-    ExVal val;
+    Literal val;
     ExArrayInit init;
     int i, fid, line, col;
     
     pa=call.par;
-    if (pa==null || !(pa.expr instanceof ExStr)) {
+    if (pa==null || !(pa.expr instanceof StringLiteral)) {
       call.printPos(ctx, "MAGIC.toXArray needs constant String as first parameter");
       return null;
     }
-    source=((ExStr)pa.expr).value;
+    source=((StringLiteral)pa.expr).value;
     pa=pa.nextParam;
     if (pa==null || !pa.expr.resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, ctx.stringType, ctx)
         || pa.expr.calcConstantType(ctx)!=StdTypes.T_INT || pa.expr.baseType!=StdTypes.T_BOOL
@@ -1352,7 +1352,7 @@ public class Magic extends CtxBasedConfig {
     replacement.baseType=type;
     pa=null;
     for (i=0; i<source.length(); i++) {
-      newPa=new FilledParam(val=new ExVal(fid, line, col), fid, line, col);
+      newPa=new FilledParam(val=new Literal(fid, line, col), fid, line, col);
       val.baseType=type;
       val.intValue=(int)source.charAt(i);
       if (pa==null) init.par=newPa;
@@ -1360,7 +1360,7 @@ public class Magic extends CtxBasedConfig {
       pa=newPa;
     }
     if (trailingZero) {
-      newPa=new FilledParam(val=new ExVal(fid, line, col), fid, line, col);
+      newPa=new FilledParam(val=new Literal(fid, line, col), fid, line, col);
       val.baseType=type;
       val.intValue=0;
       if (pa==null) init.par=newPa;
@@ -1379,25 +1379,25 @@ public class Magic extends CtxBasedConfig {
     FilledParam pa;
     byte[] data;
     String source;
-    ExVal nullVal;
+    Literal nullVal;
     Expression replacement;
     int fid, line, col;
     
-    if ((pa=call.par)==null || !(pa.expr instanceof ExStr) || pa.nextParam!=null) {
+    if ((pa=call.par)==null || !(pa.expr instanceof StringLiteral) || pa.nextParam!=null) {
       call.printPos(ctx, "MAGIC.getNamedString needs constant String as first and only parameter");
       return null;
     }
-    source=((ExStr)pa.expr).value;
+    source=((StringLiteral)pa.expr).value;
     //everything ok, insert constant string return replacement variable
     fid=call.fileID;
     line=call.line;
     col=call.col;
     if ((data=ctx.osio.readFile(source))==null) { //named object not found
-      nullVal=new ExVal(fid, line, col);
+      nullVal=new Literal(fid, line, col);
       nullVal.baseType=StdTypes.T_NNPT;
       replacement=nullVal;
     }
-    else (replacement=new ExStr(new String(data), fid, line, col)) //build string from named object
+    else (replacement=new StringLiteral(new String(data), fid, line, col)) //build string from named object
       .resolve(unitContext, mthdContext, resolveFlags|Expression.RF_CHECKREAD, null, ctx); //and resolve it
     return replacement;
   }
@@ -1452,12 +1452,12 @@ public class Magic extends CtxBasedConfig {
       //already initialized: INT: size=4;
     }
     pa=call.par;
-    if ((pa.expr instanceof ExStr)) {
+    if ((pa.expr instanceof StringLiteral)) {
       if (arch.supportsAsmTextInline) { //architecture support asmText, insert text instead of opcodes
         instr=arch.getUnlinkedInstruction();
         arch.appendInstruction(instr);
         instr.type=Architecture.I_MAGC;
-        instr.asmText=((ExStr)pa.expr).value;
+        instr.asmText=((StringLiteral)pa.expr).value;
         pa=pa.nextParam;
         if (pa==null) instr.size=size;
         else {
@@ -1507,7 +1507,7 @@ public class Magic extends CtxBasedConfig {
     
     //search block and insert its bytes
     pa=call.par;
-    name=((ExStr)pa.expr).value;
+    name=((StringLiteral)pa.expr).value;
     list=ctx.codeBlocks;
     while (list!=null) {
       if (name.equals(list.name)) break;

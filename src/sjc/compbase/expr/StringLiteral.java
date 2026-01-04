@@ -56,19 +56,21 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExStr extends ExConstInitObj {
+public class StringLiteral extends ExConstInitObj {
     public String value;
 	
-    public ExStr(String is, int fid, int il, int ic) {
+    public StringLiteral(String is, int fid, int il, int ic) {
         super(fid, il, ic);
         value=is;
     }
 
+    @Override
     public void printExpression(CodePrinter prnt) {
         prnt.exprString(value);
     }
 	
-	public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags,
+    @Override
+    public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags,
 	    TypeRef preferredType, Context ctx) {
     dest.owner=unitContext;
     dest.minSize=-1;

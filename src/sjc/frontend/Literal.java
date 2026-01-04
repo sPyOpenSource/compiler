@@ -50,17 +50,17 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExVal extends Expression {
+public class Literal extends Expression {
 	public int intValue; //keeps data for byte, short, char, int, float and boolean
 	public long longValue; //keeps data for long and double
 	
-	public ExVal(int fid, int il, int ic) {
-		super(fid, il, ic);
+	public Literal(int fid, int il, int ic) {
+            super(fid, il, ic);
 	}
 	
         @Override
 	public void printExpression(CodePrinter codePrnt) {
-	  codePrnt.exprVal(this, intValue, longValue);
+            codePrnt.exprVal(this, intValue, longValue);
 	}
 	
         @Override
