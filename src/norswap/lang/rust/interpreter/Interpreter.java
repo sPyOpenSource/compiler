@@ -87,7 +87,7 @@ public final class Interpreter
         // statements
         visitor.register(StExpr.class,  this::expressionStmt);
         visitor.register(StIf.class,                   this::ifStmt);
-        visitor.register(WhileNode.class,                this::whileStmt);
+        visitor.register(StWhile.class,                this::whileStmt);
         visitor.register(StReturn.class,               this::returnStmt);
 
         visitor.registerFallback(node -> null);
@@ -481,7 +481,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Void whileStmt (WhileNode node)
+    private Void whileStmt (StWhile node)
     {
         while (get(node.condition))
             get(node.body);

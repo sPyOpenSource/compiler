@@ -277,7 +277,7 @@ public class RustGrammar extends Grammar
 
     public rule while_stmt =
         seq(_while, expression, statement)
-        .push($ -> new WhileNode($.span(), $.$[0], $.$[1]));
+        .push($ -> new StWhile($.span(), $.$[0], $.$[1]));
 
     public rule return_stmt =
         seq(_return, expression.or_push_null())

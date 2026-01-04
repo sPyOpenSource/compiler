@@ -128,7 +128,7 @@ public class BytecodeCompiler
         // statements
         visitor.register(StExpr.class,  this::expressionStmt);
         visitor.register(StIf.class,                   this::ifStmt);
-        visitor.register(WhileNode.class,                this::whileStmt);
+        visitor.register(StWhile.class,                this::whileStmt);
         visitor.register(StReturn.class,               this::returnStmt);
     }
 
@@ -678,7 +678,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object whileStmt (WhileNode node)
+    private Object whileStmt (StWhile node)
     {
         Label startLabel = new Label();
         Label endLabel = new Label();

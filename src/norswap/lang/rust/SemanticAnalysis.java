@@ -158,7 +158,7 @@ public final class SemanticAnalysis
         // statements
         walker.register(StExpr.class,  PRE_VISIT,  node -> {});
         walker.register(StIf.class,                   PRE_VISIT,  analysis::ifStmt);
-        walker.register(WhileNode.class,                PRE_VISIT,  analysis::whileStmt);
+        walker.register(StWhile.class,                PRE_VISIT,  analysis::whileStmt);
         walker.register(StReturn.class,               PRE_VISIT,  analysis::returnStmt);
 
         walker.registerFallback(POST_VISIT, node -> {});
@@ -850,7 +850,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void whileStmt (WhileNode node) {
+    private void whileStmt (StWhile node) {
         R.rule()
         .using(node.condition, "type")
         .by(r -> {
