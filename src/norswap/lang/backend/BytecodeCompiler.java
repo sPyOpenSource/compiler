@@ -23,6 +23,7 @@ import static norswap.lang.backend.AsmUtils.*;
 import static norswap.lang.backend.TypeUtils.fieldDescriptor;
 import static norswap.lang.backend.TypeUtils.methodDescriptor;
 import static norswap.lang.backend.TypeUtils.*;
+
 import norswap.lang.rust.ast.expr.ArrayAccess;
 import norswap.lang.rust.ast.expr.ArrayLiteral;
 import norswap.lang.rust.ast.expr.Assignment;
@@ -31,7 +32,7 @@ import norswap.lang.rust.ast.expr.Constructor;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.lang.rust.ast.expr.FieldAccess;
 import norswap.lang.rust.ast.expr.FloatLiteral;
-import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.MethodCall;
 import norswap.lang.rust.ast.expr.IntLiteral;
 import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
@@ -40,7 +41,7 @@ import norswap.lang.rust.ast.expr.UnaryExpression;
 import norswap.lang.rust.ast.*;
 import norswap.lang.rust.interpreter.ConstructorNode;
 import norswap.lang.rust.scopes.Scope;
-import norswap.lang.rust.scopes.SyntheticDeclarationNode;
+import norswap.lang.rust.scopes.SyntheticDeclaration;
 import norswap.lang.rust.types.*;
 
 /**
@@ -111,7 +112,7 @@ public class BytecodeCompiler
         visitor.register(Parenthesized.class,        this::parenthesized);
         visitor.register(FieldAccess.class,          this::fieldAccess);
         visitor.register(ArrayAccess.class,          this::arrayAccess);
-        visitor.register(FunCall.class,              this::funCall);
+        visitor.register(MethodCall.class,              this::funCall);
         visitor.register(UnaryExpression.class,      this::unaryExpression);
         visitor.register(BinaryExpression.class,     this::binaryExpression);
         visitor.register(Assignment.class,           this::assignment);
@@ -542,7 +543,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object funCall (FunCall node)
+    private Object funCall (MethodCall node)
     {
         FunType funType = reactor.get(node.function, "type");
 
@@ -551,7 +552,7 @@ public class BytecodeCompiler
 
         if (node.function instanceof Reference) {
             DeclarationNode decl = reactor.get(node.function, "decl");
-            if (decl instanceof SyntheticDeclarationNode) {
+            if (decl instanceof SyntheticDeclaration) {
                 return builtin(funType, decl.name(), node.arguments);
             }
             else if (decl instanceof FunDeclaration) {
@@ -612,7 +613,7 @@ public class BytecodeCompiler
         run(node.expression);
         if (node.expression instanceof Assignment)
             pop(reactor.get(node.expression, "type"));
-        else if (node.expression instanceof FunCall) {
+        else if (node.expression instanceof MethodCall) {
             Type type = reactor.get(node.expression, "type");
             if (!(type instanceof VoidType)) pop(type);
         }
@@ -717,7 +718,7 @@ public class BytecodeCompiler
                 H_INVOKESTATIC, containerName, decl.name(),
                 methodDescriptor(reactor.get(decl, "type")), false));
         }
-        else if (decl instanceof SyntheticDeclarationNode) {
+        else if (decl instanceof SyntheticDeclaration) {
             switch (decl.name()) {
                 case "Bool":
                     method.visitLdcInsn(org.objectweb.asm.Type.getType(boolean.class));

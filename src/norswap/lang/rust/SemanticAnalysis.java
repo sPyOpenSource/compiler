@@ -1,11 +1,11 @@
 package norswap.lang.rust;
 
 import norswap.lang.rust.ast.*;
-import norswap.lang.rust.scopes.DeclarationContext;
+import norswap.lang.rust.scopes.DeclarationScope;
 import norswap.lang.rust.scopes.DeclarationKind;
-import norswap.lang.rust.scopes.RootScope;
+import norswap.lang.rust.scopes.Context;
 import norswap.lang.rust.scopes.Scope;
-import norswap.lang.rust.scopes.SyntheticDeclarationNode;
+import norswap.lang.rust.scopes.SyntheticDeclaration;
 import norswap.lang.rust.types.*;
 
 import norswap.uranium.Attribute;
@@ -28,7 +28,7 @@ import norswap.lang.rust.ast.expr.Constructor;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.lang.rust.ast.expr.FieldAccess;
 import norswap.lang.rust.ast.expr.FloatLiteral;
-import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.MethodCall;
 import norswap.lang.rust.ast.expr.IntLiteral;
 import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
@@ -54,7 +54,7 @@ import static norswap.lang.rust.ast.BinaryOperator.*;
  *     declaration, this is always {@link TypeType}.</li>
  *
  *     <li>Additionally, {@link StructDeclaration} (and default
- *     {@link SyntheticDeclarationNode} for types) must have their {@code declared} attribute set to
+ *     {@link SyntheticDeclaration} for types) must have their {@code declared} attribute set to
  *     an instance of the type being declared.</li>
  *
  *     <li>Every {@link Expression} instance must have its {@code type} attribute similarly
@@ -134,7 +134,7 @@ public final class SemanticAnalysis
         walker.register(Parenthesized.class,        PRE_VISIT,  analysis::parenthesized);
         walker.register(FieldAccess.class,          PRE_VISIT,  analysis::fieldAccess);
         walker.register(ArrayAccess.class,          PRE_VISIT,  analysis::arrayAccess);
-        walker.register(FunCall.class,              PRE_VISIT,  analysis::funCall);
+        walker.register(MethodCall.class,              PRE_VISIT,  analysis::funCall);
         walker.register(UnaryExpression.class,      PRE_VISIT,  analysis::unaryExpression);
         walker.register(BinaryExpression.class,     PRE_VISIT,  analysis::binaryExpression);
         walker.register(Assignment.class,           PRE_VISIT,  analysis::assignment);
@@ -197,7 +197,7 @@ public final class SemanticAnalysis
         // Try to lookup immediately. This must succeed for variables, but not necessarily for
         // functions or types. By looking up now, we can report looked up variables later
         // as being used before being defined.
-        DeclarationContext maybeCtx = scope.lookup(node.name);
+        DeclarationScope maybeCtx = scope.lookup(node.name);
 
         if (maybeCtx != null) {
             R.set(node, "decl",  maybeCtx.declaration);
@@ -212,7 +212,7 @@ public final class SemanticAnalysis
         // Re-lookup after the scopes have been built.
         R.rule(node.attr("decl"), node.attr("scope"))
         .by(r -> {
-            DeclarationContext ctx = scope.lookup(node.name);
+            DeclarationScope ctx = scope.lookup(node.name);
             DeclarationNode decl = ctx == null ? null : ctx.declaration;
 
             if (ctx == null) {
@@ -281,9 +281,9 @@ public final class SemanticAnalysis
                 R.rule(node, "type")
                 .using(context, "type")
                 .by(Rule::copyFirst);
-            else if (context instanceof FunCall) {
+            else if (context instanceof MethodCall) {
                 R.rule(node, "type")
-                .using(((FunCall) context).function.attr("type"), node.attr("index"))
+                .using(((MethodCall) context).function.attr("type"), node.attr("index"))
                 .by(r -> {
                     FunType funType = r.get(0);
                     r.set(0, funType.paramTypes[(int) r.get(1)]);
@@ -407,7 +407,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void funCall (FunCall node)
+    private void funCall (MethodCall node)
     {
         this.inferenceContext = node;
 
@@ -613,7 +613,7 @@ public final class SemanticAnalysis
         R.rule()
         .by(r -> {
             // type declarations may occur after use
-            DeclarationContext ctx = scope.lookup(node.name);
+            DeclarationScope ctx = scope.lookup(node.name);
             DeclarationNode decl = ctx == null ? null : ctx.declaration;
 
             if (ctx == null)
@@ -649,8 +649,8 @@ public final class SemanticAnalysis
     private static boolean isTypeDecl (DeclarationNode decl)
     {
         if (decl instanceof StructDeclaration) return true;
-        if (!(decl instanceof SyntheticDeclarationNode)) return false;
-        SyntheticDeclarationNode synthetic = cast(decl);
+        if (!(decl instanceof SyntheticDeclaration)) return false;
+        SyntheticDeclaration synthetic = cast(decl);
         return synthetic.kind() == DeclarationKind.TYPE;
     }
 
@@ -722,7 +722,7 @@ public final class SemanticAnalysis
 
     private void root (RootNode node) {
         assert scope == null;
-        scope = new RootScope(node, R);
+        scope = new Context(node, R);
         R.set(node, "scope", scope);
     }
 

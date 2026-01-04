@@ -2,9 +2,9 @@ package norswap.lang.rust.interpreter;
 
 import norswap.lang.rust.ast.*;
 import norswap.lang.rust.scopes.DeclarationKind;
-import norswap.lang.rust.scopes.RootScope;
+import norswap.lang.rust.scopes.Context;
 import norswap.lang.rust.scopes.Scope;
-import norswap.lang.rust.scopes.SyntheticDeclarationNode;
+import norswap.lang.rust.scopes.SyntheticDeclaration;
 import norswap.lang.rust.types.FloatType;
 import norswap.lang.rust.types.IntType;
 import norswap.lang.rust.types.StringType;
@@ -43,7 +43,7 @@ import static norswap.utils.Vanilla.map;
  *     <li>Arrays: {@code Object[]}</li>
  *     <li>Structs: {@code HashMap<String, Object>}</li>
  *     <li>Functions: the corresponding {@link DeclarationNode} ({@link FunDeclaration} or
- *     {@link SyntheticDeclarationNode}), excepted structure constructors, which are
+ *     {@link SyntheticDeclaration}), excepted structure constructors, which are
  *     represented by {@link Constructor}</li>
  *     <li>Types: the corresponding {@link StructDeclaration}</li>
  * </ul>
@@ -55,7 +55,7 @@ public final class Interpreter
     private final ValuedVisitor<Node, Object> visitor = new ValuedVisitor<>();
     private final Reactor reactor;
     private ScopeStorage storage = null;
-    private RootScope rootScope;
+    private Context rootScope;
     private ScopeStorage rootStorage;
 
     // ---------------------------------------------------------------------------------------------
@@ -73,7 +73,7 @@ public final class Interpreter
         visitor.register(Parenthesized.class,        this::parenthesized);
         visitor.register(FieldAccess.class,          this::fieldAccess);
         visitor.register(ArrayAccess.class,          this::arrayAccess);
-        visitor.register(FunCall.class,              this::funCall);
+        visitor.register(MethodCall.class,              this::funCall);
         visitor.register(UnaryExpression.class,      this::unaryExpression);
         visitor.register(BinaryExpression.class,     this::binaryExpression);
         visitor.register(Assignment.class,           this::assignment);
@@ -398,7 +398,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object funCall (FunCall node)
+    private Object funCall (MethodCall node)
     {
         Object decl = get(node.function);
         Object[] args = map(node.arguments, new Object[0], this::run);
@@ -406,8 +406,8 @@ public final class Interpreter
         if (decl == Null.INSTANCE)
             throw new PassthroughException(new NullPointerException("calling a null function"));
 
-        if (decl instanceof SyntheticDeclarationNode)
-            return builtin(((SyntheticDeclarationNode) decl).name(), args);
+        if (decl instanceof SyntheticDeclaration)
+            return builtin(((SyntheticDeclaration) decl).name(), args);
 
         if (decl instanceof ConstructorNode)
             return buildStruct(((ConstructorNode) decl).declaration, args);
@@ -497,8 +497,8 @@ public final class Interpreter
 
         if (decl instanceof VarDeclaration
         || decl instanceof ParameterNode
-        || decl instanceof SyntheticDeclarationNode
-                && ((SyntheticDeclarationNode) decl).kind() == DeclarationKind.VARIABLE)
+        || decl instanceof SyntheticDeclaration
+                && ((SyntheticDeclaration) decl).kind() == DeclarationKind.VARIABLE)
             return scope == rootScope
                 ? rootStorage.get(scope, node.name)
                 : storage.get(scope, node.name);

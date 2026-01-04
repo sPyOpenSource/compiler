@@ -10,12 +10,12 @@ import java.util.Locale;
  *
  * <p>At present, all such declarations are unconditionally introduced in the {@link RootScope}.
  */
-public final class SyntheticDeclarationNode extends DeclarationNode
+public final class SyntheticDeclaration extends DeclarationNode
 {
     private final String name;
     private final DeclarationKind kind;
 
-    public SyntheticDeclarationNode(String name, DeclarationKind kind) {
+    public SyntheticDeclaration(String name, DeclarationKind kind) {
         super(null);
         this.name = name;
         this.kind = kind;

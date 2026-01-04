@@ -11,7 +11,7 @@ import norswap.lang.rust.ast.expr.Constructor;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.lang.rust.ast.expr.FieldAccess;
 import norswap.lang.rust.ast.expr.FloatLiteral;
-import norswap.lang.rust.ast.expr.FunCall;
+import norswap.lang.rust.ast.expr.MethodCall;
 import norswap.lang.rust.ast.expr.IntLiteral;
 import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
@@ -149,7 +149,7 @@ public class RustGrammar extends Grammar
         .suffix(seq(LSQUARE, lazy(() -> this.expression), RSQUARE),
             $ -> new ArrayAccess($.span(), $.$[0], $.$[1]))
         .suffix(function_args,
-            $ -> new FunCall($.span(), $.$[0], $.$[1]));
+            $ -> new MethodCall($.span(), $.$[0], $.$[1]));
 
     public rule prefix_expression = right_expression()
         .operand(suffix_expression)
@@ -209,7 +209,7 @@ public class RustGrammar extends Grammar
     public rule expression_stmt =
         expression
         .filter($ -> {
-            if (!($.$[0] instanceof Assignment || $.$[0] instanceof FunCall))
+            if (!($.$[0] instanceof Assignment || $.$[0] instanceof MethodCall))
                 return false;
             $.push(new StExpr($.span(), $.$[0]));
             return true;

@@ -120,7 +120,7 @@ public class GrammarTests extends AutumnTestFixture {
         successExpect("return", new StReturn(null, null));
         successExpect("return 1", new StReturn(null, intlit(1)));
         successExpect("print(1)", new StExpr(null,
-            new FunCall(null, new Reference(null, "print"), asList(intlit(1)))));
+            new MethodCall(null, new Reference(null, "print"), asList(intlit(1)))));
         successExpect("{ return }", new Block(null, asList(new StReturn(null, null))));
 
 

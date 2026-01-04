@@ -46,12 +46,14 @@ public class Scope
     /**
      * Looks up the name in the scope and its parents, returning a context comprising the
      * found declaration and the scope in which it occurs, or null if not found.
+     * @param name
+     * @return 
      */
-    public DeclarationContext lookup (String name)
+    public DeclarationScope lookup (String name)
     {
         DeclarationNode declaration = declarations.get(name);
         return declaration != null
-                ? new DeclarationContext(this, declaration)
+                ? new DeclarationScope(this, declaration)
                 : parent != null
                     ? parent.lookup(name)
                     : null;

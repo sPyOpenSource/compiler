@@ -10,12 +10,12 @@ import static norswap.lang.rust.scopes.DeclarationKind.*;
  * The lexical scope of a file in Sigh. It is notably responsible for introducing the default
  * declarations made by the language.
  */
-public final class RootScope extends Scope
+public final class Context extends Scope
 {
     // ---------------------------------------------------------------------------------------------
 
-    private SyntheticDeclarationNode decl (String name, DeclarationKind kind) {
-        SyntheticDeclarationNode decl = new SyntheticDeclarationNode(name, kind);
+    private SyntheticDeclaration decl (String name, DeclarationKind kind) {
+        SyntheticDeclaration decl = new SyntheticDeclaration(name, kind);
         declare(name,  decl);
         return decl;
     }
@@ -23,24 +23,24 @@ public final class RootScope extends Scope
     // ---------------------------------------------------------------------------------------------
 
     // root scope types
-    public final SyntheticDeclarationNode Bool   = decl("Bool",   TYPE);
-    public final SyntheticDeclarationNode Int    = decl("i32",    TYPE);
-    public final SyntheticDeclarationNode Float  = decl("f32",  TYPE);
-    public final SyntheticDeclarationNode String = decl("String", TYPE);
-    public final SyntheticDeclarationNode Void   = decl("Void",   TYPE);
-    public final SyntheticDeclarationNode Type   = decl("Type",   TYPE);
+    public final SyntheticDeclaration Bool   = decl("Bool",   TYPE);
+    public final SyntheticDeclaration Int    = decl("i32",    TYPE);
+    public final SyntheticDeclaration Float  = decl("f32",  TYPE);
+    public final SyntheticDeclaration String = decl("String", TYPE);
+    public final SyntheticDeclaration Void   = decl("Void",   TYPE);
+    public final SyntheticDeclaration Type   = decl("Type",   TYPE);
 
     // root scope variables
-    public final SyntheticDeclarationNode _true  = decl("true",  VARIABLE);
-    public final SyntheticDeclarationNode _false = decl("false", VARIABLE);
-    public final SyntheticDeclarationNode _null  = decl("null",  VARIABLE);
+    public final SyntheticDeclaration _true  = decl("true",  VARIABLE);
+    public final SyntheticDeclaration _false = decl("false", VARIABLE);
+    public final SyntheticDeclaration _null  = decl("null",  VARIABLE);
 
     // root scope functions
-    public final SyntheticDeclarationNode print = decl("print", FUNCTION);
+    public final SyntheticDeclaration print = decl("print", FUNCTION);
 
     // ---------------------------------------------------------------------------------------------
 
-    public RootScope (RootNode node, Reactor reactor) {
+    public Context (RootNode node, Reactor reactor) {
         super(node, null);
 
         reactor.set(Bool,   "type",       TypeType.INSTANCE);

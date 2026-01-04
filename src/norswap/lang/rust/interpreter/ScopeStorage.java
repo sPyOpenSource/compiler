@@ -1,6 +1,6 @@
 package norswap.lang.rust.interpreter;
 
-import norswap.lang.rust.scopes.RootScope;
+import norswap.lang.rust.scopes.Context;
 import norswap.lang.rust.scopes.Scope;
 import java.util.HashMap;
 
@@ -64,7 +64,7 @@ public final class ScopeStorage
     /**
      * To be called on the root frame to initialize its variables.
      */
-    void initRoot(RootScope root)
+    void initRoot(Context root)
     {
         set(root, root._true  .name(), true);
         set(root, root._false .name(), false);
