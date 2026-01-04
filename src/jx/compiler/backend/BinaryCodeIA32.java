@@ -10,11 +10,11 @@ import jx.compiler.symbols.*;
 import jx.zero.Debug;
 
 /**
-    Parallel to this class there is a class 
-    nativeCode.Binarycode. 
-    In this version of the compiler, the second class 
-    is used as a mere container, while this class 
-    is used to assemble the binary code. 
+ * Parallel to this class there is a class 
+ * nativeCode.Binarycode. 
+ * In this version of the compiler, the second class 
+ * is used as a mere container, while this class 
+ * is used to assemble the binary code. 
  */
 
 public final class BinaryCodeIA32 {
@@ -34,20 +34,20 @@ public final class BinaryCodeIA32 {
     private static final int CHUNKSIZE = 200;
 
     /** 
-	After compiling a method, symbolTable contains _all_ 
-	unresolved constants of the code. 
-	These include
-	- jump offsets of jumps inside the code
-	- invocations of functions 
-	- constant pool entries that should be stored to 
-        allow the storing of compiled code between JVM invocations 
-	- actually all subclasses of nativecode.SymbolTableEntryBase
-    */ 
+     * After compiling a method, symbolTable contains _all_ 
+     * unresolved constants of the code. 
+     * These include
+     * - jump offsets of jumps inside the code
+     * - invocations of functions 
+     * - constant pool entries that should be stored to 
+     *   allow the storing of compiled code between JVM invocations 
+     * - actually all subclasses of nativecode.SymbolTableEntryBase
+     */ 
     private ArrayList symbolTable;
   
     /** 
-	contains the native exception handlers
-    */ 
+     * contains the native exception handlers
+     */ 
     private final ArrayList exceptionHandlers;
 
     public BinaryCodeIA32() {
