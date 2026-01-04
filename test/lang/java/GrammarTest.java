@@ -2,17 +2,18 @@ package lang.java;
 
 import norswap.autumn.Grammar;
 import norswap.autumn.AutumnTestFixture;
-import norswap.lang.java.JavaGrammar;
-import norswap.lang.java.LexUtils.LexProblem;
-import norswap.lang.java.ast.*;
 import norswap.utils.NArrays;
 import norswap.utils.data.wrappers.Pair;
+import static norswap.utils.exceptions.Exceptions.suppress;
+import static norswap.utils.Util.cast;
+import static norswap.utils.Vanilla.list;
+import static norswap.lang.java.ast.BasicType.*;
 
+import org.junit.Test;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static norswap.lang.java.ast.BasicType.*;
 import norswap.lang.java.ast.expr.ArrayAccess;
 import norswap.lang.java.ast.expr.ArrayConstructorCall;
 import norswap.lang.java.ast.expr.ArrayInitializer;
@@ -31,10 +32,9 @@ import norswap.lang.java.ast.expr.TernaryExpression;
 import norswap.lang.java.ast.expr.This;
 import norswap.lang.java.ast.expr.ThisCall;
 import norswap.lang.java.ast.expr.TypeMethodReference;
-import static norswap.utils.exceptions.Exceptions.suppress;
-import static norswap.utils.Util.cast;
-import static norswap.utils.Vanilla.list;
-import org.junit.Test;
+import norswap.lang.java.JavaGrammar;
+import norswap.lang.java.LexUtils.LexProblem;
+import norswap.lang.java.ast.*;
 
 @SuppressWarnings("FieldMayBeFinal")
 public class GrammarTest extends AutumnTestFixture

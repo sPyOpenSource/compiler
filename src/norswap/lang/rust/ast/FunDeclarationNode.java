@@ -9,7 +9,7 @@ public class FunDeclarationNode extends DeclarationNode
     public final String name;
     public final List<ParameterNode> parameters;
     public final TypeNode returnType;
-    public final BlockNode block;
+    public final Block block;
 
     @SuppressWarnings("unchecked")
     public FunDeclarationNode
@@ -20,7 +20,7 @@ public class FunDeclarationNode extends DeclarationNode
         this.returnType = returnType == null
             ? new SimpleTypeNode(new Span(span.start, span.start), "Void")
             : Util.cast(returnType, TypeNode.class);
-        this.block = Util.cast(block, BlockNode.class);
+        this.block = Util.cast(block, Block.class);
     }
 
     @Override public String name () {

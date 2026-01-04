@@ -118,7 +118,7 @@ public class BytecodeCompiler
 
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
-        visitor.register(BlockNode.class,                this::block);
+        visitor.register(Block.class,                this::block);
         visitor.register(VarDeclarationNode.class,       this::varDecl);
         visitor.register(FieldDeclarationNode.class,     this::fieldDecl);
         visitor.register(ParameterNode.class,            this::parameter);
@@ -126,10 +126,10 @@ public class BytecodeCompiler
         visitor.register(StructDeclarationNode.class,    this::structDecl);
 
         // statements
-        visitor.register(ExpressionStatement.class,  this::expressionStmt);
-        visitor.register(IfNode.class,                   this::ifStmt);
+        visitor.register(StExpr.class,  this::expressionStmt);
+        visitor.register(StIf.class,                   this::ifStmt);
         visitor.register(WhileNode.class,                this::whileStmt);
-        visitor.register(ReturnNode.class,               this::returnStmt);
+        visitor.register(StReturn.class,               this::returnStmt);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -608,7 +608,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object expressionStmt (ExpressionStatement node) {
+    private Object expressionStmt (StExpr node) {
         run(node.expression);
         if (node.expression instanceof Assignment)
             pop(reactor.get(node.expression, "type"));
@@ -621,7 +621,7 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object returnStmt (ReturnNode node) {
+    private Object returnStmt (StReturn node) {
         if (node.expression == null) {
             if (topLevel) {
                 loadConstant(method, null);
@@ -652,14 +652,14 @@ public class BytecodeCompiler
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object block (BlockNode node) {
+    private Object block (Block node) {
         node.statements.forEach(this::run);
         return null;
     }
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object ifStmt (IfNode node)
+    private Object ifStmt (StIf node)
     {
         Label elseLabel = new Label();
         Label endLabel = new Label();

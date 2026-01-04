@@ -80,15 +80,15 @@ public final class Interpreter
 
         // statement groups & declarations
         visitor.register(RootNode.class,                 this::root);
-        visitor.register(BlockNode.class,                this::block);
+        visitor.register(Block.class,                this::block);
         visitor.register(VarDeclarationNode.class,       this::varDecl);
         // no need to visitor other declarations! (use fallback)
 
         // statements
-        visitor.register(ExpressionStatement.class,  this::expressionStmt);
-        visitor.register(IfNode.class,                   this::ifStmt);
+        visitor.register(StExpr.class,  this::expressionStmt);
+        visitor.register(StIf.class,                   this::ifStmt);
         visitor.register(WhileNode.class,                this::whileStmt);
-        visitor.register(ReturnNode.class,               this::returnStmt);
+        visitor.register(StReturn.class,               this::returnStmt);
 
         visitor.registerFallback(node -> null);
     }
@@ -361,7 +361,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Void block (BlockNode node) {
+    private Void block (Block node) {
         Scope scope = reactor.get(node, "scope");
         storage = new ScopeStorage(scope, storage);
         node.statements.forEach(this::run);
@@ -378,7 +378,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Object expressionStmt (ExpressionStatement node) {
+    private Object expressionStmt (StExpr node) {
         get(node.expression);
         return null;  // discard value
     }
@@ -470,7 +470,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Void ifStmt (IfNode node)
+    private Void ifStmt (StIf node)
     {
         if (get(node.condition))
             get(node.trueStatement);
@@ -508,7 +508,7 @@ public final class Interpreter
 
     // ---------------------------------------------------------------------------------------------
 
-    private Void returnStmt (ReturnNode node) {
+    private Void returnStmt (StReturn node) {
         throw new Return(node.expression == null ? null : get(node.expression));
     }
 

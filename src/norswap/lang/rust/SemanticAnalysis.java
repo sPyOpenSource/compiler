@@ -68,14 +68,14 @@ import static norswap.utils.visitors.WalkVisitType.PRE_VISIT;
  *     interpreter).</li>
  *
  *     <li>All statements introducing a new scope must have their {@code scope} attribute set to the
- *     corresponding {@link Scope} (only {@link RootNode}, {@link BlockNode} and {@link
+ *     corresponding {@link Scope} (only {@link RootNode}, {@link Block} and {@link
  *     FunDeclarationNode} (for parameters)). These nodes must also update the {@code scope}
  *     field to track the current scope during the walk.</li>
  *
  *     <li>Every {@link TypeNode} instance must have its {@code value} set to the {@link Type} it
  *     denotes.</li>
  *
- *     <li>Every {@link ReturnNode}, {@link BlockNode} and {@link IfNode} must have its {@code
+ *     <li>Every {@link StReturn}, {@link Block} and {@link StIf} must have its {@code
  *     returns} attribute set to a boolean to indicate whether its execution causes
  *     unconditional exit from the surrounding function or main script.</li>
  *
@@ -144,7 +144,7 @@ public final class SemanticAnalysis
 
         // declarations & scopes
         walker.register(RootNode.class,                 PRE_VISIT,  analysis::root);
-        walker.register(BlockNode.class,                PRE_VISIT,  analysis::block);
+        walker.register(Block.class,                PRE_VISIT,  analysis::block);
         walker.register(VarDeclarationNode.class,       PRE_VISIT,  analysis::varDecl);
         walker.register(FieldDeclarationNode.class,     PRE_VISIT,  analysis::fieldDecl);
         walker.register(ParameterNode.class,            PRE_VISIT,  analysis::parameter);
@@ -152,14 +152,14 @@ public final class SemanticAnalysis
         walker.register(StructDeclarationNode.class,    PRE_VISIT,  analysis::structDecl);
 
         walker.register(RootNode.class,                 POST_VISIT, analysis::popScope);
-        walker.register(BlockNode.class,                POST_VISIT, analysis::popScope);
+        walker.register(Block.class,                POST_VISIT, analysis::popScope);
         walker.register(FunDeclarationNode.class,       POST_VISIT, analysis::popScope);
 
         // statements
-        walker.register(ExpressionStatement.class,  PRE_VISIT,  node -> {});
-        walker.register(IfNode.class,                   PRE_VISIT,  analysis::ifStmt);
+        walker.register(StExpr.class,  PRE_VISIT,  node -> {});
+        walker.register(StIf.class,                   PRE_VISIT,  analysis::ifStmt);
         walker.register(WhileNode.class,                PRE_VISIT,  analysis::whileStmt);
-        walker.register(ReturnNode.class,               PRE_VISIT,  analysis::returnStmt);
+        walker.register(StReturn.class,               PRE_VISIT,  analysis::returnStmt);
 
         walker.registerFallback(POST_VISIT, node -> {});
 
@@ -727,7 +727,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void block (BlockNode node) {
+    private void block (Block node) {
         scope = new Scope(node, scope);
         R.set(node, "scope", scope);
 
@@ -831,7 +831,7 @@ public final class SemanticAnalysis
     // region [Other Statements]
     // =============================================================================================
 
-    private void ifStmt (IfNode node) {
+    private void ifStmt (StIf node) {
         R.rule()
         .using(node.condition, "type")
         .by(r -> {
@@ -864,7 +864,7 @@ public final class SemanticAnalysis
 
     // ---------------------------------------------------------------------------------------------
 
-    private void returnStmt (ReturnNode node)
+    private void returnStmt (StReturn node)
     {
         R.set(node, "returns", true);
 
@@ -913,9 +913,9 @@ public final class SemanticAnalysis
     // ---------------------------------------------------------------------------------------------
 
     private boolean isReturnContainer (Node node) {
-        return node instanceof BlockNode
-            || node instanceof IfNode
-            || node instanceof ReturnNode;
+        return node instanceof Block
+            || node instanceof StIf
+            || node instanceof StReturn;
     }
 
     // ---------------------------------------------------------------------------------------------

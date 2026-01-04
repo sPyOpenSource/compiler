@@ -4,13 +4,13 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public final class IfNode extends Statement
+public final class StIf extends Statement
 {
     public final Expression condition;
     public final Statement trueStatement;
     public final Statement falseStatement;
 
-    public IfNode (Span span, Object condition, Object trueStatement, Object falseStatement) {
+    public StIf (Span span, Object condition, Object trueStatement, Object falseStatement) {
         super(span);
         this.condition = Util.cast(condition, Expression.class);
         this.trueStatement = Util.cast(trueStatement, Statement.class);

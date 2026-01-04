@@ -109,7 +109,7 @@ public class GrammarTests extends AutumnTestFixture {
             new FunDeclarationNode(null, "f",
                 asList(new ParameterNode(null, "x", new SimpleTypeNode(null, "i32"))),
                 new SimpleTypeNode(null, "i32"),
-                new BlockNode(null, asList(new ReturnNode(null, intlit(1))))));
+                new Block(null, asList(new StReturn(null, intlit(1))))));
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -117,27 +117,27 @@ public class GrammarTests extends AutumnTestFixture {
     @Test public void testStatements() {
         rule = grammar.statement;
 
-        successExpect("return", new ReturnNode(null, null));
-        successExpect("return 1", new ReturnNode(null, intlit(1)));
-        successExpect("print(1)", new ExpressionStatement(null,
+        successExpect("return", new StReturn(null, null));
+        successExpect("return 1", new StReturn(null, intlit(1)));
+        successExpect("print(1)", new StExpr(null,
             new FunCall(null, new Reference(null, "print"), asList(intlit(1)))));
-        successExpect("{ return }", new BlockNode(null, asList(new ReturnNode(null, null))));
+        successExpect("{ return }", new Block(null, asList(new StReturn(null, null))));
 
 
-        successExpect("if true return 1 else return 2", new IfNode(null, new Reference(null, "true"),
-            new ReturnNode(null, intlit(1)),
-            new ReturnNode(null, intlit(2))));
+        successExpect("if true return 1 else return 2", new StIf(null, new Reference(null, "true"),
+            new StReturn(null, intlit(1)),
+            new StReturn(null, intlit(2))));
 
         successExpect("if false return 1 else if true return 2 else return 3 ",
-            new IfNode(null, new Reference(null, "false"),
-                new ReturnNode(null, intlit(1)),
-                new IfNode(null, new Reference(null, "true"),
-                    new ReturnNode(null, intlit(2)),
-                    new ReturnNode(null, intlit(3)))));
+            new StIf(null, new Reference(null, "false"),
+                new StReturn(null, intlit(1)),
+                new StIf(null, new Reference(null, "true"),
+                    new StReturn(null, intlit(2)),
+                    new StReturn(null, intlit(3)))));
 
         successExpect("while 1 < 2 { return } ", new WhileNode(null,
             new BinaryExpression(null, intlit(1), LOWER, intlit(2)),
-            new BlockNode(null, asList(new ReturnNode(null, null)))));
+            new Block(null, asList(new StReturn(null, null)))));
     }
 
     // ---------------------------------------------------------------------------------------------

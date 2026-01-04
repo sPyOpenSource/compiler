@@ -211,7 +211,7 @@ public class RustGrammar extends Grammar
         .filter($ -> {
             if (!($.$[0] instanceof Assignment || $.$[0] instanceof FunCall))
                 return false;
-            $.push(new ExpressionStatement($.span(), $.$[0]));
+            $.push(new StExpr($.span(), $.$[0]));
             return true;
         });
 
@@ -239,7 +239,7 @@ public class RustGrammar extends Grammar
 
     public rule block =
         seq(LBRACE, statements, RBRACE)
-        .push($ -> new BlockNode($.span(), $.$[0]));
+        .push($ -> new Block($.span(), $.$[0]));
 
     public rule var_decl =
         seq(_var, identifier, COLON, type, EQUALS, expression)
@@ -273,7 +273,7 @@ public class RustGrammar extends Grammar
 
     public rule if_stmt =
         seq(_if, expression, statement, seq(_else, statement).or_push_null())
-        .push($ -> new IfNode($.span(), $.$[0], $.$[1], $.$[2]));
+        .push($ -> new StIf($.span(), $.$[0], $.$[1], $.$[2]));
 
     public rule while_stmt =
         seq(_while, expression, statement)
@@ -281,7 +281,7 @@ public class RustGrammar extends Grammar
 
     public rule return_stmt =
         seq(_return, expression.or_push_null())
-        .push($ -> new ReturnNode($.span(), $.$[0]));
+        .push($ -> new StReturn($.span(), $.$[0]));
 
     public rule root =
         seq(ws, statement.at_least(1))

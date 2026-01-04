@@ -777,7 +777,7 @@ public final class JavaGrammarTokens extends Grammar
 
     public rule if_stmt =
         seq(_if, par_expr, _stmt, seq(_else, _stmt).or_push_null())
-        .push($ -> new IfStatement($.$0(), $.$1(), $.$2()));
+        .push($ -> new StIf($.$0(), $.$1(), $.$2()));
 
     public rule expr_stmt_list =
         expr.sep(0, COMMA)
@@ -840,7 +840,7 @@ public final class JavaGrammarTokens extends Grammar
 
     public rule try_stmt =
         seq(_try, resources, _block, catch_clauses, finally_clause.or_push_null())
-        .push($ -> TryStatement.mk($.$0(), $.$1(), $.$2(), $.$3()));
+        .push($ -> StTryCaFi.mk($.$0(), $.$1(), $.$2(), $.$3()));
 
     public rule default_label =
         seq(_default, COL)
@@ -863,7 +863,7 @@ public final class JavaGrammarTokens extends Grammar
 
     public rule switch_stmt =
         seq(_switch, par_expr, LBRACE, switch_clauses, RBRACE)
-        .push($ -> new SwitchStatement($.$0(), $.$1()));
+        .push($ -> new StSwitch($.$0(), $.$1()));
 
     public rule synchronized_stmt =
         seq(_synchronized, par_expr, _block)
@@ -871,7 +871,7 @@ public final class JavaGrammarTokens extends Grammar
 
     public rule return_stmt =
         seq(_return, expr.or_push_null(), SEMI)
-        .push($ -> new ReturnStatement($.$0()));
+        .push($ -> new StReturn($.$0()));
 
     public rule throw_stmt =
         seq(_throw, expr, SEMI)

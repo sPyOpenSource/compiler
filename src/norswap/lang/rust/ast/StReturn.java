@@ -4,11 +4,11 @@ import norswap.autumn.positions.Span;
 import norswap.lang.rust.ast.expr.Expression;
 import norswap.utils.Util;
 
-public class ReturnNode extends Statement
+public class StReturn extends Statement
 {
     public final Expression expression;
 
-    public ReturnNode (Span span, Object expression) {
+    public StReturn (Span span, Object expression) {
         super(span);
         this.expression = expression == null
             ? null
