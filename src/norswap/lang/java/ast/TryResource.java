@@ -3,8 +3,7 @@ package norswap.lang.java.ast;
 import java.util.List;
 import norswap.lang.java.ast.expr.Expression;
 
-public record TryResource 
-(
+public record TryResource (
     List<Modifier> modifiers,
     TType type,
     VarDeclaratorID id,

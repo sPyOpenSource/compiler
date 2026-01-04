@@ -3,11 +3,10 @@ package norswap.lang.java.ast;
 import java.util.List;
 import norswap.lang.java.ast.expr.Identifier;
 
-public record ThisParameter 
-(
+public record ThisParameter (
      List<Modifier> modifiers,
      TType type,
-     List<Identifier> qualifier)implements FormalParameter{
+     List<Identifier> qualifier) implements FormalParameter{
 
     public static ThisParameter mk
             (List<Modifier> modifiers, TType type, List<Identifier> qualifier) {

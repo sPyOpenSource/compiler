@@ -861,18 +861,18 @@ public final class JavaGrammar extends Grammar
 
     public rule basic_for_stmt =
         seq(_for, LPAREN, basic_for_paren_part, RPAREN, _stmt)
-        .push($ -> new BasicForStatement($.$0(), $.$1(), $.$2(), $.$3()));
+        .push($ -> new StFor($.$0(), $.$1(), $.$2(), $.$3()));
 
     public rule for_val_decl =
         seq(modifiers, type, var_declarator_id, COL, expr);
 
     public rule enhanced_for_stmt =
         seq(_for, LPAREN, for_val_decl, RPAREN, _stmt)
-        .push($ -> EnhancedForStatement.mk($.$0(), $.$1(), $.$2(), $.$3(), $.$4()));
+        .push($ -> StForEnh.mk($.$0(), $.$1(), $.$2(), $.$3(), $.$4()));
 
     public rule while_stmt =
         seq(_while, par_expr, _stmt)
-        .push($ -> new WhileStatement($.$0(), $.$1()));
+        .push($ -> new StWhile($.$0(), $.$1()));
 
     public rule do_while_stmt =
         seq(_do, _stmt, _while, par_expr, SEMI)
@@ -933,7 +933,7 @@ public final class JavaGrammar extends Grammar
 
     public rule synchronized_stmt =
         seq(_synchronized, par_expr, _block)
-        .push($ -> SynchronizedStatement.mk($.$0(), $.$1()));
+        .push($ -> StSync.mk($.$0(), $.$1()));
 
     public rule return_stmt =
         seq(_return, expr.or_push_null(), SEMI)
@@ -941,7 +941,7 @@ public final class JavaGrammar extends Grammar
 
     public rule throw_stmt =
         seq(_throw, expr, SEMI)
-        .push($ -> ThrowStatement.mk($.$0()));
+        .push($ -> StThrow.mk($.$0()));
 
     public rule break_stmt =
         seq(_break, iden.or_push_null(), SEMI)
@@ -953,7 +953,7 @@ public final class JavaGrammar extends Grammar
 
     public rule assert_stmt =
         seq(_assert, expr, seq(COL, expr).or_push_null(), SEMI)
-        .push($ -> new AssertStatement($.$0(), $.$1()));
+        .push($ -> new StAssert($.$0(), $.$1()));
 
     public rule semi_stmt =
         SEMI
