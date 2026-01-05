@@ -2,13 +2,13 @@ package util.graph;
 
 public class Graph {
 
-  int nodecount=0;
-  NodeList mynodes, mylast;
-  public NodeList nodes() { return mynodes;} 
+    int nodecount = 0;
+    NodeList mynodes, mylast;
+    public NodeList nodes() { return mynodes;} 
 
-  public Node newNode() {
+    public Node newNode() {
 	return new Node(this);
-  }
+    }
 
     void check(Node n) {
 	if (n.mygraph != this)
@@ -60,19 +60,20 @@ public class Graph {
   }
 
   public void rmEdge(Node from, Node to) {
-	to.preds=delete(from,to.preds);
-        from.succs=delete(to,from.succs);
+	to.preds = delete(from, to.preds);
+        from.succs = delete(to, from.succs);
   }
 
- /**
-  * Print a human-readable dump for debugging.
-  */
+    /**
+     * Print a human-readable dump for debugging.
+     * @param out
+     */
      public void show(java.io.PrintStream out) {
-	for (NodeList p=nodes(); p!=null; p=p.tail) {
+	for (NodeList p = nodes(); p != null; p = p.tail) {
 	  Node n = p.head;
 	  out.print(n.toString());
 	  out.print(": ");
-	  for(NodeList q=n.succ(); q!=null; q=q.tail) {
+	  for(NodeList q = n.succ(); q != null; q = q.tail) {
 	     out.print(q.head.toString());
 	     out.print(" ");
 	  }

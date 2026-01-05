@@ -1,11 +1,15 @@
 package nasm;
+
 import java.util.*;
 import java.io.*;
+import nasm.expr.*;
+import nasm.inst.*;
+import nasm.inst.PseudoInst;
 import ts.*;
     
 public class Nasm{
     public List<NasmInst> sectionText;
-    public List<NasmPseudoInst> sectionBss;
+    public List<PseudoInst> sectionBss;
     protected int tempCounter = 0;
     Ts tableGlobale;
     public static int REG_EAX = 0;
@@ -20,57 +24,57 @@ public class Nasm{
 
     public Nasm(Ts tableGlobale){
 	this.tableGlobale = tableGlobale;
-	this.sectionBss = new ArrayList<NasmPseudoInst>();
-	this.sectionText = new ArrayList<NasmInst>();
+	this.sectionBss = new ArrayList<>();
+	this.sectionText = new ArrayList<>();
 	populateSectionBss(tableGlobale);
     }
 
     public Nasm(){
-	this.sectionBss = new ArrayList<NasmPseudoInst>();
-	this.sectionText = new ArrayList<NasmInst>();
+	this.sectionBss = new ArrayList<>();
+	this.sectionText = new ArrayList<>();
     }
 
     public int getTempCounter(){return this.tempCounter;}
     public int setTempCounter(int c){return this.tempCounter = c;}
     
-    public void ajoutePseudoInst(NasmPseudoInst pseudoInst){
+    public void ajoutePseudoInst(PseudoInst pseudoInst){
 	this.sectionBss.add(pseudoInst);
     }
     
     public void ajouteInst(NasmInst inst){
-	if(inst instanceof NasmMov && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
+	if(inst instanceof Mov && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
 	    NasmRegister newReg = newRegister();
-	    this.sectionText.add(new NasmMov(inst.label, newReg, inst.source, inst.comment)); 
-	    this.sectionText.add(new NasmMov(null, inst.destination, newReg, "on passe par un registre temporaire"));
+	    this.sectionText.add(new Mov(inst.label, newReg, inst.source, inst.comment)); 
+	    this.sectionText.add(new Mov(null, inst.destination, newReg, "on passe par un registre temporaire"));
 	    return;
 	}
-	if(inst instanceof NasmAdd && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
+	if(inst instanceof Add && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
 	    NasmRegister newReg = newRegister();
-	    this.sectionText.add(new NasmMov(inst.label, newReg, inst.source, inst.comment)); 
-	    this.sectionText.add(new NasmAdd(null, inst.destination, newReg, "on passe par un registre temporaire"));
+	    this.sectionText.add(new Mov(inst.label, newReg, inst.source, inst.comment)); 
+	    this.sectionText.add(new Add(null, inst.destination, newReg, "on passe par un registre temporaire"));
 	    return;
 	}
-	if(inst instanceof NasmSub && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
+	if(inst instanceof Sub && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
 	    NasmRegister newReg = newRegister();
-	    this.sectionText.add(new NasmMov(inst.label, newReg, inst.source, inst.comment)); 
-	    this.sectionText.add(new NasmSub(null, inst.destination, newReg, "on passe par un registre temporaire"));
+	    this.sectionText.add(new Mov(inst.label, newReg, inst.source, inst.comment)); 
+	    this.sectionText.add(new Sub(null, inst.destination, newReg, "on passe par un registre temporaire"));
 	    return;
 	}
-	if(inst instanceof NasmMul && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
+	if(inst instanceof Mul && inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress){
 	    NasmRegister newReg = newRegister();
-	    this.sectionText.add(new NasmMov(inst.label, newReg, inst.source, inst.comment)); 
-	    this.sectionText.add(new NasmMul(null, inst.destination, newReg, "on passe par un registre temporaire"));
+	    this.sectionText.add(new Mov(inst.label, newReg, inst.source, inst.comment)); 
+	    this.sectionText.add(new Mul(null, inst.destination, newReg, "on passe par un registre temporaire"));
 	    return;
 	}
 
 	
 	//	if(inst instanceof NasmCmp && inst.destination instanceof NasmConstant && inst.source instanceof NasmConstant){
-	if(inst instanceof NasmCmp
+	if(inst instanceof Cmp
 	   && (inst.destination instanceof NasmConstant
 	       || (inst.destination instanceof NasmAddress && inst.source instanceof NasmAddress))){
 		NasmRegister newReg = newRegister();
-		this.sectionText.add(new NasmMov(inst.label, newReg, inst.destination, inst.comment)); 
-		this.sectionText.add(new NasmCmp(null, newReg, inst.source, "on passe par un registre temporaire"));
+		this.sectionText.add(new Mov(inst.label, newReg, inst.destination, inst.comment)); 
+		this.sectionText.add(new Cmp(null, newReg, inst.source, "on passe par un registre temporaire"));
 		return;
 	    }
 	
@@ -82,15 +86,15 @@ public class Nasm{
     }
 
     public void populateSectionBss(Ts tableGlobale){
-	ajoutePseudoInst(new NasmResb(new NasmLabel("sinput"), 255, "reserve a 255 byte space in memory for the users input string"));
+	ajoutePseudoInst(new Resb(new NasmLabel("sinput"), 255, "reserve a 255 byte space in memory for the users input string"));
 	Set< Map.Entry< String, TsItemVar> > st = tableGlobale.variables.entrySet();    
 	for (Map.Entry< String, TsItemVar> me:st){
 	    TsItemVar tsItem = me.getValue(); 
 	    String identif = me.getKey();
 	    if(tsItem instanceof TsItemVarSimple)
-		ajoutePseudoInst(new NasmResd(new NasmLabel(identif), tsItem.type.taille(), "variable globale"));
+		ajoutePseudoInst(new Resd(new NasmLabel(identif), tsItem.type.taille(), "variable globale"));
 	    if(tsItem instanceof TsItemVarTab)
-		ajoutePseudoInst(new NasmResd(new NasmLabel(identif), tsItem.type.taille() * ((TsItemVarTab)tsItem).taille, "variable globale"));
+		ajoutePseudoInst(new Resd(new NasmLabel(identif), tsItem.type.taille() * ((TsItemVarTab)tsItem).taille, "variable globale"));
 	    //	    ajoutePseudoInst(new NasmResd(new NasmLabel(identif), tsItem.taille*4, "variable globale"));
 	}
     }
@@ -102,7 +106,6 @@ public class Nasm{
 
 	if (baseFileName != null){
 	    try {
-		baseFileName = baseFileName;
 		fileName = baseFileName + ".pre-nasm";
 		out = new PrintStream(fileName);
 	    }
@@ -120,7 +123,6 @@ public class Nasm{
 
 	if (baseFileName != null){
 	    try {
-		baseFileName = baseFileName;
 		fileName = baseFileName + ".nasm";
 		out = new PrintStream(fileName);
 	    }
@@ -135,7 +137,7 @@ public class Nasm{
     public void affiche(PrintStream out){
 	out.println("%include\t'io.asm'\n");
 	out.println("section\t.bss");
-    	Iterator<NasmPseudoInst> iter = this.sectionBss.iterator();
+    	Iterator<PseudoInst> iter = this.sectionBss.iterator();
     	while(iter.hasNext()){
     	    out.println(iter.next());
     	}

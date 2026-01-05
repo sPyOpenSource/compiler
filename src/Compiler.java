@@ -11,7 +11,6 @@ import fg.*;
 import ig.*;
 import util.Error;
 
-
 public class Compiler
 {
 	private static String baseName = null;
@@ -196,8 +195,6 @@ public class Compiler
 		}
 	}
 
-
-
 	/*catch (Exception e)
 	{
 		e.printStackTrace();
@@ -205,7 +202,6 @@ public class Compiler
 		System.exit(1);
 	}
     }*/
-
 
     public static String removeSuffix(final String s, final String suffix)
     {

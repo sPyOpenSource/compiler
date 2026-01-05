@@ -1,8 +1,8 @@
 package util.intset;
 
 public class IntSet{
-    private int size;
-    private boolean array[];
+    private final int size;
+    private final boolean array[];
     
     public IntSet(int size){
 	this.size = size;
@@ -32,7 +32,6 @@ public class IntSet{
 	return true;
     }
 
-    
     public void add(int elt){
 	if(elt >= size){
 	    System.err.println("ERROR : set is too small !!!!");
@@ -56,8 +55,7 @@ public class IntSet{
 
     public IntSet copy(){
 	IntSet c = new IntSet(size);
-	for (int i = 0; i < size; i++)
-	    c.array[i] = array[i];
+        System.arraycopy(array, 0, c.array, 0, size);
 	return c;
     }
 
@@ -80,6 +78,7 @@ public class IntSet{
 	return true;
     }
 
+    @Override
     public String toString(){
 	String s = "(";
 	for (int i = 0; i < size; i++)

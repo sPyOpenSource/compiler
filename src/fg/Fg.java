@@ -1,8 +1,12 @@
 package fg;
-import nasm.*;
+
 import util.graph.*;
 import java.util.*;
 import java.io.*;
+
+import nasm.expr.*;
+import nasm.inst.*;
+import nasm.*;
 
 public class Fg implements NasmVisitor <Void> {
     public Nasm nasm;
@@ -13,9 +17,9 @@ public class Fg implements NasmVisitor <Void> {
 
     public Fg(Nasm nasm){
 	this.nasm = nasm;
-	this.inst2Node = new HashMap< NasmInst, Node>();
-	this.node2Inst = new HashMap< Node, NasmInst>();
-	this.label2Inst = new HashMap< String, NasmInst>();
+	this.inst2Node = new HashMap< >();
+	this.node2Inst = new HashMap< >();
+	this.label2Inst = new HashMap< >();
 	this.graph = new Graph();
     }
 
@@ -25,11 +29,9 @@ public class Fg implements NasmVisitor <Void> {
 	
 	if (baseFileName != null){
 	    try {
-		baseFileName = baseFileName;
 		fileName = baseFileName + ".fg";
 		out = new PrintStream(fileName);
-	    }
-	    
+            }
 	    catch (IOException e) {
 		System.err.println("Error: " + e.getMessage());
 	    }
@@ -47,41 +49,41 @@ public class Fg implements NasmVisitor <Void> {
 	
     }
 
-    public Void visit(NasmAdd inst){return null;}
-    public Void visit(NasmCall inst){return null;}
-    public Void visit(NasmDiv inst){return null;}
-    public Void visit(NasmJe inst){return null;}
-    public Void visit(NasmJle inst){return null;}
-    public Void visit(NasmJne inst){return null;}
-    public Void visit(NasmMul inst){return null;}
-    public Void visit(NasmOr inst){return null;}
-    public Void visit(NasmCmp inst){return null;}
+    public Void visit(Add inst){return null;}
+    public Void visit(Call inst){return null;}
+    public Void visit(Div inst){return null;}
+    public Void visit(Je inst){return null;}
+    public Void visit(Jle inst){return null;}
+    public Void visit(Jne inst){return null;}
+    public Void visit(Mul inst){return null;}
+    public Void visit(Or inst){return null;}
+    public Void visit(Cmp inst){return null;}
     public Void visit(NasmInst inst){return null;}
-    public Void visit(NasmJge inst){return null;}
-    public Void visit(NasmJl inst){return null;}
-    public Void visit(NasmNot inst){return null;}
-    public Void visit(NasmPop inst){return null;}
-    public Void visit(NasmRet inst){return null;}
-    public Void visit(NasmXor inst){return null;}
-    public Void visit(NasmAnd inst){return null;}
-    public Void visit(NasmJg inst){return null;}
-    public Void visit(NasmJmp inst){return null;}
-    public Void visit(NasmMov inst){return null;}
-    public Void visit(NasmPush inst){return null;}
-    public Void visit(NasmSub inst){return null;}
-    public Void visit(NasmEmpty inst){return null;}
-    public Void visit(NasmInt inst){return null;}
+    public Void visit(Jge inst){return null;}
+    public Void visit(Jl inst){return null;}
+    public Void visit(Not inst){return null;}
+    public Void visit(Pop inst){return null;}
+    public Void visit(Ret inst){return null;}
+    public Void visit(Xor inst){return null;}
+    public Void visit(And inst){return null;}
+    public Void visit(Jg inst){return null;}
+    public Void visit(Jmp inst){return null;}
+    public Void visit(Mov inst){return null;}
+    public Void visit(Push inst){return null;}
+    public Void visit(Sub inst){return null;}
+    public Void visit(Empty inst){return null;}
+    public Void visit(Int inst){return null;}
     public Void visit(NasmAddress operand){return null;}
     public Void visit(NasmConstant operand){return null;}
     public Void visit(NasmLabel operand){return null;}
     public Void visit(NasmRegister operand){return null;}
-    public Void visit(NasmResb pseudoInst){return null;}
-    public Void visit(NasmResw pseudoInst){return null;}
-    public Void visit(NasmResd pseudoInst){return null;}
-    public Void visit(NasmResq pseudoInst){return null;}
-    public Void visit(NasmRest pseudoInst){return null;}
-    public Void visit(NasmExpPlus exp){return null;}
-    public Void visit(NasmExpMinus exp){return null;}
-    public Void visit(NasmExpTimes exp){return null;}
+    public Void visit(Resb pseudoInst){return null;}
+    public Void visit(Resw pseudoInst){return null;}
+    public Void visit(Resd pseudoInst){return null;}
+    public Void visit(Resq pseudoInst){return null;}
+    public Void visit(Rest pseudoInst){return null;}
+    public Void visit(ExpPlus exp){return null;}
+    public Void visit(ExpMinus exp){return null;}
+    public Void visit(ExpTimes exp){return null;}
     public Void visit(NasmExp exp){return null;}
 }

@@ -1,16 +1,13 @@
-import ts.Ts;
-import ts.TsParser;
 import nasm.NasmEval;
 import nasm.Nasm;
 import nasm.LoadNasm;
 import java.io.IOException;
 
-
 public class NasmVM {
-    private int verboseLevel;
-    private int stackSize;
+    private final int verboseLevel;
+    private final int stackSize;
     private Nasm code;
-    private String nasmFileName;
+    private final String nasmFileName;
 
     public NasmVM(String nasmFileName, int stackSize, int verboseLevel){
 	this.nasmFileName = nasmFileName;
@@ -32,16 +29,23 @@ public class NasmVM {
     public static void main(String[] args){
 	int verboseLevel = 0;
 	int stackSize = 10000;
-	String nasmFileName = null;
+	String nasmFileName = "/Users/xuyi/Source/Java/picos/bts_dsk.yasm";
 
         try {
 	    for (int i = 0; i < args.length; i++) {
-		if(args[i].equals("-v"))
-		    verboseLevel = Integer.parseInt(args[++i]);
-		else if(args[i].equals("-s"))
-		    stackSize = Integer.parseInt(args[++i]);
-		else if(args[i].equals("-nasm"))
-		    nasmFileName = args[++i];
+                switch (args[i]) {
+                    case "-v":
+                        verboseLevel = Integer.parseInt(args[++i]);
+                        break;
+                    case "-s":
+                        stackSize = Integer.parseInt(args[++i]);
+                        break;
+                    case "-nasm":
+                        nasmFileName = args[++i];
+                        break;
+                    default:
+                        break;
+                }
 	    }
 	    if(nasmFileName == null){
 		System.out.println("java NasmVM -nasm nasmFile -s stackSize -v verboseLevel");

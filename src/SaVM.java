@@ -8,6 +8,7 @@ public class SaVM {
     String saFileName = null;
 
     try {
+        
 		for (int i = 0; i < args.length; i++) {
 			if(args[i].equals("-v"))
 				verboseLevel = Integer.parseInt(args[++i]);
@@ -30,9 +31,9 @@ public class SaVM {
       
       if(verboseLevel > 0)
 	  	System.err.println("building symbol table");
-	  	Sa2ts sa2ts = new Sa2ts();
-		prog.accept(sa2ts);
-		Ts tableGlobale = sa2ts.getTableGlobale();
+        Sa2ts sa2ts = new Sa2ts();
+        prog.accept(sa2ts);
+        Ts tableGlobale = sa2ts.getTableGlobale();
 
       if(verboseLevel > 0)
 		  System.err.println("evaluating sa tree");
@@ -43,4 +44,5 @@ public class SaVM {
       e.printStackTrace();
     }
   }
+  
 }

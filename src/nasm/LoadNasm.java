@@ -1,25 +1,33 @@
 package nasm;
+
 import nasmParser.analysis.DepthFirstAdapter;
 import nasmParser.lexer.Lexer;
 import nasmParser.lexer.LexerException;
 import nasmParser.node.*;
 import nasmParser.parser.Parser;
 import nasmParser.parser.ParserException;
+
 //import sc.analysis.DepthFirstAdapter;
 import util.Error;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PushbackReader;
 
+import nasm.expr.*;
+import nasm.expr.NasmLabel;
+import nasm.inst.NasmInst;
+import nasm.inst.PseudoInst;
+import nasm.inst.*;
+
 public class LoadNasm extends DepthFirstAdapter {
     private Nasm nasm;
     private NasmInst inst;
-    private NasmPseudoInst pseudoInst;
-    private NasmOperand operand;
+    private PseudoInst pseudoInst;
+    private Operand operand;
     private NasmLabel label;
     private NasmExp exp;
     private NasmSize size;
+    
     public LoadNasm(String nasmFileName) {
         nasm = new Nasm();
         PushbackReader fileReader = null;
@@ -48,11 +56,13 @@ public class LoadNasm extends DepthFirstAdapter {
         root.apply(this);
     }
 
+    @Override
     public void defaultIn(Node node)
     {
 	//        System.out.println("<" + node.getClass().getSimpleName() + ">");
     }
 
+    @Override
     public void defaultOut(Node node)
     {
 	//        System.out.println("</" + node.getClass().getSimpleName() + ">");
@@ -374,7 +384,7 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getLabel().apply(this);
 
         int nb = Integer.parseInt(node.getNumber().getText());
-        pseudoInst = new NasmResb(label,nb,"");
+        pseudoInst = new Resb(label,nb,"");
         outAResbVar(node);
     }
     // var = {resw} label reserveword number
@@ -384,7 +394,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inAReswVar(node);
         node.getLabel().apply(this);
         int nb = Integer.parseInt(node.getNumber().getText());
-        pseudoInst = new NasmResw(label,nb,"");
+        pseudoInst = new Resw(label,nb,"");
         outAReswVar(node);
     }
     // var = {resd} label reservedoubleword number
@@ -394,7 +404,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inAResdVar(node);
         node.getLabel().apply(this);
         int nb = Integer.parseInt(node.getNumber().getText());
-        pseudoInst = new NasmResd(label,nb,"");
+        pseudoInst = new Resd(label,nb,"");
         outAResdVar(node);
     }
     // var = {resq} label reservequadword number
@@ -404,7 +414,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inAResqVar(node);
         node.getLabel().apply(this);
         int nb = Integer.parseInt(node.getNumber().getText());
-        pseudoInst = new NasmResq(label,nb,"");
+        pseudoInst = new Resq(label,nb,"");
         outAResqVar(node);
     }
     // var = {rest} label reservetenbytes number
@@ -414,7 +424,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inARestVar(node);
         node.getLabel().apply(this);
         int nb = Integer.parseInt(node.getNumber().getText());
-        pseudoInst = new NasmRest(label,nb,"");
+        pseudoInst = new Rest(label,nb,"");
         outARestVar(node);
     }
 
@@ -510,12 +520,12 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
 
         node.getAcr().apply(this);
-        NasmOperand source = operand;
+        Operand source = operand;
 
-        inst = new NasmMov(lineLabel, destination, source, "");
+        inst = new Mov(lineLabel, destination, source, "");
         outAMovInst(node);
     }
 
@@ -527,8 +537,8 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmPush(lineLabel, source, "");
+        Operand source = operand;
+        inst = new Push(lineLabel, source, "");
         outAPushInst(node);
     }
 
@@ -541,8 +551,8 @@ public class LoadNasm extends DepthFirstAdapter {
 	NasmLabel lineLabel = label;
 
         node.getAr().apply(this);
-        NasmOperand destination = operand;
-        inst = new NasmPop(lineLabel, destination, "");
+        Operand destination = operand;
+        inst = new Pop(lineLabel, destination, "");
         outAPopInst(node);
     }
 
@@ -554,10 +564,10 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmAdd(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Add(lineLabel, destination, source, "");
         outAAddInst(node);
     }
 
@@ -569,10 +579,10 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmSub(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Sub(lineLabel, destination, source, "");
         outASubInst(node);
     }
 
@@ -585,10 +595,10 @@ public class LoadNasm extends DepthFirstAdapter {
 	        NasmLabel lineLabel = label;
 
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmMul(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Mul(lineLabel, destination, source, "");
         outAImulInst(node);
     }
 
@@ -600,8 +610,8 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmDiv(lineLabel, source, "");
+        Operand source = operand;
+        inst = new Div(lineLabel, source, "");
         outAIdivInst(node);
     }
 
@@ -613,10 +623,10 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = label;
-        inst = new NasmOr(lineLabel, destination, source, "");
+        Operand source = label;
+        inst = new Or(lineLabel, destination, source, "");
         outAAndInst(node);
     }
 
@@ -628,10 +638,10 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmOr(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Or(lineLabel, destination, source, "");
         outAOrInst(node);
     }
 
@@ -643,10 +653,10 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmXor(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Xor(lineLabel, destination, source, "");
         outAXorInst(node);
     }
 
@@ -658,8 +668,8 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
-        inst = new NasmNot(lineLabel, destination, "");
+        Operand destination = operand;
+        inst = new Not(lineLabel, destination, "");
         outANotInst(node);
     }
 
@@ -671,10 +681,10 @@ public class LoadNasm extends DepthFirstAdapter {
 	node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getAr().apply(this);
-        NasmOperand destination = operand;
+        Operand destination = operand;
         node.getAcr().apply(this);
-        NasmOperand source = operand;
-        inst = new NasmCmp(lineLabel, destination, source, "");
+        Operand source = operand;
+        inst = new Cmp(lineLabel, destination, source, "");
         outACmpInst(node);
     }
 
@@ -684,10 +694,10 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJmpInst(node);
 	node.getOplabel().apply(this);
-        NasmOperand lineLabel = label;
+        Operand lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJmp(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Jmp(lineLabel, jumpTo, "");
         outAJmpInst(node);
     }
 
@@ -697,10 +707,10 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJeInst(node);
 	node.getOplabel().apply(this);
-        NasmOperand lineLabel = label;
+        Operand lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJe(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Je(lineLabel, jumpTo, "");
         outAJeInst(node);
     }
 
@@ -710,10 +720,10 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJneInst(node);
 	node.getOplabel().apply(this);
-        NasmOperand lineLabel = label;
+        Operand lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJne(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Jne(lineLabel, jumpTo, "");
    }
 
     // inst =  {jg}     oplabel jg   label
@@ -722,11 +732,11 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJgInst(node);
 	node.getOplabel().apply(this);
-	NasmOperand lineLabel = label;
+	Operand lineLabel = label;
 
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJg(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Jg(lineLabel, jumpTo, "");
         outAJgInst(node);
     }
 
@@ -736,10 +746,10 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJgeInst(node);
 	node.getOplabel().apply(this);
-        NasmOperand lineLabel = label;
+        Operand lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJge(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Jge(lineLabel, jumpTo, "");
         outAJgeInst(node);
     }
 
@@ -749,10 +759,10 @@ public class LoadNasm extends DepthFirstAdapter {
     {
         inAJlInst(node);
 	node.getOplabel().apply(this);
-        NasmOperand lineLabel = label;
+        Operand lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmJl(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Jl(lineLabel, jumpTo, "");
         outAJlInst(node);
     }
 
@@ -764,8 +774,8 @@ public class LoadNasm extends DepthFirstAdapter {
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
         node.getLabel().apply(this);
-        NasmOperand jumpTo = label;
-        inst = new NasmCall(lineLabel, jumpTo, "");
+        Operand jumpTo = label;
+        inst = new Call(lineLabel, jumpTo, "");
         outACallInst(node);
     }
 
@@ -776,7 +786,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inARetInst(node);
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
-        inst = new NasmRet(lineLabel, "");
+        inst = new Ret(lineLabel, "");
         outARetInst(node);
     }
 
@@ -787,7 +797,7 @@ public class LoadNasm extends DepthFirstAdapter {
         inAInterInst(node);
         node.getOplabel().apply(this);
         NasmLabel lineLabel = label;
-        inst = new NasmInt(lineLabel, "");
+        inst = new Int(lineLabel, "");
         outAInterInst(node);
     }
 
@@ -911,7 +921,7 @@ public class LoadNasm extends DepthFirstAdapter {
         NasmExp op1 = exp;
         node.getExp1().apply(this);
         NasmExp op2 = exp;
-        exp = new NasmExpPlus(op1, op2);
+        exp = new ExpPlus(op1, op2);
         outAPlusExp(node);
     }
 
@@ -924,7 +934,7 @@ public class LoadNasm extends DepthFirstAdapter {
         NasmExp op1 = exp;
         node.getExp1().apply(this);
         NasmExp op2 = exp;
-        exp = new NasmExpMinus(op1, op2);
+        exp = new ExpMinus(op1, op2);
         outAMinusExp(node);
     }
 
@@ -950,7 +960,7 @@ public class LoadNasm extends DepthFirstAdapter {
         NasmExp op1 = exp;
         node.getExp2().apply(this);
         NasmExp op2 = exp;
-        exp = new NasmExpTimes(op1, op2);
+        exp = new ExpTimes(op1, op2);
         outATimesExp1(node);
     }
 
@@ -1112,6 +1122,3 @@ public class LoadNasm extends DepthFirstAdapter {
         outALabel(node);
     }
 }
-
-
-

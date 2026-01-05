@@ -1,4 +1,5 @@
 package sa;
+
 import lParser.analysis.*;
 import lParser.node.*;
 import util.Type;
@@ -40,4 +41,3 @@ public class Sc2sa extends DepthFirstAdapter
         outAPlusExp3(node);
 	}*/
 }
-

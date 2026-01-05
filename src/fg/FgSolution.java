@@ -1,9 +1,10 @@
 package fg;
-import util.graph.*;
+
 import nasm.*;
 import util.intset.*;
 import java.io.*;
 import java.util.*;
+import nasm.inst.NasmInst;
 
 public class FgSolution{
     int iterNum = 0;
@@ -17,10 +18,10 @@ public class FgSolution{
     public FgSolution(Nasm nasm, Fg fg){
 	this.nasm = nasm;
 	this.fg = fg;
-	this.use = new HashMap< NasmInst, IntSet>();
-	this.def = new HashMap< NasmInst, IntSet>();
-	this.in =  new HashMap< NasmInst, IntSet>();
-	this.out = new HashMap< NasmInst, IntSet>();
+	this.use = new HashMap< >();
+	this.def = new HashMap< >();
+	this.in =  new HashMap< >();
+	this.out = new HashMap< >();
     }
     
     public void affiche(String baseFileName){
@@ -29,7 +30,6 @@ public class FgSolution{
 
 	if (baseFileName != null){
 	    try {
-		baseFileName = baseFileName;
 		fileName = baseFileName + ".fgs";
 		out = new PrintStream(fileName);
 	    }

@@ -7,13 +7,13 @@ import ts.TsParser;
 
 public class C3aVM {
     private int verboseLevel = 0;
-    private TsParser stParser;
-    private String symbolsTableFileName;
-    private String C3AFileName;
-    private int stackSize;
-	private C3a code;
-	private Ts globalTable;
-	private LoadC3a loadC3a;
+    private final TsParser stParser;
+    private final String symbolsTableFileName;
+    private final String C3AFileName;
+    private final int stackSize;
+    private final C3a code;
+    private final Ts globalTable;
+    private final LoadC3a loadC3a;
     
     public C3aVM(String symbolsTableFileName, String C3AFileName, int stackSize, int verboseLevel){
 	this.stackSize = stackSize;
@@ -25,7 +25,6 @@ public class C3aVM {
 	loadC3a = new LoadC3a(C3AFileName, this.globalTable);
 	this.code = loadC3a.getC3a();
     }
-    
     
     public void run() throws IOException {
 	if(verboseLevel > 0)
@@ -45,14 +44,22 @@ public class C3aVM {
 
         try {
 	    for (int i = 0; i < args.length; i++) {
-		if(args[i].equals("-v"))
-		    verboseLevel = Integer.parseInt(args[++i]);
-		else if(args[i].equals("-s"))
-		    stackSize = Integer.parseInt(args[++i]);
-		else if(args[i].equals("-c3a"))
-		    C3AFileName = args[++i];
-		else if(args[i].equals("-ts"))
-		    symbolsTableFileName = args[++i];
+                switch (args[i]) {
+                    case "-v":
+                        verboseLevel = Integer.parseInt(args[++i]);
+                        break;
+                    case "-s":
+                        stackSize = Integer.parseInt(args[++i]);
+                        break;
+                    case "-c3a":
+                        C3AFileName = args[++i];
+                        break;
+                    case "-ts":
+                        symbolsTableFileName = args[++i];
+                        break;
+                    default:
+                        break;
+                }
 	    }
 	    if(C3AFileName == null || symbolsTableFileName == null){
 		System.out.println("java C3aVM -c3a C3AFile -ts TSFile -s stackSize -v verboseLevel");

@@ -1,4 +1,5 @@
 package sc;
+
 import java.io.*;
 import lParser.analysis.*;
 import lParser.node.*;
@@ -29,7 +30,6 @@ public class Sc2Xml extends DepthFirstAdapter
 	    }
 	}
     }
-    
     
     public void defaultIn(@SuppressWarnings("unused") Node node)
     {

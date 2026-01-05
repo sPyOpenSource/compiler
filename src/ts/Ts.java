@@ -15,8 +15,8 @@ public class Ts
     public int getAdrArgCourante(){return adrArgCourante;}
 
     public Ts(){
-	this.fonctions = new HashMap< String, TsItemFct>();
-	this.variables = new HashMap< String, TsItemVar>();
+	this.fonctions = new HashMap< >();
+	this.variables = new HashMap< >();
 	this.adrVarCourante = 0;
 	this.adrArgCourante = 0;
     }
@@ -80,8 +80,8 @@ public class Ts
     
 	 
     public void affiche(PrintStream out){
-	ArrayList< Map.Entry< String, TsItemVar> > stVar = new ArrayList<Map.Entry< String, TsItemVar>>(this.variables.entrySet());
-	Collections.sort(stVar, new Comparator<Map.Entry< String, TsItemVar>>() {
+	ArrayList< Map.Entry< String, TsItemVar> > stVar = new ArrayList<>(this.variables.entrySet());
+	Collections.sort(stVar, new Comparator<>() {
 		@Override
 		public int compare(Map.Entry< String, TsItemVar> entry1, Map.Entry< String, TsItemVar> entry2)
 		{
@@ -93,8 +93,8 @@ public class Ts
 	    //	    out.println(me.getKey() + ":\t" + me.getValue());
 	}
 	
-	ArrayList< Map.Entry< String, TsItemFct> > stFct = new ArrayList<Map.Entry< String, TsItemFct>>(this.fonctions.entrySet());
-	Collections.sort(stFct, new Comparator<Map.Entry< String, TsItemFct>>() {
+	ArrayList< Map.Entry< String, TsItemFct> > stFct = new ArrayList<>(this.fonctions.entrySet());
+	Collections.sort(stFct, new Comparator<>() {
 		@Override
 		public int compare(Map.Entry< String, TsItemFct> entry1, Map.Entry< String, TsItemFct> entry2)
 		{
@@ -108,8 +108,8 @@ public class Ts
     }
 	
     public void afficheTablesLocales(PrintStream out){
-	ArrayList< Map.Entry< String, TsItemFct> > st = new ArrayList<Map.Entry< String, TsItemFct>>(this.fonctions.entrySet());
-	Collections.sort(st, new Comparator<Map.Entry< String, TsItemFct>>() {
+	ArrayList< Map.Entry< String, TsItemFct> > st = new ArrayList<>(this.fonctions.entrySet());
+	Collections.sort(st, new Comparator<>() {
 		@Override
 		public int compare(Map.Entry< String, TsItemFct> entry1, Map.Entry< String, TsItemFct> entry2)
 		{
@@ -130,7 +130,6 @@ public class Ts
 	
 	if (baseFileName != null){
 	    try {
-		baseFileName = baseFileName;
 		fileName = baseFileName + ".ts";
 		out = new PrintStream(fileName);
 	    }

@@ -465,9 +465,4 @@ public void caseAConstante(AConstante node) {
 
         outAFcall(node);
     }
-
-
 }
-
-
-

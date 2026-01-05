@@ -4,16 +4,16 @@ package util;
 
 public class Memory{
     /* stack segment */
-    private int ss;
+    private final int ss;
 
     /* data segment */
-    private int ds;
+    private final int ds;
 
     public int esp; // adresse du sommet de la pile en octets
-    private int memSize;
-    private int dataSize;
-    private int stackSize;
-    private byte[] mem;
+    private final int memSize;
+    private final int dataSize;
+    private final int stackSize;
+    private final byte[] mem;
 
     public Memory(int dataSize, int stackSize){
 	this.dataSize = dataSize;
@@ -168,7 +168,7 @@ public class Memory{
         return  ((byte0 & 0xFF) << 24) |
                 ((byte1 & 0xFF) << 16) |
                 ((byte2 & 0xFF) << 8) |
-                ((byte3 & 0xFF) << 0);
+                ((byte3 & 0xFF));
     }
     
     public byte[] intToBytes2( int data ) {    
@@ -176,7 +176,7 @@ public class Memory{
     result[0] = (byte) ((data & 0xFF000000) >> 24);
     result[1] = (byte) ((data & 0x00FF0000) >> 16);
     result[2] = (byte) ((data & 0x0000FF00) >> 8);
-    result[3] = (byte) ((data & 0x000000FF) >> 0);
+    result[3] = (byte) ((data & 0x000000FF));
     return result;        
 }
     public byte[] intToBytes(int i)

@@ -1,4 +1,5 @@
 package sa;
+
 import saParser.analysis.DepthFirstAdapter;
 import saParser.lexer.Lexer;
 import saParser.lexer.LexerException;
@@ -566,9 +567,3 @@ public class LoadSa extends DepthFirstAdapter {
         outANullType(node);
     }
 }
-
-
-
-
-
-

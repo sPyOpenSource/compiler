@@ -1,8 +1,11 @@
 package nasm;
+
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import nasm.expr.*;
+import nasm.inst.*;
 import util.Memory;
 
 /*
@@ -11,17 +14,17 @@ It handles only integers on 4 bytes and have unlimited register.
  */
 
 public class NasmEval implements NasmVisitor<Integer>{
-    private Nasm code;
+    private final Nasm code;
     private int dataSize = 0;
 
-    private int regNb;
-    private HashMap<String, Integer> labelToAddress;
-    private Memory memory;
+    private final int regNb;
+    private final HashMap<String, Integer> labelToAddress;
+    private final Memory memory;
     private boolean stop;
-    private ArrayList<Integer> output;
+    private final ArrayList<Integer> output;
 
     // registers
-    private int[] registers;
+    private final int[] registers;
     
     private int ebp;
     private int eip = 0;
@@ -32,17 +35,17 @@ public class NasmEval implements NasmVisitor<Integer>{
     
     //flags
     // Carry Flag -> not used
-    private boolean CF = false;
+    private final boolean CF = false;
     // Parity Flag -> not used
-    private boolean PF = false;
+    private final boolean PF = false;
     // Zero Flag
     private boolean ZF = false;
     // Sign Flag
     private boolean SF = false;
     // Overflow Flag -> not used
-    private boolean OF = false;
+    private final boolean OF = false;
 	
-    private int verboseLevel;
+    private final int verboseLevel;
 
     public NasmEval(Nasm code, int stackSize, int verboseLevel){
         this.code = code;
@@ -87,7 +90,7 @@ public class NasmEval implements NasmVisitor<Integer>{
     }
 	
     public void printRegisters(){
-	for(int i=0; i < regNb; i++){
+	for(int i = 0; i < regNb; i++){
 	    System.out.print("r" + i + ":" + registers[i] + "\t");
 	}
 	//	System.out.println();
@@ -115,7 +118,7 @@ public class NasmEval implements NasmVisitor<Integer>{
         }
 	// compute addresses of global variables and associate them to labels
 	for(int i = 0; i < code.sectionBss.size(); i++){
-	    NasmPseudoInst pseudoInst = this.code.sectionBss.get(i);
+	    PseudoInst pseudoInst = this.code.sectionBss.get(i);
 	    labelToAddress.put(pseudoInst.label.val, dataSize);
 	    //	    System.out.println("var :" + pseudoInst.label.val + " address = " + dataSize);
 	    dataSize += pseudoInst.nb * pseudoInst.sizeInBytes;
@@ -123,11 +126,11 @@ public class NasmEval implements NasmVisitor<Integer>{
     }
 
     /*------------------------------------------*/
-    private void copy(NasmOperand dest, int value){
-	if(dest instanceof NasmAddress)
-	    copy((NasmAddress) dest, value);
-	else if(dest instanceof NasmRegister)
-	    copy((NasmRegister) dest, value);
+    private void copy(Operand dest, int value){
+	if(dest instanceof NasmAddress nasmAddress)
+	    copy(nasmAddress, value);
+	else if(dest instanceof NasmRegister nasmRegister)
+	    copy(nasmRegister, value);
     }
     
     private void copy(NasmAddress dest, int value){
@@ -224,25 +227,25 @@ public class NasmEval implements NasmVisitor<Integer>{
     /* arithmetic operations */
     
     @Override
-    public Integer visit(NasmAdd inst) {
+    public Integer visit(Add inst) {
 	copy(inst.destination, inst.source.accept(this) + inst.destination.accept(this));
         return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmSub inst) {
+    public Integer visit(Sub inst) {
         copy(inst.destination, inst.destination.accept(this) - inst.source.accept(this));
 	return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmMul inst) {
+    public Integer visit(Mul inst) {
         copy(inst.destination, inst.source.accept(this) * inst.destination.accept(this));
 	return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmDiv inst) {
+    public Integer visit(Div inst) {
         var divisor  = inst.source.accept(this);
         var temp = eax;
         eax = temp / divisor;
@@ -252,32 +255,32 @@ public class NasmEval implements NasmVisitor<Integer>{
 
     /* logical operations */
     @Override
-    public Integer visit(NasmOr inst) {
+    public Integer visit(Or inst) {
         copy(inst.destination, inst.source.accept(this) | inst.destination.accept(this));
         return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmNot inst) {
+    public Integer visit(Not inst) {
         copy(inst.destination, ~ inst.destination.accept(this));
         return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmXor inst) {
+    public Integer visit(Xor inst) {
         copy(inst.destination, inst.source.accept(this) ^ inst.destination.accept(this));
 	return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmAnd inst) {
+    public Integer visit(And inst) {
         copy(inst.destination, inst.source.accept(this) & inst.destination.accept(this));
 	return eip + 1;
     }
 
     /* function call */
     @Override
-    public Integer visit(NasmCall inst) {
+    public Integer visit(Call inst) {
         if(inst.address instanceof NasmLabel && ((NasmLabel)inst.address).val.equals("iprintLF")){
             output.add(eax);
 	    return eip + 1;
@@ -288,7 +291,7 @@ public class NasmEval implements NasmVisitor<Integer>{
 
     /* comparison */
     @Override
-    public Integer visit(NasmCmp inst) {
+    public Integer visit(Cmp inst) {
         int valSrc = inst.source.accept(this);
         int valDest = inst.destination.accept(this);
         ZF = (valDest == valSrc)? true : false;
@@ -298,65 +301,65 @@ public class NasmEval implements NasmVisitor<Integer>{
     
     /* jumps */
     @Override
-    public Integer visit(NasmJe inst) {
+    public Integer visit(Je inst) {
         return (ZF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJle inst) {
+    public Integer visit(Jle inst) {
         return (ZF || SF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJne inst) {
+    public Integer visit(Jne inst) {
         return (!ZF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJge inst) {
+    public Integer visit(Jge inst) {
         return (ZF || !SF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJl inst) {
+    public Integer visit(Jl inst) {
 	return (!ZF && SF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJg inst) {
+    public Integer visit(Jg inst) {
         return (!ZF || SF)? inst.address.accept(this) : eip + 1;
     }
 
     @Override
-    public Integer visit(NasmJmp inst) {
+    public Integer visit(Jmp inst) {
         return inst.address.accept(this);
     }
 
     @Override
-    public Integer visit(NasmPop inst) {
+    public Integer visit(Pop inst) {
         copy(inst.destination, memory.popInt());
 	return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmPush inst) {
+    public Integer visit(Push inst) {
         memory.pushInt(inst.source.accept(this));
         return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmRet inst) {
+    public Integer visit(Ret inst) {
         return memory.popInt() + 1;
     }
 
     @Override
-    public Integer visit(NasmMov inst) {
+    public Integer visit(Mov inst) {
         copy(inst.destination, inst.source.accept(this));
 	return eip + 1;
     }
 
     @Override
-    public Integer visit(NasmInt inst) {
+    public Integer visit(Int inst) {
         if(eax == 1)
             stop = true;
         return eip + 1;
@@ -368,15 +371,15 @@ public class NasmEval implements NasmVisitor<Integer>{
     }
 
     @Override
-    public Integer visit(NasmEmpty inst) {
+    public Integer visit(Empty inst) {
         return eip + 1;
     }
 
-    public Integer visit(NasmResb pseudoInst){return 0;}
-    public Integer visit(NasmResw pseudoInst){return 0;}
-    public Integer visit(NasmResd pseudoInst){return 0;}
-    public Integer visit(NasmResq pseudoInst){return 0;}
-    public Integer visit(NasmRest pseudoInst){return 0;}
+    public Integer visit(Resb pseudoInst){return 0;}
+    public Integer visit(Resw pseudoInst){return 0;}
+    public Integer visit(Resd pseudoInst){return 0;}
+    public Integer visit(Resq pseudoInst){return 0;}
+    public Integer visit(Rest pseudoInst){return 0;}
 
     /* visit expression -> returns an address */
     
@@ -393,18 +396,17 @@ public class NasmEval implements NasmVisitor<Integer>{
 	if(exp instanceof NasmConstant)
 	    return ((NasmConstant)exp).accept(this);
 
-	if(exp instanceof NasmExpPlus)
-	    return ((NasmExpPlus)exp).accept(this);
+	if(exp instanceof ExpPlus)
+	    return ((ExpPlus)exp).accept(this);
 
-	if(exp instanceof NasmExpMinus)
-	    return ((NasmExpMinus)exp).accept(this);
+	if(exp instanceof ExpMinus)
+	    return ((ExpMinus)exp).accept(this);
 
 	//	if(exp instanceof NasmExpTimes)
-	    return ((NasmExpTimes)exp).accept(this);
+	    return ((ExpTimes)exp).accept(this);
     }
-    public Integer visit(NasmExpPlus exp) {return exp.op1.accept(this) + exp.op2.accept(this);}
-    public Integer visit(NasmExpMinus exp){return exp.op1.accept(this) - exp.op2.accept(this);}
-    public Integer visit(NasmExpTimes exp){return exp.op1.accept(this) * exp.op2.accept(this);}
-
+    public Integer visit(ExpPlus exp) {return exp.op1.accept(this) + exp.op2.accept(this);}
+    public Integer visit(ExpMinus exp){return exp.op1.accept(this) - exp.op2.accept(this);}
+    public Integer visit(ExpTimes exp){return exp.op1.accept(this) * exp.op2.accept(this);}
 
 }

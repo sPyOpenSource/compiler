@@ -1,47 +1,51 @@
 package nasm;
 
+import nasm.expr.*;
+import nasm.inst.*;
+import nasm.inst.Div;
+
 public interface NasmVisitor <T> {
-    public T visit(NasmAdd inst);
-    public T visit(NasmCall inst);
-    public T visit(NasmDiv inst);
-    public T visit(NasmJe inst);
-    public T visit(NasmJle inst);
-    public T visit(NasmJne inst);
-    public T visit(NasmMul inst);
-    public T visit(NasmOr inst);
-    public T visit(NasmCmp inst);
+    
+    public T visit(Add inst);
+    public T visit(Call inst);
+    public T visit(Div inst);
+    public T visit(Je inst);
+    public T visit(Jle inst);
+    public T visit(Jne inst);
+    public T visit(Mul inst);
+    public T visit(Or inst);
+    public T visit(Cmp inst);
     public T visit(NasmInst inst);
-    public T visit(NasmJge inst);
-    public T visit(NasmJl inst);
-    public T visit(NasmNot inst);
-    public T visit(NasmPop inst);
-    public T visit(NasmRet inst);
-    public T visit(NasmXor inst);
-    public T visit(NasmAnd inst);
-    public T visit(NasmJg inst);
-    public T visit(NasmJmp inst);
-    public T visit(NasmMov inst);
-    public T visit(NasmPush inst);
-    public T visit(NasmSub inst);
-    public T visit(NasmEmpty inst);
-    public T visit(NasmInt inst);
+    public T visit(Jge inst);
+    public T visit(Jl inst);
+    public T visit(Not inst);
+    public T visit(Pop inst);
+    public T visit(Ret inst);
+    public T visit(Xor inst);
+    public T visit(And inst);
+    public T visit(Jg inst);
+    public T visit(Jmp inst);
+    public T visit(Mov inst);
+    public T visit(Push inst);
+    public T visit(Sub inst);
+    public T visit(Empty inst);
+    public T visit(Int inst);
 
     public T visit(NasmAddress operand);
     public T visit(NasmConstant operand);
     public T visit(NasmLabel operand);
     public T visit(NasmRegister operand);
 
-    public T visit(NasmResb pseudoInst);
-    public T visit(NasmResw pseudoInst);
-    public T visit(NasmResd pseudoInst);
-    public T visit(NasmResq pseudoInst);
-    public T visit(NasmRest pseudoInst);
+    public T visit(Resb pseudoInst);
+    public T visit(Resw pseudoInst);
+    public T visit(Resd pseudoInst);
+    public T visit(Resq pseudoInst);
+    public T visit(Rest pseudoInst);
 
     public T visit(NasmExp exp);
-    public T visit(NasmExpPlus exp);
-    public T visit(NasmExpMinus exp);
-    public T visit(NasmExpTimes exp);
+    public T visit(ExpPlus exp);
+    public T visit(ExpMinus exp);
+    public T visit(ExpTimes exp);
 
 }
 	
-

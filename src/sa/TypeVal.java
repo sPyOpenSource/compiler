@@ -1,7 +1,9 @@
 package sa;
+
 import util.Type;
 
 public class TypeVal{
+    
     public Type type;
     public boolean valBool;
     public int valInt;
@@ -18,6 +20,7 @@ public class TypeVal{
 	valBool = val;
     }
 
+    @Override
     public String toString(){
 	if(type == Type.BOOL){
 	    return (valBool == true)? String.valueOf(1): String.valueOf(0);
@@ -27,5 +30,4 @@ public class TypeVal{
 	}
     }
 
-    
 }

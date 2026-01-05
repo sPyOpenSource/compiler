@@ -14,7 +14,9 @@ public enum NasmSize {
         this.name = name;
     }
 
+    @Override
     public String toString(){return name;}
     public String getName(){return this.name;}
     public int getValue(){return value;}
+    
 }

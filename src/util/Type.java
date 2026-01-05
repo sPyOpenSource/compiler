@@ -13,6 +13,7 @@ public enum Type{
 	this.taille = taille;
     }
 
+    @Override
     public String toString(){return nom;}
     public static Type fromString(String nom){
 	if(nom.equals("entier")){return Type.ENTIER;}

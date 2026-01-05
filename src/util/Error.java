@@ -15,6 +15,7 @@ public enum Error{
 	this.message = message;
     }
 
+    @Override
     public String toString(){return message;}
     public String message(){return message;}
     public int code(){return code;}
