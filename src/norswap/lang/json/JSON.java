@@ -103,9 +103,10 @@ public final class JSON extends Grammar
     public void parse (String inputName, String input) {
         ParseResult result = Autumn.parse(root, input, ParseOptions.get());
         if (result.fullMatch) {
+            System.out.println(result.topValue().toString());
             System.out.println(
                     ((AbstractCollection)
-                            ((AbstractMap)result.topValue()).get("test")).toString());
+                            ((AbstractMap)result.topValue()).get("code")).toString());
         } else {
             // debugging
             System.out.println(result.toString(new LineMapString(inputName, input), false));
