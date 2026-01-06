@@ -11,8 +11,8 @@ import norswap.lang.rust.interpreter.Interpreter;
 import norswap.uranium.Reactor;
 import norswap.utils.IO;
 import norswap.utils.visitors.Walker;
-import java.nio.file.Paths;
 
+import java.nio.file.Paths;
 import static norswap.utils.Util.cast;
 
 public final class Test
