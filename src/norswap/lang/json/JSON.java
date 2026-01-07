@@ -1,12 +1,13 @@
 package norswap.lang.json;
 
-import java.util.AbstractCollection;
-import java.util.AbstractMap;
 import norswap.autumn.Autumn;
 import norswap.autumn.Grammar;
 import norswap.autumn.ParseOptions;
 import norswap.autumn.ParseResult;
 import norswap.autumn.positions.LineMapString;
+
+import java.util.AbstractCollection;
+import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -48,7 +49,7 @@ public final class JSON extends Grammar
         .word();
 
     public rule string_char = choice(
-        seq(set('"', '\\').not(), range('\u0000', '\u001F').not(), any),
+        seq(set(/*'"', */'\\').not(), range('\u0000', '\u001F').not(), any),
         seq('\\', set("\\/bfnrt")),
         seq(str("\\u"), hex_digit, hex_digit, hex_digit, hex_digit));
 
@@ -56,8 +57,10 @@ public final class JSON extends Grammar
         string_char.at_least(0)
         .push($ -> $.str());
 
-    public rule string =
-        seq('"', string_content , '"')
+    public rule string = choice(
+            string_content,
+            seq("'", string_content, "'"),
+            seq('"', string_content , '"'))
         .word();
 
     public rule LBRACE   = word("{");
@@ -104,9 +107,9 @@ public final class JSON extends Grammar
         ParseResult result = Autumn.parse(root, input, ParseOptions.get());
         if (result.fullMatch) {
             System.out.println(result.topValue().toString());
-            System.out.println(
+            /*System.out.println(
                     ((AbstractCollection)
-                            ((AbstractMap)result.topValue()).get("code")).toString());
+                            ((AbstractMap)result.topValue()).get("code")).toString());*/
         } else {
             // debugging
             System.out.println(result.toString(new LineMapString(inputName, input), false));
