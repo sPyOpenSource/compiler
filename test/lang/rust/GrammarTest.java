@@ -9,7 +9,7 @@ import static norswap.lang.rust.ast.BinaryOperator.*;
 import norswap.lang.rust.ast.expr.*;
 import org.junit.Test;
 
-public class GrammarTests extends AutumnTestFixture {
+public class GrammarTest extends AutumnTestFixture {
     // ---------------------------------------------------------------------------------------------
 
     private final RustGrammar grammar = new RustGrammar();
@@ -46,6 +46,8 @@ public class GrammarTests extends AutumnTestFixture {
 
     @Test
     public void testNumericBinary () {
+        rule = grammar.expression;
+        
         successExpect("1 + 2", new BinaryExpression(null, intlit(1), ADD, intlit(2)));
         successExpect("2 - 1", new BinaryExpression(null, intlit(2), SUBTRACT,  intlit(1)));
         successExpect("2 * 3", new BinaryExpression(null, intlit(2), MULTIPLY, intlit(3)));

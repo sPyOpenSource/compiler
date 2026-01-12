@@ -24,7 +24,7 @@ import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
-public final class InterpreterTests extends TestFixture {
+public final class InterpreterTest extends TestFixture {
 
     // TODO peeling
 
@@ -213,6 +213,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testVarDecl () {
+        rule = grammar.root;
         check("let x: i32 = 1; return x", 1L);
         check("let x: f32 = 2.0; return x", 2d);
 
@@ -249,6 +250,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testCalls () {
+        rule = grammar.root;
         check(
             "fn add (a: i32, b: i32): i32 { return a + b } " +
                 "return add(4, 7)",
@@ -319,6 +321,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testIfWhile () {
+        rule = grammar.root;
         check("if (true) return 1 else return 2", 1L);
         check("if (false) return 1 else return 2", 2L);
         check("if (false) return 1 else if (true) return 2 else return 3 ", 2L);
@@ -331,6 +334,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testInference () {
+        rule = grammar.root;
         check("let array: i32[] = []", null);
         check("let array: String[] = []", null);
         check("fn use_array (array: i32[]) {} ; use_array([])", null);
@@ -340,6 +344,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test
     public void testTypeAsValues () {
+        rule = grammar.root;
         check("struct S{} ; return \"\"+ S", "S");
         check("struct S{} ; let type: Type = S ; return \"\"+ type", "S");
     }
@@ -348,6 +353,7 @@ public final class InterpreterTests extends TestFixture {
 
     @Test public void testUnconditionalReturn()
     {
+        rule = grammar.root;
         check("fn f(): i32 { if (true) return 1 else return 2 } ; return f()", 1L);
     }
 
