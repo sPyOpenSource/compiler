@@ -128,14 +128,14 @@ public class SJava extends Language {
   }
   
   @Override
-  protected boolean scanparseFile(StringList fileName) {
-    boolean success=true;
+  protected boolean parseFile(StringList fileName) {
+    boolean success = true;
     
     //try to parse the file
     if (!inText.initData(ctx.osio.readFile(fileName.str))) {
       ctx.out.print("Error opening input-file: ");
       ctx.out.println(fileName.str);
-      success=false;
+      success = false;
     } else {
       ctx.attachSource(fileName.tablePos, inText.data);
       s.init(inText, fileName.tablePos, ctx);
@@ -143,7 +143,7 @@ public class SJava extends Language {
         ctx.out.print("...parsing ");
         ctx.out.print(fileName.str);
         ctx.out.println(" failed");
-        success=false;
+        success = false;
       }
     }
     return success;

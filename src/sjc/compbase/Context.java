@@ -199,7 +199,7 @@ public class Context {
   public RelationManager relations;
   public FrontAdmin fa;
   public Architecture arch;
-  private String t;
+  
   public MemoryImage mem;
   public BootableImage bootMem; //if mem instanceof BootableImage, then bootMem==mem
   public boolean embedded, embConstRAM, leanRTE, dynaMem, indirScalars, noSyncCalls, noThrowFrames, noInlineMthdObj;
@@ -209,6 +209,7 @@ public class Context {
   public int constMemorySize, symGenSize; //valid after genConstObj / generateSymbols
   public int maxStmtAutoInline;
   public int alignBlockMask; //initialized to 0
+  
   public String debugPrefix;
   public boolean assignCall, assignHeapCall, doBoundCheck, runtimeBound, doArrayStoreCheck, runtimeNull;
   public boolean byteString, genAllUnitDesc, genAllMthds, genIntfParents;
@@ -232,6 +233,7 @@ public class Context {
   public Unit rteDynamicRuntime, rteDynamicAri, structClass, flashClass;
   public Unit excThrowable, excChecked;
   public int rteSIMowner, rteSIMnext; //index in rteSIntfMap
+  
   public Mthd rteDRNewInstMd, rteDRNewArrayMd, rteDRNewMultArrayMd;
   public Mthd rteDRIsInstMd, rteDRIsImplMd, rteDRIsArrayMd, rteDRCheckArrayStoreMd;
   public Mthd rteDRAssignMd, rteDRBoundExcMd, rteDRNullExcMd;
@@ -243,6 +245,7 @@ public class Context {
   public Mthd rteArrayDeepCopyMd; //method called if deep copy of array is to be generated
   public Mthd rteAssertFailedMd; //method called if assert failed
   public Mthd staticInitMthds; //list of methods for static initialization
+  
   public boolean staticInitDone; //flag to check if static initialization code is inserted somewhere
   public boolean needSecondGenConstObj; //flag to signal second run of genConstObj (constant objects in second pool)
   public int rteThrowFrame, rteStackExtreme; //offset of variable containing address of throw-frame / stack extreme value
@@ -258,21 +261,22 @@ public class Context {
   public TypeRef clssType, intfType, stringType, objectType, boolType, intType;
   public CtxBasedConfig config;
   public AddrList freeAddrLists;
-  
+  public DataBlockList sourceBlocks, codeBlocks;
+
   public int stringCount, stringChars, stringMemBytes;
   public int mthdCount, mthdCodeSize;
-  
-  public DataBlockList sourceBlocks, codeBlocks;
-  
+  public int ramStart, relocateOption, codeStart;
+
   public BootableImage compressedImage;
   public int compressedRelocateOption;
   protected UnitList unitList, lastUnit;
+  
   private int compressedImageOrigLen;
   private byte[] compressedImageInfo;
   private StringList fileList;
   private Context decompressor;
-  
-  public int ramStart, relocateOption, codeStart;
+  private String t;
+
   private boolean streamline, standardHeader = true, timing, prefereNativeReal;
   private int inlineLevels = 3, memStart = -1, memSize = 131072; //init with 128K image size starting at 1MB (entered below)
   private String headerFile;
@@ -297,7 +301,8 @@ public class Context {
     UnitList ulist;
     boolean error = false, kbSize;
     int i, uCnt = 0;
-    long t0 = 0l, t1 = 0l, t2 = 0l, t3 = 0l, t4 = 0l, t5 = 0l, t6 = 0l, t7 = 0l, t8 = 0l, t9 = 0l, t10 = 0l;
+    long t0 = 0l, t1 = 0l, t2 = 0l, t3 = 0l, t4 = 0l, t5 = 0l, 
+            t6 = 0l, t7 = 0l, t8 = 0l, t9 = 0l, t10 = 0l;
     SymbolInformer sif;
     
     //get output and check parameters
@@ -430,7 +435,7 @@ public class Context {
       out.print("(t1) ");
       t1 = osio.getTimeInfo();
     }
-    for (i = 0; i < argv.length; i++) error |= !fa.scanparse(argv[i]);
+    for (i = 0; i < argv.length; i++) error |= !fa.scanParse(argv[i]);
     if (compressedImage != null) {
       error |= !fa.addByteArray(compressedImage.memBlock, 0, compressedImage.memBlockLen, "comprImg");
       error |= !fa.addByteArray(compressedImageInfo, 0, compressedImageInfo.length, "comprInfo");

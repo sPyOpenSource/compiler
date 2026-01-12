@@ -169,40 +169,40 @@ public class FrontAdmin {
     return ((BinImp)langs[1]).addByteArray(data, startoffset, stopoffset, name);
   }
   
-  public boolean scanparse(String what) {
+  public boolean scanParse(String what) {
     boolean success, recurse;
     StringList allFiles, curFile;
     
-    if (what==null || what.length()<1) return true;
+    if (what == null || what.length() < 1) return true;
     if (what.endsWith(":")) {
-      what=what.substring(0, what.length()-1);
-      recurse=false;
+      what = what.substring(0, what.length() - 1);
+      recurse = false;
     }
-    else recurse=true;
+    else recurse = true;
     ctx.out.print("Parse ");
     if (!ctx.osio.isDir(what)) {
       ctx.out.print("file \"");
       ctx.out.print(what);
       ctx.out.println("\"...");
-      return scanparseFile(new StringList(what), false); //not a directory - check for file
+      return parseFile(new StringList(what), false); //not a directory - check for file
     }
     //"what" is not a file but a directory, do every file
     if (recurse) ctx.out.print("rdir \"");
     else ctx.out.print("sdir \"");
     ctx.out.print(what);
     ctx.out.println("\"...");
-    success=true;
-    allFiles=ctx.osio.listDir(what, recurse);
-    while (allFiles!=null) {
-      curFile=allFiles;
-      allFiles=allFiles.next;
-      curFile.next=null;
-      success&=scanparseFile(curFile, true);
+    success = true;
+    allFiles = ctx.osio.listDir(what, recurse);
+    while (allFiles != null) {
+      curFile = allFiles;
+      allFiles = allFiles.next;
+      curFile.next = null;
+      success &= parseFile(curFile, true);
     }
     return success;
   }
   
-  private boolean scanparseFile(StringList what, boolean mayBeIgnored) {
+  private boolean parseFile(StringList what, boolean mayBeIgnored) {
     for (Language lang : langs) {
         //check if current language wants to parse the file
         if(what.str.endsWith("SunRaytrace.java")) continue;
@@ -212,7 +212,7 @@ public class FrontAdmin {
             //add file in filelist if requested
             if (filelister != null) filelister.println(what.str);
             //try to scan and parse the file
-            return lang.scanparseFile(what);
+            return lang.parseFile(what);
         }
     }
     //no language for this particular file found, success depends on caller
@@ -220,7 +220,7 @@ public class FrontAdmin {
     ctx.out.print("File \"");
     ctx.out.print(what.str);
     ctx.out.println("\" has no assigned language or does not exist");
-    ctx.err=true;
+    ctx.err = true;
     return false;
   }
   

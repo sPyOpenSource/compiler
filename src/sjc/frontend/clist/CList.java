@@ -59,7 +59,7 @@ public class CList extends Language {
   }
   
   @Override
-  protected boolean scanparseFile(StringList fileName) {
+  protected boolean parseFile(StringList fileName) {
     boolean success=true;
     String res;
     
@@ -72,7 +72,7 @@ public class CList extends Language {
     //each line contains a filename that has to be compiled
     while (r.nextChar!='\0') {
       if ((res=getString())!=null && res.length()>0) {
-        if (!ctx.fa.scanparse(res)) success=false;
+        if (!ctx.fa.scanParse(res)) success=false;
       }
       if (error) return false;
     }

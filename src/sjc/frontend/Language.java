@@ -34,5 +34,5 @@ import sjc.compbase.StringList;
 public abstract class Language {
   protected abstract void init(Context iCtx);
   protected abstract boolean fileCompetence(String name);
-  protected abstract boolean scanparseFile(StringList fileName);
+  protected abstract boolean parseFile(StringList fileName);
 }

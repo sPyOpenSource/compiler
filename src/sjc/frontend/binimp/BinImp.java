@@ -74,7 +74,7 @@ public class BinImp extends Language {
   }
   
   @Override
-  protected boolean scanparseFile(StringList fileName) {
+  protected boolean parseFile(StringList fileName) {
     byte[] data;
     
     if ((data=ctx.osio.readFile(fileName.str))==null) {

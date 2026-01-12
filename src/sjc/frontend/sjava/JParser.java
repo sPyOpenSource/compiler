@@ -171,7 +171,7 @@ public class JParser {
     int mod, mark, syl, syc, syp;
     Unit c;
     QualID pack;
-    QualIDList impt, lastImpt=null;
+    QualIDList impt, lastImpt = null;
     Pack destPack;
     boolean insertUnit;
     
@@ -182,29 +182,29 @@ public class JParser {
       
       //package
       if (accept(Lexer.S_OKE, Lexer.O_PACK)) {
-        if ((pack=qualIdent(QualID.Q_PACKAGE))==null) return false;
+        if ((pack = qualIdent(QualID.Q_PACKAGE)) == null) return false;
         if (!accept(Lexer.S_DEL, Lexer.D_SEM)) {
           parserError("missing \";\" after package");
           return false;
         }
       } else {
-        pack=new QualID(null, QualID.Q_PACKAGE, curFID, syl, syc); //no explicit package, create dummy-root-package
-        pack.srcStart=syp;
-        pack.srcLength=s.endOfLastSymbol-syp;
-        syl=s.nxtSym.syline;
-        syc=s.nxtSym.sycol;
-        syp=s.nxtSym.sypos;
+        pack = new QualID(null, QualID.Q_PACKAGE, curFID, syl, syc); //no explicit package, create dummy-root-package
+        pack.srcStart = syp;
+        pack.srcLength = s.endOfLastSymbol - syp;
+        syl = s.nxtSym.syline;
+        syc = s.nxtSym.sycol;
+        syp = s.nxtSym.sypos;
       }
       
       //import
-      impt=null;
+      impt = null;
       while (accept(Lexer.S_OKE, Lexer.O_IMPT)) {
-        if (impt==null) lastImpt=impt=new QualIDList();
+        if (impt == null) lastImpt = impt = new QualIDList();
         else {
-          lastImpt.nextQualID=new QualIDList();
-          lastImpt=lastImpt.nextQualID;
+          lastImpt.nextQualID = new QualIDList();
+          lastImpt = lastImpt.nextQualID;
         }
-        if ((lastImpt.qid=qualIdent(QualID.Q_IMPORTPACK))==null) return false;
+        if ((lastImpt.qid = qualIdent(QualID.Q_IMPORTPACK)) == null) return false;
         if (!accept(Lexer.S_DEL, Lexer.D_SEM)) {
           parserError("missing \";\" after import");
           return false;
@@ -235,18 +235,18 @@ public class JParser {
         if ((mod & (Modifier.M_PUB | Modifier.M_PROT)) == 0) mod |= Modifier.M_PACP; //default: package private
         if ((c = clssDecl(pack, impt, mod, mark, syl, syc)) == null) return false;
       } else if (accept(Lexer.S_OKE, Lexer.O_INTF)) {
-        if ((mod&~(Lexer.M_PUB|Lexer.M_PROT|Lexer.M_FIN))!=0) {
+        if ((mod & ~(Lexer.M_PUB | Lexer.M_PROT | Lexer.M_FIN)) != 0) {
           parserError("invalid modifier for interface");
           return false;
         }
-        if ((mod&(Lexer.M_PUB|Lexer.M_PROT))==0) mod|=Modifier.M_PACP; //default: package private
-        if ((c=intfDecl(pack, impt, mod, syl, syc))==null) return false;
+        if ((mod&(Lexer.M_PUB|Lexer.M_PROT)) == 0) mod |= Modifier.M_PACP; //default: package private
+        if ((c = intfDecl(pack, impt, mod, syl, syc)) == null) return false;
       } else if (accept(Lexer.S_OKE, Lexer.O_ANDC)) {
-        if ((mod&~(Lexer.M_PUB|Lexer.M_PROT|Lexer.M_FIN))!=0) {
+        if ((mod & ~(Lexer.M_PUB | Lexer.M_PROT | Lexer.M_FIN)) != 0) {
           parserError("invalid modifier for annotation");
           return false;
         }
-        if ((c=annoDecl(pack, impt, mod, syl, syc))==null) return false;
+        if ((c = annoDecl(pack, impt, mod, syl, syc)) == null) return false;
       } else {
         parserError("class or interface or annotation expected");
         return false;
@@ -254,12 +254,12 @@ public class JParser {
       //remove remaining semicolons
       while (accept(Lexer.S_DEL, Lexer.D_SEM)) /*remove it*/;
       //handle srcStart and srcLength
-      c.srcStart=syp;
-      c.srcLength=s.endOfLastSymbol-syp;
+      c.srcStart = syp;
+      c.srcLength = s.endOfLastSymbol - syp;
       //enter unit in package, this reduces needed passes
-      if (pack.name==null) destPack=ctx.root;
-      else destPack=ctx.root.searchSubPackage(pack.name, true);
-      if (destPack==null) {
+      if (pack.name == null) destPack = ctx.root;
+      else destPack = ctx.root.searchSubPackage(pack.name, true);
+      if (destPack == null) {
         ctx.printPos(curFID, syl, syc);
         ctx.out.print(": name-conflict for package ");
         pack.printFullQID(ctx.out);
@@ -267,7 +267,7 @@ public class JParser {
         ctx.out.println(c.name);
         return false;
       }
-      pack.packDest=destPack;
+      pack.packDest = destPack;
       if (insertUnit) { //unit has not to be ignored, enter in list
         if (!destPack.addUnit(c)) {
           ctx.printPos(curFID, syl, syc);
@@ -281,8 +281,8 @@ public class JParser {
         ctx.addUnit(c);
       }
       //compile-Unit done
-      if ((++progressCounter&7)==0) {
-        if (progressCounter==8) ctx.out.print("   progress: .");
+      if ((++progressCounter & 7) == 0) {
+        if (progressCounter == 8) ctx.out.print("   progress: .");
         else ctx.out.print('.');
       }
     }
@@ -460,57 +460,56 @@ public class JParser {
     String id;
     
     if (!has(Lexer.S_ID)) return null;
-    id=s.nxtSym.strBuf;
+    id = s.nxtSym.strBuf;
     accept();
     return id;
   }
   
   private QualID qualIdent(int type) {
     StringList list, last;
-    boolean wildcard=false;
+    boolean wildcard = false;
     int syl, syc;
     
     if (!has(Lexer.S_ID)) {
       parserError("package-identifier expected");
       return null;
     }
-    syl=s.nxtSym.syline;
-    syc=s.nxtSym.sycol;
-    last=list=new StringList(null, s.nxtSym.strBuf);
+    syl = s.nxtSym.syline;
+    syc = s.nxtSym.sycol;
+    last = list = new StringList(null, s.nxtSym.strBuf);
     accept();
     while (accept(Lexer.S_DEL, Lexer.D_DOT)) {
       if (has(Lexer.S_ID)) {
-        last=new StringList(last, s.nxtSym.strBuf);
+        last = new StringList(last, s.nxtSym.strBuf);
         accept();
       }
       else if (has(Lexer.S_ARI, Lexer.A_MUL)) {
-        if (type!=QualID.Q_IMPORTPACK) {
+        if (type != QualID.Q_IMPORTPACK) {
           parserError("no wildcard allowed here");
           return null;
         }
         accept();
-        wildcard=true;
+        wildcard = true;
         break;
-      }
-      else {
+      } else {
         parserError("subpackage-identifier expected");
         return null;
       }
     }
-    if (type==QualID.Q_IMPORTPACK && !wildcard) type=QualID.Q_IMPORTUNIT;
+    if (type == QualID.Q_IMPORTPACK && !wildcard) type = QualID.Q_IMPORTUNIT;
     return new QualID(list, type, curFID, syl, syc);
   }
   
   private QualIDList qualIDList() {
-    QualIDList list=null, last=null;
+    QualIDList list = null, last = null;
     
     do {
-      if (list==null) last=list=new QualIDList();
+      if (list == null) last = list = new QualIDList();
       else {
-        last.nextQualID=new QualIDList();
-        last=last.nextQualID;
+        last.nextQualID = new QualIDList();
+        last = last.nextQualID;
       }
-      if ((last.qid=qualIdent(QualID.Q_UNIT))==null) {
+      if ((last.qid = qualIdent(QualID.Q_UNIT)) == null) {
         parserError("identifier expected in identifier-list");
         return null;
       }
@@ -519,7 +518,7 @@ public class JParser {
   }
   
   private int getArrDim() {
-    int d=0;
+    int d = 0;
     
     while (accept(Lexer.S_ENC, Lexer.E_SOC)) d++;
     return d;
@@ -529,24 +528,23 @@ public class JParser {
     TypeRef t;
     
     if (accept(Lexer.S_OKE, Lexer.O_VOID)) {
-      if (voidOK) (t=new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType=TypeRef.T_VOID;
+      if (voidOK) (t = new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType = TypeRef.T_VOID;
       else {
         parserError("void not allowed here");
         return null;
       }
     }
     else if (has(Lexer.S_TYP)) {
-      (t=new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType=s.nxtSym.par;
+      (t = new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType = s.nxtSym.par;
       accept();
-    }
-    else {
-      (t=new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType=TypeRef.T_QID;
-      if ((t.qid=qualIdent(QualID.Q_UNIT))==null) {
+    } else {
+      (t = new TypeRef(curFID, s.nxtSym.syline, s.nxtSym.sycol)).baseType = TypeRef.T_QID;
+      if ((t.qid = qualIdent(QualID.Q_UNIT)) == null) {
         parserError("missing type");
         return null;
       }
     }
-    if (checkArray) t.arrDim=getArrDim();
+    if (checkArray) t.arrDim = getArrDim();
     return t;
   }
   
@@ -1699,19 +1697,19 @@ public class JParser {
       last.srcStart=syp;
       last.srcLength=s.endOfLastSymbol-syp;
     }
-    nob.par=fields; //enter parameters
-    nob.obj.arrDim=cnt+getArrDim(); //perhaps the user wants to create arrays of empty arrays
+    nob.par = fields; //enter parameters
+    nob.obj.arrDim = cnt + getArrDim(); //perhaps the user wants to create arrays of empty arrays
     return true;
   }
   
   private String intToHex(int id) {
-    int digits=1, i, v;
+    int digits = 1, i, v;
     char[] buf;
-    for (i=1; i<8; i++) if ((id&(0xF<<(i<<2)))!=0) digits=i+1;
-    buf=new char[digits];
-    for (i=1; i<=digits; i++) {
-      buf[digits-i]=((v=id&0xF)<10) ? (char)(v+48) : (char)(v+55);
-      id=id>>>4;
+    for (i = 1; i < 8; i++) if ((id & (0xF << (i << 2))) != 0) digits = i + 1;
+    buf = new char[digits];
+    for (i = 1; i <= digits; i++) {
+      buf[digits - i] = ((v = id & 0xF) < 10) ? (char)(v + 48) : (char)(v + 55);
+      id = id >>> 4;
     }
     return new String(buf);
   }

@@ -63,7 +63,7 @@ public class PrepObj extends Language {
   }
 
   @Override
-  protected boolean scanparseFile(StringList fileName) {
+  protected boolean parseFile(StringList fileName) {
     boolean success=true;
     
     //create unit if not done already
