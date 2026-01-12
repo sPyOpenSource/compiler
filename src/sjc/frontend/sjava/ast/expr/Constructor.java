@@ -82,7 +82,7 @@ import sjc.debug.CodePrinter;
  *  version 060607 initial version
  */
 
-public class ExNew extends ExAbsCall {
+public class Constructor extends ExAbsCall {
     public boolean asArray;
     public TypeRef obj;
 
@@ -93,19 +93,19 @@ public class ExNew extends ExAbsCall {
     private UnitList importedClass, runtimeClass;
     private boolean callExplicitConstr;
   
-    public ExNew(int fid, int il, int ic) {
+    public Constructor(int fid, int il, int ic) {
         super(fid, il, ic);
     }
   
     @Override
-  public void printExpression(CodePrinter codePrnt) {
-    codePrnt.exprNew(this, asArray, multArray, callExplicitConstr, destTypeUnit, dest, par);
-  }
+    public void printExpression(CodePrinter codePrnt) {
+        codePrnt.exprNew(this, asArray, multArray, callExplicitConstr, destTypeUnit, dest, par);
+    }
   
     @Override
-  public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
-    return resolve(mthdContext, unitContext, mthdContext, resolveFlags, preferredType, ctx);
-  }
+    public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
+        return resolve(mthdContext, unitContext, mthdContext, resolveFlags, preferredType, ctx);
+    }
   
   public boolean resolve(Mthd enclosingMthd, Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
     FilledParam pa;

@@ -102,16 +102,16 @@ public class BinaryExpression extends ExCheckType {
     public Expression le, ri;
     public int rank;
 
-  public BinaryExpression(int iop, int ira, int fid, int il, int ic) {
-    super(fid, il, ic);
-    op=iop;
-    rank=ira;
-  }
+    public BinaryExpression(int iop, int ira, int fid, int il, int ic) {
+        super(fid, il, ic);
+        op = iop;
+        rank = ira;
+    }
   
-  @Override
-  public void printExpression(CodePrinter codePrnt) {
-    codePrnt.exprBin(le, ri, op>>>16, op&0xFFFF, rank);
-  }
+    @Override
+    public void printExpression(CodePrinter codePrnt) {
+        codePrnt.exprBin(le, ri, op>>>16, op&0xFFFF, rank);
+    }
   
   @Override
   public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {

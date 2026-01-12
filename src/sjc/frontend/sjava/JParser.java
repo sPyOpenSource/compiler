@@ -34,7 +34,7 @@ import sjc.frontend.sjava.ast.expr.ExClssMthdName;
 import sjc.frontend.sjava.ast.expr.ExDeArray;
 import sjc.frontend.sjava.ast.expr.ExDeRef;
 import sjc.frontend.sjava.ast.expr.ExEnc;
-import sjc.frontend.sjava.ast.expr.ExNew;
+import sjc.frontend.sjava.ast.expr.Constructor;
 import sjc.frontend.sjava.ast.expr.ExPrePst;
 import sjc.frontend.sjava.ast.expr.UnaryExpression;
 import sjc.frontend.sjava.ast.expr.ExVar;
@@ -1643,7 +1643,7 @@ public class JParser {
     return ret;
   }
   
-  private boolean getNewArrayParam(ExNew nob) {
+  private boolean getNewArrayParam(Constructor nob) {
     int syl, syc, syp, cnt;
     boolean needExpr=true, noExprAllowed=false;
     Expression tmpEx;
@@ -1720,7 +1720,7 @@ public class JParser {
     int syl, syc, mod;
     ExCall call;
     ExVar var;
-    ExNew nob;
+    Constructor nob;
     TypeRef nobType;
     ExArrayInit ai;
     String id;
@@ -1748,15 +1748,15 @@ public class JParser {
         return new ExArrayCopy(ai, nobType, false);
       }
       else { //not explicitly initialized array
-        nob=new ExNew(curFID, syl, syc);
-        nob.obj=nobType;
+        nob = new Constructor(curFID, syl, syc);
+        nob.obj = nobType;
         if (has(Lexer.S_ENC, Lexer.E_SO)) { //opening array-declaration
-          nob.asArray=true;
+          nob.asArray = true;
           if (!getNewArrayParam(nob)) return null;
         }
         else { //no array, must be constructor
-          nob.asArray=false;
-          if (nob.obj.baseType!=TypeRef.T_QID) {
+          nob.asArray = false;
+          if (nob.obj.baseType != TypeRef.T_QID) {
             parserError("object of basis-type not allowed");
             return null;
           }

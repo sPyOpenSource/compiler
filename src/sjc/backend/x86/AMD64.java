@@ -158,13 +158,13 @@ public class AMD64 extends X86Base {
     relocBytes = 8;
     allocClearBits = stackClearBits = 7;
     maxInstrCodeSize = 16;
-    rAll = RegA|RegB|RegC|RegD|Reg8|Reg9|Reg10|Reg11|Reg12|Reg13;
-    rClss = REX|R_EDI;
-    rInst = REX|R_ESI;
-    rBase = REX|R_EBP;
+    rAll  = RegA | RegB | RegC | RegD | Reg8 | Reg9 | Reg10 | Reg11 | Reg12 | Reg13;
+    rClss = REX | R_EDI;
+    rInst = REX | R_ESI;
+    rBase = REX | R_EBP;
     fullIPChangeBytes = 4;
     patchedAddPrefix = 0x48;
-    mPtr = REX|RS_E;
+    mPtr = REX | RS_E;
   }
   
   @Override
@@ -251,18 +251,18 @@ public class AMD64 extends X86Base {
   protected void restoreReg(int regs) {
     usedRegs|=regs;
     writtenRegs|=regs;
-    if ((regs&Reg15)!=0) ins(I_POPreg, REX|R_15D);
-    if ((regs&Reg14)!=0) ins(I_POPreg, REX|R_14D);
-    if ((regs&Reg13)!=0) ins(I_POPreg, REX|R_13D);
-    if ((regs&Reg12)!=0) ins(I_POPreg, REX|R_12D);
-    if ((regs&Reg11)!=0) ins(I_POPreg, REX|R_11D);
-    if ((regs&Reg10)!=0) ins(I_POPreg, REX|R_10D);
-    if ((regs&Reg9 )!=0) ins(I_POPreg, REX|R_9D );
-    if ((regs&Reg8 )!=0) ins(I_POPreg, REX|R_8D );
-    if ((regs&RegD )!=0) ins(I_POPreg, REX|R_EDX);
-    if ((regs&RegC )!=0) ins(I_POPreg, REX|R_ECX);
-    if ((regs&RegB )!=0) ins(I_POPreg, REX|R_EBX);
-    if ((regs&RegA )!=0) ins(I_POPreg, REX|R_EAX);
+    if ((regs & Reg15) != 0) ins(I_POPreg, REX | R_15D);
+    if ((regs & Reg14) != 0) ins(I_POPreg, REX | R_14D);
+    if ((regs & Reg13) != 0) ins(I_POPreg, REX | R_13D);
+    if ((regs & Reg12) != 0) ins(I_POPreg, REX | R_12D);
+    if ((regs & Reg11) != 0) ins(I_POPreg, REX | R_11D);
+    if ((regs & Reg10) != 0) ins(I_POPreg, REX | R_10D);
+    if ((regs & Reg9 ) != 0) ins(I_POPreg, REX | R_9D );
+    if ((regs & Reg8 ) != 0) ins(I_POPreg, REX | R_8D );
+    if ((regs & RegD ) != 0) ins(I_POPreg, REX | R_EDX);
+    if ((regs & RegC ) != 0) ins(I_POPreg, REX | R_ECX);
+    if ((regs & RegB ) != 0) ins(I_POPreg, REX | R_EBX);
+    if ((regs & RegA ) != 0) ins(I_POPreg, REX | R_EAX);
   }
   
   @Override
@@ -273,37 +273,37 @@ public class AMD64 extends X86Base {
       usedRegs|=reg;
     }
     switch (reg) {
-      case RegA: reg=RM_A; break;
-      case RegB: reg=RM_B; break;
-      case RegC: reg=RM_C; break;
-      case RegD: reg=RM_D; break;
-      case Reg8: reg=RM_8; break;
-      case Reg9: reg=RM_9; break;
-      case Reg10: reg=RM_10; break;
-      case Reg11: reg=RM_11; break;
-      case Reg12: reg=RM_12; break;
-      case Reg13: reg=RM_13; break;
-      case Reg14: reg=RM_14; break;
-      case Reg15: reg=RM_15; break;
+      case RegA: reg = RM_A; break;
+      case RegB: reg = RM_B; break;
+      case RegC: reg = RM_C; break;
+      case RegD: reg = RM_D; break;
+      case Reg8: reg = RM_8; break;
+      case Reg9: reg = RM_9; break;
+      case Reg10: reg = RM_10; break;
+      case Reg11: reg = RM_11; break;
+      case Reg12: reg = RM_12; break;
+      case Reg13: reg = RM_13; break;
+      case Reg14: reg = RM_14; break;
+      case Reg15: reg = RM_15; break;
       default:
         fatalError(ERR_INVREG_GETREG);
         return 0;
     }
     switch (type) {
       case StdTypes.T_DPTR:
-        return reg|0x7|REX;
+        return reg | 0x7 | REX;
       case StdTypes.T_LONG: case StdTypes.T_PTR:
-        if (nr!=1) return 0;
-        return reg|0x7|REX;
+        if (nr != 1) return 0;
+        return reg | 0x7|REX;
       case StdTypes.T_INT:
-        if (nr!=1) return 0;
-        return reg|0x7;
+        if (nr != 1) return 0;
+        return reg | 0x7;
       case StdTypes.T_SHRT: case StdTypes.T_CHAR:
-        if (nr!=1) return 0;
-        return reg|0x3;
+        if (nr != 1) return 0;
+        return reg | 0x3;
       case StdTypes.T_BOOL: case StdTypes.T_BYTE:
-        if (nr!=1) return 0;
-        return reg|0x1;
+        if (nr != 1) return 0;
+        return reg | 0x1;
     }
     fatalError(ERR_INVTYPE_GETREG);
     return 0;
@@ -1610,7 +1610,7 @@ public class AMD64 extends X86Base {
     boolean nrg0=(me.reg0&NRG)!=0;
     me.size=0;
     me.type=I_ADDregimm;
-    codeAriRegImm(me, 0x04, sizeprefix, wordflag, me.reg0&~(NRG|REX), rex0, nrg0, me.iPar2=stackCells<<3);
+    codeAriRegImm(me, 0x04, sizeprefix, wordflag, me.reg0 & ~(NRG | REX), rex0, nrg0, me.iPar2 = stackCells << 3);
   }
   
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, long immL, int par) {
@@ -2200,15 +2200,13 @@ public class AMD64 extends X86Base {
         i.putByte(0x83);
         putMem(i, code, reg0, disp);
         i.putByte(imm);
-      }
-      else {
+      } else {
         i.putByte(0x81);
         putMem(i, code, reg0, disp);
         if (par==2) i.putShort(imm);
         else i.putInt(imm);
       }
-    }
-    else { //byte
+    } else { //byte
       i.putByte(0x80);
       putMem(i, code, reg0, disp);
       i.putByte(imm);

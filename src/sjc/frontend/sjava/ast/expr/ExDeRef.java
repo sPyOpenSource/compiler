@@ -119,7 +119,7 @@ public class ExDeRef extends Expression {
   public boolean resolve(Unit unitContext, Mthd mthdContext, int resolveFlags, TypeRef preferredType, Context ctx) {
     ExVar asVar=null;
     ExCall asCall;
-    ExNew asNew=null;
+    Constructor asNew=null;
     Pack inPack=null;
     Unit inUnit=null;
     Mthd inMthd=null;
@@ -316,12 +316,12 @@ public class ExDeRef extends Expression {
         asVar.typeSpecial=TypeRef.S_FLASHREF;
       }
     }
-    else if (ri instanceof ExNew) {
+    else if (ri instanceof Constructor) {
       if (le.baseType!=T_QID) {
         printPos(ctx, "new in deref needs instance on left side");
         return false;
       }
-      asNew=(ExNew)ri;
+      asNew=(Constructor)ri;
       if (!asNew.resolve(le.qid.unitDest.initDyna, unitContext, mthdContext, resolveFlags, preferredType, ctx)) {
         ctx.out.print(ERREXT);
         return false;
@@ -426,7 +426,7 @@ public class ExDeRef extends Expression {
   public void genOutputVal(int reg, Context ctx) {
     ExCall asCall;
     ExVar asVar;
-    ExNew asNew;
+    Constructor asNew;
     int leRegType, extReg, restore, restore2, type, condHnd;
     Instruction excCheckDone;
     
@@ -530,8 +530,8 @@ public class ExDeRef extends Expression {
           ctx.arch.deallocRestoreReg(extReg, reg, restore2);
         }
       }
-      else if (ri instanceof ExNew) {
-        asNew=(ExNew)ri;
+      else if (ri instanceof Constructor) {
+        asNew=(Constructor)ri;
         restore2=ctx.arch.prepareFreeReg(reg, 0, 0, StdTypes.T_PTR);
         extReg=ctx.arch.allocReg();
         le.genOutputVal(extReg, ctx);

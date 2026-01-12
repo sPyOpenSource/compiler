@@ -66,6 +66,7 @@ import sjc.compbase.*;
  */
 
 public class IA32Opti extends IA32 {
+  @Override
   public void finalizeInstructions(Instruction first) {
     Instruction now;
     boolean redo;
@@ -105,6 +106,7 @@ public class IA32Opti extends IA32 {
     if ((mthdContainer.marker&Marks.K_PRCD)!=0 || ctx.printCode) printCode(ctx.out, first, "postOpt", false);
   }
  
+  @Override
   public void insPatchedCall(Mthd refMthd, int par) {
     Instruction i;
     
@@ -134,6 +136,7 @@ public class IA32Opti extends IA32 {
     return 0x00010000<<(r>>>4);
   }
   
+  @Override
   protected Instruction ins(int type, int reg0, int reg1, int disp, int imm, int par) {
     Instruction i;
     
@@ -458,10 +461,10 @@ public class IA32Opti extends IA32 {
                 || hasReadAfter(tmp, now.reg0)) break;
             switch (tmp.type) {
               case I_MOVmemreg:
-                if ((tmp.reg1&~RS_E)==(now.reg0&~RS_E)) {
-                  if ((tmp.reg1&RS_E)==RS_E) size=4;
-                  else if ((tmp.reg1&RS_E)==RS_X) size=2;
-                  else size=1;
+                if ((tmp.reg1 & ~RS_E) == (now.reg0 & ~RS_E)) {
+                  if ((tmp.reg1 & RS_E) == RS_E) size = 4;
+                  else if ((tmp.reg1 & RS_E) == RS_X) size = 2;
+                  else size = 1;
                   set(tmp, I_MOVmemimm, tmp.reg0, 0, tmp.iPar1, now.iPar2, size);
                   kill(now);
                   redo=true;

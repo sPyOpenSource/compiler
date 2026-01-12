@@ -1436,6 +1436,7 @@ public class IA32 extends X86Base {
     return 0;
   }
   
+  @Override
   public int genCompValToConstVal(int src, int val, int type, int cond) {
     int src2, restore;
     if (type==StdTypes.T_FLT) { //no direct compare available
@@ -1471,6 +1472,7 @@ public class IA32 extends X86Base {
     return cond;
   }
   
+  @Override
   public int genCompValToConstDoubleOrLongVal(int src, long val, boolean asDouble, int cond) {
     Instruction dummy;
     int reg1, reg2, src2, restore;
@@ -1498,6 +1500,7 @@ public class IA32 extends X86Base {
     return cond;
   }
   
+  @Override
   public void genLoadDerefAddr(int destReg, int objReg, int ind, int baseOffset, int entrySize) {
     int tmp, tmpRst, indReg;
     if ((destReg=getReg(1, destReg, StdTypes.T_PTR, true))==0
@@ -1524,6 +1527,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genMoveToPrimary(int srcR, int type) {
     int reg;
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
@@ -1540,6 +1544,7 @@ public class IA32 extends X86Base {
     }
   }
   
+  @Override
   public void genMoveFromPrimary(int dstR, int type) {
     int reg;
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
@@ -1554,11 +1559,13 @@ public class IA32 extends X86Base {
     if (reg!=R_EAX) ins(I_MOVregreg, reg, R_EAX);
   }
   
+  @Override
   public void genMoveIntfMapFromPrimary(int dst) {
     if ((dst=getReg(2, dst, StdTypes.T_DPTR, true))==0) return;
     ins(I_MOVregreg, dst, R_EAX); //reg can not be EAX, because it is the second one in dst
   }
   
+  @Override
   public void genSavePrimary(int type) {
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
       return; //result already on top of FPU-stack
@@ -1567,6 +1574,7 @@ public class IA32 extends X86Base {
     if (type==StdTypes.T_LONG || type==StdTypes.T_DPTR) ins(I_PUSHreg, R_EDX);
   }
   
+  @Override
   public void genRestPrimary(int type) {
     if (type==StdTypes.T_FLT || type==StdTypes.T_DBL) {
       return; //result already on top of FPU-stack
@@ -1584,10 +1592,12 @@ public class IA32 extends X86Base {
     if (!noCleanUp && parSize>0) ins(I_ADDregimm, R_ESP, 0, 0, parSize);
   }
   
+  @Override
   public void genReserveNativeStack(int size) {
     if (size>0) ins(I_SUBregimm, R_ESP, 0, 0, size);
   }
   
+  @Override
   public void genStoreNativeParameter(int offset, int src, int type) {
     int reg;
     
@@ -1644,13 +1654,13 @@ public class IA32 extends X86Base {
     i.iPar2 = imm;
     i.iPar3 = par;
     //check wordflag and sizeprefix for most instructions (check only, do not code)
-    if ((type&IM_P0)==I_reg0 || (type&IM_P1)==I_reg1) {
-      if ((type&IM_P0)==I_reg0) tmp=reg0&0x0F; //register 0 gives operation size (exception: MOVSXregmem, ADDmemimm, SUBmemimm, INC, DEC)
-      else tmp=reg1&0x0F; //register 1 gives operation size
-      if (tmp==RS_E) wordflag=1; //EAX, EBX, ...
-      else if (tmp==RS_X) { //AX, BX, ...
-        wordflag=1;
-        sizeprefix=true;
+    if ((type & IM_P0) == I_reg0 || (type & IM_P1) == I_reg1) {
+      if ((type & IM_P0) == I_reg0) tmp = reg0 & 0x0F; //register 0 gives operation size (exception: MOVSXregmem, ADDmemimm, SUBmemimm, INC, DEC)
+      else tmp = reg1 & 0x0F; //register 1 gives operation size
+      if (tmp == RS_E) wordflag = 1; //EAX, EBX, ...
+      else if (tmp == RS_X) { //AX, BX, ...
+        wordflag = 1;
+        sizeprefix = true;
       }
       //else: AL, BL, ... have wordflag==0 and sizeprefix==false
     }
@@ -1659,42 +1669,40 @@ public class IA32 extends X86Base {
       //standard instructions
       case I_MOVregreg:
         if (sizeprefix) i.putByte(0x66);
-        i.putByte(0x8A|wordflag);
+        i.putByte(0x8A | wordflag);
         putRegReg(i, reg0, reg1);
         return;
       case I_MOVregmem:
         if (sizeprefix) i.putByte(0x66);
-        if (reg1==0 && (reg0==R_EAX || reg0==R_AX || reg0==R_AL)) {
-          i.putByte(0xA0|wordflag);
+        if (reg1 == 0 && (reg0 == R_EAX || reg0 == R_AX || reg0 == R_AL)) {
+          i.putByte(0xA0 | wordflag);
           i.putInt(disp);
-        }
-        else {
-          i.putByte(0x8A|wordflag);
+        } else {
+          i.putByte(0x8A | wordflag);
           putMem(i, reg0, reg1, disp);
         }
         return;
       case I_MOVmemreg:
         if (sizeprefix) i.putByte(0x66);
-        if (reg0==0 && (reg1==R_EAX || reg1==R_AX || reg1==R_AL)) {
-          i.putByte(0xA2|wordflag);
+        if (reg0 == 0 && (reg1 == R_EAX || reg1 == R_AX || reg1 == R_AL)) {
+          i.putByte(0xA2 | wordflag);
           i.putInt(disp);
-        }
-        else {
-          i.putByte(0x88|wordflag);
+        } else {
+          i.putByte(0x88 | wordflag);
           putMem(i, reg1, reg0, disp); //toggle reg0/reg1 as needed for memreg-ops
         }
         return;
       case I_MOVregimm:
         if (sizeprefix) i.putByte(0x66);
-        i.putByte(0xB0|(wordflag<<3)|(reg0>>>4));
+        i.putByte(0xB0 | (wordflag << 3) | (reg0 >>> 4));
         putImm(i, reg0, imm);
         return;
       case I_MOVmemimm:
-        if (par==2) i.putByte(0x66);
-        i.putByte(0xC6|(par==1 ? 0 : 1));
+        if (par == 2) i.putByte(0x66);
+        i.putByte(0xC6 | (par == 1 ? 0 : 1));
         putMem(i, 0, reg0, disp);
-        if (par==4) i.putInt(imm);
-        else if (par==2) i.putShort(imm);
+        if (par == 4) i.putInt(imm);
+        else if (par == 2) i.putShort(imm);
         else i.putByte(imm);
         return;
       case I_MOVSXregreg:
@@ -1967,8 +1975,7 @@ public class IA32 extends X86Base {
         }
         else if (reg1==R_EAX || reg1==R_AX) {
           i.putByte(0x90|(reg0>>>4));
-        }
-        else {
+        } else {
           i.putByte(0x86|wordflag);
           putRegReg(i, reg0, reg1);
         }
