@@ -19,7 +19,7 @@ import norswap.lang.java.ast.expr.BinaryExpression;
 import norswap.lang.java.ast.expr.BoundMethodReference;
 import norswap.lang.java.ast.expr.Cast;
 import norswap.lang.java.ast.expr.ClassExpression;
-import norswap.lang.java.ast.expr.ConstructorCall;
+import norswap.lang.java.ast.expr.Constructor;
 import norswap.lang.java.ast.expr.DotIden;
 import norswap.lang.java.ast.expr.DotNew;
 import norswap.lang.java.ast.expr.Expression;
@@ -460,7 +460,7 @@ public final class JavaGrammar extends Grammar
 
     public rule ctor_call =
         seq(_new, opt_type_args, stem_type, args, lazy(() -> this.type_body).or_push_null())
-        .push($ -> new ConstructorCall($.$0(), $.$1(), $.$2(), $.$3()));
+        .push($ -> new Constructor($.$0(), $.$1(), $.$2(), $.$3()));
 
     public rule new_ref_suffix =
         _new

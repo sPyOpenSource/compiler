@@ -10,6 +10,8 @@ import static norswap.utils.exceptions.Exceptions.exprThrow;
 /**
  * Analogue to {@link Visitor}, but implementing {@link Function} instead of {@link Consumer}.
  * See the documentation of {@link Visitor} for usage notes.
+ * @param <T>
+ * @param <R>
  */
 public final class ValuedVisitor<T, R> implements Function<T, R>
 {
@@ -25,6 +27,7 @@ public final class ValuedVisitor<T, R> implements Function<T, R>
 
     /**
      * Run the operation by calling the appropriate overload for {@code value}, or the fallback.
+     * @param value
      */
     @Override public R apply (T value)
     {
@@ -43,6 +46,10 @@ public final class ValuedVisitor<T, R> implements Function<T, R>
 
     /**
      * Register a specialization for the given class.
+     * @param <T1>
+     * @param klass
+     * @param specialization
+     * @return 
      */
     public <T1 extends T> ValuedVisitor<T, R> register
         (Class<T1> klass, Function<? super T1, ? extends R> specialization)
@@ -57,6 +64,8 @@ public final class ValuedVisitor<T, R> implements Function<T, R>
 
     /**
      * Register the fallback specialization.
+     * @param fallback
+     * @return 
      */
     public ValuedVisitor<T, R> registerFallback (Function<? super T, ? extends R> fallback)
     {

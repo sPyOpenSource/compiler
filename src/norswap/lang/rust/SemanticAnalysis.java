@@ -134,33 +134,33 @@ public final class SemanticAnalysis
         walker.register(Parenthesized.class,        PRE_VISIT,  analysis::parenthesized);
         walker.register(FieldAccess.class,          PRE_VISIT,  analysis::fieldAccess);
         walker.register(ArrayAccess.class,          PRE_VISIT,  analysis::arrayAccess);
-        walker.register(MethodCall.class,              PRE_VISIT,  analysis::funCall);
+        walker.register(MethodCall.class,           PRE_VISIT,  analysis::funCall);
         walker.register(UnaryExpression.class,      PRE_VISIT,  analysis::unaryExpression);
         walker.register(BinaryExpression.class,     PRE_VISIT,  analysis::binaryExpression);
         walker.register(Assignment.class,           PRE_VISIT,  analysis::assignment);
 
         // types
         walker.register(SimpleType.class,           PRE_VISIT,  analysis::simpleType);
-        walker.register(ArrayTypeNode.class,            PRE_VISIT,  analysis::arrayType);
+        walker.register(ArrayTypeNode.class,        PRE_VISIT,  analysis::arrayType);
 
         // declarations & scopes
-        walker.register(RootNode.class,                 PRE_VISIT,  analysis::root);
+        walker.register(RootNode.class,             PRE_VISIT,  analysis::root);
         walker.register(Block.class,                PRE_VISIT,  analysis::block);
         walker.register(VarDeclaration.class,       PRE_VISIT,  analysis::varDecl);
         walker.register(FieldDeclaration.class,     PRE_VISIT,  analysis::fieldDecl);
-        walker.register(ParameterNode.class,            PRE_VISIT,  analysis::parameter);
+        walker.register(ParameterNode.class,        PRE_VISIT,  analysis::parameter);
         walker.register(FunDeclaration.class,       PRE_VISIT,  analysis::funDecl);
         walker.register(StructDeclaration.class,    PRE_VISIT,  analysis::structDecl);
 
-        walker.register(RootNode.class,                 POST_VISIT, analysis::popScope);
+        walker.register(RootNode.class,             POST_VISIT, analysis::popScope);
         walker.register(Block.class,                POST_VISIT, analysis::popScope);
         walker.register(FunDeclaration.class,       POST_VISIT, analysis::popScope);
 
         // statements
-        walker.register(StExpr.class,  PRE_VISIT,  node -> {});
-        walker.register(StIf.class,                   PRE_VISIT,  analysis::ifStmt);
-        walker.register(StWhile.class,                PRE_VISIT,  analysis::whileStmt);
-        walker.register(StReturn.class,               PRE_VISIT,  analysis::returnStmt);
+        walker.register(StExpr.class,               PRE_VISIT,  node -> {});
+        walker.register(StIf.class,                 PRE_VISIT,  analysis::ifStmt);
+        walker.register(StWhile.class,              PRE_VISIT,  analysis::whileStmt);
+        walker.register(StReturn.class,             PRE_VISIT,  analysis::returnStmt);
 
         walker.registerFallback(POST_VISIT, node -> {});
 

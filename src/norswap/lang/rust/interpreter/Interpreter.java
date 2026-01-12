@@ -73,22 +73,22 @@ public final class Interpreter
         visitor.register(Parenthesized.class,        this::parenthesized);
         visitor.register(FieldAccess.class,          this::fieldAccess);
         visitor.register(ArrayAccess.class,          this::arrayAccess);
-        visitor.register(MethodCall.class,              this::funCall);
+        visitor.register(MethodCall.class,           this::funCall);
         visitor.register(UnaryExpression.class,      this::unaryExpression);
         visitor.register(BinaryExpression.class,     this::binaryExpression);
         visitor.register(Assignment.class,           this::assignment);
 
         // statement groups & declarations
-        visitor.register(RootNode.class,                 this::root);
+        visitor.register(RootNode.class,             this::root);
         visitor.register(Block.class,                this::block);
         visitor.register(VarDeclaration.class,       this::varDecl);
         // no need to visitor other declarations! (use fallback)
 
         // statements
-        visitor.register(StExpr.class,  this::expressionStmt);
-        visitor.register(StIf.class,                   this::ifStmt);
-        visitor.register(StWhile.class,                this::whileStmt);
-        visitor.register(StReturn.class,               this::returnStmt);
+        visitor.register(StExpr.class,               this::expressionStmt);
+        visitor.register(StIf.class,                 this::ifStmt);
+        visitor.register(StWhile.class,              this::whileStmt);
+        visitor.register(StReturn.class,             this::returnStmt);
 
         visitor.registerFallback(node -> null);
     }
@@ -262,16 +262,15 @@ public final class Interpreter
 
     public Object assignment (Assignment node)
     {
-        if (node.left instanceof Reference) {
+        if (node.left instanceof Reference reference) {
             Scope scope = reactor.get(node.left, "scope");
-            String name = ((Reference) node.left).name;
+            String name = reference.name;
             Object rvalue = get(node.right);
             assign(scope, name, rvalue, reactor.get(node, "type"));
             return rvalue;
         }
 
-        if (node.left instanceof ArrayAccess) {
-            ArrayAccess arrayAccess = (ArrayAccess) node.left;
+        if (node.left instanceof ArrayAccess arrayAccess) {
             Object[] array = getNonNullArray(arrayAccess.array);
             int index = getIndex(arrayAccess.index);
             try {
@@ -281,8 +280,7 @@ public final class Interpreter
             }
         }
 
-        if (node.left instanceof FieldAccess) {
-            FieldAccess fieldAccess = (FieldAccess) node.left;
+        if (node.left instanceof FieldAccess fieldAccess) {
             Object object = get(fieldAccess.stem);
             if (object == Null.INSTANCE)
                 throw new PassthroughException(
@@ -406,11 +404,11 @@ public final class Interpreter
         if (decl == Null.INSTANCE)
             throw new PassthroughException(new NullPointerException("calling a null function"));
 
-        if (decl instanceof SyntheticDeclaration)
-            return builtin(((SyntheticDeclaration) decl).name(), args);
+        if (decl instanceof SyntheticDeclaration syntheticDeclaration)
+            return builtin(syntheticDeclaration.name(), args);
 
-        if (decl instanceof ConstructorNode)
-            return buildStruct(((ConstructorNode) decl).declaration, args);
+        if (decl instanceof ConstructorNode constructorNode)
+            return buildStruct(constructorNode.declaration, args);
 
         ScopeStorage oldStorage = storage;
         Scope scope = reactor.get(decl, "scope");
@@ -446,14 +444,14 @@ public final class Interpreter
     {
         if (arg == Null.INSTANCE)
             return "null";
-        else if (arg instanceof Object[])
-            return Arrays.deepToString((Object[]) arg);
-        else if (arg instanceof FunDeclaration)
-            return ((FunDeclaration) arg).name;
-        else if (arg instanceof StructDeclaration)
-            return ((StructDeclaration) arg).name;
-        else if (arg instanceof ConstructorNode)
-            return "$" + ((ConstructorNode) arg).declaration.name;
+        else if (arg instanceof Object[] objects)
+            return Arrays.deepToString(objects);
+        else if (arg instanceof FunDeclaration funDeclaration)
+            return funDeclaration.name;
+        else if (arg instanceof StructDeclaration structDeclaration)
+            return structDeclaration.name;
+        else if (arg instanceof ConstructorNode constructorNode)
+            return "$" + constructorNode.declaration.name;
         else
             return arg.toString();
     }

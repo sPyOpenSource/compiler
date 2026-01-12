@@ -18,7 +18,7 @@ import norswap.lang.java.ast.expr.ArrayAccess;
 import norswap.lang.java.ast.expr.ArrayConstructorCall;
 import norswap.lang.java.ast.expr.ArrayInitializer;
 import norswap.lang.java.ast.expr.ClassExpression;
-import norswap.lang.java.ast.expr.ConstructorCall;
+import norswap.lang.java.ast.expr.Constructor;
 import norswap.lang.java.ast.expr.DotIden;
 import norswap.lang.java.ast.expr.Expression;
 import norswap.lang.java.ast.expr.Identifier;
@@ -135,7 +135,7 @@ public class GrammarTest extends AutumnTestFixture
         successExpect("\"🦆\"",         Literal.mk("🦆"));
         successExpect("\"birb: 𓅭\"",  Literal.mk("birb: 𓅭"));
 
-        // From Spring
+        // From String
         successExpect("\"owfie   fue&3[][[[2 \\n\\n \\r  \\t 8\\ufffd3\"",
             Literal.mk("owfie   fue&3[][[[2 \n\n \r  \t 8\ufffd3"));
 
@@ -357,11 +357,11 @@ public class GrammarTest extends AutumnTestFixture
             new SuperCall(list(Literal.mk(1), Identifier.mk("x"))));
 
         successExpect("new String()",
-            new ConstructorCall(noTypeArgs, sclass("String", noTypeArgs), noArgs, null));
+            new Constructor(noTypeArgs, sclass("String", noTypeArgs), noArgs, null));
         successExpect("new <T> Test()",
-            new ConstructorCall(list(T), sclass("Test", noTypeArgs), noArgs, null));
+            new Constructor(list(T), sclass("Test", noTypeArgs), noArgs, null));
         successExpect("new Test<T>()",
-            new ConstructorCall(noTypeArgs, sclass("Test", list(T)), noArgs, null));
+            new Constructor(noTypeArgs, sclass("Test", list(T)), noArgs, null));
         successExpect("void.class",
             new ClassExpression(prim(_void)));
         successExpect("int.class",

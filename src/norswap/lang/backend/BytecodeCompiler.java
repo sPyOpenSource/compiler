@@ -112,25 +112,25 @@ public class BytecodeCompiler
         visitor.register(Parenthesized.class,        this::parenthesized);
         visitor.register(FieldAccess.class,          this::fieldAccess);
         visitor.register(ArrayAccess.class,          this::arrayAccess);
-        visitor.register(MethodCall.class,              this::funCall);
+        visitor.register(MethodCall.class,           this::funCall);
         visitor.register(UnaryExpression.class,      this::unaryExpression);
         visitor.register(BinaryExpression.class,     this::binaryExpression);
         visitor.register(Assignment.class,           this::assignment);
 
         // statement groups & declarations
-        visitor.register(RootNode.class,                 this::root);
+        visitor.register(RootNode.class,             this::root);
         visitor.register(Block.class,                this::block);
         visitor.register(VarDeclaration.class,       this::varDecl);
         visitor.register(FieldDeclaration.class,     this::fieldDecl);
-        visitor.register(ParameterNode.class,            this::parameter);
+        visitor.register(ParameterNode.class,        this::parameter);
         visitor.register(FunDeclaration.class,       this::funDecl);
         visitor.register(StructDeclaration.class,    this::structDecl);
 
         // statements
-        visitor.register(StExpr.class,  this::expressionStmt);
-        visitor.register(StIf.class,                   this::ifStmt);
-        visitor.register(StWhile.class,                this::whileStmt);
-        visitor.register(StReturn.class,               this::returnStmt);
+        visitor.register(StExpr.class,               this::expressionStmt);
+        visitor.register(StIf.class,                 this::ifStmt);
+        visitor.register(StWhile.class,              this::whileStmt);
+        visitor.register(StReturn.class,             this::returnStmt);
     }
 
     // ---------------------------------------------------------------------------------------------

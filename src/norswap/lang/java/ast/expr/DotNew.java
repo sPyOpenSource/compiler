@@ -2,7 +2,7 @@ package norswap.lang.java.ast.expr;
 
 public record DotNew (
      Expression operand,
-     ConstructorCall constructor)
+     Constructor constructor)
     implements Expression
 {
 }
