@@ -213,6 +213,7 @@ public final class ParseResult
      *     <li>Always a terminating newline.</li>
      * </ul>
      *
+     * @param b
      * @param map If non-null, used to translate input positions in terms of lines and columns.
      *
      * @param onlyRules If true and a parser call stack should be printed, only parsers which are
