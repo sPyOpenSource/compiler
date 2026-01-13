@@ -94,14 +94,14 @@ public abstract class AccVar extends Token {
     //note: for inline-arrays varPos contains offset of length field,
     //   the real array offset is defined through instScalarSize of containing unit
   
-	public AccVar(int fid, int il, int ic) {
+    public AccVar(int fid, int il, int ic) {
 		super(fid, il, ic);
-    relOff=INV_RELOFF;
-    location=L_NOTRDY;
-	}
+        relOff = INV_RELOFF;
+        location = L_NOTRDY;
+    }
 	
-	public boolean enterSize(int loc, Context ctx) {
-    int mod;
+    public boolean enterSize(int loc, Context ctx) {
+        int mod;
     
     //check size of variable
     if (type.baseType!=TypeRef.T_QID && type.arrDim==0) { //standard-type
@@ -138,15 +138,15 @@ public abstract class AccVar extends Token {
     return true;
   }
 	
-	public Expression getInitExpr(Context ctx) {
-    compErr(ctx, "invalid call to AccVar.getInitExpr");
-    return null;
-	}
+    public Expression getInitExpr(Context ctx) {
+        compErr(ctx, "invalid call to AccVar.getInitExpr");
+        return null;
+    }
 	
-	public ExConstInitObj getConstInitObj(Context ctx) {
-	  compErr(ctx, "invalid call to AccVar.getConstInitObj");
-	  return null;
-	}
+    public ExConstInitObj getConstInitObj(Context ctx) {
+	compErr(ctx, "invalid call to AccVar.getConstInitObj");
+	return null;
+    }
 	
   public boolean checkNameAgainstVrbl(Vrbl ov, Context ctx) {
     while (ov!=this && ov!=null) {

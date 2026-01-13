@@ -500,17 +500,23 @@ public class JMthd extends Mthd {
     return super.handlesThrowable(whom, thrown, ctx);
   }
   
-  @Override
-  public void genOutput(Context ctx) {
-      String aname = "";
-      if(owner.pack.name != null){
-        aname += owner.pack.name.str + ".";
-      }
-      aname += owner.name + ".";
-      aname += name;
-    int mthdID = 0;
-    VrblList inits;
-    Location obj;
+    @Override
+    public void genOutput(Context ctx) {
+        String aname = "";
+        if(owner.pack.name != null){
+            aname += owner.pack.name.str + ".";
+        }
+        aname += owner.name + ".";
+        aname += name + "(";
+        Param par = param;
+        while(par!=null) {
+            aname += par.name + ",";
+            par = par.nextParam;
+        }
+        aname += ")";
+        int mthdID = 0;
+        VrblList inits;
+        Location obj;
     
     if (redirect != null) {
       if ((obj = redirect.outputLocation) == null) { //redirection active
@@ -573,7 +579,7 @@ public class JMthd extends Mthd {
       hex.write(what, 0, codeSize);
       //System.out.println(hex);
       JSONArray array = new JSONArray(hex.toString().replace(":", "'").replace(",", "',").replace("]", "']"));
-      ctx.object.put(aname, array);
+      ctx.object.put(aname.replace(",)", ")"), array);
       inGenOutput = false;
     }
     //everything done, check if we were referenced and enter valid output address

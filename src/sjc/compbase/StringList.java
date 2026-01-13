@@ -38,16 +38,16 @@ public class StringList {
         tablePos = -1;
     }
 	
-	public StringList(StringList last, String istr) {
-		if (last!=null) last.next=this;
-		str=istr;
-    tablePos=-1;
-	}
+    public StringList(StringList last, String istr) {
+	if (last != null) last.next = this;
+	str = istr;
+        tablePos = -1;
+    }
 	
-	public static StringList buildStringList(String source) {
-    StringList ret=null, last=null;
-    int start=0, end=0, count=0;
-    char c;
+    public static StringList buildStringList(String source) {
+        StringList ret=null, last=null;
+        int start=0, end=0, count=0;
+        char c;
     
     while (end<source.length()) {
       c=source.charAt(end);

@@ -44,50 +44,50 @@ public class QualID extends Token {
 
     public QualID(StringList is, int it, int fid, int il, int ic) {
         super(fid, il, ic);
-        name=is;
-        type=it;
+        name = is;
+        type = it;
     }
 
     public String getLastPID() {
         StringList check;
 
-        if (name==null) return null;
-        check=name;
-        while (check.next!=null) check=check.next;
+        if (name == null) return null;
+        check = name;
+        while (check.next != null) check = check.next;
         return check.str;
     }
 	
     public void printFullQID(TextPrinter v) {
-    StringList s;
+        StringList s;
     
-    if (packDest!=null) packDest.printFullName(v);
-    else if (unitDest!=null) {
-      if (unitDest.pack!=null) {
-        unitDest.pack.printFullQID(v);
-        v.print('.');
-      }
-      v.print(unitDest.name);
-    }
-    else if (name!=null) {
-      v.print((s=name).str);
-      while (s.next!=null) {
-        v.print('.');
-        s=s.next;
-        v.print(s.str);
-      }
-        if (type==Q_IMPORTPACK) v.print(".*");
-    }
-    else v.print("root");
+        if (packDest != null) packDest.printFullName(v);
+        else if (unitDest != null) {
+            if (unitDest.pack != null) {
+                unitDest.pack.printFullQID(v);
+                v.print('.');
+            }
+            v.print(unitDest.name);
+        }
+        else if (name != null) {
+            v.print((s = name).str);
+            while (s.next != null) {
+                v.print('.');
+                s = s.next;
+                v.print(s.str);
+            }
+            if (type == Q_IMPORTPACK) v.print(".*");
+        }
+        else v.print("root");
     }
 
-  public boolean resolveAsUnit(Unit inUnit, Context ctx) {
-    if ((unitDest=inUnit.searchUnitInView(name, false))==null
-        && (unitDest=ctx.defUnits.searchUnit(name))==null
-        && (unitDest=ctx.root.searchUnit(name))==null) {
-      printPos(ctx, "could not resolve type ");
-      printFullQID(ctx.out);
-      return false;
+    public boolean resolveAsUnit(Unit inUnit, Context ctx) {
+        if ((unitDest=inUnit.searchUnitInView(name, false))==null
+             && (unitDest=ctx.defUnits.searchUnit(name))==null
+             && (unitDest=ctx.root.searchUnit(name))==null) {
+            printPos(ctx, "could not resolve type ");
+            printFullQID(ctx.out);
+            return false;
+        }
+        return true;
     }
-    return true;
-  }
 }

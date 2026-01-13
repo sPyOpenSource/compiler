@@ -117,27 +117,27 @@ public class FrontAdmin {
   }
   
   public FrontAdmin(Context iCtx) {    
-    ctx=iCtx;
-    if (ctx.root==null) ctx.root=new Pack(null, null);
-    ctx.rte=ctx.root.searchSubPackage(new StringList("rte"), true);
+    ctx = iCtx;
+    if (ctx.root == null) ctx.root = new Pack(null, null);
+    ctx.rte = ctx.root.searchSubPackage(new StringList("rte"), true);
     
-    ctx.objectType=new TypeRef(-2, 0, 0);
-    ctx.objectType.baseType=TypeRef.T_QID;
-    ctx.objectType.qid=new QualID(new StringList("Object"), QualID.Q_UNIT, -2, 0, 0);
-    ctx.stringType=new TypeRef(-2, 0, 0);
-    ctx.stringType.baseType=TypeRef.T_QID;
-    ctx.stringType.qid=new QualID(new StringList("String"), QualID.Q_UNIT, -2, 0, 0);
-    ctx.clssType=new TypeRef(-2, 0, 0);
-    ctx.clssType.baseType=TypeRef.T_QID;
-    ctx.clssType.qid=new QualID(new StringList("SClassDesc"), QualID.Q_UNIT, -2, 0, 0);
-    ctx.intfType=new TypeRef(-2, 0, 0);
-    ctx.intfType.baseType=TypeRef.T_QID;
-    ctx.intfType.qid=new QualID(new StringList("SIntfDesc"), QualID.Q_UNIT, -2, 0, 0);
+    ctx.objectType = new TypeRef(-2, 0, 0);
+    ctx.objectType.baseType = TypeRef.T_QID;
+    ctx.objectType.qid = new QualID(new StringList("Object"), QualID.Q_UNIT, -2, 0, 0);
+    ctx.stringType = new TypeRef(-2, 0, 0);
+    ctx.stringType.baseType = TypeRef.T_QID;
+    ctx.stringType.qid = new QualID(new StringList("String"), QualID.Q_UNIT, -2, 0, 0);
+    ctx.clssType = new TypeRef(-2, 0, 0);
+    ctx.clssType.baseType = TypeRef.T_QID;
+    ctx.clssType.qid = new QualID(new StringList("SClassDesc"), QualID.Q_UNIT, -2, 0, 0);
+    ctx.intfType = new TypeRef(-2, 0, 0);
+    ctx.intfType.baseType = TypeRef.T_QID;
+    ctx.intfType.qid = new QualID(new StringList("SIntfDesc"), QualID.Q_UNIT, -2, 0, 0);
 
-    ctx.boolType=new TypeRef(-2, 0, 0);
-    ctx.boolType.baseType=TypeRef.T_BOOL;
-    ctx.intType=new TypeRef(-2, 0, 0);
-    ctx.intType.baseType=TypeRef.T_INT;
+    ctx.boolType = new TypeRef(-2, 0, 0);
+    ctx.boolType.baseType = TypeRef.T_BOOL;
+    ctx.intType = new TypeRef(-2, 0, 0);
+    ctx.intType.baseType = TypeRef.T_INT;
 
     //sort the languages in descending file amount
     langs = new Language[4];

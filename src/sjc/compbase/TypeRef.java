@@ -108,8 +108,6 @@ public class TypeRef extends Token {
     }
 	
     public void printType(TextPrinter v) {
-        int i;
-
         switch (baseType) {
             case T_RES: v.print("resType"); return;
             case T_VOID: v.print("void"); return;
@@ -122,7 +120,7 @@ public class TypeRef extends Token {
           case S_FLASHREF: v.print("(F)"); break;
           case S_FLASHINLARR: v.print("(FI)"); break;
         }
-        for (i=0; i<arrDim; i++) v.print("[]");
+        for (int i = 0; i < arrDim; i++) v.print("[]");
     }
 	
     public TypeRef copy() {
@@ -133,17 +131,17 @@ public class TypeRef extends Token {
         return n;
     }
 	
-	public boolean resolveType(Unit inUnit, Context ctx) {
+    public boolean resolveType(Unit inUnit, Context ctx) {
 	  if (baseType!=T_QID) return true;
     if (!qid.resolveAsUnit(inUnit, ctx)) return false;
     if (arrDim>0) qid.unitDest.modifier|=Modifier.MA_ACCSSD; //array of qid requires class descriptor to be generated
     return inUnit.minimumAccessLevel(qid, qid.unitDest.name, qid.unitDest,
         qid.unitDest.modifier, true, ctx)
         !=Modifier.M_ERROR;
-	}
+    }
 	
-	public int compareType(TypeRef cmp, boolean searchParent, Context ctx) {
-    boolean meNull;
+    public int compareType(TypeRef cmp, boolean searchParent, Context ctx) {
+        boolean meNull;
     
     //check uninitialized null
     if (baseType==T_NULL) {
@@ -305,7 +303,7 @@ public class TypeRef extends Token {
     return 'o';
   }
 	
-	public static int getMinSize(int std) {
+    public static int getMinSize(int std) {
     switch (std) {
       case T_BYTE: case T_BOOL: return 1;
       case T_SHRT: case T_CHAR: return 2;
@@ -315,13 +313,13 @@ public class TypeRef extends Token {
     return 0; //this is an error
   }
 	
-	public int getBaseTypeConvertible() {
-	  if (arrDim==0) switch (baseType) {
+    public int getBaseTypeConvertible() {
+	if (arrDim==0) switch (baseType) {
 	    case T_BYTE: case T_SHRT: case T_CHAR: case T_INT:
 	    case T_LONG: case T_FLT: case T_DBL: return baseType;
 	  }
-	  return 0;
-	}
+	return 0;
+    }
 	
   public boolean isBoolType() {
     return baseType==T_BOOL && arrDim==0;

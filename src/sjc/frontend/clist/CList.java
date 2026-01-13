@@ -60,19 +60,19 @@ public class CList extends Language {
   
   @Override
   protected boolean parseFile(StringList fileName) {
-    boolean success=true;
+    boolean success = true;
     String res;
     
-    error=false;
+    error = false;
     if (!r.initData(ctx.osio.readFile(fileName.str))) {
       ctx.out.print("error opening compilation list ");
       ctx.out.println(fileName.str);
       return false;
     }
     //each line contains a filename that has to be compiled
-    while (r.nextChar!='\0') {
-      if ((res=getString())!=null && res.length()>0) {
-        if (!ctx.fa.scanParse(res)) success=false;
+    while (r.nextChar != '\0') {
+      if ((res = getString()) != null && res.length() > 0) {
+        if (!ctx.fa.scanParse(res)) success = false;
       }
       if (error) return false;
     }
