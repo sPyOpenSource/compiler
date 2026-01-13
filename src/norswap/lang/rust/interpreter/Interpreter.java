@@ -9,6 +9,7 @@ import norswap.lang.rust.types.FloatType;
 import norswap.lang.rust.types.IntType;
 import norswap.lang.rust.types.StringType;
 import norswap.lang.rust.types.Type;
+import norswap.lang.rust.ast.expr.*;
 
 import norswap.uranium.Reactor;
 import norswap.utils.Util;
@@ -19,7 +20,6 @@ import norswap.utils.visitors.ValuedVisitor;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import norswap.lang.rust.ast.expr.*;
 
 import static norswap.utils.Util.cast;
 import static norswap.utils.Vanilla.coIterate;
