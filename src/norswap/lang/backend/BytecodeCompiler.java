@@ -166,6 +166,9 @@ public class BytecodeCompiler
     /**
      * Compile the given source unit (given as its root AST node) into a class whose (dot-separated)
      * binary name is {@code binaryName}.
+     * @param binaryName
+     * @param root
+     * @return 
      */
     public CompilationResult compile (String binaryName, Node root)
     {
@@ -309,8 +312,8 @@ public class BytecodeCompiler
             // Sigh does not have a syntax for multi-dimensional arrays, so use an array of
             // Object that we'll be able to cast to array themselves.
             method.visitTypeInsn(ANEWARRAY, "java/lang/Object");
-        } else if (compType instanceof StructType) {
-            method.visitTypeInsn(ANEWARRAY, structBinaryName((StructType) compType));
+        } else if (compType instanceof StructType structType) {
+            method.visitTypeInsn(ANEWARRAY, structBinaryName(structType));
         }
 
         int i = 0;
@@ -435,8 +438,8 @@ public class BytecodeCompiler
         } else if (type instanceof NullType) {
             method.visitInsn(POP);
             method.visitLdcInsn("null");
-        } else if (type instanceof ArrayType) {
-            Type component = ((ArrayType) type).componentType;
+        } else if (type instanceof ArrayType arrayType) {
+            Type component = arrayType.componentType;
             if (component.isPrimitive())
                 invokeStatic(method, Arrays.class, "toString", javaArrayClass(component));
             else
@@ -564,8 +567,8 @@ public class BytecodeCompiler
                 throw new UnsupportedOperationException("variables or parameters containing a function value");
             }
         }
-        else if (node.function instanceof Constructor) {
-            StructDeclaration decl = reactor.get(((Constructor) node.function).ref, "decl");
+        else if (node.function instanceof Constructor constructor) {
+            StructDeclaration decl = reactor.get(constructor.ref, "decl");
             String binaryName = structBinaryName(reactor.get(decl, "declared"));
             method.visitTypeInsn(NEW, binaryName);
             method.visitInsn(DUP);
@@ -777,15 +780,13 @@ public class BytecodeCompiler
 
     public Object assignment (Assignment node)
     {
-        if (node.left instanceof Reference) {
-            Reference left = (Reference) node.left;
+        if (node.left instanceof Reference left) {
             run(node.right);
             Type type = implicitConversion(node, node.right);
             dup(type);
             method.visitVarInsn(nodeAsmType(node).getOpcode(ISTORE), varIndex(left));
         }
-        else if (node.left instanceof ArrayAccess) {
-            ArrayAccess left = (ArrayAccess) node.left;
+        else if (node.left instanceof ArrayAccess left) {
             run(left.array);
             run(left.index);
             method.visitInsn(L2I);
@@ -794,8 +795,7 @@ public class BytecodeCompiler
             dup_x2(type);
             method.visitInsn(nodeAsmType(node).getOpcode(IASTORE));
         }
-        else if (node.left instanceof FieldAccess) {
-            FieldAccess left = (FieldAccess) node.left;
+        else if (node.left instanceof FieldAccess left) {
             run(left.stem);
             run(node.right);
             Type type = implicitConversion(node, node.right);

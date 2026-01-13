@@ -34,6 +34,7 @@ import norswap.lang.rust.ast.expr.Parenthesized;
 import norswap.lang.rust.ast.expr.Reference;
 import norswap.lang.rust.ast.expr.StringLiteral;
 import norswap.lang.rust.ast.expr.UnaryExpression;
+
 import static norswap.utils.Util.cast;
 import static norswap.utils.Vanilla.forEachIndexed;
 import static norswap.utils.Vanilla.list;
