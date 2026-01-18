@@ -7,7 +7,6 @@
  */
 package nl.lxtreme.binutils.elf;
 
-
 import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
@@ -15,7 +14,6 @@ import java.nio.file.*;
 import java.util.*;
 
 import nl.lxtreme.binutils.elf.DynamicEntry.*;
-
 
 /**
  * Represents an ELF object file.
@@ -95,11 +93,11 @@ public class Elf implements Closeable
 
     readFully( channel, buf, "Unable to read entry information!" );
 
-    int programHeaderEntrySize = buf.getShort();
+    int programHeaderEntrySize  = buf.getShort();
     int programHeaderEntryCount = buf.getShort();
-    int sectionHeaderEntrySize = buf.getShort();
+    int sectionHeaderEntrySize  = buf.getShort();
     int sectionHeaderEntryCount = buf.getShort();
-    int sectionNameTableIndex = buf.getShort();
+    int sectionNameTableIndex   = buf.getShort();
 
     // Should not be necessary unless we've not read the entire header...
     channel.position( header.programHeaderOffset );
@@ -134,9 +132,7 @@ public class Elf implements Closeable
         {
           throw new IOException( "Invalid section found! First section should always be of type SHT_NULL!" );
         }
-      }
-      else
-      {
+      } else {
         this.sectionHeaders[i - 1] = sHdr;
       }
     }
@@ -185,9 +181,7 @@ public class Elf implements Closeable
       }
 
       dynamicTable = entries.toArray( new DynamicEntry[entries.size()] );
-    }
-    else
-    {
+    } else {
       dynamicTable = null;
     }
   }
@@ -214,9 +208,7 @@ public class Elf implements Closeable
     if ( entry.isStringOffset() )
     {
       sb.append( getZString( stringTable, entry.getValue() ) );
-    }
-    else
-    {
+    } else {
       sb.append( "0x" ).append( Long.toHexString( entry.getValue() ) );
     }
     return sb;
@@ -235,25 +227,19 @@ public class Elf implements Closeable
     if ( isBitSet( phdr.flags, 0x04 ) )
     {
       sb.append( "r" );
-    }
-    else
-    {
+    } else {
       sb.append( "-" );
     }
     if ( isBitSet( phdr.flags, 0x02 ) )
     {
       sb.append( "w" );
-    }
-    else
-    {
+    } else {
       sb.append( "-" );
     }
     if ( isBitSet( phdr.flags, 0x01 ) )
     {
       sb.append( "x" );
-    }
-    else
-    {
+    } else {
       sb.append( "-" );
     }
     return sb;
@@ -265,9 +251,7 @@ public class Elf implements Closeable
     if ( name != null )
     {
       sb.append( name );
-    }
-    else
-    {
+    } else {
       sb.append( shdr.type );
     }
     sb.append( ", size: 0x" ).append( Long.toHexString( shdr.size ) );
@@ -449,38 +433,35 @@ public class Elf implements Closeable
   {
     try
     {
-      StringBuilder sb = new StringBuilder();
-      sb.append( header ).append( '\n' );
-      sb.append( "Program header:\n" );
-      for ( int i = 0; i < programHeaders.length; i++ )
-      {
-        sb.append( '\t' );
-        dumpProgramHeader( sb, programHeaders[i] );
-        sb.append( '\n' );
-      }
-
-      byte[] strTable = getDynamicStringTable();
-
-      sb.append( "Dynamic table:\n" );
-      for ( DynamicEntry entry : dynamicTable )
-      {
-        sb.append( '\t' );
-        dumpDynamicEntry( sb, entry, strTable );
-        sb.append( '\n' );
-      }
-
-      sb.append( "Sections:\n" );
-      for ( int i = 0; i < sectionHeaders.length; i++ )
-      {
-        SectionHeader shdr = sectionHeaders[i];
-        if ( !SectionType.STRTAB.equals( shdr.type ) )
-        {
-          sb.append( '\t' );
-          dumpSectionHeader( sb, sectionHeaders[i] );
-          sb.append( '\n' );
+        StringBuilder sb = new StringBuilder();
+        sb.append( header ).append( '\n' );
+        sb.append( "Program header:\n" );
+        for (ProgramHeader programHeader : programHeaders) {
+            sb.append( '\t' );
+            dumpProgramHeader(sb, programHeader);
+            sb.append( '\n' );
         }
-      }
-      return sb.toString();
+
+        byte[] strTable = getDynamicStringTable();
+
+        if(dynamicTable != null){
+            sb.append( "Dynamic table:\n" );
+            for ( DynamicEntry entry : dynamicTable )
+            {
+                sb.append( '\t' );
+                dumpDynamicEntry( sb, entry, strTable );
+                sb.append( '\n' );
+            }
+        }
+        sb.append( "Sections:\n" );
+        for (SectionHeader shdr : sectionHeaders) {
+            if (!SectionType.STRTAB.equals( shdr.type )) {
+                sb.append( '\t' );
+                dumpSectionHeader(sb, shdr);
+                sb.append( '\n' );
+            }
+        }
+        return sb.toString();
     }
     catch ( IOException exception )
     {

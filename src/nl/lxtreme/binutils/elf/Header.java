@@ -7,14 +7,12 @@
  */
 package nl.lxtreme.binutils.elf;
 
-
 import static nl.lxtreme.binutils.elf.Elf.*;
 import static nl.lxtreme.binutils.elf.Flags.*;
 
 import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
-
 
 /**
  * Represents an ELF header.
@@ -144,9 +142,7 @@ public class Header
     if ( isLittleEndian() )
     {
       sb.append( "LSB " );
-    }
-    else
-    {
+    } else {
       sb.append( "MSB " );
     }
     sb.append( elfType ).append( ", " ).append( machineType );
