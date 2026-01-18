@@ -6,10 +6,16 @@
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JParser.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/SJava.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/Anno.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/FrontAdmin.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Context.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/Language.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/frontend/sjava/JMthd.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Mthd.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/Param.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/TypeRef.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/StdTypes.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/backend/dennisk/JVM.java</file>
+            <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/compbase/QualID.java</file>
         </group>
     </open-files>
 </project-private>

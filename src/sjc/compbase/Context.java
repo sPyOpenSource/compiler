@@ -327,6 +327,7 @@ public class Context {
       out.print("(t0) ");
       t0 = osio.getTimeInfo();
     }
+    
     //initialize environment
     if (arch == null) arch = ArchFactory.getArchitecture(null, null, out);
     if (memStart == -1) memStart = 1048576; //set default value
@@ -513,6 +514,7 @@ public class Context {
     }
     if (verbose || timing) out.println("Assigning offsets and preparing descriptors...");
     mem.alignBlock(alignBlockMask);
+    
     //pre-check and resolve java.lang.Object and java.rte.SClassDesc and update vice-versa
     if (!fa.precheckLangEnvironment()) return 4; //output already done
     error |= !langRoot.assignOffsets(false, this);
@@ -522,12 +524,14 @@ public class Context {
     error |= !rteSClassDesc.genDescriptor(this); //SClassDesc must be the first allocated object
     if (!error && !leanRTE) arch.putRef(rteSClassDesc.outputLocation, -arch.relocBytes, rteSClassDesc.outputLocation, 0); //fix type of SClassDesc
     error |= !langRoot.genDescriptor(this);
+    
     //prepare interface descriptors and maps
     error |= !rteSIntfDesc.assignOffsets(true, this);
     error |= !rteSIntfDesc.genDescriptor(this);
     error |= !rteSIntfMap.assignOffsets(true, this);
     error |= !rteSIntfMap.genDescriptor(this);
     if (!leanRTE) rteSMthdBlock.modifier |= Modifier.MA_ACCSSD;
+    
     //do all the others
     ulist = unitList;
     while (ulist != null) {
@@ -646,6 +650,7 @@ public class Context {
       t10 = osio.getTimeInfo();
     }
     if (verbose || timing) out.println("Entering startup-information...");
+    
     //previously, there was an "return 8" on errors, but there can't be an error any more
     mem.finalizeImage(startUnit.outputLocation, startMthd.outputLocation, codeStart);
     
