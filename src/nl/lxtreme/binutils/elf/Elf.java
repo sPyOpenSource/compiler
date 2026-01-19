@@ -336,13 +336,15 @@ public class Elf implements Closeable
     return new String( buf.array(), 0, buf.remaining() );
   }
 
-  /**
-   * Returns the actual section data based on the information from the given
-   * header.
-   * 
-   * @return a byte buffer from which the section data can be read, never
-   *         <code>null</code>.
-   */
+    /**
+     * Returns the actual section data based on the information from the given
+     * header.
+     * 
+     * @param shdr
+     * @return a byte buffer from which the section data can be read, never
+     *         <code>null</code>.
+     * @throws java.io.IOException
+     */
   public ByteBuffer getSection( SectionHeader shdr ) throws IOException
   {
     if ( shdr == null )
@@ -363,12 +365,13 @@ public class Elf implements Closeable
     return buf;
   }
 
-  /**
-   * Returns the first section header with the given type.
-   * 
-   * @return the first section header with the given type, or <code>null</code>
-   *         if no such section exists in this ELF object.
-   */
+    /**
+     * Returns the first section header with the given type.
+     * 
+     * @param type
+     * @return the first section header with the given type, or <code>null</code>
+     *         if no such section exists in this ELF object.
+     */
   public SectionHeader getSectionHeaderByType( SectionType type )
   {
     if ( type == null )
@@ -385,13 +388,15 @@ public class Elf implements Closeable
     return null;
   }
 
-  /**
-   * Returns the actual segment data based on the information from the given
-   * header.
-   * 
-   * @return a {@link ByteBuffer} from which the segment data can be read, never
-   *         <code>null</code>.
-   */
+    /**
+     * Returns the actual segment data based on the information from the given
+     * header.
+     * 
+     * @param phdr
+     * @return a {@link ByteBuffer} from which the segment data can be read, never
+     *         <code>null</code>.
+     * @throws java.io.IOException
+     */
   public ByteBuffer getSegment( final ProgramHeader phdr ) throws IOException
   {
     if ( phdr == null )

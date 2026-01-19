@@ -9,15 +9,15 @@ package nl.lxtreme.binutils.elf;
 
 public final class ObjectFileType {
     public static final ObjectFileType NONE = new ObjectFileType(0, "no file type");
-    public static final ObjectFileType REL = new ObjectFileType(1, "relocatable");
+    public static final ObjectFileType REL  = new ObjectFileType(1, "relocatable");
     public static final ObjectFileType EXEC = new ObjectFileType(2, "executable");
-    public static final ObjectFileType DYN = new ObjectFileType(3, "shared object");
+    public static final ObjectFileType DYN  = new ObjectFileType(3, "shared object");
     public static final ObjectFileType CORE = new ObjectFileType(4, "core file");
 
     private static final ObjectFileType[] VALUES = { NONE, REL, EXEC, DYN, CORE };
 
-    private static final int ET_LOOS = 0xfe00;
-    private static final int ET_HIOS = 0xfeff;
+    private static final int ET_LOOS   = 0xfe00;
+    private static final int ET_HIOS   = 0xfeff;
     private static final int ET_LOPROC = 0xff00;
     private static final int ET_HIPROC = 0xffff;
 
