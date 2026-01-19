@@ -44,7 +44,6 @@ import sjc.osio.*;
  *  version 060628 adapted new BinWriter
  *  version 060607 initial version
  */
-
 public class BootOut extends OutputFormat {
   private final static int K_INVALID    = -1;
   private final static int K_NONE       =  0;

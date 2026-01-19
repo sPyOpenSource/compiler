@@ -5,16 +5,6 @@
         <group>
             <file>file:/Users/xuyi/Source/Java/V0191/src/sjc/ui/SC.java</file>
             <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/Elf.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/AbiType.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/DynamicEntry.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/ElfClass.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/Flags.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/Header.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/MachineType.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/ObjectFileType.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/SectionHeader.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/SectionType.java</file>
-            <file>file:/Users/xuyi/Source/Java/V0191/src/nl/lxtreme/binutils/elf/SegmentType.java</file>
         </group>
     </open-files>
 </project-private>

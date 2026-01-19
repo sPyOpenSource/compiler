@@ -36,23 +36,22 @@ import java.util.ArrayList;
  *  version 061221 changed from autonomous OutputFormat to supporter of BootOut
  *  version 061001 initial version
  */
-
 public class HexOut extends BinWriter {
-  private final byte[] dataBuffer;
-  private final byte[] textBuffer;
-  private final ArrayList<String> list = new ArrayList<>();
-  private int checkSum, addr;
-  private final TextPrinter out;
-  private final BinWriter destFile;
-  
-  public HexOut(TextPrinter errOut, BinWriter iDF) {
-    out = errOut;
-    destFile = iDF;
-    dataBuffer = new byte[16];
-    textBuffer = new byte[46];
-    textBuffer[0] = (byte)':'; //starter is always the same
-    addr = -1;
-  }
+    private final byte[] dataBuffer;
+    private final byte[] textBuffer;
+    private final ArrayList<String> list = new ArrayList<>();
+    private int checkSum, addr;
+    private final TextPrinter out;
+    private final BinWriter destFile;
+
+    public HexOut(TextPrinter errOut, BinWriter iDF) {
+        out = errOut;
+        destFile = iDF;
+        dataBuffer = new byte[16];
+        textBuffer = new byte[46];
+        textBuffer[0] = (byte)':'; //starter is always the same
+        addr = -1;
+    }
   
     @Override
   public void close() {

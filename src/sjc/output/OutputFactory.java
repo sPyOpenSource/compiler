@@ -30,7 +30,6 @@ import sjc.osio.TextPrinter;
  *  version 060620 removed syminfo functionality
  *  version 060607 initial version
  */
-
 public class OutputFactory {
   public static void printKnownOutputFormats(TextPrinter v) {
     v.println(" raw  - just write the image (default)");
