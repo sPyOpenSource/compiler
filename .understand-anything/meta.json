@@ -1,0 +1,134 @@
+{
+  "project": "Compiler",
+  "rootPath": "/Users/xuyi/Source/OS/armOS/lib/jcore/Compiler",
+  "created": "2026-06-22T09:59:41.570Z",
+  "tool": "understand",
+  "version": "1.0.0",
+  "gitCommit": "4f35b5616c8825ef446165aa60a77cbdd087a829",
+  "stats": {
+    "totalFiles": 14469,
+    "totalNodes": 14469,
+    "totalEdges": 17082,
+    "nodeTypes": {
+      "file": 3249,
+      "function": 9374,
+      "class": 1181,
+      "service": 1,
+      "config": 636,
+      "document": 28
+    },
+    "edgeTypes": {
+      "contains": 9372,
+      "exports": 6594,
+      "imports": 1074,
+      "depends_on": 41,
+      "related": 1
+    },
+    "orphanNodes": 3731
+  },
+  "layers": [
+    {
+      "name": "ASM Bytecode Library",
+      "description": "org.objectweb.asm — bytecode reading/writing/analysis",
+      "filePattern": "asm/**"
+    },
+    {
+      "name": "Bytecode Frontends",
+      "description": "Input .class file decoders and bytecode parsers",
+      "filePattern": "src/jx/instructions/**"
+    },
+    {
+      "name": "Core JIT Compiler",
+      "description": "JIT pipeline: bytecode→LLVM IR→x86",
+      "filePattern": "src/j2ll/**"
+    },
+    {
+      "name": "x86 Backend",
+      "description": "x86 instruction encoding, LLVM→x86 lowering",
+      "filePattern": "src/x86_**"
+    },
+    {
+      "name": "Platform Abstractions",
+      "description": "JNode OS abstraction layer",
+      "filePattern": "src/platform/**"
+    },
+    {
+      "name": "Native C Runtime",
+      "description": "C runtime for compiled programs",
+      "filePattern": "src/nativec/**"
+    },
+    {
+      "name": "Compiled Output",
+      "description": "Generated .o files and test programs",
+      "filePattern": "build/**"
+    },
+    {
+      "name": "GUI & Tests",
+      "description": "UI launcher and test suites",
+      "filePattern": "src/gui/**,test/**"
+    }
+  ],
+  "tour": [
+    {
+      "step": 1,
+      "title": "Entry Point",
+      "files": [
+        "src/gui/Main.java"
+      ]
+    },
+    {
+      "step": 2,
+      "title": "Bytecode Loading",
+      "files": [
+        "src/jx/instructions",
+        "src/jx/formats"
+      ]
+    },
+    {
+      "step": 3,
+      "title": "IR Generation (JIT Core)",
+      "files": [
+        "src/j2ll"
+      ]
+    },
+    {
+      "step": 4,
+      "title": "Runtime Stack",
+      "files": [
+        "src/j2ll/RuntimeStack.java",
+        "src/j2ll/StackValue.java"
+      ]
+    },
+    {
+      "step": 5,
+      "title": "Type Resolution",
+      "files": [
+        "src/j2ll/utils/Resolver.java",
+        "src/j2ll/utils/Util.java"
+      ]
+    },
+    {
+      "step": 6,
+      "title": "x86 Code Generation",
+      "files": [
+        "src/x86_llvm/",
+        "src/x86_jnode/"
+      ]
+    },
+    {
+      "step": 7,
+      "title": "Platform & Native Runtime",
+      "files": [
+        "src/platform/",
+        "src/nativec/"
+      ]
+    },
+    {
+      "step": 8,
+      "title": "Testing",
+      "files": [
+        "test/"
+      ]
+    }
+  ]
+}
