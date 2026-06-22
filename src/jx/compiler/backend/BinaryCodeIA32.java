@@ -202,8 +202,8 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Convert byte to word (3 clks) + (.. clks)
-    */
+     * Convert byte to word (3 clks) + (.. clks)
+     */
     public void cbw() {
 	realloc();
 	insertByte(0x66);
@@ -211,19 +211,19 @@ public final class BinaryCodeIA32 {
     }
 
     /**
-       Convert double to quad word (2 clks)
-
-       fill edx with sign bit of eax
-    */
+     * Convert double to quad word (2 clks)
+     * 
+     * fill edx with sign bit of eax
+     */
     public void cdq() {
 	realloc();
 	insertByte(0x99);
     }
 
     /**
-       Convert word to double word (3 clks)
-       fill dx with sign bit of ax
-    */
+     * Convert word to double word (3 clks)
+     * fill dx with sign bit of ax
+     */
     public void cwde() {
 	realloc();
 	insertByte(0x98);
@@ -794,7 +794,7 @@ public final class BinaryCodeIA32 {
     }
     
     /**
-       Or (1/3 clks)
+       Xor (1/3 clks)
     */
     public void xorl(Opr src, Reg des) {
 	realloc();
@@ -977,7 +977,6 @@ public final class BinaryCodeIA32 {
 	insertByte(0xCD);
 	insertByte(nr);
     }
-
 
     /**
        Jump short/near if equal
