@@ -1,0 +1,219 @@
+{
+    "_type": "compilation_unit",
+    "package": "com.example",
+    "classes": [
+        {
+            "_type": "class",
+            "modifiers": [
+                "public"
+            ],
+            "name": "HelloWorld",
+            "fields": [
+                {
+                    "_type": "field",
+                    "modifiers": [
+                        "private"
+                    ],
+                    "type": "String",
+                    "name": "message"
+                },
+                {
+                    "_type": "field",
+                    "modifiers": [
+                        "public",
+                        "static",
+                        "final"
+                    ],
+                    "type": "int",
+                    "name": "MAX",
+                    "init": {
+                        "_type": "int",
+                        "value": 100
+                    }
+                }
+            ],
+            "methods": [
+                {
+                    "_type": "method",
+                    "modifiers": [
+                        "public"
+                    ],
+                    "return_type": "void",
+                    "name": "HelloWorld",
+                    "params": [
+                        {
+                            "type": "String",
+                            "name": "msg"
+                        }
+                    ],
+                    "body": [
+                        {
+                            "_type": "expr_stmt",
+                            "expr": {
+                                "_type": "binary",
+                                "op": "=",
+                                "left": {
+                                    "_type": "ident",
+                                    "name": "message"
+                                },
+                                "right": {
+                                    "_type": "ident",
+                                    "name": "msg"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_type": "method",
+                    "modifiers": [
+                        "public"
+                    ],
+                    "return_type": "void",
+                    "name": "greet",
+                    "params": [
+                        {
+                            "type": "String",
+                            "name": "name"
+                        }
+                    ],
+                    "body": [
+                        {
+                            "_type": "var_decl",
+                            "type": "int",
+                            "name": "x",
+                            "init": {
+                                "_type": "int",
+                                "value": 42
+                            }
+                        },
+                        {
+                            "_type": "if",
+                            "cond": {
+                                "_type": "binary",
+                                "op": ">",
+                                "left": {
+                                    "_type": "ident",
+                                    "name": "x"
+                                },
+                                "right": {
+                                    "_type": "int",
+                                    "value": 0
+                                }
+                            },
+                            "then": {
+                                "_type": "block",
+                                "statements": [
+                                    {
+                                        "_type": "expr_stmt",
+                                        "expr": {
+                                            "_type": "call",
+                                            "target": {
+                                                "_type": "field",
+                                                "object": {
+                                                    "_type": "field",
+                                                    "object": {
+                                                        "_type": "ident",
+                                                        "name": "System"
+                                                    },
+                                                    "name": "out"
+                                                },
+                                                "name": "println"
+                                            },
+                                            "args": [
+                                                {
+                                                    "_type": "binary",
+                                                    "op": "+",
+                                                    "left": {
+                                                        "_type": "binary",
+                                                        "op": "+",
+                                                        "left": {
+                                                            "_type": "string",
+                                                            "value": "Hello, "
+                                                        },
+                                                        "right": {
+                                                            "_type": "ident",
+                                                            "name": "name"
+                                                        }
+                                                    },
+                                                    "right": {
+                                                        "_type": "string",
+                                                        "value": "!"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            },
+                            "else": {
+                                "_type": "block",
+                                "statements": [
+                                    {
+                                        "_type": "expr_stmt",
+                                        "expr": {
+                                            "_type": "call",
+                                            "target": {
+                                                "_type": "field",
+                                                "object": {
+                                                    "_type": "field",
+                                                    "object": {
+                                                        "_type": "ident",
+                                                        "name": "System"
+                                                    },
+                                                    "name": "out"
+                                                },
+                                                "name": "println"
+                                            },
+                                            "args": [
+                                                {
+                                                    "_type": "string",
+                                                    "value": "Goodbye!"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "_type": "method",
+                    "modifiers": [
+                        "public"
+                    ],
+                    "return_type": "int",
+                    "name": "add",
+                    "params": [
+                        {
+                            "type": "int",
+                            "name": "a"
+                        },
+                        {
+                            "type": "int",
+                            "name": "b"
+                        }
+                    ],
+                    "body": [
+                        {
+                            "_type": "return",
+                            "value": {
+                                "_type": "binary",
+                                "op": "+",
+                                "left": {
+                                    "_type": "ident",
+                                    "name": "a"
+                                },
+                                "right": {
+                                    "_type": "ident",
+                                    "name": "b"
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
