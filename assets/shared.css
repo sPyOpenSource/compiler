@@ -1,0 +1,113 @@
+/* Shared styles for AOT Compilation lessons */
+/* Tufte-inspired: clean, readable, print-friendly */
+
+body {
+  font-family: "Palatino", "Georgia", "Cambria", "Noto Serif", serif;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: #1a1a1a;
+  background: #fafaf9;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+h1, h2, h3 {
+  font-family: "Helvetica Neue", "Segoe UI", sans-serif;
+  font-weight: 600;
+  line-height: 1.3;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+h1 { font-size: 1.8rem; border-bottom: 2px solid #d4d4d4; padding-bottom: 0.3rem; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+
+p { margin: 0.6rem 0; }
+
+a { color: #2563eb; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+code, pre {
+  font-family: "Fira Code", "Hack", "Menlo", monospace;
+  background: #f0f0ee;
+  border-radius: 3px;
+  font-size: 0.9rem;
+}
+
+code { padding: 0.1rem 0.3rem; }
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.4;
+}
+
+blockquote {
+  border-left: 3px solid #d4d4d4;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  color: #555;
+}
+
+figure {
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+figcaption {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+ul, ol { margin: 0.5rem 0; padding-left: 1.5rem; }
+li { margin: 0.3rem 0; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+
+th, td {
+  border: 1px solid #d4d4d4;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+th { background: #f0f0ee; font-weight: 600; }
+
+.sidenote {
+  font-size: 0.82rem;
+  color: #666;
+  border-left: 2px solid #ccc;
+  padding-left: 0.8rem;
+  margin: 0.5rem 0;
+}
+
+.callout {
+  background: #f0f4ff;
+  border: 1px solid #bbd7ff;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+}
+
+.callout.warn {
+  background: #fff8e6;
+  border-color: #f5d88e;
+}
+
+.callout.tip {
+  background: #e8f8e8;
+  border-color: #a8d8a8;
+}
+
+@media print {
+  body { font-size: 11pt; color: #000; background: #fff; }
+  a { color: #000; }
+  pre { white-space: pre-wrap; }
+}

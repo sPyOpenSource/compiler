@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossary: AOT &amp; JIT Compilation</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<h1>Glossary: AOT &amp; JIT Compilation</h1>
+
+<dl>
+<dt><strong>AOT (Ahead-of-Time) compilation</strong></dt>
+<dd>Translating source or bytecode into machine code <em>before</em> execution, usually at build time. Produces a standalone executable. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
+
+<dt><strong>JIT (Just-in-Time) compilation</strong></dt>
+<dd>Translating bytecode to machine code <em>during</em> execution, typically for frequently-executed ("hot") methods. The JVM's default mode. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
+
+<dt><strong>Closed-world assumption</strong></dt>
+<dd>The assumption that all reachable code is known at build time. AOT compilers use this to devirtualize calls, inline aggressively, and eliminate dead code. Breaks with reflection or dynamic class loading.</dd>
+
+<dt><strong>Warmup</strong></dt>
+<dd>The period during which a JIT-compiled application transitions from interpreted execution to fully optimized native code. AOT binaries skip warmup entirely.</dd>
+
+<dt><strong>PGO (Profile-Guided Optimization)</strong></dt>
+<dd>A two-phase AOT strategy: (1) build an instrumented binary and run it on representative data to collect profiles; (2) rebuild with those profiles guiding optimization decisions. Bridges the JIT/AOT gap.</dd>
+
+<dt><strong>Substrate VM</strong></dt>
+<dd>The lightweight runtime embedded in GraalVM native images. Provides memory management (GC), thread scheduling, and exception handling — but no bytecode interpreter or JIT compiler.</dd>
+
+<dt><strong>Points-to analysis</strong></dt>
+<dd>A static analysis that determines which objects a reference variable can point to. Used by AOT compilers under the closed-world assumption to enable devirtualization and escape analysis.</dd>
+
+<dt><strong>Devirtualization</strong></dt>
+<dd>Replacing a virtual method call (which requires a vtable dispatch) with a direct call to a known implementation. Easy under closed-world; requires guards in a JIT.</dd>
+
+<dt><strong>Deoptimization</strong></dt>
+<dd>A JIT mechanism that rolls back optimized code when its speculative assumptions (e.g., "this call is monomorphic") prove wrong. Not available in AOT — the compiled code is fixed.</dd>
+
+<dt><strong>Native image</strong></dt>
+<dd>A self-contained executable produced by GraalVM's AOT compiler. Includes application code, JDK classes it uses, and Substrate VM — but no JVM.</dd>
+</dl>
+
+<hr>
+<p><a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>
+
+</body>
+</html>

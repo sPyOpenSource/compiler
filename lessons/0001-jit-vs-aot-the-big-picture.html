@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 1: JIT vs AOT — The Big Picture</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<h1>JIT vs AOT — The Big Picture</h1>
+
+<p class="sidenote">Lesson 1 of ? — <a href="../MISSION.md">Mission: AOT Compilation</a></p>
+
+<p>You know the compiler pipeline: <strong>source → parse → IR → optimize → codegen → machine code</strong>.
+What changes when you move that pipeline from <em>runtime</em> to <em>build time</em>?
+This lesson maps the two approaches side by side.</p>
+
+<h2>Two compilation strategies</h2>
+
+<p>Every compiler turns high-level code into machine code. The question is <em>when</em>.</p>
+
+<table>
+<tr><th>Stage</th><th>JIT (Just-in-Time)</th><th>AOT (Ahead-of-Time)</th></tr>
+<tr><td>When</td><td>During execution</td><td>Before execution (build time)</td></tr>
+<tr><td>Input</td><td>Bytecode or IR</td><td>Source or bytecode</td></tr>
+<tr><td>Output</td><td>Machine code in memory</td><td>Executable file on disk</td></tr>
+<tr><td>Duration</td><td>Must be fast (ms per method)</td><td>Can be slow (minutes for whole program)</td></tr>
+<tr><td>Info available</td><td>Runtime profile (which paths are hot)</td><td>Static analysis only (unless PGO)</td></tr>
+</table>
+
+<div class="callout">
+<strong>Key insight:</strong> In your JIT compiler, codegen happens while the user waits. In an AOT compiler, it happens while they build — so you can afford heavier optimization passes.
+</div>
+
+<h2>Three-phase translation pipeline</h2>
+
+<h3>JIT pipeline (your compiler)</h3>
+<pre>
+.class file
+    ↓  (class loading)
+Bytecode
+    ↓  (interpretation + profiling)
+Hot methods detected
+    ↓  (JIT compile)
+IR → optimize → x86 machine code
+    ↓  (installed into memory)
+Execution continues on native code
+</pre>
+
+<h3>AOT pipeline</h3>
+<pre>
+.java / .class files
+    ↓  (AOT compile — build time)
+Closed-world analysis (what code is reachable?)
+    ↓
+IR → optimize (heavy passes) → x86 machine code
+    ↓  (link)
+Static executable (no JVM needed)
+    ↓  (run time)
+Immediate native execution — no warmup
+</pre>
+
+<p>The two pipelines share the same middle (IR → optimize → codegen), but everything around it changes.</p>
+
+<h2>The closed-world assumption</h2>
+
+<p>This is the single most important idea in AOT compilation.</p>
+
+<p>A JIT can assume <em>anything</em> might happen — new classes loaded, reflection calls, dynamic proxies.
+The JIT must guard every optimization with runtime checks (e.g., "is this virtual call still monomorphic?").</p>
+
+<p>An AOT compiler makes a <strong>closed-world assumption</strong>: it statically analyzes every reachable class, method, and
+resource from the entry point. If something <em>might</em> be reachable, it gets compiled; if it's definitely <em>not</em>
+reachable, it's excluded. This lets the AOT compiler:</p>
+
+<ul>
+<li>Inline virtual calls (it knows all possible implementation types)</li>
+<li>Eliminate dead code entirely (smaller binary)</li>
+<li>Statically allocate objects whose lifetime is known</li>
+</ul>
+
+<div class="callout warn">
+<strong>Tradeoff:</strong> Reflection, dynamic class loading, and native interop break the closed world.
+AOT systems like GraalVM require <em>explicit configuration</em> (reflection config files) for anything dynamic.
+</div>
+
+<h2>The warmup gap</h2>
+
+<p>This is where the two strategies differ most sharply in practice:</p>
+
+<table>
+<tr><th>Metric</th><th>JIT</th><th>AOT</th></tr>
+<tr><td>Startup time</td><td>Seconds (interpret + warmup)</td><td>Milliseconds</td></tr>
+<tr><td>Peak throughput</td><td>Excellent (runtime PGO)</td><td>~80-90% of JIT peak</td></tr>
+<tr><td>Memory at peak</td><td>Higher (JIT code cache + profiling data)</td><td>Lower (precompiled, no profiling overhead)</td></tr>
+<tr><td>Time to peak</td><td>Minutes (warmup)</td><td>Instant</td></tr>
+</table>
+
+<p>A JIT's peak throughput is higher because it observes <em>exactly</em> which code paths are hot and can
+specialize without guesswork. But it pays for that with startup latency and memory overhead.</p>
+
+<p>An AOT binary starts at full speed — there is no "warmup." It's immediately running compiled code.
+The code may be slightly less optimal, but it's optimal <em>now</em>.</p>
+
+<h2>Bridging the gap: Profile-Guided Optimization (PGO)</h2>
+
+<p>PGO is a two-phase AOT strategy:</p>
+
+<ol>
+<li><strong>Instrumented build:</strong> Compile the program with profiling probes inserted</li>
+<li><strong>Run on representative data:</strong> Execute the instrumented binary to collect profiles</li>
+<li><strong>Optimized rebuild:</strong> Recompile using the collected profile data</li>
+</ol>
+
+<p>This gives AOT some of the benefits of runtime profiling — but the profile is static.
+If the production workload differs from the training workload, the optimization can mispredict.</p>
+
+<h2>Your compiler in context</h2>
+
+<p>Your JIT compiler reads <code>.class</code> files, translates to LLVM IR, optimizes, and emits x86.
+Each stage maps to the AOT model like this:</p>
+
+<table>
+<tr><th>Your JIT stage</th><th>What AOT would change</th></tr>
+<tr><td>Class loading</td><td>Happens at build time — not at runtime</td></tr>
+<tr><td>Bytecode → IR</td><td>Same translation, just earlier</td></tr>
+<tr><td>LLVM optimization passes</td><td>Can use <code>-O3</code> or LTO (build time is cheap)</td></tr>
+<tr><td>Codegen</td><td>Same x86 emission, but to an object file</td></tr>
+<tr><td>Method inlining</td><td>AOT can inline more aggressively (closed-world knowledge)</td></tr>
+<tr><td>Devirtualization</td><td>AOT can devirtualize all calls it can see</td></tr>
+</table>
+
+<h2>Check your understanding</h2>
+
+<p>Look at your compiler's pipeline (<code>src/j2ll/</code>).
+Ask yourself:</p>
+<ul>
+<li>Which optimizations assume the program is still running? (profile data, hotness)</li>
+<li>Which could run at build time with no change? (IR optimization passes)</li>
+<li>What closed-world information <em>isn't</em> available to your JIT that an AOT compiler would have?</li>
+</ul>
+
+<div class="callout tip">
+<strong>Tangible win:</strong> You can now look at any JIT compiler and identify the three things AOT changes — <em>when</em> compilation happens, <em>how much</em> optimization is affordable, and <em>what assumptions</em> the compiler can make.
+</div>
+
+<h2>Recommended reading</h2>
+
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Ahead-of-time_compilation">Wikipedia: Ahead-of-time compilation</a> — canonical reference</li>
+<li><a href="https://www.marcobehler.com/guides/graalvm-aot-jit">Understanding GraalVM, AOT & JIT — Marco Behler</a> — clear Java-focused walkthrough</li>
+<li><a href="https://www.infoq.com/articles/native-java-graalvm">Revolutionizing Java with GraalVM Native Image — InfoQ</a> — industry context</li>
+</ul>
+
+<p><em>Any questions? Ask your teacher — the agent can clarify anything from this lesson or dive deeper into a specific area.</em></p>
+
+<hr>
+<p><a href="../reference/glossary.html">Glossary</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>
+
+</body>
+</html>
