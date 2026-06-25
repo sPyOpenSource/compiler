@@ -110,7 +110,137 @@ public final class BinaryCodeIA32 {
     
     // ***** Code Generation ***** 
     
-    /** Insert a single byte
+    /**
+        SSE Float/Double Instructions
+     */
+    public void addss(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x58);
+	insertModRM(des.value, src);
+    }
+
+    public void addsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x58);
+	insertModRM(des.value, src);
+    }
+
+    public void subss(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5C);
+	insertModRM(des.value, src);
+    }
+
+    public void subsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5C);
+	insertModRM(des.value, src);
+    }
+
+    public void mulss(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x59);
+	insertModRM(des.value, src);
+    }
+
+    public void mulsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x59);
+	insertModRM(des.value, src);
+    }
+
+    public void divss(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5E);
+	insertModRM(des.value, src);
+    }
+
+    public void divsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5E);
+	insertModRM(des.value, src);
+    }
+
+    public void fremss(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5D);
+	insertModRM(des.value, src);
+    }
+
+    public void fremsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x5D);
+	insertModRM(des.value, src);
+    }
+
+    public void negss(RegFloat reg) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x57);
+	insertModRM(reg.value, reg);
+    }
+
+    public void negsd(RegDouble reg) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x57);
+	insertModRM(reg.value, reg);
+    }
+
+    public void fcmps(RegFloat src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0xBC);
+	insertModRM(des.value, src);
+    }
+
+    public void fcmpsd(RegDouble src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0xBC);
+	insertModRM(des.value, src);
+    }
+
+    public void cvtsd2ss(RegDouble src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x2D);
+	insertModRM(des.value, src);
+    }
+
+    public void cvtsi2sd(Reg src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x2A);
+	insertModRM(des.value, src);
+    }
+
+    public void cvtss2sd(RegFloat src, RegDouble des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x2D);
+	insertModRM(des.value, src);
+    }
+
+    public void cvtsi2ss(Reg src, RegFloat des) {
+	realloc();
+	insertByte(0x0F);
+	insertByte(0x28);
+	insertModRM(des.value, src);
+    }
+
+    /**
+        Insert a single byte
     */ 
     void insertByte(int value) {
 	code[ip++] = (byte)value;

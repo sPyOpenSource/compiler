@@ -335,11 +335,12 @@ public class IMNode {
 	translate(result);
     }
 
-    public void translateFloat(RegFloat result) throws CompileException {
+    public void translate(RegFloat result) throws CompileException {
 	throw new CompileException(getLineInfo() + " float translation not implemented!");
     }
-
-    public void translateDouble(RegDouble result) throws CompileException {
-	throw new CompileException(getLineInfo() + " float translation not implemented!");
+    
+    public void translate(RegDouble result) throws CompileException {
+	throw new CompileException(getLineInfo() + " double translation not implemented!");
     }    
+
 }

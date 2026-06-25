@@ -148,7 +148,34 @@ final  public class IMMul extends IMBinaryOperator {
     } 
 
     @Override
+    public void translate(RegFloat result) throws CompileException {
+        RegFloat reg;
+        lOpr.translate(result);
+        reg = regs.chooseFloatRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeFloatRegister(result);
+        code.mulss(reg, result);
+        regs.freeFloatRegister(reg);
+        code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+        RegDouble reg;
+        lOpr.translate(result);
+        reg = regs.chooseDoubleRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeDoubleRegister(result);
+        code.mulsd(reg, result);
+        regs.freeDoubleRegister(reg);
+        code.endBC();
+    }
+
+    @Override
     public void translate(Reg64 result) throws CompileException {
+
     if (datatype!=BCBasicDatatype.LONG) throw new Error();
     execEnv.codeLongMul(this,lOpr,rOpr,result,bcPosition);
     }

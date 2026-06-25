@@ -18,29 +18,42 @@
 <dd>Translating bytecode to machine code <em>during</em> execution, typically for frequently-executed ("hot") methods. The JVM's default mode. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Closed-world assumption</strong></dt>
-<dd>The assumption that all reachable code is known at build time. AOT compilers use this to devirtualize calls, inline aggressively, and eliminate dead code. Breaks with reflection or dynamic class loading.</dd>
+<dd>The assumption that all reachable code is known at build time. AOT compilers use this to devirtualize calls, inline aggressively, and eliminate dead code. Breaks with reflection or dynamic class loading. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Warmup</strong></dt>
-<dd>The period during which a JIT-compiled application transitions from interpreted execution to fully optimized native code. AOT binaries skip warmup entirely.</dd>
+<dd>The period during which a JIT-compiled application transitions from interpreted execution to fully optimized native code. AOT binaries skip warmup entirely. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>PGO (Profile-Guided Optimization)</strong></dt>
-<dd>A two-phase AOT strategy: (1) build an instrumented binary and run it on representative data to collect profiles; (2) rebuild with those profiles guiding optimization decisions. Bridges the JIT/AOT gap.</dd>
+<dd>A two-phase AOT strategy: (1) build an instrumented binary and run it on representative data to collect profiles; (2) rebuild with those profiles guiding optimization decisions. Bridges the JIT/AOT gap. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Substrate VM</strong></dt>
-<dd>The lightweight runtime embedded in GraalVM native images. Provides memory management (GC), thread scheduling, and exception handling — but no bytecode interpreter or JIT compiler.</dd>
+<dd>The lightweight runtime embedded in GraalVM native images. Provides memory management (GC), thread scheduling, and exception handling — but no bytecode interpreter or JIT compiler. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Points-to analysis</strong></dt>
-<dd>A static analysis that determines which objects a reference variable can point to. Used by AOT compilers under the closed-world assumption to enable devirtualization and escape analysis.</dd>
+<dd>A static analysis that determines which objects a reference variable can point to. Used by AOT compilers under the closed-world assumption to enable devirtualization and escape analysis. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Devirtualization</strong></dt>
-<dd>Replacing a virtual method call (which requires a vtable dispatch) with a direct call to a known implementation. Easy under closed-world; requires guards in a JIT.</dd>
+<dd>Replacing a virtual method call (which requires a vtable dispatch) with a direct call to a known implementation. Easy under closed-world; requires guards in a JIT. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Deoptimization</strong></dt>
-<dd>A JIT mechanism that rolls back optimized code when its speculative assumptions (e.g., "this call is monomorphic") prove wrong. Not available in AOT — the compiled code is fixed.</dd>
+<dd>A JIT mechanism that rolls back optimized code when its speculative assumptions (e.g., "this call is monomorphic") prove wrong. Not available in AOT — the compiled code is fixed. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
 
 <dt><strong>Native image</strong></dt>
-<dd>A self-contained executable produced by GraalVM's AOT compiler. Includes application code, JDK classes it uses, and Substrate VM — but no JVM.</dd>
+<dd>A self-contained executable produced by GraalVM's AOT compiler. Includes application code, JDK classes, and Substrate VM — but no JVM. <a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a></dd>
+
+<dt><strong>JVM Slot</strong></dt>
+<dd>The basic unit of storage on the JVM operand stack and in local variables. Typically 32 bits wide. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
+
+<dt><strong>Two-Slot Type</strong></dt>
+<dd>Types (long, double) that occupy two consecutive slots on the stack. This requires special handling in the compiler's stack simulation. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
+
+<dt><strong>XMM Register</strong></dt>
+<dd>Specialized 128-bit registers used by x86 for floating-point (SSE) and SIMD operations. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
+
+<dt><strong>GPR (General Purpose Register)</strong></dt>
+<dd>Standard CPU registers (like RAX, RBX) used for integer arithmetic and memory addresses. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
 </dl>
+
 
 <hr>
 <p><a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>

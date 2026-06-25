@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 2: Numeric Types and the Stack</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<h1>Numeric Types and the Stack</h1>
+
+<p class="sidenote">Lesson 2 of ? — <a href="../MISSION.md">Mission: AOT Compilation</a></p>
+
+<p>In a high-level language, we think of a <code>long</code> as "just a bigger integer." But for a compiler writer, types are about <strong>memory layout</strong> and <strong>register constraints</strong>. 
+In the JVM, this is most visible in how the operand stack is managed.</p>
+
+<h2>The Slot Model: 1 vs 2</h2>
+
+<p>The JVM operand stack is organized into "slots." A slot is typically 32 bits wide. Most types fit into a single slot, but the 64-bit types are special.</p>
+
+<table>
+<tr><th>Java Type</th><th>JVM Slot Size</th><th>X86-64 Register Mapping</th><th>Width</th></tr>
+<tr><td><code>int</code>, <code>float</code></td><td>1 Slot</td><td>GPR (e.g., EAX) / XMM (e.g., XMM0)</td><td>32-bit</td></tr>
+<tr><td><code>long</code>, <code>double</code></td><td>2 Slots</td><td>GPR (e.g., RAX) / XMM (e.g., XMM0)</td><td>64-bit</td></tr>
+<tr><td><code>reference</code></td><td>1 Slot</td><td>GPR (e.g., RAX)</td><td>64-bit (native)</td></tr>
+</table>
+
+<div class="callout warn">
+<strong>The Two-Slot Headache:</strong> 
+When you push a <code>long</code> onto the stack, it occupies <strong>two</strong> consecutive slots. 
+If you then push an <code>int</code>, it sits on top of those two. 
+When popping a <code>long</code>, the compiler must ensure it pops <strong>both</strong> slots.
+</div>
+
+<p>This is why your <code>RuntimeStack</code> implementation needs <code>MODE_SLOT2</code>. It tracks that a value is "wide," so that a <code>pop()</code> operation removes two 32-bit units of data from the stack.</p>
+
+<h2>Registers: GPRs vs. XMM</h2>
+
+<p>The CPU doesn't treat all numbers the same. They are handled by different "execution units" and stored in different register files:</p>
+
+<ul>
+<li><strong>GPRs (General Purpose Registers)</strong>: Used for <code>int</code> and <code>long</code>. On x86-64, these are 64-bit registers (RAX, RBX, etc.). For 32-bit <code>int</code>, we use the lower half (EAX).</li>
+<li><strong>XMM Registers</strong>: Used for <code>float</code> and <code>double</code>. These are part of the SSE/AVX extensions. They are always at least 128 bits wide, but we use them to store single-precision (32-bit) or double-precision (64-bit) values.</li>
+</ul>
+
+<div class="callout tip">
+<strong>Compiler Insight:</strong> 
+When you see a bytecode like <code>fadd</code> (float add), your compiler must emit an x86 instruction like <code>addss</code> (Scalar Single-precision). For <code>dadd</code> (double add), it uses <code>addsd</code> (Scalar Double-precision).
+</div>
+
+<h2>Type Promotion (The Casts)</h2>
+
+<p>Because types are different sizes, the JVM uses explicit "cast" instructions to move data between them. These are not just "labels"—they are actual operations that change the bit representation.</p>
+
+<ul>
+<li><code>i2l</code> (int to long): Sign-extends a 32-bit value to 64-bit. (X86: <code>movsxd</code>)</li>
+<li><code>l2i</code> (long to int): Truncates the upper 32 bits. (X86: just use the lower register)</li>
+<li><code>i2f</code> (int to float): Converts an integer to IEEE 754 floating point. (X86: <code>cvtsi2ss</code>)</li>
+<li><code>f2d</code> (float to double): Expands the exponent and mantissa. (X86: <code>cvtss2sd</code>)</li>
+</ul>
+
+<h2>Tangible Win: Stack Tracing</h2>
+
+<p>Let's trace a small piece of bytecode. Try to determine the stack depth (in slots) after each instruction.</p>
+
+<pre>
+1. iconst_1       // Push int 1
+2. lconst_0       // Push long 0
+3. iadd           // ERROR!
+</pre>
+
+<p><strong>Why is this an error?</strong> 
+<code>iadd</code> expects two <code>int</code> values on top of the stack. But the top of the stack is a <code>long</code> (2 slots). 
+The JVM specification requires that the types match the instruction. A <code>long</code> cannot be treated as two <code>int</code>s for an <code>iadd</code> operation.</p>
+
+<div class="callout">
+<strong>Exercise:</strong> 
+Imagine the stack is currently empty.
+1. <code>iconst_1</code> (1 slot)
+2. <code>lconst_0</code> (2 slots)
+3. <code>i2l</code> (pops 1, pushes 2)
+4. <code>ladd</code> (pops 2+2, pushes 2)
+<br><strong>Final stack depth?</strong> 2 slots.
+</div>
+
+<h2>Recommended reading</h2>
+
+<ul>
+<li><a href="https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/jvm-heap-areas.html#jvmsp-stack">JVM Spec: The Java Virtual Machine Stack</td></tr>
+<li><a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754 Standard</a> — how floats are actually stored in bits.</li>
+</ul>
+
+<p><em>Any questions about the slot model or register mapping? Ask your teacher — we can dive into how this affects your specific <code>IRBuilder</code> implementation.</em></p>
+
+<hr>
+<p><a href="../reference/glossary.html">Glossary</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>
+
+</body>
+</html>

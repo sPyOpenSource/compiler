@@ -28,19 +28,25 @@ public class RegManager {
     private int     numberOfMoveIn;
     private int     numberOfWrites;
     private int     numberOfSwaps;
-
+    
     // all known int register
     private Reg[] regList;
     private RegFloat[] regFloatList;
+    private RegDouble[] regDoubleList;
     // all register objects active in register
     private final RegList active;
-
+    private RegList activeFloat = new RegList();
+    private RegList activeDouble = new RegList();
     private int uniID = 0;
+
 
     public RegManager() {
 	this.regList  = new Reg[6];
         this.regFloatList = new RegFloat[6];
+        this.regDoubleList = new RegDouble[6];
 	this.active   = new RegList(); 
+        this.activeFloat = new RegList();
+        this.activeDouble = new RegList();
 	uniID = 0;
     }
 
@@ -59,6 +65,13 @@ public class RegManager {
         regFloatList[3] = RegFloat.xmm3;
         regFloatList[4] = RegFloat.xmm4;
         regFloatList[5] = RegFloat.xmm5;
+        this.regDoubleList = new RegDouble[6];
+        regDoubleList[0] = RegDouble.xmm0;
+        regDoubleList[1] = RegDouble.xmm1;
+        regDoubleList[2] = RegDouble.xmm2;
+        regDoubleList[3] = RegDouble.xmm3;
+        regDoubleList[4] = RegDouble.xmm4;
+        regDoubleList[5] = RegDouble.xmm5;
 	this.container = container;
 	this.code = container.getIA32Code();
 	this.frame = container.getMethodStackFrame();
@@ -160,8 +173,6 @@ public class RegManager {
 	for (int i = 0; (i < 6 && badness != 0); i++) {
 	    RegFloat reg = regFloatList[i];
 	    
-	    //int value = computeBadness(reg, 6);
-	    
 	    if (choose == null) {
 		choose = reg;		    
 	    }
@@ -176,7 +187,43 @@ public class RegManager {
 	return choose;
     }
 
+    public RegDouble chooseDoubleRegister() throws CompileException {
+	RegDouble choose = null;
+	for (int i = 0; i < 6; i++) {
+	    RegDouble reg = regDoubleList[i];
+	    if (choose == null) {
+		choose = reg;		    
+	    }
+	}
+	choose = choose.getClone();
+	choose.id = uniID++;
+	return choose;
+    }
+
+    public void writeFloatRegister(RegFloat reg) {
+	if (reg.any()) throw new Error("can`t write to register 'any'");
+	//if (reg.free) throw new CompileException("write freed register");
+	//activeFloat.append(reg);
+    }
+
+    public void writeDoubleRegister(RegDouble reg) {
+	if (reg.any()) throw new Error("can`t write to register 'any'");
+	//if (reg.free) throw new CompileException("write freed register");
+	//activeDouble.append(reg);
+    }
+
+    public void freeFloatRegister(RegFloat reg) {
+	reg.free = true;
+	//activeFloat.remove(reg);
+}
+
+    public void freeDoubleRegister(RegDouble reg) {
+	reg.free = true;
+	//activeDouble.remove(reg);
+}
+
     public Reg64 chooseLongRegister() throws CompileException {
+
 	return new Reg64(chooseIntRegister());
     }
 

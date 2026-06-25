@@ -58,7 +58,32 @@ final  public class IMNeg extends IMUnaryOperator {
     code.endBC();
     }
 
-    public void translate(Reg64 result) throws CompileException {    
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+        RegFloat reg;
+        operant.translate(result);
+        reg = regs.chooseFloatRegister();
+        code.startBC(bcPosition);
+        regs.writeFloatRegister(result);
+        code.negss(result); 
+        regs.freeFloatRegister(reg);
+        code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+        RegDouble reg;
+        operant.translate(result);
+        reg = regs.chooseDoubleRegister();
+        code.startBC(bcPosition);
+        regs.writeDoubleRegister(result);
+        code.negsd(result);
+        regs.freeDoubleRegister(reg);
+        code.endBC();
+    }
+
+    public void translate(Reg64 result) throws CompileException {
+    
     operant.translate(result);
     code.startBC(bcPosition);
 
