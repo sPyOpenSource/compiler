@@ -2,6 +2,10 @@
 
 ## Knowledge
 
+- [JVM Specification: The Java Virtual Machine](https://docs.oracle.com/en/java/javase/17/docs/specs/jvms/)
+  The ultimate authority on bytecode, the operand stack, and type representation. Use for: understanding the "two-slot" rule for longs/doubles.
+- [IEEE 754 Standard for Floating-Point Arithmetic](https://ieeexplore.ieee.org/document/8766229)
+  The standard for how `float` and `double` are actually stored in bits. Use for: understanding sign/exponent/mantissa.
 - [Wikipedia: Ahead-of-time compilation](https://en.wikipedia.org/wiki/Ahead-of-time_compilation)
   Canonical reference. Covers definitions, trade-offs, storage/performance analysis. Use for: grounding every AOT concept.
 - [Article: "Understanding GraalVM, AOT & JIT" — Marco Behler](https://www.marcobehler.com/guides/graalvm-aot-jit)
@@ -10,7 +14,7 @@
   Academic treatment of AOT vs JIT tradeoffs using Eclipse OMR. Use for: deeper dive into AOT architecture patterns.
 - [Article: "Revolutionizing Java with GraalVM Native Image" — Alina Yurenko (InfoQ)](https://www.infoq.com/articles/native-java-graalvm)
   Industry perspective on AOT for cloud-native Java. Use for: real-world tradeoffs (startup, memory, peak throughput).
-- [Research Square: "AOT vs JIT Compilation Trade-offs: Empirical performance studies" (2025)](https://www.researchsquare.com/article/rs-7915532/v1)
+- [Research Square: "AOT vs JIT Compilation Trade-offs: Empirical performance studies" (2025)](https://www.researchsquare.com/article/rs-7915532/v1.pdf?c=1761138941000)
   Benchmark data: AOT startup 40-70% faster, JIT steady-state 10-25% faster. Use for: quantitative comparison.
 - [GraalVM Native Image Reference Manual](https://www.graalvm.org/latest/reference-manual/native-image/)
   Primary source for closed-world assumption, points-to analysis, Substrate VM. Use for: authoritative technical detail on AOT for JVM languages.
@@ -25,3 +29,4 @@
   Active community of GraalVM contributors and users. Use for: troubleshooting AOT compilation issues, closed-world assumption edge cases.
 - [r/java](https://reddit.com/r/java)
   General Java community with occasional AOT/GraalVM discussions. Use for: staying current on ecosystem trends.
+

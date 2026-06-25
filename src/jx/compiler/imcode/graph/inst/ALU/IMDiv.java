@@ -118,7 +118,34 @@ final  public class IMDiv extends IMBinaryOperator {
     }
     }
 
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+        RegFloat reg;
+        lOpr.translate(result);
+        reg = regs.chooseFloatRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeFloatRegister(result);
+        code.divss(reg, result);
+        regs.freeFloatRegister(reg);
+        code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+        RegDouble reg;
+        lOpr.translate(result);
+        reg = regs.chooseDoubleRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeDoubleRegister(result);
+        code.divsd(reg, result);
+        regs.freeDoubleRegister(reg);
+        code.endBC();
+    }
+
     public void translate(Reg64 result) throws CompileException {
+
         if (datatype != BCBasicDatatype.LONG) throw new Error();
         execEnv.codeLongDiv(this, lOpr, rOpr, result, bcPosition);
     }

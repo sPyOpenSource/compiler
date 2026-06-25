@@ -168,7 +168,34 @@ final  public class IMSub extends IMBinaryOperator {
     }
 
     @Override
+    public void translate(RegFloat result) throws CompileException {
+        RegFloat reg;
+        lOpr.translate(result);
+        reg = regs.chooseFloatRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeFloatRegister(result);
+        code.subss(reg, result);
+        regs.freeFloatRegister(reg);
+        code.endBC();
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+        RegDouble reg;
+        lOpr.translate(result);
+        reg = regs.chooseDoubleRegister();
+        rOpr.translate(reg);
+        code.startBC(bcPosition);
+        regs.writeDoubleRegister(result);
+        code.subsd(reg, result);
+        regs.freeDoubleRegister(reg);
+        code.endBC();
+    }
+
+    @Override
     public void translate(Reg64 result) throws CompileException {
+
         Reg64 reg;
         lOpr.translate(result);
 

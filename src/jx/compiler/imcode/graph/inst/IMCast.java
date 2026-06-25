@@ -66,9 +66,79 @@ final  public class IMCast extends IMUnaryOperator {
 	}
     }
 
-    // IMCast
+    @Override
+    public void translate(RegFloat result) throws CompileException {
+        switch (shortOpr) {
+            case 1: // i2f
+                Reg regI = regs.chooseIntRegister();
+                operant.translate(regI);
+                code.startBC(bcPosition);
+                regs.writeFloatRegister(result);
+                code.cvtsi2ss(regI, result);
+                regs.freeIntRegister(regI);
+                code.endBC();
+                break;
+            case 4: // l2f
+                Reg64 regL = regs.chooseLongRegister();
+                operant.translate(regL);
+                code.startBC(bcPosition);
+                regs.writeFloatRegister(result);
+                code.cvtsi2ss(regL.low, result);
+                regs.freeLongRegister(regL);
+                code.endBC();
+                break;
+            case 11: // d2f
+                RegDouble regD = regs.chooseDoubleRegister();
+                operant.translate(regD);
+                code.startBC(bcPosition);
+                regs.writeFloatRegister(result);
+                code.cvtsd2ss(regD, result);
+                regs.freeDoubleRegister(regD);
+                code.endBC();
+                break;
+            default:
+                execEnv.codeThrow(this, -11, bcPosition);
+        }
+    }
+
+    @Override
+    public void translate(RegDouble result) throws CompileException {
+        switch (shortOpr) {
+            case 2: // i2d
+                Reg regI = regs.chooseIntRegister();
+                operant.translate(regI);
+                code.startBC(bcPosition);
+                regs.writeDoubleRegister(result);
+                code.cvtsi2sd(regI, result);
+                regs.freeIntRegister(regI);
+                code.endBC();
+                break;
+            case 5: // l2d
+                Reg64 regL = regs.chooseLongRegister();
+                operant.translate(regL);
+                code.startBC(bcPosition);
+                regs.writeDoubleRegister(result);
+                code.cvtsi2sd(regL.low, result);
+                regs.freeLongRegister(regL);
+                code.endBC();
+                break;
+            case 8: // f2d
+                RegFloat regF = regs.chooseFloatRegister();
+                operant.translate(regF);
+                code.startBC(bcPosition);
+                regs.writeDoubleRegister(result);
+                code.cvtss2sd(regF, result);
+                regs.freeFloatRegister(regF);
+                code.endBC();
+                break;
+            default:
+                execEnv.codeThrow(this, -11, bcPosition);
+        }
+    }
+
     @Override
     public void translate(Reg result) throws CompileException {
+
 	switch (shortOpr) {
 	    // i2<x>
 	case 0: // LONG
