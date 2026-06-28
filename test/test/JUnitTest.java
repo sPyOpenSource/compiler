@@ -64,11 +64,6 @@ public class JUnitTest {
     }
     
     @Test
-    public void testIR(){
-        
-    }
-    
-    @Test
     public void testIA32(){
         
     }

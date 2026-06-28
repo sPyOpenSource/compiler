@@ -356,7 +356,7 @@ public class IrBlock extends IrObject {
 
     @Override
     public String toString() {
-        return "" + index;
+        return ";" + index;
     }
 
     @Override

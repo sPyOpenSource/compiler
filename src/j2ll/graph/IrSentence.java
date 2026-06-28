@@ -135,7 +135,7 @@ abstract public class IrSentence extends IrObject {
             System.out.println(s);
             irs.parse(s);
         } else {
-            System.out.println("unknow :" + s);
+            irs = new IrComment();
         }
         irs.line = s;
         irs.comment = c;
