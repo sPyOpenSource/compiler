@@ -528,6 +528,14 @@ public class CompilerOptions implements CompilerOptionsInterface {
 	}
     }
 
+    /**
+     * sets the target architecture (arm, riscv, x86)
+     * @param target 
+     */
+    public void setCodeType(String target) {
+        codeType = target;
+    }
+
     @Override
     public boolean revocationCheckUsingCLI() {
 	return revocationCheckUsingCLI;

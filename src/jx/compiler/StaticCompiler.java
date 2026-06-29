@@ -20,6 +20,8 @@ import jx.compiler.vtable.ClassInfo;
 import jx.compiler.vtable.Method;
 import jx.compiler.vtable.MethodTable;
 import jx.compiler.imcode.ExecEnvironmentInterface;
+import jx.compiler.backend.BinaryCodeDynamicARM;
+import jx.compiler.backend.BinaryCodeDynamicRiscV;
 
 import jx.compiler.execenv.BCClass;
 import jx.compiler.execenv.BCMethod;
@@ -79,7 +81,16 @@ public class StaticCompiler implements ClassFinder {
 
 	this.stat = new jx.compiler.StatisticInfo(opts.getTargetName() + " ");
 
-	this.execEnvNew = new ExecEnvironmentIA32(this, options);
+        switch (options.codeType()) {
+            case "arm":
+                this.execEnvNew = new BinaryCodeDynamicARM();
+                break;
+            case "riscv":
+                this.execEnvNew = new BinaryCodeDynamicRiscV();
+                break;
+            default:
+                this.execEnvNew = new ExecEnvironmentIA32(this, options);
+        }
 
 	this.out = out;
 	this.tableOut = tableOut;
