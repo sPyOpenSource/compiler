@@ -1,259 +1,443 @@
 package test;
 
 import jx.compiler.backend.BinaryCodeDynamicARM;
+import jx.compiler.backend.Reg;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class BinaryCodeDynamicARMTest {
-    @Test
-    public void testConstructorInitializesIP() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertEquals(0, arm.getCurrentIP());
-    }
+
+    // ----- zero-operand instructions (single byte) -----
 
     @Test
-    public void testInsertConst1IncrementsIP() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xE0);
-        assertEquals(1, arm.getCurrentIP());
-    }
-
-    @Test
-    public void testInsertConst1ByteOrder() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xAB);
-        String hex = arm.getBinaryCodeAsHex();
-        assertTrue(hex.startsWith("ab") || hex.startsWith("AB"));
-    }
-
-    @Test
-    public void testInsertConst4IncrementsIPBy4() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst4(0xDEADBEEF);
-        assertEquals(4, arm.getCurrentIP());
-    }
-
-    @Test
-    public void testInsertConst4LittleEndian() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst4(0x12345678);
-        String hex = arm.getBinaryCodeAsHex();
-        assertTrue(hex.contains("78"));
-        assertTrue(hex.contains("56"));
-        assertTrue(hex.contains("34"));
-        assertTrue(hex.contains("12"));
-    }
-
-    @Test
-    public void testMultipleInserts() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0x01);
-        arm.insertConst1(0x02);
-        arm.insertConst1(0x03);
-        assertEquals(3, arm.getCurrentIP());
-    }
-
-    @Test
-    public void testGetBinaryCodeAsHexEmpty() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertEquals("", arm.getBinaryCodeAsHex().trim());
-    }
-
-    @Test
-    public void testGetBinaryCodeAsHexWithRange() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xAA);
-        arm.insertConst1(0xBB);
-        arm.insertConst1(0xCC);
-        arm.insertConst1(0xDD);
-        String hex = arm.getBinaryCodeAsHex(1, 3);
-        assertTrue(hex.contains("bb") || hex.contains("BB"));
-        assertTrue(hex.contains("cc") || hex.contains("CC"));
-    }
-
-    @Test
-    public void testIs8BitValuePositive() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertTrue(arm.is8BitValue(0));
-        assertTrue(arm.is8BitValue(1));
-        assertTrue(arm.is8BitValue(127));
-    }
-
-    @Test
-    public void testInstructionTableSize() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.startBC(1);
-        arm.insertConst1(0x00);
-        arm.endBC();
-        arm.startBC(2);
-        arm.insertConst1(0x01);
-        arm.endBC();
-        assertEquals(2, arm.getInstructionTable().size());
-    }
-
-    @Test
-    public void testNopInsertsOneByte() {
+    public void nopEmits90() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
         arm.nop();
-        assertEquals(1, arm.getCurrentIP());
+        assertEquals("90 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testGetBinaryCodeAsAssembler() {
+    public void retEmitsC3() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xE1);
-        arm.insertConst1(0xA2);
-        String asm = arm.getBinaryCodeAsAssembler();
-        assertFalse(asm.isEmpty());
-    }
-    
-    @Test
-    public void testConstructorInitializesCodeArray() {
-        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertEquals(0, arm.getCurrentIP());
+        arm.ret();
+        assertEquals("c3 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testGetCurrentIPStartsAtZero() {
+    public void cliEmitsFA() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertEquals(0, arm.getCurrentIP());
+        arm.cli();
+        assertEquals("fa ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testInsertByteIncrementsIP() {
+    public void pushflEmits9C() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertEquals(0, arm.getCurrentIP());
-
-        // cannot call insertByte directly because it's package-private,
-        // but we can verify via insertConst1
-        // insertConst1 is public
-        arm.insertConst1(0xE0);
-        assertEquals(1, arm.getCurrentIP());
+        arm.pushfl();
+        assertEquals("9c ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testInsertConst1() {
+    public void popflEmits9D() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xAB);
-        String hex = arm.getBinaryCodeAsHex();
-        assertTrue(hex.startsWith("ab"));
+        arm.popfl();
+        assertEquals("9d ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testInsertConst4() {
+    public void pushalEmits60() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst4(0x12345678);
-        String hex = arm.getBinaryCodeAsHex();
-        // little-endian: 78 56 34 12
-        assertTrue(hex.contains("78"));
-        assertTrue(hex.contains("56"));
-        assertTrue(hex.contains("34"));
-        assertTrue(hex.contains("12"));
+        arm.pushal();
+        assertEquals("60 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testGetBinaryCodeAsHexAfterInsert() {
+    public void popalEmits61() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0xFF);
-        arm.insertConst1(0x00);
-        String hex = arm.getBinaryCodeAsHex();
-        assertTrue(hex.contains("ff"));
-        assertTrue(hex.contains("00"));
+        arm.popal();
+        assertEquals("61 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testIs8BitValueNegative() {
+    public void wrmsrEmits0F30() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertTrue(arm.is8BitValue(-1));
-        assertFalse(arm.is8BitValue(-128));
+        arm.wrmsr();
+        assertEquals("0f 30 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testIs8BitValueTooLarge() {
+    public void rdmsrEmits0F32() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        assertFalse(arm.is8BitValue(128));
-        assertFalse(arm.is8BitValue(255));
-        assertFalse(arm.is8BitValue(1000));
+        arm.rdmsr();
+        assertEquals("0f 32 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- single-register push/pop (each encodes as 0x50+reg) -----
+
+    @Test
+    public void pushEaxEmits50() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.push(Reg.eax);
+        assertEquals("50 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testReallocGrowsArray() {
+    public void pushEcxEmits51() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        // write more than initial 100 bytes
-        for (int i = 0; i < 150; i++) {
-            arm.insertConst1(i);
-        }
-        assertEquals(150, arm.getCurrentIP());
-        String hex = arm.getBinaryCodeAsHex();
-        assertFalse(hex.isEmpty());
+        arm.push(Reg.ecx);
+        assertEquals("51 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testStartBCAndEndBC() {
+    public void pushEdxEmits52() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.startBC(10);
-        arm.insertConst1(0x00);
-        arm.endBC();
-        assertFalse(arm.getInstructionTable().isEmpty());
+        arm.push(Reg.edx);
+        assertEquals("52 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testAddExceptionRangeStart() {
-        // Just verify no exception is thrown
+    public void pushEbxEmits53() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0x00);
-        // No assertion needed - method exists and compiles
-        assertNotNull(arm);
+        arm.push(Reg.ebx);
+        assertEquals("53 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testAlignIP_4_Byte() {
+    public void pushEspEmits54() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0x00);
-        assertEquals(1, arm.getCurrentIP());
-        arm.alignIP_4_Byte();
-        assertEquals(4, arm.getCurrentIP());
+        arm.push(Reg.esp);
+        assertEquals("54 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testAlignIP_16_Byte() {
+    public void pushEbpEmits55() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0x00);
-        arm.alignIP_16_Byte();
-        assertEquals(16, arm.getCurrentIP());
+        arm.push(Reg.ebp);
+        assertEquals("55 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testAlignIP_32_Byte() {
+    public void pushEsiEmits56() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.insertConst1(0x00);
-        arm.alignIP_32_Byte();
-        assertEquals(32, arm.getCurrentIP());
+        arm.push(Reg.esi);
+        assertEquals("56 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testNopDoesNotChangeIP() {
-        // Actually nop inserts a byte so IP increases by 1
+    public void pushEdiEmits57() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        arm.nop();
-        assertEquals(1, arm.getCurrentIP());
+        arm.push(Reg.edi);
+        assertEquals("57 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testSymbolTableInsertConst4() {
+    public void popEaxEmits58() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        //IntValueSTEntry entry = new IntValueSTEntry();
-        //entry.setValue(42);
-        //arm.insertConst4(entry);
-        // IP should increase by 4
-        //assertEquals(4, arm.getCurrentIP());
+        arm.pop(Reg.eax);
+        assertEquals("58 ", arm.getBinaryCodeAsHex());
     }
 
     @Test
-    public void testAddExceptionHandler() {
+    public void popEcxEmits59() {
         BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
-        // No assertion needed - just verifying the method signature compiles
-        assertNotNull(arm);
+        arm.pop(Reg.ecx);
+        assertEquals("59 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void popEdxEmits5A() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.pop(Reg.edx);
+        assertEquals("5a ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void popEbxEmits5B() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.pop(Reg.ebx);
+        assertEquals("5b ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- call via register (ff /2 r/m) -----
+
+    @Test
+    public void callEaxEmitsFFD0() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.call(Reg.eax);
+        assertEquals("ff d0 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void callEbxEmitsFFD3() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.call(Reg.ebx);
+        assertEquals("ff d3 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void callEcxEmitsFFD1() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.call(Reg.ecx);
+        assertEquals("ff d1 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- mov register to register (8b /r = mov r32, r/m32) -----
+
+    @Test
+    public void movEaxToEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.mov(Reg.eax, Reg.ebx);
+        assertEquals("8b d8 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void movEbxToEcx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.mov(Reg.ebx, Reg.ecx);
+        assertEquals("8b cb ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void movImmToEax() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.mov(0x12345678, Reg.eax);
+        assertEquals("b8 78 56 34 12 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void movImmToEcx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.mov(42, Reg.ecx);
+        assertEquals("b9 2a 00 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- arithmetic -----
+
+    @Test
+    public void addOneToEaxAsInc() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.add(1, Reg.eax);
+        assertEquals("40 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void addOneToEbxAsInc() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.add(1, Reg.ebx);
+        assertEquals("43 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void addSmallImmToEax() {
+        // eax uses short-form ADD EAX, imm32 (opcode 05)
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.add(5, Reg.eax);
+        assertEquals("05 05 00 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void addSmallImmToEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.add(0x7f, Reg.ebx);
+        assertEquals("83 c3 7f ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void addLargeImmToEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.add(0x1234, Reg.ebx);
+        assertEquals("81 c3 34 12 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void subSmallFromEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.sub(1, Reg.ebx);
+        assertEquals("83 eb 01 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void subSmallFromEcx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.sub(10, Reg.ecx);
+        assertEquals("83 e9 0a ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void subLargeFromEcx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.sub(0x1234, Reg.ecx);
+        assertEquals("81 e9 34 12 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- comparison -----
+
+    @Test
+    public void cmpImmSmallEax() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.cmp(1, Reg.eax);
+        assertEquals("3d 01 00 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void cmpImmSmallEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.cmp(0x7f, Reg.ebx);
+        assertEquals("83 fb 7f ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void cmpImmLargeEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.cmp(0x1000, Reg.ebx);
+        assertEquals("81 fb 00 10 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void cmpRegToReg() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.cmp(Reg.eax, Reg.ebx);
+        assertEquals("3b d8 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void testRegToReg() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.test(Reg.eax, Reg.ebx);
+        assertEquals("85 d8 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- conditional jumps (short-form for 8-bit offsets) -----
+
+    @Test
+    public void jeShort() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.je(8);
+        assertEquals("74 08 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void jneShort() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.jne(-16);
+        assertEquals("75 f0 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void jsShort() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.js(127);
+        assertEquals("78 7f ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- conditional jumps (near-form for 32-bit offsets) -----
+
+    @Test
+    public void jeNear() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.je(0x1234);
+        assertEquals("0f 84 34 12 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void jneNear() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.jne(0x10000);
+        assertEquals("0f 85 00 00 01 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void jsNear() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.js(0x1000);
+        assertEquals("0f 88 00 10 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- unconditional branch -----
+
+    @Test
+    public void bShort() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.b(16);
+        assertEquals("eb 10 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void bNear() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.b(0x1234);
+        assertEquals("e9 34 12 00 00 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void bViaOprReg() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.b(Reg.eax);
+        assertEquals("ff e0 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- interrupt -----
+
+    @Test
+    public void intr80() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.intr(0x80);
+        assertEquals("cd 80 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- movzwl (movzx word to long) -----
+
+    @Test
+    public void movzwlEaxToEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.movzwl(Reg.eax, Reg.ebx);
+        assertEquals("0f b7 d8 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- setcc -----
+
+    @Test
+    public void seteOnEax() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.sete(Reg.eax);
+        assertEquals("0f 94 c0 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void setneOnEbx() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.setne(Reg.ebx);
+        assertEquals("0f 95 c3 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- composite: multiple instructions emit correct cumulative bytes -----
+
+    @Test
+    public void compositePushPopRet() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.push(Reg.eax);
+        arm.push(Reg.ebx);
+        arm.pop(Reg.eax);
+        arm.ret();
+        assertEquals("50 53 58 c3 ", arm.getBinaryCodeAsHex());
+    }
+
+    @Test
+    public void compositeCallWithMov() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.mov(42, Reg.eax);
+        arm.mov(Reg.eax, Reg.ebx);
+        arm.call(Reg.ebx);
+        assertEquals("b8 2a 00 00 00 8b d8 ff d3 ", arm.getBinaryCodeAsHex());
+    }
+
+    // ----- lock prefix -----
+
+    @Test
+    public void lockEmitsF0() {
+        BinaryCodeDynamicARM arm = new BinaryCodeDynamicARM();
+        arm.lock();
+        assertEquals("f0 ", arm.getBinaryCodeAsHex());
     }
 }
