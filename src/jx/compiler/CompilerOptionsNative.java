@@ -206,6 +206,9 @@ public class CompilerOptionsNative extends CompilerOptions {
                     if (zipClassFile.lastIndexOf(".zip") < 0)
                         zipClassFile = zipClassFile + ".zip";
                     break;
+                case "-target":
+                    codeType = args[++i];
+                    break;
                 case "-l":
                     /* libraries */
                     if (args[i+1].charAt(0)!='-') {
@@ -346,10 +349,12 @@ public class CompilerOptionsNative extends CompilerOptions {
 	System.out.print("usage: jc ");
 	System.out.print("[-lib] [-O] [-env <int|float>] [-profile[:<methodname>]]");
 	System.out.print("[-o <targetName>] ");
+	System.out.print("[-target arm|riscv|x86] ");
 	System.out.print("[-L <libPath>] ");
 	System.out.print("[-l <libs>] ");
 	System.out.println("<src>");
 	System.out.println("  <targetName> : The filename of the compiled code.");
+	System.out.println("  -target      : Target architecture (arm, riscv, x86; default x86).");
 	System.out.println("  <domainin>   : The zipfilename of the domain classes.");
 	System.out.println("  <libs>       : The zipfilenames of the lib classes in the format lib1.zip:lib2.zip:lib3.zip.");
     }
