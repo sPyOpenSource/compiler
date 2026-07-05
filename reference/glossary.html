@@ -54,6 +54,27 @@
 <dd>Standard CPU registers (like RAX, RBX) used for integer arithmetic and memory addresses. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
 </dl>
 
+<dt><strong>SwingUtilities.invokeLater</strong></dt>
+<dd>Ensures a Runnable executes on the Event Dispatch Thread (EDT). All Swing component updates must happen on the EDT to avoid race conditions. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>EDT (Event Dispatch Thread)</strong></dt>
+<dd>The single thread responsible for all Swing event handling and component rendering. Long-running tasks (like compilation) must run on a background thread, not the EDT. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>SwingWorker</strong></dt>
+<dd>A utility class for running background tasks in Swing and publishing intermediate results back to the EDT. Preferred over raw <code>Thread</code> for UI-triggered work like compilation. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>JFileChooser (showOpenDialog vs showSaveDialog)</strong></dt>
+<dd><code>showOpenDialog</code> presents a file-open dialog; <code>showSaveDialog</code> presents a file-save dialog. Using the wrong one confuses users (e.g., "Save" button on an "Open" dialog). <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>NetBeans GUI Builder (.form file)</strong></dt>
+<dd>An XML file produced by NetBeans' visual form editor. Paired with auto-generated <code>initComponents()</code> code. Hand-editing the Java is overwritten if the form is re-opened in the builder. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>LogOutputStream</strong></dt>
+<dd>A custom <code>OutputStream</code> subclass that redirects <code>System.out</code> to a <code>JTextArea</code> via <code>SwingUtilities.invokeLater</code>. Clean pattern for console-in-GUI. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>Busy-polling</strong></dt>
+<dd>A loop that checks for new data at fixed intervals (e.g., every 500ms). Wastes CPU and introduces latency. Avoid in favor of event-driven mechanisms. <code>OutputReader</code> in this codebase uses this pattern. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+</dl>
 
 <hr>
 <p><a href="../lessons/0001-jit-vs-aot-the-big-picture.html">Lesson 1</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>

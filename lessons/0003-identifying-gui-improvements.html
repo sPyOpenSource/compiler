@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson 3: Identifying GUI Improvements</title>
+<link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+
+<h1>Identifying GUI Improvements</h1>
+
+<p class="sidenote">Lesson 3 of ? — <a href="../MISSION.md">Mission: AOT Compilation</a></p>
+
+<p>You have a working Swing launcher for the compiler in <code>src/gui/</code>. It compiles, runs, and displays output. But several parts are broken or half-finished. This lesson teaches you how to systematically analyze a GUI codebase and prioritize fixes.</p>
+
+<h2>The audit: read the code with fresh eyes</h2>
+
+<p>Start by reading <code>src/gui/Compiler.java</code> (385 lines). It has four source files total. Ask these questions:</p>
+
+<h3>1. Does each component do what its name says?</h3>
+
+<table>
+<tr><th>Component</th><th>Name says</th><th>Actually does</th><th>Verdict</th></tr>
+<tr><td>"Open" button</td><td>Open a project</td><td>Runs <code>flatpak run org.apache.netbeans</code></td><td>Labelled wrong — it launches an IDE, not "Open"</td></tr>
+<tr><td>"Kernel IDE" button</td><td>Edit kernel</td><td>Runs <code>flatpak run io.atom.Atom</code></td><td>Same pattern: launches Atom editor</td></tr>
+<tr><td>"Show Logging" button</td><td>Show log output</td><td>Starts <code>OutputReader</code> thread polling <code>/home/spy/output.txt</code></td><td>Starts a background reader, but log output is already being captured via <code>LogOutputStream</code></td></tr>
+</table>
+
+<div class="callout">
+<strong>Finding #1:</strong> Button labels that lie. "Open" doesn't open — it launches NetBeans. "Show Logging" implies a toggle, but it starts a thread that never stops.
+</div>
+
+<h3>2. Is the data flow correct?</h3>
+
+<p><code>openMenuItemActionPerformed</code> (line 247) uses <code>JFileChooser.showSaveDialog</code> instead of <code>showOpenDialog</code>. That's the "Save As" dialog, not "Open File". It still works (you can select files) but it confuses the user.</p>
+
+<p>Worse: after reading the file line-by-line into <code>List&lt;String&gt; liststrings</code> (line 258-262), the code completely ignores the data and hardcodes four strings:</p>
+
+<pre>
+strings[0] = "Zero";
+strings[1] = "OS";
+strings[2] = "testOS";
+strings[3] = "AIZero";
+</pre>
+
+<div class="callout warn">
+<strong>Finding #2:</strong> Dead code path. The file is read but its contents are never used. The project list always shows the same four hardcoded entries regardless of which file you open.
+</div>
+
+<h3>3. Are there competing mechanisms?</h3>
+
+<p>Output reaches the JTextArea through <strong>two different paths</strong>:</p>
+
+<ul>
+<li><strong>LogOutputStream</strong> (line 288-290): installed via <code>System.setOut()</code> when a project is opened. Captures all <code>System.out</code> writes and appends them to the JTextArea via <code>SwingUtilities.invokeLater</code>. This is clean.</li>
+<li><strong>OutputReader</strong> (line 327): spawned as a background thread when "Show Logging" is clicked. Polls <code>/home/spy/output.txt</code> every 500ms and appends lines. This is fragile (hardcoded Linux path, busy-polling).</li>
+</ul>
+
+<div class="callout warn">
+<strong>Finding #3:</strong> Two logging systems, one fragile. <code>LogOutputStream</code> works well; <code>OutputReader</code> should be removed.
+</div>
+
+<h3>4. Which parts are unreachable or broken?</h3>
+
+<table>
+<tr><th>Menu item</th><th>Has action listener?</th><th>Notes</th></tr>
+<tr><td>File → Open</td><td>Yes</td><td>Works but has the data-ignore bug</td></tr>
+<tr><td>File → Save</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>File → Save As</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>File → Exit</td><td>Yes</td><td>Calls <code>System.exit(0)</code></td></tr>
+<tr><td>Edit → Cut</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>Edit → Copy</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>Edit → Paste</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>Edit → Delete</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>Help → Contents</td><td>No</td><td>No listener attached</td></tr>
+<tr><td>Help → About</td><td>No</td><td>No listener attached</td></tr>
+</table>
+
+<div class="callout">
+<strong>Finding #4:</strong> 7 of 11 menu items do nothing. Either wire them up or remove them.
+</div>
+
+<h2>Prioritizing fixes</h2>
+
+<p>Not every bug deserves the same attention. A useful framework:</p>
+
+<dl>
+<dt><strong>P0 (Showstopper)</strong></dt>
+<dd>Core functionality is broken. The feature doesn't do what it says.</dd>
+<dd>→ <em>Your "Open" button being a NetBeans launcher? The project list not showing file contents?</em> These are P0.</dd>
+
+<dt><strong>P1 (Major)</strong></dt>
+<dd>Works but poorly. Missing feedback, confusing behavior, fragile paths.</dd>
+<dd>→ <em>No compile progress indicator. Hardcoded flatpak/Linux paths. The save dialog instead of open dialog.</em></dd>
+
+<dt><strong>P2 (Minor)</strong></dt>
+<dd>Annoyance or polish. Non-functional menu items, inconsistent naming.</dd>
+<dd>→ <em>Cut/Copy/Paste doing nothing. "Show Logging" button name.</em></dd>
+
+<dt><strong>P3 (Cosmetic)</strong></dt>
+<dd>Won't fix unless you're already changing that area.</dd>
+<dd>→ <em>Button sizing, font choices, window title.</em></dd>
+</dl>
+
+<h2>The NetBeans form problem</h2>
+
+<p>The <code>initComponents</code> method (line 41-221) is auto-generated by the NetBeans GUI Builder. The comment says <strong>"WARNING: Do NOT modify this code."</strong> If you edit it by hand and then open the <code>.form</code> file in NetBeans, it will overwrite your changes.</p>
+
+<p>Two approaches:</p>
+<ul>
+<li><strong>Detach from NetBeans:</strong> Delete the <code>.form</code> file and hand-code the layout. You gain full control but lose visual editing.</li>
+<li><strong>Stay with NetBeans:</strong> Only edit in the <code>.form</code> file or the NetBeans designer. Never touch <code>initComponents</code> by hand.</li>
+</ul>
+
+<p>For the fixes suggested in this lesson, you can work entirely in the action listener methods and the helper classes — no layout changes needed. You never need to touch <code>initComponents</code>.</p>
+
+<h2>Tangible win: your improvement map</h2>
+
+<p>You can now look at any GUI code and systematically find:</p>
+<ol>
+<li><strong>Naming lies</strong> — buttons/actions that don't match their labels</li>
+<li><strong>Broken data flow</strong> — values computed but ignored; wrong dialog types</li>
+<li><strong>Competing mechanisms</strong> — two ways to do the same thing, one fragile</li>
+<li><strong>Dead UI</strong> — components with no listeners, unreachable paths</li>
+<li><strong>Hardcoded assumptions</strong> — paths, commands, file locations specific to one machine</li>
+</ol>
+
+<p>Your compiler GUI has at least one of each category — a rich set of concrete problems to practice on.</p>
+
+<h2>Exercise: make your own audit</h2>
+
+<p>Open <code>src/gui/Compiler.java</code> and answer:</p>
+<ol>
+<li>What happens if you click "Compile" without opening a project first?</li>
+<li>What happens if you click "Compile" twice in a row?</li>
+<li>What happens if <code>run.sh</code> doesn't exist when you click "Run OS"?</li>
+<li>The <code>OutputReader</code> thread — can it ever be stopped once started?</li>
+</ol>
+
+<p>Trace each code path to find the answer. This is exactly what a code review or QA session looks like.</p>
+
+<h2>Recommended reading</h2>
+
+<ul>
+<li><a href="https://docs.oracle.com/javase/tutorial/uiswing/">Oracle Swing Tutorial</a> — official reference for all Swing components</li>
+<li><a href="https://docs.oracle.com/javase/tutorial/uiswing/concurrency/">Swing Concurrency</a> — why <code>SwingUtilities.invokeLater</code> matters and how <code>SwingWorker</code> is better than raw <code>Thread</code></li>
+<li><a href="https://netbeans.apache.org/tutorials/61/nbm-gui-builder.html">NetBeans GUI Builder Tutorial</a> — understanding the <code>.form</code> file and <code>initComponents</code></li>
+</ul>
+
+<p><em>Any questions? Try the exercise above — trace the code paths and see if your findings match the lesson's audit. Ask your teacher about any pattern you're unsure of.</em></p>
+
+<hr>
+<p><a href="../reference/glossary.html">Glossary</a> · <a href="../MISSION.md">Mission</a> · <a href="../RESOURCES.md">Resources</a></p>
+
+</body>
+</html>
