@@ -1,0 +1,35 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "COPYING.txt",
+    "language": "txt",
+    "sizeLines": 674,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "bootconf.txt",
+    "language": "txt",
+    "sizeLines": 32,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "build.xml",
+    "language": "xml",
+    "sizeLines": 73,
+    "fileCategory": "config"
+  },
+  {
+    "path": "syminfo.txt",
+    "language": "txt",
+    "sizeLines": 1115,
+    "fileCategory": "docs"
+  }
+],
+  "batchImportData": {
+  "COPYING.txt": [],
+  "bootconf.txt": [],
+  "build.xml": [],
+  "syminfo.txt": []
+}
+}

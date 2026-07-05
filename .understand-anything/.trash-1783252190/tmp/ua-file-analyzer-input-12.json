@@ -1,0 +1,32 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/backend/ssa/SSADef.java",
+    "language": "java",
+    "sizeLines": 153,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/ChkSSA.java",
+    "language": "java",
+    "sizeLines": 413,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/DisSSA.java",
+    "language": "java",
+    "sizeLines": 570,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/backend/ssa/SSADef.java": [],
+  "src/sjc/ui/ChkSSA.java": [
+    "src/sjc/backend/ssa/SSADef.java"
+  ],
+  "src/sjc/ui/DisSSA.java": [
+    "src/sjc/backend/ssa/SSADef.java"
+  ]
+}
+}

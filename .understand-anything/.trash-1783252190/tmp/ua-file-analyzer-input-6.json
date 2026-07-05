@@ -1,0 +1,319 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/frontend/sjava/CatchBlock.java",
+    "language": "java",
+    "sizeLines": 47,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/CondStmt.java",
+    "language": "java",
+    "sizeLines": 46,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JParser.java",
+    "language": "java",
+    "sizeLines": 2165,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/TryContainer.java",
+    "language": "java",
+    "sizeLines": 35,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StAssert.java",
+    "language": "java",
+    "sizeLines": 119,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StEndLoop.java",
+    "language": "java",
+    "sizeLines": 122,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StFor.java",
+    "language": "java",
+    "sizeLines": 199,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StForEnh.java",
+    "language": "java",
+    "sizeLines": 149,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StIf.java",
+    "language": "java",
+    "sizeLines": 146,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StRetMissing.java",
+    "language": "java",
+    "sizeLines": 59,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StReturn.java",
+    "language": "java",
+    "sizeLines": 151,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StSwitch.java",
+    "language": "java",
+    "sizeLines": 268,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StThrow.java",
+    "language": "java",
+    "sizeLines": 93,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StTryCaFi.java",
+    "language": "java",
+    "sizeLines": 340,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StWhile.java",
+    "language": "java",
+    "sizeLines": 135,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/Statement.java",
+    "language": "java",
+    "sizeLines": 92,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/BinaryExpression.java",
+    "language": "java",
+    "sizeLines": 910,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExChoose.java",
+    "language": "java",
+    "sizeLines": 222,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExDeArray.java",
+    "language": "java",
+    "sizeLines": 367,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExEnc.java",
+    "language": "java",
+    "sizeLines": 382,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExPrePst.java",
+    "language": "java",
+    "sizeLines": 157,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/UnaryExpression.java",
+    "language": "java",
+    "sizeLines": 259,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/real/Real.java",
+    "language": "java",
+    "sizeLines": 63,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/frontend/sjava/CatchBlock.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/sjava/ast/Statement.java"
+  ],
+  "src/sjc/frontend/sjava/CondStmt.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/frontend/sjava/ast/Statement.java"
+  ],
+  "src/sjc/frontend/sjava/JParser.java": [
+    "src/sjc/compbase/expr/ExArrayCopy.java",
+    "src/sjc/compbase/expr/ExArrayInit.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/expr/StringLiteral.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblAnno.java",
+    "src/sjc/frontend/sjava/ast/Block.java",
+    "src/sjc/frontend/sjava/ast/expr/BinaryExpression.java",
+    "src/sjc/frontend/sjava/ast/expr/Constructor.java",
+    "src/sjc/frontend/sjava/ast/expr/ExCall.java",
+    "src/sjc/frontend/sjava/ast/expr/ExChoose.java",
+    "src/sjc/frontend/sjava/ast/expr/ExClssMthdName.java",
+    "src/sjc/frontend/sjava/ast/expr/ExDeArray.java",
+    "src/sjc/frontend/sjava/ast/expr/ExDeRef.java",
+    "src/sjc/frontend/sjava/ast/expr/ExEnc.java",
+    "src/sjc/frontend/sjava/ast/expr/ExPrePst.java",
+    "src/sjc/frontend/sjava/ast/expr/ExVar.java",
+    "src/sjc/frontend/sjava/ast/expr/UnaryExpression.java",
+    "src/sjc/frontend/sjava/ast/StAssert.java",
+    "src/sjc/frontend/sjava/ast/Statement.java",
+    "src/sjc/frontend/sjava/ast/StBreakable.java",
+    "src/sjc/frontend/sjava/ast/StEmpty.java",
+    "src/sjc/frontend/sjava/ast/StEndLoop.java",
+    "src/sjc/frontend/sjava/ast/StExpr.java",
+    "src/sjc/frontend/sjava/ast/StFor.java",
+    "src/sjc/frontend/sjava/ast/StForEnh.java",
+    "src/sjc/frontend/sjava/ast/StIf.java",
+    "src/sjc/frontend/sjava/ast/StLoop.java",
+    "src/sjc/frontend/sjava/ast/StRetMissing.java",
+    "src/sjc/frontend/sjava/ast/StReturn.java",
+    "src/sjc/frontend/sjava/ast/StSwitch.java",
+    "src/sjc/frontend/sjava/ast/StSync.java",
+    "src/sjc/frontend/sjava/ast/StThrow.java",
+    "src/sjc/frontend/sjava/ast/StTryCaFi.java",
+    "src/sjc/frontend/sjava/ast/StVrbl.java",
+    "src/sjc/frontend/sjava/ast/StWhile.java"
+  ],
+  "src/sjc/frontend/sjava/TryContainer.java": [
+    "src/sjc/frontend/sjava/ast/StTryCaFi.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StAssert.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StEndLoop.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StFor.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/StringList.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StForEnh.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/ast/expr/ExDeArray.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StIf.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StRetMissing.java": [
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StReturn.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/ast/expr/ExEnc.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StSwitch.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/CondStmt.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StThrow.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StTryCaFi.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/ExCheckType.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/CatchBlock.java",
+    "src/sjc/frontend/sjava/JMthd.java",
+    "src/sjc/frontend/sjava/TryContainer.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StWhile.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/Statement.java": [
+    "src/sjc/compbase/expr/Expression.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/BinaryExpression.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/ExCheckType.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExChoose.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExDeArray.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/ExCheckType.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExEnc.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/ExCheckType.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/Literal.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExPrePst.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/UnaryExpression.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/real/Real.java": [
+    "src/sjc/compbase/Ops.java"
+  ]
+}
+}

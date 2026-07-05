@@ -1,0 +1,263 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/compbase/FilledAnno.java",
+    "language": "java",
+    "sizeLines": 39,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/UnitDummy.java",
+    "language": "java",
+    "sizeLines": 234,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/Vrbl.java",
+    "language": "java",
+    "sizeLines": 247,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblAnno.java",
+    "language": "java",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblList.java",
+    "language": "java",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/DebugWriter.java",
+    "language": "java",
+    "sizeLines": 75,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/FrontAdmin.java",
+    "language": "java",
+    "sizeLines": 616,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/Language.java",
+    "language": "java",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/Lexer.java",
+    "language": "java",
+    "sizeLines": 925,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BImUnit.java",
+    "language": "java",
+    "sizeLines": 72,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BinImp.java",
+    "language": "java",
+    "sizeLines": 150,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/clist/CList.java",
+    "language": "java",
+    "sizeLines": 108,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/PObjUnit.java",
+    "language": "java",
+    "sizeLines": 44,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/PrepObj.java",
+    "language": "java",
+    "sizeLines": 321,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Anno.java",
+    "language": "java",
+    "sizeLines": 92,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Clss.java",
+    "language": "java",
+    "sizeLines": 1311,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Intf.java",
+    "language": "java",
+    "sizeLines": 400,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JUnit.java",
+    "language": "java",
+    "sizeLines": 469,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/SJava.java",
+    "language": "java",
+    "sizeLines": 151,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/Block.java",
+    "language": "java",
+    "sizeLines": 168,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StVrbl.java",
+    "language": "java",
+    "sizeLines": 119,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExAbsCall.java",
+    "language": "java",
+    "sizeLines": 419,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/TextReader.java",
+    "language": "java",
+    "sizeLines": 81,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/compbase/FilledAnno.java": [],
+  "src/sjc/compbase/UnitDummy.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/DebugWriter.java"
+  ],
+  "src/sjc/compbase/variable/Vrbl.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/FilledAnno.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java"
+  ],
+  "src/sjc/compbase/variable/VrblAnno.java": [
+    "src/sjc/compbase/FilledAnno.java"
+  ],
+  "src/sjc/compbase/variable/VrblList.java": [],
+  "src/sjc/debug/DebugWriter.java": [
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java"
+  ],
+  "src/sjc/frontend/FrontAdmin.java": [
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/binimp/BinImp.java",
+    "src/sjc/frontend/clist/CList.java",
+    "src/sjc/frontend/prepobj/PrepObj.java",
+    "src/sjc/frontend/sjava/SJava.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/frontend/Language.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/StringList.java"
+  ],
+  "src/sjc/frontend/Lexer.java": [
+    "src/sjc/osio/TextPrinter.java",
+    "src/sjc/osio/TextReader.java"
+  ],
+  "src/sjc/frontend/binimp/BImUnit.java": [
+    "src/sjc/debug/DebugWriter.java"
+  ],
+  "src/sjc/frontend/binimp/BinImp.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/Language.java"
+  ],
+  "src/sjc/frontend/clist/CList.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/StringList.java",
+    "src/sjc/frontend/Language.java",
+    "src/sjc/osio/TextReader.java"
+  ],
+  "src/sjc/frontend/prepobj/PObjUnit.java": [
+    "src/sjc/debug/DebugWriter.java"
+  ],
+  "src/sjc/frontend/prepobj/PrepObj.java": [
+    "src/sjc/compbase/expr/ExArrayInit.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/expr/StringLiteral.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/Language.java",
+    "src/sjc/frontend/Lexer.java",
+    "src/sjc/frontend/Literal.java",
+    "src/sjc/osio/TextReader.java"
+  ],
+  "src/sjc/frontend/sjava/Anno.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/DebugWriter.java"
+  ],
+  "src/sjc/frontend/sjava/Clss.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblList.java",
+    "src/sjc/debug/DebugWriter.java",
+    "src/sjc/frontend/sjava/ast/Block.java"
+  ],
+  "src/sjc/frontend/sjava/Intf.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/DebugWriter.java"
+  ],
+  "src/sjc/frontend/sjava/JUnit.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblList.java"
+  ],
+  "src/sjc/frontend/sjava/SJava.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/Language.java",
+    "src/sjc/frontend/Lexer.java",
+    "src/sjc/frontend/sjava/ast/expr/ExEnc.java",
+    "src/sjc/osio/TextReader.java"
+  ],
+  "src/sjc/frontend/sjava/ast/Block.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/ast/expr/ExCall.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StVrbl.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExAbsCall.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ],
+  "src/sjc/osio/TextReader.java": []
+}
+}

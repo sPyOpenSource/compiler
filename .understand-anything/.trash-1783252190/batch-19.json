@@ -1,0 +1,240 @@
+{
+  "nodes": [
+    {
+      "id": "nl.lxtreme.binutils.ar.AR",
+      "label": "AR",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/ar/AR.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.ar.AREntry",
+      "label": "AREntry",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/ar/AREntry.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.CoffMagic",
+      "label": "CoffMagic",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/coff/CoffMagic.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.LineNumber",
+      "label": "LineNumber",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/coff/LineNumber.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.MachineType",
+      "label": "MachineType",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/coff/MachineType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.OptionalHeader",
+      "label": "OptionalHeader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/coff/OptionalHeader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.RelocationInfo",
+      "label": "RelocationInfo",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/coff/RelocationInfo.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.SectionHeader",
+      "label": "SectionHeader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/coff/SectionHeader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.coff.SectionType",
+      "label": "SectionType",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/coff/SectionType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.AbiType",
+      "label": "AbiType",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/elf/AbiType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.ElfClass",
+      "label": "ElfClass",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/elf/ElfClass.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.MachineType",
+      "label": "MachineType",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/elf/MachineType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.ObjectFileType",
+      "label": "ObjectFileType",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/elf/ObjectFileType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.ProgramHeader",
+      "label": "ProgramHeader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/elf/ProgramHeader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.SectionHeader",
+      "label": "SectionHeader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/elf/SectionHeader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.SectionType",
+      "label": "SectionType",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/elf/SectionType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.SegmentType",
+      "label": "SegmentType",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/elf/SegmentType.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.AbstractReader",
+      "label": "AbstractReader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/hex/AbstractReader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.IntelHexReader",
+      "label": "IntelHexReader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/hex/IntelHexReader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.SRecordReader",
+      "label": "SRecordReader",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/hex/SRecordReader.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.util.ByteOrderUtils",
+      "label": "ByteOrderUtils",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/hex/util/ByteOrderUtils.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.util.Checksum",
+      "label": "Checksum",
+      "type": "enum",
+      "filePath": "src/nl/lxtreme/binutils/hex/util/Checksum.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.util.Checksummer",
+      "label": "Checksummer",
+      "type": "interface",
+      "filePath": "src/nl/lxtreme/binutils/hex/util/Checksummer.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.hex.util.HexUtils",
+      "label": "HexUtils",
+      "type": "class",
+      "filePath": "src/nl/lxtreme/binutils/hex/util/HexUtils.java"
+    }
+  ],
+  "edges": [
+    {
+      "from": "nl.lxtreme.binutils.ar.AR",
+      "to": "nl.lxtreme.binutils.ar.AREntry",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.ar.AREntry",
+      "to": "nl.lxtreme.binutils.ar.AR",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.coff.OptionalHeader",
+      "to": "nl.lxtreme.binutils.coff.CoffMagic",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.coff.SectionHeader",
+      "to": "nl.lxtreme.binutils.coff.SectionType",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.ProgramHeader",
+      "to": "nl.lxtreme.binutils.elf.SegmentType",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.ProgramHeader",
+      "to": "nl.lxtreme.binutils.elf.ElfClass",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.SectionHeader",
+      "to": "nl.lxtreme.binutils.elf.SectionType",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.SectionHeader",
+      "to": "nl.lxtreme.binutils.elf.ElfClass",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.IntelHexReader",
+      "to": "nl.lxtreme.binutils.hex.AbstractReader",
+      "label": "extends"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.SRecordReader",
+      "to": "nl.lxtreme.binutils.hex.AbstractReader",
+      "label": "extends"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.IntelHexReader",
+      "to": "nl.lxtreme.binutils.hex.util.Checksummer",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.IntelHexReader",
+      "to": "nl.lxtreme.binutils.hex.util.Checksum",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.IntelHexReader",
+      "to": "nl.lxtreme.binutils.hex.util.HexUtils",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.SRecordReader",
+      "to": "nl.lxtreme.binutils.hex.util.Checksummer",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.SRecordReader",
+      "to": "nl.lxtreme.binutils.hex.util.Checksum",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.SRecordReader",
+      "to": "nl.lxtreme.binutils.hex.util.HexUtils",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.AbstractReader",
+      "to": "nl.lxtreme.binutils.hex.util.ByteOrderUtils",
+      "label": "uses"
+    },
+    {
+      "from": "nl.lxtreme.binutils.hex.util.Checksum",
+      "to": "nl.lxtreme.binutils.hex.util.Checksummer",
+      "label": "implements"
+    }
+  ]
+}

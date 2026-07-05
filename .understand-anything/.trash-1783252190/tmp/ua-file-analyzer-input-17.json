@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/jx/classfile/CodeData.ctxt",
+    "language": "ctxt",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/ClassCPEntry.java",
+    "language": "java",
+    "sizeLines": 63,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+    "language": "java",
+    "sizeLines": 87,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/DummyCPEntry.java",
+    "language": "java",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/FieldRefCPEntry.java",
+    "language": "java",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/InterfaceMethodRefCPEntry.java",
+    "language": "java",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java",
+    "language": "java",
+    "sizeLines": 90,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/MethodHandleCPEntry.java",
+    "language": "java",
+    "sizeLines": 107,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/MethodRefCPEntry.java",
+    "language": "java",
+    "sizeLines": 31,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/MethodTypeCPEntry.java",
+    "language": "java",
+    "sizeLines": 87,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+    "language": "java",
+    "sizeLines": 70,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/NumericCPEntry.java",
+    "language": "java",
+    "sizeLines": 96,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/package.bluej",
+    "language": "bluej",
+    "sizeLines": 125,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/README.TXT",
+    "language": "txt",
+    "sizeLines": 0,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/StringCPEntry.java",
+    "language": "java",
+    "sizeLines": 65,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BasicTypeDescriptor.java",
+    "language": "java",
+    "sizeLines": 167,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCBasicDatatype.java",
+    "language": "java",
+    "sizeLines": 184,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCByte.ctxt",
+    "language": "ctxt",
+    "sizeLines": 15,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCByte.java",
+    "language": "java",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCDouble.java",
+    "language": "java",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCFloat.ctxt",
+    "language": "ctxt",
+    "sizeLines": 17,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCFloat.java",
+    "language": "java",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCFloatDatatype.java",
+    "language": "java",
+    "sizeLines": 7,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCInteger.java",
+    "language": "java",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCIntegerDatatype.java",
+    "language": "java",
+    "sizeLines": 35,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/jx/classfile/CodeData.ctxt": [],
+  "src/jx/classfile/constantpool/ClassCPEntry.java": [],
+  "src/jx/classfile/constantpool/ClassMemberCPEntry.java": [],
+  "src/jx/classfile/constantpool/DummyCPEntry.java": [],
+  "src/jx/classfile/constantpool/FieldRefCPEntry.java": [],
+  "src/jx/classfile/constantpool/InterfaceMethodRefCPEntry.java": [],
+  "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java": [],
+  "src/jx/classfile/constantpool/MethodHandleCPEntry.java": [],
+  "src/jx/classfile/constantpool/MethodRefCPEntry.java": [],
+  "src/jx/classfile/constantpool/MethodTypeCPEntry.java": [],
+  "src/jx/classfile/constantpool/NameAndTypeCPEntry.java": [],
+  "src/jx/classfile/constantpool/NumericCPEntry.java": [],
+  "src/jx/classfile/constantpool/package.bluej": [],
+  "src/jx/classfile/constantpool/README.TXT": [],
+  "src/jx/classfile/constantpool/StringCPEntry.java": [],
+  "src/jx/classfile/datatypes/BasicTypeDescriptor.java": [],
+  "src/jx/classfile/datatypes/BCBasicDatatype.java": [],
+  "src/jx/classfile/datatypes/BCByte.ctxt": [],
+  "src/jx/classfile/datatypes/BCByte.java": [],
+  "src/jx/classfile/datatypes/BCDouble.java": [],
+  "src/jx/classfile/datatypes/BCFloat.ctxt": [],
+  "src/jx/classfile/datatypes/BCFloat.java": [],
+  "src/jx/classfile/datatypes/BCFloatDatatype.java": [],
+  "src/jx/classfile/datatypes/BCInteger.java": [],
+  "src/jx/classfile/datatypes/BCIntegerDatatype.java": []
+}
+}

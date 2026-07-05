@@ -1,0 +1,825 @@
+{
+  "nodes": [
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd",
+      "type": "class",
+      "name": "SSAopt2amd",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java"
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doInit",
+      "type": "method",
+      "name": "doInit",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 35
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doPrepareMethod",
+      "type": "method",
+      "name": "doPrepareMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 41
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doMethodSize",
+      "type": "method",
+      "name": "doMethodSize",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 46
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doPutRef",
+      "type": "method",
+      "name": "doPutRef",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 51
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doPutCodeRef",
+      "type": "method",
+      "name": "doPutCodeRef",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 56
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doCopyMethod",
+      "type": "method",
+      "name": "doCopyMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 61
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doEnumerate",
+      "type": "method",
+      "name": "doEnumerate",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 66
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2amd.doFinalizeMethod",
+      "type": "method",
+      "name": "doFinalizeMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+      "line": 71
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin",
+      "type": "interface",
+      "name": "SSAopt2bin",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java"
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doInit",
+      "type": "method",
+      "name": "doInit",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 35
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doPrepareMethod",
+      "type": "method",
+      "name": "doPrepareMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 36
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doMethodSize",
+      "type": "method",
+      "name": "doMethodSize",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 37
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doPutRef",
+      "type": "method",
+      "name": "doPutRef",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 38
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doPutCodeRef",
+      "type": "method",
+      "name": "doPutCodeRef",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 39
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doCopyMethod",
+      "type": "method",
+      "name": "doCopyMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 40
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doEnumerate",
+      "type": "method",
+      "name": "doEnumerate",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 41
+    },
+    {
+      "id": "sjc.backend.ssaopt.SSAopt2bin.doFinalizeMethod",
+      "type": "method",
+      "name": "doFinalizeMethod",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+      "line": 42
+    },
+    {
+      "id": "sjc.backend.x86.AMD64",
+      "type": "class",
+      "name": "AMD64",
+      "filePath": "src/sjc/backend/x86/AMD64.java"
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.setParameter",
+      "type": "method",
+      "name": "setParameter",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 171
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.printParameter",
+      "type": "method",
+      "name": "printParameter",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 183
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.init",
+      "type": "method",
+      "name": "init",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 188
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.putRef",
+      "type": "method",
+      "name": "putRef",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 194
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.putCodeRef",
+      "type": "method",
+      "name": "putCodeRef",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 199
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.getFreeReg",
+      "type": "method",
+      "name": "getFreeReg",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 209
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.freeRegSearch",
+      "type": "method",
+      "name": "freeRegSearch",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 220
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.storeReg",
+      "type": "method",
+      "name": "storeReg",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 232
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.restoreReg",
+      "type": "method",
+      "name": "restoreReg",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 251
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.internalGetReg",
+      "type": "method",
+      "name": "internalGetReg",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 269
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.prepareMethodCoding",
+      "type": "method",
+      "name": "prepareMethodCoding",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 314
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.codeProlog",
+      "type": "method",
+      "name": "codeProlog",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 328
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.codeEpilog",
+      "type": "method",
+      "name": "codeEpilog",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 370
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genLoadConstVal",
+      "type": "method",
+      "name": "genLoadConstVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 435
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genLoadConstDoubleOrLongVal",
+      "type": "method",
+      "name": "genLoadConstDoubleOrLongVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 467
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genLoadVarAddr",
+      "type": "method",
+      "name": "genLoadVarAddr",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 485
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genLoadVarVal",
+      "type": "method",
+      "name": "genLoadVarVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 501
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genConvertVal",
+      "type": "method",
+      "name": "genConvertVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 544
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genDup",
+      "type": "method",
+      "name": "genDup",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 671
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genPushConstVal",
+      "type": "method",
+      "name": "genPushConstVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 692
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genPushConstDoubleOrLongVal",
+      "type": "method",
+      "name": "genPushConstDoubleOrLongVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 697
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genPush",
+      "type": "method",
+      "name": "genPush",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 712
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genPop",
+      "type": "method",
+      "name": "genPop",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 744
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genAssign",
+      "type": "method",
+      "name": "genAssign",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 769
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genStoreVarVal",
+      "type": "method",
+      "name": "genStoreVarVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 792
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genStoreVarConstVal",
+      "type": "method",
+      "name": "genStoreVarConstVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 816
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genStoreVarConstDoubleOrLongVal",
+      "type": "method",
+      "name": "genStoreVarConstDoubleOrLongVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 845
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genBinOp",
+      "type": "method",
+      "name": "genBinOp",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 851
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genBinOpConstRi",
+      "type": "method",
+      "name": "genBinOpConstRi",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1137
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genUnaOp",
+      "type": "method",
+      "name": "genUnaOp",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1187
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genIncMem",
+      "type": "method",
+      "name": "genIncMem",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1230
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genDecMem",
+      "type": "method",
+      "name": "genDecMem",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1242
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genLoadConstUnitContext",
+      "type": "method",
+      "name": "genLoadConstUnitContext",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1254
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genCall",
+      "type": "method",
+      "name": "genCall",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1262
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genCallIndexed",
+      "type": "method",
+      "name": "genCallIndexed",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1272
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genCallConst",
+      "type": "method",
+      "name": "genCallConst",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1281
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genComp",
+      "type": "method",
+      "name": "genComp",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1285
+    },
+    {
+      "id": "sjc.backend.x86.AMD64.genCompValToConstVal",
+      "type": "method",
+      "name": "genCompValToConstVal",
+      "filePath": "src/sjc/backend/x86/AMD64.java",
+      "line": 1317
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2",
+      "type": "class",
+      "name": "AsmOutVCPU2",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java"
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2.AsmOutVCPU2",
+      "type": "method",
+      "name": "AsmOutVCPU2",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java",
+      "line": 44
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2.printHeader",
+      "type": "method",
+      "name": "printHeader",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java",
+      "line": 48
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2.setMthdFlag",
+      "type": "method",
+      "name": "setMthdFlag",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java",
+      "line": 64
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2.printMthdHead",
+      "type": "method",
+      "name": "printMthdHead",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java",
+      "line": 77
+    },
+    {
+      "id": "sjc.debug.AsmOutVCPU2.printMthdTail",
+      "type": "method",
+      "name": "printMthdTail",
+      "filePath": "src/sjc/debug/AsmOutVCPU2.java",
+      "line": 82
+    },
+    {
+      "id": "sjc.debug.AsmOutX86",
+      "type": "class",
+      "name": "AsmOutX86",
+      "filePath": "src/sjc/debug/AsmOutX86.java"
+    },
+    {
+      "id": "sjc.debug.AsmOutX86.AsmOutX86",
+      "type": "method",
+      "name": "AsmOutX86",
+      "filePath": "src/sjc/debug/AsmOutX86.java",
+      "line": 39
+    },
+    {
+      "id": "sjc.debug.AsmOutX86.printHeader",
+      "type": "method",
+      "name": "printHeader",
+      "filePath": "src/sjc/debug/AsmOutX86.java",
+      "line": 43
+    },
+    {
+      "id": "sjc.debug.AsmOutX86.setMthdFlag",
+      "type": "method",
+      "name": "setMthdFlag",
+      "filePath": "src/sjc/debug/AsmOutX86.java",
+      "line": 52
+    },
+    {
+      "id": "sjc.debug.AsmOutX86.printMthdHead",
+      "type": "method",
+      "name": "printMthdHead",
+      "filePath": "src/sjc/debug/AsmOutX86.java",
+      "line": 56
+    },
+    {
+      "id": "sjc.debug.AsmOutX86.printMthdTail",
+      "type": "method",
+      "name": "printMthdTail",
+      "filePath": "src/sjc/debug/AsmOutX86.java",
+      "line": 60
+    },
+    {
+      "id": "sjc.debug.DebugLister",
+      "type": "class",
+      "name": "DebugLister",
+      "filePath": "src/sjc/debug/DebugLister.java"
+    },
+    {
+      "id": "sjc.debug.DebugLister.globalRAMInfo",
+      "type": "method",
+      "name": "globalRAMInfo",
+      "filePath": "src/sjc/debug/DebugLister.java",
+      "line": 35
+    },
+    {
+      "id": "sjc.debug.DebugLister.listMemory",
+      "type": "method",
+      "name": "listMemory",
+      "filePath": "src/sjc/debug/DebugLister.java",
+      "line": 37
+    },
+    {
+      "id": "sjc.memory.MemoryImage",
+      "type": "class",
+      "name": "MemoryImage",
+      "filePath": "src/sjc/memory/MemoryImage.java"
+    },
+    {
+      "id": "sjc.memory.MemoryImage.checkMemoryLocation",
+      "type": "method",
+      "name": "checkMemoryLocation",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 53
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getAddrAsInt",
+      "type": "method",
+      "name": "getAddrAsInt",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 55
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "method",
+      "name": "getAddrAsLong",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 56
+    },
+    {
+      "id": "sjc.memory.MemoryImage.putByte",
+      "type": "method",
+      "name": "putByte",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 58
+    },
+    {
+      "id": "sjc.memory.MemoryImage.putShort",
+      "type": "method",
+      "name": "putShort",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 59
+    },
+    {
+      "id": "sjc.memory.MemoryImage.putInt",
+      "type": "method",
+      "name": "putInt",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 60
+    },
+    {
+      "id": "sjc.memory.MemoryImage.putLong",
+      "type": "method",
+      "name": "putLong",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 61
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getBaseAddress",
+      "type": "method",
+      "name": "getBaseAddress",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 62
+    },
+    {
+      "id": "sjc.memory.MemoryImage.appendImage",
+      "type": "method",
+      "name": "appendImage",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 63
+    },
+    {
+      "id": "sjc.memory.MemoryImage.appendImagePart",
+      "type": "method",
+      "name": "appendImagePart",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 64
+    },
+    {
+      "id": "sjc.memory.MemoryImage.enableDebugListerSupport",
+      "type": "method",
+      "name": "enableDebugListerSupport",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 66
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getFirstDebugListerObject",
+      "type": "method",
+      "name": "getFirstDebugListerObject",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 70
+    },
+    {
+      "id": "sjc.memory.MemoryImage.putByteArray",
+      "type": "method",
+      "name": "putByteArray",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 75
+    },
+    {
+      "id": "sjc.memory.MemoryImage.allocate",
+      "type": "method",
+      "name": "allocate",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 81
+    },
+    {
+      "id": "sjc.memory.MemoryImage.allocateArray",
+      "type": "method",
+      "name": "allocateArray",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 86
+    },
+    {
+      "id": "sjc.memory.MemoryImage.allocationDebugHint",
+      "type": "method",
+      "name": "allocationDebugHint",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 91
+    },
+    {
+      "id": "sjc.memory.MemoryImage.finalizeImage",
+      "type": "method",
+      "name": "finalizeImage",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 95
+    },
+    {
+      "id": "sjc.memory.MemoryImage.enterInitObject",
+      "type": "method",
+      "name": "enterInitObject",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 99
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getStructOutputObject",
+      "type": "method",
+      "name": "getStructOutputObject",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 103
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getIndirScalarObject",
+      "type": "method",
+      "name": "getIndirScalarObject",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 108
+    },
+    {
+      "id": "sjc.memory.MemoryImage.getCurrentAllocAmountHint",
+      "type": "method",
+      "name": "getCurrentAllocAmountHint",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 113
+    },
+    {
+      "id": "sjc.memory.MemoryImage.alignBlock",
+      "type": "method",
+      "name": "alignBlock",
+      "filePath": "src/sjc/memory/MemoryImage.java",
+      "line": 118
+    },
+    {
+      "id": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "class",
+      "name": "MemoryObjectDebugInfo",
+      "filePath": "src/sjc/memory/MemoryObjectDebugInfo.java"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd",
+      "to": "sjc.backend.x86.AMD64",
+      "type": "extends"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd",
+      "to": "sjc.backend.ssaopt.SSAopt2bin",
+      "type": "implements"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doInit",
+      "to": "sjc.backend.x86.AMD64.init",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doPrepareMethod",
+      "to": "sjc.backend.x86.AMD64.prepareMethodCoding",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doMethodSize",
+      "to": "sjc.backend.x86.AMD64.getMethodSize",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doPutRef",
+      "to": "sjc.backend.x86.AMD64.putRef",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doPutCodeRef",
+      "to": "sjc.backend.x86.AMD64.putCodeRef",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doCopyMethod",
+      "to": "sjc.backend.x86.AMD64.copyMethodCode",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doEnumerate",
+      "to": "sjc.backend.x86.AMD64.enumerateInstructions",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.ssaopt.SSAopt2amd.doFinalizeMethod",
+      "to": "sjc.backend.x86.AMD64.finalizeMethodCoding",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.putRef",
+      "to": "sjc.memory.MemoryImage.putLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.putRef",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.putCodeRef",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.putCodeRef",
+      "to": "sjc.memory.MemoryImage.putInt",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genLoadVarAddr",
+      "to": "sjc.memory.MemoryImage.getAddrAsInt",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genLoadVarAddr",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genLoadVarVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsInt",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genLoadVarVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genStoreVarVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsInt",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genStoreVarVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genStoreVarConstVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsInt",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genStoreVarConstVal",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.backend.x86.AMD64.genLoadConstUnitContext",
+      "to": "sjc.memory.MemoryImage.getAddrAsLong",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.debug.AsmOutVCPU2",
+      "to": "AsmOut",
+      "type": "extends"
+    },
+    {
+      "from": "sjc.debug.AsmOutX86",
+      "to": "AsmOut",
+      "type": "extends"
+    },
+    {
+      "from": "sjc.debug.AsmOutVCPU2.printHeader",
+      "to": "sjc.memory.MemoryImage",
+      "type": "references"
+    },
+    {
+      "from": "sjc.debug.AsmOutX86.printHeader",
+      "to": "sjc.memory.MemoryImage.getBaseAddress",
+      "type": "calls"
+    },
+    {
+      "from": "sjc.debug.AsmOutVCPU2.printMthdHead",
+      "to": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "references"
+    },
+    {
+      "from": "sjc.debug.AsmOutVCPU2.printMthdTail",
+      "to": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "references"
+    },
+    {
+      "from": "sjc.debug.AsmOutX86.printMthdTail",
+      "to": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "references"
+    },
+    {
+      "from": "sjc.debug.DebugLister.listMemory",
+      "to": "sjc.memory.MemoryImage",
+      "type": "references"
+    }
+  ]
+}

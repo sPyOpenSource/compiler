@@ -1,0 +1,834 @@
+{
+  "nodes": [
+    {
+      "id": "java.lang.MAGIC",
+      "label": "MAGIC",
+      "type": "class",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.Object",
+      "label": "Object",
+      "type": "class",
+      "filePath": "app/java/lang/Object.java"
+    },
+    {
+      "id": "rte.SClassDesc",
+      "label": "SClassDesc",
+      "type": "class",
+      "filePath": "app/rte/SClassDesc.java"
+    },
+    {
+      "id": "SIntfMap",
+      "label": "SIntfMap",
+      "type": "class"
+    },
+    {
+      "id": "java.lang.MAGIC.ptrSize",
+      "label": "ptrSize",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.movable",
+      "label": "movable",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.indirScalars",
+      "label": "indirScalars",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.streamline",
+      "label": "streamline",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.assignCall",
+      "label": "assignCall",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.assignHeapCall",
+      "label": "assignHeapCall",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.runtimeBoundException",
+      "label": "runtimeBoundException",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.runtimeNullException",
+      "label": "runtimeNullException",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.imageBase",
+      "label": "imageBase",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.compressedImageBase",
+      "label": "compressedImageBase",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.embedded",
+      "label": "embedded",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.embConstRAM",
+      "label": "embConstRAM",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.relocation",
+      "label": "relocation",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.comprRelocation",
+      "label": "comprRelocation",
+      "type": "field",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.inline",
+      "label": "inline",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.inline16",
+      "label": "inline16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.inline32",
+      "label": "inline32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.inlineOffset",
+      "label": "inlineOffset",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.inlineBlock",
+      "label": "inlineBlock",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wMem64",
+      "label": "wMem64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rMem64",
+      "label": "rMem64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wMem32",
+      "label": "wMem32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rMem32",
+      "label": "rMem32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wMem16",
+      "label": "wMem16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rMem16",
+      "label": "rMem16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wMem8",
+      "label": "wMem8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rMem8",
+      "label": "rMem8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wIOs64",
+      "label": "wIOs64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rIOs64",
+      "label": "rIOs64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wIOs32",
+      "label": "wIOs32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rIOs32",
+      "label": "rIOs32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wIOs16",
+      "label": "wIOs16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rIOs16",
+      "label": "rIOs16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.wIOs8",
+      "label": "wIOs8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.rIOs8",
+      "label": "rIOs8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.cast2Ref",
+      "label": "cast2Ref",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.cast2Obj",
+      "label": "cast2Obj",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.addr",
+      "label": "addr",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.clssDesc",
+      "label": "clssDesc",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.mthdOff",
+      "label": "mthdOff",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getCodeOff",
+      "label": "getCodeOff",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getInstScalarSize",
+      "label": "getInstScalarSize",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getInstRelocEntries",
+      "label": "getInstRelocEntries",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitMem8",
+      "label": "bitMem8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitMem16",
+      "label": "bitMem16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitMem32",
+      "label": "bitMem32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitMem64",
+      "label": "bitMem64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitIOs8",
+      "label": "bitIOs8",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitIOs16",
+      "label": "bitIOs16",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitIOs32",
+      "label": "bitIOs32",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.bitIOs64",
+      "label": "bitIOs64",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.cast2Struct",
+      "label": "cast2Struct",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getRamAddr",
+      "label": "getRamAddr",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getRamSize",
+      "label": "getRamSize",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getRamInitAddr",
+      "label": "getRamInitAddr",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.useAsThis",
+      "label": "useAsThis",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getConstMemorySize",
+      "label": "getConstMemorySize",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.doStaticInit",
+      "label": "doStaticInit",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.toByteArray",
+      "label": "toByteArray",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.toCharArray",
+      "label": "toCharArray",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.getNamedString",
+      "label": "getNamedString",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.ignore",
+      "label": "ignore",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.stopBlockCoding",
+      "label": "stopBlockCoding",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.MAGIC.assign",
+      "label": "assign",
+      "type": "method",
+      "filePath": "app/java/lang/MAGIC.java"
+    },
+    {
+      "id": "java.lang.Object._r_type",
+      "label": "_r_type",
+      "type": "field",
+      "filePath": "app/java/lang/Object.java"
+    },
+    {
+      "id": "java.lang.Object._r_next",
+      "label": "_r_next",
+      "type": "field",
+      "filePath": "app/java/lang/Object.java"
+    },
+    {
+      "id": "java.lang.Object._r_relocEntries",
+      "label": "_r_relocEntries",
+      "type": "field",
+      "filePath": "app/java/lang/Object.java"
+    },
+    {
+      "id": "java.lang.Object._r_scalarSize",
+      "label": "_r_scalarSize",
+      "type": "field",
+      "filePath": "app/java/lang/Object.java"
+    },
+    {
+      "id": "rte.SClassDesc.parent",
+      "label": "parent",
+      "type": "field",
+      "filePath": "app/rte/SClassDesc.java"
+    },
+    {
+      "id": "rte.SClassDesc.implementations",
+      "label": "implementations",
+      "type": "field",
+      "filePath": "app/rte/SClassDesc.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.ptrSize",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.movable",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.indirScalars",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.streamline",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.assignCall",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.assignHeapCall",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.runtimeBoundException",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.runtimeNullException",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.imageBase",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.compressedImageBase",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.embedded",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.embConstRAM",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.relocation",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.comprRelocation",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.inline",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.inline16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.inline32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.inlineOffset",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.inlineBlock",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wMem64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rMem64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wMem32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rMem32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wMem16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rMem16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wMem8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rMem8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wIOs64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rIOs64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wIOs32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rIOs32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wIOs16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rIOs16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.wIOs8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.rIOs8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.cast2Ref",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.cast2Obj",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.addr",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.clssDesc",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.mthdOff",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getCodeOff",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getInstScalarSize",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getInstRelocEntries",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitMem8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitMem16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitMem32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitMem64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitIOs8",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitIOs16",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitIOs32",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.bitIOs64",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.cast2Struct",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getRamAddr",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getRamSize",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getRamInitAddr",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.useAsThis",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getConstMemorySize",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.doStaticInit",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.toByteArray",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.toCharArray",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.getNamedString",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.ignore",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.stopBlockCoding",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "java.lang.MAGIC.assign",
+      "label": "hasMethod"
+    },
+    {
+      "source": "java.lang.MAGIC.clssDesc",
+      "target": "rte.SClassDesc",
+      "label": "returns"
+    },
+    {
+      "source": "java.lang.Object",
+      "target": "java.lang.Object._r_type",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.Object",
+      "target": "java.lang.Object._r_next",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.Object",
+      "target": "java.lang.Object._r_relocEntries",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.Object",
+      "target": "java.lang.Object._r_scalarSize",
+      "label": "hasField"
+    },
+    {
+      "source": "java.lang.Object._r_type",
+      "target": "rte.SClassDesc",
+      "label": "type"
+    },
+    {
+      "source": "java.lang.Object._r_next",
+      "target": "java.lang.Object",
+      "label": "type"
+    },
+    {
+      "source": "rte.SClassDesc",
+      "target": "rte.SClassDesc.parent",
+      "label": "hasField"
+    },
+    {
+      "source": "rte.SClassDesc",
+      "target": "rte.SClassDesc.implementations",
+      "label": "hasField"
+    },
+    {
+      "source": "rte.SClassDesc.parent",
+      "target": "rte.SClassDesc",
+      "label": "type"
+    },
+    {
+      "source": "rte.SClassDesc.implementations",
+      "target": "SIntfMap",
+      "label": "type"
+    },
+    {
+      "source": "java.lang.MAGIC",
+      "target": "rte.SClassDesc",
+      "label": "imports"
+    },
+    {
+      "source": "java.lang.Object",
+      "target": "rte.SClassDesc",
+      "label": "imports"
+    }
+  ]
+}

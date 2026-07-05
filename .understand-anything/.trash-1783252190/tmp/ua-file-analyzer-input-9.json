@@ -1,0 +1,40 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+    "language": "java",
+    "sizeLines": 203,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/Elf.java",
+    "language": "java",
+    "sizeLines": 476,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/Flags.java",
+    "language": "java",
+    "sizeLines": 127,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/Header.java",
+    "language": "java",
+    "sizeLines": 251,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/nl/lxtreme/binutils/elf/DynamicEntry.java": [],
+  "src/nl/lxtreme/binutils/elf/Elf.java": [
+    "src/nl/lxtreme/binutils/elf/DynamicEntry.java"
+  ],
+  "src/nl/lxtreme/binutils/elf/Flags.java": [],
+  "src/nl/lxtreme/binutils/elf/Header.java": [
+    "src/nl/lxtreme/binutils/elf/Elf.java",
+    "src/nl/lxtreme/binutils/elf/Flags.java"
+  ]
+}
+}

@@ -1,0 +1,32 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "app/java/lang/MAGIC.java",
+    "language": "java",
+    "sizeLines": 94,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/java/lang/Object.java",
+    "language": "java",
+    "sizeLines": 9,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/SClassDesc.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "app/java/lang/MAGIC.java": [
+    "app/rte/SClassDesc.java"
+  ],
+  "app/java/lang/Object.java": [
+    "app/rte/SClassDesc.java"
+  ],
+  "app/rte/SClassDesc.java": []
+}
+}

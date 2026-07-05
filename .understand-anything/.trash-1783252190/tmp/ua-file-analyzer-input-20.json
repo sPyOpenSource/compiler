@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/README.TXT",
+    "language": "txt",
+    "sizeLines": 0,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "src/sjc/backend/ArchFactory.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/Architecture.ctxt",
+    "language": "ctxt",
+    "sizeLines": 186,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/arm/ARM7.ctxt",
+    "language": "ctxt",
+    "sizeLines": 180,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/arm/package.bluej",
+    "language": "bluej",
+    "sizeLines": 27,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/arm/README.TXT",
+    "language": "txt",
+    "sizeLines": 0,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmega.ctxt",
+    "language": "ctxt",
+    "sizeLines": 178,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmegaOpti.ctxt",
+    "language": "ctxt",
+    "sizeLines": 72,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmegaOptInstr.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/package.bluej",
+    "language": "bluej",
+    "sizeLines": 54,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ValueInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ValueInfo.java",
+    "language": "java",
+    "sizeLines": 51,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/dennisk/JVM.ctxt",
+    "language": "ctxt",
+    "sizeLines": 162,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/dennisk/package.bluej",
+    "language": "bluej",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/InstrList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/Instruction.ctxt",
+    "language": "ctxt",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/package.bluej",
+    "language": "bluej",
+    "sizeLines": 99,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/package.bluej",
+    "language": "bluej",
+    "sizeLines": 47,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/SSA.ctxt",
+    "language": "ctxt",
+    "sizeLines": 158,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/SSADef.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/SSAReg.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/SSAReg.java",
+    "language": "java",
+    "sizeLines": 33,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/package.bluej",
+    "language": "bluej",
+    "sizeLines": 54,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt.ctxt",
+    "language": "ctxt",
+    "sizeLines": 26,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt2amd.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/README.TXT": [],
+  "src/sjc/backend/ArchFactory.ctxt": [],
+  "src/sjc/backend/Architecture.ctxt": [],
+  "src/sjc/backend/arm/ARM7.ctxt": [],
+  "src/sjc/backend/arm/package.bluej": [],
+  "src/sjc/backend/arm/README.TXT": [],
+  "src/sjc/backend/atmel/ATmega.ctxt": [],
+  "src/sjc/backend/atmel/ATmegaOpti.ctxt": [],
+  "src/sjc/backend/atmel/ATmegaOptInstr.ctxt": [],
+  "src/sjc/backend/atmel/package.bluej": [],
+  "src/sjc/backend/atmel/ValueInfo.ctxt": [],
+  "src/sjc/backend/atmel/ValueInfo.java": [],
+  "src/sjc/backend/dennisk/JVM.ctxt": [],
+  "src/sjc/backend/dennisk/package.bluej": [],
+  "src/sjc/backend/InstrList.ctxt": [],
+  "src/sjc/backend/Instruction.ctxt": [],
+  "src/sjc/backend/package.bluej": [],
+  "src/sjc/backend/ssa/package.bluej": [],
+  "src/sjc/backend/ssa/SSA.ctxt": [],
+  "src/sjc/backend/ssa/SSADef.ctxt": [],
+  "src/sjc/backend/ssa/SSAReg.ctxt": [],
+  "src/sjc/backend/ssa/SSAReg.java": [],
+  "src/sjc/backend/ssaopt/package.bluej": [],
+  "src/sjc/backend/ssaopt/SSAopt.ctxt": [],
+  "src/sjc/backend/ssaopt/SSAopt2amd.ctxt": []
+}
+}

@@ -1,0 +1,657 @@
+{
+  "nodes": [
+    {
+      "id": "src/sjc/osio/OsIO.java",
+      "label": "OsIO.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 42
+      }
+    },
+    {
+      "id": "src/sjc/osio/TextBuffer.java",
+      "label": "TextBuffer.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 127
+      }
+    },
+    {
+      "id": "src/sjc/osio/TextPrinter.java",
+      "label": "TextPrinter.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 73
+      }
+    },
+    {
+      "id": "src/sjc/osio/sun/FileBinWriter.java",
+      "label": "FileBinWriter.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 88
+      }
+    },
+    {
+      "id": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "label": "ReflectionSymbols.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 730
+      }
+    },
+    {
+      "id": "src/sjc/osio/sun/StreamTextPrinter.java",
+      "label": "StreamTextPrinter.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 79
+      }
+    },
+    {
+      "id": "src/sjc/osio/sun/SunOS.java",
+      "label": "SunOS.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 124
+      }
+    },
+    {
+      "id": "src/sjc/output/BootOut.java",
+      "label": "BootOut.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 730
+      }
+    },
+    {
+      "id": "src/sjc/output/HexOut.java",
+      "label": "HexOut.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 135
+      }
+    },
+    {
+      "id": "src/sjc/output/OutputFactory.java",
+      "label": "OutputFactory.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 46
+      }
+    },
+    {
+      "id": "src/sjc/output/OutputFormat.java",
+      "label": "OutputFormat.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 43
+      }
+    },
+    {
+      "id": "src/sjc/output/RawOut.java",
+      "label": "RawOut.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 82
+      }
+    },
+    {
+      "id": "src/sjc/real/EmulReal.java",
+      "label": "EmulReal.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 677
+      }
+    },
+    {
+      "id": "src/sjc/real/NativeReal.java",
+      "label": "NativeReal.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 154
+      }
+    },
+    {
+      "id": "src/sjc/relations/RelationElement.java",
+      "label": "RelationElement.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 45
+      }
+    },
+    {
+      "id": "src/sjc/relations/RelationManager.java",
+      "label": "RelationManager.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 127
+      }
+    },
+    {
+      "id": "src/sjc/symbols/MthdSymbols.java",
+      "label": "MthdSymbols.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 116
+      }
+    },
+    {
+      "id": "src/sjc/symbols/RTESymbols.java",
+      "label": "RTESymbols.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 220
+      }
+    },
+    {
+      "id": "src/sjc/symbols/RawSymbols.java",
+      "label": "RawSymbols.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 158
+      }
+    },
+    {
+      "id": "src/sjc/symbols/SymbolFactory.java",
+      "label": "SymbolFactory.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 57
+      }
+    },
+    {
+      "id": "src/sjc/symbols/SymbolInformer.java",
+      "label": "SymbolInformer.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 84
+      }
+    },
+    {
+      "id": "src/sjc/ui/Boot.java",
+      "label": "Boot.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 79
+      }
+    },
+    {
+      "id": "src/sjc/ui/SC.java",
+      "label": "SC.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 66
+      }
+    },
+    {
+      "id": "src/sjc/ui/SCG.java",
+      "label": "SCG.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 662
+      }
+    },
+    {
+      "id": "test/CompilerTest.java",
+      "label": "CompilerTest.java",
+      "type": "file",
+      "properties": {
+        "language": "java",
+        "sizeLines": 98
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/sjc/osio/OsIO.java",
+      "target": "src/sjc/compbase/StringList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/FileBinWriter.java",
+      "target": "src/sjc/osio/BinWriter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/Context.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/Marks.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/Modifier.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/Pack.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/StdTypes.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/TypeRef.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/Unit.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/UnitList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/compbase/variable/Vrbl.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "target": "src/sjc/symbols/SymbolInformer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/StreamTextPrinter.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/SunOS.java",
+      "target": "src/sjc/compbase/StringList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/SunOS.java",
+      "target": "src/sjc/osio/BinWriter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/SunOS.java",
+      "target": "src/sjc/osio/OsIO.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/osio/sun/SunOS.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/BootOut.java",
+      "target": "src/sjc/memory/ImageContainer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/HexOut.java",
+      "target": "src/sjc/osio/BinWriter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/HexOut.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/OutputFactory.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/OutputFormat.java",
+      "target": "src/sjc/memory/ImageContainer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/OutputFormat.java",
+      "target": "src/sjc/osio/OsIO.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/OutputFormat.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/RawOut.java",
+      "target": "src/sjc/memory/ImageContainer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/RawOut.java",
+      "target": "src/sjc/osio/BinWriter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/RawOut.java",
+      "target": "src/sjc/osio/OsIO.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/output/RawOut.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationElement.java",
+      "target": "src/sjc/compbase/Mthd.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationElement.java",
+      "target": "src/sjc/compbase/Unit.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationElement.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationManager.java",
+      "target": "src/sjc/compbase/Mthd.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationManager.java",
+      "target": "src/sjc/compbase/Unit.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationManager.java",
+      "target": "src/sjc/compbase/UnitList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/relations/RelationManager.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/compbase/Context.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/compbase/Mthd.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/compbase/Unit.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/compbase/UnitList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/osio/TextBuffer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/MthdSymbols.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RTESymbols.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RTESymbols.java",
+      "target": "src/sjc/compbase/variable/Vrbl.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RTESymbols.java",
+      "target": "src/sjc/osio/TextBuffer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RTESymbols.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RawSymbols.java",
+      "target": "src/sjc/compbase/variable/Vrbl.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RawSymbols.java",
+      "target": "src/sjc/osio/TextBuffer.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/RawSymbols.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolFactory.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/compbase/Context.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/compbase/Unit.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/compbase/UnitList.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/compbase/variable/AccVar.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/compbase/variable/Vrbl.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/symbols/SymbolInformer.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/Boot.java",
+      "target": "src/sjc/memory/BootableImage.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/Boot.java",
+      "target": "src/sjc/osio/TextPrinter.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/Boot.java",
+      "target": "src/sjc/output/BootOut.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SC.java",
+      "target": "src/sjc/compbase/Context.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SC.java",
+      "target": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SC.java",
+      "target": "src/sjc/osio/sun/SunOS.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SC.java",
+      "target": "src/sjc/symbols/SymbolFactory.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SCG.java",
+      "target": "src/sjc/compbase/Context.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SCG.java",
+      "target": "src/sjc/osio/sun/ReflectionSymbols.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SCG.java",
+      "target": "src/sjc/osio/sun/SunOS.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "src/sjc/ui/SCG.java",
+      "target": "src/sjc/symbols/SymbolFactory.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "test/CompilerTest.java",
+      "target": "src/compiler/Compiler.java",
+      "label": "imports",
+      "type": "dependency"
+    },
+    {
+      "source": "test/CompilerTest.java",
+      "target": "src/sjc/output/HexOut.java",
+      "label": "imports",
+      "type": "dependency"
+    }
+  ]
+}

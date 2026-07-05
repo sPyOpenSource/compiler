@@ -1,0 +1,111 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/jCPU/JavaVM/vm/Attribute.java",
+    "language": "java",
+    "sizeLines": 92,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jCPU/JavaVM/vm/SignatureAttribute.java",
+    "language": "java",
+    "sizeLines": 21,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jCPU/JavaVM/vm/SimpleMethodPool.java",
+    "language": "java",
+    "sizeLines": 29,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jCPU/JavaVM/vm/SourceFileAttribute.java",
+    "language": "java",
+    "sizeLines": 21,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/ClassFileParserException.java",
+    "language": "java",
+    "sizeLines": 19,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/ClassSource.java",
+    "language": "java",
+    "sizeLines": 59,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/CodeData.java",
+    "language": "java",
+    "sizeLines": 124,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/MethodData.java",
+    "language": "java",
+    "sizeLines": 318,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/ConstantPool.java",
+    "language": "java",
+    "sizeLines": 316,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/ConstantPoolEntry.java",
+    "language": "java",
+    "sizeLines": 154,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/InvalidConstantPoolIndex.java",
+    "language": "java",
+    "sizeLines": 30,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/constantpool/UTF8CPEntry.java",
+    "language": "java",
+    "sizeLines": 48,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/jCPU/JavaVM/vm/Attribute.java": [
+    "src/jx/classfile/CodeData.java",
+    "src/jx/classfile/constantpool/ConstantPool.java",
+    "src/jx/classfile/constantpool/ConstantPoolEntry.java",
+    "src/jx/classfile/constantpool/InvalidConstantPoolIndex.java",
+    "src/jx/classfile/constantpool/UTF8CPEntry.java"
+  ],
+  "src/jCPU/JavaVM/vm/SignatureAttribute.java": [
+    "src/jx/classfile/constantpool/ConstantPool.java",
+    "src/jx/classfile/constantpool/InvalidConstantPoolIndex.java"
+  ],
+  "src/jCPU/JavaVM/vm/SimpleMethodPool.java": [
+    "src/jx/classfile/MethodData.java"
+  ],
+  "src/jCPU/JavaVM/vm/SourceFileAttribute.java": [
+    "src/jx/classfile/constantpool/ConstantPool.java",
+    "src/jx/classfile/constantpool/InvalidConstantPoolIndex.java"
+  ],
+  "src/jx/classfile/ClassFileParserException.java": [],
+  "src/jx/classfile/ClassSource.java": [
+    "src/jx/classfile/constantpool/ConstantPool.java"
+  ],
+  "src/jx/classfile/CodeData.java": [],
+  "src/jx/classfile/MethodData.java": [
+    "src/jCPU/JavaVM/vm/Attribute.java"
+  ],
+  "src/jx/classfile/constantpool/ConstantPool.java": [],
+  "src/jx/classfile/constantpool/ConstantPoolEntry.java": [],
+  "src/jx/classfile/constantpool/InvalidConstantPoolIndex.java": [
+    "src/jx/classfile/ClassFileParserException.java"
+  ],
+  "src/jx/classfile/constantpool/UTF8CPEntry.java": []
+}
+}

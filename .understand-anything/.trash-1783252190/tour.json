@@ -1,0 +1,80 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview: The SJC Compiler",
+    "description": "SJC (Small Java Compiler) is a multi-target Java compiler that translates Java source into native code for x86, ARM, ATmega, and JVM architectures. It also supports bootable image generation and embedded targets. Start with the GUI entry point SCG.java, which orchestrates the full compilation pipeline: lexing, parsing, semantic analysis, code generation, and binary output.",
+    "nodeIds": ["file:src/sjc/ui/SCG.java", "file:src/sjc/ui/SC.java"]
+  },
+  {
+    "order": 2,
+    "title": "OS Abstraction Layer: Platform Independence",
+    "description": "The OS Abstraction layer is the most depended-upon foundation in SJC. OsIO defines the abstract I/O interface, TextPrinter provides text output, and TextBuffer buffers formatted strings. Every higher layer imports these — making them the structural backbone of the project. Understanding this layer first clarifies how the compiler achieves platform portability.",
+    "nodeIds": ["file:src/sjc/osio/OsIO.java", "file:src/sjc/osio/TextPrinter.java", "file:src/sjc/osio/TextBuffer.java"]
+  },
+  {
+    "order": 3,
+    "title": "Platform Implementation: SunOS and Friends",
+    "description": "SunOS provides a concrete OS implementation atop OsIO, using FileBinWriter for binary file output and StreamTextPrinter for stream-based text. ReflectionSymbols bridges the OS layer to the symbol resolution system, enabling runtime class introspection during compilation. These implementations connect the abstract OS layer to real hardware.",
+    "nodeIds": ["file:src/sjc/osio/sun/SunOS.java", "file:src/sjc/osio/sun/FileBinWriter.java", "file:src/sjc/osio/sun/StreamTextPrinter.java", "file:src/sjc/osio/sun/ReflectionSymbols.java"]
+  },
+  {
+    "order": 4,
+    "title": "Binary Classfile Library: Reading JVM Bytecode",
+    "description": "SJC reads compiled Java classfiles as input when using binary import. The JX classfile library (ClassData.java) parses the JVM classfile format — constant pool, field/method data, opcodes, and type descriptors. This enables SJC to consume existing bytecode alongside source code, supporting incremental and mixed compilation.",
+    "nodeIds": ["file:src/jx/classfile/ClassData.java", "file:src/jCPU/JavaVM/vm/LocalVariables.java"]
+  },
+  {
+    "order": 5,
+    "title": "Method and RTE Symbol Resolution",
+    "description": "Symbol resolution converts parsed source into resolved references. MthdSymbols resolves method declarations and call targets, RTESymbols handles runtime environment symbols (exception handling, array bounds checks), and RawSymbols manages low-level raw memory references. Together they form the symbol table that the code generator queries.",
+    "nodeIds": ["file:src/sjc/symbols/MthdSymbols.java", "file:src/sjc/symbols/RTESymbols.java", "file:src/sjc/symbols/RawSymbols.java"]
+  },
+  {
+    "order": 6,
+    "title": "Symbol Factory and Informer: Symbol Lifecycle",
+    "description": "SymbolFactory creates and manages all compiler symbols throughout the compilation process, while SymbolInformer provides a query interface for symbol metadata. These classes centralize symbol creation and discovery, ensuring that all compiler phases work from a consistent symbol table.",
+    "nodeIds": ["file:src/sjc/symbols/SymbolFactory.java", "file:src/sjc/symbols/SymbolInformer.java"]
+  },
+  {
+    "order": 7,
+    "title": "Relation Analysis: Tracking Inter-Component Dependencies",
+    "description": "RelationManager tracks relationships between compiled elements (classes, methods, fields) for dependency analysis and dead code elimination. RelationElement represents individual relation entries. This layer enables SJC to determine which parts of the compiled output are reachable and to optimize accordingly.",
+    "nodeIds": ["file:src/sjc/relations/RelationManager.java", "file:src/sjc/relations/RelationElement.java"]
+  },
+  {
+    "order": 8,
+    "title": "Runtime Support: Real Number Emulation",
+    "description": "SJC targets embedded systems that may lack floating-point hardware. EmulReal provides software-emulated floating-point arithmetic, while NativeReal delegates to the hardware FPU when available. This choice at compile time lets the same Java source target both FPU-equipped and FPU-less architectures.",
+    "nodeIds": ["file:src/sjc/real/EmulReal.java", "file:src/sjc/real/NativeReal.java"]
+  },
+  {
+    "order": 9,
+    "title": "Output Format Abstraction and Factory",
+    "description": "The compiler generates code in different formats depending on the target. OutputFormat is the abstract interface, OutputFactory creates the appropriate format instance, and three implementations exist: RawOut (raw binary dump), HexOut (Intel HEX format for programmers), and BootOut (bootable disk image with bootloader).",
+    "nodeIds": ["file:src/sjc/output/OutputFormat.java", "file:src/sjc/output/OutputFactory.java", "file:src/sjc/output/RawOut.java", "file:src/sjc/output/HexOut.java", "file:src/sjc/output/BootOut.java"]
+  },
+  {
+    "order": 10,
+    "title": "Boot Loader Entry Point",
+    "description": "Boot.java is a specialized entry point that produces a bootable image combining the compiled application with a bootloader stub. It configures output via BootOut for floppy disk and ATmega targets, demonstrating SJC's ability to produce self-contained system images for bare-metal execution.",
+    "nodeIds": ["file:src/sjc/ui/Boot.java", "file:src/sjc/output/BootOut.java"]
+  },
+  {
+    "order": 11,
+    "title": "Build Outputs: From Binary to Bootable Images",
+    "description": "These files are the actual build artifacts produced by the compiler: raw binary images (raw_out.bin), floppy disk images (BOOT_FLP.IMG), Atari ST boot disks (b64_dsk.bin, bts_dsk.bin), ATmega HEX files (BOOT_ATM.HEX), and ATmega binaries (batmel32.bin). They represent the end result of the compilation pipeline.",
+    "nodeIds": ["file:raw_out.bin", "file:BOOT_FLP.IMG", "file:BOOT_ATM.HEX", "file:batmel32.bin", "file:b64_dsk.bin", "file:bts_dsk.bin"]
+  },
+  {
+    "order": 12,
+    "title": "Demo Applications and Runtime Environment",
+    "description": "The app/ directory contains sample SJava programs and the runtime support library: DynamicAri implements dynamic dispatch, SIntfMap and SIntfDesc handle interface method tables, SArray manages array metadata, and SMthdBlock stores method block descriptors. The custom java.lang stubs (String, FLASH, STRUCT) mirror Java's standard library for embedded targets.",
+    "nodeIds": ["file:app/demo.java", "file:app/java/lang/String.java", "file:app/java/lang/FLASH.java", "file:app/java/lang/STRUCT.java", "file:app/rte/DynamicAri.java", "file:app/rte/DynamicRuntime.java", "file:app/rte/SArray.java", "file:app/rte/SIntfDesc.java", "file:app/rte/SIntfMap.java", "file:app/rte/SMthdBlock.java"]
+  },
+  {
+    "order": 13,
+    "title": "Compiler Test and Verification",
+    "description": "CompilerTest.java validates the compiler by compiling sample code and verifying the output in Intel HEX format. It imports HexOut directly to check specific output characteristics, serving as the primary regression test for the SJC compilation pipeline.",
+    "nodeIds": ["file:test/CompilerTest.java", "file:src/sjc/output/HexOut.java"]
+  }
+]

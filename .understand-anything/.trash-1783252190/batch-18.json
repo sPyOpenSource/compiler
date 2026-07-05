@@ -1,0 +1,208 @@
+{
+  "nodes": [
+    {
+      "id": "jx.classfile.datatypes.BCLong",
+      "label": "BCLong",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/BCLong.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.BCNumericDatatype",
+      "label": "BCNumericDatatype",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/BCNumericDatatype.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.BCReference",
+      "label": "BCReference",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/BCReference.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.BCShort",
+      "label": "BCShort",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/BCShort.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.DataType",
+      "label": "DataType",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/DataType.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.MethodTypeDescriptor",
+      "label": "MethodTypeDescriptor",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/MethodTypeDescriptor.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.NoClassTypeException",
+      "label": "NoClassTypeException",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/NoClassTypeException.java"
+    },
+    {
+      "id": "jx.classfile.datatypes.TestTypeDesc",
+      "label": "TestTypeDesc",
+      "type": "class",
+      "filePath": "src/jx/classfile/datatypes/TestTypeDesc.java"
+    },
+    {
+      "id": "jx.classfile.ExceptionHandlerData",
+      "label": "ExceptionHandlerData",
+      "type": "class",
+      "filePath": "src/jx/classfile/ExceptionHandlerData.java"
+    },
+    {
+      "id": "jx.classfile.FieldData",
+      "label": "FieldData",
+      "type": "class",
+      "filePath": "src/jx/classfile/FieldData.java"
+    },
+    {
+      "id": "jx.classfile.LineAttributeData",
+      "label": "LineAttributeData",
+      "type": "class",
+      "filePath": "src/jx/classfile/LineAttributeData.java"
+    },
+    {
+      "id": "jx.classfile.MethodSource",
+      "label": "MethodSource",
+      "type": "class",
+      "filePath": "src/jx/classfile/MethodSource.java"
+    },
+    {
+      "id": "jx.classfile.Modifier",
+      "label": "Modifier",
+      "type": "class",
+      "filePath": "src/jx/classfile/Modifier.java"
+    },
+    {
+      "id": "jx.classfile.NativeMethodException",
+      "label": "NativeMethodException",
+      "type": "class",
+      "filePath": "src/jx/classfile/NativeMethodException.java"
+    },
+    {
+      "id": "jx.classfile.NoMagicNumberException",
+      "label": "NoMagicNumberException",
+      "type": "class",
+      "filePath": "src/jx/classfile/NoMagicNumberException.java"
+    },
+    {
+      "id": "jx.classfile.Opcodes",
+      "label": "Opcodes",
+      "type": "class",
+      "filePath": "src/jx/classfile/Opcodes.java"
+    },
+    {
+      "id": "jx.classfile.VerifyResult",
+      "label": "VerifyResult",
+      "type": "class",
+      "filePath": "src/jx/classfile/VerifyResult.java"
+    }
+  ],
+  "edges": [
+    {
+      "from": "jx.classfile.datatypes.BCLong",
+      "to": "BCIntegerDatatype",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.datatypes.BCShort",
+      "to": "BCIntegerDatatype",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.datatypes.BCNumericDatatype",
+      "to": "BCBasicDatatype",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.datatypes.BCReference",
+      "to": "BCBasicDatatype",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.datatypes.DataType",
+      "to": "jx.classfile.datatypes.NoClassTypeException",
+      "label": "THROWS"
+    },
+    {
+      "from": "jx.classfile.datatypes.MethodTypeDescriptor",
+      "to": "BCBasicDatatype",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.datatypes.MethodTypeDescriptor",
+      "to": "jx.classfile.datatypes.DataType",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.datatypes.TestTypeDesc",
+      "to": "jx.classfile.datatypes.MethodTypeDescriptor",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.ExceptionHandlerData",
+      "to": "ConstantPool",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.FieldData",
+      "to": "ConstantPool",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.FieldData",
+      "to": "ClassData",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.MethodSource",
+      "to": "ClassSource",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.MethodSource",
+      "to": "CodeData",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.MethodSource",
+      "to": "jx.classfile.ExceptionHandlerData",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.MethodSource",
+      "to": "jx.classfile.LineAttributeData",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.MethodSource",
+      "to": "jx.classfile.VerifyResult",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.Modifier",
+      "to": "ClassData",
+      "label": "USES"
+    },
+    {
+      "from": "jx.classfile.NativeMethodException",
+      "to": "RuntimeException",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.NoMagicNumberException",
+      "to": "RuntimeException",
+      "label": "EXTENDS"
+    },
+    {
+      "from": "jx.classfile.datatypes.NoClassTypeException",
+      "to": "Exception",
+      "label": "EXTENDS"
+    }
+  ]
+}

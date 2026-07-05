@@ -1,0 +1,861 @@
+{
+  "nodes": [
+    {
+      "id": "compiler.Compiler",
+      "type": "class",
+      "label": "Compiler",
+      "filePath": "src/compiler/Compiler.java"
+    },
+    {
+      "id": "sjc.compbase.Context",
+      "type": "class",
+      "label": "Context",
+      "filePath": "src/sjc/compbase/Context.java"
+    },
+    {
+      "id": "sjc.compbase.IndirUnitMapList",
+      "type": "class",
+      "label": "IndirUnitMapList",
+      "filePath": "src/sjc/compbase/IndirUnitMapList.java"
+    },
+    {
+      "id": "sjc.compbase.Mthd",
+      "type": "class",
+      "label": "Mthd",
+      "filePath": "src/sjc/compbase/Mthd.java"
+    },
+    {
+      "id": "sjc.compbase.Pack",
+      "type": "class",
+      "label": "Pack",
+      "filePath": "src/sjc/compbase/Pack.java"
+    },
+    {
+      "id": "sjc.compbase.QualID",
+      "type": "class",
+      "label": "QualID",
+      "filePath": "src/sjc/compbase/QualID.java"
+    },
+    {
+      "id": "sjc.compbase.StringList",
+      "type": "class",
+      "label": "StringList",
+      "filePath": "src/sjc/compbase/StringList.java"
+    },
+    {
+      "id": "sjc.compbase.Unit",
+      "type": "class",
+      "label": "Unit",
+      "filePath": "src/sjc/compbase/Unit.java"
+    },
+    {
+      "id": "sjc.compbase.UnitList",
+      "type": "class",
+      "label": "UnitList",
+      "filePath": "src/sjc/compbase/UnitList.java"
+    },
+    {
+      "id": "sjc.compbase.expr.ExArrayCopy",
+      "type": "class",
+      "label": "ExArrayCopy",
+      "filePath": "src/sjc/compbase/expr/ExArrayCopy.java"
+    },
+    {
+      "id": "sjc.compbase.expr.ExCheckType",
+      "type": "class",
+      "label": "ExCheckType",
+      "filePath": "src/sjc/compbase/expr/ExCheckType.java"
+    },
+    {
+      "id": "sjc.compression.CompressionFactory",
+      "type": "class",
+      "label": "CompressionFactory",
+      "filePath": "src/sjc/compression/CompressionFactory.java"
+    },
+    {
+      "id": "sjc.compression.Compressor",
+      "type": "class",
+      "label": "Compressor",
+      "filePath": "src/sjc/compression/Compressor.java"
+    },
+    {
+      "id": "sjc.debug.CodeInfo",
+      "type": "class",
+      "label": "CodeInfo",
+      "filePath": "src/sjc/debug/CodeInfo.java"
+    },
+    {
+      "id": "sjc.debug.DebugFactory",
+      "type": "class",
+      "label": "DebugFactory",
+      "filePath": "src/sjc/debug/DebugFactory.java"
+    },
+    {
+      "id": "sjc.debug.Dwarf",
+      "type": "class",
+      "label": "Dwarf",
+      "filePath": "src/sjc/debug/Dwarf.java"
+    },
+    {
+      "id": "sjc.debug.GccInfo",
+      "type": "class",
+      "label": "GccInfo",
+      "filePath": "src/sjc/debug/GccInfo.java"
+    },
+    {
+      "id": "sjc.debug.MthdInfo",
+      "type": "class",
+      "label": "MthdInfo",
+      "filePath": "src/sjc/debug/MthdInfo.java"
+    },
+    {
+      "id": "sjc.debug.RelationInfo",
+      "type": "class",
+      "label": "RelationInfo",
+      "filePath": "src/sjc/debug/RelationInfo.java"
+    },
+    {
+      "id": "sjc.debug.SizeInfo",
+      "type": "class",
+      "label": "SizeInfo",
+      "filePath": "src/sjc/debug/SizeInfo.java"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StBreakable",
+      "type": "class",
+      "label": "StBreakable",
+      "filePath": "src/sjc/frontend/sjava/ast/StBreakable.java"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StLoop",
+      "type": "class",
+      "label": "StLoop",
+      "filePath": "src/sjc/frontend/sjava/ast/StLoop.java"
+    },
+    {
+      "id": "sjc.memory.BootableImage",
+      "type": "class",
+      "label": "BootableImage",
+      "filePath": "src/sjc/memory/BootableImage.java"
+    },
+    {
+      "id": "sjc.memory.ImageContainer",
+      "type": "class",
+      "label": "ImageContainer",
+      "filePath": "src/sjc/memory/ImageContainer.java"
+    },
+    {
+      "id": "sjc.osio.BinWriter",
+      "type": "class",
+      "label": "BinWriter",
+      "filePath": "src/sjc/osio/BinWriter.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.backend.ArchFactory",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.backend.Architecture",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compression.CompressionFactory",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compression.Compressor",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.debug.DebugFactory",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.frontend.FrontAdmin",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.memory.BootableImage",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.osio.OsIO",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.output.OutputFactory",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.real.EmulReal",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.real.NativeReal",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.relations.RelationManager",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.symbols.SymbolFactory",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.symbols.SymbolInformer",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compbase.Pack",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Context",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.IndirUnitMapList",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.IndirUnitMapList",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.compbase.variable.VrblList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.debug.CodePrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.compbase.TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Mthd",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Pack",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Pack",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Pack",
+      "target": "sjc.compbase.QualID",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Pack",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.QualID",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.QualID",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.QualID",
+      "target": "sjc.compbase.Pack",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.QualID",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.QualID",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.expr.ExConstInitObj",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.variable.VrblList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.relations.RelationElement",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.debug.DebugWriter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.QualID",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.QualIDList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.Unit",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.UnitList",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.StdTypes",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExArrayCopy",
+      "target": "sjc.debug.CodePrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.Modifier",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.StdTypes",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compbase.expr.ExCheckType",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compression.CompressionFactory",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.compression.CompressionFactory",
+      "target": "sjc.compression.Compressor",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.IndirUnitMapList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.CodeInfo",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.DebugWriter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.SymInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.RelationInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.Dwarf",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.MthdInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.CodeInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.SizeInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.CodePrinterJava",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.GccInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.DebugLister",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.AsmOutX86",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.DebugFactory",
+      "target": "sjc.debug.AsmOutVCPU2",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.IndirUnitMapList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.Modifier",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.osio.BinWriter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.Dwarf",
+      "target": "sjc.osio.TextBuffer",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.GccInfo",
+      "target": "sjc.memory.ImageContainer",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.GccInfo",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.GccInfo",
+      "target": "sjc.debug.MthdInfo",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.osio.TextBuffer",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.IndirUnitMapList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.Modifier",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.MthdInfo",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.relations.RelationElement",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.IndirUnitMapList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.Pack",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.RelationInfo",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.IndirUnitMapList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.UnitList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.compbase.variable.Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.debug.SizeInfo",
+      "target": "sjc.osio.TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StBreakable",
+      "target": "sjc.backend.Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StBreakable",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StBreakable",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StBreakable",
+      "target": "sjc.debug.CodePrinter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StLoop",
+      "target": "sjc.compbase.StringList",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.frontend.sjava.ast.StLoop",
+      "target": "sjc.frontend.sjava.ast.StBreakable",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.memory.BootableImage",
+      "target": "sjc.compbase.Context",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.memory.BootableImage",
+      "target": "sjc.compbase.Unit",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.memory.BootableImage",
+      "target": "sjc.memory.ImageContainer",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.memory.ImageContainer",
+      "target": "sjc.osio.BinWriter",
+      "type": "uses"
+    },
+    {
+      "source": "sjc.memory.ImageContainer",
+      "target": "sjc.memory.MemoryImage",
+      "type": "uses"
+    }
+  ]
+}

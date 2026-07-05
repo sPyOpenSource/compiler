@@ -1,0 +1,28 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "nbproject/private/config.properties",
+    "language": "properties",
+    "sizeLines": 0,
+    "fileCategory": "config"
+  },
+  {
+    "path": "nbproject/private/private.properties",
+    "language": "properties",
+    "sizeLines": 8,
+    "fileCategory": "config"
+  },
+  {
+    "path": "nbproject/private/private.xml",
+    "language": "xml",
+    "sizeLines": 7,
+    "fileCategory": "config"
+  }
+],
+  "batchImportData": {
+  "nbproject/private/config.properties": [],
+  "nbproject/private/private.properties": [],
+  "nbproject/private/private.xml": []
+}
+}

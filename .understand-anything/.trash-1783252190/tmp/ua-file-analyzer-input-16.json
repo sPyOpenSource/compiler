@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": ".understand-anything/.understandignore",
+    "language": "unknown",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/app.json",
+    "language": "json",
+    "sizeLines": 2315,
+    "fileCategory": "config"
+  },
+  {
+    "path": "app/demo.java",
+    "language": "java",
+    "sizeLines": 21,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/demo.json",
+    "language": "json",
+    "sizeLines": 16,
+    "fileCategory": "config"
+  },
+  {
+    "path": "app/java/lang/FLASH.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/java/lang/String.java",
+    "language": "java",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/java/lang/STRUCT.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/DynamicAri.java",
+    "language": "java",
+    "sizeLines": 386,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/DynamicRuntime.java",
+    "language": "java",
+    "sizeLines": 33,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/SArray.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/SIntfDesc.java",
+    "language": "java",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/SIntfMap.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "app/rte/SMthdBlock.java",
+    "language": "java",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "b64_dsk.bin",
+    "language": "bin",
+    "sizeLines": 0,
+    "fileCategory": "code"
+  },
+  {
+    "path": "batmel32.bin",
+    "language": "bin",
+    "sizeLines": 0,
+    "fileCategory": "code"
+  },
+  {
+    "path": "BOOT_ATM.HEX",
+    "language": "hex",
+    "sizeLines": 69,
+    "fileCategory": "code"
+  },
+  {
+    "path": "BOOT_FLP.IMG",
+    "language": "img",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "bts_dsk.bin",
+    "language": "bin",
+    "sizeLines": 0,
+    "fileCategory": "code"
+  },
+  {
+    "path": "raw_out.bin",
+    "language": "bin",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/compiler/Compiler.ctxt",
+    "language": "ctxt",
+    "sizeLines": 15,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/compiler/package.bluej",
+    "language": "bluej",
+    "sizeLines": 27,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/compiler/README.TXT",
+    "language": "txt",
+    "sizeLines": 3,
+    "fileCategory": "docs"
+  },
+  {
+    "path": "src/jCPU/JavaVM/vm/LocalVariables.java",
+    "language": "java",
+    "sizeLines": 26,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/ClassData.ctxt",
+    "language": "ctxt",
+    "sizeLines": 75,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/ClassData.java",
+    "language": "java",
+    "sizeLines": 308,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  ".understand-anything/.understandignore": [],
+  "app/app.json": [],
+  "app/demo.java": [],
+  "app/demo.json": [],
+  "app/java/lang/FLASH.java": [],
+  "app/java/lang/String.java": [],
+  "app/java/lang/STRUCT.java": [],
+  "app/rte/DynamicAri.java": [],
+  "app/rte/DynamicRuntime.java": [],
+  "app/rte/SArray.java": [],
+  "app/rte/SIntfDesc.java": [],
+  "app/rte/SIntfMap.java": [],
+  "app/rte/SMthdBlock.java": [],
+  "b64_dsk.bin": [],
+  "batmel32.bin": [],
+  "BOOT_ATM.HEX": [],
+  "BOOT_FLP.IMG": [],
+  "bts_dsk.bin": [],
+  "raw_out.bin": [],
+  "src/compiler/Compiler.ctxt": [],
+  "src/compiler/package.bluej": [],
+  "src/compiler/README.TXT": [],
+  "src/jCPU/JavaVM/vm/LocalVariables.java": [],
+  "src/jx/classfile/ClassData.ctxt": [],
+  "src/jx/classfile/ClassData.java": []
+}
+}

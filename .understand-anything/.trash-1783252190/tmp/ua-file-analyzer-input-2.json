@@ -1,0 +1,327 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/compiler/Compiler.java",
+    "language": "java",
+    "sizeLines": 96,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Context.java",
+    "language": "java",
+    "sizeLines": 1852,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/IndirUnitMapList.java",
+    "language": "java",
+    "sizeLines": 47,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Mthd.java",
+    "language": "java",
+    "sizeLines": 257,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Pack.java",
+    "language": "java",
+    "sizeLines": 184,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/QualID.java",
+    "language": "java",
+    "sizeLines": 93,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/StringList.java",
+    "language": "java",
+    "sizeLines": 69,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Unit.java",
+    "language": "java",
+    "sizeLines": 375,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/UnitList.java",
+    "language": "java",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExArrayCopy.java",
+    "language": "java",
+    "sizeLines": 103,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExCheckType.java",
+    "language": "java",
+    "sizeLines": 172,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/CompressionFactory.java",
+    "language": "java",
+    "sizeLines": 44,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/Compressor.java",
+    "language": "java",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodeInfo.java",
+    "language": "java",
+    "sizeLines": 177,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/DebugFactory.java",
+    "language": "java",
+    "sizeLines": 91,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/Dwarf.java",
+    "language": "java",
+    "sizeLines": 1246,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/GccInfo.java",
+    "language": "java",
+    "sizeLines": 113,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/MthdInfo.java",
+    "language": "java",
+    "sizeLines": 226,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/RelationInfo.java",
+    "language": "java",
+    "sizeLines": 151,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/SizeInfo.java",
+    "language": "java",
+    "sizeLines": 162,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/SymInfo.java",
+    "language": "java",
+    "sizeLines": 479,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StBreakable.java",
+    "language": "java",
+    "sizeLines": 73,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StLoop.java",
+    "language": "java",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/BootableImage.java",
+    "language": "java",
+    "sizeLines": 246,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/ImageContainer.java",
+    "language": "java",
+    "sizeLines": 161,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/BinWriter.java",
+    "language": "java",
+    "sizeLines": 41,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/compiler/Compiler.java": [],
+  "src/sjc/compbase/Context.java": [
+    "src/sjc/backend/ArchFactory.java",
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblList.java",
+    "src/sjc/compbase/variable/VrblStateList.java",
+    "src/sjc/compression/CompressionFactory.java",
+    "src/sjc/compression/Compressor.java",
+    "src/sjc/debug/DebugFactory.java",
+    "src/sjc/debug/DebugLister.java",
+    "src/sjc/debug/DebugWriter.java",
+    "src/sjc/frontend/FrontAdmin.java",
+    "src/sjc/memory/BootableImage.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/osio/OsIO.java",
+    "src/sjc/osio/TextPrinter.java",
+    "src/sjc/osio/TextReader.java",
+    "src/sjc/output/OutputFactory.java",
+    "src/sjc/output/OutputFormat.java",
+    "src/sjc/real/EmulReal.java",
+    "src/sjc/real/NativeReal.java",
+    "src/sjc/relations/RelationManager.java",
+    "src/sjc/symbols/SymbolFactory.java",
+    "src/sjc/symbols/SymbolInformer.java"
+  ],
+  "src/sjc/compbase/IndirUnitMapList.java": [],
+  "src/sjc/compbase/Mthd.java": [
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblList.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/Pack.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/QualID.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/StringList.java": [],
+  "src/sjc/compbase/Unit.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/compbase/variable/VrblList.java",
+    "src/sjc/debug/DebugWriter.java",
+    "src/sjc/osio/TextPrinter.java",
+    "src/sjc/relations/RelationElement.java"
+  ],
+  "src/sjc/compbase/UnitList.java": [],
+  "src/sjc/compbase/expr/ExArrayCopy.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/compbase/expr/ExCheckType.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java"
+  ],
+  "src/sjc/compression/CompressionFactory.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compression/Compressor.java": [],
+  "src/sjc/debug/CodeInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/DebugFactory.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/Dwarf.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/StringList.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/BinWriter.java",
+    "src/sjc/osio/TextBuffer.java"
+  ],
+  "src/sjc/debug/GccInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/memory/ImageContainer.java"
+  ],
+  "src/sjc/debug/MthdInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/TextBuffer.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/RelationInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Pack.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/TextPrinter.java",
+    "src/sjc/relations/RelationElement.java"
+  ],
+  "src/sjc/debug/SizeInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/SymInfo.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Param.java",
+    "src/sjc/compbase/StringList.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/BinWriter.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StBreakable.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/StringList.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StLoop.java": [
+    "src/sjc/compbase/StringList.java"
+  ],
+  "src/sjc/memory/BootableImage.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Unit.java"
+  ],
+  "src/sjc/memory/ImageContainer.java": [
+    "src/sjc/osio/BinWriter.java"
+  ],
+  "src/sjc/osio/BinWriter.java": []
+}
+}

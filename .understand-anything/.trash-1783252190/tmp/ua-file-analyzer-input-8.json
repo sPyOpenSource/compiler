@@ -1,0 +1,85 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt2amd.java",
+    "language": "java",
+    "sizeLines": 74,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt2bin.java",
+    "language": "java",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/AMD64.java",
+    "language": "java",
+    "sizeLines": 2316,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOutVCPU2.java",
+    "language": "java",
+    "sizeLines": 85,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOutX86.java",
+    "language": "java",
+    "sizeLines": 69,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/DebugLister.java",
+    "language": "java",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/MemoryImage.java",
+    "language": "java",
+    "sizeLines": 121,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/MemoryObjectDebugInfo.java",
+    "language": "java",
+    "sizeLines": 33,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/backend/ssaopt/SSAopt2amd.java": [
+    "src/sjc/backend/x86/AMD64.java",
+    "src/sjc/memory/MemoryImage.java"
+  ],
+  "src/sjc/backend/ssaopt/SSAopt2bin.java": [
+    "src/sjc/memory/MemoryImage.java"
+  ],
+  "src/sjc/backend/x86/AMD64.java": [
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/AsmOutVCPU2.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/memory/MemoryObjectDebugInfo.java"
+  ],
+  "src/sjc/debug/AsmOutX86.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/memory/MemoryObjectDebugInfo.java"
+  ],
+  "src/sjc/debug/DebugLister.java": [
+    "src/sjc/memory/MemoryImage.java"
+  ],
+  "src/sjc/memory/MemoryImage.java": [
+    "src/sjc/osio/BinWriter.java"
+  ],
+  "src/sjc/memory/MemoryObjectDebugInfo.java": []
+}
+}

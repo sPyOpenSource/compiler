@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/nl/lxtreme/binutils/ar/AR.java",
+    "language": "java",
+    "sizeLines": 404,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/ar/AREntry.java",
+    "language": "java",
+    "sizeLines": 366,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/CoffMagic.java",
+    "language": "java",
+    "sizeLines": 49,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/LineNumber.java",
+    "language": "java",
+    "sizeLines": 35,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/MachineType.java",
+    "language": "java",
+    "sizeLines": 74,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/OptionalHeader.java",
+    "language": "java",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/RelocationInfo.java",
+    "language": "java",
+    "sizeLines": 37,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/SectionHeader.java",
+    "language": "java",
+    "sizeLines": 77,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/SectionType.java",
+    "language": "java",
+    "sizeLines": 53,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/AbiType.java",
+    "language": "java",
+    "sizeLines": 50,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/ElfClass.java",
+    "language": "java",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/MachineType.java",
+    "language": "java",
+    "sizeLines": 116,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/ObjectFileType.java",
+    "language": "java",
+    "sizeLines": 76,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/ProgramHeader.java",
+    "language": "java",
+    "sizeLines": 52,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/SectionHeader.java",
+    "language": "java",
+    "sizeLines": 88,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/SectionType.java",
+    "language": "java",
+    "sizeLines": 106,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/elf/SegmentType.java",
+    "language": "java",
+    "sizeLines": 70,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/AbstractReader.java",
+    "language": "java",
+    "sizeLines": 173,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/IntelHexReader.java",
+    "language": "java",
+    "sizeLines": 240,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/SRecordReader.java",
+    "language": "java",
+    "sizeLines": 275,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/util/ByteOrderUtils.java",
+    "language": "java",
+    "sizeLines": 138,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/util/Checksum.java",
+    "language": "java",
+    "sizeLines": 104,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/util/Checksummer.java",
+    "language": "java",
+    "sizeLines": 51,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/hex/util/HexUtils.java",
+    "language": "java",
+    "sizeLines": 130,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/package.bluej",
+    "language": "bluej",
+    "sizeLines": 37,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/nl/lxtreme/binutils/ar/AR.java": [],
+  "src/nl/lxtreme/binutils/ar/AREntry.java": [],
+  "src/nl/lxtreme/binutils/coff/CoffMagic.java": [],
+  "src/nl/lxtreme/binutils/coff/LineNumber.java": [],
+  "src/nl/lxtreme/binutils/coff/MachineType.java": [],
+  "src/nl/lxtreme/binutils/coff/OptionalHeader.java": [],
+  "src/nl/lxtreme/binutils/coff/RelocationInfo.java": [],
+  "src/nl/lxtreme/binutils/coff/SectionHeader.java": [],
+  "src/nl/lxtreme/binutils/coff/SectionType.java": [],
+  "src/nl/lxtreme/binutils/elf/AbiType.java": [],
+  "src/nl/lxtreme/binutils/elf/ElfClass.java": [],
+  "src/nl/lxtreme/binutils/elf/MachineType.java": [],
+  "src/nl/lxtreme/binutils/elf/ObjectFileType.java": [],
+  "src/nl/lxtreme/binutils/elf/ProgramHeader.java": [],
+  "src/nl/lxtreme/binutils/elf/SectionHeader.java": [],
+  "src/nl/lxtreme/binutils/elf/SectionType.java": [],
+  "src/nl/lxtreme/binutils/elf/SegmentType.java": [],
+  "src/nl/lxtreme/binutils/hex/AbstractReader.java": [],
+  "src/nl/lxtreme/binutils/hex/IntelHexReader.java": [],
+  "src/nl/lxtreme/binutils/hex/SRecordReader.java": [],
+  "src/nl/lxtreme/binutils/hex/util/ByteOrderUtils.java": [],
+  "src/nl/lxtreme/binutils/hex/util/Checksum.java": [],
+  "src/nl/lxtreme/binutils/hex/util/Checksummer.java": [],
+  "src/nl/lxtreme/binutils/hex/util/HexUtils.java": [],
+  "src/package.bluej": []
+}
+}

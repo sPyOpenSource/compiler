@@ -1,0 +1,434 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/compbase/CtxBasedConfig.java",
+    "language": "java",
+    "sizeLines": 31,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/DataBlockList.java",
+    "language": "java",
+    "sizeLines": 35,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/FilledParam.java",
+    "language": "java",
+    "sizeLines": 52,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Modifier.java",
+    "language": "java",
+    "sizeLines": 88,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Param.java",
+    "language": "java",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/QualIDList.java",
+    "language": "java",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Token.java",
+    "language": "java",
+    "sizeLines": 72,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/TokenAbstrPrintable.java",
+    "language": "java",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/TypeRef.java",
+    "language": "java",
+    "sizeLines": 370,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExArrayInit.java",
+    "language": "java",
+    "sizeLines": 242,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstInitObj.java",
+    "language": "java",
+    "sizeLines": 71,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstNew.java",
+    "language": "java",
+    "sizeLines": 119,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstStruct.java",
+    "language": "java",
+    "sizeLines": 93,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/StringLiteral.java",
+    "language": "java",
+    "sizeLines": 113,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/AccVar.java",
+    "language": "java",
+    "sizeLines": 192,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/ExAccVrbl.java",
+    "language": "java",
+    "sizeLines": 508,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOut.java",
+    "language": "java",
+    "sizeLines": 356,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodePrinter.java",
+    "language": "java",
+    "sizeLines": 95,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodePrinterJava.java",
+    "language": "java",
+    "sizeLines": 904,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/Literal.java",
+    "language": "java",
+    "sizeLines": 180,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BImExpr.java",
+    "language": "java",
+    "sizeLines": 120,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/ExObjInit.java",
+    "language": "java",
+    "sizeLines": 208,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JMthd.java",
+    "language": "java",
+    "sizeLines": 655,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Magic.java",
+    "language": "java",
+    "sizeLines": 1897,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StEmpty.java",
+    "language": "java",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StExpr.java",
+    "language": "java",
+    "sizeLines": 85,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StSync.java",
+    "language": "java",
+    "sizeLines": 198,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/Constructor.java",
+    "language": "java",
+    "sizeLines": 357,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExCall.java",
+    "language": "java",
+    "sizeLines": 155,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExClssMthdName.java",
+    "language": "java",
+    "sizeLines": 157,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExDeRef.java",
+    "language": "java",
+    "sizeLines": 593,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExVar.java",
+    "language": "java",
+    "sizeLines": 405,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/compbase/CtxBasedConfig.java": [],
+  "src/sjc/compbase/DataBlockList.java": [],
+  "src/sjc/compbase/FilledParam.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/Modifier.java": [],
+  "src/sjc/compbase/Param.java": [
+    "src/sjc/compbase/variable/AccVar.java"
+  ],
+  "src/sjc/compbase/QualIDList.java": [],
+  "src/sjc/compbase/Token.java": [],
+  "src/sjc/compbase/TokenAbstrPrintable.java": [
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/compbase/TypeRef.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/expr/ExArrayInit.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/compbase/expr/ExConstInitObj.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/variable/ExAccVrbl.java",
+    "src/sjc/compbase/variable/Vrbl.java"
+  ],
+  "src/sjc/compbase/expr/ExConstNew.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java"
+  ],
+  "src/sjc/compbase/expr/ExConstStruct.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java"
+  ],
+  "src/sjc/compbase/expr/StringLiteral.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/compbase/variable/AccVar.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Param.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java"
+  ],
+  "src/sjc/compbase/variable/ExAccVrbl.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java"
+  ],
+  "src/sjc/debug/AsmOut.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/memory/ImageContainer.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/memory/MemoryObjectDebugInfo.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/debug/CodePrinter.java": [
+    "src/sjc/compbase/expr/ExConstStruct.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/compbase/TokenAbstrPrintable.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java"
+  ],
+  "src/sjc/debug/CodePrinterJava.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/ExConstStruct.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/IndirUnitMapList.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/Param.java",
+    "src/sjc/compbase/QualIDList.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/compbase/TokenAbstrPrintable.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/frontend/Literal.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/binimp/BImExpr.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/Literal.java"
+  ],
+  "src/sjc/frontend/prepobj/ExObjInit.java": [
+    "src/sjc/compbase/expr/ExArrayInit.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/variable/Vrbl.java"
+  ],
+  "src/sjc/frontend/sjava/JMthd.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/FilledAnno.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Param.java",
+    "src/sjc/compbase/QualIDList.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/UnitList.java",
+    "src/sjc/compbase/variable/VrblList.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/ast/Block.java",
+    "src/sjc/frontend/sjava/ast/expr/ExCall.java",
+    "src/sjc/frontend/sjava/ast/expr/ExVar.java",
+    "src/sjc/frontend/sjava/ast/Statement.java",
+    "src/sjc/frontend/sjava/ast/StEmpty.java",
+    "src/sjc/frontend/sjava/ast/StExpr.java",
+    "src/sjc/frontend/sjava/ast/StSync.java",
+    "src/sjc/output/HexOut.java"
+  ],
+  "src/sjc/frontend/sjava/Magic.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/CtxBasedConfig.java",
+    "src/sjc/compbase/DataBlockList.java",
+    "src/sjc/compbase/expr/ExArrayInit.java",
+    "src/sjc/compbase/expr/ExConstStruct.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/expr/StringLiteral.java",
+    "src/sjc/compbase/FilledParam.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Modifier.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/Literal.java",
+    "src/sjc/frontend/sjava/ast/expr/ExCall.java",
+    "src/sjc/frontend/sjava/ast/expr/ExClssMthdName.java",
+    "src/sjc/frontend/sjava/ast/expr/ExVar.java",
+    "src/sjc/frontend/sjava/ast/StExpr.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StEmpty.java": [
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StExpr.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/StSync.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/Constructor.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/ExConstNew.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExCall.java": [
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExClssMthdName.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExDeRef.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/Magic.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ],
+  "src/sjc/frontend/sjava/ast/expr/ExVar.java": [
+    "src/sjc/compbase/expr/ExConstInitObj.java",
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/compbase/variable/ExAccVrbl.java",
+    "src/sjc/compbase/variable/Vrbl.java",
+    "src/sjc/debug/CodePrinter.java",
+    "src/sjc/frontend/sjava/SJava.java"
+  ]
+}
+}

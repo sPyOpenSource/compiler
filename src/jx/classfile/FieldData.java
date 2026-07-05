@@ -6,11 +6,11 @@ import jx.classfile.constantpool.*;
 import jx.classfile.datatypes.*; 
 
 /** 
-    All data about a field, that can be found 
-    in a class file. This is a rather passive class. 
-    It only reads the data from the class file and 
-    stores it. 
-*/ 
+ * All data about a field, that can be found 
+ * in a class file. This is a rather passive class. 
+ * It only reads the data from the class file and 
+ * stores it. 
+ */ 
 public class FieldData {
     private int accessFlags; 
     private int fieldNameCPIndex; 

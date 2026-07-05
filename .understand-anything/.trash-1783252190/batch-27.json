@@ -1,0 +1,237 @@
+{
+  "nodes": [
+    {
+      "id": "sjc.real.EmulReal",
+      "label": "EmulReal",
+      "type": "class",
+      "filePath": "src/sjc/real/EmulReal.ctxt"
+    },
+    {
+      "id": "sjc.real.NativeReal",
+      "label": "NativeReal",
+      "type": "class",
+      "filePath": "src/sjc/real/NativeReal.ctxt"
+    },
+    {
+      "id": "sjc.real.Real",
+      "label": "Real",
+      "type": "class",
+      "filePath": "src/sjc/real/Real.ctxt"
+    },
+    {
+      "id": "sjc.relations.RelationElement",
+      "label": "RelationElement",
+      "type": "class",
+      "filePath": "src/sjc/relations/RelationElement.ctxt"
+    },
+    {
+      "id": "sjc.relations.RelationManager",
+      "label": "RelationManager",
+      "type": "class",
+      "filePath": "src/sjc/relations/RelationManager.ctxt"
+    },
+    {
+      "id": "sjc.symbols.MthdSymbols",
+      "label": "MthdSymbols",
+      "type": "class",
+      "filePath": "src/sjc/symbols/MthdSymbols.ctxt"
+    },
+    {
+      "id": "sjc.symbols.RawSymbols",
+      "label": "RawSymbols",
+      "type": "class",
+      "filePath": "src/sjc/symbols/RawSymbols.ctxt"
+    },
+    {
+      "id": "sjc.symbols.RTESymbols",
+      "label": "RTESymbols",
+      "type": "class",
+      "filePath": "src/sjc/symbols/RTESymbols.ctxt"
+    },
+    {
+      "id": "sjc.symbols.SymbolFactory",
+      "label": "SymbolFactory",
+      "type": "class",
+      "filePath": "src/sjc/symbols/SymbolFactory.ctxt"
+    },
+    {
+      "id": "sjc.symbols.SymbolInformer",
+      "label": "SymbolInformer",
+      "type": "interface",
+      "filePath": "src/sjc/symbols/SymbolInformer.ctxt"
+    },
+    {
+      "id": "sjc.ui.Boot",
+      "label": "Boot",
+      "type": "class",
+      "filePath": "src/sjc/ui/Boot.ctxt"
+    },
+    {
+      "id": "sjc.ui.ChkSSA",
+      "label": "ChkSSA",
+      "type": "class",
+      "filePath": "src/sjc/ui/ChkSSA.ctxt"
+    },
+    {
+      "id": "sjc.ui.DisSSA",
+      "label": "DisSSA",
+      "type": "class",
+      "filePath": "src/sjc/ui/DisSSA.ctxt"
+    },
+    {
+      "id": "sjc.ui.GetMthd",
+      "label": "GetMthd",
+      "type": "class",
+      "filePath": "src/sjc/ui/GetMthd.java"
+    },
+    {
+      "id": "sjc.ui.SC",
+      "label": "SC",
+      "type": "class",
+      "filePath": "src/sjc/ui/SC.ctxt"
+    },
+    {
+      "id": "sjc.ui.SCG",
+      "label": "SCG",
+      "type": "class",
+      "filePath": "src/sjc/ui/SCG.ctxt"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sjc.relations.RelationManager",
+      "to": "sjc.compbase.Unit",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.relations.RelationManager",
+      "to": "sjc.compbase.Mthd",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.relations.RelationManager",
+      "to": "sjc.compbase.variable.AccVar",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.MthdSymbols",
+      "to": "sjc.osio.TextPrinter",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.MthdSymbols",
+      "to": "sjc.compbase.UnitList",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.MthdSymbols",
+      "to": "sjc.compbase.Context",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.osio.TextPrinter",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.compbase.UnitList",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.compbase.Context",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.compbase.Pack",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.compbase.Unit",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.compbase.Mthd",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.osio.TextPrinter",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.compbase.UnitList",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.compbase.Context",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.compbase.Pack",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.compbase.Unit",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.compbase.Mthd",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.SymbolFactory",
+      "to": "sjc.osio.TextPrinter",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.SymbolFactory",
+      "to": "sjc.symbols.SymbolInformer",
+      "label": "returns"
+    },
+    {
+      "from": "sjc.symbols.SymbolInformer",
+      "to": "sjc.osio.TextPrinter",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.SymbolInformer",
+      "to": "sjc.compbase.UnitList",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.SymbolInformer",
+      "to": "sjc.compbase.Context",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.SymbolInformer",
+      "to": "sjc.compbase.Unit",
+      "label": "uses"
+    },
+    {
+      "from": "sjc.symbols.MthdSymbols",
+      "to": "sjc.symbols.SymbolInformer",
+      "label": "implements"
+    },
+    {
+      "from": "sjc.symbols.RawSymbols",
+      "to": "sjc.symbols.SymbolInformer",
+      "label": "implements"
+    },
+    {
+      "from": "sjc.symbols.RTESymbols",
+      "to": "sjc.symbols.SymbolInformer",
+      "label": "implements"
+    }
+  ]
+}

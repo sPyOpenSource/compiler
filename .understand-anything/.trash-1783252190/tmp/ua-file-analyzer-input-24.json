@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/frontend/Lexer.ctxt",
+    "language": "ctxt",
+    "sizeLines": 33,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/Literal.ctxt",
+    "language": "ctxt",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/package.bluej",
+    "language": "bluej",
+    "sizeLines": 88,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/ExObjInit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/ExObjInitField.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/package.bluej",
+    "language": "bluej",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/PObjUnit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/PrepObj.ctxt",
+    "language": "ctxt",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/ScanSym.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/ScanSym.java",
+    "language": "java",
+    "sizeLines": 44,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Anno.ctxt",
+    "language": "ctxt",
+    "sizeLines": 26,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/Block.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/BinaryExpression.ctxt",
+    "language": "ctxt",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/Constructor.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExAbsCall.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExCall.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExChoose.ctxt",
+    "language": "ctxt",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExDeArray.ctxt",
+    "language": "ctxt",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExDeRef.ctxt",
+    "language": "ctxt",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExEnc.ctxt",
+    "language": "ctxt",
+    "sizeLines": 40,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt",
+    "language": "ctxt",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StAssert.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/Statement.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StBreakable.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StEmpty.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/frontend/Lexer.ctxt": [],
+  "src/sjc/frontend/Literal.ctxt": [],
+  "src/sjc/frontend/package.bluej": [],
+  "src/sjc/frontend/prepobj/ExObjInit.ctxt": [],
+  "src/sjc/frontend/prepobj/ExObjInitField.ctxt": [],
+  "src/sjc/frontend/prepobj/package.bluej": [],
+  "src/sjc/frontend/prepobj/PObjUnit.ctxt": [],
+  "src/sjc/frontend/prepobj/PrepObj.ctxt": [],
+  "src/sjc/frontend/ScanSym.ctxt": [],
+  "src/sjc/frontend/ScanSym.java": [],
+  "src/sjc/frontend/sjava/Anno.ctxt": [],
+  "src/sjc/frontend/sjava/ast/Block.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/BinaryExpression.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/Constructor.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExAbsCall.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExCall.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExChoose.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExDeArray.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExDeRef.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExEnc.ctxt": [],
+  "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StAssert.ctxt": [],
+  "src/sjc/frontend/sjava/ast/Statement.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StBreakable.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StEmpty.ctxt": []
+}
+}

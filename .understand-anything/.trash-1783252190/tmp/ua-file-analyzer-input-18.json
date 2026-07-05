@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/jx/classfile/datatypes/BCLong.java",
+    "language": "java",
+    "sizeLines": 24,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCNumericDatatype.java",
+    "language": "java",
+    "sizeLines": 24,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCReference.ctxt",
+    "language": "ctxt",
+    "sizeLines": 11,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCReference.java",
+    "language": "java",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCShort.ctxt",
+    "language": "ctxt",
+    "sizeLines": 15,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/BCShort.java",
+    "language": "java",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/DataType.java",
+    "language": "java",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/MethodTypeDescriptor.java",
+    "language": "java",
+    "sizeLines": 199,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/NoClassTypeException.ctxt",
+    "language": "ctxt",
+    "sizeLines": 3,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/NoClassTypeException.java",
+    "language": "java",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/package.bluej",
+    "language": "bluej",
+    "sizeLines": 141,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/TestTypeDesc.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/datatypes/TestTypeDesc.java",
+    "language": "java",
+    "sizeLines": 53,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/ExceptionHandlerData.java",
+    "language": "java",
+    "sizeLines": 56,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/FieldData.java",
+    "language": "java",
+    "sizeLines": 99,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/LineAttributeData.java",
+    "language": "java",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/MethodData.ctxt",
+    "language": "ctxt",
+    "sizeLines": 79,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/MethodSource.java",
+    "language": "java",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/Modifier.ctxt",
+    "language": "ctxt",
+    "sizeLines": 25,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/Modifier.java",
+    "language": "java",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/NativeMethodException.java",
+    "language": "java",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/NoMagicNumberException.java",
+    "language": "java",
+    "sizeLines": 7,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/Opcodes.java",
+    "language": "java",
+    "sizeLines": 295,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/package.bluej",
+    "language": "bluej",
+    "sizeLines": 159,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/jx/classfile/VerifyResult.java",
+    "language": "java",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/jx/classfile/datatypes/BCLong.java": [],
+  "src/jx/classfile/datatypes/BCNumericDatatype.java": [],
+  "src/jx/classfile/datatypes/BCReference.ctxt": [],
+  "src/jx/classfile/datatypes/BCReference.java": [],
+  "src/jx/classfile/datatypes/BCShort.ctxt": [],
+  "src/jx/classfile/datatypes/BCShort.java": [],
+  "src/jx/classfile/datatypes/DataType.java": [],
+  "src/jx/classfile/datatypes/MethodTypeDescriptor.java": [],
+  "src/jx/classfile/datatypes/NoClassTypeException.ctxt": [],
+  "src/jx/classfile/datatypes/NoClassTypeException.java": [],
+  "src/jx/classfile/datatypes/package.bluej": [],
+  "src/jx/classfile/datatypes/TestTypeDesc.ctxt": [],
+  "src/jx/classfile/datatypes/TestTypeDesc.java": [],
+  "src/jx/classfile/ExceptionHandlerData.java": [],
+  "src/jx/classfile/FieldData.java": [],
+  "src/jx/classfile/LineAttributeData.java": [],
+  "src/jx/classfile/MethodData.ctxt": [],
+  "src/jx/classfile/MethodSource.java": [],
+  "src/jx/classfile/Modifier.ctxt": [],
+  "src/jx/classfile/Modifier.java": [],
+  "src/jx/classfile/NativeMethodException.java": [],
+  "src/jx/classfile/NoMagicNumberException.java": [],
+  "src/jx/classfile/Opcodes.java": [],
+  "src/jx/classfile/package.bluej": [],
+  "src/jx/classfile/VerifyResult.java": []
+}
+}

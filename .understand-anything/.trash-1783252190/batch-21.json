@@ -1,0 +1,561 @@
+{
+  "nodes": [
+    {
+      "id": "SSAopt2bin",
+      "type": "class",
+      "filePath": "src/sjc/backend/ssaopt/SSAopt2bin.ctxt"
+    },
+    {
+      "id": "SSAoptInstruction",
+      "type": "class",
+      "filePath": "src/sjc/backend/ssaopt/SSAoptInstruction.ctxt"
+    },
+    {
+      "id": "AMD64",
+      "type": "class",
+      "filePath": "src/sjc/backend/x86/AMD64.ctxt"
+    },
+    {
+      "id": "IA32",
+      "type": "class",
+      "filePath": "src/sjc/backend/x86/IA32.ctxt"
+    },
+    {
+      "id": "IA32Opti",
+      "type": "class",
+      "filePath": "src/sjc/backend/x86/IA32Opti.ctxt"
+    },
+    {
+      "id": "IA32RM",
+      "type": "class",
+      "filePath": "src/sjc/backend/x86/IA32RM.ctxt"
+    },
+    {
+      "id": "X86Base",
+      "type": "class",
+      "filePath": "src/sjc/backend/x86/X86Base.ctxt"
+    },
+    {
+      "id": "AddrList",
+      "type": "class",
+      "filePath": "src/sjc/compbase/AddrList.java"
+    },
+    {
+      "id": "Context",
+      "type": "class",
+      "filePath": "src/sjc/compbase/Context.ctxt"
+    },
+    {
+      "id": "ExArrayCopy",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExArrayCopy.ctxt"
+    },
+    {
+      "id": "ExArrayInit",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExArrayInit.ctxt"
+    },
+    {
+      "id": "ExCheckType",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExCheckType.ctxt"
+    },
+    {
+      "id": "ExConstInitObj",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExConstInitObj.ctxt"
+    },
+    {
+      "id": "ExConstNew",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExConstNew.ctxt"
+    },
+    {
+      "id": "ExConstStruct",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/ExConstStruct.ctxt"
+    },
+    {
+      "id": "Expr",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/Expression.ctxt"
+    },
+    {
+      "id": "ExStr",
+      "type": "class",
+      "filePath": "src/sjc/compbase/expr/StringLiteral.ctxt"
+    },
+    {
+      "id": "FilledAnno",
+      "type": "class",
+      "filePath": "src/sjc/compbase/FilledAnno.ctxt"
+    },
+    {
+      "id": "FilledParam",
+      "type": "class",
+      "filePath": "src/sjc/compbase/FilledParam.ctxt"
+    },
+    {
+      "id": "IndirUnitMapList",
+      "type": "class",
+      "filePath": "src/sjc/compbase/IndirUnitMapList.ctxt"
+    },
+    {
+      "id": "Modifier",
+      "type": "class",
+      "filePath": "src/sjc/compbase/Modifier.ctxt"
+    },
+    {
+      "id": "Mthd",
+      "type": "class",
+      "filePath": "src/sjc/compbase/Mthd.ctxt"
+    },
+    {
+      "id": "MthdDummy",
+      "type": "class",
+      "filePath": "src/sjc/compbase/MthdDummy.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "AMD64",
+      "target": "X86Base",
+      "type": "extends"
+    },
+    {
+      "source": "IA32",
+      "target": "X86Base",
+      "type": "extends"
+    },
+    {
+      "source": "IA32RM",
+      "target": "X86Base",
+      "type": "extends"
+    },
+    {
+      "source": "IA32Opti",
+      "target": "X86Base",
+      "type": "extends"
+    },
+    {
+      "source": "MthdDummy",
+      "target": "Mthd",
+      "type": "extends"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExCheckType",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExConstInitObj",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExStr",
+      "target": "Expr",
+      "type": "extends"
+    },
+    {
+      "source": "ExStr",
+      "target": "ExConstInitObj",
+      "type": "extends"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "ExConstInitObj",
+      "type": "extends"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "ExConstInitObj",
+      "type": "extends"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "ExConstInitObj",
+      "type": "extends"
+    },
+    {
+      "source": "SSAopt2bin",
+      "target": "MemoryImage",
+      "type": "uses"
+    },
+    {
+      "source": "SSAopt2bin",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "SSAopt2bin",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "AMD64",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "AMD64",
+      "target": "TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "AMD64",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "IA32",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "IA32",
+      "target": "TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "IA32",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "IA32Opti",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "IA32Opti",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "IA32RM",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "IA32RM",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "X86Base",
+      "target": "MemoryImage",
+      "type": "uses"
+    },
+    {
+      "source": "X86Base",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "X86Base",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "X86Base",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "X86Base",
+      "target": "TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "OsIO",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "DebugWriter",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "StringList",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "Token",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "TextPrinter",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "AccVar",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "Vrbl",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "VrblList",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "VrblStateList",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "ImageContainer.Location",
+      "type": "uses"
+    },
+    {
+      "source": "Context",
+      "target": "FilledParam",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "ExArrayInit",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayCopy",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExArrayInit",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "ExCheckType",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExCheckType",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "ExCheckType",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExCheckType",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstInitObj",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "FilledParam",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstNew",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExConstStruct",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "Instruction",
+      "type": "uses"
+    },
+    {
+      "source": "Expr",
+      "target": "AccVar",
+      "type": "uses"
+    },
+    {
+      "source": "ExStr",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "ExStr",
+      "target": "Mthd",
+      "type": "uses"
+    },
+    {
+      "source": "ExStr",
+      "target": "TypeRef",
+      "type": "uses"
+    },
+    {
+      "source": "ExStr",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "FilledParam",
+      "target": "Expr",
+      "type": "uses"
+    },
+    {
+      "source": "IndirUnitMapList",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "Mthd",
+      "target": "FilledParam",
+      "type": "uses"
+    },
+    {
+      "source": "Mthd",
+      "target": "Context",
+      "type": "uses"
+    },
+    {
+      "source": "Mthd",
+      "target": "Token",
+      "type": "uses"
+    },
+    {
+      "source": "Mthd",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "MthdDummy",
+      "target": "Unit",
+      "type": "uses"
+    },
+    {
+      "source": "MthdDummy",
+      "target": "Context",
+      "type": "uses"
+    }
+  ]
+}

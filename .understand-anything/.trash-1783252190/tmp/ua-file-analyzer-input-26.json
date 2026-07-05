@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/frontend/sjava/SJava.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/TryContainer.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/BootableImage.ctxt",
+    "language": "ctxt",
+    "sizeLines": 24,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/ImageContainer.ctxt",
+    "language": "ctxt",
+    "sizeLines": 40,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/MemoryImage.ctxt",
+    "language": "ctxt",
+    "sizeLines": 48,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/memory/package.bluej",
+    "language": "bluej",
+    "sizeLines": 54,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/BinWriter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/OsIO.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/package.bluej",
+    "language": "bluej",
+    "sizeLines": 67,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/sun/FileBinWriter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/sun/package.bluej",
+    "language": "bluej",
+    "sizeLines": 54,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/sun/ReflectionSymbols.ctxt",
+    "language": "ctxt",
+    "sizeLines": 21,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/sun/StreamTextPrinter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/sun/SunOS.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/TextBuffer.ctxt",
+    "language": "ctxt",
+    "sizeLines": 30,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/TextPrinter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/osio/TextReader.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/BootOut.ctxt",
+    "language": "ctxt",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/HexOut.ctxt",
+    "language": "ctxt",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/OutputFactory.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/OutputFormat.ctxt",
+    "language": "ctxt",
+    "sizeLines": 10,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/package.bluej",
+    "language": "bluej",
+    "sizeLines": 67,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/output/RawOut.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/package.bluej",
+    "language": "bluej",
+    "sizeLines": 92,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/README.TXT",
+    "language": "txt",
+    "sizeLines": 0,
+    "fileCategory": "docs"
+  }
+],
+  "batchImportData": {
+  "src/sjc/frontend/sjava/SJava.ctxt": [],
+  "src/sjc/frontend/sjava/TryContainer.ctxt": [],
+  "src/sjc/memory/BootableImage.ctxt": [],
+  "src/sjc/memory/ImageContainer.ctxt": [],
+  "src/sjc/memory/MemoryImage.ctxt": [],
+  "src/sjc/memory/package.bluej": [],
+  "src/sjc/osio/BinWriter.ctxt": [],
+  "src/sjc/osio/OsIO.ctxt": [],
+  "src/sjc/osio/package.bluej": [],
+  "src/sjc/osio/sun/FileBinWriter.ctxt": [],
+  "src/sjc/osio/sun/package.bluej": [],
+  "src/sjc/osio/sun/ReflectionSymbols.ctxt": [],
+  "src/sjc/osio/sun/StreamTextPrinter.ctxt": [],
+  "src/sjc/osio/sun/SunOS.ctxt": [],
+  "src/sjc/osio/TextBuffer.ctxt": [],
+  "src/sjc/osio/TextPrinter.ctxt": [],
+  "src/sjc/osio/TextReader.ctxt": [],
+  "src/sjc/output/BootOut.ctxt": [],
+  "src/sjc/output/HexOut.ctxt": [],
+  "src/sjc/output/OutputFactory.ctxt": [],
+  "src/sjc/output/OutputFormat.ctxt": [],
+  "src/sjc/output/package.bluej": [],
+  "src/sjc/output/RawOut.ctxt": [],
+  "src/sjc/package.bluej": [],
+  "src/sjc/README.TXT": []
+}
+}

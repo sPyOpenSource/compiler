@@ -1,0 +1,270 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/backend/ArchFactory.java",
+    "language": "java",
+    "sizeLines": 103,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/Architecture.java",
+    "language": "java",
+    "sizeLines": 511,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/InstrList.java",
+    "language": "java",
+    "sizeLines": 35,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/Instruction.java",
+    "language": "java",
+    "sizeLines": 115,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/arm/ARM7.java",
+    "language": "java",
+    "sizeLines": 1524,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmega.java",
+    "language": "java",
+    "sizeLines": 2337,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmegaOptInstr.java",
+    "language": "java",
+    "sizeLines": 45,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/atmel/ATmegaOpti.java",
+    "language": "java",
+    "sizeLines": 1629,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/dennisk/JVM.java",
+    "language": "java",
+    "sizeLines": 1905,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/dennisk/MyVCPU2.java",
+    "language": "java",
+    "sizeLines": 1648,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssa/SSA.java",
+    "language": "java",
+    "sizeLines": 1137,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt.java",
+    "language": "java",
+    "sizeLines": 108,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAoptInstruction.java",
+    "language": "java",
+    "sizeLines": 42,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32.java",
+    "language": "java",
+    "sizeLines": 2311,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32Opti.java",
+    "language": "java",
+    "sizeLines": 938,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32RM.java",
+    "language": "java",
+    "sizeLines": 1728,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/X86Base.java",
+    "language": "java",
+    "sizeLines": 1584,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Marks.java",
+    "language": "java",
+    "sizeLines": 63,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Ops.java",
+    "language": "java",
+    "sizeLines": 78,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/StdTypes.java",
+    "language": "java",
+    "sizeLines": 79,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/Expression.java",
+    "language": "java",
+    "sizeLines": 202,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblStateList.java",
+    "language": "java",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/prepobj/ExObjInitField.java",
+    "language": "java",
+    "sizeLines": 41,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/backend/ArchFactory.java": [
+    "src/sjc/backend/arm/ARM7.java",
+    "src/sjc/backend/atmel/ATmega.java",
+    "src/sjc/backend/atmel/ATmegaOpti.java",
+    "src/sjc/backend/dennisk/JVM.java",
+    "src/sjc/backend/dennisk/MyVCPU2.java",
+    "src/sjc/backend/ssa/SSA.java",
+    "src/sjc/backend/ssaopt/SSAopt.java",
+    "src/sjc/backend/ssaopt/SSAopt2amd.java",
+    "src/sjc/backend/x86/AMD64.java",
+    "src/sjc/backend/x86/IA32.java",
+    "src/sjc/backend/x86/IA32Opti.java",
+    "src/sjc/backend/x86/IA32RM.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/backend/Architecture.java": [
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/Token.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/osio/TextPrinter.java",
+    "src/sjc/real/Real.java"
+  ],
+  "src/sjc/backend/InstrList.java": [],
+  "src/sjc/backend/Instruction.java": [
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Token.java"
+  ],
+  "src/sjc/backend/arm/ARM7.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java"
+  ],
+  "src/sjc/backend/atmel/ATmega.java": [
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/backend/atmel/ATmegaOptInstr.java": [
+    "src/sjc/backend/InstrList.java",
+    "src/sjc/backend/Instruction.java"
+  ],
+  "src/sjc/backend/atmel/ATmegaOpti.java": [
+    "src/sjc/backend/InstrList.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java"
+  ],
+  "src/sjc/backend/dennisk/JVM.java": [
+    "src/jx/classfile/constantpool/ConstantPool.java",
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java"
+  ],
+  "src/sjc/backend/dennisk/MyVCPU2.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/osio/TextBuffer.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/backend/ssa/SSA.java": [],
+  "src/sjc/backend/ssaopt/SSAopt.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/backend/ssa/SSA.java",
+    "src/sjc/memory/MemoryImage.java"
+  ],
+  "src/sjc/backend/ssaopt/SSAoptInstruction.java": [
+    "src/sjc/backend/Instruction.java"
+  ],
+  "src/sjc/backend/x86/IA32.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/backend/x86/IA32Opti.java": [],
+  "src/sjc/backend/x86/IA32RM.java": [],
+  "src/sjc/backend/x86/X86Base.java": [
+    "src/sjc/backend/Architecture.java",
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Marks.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/memory/MemoryImage.java",
+    "src/sjc/osio/TextBuffer.java",
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/Marks.java": [],
+  "src/sjc/compbase/Ops.java": [],
+  "src/sjc/compbase/StdTypes.java": [
+    "src/sjc/osio/TextPrinter.java"
+  ],
+  "src/sjc/compbase/expr/Expression.java": [
+    "src/sjc/backend/Instruction.java",
+    "src/sjc/compbase/Context.java",
+    "src/sjc/compbase/Mthd.java",
+    "src/sjc/compbase/Ops.java",
+    "src/sjc/compbase/StdTypes.java",
+    "src/sjc/compbase/TypeRef.java",
+    "src/sjc/compbase/Unit.java",
+    "src/sjc/compbase/variable/AccVar.java",
+    "src/sjc/debug/CodePrinter.java"
+  ],
+  "src/sjc/compbase/variable/VrblStateList.java": [],
+  "src/sjc/frontend/prepobj/ExObjInitField.java": [
+    "src/sjc/compbase/expr/Expression.java",
+    "src/sjc/compbase/variable/Vrbl.java"
+  ]
+}
+}

@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/compression/LZW.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/LZW.java",
+    "language": "java",
+    "sizeLines": 112,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/package.bluej",
+    "language": "bluej",
+    "sizeLines": 57,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOut.ctxt",
+    "language": "ctxt",
+    "sizeLines": 47,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOutVCPU2.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/AsmOutX86.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodeInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodePrinter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 88,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/CodePrinterJava.ctxt",
+    "language": "ctxt",
+    "sizeLines": 72,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/DebugWriter.ctxt",
+    "language": "ctxt",
+    "sizeLines": 58,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/Dwarf.ctxt",
+    "language": "ctxt",
+    "sizeLines": 71,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/GccInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/MthdInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/package.bluej",
+    "language": "bluej",
+    "sizeLines": 128,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/RelationInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 62,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/SizeInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 60,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/debug/SymInfo.ctxt",
+    "language": "ctxt",
+    "sizeLines": 64,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BImExpr.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BImUnit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/BinImp.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/binimp/package.bluej",
+    "language": "bluej",
+    "sizeLines": 47,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/clist/CList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/clist/package.bluej",
+    "language": "bluej",
+    "sizeLines": 27,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/FrontAdmin.ctxt",
+    "language": "ctxt",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/Language.ctxt",
+    "language": "ctxt",
+    "sizeLines": 10,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/compression/LZW.ctxt": [],
+  "src/sjc/compression/LZW.java": [],
+  "src/sjc/compression/package.bluej": [],
+  "src/sjc/debug/AsmOut.ctxt": [],
+  "src/sjc/debug/AsmOutVCPU2.ctxt": [],
+  "src/sjc/debug/AsmOutX86.ctxt": [],
+  "src/sjc/debug/CodeInfo.ctxt": [],
+  "src/sjc/debug/CodePrinter.ctxt": [],
+  "src/sjc/debug/CodePrinterJava.ctxt": [],
+  "src/sjc/debug/DebugWriter.ctxt": [],
+  "src/sjc/debug/Dwarf.ctxt": [],
+  "src/sjc/debug/GccInfo.ctxt": [],
+  "src/sjc/debug/MthdInfo.ctxt": [],
+  "src/sjc/debug/package.bluej": [],
+  "src/sjc/debug/RelationInfo.ctxt": [],
+  "src/sjc/debug/SizeInfo.ctxt": [],
+  "src/sjc/debug/SymInfo.ctxt": [],
+  "src/sjc/frontend/binimp/BImExpr.ctxt": [],
+  "src/sjc/frontend/binimp/BImUnit.ctxt": [],
+  "src/sjc/frontend/binimp/BinImp.ctxt": [],
+  "src/sjc/frontend/binimp/package.bluej": [],
+  "src/sjc/frontend/clist/CList.ctxt": [],
+  "src/sjc/frontend/clist/package.bluej": [],
+  "src/sjc/frontend/FrontAdmin.ctxt": [],
+  "src/sjc/frontend/Language.ctxt": []
+}
+}

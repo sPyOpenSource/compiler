@@ -1,0 +1,3826 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 33,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 32,
+      "metrics": {}
+    },
+    {
+      "path": "app/app.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 2316,
+      "nonEmptyLines": 2316,
+      "sections": [
+        {
+          "heading": "kernel.Scheduler.printHelp()",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "tools.EventBuffer.fetchEvent()",
+          "level": 1,
+          "line": 18
+        },
+        {
+          "heading": "raytracer.RGBfCol.fGetBlue(col)",
+          "level": 1,
+          "line": 19
+        },
+        {
+          "heading": "devices.Keyboard.setModifier(mod,on)",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "rte.DynamicRuntime.isImplementation(o,dest,asCast)",
+          "level": 1,
+          "line": 31
+        },
+        {
+          "heading": "tools.KEvT.useTable(country)",
+          "level": 1,
+          "line": 40
+        },
+        {
+          "heading": "devices.VGAText.setColor(fg,bg)",
+          "level": 1,
+          "line": 45
+        },
+        {
+          "heading": "devices.VESAGraphics.drawLine(y,col)",
+          "level": 1,
+          "line": 49
+        },
+        {
+          "heading": "raytracer.Ray.cast(objList)",
+          "level": 1,
+          "line": 72
+        },
+        {
+          "heading": "devices.Viewer.print(c)",
+          "level": 1,
+          "line": 83
+        },
+        {
+          "heading": "devices.LegacyPIC.ackIRQ(no)",
+          "level": 1,
+          "line": 107
+        },
+        {
+          "heading": "raytracer.RGBfCol.create(rI,gI,bI)",
+          "level": 1,
+          "line": 112
+        },
+        {
+          "heading": "kernel.Interrupts.firstLevelHandlerWEC(ec)",
+          "level": 1,
+          "line": 130
+        },
+        {
+          "heading": "kernel.Scheduler.printTime(x,y,col)",
+          "level": 1,
+          "line": 144
+        },
+        {
+          "heading": "kernel.PageFault.handle(no,withError,ec)",
+          "level": 1,
+          "line": 160
+        },
+        {
+          "heading": "kernel.SegmentTables.lidt()",
+          "level": 1,
+          "line": 166
+        },
+        {
+          "heading": "raytracer.Vector3f.normalize()",
+          "level": 1,
+          "line": 170
+        },
+        {
+          "heading": "kernel.Interrupts.replaceIRQHandler(irqNr,dev)",
+          "level": 1,
+          "line": 171
+        },
+        {
+          "heading": "devices.DeviceList.initDevices()",
+          "level": 1,
+          "line": 177
+        },
+        {
+          "heading": "devices.LegacyPIC.programChip(port,offset,icw3)",
+          "level": 1,
+          "line": 203
+        },
+        {
+          "heading": "tools.RingBuffer.getShort()",
+          "level": 1,
+          "line": 209
+        },
+        {
+          "heading": "devices.Viewer.cls()",
+          "level": 1,
+          "line": 215
+        },
+        {
+          "heading": "devices.VGAText.scroll()",
+          "level": 1,
+          "line": 220
+        },
+        {
+          "heading": "raytracer.RGBfCol.fGetGreen(col)",
+          "level": 1,
+          "line": 229
+        },
+        {
+          "heading": "kernel.Scheduler.initVesa()",
+          "level": 1,
+          "line": 235
+        },
+        {
+          "heading": "java.Math.exp(nr)",
+          "level": 1,
+          "line": 246
+        },
+        {
+          "heading": "devices.VGAText.cls()",
+          "level": 1,
+          "line": 253
+        },
+        {
+          "heading": "raytracer.ObjList.ObjList(obj)",
+          "level": 1,
+          "line": 258
+        },
+        {
+          "heading": "kernel.Interrupts.init()",
+          "level": 1,
+          "line": 262
+        },
+        {
+          "heading": "raytracer.Sphere.Sphere(s,c,r)",
+          "level": 1,
+          "line": 269
+        },
+        {
+          "heading": "raytracer.Ray.trace(objList)",
+          "level": 1,
+          "line": 274
+        },
+        {
+          "heading": "kernel.Kernel.directPrintChar(c,x,y,col)",
+          "level": 1,
+          "line": 288
+        },
+        {
+          "heading": "raytracer.Vector3f.Vector3f(xI,yI,zI)",
+          "level": 1,
+          "line": 294
+        },
+        {
+          "heading": "tools.RingBuffer.putLong(l)",
+          "level": 1,
+          "line": 299
+        },
+        {
+          "heading": "kernel.DebugScreen.handle(no,withError,ec)",
+          "level": 1,
+          "line": 305
+        },
+        {
+          "heading": "devices.VESAGraphics.setPixel(x,y,col)",
+          "level": 1,
+          "line": 311
+        },
+        {
+          "heading": "raytracer.Vector3f.lenSq(x,y,z)",
+          "level": 1,
+          "line": 333
+        },
+        {
+          "heading": "devices.Viewer.setColor(fg,bg)",
+          "level": 1,
+          "line": 338
+        },
+        {
+          "heading": "kernel.Scheduler.run()",
+          "level": 1,
+          "line": 343
+        },
+        {
+          "heading": "kernel.Interrupts.createEntry(no,dest)",
+          "level": 1,
+          "line": 354
+        },
+        {
+          "heading": "raytracer.Vector3f.dot(vx,vy,vz)",
+          "level": 1,
+          "line": 365
+        },
+        {
+          "heading": "raytracer.Sphere.Shade(ray,scene,t1,t2,t3)",
+          "level": 1,
+          "line": 370
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createString()",
+          "level": 1,
+          "line": 397
+        },
+        {
+          "heading": "kernel.SegmentTables.lidtRM()",
+          "level": 1,
+          "line": 443
+        },
+        {
+          "heading": "devices.VESAGraphics.setMode(xRes,yRes,colDepth,graphical)",
+          "level": 1,
+          "line": 447
+        },
+        {
+          "heading": "kernel.Scheduler.linInterPol1D(x,xRes,l,r)",
+          "level": 1,
+          "line": 459
+        },
+        {
+          "heading": "devices.Keyboard.Keyboard()",
+          "level": 1,
+          "line": 473
+        },
+        {
+          "heading": "tools.EventBuffer.eventAvail()",
+          "level": 1,
+          "line": 477
+        },
+        {
+          "heading": "java.Math.sqrt(nr)",
+          "level": 1,
+          "line": 481
+        },
+        {
+          "heading": "raytracer.Vector3f.dot(v1)",
+          "level": 1,
+          "line": 485
+        },
+        {
+          "heading": "kernel.Kernel.setMem32(addr,cnt,val)",
+          "level": 1,
+          "line": 490
+        },
+        {
+          "heading": "kernel.Interrupts.cli()",
+          "level": 1,
+          "line": 494
+        },
+        {
+          "heading": "rte.DynamicRuntime.isArray(o,stdType,clssType,arrDim,asCast)",
+          "level": 1,
+          "line": 495
+        },
+        {
+          "heading": "tools.RingBuffer.RingBuffer(is)",
+          "level": 1,
+          "line": 517
+        },
+        {
+          "heading": "raytracer.Triangle.Shade(ray,scene,t1,t2,t3)",
+          "level": 1,
+          "line": 522
+        },
+        {
+          "heading": "kernel.Interrupts.replaceExcHandler(excNr,hnd)",
+          "level": 1,
+          "line": 582
+        },
+        {
+          "heading": "java.Math.abs(nr)",
+          "level": 1,
+          "line": 588
+        },
+        {
+          "heading": "raytracer.Vector3f.Vector3f()",
+          "level": 1,
+          "line": 592
+        },
+        {
+          "heading": "tools.RingBuffer.putByte(b)",
+          "level": 1,
+          "line": 593
+        },
+        {
+          "heading": "rte.DynamicRuntime.checkArrayStore(dest,newEntry)",
+          "level": 1,
+          "line": 600
+        },
+        {
+          "heading": "devices.VGAText.setCursor(newX,newY)",
+          "level": 1,
+          "line": 609
+        },
+        {
+          "heading": "devices.Timer.handleIRQ(no)",
+          "level": 1,
+          "line": 620
+        },
+        {
+          "heading": "kernel.Kernel.directPrintInt(val,base,len,x,y,col,leadingZero)",
+          "level": 1,
+          "line": 628
+        },
+        {
+          "heading": "devices.Viewer.Viewer(output)",
+          "level": 1,
+          "line": 653
+        },
+        {
+          "heading": "tools.RingBuffer.getByte()",
+          "level": 1,
+          "line": 654
+        },
+        {
+          "heading": "raytracer.Sphere.intersect(ray)",
+          "level": 1,
+          "line": 661
+        },
+        {
+          "heading": "tools.EventBuffer.extractCode(event)",
+          "level": 1,
+          "line": 686
+        },
+        {
+          "heading": "devices.Viewer.println(str)",
+          "level": 1,
+          "line": 690
+        },
+        {
+          "heading": "raytracer.Light.Light(type,v,r,g,b)",
+          "level": 1,
+          "line": 694
+        },
+        {
+          "heading": "tools.RingBuffer.getLong()",
+          "level": 1,
+          "line": 713
+        },
+        {
+          "heading": "kernel.Scheduler.printInput()",
+          "level": 1,
+          "line": 720
+        },
+        {
+          "heading": "devices.VGAText.clearLine(y)",
+          "level": 1,
+          "line": 789
+        },
+        {
+          "heading": "kernel.Scheduler.linInterPol2D(x,y,xRes,yRes,lt,rt,lb,rb)",
+          "level": 1,
+          "line": 799
+        },
+        {
+          "heading": "raytracer.RGBfCol.getIntCol(col,index)",
+          "level": 1,
+          "line": 806
+        },
+        {
+          "heading": "raytracer.RayTrace.RayTrace(s,useBGR)",
+          "level": 1,
+          "line": 812
+        },
+        {
+          "heading": "tools.RingBuffer.getInt()",
+          "level": 1,
+          "line": 823
+        },
+        {
+          "heading": "kernel.Interrupts.firstLevelHandlerWOE()",
+          "level": 1,
+          "line": 829
+        },
+        {
+          "heading": "raytracer.Triangle.Triangle(s,v1,v2,v3)",
+          "level": 1,
+          "line": 853
+        },
+        {
+          "heading": "devices.Viewer.println()",
+          "level": 1,
+          "line": 858
+        },
+        {
+          "heading": "kernel.BasicMemory.allocateKernelBlock(size,maskBits)",
+          "level": 1,
+          "line": 868
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createThings()",
+          "level": 1,
+          "line": 875
+        },
+        {
+          "heading": "tools.RingBuffer.writeAvail()",
+          "level": 1,
+          "line": 977
+        },
+        {
+          "heading": "devices.LegacyPIC.init()",
+          "level": 1,
+          "line": 983
+        },
+        {
+          "heading": "devices.Viewer.doWriteLong(x)",
+          "level": 1,
+          "line": 987
+        },
+        {
+          "heading": "raytracer.Cylinder.intersect(ray)",
+          "level": 1,
+          "line": 994
+        },
+        {
+          "heading": "java.Math.tan(nr)",
+          "level": 1,
+          "line": 1056
+        },
+        {
+          "heading": "kernel.SegmentTables.rebuildGDT()",
+          "level": 1,
+          "line": 1060
+        },
+        {
+          "heading": "rte.DynamicRuntime.newArray(length,arrDim,entrySize,stdType,unitType)",
+          "level": 1,
+          "line": 1070
+        },
+        {
+          "heading": "devices.Viewer.print(x)",
+          "level": 1,
+          "line": 1085
+        },
+        {
+          "heading": "devices.Keyboard.isInternalModifier(code)",
+          "level": 1,
+          "line": 1091
+        },
+        {
+          "heading": "devices.Viewer.setCursor(x,y)",
+          "level": 1,
+          "line": 1098
+        },
+        {
+          "heading": "tools.EventBuffer.extractCodeExt(event)",
+          "level": 1,
+          "line": 1103
+        },
+        {
+          "heading": "raytracer.Vector3f.cross(v1,v2)",
+          "level": 1,
+          "line": 1107
+        },
+        {
+          "heading": "raytracer.Surface.Shade(t1,t2,t3,scene,tempRay)",
+          "level": 1,
+          "line": 1117
+        },
+        {
+          "heading": "kernel.Interrupts.sti()",
+          "level": 1,
+          "line": 1252
+        },
+        {
+          "heading": "raytracer.Scene.Scene()",
+          "level": 1,
+          "line": 1256
+        },
+        {
+          "heading": "kernel.Scheduler.calcMandelPixel(xc,yc)",
+          "level": 1,
+          "line": 1276
+        },
+        {
+          "heading": "raytracer.Vector3f.addScaled(v1,factor)",
+          "level": 1,
+          "line": 1291
+        },
+        {
+          "heading": "tools.RingBuffer.readAvail()",
+          "level": 1,
+          "line": 1298
+        },
+        {
+          "heading": "kernel.Kernel.main()",
+          "level": 1,
+          "line": 1303
+        },
+        {
+          "heading": "raytracer.Vector3f.init(xI,yI,zI)",
+          "level": 1,
+          "line": 1313
+        },
+        {
+          "heading": "devices.VGAText.putChar(x,y,c)",
+          "level": 1,
+          "line": 1318
+        },
+        {
+          "heading": "raytracer.RGBfCol.fGetRed(col)",
+          "level": 1,
+          "line": 1328
+        },
+        {
+          "heading": "tools.KEvT.getKey(code,codeExt)",
+          "level": 1,
+          "line": 1334
+        },
+        {
+          "heading": "devices.VGAText.reInit()",
+          "level": 1,
+          "line": 1356
+        },
+        {
+          "heading": "kernel.VirtualMemory.init()",
+          "level": 1,
+          "line": 1360
+        },
+        {
+          "heading": "kernel.BasicMemory.basicAllocate(scalarSize,relocEntries,type)",
+          "level": 1,
+          "line": 1389
+        },
+        {
+          "heading": "devices.Viewer.print(str)",
+          "level": 1,
+          "line": 1403
+        },
+        {
+          "heading": "raytracer.SceneDemo5.setUpEnvironment()",
+          "level": 1,
+          "line": 1411
+        },
+        {
+          "heading": "devices.Keyboard.toggleModifierAndRefreshLEDs(mod)",
+          "level": 1,
+          "line": 1428
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createWalls()",
+          "level": 1,
+          "line": 1442
+        },
+        {
+          "heading": "raytracer.RGBfCol.toRGB(col,bgr)",
+          "level": 1,
+          "line": 1540
+        },
+        {
+          "heading": "java.Math.ln(nr)",
+          "level": 1,
+          "line": 1550
+        },
+        {
+          "heading": "kernel.Interrupts.createTable()",
+          "level": 1,
+          "line": 1554
+        },
+        {
+          "heading": "raytracer.Cylinder.Cylinder(is,io,ir,id,idCopy)",
+          "level": 1,
+          "line": 1596
+        },
+        {
+          "heading": "kernel.BasicMemory.init()",
+          "level": 1,
+          "line": 1607
+        },
+        {
+          "heading": "kernel.BasicMemory.allocate(scalarSize,relocEntries,type)",
+          "level": 1,
+          "line": 1614
+        },
+        {
+          "heading": "raytracer.Vector3f.lenSq()",
+          "level": 1,
+          "line": 1618
+        },
+        {
+          "heading": "kernel.SegmentTables.lgdt(cnt)",
+          "level": 1,
+          "line": 1622
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createGroup(cS,x,y,upper)",
+          "level": 1,
+          "line": 1627
+        },
+        {
+          "heading": "tools.KEvT.getChar(code,codeExt)",
+          "level": 1,
+          "line": 1725
+        },
+        {
+          "heading": "kernel.Interrupts.Interrupts()",
+          "level": 1,
+          "line": 1753
+        },
+        {
+          "heading": "devices.Viewer.doWriteInt(x)",
+          "level": 1,
+          "line": 1754
+        },
+        {
+          "heading": "raytracer.Ray.init(eye,dir)",
+          "level": 1,
+          "line": 1760
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createLights()",
+          "level": 1,
+          "line": 1768
+        },
+        {
+          "heading": "rte.DynamicRuntime.isInstance(o,dest,asCast)",
+          "level": 1,
+          "line": 1791
+        },
+        {
+          "heading": "raytracer.Ray.Ray(eye,dir)",
+          "level": 1,
+          "line": 1799
+        },
+        {
+          "heading": "java.Math.pow(nr,exp)",
+          "level": 1,
+          "line": 1808
+        },
+        {
+          "heading": "devices.VESAGraphics.detectDevice()",
+          "level": 1,
+          "line": 1813
+        },
+        {
+          "heading": "raytracer.Surface.Surface(rval,gval,bval,a,d,s,n,r,t,index)",
+          "level": 1,
+          "line": 1849
+        },
+        {
+          "heading": "raytracer.SceneDemo5.createWorld()",
+          "level": 1,
+          "line": 1858
+        },
+        {
+          "heading": "raytracer.RayTrace.init(w,h)",
+          "level": 1,
+          "line": 1862
+        },
+        {
+          "heading": "raytracer.ObjList.addElement(obj)",
+          "level": 1,
+          "line": 1942
+        },
+        {
+          "heading": "kernel.BIOS.rint(inter)",
+          "level": 1,
+          "line": 1952
+        },
+        {
+          "heading": "raytracer.Renderable.onPoint(t)",
+          "level": 1,
+          "line": 2023
+        },
+        {
+          "heading": "devices.VGAText.setTextMode()",
+          "level": 1,
+          "line": 2027
+        },
+        {
+          "heading": "devices.VGAText.enableCursor(on)",
+          "level": 1,
+          "line": 2031
+        },
+        {
+          "heading": "devices.Keyboard.isRegularModifier(code)",
+          "level": 1,
+          "line": 2038
+        },
+        {
+          "heading": "raytracer.Triangle.intersect(ray)",
+          "level": 1,
+          "line": 2066
+        },
+        {
+          "heading": "raytracer.SceneDemo5.setUpEye()",
+          "level": 1,
+          "line": 2122
+        },
+        {
+          "heading": "raytracer.RayTrace.renderLine(dest,cTAi)",
+          "level": 1,
+          "line": 2134
+        },
+        {
+          "heading": "kernel.VirtualMemory.allocate(scalarSize,relocEntries,type)",
+          "level": 1,
+          "line": 2193
+        },
+        {
+          "heading": "tools.EventBuffer.insertEvent(HIDType,HIDNr,code,codeExt)",
+          "level": 1,
+          "line": 2197
+        },
+        {
+          "heading": "rte.DynamicRuntime.newInstance(scalarSize,relocEntries,type)",
+          "level": 1,
+          "line": 2209
+        },
+        {
+          "heading": "devices.Keyboard.handleIRQ(no)",
+          "level": 1,
+          "line": 2215
+        },
+        {
+          "heading": "rte.DynamicRuntime.newMultArray(parent,curLevel,destLevel,length,arrDim,entrySize,stdType,clssType)",
+          "level": 1,
+          "line": 2233
+        },
+        {
+          "heading": "raytracer.Cylinder.Shade(ray,scene,t1,t2,t3)",
+          "level": 1,
+          "line": 2253
+        },
+        {
+          "heading": "tools.RingBuffer.putInt(i)",
+          "level": 1,
+          "line": 2285
+        },
+        {
+          "heading": "raytracer.Vector3f.normalize(v1)",
+          "level": 1,
+          "line": 2291
+        },
+        {
+          "heading": "tools.RingBuffer.putShort(s)",
+          "level": 1,
+          "line": 2300
+        },
+        {
+          "heading": "raytracer.ObjList.ObjList()",
+          "level": 1,
+          "line": 2306
+        },
+        {
+          "heading": "devices.Keyboard.isSysRequest(code)",
+          "level": 1,
+          "line": 2307
+        },
+        {
+          "heading": "devices.VGAText.VGAText()",
+          "level": 1,
+          "line": 2312
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 153
+      }
+    },
+    {
+      "path": "app/demo.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 22,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 2,
+          "endLine": 21,
+          "params": [
+            "args"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "demo",
+          "startLine": 1,
+          "endLine": 22,
+          "methods": [
+            "main"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "main",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "demo",
+          "line": 1,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/demo.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 17,
+      "nonEmptyLines": 17,
+      "sections": [
+        {
+          "heading": "modifier",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "language",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "object",
+          "level": 1,
+          "line": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "app/java/lang/FLASH.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 4,
+      "classes": [
+        {
+          "name": "FLASH",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FLASH",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/java/lang/MAGIC.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 94,
+      "nonEmptyLines": 92,
+      "functions": [
+        {
+          "name": "inline",
+          "startLine": 21,
+          "endLine": 21,
+          "params": [
+            "p1"
+          ]
+        },
+        {
+          "name": "inline",
+          "startLine": 22,
+          "endLine": 22,
+          "params": [
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "inline",
+          "startLine": 23,
+          "endLine": 23,
+          "params": [
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        {
+          "name": "inline",
+          "startLine": 24,
+          "endLine": 24,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ]
+        },
+        {
+          "name": "inline",
+          "startLine": 25,
+          "endLine": 25,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ]
+        },
+        {
+          "name": "inline",
+          "startLine": 26,
+          "endLine": 26,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5",
+            "p6"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 27,
+          "endLine": 27,
+          "params": [
+            "p1"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 28,
+          "endLine": 28,
+          "params": [
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 29,
+          "endLine": 29,
+          "params": [
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 30,
+          "endLine": 30,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 31,
+          "endLine": 31,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ]
+        },
+        {
+          "name": "inline16",
+          "startLine": 32,
+          "endLine": 32,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5",
+            "p6"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 33,
+          "endLine": 33,
+          "params": [
+            "p1"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 34,
+          "endLine": 34,
+          "params": [
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 35,
+          "endLine": 35,
+          "params": [
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 36,
+          "endLine": 36,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 37,
+          "endLine": 37,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5"
+          ]
+        },
+        {
+          "name": "inline32",
+          "startLine": 38,
+          "endLine": 38,
+          "params": [
+            "p1",
+            "p2",
+            "p3",
+            "p4",
+            "p5",
+            "p6"
+          ]
+        },
+        {
+          "name": "inlineOffset",
+          "startLine": 39,
+          "endLine": 39,
+          "params": [
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "inlineOffset",
+          "startLine": 40,
+          "endLine": 40,
+          "params": [
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        {
+          "name": "inlineOffset",
+          "startLine": 41,
+          "endLine": 41,
+          "params": [
+            "p1",
+            "p2"
+          ]
+        },
+        {
+          "name": "inlineOffset",
+          "startLine": 42,
+          "endLine": 42,
+          "params": [
+            "p1",
+            "p2",
+            "p3"
+          ]
+        },
+        {
+          "name": "inlineBlock",
+          "startLine": 43,
+          "endLine": 43,
+          "params": [
+            "blockName"
+          ]
+        },
+        {
+          "name": "wMem64",
+          "startLine": 44,
+          "endLine": 44,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rMem64",
+          "startLine": 45,
+          "endLine": 45,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wMem32",
+          "startLine": 46,
+          "endLine": 46,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rMem32",
+          "startLine": 47,
+          "endLine": 47,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wMem16",
+          "startLine": 48,
+          "endLine": 48,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rMem16",
+          "startLine": 49,
+          "endLine": 49,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wMem8",
+          "startLine": 50,
+          "endLine": 50,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rMem8",
+          "startLine": 51,
+          "endLine": 51,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wIOs64",
+          "startLine": 52,
+          "endLine": 52,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rIOs64",
+          "startLine": 53,
+          "endLine": 53,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wIOs32",
+          "startLine": 54,
+          "endLine": 54,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rIOs32",
+          "startLine": 55,
+          "endLine": 55,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wIOs16",
+          "startLine": 56,
+          "endLine": 56,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rIOs16",
+          "startLine": 57,
+          "endLine": 57,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "wIOs8",
+          "startLine": 58,
+          "endLine": 58,
+          "params": [
+            "addr",
+            "v"
+          ]
+        },
+        {
+          "name": "rIOs8",
+          "startLine": 59,
+          "endLine": 59,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "cast2Ref",
+          "startLine": 60,
+          "endLine": 60,
+          "params": [
+            "o"
+          ]
+        },
+        {
+          "name": "cast2Obj",
+          "startLine": 61,
+          "endLine": 61,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "addr",
+          "startLine": 62,
+          "endLine": 62,
+          "params": [
+            "i"
+          ]
+        },
+        {
+          "name": "addr",
+          "startLine": 63,
+          "endLine": 63,
+          "params": [
+            "o"
+          ]
+        },
+        {
+          "name": "clssDesc",
+          "startLine": 64,
+          "endLine": 64,
+          "params": [
+            "clssName"
+          ]
+        },
+        {
+          "name": "mthdOff",
+          "startLine": 65,
+          "endLine": 65,
+          "params": [
+            "clssName",
+            "mthdName"
+          ]
+        },
+        {
+          "name": "getCodeOff",
+          "startLine": 66,
+          "endLine": 66,
+          "params": []
+        },
+        {
+          "name": "getInstScalarSize",
+          "startLine": 67,
+          "endLine": 67,
+          "params": [
+            "clssName"
+          ]
+        },
+        {
+          "name": "getInstRelocEntries",
+          "startLine": 68,
+          "endLine": 68,
+          "params": [
+            "clssName"
+          ]
+        },
+        {
+          "name": "bitMem8",
+          "startLine": 69,
+          "endLine": 69,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitMem16",
+          "startLine": 70,
+          "endLine": 70,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitMem32",
+          "startLine": 71,
+          "endLine": 71,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitMem64",
+          "startLine": 72,
+          "endLine": 72,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitIOs8",
+          "startLine": 73,
+          "endLine": 73,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitIOs16",
+          "startLine": 74,
+          "endLine": 74,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitIOs32",
+          "startLine": 75,
+          "endLine": 75,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "bitIOs64",
+          "startLine": 76,
+          "endLine": 76,
+          "params": [
+            "addr",
+            "v",
+            "set"
+          ]
+        },
+        {
+          "name": "cast2Struct",
+          "startLine": 77,
+          "endLine": 77,
+          "params": [
+            "addr"
+          ]
+        },
+        {
+          "name": "getRamAddr",
+          "startLine": 78,
+          "endLine": 78,
+          "params": []
+        },
+        {
+          "name": "getRamSize",
+          "startLine": 79,
+          "endLine": 79,
+          "params": []
+        },
+        {
+          "name": "getRamInitAddr",
+          "startLine": 80,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "useAsThis",
+          "startLine": 81,
+          "endLine": 81,
+          "params": [
+            "newThis"
+          ]
+        },
+        {
+          "name": "getConstMemorySize",
+          "startLine": 82,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "doStaticInit",
+          "startLine": 83,
+          "endLine": 83,
+          "params": []
+        },
+        {
+          "name": "toByteArray",
+          "startLine": 84,
+          "endLine": 84,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "toCharArray",
+          "startLine": 85,
+          "endLine": 85,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "getNamedString",
+          "startLine": 86,
+          "endLine": 86,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "ignore",
+          "startLine": 87,
+          "endLine": 87,
+          "params": [
+            "dummy"
+          ]
+        },
+        {
+          "name": "ignore",
+          "startLine": 88,
+          "endLine": 88,
+          "params": [
+            "dummy"
+          ]
+        },
+        {
+          "name": "ignore",
+          "startLine": 89,
+          "endLine": 89,
+          "params": [
+            "o"
+          ]
+        },
+        {
+          "name": "stopBlockCoding",
+          "startLine": 90,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "assign",
+          "startLine": 91,
+          "endLine": 91,
+          "params": [
+            "dest",
+            "value"
+          ]
+        },
+        {
+          "name": "assign",
+          "startLine": 92,
+          "endLine": 92,
+          "params": [
+            "dest",
+            "value"
+          ]
+        },
+        {
+          "name": "assign",
+          "startLine": 93,
+          "endLine": 93,
+          "params": [
+            "dest",
+            "value"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MAGIC",
+          "startLine": 5,
+          "endLine": 94,
+          "methods": [
+            "inline",
+            "inline",
+            "inline",
+            "inline",
+            "inline",
+            "inline",
+            "inline16",
+            "inline16",
+            "inline16",
+            "inline16",
+            "inline16",
+            "inline16",
+            "inline32",
+            "inline32",
+            "inline32",
+            "inline32",
+            "inline32",
+            "inline32",
+            "inlineOffset",
+            "inlineOffset",
+            "inlineOffset",
+            "inlineOffset",
+            "inlineBlock",
+            "wMem64",
+            "rMem64",
+            "wMem32",
+            "rMem32",
+            "wMem16",
+            "rMem16",
+            "wMem8",
+            "rMem8",
+            "wIOs64",
+            "rIOs64",
+            "wIOs32",
+            "rIOs32",
+            "wIOs16",
+            "rIOs16",
+            "wIOs8",
+            "rIOs8",
+            "cast2Ref",
+            "cast2Obj",
+            "addr",
+            "addr",
+            "clssDesc",
+            "mthdOff",
+            "getCodeOff",
+            "getInstScalarSize",
+            "getInstRelocEntries",
+            "bitMem8",
+            "bitMem16",
+            "bitMem32",
+            "bitMem64",
+            "bitIOs8",
+            "bitIOs16",
+            "bitIOs32",
+            "bitIOs64",
+            "cast2Struct",
+            "getRamAddr",
+            "getRamSize",
+            "getRamInitAddr",
+            "useAsThis",
+            "getConstMemorySize",
+            "doStaticInit",
+            "toByteArray",
+            "toCharArray",
+            "getNamedString",
+            "ignore",
+            "ignore",
+            "ignore",
+            "stopBlockCoding",
+            "assign",
+            "assign",
+            "assign"
+          ],
+          "properties": [
+            "ptrSize",
+            "movable",
+            "indirScalars",
+            "streamline",
+            "assignCall",
+            "assignHeapCall",
+            "runtimeBoundException",
+            "runtimeNullException",
+            "imageBase",
+            "compressedImageBase",
+            "embedded",
+            "embConstRAM",
+            "relocation",
+            "comprRelocation"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ptrSize",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "movable",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "indirScalars",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "streamline",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "assignCall",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "assignHeapCall",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "runtimeBoundException",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "runtimeNullException",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "imageBase",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "compressedImageBase",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "embedded",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "embConstRAM",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "relocation",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "comprRelocation",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "inline",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "inline16",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "inline32",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "inlineOffset",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "inlineOffset",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "inlineOffset",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "inlineOffset",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "inlineBlock",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "wMem64",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "rMem64",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "wMem32",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "rMem32",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "wMem16",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "rMem16",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "wMem8",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "rMem8",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "wIOs64",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "rIOs64",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "wIOs32",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "rIOs32",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "wIOs16",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "rIOs16",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "wIOs8",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "rIOs8",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "cast2Ref",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "cast2Obj",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "addr",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "addr",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "clssDesc",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "mthdOff",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "getCodeOff",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "getInstScalarSize",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "getInstRelocEntries",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "bitMem8",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "bitMem16",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "bitMem32",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "bitMem64",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "bitIOs8",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "bitIOs16",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "bitIOs32",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "bitIOs64",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "cast2Struct",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "getRamAddr",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "getRamSize",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "getRamInitAddr",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "useAsThis",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "getConstMemorySize",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "doStaticInit",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "toByteArray",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "toCharArray",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "getNamedString",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "ignore",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "ignore",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "ignore",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "stopBlockCoding",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "assign",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "assign",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "assign",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "MAGIC",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 88,
+        "functionCount": 73,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/java/lang/Object.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 7,
+      "classes": [
+        {
+          "name": "Object",
+          "startLine": 5,
+          "endLine": 9,
+          "methods": [],
+          "properties": [
+            "_r_type",
+            "_r_next",
+            "_r_relocEntries",
+            "_r_scalarSize"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_r_type",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "Object",
+          "line": 5,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/java/lang/String.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "classes": [
+        {
+          "name": "String",
+          "startLine": 3,
+          "endLine": 8,
+          "methods": [],
+          "properties": [
+            "value",
+            "count"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "value",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "count",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "String",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/java/lang/STRUCT.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 4,
+      "classes": [
+        {
+          "name": "STRUCT",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "STRUCT",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/DynamicAri.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 386,
+      "nonEmptyLines": 382,
+      "functions": [
+        {
+          "name": "binByte",
+          "startLine": 4,
+          "endLine": 43,
+          "params": [
+            "a",
+            "b",
+            "op"
+          ]
+        },
+        {
+          "name": "binLong",
+          "startLine": 181,
+          "endLine": 385,
+          "params": [
+            "a",
+            "b",
+            "op"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "DynamicAri",
+          "startLine": 3,
+          "endLine": 386,
+          "methods": [
+            "binByte",
+            "binLong"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "binByte",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "binLong",
+          "line": 181,
+          "isDefault": false
+        },
+        {
+          "name": "DynamicAri",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 8
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 9
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 10
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 11
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 12
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 13
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 14
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 15
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 16
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 17
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 18
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 20
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 21
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 22
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 23
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 24
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 25
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 26
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 28
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 29
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 31
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 32
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 33
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 34
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 35
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 37
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 38
+        },
+        {
+          "caller": "binByte",
+          "callee": "MAGIC.stopBlockCoding",
+          "lineNumber": 41
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 185
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 186
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 187
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 188
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 189
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 190
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 191
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 192
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 193
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 194
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 195
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 196
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 197
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 198
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 199
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 200
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 202
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 203
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 204
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 205
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 206
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 207
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 208
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 209
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 210
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 212
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 213
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 214
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 215
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 216
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 217
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 218
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 219
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 220
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 221
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 222
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 223
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 224
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 225
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 226
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 227
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 228
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 230
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 231
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 232
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 233
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 234
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 235
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 236
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 237
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 238
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 239
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 243
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 244
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 245
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 246
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 247
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 248
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 249
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 250
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 251
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 252
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 253
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 254
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 255
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 256
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 257
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 258
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 260
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 261
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 262
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 263
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 264
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 265
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 266
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 267
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 268
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 269
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 270
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 271
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 272
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 273
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 274
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 275
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 276
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 277
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 279
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 280
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 281
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 282
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 283
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 284
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 285
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 286
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 287
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 288
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 289
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 290
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 291
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 292
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 293
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 294
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 295
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 296
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 299
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 300
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 301
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 302
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 303
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 304
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 305
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 306
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 307
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 309
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 310
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 311
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 312
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 313
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 314
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 315
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 316
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 317
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 318
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 319
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 320
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 321
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 322
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 323
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 324
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 325
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 326
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 327
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 328
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 329
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 330
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 331
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 332
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 333
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 334
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 335
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 336
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 337
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 338
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 339
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 340
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 341
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 342
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 344
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 345
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 346
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 347
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 349
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 350
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 351
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 352
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 353
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 354
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 355
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 356
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 357
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 358
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 359
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 360
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 363
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 364
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 365
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 366
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 367
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 368
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 369
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 370
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 371
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 372
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 373
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 374
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 375
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 376
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 377
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 378
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 379
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.inline16",
+          "lineNumber": 380
+        },
+        {
+          "caller": "binLong",
+          "callee": "MAGIC.stopBlockCoding",
+          "lineNumber": 383
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/DynamicRuntime.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 25,
+      "functions": [
+        {
+          "name": "newInstance",
+          "startLine": 4,
+          "endLine": 6,
+          "params": [
+            "scalarSize",
+            "relocEntries",
+            "type"
+          ]
+        },
+        {
+          "name": "newArray",
+          "startLine": 8,
+          "endLine": 10,
+          "params": [
+            "length",
+            "arrDim",
+            "entrySize",
+            "stdType",
+            "unitType"
+          ]
+        },
+        {
+          "name": "newMultArray",
+          "startLine": 12,
+          "endLine": 15,
+          "params": [
+            "parent",
+            "curLevel",
+            "destLevel",
+            "length",
+            "arrDim",
+            "entrySize",
+            "stdType",
+            "unitType"
+          ]
+        },
+        {
+          "name": "isInstance",
+          "startLine": 17,
+          "endLine": 19,
+          "params": [
+            "o",
+            "dest",
+            "asCast"
+          ]
+        },
+        {
+          "name": "isImplementation",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "o",
+            "dest",
+            "asCast"
+          ]
+        },
+        {
+          "name": "isArray",
+          "startLine": 25,
+          "endLine": 28,
+          "params": [
+            "o",
+            "stdType",
+            "unitType",
+            "arrDim",
+            "asCast"
+          ]
+        },
+        {
+          "name": "checkArrayStore",
+          "startLine": 30,
+          "endLine": 32,
+          "params": [
+            "address",
+            "newValue"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "DynamicRuntime",
+          "startLine": 3,
+          "endLine": 33,
+          "methods": [
+            "newInstance",
+            "newArray",
+            "newMultArray",
+            "isInstance",
+            "isImplementation",
+            "isArray",
+            "checkArrayStore"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "newInstance",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "newArray",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "newMultArray",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "isInstance",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "isImplementation",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "isArray",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "checkArrayStore",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "DynamicRuntime",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/SArray.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "classes": [
+        {
+          "name": "SArray",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": [
+            "length",
+            "_r_dim",
+            "_r_stdType",
+            "_r_unitType"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "length",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "_r_dim",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "_r_stdType",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "_r_unitType",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "SArray",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/SClassDesc.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "classes": [
+        {
+          "name": "SClassDesc",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": [
+            "parent",
+            "implementations"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parent",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "implementations",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "SClassDesc",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/SIntfDesc.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "SIntfDesc",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SIntfDesc",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/SIntfMap.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 5,
+      "classes": [
+        {
+          "name": "SIntfMap",
+          "startLine": 3,
+          "endLine": 6,
+          "methods": [],
+          "properties": [
+            "owner",
+            "next"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "owner",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "next",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "SIntfMap",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "app/rte/SMthdBlock.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "SMthdBlock",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SMthdBlock",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "b64_dsk.bin",
+      "language": "bin",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "batmel32.bin",
+      "language": "bin",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "BOOT_ATM.HEX",
+      "language": "hex",
+      "fileCategory": "code",
+      "totalLines": 69,
+      "nonEmptyLines": 69,
+      "metrics": {}
+    },
+    {
+      "path": "BOOT_FLP.IMG",
+      "language": "img",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 33,
+      "metrics": {}
+    },
+    {
+      "path": "bootconf.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 32,
+      "nonEmptyLines": 30,
+      "metrics": {}
+    },
+    {
+      "path": "bts_dsk.bin",
+      "language": "bin",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": "build.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 73,
+      "nonEmptyLines": 60,
+      "metrics": {}
+    },
+    {
+      "path": "COPYING.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 674,
+      "nonEmptyLines": 553,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/build-impl.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 1771,
+      "nonEmptyLines": 1768,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/genfiles.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/private/config.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 1,
+      "nonEmptyLines": 0,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/private/private.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/private/private.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/project.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 107,
+      "nonEmptyLines": 107,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/project.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 16,
+      "nonEmptyLines": 16,
+      "metrics": {}
+    },
+    {
+      "path": "raw_out.bin",
+      "language": "bin",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 33,
+      "metrics": {}
+    },
+    {
+      "path": "src/compiler/Compiler.ctxt",
+      "language": "ctxt",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 15,
+      "metrics": {}
+    }
+  ]
+}

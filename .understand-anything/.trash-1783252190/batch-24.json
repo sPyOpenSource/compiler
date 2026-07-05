@@ -1,0 +1,294 @@
+{
+  "nodes": [
+    {
+      "id": "sjc.frontend.Scanner",
+      "label": "Scanner",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/Lexer.ctxt"
+    },
+    {
+      "id": "sjc.frontend.ExVal",
+      "label": "ExVal",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/Literal.ctxt"
+    },
+    {
+      "id": "sjc.frontend.FrontAdmin",
+      "label": "FrontAdmin",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/package.bluej"
+    },
+    {
+      "id": "sjc.frontend.Language",
+      "label": "Language",
+      "type": "Abstract",
+      "filePath": "src/sjc/frontend/package.bluej"
+    },
+    {
+      "id": "sjc.frontend.ScanSym",
+      "label": "ScanSym",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/ScanSym.java"
+    },
+    {
+      "id": "sjc.frontend.prepobj.ExObjInit",
+      "label": "ExObjInit",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/prepobj/ExObjInit.ctxt"
+    },
+    {
+      "id": "sjc.frontend.prepobj.ExObjInitField",
+      "label": "ExObjInitField",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/prepobj/ExObjInitField.ctxt"
+    },
+    {
+      "id": "sjc.frontend.prepobj.PObjUnit",
+      "label": "PObjUnit",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/prepobj/PObjUnit.ctxt"
+    },
+    {
+      "id": "sjc.frontend.prepobj.PrepObj",
+      "label": "PrepObj",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/prepobj/PrepObj.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.Anno",
+      "label": "Anno",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/Anno.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StBlock",
+      "label": "StBlock",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/Block.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExBin",
+      "label": "ExBin",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/BinaryExpression.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExNew",
+      "label": "ExNew",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/Constructor.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExAbsCall",
+      "label": "ExAbsCall",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExAbsCall.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExCall",
+      "label": "ExCall",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExCall.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExChoose",
+      "label": "ExChoose",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExChoose.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExDeArray",
+      "label": "ExDeArray",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExDeArray.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExDeRef",
+      "label": "ExDeRef",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExDeRef.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExEnc",
+      "label": "ExEnc",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExEnc.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.expr.ExVar",
+      "label": "ExVar",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StAssert",
+      "label": "StAssert",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/StAssert.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.Stmt",
+      "label": "Stmt",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/Statement.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StBreakable",
+      "label": "StBreakable",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/StBreakable.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.ast.StEmpty",
+      "label": "StEmpty",
+      "type": "Class",
+      "filePath": "src/sjc/frontend/sjava/ast/StEmpty.ctxt"
+    }
+  ],
+  "edges": [
+    {
+      "from": "sjc.frontend.Scanner",
+      "to": "sjc.frontend.ScanSym",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.ScanSym",
+      "to": "sjc.frontend.Scanner",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.FrontAdmin",
+      "to": "sjc.frontend.Language",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.prepobj.PrepObj",
+      "to": "sjc.frontend.prepobj.PObjUnit",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/prepobj/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.prepobj.PrepObj",
+      "to": "sjc.frontend.prepobj.ExObjInit",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/prepobj/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.prepobj.PrepObj",
+      "to": "sjc.frontend.prepobj.ExObjInitField",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/prepobj/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.prepobj.ExObjInit",
+      "to": "sjc.frontend.prepobj.ExObjInitField",
+      "label": "UsesDependency",
+      "filePath": "src/sjc/frontend/prepobj/package.bluej"
+    },
+    {
+      "from": "sjc.frontend.ScanSym",
+      "to": "sjc.frontend.Scanner",
+      "label": "References",
+      "filePath": "src/sjc/frontend/ScanSym.java:41"
+    },
+    {
+      "from": "sjc.frontend.prepobj.PrepObj",
+      "to": "sjc.frontend.prepobj.ExObjInit",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/prepobj/PrepObj.ctxt:29"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.StBlock",
+      "to": "sjc.frontend.sjava.ast.StBreakable",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/Block.ctxt:5"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExBin",
+      "to": "sjc.backend.Instruction",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/BinaryExpression.ctxt:17"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExNew",
+      "to": "sjc.compbase.ExConstInitObj",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/Constructor.ctxt:15"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExAbsCall",
+      "to": "sjc.compbase.Mthd",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExAbsCall.ctxt:9"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExDeArray",
+      "to": "sjc.compbase.Expr",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExDeArray.ctxt:7"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExDeRef",
+      "to": "sjc.compbase.Expr",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExDeRef.ctxt:7"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExDeRef",
+      "to": "sjc.compbase.AccVar",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExDeRef.ctxt:9"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExEnc",
+      "to": "sjc.compbase.Expr",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExEnc.ctxt:27"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExEnc",
+      "to": "sjc.compbase.Expr",
+      "label": "Returns",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExEnc.ctxt:27"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExVar",
+      "to": "sjc.compbase.Vrbl",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt:7"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExVar",
+      "to": "sjc.compbase.Param",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt:9"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExVar",
+      "to": "sjc.compbase.Unit",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt:11"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExVar",
+      "to": "sjc.compbase.Pack",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt:15"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.expr.ExVar",
+      "to": "sjc.compbase.QualIDList",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/expr/ExVar.ctxt:17"
+    },
+    {
+      "from": "sjc.frontend.sjava.ast.StBreakable",
+      "to": "sjc.frontend.sjava.ast.StBreakable",
+      "label": "Parameters",
+      "filePath": "src/sjc/frontend/sjava/ast/StBreakable.ctxt:5"
+    }
+  ]
+}

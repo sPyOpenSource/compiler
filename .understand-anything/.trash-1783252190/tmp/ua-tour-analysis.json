@@ -1,0 +1,279 @@
+{
+  "totalNodes": 609,
+  "fileNodes": 53,
+  "javaSourceFiles": 37,
+  "importEdges": 58,
+  "stages": {},
+  "pipelineOrder": [
+    "osio",
+    "compbase",
+    "jx",
+    "nl",
+    "jcpu",
+    "frontend",
+    "symbols",
+    "relations",
+    "backend",
+    "memory",
+    "debug",
+    "compression",
+    "real",
+    "output",
+    "ui",
+    "compiler",
+    "app",
+    "test"
+  ],
+  "fanIn": {
+    "file:src/sjc/osio/TextPrinter.java": 26,
+    "file:src/sjc/symbols/SymbolInformer.java": 2,
+    "file:src/sjc/osio/OsIO.java": 6,
+    "file:src/sjc/osio/TextBuffer.java": 6,
+    "file:src/sjc/output/BootOut.java": 2,
+    "file:src/sjc/osio/sun/ReflectionSymbols.java": 4,
+    "file:src/sjc/osio/sun/SunOS.java": 4,
+    "file:src/sjc/symbols/SymbolFactory.java": 4,
+    "file:src/sjc/output/HexOut.java": 2,
+    "class:app/rte/SClassDesc.java:rte.SClassDesc": 2
+  },
+  "fanOut": {
+    "file:src/sjc/osio/sun/ReflectionSymbols.java": 4,
+    "file:src/sjc/osio/sun/StreamTextPrinter.java": 2,
+    "file:src/sjc/osio/sun/SunOS.java": 4,
+    "file:src/sjc/output/HexOut.java": 2,
+    "file:src/sjc/output/OutputFactory.java": 2,
+    "file:src/sjc/output/OutputFormat.java": 4,
+    "file:src/sjc/output/RawOut.java": 4,
+    "file:src/sjc/symbols/MthdSymbols.java": 4,
+    "file:src/sjc/symbols/RTESymbols.java": 4,
+    "file:src/sjc/symbols/RawSymbols.java": 4,
+    "file:src/sjc/symbols/SymbolFactory.java": 2,
+    "file:src/sjc/symbols/SymbolInformer.java": 2,
+    "file:src/sjc/ui/Boot.java": 4,
+    "file:src/sjc/ui/SC.java": 6,
+    "file:src/sjc/ui/SCG.java": 6,
+    "file:test/CompilerTest.java": 2,
+    "class:app/java/lang/MAGIC.java:java.lang.MAGIC": 1,
+    "class:app/java/lang/Object.java:java.lang.Object": 1
+  },
+  "mostDependedUpon": [
+    {
+      "id": "file:src/sjc/osio/TextPrinter.java",
+      "count": 26
+    },
+    {
+      "id": "file:src/sjc/osio/OsIO.java",
+      "count": 6
+    },
+    {
+      "id": "file:src/sjc/osio/TextBuffer.java",
+      "count": 6
+    },
+    {
+      "id": "file:src/sjc/osio/sun/ReflectionSymbols.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/osio/sun/SunOS.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/symbols/SymbolFactory.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/symbols/SymbolInformer.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/output/BootOut.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/output/HexOut.java",
+      "count": 2
+    }
+  ],
+  "mostImporting": [
+    {
+      "id": "file:src/sjc/ui/SC.java",
+      "count": 6
+    },
+    {
+      "id": "file:src/sjc/ui/SCG.java",
+      "count": 6
+    },
+    {
+      "id": "file:src/sjc/osio/sun/ReflectionSymbols.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/osio/sun/SunOS.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/output/OutputFormat.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/output/RawOut.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/symbols/MthdSymbols.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/symbols/RTESymbols.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/symbols/RawSymbols.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/ui/Boot.java",
+      "count": 4
+    },
+    {
+      "id": "file:src/sjc/osio/sun/StreamTextPrinter.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/output/HexOut.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/output/OutputFactory.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/symbols/SymbolFactory.java",
+      "count": 2
+    },
+    {
+      "id": "file:src/sjc/symbols/SymbolInformer.java",
+      "count": 2
+    }
+  ],
+  "layers": [
+    {
+      "id": "layer:os-abstraction",
+      "name": "OS Abstraction",
+      "fileCount": 7
+    },
+    {
+      "id": "layer:binary-libraries",
+      "name": "Binary Libraries",
+      "fileCount": 3
+    },
+    {
+      "id": "layer:semantic-analysis",
+      "name": "Semantic Analysis",
+      "fileCount": 7
+    },
+    {
+      "id": "layer:runtime-support",
+      "name": "Runtime Support",
+      "fileCount": 2
+    },
+    {
+      "id": "layer:output-format",
+      "name": "Output Format",
+      "fileCount": 5
+    },
+    {
+      "id": "layer:entry-point",
+      "name": "Entry Point",
+      "fileCount": 6
+    },
+    {
+      "id": "layer:demo-applications",
+      "name": "Demo Applications",
+      "fileCount": 13
+    },
+    {
+      "id": "layer:project-artifacts",
+      "name": "Project Artifacts",
+      "fileCount": 10
+    }
+  ],
+  "pipelineFiles": [
+    {
+      "id": "file:src/sjc/ui/SCG.java",
+      "name": "SCG.java"
+    },
+    {
+      "id": "file:src/sjc/ui/SC.java",
+      "name": "SC.java"
+    },
+    {
+      "id": "file:src/sjc/ui/Boot.java",
+      "name": "Boot.java"
+    },
+    {
+      "id": "file:src/sjc/osio/sun/SunOS.java",
+      "name": "SunOS.java"
+    },
+    {
+      "id": "file:src/sjc/osio/OsIO.java",
+      "name": "OsIO.java"
+    },
+    {
+      "id": "file:src/sjc/osio/TextPrinter.java",
+      "name": "TextPrinter.java"
+    },
+    {
+      "id": "file:src/sjc/symbols/SymbolFactory.java",
+      "name": "SymbolFactory.java"
+    },
+    {
+      "id": "file:src/sjc/symbols/MthdSymbols.java",
+      "name": "MthdSymbols.java"
+    },
+    {
+      "id": "file:src/sjc/symbols/RTESymbols.java",
+      "name": "RTESymbols.java"
+    },
+    {
+      "id": "file:src/sjc/symbols/RawSymbols.java",
+      "name": "RawSymbols.java"
+    },
+    {
+      "id": "file:src/sjc/relations/RelationManager.java",
+      "name": "RelationManager.java"
+    },
+    {
+      "id": "file:src/sjc/output/OutputFactory.java",
+      "name": "OutputFactory.java"
+    },
+    {
+      "id": "file:src/sjc/output/OutputFormat.java",
+      "name": "OutputFormat.java"
+    },
+    {
+      "id": "file:src/sjc/output/BootOut.java",
+      "name": "BootOut.java"
+    },
+    {
+      "id": "file:src/sjc/output/HexOut.java",
+      "name": "HexOut.java"
+    },
+    {
+      "id": "file:src/sjc/output/RawOut.java",
+      "name": "RawOut.java"
+    },
+    {
+      "id": "file:src/sjc/real/EmulReal.java",
+      "name": "EmulReal.java"
+    },
+    {
+      "id": "file:src/jx/classfile/ClassData.java",
+      "name": "ClassData.java"
+    },
+    {
+      "id": "file:test/CompilerTest.java",
+      "name": "CompilerTest.java"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "nodes": [
+    {
+      "id": "nbproject/private/config.properties",
+      "label": "nbproject/private/config.properties",
+      "type": "file"
+    },
+    {
+      "id": "nbproject/private/private.properties",
+      "label": "nbproject/private/private.properties",
+      "type": "file"
+    },
+    {
+      "id": "nbproject/private/private.xml",
+      "label": "nbproject/private/private.xml",
+      "type": "file"
+    }
+  ],
+  "edges": []
+}

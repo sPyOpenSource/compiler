@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/compbase/NamedObject.java",
+    "language": "java",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Pack.ctxt",
+    "language": "ctxt",
+    "sizeLines": 22,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/package.bluej",
+    "language": "bluej",
+    "sizeLines": 385,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Param.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/QualID.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/QualIDList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/StringList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 10,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/StringPool.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/StringPool.java",
+    "language": "java",
+    "sizeLines": 73,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Token.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/TokenAbstrPrintable.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/TypeRef.ctxt",
+    "language": "ctxt",
+    "sizeLines": 48,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Unit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 56,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/UnitDummy.ctxt",
+    "language": "ctxt",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/UnitList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/AccVar.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/ExAccVrbl.ctxt",
+    "language": "ctxt",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/Vrbl.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblAnno.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/variable/VrblStateList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/BZL.ctxt",
+    "language": "ctxt",
+    "sizeLines": 66,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/BZL.java",
+    "language": "java",
+    "sizeLines": 987,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/CompressionFactory.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compression/Compressor.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/compbase/NamedObject.java": [],
+  "src/sjc/compbase/Pack.ctxt": [],
+  "src/sjc/compbase/package.bluej": [],
+  "src/sjc/compbase/Param.ctxt": [],
+  "src/sjc/compbase/QualID.ctxt": [],
+  "src/sjc/compbase/QualIDList.ctxt": [],
+  "src/sjc/compbase/StringList.ctxt": [],
+  "src/sjc/compbase/StringPool.ctxt": [],
+  "src/sjc/compbase/StringPool.java": [],
+  "src/sjc/compbase/Token.ctxt": [],
+  "src/sjc/compbase/TokenAbstrPrintable.ctxt": [],
+  "src/sjc/compbase/TypeRef.ctxt": [],
+  "src/sjc/compbase/Unit.ctxt": [],
+  "src/sjc/compbase/UnitDummy.ctxt": [],
+  "src/sjc/compbase/UnitList.ctxt": [],
+  "src/sjc/compbase/variable/AccVar.ctxt": [],
+  "src/sjc/compbase/variable/ExAccVrbl.ctxt": [],
+  "src/sjc/compbase/variable/Vrbl.ctxt": [],
+  "src/sjc/compbase/variable/VrblAnno.ctxt": [],
+  "src/sjc/compbase/variable/VrblList.ctxt": [],
+  "src/sjc/compbase/variable/VrblStateList.ctxt": [],
+  "src/sjc/compression/BZL.ctxt": [],
+  "src/sjc/compression/BZL.java": [],
+  "src/sjc/compression/CompressionFactory.ctxt": [],
+  "src/sjc/compression/Compressor.ctxt": []
+}
+}

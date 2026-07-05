@@ -1,0 +1,154 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/real/EmulReal.ctxt",
+    "language": "ctxt",
+    "sizeLines": 80,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/real/NativeReal.ctxt",
+    "language": "ctxt",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/real/package.bluej",
+    "language": "bluej",
+    "sizeLines": 41,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/real/Real.ctxt",
+    "language": "ctxt",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/relations/package.bluej",
+    "language": "bluej",
+    "sizeLines": 37,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/relations/RelationElement.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/relations/RelationManager.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/MthdSymbols.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/package.bluej",
+    "language": "bluej",
+    "sizeLines": 67,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/RawSymbols.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/RTESymbols.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/SymbolFactory.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/symbols/SymbolInformer.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/Boot.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/ChkSSA.ctxt",
+    "language": "ctxt",
+    "sizeLines": 32,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/DisSSA.ctxt",
+    "language": "ctxt",
+    "sizeLines": 68,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/GetMthd.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/GetMthd.java",
+    "language": "java",
+    "sizeLines": 138,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/package.bluej",
+    "language": "bluej",
+    "sizeLines": 62,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/SC.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/ui/SCG.ctxt",
+    "language": "ctxt",
+    "sizeLines": 48,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/real/EmulReal.ctxt": [],
+  "src/sjc/real/NativeReal.ctxt": [],
+  "src/sjc/real/package.bluej": [],
+  "src/sjc/real/Real.ctxt": [],
+  "src/sjc/relations/package.bluej": [],
+  "src/sjc/relations/RelationElement.ctxt": [],
+  "src/sjc/relations/RelationManager.ctxt": [],
+  "src/sjc/symbols/MthdSymbols.ctxt": [],
+  "src/sjc/symbols/package.bluej": [],
+  "src/sjc/symbols/RawSymbols.ctxt": [],
+  "src/sjc/symbols/RTESymbols.ctxt": [],
+  "src/sjc/symbols/SymbolFactory.ctxt": [],
+  "src/sjc/symbols/SymbolInformer.ctxt": [],
+  "src/sjc/ui/Boot.ctxt": [],
+  "src/sjc/ui/ChkSSA.ctxt": [],
+  "src/sjc/ui/DisSSA.ctxt": [],
+  "src/sjc/ui/GetMthd.ctxt": [],
+  "src/sjc/ui/GetMthd.java": [],
+  "src/sjc/ui/package.bluej": [],
+  "src/sjc/ui/SC.ctxt": [],
+  "src/sjc/ui/SCG.ctxt": []
+}
+}

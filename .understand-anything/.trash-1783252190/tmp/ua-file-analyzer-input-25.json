@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/frontend/sjava/ast/StEndLoop.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StExpr.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StFor.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StForEnh.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StIf.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StLoop.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StRetMissing.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StReturn.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StSwitch.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StSync.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StThrow.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StTryCaFi.ctxt",
+    "language": "ctxt",
+    "sizeLines": 18,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StVrbl.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/ast/StWhile.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/CatchBlock.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Clss.ctxt",
+    "language": "ctxt",
+    "sizeLines": 36,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/CondStmt.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Intf.ctxt",
+    "language": "ctxt",
+    "sizeLines": 28,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/J2JSON.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/J2JSON.java",
+    "language": "java",
+    "sizeLines": 178,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JMthd.ctxt",
+    "language": "ctxt",
+    "sizeLines": 26,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JParser.ctxt",
+    "language": "ctxt",
+    "sizeLines": 102,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/JUnit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 40,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/Magic.ctxt",
+    "language": "ctxt",
+    "sizeLines": 92,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/frontend/sjava/package.bluej",
+    "language": "bluej",
+    "sizeLines": 149,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/frontend/sjava/ast/StEndLoop.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StExpr.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StFor.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StForEnh.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StIf.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StLoop.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StRetMissing.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StReturn.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StSwitch.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StSync.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StThrow.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StTryCaFi.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StVrbl.ctxt": [],
+  "src/sjc/frontend/sjava/ast/StWhile.ctxt": [],
+  "src/sjc/frontend/sjava/CatchBlock.ctxt": [],
+  "src/sjc/frontend/sjava/Clss.ctxt": [],
+  "src/sjc/frontend/sjava/CondStmt.ctxt": [],
+  "src/sjc/frontend/sjava/Intf.ctxt": [],
+  "src/sjc/frontend/sjava/J2JSON.ctxt": [],
+  "src/sjc/frontend/sjava/J2JSON.java": [],
+  "src/sjc/frontend/sjava/JMthd.ctxt": [],
+  "src/sjc/frontend/sjava/JParser.ctxt": [],
+  "src/sjc/frontend/sjava/JUnit.ctxt": [],
+  "src/sjc/frontend/sjava/Magic.ctxt": [],
+  "src/sjc/frontend/sjava/package.bluej": []
+}
+}

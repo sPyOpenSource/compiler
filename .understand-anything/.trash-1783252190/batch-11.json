@@ -1,0 +1,100 @@
+{
+  "nodes": [
+    {
+      "id": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "label": "Coff",
+      "type": "class",
+      "properties": {
+        "package": "nl.lxtreme.binutils.coff"
+      }
+    },
+    {
+      "id": "src/nl/lxtreme/binutils/coff/FileHeader.java",
+      "label": "FileHeader",
+      "type": "class",
+      "properties": {
+        "package": "nl.lxtreme.binutils.coff"
+      }
+    },
+    {
+      "id": "src/nl/lxtreme/binutils/coff/Symbol.java",
+      "label": "Symbol",
+      "type": "class",
+      "properties": {
+        "package": "nl.lxtreme.binutils.coff"
+      }
+    },
+    {
+      "id": "OptionalHeader",
+      "label": "OptionalHeader",
+      "type": "class"
+    },
+    {
+      "id": "SectionHeader",
+      "label": "SectionHeader",
+      "type": "class"
+    },
+    {
+      "id": "LineNumber",
+      "label": "LineNumber",
+      "type": "class"
+    },
+    {
+      "id": "RelocationInfo",
+      "label": "RelocationInfo",
+      "type": "class"
+    },
+    {
+      "id": "MachineType",
+      "label": "MachineType",
+      "type": "enum"
+    }
+  ],
+  "edges": [
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "src/nl/lxtreme/binutils/coff/FileHeader.java",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "OptionalHeader",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "SectionHeader",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "src/nl/lxtreme/binutils/coff/Symbol.java",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "LineNumber",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "to": "RelocationInfo",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/FileHeader.java",
+      "to": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/FileHeader.java",
+      "to": "MachineType",
+      "label": "depends_on"
+    },
+    {
+      "from": "src/nl/lxtreme/binutils/coff/Symbol.java",
+      "to": "src/nl/lxtreme/binutils/coff/Coff.java",
+      "label": "depends_on"
+    }
+  ]
+}

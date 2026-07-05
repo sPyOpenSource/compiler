@@ -1,0 +1,111 @@
+[
+  {
+    "id": "layer:os-abstraction",
+    "name": "OS Abstraction",
+    "description": "Operating system I/O abstraction layer providing platform-independent text and binary output, file writing, and OS-specific implementations. All higher layers depend on this for output.",
+    "nodeIds": [
+      "file:src/sjc/osio/OsIO.java",
+      "file:src/sjc/osio/TextBuffer.java",
+      "file:src/sjc/osio/TextPrinter.java",
+      "file:src/sjc/osio/sun/FileBinWriter.java",
+      "file:src/sjc/osio/sun/ReflectionSymbols.java",
+      "file:src/sjc/osio/sun/StreamTextPrinter.java",
+      "file:src/sjc/osio/sun/SunOS.java"
+    ]
+  },
+  {
+    "id": "layer:binary-libraries",
+    "name": "Binary Libraries",
+    "description": "Third-party and support binary format libraries including JVM classfile reading/writing (jx), JCPU VM support, and binary format utilities.",
+    "nodeIds": [
+      "file:src/jx/classfile/ClassData.java",
+      "file:src/jx/classfile/ClassData.ctxt",
+      "file:src/jCPU/JavaVM/vm/LocalVariables.java"
+    ]
+  },
+  {
+    "id": "layer:semantic-analysis",
+    "name": "Semantic Analysis",
+    "description": "Symbol resolution and relation analysis: resolves method symbols, RTE symbols, raw symbols; manages inter-element relations. Depends on OS abstraction for output.",
+    "nodeIds": [
+      "file:src/sjc/symbols/MthdSymbols.java",
+      "file:src/sjc/symbols/RTESymbols.java",
+      "file:src/sjc/symbols/RawSymbols.java",
+      "file:src/sjc/symbols/SymbolFactory.java",
+      "file:src/sjc/symbols/SymbolInformer.java",
+      "file:src/sjc/relations/RelationElement.java",
+      "file:src/sjc/relations/RelationManager.java"
+    ]
+  },
+  {
+    "id": "layer:runtime-support",
+    "name": "Runtime Support",
+    "description": "Runtime support for real number emulation (floating point) providing both emulated and native implementations.",
+    "nodeIds": [
+      "file:src/sjc/real/EmulReal.java",
+      "file:src/sjc/real/NativeReal.java"
+    ]
+  },
+  {
+    "id": "layer:output-format",
+    "name": "Output Format",
+    "description": "Output format writers for compiled code: bootable image output, Intel HEX, raw binary output, and the output factory/format abstractions. Depends on OS abstraction.",
+    "nodeIds": [
+      "file:src/sjc/output/BootOut.java",
+      "file:src/sjc/output/HexOut.java",
+      "file:src/sjc/output/OutputFactory.java",
+      "file:src/sjc/output/OutputFormat.java",
+      "file:src/sjc/output/RawOut.java"
+    ]
+  },
+  {
+    "id": "layer:entry-point",
+    "name": "Entry Point",
+    "description": "Compiler entry points and user interface: boot loader, standalone compiler (SC), and GUI compiler (SCG). Depends on all compilation layers.",
+    "nodeIds": [
+      "file:src/sjc/ui/Boot.java",
+      "file:src/sjc/ui/SC.java",
+      "file:src/sjc/ui/SCG.java",
+      "file:src/compiler/Compiler.ctxt",
+      "file:src/compiler/package.bluej",
+      "file:src/compiler/README.TXT"
+    ]
+  },
+  {
+    "id": "layer:demo-applications",
+    "name": "Demo Applications",
+    "description": "Sample applications, runtime environment classes (DynamicAri, DynamicRuntime, SArray, SIntfDesc, SIntfMap, SMthdBlock), standard library stubs (String, FLASH, STRUCT), demo source files, and test code.",
+    "nodeIds": [
+      "file:test/CompilerTest.java",
+      "file:app/app.json",
+      "file:app/demo.java",
+      "file:app/demo.json",
+      "file:app/java/lang/FLASH.java",
+      "file:app/java/lang/String.java",
+      "file:app/java/lang/STRUCT.java",
+      "file:app/rte/DynamicAri.java",
+      "file:app/rte/DynamicRuntime.java",
+      "file:app/rte/SArray.java",
+      "file:app/rte/SIntfDesc.java",
+      "file:app/rte/SIntfMap.java",
+      "file:app/rte/SMthdBlock.java"
+    ]
+  },
+  {
+    "id": "layer:project-artifacts",
+    "name": "Project Artifacts",
+    "description": "Build outputs (compiled binaries, HEX files, disk images) and IDE configuration files (NetBeans project config, understand-anything ignore rules).",
+    "nodeIds": [
+      "file:b64_dsk.bin",
+      "file:batmel32.bin",
+      "file:BOOT_ATM.HEX",
+      "file:BOOT_FLP.IMG",
+      "file:bts_dsk.bin",
+      "file:raw_out.bin",
+      "file:nbproject/private/config.properties",
+      "file:nbproject/private/private.properties",
+      "file:nbproject/private/private.xml",
+      "file:.understand-anything/.understandignore"
+    ]
+  }
+]

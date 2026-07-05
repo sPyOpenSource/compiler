@@ -1,3 +1,4 @@
 /build/
 *.class
 /dist/
+.DS_Store

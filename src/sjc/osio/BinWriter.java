@@ -29,7 +29,6 @@ package sjc.osio;
  *  version 060628 changed signature of write to support offsets
  *  version 060613 initial version
  */
-
 public abstract class BinWriter {
     public abstract boolean open(String fname);
     public abstract void close();

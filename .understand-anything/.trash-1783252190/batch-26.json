@@ -1,0 +1,270 @@
+{
+  "nodes": [
+    {
+      "id": "sjc.frontend.sjava.SJava",
+      "label": "SJava",
+      "type": "class",
+      "filePath": "src/sjc/frontend/sjava/SJava.ctxt"
+    },
+    {
+      "id": "sjc.frontend.sjava.TryCaFiContainer",
+      "label": "TryCaFiContainer",
+      "type": "class",
+      "filePath": "src/sjc/frontend/sjava/TryContainer.ctxt"
+    },
+    {
+      "id": "sjc.memory.BootableImage",
+      "label": "BootableImage",
+      "type": "class",
+      "filePath": "src/sjc/memory/BootableImage.ctxt"
+    },
+    {
+      "id": "sjc.memory.ImageContainer",
+      "label": "ImageContainer",
+      "type": "class",
+      "filePath": "src/sjc/memory/ImageContainer.ctxt"
+    },
+    {
+      "id": "sjc.memory.MemoryImage",
+      "label": "MemoryImage",
+      "type": "class",
+      "filePath": "src/sjc/memory/MemoryImage.ctxt"
+    },
+    {
+      "id": "sjc.osio.BinWriter",
+      "label": "BinWriter",
+      "type": "interface",
+      "filePath": "src/sjc/osio/BinWriter.ctxt"
+    },
+    {
+      "id": "sjc.osio.OsIO",
+      "label": "OsIO",
+      "type": "interface",
+      "filePath": "src/sjc/osio/OsIO.ctxt"
+    },
+    {
+      "id": "sjc.osio.sun.FileBinWriter",
+      "label": "FileBinWriter",
+      "type": "class",
+      "filePath": "src/sjc/osio/sun/FileBinWriter.ctxt"
+    },
+    {
+      "id": "sjc.osio.sun.ReflectionSymbols",
+      "label": "ReflectionSymbols",
+      "type": "class",
+      "filePath": "src/sjc/osio/sun/ReflectionSymbols.ctxt"
+    },
+    {
+      "id": "sjc.osio.sun.StreamTextPrinter",
+      "label": "StreamTextPrinter",
+      "type": "class",
+      "filePath": "src/sjc/osio/sun/StreamTextPrinter.ctxt"
+    },
+    {
+      "id": "sjc.osio.sun.SunOS",
+      "label": "SunOS",
+      "type": "class",
+      "filePath": "src/sjc/osio/sun/SunOS.ctxt"
+    },
+    {
+      "id": "sjc.osio.TextBuffer",
+      "label": "TextBuffer",
+      "type": "class",
+      "filePath": "src/sjc/osio/TextBuffer.ctxt"
+    },
+    {
+      "id": "sjc.osio.TextPrinter",
+      "label": "TextPrinter",
+      "type": "interface",
+      "filePath": "src/sjc/osio/TextPrinter.ctxt"
+    },
+    {
+      "id": "sjc.osio.TextReader",
+      "label": "TextReader",
+      "type": "interface",
+      "filePath": "src/sjc/osio/TextReader.ctxt"
+    },
+    {
+      "id": "sjc.output.BootOut",
+      "label": "BootOut",
+      "type": "class",
+      "filePath": "src/sjc/output/BootOut.ctxt"
+    },
+    {
+      "id": "sjc.output.HexOut",
+      "label": "HexOut",
+      "type": "class",
+      "filePath": "src/sjc/output/HexOut.ctxt"
+    },
+    {
+      "id": "sjc.output.OutputFactory",
+      "label": "OutputFactory",
+      "type": "class",
+      "filePath": "src/sjc/output/OutputFactory.ctxt"
+    },
+    {
+      "id": "sjc.output.OutputFormat",
+      "label": "OutputFormat",
+      "type": "interface",
+      "filePath": "src/sjc/output/OutputFormat.ctxt"
+    },
+    {
+      "id": "sjc.output.RawOut",
+      "label": "RawOut",
+      "type": "class",
+      "filePath": "src/sjc/output/RawOut.ctxt"
+    },
+    {
+      "id": "sjc.memory.MemoryObjectDebugInfo",
+      "label": "MemoryObjectDebugInfo",
+      "type": "class"
+    },
+    {
+      "id": "sjc.memory.ImageContainer.Location",
+      "label": "ImageContainer.Location",
+      "type": "class"
+    }
+  ],
+  "edges": [
+    {
+      "source": "sjc.memory.BootableImage",
+      "target": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.memory.ImageContainer",
+      "target": "sjc.osio.BinWriter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.memory.ImageContainer",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.memory.MemoryImage",
+      "target": "sjc.osio.BinWriter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.memory.MemoryImage",
+      "target": "sjc.memory.ImageContainer.Location",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.memory.MemoryImage",
+      "target": "sjc.memory.MemoryObjectDebugInfo",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.osio.OsIO",
+      "target": "sjc.osio.BinWriter",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.osio.OsIO",
+      "target": "sjc.osio.TextPrinter",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.osio.sun.FileBinWriter",
+      "target": "sjc.osio.BinWriter",
+      "type": "implements"
+    },
+    {
+      "source": "sjc.osio.sun.ReflectionSymbols",
+      "target": "sjc.osio.TextPrinter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.osio.sun.SunOS",
+      "target": "sjc.osio.OsIO",
+      "type": "implements"
+    },
+    {
+      "source": "sjc.osio.sun.SunOS",
+      "target": "sjc.osio.BinWriter",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.osio.sun.SunOS",
+      "target": "sjc.osio.TextPrinter",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.osio.sun.StreamTextPrinter",
+      "target": "sjc.osio.TextPrinter",
+      "type": "implements"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.osio.TextPrinter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.osio.OsIO",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.memory.ImageContainer",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.osio.BinWriter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.osio.TextReader",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.BootOut",
+      "target": "sjc.output.OutputFormat",
+      "type": "implements"
+    },
+    {
+      "source": "sjc.output.HexOut",
+      "target": "sjc.osio.TextPrinter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.HexOut",
+      "target": "sjc.osio.BinWriter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.OutputFactory",
+      "target": "sjc.osio.TextPrinter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.OutputFactory",
+      "target": "sjc.output.OutputFormat",
+      "type": "returns"
+    },
+    {
+      "source": "sjc.output.RawOut",
+      "target": "sjc.osio.TextPrinter",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.RawOut",
+      "target": "sjc.osio.OsIO",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.RawOut",
+      "target": "sjc.memory.ImageContainer",
+      "type": "depends"
+    },
+    {
+      "source": "sjc.output.RawOut",
+      "target": "sjc.output.OutputFormat",
+      "type": "implements"
+    }
+  ]
+}

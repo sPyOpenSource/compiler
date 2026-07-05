@@ -1,0 +1,35 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "nbproject/build-impl.xml",
+    "language": "xml",
+    "sizeLines": 1771,
+    "fileCategory": "config"
+  },
+  {
+    "path": "nbproject/genfiles.properties",
+    "language": "properties",
+    "sizeLines": 8,
+    "fileCategory": "config"
+  },
+  {
+    "path": "nbproject/project.properties",
+    "language": "properties",
+    "sizeLines": 107,
+    "fileCategory": "config"
+  },
+  {
+    "path": "nbproject/project.xml",
+    "language": "xml",
+    "sizeLines": 16,
+    "fileCategory": "config"
+  }
+],
+  "batchImportData": {
+  "nbproject/build-impl.xml": [],
+  "nbproject/genfiles.properties": [],
+  "nbproject/project.properties": [],
+  "nbproject/project.xml": []
+}
+}

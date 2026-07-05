@@ -35,7 +35,6 @@ import sjc.osio.BinWriter;
  *  version 060818 adapted changed interface
  *  version 060607 initial version
  */
-
 public class RawOut extends OutputFormat {
   private final static String DEF_FNAME = "raw_out.bin";
   

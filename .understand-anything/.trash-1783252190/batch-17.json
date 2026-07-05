@@ -1,0 +1,277 @@
+{
+  "nodes": [
+    {
+      "id": "src/jx/classfile/CodeData.ctxt",
+      "label": "CodeData",
+      "type": "class",
+      "file": "src/jx/classfile/CodeData.ctxt"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/ClassCPEntry.java",
+      "label": "ClassCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/ClassCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "label": "ClassMemberCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/ClassMemberCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/DummyCPEntry.java",
+      "label": "DummyCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/DummyCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/FieldRefCPEntry.java",
+      "label": "FieldRefCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/FieldRefCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/InterfaceMethodRefCPEntry.java",
+      "label": "InterfaceMethodRefCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/InterfaceMethodRefCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java",
+      "label": "InvokeDynamicCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/MethodHandleCPEntry.java",
+      "label": "MethodHandleCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/MethodHandleCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/MethodRefCPEntry.java",
+      "label": "MethodRefCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/MethodRefCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/MethodTypeCPEntry.java",
+      "label": "MethodTypeCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/MethodTypeCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+      "label": "NameAndTypeCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "label": "NumericCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/NumericCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/constantpool/StringCPEntry.java",
+      "label": "StringCPEntry",
+      "type": "class",
+      "file": "src/jx/classfile/constantpool/StringCPEntry.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BasicTypeDescriptor.java",
+      "label": "BasicTypeDescriptor",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BasicTypeDescriptor.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCBasicDatatype.java",
+      "label": "BCBasicDatatype",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCBasicDatatype.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCByte.java",
+      "label": "BCByte",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCByte.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCDouble.java",
+      "label": "BCDouble",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCDouble.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCFloat.java",
+      "label": "BCFloat",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCFloat.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCFloatDatatype.java",
+      "label": "BCFloatDatatype",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCFloatDatatype.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCInteger.java",
+      "label": "BCInteger",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCInteger.java"
+    },
+    {
+      "id": "src/jx/classfile/datatypes/BCIntegerDatatype.java",
+      "label": "BCIntegerDatatype",
+      "type": "class",
+      "file": "src/jx/classfile/datatypes/BCIntegerDatatype.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/jx/classfile/constantpool/ClassCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/DummyCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/FieldRefCPEntry.java",
+      "target": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/InterfaceMethodRefCPEntry.java",
+      "target": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/MethodHandleCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/MethodRefCPEntry.java",
+      "target": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/MethodTypeCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/StringCPEntry.java",
+      "target": "ConstantPoolEntry",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCByte.java",
+      "target": "src/jx/classfile/datatypes/BCIntegerDatatype.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCDouble.java",
+      "target": "src/jx/classfile/datatypes/BCFloatDatatype.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCFloat.java",
+      "target": "src/jx/classfile/datatypes/BCFloatDatatype.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCFloatDatatype.java",
+      "target": "BCNumericDatatype",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCInteger.java",
+      "target": "src/jx/classfile/datatypes/BCIntegerDatatype.java",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BCIntegerDatatype.java",
+      "target": "BCNumericDatatype",
+      "type": "extends"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/ClassCPEntry.java",
+      "target": "UTF8CPEntry",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "target": "src/jx/classfile/constantpool/ClassCPEntry.java",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/ClassMemberCPEntry.java",
+      "target": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/InvokeDynamicCPEntry.java",
+      "target": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NameAndTypeCPEntry.java",
+      "target": "UTF8CPEntry",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "target": "src/jx/classfile/datatypes/BCBasicDatatype.java",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "target": "src/jx/classfile/datatypes/BCInteger.java",
+      "type": "instantiates"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "target": "src/jx/classfile/datatypes/BCFloat.java",
+      "type": "instantiates"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/NumericCPEntry.java",
+      "target": "src/jx/classfile/datatypes/BCDouble.java",
+      "type": "instantiates"
+    },
+    {
+      "source": "src/jx/classfile/constantpool/StringCPEntry.java",
+      "target": "UTF8CPEntry",
+      "type": "field"
+    },
+    {
+      "source": "src/jx/classfile/datatypes/BasicTypeDescriptor.java",
+      "target": "src/jx/classfile/datatypes/BCBasicDatatype.java",
+      "type": "reference"
+    }
+  ]
+}

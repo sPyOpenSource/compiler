@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/sjc/backend/ssaopt/SSAopt2bin.ctxt",
+    "language": "ctxt",
+    "sizeLines": 21,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/ssaopt/SSAoptInstruction.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/AMD64.ctxt",
+    "language": "ctxt",
+    "sizeLines": 126,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32.ctxt",
+    "language": "ctxt",
+    "sizeLines": 126,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32Opti.ctxt",
+    "language": "ctxt",
+    "sizeLines": 46,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/IA32RM.ctxt",
+    "language": "ctxt",
+    "sizeLines": 102,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/package.bluej",
+    "language": "bluej",
+    "sizeLines": 55,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/backend/x86/X86Base.ctxt",
+    "language": "ctxt",
+    "sizeLines": 114,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/AddrList.java",
+    "language": "java",
+    "sizeLines": 34,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Context.ctxt",
+    "language": "ctxt",
+    "sizeLines": 88,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExArrayCopy.ctxt",
+    "language": "ctxt",
+    "sizeLines": 12,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExArrayInit.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExCheckType.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstInitObj.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstNew.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/ExConstStruct.ctxt",
+    "language": "ctxt",
+    "sizeLines": 20,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/Expression.ctxt",
+    "language": "ctxt",
+    "sizeLines": 50,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/expr/StringLiteral.ctxt",
+    "language": "ctxt",
+    "sizeLines": 14,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/FilledAnno.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/FilledParam.ctxt",
+    "language": "ctxt",
+    "sizeLines": 8,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/IndirUnitMapList.ctxt",
+    "language": "ctxt",
+    "sizeLines": 6,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Modifier.ctxt",
+    "language": "ctxt",
+    "sizeLines": 4,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/Mthd.ctxt",
+    "language": "ctxt",
+    "sizeLines": 38,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/MthdDummy.ctxt",
+    "language": "ctxt",
+    "sizeLines": 16,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/sjc/compbase/MthdDummy.java",
+    "language": "java",
+    "sizeLines": 65,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/sjc/backend/ssaopt/SSAopt2bin.ctxt": [],
+  "src/sjc/backend/ssaopt/SSAoptInstruction.ctxt": [],
+  "src/sjc/backend/x86/AMD64.ctxt": [],
+  "src/sjc/backend/x86/IA32.ctxt": [],
+  "src/sjc/backend/x86/IA32Opti.ctxt": [],
+  "src/sjc/backend/x86/IA32RM.ctxt": [],
+  "src/sjc/backend/x86/package.bluej": [],
+  "src/sjc/backend/x86/X86Base.ctxt": [],
+  "src/sjc/compbase/AddrList.java": [],
+  "src/sjc/compbase/Context.ctxt": [],
+  "src/sjc/compbase/expr/ExArrayCopy.ctxt": [],
+  "src/sjc/compbase/expr/ExArrayInit.ctxt": [],
+  "src/sjc/compbase/expr/ExCheckType.ctxt": [],
+  "src/sjc/compbase/expr/ExConstInitObj.ctxt": [],
+  "src/sjc/compbase/expr/ExConstNew.ctxt": [],
+  "src/sjc/compbase/expr/ExConstStruct.ctxt": [],
+  "src/sjc/compbase/expr/Expression.ctxt": [],
+  "src/sjc/compbase/expr/StringLiteral.ctxt": [],
+  "src/sjc/compbase/FilledAnno.ctxt": [],
+  "src/sjc/compbase/FilledParam.ctxt": [],
+  "src/sjc/compbase/IndirUnitMapList.ctxt": [],
+  "src/sjc/compbase/Modifier.ctxt": [],
+  "src/sjc/compbase/Mthd.ctxt": [],
+  "src/sjc/compbase/MthdDummy.ctxt": [],
+  "src/sjc/compbase/MthdDummy.java": []
+}
+}

@@ -1,0 +1,32 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/V0191",
+  "batchFiles": [
+  {
+    "path": "src/nl/lxtreme/binutils/coff/Coff.java",
+    "language": "java",
+    "sizeLines": 239,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/FileHeader.java",
+    "language": "java",
+    "sizeLines": 120,
+    "fileCategory": "code"
+  },
+  {
+    "path": "src/nl/lxtreme/binutils/coff/Symbol.java",
+    "language": "java",
+    "sizeLines": 83,
+    "fileCategory": "code"
+  }
+],
+  "batchImportData": {
+  "src/nl/lxtreme/binutils/coff/Coff.java": [],
+  "src/nl/lxtreme/binutils/coff/FileHeader.java": [
+    "src/nl/lxtreme/binutils/coff/Coff.java"
+  ],
+  "src/nl/lxtreme/binutils/coff/Symbol.java": [
+    "src/nl/lxtreme/binutils/coff/Coff.java"
+  ]
+}
+}

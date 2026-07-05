@@ -1,0 +1,171 @@
+{
+  "nodes": [
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry",
+      "type": "class",
+      "name": "DynamicEntry",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.Tag",
+      "type": "class",
+      "name": "Tag",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Elf",
+      "type": "class",
+      "name": "Elf",
+      "filePath": "src/nl/lxtreme/binutils/elf/Elf.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Flags",
+      "type": "interface",
+      "name": "Flags",
+      "filePath": "src/nl/lxtreme/binutils/elf/Flags.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Header",
+      "type": "class",
+      "name": "Header",
+      "filePath": "src/nl/lxtreme/binutils/elf/Header.java"
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.DynamicEntry",
+      "type": "method",
+      "name": "DynamicEntry",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+      "line": 160
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.getTag",
+      "type": "method",
+      "name": "getTag",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+      "line": 178
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.getValue",
+      "type": "method",
+      "name": "getValue",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+      "line": 182
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.isStringOffset",
+      "type": "method",
+      "name": "isStringOffset",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+      "line": 186
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.DynamicEntry.Tag.valueOf",
+      "type": "method",
+      "name": "valueOf",
+      "filePath": "src/nl/lxtreme/binutils/elf/DynamicEntry.java",
+      "line": 96
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Elf.expectByteInRange",
+      "type": "method",
+      "name": "expectByteInRange",
+      "filePath": "src/nl/lxtreme/binutils/elf/Elf.java",
+      "line": 26
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Elf.readFully",
+      "type": "method",
+      "name": "readFully",
+      "filePath": "src/nl/lxtreme/binutils/elf/Elf.java",
+      "line": 60
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Elf.Elf",
+      "type": "method",
+      "name": "Elf",
+      "filePath": "src/nl/lxtreme/binutils/elf/Elf.java",
+      "line": 84
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Elf.dumpDynamicEntry",
+      "type": "method",
+      "name": "dumpDynamicEntry",
+      "filePath": "src/nl/lxtreme/binutils/elf/Elf.java",
+      "line": 204
+    },
+    {
+      "id": "nl.lxtreme.binutils.elf.Header.Header",
+      "type": "method",
+      "name": "Header",
+      "filePath": "src/nl/lxtreme/binutils/elf/Header.java",
+      "line": 36
+    }
+  ],
+  "edges": [
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.Header",
+      "type": "USES"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry",
+      "type": "USES"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.Tag",
+      "type": "USES"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Header",
+      "to": "nl.lxtreme.binutils.elf.Elf",
+      "type": "USES"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Header",
+      "to": "nl.lxtreme.binutils.elf.Flags",
+      "type": "USES"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.Header",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.Tag.valueOf",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.Elf",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.DynamicEntry",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.dumpDynamicEntry",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.getTag",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.dumpDynamicEntry",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.isStringOffset",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Elf.dumpDynamicEntry",
+      "to": "nl.lxtreme.binutils.elf.DynamicEntry.getValue",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Header.Header",
+      "to": "nl.lxtreme.binutils.elf.Elf.expectByteInRange",
+      "type": "CALLS"
+    },
+    {
+      "from": "nl.lxtreme.binutils.elf.Header.Header",
+      "to": "nl.lxtreme.binutils.elf.Elf.readFully",
+      "type": "CALLS"
+    }
+  ]
+}
