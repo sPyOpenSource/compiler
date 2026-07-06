@@ -1,0 +1,360 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 17,
+  "nodes": [
+    {
+      "id": "file:src/norswap/utils/multimap/MultiHashSetMap.java",
+      "type": "file",
+      "name": "MultiHashSetMap.java",
+      "filePath": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "summary": "Straightforward multimap implementation backed by HashMap using HashSets as value collections, automatically eliminating duplicate values. Overrides newCollection and emptyCollection from AbstractMultiHashMap.",
+      "tags": ["multimap", "hashset", "collection", "data-structure", "utils"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 31
+    },
+    {
+      "id": "file:src/norswap/utils/OperatingSystem.java",
+      "type": "file",
+      "name": "OperatingSystem.java",
+      "filePath": "src/norswap/utils/OperatingSystem.java",
+      "summary": "Enum identifying the current operating system (MAC, WINDOWS, UNIX, SOLARIS, UNKNOWN) with a static initializer that reads os.name system property.",
+      "tags": ["enum", "operating-system", "platform-detection", "utils"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 30
+    },
+    {
+      "id": "file:src/norswap/utils/Predicates.java",
+      "type": "file",
+      "name": "Predicates.java",
+      "filePath": "src/norswap/utils/Predicates.java",
+      "summary": "Utility class providing TRUE and FALSE static predicates and a toString method that returns a predicate's toString if the class overrides it, or 'pred' otherwise.",
+      "tags": ["predicate", "utility", "functional", "utils"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 46
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "type": "file",
+      "name": "ReflectiveWalker.java",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "summary": "Abstract tree walker that determines children of a node via fast reflection (MethodHandles). Subclasses override handlesFor(Class) to return MethodHandle wrappers. Contains a Lookup static field and inner HandleWrapper class.",
+      "tags": ["visitors", "reflection", "walkers", "tree-traversal", "utils"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 112
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/Visitor.java",
+      "type": "file",
+      "name": "Visitor.java",
+      "filePath": "src/norswap/utils/visitors/Visitor.java",
+      "summary": "Type-dispatch visitor implementing Consumer<T> with class-based specialization registration, fallback support, and HashMap-backed dispatch. Throws IllegalArgumentException if no specialization or fallback is registered.",
+      "tags": ["visitors", "dispatch", "consumer", "pattern", "utils"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 82
+    },
+    {
+      "id": "class:MultiHashSetMap",
+      "type": "class",
+      "name": "MultiHashSetMap",
+      "filePath": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "summary": "Concrete multimap extending AbstractMultiHashMap, using HashSet as the backing collection to eliminate duplicate values. Provides newCollection and emptyCollection overrides.",
+      "tags": ["multimap", "hashset", "data-structure", "utils"],
+      "startLine": 14,
+      "endLine": 31,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:OperatingSystem",
+      "type": "class",
+      "name": "OperatingSystem",
+      "filePath": "src/norswap/utils/OperatingSystem.java",
+      "summary": "Enum of operating system identifiers (MAC, WINDOWS, UNIX, SOLARIS, UNKNOWN) with a static OS field initialized from system properties.",
+      "tags": ["enum", "operating-system", "platform-detection", "utils"],
+      "startLine": 6,
+      "endLine": 29,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "class:Predicates",
+      "type": "class",
+      "name": "Predicates",
+      "filePath": "src/norswap/utils/Predicates.java",
+      "summary": "Final utility class with static TRUE and FALSE predicates and a toString method for predicates that checks if toString is overridden.",
+      "tags": ["predicate", "utility", "functional", "utils"],
+      "startLine": 10,
+      "endLine": 46,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:ReflectiveWalker",
+      "type": "class",
+      "name": "ReflectiveWalker",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "summary": "Abstract walker extending Walker that determines child nodes via reflective MethodHandle access. Contains a static Lookup field and inner HandleWrapper class.",
+      "tags": ["visitors", "reflection", "walkers", "tree-traversal", "utils"],
+      "startLine": 28,
+      "endLine": 112,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:Visitor",
+      "type": "class",
+      "name": "Visitor",
+      "filePath": "src/norswap/utils/visitors/Visitor.java",
+      "summary": "Final class implementing Consumer<T> for type-dispatch visitor pattern with class-to-specialization HashMap and optional fallback consumer.",
+      "tags": ["visitors", "dispatch", "consumer", "pattern", "utils"],
+      "startLine": 32,
+      "endLine": 82,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:ReflectiveWalker.HandleWrapper",
+      "type": "class",
+      "name": "HandleWrapper",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "summary": "Inner class wrapping a MethodHandle with a boolean flag indicating whether the handle returns a single node or a collection of nodes.",
+      "tags": ["visitors", "reflection", "method-handles"],
+      "startLine": 96,
+      "endLine": 109,
+      "methodCount": 1,
+      "exported": false
+    },
+    {
+      "id": "function:MultiHashSetMap.newCollection",
+      "type": "function",
+      "name": "newCollection",
+      "filePath": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "startLine": 18,
+      "endLine": 21,
+      "exported": true
+    },
+    {
+      "id": "function:MultiHashSetMap.emptyCollection",
+      "type": "function",
+      "name": "emptyCollection",
+      "filePath": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "startLine": 25,
+      "endLine": 28,
+      "exported": true
+    },
+    {
+      "id": "function:Predicates.toString",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/utils/Predicates.java",
+      "startLine": 32,
+      "endLine": 43,
+      "exported": true,
+      "params": ["pred"]
+    },
+    {
+      "id": "function:ReflectiveWalker.ReflectiveWalker",
+      "type": "function",
+      "name": "ReflectiveWalker",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "startLine": 55,
+      "endLine": 58,
+      "exported": true,
+      "params": ["nodeType", "visitTypes"]
+    },
+    {
+      "id": "function:ReflectiveWalker.handlesFor",
+      "type": "function",
+      "name": "handlesFor",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "startLine": 65,
+      "endLine": 65,
+      "exported": true,
+      "params": ["klass"]
+    },
+    {
+      "id": "function:ReflectiveWalker.children",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "startLine": 69,
+      "endLine": 88,
+      "exported": true,
+      "params": ["node"]
+    },
+    {
+      "id": "function:Visitor.accept",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/utils/visitors/Visitor.java",
+      "startLine": 46,
+      "endLine": 55,
+      "exported": true,
+      "params": ["value"]
+    },
+    {
+      "id": "function:Visitor.register",
+      "type": "function",
+      "name": "register",
+      "filePath": "src/norswap/utils/visitors/Visitor.java",
+      "startLine": 62,
+      "endLine": 68,
+      "exported": true,
+      "params": ["klass", "specialization"]
+    },
+    {
+      "id": "function:Visitor.registerFallback",
+      "type": "function",
+      "name": "registerFallback",
+      "filePath": "src/norswap/utils/visitors/Visitor.java",
+      "startLine": 75,
+      "endLine": 79,
+      "exported": true,
+      "params": ["fallback"]
+    }
+  ],
+  "edges": [
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/multimap/MultiHashSetMap.java",
+      "targetId": "class:MultiHashSetMap"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/multimap/MultiHashSetMap.java",
+      "targetId": "function:MultiHashSetMap.newCollection"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/multimap/MultiHashSetMap.java",
+      "targetId": "function:MultiHashSetMap.emptyCollection"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/OperatingSystem.java",
+      "targetId": "class:OperatingSystem"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/Predicates.java",
+      "targetId": "class:Predicates"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/Predicates.java",
+      "targetId": "function:Predicates.toString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "targetId": "class:ReflectiveWalker"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "targetId": "class:ReflectiveWalker.HandleWrapper"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "targetId": "function:ReflectiveWalker.ReflectiveWalker"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "targetId": "function:ReflectiveWalker.handlesFor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveWalker.java",
+      "targetId": "function:ReflectiveWalker.children"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/Visitor.java",
+      "targetId": "class:Visitor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/Visitor.java",
+      "targetId": "function:Visitor.accept"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/Visitor.java",
+      "targetId": "function:Visitor.register"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/Visitor.java",
+      "targetId": "function:Visitor.registerFallback"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:MultiHashSetMap.newCollection",
+      "targetId": "class:MultiHashSetMap"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:MultiHashSetMap.emptyCollection",
+      "targetId": "class:MultiHashSetMap"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Predicates.toString",
+      "targetId": "class:Predicates"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ReflectiveWalker.ReflectiveWalker",
+      "targetId": "class:ReflectiveWalker"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ReflectiveWalker.handlesFor",
+      "targetId": "class:ReflectiveWalker"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ReflectiveWalker.children",
+      "targetId": "class:ReflectiveWalker"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Visitor.accept",
+      "targetId": "class:Visitor"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Visitor.register",
+      "targetId": "class:Visitor"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Visitor.registerFallback",
+      "targetId": "class:Visitor"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "class:ReflectiveWalker.HandleWrapper",
+      "targetId": "class:ReflectiveWalker"
+    }
+  ],
+  "metadata": {
+    "totalFiles": 5,
+    "totalNodes": 20,
+    "totalEdges": 25,
+    "fileNodes": 5,
+    "classNodes": 6,
+    "functionNodes": 9,
+    "innerClassNodes": 1,
+    "containsEdges": 15,
+    "memberOfEdges": 12,
+    "importEdges": 0
+  }
+}

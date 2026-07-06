@@ -1,0 +1,83 @@
+{
+  "batch": 14,
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "description": "NetBeans project configuration files (nbproject/) for the compiler project",
+  "nodes": [
+    {
+      "id": "config:nbproject/build-impl.xml",
+      "type": "node",
+      "category": "config",
+      "name": "build-impl.xml",
+      "filePath": "nbproject/build-impl.xml",
+      "summary": "NetBeans-generated Ant build script (1771 lines) with targets for initialization, compilation, jar packaging, execution, debugging, javadoc generation, test compilation/execution/debugging, applet support, and cleanup. Auto-generated from project.xml; references project.properties for configurable build properties. Part of the NetBeans J2SE project template.",
+      "tags": ["configuration", "build-system", "ant", "netbeans", "generated"],
+      "language": "xml",
+      "sizeLines": 1771
+    },
+    {
+      "id": "config:nbproject/genfiles.properties",
+      "type": "node",
+      "category": "config",
+      "name": "genfiles.properties",
+      "filePath": "nbproject/genfiles.properties",
+      "summary": "NetBeans IDE tracking file (8 lines) storing CRC32 checksums of build-impl.xml data, script, and stylesheet. Used by the IDE to detect when generated files need regeneration from templates.",
+      "tags": ["configuration", "netbeans", "generated", "metadata"],
+      "language": "properties",
+      "sizeLines": 8
+    },
+    {
+      "id": "config:nbproject/project.properties",
+      "type": "node",
+      "category": "config",
+      "name": "project.properties",
+      "filePath": "nbproject/project.properties",
+      "summary": "NetBeans project build properties (107 lines) defining the compiler's build configuration: Java 21 source/target, main class (sjc.ui.SCG), source/test directories (src, test), classpath dependencies (asm-9.7.jar, asm-tree-9.7.jar, json-20200518.jar), dist/jar settings, JUnit 4 test framework, encoding (UTF-8), and JNLP deployment options.",
+      "tags": ["configuration", "build-system", "netbeans", "classpath", "dependencies"],
+      "language": "properties",
+      "sizeLines": 107
+    },
+    {
+      "id": "config:nbproject/project.xml",
+      "type": "node",
+      "category": "config",
+      "name": "project.xml",
+      "filePath": "nbproject/project.xml",
+      "summary": "NetBeans J2SE project descriptor (16 lines) identifying the project type (org.netbeans.modules.java.j2seproject), project name 'compiler', and configuring source-roots (src.dir) and test-roots (test.src.dir). The primary project configuration file from which build-impl.xml is auto-generated.",
+      "tags": ["configuration", "netbeans", "project-descriptor"],
+      "language": "xml",
+      "sizeLines": 16
+    }
+  ],
+  "edges": [
+    {
+      "source": "config:nbproject/build-impl.xml",
+      "target": "config:nbproject/project.xml",
+      "type": "generated-from",
+      "label": "build-impl.xml is generated from project.xml (noted in file header)"
+    },
+    {
+      "source": "config:nbproject/build-impl.xml",
+      "target": "config:nbproject/project.properties",
+      "type": "references",
+      "label": "build-impl.xml loads project.properties for build configuration variables"
+    },
+    {
+      "source": "config:nbproject/genfiles.properties",
+      "target": "config:nbproject/build-impl.xml",
+      "type": "tracks-checksum",
+      "label": "genfiles.properties stores CRC32 checksums of build-impl.xml for IDE regeneration tracking"
+    },
+    {
+      "source": "config:nbproject/project.properties",
+      "target": "config:nbproject/project.xml",
+      "type": "co-located",
+      "label": "Both files are part of nbproject/ NetBeans project configuration"
+    },
+    {
+      "source": "config:nbproject/genfiles.properties",
+      "target": "config:nbproject/project.xml",
+      "type": "co-located",
+      "label": "Both files are part of nbproject/ NetBeans project configuration"
+    }
+  ]
+}

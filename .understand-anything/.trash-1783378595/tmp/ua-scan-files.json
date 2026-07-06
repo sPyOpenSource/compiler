@@ -1,0 +1,1902 @@
+{
+  "scriptCompleted": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "build.xml",
+      "language": "xml",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "examples/fizzbuzz.si",
+      "language": "si",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "examples/kitchensink.si",
+      "language": "si",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "nbproject/build-impl.xml",
+      "language": "xml",
+      "sizeLines": 1771,
+      "fileCategory": "config"
+    },
+    {
+      "path": "nbproject/genfiles.properties",
+      "language": "properties",
+      "sizeLines": 8,
+      "fileCategory": "config"
+    },
+    {
+      "path": "nbproject/project.properties",
+      "language": "properties",
+      "sizeLines": 107,
+      "fileCategory": "config"
+    },
+    {
+      "path": "nbproject/project.xml",
+      "language": "xml",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/ExpressionBenchmark.java",
+      "language": "java",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/ActionContext.java",
+      "language": "java",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackAction.java",
+      "language": "java",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackConsumer.java",
+      "language": "java",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackPredicate.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackPush.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Autumn.java",
+      "language": "java",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/AutumnTestFixture.java",
+      "language": "java",
+      "sizeLines": 477,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Grammar.java",
+      "language": "java",
+      "sizeLines": 1388,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Log.java",
+      "language": "java",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/MalformedGrammarError.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoCache.java",
+      "language": "java",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoEntry.java",
+      "language": "java",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/Memoizer.java",
+      "language": "java",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoTable.java",
+      "language": "java",
+      "sizeLines": 182,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/NullMemoizer.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Parse.java",
+      "language": "java",
+      "sizeLines": 460,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseMetrics.java",
+      "language": "java",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseOptions.java",
+      "language": "java",
+      "sizeLines": 284,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Parser.java",
+      "language": "java",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallFrame.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallStack.java",
+      "language": "java",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseResult.java",
+      "language": "java",
+      "sizeLines": 323,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserMetrics.java",
+      "language": "java",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractChoice.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractForwarding.java",
+      "language": "java",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractPrimitive.java",
+      "language": "java",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractWrapper.java",
+      "language": "java",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Around.java",
+      "language": "java",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Bounded.java",
+      "language": "java",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/CharPredicate.java",
+      "language": "java",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Choice.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Collect.java",
+      "language": "java",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/ContextPredicate.java",
+      "language": "java",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Empty.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Fail.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/LazyParser.java",
+      "language": "java",
+      "sizeLines": 78,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/LeftExpression.java",
+      "language": "java",
+      "sizeLines": 174,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Longest.java",
+      "language": "java",
+      "sizeLines": 89,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Lookahead.java",
+      "language": "java",
+      "sizeLines": 59,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Memo.java",
+      "language": "java",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Not.java",
+      "language": "java",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "language": "java",
+      "sizeLines": 96,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Optional.java",
+      "language": "java",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Repeat.java",
+      "language": "java",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/RightExpression.java",
+      "language": "java",
+      "sizeLines": 188,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Sequence.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/StringChoice.java",
+      "language": "java",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/StringMatch.java",
+      "language": "java",
+      "sizeLines": 85,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserVisitor.java",
+      "language": "java",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserWalker.java",
+      "language": "java",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseState.java",
+      "language": "java",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMap.java",
+      "language": "java",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapString.java",
+      "language": "java",
+      "sizeLines": 233,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapTokens.java",
+      "language": "java",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapUtils.java",
+      "language": "java",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Position.java",
+      "language": "java",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Span.java",
+      "language": "java",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Token.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/SideEffect.java",
+      "language": "java",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "language": "java",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/UnicodeCharSequence.java",
+      "language": "java",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/util/ArrayStack.java",
+      "language": "java",
+      "sizeLines": 302,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "language": "java",
+      "sizeLines": 163,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "language": "java",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/VisitorExtensions.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "language": "java",
+      "sizeLines": 333,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "language": "java",
+      "sizeLines": 270,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "language": "java",
+      "sizeLines": 308,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "language": "java",
+      "sizeLines": 175,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "language": "java",
+      "sizeLines": 164,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/AsmUtils.java",
+      "language": "java",
+      "sizeLines": 195,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "language": "java",
+      "sizeLines": 1002,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/CompilationResult.java",
+      "language": "java",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/GeneratedClass.java",
+      "language": "java",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/jvm-names.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/norswap/lang/backend/Null.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/SighRuntime.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/TypeUtils.java",
+      "language": "java",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElementList.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ArrayType.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BasicType.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BinaryOperator.java",
+      "language": "java",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Block.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BreakStatement.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/CaseLabel.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/CatchClause.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ClassType.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ClassTypePart.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ContinueStatement.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Declaration.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DefaultLabel.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Dimension.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DimExpression.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/EnumConstant.java",
+      "language": "java",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Cast.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Constructor.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotIden.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotNew.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Expression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Identifier.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Lambda.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Literal.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Super.java",
+      "language": "java",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/This.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ExtendsBound.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameter.java",
+      "language": "java",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameters.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/IdenParameter.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ImportDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/InitBlock.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/JavaFile.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Keyword.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/LabelledStatement.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/MethodDeclaration.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Modifier.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Null.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Nullable.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/PackageDeclaration.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Parameters.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/PrimitiveType.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SemiStatement.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StAssert.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Statement.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StFor.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StForEnh.java",
+      "language": "java",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StIf.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StReturn.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StSwitch.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StSync.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StThrow.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StTryCaFi.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StVar.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StWhile.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SuperBound.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchClause.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchLabel.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TAnnotation.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ThisParameter.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TryResource.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TType.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeBound.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeParameter.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/UnaryOperator.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/UntypedParameters.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VariadicParameter.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Wildcard.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Benchmark.java",
+      "language": "java",
+      "sizeLines": 143,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/JavaGrammar.java",
+      "language": "java",
+      "sizeLines": 1021,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/JavaTokens.java",
+      "language": "java",
+      "sizeLines": 954,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Lexer.java",
+      "language": "java",
+      "sizeLines": 971,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "language": "java",
+      "sizeLines": 446,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Token.java",
+      "language": "java",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/TokenKind.java",
+      "language": "java",
+      "sizeLines": 159,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/json/JSON.java",
+      "language": "java",
+      "sizeLines": 125,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/Block.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/DeclarationNode.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "language": "java",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "language": "java",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "language": "java",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/Expression.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "language": "java",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/Reference.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/FunDeclaration.java",
+      "language": "java",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/Node.java",
+      "language": "java",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/ParameterNode.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/RootNode.java",
+      "language": "java",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/SimpleType.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/Statement.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StExpr.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StIf.java",
+      "language": "java",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StReturn.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "language": "java",
+      "sizeLines": 30,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StWhile.java",
+      "language": "java",
+      "sizeLines": 26,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/TypeNode.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/UnaryOperator.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "language": "java",
+      "sizeLines": 532,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/InterpreterException.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/Null.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/PassthroughException.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "language": "java",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/Void.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/Runner.java",
+      "language": "java",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/RustGrammar.java",
+      "language": "java",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/Context.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/DeclarationKind.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/Scope.java",
+      "language": "java",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "language": "java",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "language": "java",
+      "sizeLines": 936,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/Test.java",
+      "language": "java",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/ArrayType.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/BoolType.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/FloatType.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/FunType.java",
+      "language": "java",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/IntType.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/NullType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/StringType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/StructType.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/Type.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/TypeType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/VoidType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/SimpleXML.java",
+      "language": "java",
+      "sizeLines": 124,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Attribute.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "language": "java",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Reactor.java",
+      "language": "java",
+      "sizeLines": 448,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Rule.java",
+      "language": "java",
+      "sizeLines": 366,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/SemanticError.java",
+      "language": "java",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/UraniumTestFixture.java",
+      "language": "java",
+      "sizeLines": 428,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Chance.java",
+      "language": "java",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Concurrency.java",
+      "language": "java",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "language": "java",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "language": "java",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayStack.java",
+      "language": "java",
+      "sizeLines": 304,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Indexed.java",
+      "language": "java",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "language": "java",
+      "sizeLines": 247,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Pair.java",
+      "language": "java",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Slot.java",
+      "language": "java",
+      "sizeLines": 51,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "language": "java",
+      "sizeLines": 220,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/Exceptions.java",
+      "language": "java",
+      "sizeLines": 219,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/NoStackException.java",
+      "language": "java",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingSupplier.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/IO.java",
+      "language": "java",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "language": "java",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiHashMap.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiMap.java",
+      "language": "java",
+      "sizeLines": 201,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "language": "java",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/NArrays.java",
+      "language": "java",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/NFiles.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/OperatingSystem.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Predicates.java",
+      "language": "java",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Access.java",
+      "language": "java",
+      "sizeLines": 451,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/GenericType.java",
+      "language": "java",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Reflection.java",
+      "language": "java",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Subtyping.java",
+      "language": "java",
+      "sizeLines": 436,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Strings.java",
+      "language": "java",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/TestFixture.java",
+      "language": "java",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Util.java",
+      "language": "java",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Vanilla.java",
+      "language": "java",
+      "sizeLines": 858,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "language": "java",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "language": "java",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "language": "java",
+      "sizeLines": 112,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ValuedVisitor.java",
+      "language": "java",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/Visitor.java",
+      "language": "java",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/Walker.java",
+      "language": "java",
+      "sizeLines": 231,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/WalkVisitType.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/GrammarTest.java",
+      "language": "java",
+      "sizeLines": 686,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/GrammarTokensTest.java",
+      "language": "java",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/LexUtilsTest.java",
+      "language": "java",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/BytecodeTest.java",
+      "language": "java",
+      "sizeLines": 272,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/GrammarTest.java",
+      "language": "java",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/InterpreterTest.java",
+      "language": "java",
+      "sizeLines": 363,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/SemanticAnalysisTest.java",
+      "language": "java",
+      "sizeLines": 306,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/LineMapStringTest.java",
+      "language": "java",
+      "sizeLines": 245,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/ParsersTest.java",
+      "language": "java",
+      "sizeLines": 793,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/WellFormednesTest.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    }
+  ],
+  "totalFiles": 313,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "large",
+  "stats": {
+    "filesScanned": 313,
+    "byCategory": {
+      "code": 306,
+      "config": 5,
+      "docs": 2
+    },
+    "byLanguage": {
+      "unknown": 2,
+      "xml": 3,
+      "si": 2,
+      "properties": 2,
+      "markdown": 2,
+      "java": 302
+    }
+  }
+}

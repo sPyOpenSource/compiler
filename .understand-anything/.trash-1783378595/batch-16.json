@@ -1,0 +1,647 @@
+{
+  "batchId": 16,
+  "nodes": [
+    {
+      "id": "file:src/norswap/lang/java/ast/Keyword.java",
+      "type": "file",
+      "name": "Keyword.java",
+      "filePath": "src/norswap/lang/java/ast/Keyword.java",
+      "summary": "Enum of Java keyword modifiers implementing the Modifier interface (abstract, default, final, native, private, protected, public, static, synchronized, strictfp, transient, volatile).",
+      "tags": ["java", "ast", "enum", "modifier", "keyword"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Modifier.java",
+      "type": "file",
+      "name": "Modifier.java",
+      "filePath": "src/norswap/lang/java/ast/Modifier.java",
+      "summary": "Marker interface for Java AST modifiers, implemented by Keyword and TAnnotation.",
+      "tags": ["java", "ast", "interface", "modifier"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Null.java",
+      "type": "file",
+      "name": "Null.java",
+      "filePath": "src/norswap/lang/java/ast/Null.java",
+      "summary": "Singleton class representing the null literal, providing a non-null sentinel for use in collections that don't accept null values.",
+      "tags": ["java", "ast", "singleton", "null", "literal"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:Null",
+          "type": "class",
+          "name": "Null",
+          "filePath": "src/norswap/lang/java/ast/Null.java",
+          "summary": "Singleton wrapper for the null literal value.",
+          "tags": ["java", "singleton", "null"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Null.toString",
+          "type": "method",
+          "name": "toString",
+          "filePath": "src/norswap/lang/java/ast/Null.java",
+          "summary": "Returns the string representation 'NULL'.",
+          "tags": ["java", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/PrimitiveType.java",
+      "type": "file",
+      "name": "PrimitiveType.java",
+      "filePath": "src/norswap/lang/java/ast/PrimitiveType.java",
+      "summary": "Java record representing a primitive type with annotations and a BasicType name, implementing TType.",
+      "tags": ["java", "ast", "record", "type", "primitive"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/SemiStatement.java",
+      "type": "file",
+      "name": "SemiStatement.java",
+      "filePath": "src/norswap/lang/java/ast/SemiStatement.java",
+      "summary": "Represents an empty statement (semicolon) in Java AST with a static factory method mk().",
+      "tags": ["java", "ast", "statement", "empty"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:SemiStatement",
+          "type": "class",
+          "name": "SemiStatement",
+          "filePath": "src/norswap/lang/java/ast/SemiStatement.java",
+          "summary": "Empty statement node in Java AST.",
+          "tags": ["java", "statement"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:SemiStatement.mk",
+          "type": "method",
+          "name": "mk",
+          "filePath": "src/norswap/lang/java/ast/SemiStatement.java",
+          "summary": "Static factory creating a SemiStatement instance.",
+          "tags": ["java", "factory"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/StTryCaFi.java",
+      "type": "file",
+      "name": "StTryCaFi.java",
+      "filePath": "src/norswap/lang/java/ast/StTryCaFi.java",
+      "summary": "Java record representing a try-catch-finally statement with resources, body, catch clauses, and optional finally block.",
+      "tags": ["java", "ast", "statement", "try", "catch", "finally"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "method:StTryCaFi.mk",
+          "type": "method",
+          "name": "mk",
+          "filePath": "src/norswap/lang/java/ast/StTryCaFi.java",
+          "summary": "Static factory creating an StTryCaFi record instance.",
+          "tags": ["java", "factory"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/StVar.java",
+      "type": "file",
+      "name": "StVar.java",
+      "filePath": "src/norswap/lang/java/ast/StVar.java",
+      "summary": "Java record representing a variable declaration statement with modifiers, type, and declarators.",
+      "tags": ["java", "ast", "statement", "variable", "declaration"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/SuperBound.java",
+      "type": "file",
+      "name": "SuperBound.java",
+      "filePath": "src/norswap/lang/java/ast/SuperBound.java",
+      "summary": "Java record representing a 'super' type bound in wildcard types (? super T), implementing TypeBound.",
+      "tags": ["java", "ast", "record", "type", "wildcard", "bound"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/SwitchClause.java",
+      "type": "file",
+      "name": "SwitchClause.java",
+      "filePath": "src/norswap/lang/java/ast/SwitchClause.java",
+      "summary": "Java record representing a single clause in a switch statement with a label and list of statements.",
+      "tags": ["java", "ast", "record", "statement", "switch"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/SwitchLabel.java",
+      "type": "file",
+      "name": "SwitchLabel.java",
+      "filePath": "src/norswap/lang/java/ast/SwitchLabel.java",
+      "summary": "Marker interface for switch case labels in Java AST.",
+      "tags": ["java", "ast", "interface", "switch", "label"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/TAnnotation.java",
+      "type": "file",
+      "name": "TAnnotation.java",
+      "filePath": "src/norswap/lang/java/ast/TAnnotation.java",
+      "summary": "Marker interface for type annotations, extending both AnnotationElement and Modifier.",
+      "tags": ["java", "ast", "interface", "annotation", "modifier"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/TypeBound.java",
+      "type": "file",
+      "name": "TypeBound.java",
+      "filePath": "src/norswap/lang/java/ast/TypeBound.java",
+      "summary": "Interface defining a type bound with a method to retrieve the bounding type.",
+      "tags": ["java", "ast", "interface", "type", "bound"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Wildcard.java",
+      "type": "file",
+      "name": "Wildcard.java",
+      "filePath": "src/norswap/lang/java/ast/Wildcard.java",
+      "summary": "Java record representing a wildcard type (? with optional bound), implementing TType.",
+      "tags": ["java", "ast", "record", "type", "wildcard"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/lang/java/TokenKind.java",
+      "type": "file",
+      "name": "TokenKind.java",
+      "filePath": "src/norswap/lang/java/TokenKind.java",
+      "summary": "Large enum defining all Java language tokens (keywords, operators, literals, separators) with name lookup from a static HashMap.",
+      "tags": ["java", "lexer", "token", "enum", "keywords", "operators"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "enum:TokenKind.Tag",
+          "type": "enum",
+          "name": "Tag",
+          "filePath": "src/norswap/lang/java/TokenKind.java",
+          "summary": "Inner enum categorizing tokens: DEFAULT, NAMED, STRING, NUMERIC.",
+          "tags": ["java", "enum", "tag"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:TokenKind.lookup",
+          "type": "method",
+          "name": "lookup",
+          "filePath": "src/norswap/lang/java/TokenKind.java",
+          "summary": "Static method to look up a TokenKind by its string name, returning IDENTIFIER for unknown names.",
+          "tags": ["java", "lookup", "static"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/InterpreterException.java",
+      "type": "file",
+      "name": "InterpreterException.java",
+      "filePath": "src/norswap/lang/rust/interpreter/InterpreterException.java",
+      "summary": "Exception wrapper for errors thrown while running the Rust interpreter, extending RuntimeException.",
+      "tags": ["rust", "interpreter", "exception", "runtime"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:InterpreterException",
+          "type": "class",
+          "name": "InterpreterException",
+          "filePath": "src/norswap/lang/rust/interpreter/InterpreterException.java",
+          "summary": "Runtime exception for Rust interpreter errors.",
+          "tags": ["rust", "exception"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/PassthroughException.java",
+      "type": "file",
+      "name": "PassthroughException.java",
+      "filePath": "src/norswap/lang/rust/interpreter/PassthroughException.java",
+      "summary": "Package-private exception wrapper for intentional interpreter exceptions thrown for user-facing purposes (not interpreter bugs).",
+      "tags": ["rust", "interpreter", "exception", "passthrough"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:PassthroughException",
+          "type": "class",
+          "name": "PassthroughException",
+          "filePath": "src/norswap/lang/rust/interpreter/PassthroughException.java",
+          "summary": "Runtime exception for intentional user-facing interpreter errors.",
+          "tags": ["rust", "exception"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/Void.java",
+      "type": "file",
+      "name": "Void.java",
+      "filePath": "src/norswap/lang/rust/interpreter/Void.java",
+      "summary": "Uninstantiable class used to mark nodes that should not evaluate to a value in the Rust interpreter (typically statements).",
+      "tags": ["rust", "interpreter", "void", "sentinel"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:Void",
+          "type": "class",
+          "name": "Void",
+          "filePath": "src/norswap/lang/rust/interpreter/Void.java",
+          "summary": "Sentinel type for interpreter nodes that produce no value.",
+          "tags": ["rust", "void", "sentinel"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/ArrayType.java",
+      "type": "file",
+      "name": "ArrayType.java",
+      "filePath": "src/norswap/lang/rust/types/ArrayType.java",
+      "summary": "Represents an array type in the Rust type system with a component type, custom equals/hashCode, and name() returning 'componentType[]'.",
+      "tags": ["rust", "types", "array", "type-system"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:ArrayType",
+          "type": "class",
+          "name": "ArrayType",
+          "filePath": "src/norswap/lang/rust/types/ArrayType.java",
+          "summary": "Array type representation for Rust types.",
+          "tags": ["rust", "array", "type"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayType.name",
+          "type": "method",
+          "name": "name",
+          "filePath": "src/norswap/lang/rust/types/ArrayType.java",
+          "summary": "Returns the string representation of the array type.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayType.equals",
+          "type": "method",
+          "name": "equals",
+          "filePath": "src/norswap/lang/rust/types/ArrayType.java",
+          "summary": "Equality check based on component type.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayType.hashCode",
+          "type": "method",
+          "name": "hashCode",
+          "filePath": "src/norswap/lang/rust/types/ArrayType.java",
+          "summary": "Hash code derived from component type.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/BoolType.java",
+      "type": "file",
+      "name": "BoolType.java",
+      "filePath": "src/norswap/lang/rust/types/BoolType.java",
+      "summary": "Singleton type representing the boolean primitive in the Rust type system.",
+      "tags": ["rust", "types", "boolean", "singleton", "primitive"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:BoolType",
+          "type": "class",
+          "name": "BoolType",
+          "filePath": "src/norswap/lang/rust/types/BoolType.java",
+          "summary": "Singleton boolean type for Rust.",
+          "tags": ["rust", "boolean", "type"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:BoolType.isPrimitive",
+          "type": "method",
+          "name": "isPrimitive",
+          "filePath": "src/norswap/lang/rust/types/BoolType.java",
+          "summary": "Returns true indicating this is a primitive type.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:BoolType.name",
+          "type": "method",
+          "name": "name",
+          "filePath": "src/norswap/lang/rust/types/BoolType.java",
+          "summary": "Returns the type name 'Bool'.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/NullType.java",
+      "type": "file",
+      "name": "NullType.java",
+      "filePath": "src/norswap/lang/rust/types/NullType.java",
+      "summary": "Singleton type representing the null type in the Rust type system.",
+      "tags": ["rust", "types", "null", "singleton"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:NullType",
+          "type": "class",
+          "name": "NullType",
+          "filePath": "src/norswap/lang/rust/types/NullType.java",
+          "summary": "Singleton null type for Rust.",
+          "tags": ["rust", "null", "type"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:NullType.name",
+          "type": "method",
+          "name": "name",
+          "filePath": "src/norswap/lang/rust/types/NullType.java",
+          "summary": "Returns the type name 'Null'.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/TypeType.java",
+      "type": "file",
+      "name": "TypeType.java",
+      "filePath": "src/norswap/lang/rust/types/TypeType.java",
+      "summary": "Singleton type representing the type-of-types (meta-type) in the Rust type system.",
+      "tags": ["rust", "types", "meta-type", "singleton"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:TypeType",
+          "type": "class",
+          "name": "TypeType",
+          "filePath": "src/norswap/lang/rust/types/TypeType.java",
+          "summary": "Singleton meta-type for Rust.",
+          "tags": ["rust", "meta-type", "type"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:TypeType.name",
+          "type": "method",
+          "name": "name",
+          "filePath": "src/norswap/lang/rust/types/TypeType.java",
+          "summary": "Returns the type name 'Type'.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/VoidType.java",
+      "type": "file",
+      "name": "VoidType.java",
+      "filePath": "src/norswap/lang/rust/types/VoidType.java",
+      "summary": "Singleton type representing the void type in the Rust type system.",
+      "tags": ["rust", "types", "void", "singleton"],
+      "complexity": "simple",
+      "subNodes": [
+        {
+          "id": "class:VoidType",
+          "type": "class",
+          "name": "VoidType",
+          "filePath": "src/norswap/lang/rust/types/VoidType.java",
+          "summary": "Singleton void type for Rust.",
+          "tags": ["rust", "void", "type"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:VoidType.name",
+          "type": "method",
+          "name": "name",
+          "filePath": "src/norswap/lang/rust/types/VoidType.java",
+          "summary": "Returns the type name 'Void'.",
+          "tags": ["rust", "method"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/utils/Chance.java",
+      "type": "file",
+      "name": "Chance.java",
+      "filePath": "src/norswap/utils/Chance.java",
+      "summary": "Utility class for random number generation with methods for coin flip, bounded random, random selection from arrays, and probability checks.",
+      "tags": ["utils", "random", "utility", "probability"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "class:Chance",
+          "type": "class",
+          "name": "Chance",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Static utility class wrapping java.util.Random for common random operations.",
+          "tags": ["utils", "random"],
+          "complexity": "medium"
+        },
+        {
+          "id": "method:Chance.flip",
+          "type": "method",
+          "name": "flip",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Coin flip returning true/false with 50/50 probability.",
+          "tags": ["utils", "random"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.random(int)",
+          "type": "method",
+          "name": "random",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Returns a random integer in [0, bound).",
+          "tags": ["utils", "random"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.random()",
+          "type": "method",
+          "name": "random",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Returns a random integer (possibly negative).",
+          "tags": ["utils", "random"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.selectp(int[])",
+          "type": "method",
+          "name": "selectp",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Selects a random element from an int array.",
+          "tags": ["utils", "random", "selection"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.selectp(char[])",
+          "type": "method",
+          "name": "selectp",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Selects a random element from a char array.",
+          "tags": ["utils", "random", "selection"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.select",
+          "type": "method",
+          "name": "select",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Selects a random element from a generic varargs array.",
+          "tags": ["utils", "random", "selection"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:Chance.probability",
+          "type": "method",
+          "name": "probability",
+          "filePath": "src/norswap/utils/Chance.java",
+          "summary": "Returns true on average 'times' out of 'outof'.",
+          "tags": ["utils", "random", "probability"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/utils/data/structures/ArrayStack.java",
+      "type": "file",
+      "name": "ArrayStack.java",
+      "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+      "summary": "Stack implementation extending ArrayList with push/pop/peek operations, sublist-based top/from views, and array-backed bulk operations.",
+      "tags": ["utils", "data-structures", "stack", "array", "list"],
+      "complexity": "complex",
+      "subNodes": [
+        {
+          "id": "class:ArrayStack",
+          "type": "class",
+          "name": "ArrayStack",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "ArrayList-backed stack with push/pop/peek/top/from/truncate operations and array conversion support.",
+          "tags": ["utils", "stack", "data-structure"],
+          "complexity": "medium"
+        },
+        {
+          "id": "method:ArrayStack.push(T)",
+          "type": "method",
+          "name": "push",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Pushes a single item onto the stack.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.push(T[])",
+          "type": "method",
+          "name": "push",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Pushes multiple items onto the stack via varargs.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.push(Collection)",
+          "type": "method",
+          "name": "push",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Pushes all elements of a collection onto the stack.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.top",
+          "type": "method",
+          "name": "top",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Returns a sublist view of the top n elements.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.from",
+          "type": "method",
+          "name": "from",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Returns a sublist view from an index to the top of the stack.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.pop()",
+          "type": "method",
+          "name": "pop",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Removes and returns the top item, throwing if empty.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.pop(int, IntFunction)",
+          "type": "method",
+          "name": "pop",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Removes and returns top n items as an array.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.peek()",
+          "type": "method",
+          "name": "peek",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Returns the top item without removing it, throwing if empty.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.snoop",
+          "type": "method",
+          "name": "snoop",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Returns the top item or null if empty (non-throwing peek).",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.poll",
+          "type": "method",
+          "name": "poll",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Removes and returns the top item, or null if empty.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        },
+        {
+          "id": "method:ArrayStack.clone",
+          "type": "method",
+          "name": "clone",
+          "filePath": "src/norswap/utils/data/structures/ArrayStack.java",
+          "summary": "Returns a clone of the stack via super.clone() with cast.",
+          "tags": ["utils", "stack"],
+          "complexity": "simple"
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/utils/exceptions/ThrowingSupplier.java",
+      "type": "file",
+      "name": "ThrowingSupplier.java",
+      "filePath": "src/norswap/utils/exceptions/ThrowingSupplier.java",
+      "summary": "Functional interface similar to java.util.function.Supplier but allowed to throw Throwable.",
+      "tags": ["utils", "exceptions", "functional", "interface"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [],
+  "importEdges": []
+}

@@ -1,0 +1,1125 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/norswap/lang/rust/ast/StWhile.java",
+      "type": "file",
+      "name": "StWhile.java",
+      "filePath": "src/norswap/lang/rust/ast/StWhile.java",
+      "summary": "Rust AST node representing a while loop statement with condition and body",
+      "tags": ["rust", "ast", "statement", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/Statement.java",
+      "type": "file",
+      "name": "Statement.java",
+      "filePath": "src/norswap/lang/rust/ast/Statement.java",
+      "summary": "Rust AST node base class for all statements",
+      "tags": ["rust", "ast", "base-class", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "file",
+      "name": "StructDeclaration.java",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Rust AST node representing a struct declaration with name and fields",
+      "tags": ["rust", "ast", "declaration", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/TypeNode.java",
+      "type": "file",
+      "name": "TypeNode.java",
+      "filePath": "src/norswap/lang/rust/ast/TypeNode.java",
+      "summary": "Rust AST node base class for type annotations",
+      "tags": ["rust", "ast", "type", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/UnaryOperator.java",
+      "type": "file",
+      "name": "UnaryOperator.java",
+      "filePath": "src/norswap/lang/rust/ast/UnaryOperator.java",
+      "summary": "Enumeration of Rust unary operators",
+      "tags": ["rust", "ast", "operator", "enum", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "file",
+      "name": "VarDeclaration.java",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Rust AST node representing a variable declaration with name, type, and initializer",
+      "tags": ["rust", "ast", "declaration", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "type": "file",
+      "name": "ArrayAccess.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "summary": "Rust AST node representing an array indexing expression",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "type": "file",
+      "name": "ArrayLiteral.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "summary": "Rust AST node representing an array literal expression with components",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/Assignment.java",
+      "type": "file",
+      "name": "Assignment.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "summary": "Rust AST node representing an assignment expression with left and right operands",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "type": "file",
+      "name": "BinaryExpression.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "summary": "Rust AST node representing a binary operation expression with operator",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/Constructor.java",
+      "type": "file",
+      "name": "Constructor.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "summary": "Rust AST node representing a struct constructor call expression",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/Expression.java",
+      "type": "file",
+      "name": "Expression.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/Expression.java",
+      "summary": "Rust AST node base class for all expressions",
+      "tags": ["rust", "ast", "expression", "base-class", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "type": "file",
+      "name": "FieldAccess.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "summary": "Rust AST node representing a field access expression on a struct",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "type": "file",
+      "name": "FloatLiteral.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "summary": "Rust AST node representing a floating-point literal value",
+      "tags": ["rust", "ast", "expression", "literal", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "type": "file",
+      "name": "IntLiteral.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "summary": "Rust AST node representing an integer literal value",
+      "tags": ["rust", "ast", "expression", "literal", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "type": "file",
+      "name": "MethodCall.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "summary": "Rust AST node representing a method call with function reference and arguments",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "type": "file",
+      "name": "Parenthesized.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "summary": "Rust AST node representing a parenthesized expression",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/Reference.java",
+      "type": "file",
+      "name": "Reference.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/Reference.java",
+      "summary": "Rust AST node representing a variable name reference",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "type": "file",
+      "name": "StringLiteral.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "summary": "Rust AST node representing a string literal value",
+      "tags": ["rust", "ast", "expression", "literal", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "type": "file",
+      "name": "UnaryExpression.java",
+      "filePath": "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "summary": "Rust AST node representing a unary operation expression",
+      "tags": ["rust", "ast", "expression", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "type": "file",
+      "name": "ConstructorNode.java",
+      "filePath": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "summary": "Interpreter node wrapping a struct constructor with hashCode and equals support",
+      "tags": ["rust", "interpreter", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "file",
+      "name": "Interpreter.java",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Rust interpreter that evaluates all AST node types via a ValuedVisitor pattern with scope-aware execution",
+      "tags": ["rust", "interpreter", "evaluation", "java"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/Null.java",
+      "type": "file",
+      "name": "Null.java",
+      "filePath": "src/norswap/lang/rust/interpreter/Null.java",
+      "summary": "Singleton null value representation for the Rust interpreter",
+      "tags": ["rust", "interpreter", "value", "java"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "type": "file",
+      "name": "ScopeStorage.java",
+      "filePath": "src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "summary": "Hierarchical scoped variable storage with parent chain lookup and root initialization",
+      "tags": ["rust", "interpreter", "scope", "storage", "java"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/scopes/Context.java",
+      "type": "file",
+      "name": "Context.java",
+      "filePath": "src/norswap/lang/rust/scopes/Context.java",
+      "summary": "Semantic context defining built-in types and synthetic declarations for Rust programs",
+      "tags": ["rust", "scopes", "context", "types", "java"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/scopes/DeclarationKind.java",
+      "type": "file",
+      "name": "DeclarationKind.java",
+      "filePath": "src/norswap/lang/rust/scopes/DeclarationKind.java",
+      "summary": "Enumeration of declaration kinds used in Rust scope management",
+      "tags": ["rust", "scopes", "declaration", "enum", "java"],
+      "complexity": "low"
+    },
+
+    {
+      "id": "class:StWhile::src/norswap/lang/rust/ast/StWhile.java",
+      "type": "class",
+      "name": "StWhile",
+      "filePath": "src/norswap/lang/rust/ast/StWhile.java",
+      "summary": "Rust while statement AST node with condition and body properties",
+      "tags": ["rust", "ast", "statement", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Statement::src/norswap/lang/rust/ast/Statement.java",
+      "type": "class",
+      "name": "Statement",
+      "filePath": "src/norswap/lang/rust/ast/Statement.java",
+      "summary": "Rust AST node base class for all statements",
+      "tags": ["rust", "ast", "base-class", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "class",
+      "name": "StructDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Rust struct declaration AST node with name, fields, and declaredThing helper",
+      "tags": ["rust", "ast", "declaration", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:TypeNode::src/norswap/lang/rust/ast/TypeNode.java",
+      "type": "class",
+      "name": "TypeNode",
+      "filePath": "src/norswap/lang/rust/ast/TypeNode.java",
+      "summary": "Rust AST node base class for type annotations",
+      "tags": ["rust", "ast", "type", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "class",
+      "name": "VarDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Rust variable declaration AST node with name, type, initializer, and declaredThing",
+      "tags": ["rust", "ast", "declaration", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "type": "class",
+      "name": "ArrayAccess",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "summary": "Rust array indexing expression AST node with array and index",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "type": "class",
+      "name": "ArrayLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "summary": "Rust array literal expression AST node with components list",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java",
+      "type": "class",
+      "name": "Assignment",
+      "filePath": "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "summary": "Rust assignment expression AST node with left and right operands",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "type": "class",
+      "name": "BinaryExpression",
+      "filePath": "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "summary": "Rust binary operation expression AST node with left, operator, and right",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java",
+      "type": "class",
+      "name": "Constructor",
+      "filePath": "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "summary": "Rust struct constructor expression AST node with reference",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Expression::src/norswap/lang/rust/ast/expr/Expression.java",
+      "type": "class",
+      "name": "Expression",
+      "filePath": "src/norswap/lang/rust/ast/expr/Expression.java",
+      "summary": "Rust AST node base class for all expressions",
+      "tags": ["rust", "ast", "expression", "base-class", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "type": "class",
+      "name": "FieldAccess",
+      "filePath": "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "summary": "Rust field access expression AST node with stem and fieldName",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "type": "class",
+      "name": "FloatLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "summary": "Rust floating-point literal expression AST node",
+      "tags": ["rust", "ast", "expression", "literal", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "type": "class",
+      "name": "IntLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "summary": "Rust integer literal expression AST node",
+      "tags": ["rust", "ast", "expression", "literal", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "type": "class",
+      "name": "MethodCall",
+      "filePath": "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "summary": "Rust method call expression AST node with function and arguments",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "type": "class",
+      "name": "Parenthesized",
+      "filePath": "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "summary": "Rust parenthesized expression AST node",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Reference::src/norswap/lang/rust/ast/expr/Reference.java",
+      "type": "class",
+      "name": "Reference",
+      "filePath": "src/norswap/lang/rust/ast/expr/Reference.java",
+      "summary": "Rust variable name reference expression AST node",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "type": "class",
+      "name": "StringLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "summary": "Rust string literal expression AST node",
+      "tags": ["rust", "ast", "expression", "literal", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "type": "class",
+      "name": "UnaryExpression",
+      "filePath": "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "summary": "Rust unary operation expression AST node with operator and operand",
+      "tags": ["rust", "ast", "expression", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "type": "class",
+      "name": "ConstructorNode",
+      "filePath": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "summary": "Interpreter wrapper for struct constructor with equality support",
+      "tags": ["rust", "interpreter", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "class",
+      "name": "Interpreter",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Main Rust interpreter class using ValuedVisitor to evaluate AST nodes with scope storage",
+      "tags": ["rust", "interpreter", "evaluation", "class"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:Null::src/norswap/lang/rust/interpreter/Null.java",
+      "type": "class",
+      "name": "Null",
+      "filePath": "src/norswap/lang/rust/interpreter/Null.java",
+      "summary": "Singleton null value for the Rust interpreter",
+      "tags": ["rust", "interpreter", "value", "class"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ScopeStorage::src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "type": "class",
+      "name": "ScopeStorage",
+      "filePath": "src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "summary": "Hierarchical variable storage with parent chain scope resolution",
+      "tags": ["rust", "interpreter", "scope", "storage", "class"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:Context::src/norswap/lang/rust/scopes/Context.java",
+      "type": "class",
+      "name": "Context",
+      "filePath": "src/norswap/lang/rust/scopes/Context.java",
+      "summary": "Semantic context defining built-in Rust types and synthetic declarations via Uranium reactor",
+      "tags": ["rust", "scopes", "context", "types", "class"],
+      "complexity": "moderate"
+    },
+
+    {
+      "id": "function:StWhile::src/norswap/lang/rust/ast/StWhile.java",
+      "type": "function",
+      "name": "StWhile",
+      "filePath": "src/norswap/lang/rust/ast/StWhile.java",
+      "summary": "Constructor for StWhile with span, condition, and body parameters",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/StWhile.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/StWhile.java",
+      "summary": "Generates while loop string representation respecting contents budget",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Statement::src/norswap/lang/rust/ast/Statement.java",
+      "type": "function",
+      "name": "Statement",
+      "filePath": "src/norswap/lang/rust/ast/Statement.java",
+      "summary": "Constructor for Statement base class with span parameter",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "function",
+      "name": "StructDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Constructor for StructDeclaration with span, name, and fields",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:name::src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "function",
+      "name": "name",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Returns the declared struct name as a string",
+      "tags": ["rust", "ast"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Generates struct declaration string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:declaredThing::src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "function",
+      "name": "declaredThing",
+      "filePath": "src/norswap/lang/rust/ast/StructDeclaration.java",
+      "summary": "Returns the declared thing name for scope registration",
+      "tags": ["rust", "ast", "scope"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:TypeNode::src/norswap/lang/rust/ast/TypeNode.java",
+      "type": "function",
+      "name": "TypeNode",
+      "filePath": "src/norswap/lang/rust/ast/TypeNode.java",
+      "summary": "Constructor for TypeNode base class with span parameter",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "function",
+      "name": "VarDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Constructor for VarDeclaration with span, name, type, and initializer",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:name::src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "function",
+      "name": "name",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Returns the declared variable name as a string",
+      "tags": ["rust", "ast"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Generates variable declaration string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:declaredThing::src/norswap/lang/rust/ast/VarDeclaration.java",
+      "type": "function",
+      "name": "declaredThing",
+      "filePath": "src/norswap/lang/rust/ast/VarDeclaration.java",
+      "summary": "Returns the declared thing name for scope registration",
+      "tags": ["rust", "ast", "scope"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "type": "function",
+      "name": "ArrayAccess",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "summary": "Constructor for ArrayAccess with span, array, and index",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "summary": "Generates array access string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "type": "function",
+      "name": "ArrayLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "summary": "Constructor for ArrayLiteral with span and components",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "summary": "Generates array literal string representation with budget-aware truncation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java",
+      "type": "function",
+      "name": "Assignment",
+      "filePath": "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "summary": "Constructor for Assignment with span, left, and right",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/Assignment.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "summary": "Generates assignment string representation with budget awareness",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "type": "function",
+      "name": "BinaryExpression",
+      "filePath": "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "summary": "Constructor for BinaryExpression with span, left, operator, and right",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "summary": "Generates binary expression string representation with budget awareness",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java",
+      "type": "function",
+      "name": "Constructor",
+      "filePath": "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "summary": "Constructor for Constructor expression with span and ref",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/Constructor.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "summary": "Generates constructor call string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Expression::src/norswap/lang/rust/ast/expr/Expression.java",
+      "type": "function",
+      "name": "Expression",
+      "filePath": "src/norswap/lang/rust/ast/expr/Expression.java",
+      "summary": "Constructor for Expression base class with span parameter",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "type": "function",
+      "name": "FieldAccess",
+      "filePath": "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "summary": "Constructor for FieldAccess with span, stem, and fieldName",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "summary": "Generates field access string representation with budget awareness",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "type": "function",
+      "name": "FloatLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "summary": "Constructor for FloatLiteral with span and value",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "summary": "Returns float value as string",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "type": "function",
+      "name": "IntLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "summary": "Constructor for IntLiteral with span and value",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "summary": "Returns integer value as string",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "type": "function",
+      "name": "MethodCall",
+      "filePath": "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "summary": "Constructor for MethodCall with span, function, and arguments",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "summary": "Generates method call string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "type": "function",
+      "name": "Parenthesized",
+      "filePath": "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "summary": "Constructor for Parenthesized with span and expression",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "summary": "Generates parenthesized expression string representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reference::src/norswap/lang/rust/ast/expr/Reference.java",
+      "type": "function",
+      "name": "Reference",
+      "filePath": "src/norswap/lang/rust/ast/expr/Reference.java",
+      "summary": "Constructor for Reference with span and name",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/Reference.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/Reference.java",
+      "summary": "Returns the reference name as string",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "type": "function",
+      "name": "StringLiteral",
+      "filePath": "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "summary": "Constructor for StringLiteral with span and value",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "summary": "Generates quoted string literal representation",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "type": "function",
+      "name": "UnaryExpression",
+      "filePath": "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "summary": "Constructor for UnaryExpression with span, operator, and operand",
+      "tags": ["rust", "ast", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:contents::src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "type": "function",
+      "name": "contents",
+      "filePath": "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "summary": "Generates unary expression string representation with budget awareness",
+      "tags": ["rust", "ast", "contents"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "type": "function",
+      "name": "ConstructorNode",
+      "filePath": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "summary": "Constructor for ConstructorNode wrapping a struct declaration",
+      "tags": ["rust", "interpreter", "constructor"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:hashCode::src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "type": "function",
+      "name": "hashCode",
+      "filePath": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "summary": "Hash code based on wrapped declaration",
+      "tags": ["rust", "interpreter"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:equals::src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "type": "function",
+      "name": "equals",
+      "filePath": "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "summary": "Equality check based on wrapped declaration",
+      "tags": ["rust", "interpreter"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "Interpreter",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Constructs interpreter, registering all AST node handlers via ValuedVisitor",
+      "tags": ["rust", "interpreter", "constructor"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:interpret::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "interpret",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Top-level entry point that runs the interpreter on a root AST node",
+      "tags": ["rust", "interpreter", "entry-point"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:binaryExpression::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "binaryExpression",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Evaluates binary expressions including boolean ops, string concat, and numeric ops",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:numericOp::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "numericOp",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Performs numeric operations on long/double values with error handling",
+      "tags": ["rust", "interpreter", "evaluation", "arithmetic"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:assignment::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "assignment",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Handles variable assignment including struct field mutation",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:root::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Evaluates the root program node, initializing scope and executing statements",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:fieldAccess::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "fieldAccess",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Resolves field access on struct objects with null checking",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:funCall::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "funCall",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Evaluates function calls including builtins, struct constructors, and user-defined functions",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:convertToString::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "convertToString",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Converts runtime values to string representation including arrays",
+      "tags": ["rust", "interpreter", "utility"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:reference::src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "function",
+      "name": "reference",
+      "filePath": "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "summary": "Resolves variable references through scopes and synthetic declarations",
+      "tags": ["rust", "interpreter", "evaluation"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:toString::src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "summary": "Returns string representation of stored values",
+      "tags": ["rust", "interpreter", "utility"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Context::src/norswap/lang/rust/scopes/Context.java",
+      "type": "function",
+      "name": "Context",
+      "filePath": "src/norswap/lang/rust/scopes/Context.java",
+      "summary": "Constructs semantic context registering all built-in types and synthetic declarations",
+      "tags": ["rust", "scopes", "constructor"],
+      "complexity": "moderate"
+    }
+  ],
+  "edges": [
+    {"id": "contains-file-class-StWhile", "source": "file:src/norswap/lang/rust/ast/StWhile.java", "target": "class:StWhile::src/norswap/lang/rust/ast/StWhile.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-StWhile-1", "source": "class:StWhile::src/norswap/lang/rust/ast/StWhile.java", "target": "function:StWhile::src/norswap/lang/rust/ast/StWhile.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-StWhile-2", "source": "class:StWhile::src/norswap/lang/rust/ast/StWhile.java", "target": "function:contents::src/norswap/lang/rust/ast/StWhile.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Statement", "source": "file:src/norswap/lang/rust/ast/Statement.java", "target": "class:Statement::src/norswap/lang/rust/ast/Statement.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Statement", "source": "class:Statement::src/norswap/lang/rust/ast/Statement.java", "target": "function:Statement::src/norswap/lang/rust/ast/Statement.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-StructDeclaration", "source": "file:src/norswap/lang/rust/ast/StructDeclaration.java", "target": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-StructDeclaration-1", "source": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "target": "function:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-StructDeclaration-2", "source": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "target": "function:name::src/norswap/lang/rust/ast/StructDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-StructDeclaration-3", "source": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "target": "function:contents::src/norswap/lang/rust/ast/StructDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-StructDeclaration-4", "source": "class:StructDeclaration::src/norswap/lang/rust/ast/StructDeclaration.java", "target": "function:declaredThing::src/norswap/lang/rust/ast/StructDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-TypeNode", "source": "file:src/norswap/lang/rust/ast/TypeNode.java", "target": "class:TypeNode::src/norswap/lang/rust/ast/TypeNode.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-TypeNode", "source": "class:TypeNode::src/norswap/lang/rust/ast/TypeNode.java", "target": "function:TypeNode::src/norswap/lang/rust/ast/TypeNode.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-VarDeclaration", "source": "file:src/norswap/lang/rust/ast/VarDeclaration.java", "target": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-VarDeclaration-1", "source": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "target": "function:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-VarDeclaration-2", "source": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "target": "function:name::src/norswap/lang/rust/ast/VarDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-VarDeclaration-3", "source": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "target": "function:contents::src/norswap/lang/rust/ast/VarDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-VarDeclaration-4", "source": "class:VarDeclaration::src/norswap/lang/rust/ast/VarDeclaration.java", "target": "function:declaredThing::src/norswap/lang/rust/ast/VarDeclaration.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-ArrayAccess", "source": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java", "target": "class:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-ArrayAccess-1", "source": "class:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java", "target": "function:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-ArrayAccess-2", "source": "class:ArrayAccess::src/norswap/lang/rust/ast/expr/ArrayAccess.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/ArrayAccess.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-ArrayLiteral", "source": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "target": "class:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-ArrayLiteral-1", "source": "class:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "target": "function:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-ArrayLiteral-2", "source": "class:ArrayLiteral::src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Assignment", "source": "file:src/norswap/lang/rust/ast/expr/Assignment.java", "target": "class:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Assignment-1", "source": "class:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java", "target": "function:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Assignment-2", "source": "class:Assignment::src/norswap/lang/rust/ast/expr/Assignment.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/Assignment.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-BinaryExpression", "source": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "class:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-BinaryExpression-1", "source": "class:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "function:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-BinaryExpression-2", "source": "class:BinaryExpression::src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/BinaryExpression.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Constructor", "source": "file:src/norswap/lang/rust/ast/expr/Constructor.java", "target": "class:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Constructor-1", "source": "class:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java", "target": "function:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Constructor-2", "source": "class:Constructor::src/norswap/lang/rust/ast/expr/Constructor.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/Constructor.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Expression", "source": "file:src/norswap/lang/rust/ast/expr/Expression.java", "target": "class:Expression::src/norswap/lang/rust/ast/expr/Expression.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Expression", "source": "class:Expression::src/norswap/lang/rust/ast/expr/Expression.java", "target": "function:Expression::src/norswap/lang/rust/ast/expr/Expression.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-FieldAccess", "source": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java", "target": "class:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-FieldAccess-1", "source": "class:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java", "target": "function:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-FieldAccess-2", "source": "class:FieldAccess::src/norswap/lang/rust/ast/expr/FieldAccess.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/FieldAccess.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-FloatLiteral", "source": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java", "target": "class:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-FloatLiteral-1", "source": "class:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java", "target": "function:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-FloatLiteral-2", "source": "class:FloatLiteral::src/norswap/lang/rust/ast/expr/FloatLiteral.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/FloatLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-IntLiteral", "source": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java", "target": "class:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-IntLiteral-1", "source": "class:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java", "target": "function:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-IntLiteral-2", "source": "class:IntLiteral::src/norswap/lang/rust/ast/expr/IntLiteral.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/IntLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-MethodCall", "source": "file:src/norswap/lang/rust/ast/expr/MethodCall.java", "target": "class:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-MethodCall-1", "source": "class:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java", "target": "function:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-MethodCall-2", "source": "class:MethodCall::src/norswap/lang/rust/ast/expr/MethodCall.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/MethodCall.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Parenthesized", "source": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java", "target": "class:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Parenthesized-1", "source": "class:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java", "target": "function:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Parenthesized-2", "source": "class:Parenthesized::src/norswap/lang/rust/ast/expr/Parenthesized.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/Parenthesized.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Reference", "source": "file:src/norswap/lang/rust/ast/expr/Reference.java", "target": "class:Reference::src/norswap/lang/rust/ast/expr/Reference.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Reference-1", "source": "class:Reference::src/norswap/lang/rust/ast/expr/Reference.java", "target": "function:Reference::src/norswap/lang/rust/ast/expr/Reference.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Reference-2", "source": "class:Reference::src/norswap/lang/rust/ast/expr/Reference.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/Reference.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-StringLiteral", "source": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java", "target": "class:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-StringLiteral-1", "source": "class:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java", "target": "function:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-StringLiteral-2", "source": "class:StringLiteral::src/norswap/lang/rust/ast/expr/StringLiteral.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/StringLiteral.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-UnaryExpression", "source": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "class:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-UnaryExpression-1", "source": "class:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "function:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-UnaryExpression-2", "source": "class:UnaryExpression::src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "function:contents::src/norswap/lang/rust/ast/expr/UnaryExpression.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-ConstructorNode", "source": "file:src/norswap/lang/rust/interpreter/ConstructorNode.java", "target": "class:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-ConstructorNode-1", "source": "class:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "target": "function:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-ConstructorNode-2", "source": "class:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "target": "function:hashCode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-ConstructorNode-3", "source": "class:ConstructorNode::src/norswap/lang/rust/interpreter/ConstructorNode.java", "target": "function:equals::src/norswap/lang/rust/interpreter/ConstructorNode.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Interpreter", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Interpreter-1", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-2", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:interpret::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-3", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:binaryExpression::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-4", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:numericOp::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-5", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:assignment::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-6", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:root::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-7", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:fieldAccess::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-8", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:funCall::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-9", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:convertToString::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+    {"id": "contains-class-function-Interpreter-10", "source": "class:Interpreter::src/norswap/lang/rust/interpreter/Interpreter.java", "target": "function:reference::src/norswap/lang/rust/interpreter/Interpreter.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Null", "source": "file:src/norswap/lang/rust/interpreter/Null.java", "target": "class:Null::src/norswap/lang/rust/interpreter/Null.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+
+    {"id": "contains-file-class-ScopeStorage", "source": "file:src/norswap/lang/rust/interpreter/ScopeStorage.java", "target": "class:ScopeStorage::src/norswap/lang/rust/interpreter/ScopeStorage.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-ScopeStorage", "source": "class:ScopeStorage::src/norswap/lang/rust/interpreter/ScopeStorage.java", "target": "function:toString::src/norswap/lang/rust/interpreter/ScopeStorage.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "contains-file-class-Context", "source": "file:src/norswap/lang/rust/scopes/Context.java", "target": "class:Context::src/norswap/lang/rust/scopes/Context.java", "type": "contains", "metadata": {"relation": "file-contains-class"}},
+    {"id": "contains-class-function-Context", "source": "class:Context::src/norswap/lang/rust/scopes/Context.java", "target": "function:Context::src/norswap/lang/rust/scopes/Context.java", "type": "contains", "metadata": {"relation": "class-contains-method"}},
+
+    {"id": "import-StWhile-Span", "source": "file:src/norswap/lang/rust/ast/StWhile.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-StWhile-Expression", "source": "file:src/norswap/lang/rust/ast/StWhile.java", "target": "file:src/norswap/lang/rust/ast/expr/Expression.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-StWhile-Util", "source": "file:src/norswap/lang/rust/ast/StWhile.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Statement-Span", "source": "file:src/norswap/lang/rust/ast/Statement.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-StructDeclaration-Span", "source": "file:src/norswap/lang/rust/ast/StructDeclaration.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-StructDeclaration-Util", "source": "file:src/norswap/lang/rust/ast/StructDeclaration.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-TypeNode-Span", "source": "file:src/norswap/lang/rust/ast/TypeNode.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-VarDeclaration-Span", "source": "file:src/norswap/lang/rust/ast/VarDeclaration.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-VarDeclaration-Expression", "source": "file:src/norswap/lang/rust/ast/VarDeclaration.java", "target": "file:src/norswap/lang/rust/ast/expr/Expression.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-VarDeclaration-Util", "source": "file:src/norswap/lang/rust/ast/VarDeclaration.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-ArrayAccess-Span", "source": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-ArrayAccess-Util", "source": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-ArrayLiteral-Span", "source": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-ArrayLiteral-Util", "source": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Assignment-Span", "source": "file:src/norswap/lang/rust/ast/expr/Assignment.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Assignment-Util", "source": "file:src/norswap/lang/rust/ast/expr/Assignment.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-BinaryExpression-Span", "source": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-BinaryExpression-BinaryOperator", "source": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "file:src/norswap/lang/rust/ast/BinaryOperator.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-BinaryExpression-Util", "source": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Constructor-Span", "source": "file:src/norswap/lang/rust/ast/expr/Constructor.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Constructor-Util", "source": "file:src/norswap/lang/rust/ast/expr/Constructor.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Expression-Span", "source": "file:src/norswap/lang/rust/ast/expr/Expression.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Expression-Node", "source": "file:src/norswap/lang/rust/ast/expr/Expression.java", "target": "file:src/norswap/lang/rust/ast/Node.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-FieldAccess-Span", "source": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-FieldAccess-Util", "source": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-FloatLiteral-Span", "source": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-IntLiteral-Span", "source": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-MethodCall-Span", "source": "file:src/norswap/lang/rust/ast/expr/MethodCall.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-MethodCall-Util", "source": "file:src/norswap/lang/rust/ast/expr/MethodCall.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Parenthesized-Span", "source": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Parenthesized-Util", "source": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Reference-Span", "source": "file:src/norswap/lang/rust/ast/expr/Reference.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Reference-Util", "source": "file:src/norswap/lang/rust/ast/expr/Reference.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-StringLiteral-Span", "source": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-StringLiteral-Util", "source": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-UnaryExpression-Span", "source": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "file:src/norswap/autumn/positions/Span.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-UnaryExpression-UnaryOperator", "source": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "file:src/norswap/lang/rust/ast/UnaryOperator.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-UnaryExpression-Util", "source": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-ConstructorNode-StructDeclaration", "source": "file:src/norswap/lang/rust/interpreter/ConstructorNode.java", "target": "file:src/norswap/lang/rust/ast/StructDeclaration.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Interpreter-Context", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/scopes/Context.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-DeclarationKind", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/scopes/DeclarationKind.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-Scope", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/scopes/Scope.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-SyntheticDeclaration", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-FloatType", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/types/FloatType.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-IntType", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/types/IntType.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-StringType", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/types/StringType.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-Type", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/lang/rust/types/Type.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-Reactor", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/uranium/Reactor.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-Exceptions", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/utils/exceptions/Exceptions.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-NoStackException", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/utils/exceptions/NoStackException.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-Util", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/utils/Util.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Interpreter-ValuedVisitor", "source": "file:src/norswap/lang/rust/interpreter/Interpreter.java", "target": "file:src/norswap/utils/visitors/ValuedVisitor.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-ScopeStorage-Context", "source": "file:src/norswap/lang/rust/interpreter/ScopeStorage.java", "target": "file:src/norswap/lang/rust/scopes/Context.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-ScopeStorage-Scope", "source": "file:src/norswap/lang/rust/interpreter/ScopeStorage.java", "target": "file:src/norswap/lang/rust/scopes/Scope.java", "type": "imports", "metadata": {"relation": "imports"}},
+
+    {"id": "import-Context-RootNode", "source": "file:src/norswap/lang/rust/scopes/Context.java", "target": "file:src/norswap/lang/rust/ast/RootNode.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Context-DeclarationKind", "source": "file:src/norswap/lang/rust/scopes/Context.java", "target": "file:src/norswap/lang/rust/scopes/DeclarationKind.java", "type": "imports", "metadata": {"relation": "imports"}},
+    {"id": "import-Context-Reactor", "source": "file:src/norswap/lang/rust/scopes/Context.java", "target": "file:src/norswap/uranium/Reactor.java", "type": "imports", "metadata": {"relation": "imports"}}
+  ]
+}

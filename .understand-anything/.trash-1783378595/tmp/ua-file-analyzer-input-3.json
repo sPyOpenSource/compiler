@@ -1,0 +1,245 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/Scope.java",
+      "language": "java",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "language": "java",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/FloatType.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/IntType.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/StringType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/StructType.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/Type.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Attribute.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Reactor.java",
+      "language": "java",
+      "sizeLines": 448,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/UraniumTestFixture.java",
+      "language": "java",
+      "sizeLines": 428,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/IO.java",
+      "language": "java",
+      "sizeLines": 254,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/TestFixture.java",
+      "language": "java",
+      "sizeLines": 256,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Util.java",
+      "language": "java",
+      "sizeLines": 99,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/NoStackException.java",
+      "language": "java",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiHashMap.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ValuedVisitor.java",
+      "language": "java",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/Walker.java",
+      "language": "java",
+      "sizeLines": 231,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/LineMapStringTest.java",
+      "language": "java",
+      "sizeLines": 245,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/BytecodeTest.java",
+      "language": "java",
+      "sizeLines": 272,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/GrammarTest.java",
+      "language": "java",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/InterpreterTest.java",
+      "language": "java",
+      "sizeLines": 363,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/rust/SemanticAnalysisTest.java",
+      "language": "java",
+      "sizeLines": 306,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/lang/rust/scopes/DeclarationScope.java": [
+      "src/norswap/lang/rust/ast/DeclarationNode.java"
+    ],
+    "src/norswap/lang/rust/scopes/Scope.java": [
+      "src/norswap/lang/rust/ast/DeclarationNode.java",
+      "src/norswap/lang/rust/ast/Node.java"
+    ],
+    "src/norswap/lang/rust/scopes/SyntheticDeclaration.java": [
+      "src/norswap/lang/rust/ast/DeclarationNode.java"
+    ],
+    "src/norswap/lang/rust/types/FloatType.java": [],
+    "src/norswap/lang/rust/types/IntType.java": [],
+    "src/norswap/lang/rust/types/StringType.java": [],
+    "src/norswap/lang/rust/types/StructType.java": [
+      "src/norswap/lang/rust/ast/StructDeclaration.java"
+    ],
+    "src/norswap/lang/rust/types/Type.java": [],
+    "src/norswap/uranium/Attribute.java": [],
+    "src/norswap/uranium/Reactor.java": [
+      "src/norswap/utils/multimap/MultiHashMap.java",
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/uranium/UraniumTestFixture.java": [
+      "src/norswap/utils/TestFixture.java"
+    ],
+    "src/norswap/utils/IO.java": [
+      "src/norswap/utils/data/wrappers/Pair.java",
+      "src/norswap/utils/exceptions/Exceptions.java",
+      "src/norswap/utils/exceptions/NoStackException.java",
+      "src/norswap/utils/exceptions/ThrowingConsumer.java"
+    ],
+    "src/norswap/utils/TestFixture.java": [],
+    "src/norswap/utils/Util.java": [
+      "src/norswap/utils/exceptions/Exceptions.java"
+    ],
+    "src/norswap/utils/exceptions/NoStackException.java": [],
+    "src/norswap/utils/exceptions/ThrowingConsumer.java": [],
+    "src/norswap/utils/multimap/MultiHashMap.java": [],
+    "src/norswap/utils/visitors/ValuedVisitor.java": [],
+    "src/norswap/utils/visitors/Walker.java": [
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/visitors/WalkVisitType.java"
+    ],
+    "test/LineMapStringTest.java": [
+      "src/norswap/autumn/positions/LineMapString.java",
+      "src/norswap/autumn/positions/Position.java"
+    ],
+    "test/lang/rust/BytecodeTest.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "src/norswap/lang/backend/BytecodeCompiler.java",
+      "src/norswap/lang/backend/CompilationResult.java",
+      "src/norswap/lang/rust/ast/Node.java",
+      "src/norswap/lang/rust/RustGrammar.java",
+      "src/norswap/lang/rust/SemanticAnalysis.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/utils/IO.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ],
+    "test/lang/rust/GrammarTest.java": [
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "src/norswap/lang/rust/RustGrammar.java"
+    ],
+    "test/lang/rust/InterpreterTest.java": [
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/autumn/positions/LineMapString.java",
+      "src/norswap/lang/rust/ast/Node.java",
+      "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "src/norswap/lang/rust/interpreter/Null.java",
+      "src/norswap/lang/rust/RustGrammar.java",
+      "src/norswap/lang/rust/SemanticAnalysis.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/uranium/SemanticError.java",
+      "src/norswap/utils/data/wrappers/Pair.java",
+      "src/norswap/utils/IO.java",
+      "src/norswap/utils/TestFixture.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ],
+    "test/lang/rust/SemanticAnalysisTest.java": [
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/autumn/positions/LineMapString.java",
+      "src/norswap/lang/rust/ast/Node.java",
+      "src/norswap/lang/rust/RustGrammar.java",
+      "src/norswap/lang/rust/SemanticAnalysis.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/uranium/UraniumTestFixture.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ]
+  }
+}

@@ -1,0 +1,611 @@
+{
+  "batch": 11,
+  "description": "Java AST statement and expression nodes: annotation elements, case labels, dimension expressions, control flow statements (do-while, for, for-enh, if, return, switch, while), synchronization, throw, assert, try-with-resources, enum constants, variable declarators, and the Expression root interface",
+  "nodes": [
+    {
+      "id": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "type": "file",
+      "name": "AnnotationElement.java",
+      "filePath": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "summary": "Marker interface for elements that can appear inside Java annotations. Acts as a supertype for annotation member value expressions.",
+      "tags": ["annotation", "marker-interface", "ast-node"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/CaseLabel.java",
+      "type": "file",
+      "name": "CaseLabel.java",
+      "filePath": "src/norswap/lang/java/ast/CaseLabel.java",
+      "summary": "Record representing a case label in a switch statement, holding an Expression. Implements the SwitchLabel interface.",
+      "tags": ["switch", "case-label", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/DimExpression.java",
+      "type": "file",
+      "name": "DimExpression.java",
+      "filePath": "src/norswap/lang/java/ast/DimExpression.java",
+      "summary": "Record representing a dimension expression with optional annotations and a base expression. Used for array dimension specifications with annotated array markers.",
+      "tags": ["array", "dimension", "annotations", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "type": "file",
+      "name": "DoWhileStatement.java",
+      "filePath": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "summary": "Record representing a do-while statement with a body and a condition expression. Implements Statement.",
+      "tags": ["loop", "do-while", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/EnumConstant.java",
+      "type": "file",
+      "name": "EnumConstant.java",
+      "filePath": "src/norswap/lang/java/ast/EnumConstant.java",
+      "summary": "Record representing an enum constant declaration with annotations, name, optional arguments, and optional body declarations. Provides a helper to extract enum constants from body declarations and a static factory method.",
+      "tags": ["enum", "constant", "declaration", "ast-node", "record"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StAssert.java",
+      "type": "file",
+      "name": "StAssert.java",
+      "filePath": "src/norswap/lang/java/ast/StAssert.java",
+      "summary": "Record representing an assert statement with an expression and an optional message expression. Implements Statement.",
+      "tags": ["assert", "statement", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StFor.java",
+      "type": "file",
+      "name": "StFor.java",
+      "filePath": "src/norswap/lang/java/ast/StFor.java",
+      "summary": "Record representing a basic for loop with init statements, condition expression, iteration statements, and body. Implements Statement.",
+      "tags": ["loop", "for", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StForEnh.java",
+      "type": "file",
+      "name": "StForEnh.java",
+      "filePath": "src/norswap/lang/java/ast/StForEnh.java",
+      "summary": "Record representing an enhanced for-each loop with modifiers, type, variable declarator ID, iterable expression, and body. Includes a static factory method mk.",
+      "tags": ["loop", "for-each", "enhanced-for", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StIf.java",
+      "type": "file",
+      "name": "StIf.java",
+      "filePath": "src/norswap/lang/java/ast/StIf.java",
+      "summary": "Record representing an if-else statement with condition, true-branch, and optional false-branch. Includes a static factory method mk. Implements Statement.",
+      "tags": ["if-else", "conditional", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StReturn.java",
+      "type": "file",
+      "name": "StReturn.java",
+      "filePath": "src/norswap/lang/java/ast/StReturn.java",
+      "summary": "Record representing a return statement with an optional expression. Implements Statement.",
+      "tags": ["return", "statement", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StSwitch.java",
+      "type": "file",
+      "name": "StSwitch.java",
+      "filePath": "src/norswap/lang/java/ast/StSwitch.java",
+      "summary": "Record representing a switch statement with a selector expression and a list of switch clauses. Implements Statement.",
+      "tags": ["switch", "statement", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StSync.java",
+      "type": "file",
+      "name": "StSync.java",
+      "filePath": "src/norswap/lang/java/ast/StSync.java",
+      "summary": "Record representing a synchronized block with a monitor expression and a body block. Includes a static factory method mk. Implements Statement.",
+      "tags": ["synchronized", "concurrency", "block", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StThrow.java",
+      "type": "file",
+      "name": "StThrow.java",
+      "filePath": "src/norswap/lang/java/ast/StThrow.java",
+      "summary": "Record representing a throw statement with an expression. Includes a static factory method mk. Implements Statement.",
+      "tags": ["throw", "exception", "statement", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StWhile.java",
+      "type": "file",
+      "name": "StWhile.java",
+      "filePath": "src/norswap/lang/java/ast/StWhile.java",
+      "summary": "Record representing a while loop with a condition expression and a body statement. Implements Statement.",
+      "tags": ["loop", "while", "control-flow", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/TryResource.java",
+      "type": "file",
+      "name": "TryResource.java",
+      "filePath": "src/norswap/lang/java/ast/TryResource.java",
+      "summary": "Record representing a resource declaration in try-with-resources, with modifiers, type, variable declarator ID, and value expression. Implements Statement. Includes a static factory method mk.",
+      "tags": ["try-with-resources", "resource", "declaration", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "type": "file",
+      "name": "VarDeclarator.java",
+      "filePath": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "summary": "Record representing a variable declarator with an ID and an optional initializer expression.",
+      "tags": ["variable", "declarator", "initializer", "ast-node", "record"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "file",
+      "name": "Expression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Expression.java",
+      "summary": "Root interface combining Statement, AnnotationElement, and Expression. Central supertype for all expression AST nodes.",
+      "tags": ["expression", "interface", "root-type", "ast-node"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/AnnotationElement.java::class:AnnotationElement",
+      "type": "class",
+      "name": "AnnotationElement",
+      "filePath": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "summary": "Marker interface for annotation member value types.",
+      "tags": ["annotation", "marker-interface"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/AnnotationElement.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/CaseLabel.java::class:CaseLabel",
+      "type": "class",
+      "name": "CaseLabel",
+      "filePath": "src/norswap/lang/java/ast/CaseLabel.java",
+      "summary": "Record holding a case label expression, implements SwitchLabel.",
+      "tags": ["switch", "case-label", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/CaseLabel.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/DimExpression.java::class:DimExpression",
+      "type": "class",
+      "name": "DimExpression",
+      "filePath": "src/norswap/lang/java/ast/DimExpression.java",
+      "summary": "Record holding annotations and expression for array dimension specs.",
+      "tags": ["array", "dimension", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/DimExpression.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/DoWhileStatement.java::class:DoWhileStatement",
+      "type": "class",
+      "name": "DoWhileStatement",
+      "filePath": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "summary": "Record for do-while loop: body and condition, implements Statement.",
+      "tags": ["loop", "do-while", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/DoWhileStatement.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/EnumConstant.java::class:EnumConstant",
+      "type": "class",
+      "name": "EnumConstant",
+      "filePath": "src/norswap/lang/java/ast/EnumConstant.java",
+      "summary": "Record for enum constant declarations, implements Declaration.",
+      "tags": ["enum", "constant", "declaration", "record"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/lang/java/ast/EnumConstant.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StAssert.java::class:StAssert",
+      "type": "class",
+      "name": "StAssert",
+      "filePath": "src/norswap/lang/java/ast/StAssert.java",
+      "summary": "Record for assert statement with expression and message, implements Statement.",
+      "tags": ["assert", "statement", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StAssert.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StFor.java::class:StFor",
+      "type": "class",
+      "name": "StFor",
+      "filePath": "src/norswap/lang/java/ast/StFor.java",
+      "summary": "Record for basic for loop: init, cond, iter, body, implements Statement.",
+      "tags": ["loop", "for", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StFor.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StForEnh.java::class:StForEnh",
+      "type": "class",
+      "name": "StForEnh",
+      "filePath": "src/norswap/lang/java/ast/StForEnh.java",
+      "summary": "Record for enhanced for-each loop, implements Statement.",
+      "tags": ["loop", "for-each", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StForEnh.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StIf.java::class:StIf",
+      "type": "class",
+      "name": "StIf",
+      "filePath": "src/norswap/lang/java/ast/StIf.java",
+      "summary": "Record for if-else conditional, implements Statement.",
+      "tags": ["if-else", "conditional", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StIf.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StReturn.java::class:StReturn",
+      "type": "class",
+      "name": "StReturn",
+      "filePath": "src/norswap/lang/java/ast/StReturn.java",
+      "summary": "Record for return statement, implements Statement.",
+      "tags": ["return", "statement", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StReturn.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StSwitch.java::class:StSwitch",
+      "type": "class",
+      "name": "StSwitch",
+      "filePath": "src/norswap/lang/java/ast/StSwitch.java",
+      "summary": "Record for switch statement, implements Statement.",
+      "tags": ["switch", "statement", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StSwitch.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StSync.java::class:StSync",
+      "type": "class",
+      "name": "StSync",
+      "filePath": "src/norswap/lang/java/ast/StSync.java",
+      "summary": "Record for synchronized block, implements Statement.",
+      "tags": ["synchronized", "concurrency", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StSync.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StThrow.java::class:StThrow",
+      "type": "class",
+      "name": "StThrow",
+      "filePath": "src/norswap/lang/java/ast/StThrow.java",
+      "summary": "Record for throw statement, implements Statement.",
+      "tags": ["throw", "exception", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StThrow.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StWhile.java::class:StWhile",
+      "type": "class",
+      "name": "StWhile",
+      "filePath": "src/norswap/lang/java/ast/StWhile.java",
+      "summary": "Record for while loop, implements Statement.",
+      "tags": ["loop", "while", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StWhile.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/TryResource.java::class:TryResource",
+      "type": "class",
+      "name": "TryResource",
+      "filePath": "src/norswap/lang/java/ast/TryResource.java",
+      "summary": "Record for try-with-resources resource declaration, implements Statement.",
+      "tags": ["try-with-resources", "resource", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/TryResource.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/VarDeclarator.java::class:VarDeclarator",
+      "type": "class",
+      "name": "VarDeclarator",
+      "filePath": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "summary": "Record for variable declarator with id and optional initializer.",
+      "tags": ["variable", "declarator", "record"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/VarDeclarator.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/expr/Expression.java::class:Expression",
+      "type": "class",
+      "name": "Expression",
+      "filePath": "src/norswap/lang/java/ast/expr/Expression.java",
+      "summary": "Root interface extending Statement and AnnotationElement.",
+      "tags": ["expression", "interface", "root-type"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/expr/Expression.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/EnumConstant.java::method:enum_constants",
+      "type": "method",
+      "name": "enum_constants",
+      "filePath": "src/norswap/lang/java/ast/EnumConstant.java",
+      "summary": "Instance method that filters body declarations to extract only EnumConstant instances up to the first non-constant declaration.",
+      "tags": ["enum", "filtering", "helper"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/EnumConstant.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/EnumConstant.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/EnumConstant.java",
+      "summary": "Static factory method to create an EnumConstant record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/EnumConstant.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StForEnh.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/StForEnh.java",
+      "summary": "Static factory method to create an StForEnh record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StForEnh.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StIf.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/StIf.java",
+      "summary": "Static factory method to create an StIf record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StIf.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StSync.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/StSync.java",
+      "summary": "Static factory method to create an StSync record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StSync.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/StThrow.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/StThrow.java",
+      "summary": "Static factory method to create an StThrow record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/StThrow.java"
+    },
+    {
+      "id": "src/norswap/lang/java/ast/TryResource.java::method:mk",
+      "type": "method",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/TryResource.java",
+      "summary": "Static factory method to create a TryResource record.",
+      "tags": ["factory", "static", "constructor"],
+      "complexity": "low",
+      "parentNode": "src/norswap/lang/java/ast/TryResource.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/norswap/lang/java/ast/CaseLabel.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/DimExpression.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/EnumConstant.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/EnumConstant.java",
+      "target": "src/norswap/lang/java/ast/expr/Identifier.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StAssert.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StFor.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StForEnh.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StIf.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StReturn.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StSwitch.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StSync.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StThrow.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StWhile.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/TryResource.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/expr/Expression.java",
+      "target": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/expr/Expression.java",
+      "target": "src/norswap/lang/java/ast/Statement.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "target": "src/norswap/lang/java/ast/AnnotationElement.java::class:AnnotationElement",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/CaseLabel.java",
+      "target": "src/norswap/lang/java/ast/CaseLabel.java::class:CaseLabel",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/DimExpression.java",
+      "target": "src/norswap/lang/java/ast/DimExpression.java::class:DimExpression",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "target": "src/norswap/lang/java/ast/DoWhileStatement.java::class:DoWhileStatement",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/EnumConstant.java",
+      "target": "src/norswap/lang/java/ast/EnumConstant.java::class:EnumConstant",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/EnumConstant.java",
+      "target": "src/norswap/lang/java/ast/EnumConstant.java::method:enum_constants",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/EnumConstant.java",
+      "target": "src/norswap/lang/java/ast/EnumConstant.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StAssert.java",
+      "target": "src/norswap/lang/java/ast/StAssert.java::class:StAssert",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StFor.java",
+      "target": "src/norswap/lang/java/ast/StFor.java::class:StFor",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StForEnh.java",
+      "target": "src/norswap/lang/java/ast/StForEnh.java::class:StForEnh",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StForEnh.java",
+      "target": "src/norswap/lang/java/ast/StForEnh.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StIf.java",
+      "target": "src/norswap/lang/java/ast/StIf.java::class:StIf",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StIf.java",
+      "target": "src/norswap/lang/java/ast/StIf.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StReturn.java",
+      "target": "src/norswap/lang/java/ast/StReturn.java::class:StReturn",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StSwitch.java",
+      "target": "src/norswap/lang/java/ast/StSwitch.java::class:StSwitch",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StSync.java",
+      "target": "src/norswap/lang/java/ast/StSync.java::class:StSync",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StSync.java",
+      "target": "src/norswap/lang/java/ast/StSync.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StThrow.java",
+      "target": "src/norswap/lang/java/ast/StThrow.java::class:StThrow",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StThrow.java",
+      "target": "src/norswap/lang/java/ast/StThrow.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/StWhile.java",
+      "target": "src/norswap/lang/java/ast/StWhile.java::class:StWhile",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/TryResource.java",
+      "target": "src/norswap/lang/java/ast/TryResource.java::class:TryResource",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/TryResource.java",
+      "target": "src/norswap/lang/java/ast/TryResource.java::method:mk",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "target": "src/norswap/lang/java/ast/VarDeclarator.java::class:VarDeclarator",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/expr/Expression.java",
+      "target": "src/norswap/lang/java/ast/expr/Expression.java::class:Expression",
+      "type": "contains"
+    }
+  ]
+}

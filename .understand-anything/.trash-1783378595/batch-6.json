@@ -1,0 +1,1119 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 6,
+  "nodes": [
+    {
+      "id": "file:src/norswap/autumn/actions/StackPush.java",
+      "type": "file",
+      "name": "StackPush.java",
+      "filePath": "src/norswap/autumn/actions/StackPush.java",
+      "summary": "Functional interface extending StackAction that pushes a value onto the parse value stack.",
+      "tags": ["autumn", "stack-action", "parsing", "functional-interface"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 19
+    },
+    {
+      "id": "file:src/norswap/lang/java/JavaGrammar.java",
+      "type": "file",
+      "name": "JavaGrammar.java",
+      "filePath": "src/norswap/lang/java/JavaGrammar.java",
+      "summary": "Complete Java grammar definition using the Autumn parsing library, covering lexical elements, expressions, statements, declarations, and type rules for the Java language.",
+      "tags": ["autumn", "grammar", "java", "parsing", "javac"],
+      "complexity": "complex",
+      "language": "java",
+      "sizeLines": 1021
+    },
+    {
+      "id": "file:src/norswap/lang/java/JavaTokens.java",
+      "type": "file",
+      "name": "JavaTokens.java",
+      "filePath": "src/norswap/lang/java/JavaTokens.java",
+      "summary": "Token-based Java grammar definitions mirroring JavaGrammar, with token kind matching and token-level parse rules for the Autumn framework.",
+      "tags": ["autumn", "grammar", "java", "tokens", "parsing"],
+      "complexity": "complex",
+      "language": "java",
+      "sizeLines": 955
+    },
+    {
+      "id": "file:src/norswap/lang/java/Lexer.java",
+      "type": "file",
+      "name": "Lexer.java",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "summary": "Hand-written Java lexer with Unicode support, numeric literal scanning (decimal, hex, binary, octal), identifier scanning, and error/warning reporting.",
+      "tags": ["java", "lexer", "scanning", "unicode", "tokenization"],
+      "complexity": "complex",
+      "language": "java",
+      "sizeLines": 971
+    },
+    {
+      "id": "file:src/norswap/lang/java/Token.java",
+      "type": "file",
+      "name": "Token.java",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "summary": "Token data class for Java lexer output with kind, start/end positions, string value, comments, radix, trailing whitespace, and numeric parsing utilities.",
+      "tags": ["java", "token", "lexer", "parsing"],
+      "complexity": "moderate",
+      "language": "java",
+      "sizeLines": 147
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/BasicType.java",
+      "type": "file",
+      "name": "BasicType.java",
+      "filePath": "src/norswap/lang/java/ast/BasicType.java",
+      "summary": "Enum of Java primitive types: byte, short, int, long, char, float, double, boolean, void.",
+      "tags": ["java", "ast", "type", "enum"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 14
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/BinaryOperator.java",
+      "type": "file",
+      "name": "BinaryOperator.java",
+      "filePath": "src/norswap/lang/java/ast/BinaryOperator.java",
+      "summary": "Enum of Java binary operators including arithmetic, relational, shift, bitwise, and assignment variants, with names from the javac tree API.",
+      "tags": ["java", "ast", "operator", "enum"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 46
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Declaration.java",
+      "type": "file",
+      "name": "Declaration.java",
+      "filePath": "src/norswap/lang/java/ast/Declaration.java",
+      "summary": "Marker interface extending Statement for Java declaration AST nodes.",
+      "tags": ["java", "ast", "declaration", "interface"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 4
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Dimension.java",
+      "type": "file",
+      "name": "Dimension.java",
+      "filePath": "src/norswap/lang/java/ast/Dimension.java",
+      "summary": "Record representing Java array dimension annotations.",
+      "tags": ["java", "ast", "dimension", "array"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 8
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Nullable.java",
+      "type": "file",
+      "name": "Nullable.java",
+      "filePath": "src/norswap/lang/java/ast/Nullable.java",
+      "summary": "Nullable annotation for AutoValue compatibility, retained at source level for type use.",
+      "tags": ["java", "ast", "annotation", "nullable", "autovalue"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 16
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Parameters.java",
+      "type": "file",
+      "name": "Parameters.java",
+      "filePath": "src/norswap/lang/java/ast/Parameters.java",
+      "summary": "Marker interface for Java AST parameter nodes.",
+      "tags": ["java", "ast", "parameters", "interface"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 4
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Statement.java",
+      "type": "file",
+      "name": "Statement.java",
+      "filePath": "src/norswap/lang/java/ast/Statement.java",
+      "summary": "Marker interface for Java AST statement nodes.",
+      "tags": ["java", "ast", "statement", "interface"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 4
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/TType.java",
+      "type": "file",
+      "name": "TType.java",
+      "filePath": "src/norswap/lang/java/ast/TType.java",
+      "summary": "Marker interface for Java type AST nodes.",
+      "tags": ["java", "ast", "type", "interface"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 4
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/UnaryOperator.java",
+      "type": "file",
+      "name": "UnaryOperator.java",
+      "filePath": "src/norswap/lang/java/ast/UnaryOperator.java",
+      "summary": "Enum of Java unary operators including increment/decrement, sign, complement, and member access variants, with names from the javac tree API.",
+      "tags": ["java", "ast", "operator", "enum"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 21
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "type": "file",
+      "name": "ArrayAccess.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "summary": "Record representing Java array access expressions (operand[index]).",
+      "tags": ["java", "ast", "expression", "array"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 5
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "type": "file",
+      "name": "ArrayConstructorCall.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "summary": "Record representing Java array constructor call expressions (new T[]).",
+      "tags": ["java", "ast", "expression", "array", "constructor"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 10
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "type": "file",
+      "name": "ArrayInitializer.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "summary": "Record representing Java array initializer expressions ({ values }).",
+      "tags": ["java", "ast", "expression", "array", "initializer"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "type": "file",
+      "name": "BinaryExpression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "summary": "Record representing Java binary expressions with operator, left, and right operands.",
+      "tags": ["java", "ast", "expression", "binary"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "type": "file",
+      "name": "BoundMethodReference.java",
+      "filePath": "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "summary": "Record representing Java bound method references (receiver::method).",
+      "tags": ["java", "ast", "expression", "method-reference"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 8
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Cast.java",
+      "type": "file",
+      "name": "Cast.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Cast.java",
+      "summary": "Record representing Java cast expressions ((Type) operand).",
+      "tags": ["java", "ast", "expression", "cast"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 8
+    },
+    {
+      "id": "class:StackPush",
+      "type": "class",
+      "name": "StackPush",
+      "filePath": "src/norswap/autumn/actions/StackPush.java",
+      "summary": "Functional interface for stack actions that push a computed value onto the parse stack.",
+      "tags": ["autumn", "stack-action", "functional-interface"],
+      "startLine": 10,
+      "endLine": 19,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:JavaGrammar",
+      "type": "class",
+      "name": "JavaGrammar",
+      "filePath": "src/norswap/lang/java/JavaGrammar.java",
+      "summary": "Complete Java grammar class with lexical rules, expression precedence, statement parsing, and type declaration rules using the Autumn framework.",
+      "tags": ["autumn", "grammar", "java", "parsing"],
+      "startLine": 58,
+      "endLine": 1021,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:JavaTokens",
+      "type": "class",
+      "name": "JavaTokens",
+      "filePath": "src/norswap/lang/java/JavaTokens.java",
+      "summary": "Token-based Java grammar class defining parse rules at the token level for the Autumn framework.",
+      "tags": ["autumn", "grammar", "java", "tokens"],
+      "startLine": 47,
+      "endLine": 955,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:Lexer",
+      "type": "class",
+      "name": "Lexer",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "summary": "Hand-written Java lexer with Unicode support, numeric literal scanning, identifier handling, and error reporting.",
+      "tags": ["java", "lexer", "scanning", "unicode"],
+      "startLine": 45,
+      "endLine": 971,
+      "methodCount": 29,
+      "exported": true
+    },
+    {
+      "id": "class:Token",
+      "type": "class",
+      "name": "Token",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "summary": "Token data class with kind, position, string value, comments, and numeric parsing utilities.",
+      "tags": ["java", "token", "lexer"],
+      "startLine": 6,
+      "endLine": 147,
+      "methodCount": 7,
+      "exported": true
+    },
+    {
+      "id": "class:Declaration",
+      "type": "class",
+      "name": "Declaration",
+      "filePath": "src/norswap/lang/java/ast/Declaration.java",
+      "summary": "Marker interface for Java declaration AST nodes.",
+      "tags": ["java", "ast", "declaration", "interface"],
+      "startLine": 3,
+      "endLine": 4,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "class:Parameters",
+      "type": "class",
+      "name": "Parameters",
+      "filePath": "src/norswap/lang/java/ast/Parameters.java",
+      "summary": "Marker interface for Java AST parameter nodes.",
+      "tags": ["java", "ast", "parameters", "interface"],
+      "startLine": 3,
+      "endLine": 4,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "class:Statement",
+      "type": "class",
+      "name": "Statement",
+      "filePath": "src/norswap/lang/java/ast/Statement.java",
+      "summary": "Marker interface for Java AST statement nodes.",
+      "tags": ["java", "ast", "statement", "interface"],
+      "startLine": 3,
+      "endLine": 4,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "class:TType",
+      "type": "class",
+      "name": "TType",
+      "filePath": "src/norswap/lang/java/ast/TType.java",
+      "summary": "Marker interface for Java type AST nodes.",
+      "tags": ["java", "ast", "type", "interface"],
+      "startLine": 3,
+      "endLine": 4,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "function:JavaGrammar.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/java/JavaGrammar.java",
+      "startLine": 1016,
+      "endLine": 1018,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:JavaTokens.tok",
+      "type": "function",
+      "name": "tok",
+      "filePath": "src/norswap/lang/java/JavaTokens.java",
+      "startLine": 55,
+      "endLine": 58,
+      "exported": true,
+      "params": ["kind_name"]
+    },
+    {
+      "id": "function:JavaTokens.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/java/JavaTokens.java",
+      "startLine": 950,
+      "endLine": 952,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.Lexer",
+      "type": "function",
+      "name": "Lexer",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 84,
+      "endLine": 87,
+      "exported": true,
+      "params": ["string"]
+    },
+    {
+      "id": "function:Lexer.name_token",
+      "type": "function",
+      "name": "name_token",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 191,
+      "endLine": 200,
+      "exported": false,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.digit",
+      "type": "function",
+      "name": "digit",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 229,
+      "endLine": 243,
+      "exported": false,
+      "params": ["digit", "base"]
+    },
+    {
+      "id": "function:Lexer.next",
+      "type": "function",
+      "name": "next",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 287,
+      "endLine": 566,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.scan_ident",
+      "type": "function",
+      "name": "scan_ident",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 575,
+      "endLine": 623,
+      "exported": false,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.scan_number",
+      "type": "function",
+      "name": "scan_number",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 638,
+      "endLine": 681,
+      "exported": false,
+      "params": ["radix"]
+    },
+    {
+      "id": "function:Lexer.scan_digits",
+      "type": "function",
+      "name": "scan_digits",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 708,
+      "endLine": 722,
+      "exported": false,
+      "params": ["radix"]
+    },
+    {
+      "id": "function:Lexer.scan_fraction_and_suffix",
+      "type": "function",
+      "name": "scan_fraction_and_suffix",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 732,
+      "endLine": 771,
+      "exported": false,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.scan_hex_fraction_and_suffix",
+      "type": "function",
+      "name": "scan_hex_fraction_and_suffix",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 784,
+      "endLine": 798,
+      "exported": false,
+      "params": ["seen_digit"]
+    },
+    {
+      "id": "function:Lexer.scan_hex_exponent_and_suffix",
+      "type": "function",
+      "name": "scan_hex_exponent_and_suffix",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 808,
+      "endLine": 839,
+      "exported": false,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.scan_lit_char",
+      "type": "function",
+      "name": "scan_lit_char",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 853,
+      "endLine": 906,
+      "exported": false,
+      "params": []
+    },
+    {
+      "id": "function:Lexer.lex",
+      "type": "function",
+      "name": "lex",
+      "filePath": "src/norswap/lang/java/Lexer.java",
+      "startLine": 926,
+      "endLine": 933,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.start",
+      "type": "function",
+      "name": "start",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 46,
+      "endLine": 48,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.end",
+      "type": "function",
+      "name": "end",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 50,
+      "endLine": 52,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.length",
+      "type": "function",
+      "name": "length",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 54,
+      "endLine": 56,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.Token",
+      "type": "function",
+      "name": "Token",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 60,
+      "endLine": 72,
+      "exported": true,
+      "params": ["kind", "start", "end", "string", "comments", "radix", "trailing_whitespace"]
+    },
+    {
+      "id": "function:Token.toString",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 76,
+      "endLine": 86,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.long_value",
+      "type": "function",
+      "name": "long_value",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 126,
+      "endLine": 130,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:Token.double_value",
+      "type": "function",
+      "name": "double_value",
+      "filePath": "src/norswap/lang/java/Token.java",
+      "startLine": 140,
+      "endLine": 144,
+      "exported": true,
+      "params": []
+    }
+  ],
+  "edges": [
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/actions/StackPush.java",
+      "targetId": "class:StackPush"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "class:JavaGrammar"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "function:JavaGrammar.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "class:JavaTokens"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "function:JavaTokens.tok"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "function:JavaTokens.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "class:Lexer"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.Lexer"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.name_token"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.digit"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.next"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_ident"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_number"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_digits"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_fraction_and_suffix"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_hex_fraction_and_suffix"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_hex_exponent_and_suffix"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.scan_lit_char"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Lexer.java",
+      "targetId": "function:Lexer.lex"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "class:Token"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.start"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.end"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.length"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.Token"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.toString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.long_value"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Token.java",
+      "targetId": "function:Token.double_value"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/Declaration.java",
+      "targetId": "class:Declaration"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/Parameters.java",
+      "targetId": "class:Parameters"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/Statement.java",
+      "targetId": "class:Statement"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/TType.java",
+      "targetId": "class:TType"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/actions/StackPush.java",
+      "targetId": "file:src/norswap/autumn/Parse.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/autumn/actions/StackPush.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/BinaryOperator.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Cast.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/DotIden.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/DotNew.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Expression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Literal.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Super.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/SuperCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/This.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ThisCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/ast/UnaryOperator.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/lang/java/LexUtils.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaGrammar.java",
+      "targetId": "file:src/norswap/utils/data/wrappers/Pair.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/autumn/actions/StackPush.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/BinaryOperator.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Cast.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/DotIden.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/DotNew.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Expression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Literal.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Super.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/SuperCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/This.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ThisCall.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/lang/java/ast/UnaryOperator.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/JavaTokens.java",
+      "targetId": "file:src/norswap/utils/data/wrappers/Pair.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "targetId": "file:src/norswap/lang/java/ast/Dimension.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "targetId": "file:src/norswap/lang/java/ast/DimExpression.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "targetId": "file:src/norswap/lang/java/ast/BinaryOperator.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java",
+      "weight": 0.7
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Cast.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java",
+      "weight": 0.7
+    }
+  ]
+}

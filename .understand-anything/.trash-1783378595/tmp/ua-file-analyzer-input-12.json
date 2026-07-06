@@ -1,0 +1,170 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/autumn/Autumn.java",
+      "language": "java",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/MalformedGrammarError.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseMetrics.java",
+      "language": "java",
+      "sizeLines": 44,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseOptions.java",
+      "language": "java",
+      "sizeLines": 284,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Benchmark.java",
+      "language": "java",
+      "sizeLines": 143,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/json/JSON.java",
+      "language": "java",
+      "sizeLines": 125,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/Runner.java",
+      "language": "java",
+      "sizeLines": 69,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "language": "java",
+      "sizeLines": 105,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/SemanticError.java",
+      "language": "java",
+      "sizeLines": 64,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/NFiles.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/GenericType.java",
+      "language": "java",
+      "sizeLines": 57,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Subtyping.java",
+      "language": "java",
+      "sizeLines": 436,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "language": "java",
+      "sizeLines": 55,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "language": "java",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/WalkVisitType.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/WellFormednesTest.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/autumn/Autumn.java": [],
+    "src/norswap/autumn/MalformedGrammarError.java": [
+      "src/norswap/autumn/visitors/WellFormednessChecker.java"
+    ],
+    "src/norswap/autumn/ParseMetrics.java": [],
+    "src/norswap/autumn/ParseOptions.java": [
+      "src/norswap/autumn/positions/Span.java"
+    ],
+    "src/norswap/lang/java/Benchmark.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/ParseMetrics.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/utils/exceptions/Exceptions.java",
+      "src/norswap/utils/IO.java",
+      "src/norswap/utils/NFiles.java"
+    ],
+    "src/norswap/lang/json/JSON.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/autumn/positions/LineMapString.java"
+    ],
+    "src/norswap/lang/rust/Runner.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/lang/rust/ast/Node.java",
+      "src/norswap/lang/rust/ast/RootNode.java",
+      "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "src/norswap/uranium/AttributeTreeFormatter.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/uranium/SemanticError.java",
+      "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ],
+    "src/norswap/uranium/AttributeTreeFormatter.java": [
+      "src/norswap/utils/Strings.java",
+      "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "src/norswap/utils/visitors/Walker.java",
+      "src/norswap/utils/visitors/WalkVisitType.java"
+    ],
+    "src/norswap/uranium/SemanticError.java": [],
+    "src/norswap/utils/NFiles.java": [],
+    "src/norswap/utils/reflection/GenericType.java": [],
+    "src/norswap/utils/reflection/Subtyping.java": [
+      "src/norswap/utils/reflection/Reflection.java"
+    ],
+    "src/norswap/utils/visitors/ReflectiveAccessorWalker.java": [
+      "src/norswap/utils/reflection/GenericType.java",
+      "src/norswap/utils/reflection/Subtyping.java"
+    ],
+    "src/norswap/utils/visitors/ReflectiveFieldWalker.java": [
+      "src/norswap/utils/reflection/GenericType.java",
+      "src/norswap/utils/reflection/Subtyping.java"
+    ],
+    "src/norswap/utils/visitors/WalkVisitType.java": [],
+    "test/WellFormednesTest.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/MalformedGrammarError.java",
+      "src/norswap/autumn/ParseOptions.java"
+    ]
+  }
+}

@@ -1,0 +1,606 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 15,
+  "nodes": [
+    {
+      "id": "file:.gitattributes",
+      "type": "file",
+      "name": ".gitattributes",
+      "filePath": ".gitattributes",
+      "summary": "Git attributes configuration file",
+      "tags": [
+        "config",
+        "git"
+      ],
+      "complexity": "low",
+      "language": "unknown",
+      "sizeLines": 1
+    },
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "filePath": ".understand-anything/.understandignore",
+      "summary": "Ignore patterns for understand-anything analysis tool",
+      "tags": [
+        "config",
+        "understand-anything"
+      ],
+      "complexity": "medium",
+      "language": "unknown",
+      "sizeLines": 68
+    },
+    {
+      "id": "file:build.xml",
+      "type": "config",
+      "name": "build.xml",
+      "filePath": "build.xml",
+      "summary": "Ant build configuration for the compiler project",
+      "tags": [
+        "build",
+        "ant"
+      ],
+      "complexity": "medium",
+      "language": "xml",
+      "sizeLines": 73
+    },
+    {
+      "id": "file:examples/fizzbuzz.si",
+      "type": "file",
+      "name": "fizzbuzz.si",
+      "filePath": "examples/fizzbuzz.si",
+      "summary": "Sigh language FizzBuzz example program",
+      "tags": [
+        "sigh",
+        "example",
+        "fizzbuzz"
+      ],
+      "complexity": "low",
+      "language": "si",
+      "sizeLines": 17
+    },
+    {
+      "id": "file:examples/kitchensink.si",
+      "type": "file",
+      "name": "kitchensink.si",
+      "filePath": "examples/kitchensink.si",
+      "summary": "Sigh language kitchen sink example demonstrating language features",
+      "tags": [
+        "sigh",
+        "example",
+        "demo"
+      ],
+      "complexity": "medium",
+      "language": "si",
+      "sizeLines": 65
+    },
+    {
+      "id": "file:README.md",
+      "type": "document",
+      "name": "README.md",
+      "filePath": "README.md",
+      "summary": "Project README documentation for the Sigh language compiler",
+      "tags": [
+        "documentation",
+        "sigh",
+        "readme"
+      ],
+      "complexity": "low",
+      "language": "markdown",
+      "sizeLines": 27
+    },
+    {
+      "id": "file:src/norswap/autumn/actions/StackConsumer.java",
+      "type": "file",
+      "name": "StackConsumer.java",
+      "filePath": "src/norswap/autumn/actions/StackConsumer.java",
+      "summary": "Functional interface for stack-based parser actions",
+      "tags": [
+        "autumn",
+        "parsing",
+        "functional-interface",
+        "actions"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 16,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/autumn/actions/StackConsumer.java#StackConsumer",
+          "type": "class",
+          "name": "StackConsumer",
+          "startLine": 7,
+          "endLine": 16,
+          "methods": [
+            "apply",
+            "action"
+          ],
+          "properties": []
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/autumn/ParserCallFrame.java",
+      "type": "file",
+      "name": "ParserCallFrame.java",
+      "filePath": "src/norswap/autumn/ParserCallFrame.java",
+      "summary": "Call frame tracking parser invocations and positions for debugging/profiling",
+      "tags": [
+        "autumn",
+        "parsing",
+        "debugging",
+        "profiling"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 25,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/autumn/ParserCallFrame.java#ParserCallFrame",
+          "type": "class",
+          "name": "ParserCallFrame",
+          "startLine": 6,
+          "endLine": 25,
+          "methods": [
+            "ParserCallFrame"
+          ],
+          "properties": [
+            "parser",
+            "position"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/autumn/ParserMetrics.java",
+      "type": "file",
+      "name": "ParserMetrics.java",
+      "filePath": "src/norswap/autumn/ParserMetrics.java",
+      "summary": "Tracks parser performance metrics including self/total time and invocation counts",
+      "tags": [
+        "autumn",
+        "parsing",
+        "performance",
+        "metrics"
+      ],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 71,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/autumn/ParserMetrics.java#ParserMetrics",
+          "type": "class",
+          "name": "ParserMetrics",
+          "startLine": 13,
+          "endLine": 71,
+          "methods": [
+            "ParserMetrics",
+            "toString"
+          ],
+          "properties": [
+            "parser",
+            "selfTime",
+            "totalTime",
+            "recursiveInvocations",
+            "invocations"
+          ]
+        },
+        {
+          "id": "func:src/norswap/autumn/ParserMetrics.java#toString",
+          "type": "function",
+          "name": "toString",
+          "startLine": 61,
+          "endLine": 68,
+          "params": []
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/autumn/positions/LineMapUtils.java",
+      "type": "file",
+      "name": "LineMapUtils.java",
+      "filePath": "src/norswap/autumn/positions/LineMapUtils.java",
+      "summary": "Utility for converting offsets to display-friendly positions with line/column mapping",
+      "tags": [
+        "autumn",
+        "positions",
+        "utility",
+        "line-map"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 47,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/autumn/positions/LineMapUtils.java#LineMapUtils",
+          "type": "class",
+          "name": "LineMapUtils",
+          "startLine": 7,
+          "endLine": 47,
+          "methods": [
+            "positionForDisplay"
+          ],
+          "properties": [
+            "AUTUMN_USE_CHAR_COLUMN"
+          ]
+        },
+        {
+          "id": "func:src/norswap/autumn/positions/LineMapUtils.java#positionForDisplay",
+          "type": "function",
+          "name": "positionForDisplay",
+          "startLine": 34,
+          "endLine": 44,
+          "params": [
+            "map",
+            "offset"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/backend/GeneratedClass.java",
+      "type": "file",
+      "name": "GeneratedClass.java",
+      "filePath": "src/norswap/lang/backend/GeneratedClass.java",
+      "summary": "Represents a JVM class generated by the compiler backend with loading utilities",
+      "tags": [
+        "backend",
+        "jvm",
+        "class-generation",
+        "bytecode"
+      ],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 73,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/lang/backend/GeneratedClass.java#GeneratedClass",
+          "type": "class",
+          "name": "GeneratedClass",
+          "startLine": 6,
+          "endLine": 73,
+          "methods": [
+            "GeneratedClass",
+            "bytes",
+            "load",
+            "binaryName",
+            "slashBinaryName",
+            "name"
+          ],
+          "properties": [
+            "slashBinaryName",
+            "bytes"
+          ]
+        },
+        {
+          "id": "func:src/norswap/lang/backend/GeneratedClass.java#bytes",
+          "type": "function",
+          "name": "bytes",
+          "startLine": 28,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "id": "func:src/norswap/lang/backend/GeneratedClass.java#load",
+          "type": "function",
+          "name": "load",
+          "startLine": 38,
+          "endLine": 40,
+          "params": [
+            "loader"
+          ]
+        },
+        {
+          "id": "func:src/norswap/lang/backend/GeneratedClass.java#binaryName",
+          "type": "function",
+          "name": "binaryName",
+          "startLine": 47,
+          "endLine": 49,
+          "params": []
+        },
+        {
+          "id": "func:src/norswap/lang/backend/GeneratedClass.java#slashBinaryName",
+          "type": "function",
+          "name": "slashBinaryName",
+          "startLine": 56,
+          "endLine": 58,
+          "params": []
+        },
+        {
+          "id": "func:src/norswap/lang/backend/GeneratedClass.java#name",
+          "type": "function",
+          "name": "name",
+          "startLine": 65,
+          "endLine": 70,
+          "params": []
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/backend/jvm-names.md",
+      "type": "document",
+      "name": "jvm-names.md",
+      "filePath": "src/norswap/lang/backend/jvm-names.md",
+      "summary": "Documentation of JVM naming conventions: simple, canonical, fully-qualified, binary names, descriptors and type signatures",
+      "tags": [
+        "documentation",
+        "jvm",
+        "naming",
+        "descriptors"
+      ],
+      "complexity": "medium",
+      "language": "markdown",
+      "sizeLines": 114
+    },
+    {
+      "id": "file:src/norswap/lang/backend/Null.java",
+      "type": "file",
+      "name": "Null.java",
+      "filePath": "src/norswap/lang/backend/Null.java",
+      "summary": "Singleton representation of null values in the Sigh runtime",
+      "tags": [
+        "backend",
+        "runtime",
+        "null",
+        "singleton"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 9,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/lang/backend/Null.java#Null",
+          "type": "class",
+          "name": "Null",
+          "startLine": 6,
+          "endLine": 9,
+          "methods": [
+            "Null"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/backend/SighRuntime.java",
+      "type": "file",
+      "name": "SighRuntime.java",
+      "filePath": "src/norswap/lang/backend/SighRuntime.java",
+      "summary": "Runtime support for the Sigh language providing string concatenation and print operations",
+      "tags": [
+        "backend",
+        "runtime",
+        "sigh",
+        "string"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 25,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/lang/backend/SighRuntime.java#SighRuntime",
+          "type": "class",
+          "name": "SighRuntime",
+          "startLine": 3,
+          "endLine": 25,
+          "methods": [
+            "concat",
+            "print"
+          ],
+          "properties": []
+        },
+        {
+          "id": "func:src/norswap/lang/backend/SighRuntime.java#concat",
+          "type": "function",
+          "name": "concat",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "left",
+            "right"
+          ]
+        },
+        {
+          "id": "func:src/norswap/lang/backend/SighRuntime.java#print",
+          "type": "function",
+          "name": "print",
+          "startLine": 21,
+          "endLine": 24,
+          "params": [
+            "string"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/AnnotationElementList.java",
+      "type": "file",
+      "name": "AnnotationElementList.java",
+      "filePath": "src/norswap/lang/java/ast/AnnotationElementList.java",
+      "summary": "Java AST node type: AnnotationElementList",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 6
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ArrayType.java",
+      "type": "file",
+      "name": "ArrayType.java",
+      "filePath": "src/norswap/lang/java/ast/ArrayType.java",
+      "summary": "Java AST node type: ArrayType",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/Block.java",
+      "type": "file",
+      "name": "Block.java",
+      "filePath": "src/norswap/lang/java/ast/Block.java",
+      "summary": "Java AST node type: Block",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/CatchClause.java",
+      "type": "file",
+      "name": "CatchClause.java",
+      "filePath": "src/norswap/lang/java/ast/CatchClause.java",
+      "summary": "Java AST node type: CatchClause",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 12
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ClassType.java",
+      "type": "file",
+      "name": "ClassType.java",
+      "filePath": "src/norswap/lang/java/ast/ClassType.java",
+      "summary": "Java AST node type: ClassType",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/DefaultLabel.java",
+      "type": "file",
+      "name": "DefaultLabel.java",
+      "filePath": "src/norswap/lang/java/ast/DefaultLabel.java",
+      "summary": "Java AST node type: DefaultLabel",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 5,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/lang/java/ast/DefaultLabel.java#DefaultLabel",
+          "type": "class",
+          "name": "DefaultLabel",
+          "startLine": 3,
+          "endLine": 5,
+          "methods": [],
+          "properties": []
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ExtendsBound.java",
+      "type": "file",
+      "name": "ExtendsBound.java",
+      "filePath": "src/norswap/lang/java/ast/ExtendsBound.java",
+      "summary": "Java AST node type: ExtendsBound",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 8
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/FormalParameter.java",
+      "type": "file",
+      "name": "FormalParameter.java",
+      "filePath": "src/norswap/lang/java/ast/FormalParameter.java",
+      "summary": "Java AST node type: FormalParameter",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 3,
+      "subNodes": [
+        {
+          "id": "class:src/norswap/lang/java/ast/FormalParameter.java#FormalParameter",
+          "type": "class",
+          "name": "FormalParameter",
+          "startLine": 3,
+          "endLine": 3,
+          "methods": [],
+          "properties": []
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/FormalParameters.java",
+      "type": "file",
+      "name": "FormalParameters.java",
+      "filePath": "src/norswap/lang/java/ast/FormalParameters.java",
+      "summary": "Java AST node type: FormalParameters",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 10
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/InitBlock.java",
+      "type": "file",
+      "name": "InitBlock.java",
+      "filePath": "src/norswap/lang/java/ast/InitBlock.java",
+      "summary": "Java AST node type: InitBlock",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 11
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/JavaFile.java",
+      "type": "file",
+      "name": "JavaFile.java",
+      "filePath": "src/norswap/lang/java/ast/JavaFile.java",
+      "summary": "Java AST node type: JavaFile",
+      "tags": [
+        "java",
+        "ast",
+        "parser"
+      ],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 17
+    }
+  ],
+  "edges": []
+}

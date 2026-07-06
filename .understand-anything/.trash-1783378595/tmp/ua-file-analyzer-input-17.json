@@ -1,0 +1,42 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/OperatingSystem.java",
+      "language": "java",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Predicates.java",
+      "language": "java",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "language": "java",
+      "sizeLines": 112,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/visitors/Visitor.java",
+      "language": "java",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/utils/multimap/MultiHashSetMap.java": [],
+    "src/norswap/utils/OperatingSystem.java": [],
+    "src/norswap/utils/Predicates.java": [],
+    "src/norswap/utils/visitors/ReflectiveWalker.java": [],
+    "src/norswap/utils/visitors/Visitor.java": []
+  }
+}

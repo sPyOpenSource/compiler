@@ -1,0 +1,321 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/autumn/AutumnTestFixture.java",
+      "language": "java",
+      "sizeLines": 477,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/UnicodeCharSequence.java",
+      "language": "java",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapString.java",
+      "language": "java",
+      "sizeLines": 233,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Position.java",
+      "language": "java",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Span.java",
+      "language": "java",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/Token.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "language": "java",
+      "sizeLines": 1002,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/CompilationResult.java",
+      "language": "java",
+      "sizeLines": 109,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/TypeUtils.java",
+      "language": "java",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/RustGrammar.java",
+      "language": "java",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "language": "java",
+      "sizeLines": 936,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/Test.java",
+      "language": "java",
+      "sizeLines": 53,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "language": "java",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/Block.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/DeclarationNode.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/FunDeclaration.java",
+      "language": "java",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/Node.java",
+      "language": "java",
+      "sizeLines": 136,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/ParameterNode.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/RootNode.java",
+      "language": "java",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/SimpleType.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StExpr.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StIf.java",
+      "language": "java",
+      "sizeLines": 35,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/ast/StReturn.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/autumn/AutumnTestFixture.java": [
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/autumn/positions/LineMapString.java",
+      "src/norswap/autumn/positions/LineMapTokens.java",
+      "src/norswap/autumn/positions/Token.java",
+      "src/norswap/utils/TestFixture.java"
+    ],
+    "src/norswap/autumn/UnicodeCharSequence.java": [],
+    "src/norswap/autumn/positions/LineMapString.java": [
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/autumn/positions/Position.java": [],
+    "src/norswap/autumn/positions/Span.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/parsers/StringMatch.java",
+      "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "src/norswap/autumn/UnicodeCharSequence.java"
+    ],
+    "src/norswap/autumn/positions/Token.java": [],
+    "src/norswap/lang/backend/ByteArrayClassLoader.java": [],
+    "src/norswap/lang/backend/BytecodeCompiler.java": [
+      "src/norswap/lang/backend/AsmUtils.java",
+      "src/norswap/lang/backend/TypeUtils.java",
+      "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "src/norswap/lang/rust/ast/expr/Reference.java",
+      "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "src/norswap/lang/rust/scopes/Scope.java",
+      "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/utils/data/wrappers/Pair.java",
+      "src/norswap/utils/Vanilla.java",
+      "src/norswap/utils/visitors/ValuedVisitor.java"
+    ],
+    "src/norswap/lang/backend/CompilationResult.java": [
+      "src/norswap/utils/exceptions/NoStackException.java"
+    ],
+    "src/norswap/lang/backend/TypeUtils.java": [],
+    "src/norswap/lang/rust/RustGrammar.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "src/norswap/lang/rust/ast/expr/Reference.java",
+      "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "src/norswap/lang/rust/ast/expr/UnaryExpression.java"
+    ],
+    "src/norswap/lang/rust/SemanticAnalysis.java": [
+      "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "src/norswap/lang/rust/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/rust/ast/expr/ArrayLiteral.java",
+      "src/norswap/lang/rust/ast/expr/Assignment.java",
+      "src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "src/norswap/lang/rust/ast/expr/Constructor.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/lang/rust/ast/expr/FieldAccess.java",
+      "src/norswap/lang/rust/ast/expr/FloatLiteral.java",
+      "src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "src/norswap/lang/rust/ast/expr/MethodCall.java",
+      "src/norswap/lang/rust/ast/expr/Parenthesized.java",
+      "src/norswap/lang/rust/ast/expr/Reference.java",
+      "src/norswap/lang/rust/ast/expr/StringLiteral.java",
+      "src/norswap/lang/rust/ast/expr/UnaryExpression.java",
+      "src/norswap/lang/rust/scopes/Context.java",
+      "src/norswap/lang/rust/scopes/DeclarationKind.java",
+      "src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "src/norswap/lang/rust/scopes/Scope.java",
+      "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "src/norswap/uranium/Attribute.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/uranium/Rule.java",
+      "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ],
+    "src/norswap/lang/rust/Test.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/autumn/positions/LineMapString.java",
+      "src/norswap/lang/rust/ast/Node.java",
+      "src/norswap/lang/rust/interpreter/Interpreter.java",
+      "src/norswap/uranium/Reactor.java",
+      "src/norswap/utils/IO.java",
+      "src/norswap/utils/visitors/Walker.java"
+    ],
+    "src/norswap/lang/rust/ast/ArrayTypeNode.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/BinaryOperator.java": [],
+    "src/norswap/lang/rust/ast/Block.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/DeclarationNode.java": [
+      "src/norswap/autumn/positions/Span.java"
+    ],
+    "src/norswap/lang/rust/ast/FieldDeclaration.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/FunDeclaration.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/Node.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/uranium/Attribute.java"
+    ],
+    "src/norswap/lang/rust/ast/ParameterNode.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/RootNode.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/SimpleType.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/StExpr.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/StIf.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/lang/rust/ast/StReturn.java": [
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/lang/rust/ast/expr/Expression.java",
+      "src/norswap/utils/Util.java"
+    ]
+  }
+}

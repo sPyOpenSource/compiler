@@ -1,0 +1,1737 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 12,
+  "nodes": [
+    {
+      "id": "file:src/norswap/autumn/Autumn.java",
+      "type": "file",
+      "name": "Autumn.java",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "summary": "Static convenience facade for the Autumn parsing library providing overloaded parse methods for parsers, rules, and grammars with configurable ParseOptions, delegating to Parse.run.",
+      "tags": ["autumn", "parsing", "facade", "entry-point"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 136
+    },
+    {
+      "id": "file:src/norswap/autumn/MalformedGrammarError.java",
+      "type": "file",
+      "name": "MalformedGrammarError.java",
+      "filePath": "src/norswap/autumn/MalformedGrammarError.java",
+      "summary": "Exception class for malformed grammar errors, carrying a reference to the WellFormednessChecker that detected the issue.",
+      "tags": ["autumn", "error", "grammar", "well-formedness"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 29
+    },
+    {
+      "id": "file:src/norswap/autumn/ParseMetrics.java",
+      "type": "file",
+      "name": "ParseMetrics.java",
+      "filePath": "src/norswap/autumn/ParseMetrics.java",
+      "summary": "Container for per-parser timing metrics with a toString method that formats a sorted breakdown of self-time and total-time for each parser.",
+      "tags": ["autumn", "metrics", "performance", "profiling"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 44
+    },
+    {
+      "id": "file:src/norswap/autumn/ParseOptions.java",
+      "type": "file",
+      "name": "ParseOptions.java",
+      "filePath": "src/norswap/autumn/ParseOptions.java",
+      "summary": "Immutable configuration value class for parsing with trace, recordCallStack, wellFormednessCheck, trackWhitespace, metrics, and customOptions, plus a fluent builder via ParseOptionsBuilder.",
+      "tags": ["autumn", "configuration", "options", "builder-pattern"],
+      "complexity": "high",
+      "language": "java",
+      "sizeLines": 284
+    },
+    {
+      "id": "file:src/norswap/lang/java/Benchmark.java",
+      "type": "file",
+      "name": "Benchmark.java",
+      "filePath": "src/norswap/lang/java/Benchmark.java",
+      "summary": "Benchmark runner for Java parsing performance that iterates over a corpus of Java files, measuring parse time with configurable tracing and metrics, then logging results.",
+      "tags": ["java", "benchmark", "performance", "parsing"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 143
+    },
+    {
+      "id": "file:src/norswap/lang/json/JSON.java",
+      "type": "file",
+      "name": "JSON.java",
+      "filePath": "src/norswap/lang/json/JSON.java",
+      "summary": "Autumn grammar definition for JSON parsing, specifying lexer rules (numbers, strings, punctuation) and parser rules (value, pair, object, array) with a root rule and main method.",
+      "tags": ["json", "grammar", "autumn", "parsing"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 125
+    },
+    {
+      "id": "file:src/norswap/lang/rust/Runner.java",
+      "type": "file",
+      "name": "Runner.java",
+      "filePath": "src/norswap/lang/rust/Runner.java",
+      "summary": "Orchestrator for the Rust language implementation that parses input, creates semantic analysis walker, runs interpreter, and handles errors with formatted output.",
+      "tags": ["rust", "runner", "orchestration", "interpretation"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 69
+    },
+    {
+      "id": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "type": "file",
+      "name": "AttributeTreeFormatter.java",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "summary": "Formats a Uranium attribute tree as indented text using a walker with preVisit/postVisit callbacks, displaying attribute values for each node.",
+      "tags": ["uranium", "formatting", "attribute-tree", "debugging"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 105
+    },
+    {
+      "id": "file:src/norswap/uranium/SemanticError.java",
+      "type": "file",
+      "name": "SemanticError.java",
+      "filePath": "src/norswap/uranium/SemanticError.java",
+      "summary": "Semantic error with description, optional cause (chained error with location), and formatted toString output for error reporting.",
+      "tags": ["uranium", "error", "semantic-analysis", "reporting"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 64
+    },
+    {
+      "id": "file:src/norswap/utils/NFiles.java",
+      "type": "file",
+      "name": "NFiles.java",
+      "filePath": "src/norswap/utils/NFiles.java",
+      "summary": "File utility providing glob-based file discovery walking a directory tree, with a dotfile filter predicate.",
+      "tags": ["utils", "files", "glob", "utility"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 63
+    },
+    {
+      "id": "file:src/norswap/utils/reflection/GenericType.java",
+      "type": "file",
+      "name": "GenericType.java",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "summary": "Wrapper around ParameterizedType providing access to raw type, actual type arguments, and owner type, with a static wrap factory method.",
+      "tags": ["reflection", "generics", "type-system", "utility"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 57
+    },
+    {
+      "id": "file:src/norswap/utils/reflection/Subtyping.java",
+      "type": "file",
+      "name": "Subtyping.java",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "summary": "Comprehensive subtype checking utility with 36 overloaded check methods handling ParameterizedType, TypeVariable, WildcardType, GenericArrayType, and raw Class types with full generic type argument resolution.",
+      "tags": ["reflection", "subtyping", "type-checking", "generics"],
+      "complexity": "very-high",
+      "language": "java",
+      "sizeLines": 436
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "type": "file",
+      "name": "ReflectiveAccessorWalker.java",
+      "filePath": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "summary": "Reflective walker that discovers child nodes via getter methods matching a return type, using reflection and subtype checking.",
+      "tags": ["visitors", "reflection", "walkers", "accessor-methods"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 55
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "type": "file",
+      "name": "ReflectiveFieldWalker.java",
+      "filePath": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "summary": "Reflective walker that discovers child nodes via public fields matching a type, using reflection and subtype checking.",
+      "tags": ["visitors", "reflection", "walkers", "fields"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 54
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/WalkVisitType.java",
+      "type": "file",
+      "name": "WalkVisitType.java",
+      "filePath": "src/norswap/utils/visitors/WalkVisitType.java",
+      "summary": "Enum defining walk visit types (PRE_VISIT, POST_VISIT) for the visitor framework controlling traversal order.",
+      "tags": ["visitors", "walk", "enum", "traversal"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 21
+    },
+    {
+      "id": "file:test/WellFormednesTest.java",
+      "type": "file",
+      "name": "WellFormednesTest.java",
+      "filePath": "test/WellFormednesTest.java",
+      "summary": "Test class verifying grammar well-formedness checks in Autumn, testing left recursion, anonymous left recursion, empty string repetition, optional repetition, and nullable repetition detection.",
+      "tags": ["test", "autumn", "well-formedness", "grammar-validation"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 68
+    },
+    {
+      "id": "class:Autumn",
+      "type": "class",
+      "name": "Autumn",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "summary": "Static convenience class providing entry-point parse methods delegating to Parse.run.",
+      "tags": ["autumn", "parsing", "facade"],
+      "startLine": 10,
+      "endLine": 136,
+      "methodCount": 7,
+      "exported": true
+    },
+    {
+      "id": "class:MalformedGrammarError",
+      "type": "class",
+      "name": "MalformedGrammarError",
+      "filePath": "src/norswap/autumn/MalformedGrammarError.java",
+      "summary": "Runtime exception for malformed grammars with checker reference.",
+      "tags": ["autumn", "error", "grammar"],
+      "startLine": 10,
+      "endLine": 29,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:ParseMetrics",
+      "type": "class",
+      "name": "ParseMetrics",
+      "filePath": "src/norswap/autumn/ParseMetrics.java",
+      "summary": "Container for Parser to ParserMetrics mappings with formatted toString.",
+      "tags": ["autumn", "metrics", "performance"],
+      "startLine": 15,
+      "endLine": 44,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:ParseOptions",
+      "type": "class",
+      "name": "ParseOptions",
+      "filePath": "src/norswap/autumn/ParseOptions.java",
+      "summary": "Immutable parse configuration with builder pattern.",
+      "tags": ["autumn", "configuration", "immutable"],
+      "startLine": 49,
+      "endLine": 284,
+      "methodCount": 9,
+      "exported": true
+    },
+    {
+      "id": "class:Benchmark",
+      "type": "class",
+      "name": "Benchmark",
+      "filePath": "src/norswap/lang/java/Benchmark.java",
+      "summary": "Benchmark runner for Java file parsing with metrics and logging.",
+      "tags": ["java", "benchmark", "parsing"],
+      "startLine": 21,
+      "endLine": 143,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:JSON",
+      "type": "class",
+      "name": "JSON",
+      "filePath": "src/norswap/lang/json/JSON.java",
+      "summary": "Autumn grammar definition for JSON with lexer rules and parser rules.",
+      "tags": ["json", "grammar", "autumn"],
+      "startLine": 31,
+      "endLine": 125,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:Runner",
+      "type": "class",
+      "name": "Runner",
+      "filePath": "src/norswap/lang/rust/Runner.java",
+      "summary": "Orchestrator parsing Rust input and running interpretation.",
+      "tags": ["rust", "runner", "orchestration"],
+      "startLine": 21,
+      "endLine": 69,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:AttributeTreeFormatter",
+      "type": "class",
+      "name": "AttributeTreeFormatter",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "summary": "Formats Uranium attribute trees as indented text with pre/post visit callbacks.",
+      "tags": ["uranium", "formatting", "attribute-tree"],
+      "startLine": 17,
+      "endLine": 105,
+      "methodCount": 6,
+      "exported": true
+    },
+    {
+      "id": "class:SemanticError",
+      "type": "class",
+      "name": "SemanticError",
+      "filePath": "src/norswap/uranium/SemanticError.java",
+      "summary": "Semantic error with description, chained cause, and location.",
+      "tags": ["uranium", "error", "semantic-analysis"],
+      "startLine": 9,
+      "endLine": 64,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:NFiles",
+      "type": "class",
+      "name": "NFiles",
+      "filePath": "src/norswap/utils/NFiles.java",
+      "summary": "File utility for glob-based directory walking.",
+      "tags": ["utils", "files", "glob"],
+      "startLine": 19,
+      "endLine": 63,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:GenericType",
+      "type": "class",
+      "name": "GenericType",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "summary": "Wrapper for ParameterizedType providing type argument accessors.",
+      "tags": ["reflection", "generics", "type-wrapper"],
+      "startLine": 11,
+      "endLine": 57,
+      "methodCount": 5,
+      "exported": true
+    },
+    {
+      "id": "class:Subtyping",
+      "type": "class",
+      "name": "Subtyping",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "summary": "Comprehensive subtype checker with 36 overloads for all Java type kinds.",
+      "tags": ["reflection", "subtyping", "type-checking"],
+      "startLine": 66,
+      "endLine": 436,
+      "methodCount": 36,
+      "exported": true
+    },
+    {
+      "id": "class:ReflectiveAccessorWalker",
+      "type": "class",
+      "name": "ReflectiveAccessorWalker",
+      "filePath": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "summary": "Reflective walker discovering child nodes via getter methods.",
+      "tags": ["visitors", "reflection", "walkers"],
+      "startLine": 21,
+      "endLine": 55,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:ReflectiveFieldWalker",
+      "type": "class",
+      "name": "ReflectiveFieldWalker",
+      "filePath": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "summary": "Reflective walker discovering child nodes via public fields.",
+      "tags": ["visitors", "reflection", "walkers"],
+      "startLine": 21,
+      "endLine": 54,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:WalkVisitType",
+      "type": "class",
+      "name": "WalkVisitType",
+      "filePath": "src/norswap/utils/visitors/WalkVisitType.java",
+      "summary": "Enum with PRE_VISIT and POST_VISIT visit types for walker traversal.",
+      "tags": ["visitors", "enum", "traversal"],
+      "startLine": 1,
+      "endLine": 21,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "class:WellFormednesTest",
+      "type": "class",
+      "name": "WellFormednesTest",
+      "filePath": "test/WellFormednesTest.java",
+      "summary": "Test class for grammar well-formedness checks with various ill-formed grammars.",
+      "tags": ["test", "autumn", "well-formedness"],
+      "startLine": 8,
+      "endLine": 68,
+      "methodCount": 7,
+      "exported": true
+    },
+    {
+      "id": "function:Autumn.Autumn",
+      "type": "function",
+      "name": "Autumn",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 14,
+      "endLine": 14,
+      "exported": true
+    },
+    {
+      "id": "function:Autumn.parse-44",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 44,
+      "endLine": 56,
+      "exported": true,
+      "params": ["parser", "string", "options"]
+    },
+    {
+      "id": "function:Autumn.parse-68",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 68,
+      "endLine": 79,
+      "exported": true,
+      "params": ["parser", "list", "options"]
+    },
+    {
+      "id": "function:Autumn.parse-88",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 88,
+      "endLine": 93,
+      "exported": true,
+      "params": ["rule", "string", "options"]
+    },
+    {
+      "id": "function:Autumn.parse-102",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 102,
+      "endLine": 107,
+      "exported": true,
+      "params": ["rule", "list", "options"]
+    },
+    {
+      "id": "function:Autumn.parse-116",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 116,
+      "endLine": 120,
+      "exported": true,
+      "params": ["grammar", "string", "options"]
+    },
+    {
+      "id": "function:Autumn.parse-129",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/Autumn.java",
+      "startLine": 129,
+      "endLine": 133,
+      "exported": true,
+      "params": ["grammar", "list", "options"]
+    },
+    {
+      "id": "function:MalformedGrammarError.MalformedGrammarError",
+      "type": "function",
+      "name": "MalformedGrammarError",
+      "filePath": "src/norswap/autumn/MalformedGrammarError.java",
+      "startLine": 23,
+      "endLine": 26,
+      "exported": true,
+      "params": ["message", "checker"]
+    },
+    {
+      "id": "function:ParseMetrics.toString",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/autumn/ParseMetrics.java",
+      "startLine": 23,
+      "endLine": 41,
+      "exported": true
+    },
+    {
+      "id": "function:ParseOptions.ParseOptions",
+      "type": "function",
+      "name": "ParseOptions",
+      "filePath": "src/norswap/autumn/ParseOptions.java",
+      "startLine": 117,
+      "endLine": 128,
+      "exported": true,
+      "params": ["trace", "recordCallStack", "wellFormednessCheck", "trackWhitespace", "metrics", "customOptions"]
+    },
+    {
+      "id": "function:ParseOptions.builder",
+      "type": "function",
+      "name": "builder",
+      "filePath": "src/norswap/autumn/ParseOptions.java",
+      "startLine": 184,
+      "endLine": 186,
+      "exported": true
+    },
+    {
+      "id": "function:ParseOptions.get",
+      "type": "function",
+      "name": "get",
+      "filePath": "src/norswap/autumn/ParseOptions.java",
+      "startLine": 193,
+      "endLine": 195,
+      "exported": true
+    },
+    {
+      "id": "function:Benchmark.Benchmark",
+      "type": "function",
+      "name": "Benchmark",
+      "filePath": "src/norswap/lang/java/Benchmark.java",
+      "startLine": 38,
+      "endLine": 42,
+      "exported": true,
+      "params": ["config"]
+    },
+    {
+      "id": "function:Benchmark.run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/norswap/lang/java/Benchmark.java",
+      "startLine": 46,
+      "endLine": 115,
+      "exported": true,
+      "params": ["corpusPath", "grammar"]
+    },
+    {
+      "id": "function:Benchmark.main",
+      "type": "function",
+      "name": "main",
+      "filePath": "src/norswap/lang/java/Benchmark.java",
+      "startLine": 119,
+      "endLine": 140,
+      "exported": true,
+      "params": ["args"]
+    },
+    {
+      "id": "function:JSON.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/json/JSON.java",
+      "startLine": 102,
+      "endLine": 104,
+      "exported": true
+    },
+    {
+      "id": "function:JSON.parse",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/lang/json/JSON.java",
+      "startLine": 106,
+      "endLine": 119,
+      "exported": true,
+      "params": ["inputName", "input"]
+    },
+    {
+      "id": "function:JSON.main",
+      "type": "function",
+      "name": "main",
+      "filePath": "src/norswap/lang/json/JSON.java",
+      "startLine": 121,
+      "endLine": 124,
+      "exported": true,
+      "params": ["args"]
+    },
+    {
+      "id": "function:Runner.run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/norswap/lang/rust/Runner.java",
+      "startLine": 33,
+      "endLine": 66,
+      "exported": true,
+      "params": ["input"]
+    },
+    {
+      "id": "function:AttributeTreeFormatter.AttributeTreeFormatter",
+      "type": "function",
+      "name": "AttributeTreeFormatter",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "startLine": 32,
+      "endLine": 37,
+      "exported": true,
+      "params": ["reactor", "walker"]
+    },
+    {
+      "id": "function:AttributeTreeFormatter.format",
+      "type": "function",
+      "name": "format",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "startLine": 74,
+      "endLine": 79,
+      "exported": true,
+      "params": ["root", "reactor", "walker"]
+    },
+    {
+      "id": "function:AttributeTreeFormatter.formatWalkFields",
+      "type": "function",
+      "name": "formatWalkFields",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "startLine": 88,
+      "endLine": 90,
+      "exported": true,
+      "params": ["root", "reactor", "klass"]
+    },
+    {
+      "id": "function:AttributeTreeFormatter.formatWalkMethods",
+      "type": "function",
+      "name": "formatWalkMethods",
+      "filePath": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "startLine": 100,
+      "endLine": 102,
+      "exported": true,
+      "params": ["root", "reactor", "klass"]
+    },
+    {
+      "id": "function:SemanticError.SemanticError",
+      "type": "function",
+      "name": "SemanticError",
+      "filePath": "src/norswap/uranium/SemanticError.java",
+      "startLine": 31,
+      "endLine": 35,
+      "exported": true,
+      "params": ["description", "cause", "location"]
+    },
+    {
+      "id": "function:SemanticError.toString",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/uranium/SemanticError.java",
+      "startLine": 55,
+      "endLine": 61,
+      "exported": true
+    },
+    {
+      "id": "function:NFiles.glob",
+      "type": "function",
+      "name": "glob",
+      "filePath": "src/norswap/utils/NFiles.java",
+      "startLine": 29,
+      "endLine": 48,
+      "exported": true,
+      "params": ["pattern", "directory"]
+    },
+    {
+      "id": "function:NFiles.noDotfiles",
+      "type": "function",
+      "name": "noDotfiles",
+      "filePath": "src/norswap/utils/NFiles.java",
+      "startLine": 58,
+      "endLine": 60,
+      "exported": true,
+      "params": ["path"]
+    },
+    {
+      "id": "function:GenericType.GenericType",
+      "type": "function",
+      "name": "GenericType",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "startLine": 23,
+      "endLine": 26,
+      "exported": true,
+      "params": ["owner", "raw"]
+    },
+    {
+      "id": "function:GenericType.wrap",
+      "type": "function",
+      "name": "wrap",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "startLine": 34,
+      "endLine": 36,
+      "exported": true,
+      "params": ["type"]
+    },
+    {
+      "id": "function:GenericType.getActualTypeArguments",
+      "type": "function",
+      "name": "getActualTypeArguments",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "startLine": 40,
+      "endLine": 42,
+      "exported": true
+    },
+    {
+      "id": "function:GenericType.getRawType",
+      "type": "function",
+      "name": "getRawType",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "startLine": 46,
+      "endLine": 48,
+      "exported": true
+    },
+    {
+      "id": "function:GenericType.getOwnerType",
+      "type": "function",
+      "name": "getOwnerType",
+      "filePath": "src/norswap/utils/reflection/GenericType.java",
+      "startLine": 52,
+      "endLine": 54,
+      "exported": true
+    },
+    {
+      "id": "function:Subtyping.check-70",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 70,
+      "endLine": 72,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-128",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 128,
+      "endLine": 152,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-250",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 250,
+      "endLine": 263,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-267",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 267,
+      "endLine": 280,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-284",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 284,
+      "endLine": 297,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-301",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 301,
+      "endLine": 314,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-318",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 318,
+      "endLine": 331,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-335",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 335,
+      "endLine": 348,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-352",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 352,
+      "endLine": 365,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-369",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 369,
+      "endLine": 382,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-386",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 386,
+      "endLine": 399,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-403",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 403,
+      "endLine": 416,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:Subtyping.check-420",
+      "type": "function",
+      "name": "check",
+      "filePath": "src/norswap/utils/reflection/Subtyping.java",
+      "startLine": 420,
+      "endLine": 433,
+      "exported": true,
+      "params": ["a", "b"]
+    },
+    {
+      "id": "function:ReflectiveAccessorWalker.handlesFor",
+      "type": "function",
+      "name": "handlesFor",
+      "filePath": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "startLine": 34,
+      "endLine": 52,
+      "exported": true,
+      "params": ["klass"]
+    },
+    {
+      "id": "function:ReflectiveFieldWalker.handlesFor",
+      "type": "function",
+      "name": "handlesFor",
+      "filePath": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "startLine": 34,
+      "endLine": 51,
+      "exported": true,
+      "params": ["klass"]
+    },
+    {
+      "id": "function:WellFormednesTest.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 12,
+      "endLine": 14,
+      "exported": true
+    },
+    {
+      "id": "function:WellFormednesTest.assertThrown",
+      "type": "function",
+      "name": "assertThrown",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 34,
+      "endLine": 42,
+      "exported": false,
+      "params": ["rule", "name"]
+    },
+    {
+      "id": "function:WellFormednesTest.testLeftRecursion",
+      "type": "function",
+      "name": "testLeftRecursion",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 46,
+      "endLine": 48,
+      "exported": true
+    },
+    {
+      "id": "function:WellFormednesTest.testAnonymousLeftRecursive",
+      "type": "function",
+      "name": "testAnonymousLeftRecursive",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 50,
+      "endLine": 53,
+      "exported": true
+    },
+    {
+      "id": "function:WellFormednesTest.testEmptyStringRepetition",
+      "type": "function",
+      "name": "testEmptyStringRepetition",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 55,
+      "endLine": 57,
+      "exported": true
+    },
+    {
+      "id": "function:WellFormednesTest.testOptReptition",
+      "type": "function",
+      "name": "testOptReptition",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 59,
+      "endLine": 61,
+      "exported": true
+    },
+    {
+      "id": "function:WellFormednesTest.testNullableReptitionRepetition",
+      "type": "function",
+      "name": "testNullableReptitionRepetition",
+      "filePath": "test/WellFormednesTest.java",
+      "startLine": 63,
+      "endLine": 65,
+      "exported": true
+    }
+  ],
+  "edges": [
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.Autumn"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-44"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-68"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-88"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-102"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-116"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/Autumn.java",
+      "targetId": "function:Autumn.parse-129"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/MalformedGrammarError.java",
+      "targetId": "class:MalformedGrammarError"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/MalformedGrammarError.java",
+      "targetId": "function:MalformedGrammarError.MalformedGrammarError"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseMetrics.java",
+      "targetId": "class:ParseMetrics"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseMetrics.java",
+      "targetId": "function:ParseMetrics.toString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseOptions.java",
+      "targetId": "class:ParseOptions"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseOptions.java",
+      "targetId": "function:ParseOptions.ParseOptions"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseOptions.java",
+      "targetId": "function:ParseOptions.builder"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/ParseOptions.java",
+      "targetId": "function:ParseOptions.get"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "class:Benchmark"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "function:Benchmark.Benchmark"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "function:Benchmark.run"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "function:Benchmark.main"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "class:JSON"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "function:JSON.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "function:JSON.parse"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "function:JSON.main"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "class:Runner"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "function:Runner.run"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "class:AttributeTreeFormatter"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "function:AttributeTreeFormatter.AttributeTreeFormatter"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "function:AttributeTreeFormatter.format"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "function:AttributeTreeFormatter.formatWalkFields"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "function:AttributeTreeFormatter.formatWalkMethods"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/SemanticError.java",
+      "targetId": "class:SemanticError"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/SemanticError.java",
+      "targetId": "function:SemanticError.SemanticError"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/uranium/SemanticError.java",
+      "targetId": "function:SemanticError.toString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/NFiles.java",
+      "targetId": "class:NFiles"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/NFiles.java",
+      "targetId": "function:NFiles.glob"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/NFiles.java",
+      "targetId": "function:NFiles.noDotfiles"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "function:GenericType.GenericType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "function:GenericType.wrap"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "function:GenericType.getActualTypeArguments"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "function:GenericType.getRawType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/GenericType.java",
+      "targetId": "function:GenericType.getOwnerType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-70"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-128"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-250"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-267"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-284"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-301"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-318"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-335"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-352"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-369"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-386"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-403"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "function:Subtyping.check-420"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "targetId": "class:ReflectiveAccessorWalker"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "targetId": "function:ReflectiveAccessorWalker.handlesFor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "targetId": "class:ReflectiveFieldWalker"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "targetId": "function:ReflectiveFieldWalker.handlesFor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/utils/visitors/WalkVisitType.java",
+      "targetId": "class:WalkVisitType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.assertThrown"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.testLeftRecursion"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.testAnonymousLeftRecursive"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.testEmptyStringRepetition"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.testOptReptition"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "function:WellFormednesTest.testNullableReptitionRepetition"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.Autumn",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-44",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-68",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-88",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-102",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-116",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Autumn.parse-129",
+      "targetId": "class:Autumn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:MalformedGrammarError.MalformedGrammarError",
+      "targetId": "class:MalformedGrammarError"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ParseMetrics.toString",
+      "targetId": "class:ParseMetrics"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ParseOptions.ParseOptions",
+      "targetId": "class:ParseOptions"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ParseOptions.builder",
+      "targetId": "class:ParseOptions"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ParseOptions.get",
+      "targetId": "class:ParseOptions"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Benchmark.Benchmark",
+      "targetId": "class:Benchmark"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Benchmark.run",
+      "targetId": "class:Benchmark"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Benchmark.main",
+      "targetId": "class:Benchmark"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:JSON.root",
+      "targetId": "class:JSON"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:JSON.parse",
+      "targetId": "class:JSON"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:JSON.main",
+      "targetId": "class:JSON"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Runner.run",
+      "targetId": "class:Runner"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AttributeTreeFormatter.AttributeTreeFormatter",
+      "targetId": "class:AttributeTreeFormatter"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AttributeTreeFormatter.format",
+      "targetId": "class:AttributeTreeFormatter"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AttributeTreeFormatter.formatWalkFields",
+      "targetId": "class:AttributeTreeFormatter"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AttributeTreeFormatter.formatWalkMethods",
+      "targetId": "class:AttributeTreeFormatter"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticError.SemanticError",
+      "targetId": "class:SemanticError"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticError.toString",
+      "targetId": "class:SemanticError"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:NFiles.glob",
+      "targetId": "class:NFiles"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:NFiles.noDotfiles",
+      "targetId": "class:NFiles"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GenericType.GenericType",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GenericType.wrap",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GenericType.getActualTypeArguments",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GenericType.getRawType",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GenericType.getOwnerType",
+      "targetId": "class:GenericType"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-70",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-128",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-250",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-267",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-284",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-301",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-318",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-335",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-352",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-369",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-386",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-403",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Subtyping.check-420",
+      "targetId": "class:Subtyping"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ReflectiveAccessorWalker.handlesFor",
+      "targetId": "class:ReflectiveAccessorWalker"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ReflectiveFieldWalker.handlesFor",
+      "targetId": "class:ReflectiveFieldWalker"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.root",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.assertThrown",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.testLeftRecursion",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.testAnonymousLeftRecursive",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.testEmptyStringRepetition",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.testOptReptition",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:WellFormednesTest.testNullableReptitionRepetition",
+      "targetId": "class:WellFormednesTest"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/MalformedGrammarError.java",
+      "targetId": "file:src/norswap/autumn/visitors/WellFormednessChecker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/ParseOptions.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/Autumn.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/AutumnTestFixture.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/ParseMetrics.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/autumn/ParseResult.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/utils/exceptions/Exceptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/utils/IO.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/Benchmark.java",
+      "targetId": "file:src/norswap/utils/NFiles.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "file:src/norswap/autumn/Autumn.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "file:src/norswap/autumn/ParseResult.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/json/JSON.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMapString.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/autumn/Autumn.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/autumn/ParseResult.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/lang/rust/ast/Node.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/lang/rust/ast/RootNode.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/lang/rust/interpreter/Interpreter.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/uranium/AttributeTreeFormatter.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/uranium/Reactor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/uranium/SemanticError.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Runner.java",
+      "targetId": "file:src/norswap/utils/visitors/Walker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "file:src/norswap/utils/Strings.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "file:src/norswap/utils/visitors/Walker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/uranium/AttributeTreeFormatter.java",
+      "targetId": "file:src/norswap/utils/visitors/WalkVisitType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/utils/reflection/Subtyping.java",
+      "targetId": "file:src/norswap/utils/reflection/Reflection.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "targetId": "file:src/norswap/utils/reflection/GenericType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "targetId": "file:src/norswap/utils/reflection/Subtyping.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "targetId": "file:src/norswap/utils/reflection/GenericType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "targetId": "file:src/norswap/utils/reflection/Subtyping.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "file:src/norswap/autumn/Autumn.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "file:src/norswap/autumn/MalformedGrammarError.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/WellFormednesTest.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    }
+  ],
+  "metadata": {
+    "totalFiles": 16,
+    "totalNodes": 80,
+    "totalEdges": 152,
+    "fileNodes": 16,
+    "classNodes": 16,
+    "functionNodes": 48,
+    "importEdges": 30,
+    "containsEdges": 72,
+    "memberOfEdges": 50
+  }
+}

@@ -1,0 +1,5482 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 20,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/autumn/actions/StackPush.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 16,
+      "classes": [
+        {
+          "name": "StackPush",
+          "startLine": 10,
+          "endLine": 19,
+          "methods": [
+            "apply",
+            "get"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "StackPush",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "apply",
+          "callee": "context.push",
+          "lineNumber": 14
+        },
+        {
+          "caller": "apply",
+          "callee": "get",
+          "lineNumber": 14
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/JavaGrammar.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 1021,
+      "nonEmptyLines": 803,
+      "functions": [
+        {
+          "name": "root",
+          "startLine": 1016,
+          "endLine": 1018,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "JavaGrammar",
+          "startLine": 58,
+          "endLine": 1021,
+          "methods": [
+            "root"
+          ],
+          "properties": [
+            "space_char",
+            "not_line",
+            "line_comment",
+            "not_comment_term",
+            "multi_comment",
+            "whitespace",
+            "id_start",
+            "iden",
+            "_boolean",
+            "_byte",
+            "_char",
+            "_double",
+            "_float",
+            "_int",
+            "_long",
+            "_short",
+            "_void",
+            "_abstract",
+            "_default",
+            "_final",
+            "_native",
+            "_private",
+            "_protected",
+            "_public",
+            "_static",
+            "_strictfp",
+            "_synchronized",
+            "_transient",
+            "_volatile",
+            "_assert",
+            "_break",
+            "_case",
+            "_catch",
+            "_class",
+            "_const",
+            "_continue",
+            "_do",
+            "_else",
+            "_enum",
+            "_extends",
+            "_finally",
+            "_for",
+            "_goto",
+            "_if",
+            "_implements",
+            "_import",
+            "_interface",
+            "_instanceof",
+            "_new",
+            "_package",
+            "_return",
+            "_super",
+            "_switch",
+            "_this",
+            "_throws",
+            "_throw",
+            "_try",
+            "_while",
+            "_false",
+            "_true",
+            "_null",
+            "BANG",
+            "BANGEQ",
+            "PERCENT",
+            "PERCENTEQ",
+            "AMP",
+            "AMPAMP",
+            "AMPEQ",
+            "LPAREN",
+            "RPAREN",
+            "STAR",
+            "STAREQ",
+            "PLUS",
+            "PLUSPLUS",
+            "PLUSEQ",
+            "COMMA",
+            "SUB",
+            "SUBSUB",
+            "SUBEQ",
+            "EQ",
+            "EQEQ",
+            "QUES",
+            "CARET",
+            "CARETEQ",
+            "LBRACE",
+            "RBRACE",
+            "BAR",
+            "BARBAR",
+            "BAREQ",
+            "TILDE",
+            "MONKEYS_AT",
+            "DIV",
+            "DIVEQ",
+            "GTEQ",
+            "LTEQ",
+            "LTLTEQ",
+            "LTLT",
+            "GTGTEQ",
+            "GTGTGTEQ",
+            "GT",
+            "LT",
+            "LBRACKET",
+            "RBRACKET",
+            "ARROW",
+            "COL",
+            "COLCOL",
+            "SEMI",
+            "DOT",
+            "ELLIPSIS",
+            "GTGT",
+            "GTGTGT",
+            "underscore",
+            "dlit",
+            "hex_prefix",
+            "underscores",
+            "digits1",
+            "digits0",
+            "hex_digits",
+            "hex_num",
+            "hex_significand",
+            "exp_sign_opt",
+            "exponent",
+            "binary_exponent",
+            "float_suffix",
+            "float_suffix_opt",
+            "hex_float_lit",
+            "decimal_float_lit",
+            "float_literal",
+            "bit",
+            "binary_prefix",
+            "binary_num",
+            "octal_num",
+            "decimal_num",
+            "integer_num",
+            "integer_literal",
+            "octal_code_3",
+            "octal_code_2",
+            "octal_code",
+            "unicode_code",
+            "escape_suffix",
+            "escape",
+            "naked_char",
+            "nake_str_char",
+            "char_literal",
+            "string_literal",
+            "literal",
+            "_stmt",
+            "_expr",
+            "_block",
+            "annotation_element",
+            "annotation_inner_list",
+            "annotation_element_list",
+            "annotation_element_pair",
+            "normal_annotation_element_pairs",
+            "normal_annotation_suffix",
+            "single_element_annotation_suffix",
+            "marker_annotation_suffix",
+            "annotation_suffix",
+            "qualified_iden",
+            "annotation",
+            "annotations",
+            "basic_type",
+            "primitive_type",
+            "extends_bound",
+            "super_bound",
+            "type_bound",
+            "wildcard",
+            "opt_type_args",
+            "class_type_part",
+            "class_type",
+            "stem_type",
+            "dim",
+            "dims",
+            "dims1",
+            "type_dim_suffix",
+            "type",
+            "type_union_syntax",
+            "type_union",
+            "type_bounds",
+            "type_param",
+            "type_params",
+            "var_init",
+            "array_init",
+            "dim_expr",
+            "dim_exprs",
+            "dim_expr_array_creator",
+            "init_array_creator",
+            "array_ctor_call",
+            "lambda",
+            "args",
+            "par_expr",
+            "ctor_call",
+            "new_ref_suffix",
+            "method_ref_suffix",
+            "ref_suffix",
+            "class_expr_suffix",
+            "type_suffix_expr",
+            "iden_or_method_expr",
+            "this_expr",
+            "super_expr",
+            "primary_expr",
+            "prefix_op",
+            "postfix_expr",
+            "prefix_expr",
+            "binary_push",
+            "mult_op",
+            "add_op",
+            "shift_op",
+            "order_op",
+            "eq_op",
+            "assignment_op",
+            "mult_expr",
+            "add_expr",
+            "shift_expr",
+            "order_expr",
+            "eq_expr",
+            "binary_and_expr",
+            "xor_expr",
+            "binary_or_expr",
+            "conditional_and_expr",
+            "conditional_or_expr",
+            "ternary_expr",
+            "expr",
+            "keyword_modifier",
+            "modifier",
+            "modifiers",
+            "this_parameter_qualifier",
+            "this_param_suffix",
+            "iden_param_suffix",
+            "variadic_param_suffix",
+            "formal_param_suffix",
+            "formal_param",
+            "formal_params",
+            "untyped_params",
+            "single_param",
+            "lambda_params",
+            "var_declarator_id",
+            "var_declarator",
+            "var_declarators",
+            "var_decl_suffix_no_semi",
+            "var_decl_suffix",
+            "var_decl",
+            "throws_clause",
+            "block_or_semi",
+            "method_decl_suffix",
+            "constructor_decl_suffix",
+            "init_block",
+            "extends_clause",
+            "implements_clause",
+            "type_sig",
+            "class_modifierized_decl",
+            "class_body_decl",
+            "class_body_decls",
+            "type_body",
+            "enum_constant",
+            "enum_class_decls",
+            "enum_constants",
+            "enum_body",
+            "enum_decl_suffix",
+            "annot_default_clause",
+            "annot_elem_decl",
+            "annot_body_decls",
+            "annotation_decl_suffix",
+            "class_decl_suffix",
+            "interface_declaration_suffix",
+            "type_decl_suffix",
+            "type_decl",
+            "type_decls",
+            "if_stmt",
+            "expr_stmt_list",
+            "for_init_decl",
+            "for_init",
+            "basic_for_paren_part",
+            "basic_for_stmt",
+            "for_val_decl",
+            "enhanced_for_stmt",
+            "while_stmt",
+            "do_while_stmt",
+            "catch_parameter_types",
+            "catch_parameter",
+            "catch_clause",
+            "catch_clauses",
+            "finally_clause",
+            "resource",
+            "resources",
+            "try_stmt",
+            "default_label",
+            "case_label",
+            "switch_label",
+            "switch_clause",
+            "switch_clauses",
+            "switch_stmt",
+            "synchronized_stmt",
+            "return_stmt",
+            "throw_stmt",
+            "break_stmt",
+            "continue_stmt",
+            "assert_stmt",
+            "semi_stmt",
+            "expr_stmt",
+            "labelled_stmt",
+            "stmt",
+            "block",
+            "statements",
+            "package_decl",
+            "import_decl",
+            "import_decls",
+            "root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "space_char",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "not_line",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "line_comment",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "not_comment_term",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "multi_comment",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "whitespace",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "id_start",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "iden",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "_boolean",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "_byte",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "_char",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "_double",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "_float",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "_int",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "_long",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "_short",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "_void",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "_abstract",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "_default",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "_final",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "_native",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "_private",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "_protected",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "_public",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "_static",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "_strictfp",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "_synchronized",
+          "line": 105,
+          "isDefault": false
+        },
+        {
+          "name": "_transient",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "_volatile",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "_assert",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "_break",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "_case",
+          "line": 110,
+          "isDefault": false
+        },
+        {
+          "name": "_catch",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "_class",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "_const",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "_continue",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "_do",
+          "line": 115,
+          "isDefault": false
+        },
+        {
+          "name": "_else",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "_enum",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "_extends",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "_finally",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "_for",
+          "line": 120,
+          "isDefault": false
+        },
+        {
+          "name": "_goto",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "_if",
+          "line": 122,
+          "isDefault": false
+        },
+        {
+          "name": "_implements",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "_import",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "_interface",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "_instanceof",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "_new",
+          "line": 127,
+          "isDefault": false
+        },
+        {
+          "name": "_package",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "_return",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "_super",
+          "line": 130,
+          "isDefault": false
+        },
+        {
+          "name": "_switch",
+          "line": 131,
+          "isDefault": false
+        },
+        {
+          "name": "_this",
+          "line": 132,
+          "isDefault": false
+        },
+        {
+          "name": "_throws",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "_throw",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "_try",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "_while",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "_false",
+          "line": 138,
+          "isDefault": false
+        },
+        {
+          "name": "_true",
+          "line": 139,
+          "isDefault": false
+        },
+        {
+          "name": "_null",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "BANG",
+          "line": 146,
+          "isDefault": false
+        },
+        {
+          "name": "BANGEQ",
+          "line": 147,
+          "isDefault": false
+        },
+        {
+          "name": "PERCENT",
+          "line": 148,
+          "isDefault": false
+        },
+        {
+          "name": "PERCENTEQ",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "AMP",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "AMPAMP",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "AMPEQ",
+          "line": 152,
+          "isDefault": false
+        },
+        {
+          "name": "LPAREN",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "RPAREN",
+          "line": 154,
+          "isDefault": false
+        },
+        {
+          "name": "STAR",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "STAREQ",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "PLUS",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "PLUSPLUS",
+          "line": 158,
+          "isDefault": false
+        },
+        {
+          "name": "PLUSEQ",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "COMMA",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "SUB",
+          "line": 161,
+          "isDefault": false
+        },
+        {
+          "name": "SUBSUB",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "SUBEQ",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "EQ",
+          "line": 164,
+          "isDefault": false
+        },
+        {
+          "name": "EQEQ",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "QUES",
+          "line": 166,
+          "isDefault": false
+        },
+        {
+          "name": "CARET",
+          "line": 167,
+          "isDefault": false
+        },
+        {
+          "name": "CARETEQ",
+          "line": 168,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACE",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACE",
+          "line": 170,
+          "isDefault": false
+        },
+        {
+          "name": "BAR",
+          "line": 171,
+          "isDefault": false
+        },
+        {
+          "name": "BARBAR",
+          "line": 172,
+          "isDefault": false
+        },
+        {
+          "name": "BAREQ",
+          "line": 173,
+          "isDefault": false
+        },
+        {
+          "name": "TILDE",
+          "line": 174,
+          "isDefault": false
+        },
+        {
+          "name": "MONKEYS_AT",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "DIV",
+          "line": 176,
+          "isDefault": false
+        },
+        {
+          "name": "DIVEQ",
+          "line": 177,
+          "isDefault": false
+        },
+        {
+          "name": "GTEQ",
+          "line": 178,
+          "isDefault": false
+        },
+        {
+          "name": "LTEQ",
+          "line": 179,
+          "isDefault": false
+        },
+        {
+          "name": "LTLTEQ",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "LTLT",
+          "line": 181,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTEQ",
+          "line": 182,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTGTEQ",
+          "line": 183,
+          "isDefault": false
+        },
+        {
+          "name": "GT",
+          "line": 184,
+          "isDefault": false
+        },
+        {
+          "name": "LT",
+          "line": 185,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACKET",
+          "line": 186,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACKET",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "ARROW",
+          "line": 188,
+          "isDefault": false
+        },
+        {
+          "name": "COL",
+          "line": 189,
+          "isDefault": false
+        },
+        {
+          "name": "COLCOL",
+          "line": 190,
+          "isDefault": false
+        },
+        {
+          "name": "SEMI",
+          "line": 191,
+          "isDefault": false
+        },
+        {
+          "name": "DOT",
+          "line": 192,
+          "isDefault": false
+        },
+        {
+          "name": "ELLIPSIS",
+          "line": 193,
+          "isDefault": false
+        },
+        {
+          "name": "GTGT",
+          "line": 195,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTGT",
+          "line": 196,
+          "isDefault": false
+        },
+        {
+          "name": "underscore",
+          "line": 200,
+          "isDefault": false
+        },
+        {
+          "name": "dlit",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "hex_prefix",
+          "line": 202,
+          "isDefault": false
+        },
+        {
+          "name": "underscores",
+          "line": 203,
+          "isDefault": false
+        },
+        {
+          "name": "digits1",
+          "line": 204,
+          "isDefault": false
+        },
+        {
+          "name": "digits0",
+          "line": 205,
+          "isDefault": false
+        },
+        {
+          "name": "hex_digits",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "hex_num",
+          "line": 207,
+          "isDefault": false
+        },
+        {
+          "name": "hex_significand",
+          "line": 211,
+          "isDefault": false
+        },
+        {
+          "name": "exp_sign_opt",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "exponent",
+          "line": 216,
+          "isDefault": false
+        },
+        {
+          "name": "binary_exponent",
+          "line": 217,
+          "isDefault": false
+        },
+        {
+          "name": "float_suffix",
+          "line": 218,
+          "isDefault": false
+        },
+        {
+          "name": "float_suffix_opt",
+          "line": 219,
+          "isDefault": false
+        },
+        {
+          "name": "hex_float_lit",
+          "line": 220,
+          "isDefault": false
+        },
+        {
+          "name": "decimal_float_lit",
+          "line": 222,
+          "isDefault": false
+        },
+        {
+          "name": "float_literal",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "bit",
+          "line": 233,
+          "isDefault": false
+        },
+        {
+          "name": "binary_prefix",
+          "line": 234,
+          "isDefault": false
+        },
+        {
+          "name": "binary_num",
+          "line": 235,
+          "isDefault": false
+        },
+        {
+          "name": "octal_num",
+          "line": 236,
+          "isDefault": false
+        },
+        {
+          "name": "decimal_num",
+          "line": 237,
+          "isDefault": false
+        },
+        {
+          "name": "integer_num",
+          "line": 238,
+          "isDefault": false
+        },
+        {
+          "name": "integer_literal",
+          "line": 240,
+          "isDefault": false
+        },
+        {
+          "name": "octal_code_3",
+          "line": 245,
+          "isDefault": false
+        },
+        {
+          "name": "octal_code_2",
+          "line": 246,
+          "isDefault": false
+        },
+        {
+          "name": "octal_code",
+          "line": 247,
+          "isDefault": false
+        },
+        {
+          "name": "unicode_code",
+          "line": 248,
+          "isDefault": false
+        },
+        {
+          "name": "escape_suffix",
+          "line": 249,
+          "isDefault": false
+        },
+        {
+          "name": "escape",
+          "line": 250,
+          "isDefault": false
+        },
+        {
+          "name": "naked_char",
+          "line": 251,
+          "isDefault": false
+        },
+        {
+          "name": "nake_str_char",
+          "line": 252,
+          "isDefault": false
+        },
+        {
+          "name": "char_literal",
+          "line": 254,
+          "isDefault": false
+        },
+        {
+          "name": "string_literal",
+          "line": 257,
+          "isDefault": false
+        },
+        {
+          "name": "literal",
+          "line": 262,
+          "isDefault": false
+        },
+        {
+          "name": "_stmt",
+          "line": 270,
+          "isDefault": false
+        },
+        {
+          "name": "_expr",
+          "line": 273,
+          "isDefault": false
+        },
+        {
+          "name": "_block",
+          "line": 276,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element",
+          "line": 281,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_inner_list",
+          "line": 286,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element_list",
+          "line": 289,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element_pair",
+          "line": 293,
+          "isDefault": false
+        },
+        {
+          "name": "normal_annotation_element_pairs",
+          "line": 297,
+          "isDefault": false
+        },
+        {
+          "name": "normal_annotation_suffix",
+          "line": 301,
+          "isDefault": false
+        },
+        {
+          "name": "single_element_annotation_suffix",
+          "line": 306,
+          "isDefault": false
+        },
+        {
+          "name": "marker_annotation_suffix",
+          "line": 311,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_suffix",
+          "line": 316,
+          "isDefault": false
+        },
+        {
+          "name": "qualified_iden",
+          "line": 321,
+          "isDefault": false
+        },
+        {
+          "name": "annotation",
+          "line": 325,
+          "isDefault": false
+        },
+        {
+          "name": "annotations",
+          "line": 328,
+          "isDefault": false
+        },
+        {
+          "name": "basic_type",
+          "line": 335,
+          "isDefault": false
+        },
+        {
+          "name": "primitive_type",
+          "line": 340,
+          "isDefault": false
+        },
+        {
+          "name": "extends_bound",
+          "line": 344,
+          "isDefault": false
+        },
+        {
+          "name": "super_bound",
+          "line": 348,
+          "isDefault": false
+        },
+        {
+          "name": "type_bound",
+          "line": 352,
+          "isDefault": false
+        },
+        {
+          "name": "wildcard",
+          "line": 355,
+          "isDefault": false
+        },
+        {
+          "name": "opt_type_args",
+          "line": 359,
+          "isDefault": false
+        },
+        {
+          "name": "class_type_part",
+          "line": 363,
+          "isDefault": false
+        },
+        {
+          "name": "class_type",
+          "line": 367,
+          "isDefault": false
+        },
+        {
+          "name": "stem_type",
+          "line": 371,
+          "isDefault": false
+        },
+        {
+          "name": "dim",
+          "line": 374,
+          "isDefault": false
+        },
+        {
+          "name": "dims",
+          "line": 378,
+          "isDefault": false
+        },
+        {
+          "name": "dims1",
+          "line": 382,
+          "isDefault": false
+        },
+        {
+          "name": "type_dim_suffix",
+          "line": 386,
+          "isDefault": false
+        },
+        {
+          "name": "type",
+          "line": 391,
+          "isDefault": false
+        },
+        {
+          "name": "type_union_syntax",
+          "line": 394,
+          "isDefault": false
+        },
+        {
+          "name": "type_union",
+          "line": 397,
+          "isDefault": false
+        },
+        {
+          "name": "type_bounds",
+          "line": 401,
+          "isDefault": false
+        },
+        {
+          "name": "type_param",
+          "line": 405,
+          "isDefault": false
+        },
+        {
+          "name": "type_params",
+          "line": 409,
+          "isDefault": false
+        },
+        {
+          "name": "var_init",
+          "line": 417,
+          "isDefault": false
+        },
+        {
+          "name": "array_init",
+          "line": 420,
+          "isDefault": false
+        },
+        {
+          "name": "dim_expr",
+          "line": 426,
+          "isDefault": false
+        },
+        {
+          "name": "dim_exprs",
+          "line": 430,
+          "isDefault": false
+        },
+        {
+          "name": "dim_expr_array_creator",
+          "line": 434,
+          "isDefault": false
+        },
+        {
+          "name": "init_array_creator",
+          "line": 438,
+          "isDefault": false
+        },
+        {
+          "name": "array_ctor_call",
+          "line": 442,
+          "isDefault": false
+        },
+        {
+          "name": "lambda",
+          "line": 447,
+          "isDefault": false
+        },
+        {
+          "name": "args",
+          "line": 453,
+          "isDefault": false
+        },
+        {
+          "name": "par_expr",
+          "line": 457,
+          "isDefault": false
+        },
+        {
+          "name": "ctor_call",
+          "line": 461,
+          "isDefault": false
+        },
+        {
+          "name": "new_ref_suffix",
+          "line": 465,
+          "isDefault": false
+        },
+        {
+          "name": "method_ref_suffix",
+          "line": 470,
+          "isDefault": false
+        },
+        {
+          "name": "ref_suffix",
+          "line": 475,
+          "isDefault": false
+        },
+        {
+          "name": "class_expr_suffix",
+          "line": 478,
+          "isDefault": false
+        },
+        {
+          "name": "type_suffix_expr",
+          "line": 483,
+          "isDefault": false
+        },
+        {
+          "name": "iden_or_method_expr",
+          "line": 486,
+          "isDefault": false
+        },
+        {
+          "name": "this_expr",
+          "line": 490,
+          "isDefault": false
+        },
+        {
+          "name": "super_expr",
+          "line": 494,
+          "isDefault": false
+        },
+        {
+          "name": "primary_expr",
+          "line": 498,
+          "isDefault": false
+        },
+        {
+          "name": "prefix_op",
+          "line": 504,
+          "isDefault": false
+        },
+        {
+          "name": "postfix_expr",
+          "line": 512,
+          "isDefault": false
+        },
+        {
+          "name": "prefix_expr",
+          "line": 533,
+          "isDefault": false
+        },
+        {
+          "name": "mult_op",
+          "line": 545,
+          "isDefault": false
+        },
+        {
+          "name": "add_op",
+          "line": 550,
+          "isDefault": false
+        },
+        {
+          "name": "shift_op",
+          "line": 554,
+          "isDefault": false
+        },
+        {
+          "name": "order_op",
+          "line": 559,
+          "isDefault": false
+        },
+        {
+          "name": "eq_op",
+          "line": 565,
+          "isDefault": false
+        },
+        {
+          "name": "assignment_op",
+          "line": 569,
+          "isDefault": false
+        },
+        {
+          "name": "mult_expr",
+          "line": 583,
+          "isDefault": false
+        },
+        {
+          "name": "add_expr",
+          "line": 587,
+          "isDefault": false
+        },
+        {
+          "name": "shift_expr",
+          "line": 591,
+          "isDefault": false
+        },
+        {
+          "name": "order_expr",
+          "line": 595,
+          "isDefault": false
+        },
+        {
+          "name": "eq_expr",
+          "line": 601,
+          "isDefault": false
+        },
+        {
+          "name": "binary_and_expr",
+          "line": 605,
+          "isDefault": false
+        },
+        {
+          "name": "xor_expr",
+          "line": 609,
+          "isDefault": false
+        },
+        {
+          "name": "binary_or_expr",
+          "line": 613,
+          "isDefault": false
+        },
+        {
+          "name": "conditional_and_expr",
+          "line": 617,
+          "isDefault": false
+        },
+        {
+          "name": "conditional_or_expr",
+          "line": 621,
+          "isDefault": false
+        },
+        {
+          "name": "ternary_expr",
+          "line": 625,
+          "isDefault": false
+        },
+        {
+          "name": "expr",
+          "line": 630,
+          "isDefault": false
+        },
+        {
+          "name": "keyword_modifier",
+          "line": 636,
+          "isDefault": false
+        },
+        {
+          "name": "modifier",
+          "line": 642,
+          "isDefault": false
+        },
+        {
+          "name": "modifiers",
+          "line": 645,
+          "isDefault": false
+        },
+        {
+          "name": "this_parameter_qualifier",
+          "line": 651,
+          "isDefault": false
+        },
+        {
+          "name": "this_param_suffix",
+          "line": 655,
+          "isDefault": false
+        },
+        {
+          "name": "iden_param_suffix",
+          "line": 660,
+          "isDefault": false
+        },
+        {
+          "name": "variadic_param_suffix",
+          "line": 665,
+          "isDefault": false
+        },
+        {
+          "name": "formal_param_suffix",
+          "line": 670,
+          "isDefault": false
+        },
+        {
+          "name": "formal_param",
+          "line": 673,
+          "isDefault": false
+        },
+        {
+          "name": "formal_params",
+          "line": 676,
+          "isDefault": false
+        },
+        {
+          "name": "untyped_params",
+          "line": 680,
+          "isDefault": false
+        },
+        {
+          "name": "single_param",
+          "line": 684,
+          "isDefault": false
+        },
+        {
+          "name": "lambda_params",
+          "line": 688,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarator_id",
+          "line": 693,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarator",
+          "line": 697,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarators",
+          "line": 701,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl_suffix_no_semi",
+          "line": 705,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl_suffix",
+          "line": 710,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl",
+          "line": 713,
+          "isDefault": false
+        },
+        {
+          "name": "throws_clause",
+          "line": 716,
+          "isDefault": false
+        },
+        {
+          "name": "block_or_semi",
+          "line": 720,
+          "isDefault": false
+        },
+        {
+          "name": "method_decl_suffix",
+          "line": 723,
+          "isDefault": false
+        },
+        {
+          "name": "constructor_decl_suffix",
+          "line": 729,
+          "isDefault": false
+        },
+        {
+          "name": "init_block",
+          "line": 735,
+          "isDefault": false
+        },
+        {
+          "name": "extends_clause",
+          "line": 743,
+          "isDefault": false
+        },
+        {
+          "name": "implements_clause",
+          "line": 747,
+          "isDefault": false
+        },
+        {
+          "name": "type_sig",
+          "line": 751,
+          "isDefault": false
+        },
+        {
+          "name": "class_modifierized_decl",
+          "line": 754,
+          "isDefault": false
+        },
+        {
+          "name": "class_body_decl",
+          "line": 762,
+          "isDefault": false
+        },
+        {
+          "name": "class_body_decls",
+          "line": 765,
+          "isDefault": false
+        },
+        {
+          "name": "type_body",
+          "line": 769,
+          "isDefault": false
+        },
+        {
+          "name": "enum_constant",
+          "line": 774,
+          "isDefault": false
+        },
+        {
+          "name": "enum_class_decls",
+          "line": 778,
+          "isDefault": false
+        },
+        {
+          "name": "enum_constants",
+          "line": 781,
+          "isDefault": false
+        },
+        {
+          "name": "enum_body",
+          "line": 784,
+          "isDefault": false
+        },
+        {
+          "name": "enum_decl_suffix",
+          "line": 788,
+          "isDefault": false
+        },
+        {
+          "name": "annot_default_clause",
+          "line": 796,
+          "isDefault": false
+        },
+        {
+          "name": "annot_elem_decl",
+          "line": 800,
+          "isDefault": false
+        },
+        {
+          "name": "annot_body_decls",
+          "line": 805,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_decl_suffix",
+          "line": 809,
+          "isDefault": false
+        },
+        {
+          "name": "class_decl_suffix",
+          "line": 817,
+          "isDefault": false
+        },
+        {
+          "name": "interface_declaration_suffix",
+          "line": 823,
+          "isDefault": false
+        },
+        {
+          "name": "type_decl_suffix",
+          "line": 829,
+          "isDefault": false
+        },
+        {
+          "name": "type_decl",
+          "line": 835,
+          "isDefault": false
+        },
+        {
+          "name": "type_decls",
+          "line": 838,
+          "isDefault": false
+        },
+        {
+          "name": "if_stmt",
+          "line": 844,
+          "isDefault": false
+        },
+        {
+          "name": "expr_stmt_list",
+          "line": 848,
+          "isDefault": false
+        },
+        {
+          "name": "for_init_decl",
+          "line": 852,
+          "isDefault": false
+        },
+        {
+          "name": "for_init",
+          "line": 856,
+          "isDefault": false
+        },
+        {
+          "name": "basic_for_paren_part",
+          "line": 859,
+          "isDefault": false
+        },
+        {
+          "name": "basic_for_stmt",
+          "line": 862,
+          "isDefault": false
+        },
+        {
+          "name": "for_val_decl",
+          "line": 866,
+          "isDefault": false
+        },
+        {
+          "name": "enhanced_for_stmt",
+          "line": 869,
+          "isDefault": false
+        },
+        {
+          "name": "while_stmt",
+          "line": 873,
+          "isDefault": false
+        },
+        {
+          "name": "do_while_stmt",
+          "line": 877,
+          "isDefault": false
+        },
+        {
+          "name": "catch_parameter_types",
+          "line": 881,
+          "isDefault": false
+        },
+        {
+          "name": "catch_parameter",
+          "line": 885,
+          "isDefault": false
+        },
+        {
+          "name": "catch_clause",
+          "line": 888,
+          "isDefault": false
+        },
+        {
+          "name": "catch_clauses",
+          "line": 892,
+          "isDefault": false
+        },
+        {
+          "name": "finally_clause",
+          "line": 896,
+          "isDefault": false
+        },
+        {
+          "name": "resource",
+          "line": 899,
+          "isDefault": false
+        },
+        {
+          "name": "resources",
+          "line": 903,
+          "isDefault": false
+        },
+        {
+          "name": "try_stmt",
+          "line": 907,
+          "isDefault": false
+        },
+        {
+          "name": "default_label",
+          "line": 911,
+          "isDefault": false
+        },
+        {
+          "name": "case_label",
+          "line": 915,
+          "isDefault": false
+        },
+        {
+          "name": "switch_label",
+          "line": 919,
+          "isDefault": false
+        },
+        {
+          "name": "switch_clause",
+          "line": 922,
+          "isDefault": false
+        },
+        {
+          "name": "switch_clauses",
+          "line": 926,
+          "isDefault": false
+        },
+        {
+          "name": "switch_stmt",
+          "line": 930,
+          "isDefault": false
+        },
+        {
+          "name": "synchronized_stmt",
+          "line": 934,
+          "isDefault": false
+        },
+        {
+          "name": "return_stmt",
+          "line": 938,
+          "isDefault": false
+        },
+        {
+          "name": "throw_stmt",
+          "line": 942,
+          "isDefault": false
+        },
+        {
+          "name": "break_stmt",
+          "line": 946,
+          "isDefault": false
+        },
+        {
+          "name": "continue_stmt",
+          "line": 950,
+          "isDefault": false
+        },
+        {
+          "name": "assert_stmt",
+          "line": 954,
+          "isDefault": false
+        },
+        {
+          "name": "semi_stmt",
+          "line": 958,
+          "isDefault": false
+        },
+        {
+          "name": "expr_stmt",
+          "line": 962,
+          "isDefault": false
+        },
+        {
+          "name": "labelled_stmt",
+          "line": 965,
+          "isDefault": false
+        },
+        {
+          "name": "stmt",
+          "line": 969,
+          "isDefault": false
+        },
+        {
+          "name": "block",
+          "line": 990,
+          "isDefault": false
+        },
+        {
+          "name": "statements",
+          "line": 994,
+          "isDefault": false
+        },
+        {
+          "name": "package_decl",
+          "line": 1000,
+          "isDefault": false
+        },
+        {
+          "name": "import_decl",
+          "line": 1004,
+          "isDefault": false
+        },
+        {
+          "name": "import_decls",
+          "line": 1008,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 1012,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 1016,
+          "isDefault": false
+        },
+        {
+          "name": "JavaGrammar",
+          "line": 58,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 31,
+        "exportCount": 309,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/JavaTokens.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 955,
+      "nonEmptyLines": 749,
+      "functions": [
+        {
+          "name": "tok",
+          "startLine": 51,
+          "endLine": 53,
+          "params": [
+            "kind"
+          ]
+        },
+        {
+          "name": "tok",
+          "startLine": 55,
+          "endLine": 58,
+          "params": [
+            "kind_name"
+          ]
+        },
+        {
+          "name": "root",
+          "startLine": 950,
+          "endLine": 952,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "JavaTokens",
+          "startLine": 47,
+          "endLine": 955,
+          "methods": [
+            "tok",
+            "tok",
+            "root"
+          ],
+          "properties": [
+            "_boolean",
+            "_byte",
+            "_char",
+            "_double",
+            "_float",
+            "_int",
+            "_long",
+            "_short",
+            "_void",
+            "_abstract",
+            "_default",
+            "_final",
+            "_native",
+            "_private",
+            "_protected",
+            "_public",
+            "_static",
+            "_strictfp",
+            "_synchronized",
+            "_transient",
+            "_volatile",
+            "_assert",
+            "_break",
+            "_case",
+            "_catch",
+            "_class",
+            "_const",
+            "_continue",
+            "_do",
+            "_else",
+            "_enum",
+            "_extends",
+            "_finally",
+            "_for",
+            "_goto",
+            "_if",
+            "_implements",
+            "_import",
+            "_interface",
+            "_instanceof",
+            "_new",
+            "_package",
+            "_return",
+            "_super",
+            "_switch",
+            "_this",
+            "_throws",
+            "_throw",
+            "_try",
+            "_while",
+            "BANG",
+            "BANGEQ",
+            "PERCENT",
+            "PERCENTEQ",
+            "AMP",
+            "AMPAMP",
+            "AMPEQ",
+            "LPAREN",
+            "RPAREN",
+            "STAR",
+            "STAREQ",
+            "PLUS",
+            "PLUSPLUS",
+            "PLUSEQ",
+            "COMMA",
+            "SUB",
+            "SUBSUB",
+            "SUBEQ",
+            "EQ",
+            "EQEQ",
+            "QUES",
+            "CARET",
+            "CARETEQ",
+            "LBRACE",
+            "RBRACE",
+            "BAR",
+            "BARBAR",
+            "BAREQ",
+            "TILDE",
+            "MONKEYS_AT",
+            "DIV",
+            "DIVEQ",
+            "GTEQ",
+            "LTEQ",
+            "LTLTEQ",
+            "LTLT",
+            "GTGTEQ",
+            "GTGTGTEQ",
+            "GT",
+            "LT",
+            "LBRACKET",
+            "RBRACKET",
+            "ARROW",
+            "COL",
+            "COLCOL",
+            "SEMI",
+            "DOT",
+            "ELLIPSIS",
+            "GTnw",
+            "GTGT",
+            "GTGTGT",
+            "_false",
+            "_true",
+            "_null",
+            "first",
+            "iden",
+            "float_literal",
+            "double_literal",
+            "integer_literal",
+            "long_literal",
+            "char_literal",
+            "string_literal",
+            "literal",
+            "_stmt",
+            "_expr",
+            "_block",
+            "annotation_element",
+            "annotation_inner_list",
+            "annotation_element_list",
+            "annotation_element_pair",
+            "normal_annotation_element_pairs",
+            "normal_annotation_suffix",
+            "single_element_annotation_suffix",
+            "marker_annotation_suffix",
+            "annotation_suffix",
+            "qualified_iden",
+            "annotation",
+            "annotations",
+            "basic_type",
+            "primitive_type",
+            "extends_bound",
+            "super_bound",
+            "type_bound",
+            "wildcard",
+            "opt_type_args",
+            "class_type_part",
+            "class_type",
+            "stem_type",
+            "dim",
+            "dims",
+            "dims1",
+            "type_dim_suffix",
+            "type",
+            "type_union_syntax",
+            "type_union",
+            "type_bounds",
+            "type_param",
+            "type_params",
+            "var_init",
+            "array_init",
+            "dim_expr",
+            "dim_exprs",
+            "dim_expr_array_creator",
+            "init_array_creator",
+            "array_ctor_call",
+            "lambda",
+            "args",
+            "par_expr",
+            "ctor_call",
+            "new_ref_suffix",
+            "method_ref_suffix",
+            "ref_suffix",
+            "class_expr_suffix",
+            "type_suffix_expr",
+            "iden_or_method_expr",
+            "this_expr",
+            "super_expr",
+            "primary_expr",
+            "prefix_op",
+            "postfix_expr",
+            "prefix_expr",
+            "binary_push",
+            "mult_op",
+            "add_op",
+            "shift_op",
+            "order_op",
+            "eq_op",
+            "assignment_op",
+            "mult_expr",
+            "add_expr",
+            "shift_expr",
+            "order_expr",
+            "eq_expr",
+            "binary_and_expr",
+            "xor_expr",
+            "binary_or_expr",
+            "conditional_and_expr",
+            "conditional_or_expr",
+            "ternary_expr",
+            "expr",
+            "keyword_modifier",
+            "modifier",
+            "modifiers",
+            "this_parameter_qualifier",
+            "this_param_suffix",
+            "iden_param_suffix",
+            "variadic_param_suffix",
+            "formal_param_suffix",
+            "formal_param",
+            "formal_params",
+            "untyped_params",
+            "single_param",
+            "lambda_params",
+            "var_declarator_id",
+            "var_declarator",
+            "var_declarators",
+            "var_decl_suffix_no_semi",
+            "var_decl_suffix",
+            "var_decl",
+            "throws_clause",
+            "block_or_semi",
+            "method_decl_suffix",
+            "constructor_decl_suffix",
+            "init_block",
+            "extends_clause",
+            "implements_clause",
+            "type_sig",
+            "class_modifierized_decl",
+            "class_body_decl",
+            "class_body_decls",
+            "type_body",
+            "enum_constant",
+            "enum_class_decls",
+            "enum_constants",
+            "enum_body",
+            "enum_decl_suffix",
+            "annot_default_clause",
+            "annot_elem_decl",
+            "annot_body_decls",
+            "annotation_decl_suffix",
+            "class_decl_suffix",
+            "interface_declaration_suffix",
+            "type_decl_suffix",
+            "type_decl",
+            "type_decls",
+            "if_stmt",
+            "expr_stmt_list",
+            "for_init_decl",
+            "for_init",
+            "basic_for_paren_part",
+            "basic_for_stmt",
+            "for_val_decl",
+            "enhanced_for_stmt",
+            "while_stmt",
+            "do_while_stmt",
+            "catch_parameter_types",
+            "catch_parameter",
+            "catch_clause",
+            "catch_clauses",
+            "finally_clause",
+            "resource",
+            "resources",
+            "try_stmt",
+            "default_label",
+            "case_label",
+            "switch_label",
+            "switch_clause",
+            "switch_clauses",
+            "switch_stmt",
+            "synchronized_stmt",
+            "return_stmt",
+            "throw_stmt",
+            "break_stmt",
+            "continue_stmt",
+            "assert_stmt",
+            "semi_stmt",
+            "expr_stmt",
+            "labelled_stmt",
+            "stmt",
+            "block",
+            "statements",
+            "package_decl",
+            "import_decl",
+            "import_decls",
+            "root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "tok",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "_boolean",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "_byte",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "_char",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "_double",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "_float",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "_int",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "_long",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "_short",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "_void",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "_abstract",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "_default",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "_final",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "_native",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "_private",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "_protected",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "_public",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "_static",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "_strictfp",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "_synchronized",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "_transient",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "_volatile",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "_assert",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "_break",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "_case",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "_catch",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "_class",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "_const",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "_continue",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "_do",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "_else",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "_enum",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "_extends",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "_finally",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "_for",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "_goto",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "_if",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "_implements",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "_import",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "_interface",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "_instanceof",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "_new",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "_package",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "_return",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "_super",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "_switch",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "_this",
+          "line": 105,
+          "isDefault": false
+        },
+        {
+          "name": "_throws",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "_throw",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "_try",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "_while",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "BANG",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "BANGEQ",
+          "line": 115,
+          "isDefault": false
+        },
+        {
+          "name": "PERCENT",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "PERCENTEQ",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "AMP",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "AMPAMP",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "AMPEQ",
+          "line": 120,
+          "isDefault": false
+        },
+        {
+          "name": "LPAREN",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "RPAREN",
+          "line": 122,
+          "isDefault": false
+        },
+        {
+          "name": "STAR",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "STAREQ",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "PLUS",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "PLUSPLUS",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "PLUSEQ",
+          "line": 127,
+          "isDefault": false
+        },
+        {
+          "name": "COMMA",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "SUB",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "SUBSUB",
+          "line": 130,
+          "isDefault": false
+        },
+        {
+          "name": "SUBEQ",
+          "line": 131,
+          "isDefault": false
+        },
+        {
+          "name": "EQ",
+          "line": 132,
+          "isDefault": false
+        },
+        {
+          "name": "EQEQ",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "QUES",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "CARET",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "CARETEQ",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACE",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACE",
+          "line": 138,
+          "isDefault": false
+        },
+        {
+          "name": "BAR",
+          "line": 139,
+          "isDefault": false
+        },
+        {
+          "name": "BARBAR",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "BAREQ",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "TILDE",
+          "line": 142,
+          "isDefault": false
+        },
+        {
+          "name": "MONKEYS_AT",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "DIV",
+          "line": 144,
+          "isDefault": false
+        },
+        {
+          "name": "DIVEQ",
+          "line": 145,
+          "isDefault": false
+        },
+        {
+          "name": "GTEQ",
+          "line": 146,
+          "isDefault": false
+        },
+        {
+          "name": "LTEQ",
+          "line": 147,
+          "isDefault": false
+        },
+        {
+          "name": "LTLTEQ",
+          "line": 148,
+          "isDefault": false
+        },
+        {
+          "name": "LTLT",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTEQ",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTGTEQ",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "GT",
+          "line": 152,
+          "isDefault": false
+        },
+        {
+          "name": "LT",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACKET",
+          "line": 154,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACKET",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "ARROW",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "COL",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "COLCOL",
+          "line": 158,
+          "isDefault": false
+        },
+        {
+          "name": "SEMI",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "DOT",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "ELLIPSIS",
+          "line": 161,
+          "isDefault": false
+        },
+        {
+          "name": "GTnw",
+          "line": 166,
+          "isDefault": false
+        },
+        {
+          "name": "GTGT",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "GTGTGT",
+          "line": 170,
+          "isDefault": false
+        },
+        {
+          "name": "_false",
+          "line": 172,
+          "isDefault": false
+        },
+        {
+          "name": "_true",
+          "line": 173,
+          "isDefault": false
+        },
+        {
+          "name": "_null",
+          "line": 174,
+          "isDefault": false
+        },
+        {
+          "name": "first",
+          "line": 176,
+          "isDefault": false
+        },
+        {
+          "name": "iden",
+          "line": 178,
+          "isDefault": false
+        },
+        {
+          "name": "float_literal",
+          "line": 181,
+          "isDefault": false
+        },
+        {
+          "name": "double_literal",
+          "line": 184,
+          "isDefault": false
+        },
+        {
+          "name": "integer_literal",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "long_literal",
+          "line": 190,
+          "isDefault": false
+        },
+        {
+          "name": "char_literal",
+          "line": 193,
+          "isDefault": false
+        },
+        {
+          "name": "string_literal",
+          "line": 196,
+          "isDefault": false
+        },
+        {
+          "name": "literal",
+          "line": 199,
+          "isDefault": false
+        },
+        {
+          "name": "_stmt",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "_expr",
+          "line": 209,
+          "isDefault": false
+        },
+        {
+          "name": "_block",
+          "line": 212,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element",
+          "line": 217,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_inner_list",
+          "line": 222,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element_list",
+          "line": 225,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_element_pair",
+          "line": 229,
+          "isDefault": false
+        },
+        {
+          "name": "normal_annotation_element_pairs",
+          "line": 233,
+          "isDefault": false
+        },
+        {
+          "name": "normal_annotation_suffix",
+          "line": 237,
+          "isDefault": false
+        },
+        {
+          "name": "single_element_annotation_suffix",
+          "line": 242,
+          "isDefault": false
+        },
+        {
+          "name": "marker_annotation_suffix",
+          "line": 247,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_suffix",
+          "line": 252,
+          "isDefault": false
+        },
+        {
+          "name": "qualified_iden",
+          "line": 257,
+          "isDefault": false
+        },
+        {
+          "name": "annotation",
+          "line": 261,
+          "isDefault": false
+        },
+        {
+          "name": "annotations",
+          "line": 264,
+          "isDefault": false
+        },
+        {
+          "name": "basic_type",
+          "line": 270,
+          "isDefault": false
+        },
+        {
+          "name": "primitive_type",
+          "line": 274,
+          "isDefault": false
+        },
+        {
+          "name": "extends_bound",
+          "line": 278,
+          "isDefault": false
+        },
+        {
+          "name": "super_bound",
+          "line": 282,
+          "isDefault": false
+        },
+        {
+          "name": "type_bound",
+          "line": 286,
+          "isDefault": false
+        },
+        {
+          "name": "wildcard",
+          "line": 289,
+          "isDefault": false
+        },
+        {
+          "name": "opt_type_args",
+          "line": 293,
+          "isDefault": false
+        },
+        {
+          "name": "class_type_part",
+          "line": 297,
+          "isDefault": false
+        },
+        {
+          "name": "class_type",
+          "line": 301,
+          "isDefault": false
+        },
+        {
+          "name": "stem_type",
+          "line": 305,
+          "isDefault": false
+        },
+        {
+          "name": "dim",
+          "line": 308,
+          "isDefault": false
+        },
+        {
+          "name": "dims",
+          "line": 312,
+          "isDefault": false
+        },
+        {
+          "name": "dims1",
+          "line": 316,
+          "isDefault": false
+        },
+        {
+          "name": "type_dim_suffix",
+          "line": 320,
+          "isDefault": false
+        },
+        {
+          "name": "type",
+          "line": 325,
+          "isDefault": false
+        },
+        {
+          "name": "type_union_syntax",
+          "line": 328,
+          "isDefault": false
+        },
+        {
+          "name": "type_union",
+          "line": 331,
+          "isDefault": false
+        },
+        {
+          "name": "type_bounds",
+          "line": 335,
+          "isDefault": false
+        },
+        {
+          "name": "type_param",
+          "line": 339,
+          "isDefault": false
+        },
+        {
+          "name": "type_params",
+          "line": 343,
+          "isDefault": false
+        },
+        {
+          "name": "var_init",
+          "line": 351,
+          "isDefault": false
+        },
+        {
+          "name": "array_init",
+          "line": 354,
+          "isDefault": false
+        },
+        {
+          "name": "dim_expr",
+          "line": 360,
+          "isDefault": false
+        },
+        {
+          "name": "dim_exprs",
+          "line": 364,
+          "isDefault": false
+        },
+        {
+          "name": "dim_expr_array_creator",
+          "line": 368,
+          "isDefault": false
+        },
+        {
+          "name": "init_array_creator",
+          "line": 372,
+          "isDefault": false
+        },
+        {
+          "name": "array_ctor_call",
+          "line": 376,
+          "isDefault": false
+        },
+        {
+          "name": "lambda",
+          "line": 381,
+          "isDefault": false
+        },
+        {
+          "name": "args",
+          "line": 387,
+          "isDefault": false
+        },
+        {
+          "name": "par_expr",
+          "line": 391,
+          "isDefault": false
+        },
+        {
+          "name": "ctor_call",
+          "line": 395,
+          "isDefault": false
+        },
+        {
+          "name": "new_ref_suffix",
+          "line": 399,
+          "isDefault": false
+        },
+        {
+          "name": "method_ref_suffix",
+          "line": 404,
+          "isDefault": false
+        },
+        {
+          "name": "ref_suffix",
+          "line": 409,
+          "isDefault": false
+        },
+        {
+          "name": "class_expr_suffix",
+          "line": 412,
+          "isDefault": false
+        },
+        {
+          "name": "type_suffix_expr",
+          "line": 417,
+          "isDefault": false
+        },
+        {
+          "name": "iden_or_method_expr",
+          "line": 420,
+          "isDefault": false
+        },
+        {
+          "name": "this_expr",
+          "line": 424,
+          "isDefault": false
+        },
+        {
+          "name": "super_expr",
+          "line": 428,
+          "isDefault": false
+        },
+        {
+          "name": "primary_expr",
+          "line": 432,
+          "isDefault": false
+        },
+        {
+          "name": "prefix_op",
+          "line": 438,
+          "isDefault": false
+        },
+        {
+          "name": "postfix_expr",
+          "line": 446,
+          "isDefault": false
+        },
+        {
+          "name": "prefix_expr",
+          "line": 467,
+          "isDefault": false
+        },
+        {
+          "name": "mult_op",
+          "line": 479,
+          "isDefault": false
+        },
+        {
+          "name": "add_op",
+          "line": 484,
+          "isDefault": false
+        },
+        {
+          "name": "shift_op",
+          "line": 488,
+          "isDefault": false
+        },
+        {
+          "name": "order_op",
+          "line": 493,
+          "isDefault": false
+        },
+        {
+          "name": "eq_op",
+          "line": 499,
+          "isDefault": false
+        },
+        {
+          "name": "assignment_op",
+          "line": 503,
+          "isDefault": false
+        },
+        {
+          "name": "mult_expr",
+          "line": 517,
+          "isDefault": false
+        },
+        {
+          "name": "add_expr",
+          "line": 521,
+          "isDefault": false
+        },
+        {
+          "name": "shift_expr",
+          "line": 525,
+          "isDefault": false
+        },
+        {
+          "name": "order_expr",
+          "line": 529,
+          "isDefault": false
+        },
+        {
+          "name": "eq_expr",
+          "line": 535,
+          "isDefault": false
+        },
+        {
+          "name": "binary_and_expr",
+          "line": 539,
+          "isDefault": false
+        },
+        {
+          "name": "xor_expr",
+          "line": 543,
+          "isDefault": false
+        },
+        {
+          "name": "binary_or_expr",
+          "line": 547,
+          "isDefault": false
+        },
+        {
+          "name": "conditional_and_expr",
+          "line": 551,
+          "isDefault": false
+        },
+        {
+          "name": "conditional_or_expr",
+          "line": 555,
+          "isDefault": false
+        },
+        {
+          "name": "ternary_expr",
+          "line": 559,
+          "isDefault": false
+        },
+        {
+          "name": "expr",
+          "line": 564,
+          "isDefault": false
+        },
+        {
+          "name": "keyword_modifier",
+          "line": 570,
+          "isDefault": false
+        },
+        {
+          "name": "modifier",
+          "line": 576,
+          "isDefault": false
+        },
+        {
+          "name": "modifiers",
+          "line": 579,
+          "isDefault": false
+        },
+        {
+          "name": "this_parameter_qualifier",
+          "line": 585,
+          "isDefault": false
+        },
+        {
+          "name": "this_param_suffix",
+          "line": 589,
+          "isDefault": false
+        },
+        {
+          "name": "iden_param_suffix",
+          "line": 594,
+          "isDefault": false
+        },
+        {
+          "name": "variadic_param_suffix",
+          "line": 599,
+          "isDefault": false
+        },
+        {
+          "name": "formal_param_suffix",
+          "line": 604,
+          "isDefault": false
+        },
+        {
+          "name": "formal_param",
+          "line": 607,
+          "isDefault": false
+        },
+        {
+          "name": "formal_params",
+          "line": 610,
+          "isDefault": false
+        },
+        {
+          "name": "untyped_params",
+          "line": 614,
+          "isDefault": false
+        },
+        {
+          "name": "single_param",
+          "line": 618,
+          "isDefault": false
+        },
+        {
+          "name": "lambda_params",
+          "line": 622,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarator_id",
+          "line": 627,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarator",
+          "line": 631,
+          "isDefault": false
+        },
+        {
+          "name": "var_declarators",
+          "line": 635,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl_suffix_no_semi",
+          "line": 639,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl_suffix",
+          "line": 644,
+          "isDefault": false
+        },
+        {
+          "name": "var_decl",
+          "line": 647,
+          "isDefault": false
+        },
+        {
+          "name": "throws_clause",
+          "line": 650,
+          "isDefault": false
+        },
+        {
+          "name": "block_or_semi",
+          "line": 654,
+          "isDefault": false
+        },
+        {
+          "name": "method_decl_suffix",
+          "line": 657,
+          "isDefault": false
+        },
+        {
+          "name": "constructor_decl_suffix",
+          "line": 663,
+          "isDefault": false
+        },
+        {
+          "name": "init_block",
+          "line": 669,
+          "isDefault": false
+        },
+        {
+          "name": "extends_clause",
+          "line": 677,
+          "isDefault": false
+        },
+        {
+          "name": "implements_clause",
+          "line": 681,
+          "isDefault": false
+        },
+        {
+          "name": "type_sig",
+          "line": 685,
+          "isDefault": false
+        },
+        {
+          "name": "class_modifierized_decl",
+          "line": 688,
+          "isDefault": false
+        },
+        {
+          "name": "class_body_decl",
+          "line": 696,
+          "isDefault": false
+        },
+        {
+          "name": "class_body_decls",
+          "line": 699,
+          "isDefault": false
+        },
+        {
+          "name": "type_body",
+          "line": 703,
+          "isDefault": false
+        },
+        {
+          "name": "enum_constant",
+          "line": 708,
+          "isDefault": false
+        },
+        {
+          "name": "enum_class_decls",
+          "line": 712,
+          "isDefault": false
+        },
+        {
+          "name": "enum_constants",
+          "line": 715,
+          "isDefault": false
+        },
+        {
+          "name": "enum_body",
+          "line": 718,
+          "isDefault": false
+        },
+        {
+          "name": "enum_decl_suffix",
+          "line": 722,
+          "isDefault": false
+        },
+        {
+          "name": "annot_default_clause",
+          "line": 730,
+          "isDefault": false
+        },
+        {
+          "name": "annot_elem_decl",
+          "line": 734,
+          "isDefault": false
+        },
+        {
+          "name": "annot_body_decls",
+          "line": 739,
+          "isDefault": false
+        },
+        {
+          "name": "annotation_decl_suffix",
+          "line": 743,
+          "isDefault": false
+        },
+        {
+          "name": "class_decl_suffix",
+          "line": 751,
+          "isDefault": false
+        },
+        {
+          "name": "interface_declaration_suffix",
+          "line": 757,
+          "isDefault": false
+        },
+        {
+          "name": "type_decl_suffix",
+          "line": 763,
+          "isDefault": false
+        },
+        {
+          "name": "type_decl",
+          "line": 769,
+          "isDefault": false
+        },
+        {
+          "name": "type_decls",
+          "line": 772,
+          "isDefault": false
+        },
+        {
+          "name": "if_stmt",
+          "line": 778,
+          "isDefault": false
+        },
+        {
+          "name": "expr_stmt_list",
+          "line": 782,
+          "isDefault": false
+        },
+        {
+          "name": "for_init_decl",
+          "line": 786,
+          "isDefault": false
+        },
+        {
+          "name": "for_init",
+          "line": 790,
+          "isDefault": false
+        },
+        {
+          "name": "basic_for_paren_part",
+          "line": 793,
+          "isDefault": false
+        },
+        {
+          "name": "basic_for_stmt",
+          "line": 796,
+          "isDefault": false
+        },
+        {
+          "name": "for_val_decl",
+          "line": 800,
+          "isDefault": false
+        },
+        {
+          "name": "enhanced_for_stmt",
+          "line": 803,
+          "isDefault": false
+        },
+        {
+          "name": "while_stmt",
+          "line": 807,
+          "isDefault": false
+        },
+        {
+          "name": "do_while_stmt",
+          "line": 811,
+          "isDefault": false
+        },
+        {
+          "name": "catch_parameter_types",
+          "line": 815,
+          "isDefault": false
+        },
+        {
+          "name": "catch_parameter",
+          "line": 819,
+          "isDefault": false
+        },
+        {
+          "name": "catch_clause",
+          "line": 822,
+          "isDefault": false
+        },
+        {
+          "name": "catch_clauses",
+          "line": 826,
+          "isDefault": false
+        },
+        {
+          "name": "finally_clause",
+          "line": 830,
+          "isDefault": false
+        },
+        {
+          "name": "resource",
+          "line": 833,
+          "isDefault": false
+        },
+        {
+          "name": "resources",
+          "line": 837,
+          "isDefault": false
+        },
+        {
+          "name": "try_stmt",
+          "line": 841,
+          "isDefault": false
+        },
+        {
+          "name": "default_label",
+          "line": 845,
+          "isDefault": false
+        },
+        {
+          "name": "case_label",
+          "line": 849,
+          "isDefault": false
+        },
+        {
+          "name": "switch_label",
+          "line": 853,
+          "isDefault": false
+        },
+        {
+          "name": "switch_clause",
+          "line": 856,
+          "isDefault": false
+        },
+        {
+          "name": "switch_clauses",
+          "line": 860,
+          "isDefault": false
+        },
+        {
+          "name": "switch_stmt",
+          "line": 864,
+          "isDefault": false
+        },
+        {
+          "name": "synchronized_stmt",
+          "line": 868,
+          "isDefault": false
+        },
+        {
+          "name": "return_stmt",
+          "line": 872,
+          "isDefault": false
+        },
+        {
+          "name": "throw_stmt",
+          "line": 876,
+          "isDefault": false
+        },
+        {
+          "name": "break_stmt",
+          "line": 880,
+          "isDefault": false
+        },
+        {
+          "name": "continue_stmt",
+          "line": 884,
+          "isDefault": false
+        },
+        {
+          "name": "assert_stmt",
+          "line": 888,
+          "isDefault": false
+        },
+        {
+          "name": "semi_stmt",
+          "line": 892,
+          "isDefault": false
+        },
+        {
+          "name": "expr_stmt",
+          "line": 896,
+          "isDefault": false
+        },
+        {
+          "name": "labelled_stmt",
+          "line": 899,
+          "isDefault": false
+        },
+        {
+          "name": "stmt",
+          "line": 903,
+          "isDefault": false
+        },
+        {
+          "name": "block",
+          "line": 924,
+          "isDefault": false
+        },
+        {
+          "name": "statements",
+          "line": 928,
+          "isDefault": false
+        },
+        {
+          "name": "package_decl",
+          "line": 934,
+          "isDefault": false
+        },
+        {
+          "name": "import_decl",
+          "line": 938,
+          "isDefault": false
+        },
+        {
+          "name": "import_decls",
+          "line": 942,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 946,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 950,
+          "isDefault": false
+        },
+        {
+          "name": "JavaTokens",
+          "line": 47,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "tok",
+          "callee": "opred",
+          "lineNumber": 52
+        },
+        {
+          "caller": "tok",
+          "callee": "TokenKind.lookup",
+          "lineNumber": 56
+        },
+        {
+          "caller": "tok",
+          "callee": "tok",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 30,
+        "exportCount": 277,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/Lexer.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 971,
+      "nonEmptyLines": 865,
+      "functions": [
+        {
+          "name": "Lexer",
+          "startLine": 84,
+          "endLine": 87,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "put_char",
+          "startLine": 118,
+          "endLine": 124,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "put_char_and_advance",
+          "startLine": 126,
+          "endLine": 133,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "token",
+          "startLine": 140,
+          "endLine": 146,
+          "params": [
+            "kind",
+            "start",
+            "end",
+            "string",
+            "radix",
+            "trailing_whitespace"
+          ]
+        },
+        {
+          "name": "gt_token",
+          "startLine": 150,
+          "endLine": 155,
+          "params": [
+            "trailing_whitespace"
+          ]
+        },
+        {
+          "name": "str_token",
+          "startLine": 163,
+          "endLine": 169,
+          "params": []
+        },
+        {
+          "name": "num_token",
+          "startLine": 177,
+          "endLine": 183,
+          "params": [
+            "kind",
+            "radix"
+          ]
+        },
+        {
+          "name": "name_token",
+          "startLine": 191,
+          "endLine": 200,
+          "params": []
+        },
+        {
+          "name": "operator",
+          "startLine": 208,
+          "endLine": 211,
+          "params": [
+            "kind"
+          ]
+        },
+        {
+          "name": "add_comment",
+          "startLine": 215,
+          "endLine": 220,
+          "params": [
+            "kind"
+          ]
+        },
+        {
+          "name": "digit",
+          "startLine": 229,
+          "endLine": 243,
+          "params": [
+            "digit",
+            "base"
+          ]
+        },
+        {
+          "name": "process_white_space",
+          "startLine": 250,
+          "endLine": 250,
+          "params": []
+        },
+        {
+          "name": "process_line_terminator",
+          "startLine": 257,
+          "endLine": 257,
+          "params": []
+        },
+        {
+          "name": "process_comment",
+          "startLine": 264,
+          "endLine": 264,
+          "params": []
+        },
+        {
+          "name": "get_char",
+          "startLine": 268,
+          "endLine": 273,
+          "params": [
+            "i"
+          ]
+        },
+        {
+          "name": "is_whitespace",
+          "startLine": 277,
+          "endLine": 279,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "next",
+          "startLine": 287,
+          "endLine": 566,
+          "params": []
+        },
+        {
+          "name": "scan_ident",
+          "startLine": 575,
+          "endLine": 623,
+          "params": []
+        },
+        {
+          "name": "scan_number",
+          "startLine": 638,
+          "endLine": 681,
+          "params": [
+            "radix"
+          ]
+        },
+        {
+          "name": "skip_illegal_underscores",
+          "startLine": 689,
+          "endLine": 697,
+          "params": []
+        },
+        {
+          "name": "scan_digits",
+          "startLine": 708,
+          "endLine": 722,
+          "params": [
+            "radix"
+          ]
+        },
+        {
+          "name": "scan_fraction_and_suffix",
+          "startLine": 732,
+          "endLine": 771,
+          "params": []
+        },
+        {
+          "name": "scan_hex_fraction_and_suffix",
+          "startLine": 784,
+          "endLine": 798,
+          "params": [
+            "seen_digit"
+          ]
+        },
+        {
+          "name": "scan_hex_exponent_and_suffix",
+          "startLine": 808,
+          "endLine": 839,
+          "params": []
+        },
+        {
+          "name": "scan_lit_char",
+          "startLine": 853,
+          "endLine": 906,
+          "params": []
+        },
+        {
+          "name": "literal_error",
+          "startLine": 913,
+          "endLine": 918,
+          "params": []
+        },
+        {
+          "name": "lex",
+          "startLine": 926,
+          "endLine": 933,
+          "params": []
+        },
+        {
+          "name": "warn",
+          "startLine": 940,
+          "endLine": 943,
+          "params": [
+            "pos",
+            "msg"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 950,
+          "endLine": 954,
+          "params": [
+            "msg"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Lexer",
+          "startLine": 45,
+          "endLine": 971,
+          "methods": [
+            "Lexer",
+            "put_char",
+            "put_char_and_advance",
+            "token",
+            "gt_token",
+            "str_token",
+            "num_token",
+            "name_token",
+            "operator",
+            "add_comment",
+            "digit",
+            "process_white_space",
+            "process_line_terminator",
+            "process_comment",
+            "get_char",
+            "is_whitespace",
+            "next",
+            "scan_ident",
+            "scan_number",
+            "skip_illegal_underscores",
+            "scan_digits",
+            "scan_fraction_and_suffix",
+            "scan_hex_fraction_and_suffix",
+            "scan_hex_exponent_and_suffix",
+            "scan_lit_char",
+            "literal_error",
+            "lex",
+            "warn",
+            "error"
+          ],
+          "properties": [
+            "LF",
+            "FF",
+            "CR",
+            "EOI",
+            "string",
+            "warnings",
+            "support_surrogate_pairs",
+            "i",
+            "buf",
+            "bp",
+            "start",
+            "comments"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "string",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "warnings",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "support_surrogate_pairs",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "Lexer",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "next",
+          "line": 287,
+          "isDefault": false
+        },
+        {
+          "name": "lex",
+          "line": 926,
+          "isDefault": false
+        },
+        {
+          "name": "Lexer",
+          "line": 45,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Lexer",
+          "callee": "string.codePoints().toArray",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Lexer",
+          "callee": "string.codePoints",
+          "lineNumber": 86
+        },
+        {
+          "caller": "put_char",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 121
+        },
+        {
+          "caller": "put_char_and_advance",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 129
+        },
+        {
+          "caller": "token",
+          "callee": "new Token",
+          "lineNumber": 145
+        },
+        {
+          "caller": "gt_token",
+          "callee": "token",
+          "lineNumber": 154
+        },
+        {
+          "caller": "str_token",
+          "callee": "new String",
+          "lineNumber": 167
+        },
+        {
+          "caller": "str_token",
+          "callee": "token",
+          "lineNumber": 168
+        },
+        {
+          "caller": "num_token",
+          "callee": "new String",
+          "lineNumber": 181
+        },
+        {
+          "caller": "num_token",
+          "callee": "token",
+          "lineNumber": 182
+        },
+        {
+          "caller": "name_token",
+          "callee": "new String",
+          "lineNumber": 195
+        },
+        {
+          "caller": "name_token",
+          "callee": "TokenKind.lookup",
+          "lineNumber": 196
+        },
+        {
+          "caller": "name_token",
+          "callee": "token",
+          "lineNumber": 198
+        },
+        {
+          "caller": "name_token",
+          "callee": "token",
+          "lineNumber": 199
+        },
+        {
+          "caller": "operator",
+          "callee": "token",
+          "lineNumber": 210
+        },
+        {
+          "caller": "add_comment",
+          "callee": "new ArrayList<>",
+          "lineNumber": 218
+        },
+        {
+          "caller": "add_comment",
+          "callee": "comments.add",
+          "lineNumber": 219
+        },
+        {
+          "caller": "add_comment",
+          "callee": "new Token.Comment",
+          "lineNumber": 219
+        },
+        {
+          "caller": "add_comment",
+          "callee": "new String",
+          "lineNumber": 219
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 294
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 298
+        },
+        {
+          "caller": "next",
+          "callee": "process_white_space",
+          "lineNumber": 300
+        },
+        {
+          "caller": "next",
+          "callee": "process_line_terminator",
+          "lineNumber": 304
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 308
+        },
+        {
+          "caller": "next",
+          "callee": "process_line_terminator",
+          "lineNumber": 309
+        },
+        {
+          "caller": "next",
+          "callee": "scan_ident",
+          "lineNumber": 365
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 367
+        },
+        {
+          "caller": "next",
+          "callee": "scan_number",
+          "lineNumber": 372
+        },
+        {
+          "caller": "next",
+          "callee": "scan_number",
+          "lineNumber": 376
+        },
+        {
+          "caller": "next",
+          "callee": "scan_number",
+          "lineNumber": 379
+        },
+        {
+          "caller": "next",
+          "callee": "scan_number",
+          "lineNumber": 390
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 392
+        },
+        {
+          "caller": "next",
+          "callee": "scan_number",
+          "lineNumber": 395
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 398
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 401
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 405
+        },
+        {
+          "caller": "next",
+          "callee": "scan_ident",
+          "lineNumber": 409
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 411
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 413
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 415
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 417
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 419
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 421
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 423
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 425
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 427
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 429
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 431
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 433
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 435
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 437
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 443
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 443
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 444
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 446
+        },
+        {
+          "caller": "next",
+          "callee": "name_token",
+          "lineNumber": 447
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 450
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 451
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 452
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 454
+        },
+        {
+          "caller": "next",
+          "callee": "is_whitespace",
+          "lineNumber": 455
+        },
+        {
+          "caller": "next",
+          "callee": "gt_token",
+          "lineNumber": 456
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 458
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 460
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 462
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 463
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 464
+        },
+        {
+          "caller": "next",
+          "callee": "gt_token",
+          "lineNumber": 467
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 470
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 471
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 474
+        },
+        {
+          "caller": "next",
+          "callee": "gt_token",
+          "lineNumber": 476
+        },
+        {
+          "caller": "next",
+          "callee": "name_token",
+          "lineNumber": 478
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 483
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 484
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 485
+        },
+        {
+          "caller": "next",
+          "callee": "put_char_and_advance",
+          "lineNumber": 487
+        },
+        {
+          "caller": "next",
+          "callee": "name_token",
+          "lineNumber": 488
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 490
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 493
+        },
+        {
+          "caller": "next",
+          "callee": "add_comment",
+          "lineNumber": 495
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 498
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 501
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 506
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 510
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 512
+        },
+        {
+          "caller": "next",
+          "callee": "add_comment",
+          "lineNumber": 514
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 518
+        },
+        {
+          "caller": "next",
+          "callee": "operator",
+          "lineNumber": 520
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 523
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 525
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 527
+        },
+        {
+          "caller": "next",
+          "callee": "scan_lit_char",
+          "lineNumber": 529
+        },
+        {
+          "caller": "next",
+          "callee": "literal_error",
+          "lineNumber": 531
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 532
+        },
+        {
+          "caller": "next",
+          "callee": "token",
+          "lineNumber": 535
+        },
+        {
+          "caller": "next",
+          "callee": "String.valueOf",
+          "lineNumber": 535
+        },
+        {
+          "caller": "next",
+          "callee": "Character.toChars",
+          "lineNumber": 535
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 537
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 541
+        },
+        {
+          "caller": "next",
+          "callee": "scan_lit_char",
+          "lineNumber": 543
+        },
+        {
+          "caller": "next",
+          "callee": "literal_error",
+          "lineNumber": 545
+        },
+        {
+          "caller": "next",
+          "callee": "put_char",
+          "lineNumber": 546
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 547
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 549
+        },
+        {
+          "caller": "next",
+          "callee": "str_token",
+          "lineNumber": 552
+        },
+        {
+          "caller": "next",
+          "callee": "get_char",
+          "lineNumber": 554
+        },
+        {
+          "caller": "next",
+          "callee": "Character.isJavaIdentifierStart",
+          "lineNumber": 556
+        },
+        {
+          "caller": "next",
+          "callee": "scan_ident",
+          "lineNumber": 557
+        },
+        {
+          "caller": "next",
+          "callee": "String.format",
+          "lineNumber": 560
+        },
+        {
+          "caller": "next",
+          "callee": "String.format",
+          "lineNumber": 561
+        },
+        {
+          "caller": "next",
+          "callee": "error",
+          "lineNumber": 563
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "get_char",
+          "lineNumber": 578
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "put_char_and_advance",
+          "lineNumber": 595
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "name_token",
+          "lineNumber": 608
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "name_token",
+          "lineNumber": 614
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "Character.isIdentifierIgnorable",
+          "lineNumber": 615
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "Character.isJavaIdentifierPart",
+          "lineNumber": 617
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "put_char_and_advance",
+          "lineNumber": 618
+        },
+        {
+          "caller": "scan_ident",
+          "callee": "name_token",
+          "lineNumber": 620
+        },
+        {
+          "caller": "scan_number",
+          "callee": "get_char",
+          "lineNumber": 642
+        },
+        {
+          "caller": "scan_number",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 645
+        },
+        {
+          "caller": "scan_number",
+          "callee": "get_char",
+          "lineNumber": 646
+        },
+        {
+          "caller": "scan_number",
+          "callee": "digit",
+          "lineNumber": 649
+        },
+        {
+          "caller": "scan_number",
+          "callee": "scan_digits",
+          "lineNumber": 651
+        },
+        {
+          "caller": "scan_number",
+          "callee": "get_char",
+          "lineNumber": 652
+        },
+        {
+          "caller": "scan_number",
+          "callee": "scan_fraction_and_suffix",
+          "lineNumber": 657
+        },
+        {
+          "caller": "scan_number",
+          "callee": "error",
+          "lineNumber": 659
+        },
+        {
+          "caller": "scan_number",
+          "callee": "scan_fraction_and_suffix",
+          "lineNumber": 661
+        },
+        {
+          "caller": "scan_number",
+          "callee": "scan_hex_fraction_and_suffix",
+          "lineNumber": 665
+        },
+        {
+          "caller": "scan_number",
+          "callee": "error",
+          "lineNumber": 667
+        },
+        {
+          "caller": "scan_number",
+          "callee": "scan_hex_exponent_and_suffix",
+          "lineNumber": 669
+        },
+        {
+          "caller": "scan_number",
+          "callee": "error",
+          "lineNumber": 673
+        },
+        {
+          "caller": "scan_number",
+          "callee": "num_token",
+          "lineNumber": 677
+        },
+        {
+          "caller": "scan_number",
+          "callee": "num_token",
+          "lineNumber": 680
+        },
+        {
+          "caller": "skip_illegal_underscores",
+          "callee": "get_char",
+          "lineNumber": 691
+        },
+        {
+          "caller": "skip_illegal_underscores",
+          "callee": "warn",
+          "lineNumber": 693
+        },
+        {
+          "caller": "skip_illegal_underscores",
+          "callee": "get_char",
+          "lineNumber": 695
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "get_char",
+          "lineNumber": 710
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "digit",
+          "lineNumber": 712
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "put_char",
+          "lineNumber": 715
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "get_char",
+          "lineNumber": 717
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "digit",
+          "lineNumber": 719
+        },
+        {
+          "caller": "scan_digits",
+          "callee": "warn",
+          "lineNumber": 721
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 734
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 735
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 738
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 739
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "scan_digits",
+          "lineNumber": 743
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 744
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 749
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 750
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 751
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 753
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 754
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 755
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "error",
+          "lineNumber": 757
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "scan_digits",
+          "lineNumber": 758
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 759
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 763
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "num_token",
+          "lineNumber": 764
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 768
+        },
+        {
+          "caller": "scan_fraction_and_suffix",
+          "callee": "num_token",
+          "lineNumber": 770
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 786
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 788
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 789
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 790
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "digit",
+          "lineNumber": 791
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "scan_digits",
+          "lineNumber": 793
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "error",
+          "lineNumber": 796
+        },
+        {
+          "caller": "scan_hex_fraction_and_suffix",
+          "callee": "scan_hex_exponent_and_suffix",
+          "lineNumber": 797
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 810
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "error",
+          "lineNumber": 813
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 815
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 816
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 817
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 820
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "skip_illegal_underscores",
+          "lineNumber": 821
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 822
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "error",
+          "lineNumber": 826
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "scan_digits",
+          "lineNumber": 828
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "get_char",
+          "lineNumber": 829
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 832
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "num_token",
+          "lineNumber": 833
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "put_char_and_advance",
+          "lineNumber": 836
+        },
+        {
+          "caller": "scan_hex_exponent_and_suffix",
+          "callee": "num_token",
+          "lineNumber": 838
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 855
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 859
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 862
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "digit",
+          "lineNumber": 867
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 868
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "digit",
+          "lineNumber": 870
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 871
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "digit",
+          "lineNumber": 873
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "get_char",
+          "lineNumber": 882
+        },
+        {
+          "caller": "scan_lit_char",
+          "callee": "digit",
+          "lineNumber": 887
+        },
+        {
+          "caller": "literal_error",
+          "callee": "error",
+          "lineNumber": 916
+        },
+        {
+          "caller": "literal_error",
+          "callee": "error",
+          "lineNumber": 917
+        },
+        {
+          "caller": "lex",
+          "callee": "new ArrayList<>",
+          "lineNumber": 928
+        },
+        {
+          "caller": "lex",
+          "callee": "next",
+          "lineNumber": 930
+        },
+        {
+          "caller": "lex",
+          "callee": "tokens.add",
+          "lineNumber": 931
+        },
+        {
+          "caller": "lex",
+          "callee": "tokens.toArray",
+          "lineNumber": 932
+        },
+        {
+          "caller": "warn",
+          "callee": "warnings.add",
+          "lineNumber": 942
+        },
+        {
+          "caller": "warn",
+          "callee": "new Warning",
+          "lineNumber": 942
+        },
+        {
+          "caller": "error",
+          "callee": "token",
+          "lineNumber": 952
+        },
+        {
+          "caller": "error",
+          "callee": "new String",
+          "lineNumber": 953
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 29,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/Token.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 147,
+      "nonEmptyLines": 111,
+      "functions": [
+        {
+          "name": "start",
+          "startLine": 46,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "end",
+          "startLine": 50,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "length",
+          "startLine": 54,
+          "endLine": 56,
+          "params": []
+        },
+        {
+          "name": "Token",
+          "startLine": 60,
+          "endLine": 72,
+          "params": [
+            "kind",
+            "start",
+            "end",
+            "string",
+            "comments",
+            "radix",
+            "trailing_whitespace"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 76,
+          "endLine": 86,
+          "params": []
+        },
+        {
+          "name": "long_value",
+          "startLine": 126,
+          "endLine": 130,
+          "params": []
+        },
+        {
+          "name": "double_value",
+          "startLine": 140,
+          "endLine": 144,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Token",
+          "startLine": 6,
+          "endLine": 147,
+          "methods": [
+            "start",
+            "end",
+            "length",
+            "Token",
+            "toString",
+            "long_value",
+            "double_value"
+          ],
+          "properties": [
+            "kind",
+            "start",
+            "end",
+            "string",
+            "radix",
+            "comments",
+            "trailing_whitespace"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "kind",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "start",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "end",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "string",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "radix",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "comments",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "trailing_whitespace",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "start",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "end",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "length",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "Token",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "long_value",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "double_value",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "Token",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Token",
+          "callee": "Collections.emptyList",
+          "lineNumber": 69
+        },
+        {
+          "caller": "long_value",
+          "callee": "new IllegalStateException",
+          "lineNumber": 128
+        },
+        {
+          "caller": "long_value",
+          "callee": "LexUtils.parse_integer(string).get",
+          "lineNumber": 129
+        },
+        {
+          "caller": "long_value",
+          "callee": "LexUtils.parse_integer",
+          "lineNumber": 129
+        },
+        {
+          "caller": "double_value",
+          "callee": "new IllegalStateException",
+          "lineNumber": 142
+        },
+        {
+          "caller": "double_value",
+          "callee": "LexUtils.parse_floating(string).get",
+          "lineNumber": 143
+        },
+        {
+          "caller": "double_value",
+          "callee": "LexUtils.parse_floating",
+          "lineNumber": 143
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 15,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BasicType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BinaryOperator.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 43,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Declaration.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "Declaration",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Declaration",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Dimension.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Nullable.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Parameters.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "Parameters",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Parameters",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Statement.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "Statement",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Statement",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "TType",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/UnaryOperator.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 19,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 8,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Cast.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

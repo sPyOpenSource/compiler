@@ -1,0 +1,2379 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 1,
+  "nodes": [
+    {
+      "id": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "type": "file",
+      "name": "AutumnTestFixture.java",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "summary": "Test fixture for Autumn parser library providing assertion methods (prefix, success, failure) and utilities for running and comparing parse results against rules.",
+      "tags": ["autumn", "test", "parsing", "testing-utilities"],
+      "complexity": "high",
+      "language": "java",
+      "sizeLines": 477
+    },
+    {
+      "id": "file:src/norswap/autumn/UnicodeCharSequence.java",
+      "type": "file",
+      "name": "UnicodeCharSequence.java",
+      "filePath": "src/norswap/autumn/UnicodeCharSequence.java",
+      "summary": "A CharSequence wrapper over an int array of Unicode code points, supporting charAt and codePointAt for proper Unicode handling.",
+      "tags": ["autumn", "unicode", "char-sequence", "utility"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 71
+    },
+    {
+      "id": "file:src/norswap/autumn/positions/LineMapString.java",
+      "type": "file",
+      "name": "LineMapString.java",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "summary": "Maps between character offsets and line/column positions in a string, handling tab stops and providing formatted error snippets.",
+      "tags": ["autumn", "positions", "line-map", "error-reporting"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 233
+    },
+    {
+      "id": "file:src/norswap/autumn/positions/Position.java",
+      "type": "file",
+      "name": "Position.java",
+      "filePath": "src/norswap/autumn/positions/Position.java",
+      "summary": "Simple value class representing a line and column position in source text with standard equals/hashCode/toString.",
+      "tags": ["autumn", "positions", "value-type"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 35
+    },
+    {
+      "id": "file:src/norswap/autumn/positions/Span.java",
+      "type": "file",
+      "name": "Span.java",
+      "filePath": "src/norswap/autumn/positions/Span.java",
+      "summary": "Represents a range in input (with optional leading/trailing whitespace tracking), supporting extraction of substrings and subsequences from various input types.",
+      "tags": ["autumn", "positions", "span", "range"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 316
+    },
+    {
+      "id": "file:src/norswap/autumn/positions/Token.java",
+      "type": "file",
+      "name": "Token.java",
+      "filePath": "src/norswap/autumn/positions/Token.java",
+      "summary": "Interface for tokens with start, end, and length methods in the Autumn parsing framework.",
+      "tags": ["autumn", "positions", "token", "interface"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 22
+    },
+    {
+      "id": "file:src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "type": "file",
+      "name": "ByteArrayClassLoader.java",
+      "filePath": "src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "summary": "Singleton ClassLoader that defines Java classes directly from byte arrays, used for loading dynamically compiled classes.",
+      "tags": ["backend", "classloader", "bytecode", "reflection"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 31
+    },
+    {
+      "id": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "type": "file",
+      "name": "BytecodeCompiler.java",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "summary": "Core bytecode compiler for the Rust language implementation, using ASM to generate JVM class files from AST nodes including expressions, statements, control flow, and struct declarations.",
+      "tags": ["backend", "compiler", "bytecode", "asm", "code-generation"],
+      "complexity": "very-high",
+      "language": "java",
+      "sizeLines": 1002
+    },
+    {
+      "id": "file:src/norswap/lang/backend/CompilationResult.java",
+      "type": "file",
+      "name": "CompilationResult.java",
+      "filePath": "src/norswap/lang/backend/CompilationResult.java",
+      "summary": "Holds the result of compilation (main class and structures), providing load/execute methods for running compiled code via reflection.",
+      "tags": ["backend", "compilation", "class-loading", "reflection"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 109
+    },
+    {
+      "id": "file:src/norswap/lang/backend/TypeUtils.java",
+      "type": "file",
+      "name": "TypeUtils.java",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "summary": "Utility class for type conversions between the Rust type system and JVM types, including field descriptors, method descriptors, ASM types, and class resolution.",
+      "tags": ["backend", "types", "asm", "jvm", "descriptors"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 160
+    },
+    {
+      "id": "file:src/norswap/lang/rust/RustGrammar.java",
+      "type": "file",
+      "name": "RustGrammar.java",
+      "filePath": "src/norswap/lang/rust/RustGrammar.java",
+      "summary": "Autumn grammar definition for a Rust-like language, specifying lexer rules (comments, operators, keywords) and parser rules for expressions, statements, types, and declarations.",
+      "tags": ["rust", "grammar", "autumn", "parsing"],
+      "complexity": "high",
+      "language": "java",
+      "sizeLines": 294
+    },
+    {
+      "id": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "type": "file",
+      "name": "SemanticAnalysis.java",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "summary": "Semantic analysis pass for the Rust language using the Uranium reactor framework, performing type inference, type checking, scope management, and return analysis on the AST.",
+      "tags": ["rust", "semantic-analysis", "type-checking", "uranium", "scopes"],
+      "complexity": "very-high",
+      "language": "java",
+      "sizeLines": 936
+    },
+    {
+      "id": "file:src/norswap/lang/rust/Test.java",
+      "type": "file",
+      "name": "Test.java",
+      "filePath": "src/norswap/lang/rust/Test.java",
+      "summary": "Main entry point for testing the Rust language implementation, parsing example files, running semantic analysis, and optionally interpreting the result.",
+      "tags": ["rust", "test", "main", "entry-point"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 53
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "type": "file",
+      "name": "ArrayTypeNode.java",
+      "filePath": "src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "summary": "AST node for array types in the Rust language, wrapping a component type.",
+      "tags": ["rust", "ast", "type", "array"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 18
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/BinaryOperator.java",
+      "type": "file",
+      "name": "BinaryOperator.java",
+      "filePath": "src/norswap/lang/rust/ast/BinaryOperator.java",
+      "summary": "Enumeration of binary operators for the Rust language AST (arithmetic, comparison, equality, logic).",
+      "tags": ["rust", "ast", "operator", "enum"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 24
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/Block.java",
+      "type": "file",
+      "name": "Block.java",
+      "filePath": "src/norswap/lang/rust/ast/Block.java",
+      "summary": "AST node for a block statement containing a list of statements in the Rust language.",
+      "tags": ["rust", "ast", "block", "statement"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 28
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "type": "file",
+      "name": "DeclarationNode.java",
+      "filePath": "src/norswap/lang/rust/ast/DeclarationNode.java",
+      "summary": "Abstract base class for declaration AST nodes, providing name and declaredThing accessors.",
+      "tags": ["rust", "ast", "declaration", "abstract"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 22
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "type": "file",
+      "name": "FieldDeclaration.java",
+      "filePath": "src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "summary": "AST node for field declarations in structs, with name, type, contents, and declaredThing.",
+      "tags": ["rust", "ast", "field", "declaration"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 28
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/FunDeclaration.java",
+      "type": "file",
+      "name": "FunDeclaration.java",
+      "filePath": "src/norswap/lang/rust/ast/FunDeclaration.java",
+      "summary": "AST node for function declarations with parameters, return type, and block body, implementing DeclarationNode.",
+      "tags": ["rust", "ast", "function", "declaration"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 37
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/Node.java",
+      "type": "file",
+      "name": "Node.java",
+      "filePath": "src/norswap/lang/rust/ast/Node.java",
+      "summary": "Base AST node class with span tracking, attribute system (for Uranium framework), toString with budget cutoff, reflective hashCode/equals, and field enumeration.",
+      "tags": ["rust", "ast", "base-class", "uranium", "reflection"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 136
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/ParameterNode.java",
+      "type": "file",
+      "name": "ParameterNode.java",
+      "filePath": "src/norswap/lang/rust/ast/ParameterNode.java",
+      "summary": "AST node for function parameters with name and type, implementing DeclarationNode.",
+      "tags": ["rust", "ast", "parameter", "declaration"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 28
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/RootNode.java",
+      "type": "file",
+      "name": "RootNode.java",
+      "filePath": "src/norswap/lang/rust/ast/RootNode.java",
+      "summary": "Root AST node for the Rust language, containing the top-level list of statements.",
+      "tags": ["rust", "ast", "root", "program"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 20
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/SimpleType.java",
+      "type": "file",
+      "name": "SimpleType.java",
+      "filePath": "src/norswap/lang/rust/ast/SimpleType.java",
+      "summary": "AST node for simple (named) types, wrapping a type name string.",
+      "tags": ["rust", "ast", "type", "simple"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 18
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/StExpr.java",
+      "type": "file",
+      "name": "StExpr.java",
+      "filePath": "src/norswap/lang/rust/ast/StExpr.java",
+      "summary": "AST node for expression statements, wrapping an expression node.",
+      "tags": ["rust", "ast", "statement", "expression"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 19
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/StIf.java",
+      "type": "file",
+      "name": "StIf.java",
+      "filePath": "src/norswap/lang/rust/ast/StIf.java",
+      "summary": "AST node for if/else statements with condition, true branch, and optional false branch.",
+      "tags": ["rust", "ast", "if", "conditional", "statement"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 35
+    },
+    {
+      "id": "file:src/norswap/lang/rust/ast/StReturn.java",
+      "type": "file",
+      "name": "StReturn.java",
+      "filePath": "src/norswap/lang/rust/ast/StReturn.java",
+      "summary": "AST node for return statements with an optional expression.",
+      "tags": ["rust", "ast", "return", "statement"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 21
+    },
+    {
+      "id": "class:AutumnTestFixture",
+      "type": "class",
+      "name": "AutumnTestFixture",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "summary": "Test fixture class providing assertion methods (prefix, success, failure, failureAt) and configuration options for testing Autumn grammar rules.",
+      "tags": ["autumn", "test", "assertion"],
+      "startLine": 40,
+      "endLine": 477,
+      "methodCount": 20,
+      "exported": true
+    },
+    {
+      "id": "class:UnicodeCharSequence",
+      "type": "class",
+      "name": "UnicodeCharSequence",
+      "filePath": "src/norswap/autumn/UnicodeCharSequence.java",
+      "summary": "CharSequence wrapper for Unicode code point arrays.",
+      "tags": ["autumn", "unicode", "char-sequence"],
+      "startLine": 9,
+      "endLine": 71,
+      "methodCount": 6,
+      "exported": true
+    },
+    {
+      "id": "class:LineMapString",
+      "type": "class",
+      "name": "LineMapString",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "summary": "Line and column position mapper for string inputs with tab handling.",
+      "tags": ["autumn", "positions", "line-map"],
+      "startLine": 11,
+      "endLine": 233,
+      "methodCount": 15,
+      "exported": true
+    },
+    {
+      "id": "class:Position",
+      "type": "class",
+      "name": "Position",
+      "filePath": "src/norswap/autumn/positions/Position.java",
+      "summary": "Value class for line/column source positions.",
+      "tags": ["autumn", "positions", "value-type"],
+      "startLine": 11,
+      "endLine": 35,
+      "methodCount": 4,
+      "exported": true
+    },
+    {
+      "id": "class:Span",
+      "type": "class",
+      "name": "Span",
+      "filePath": "src/norswap/autumn/positions/Span.java",
+      "summary": "Input range with whitespace tracking and substring/subsequence extraction.",
+      "tags": ["autumn", "positions", "span", "range"],
+      "startLine": 41,
+      "endLine": 315,
+      "methodCount": 20,
+      "exported": true
+    },
+    {
+      "id": "class:Token",
+      "type": "class",
+      "name": "Token",
+      "filePath": "src/norswap/autumn/positions/Token.java",
+      "summary": "Interface defining token start/end/length accessors.",
+      "tags": ["autumn", "positions", "token", "interface"],
+      "startLine": 3,
+      "endLine": 22,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:ByteArrayClassLoader",
+      "type": "class",
+      "name": "ByteArrayClassLoader",
+      "filePath": "src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "summary": "Singleton ClassLoader for loading classes from byte arrays.",
+      "tags": ["backend", "classloader", "bytecode"],
+      "startLine": 6,
+      "endLine": 32,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:BytecodeCompiler",
+      "type": "class",
+      "name": "BytecodeCompiler",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "summary": "ASM-based bytecode generator for Rust language AST, producing JVM class files.",
+      "tags": ["backend", "compiler", "bytecode", "asm"],
+      "startLine": 79,
+      "endLine": 1002,
+      "methodCount": 49,
+      "exported": true
+    },
+    {
+      "id": "class:CompilationResult",
+      "type": "class",
+      "name": "CompilationResult",
+      "filePath": "src/norswap/lang/backend/CompilationResult.java",
+      "summary": "Result holder for compiled classes with load and execute methods.",
+      "tags": ["backend", "compilation", "class-loading"],
+      "startLine": 13,
+      "endLine": 109,
+      "methodCount": 7,
+      "exported": true
+    },
+    {
+      "id": "class:TypeUtils",
+      "type": "class",
+      "name": "TypeUtils",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "summary": "Utilities for converting Rust types to JVM/ASM type representations.",
+      "tags": ["backend", "types", "asm", "jvm"],
+      "startLine": 9,
+      "endLine": 160,
+      "methodCount": 8,
+      "exported": true
+    },
+    {
+      "id": "class:RustGrammar",
+      "type": "class",
+      "name": "RustGrammar",
+      "filePath": "src/norswap/lang/rust/RustGrammar.java",
+      "summary": "Autumn grammar definition for a Rust-like programming language.",
+      "tags": ["rust", "grammar", "autumn"],
+      "startLine": 22,
+      "endLine": 294,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:SemanticAnalysis",
+      "type": "class",
+      "name": "SemanticAnalysis",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "summary": "Semantic analysis pass using Uranium reactor for type inference and checking.",
+      "tags": ["rust", "semantic-analysis", "type-checking", "uranium"],
+      "startLine": 92,
+      "endLine": 936,
+      "methodCount": 44,
+      "exported": true
+    },
+    {
+      "id": "class:Test",
+      "type": "class",
+      "name": "Test",
+      "filePath": "src/norswap/lang/rust/Test.java",
+      "summary": "Main test class for the Rust language implementation.",
+      "tags": ["rust", "test", "entry-point"],
+      "startLine": 18,
+      "endLine": 53,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "class:ArrayTypeNode",
+      "type": "class",
+      "name": "ArrayTypeNode",
+      "filePath": "src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "summary": "AST node for array types.",
+      "tags": ["rust", "ast", "array-type"],
+      "startLine": 6,
+      "endLine": 18,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:Block",
+      "type": "class",
+      "name": "Block",
+      "filePath": "src/norswap/lang/rust/ast/Block.java",
+      "summary": "AST node for block statements.",
+      "tags": ["rust", "ast", "block"],
+      "startLine": 7,
+      "endLine": 28,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:DeclarationNode",
+      "type": "class",
+      "name": "DeclarationNode",
+      "filePath": "src/norswap/lang/rust/ast/DeclarationNode.java",
+      "summary": "Abstract base for declaration AST nodes.",
+      "tags": ["rust", "ast", "declaration", "abstract"],
+      "startLine": 5,
+      "endLine": 22,
+      "methodCount": 3,
+      "exported": true
+    },
+    {
+      "id": "class:FieldDeclaration",
+      "type": "class",
+      "name": "FieldDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "summary": "AST node for struct field declarations.",
+      "tags": ["rust", "ast", "field-declaration"],
+      "startLine": 6,
+      "endLine": 28,
+      "methodCount": 4,
+      "exported": true
+    },
+    {
+      "id": "class:FunDeclaration",
+      "type": "class",
+      "name": "FunDeclaration",
+      "filePath": "src/norswap/lang/rust/ast/FunDeclaration.java",
+      "summary": "AST node for function declarations.",
+      "tags": ["rust", "ast", "function-declaration"],
+      "startLine": 7,
+      "endLine": 37,
+      "methodCount": 4,
+      "exported": true
+    },
+    {
+      "id": "class:Node",
+      "type": "class",
+      "name": "Node",
+      "filePath": "src/norswap/lang/rust/ast/Node.java",
+      "summary": "Base AST node with span, attributes, and reflective equals/hashCode.",
+      "tags": ["rust", "ast", "base-class", "reflection"],
+      "startLine": 10,
+      "endLine": 136,
+      "methodCount": 9,
+      "exported": true
+    },
+    {
+      "id": "class:ParameterNode",
+      "type": "class",
+      "name": "ParameterNode",
+      "filePath": "src/norswap/lang/rust/ast/ParameterNode.java",
+      "summary": "AST node for function parameters.",
+      "tags": ["rust", "ast", "parameter"],
+      "startLine": 6,
+      "endLine": 28,
+      "methodCount": 4,
+      "exported": true
+    },
+    {
+      "id": "class:RootNode",
+      "type": "class",
+      "name": "RootNode",
+      "filePath": "src/norswap/lang/rust/ast/RootNode.java",
+      "summary": "Root AST node for a Rust program.",
+      "tags": ["rust", "ast", "root"],
+      "startLine": 7,
+      "endLine": 20,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:SimpleType",
+      "type": "class",
+      "name": "SimpleType",
+      "filePath": "src/norswap/lang/rust/ast/SimpleType.java",
+      "summary": "AST node for named types.",
+      "tags": ["rust", "ast", "simple-type"],
+      "startLine": 6,
+      "endLine": 18,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:StExpr",
+      "type": "class",
+      "name": "StExpr",
+      "filePath": "src/norswap/lang/rust/ast/StExpr.java",
+      "summary": "AST node for expression statements.",
+      "tags": ["rust", "ast", "expr-statement"],
+      "startLine": 7,
+      "endLine": 19,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:StIf",
+      "type": "class",
+      "name": "StIf",
+      "filePath": "src/norswap/lang/rust/ast/StIf.java",
+      "summary": "AST node for if/else statements.",
+      "tags": ["rust", "ast", "if-statement"],
+      "startLine": 7,
+      "endLine": 35,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "class:StReturn",
+      "type": "class",
+      "name": "StReturn",
+      "filePath": "src/norswap/lang/rust/ast/StReturn.java",
+      "summary": "AST node for return statements.",
+      "tags": ["rust", "ast", "return-statement"],
+      "startLine": 7,
+      "endLine": 21,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.parser",
+      "type": "function",
+      "name": "parser",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 64,
+      "endLine": 67,
+      "exported": true,
+      "params": ["parser"]
+    },
+    {
+      "id": "function:AutumnTestFixture.AutumnTestFixture",
+      "type": "function",
+      "name": "AutumnTestFixture",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 170,
+      "endLine": 172,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.parse",
+      "type": "function",
+      "name": "parse",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 187,
+      "endLine": 207,
+      "exported": true,
+      "params": ["input"]
+    },
+    {
+      "id": "function:AutumnTestFixture.run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 211,
+      "endLine": 234,
+      "exported": false,
+      "params": ["input", "recordCallStack"]
+    },
+    {
+      "id": "function:AutumnTestFixture.comparedStatus",
+      "type": "function",
+      "name": "comparedStatus",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 242,
+      "endLine": 256,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.prefixInternal",
+      "type": "function",
+      "name": "prefixInternal",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 260,
+      "endLine": 307,
+      "exported": false
+    },
+    {
+      "id": "function:AutumnTestFixture.prefix",
+      "type": "function",
+      "name": "prefix",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 314,
+      "endLine": 319,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.prefixExpect",
+      "type": "function",
+      "name": "prefixExpect",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 338,
+      "endLine": 349,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.prefixOfLength",
+      "type": "function",
+      "name": "prefixOfLength",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 367,
+      "endLine": 374,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.success",
+      "type": "function",
+      "name": "success",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 381,
+      "endLine": 388,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.successExpect",
+      "type": "function",
+      "name": "successExpect",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 405,
+      "endLine": 413,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.failure",
+      "type": "function",
+      "name": "failure",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 430,
+      "endLine": 439,
+      "exported": true
+    },
+    {
+      "id": "function:AutumnTestFixture.failureAt",
+      "type": "function",
+      "name": "failureAt",
+      "filePath": "src/norswap/autumn/AutumnTestFixture.java",
+      "startLine": 456,
+      "endLine": 464,
+      "exported": true
+    },
+    {
+      "id": "function:UnicodeCharSequence.UnicodeCharSequence",
+      "type": "function",
+      "name": "UnicodeCharSequence",
+      "filePath": "src/norswap/autumn/UnicodeCharSequence.java",
+      "startLine": 37,
+      "endLine": 44,
+      "exported": true,
+      "params": ["codePoints", "start", "end"]
+    },
+    {
+      "id": "function:LineMapString.LineMapString",
+      "type": "function",
+      "name": "LineMapString",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "startLine": 54,
+      "endLine": 69,
+      "exported": true
+    },
+    {
+      "id": "function:LineMapString.lineFrom",
+      "type": "function",
+      "name": "lineFrom",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "startLine": 115,
+      "endLine": 129,
+      "exported": true,
+      "params": ["offset"]
+    },
+    {
+      "id": "function:LineMapString.offsetFrom",
+      "type": "function",
+      "name": "offsetFrom",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "startLine": 167,
+      "endLine": 193,
+      "exported": true
+    },
+    {
+      "id": "function:LineMapString.lineSnippet",
+      "type": "function",
+      "name": "lineSnippet",
+      "filePath": "src/norswap/autumn/positions/LineMapString.java",
+      "startLine": 203,
+      "endLine": 230,
+      "exported": true
+    },
+    {
+      "id": "function:Span.Span",
+      "type": "function",
+      "name": "Span",
+      "filePath": "src/norswap/autumn/positions/Span.java",
+      "startLine": 80,
+      "endLine": 102,
+      "exported": true
+    },
+    {
+      "id": "function:Span.toString",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/autumn/positions/Span.java",
+      "startLine": 289,
+      "endLine": 297,
+      "exported": true
+    },
+    {
+      "id": "function:BytecodeCompiler.BytecodeCompiler",
+      "type": "function",
+      "name": "BytecodeCompiler",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 102,
+      "endLine": 134,
+      "exported": true
+    },
+    {
+      "id": "function:BytecodeCompiler.compile",
+      "type": "function",
+      "name": "compile",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 173,
+      "endLine": 183,
+      "exported": true
+    },
+    {
+      "id": "function:BytecodeCompiler.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 193,
+      "endLine": 225,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.funDecl",
+      "type": "function",
+      "name": "funDecl",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 229,
+      "endLine": 259,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.arrayLiteral",
+      "type": "function",
+      "name": "arrayLiteral",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 286,
+      "endLine": 328,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.binaryExpression",
+      "type": "function",
+      "name": "binaryExpression",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 332,
+      "endLine": 386,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.convertToString",
+      "type": "function",
+      "name": "convertToString",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 427,
+      "endLine": 458,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.comparison",
+      "type": "function",
+      "name": "comparison",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 481,
+      "endLine": 515,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.unaryExpression",
+      "type": "function",
+      "name": "unaryExpression",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 519,
+      "endLine": 534,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.funCall",
+      "type": "function",
+      "name": "funCall",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 549,
+      "endLine": 583,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.returnStmt",
+      "type": "function",
+      "name": "returnStmt",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 628,
+      "endLine": 655,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.reference",
+      "type": "function",
+      "name": "reference",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 700,
+      "endLine": 756,
+      "exported": false
+    },
+    {
+      "id": "function:BytecodeCompiler.assignment",
+      "type": "function",
+      "name": "assignment",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 781,
+      "endLine": 809,
+      "exported": true
+    },
+    {
+      "id": "function:BytecodeCompiler.structDecl",
+      "type": "function",
+      "name": "structDecl",
+      "filePath": "src/norswap/lang/backend/BytecodeCompiler.java",
+      "startLine": 813,
+      "endLine": 844,
+      "exported": false
+    },
+    {
+      "id": "function:TypeUtils.javaClass",
+      "type": "function",
+      "name": "javaClass",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "startLine": 31,
+      "endLine": 55,
+      "exported": false
+    },
+    {
+      "id": "function:TypeUtils.javaArrayClass",
+      "type": "function",
+      "name": "javaArrayClass",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "startLine": 66,
+      "endLine": 90,
+      "exported": true
+    },
+    {
+      "id": "function:TypeUtils.fieldDescriptor",
+      "type": "function",
+      "name": "fieldDescriptor",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "startLine": 97,
+      "endLine": 121,
+      "exported": true
+    },
+    {
+      "id": "function:TypeUtils.methodDescriptor",
+      "type": "function",
+      "name": "methodDescriptor",
+      "filePath": "src/norswap/lang/backend/TypeUtils.java",
+      "startLine": 139,
+      "endLine": 147,
+      "exported": true
+    },
+    {
+      "id": "function:RustGrammar.root",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/rust/RustGrammar.java",
+      "startLine": 291,
+      "endLine": 293,
+      "exported": true,
+      "params": []
+    },
+    {
+      "id": "function:SemanticAnalysis.createWalker",
+      "type": "function",
+      "name": "createWalker",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 121,
+      "endLine": 169,
+      "exported": true
+    },
+    {
+      "id": "function:SemanticAnalysis.reference",
+      "type": "function",
+      "name": "reference",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 194,
+      "endLine": 235,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.constructor",
+      "type": "function",
+      "name": "constructor",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 239,
+      "endLine": 270,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.arrayLiteral",
+      "type": "function",
+      "name": "arrayLiteral",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 274,
+      "endLine": 330,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.fieldAccess",
+      "type": "function",
+      "name": "fieldAccess",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 343,
+      "endLine": 384,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.arrayAccess",
+      "type": "function",
+      "name": "arrayAccess",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 388,
+      "endLine": 407,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.funCall",
+      "type": "function",
+      "name": "funCall",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 411,
+      "endLine": 455,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.binaryArithmetic",
+      "type": "function",
+      "name": "binaryArithmetic",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 519,
+      "endLine": 535,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.assignment",
+      "type": "function",
+      "name": "assignment",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 584,
+      "endLine": 603,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.simpleType",
+      "type": "function",
+      "name": "simpleType",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 610,
+      "endLine": 637,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.varDecl",
+      "type": "function",
+      "name": "varDecl",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 744,
+      "endLine": 767,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.funDecl",
+      "type": "function",
+      "name": "funDecl",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 792,
+      "endLine": 821,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.ifStmt",
+      "type": "function",
+      "name": "ifStmt",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 836,
+      "endLine": 851,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.returnStmt",
+      "type": "function",
+      "name": "returnStmt",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 869,
+      "endLine": 899,
+      "exported": false
+    },
+    {
+      "id": "function:SemanticAnalysis.currentFunction",
+      "type": "function",
+      "name": "currentFunction",
+      "filePath": "src/norswap/lang/rust/SemanticAnalysis.java",
+      "startLine": 903,
+      "endLine": 913,
+      "exported": false
+    },
+    {
+      "id": "function:Test.main",
+      "type": "function",
+      "name": "main",
+      "filePath": "src/norswap/lang/rust/Test.java",
+      "startLine": 20,
+      "endLine": 52,
+      "exported": true
+    },
+    {
+      "id": "function:Node.hashCode",
+      "type": "function",
+      "name": "hashCode",
+      "filePath": "src/norswap/lang/rust/ast/Node.java",
+      "startLine": 81,
+      "endLine": 95,
+      "exported": true
+    },
+    {
+      "id": "function:Node.equals",
+      "type": "function",
+      "name": "equals",
+      "filePath": "src/norswap/lang/rust/ast/Node.java",
+      "startLine": 118,
+      "endLine": 133,
+      "exported": true
+    }
+  ],
+  "edges": [
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.parser"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.AutumnTestFixture"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.parse"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.run"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.comparedStatus"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.prefixInternal"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.prefix"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.prefixExpect"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.prefixOfLength"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.success"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.successExpect"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.failure"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "function:AutumnTestFixture.failureAt"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/UnicodeCharSequence.java",
+      "targetId": "class:UnicodeCharSequence"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/UnicodeCharSequence.java",
+      "targetId": "function:UnicodeCharSequence.UnicodeCharSequence"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "class:LineMapString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "function:LineMapString.LineMapString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "function:LineMapString.lineFrom"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "function:LineMapString.offsetFrom"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "function:LineMapString.lineSnippet"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/Position.java",
+      "targetId": "class:Position"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "class:Span"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "function:Span.Span"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "function:Span.toString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/autumn/positions/Token.java",
+      "targetId": "class:Token"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "targetId": "class:ByteArrayClassLoader"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.BytecodeCompiler"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.compile"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.funDecl"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.arrayLiteral"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.binaryExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.convertToString"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.comparison"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.unaryExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.funCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.returnStmt"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.reference"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.assignment"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "function:BytecodeCompiler.structDecl"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/CompilationResult.java",
+      "targetId": "class:CompilationResult"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/TypeUtils.java",
+      "targetId": "class:TypeUtils"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/TypeUtils.java",
+      "targetId": "function:TypeUtils.javaClass"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/TypeUtils.java",
+      "targetId": "function:TypeUtils.javaArrayClass"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/TypeUtils.java",
+      "targetId": "function:TypeUtils.fieldDescriptor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/backend/TypeUtils.java",
+      "targetId": "function:TypeUtils.methodDescriptor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "class:RustGrammar"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "function:RustGrammar.root"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.createWalker"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.reference"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.constructor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.arrayLiteral"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.fieldAccess"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.arrayAccess"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.funCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.binaryArithmetic"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.assignment"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.simpleType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.varDecl"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.funDecl"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.ifStmt"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.returnStmt"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "function:SemanticAnalysis.currentFunction"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "class:Test"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "function:Test.main"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "targetId": "class:ArrayTypeNode"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/Block.java",
+      "targetId": "class:Block"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "targetId": "class:DeclarationNode"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "targetId": "class:FieldDeclaration"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/FunDeclaration.java",
+      "targetId": "class:FunDeclaration"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/Node.java",
+      "targetId": "class:Node"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/Node.java",
+      "targetId": "function:Node.hashCode"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/Node.java",
+      "targetId": "function:Node.equals"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/ParameterNode.java",
+      "targetId": "class:ParameterNode"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/RootNode.java",
+      "targetId": "class:RootNode"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/SimpleType.java",
+      "targetId": "class:SimpleType"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/StExpr.java",
+      "targetId": "class:StExpr"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/StIf.java",
+      "targetId": "class:StIf"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/rust/ast/StReturn.java",
+      "targetId": "class:StReturn"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.parser",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.AutumnTestFixture",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.parse",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.run",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.comparedStatus",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.prefixInternal",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.prefix",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.prefixExpect",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.prefixOfLength",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.success",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.successExpect",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.failure",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:AutumnTestFixture.failureAt",
+      "targetId": "class:AutumnTestFixture"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:UnicodeCharSequence.UnicodeCharSequence",
+      "targetId": "class:UnicodeCharSequence"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:LineMapString.LineMapString",
+      "targetId": "class:LineMapString"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:LineMapString.lineFrom",
+      "targetId": "class:LineMapString"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:LineMapString.offsetFrom",
+      "targetId": "class:LineMapString"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:LineMapString.lineSnippet",
+      "targetId": "class:LineMapString"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Span.Span",
+      "targetId": "class:Span"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Span.toString",
+      "targetId": "class:Span"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.BytecodeCompiler",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.compile",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.root",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.funDecl",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.arrayLiteral",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.binaryExpression",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.convertToString",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.comparison",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.unaryExpression",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.funCall",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.returnStmt",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.reference",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.assignment",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:BytecodeCompiler.structDecl",
+      "targetId": "class:BytecodeCompiler"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:TypeUtils.javaClass",
+      "targetId": "class:TypeUtils"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:TypeUtils.javaArrayClass",
+      "targetId": "class:TypeUtils"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:TypeUtils.fieldDescriptor",
+      "targetId": "class:TypeUtils"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:TypeUtils.methodDescriptor",
+      "targetId": "class:TypeUtils"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:RustGrammar.root",
+      "targetId": "class:RustGrammar"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.createWalker",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.reference",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.constructor",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.arrayLiteral",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.fieldAccess",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.arrayAccess",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.funCall",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.binaryArithmetic",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.assignment",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.simpleType",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.varDecl",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.funDecl",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.ifStmt",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.returnStmt",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:SemanticAnalysis.currentFunction",
+      "targetId": "class:SemanticAnalysis"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Test.main",
+      "targetId": "class:Test"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Node.hashCode",
+      "targetId": "class:Node"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Node.equals",
+      "targetId": "class:Node"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMap.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMapString.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMapTokens.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "file:src/norswap/autumn/positions/Token.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "targetId": "file:src/norswap/utils/TestFixture.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/LineMapString.java",
+      "targetId": "file:src/norswap/utils/Strings.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "file:src/norswap/autumn/parsers/StringMatch.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "file:src/norswap/autumn/parsers/TrailingWhitespace.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/autumn/positions/Span.java",
+      "targetId": "file:src/norswap/autumn/UnicodeCharSequence.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/backend/AsmUtils.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/backend/TypeUtils.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/BinaryOperator.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Assignment.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Constructor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/MethodCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Reference.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/interpreter/ConstructorNode.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/Scope.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/uranium/Reactor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/utils/data/wrappers/Pair.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/utils/Vanilla.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "targetId": "file:src/norswap/utils/visitors/ValuedVisitor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/backend/CompilationResult.java",
+      "targetId": "file:src/norswap/utils/exceptions/NoStackException.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Assignment.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Constructor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/MethodCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Reference.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/RustGrammar.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/BinaryOperator.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/ArrayLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Assignment.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Constructor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FieldAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/FloatLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/IntLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/MethodCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Parenthesized.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Reference.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/StringLiteral.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/UnaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/Context.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/DeclarationKind.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/DeclarationScope.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/Scope.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/uranium/Attribute.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/uranium/Reactor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/uranium/Rule.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/utils/visitors/ReflectiveFieldWalker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "targetId": "file:src/norswap/utils/visitors/Walker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/autumn/Autumn.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/autumn/ParseOptions.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/autumn/ParseResult.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMap.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/autumn/positions/LineMapString.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/lang/rust/ast/Node.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/lang/rust/interpreter/Interpreter.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/uranium/Reactor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/utils/IO.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/Test.java",
+      "targetId": "file:src/norswap/utils/visitors/Walker.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/ArrayTypeNode.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/Block.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/Block.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/FieldDeclaration.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/FunDeclaration.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/FunDeclaration.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/Node.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/Node.java",
+      "targetId": "file:src/norswap/uranium/Attribute.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/ParameterNode.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/ParameterNode.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/RootNode.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/RootNode.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/SimpleType.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/SimpleType.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StExpr.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StExpr.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StExpr.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StIf.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StIf.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StIf.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StReturn.java",
+      "targetId": "file:src/norswap/autumn/positions/Span.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StReturn.java",
+      "targetId": "file:src/norswap/lang/rust/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/rust/ast/StReturn.java",
+      "targetId": "file:src/norswap/utils/Util.java"
+    }
+  ],
+  "metadata": {
+    "totalFiles": 26,
+    "totalNodes": 108,
+    "totalEdges": 251,
+    "fileNodes": 26,
+    "classNodes": 25,
+    "functionNodes": 57,
+    "importEdges": 112,
+    "containsEdges": 82,
+    "memberOfEdges": 57
+  }
+}

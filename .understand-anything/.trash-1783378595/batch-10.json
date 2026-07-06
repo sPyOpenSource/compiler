@@ -1,0 +1,580 @@
+{
+  "batch": 10,
+  "description": "More utilities: Strings, Vanilla (collections/generics), primitive ArrayLists, functional interfaces, wrappers (Indexed, Pair), exceptions, multimap, reflection, and parsing tests",
+  "nodes": [
+    {
+      "id": "src/norswap/utils/Strings.java",
+      "type": "file",
+      "name": "Strings.java",
+      "filePath": "src/norswap/utils/Strings.java",
+      "summary": "Utility class providing string manipulation helpers: safe indexing, subsequence/substring with bounds checking, character repetition, line splitting, indentation, StringBuilder append/pop/join, byte count formatting, and case conversion (capitalize/uncapitalize).",
+      "tags": ["string-utilities", "StringBuilder", "formatting", "text-processing", "utils"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/Vanilla.java",
+      "type": "file",
+      "name": "Vanilla.java",
+      "filePath": "src/norswap/utils/Vanilla.java",
+      "summary": "Comprehensive collection utility class providing factory methods (list, set), concatenation, slicing, deque peek/pop helpers, Stream-to-list conversion, and extensive functional operations: map, mapIndexed, forEachIndexed, coIterate, zip, and indexed wrappers across collections, arrays, and iterables with witness-based array creation.",
+      "tags": ["collection-utilities", "functional", "iterators", "streams", "arrays"],
+      "complexity": "high"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "type": "file",
+      "name": "IndexedBiConsumer.java",
+      "filePath": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "summary": "Functional interface for a consumer that accepts two elements along with their indices.",
+      "tags": ["functional-interface", "consumer", "indexed", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "type": "file",
+      "name": "IndexedBiFunction.java",
+      "filePath": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "summary": "Functional interface for a function that takes two elements and their indices and returns a result.",
+      "tags": ["functional-interface", "function", "indexed", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "type": "file",
+      "name": "IndexedConsumer.java",
+      "filePath": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "summary": "Functional interface for a consumer that accepts an element with its index.",
+      "tags": ["functional-interface", "consumer", "indexed", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "type": "file",
+      "name": "IndexedFunction.java",
+      "filePath": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "summary": "Functional interface for a function that takes an element and its index and returns a result.",
+      "tags": ["functional-interface", "function", "indexed", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "type": "file",
+      "name": "ArrayListInt.java",
+      "filePath": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "summary": "Primitive int ArrayList implementation backed by an int[] array with binary-power resizing. Provides array-backed get/set, push/pop/peek/back stack operations, clone, toString, hashCode, and equals.",
+      "tags": ["primitive-collection", "array-list", "int", "stack", "data-structure"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "type": "file",
+      "name": "ArrayListLong.java",
+      "filePath": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "summary": "Primitive long ArrayList implementation backed by a long[] array with binary-power resizing. Mirrors ArrayListInt with get/set, push/pop/peek/back, clone, toString, hashCode, and equals.",
+      "tags": ["primitive-collection", "array-list", "long", "stack", "data-structure"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/data/wrappers/Indexed.java",
+      "type": "file",
+      "name": "Indexed.java",
+      "filePath": "src/norswap/utils/data/wrappers/Indexed.java",
+      "summary": "Generic wrapper pairing an integer index with a value. Implements hashCode, equals, clone, and toString.",
+      "tags": ["wrapper", "index-value", "pair", "generic", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "file",
+      "name": "Pair.java",
+      "filePath": "src/norswap/utils/data/wrappers/Pair.java",
+      "summary": "Generic pair wrapper holding two values (a, b). Implements hashCode, equals, clone, and toString.",
+      "tags": ["wrapper", "pair", "tuple", "generic", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/exceptions/Exceptions.java",
+      "type": "file",
+      "name": "Exceptions.java",
+      "filePath": "src/norswap/utils/exceptions/Exceptions.java",
+      "summary": "Exception utility class providing stack trace stringification, trace trimming, checked-to-unchecked conversion via NoStackException, exception suppression helpers, rethrow with type erasure, runtime wrapping, expression-safe throw, and fallback execution with default values.",
+      "tags": ["exception-handling", "error-handling", "stacktrace", "checked-exceptions", "utils"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "type": "file",
+      "name": "ThrowingRunnable.java",
+      "filePath": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "summary": "Functional interface for a runnable that can throw any exception.",
+      "tags": ["functional-interface", "runnable", "exception", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "type": "file",
+      "name": "AbstractMultiHashMap.java",
+      "filePath": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "summary": "Abstract base implementation of a multimap backed by HashMap. Provides get (unmodifiable collection view), remove, add, delete, deletePollute (cleanup on empty), addAll variants, and a pairs() stream returning Pair entries.",
+      "tags": ["multimap", "hashmap", "collection", "data-structure", "utils"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/multimap/MultiMap.java",
+      "type": "file",
+      "name": "MultiMap.java",
+      "filePath": "src/norswap/utils/multimap/MultiMap.java",
+      "summary": "MultiMap interface defining the contract for key-to-collection mappings. Includes add from single/multi maps, assoc (associate with computed key), allValues (flattened view), and static factory methods for collector creation.",
+      "tags": ["multimap", "interface", "collection", "data-structure", "utils"],
+      "complexity": "medium"
+    },
+    {
+      "id": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "type": "file",
+      "name": "MultiMapCollector.java",
+      "filePath": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "summary": "A Java Stream Collector that accumulates elements into a MultiMap using key and value extractor functions. Provides supplier, accumulator, combiner, finisher, and characteristics.",
+      "tags": ["stream-collector", "multimap", "stream-api", "collection", "utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/utils/reflection/Access.java",
+      "type": "file",
+      "name": "Access.java",
+      "filePath": "src/norswap/utils/reflection/Access.java",
+      "summary": "Reflection utility class for field access (get by name with class hierarchy traversal) and method handle resolution. Provides declared method lookup, signature-based method search with superclass/interface BFS traversal, and MethodHandle creation for virtual/static methods with or without signature matching.",
+      "tags": ["reflection", "method-handles", "field-access", "introspection", "utils"],
+      "complexity": "high"
+    },
+    {
+      "id": "src/norswap/utils/reflection/Reflection.java",
+      "type": "file",
+      "name": "Reflection.java",
+      "filePath": "src/norswap/utils/reflection/Reflection.java",
+      "summary": "Reflection utility class for generic type introspection: raw type extraction, actual parameterized supertype/interface resolution from GenericType or Class, type variable substitution, and a tryHandles helper for cooperative exception handling.",
+      "tags": ["reflection", "generics", "type-introspection", "parameterized-type", "utils"],
+      "complexity": "high"
+    },
+    {
+      "id": "test/ParsersTest.java",
+      "type": "file",
+      "name": "ParsersTest.java",
+      "filePath": "test/ParsersTest.java",
+      "summary": "Comprehensive test suite for Autumn parsing library parsers. Covers char/object predicates, optional, string match, sequence, repeat (at_least, repeat), around (sep, sep_trailing, sep_exact), choice, longest, lookahead, not, lazy parsers, pair/concat/collect actions, backtracking, memoization (MemoTable/MemoCache), and left/right/bounded expression parsers.",
+      "tags": ["test", "parsing", "autumn", "parsers", "memoization"],
+      "complexity": "high"
+    },
+    {
+      "id": "src/norswap/utils/Strings.java::class:Strings",
+      "type": "class",
+      "name": "Strings",
+      "filePath": "src/norswap/utils/Strings.java",
+      "summary": "Utility class with static string manipulation methods.",
+      "tags": ["string-utilities", "utility-class"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/Strings.java"
+    },
+    {
+      "id": "src/norswap/utils/Vanilla.java::class:Vanilla",
+      "type": "class",
+      "name": "Vanilla",
+      "filePath": "src/norswap/utils/Vanilla.java",
+      "summary": "Utility class with static collection/functional methods.",
+      "tags": ["collection-utilities", "functional", "utility-class"],
+      "complexity": "high",
+      "parentNode": "src/norswap/utils/Vanilla.java"
+    },
+    {
+      "id": "src/norswap/utils/data/structures/ArrayListInt.java::class:ArrayListInt",
+      "type": "class",
+      "name": "ArrayListInt",
+      "filePath": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "summary": "Primitive int array list with stack operations.",
+      "tags": ["primitive-collection", "int-list", "stack"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/data/structures/ArrayListInt.java"
+    },
+    {
+      "id": "src/norswap/utils/data/structures/ArrayListLong.java::class:ArrayListLong",
+      "type": "class",
+      "name": "ArrayListLong",
+      "filePath": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "summary": "Primitive long array list with stack operations.",
+      "tags": ["primitive-collection", "long-list", "stack"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/data/structures/ArrayListLong.java"
+    },
+    {
+      "id": "src/norswap/utils/data/wrappers/Indexed.java::class:Indexed",
+      "type": "class",
+      "name": "Indexed",
+      "filePath": "src/norswap/utils/data/wrappers/Indexed.java",
+      "summary": "Generic wrapper pairing an int index with a value.",
+      "tags": ["wrapper", "index-value"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/wrappers/Indexed.java"
+    },
+    {
+      "id": "src/norswap/utils/data/wrappers/Pair.java::class:Pair",
+      "type": "class",
+      "name": "Pair",
+      "filePath": "src/norswap/utils/data/wrappers/Pair.java",
+      "summary": "Generic pair holding two values a and b.",
+      "tags": ["wrapper", "pair", "tuple"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/wrappers/Pair.java"
+    },
+    {
+      "id": "src/norswap/utils/exceptions/Exceptions.java::class:Exceptions",
+      "type": "class",
+      "name": "Exceptions",
+      "filePath": "src/norswap/utils/exceptions/Exceptions.java",
+      "summary": "Utility class with static exception handling methods.",
+      "tags": ["exception-handling", "utility-class"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/exceptions/Exceptions.java"
+    },
+    {
+      "id": "src/norswap/utils/exceptions/ThrowingRunnable.java::class:ThrowingRunnable",
+      "type": "class",
+      "name": "ThrowingRunnable",
+      "filePath": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "summary": "Functional interface for runnables that throw.",
+      "tags": ["functional-interface", "runnable"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/exceptions/ThrowingRunnable.java"
+    },
+    {
+      "id": "src/norswap/utils/multimap/AbstractMultiHashMap.java::class:AbstractMultiHashMap",
+      "type": "class",
+      "name": "AbstractMultiHashMap",
+      "filePath": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "summary": "Abstract HashMap-backed multimap implementation.",
+      "tags": ["multimap", "hashmap", "abstract-class"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/multimap/AbstractMultiHashMap.java"
+    },
+    {
+      "id": "src/norswap/utils/multimap/MultiMap.java::class:MultiMap",
+      "type": "class",
+      "name": "MultiMap",
+      "filePath": "src/norswap/utils/multimap/MultiMap.java",
+      "summary": "Interface for key-to-collection multimaps with static factory methods.",
+      "tags": ["multimap", "interface"],
+      "complexity": "medium",
+      "parentNode": "src/norswap/utils/multimap/MultiMap.java"
+    },
+    {
+      "id": "src/norswap/utils/multimap/MultiMapCollector.java::class:MultiMapCollector",
+      "type": "class",
+      "name": "MultiMapCollector",
+      "filePath": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "summary": "Stream Collector for building MultiMaps from streams.",
+      "tags": ["stream-collector", "multimap"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/multimap/MultiMapCollector.java"
+    },
+    {
+      "id": "src/norswap/utils/reflection/Access.java::class:Access",
+      "type": "class",
+      "name": "Access",
+      "filePath": "src/norswap/utils/reflection/Access.java",
+      "summary": "Reflection utility for field access and method handle resolution.",
+      "tags": ["reflection", "method-handles", "field-access"],
+      "complexity": "high",
+      "parentNode": "src/norswap/utils/reflection/Access.java"
+    },
+    {
+      "id": "src/norswap/utils/reflection/Reflection.java::class:Reflection",
+      "type": "class",
+      "name": "Reflection",
+      "filePath": "src/norswap/utils/reflection/Reflection.java",
+      "summary": "Reflection utility for generic type introspection.",
+      "tags": ["reflection", "generics", "type-introspection"],
+      "complexity": "high",
+      "parentNode": "src/norswap/utils/reflection/Reflection.java"
+    },
+    {
+      "id": "test/ParsersTest.java::class:ParsersTest",
+      "type": "class",
+      "name": "ParsersTest",
+      "filePath": "test/ParsersTest.java",
+      "summary": "Test class for Autumn parsing library parsers.",
+      "tags": ["test", "parsers", "autumn"],
+      "complexity": "high",
+      "parentNode": "test/ParsersTest.java"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedBiConsumer.java::class:IndexedBiConsumer",
+      "type": "class",
+      "name": "IndexedBiConsumer",
+      "filePath": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "summary": "Functional interface: accepts two elements with indices.",
+      "tags": ["functional-interface", "consumer"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/functions/IndexedBiConsumer.java"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedBiFunction.java::class:IndexedBiFunction",
+      "type": "class",
+      "name": "IndexedBiFunction",
+      "filePath": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "summary": "Functional interface: maps two elements with indices to a result.",
+      "tags": ["functional-interface", "function"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/functions/IndexedBiFunction.java"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedConsumer.java::class:IndexedConsumer",
+      "type": "class",
+      "name": "IndexedConsumer",
+      "filePath": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "summary": "Functional interface: accepts an element with its index.",
+      "tags": ["functional-interface", "consumer"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/functions/IndexedConsumer.java"
+    },
+    {
+      "id": "src/norswap/utils/data/functions/IndexedFunction.java::class:IndexedFunction",
+      "type": "class",
+      "name": "IndexedFunction",
+      "filePath": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "summary": "Functional interface: maps an element and index to a result.",
+      "tags": ["functional-interface", "function"],
+      "complexity": "low",
+      "parentNode": "src/norswap/utils/data/functions/IndexedFunction.java"
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/wrappers/Indexed.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "target": "src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "target": "src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/multimap/MultiMap.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "target": "src/norswap/utils/Vanilla.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Access.java",
+      "target": "src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Reflection.java",
+      "target": "src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Reflection.java",
+      "target": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Reflection.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Reflection.java",
+      "target": "src/norswap/utils/Vanilla.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/actions/ActionContext.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/AutumnTestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/memo/MemoEntry.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/memo/MemoTable.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/ParseResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/autumn/ParseState.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/utils/data/wrappers/Slot.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "src/norswap/utils/Vanilla.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/Strings.java",
+      "target": "src/norswap/utils/Strings.java::class:Strings",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/Vanilla.java",
+      "target": "src/norswap/utils/Vanilla.java::class:Vanilla",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "target": "src/norswap/utils/data/structures/ArrayListInt.java::class:ArrayListInt",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "target": "src/norswap/utils/data/structures/ArrayListLong.java::class:ArrayListLong",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/wrappers/Indexed.java",
+      "target": "src/norswap/utils/data/wrappers/Indexed.java::class:Indexed",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/wrappers/Pair.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java::class:Pair",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/exceptions/Exceptions.java",
+      "target": "src/norswap/utils/exceptions/Exceptions.java::class:Exceptions",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "target": "src/norswap/utils/exceptions/ThrowingRunnable.java::class:ThrowingRunnable",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "target": "src/norswap/utils/multimap/AbstractMultiHashMap.java::class:AbstractMultiHashMap",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/multimap/MultiMap.java",
+      "target": "src/norswap/utils/multimap/MultiMap.java::class:MultiMap",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "target": "src/norswap/utils/multimap/MultiMapCollector.java::class:MultiMapCollector",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Access.java",
+      "target": "src/norswap/utils/reflection/Access.java::class:Access",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/reflection/Reflection.java",
+      "target": "src/norswap/utils/reflection/Reflection.java::class:Reflection",
+      "type": "contains"
+    },
+    {
+      "source": "test/ParsersTest.java",
+      "target": "test/ParsersTest.java::class:ParsersTest",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "target": "src/norswap/utils/data/functions/IndexedBiConsumer.java::class:IndexedBiConsumer",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "target": "src/norswap/utils/data/functions/IndexedBiFunction.java::class:IndexedBiFunction",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "target": "src/norswap/utils/data/functions/IndexedConsumer.java::class:IndexedConsumer",
+      "type": "contains"
+    },
+    {
+      "source": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "target": "src/norswap/utils/data/functions/IndexedFunction.java::class:IndexedFunction",
+      "type": "contains"
+    }
+  ]
+}

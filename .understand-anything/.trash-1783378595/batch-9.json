@@ -1,0 +1,1420 @@
+{
+  "batch": 9,
+  "nodes": [
+    {
+      "id": "src/ExpressionBenchmark.java",
+      "type": "code",
+      "name": "ExpressionBenchmark",
+      "filePath": "src/ExpressionBenchmark.java",
+      "summary": "Benchmark comparing parse performance of bad vs good right-expression grammars using the Autumn parsing library, measuring execution time with System.nanoTime and Duration.",
+      "tags": ["benchmark", "autumn", "parsing", "expression"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/ExpressionBenchmark.java/class/ExpressionBenchmark",
+          "type": "class",
+          "name": "ExpressionBenchmark",
+          "filePath": "src/ExpressionBenchmark.java",
+          "summary": "Benchmark class containing main entry point for expression parse performance testing.",
+          "tags": ["benchmark", "expression"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/ExpressionBenchmark.java/function/main",
+              "type": "function",
+              "name": "main",
+              "filePath": "src/ExpressionBenchmark.java",
+              "summary": "Entry point that benchmarks parsing of bad vs good right-expression grammars using Autumn.parse, measuring and printing elapsed time.",
+              "tags": ["benchmark", "entry-point"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/Log.java",
+      "type": "code",
+      "name": "Log",
+      "filePath": "src/norswap/autumn/Log.java",
+      "summary": "Log data structure for tracking parse side effects with apply, rollback, and delta operations to support reversible parsing state.",
+      "tags": ["autumn", "logging", "side-effects", "parsing"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/Log.java/class/Log",
+          "type": "class",
+          "name": "Log",
+          "filePath": "src/norswap/autumn/Log.java",
+          "summary": "Immutable log entry with effect application and rollback support for tracking parse operations.",
+          "tags": ["autumn", "logging", "side-effects"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/Log.java/function/apply(effect)",
+              "type": "function",
+              "name": "apply",
+              "filePath": "src/norswap/autumn/Log.java",
+              "summary": "Applies a single side effect and logs it.",
+              "tags": ["effect", "apply"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/Log.java/function/apply(delta)",
+              "type": "function",
+              "name": "apply",
+              "filePath": "src/norswap/autumn/Log.java",
+              "summary": "Applies a collection of side effects as a batch.",
+              "tags": ["effect", "batch"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/Log.java/function/rollback",
+              "type": "function",
+              "name": "rollback",
+              "filePath": "src/norswap/autumn/Log.java",
+              "summary": "Rolls back the log to a target size by undoing effects in reverse order.",
+              "tags": ["rollback", "undo"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/Log.java/function/delta",
+              "type": "function",
+              "name": "delta",
+              "filePath": "src/norswap/autumn/Log.java",
+              "summary": "Computes the delta of effects from a given start index to current end.",
+              "tags": ["delta", "diff"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/Log.java/function/deltaApplied",
+              "type": "function",
+              "name": "deltaApplied",
+              "filePath": "src/norswap/autumn/Log.java",
+              "summary": "Returns a new Log with the effects from a start index as a fresh log.",
+              "tags": ["delta", "snapshot"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/ParseResult.java",
+      "type": "code",
+      "name": "ParseResult",
+      "filePath": "src/norswap/autumn/ParseResult.java",
+      "summary": "Comprehensive parse result with success/failure status, match size, value stack, parse states, error call stack, and metrics for detailed parse diagnostics.",
+      "tags": ["autumn", "parsing", "result", "error-reporting"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/ParseResult.java/class/ParseResult",
+          "type": "class",
+          "name": "ParseResult",
+          "filePath": "src/norswap/autumn/ParseResult.java",
+          "summary": "Contains all data from a parse run including success status, match information, values, parse states, error details, and metrics.",
+          "tags": ["autumn", "result", "parsing"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/topValue",
+              "type": "function",
+              "name": "topValue",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Returns the top value from the value stack.",
+              "tags": ["value", "stack"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/parseState",
+              "type": "function",
+              "name": "parseState",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Retrieves a parse state by key from the parse states map.",
+              "tags": ["parse-state", "lookup"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/appendUserErrorMessage",
+              "type": "function",
+              "name": "appendUserErrorMessage",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Appends user-friendly error messages including line snippets and positions to a StringBuilder.",
+              "tags": ["error", "message", "formatting"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/appendTo",
+              "type": "function",
+              "name": "appendTo",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Full diagnostic output including success, match, value stack, thrown exceptions, and error call stack.",
+              "tags": ["diagnostic", "formatting"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/toString(map)",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Formats parse result with a line map for position display, optionally filtering rules.",
+              "tags": ["formatting", "display"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/toString()",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Default toString delegating to the full diagnostic formatter.",
+              "tags": ["formatting", "display"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParseResult.java/function/userErrorString",
+              "type": "function",
+              "name": "userErrorString",
+              "filePath": "src/norswap/autumn/ParseResult.java",
+              "summary": "Generates user-facing error string with validation and formatted error messages.",
+              "tags": ["error", "user-facing"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/ParserCallStack.java",
+      "type": "code",
+      "name": "ParserCallStack",
+      "filePath": "src/norswap/autumn/ParserCallStack.java",
+      "summary": "Parser call stack with frame push, formatted output with line/column positions, and clone support for error trace display.",
+      "tags": ["autumn", "parsing", "call-stack", "error-reporting"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/ParserCallStack.java/class/ParserCallStack",
+          "type": "class",
+          "name": "ParserCallStack",
+          "filePath": "src/norswap/autumn/ParserCallStack.java",
+          "summary": "Stack of parser call frames with formatting for error trace display.",
+          "tags": ["autumn", "call-stack"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/ParserCallStack.java/function/push",
+              "type": "function",
+              "name": "push",
+              "filePath": "src/norswap/autumn/ParserCallStack.java",
+              "summary": "Pushes a new parser call frame with position onto the stack.",
+              "tags": ["push", "stack"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParserCallStack.java/function/appendTo",
+              "type": "function",
+              "name": "appendTo",
+              "filePath": "src/norswap/autumn/ParserCallStack.java",
+              "summary": "Formats the call stack with indented frames showing parser rule, file position, and line snippets.",
+              "tags": ["formatting", "display"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/ParserCallStack.java/function/toString(map)",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/ParserCallStack.java",
+              "summary": "Formats call stack with position maps and optional rule filtering.",
+              "tags": ["formatting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParserCallStack.java/function/toString()",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/ParserCallStack.java",
+              "summary": "Default toString.",
+              "tags": ["formatting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/ParserCallStack.java/function/clone",
+              "type": "function",
+              "name": "clone",
+              "filePath": "src/norswap/autumn/ParserCallStack.java",
+              "summary": "Creates a shallow copy of the call stack.",
+              "tags": ["clone", "copy"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "type": "code",
+      "name": "SideEffectingArrayStack",
+      "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "summary": "Array-based stack decorator that logs all push/pop operations as side effects, enabling reversible stack operations for backtracking parsing.",
+      "tags": ["autumn", "stack", "side-effects", "parsing"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/SideEffectingArrayStack.java/class/SideEffectingArrayStack",
+          "type": "class",
+          "name": "SideEffectingArrayStack",
+          "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+          "summary": "Extends ArrayStack to log each push/pop as a reversible side effect.",
+          "tags": ["stack", "side-effects", "logging"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/SideEffectingArrayStack.java/function/push",
+              "type": "function",
+              "name": "push",
+              "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+              "summary": "Pushes an item with side-effect logging.",
+              "tags": ["push", "side-effect"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/SideEffectingArrayStack.java/function/pop()",
+              "type": "function",
+              "name": "pop",
+              "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+              "summary": "Pops the top item with side-effect logging.",
+              "tags": ["pop", "side-effect"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/SideEffectingArrayStack.java/function/pop(amount)",
+              "type": "function",
+              "name": "pop",
+              "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+              "summary": "Pops multiple items with side-effect logging.",
+              "tags": ["pop", "batch"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/SideEffectingArrayStack.java/function/popFrom",
+              "type": "function",
+              "name": "popFrom",
+              "filePath": "src/norswap/autumn/SideEffectingArrayStack.java",
+              "summary": "Pops from a specific index with side-effect logging.",
+              "tags": ["pop", "index-based"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/VisitorExtensions.java",
+      "type": "code",
+      "name": "VisitorExtensions",
+      "filePath": "src/norswap/autumn/VisitorExtensions.java",
+      "summary": "Dynamic visitor extension registry for parsers with typed overload registration and cached lookup.",
+      "tags": ["autumn", "visitor", "extensions", "parser"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/VisitorExtensions.java/class/VisitorExtensions",
+          "type": "class",
+          "name": "VisitorExtensions",
+          "filePath": "src/norswap/autumn/VisitorExtensions.java",
+          "summary": "Stores and retrieves typed visitor extensions by visitor class and parser class.",
+          "tags": ["visitor", "extensions"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/VisitorExtensions.java/function/extend",
+              "type": "function",
+              "name": "extend",
+              "filePath": "src/norswap/autumn/VisitorExtensions.java",
+              "summary": "Registers an extension implementation for a visitor and parser class pair.",
+              "tags": ["register", "extension"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/VisitorExtensions.java/function/overloads",
+              "type": "function",
+              "name": "overloads",
+              "filePath": "src/norswap/autumn/VisitorExtensions.java",
+              "summary": "Retrieves cached overloads for a visitor class.",
+              "tags": ["lookup", "cache"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/memo/MemoCache.java",
+      "type": "code",
+      "name": "MemoCache",
+      "filePath": "src/norswap/autumn/memo/MemoCache.java",
+      "summary": "Fixed-size memoization cache using hashing for parser results with lookup and diagnostic listing support.",
+      "tags": ["autumn", "memoization", "cache", "parsing"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/memo/MemoCache.java/class/MemoCache",
+          "type": "class",
+          "name": "MemoCache",
+          "filePath": "src/norswap/autumn/memo/MemoCache.java",
+          "summary": "Circular slot cache with hash-based lookup for parser memoization entries.",
+          "tags": ["cache", "memoization"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/memo/MemoCache.java/function/memoize",
+              "type": "function",
+              "name": "memoize",
+              "filePath": "src/norswap/autumn/memo/MemoCache.java",
+              "summary": "Stores a memoization entry using hash-based slot assignment.",
+              "tags": ["memoize", "store"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoCache.java/function/get",
+              "type": "function",
+              "name": "get",
+              "filePath": "src/norswap/autumn/memo/MemoCache.java",
+              "summary": "Retrieves a memoized entry by parser, position, and context via hash probe.",
+              "tags": ["lookup", "retrieve"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoCache.java/function/string",
+              "type": "function",
+              "name": "string",
+              "filePath": "src/norswap/autumn/memo/MemoCache.java",
+              "summary": "Formats entries as sorted joined strings for display.",
+              "tags": ["formatting", "display"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoCache.java/function/listing",
+              "type": "function",
+              "name": "listing",
+              "filePath": "src/norswap/autumn/memo/MemoCache.java",
+              "summary": "Generates detailed listing of memoized entries with position info.",
+              "tags": ["listing", "diagnostics"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/memo/MemoEntry.java",
+      "type": "code",
+      "name": "MemoEntry",
+      "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+      "summary": "Individual memoization entry storing parser identity, start/end positions, success status, context, and delta for cached parse results.",
+      "tags": ["autumn", "memoization", "entry", "parsing"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/memo/MemoEntry.java/class/MemoEntry",
+          "type": "class",
+          "name": "MemoEntry",
+          "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+          "summary": "Data class holding a memoized parse result with identity matching and display formatting.",
+          "tags": ["entry", "memoization"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/memo/MemoEntry.java/function/succeeded",
+              "type": "function",
+              "name": "succeeded",
+              "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+              "summary": "Checks if the parse succeeded and fully matched.",
+              "tags": ["success", "status"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoEntry.java/function/matches",
+              "type": "function",
+              "name": "matches",
+              "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+              "summary": "Determines if a lookup request matches this entry by parser, position, and context.",
+              "tags": ["matching", "lookup"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoEntry.java/function/listingString",
+              "type": "function",
+              "name": "listingString",
+              "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+              "summary": "Formats a human-readable listing with position and success info.",
+              "tags": ["listing", "formatting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoEntry.java/function/toString(map)",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/memo/MemoEntry.java",
+              "summary": "Detailed multi-line toString with parser, range, success, and delta info.",
+              "tags": ["formatting", "display"],
+              "complexity": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/memo/MemoTable.java",
+      "type": "code",
+      "name": "MemoTable",
+      "filePath": "src/norswap/autumn/memo/MemoTable.java",
+      "summary": "Open-addressing hash table for parser memoization with load-factor management, displacement tracking, and collision resolution.",
+      "tags": ["autumn", "memoization", "hash-table", "parsing"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/memo/MemoTable.java/class/MemoTable",
+          "type": "class",
+          "name": "MemoTable",
+          "filePath": "src/norswap/autumn/memo/MemoTable.java",
+          "summary": "Hash-table based memoization with Robin Hood-style displacement tracking and rehashing on load.",
+          "tags": ["hash-table", "memoization"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/memo/MemoTable.java/function/insert",
+              "type": "function",
+              "name": "insert",
+              "filePath": "src/norswap/autumn/memo/MemoTable.java",
+              "summary": "Inserts an entry with collision resolution via linear probing.",
+              "tags": ["insert", "collision"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoTable.java/function/memoize",
+              "type": "function",
+              "name": "memoize",
+              "filePath": "src/norswap/autumn/memo/MemoTable.java",
+              "summary": "Stores an entry with optional rehashing at load threshold.",
+              "tags": ["memoize", "rehash"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoTable.java/function/get",
+              "type": "function",
+              "name": "get",
+              "filePath": "src/norswap/autumn/memo/MemoTable.java",
+              "summary": "Retrieves a memoized entry by hash probe with displacement awareness.",
+              "tags": ["lookup", "probe"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoTable.java/function/string",
+              "type": "function",
+              "name": "string",
+              "filePath": "src/norswap/autumn/memo/MemoTable.java",
+              "summary": "Formats entries as sorted joined strings for display.",
+              "tags": ["formatting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/MemoTable.java/function/listing",
+              "type": "function",
+              "name": "listing",
+              "filePath": "src/norswap/autumn/memo/MemoTable.java",
+              "summary": "Generates detailed listing of memoized entries.",
+              "tags": ["listing", "diagnostics"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/memo/NullMemoizer.java",
+      "type": "code",
+      "name": "NullMemoizer",
+      "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+      "summary": "No-op memoizer stub that disables memoization by discarding all entries and returning null on lookups.",
+      "tags": ["autumn", "memoization", "null-object", "parsing"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/memo/NullMemoizer.java/class/NullMemoizer",
+          "type": "class",
+          "name": "NullMemoizer",
+          "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+          "summary": "Extends MemoCache with no-op implementations that discard all memoized data.",
+          "tags": ["null-object", "memoization"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/memo/NullMemoizer.java/function/memoize",
+              "type": "function",
+              "name": "memoize",
+              "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+              "summary": "No-op: discards the entry.",
+              "tags": ["no-op"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/NullMemoizer.java/function/get",
+              "type": "function",
+              "name": "get",
+              "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+              "summary": "No-op: returns null (cache miss).",
+              "tags": ["no-op"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/NullMemoizer.java/function/toString",
+              "type": "function",
+              "name": "toString",
+              "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+              "summary": "Returns empty string representation.",
+              "tags": ["formatting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/memo/NullMemoizer.java/function/listing",
+              "type": "function",
+              "name": "listing",
+              "filePath": "src/norswap/autumn/memo/NullMemoizer.java",
+              "summary": "Returns empty listing.",
+              "tags": ["no-op"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/positions/LineMap.java",
+      "type": "code",
+      "name": "LineMap",
+      "filePath": "src/norswap/autumn/positions/LineMap.java",
+      "summary": "Abstract position-to-line/column mapping with snippet generation, offset conversion, and multiple string formatting methods for error messages.",
+      "tags": ["autumn", "position", "line-map", "error-reporting"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/positions/LineMap.java/class/LineMap",
+          "type": "class",
+          "name": "LineMap",
+          "filePath": "src/norswap/autumn/positions/LineMap.java",
+          "summary": "Abstract base providing position mapping, line snippets, and multiple string/stringWithName formatting variants for error display.",
+          "tags": ["position", "line-map", "formatting"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/positions/LineMap.java/class/LineMap/methods",
+              "type": "function",
+              "name": "name/lineFrom/columnFrom/positionFrom/offsetFor/endOffsetFor/offsetFrom/lineSnippet/string/stringWithName",
+              "filePath": "src/norswap/autumn/positions/LineMap.java",
+              "summary": "Abstract and concrete methods for line/column computation, offset mapping, snippet extraction, and position string formatting.",
+              "tags": ["position", "formatting", "mapping"],
+              "complexity": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/positions/LineMapTokens.java",
+      "type": "code",
+      "name": "LineMapTokens",
+      "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+      "summary": "Token-aware line map implementation that maps between token-relative offsets and string offsets using a token list.",
+      "tags": ["autumn", "position", "tokens", "line-map"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/positions/LineMapTokens.java/class/LineMapTokens",
+          "type": "class",
+          "name": "LineMapTokens",
+          "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+          "summary": "Extends LineMap to translate between token offsets and string offsets via a list of Token objects.",
+          "tags": ["tokens", "position", "mapping"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/tokenOffsetToStringOffset",
+              "type": "function",
+              "name": "tokenOffsetToStringOffset",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Converts a token index to the corresponding string offset.",
+              "tags": ["conversion", "token"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/stringOffsetToTokenOffset",
+              "type": "function",
+              "name": "stringOffsetToTokenOffset",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Converts a string offset to the corresponding token index via binary search.",
+              "tags": ["conversion", "binary-search"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/offsetFor",
+              "type": "function",
+              "name": "offsetFor",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the string offset for a given line number.",
+              "tags": ["offset", "line"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/endOffsetFor",
+              "type": "function",
+              "name": "endOffsetFor",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the end string offset for a given line number.",
+              "tags": ["offset", "line"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/lineFrom",
+              "type": "function",
+              "name": "lineFrom",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the line number for a given offset.",
+              "tags": ["line", "offset"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/columnFrom",
+              "type": "function",
+              "name": "columnFrom",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the column number for a given offset.",
+              "tags": ["column", "offset"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/positionFrom",
+              "type": "function",
+              "name": "positionFrom",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the line and column as a position object for a given offset.",
+              "tags": ["position", "offset"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/offsetFrom",
+              "type": "function",
+              "name": "offsetFrom",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the offset for a given line-column position.",
+              "tags": ["offset", "position"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/positions/LineMapTokens.java/function/lineSnippet",
+              "type": "function",
+              "name": "lineSnippet",
+              "filePath": "src/norswap/autumn/positions/LineMapTokens.java",
+              "summary": "Returns the source line snippet for a given position.",
+              "tags": ["snippet", "source"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/autumn/util/ArrayStack.java",
+      "type": "code",
+      "name": "ArrayStack",
+      "filePath": "src/norswap/autumn/util/ArrayStack.java",
+      "summary": "Full-featured array-based stack with push, pop, peek, snoop, top(N), from(index), truncate, poll, and clone operations with bounds checking.",
+      "tags": ["autumn", "stack", "data-structure", "array"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/autumn/util/ArrayStack.java/class/ArrayStack",
+          "type": "class",
+          "name": "ArrayStack",
+          "filePath": "src/norswap/autumn/util/ArrayStack.java",
+          "summary": "Extends ArrayList with additional stack operations: push/pop/peek with amount, peekFrom, snoop, snoopBack, peekBack, top, from, removeTop, truncate.",
+          "tags": ["stack", "array", "utility"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/push",
+              "type": "function",
+              "name": "push",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Push single item, multiple items, or collection onto stack.",
+              "tags": ["push"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/pop",
+              "type": "function",
+              "name": "pop",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Pop single item or multiple items with optional array creation.",
+              "tags": ["pop"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/peek",
+              "type": "function",
+              "name": "peek",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Peek at top element or top N elements.",
+              "tags": ["peek"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/snoop",
+              "type": "function",
+              "name": "snoop",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Like peek but returns null instead of throwing on empty.",
+              "tags": ["peek", "safe"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/popFrom",
+              "type": "function",
+              "name": "popFrom",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Pop elements from a specific index to end.",
+              "tags": ["pop", "index-based"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/top",
+              "type": "function",
+              "name": "top",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Returns a view of the top N elements.",
+              "tags": ["view", "sublist"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/from",
+              "type": "function",
+              "name": "from",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Returns a view of elements from index to end.",
+              "tags": ["view", "sublist"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/removeTop",
+              "type": "function",
+              "name": "removeTop",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Removes and discards the top N elements.",
+              "tags": ["remove"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/truncate",
+              "type": "function",
+              "name": "truncate",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Truncates the stack to a given index.",
+              "tags": ["truncate"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/poll",
+              "type": "function",
+              "name": "poll",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Removes and returns first element (queue-like).",
+              "tags": ["poll", "deque"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/peekBack",
+              "type": "function",
+              "name": "peekBack",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Peeks at element from bottom of stack.",
+              "tags": ["peek", "bottom"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/snoopBack",
+              "type": "function",
+              "name": "snoopBack",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Like peekBack but returns null instead of throwing.",
+              "tags": ["peek", "safe"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/autumn/util/ArrayStack.java/function/clone",
+              "type": "function",
+              "name": "clone",
+              "filePath": "src/norswap/autumn/util/ArrayStack.java",
+              "summary": "Creates a shallow copy.",
+              "tags": ["clone"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/lang/backend/AsmUtils.java",
+      "type": "code",
+      "name": "AsmUtils",
+      "filePath": "src/norswap/lang/backend/AsmUtils.java",
+      "summary": "Utility functions for ASM bytecode generation including slash-binary-name conversion, field/method descriptor generation, static invocation, method handles, and constant loading.",
+      "tags": ["backend", "asm", "bytecode", "jvm"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/lang/backend/AsmUtils.java/class/AsmUtils",
+          "type": "class",
+          "name": "AsmUtils",
+          "filePath": "src/norswap/lang/backend/AsmUtils.java",
+          "summary": "Static utility methods for ASM bytecode descriptor generation, invocation, and constant management.",
+          "tags": ["asm", "bytecode", "descriptor"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/slashBinaryName",
+              "type": "function",
+              "name": "slashBinaryName",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Converts a Class object to its internal JVM slash-separated binary name.",
+              "tags": ["conversion", "class-name"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/fieldDescriptor",
+              "type": "function",
+              "name": "fieldDescriptor",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Generates JVM field descriptor string from a Class object.",
+              "tags": ["descriptor", "field", "jvm"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/methodDescriptor",
+              "type": "function",
+              "name": "methodDescriptor",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Generates JVM method descriptor from a Method object or return type.",
+              "tags": ["descriptor", "method", "jvm"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/invokeStatic",
+              "type": "function",
+              "name": "invokeStatic",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Emits an ASM invokestatic instruction for a given class and method.",
+              "tags": ["bytecode", "invocation"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/staticHandle",
+              "type": "function",
+              "name": "staticHandle",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Creates an ASM Handle for a static method reference.",
+              "tags": ["handle", "method-reference"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/loadConstant",
+              "type": "function",
+              "name": "loadConstant",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Emits the appropriate ASM instruction to load a constant value.",
+              "tags": ["constant", "bytecode"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/backend/AsmUtils.java/function/asmMethodType",
+              "type": "function",
+              "name": "asmMethodType",
+              "filePath": "src/norswap/lang/backend/AsmUtils.java",
+              "summary": "Creates an ASM Type for a method lookup by owner and name.",
+              "tags": ["method-type", "asm"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "type": "code",
+      "name": "NormalAnnotation",
+      "filePath": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "summary": "AST node representing a normal Java annotation with element-value pairs identified by identifier names.",
+      "tags": ["java", "ast", "annotation"],
+      "complexity": "low"
+    },
+    {
+      "id": "src/norswap/lang/rust/types/FunType.java",
+      "type": "code",
+      "name": "FunType",
+      "filePath": "src/norswap/lang/rust/types/FunType.java",
+      "summary": "Rust function type with return type and parameter types, supporting name display, equality, and hash code.",
+      "tags": ["rust", "types", "function", "ast"],
+      "complexity": "low",
+      "subNodes": [
+        {
+          "id": "src/norswap/lang/rust/types/FunType.java/class/FunType",
+          "type": "class",
+          "name": "FunType",
+          "filePath": "src/norswap/lang/rust/types/FunType.java",
+          "summary": "Represents a Rust function type with return type and parameter types, with proper equals/hashCode.",
+          "tags": ["rust", "function-type"],
+          "complexity": "low",
+          "subNodes": [
+            {
+              "id": "src/norswap/lang/rust/types/FunType.java/function/name",
+              "type": "function",
+              "name": "name",
+              "filePath": "src/norswap/lang/rust/types/FunType.java",
+              "summary": "Returns the display name of the function type (e.g., fn(i32) -> bool).",
+              "tags": ["display", "naming"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/rust/types/FunType.java/function/equals",
+              "type": "function",
+              "name": "equals",
+              "filePath": "src/norswap/lang/rust/types/FunType.java",
+              "summary": "Equality check based on return type and parameter types.",
+              "tags": ["equality"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/lang/rust/types/FunType.java/function/hashCode",
+              "type": "function",
+              "name": "hashCode",
+              "filePath": "src/norswap/lang/rust/types/FunType.java",
+              "summary": "Hash code based on return type and parameter types.",
+              "tags": ["hashing"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/uranium/Rule.java",
+      "type": "code",
+      "name": "Rule",
+      "filePath": "src/norswap/uranium/Rule.java",
+      "summary": "Uranium framework rule with dependency graph integration, export/dependency management, computation execution, value supply, and error reporting via reactor.",
+      "tags": ["uranium", "rule", "dependency-graph", "semantic-analysis"],
+      "complexity": "high",
+      "subNodes": [
+        {
+          "id": "src/norswap/uranium/Rule.java/class/Rule",
+          "type": "class",
+          "name": "Rule",
+          "filePath": "src/norswap/uranium/Rule.java",
+          "summary": "A single rule in the Uranium semantic analysis framework with typed exports, dependencies, computation callback, reactor integration, and error/supply methods.",
+          "tags": ["uranium", "rule", "reactive"],
+          "complexity": "high",
+          "subNodes": [
+            {
+              "id": "src/norswap/uranium/Rule.java/function/run",
+              "type": "function",
+              "name": "run",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Executes the rule's computation callback.",
+              "tags": ["execution", "computation"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/supply",
+              "type": "function",
+              "name": "supply",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Supplies a value for a dependency, enqueuing the rule for re-execution when the value changes.",
+              "tags": ["dependency", "supply"],
+              "complexity": "medium"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/get",
+              "type": "function",
+              "name": "get",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Retrieves a dependency value by dependency object, attribute, or index.",
+              "tags": ["dependency", "lookup"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/set",
+              "type": "function",
+              "name": "set",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Sets an export value by export object, attribute, or index.",
+              "tags": ["export", "assignment"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/copyFirst",
+              "type": "function",
+              "name": "copyFirst",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Copies the first dependency value to the first export.",
+              "tags": ["copy", "shortcut"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/error",
+              "type": "function",
+              "name": "error",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Reports a semantic error with description and location or error object.",
+              "tags": ["error", "reporting"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/uranium/Rule.java/function/errorFor",
+              "type": "function",
+              "name": "errorFor",
+              "filePath": "src/norswap/uranium/Rule.java",
+              "summary": "Reports a semantic error associated with a specific export, with description and location.",
+              "tags": ["error", "export-specific"],
+              "complexity": "medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "src/norswap/utils/NArrays.java",
+      "type": "code",
+      "name": "NArrays",
+      "filePath": "src/norswap/utils/NArrays.java",
+      "summary": "Array utility class providing type-safe functional operations: map, zip, indexOf, contains, append, pack, resize by binary power, and bounds-checked access/set/swap.",
+      "tags": ["utilities", "arrays", "functional", "type-safe"],
+      "complexity": "medium",
+      "subNodes": [
+        {
+          "id": "src/norswap/utils/NArrays.java/class/NArrays",
+          "type": "class",
+          "name": "NArrays",
+          "filePath": "src/norswap/utils/NArrays.java",
+          "summary": "Static utility methods for generic array manipulation with type safety and functional patterns.",
+          "tags": ["arrays", "utilities"],
+          "complexity": "medium",
+          "subNodes": [
+            {
+              "id": "src/norswap/utils/NArrays.java/function/access",
+              "type": "function",
+              "name": "access",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Bounds-checked array element access.",
+              "tags": ["access", "bounds-check"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/set",
+              "type": "function",
+              "name": "set",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Bounds-checked array element set.",
+              "tags": ["set", "bounds-check"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/swap",
+              "type": "function",
+              "name": "swap",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Swaps two elements in an array.",
+              "tags": ["swap"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/index",
+              "type": "function",
+              "name": "index",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Index calculation with bounds checking.",
+              "tags": ["index", "bounds-check"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/map",
+              "type": "function",
+              "name": "map",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Maps an array to a new array of a different type via a function.",
+              "tags": ["map", "functional"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/resizeBinaryPower",
+              "type": "function",
+              "name": "resizeBinaryPower",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Resizes array to the next power of two greater than or equal to minSize.",
+              "tags": ["resize", "power-of-two"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/array",
+              "type": "function",
+              "name": "array",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Creates a zero-length array of inferred type.",
+              "tags": ["array", "creation"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/pack",
+              "type": "function",
+              "name": "pack",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Removes null trailing elements from an array (in-place).",
+              "tags": ["pack", "compact"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/packRet",
+              "type": "function",
+              "name": "packRet",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Pack and return the array.",
+              "tags": ["pack", "compact"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/packed",
+              "type": "function",
+              "name": "packed",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Returns a new array with nulls removed.",
+              "tags": ["pack", "compact"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/indexOf",
+              "type": "function",
+              "name": "indexOf",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Finds index of an item in an array using Objects.equals.",
+              "tags": ["search", "index-of"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/contains",
+              "type": "function",
+              "name": "contains",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Checks if an array contains an item.",
+              "tags": ["search", "contains"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/append",
+              "type": "function",
+              "name": "append",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Appends elements to an array with resizing.",
+              "tags": ["append", "resize"],
+              "complexity": "low"
+            },
+            {
+              "id": "src/norswap/utils/NArrays.java/function/zip",
+              "type": "function",
+              "name": "zip",
+              "filePath": "src/norswap/utils/NArrays.java",
+              "summary": "Zips two arrays into an array of Pairs, truncated to shorter length.",
+              "tags": ["zip", "functional"],
+              "complexity": "low"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "src/ExpressionBenchmark.java",
+      "target": "src/norswap/autumn/Autumn.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/ExpressionBenchmark.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/ExpressionBenchmark.java",
+      "target": "src/norswap/autumn/ParseOptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/ExpressionBenchmark.java",
+      "target": "src/norswap/autumn/ParseResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/ExpressionBenchmark.java",
+      "target": "src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/Log.java",
+      "target": "src/norswap/autumn/util/ArrayStack.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/Log.java",
+      "target": "src/norswap/utils/Vanilla.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParseResult.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParseResult.java",
+      "target": "src/norswap/autumn/util/ArrayStack.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParseResult.java",
+      "target": "src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParserCallStack.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParserCallStack.java",
+      "target": "src/norswap/autumn/util/ArrayStack.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/ParserCallStack.java",
+      "target": "src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "target": "src/norswap/autumn/util/ArrayStack.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "target": "src/norswap/utils/data/wrappers/Slot.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/VisitorExtensions.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoCache.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoCache.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoCache.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoEntry.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoEntry.java",
+      "target": "src/norswap/autumn/parsers/Memo.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoEntry.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoEntry.java",
+      "target": "src/norswap/autumn/SideEffect.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoTable.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoTable.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/MemoTable.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/NullMemoizer.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/memo/NullMemoizer.java",
+      "target": "src/norswap/autumn/positions/LineMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/autumn/positions/LineMapTokens.java",
+      "target": "src/norswap/utils/Vanilla.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/backend/AsmUtils.java",
+      "target": "src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "target": "src/norswap/lang/java/ast/expr/Identifier.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/lang/rust/types/FunType.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/uranium/Rule.java",
+      "target": "src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "src/norswap/utils/NArrays.java",
+      "target": "src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    }
+  ]
+}

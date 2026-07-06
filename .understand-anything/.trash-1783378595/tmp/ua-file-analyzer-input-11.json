@@ -1,0 +1,160 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElement.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/CaseLabel.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DimExpression.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DoWhileStatement.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/EnumConstant.java",
+      "language": "java",
+      "sizeLines": 39,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StAssert.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StFor.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StForEnh.java",
+      "language": "java",
+      "sizeLines": 20,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StIf.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StReturn.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StSwitch.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StSync.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StThrow.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StWhile.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TryResource.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VarDeclarator.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Expression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/lang/java/ast/AnnotationElement.java": [],
+    "src/norswap/lang/java/ast/CaseLabel.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/DimExpression.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/DoWhileStatement.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/EnumConstant.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java",
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/StAssert.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StFor.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StForEnh.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StIf.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StReturn.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StSwitch.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StSync.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StThrow.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/StWhile.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/TryResource.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/VarDeclarator.java": [
+      "src/norswap/lang/java/ast/expr/Expression.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Expression.java": [
+      "src/norswap/lang/java/ast/AnnotationElement.java",
+      "src/norswap/lang/java/ast/Statement.java"
+    ]
+  }
+}

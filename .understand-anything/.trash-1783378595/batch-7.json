@@ -1,0 +1,773 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 7,
+  "nodes": [
+    {
+      "id": "file:src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "type": "file",
+      "name": "AnnotationElementDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "summary": "Record representing an annotation element declaration in the Java AST, with modifiers, type, name, dimensions, and default value.",
+      "tags": ["java-ast", "declaration", "annotation", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 12,
+      "subNodes": [
+        {
+          "id": "class:AnnotationElementDeclaration",
+          "type": "class",
+          "name": "AnnotationElementDeclaration",
+          "summary": "Java record for annotation element declarations, implementing Declaration interface.",
+          "tags": ["record", "annotation-element", "declaration"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/BreakStatement.java",
+      "type": "file",
+      "name": "BreakStatement.java",
+      "filePath": "src/norswap/lang/java/ast/BreakStatement.java",
+      "summary": "Record representing a break statement in the Java AST, with an optional label identifier.",
+      "tags": ["java-ast", "statement", "control-flow", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 7,
+      "subNodes": [
+        {
+          "id": "class:BreakStatement",
+          "type": "class",
+          "name": "BreakStatement",
+          "summary": "Java record for break statements, implementing Statement interface.",
+          "tags": ["record", "break", "control-flow"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ClassTypePart.java",
+      "type": "file",
+      "name": "ClassTypePart.java",
+      "filePath": "src/norswap/lang/java/ast/ClassTypePart.java",
+      "summary": "Record representing a part of a class type in the Java AST, with annotations, identifier name, and type arguments.",
+      "tags": ["java-ast", "type", "class-type", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 11,
+      "subNodes": [
+        {
+          "id": "class:ClassTypePart",
+          "type": "class",
+          "name": "ClassTypePart",
+          "summary": "Java record for class type parts with annotations, name, and type arguments.",
+          "tags": ["record", "type", "class-type"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "type": "file",
+      "name": "ConstructorDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "summary": "Record representing a constructor declaration in the Java AST, with modifiers, type parameters, name, formal parameters, thrown types, and body block.",
+      "tags": ["java-ast", "declaration", "constructor", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 15,
+      "subNodes": [
+        {
+          "id": "class:ConstructorDeclaration",
+          "type": "class",
+          "name": "ConstructorDeclaration",
+          "summary": "Java record for constructor declarations, implementing Declaration interface.",
+          "tags": ["record", "constructor", "declaration"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ContinueStatement.java",
+      "type": "file",
+      "name": "ContinueStatement.java",
+      "filePath": "src/norswap/lang/java/ast/ContinueStatement.java",
+      "summary": "Record representing a continue statement in the Java AST, with an optional label identifier.",
+      "tags": ["java-ast", "statement", "control-flow", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 7,
+      "subNodes": [
+        {
+          "id": "class:ContinueStatement",
+          "type": "class",
+          "name": "ContinueStatement",
+          "summary": "Java record for continue statements, implementing Statement interface.",
+          "tags": ["record", "continue", "control-flow"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/IdenParameter.java",
+      "type": "file",
+      "name": "IdenParameter.java",
+      "filePath": "src/norswap/lang/java/ast/IdenParameter.java",
+      "summary": "Record representing a named formal parameter in the Java AST, with modifiers, type, name, and dimensions, plus a static factory method.",
+      "tags": ["java-ast", "parameter", "formal-parameter", "record", "factory"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 18,
+      "subNodes": [
+        {
+          "id": "class:IdenParameter",
+          "type": "class",
+          "name": "IdenParameter",
+          "summary": "Java record for identified formal parameters, implementing FormalParameter interface.",
+          "tags": ["record", "parameter", "formal-parameter"]
+        },
+        {
+          "id": "method:IdenParameter.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create an IdenParameter instance.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ImportDeclaration.java",
+      "type": "file",
+      "name": "ImportDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/ImportDeclaration.java",
+      "summary": "Record representing an import declaration in the Java AST, with static flag, qualified name parts, and wildcard flag, plus a static factory method.",
+      "tags": ["java-ast", "statement", "import", "record", "factory"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 15,
+      "subNodes": [
+        {
+          "id": "class:ImportDeclaration",
+          "type": "class",
+          "name": "ImportDeclaration",
+          "summary": "Java record for import declarations, implementing Statement interface.",
+          "tags": ["record", "import", "statement"]
+        },
+        {
+          "id": "method:ImportDeclaration.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create an ImportDeclaration instance.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/LabelledStatement.java",
+      "type": "file",
+      "name": "LabelledStatement.java",
+      "filePath": "src/norswap/lang/java/ast/LabelledStatement.java",
+      "summary": "Record representing a labelled statement in the Java AST, with an identifier label and a nested statement, plus a static factory method.",
+      "tags": ["java-ast", "statement", "label", "record", "factory"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 14,
+      "subNodes": [
+        {
+          "id": "class:LabelledStatement",
+          "type": "class",
+          "name": "LabelledStatement",
+          "summary": "Java record for labelled statements, implementing Statement interface.",
+          "tags": ["record", "label", "statement"]
+        },
+        {
+          "id": "method:LabelledStatement.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create a LabelledStatement instance.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "type": "file",
+      "name": "MarkerAnnotation.java",
+      "filePath": "src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "summary": "Record representing a marker annotation (no element values) in the Java AST, with a list of identifier name parts, plus static factory and string-based convenience methods.",
+      "tags": ["java-ast", "annotation", "marker-annotation", "record", "factory"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 19,
+      "subNodes": [
+        {
+          "id": "class:MarkerAnnotation",
+          "type": "class",
+          "name": "MarkerAnnotation",
+          "summary": "Java record for marker annotations, implementing TAnnotation interface.",
+          "tags": ["record", "annotation", "marker"]
+        },
+        {
+          "id": "method:MarkerAnnotation.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create a MarkerAnnotation from a list of Identifiers.",
+          "tags": ["static", "factory", "public"]
+        },
+        {
+          "id": "method:MarkerAnnotation.strings",
+          "type": "method",
+          "name": "strings",
+          "summary": "Static convenience method to create a MarkerAnnotation from varargs string names, wrapping each in an Identifier.",
+          "tags": ["static", "convenience", "public", "varargs"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/MethodDeclaration.java",
+      "type": "file",
+      "name": "MethodDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/MethodDeclaration.java",
+      "summary": "Record representing a method declaration in the Java AST, with modifiers, type parameters, return type, name, formal parameters, dimensions, thrown types, and optional body block, plus a static factory method.",
+      "tags": ["java-ast", "declaration", "method", "record", "factory"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 25,
+      "subNodes": [
+        {
+          "id": "class:MethodDeclaration",
+          "type": "class",
+          "name": "MethodDeclaration",
+          "summary": "Java record for method declarations, implementing Declaration interface.",
+          "tags": ["record", "method", "declaration"]
+        },
+        {
+          "id": "method:MethodDeclaration.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create a MethodDeclaration with all fields.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/PackageDeclaration.java",
+      "type": "file",
+      "name": "PackageDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/PackageDeclaration.java",
+      "summary": "Record representing a package declaration in the Java AST, with annotations and a qualified name as a list of identifiers.",
+      "tags": ["java-ast", "statement", "package", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 9,
+      "subNodes": [
+        {
+          "id": "class:PackageDeclaration",
+          "type": "class",
+          "name": "PackageDeclaration",
+          "summary": "Java record for package declarations, implementing Statement interface.",
+          "tags": ["record", "package", "statement"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "type": "file",
+      "name": "SingleElementAnnotation.java",
+      "filePath": "src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "summary": "Record representing a single-element annotation in the Java AST, with identifier name parts and a single annotation element value.",
+      "tags": ["java-ast", "annotation", "single-element", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 8,
+      "subNodes": [
+        {
+          "id": "class:SingleElementAnnotation",
+          "type": "class",
+          "name": "SingleElementAnnotation",
+          "summary": "Java record for single-element annotations, implementing TAnnotation interface.",
+          "tags": ["record", "annotation", "single-element"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/ThisParameter.java",
+      "type": "file",
+      "name": "ThisParameter.java",
+      "filePath": "src/norswap/lang/java/ast/ThisParameter.java",
+      "summary": "Record representing a 'this' formal parameter in the Java AST, with modifiers, type, and qualifying identifiers, plus a static factory method.",
+      "tags": ["java-ast", "parameter", "this-parameter", "record", "factory"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 15,
+      "subNodes": [
+        {
+          "id": "class:ThisParameter",
+          "type": "class",
+          "name": "ThisParameter",
+          "summary": "Java record for 'this' formal parameters, implementing FormalParameter interface.",
+          "tags": ["record", "parameter", "this"]
+        },
+        {
+          "id": "method:ThisParameter.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create a ThisParameter instance.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/TypeDeclaration.java",
+      "type": "file",
+      "name": "TypeDeclaration.java",
+      "filePath": "src/norswap/lang/java/ast/TypeDeclaration.java",
+      "summary": "Record representing a type (class/interface/enum/annotation) declaration in the Java AST, with kind enum, modifiers, name, type parameters, extended/implemented types, and declarations.",
+      "tags": ["java-ast", "declaration", "type", "enum", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 15,
+      "subNodes": [
+        {
+          "id": "class:TypeDeclaration",
+          "type": "class",
+          "name": "TypeDeclaration",
+          "summary": "Java record for type declarations, implementing Declaration interface.",
+          "tags": ["record", "type", "declaration"]
+        },
+        {
+          "id": "enum:TypeDeclaration.Kind",
+          "type": "enum",
+          "name": "Kind",
+          "summary": "Inner enum specifying the kind of type declaration: ANNOTATION, CLASS, ENUM, or INTERFACE.",
+          "tags": ["enum", "type-kind", "nested"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/TypeParameter.java",
+      "type": "file",
+      "name": "TypeParameter.java",
+      "filePath": "src/norswap/lang/java/ast/TypeParameter.java",
+      "summary": "Record representing a type parameter in the Java AST, with annotations, name, and upper bounds list.",
+      "tags": ["java-ast", "generics", "type-parameter", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 12,
+      "subNodes": [
+        {
+          "id": "class:TypeParameter",
+          "type": "class",
+          "name": "TypeParameter",
+          "summary": "Java record for generic type parameters with annotations, name, and bounds.",
+          "tags": ["record", "generics", "type-parameter"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/UntypedParameters.java",
+      "type": "file",
+      "name": "UntypedParameters.java",
+      "filePath": "src/norswap/lang/java/ast/UntypedParameters.java",
+      "summary": "Record representing untyped parameter lists in the Java AST (e.g., lambda parameters without types), as a list of identifiers.",
+      "tags": ["java-ast", "parameters", "lambda", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 8,
+      "subNodes": [
+        {
+          "id": "class:UntypedParameters",
+          "type": "class",
+          "name": "UntypedParameters",
+          "summary": "Java record for untyped parameter lists, implementing Parameters interface.",
+          "tags": ["record", "parameters", "lambda"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "type": "file",
+      "name": "VarDeclaratorID.java",
+      "filePath": "src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "summary": "Record representing a variable declarator identifier in the Java AST, with a name and optional array dimensions.",
+      "tags": ["java-ast", "variable", "declarator", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 10,
+      "subNodes": [
+        {
+          "id": "class:VarDeclaratorID",
+          "type": "class",
+          "name": "VarDeclaratorID",
+          "summary": "Java record for variable declarator identifiers with name and dimensions.",
+          "tags": ["record", "variable", "declarator"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/VariadicParameter.java",
+      "type": "file",
+      "name": "VariadicParameter.java",
+      "filePath": "src/norswap/lang/java/ast/VariadicParameter.java",
+      "summary": "Record representing a variadic (varargs) formal parameter in the Java AST, with modifiers, type, array annotations, and name.",
+      "tags": ["java-ast", "parameter", "varargs", "record"],
+      "complexity": "simple",
+      "language": "java",
+      "sizeLines": 12,
+      "subNodes": [
+        {
+          "id": "class:VariadicParameter",
+          "type": "class",
+          "name": "VariadicParameter",
+          "summary": "Java record for variadic formal parameters, implementing FormalParameter interface.",
+          "tags": ["record", "parameter", "varargs"]
+        }
+      ]
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "type": "file",
+      "name": "Identifier.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Identifier.java",
+      "summary": "Record representing a simple identifier expression in the Java AST, wrapping a string name, with a static factory method.",
+      "tags": ["java-ast", "expression", "identifier", "record", "factory"],
+      "complexity": "trivial",
+      "language": "java",
+      "sizeLines": 8,
+      "subNodes": [
+        {
+          "id": "class:Identifier",
+          "type": "class",
+          "name": "Identifier",
+          "summary": "Java record for identifier expressions, implementing Expression interface.",
+          "tags": ["record", "expression", "identifier"]
+        },
+        {
+          "id": "method:Identifier.mk",
+          "type": "method",
+          "name": "mk",
+          "summary": "Static factory method to create an Identifier from a string name.",
+          "tags": ["static", "factory", "public"]
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge:import-AnnotationElementDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-BreakStatement-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/BreakStatement.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-ClassTypePart-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/ClassTypePart.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-ConstructorDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-ContinueStatement-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/ContinueStatement.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-IdenParameter-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/IdenParameter.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-ImportDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/ImportDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-LabelledStatement-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/LabelledStatement.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-MarkerAnnotation-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-MethodDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/MethodDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-PackageDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/PackageDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-SingleElementAnnotation-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-ThisParameter-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/ThisParameter.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-TypeDeclaration-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/TypeDeclaration.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-TypeParameter-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/TypeParameter.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-UntypedParameters-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/UntypedParameters.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-VarDeclaratorID-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:import-VariadicParameter-Identifier",
+      "type": "import",
+      "source": "file:src/norswap/lang/java/ast/VariadicParameter.java",
+      "target": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "label": "imports"
+    },
+    {
+      "id": "edge:contains-AnnotationElementDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "target": "class:AnnotationElementDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-BreakStatement",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/BreakStatement.java",
+      "target": "class:BreakStatement",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ClassTypePart",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ClassTypePart.java",
+      "target": "class:ClassTypePart",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ConstructorDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "target": "class:ConstructorDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ContinueStatement",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ContinueStatement.java",
+      "target": "class:ContinueStatement",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-IdenParameter",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/IdenParameter.java",
+      "target": "class:IdenParameter",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-IdenParameter.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/IdenParameter.java",
+      "target": "method:IdenParameter.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ImportDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ImportDeclaration.java",
+      "target": "class:ImportDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ImportDeclaration.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ImportDeclaration.java",
+      "target": "method:ImportDeclaration.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-LabelledStatement",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/LabelledStatement.java",
+      "target": "class:LabelledStatement",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-LabelledStatement.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/LabelledStatement.java",
+      "target": "method:LabelledStatement.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-MarkerAnnotation",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "target": "class:MarkerAnnotation",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-MarkerAnnotation.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "target": "method:MarkerAnnotation.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-MarkerAnnotation.strings",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "target": "method:MarkerAnnotation.strings",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-MethodDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/MethodDeclaration.java",
+      "target": "class:MethodDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-MethodDeclaration.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/MethodDeclaration.java",
+      "target": "method:MethodDeclaration.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-PackageDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/PackageDeclaration.java",
+      "target": "class:PackageDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-SingleElementAnnotation",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "target": "class:SingleElementAnnotation",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ThisParameter",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ThisParameter.java",
+      "target": "class:ThisParameter",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-ThisParameter.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/ThisParameter.java",
+      "target": "method:ThisParameter.mk",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-TypeDeclaration",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/TypeDeclaration.java",
+      "target": "class:TypeDeclaration",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-TypeDeclaration.Kind",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/TypeDeclaration.java",
+      "target": "enum:TypeDeclaration.Kind",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-TypeParameter",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/TypeParameter.java",
+      "target": "class:TypeParameter",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-UntypedParameters",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/UntypedParameters.java",
+      "target": "class:UntypedParameters",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-VarDeclaratorID",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "target": "class:VarDeclaratorID",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-VariadicParameter",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/VariadicParameter.java",
+      "target": "class:VariadicParameter",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-Identifier",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "target": "class:Identifier",
+      "label": "contains"
+    },
+    {
+      "id": "edge:contains-Identifier.mk",
+      "type": "contains",
+      "source": "file:src/norswap/lang/java/ast/expr/Identifier.java",
+      "target": "method:Identifier.mk",
+      "label": "contains"
+    }
+  ]
+}

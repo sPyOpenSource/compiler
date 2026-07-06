@@ -1,0 +1,1753 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/lang/java/ast/Keyword.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Modifier.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "Modifier",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Modifier",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Null.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "Null",
+          "startLine": 10,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "toString",
+          "startLine": 12,
+          "endLine": 14,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Null",
+          "startLine": 7,
+          "endLine": 15,
+          "methods": [
+            "Null",
+            "toString"
+          ],
+          "properties": [
+            "NULL"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "NULL",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "Null",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/PrimitiveType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SemiStatement.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "functions": [
+        {
+          "name": "mk",
+          "startLine": 5,
+          "endLine": 7,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "SemiStatement",
+          "startLine": 3,
+          "endLine": 8,
+          "methods": [
+            "mk"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "mk",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "SemiStatement",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new SemiStatement",
+          "lineNumber": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StTryCaFi.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 16,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new StTryCaFi",
+          "lineNumber": 16
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StVar.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 9,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SuperBound.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchClause.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchLabel.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "SwitchLabel",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SwitchLabel",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TAnnotation.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 4,
+      "nonEmptyLines": 3,
+      "classes": [
+        {
+          "name": "TAnnotation",
+          "startLine": 3,
+          "endLine": 4,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TAnnotation",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeBound.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 6,
+      "classes": [
+        {
+          "name": "TypeBound",
+          "startLine": 3,
+          "endLine": 7,
+          "methods": [
+            "type"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "TypeBound",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Wildcard.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/TokenKind.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 159,
+      "nonEmptyLines": 148,
+      "callGraph": [
+        {
+          "caller": "lookup",
+          "callee": "table.getOrDefault",
+          "lineNumber": 157
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/InterpreterException.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "InterpreterException",
+          "startLine": 7,
+          "endLine": 9,
+          "params": [
+            "message",
+            "cause"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "InterpreterException",
+          "startLine": 6,
+          "endLine": 10,
+          "methods": [
+            "InterpreterException"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "InterpreterException",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "InterpreterException",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/PassthroughException.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "PassthroughException",
+          "startLine": 9,
+          "endLine": 11,
+          "params": [
+            "cause"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "PassthroughException",
+          "startLine": 8,
+          "endLine": 12,
+          "methods": [
+            "PassthroughException"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PassthroughException",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/Void.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 8,
+      "functions": [
+        {
+          "name": "Void",
+          "startLine": 8,
+          "endLine": 8,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Void",
+          "startLine": 7,
+          "endLine": 9,
+          "methods": [
+            "Void"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Void",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/ArrayType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 22,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "ArrayType",
+          "startLine": 7,
+          "endLine": 9,
+          "params": [
+            "componentType"
+          ]
+        },
+        {
+          "name": "name",
+          "startLine": 11,
+          "endLine": 13,
+          "params": []
+        },
+        {
+          "name": "equals",
+          "startLine": 15,
+          "endLine": 17,
+          "params": [
+            "o"
+          ]
+        },
+        {
+          "name": "hashCode",
+          "startLine": 19,
+          "endLine": 21,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ArrayType",
+          "startLine": 3,
+          "endLine": 22,
+          "methods": [
+            "ArrayType",
+            "name",
+            "equals",
+            "hashCode"
+          ],
+          "properties": [
+            "componentType"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "componentType",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayType",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "equals",
+          "line": 15,
+          "isDefault": false
+        },
+        {
+          "name": "hashCode",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "name",
+          "callee": "componentType.toString",
+          "lineNumber": 12
+        },
+        {
+          "caller": "equals",
+          "callee": "componentType.equals",
+          "lineNumber": 16
+        },
+        {
+          "caller": "hashCode",
+          "callee": "componentType.hashCode",
+          "lineNumber": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/BoolType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 12,
+      "functions": [
+        {
+          "name": "BoolType",
+          "startLine": 6,
+          "endLine": 6,
+          "params": []
+        },
+        {
+          "name": "isPrimitive",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "name",
+          "startLine": 12,
+          "endLine": 14,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "BoolType",
+          "startLine": 3,
+          "endLine": 15,
+          "methods": [
+            "BoolType",
+            "isPrimitive",
+            "name"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "isPrimitive",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "BoolType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/NullType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "NullType",
+          "startLine": 6,
+          "endLine": 6,
+          "params": []
+        },
+        {
+          "name": "name",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "NullType",
+          "startLine": 3,
+          "endLine": 11,
+          "methods": [
+            "NullType",
+            "name"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "NullType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/TypeType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "TypeType",
+          "startLine": 6,
+          "endLine": 6,
+          "params": []
+        },
+        {
+          "name": "name",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "TypeType",
+          "startLine": 3,
+          "endLine": 11,
+          "methods": [
+            "TypeType",
+            "name"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "TypeType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/VoidType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "VoidType",
+          "startLine": 6,
+          "endLine": 6,
+          "params": []
+        },
+        {
+          "name": "name",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "VoidType",
+          "startLine": 3,
+          "endLine": 11,
+          "methods": [
+            "VoidType",
+            "name"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "VoidType",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/Chance.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 87,
+      "nonEmptyLines": 69,
+      "functions": [
+        {
+          "name": "flip",
+          "startLine": 20,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "random",
+          "startLine": 30,
+          "endLine": 33,
+          "params": [
+            "bound"
+          ]
+        },
+        {
+          "name": "random",
+          "startLine": 40,
+          "endLine": 43,
+          "params": []
+        },
+        {
+          "name": "selectp",
+          "startLine": 50,
+          "endLine": 53,
+          "params": []
+        },
+        {
+          "name": "selectp",
+          "startLine": 60,
+          "endLine": 63,
+          "params": []
+        },
+        {
+          "name": "select",
+          "startLine": 70,
+          "endLine": 74,
+          "params": []
+        },
+        {
+          "name": "probability",
+          "startLine": 81,
+          "endLine": 84,
+          "params": [
+            "times",
+            "outof"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Chance",
+          "startLine": 9,
+          "endLine": 87,
+          "methods": [
+            "flip",
+            "random",
+            "random",
+            "selectp",
+            "selectp",
+            "select",
+            "probability"
+          ],
+          "properties": [
+            "RANDOM"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "flip",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "random",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "random",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "selectp",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "selectp",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "select",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "probability",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "Chance",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "flip",
+          "callee": "RANDOM.nextBoolean",
+          "lineNumber": 22
+        },
+        {
+          "caller": "random",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 32
+        },
+        {
+          "caller": "random",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 42
+        },
+        {
+          "caller": "selectp",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 52
+        },
+        {
+          "caller": "selectp",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 62
+        },
+        {
+          "caller": "select",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 73
+        },
+        {
+          "caller": "probability",
+          "callee": "RANDOM.nextInt",
+          "lineNumber": 83
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 8,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayStack.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 304,
+      "nonEmptyLines": 253,
+      "functions": [
+        {
+          "name": "ArrayStack",
+          "startLine": 23,
+          "endLine": 23,
+          "params": []
+        },
+        {
+          "name": "ArrayStack",
+          "startLine": 30,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "ArrayStack",
+          "startLine": 41,
+          "endLine": 43,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "add",
+          "startLine": 52,
+          "endLine": 55,
+          "params": []
+        },
+        {
+          "name": "push",
+          "startLine": 64,
+          "endLine": 66,
+          "params": [
+            "item"
+          ]
+        },
+        {
+          "name": "push",
+          "startLine": 75,
+          "endLine": 78,
+          "params": []
+        },
+        {
+          "name": "push",
+          "startLine": 87,
+          "endLine": 89,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "amountOutOfBoundsMessage",
+          "startLine": 93,
+          "endLine": 95,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "indexOutOfBoundsMessage",
+          "startLine": 99,
+          "endLine": 101,
+          "params": [
+            "i"
+          ]
+        },
+        {
+          "name": "top",
+          "startLine": 111,
+          "endLine": 116,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "from",
+          "startLine": 126,
+          "endLine": 131,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "removeTop",
+          "startLine": 141,
+          "endLine": 146,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "truncate",
+          "startLine": 156,
+          "endLine": 161,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "pop",
+          "startLine": 170,
+          "endLine": 175,
+          "params": []
+        },
+        {
+          "name": "pop",
+          "startLine": 186,
+          "endLine": 194,
+          "params": [
+            "n",
+            "makeArray"
+          ]
+        },
+        {
+          "name": "popFrom",
+          "startLine": 204,
+          "endLine": 209,
+          "params": [
+            "index",
+            "makeArray"
+          ]
+        },
+        {
+          "name": "poll",
+          "startLine": 216,
+          "endLine": 218,
+          "params": []
+        },
+        {
+          "name": "peek",
+          "startLine": 227,
+          "endLine": 232,
+          "params": []
+        },
+        {
+          "name": "peek",
+          "startLine": 242,
+          "endLine": 247,
+          "params": [
+            "n",
+            "makeArray"
+          ]
+        },
+        {
+          "name": "peekFrom",
+          "startLine": 257,
+          "endLine": 262,
+          "params": [
+            "index",
+            "makeArray"
+          ]
+        },
+        {
+          "name": "snoop",
+          "startLine": 269,
+          "endLine": 271,
+          "params": []
+        },
+        {
+          "name": "peekBack",
+          "startLine": 280,
+          "endLine": 285,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "snoopBack",
+          "startLine": 293,
+          "endLine": 295,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "clone",
+          "startLine": 299,
+          "endLine": 301,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ArrayStack",
+          "startLine": 19,
+          "endLine": 304,
+          "methods": [
+            "ArrayStack",
+            "ArrayStack",
+            "ArrayStack",
+            "add",
+            "push",
+            "push",
+            "push",
+            "amountOutOfBoundsMessage",
+            "indexOutOfBoundsMessage",
+            "top",
+            "from",
+            "removeTop",
+            "truncate",
+            "pop",
+            "pop",
+            "popFrom",
+            "poll",
+            "peek",
+            "peek",
+            "peekFrom",
+            "snoop",
+            "peekBack",
+            "snoopBack",
+            "clone"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ArrayStack",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "add",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "top",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "from",
+          "line": 126,
+          "isDefault": false
+        },
+        {
+          "name": "removeTop",
+          "line": 141,
+          "isDefault": false
+        },
+        {
+          "name": "truncate",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 170,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 186,
+          "isDefault": false
+        },
+        {
+          "name": "popFrom",
+          "line": 204,
+          "isDefault": false
+        },
+        {
+          "name": "poll",
+          "line": 216,
+          "isDefault": false
+        },
+        {
+          "name": "peek",
+          "line": 227,
+          "isDefault": false
+        },
+        {
+          "name": "peek",
+          "line": 242,
+          "isDefault": false
+        },
+        {
+          "name": "peekFrom",
+          "line": 257,
+          "isDefault": false
+        },
+        {
+          "name": "snoop",
+          "line": 269,
+          "isDefault": false
+        },
+        {
+          "name": "peekBack",
+          "line": 280,
+          "isDefault": false
+        },
+        {
+          "name": "snoopBack",
+          "line": 293,
+          "isDefault": false
+        },
+        {
+          "name": "clone",
+          "line": 299,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ArrayStack",
+          "callee": "add",
+          "lineNumber": 33
+        },
+        {
+          "caller": "add",
+          "callee": "addAll",
+          "lineNumber": 54
+        },
+        {
+          "caller": "add",
+          "callee": "Arrays.asList",
+          "lineNumber": 54
+        },
+        {
+          "caller": "push",
+          "callee": "add",
+          "lineNumber": 65
+        },
+        {
+          "caller": "push",
+          "callee": "addAll",
+          "lineNumber": 77
+        },
+        {
+          "caller": "push",
+          "callee": "Arrays.asList",
+          "lineNumber": 77
+        },
+        {
+          "caller": "push",
+          "callee": "addAll",
+          "lineNumber": 88
+        },
+        {
+          "caller": "amountOutOfBoundsMessage",
+          "callee": "size",
+          "lineNumber": 94
+        },
+        {
+          "caller": "indexOutOfBoundsMessage",
+          "callee": "size",
+          "lineNumber": 100
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 113
+        },
+        {
+          "caller": "top",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 114
+        },
+        {
+          "caller": "top",
+          "callee": "amountOutOfBoundsMessage",
+          "lineNumber": 114
+        },
+        {
+          "caller": "top",
+          "callee": "subList",
+          "lineNumber": 115
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 115
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 115
+        },
+        {
+          "caller": "from",
+          "callee": "size",
+          "lineNumber": 128
+        },
+        {
+          "caller": "from",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 129
+        },
+        {
+          "caller": "from",
+          "callee": "indexOutOfBoundsMessage",
+          "lineNumber": 129
+        },
+        {
+          "caller": "from",
+          "callee": "subList",
+          "lineNumber": 130
+        },
+        {
+          "caller": "from",
+          "callee": "size",
+          "lineNumber": 130
+        },
+        {
+          "caller": "removeTop",
+          "callee": "size",
+          "lineNumber": 143
+        },
+        {
+          "caller": "removeTop",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 144
+        },
+        {
+          "caller": "removeTop",
+          "callee": "amountOutOfBoundsMessage",
+          "lineNumber": 144
+        },
+        {
+          "caller": "removeTop",
+          "callee": "top(n).clear",
+          "lineNumber": 145
+        },
+        {
+          "caller": "removeTop",
+          "callee": "top",
+          "lineNumber": 145
+        },
+        {
+          "caller": "truncate",
+          "callee": "size",
+          "lineNumber": 158
+        },
+        {
+          "caller": "truncate",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 159
+        },
+        {
+          "caller": "truncate",
+          "callee": "indexOutOfBoundsMessage",
+          "lineNumber": 159
+        },
+        {
+          "caller": "truncate",
+          "callee": "from(index).clear",
+          "lineNumber": 160
+        },
+        {
+          "caller": "truncate",
+          "callee": "from",
+          "lineNumber": 160
+        },
+        {
+          "caller": "pop",
+          "callee": "isEmpty",
+          "lineNumber": 172
+        },
+        {
+          "caller": "pop",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 173
+        },
+        {
+          "caller": "pop",
+          "callee": "remove",
+          "lineNumber": 174
+        },
+        {
+          "caller": "pop",
+          "callee": "size",
+          "lineNumber": 174
+        },
+        {
+          "caller": "pop",
+          "callee": "size",
+          "lineNumber": 188
+        },
+        {
+          "caller": "pop",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 189
+        },
+        {
+          "caller": "pop",
+          "callee": "amountOutOfBoundsMessage",
+          "lineNumber": 189
+        },
+        {
+          "caller": "pop",
+          "callee": "top",
+          "lineNumber": 190
+        },
+        {
+          "caller": "pop",
+          "callee": "sub.toArray",
+          "lineNumber": 191
+        },
+        {
+          "caller": "pop",
+          "callee": "makeArray.apply",
+          "lineNumber": 191
+        },
+        {
+          "caller": "pop",
+          "callee": "sub.clear",
+          "lineNumber": 192
+        },
+        {
+          "caller": "popFrom",
+          "callee": "size",
+          "lineNumber": 206
+        },
+        {
+          "caller": "popFrom",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 207
+        },
+        {
+          "caller": "popFrom",
+          "callee": "indexOutOfBoundsMessage",
+          "lineNumber": 207
+        },
+        {
+          "caller": "popFrom",
+          "callee": "pop",
+          "lineNumber": 208
+        },
+        {
+          "caller": "popFrom",
+          "callee": "size",
+          "lineNumber": 208
+        },
+        {
+          "caller": "poll",
+          "callee": "isEmpty",
+          "lineNumber": 217
+        },
+        {
+          "caller": "poll",
+          "callee": "remove",
+          "lineNumber": 217
+        },
+        {
+          "caller": "poll",
+          "callee": "size",
+          "lineNumber": 217
+        },
+        {
+          "caller": "peek",
+          "callee": "isEmpty",
+          "lineNumber": 229
+        },
+        {
+          "caller": "peek",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 230
+        },
+        {
+          "caller": "peek",
+          "callee": "get",
+          "lineNumber": 231
+        },
+        {
+          "caller": "peek",
+          "callee": "size",
+          "lineNumber": 231
+        },
+        {
+          "caller": "peek",
+          "callee": "size",
+          "lineNumber": 244
+        },
+        {
+          "caller": "peek",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 245
+        },
+        {
+          "caller": "peek",
+          "callee": "amountOutOfBoundsMessage",
+          "lineNumber": 245
+        },
+        {
+          "caller": "peek",
+          "callee": "top(n).toArray",
+          "lineNumber": 246
+        },
+        {
+          "caller": "peek",
+          "callee": "top",
+          "lineNumber": 246
+        },
+        {
+          "caller": "peek",
+          "callee": "makeArray.apply",
+          "lineNumber": 246
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "size",
+          "lineNumber": 259
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 260
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "indexOutOfBoundsMessage",
+          "lineNumber": 260
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "peek",
+          "lineNumber": 261
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "size",
+          "lineNumber": 261
+        },
+        {
+          "caller": "snoop",
+          "callee": "isEmpty",
+          "lineNumber": 270
+        },
+        {
+          "caller": "snoop",
+          "callee": "get",
+          "lineNumber": 270
+        },
+        {
+          "caller": "snoop",
+          "callee": "size",
+          "lineNumber": 270
+        },
+        {
+          "caller": "peekBack",
+          "callee": "size",
+          "lineNumber": 282
+        },
+        {
+          "caller": "peekBack",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 283
+        },
+        {
+          "caller": "peekBack",
+          "callee": "indexOutOfBoundsMessage",
+          "lineNumber": 283
+        },
+        {
+          "caller": "peekBack",
+          "callee": "get",
+          "lineNumber": 284
+        },
+        {
+          "caller": "peekBack",
+          "callee": "size",
+          "lineNumber": 284
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "size",
+          "lineNumber": 294
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "get",
+          "lineNumber": 294
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "size",
+          "lineNumber": 294
+        },
+        {
+          "caller": "clone",
+          "callee": "cast",
+          "lineNumber": 300
+        },
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 300
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 23,
+        "functionCount": 24,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingSupplier.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 10,
+      "classes": [
+        {
+          "name": "ThrowingSupplier",
+          "startLine": 8,
+          "endLine": 12,
+          "methods": [
+            "get"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ThrowingSupplier",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    }
+  ]
+}

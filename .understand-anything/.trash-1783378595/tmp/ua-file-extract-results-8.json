@@ -1,0 +1,3899 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 19,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Constructor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 15,
+      "nonEmptyLines": 13,
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotIden.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotNew.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new InstanceOf",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Lambda.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Literal.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 10,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "testConvertHook.apply",
+          "lineNumber": 10
+        },
+        {
+          "caller": "mk",
+          "callee": "new Literal",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 19,
+      "nonEmptyLines": 17,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new MethodCall",
+          "lineNumber": 17
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new NewReference",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Super.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "mk",
+          "startLine": 8,
+          "endLine": 14,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Super",
+          "startLine": 3,
+          "endLine": 16,
+          "methods": [
+            "mk"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mk",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "Super",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new Super",
+          "lineNumber": 10
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 11,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new TernaryExpression",
+          "lineNumber": 10
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/This.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 14,
+      "nonEmptyLines": 11,
+      "functions": [
+        {
+          "name": "mk",
+          "startLine": 7,
+          "endLine": 13,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "This",
+          "startLine": 3,
+          "endLine": 14,
+          "methods": [
+            "mk"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "mk",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "This",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new This",
+          "lineNumber": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 8,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new ThisCall",
+          "lineNumber": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 8,
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "test/lang/java/GrammarTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 686,
+      "nonEmptyLines": 583,
+      "functions": [
+        {
+          "name": "GrammarTest",
+          "startLine": 53,
+          "endLine": 56,
+          "params": [
+            "grammar"
+          ]
+        },
+        {
+          "name": "GrammarTest",
+          "startLine": 60,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "rule",
+          "startLine": 66,
+          "endLine": 68,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "idList",
+          "startLine": 72,
+          "endLine": 75,
+          "params": []
+        },
+        {
+          "name": "prim",
+          "startLine": 92,
+          "endLine": 94,
+          "params": [
+            "type"
+          ]
+        },
+        {
+          "name": "cpart",
+          "startLine": 97,
+          "endLine": 99,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "sclass",
+          "startLine": 102,
+          "endLine": 105,
+          "params": [
+            "name",
+            "typeArgs"
+          ]
+        },
+        {
+          "name": "sclass",
+          "startLine": 108,
+          "endLine": 110,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "literals",
+          "startLine": 117,
+          "endLine": 177,
+          "params": []
+        },
+        {
+          "name": "annotations",
+          "startLine": 181,
+          "endLine": 239,
+          "params": []
+        },
+        {
+          "name": "types",
+          "startLine": 243,
+          "endLine": 321,
+          "params": []
+        },
+        {
+          "name": "primaryExpressions",
+          "startLine": 325,
+          "endLine": 425,
+          "params": []
+        },
+        {
+          "name": "postfix",
+          "startLine": 429,
+          "endLine": 442,
+          "params": []
+        },
+        {
+          "name": "prefix",
+          "startLine": 446,
+          "endLine": 462,
+          "params": []
+        },
+        {
+          "name": "leftAssocBinary",
+          "startLine": 466,
+          "endLine": 516,
+          "params": []
+        },
+        {
+          "name": "ternary",
+          "startLine": 520,
+          "endLine": 528,
+          "params": []
+        },
+        {
+          "name": "assignment",
+          "startLine": 532,
+          "endLine": 552,
+          "params": []
+        },
+        {
+          "name": "lambda",
+          "startLine": 556,
+          "endLine": 574,
+          "params": []
+        },
+        {
+          "name": "typeDeclsNoBody",
+          "startLine": 578,
+          "endLine": 591,
+          "params": []
+        },
+        {
+          "name": "classBodyDecl",
+          "startLine": 595,
+          "endLine": 608,
+          "params": []
+        },
+        {
+          "name": "statements",
+          "startLine": 612,
+          "endLine": 650,
+          "params": []
+        },
+        {
+          "name": "typeDeclsWithBodies",
+          "startLine": 654,
+          "endLine": 672,
+          "params": []
+        },
+        {
+          "name": "constructorCallsWithBodies",
+          "startLine": 676,
+          "endLine": 683,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "GrammarTest",
+          "startLine": 39,
+          "endLine": 686,
+          "methods": [
+            "GrammarTest",
+            "GrammarTest",
+            "rule",
+            "idList",
+            "prim",
+            "cpart",
+            "sclass",
+            "sclass",
+            "literals",
+            "annotations",
+            "types",
+            "primaryExpressions",
+            "postfix",
+            "prefix",
+            "leftAssocBinary",
+            "ternary",
+            "assignment",
+            "lambda",
+            "typeDeclsNoBody",
+            "classBodyDecl",
+            "statements",
+            "typeDeclsWithBodies",
+            "constructorCallsWithBodies"
+          ],
+          "properties": [
+            "grammar",
+            "grammarClass",
+            "noAnnotations",
+            "noTypeArgs",
+            "noArgs",
+            "noDimExprs",
+            "noDims",
+            "marker",
+            "dim",
+            "T"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "GrammarTest",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "literals",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "annotations",
+          "line": 181,
+          "isDefault": false
+        },
+        {
+          "name": "types",
+          "line": 243,
+          "isDefault": false
+        },
+        {
+          "name": "primaryExpressions",
+          "line": 325,
+          "isDefault": false
+        },
+        {
+          "name": "postfix",
+          "line": 429,
+          "isDefault": false
+        },
+        {
+          "name": "prefix",
+          "line": 446,
+          "isDefault": false
+        },
+        {
+          "name": "leftAssocBinary",
+          "line": 466,
+          "isDefault": false
+        },
+        {
+          "name": "ternary",
+          "line": 520,
+          "isDefault": false
+        },
+        {
+          "name": "assignment",
+          "line": 532,
+          "isDefault": false
+        },
+        {
+          "name": "lambda",
+          "line": 556,
+          "isDefault": false
+        },
+        {
+          "name": "typeDeclsNoBody",
+          "line": 578,
+          "isDefault": false
+        },
+        {
+          "name": "classBodyDecl",
+          "line": 595,
+          "isDefault": false
+        },
+        {
+          "name": "statements",
+          "line": 612,
+          "isDefault": false
+        },
+        {
+          "name": "typeDeclsWithBodies",
+          "line": 654,
+          "isDefault": false
+        },
+        {
+          "name": "constructorCallsWithBodies",
+          "line": 676,
+          "isDefault": false
+        },
+        {
+          "name": "GrammarTest",
+          "line": 39,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GrammarTest",
+          "callee": "grammar.getClass",
+          "lineNumber": 55
+        },
+        {
+          "caller": "GrammarTest",
+          "callee": "new JavaGrammar",
+          "lineNumber": 61
+        },
+        {
+          "caller": "rule",
+          "callee": "cast",
+          "lineNumber": 67
+        },
+        {
+          "caller": "rule",
+          "callee": "suppress",
+          "lineNumber": 67
+        },
+        {
+          "caller": "rule",
+          "callee": "grammarClass.getField(name).get",
+          "lineNumber": 67
+        },
+        {
+          "caller": "rule",
+          "callee": "grammarClass.getField",
+          "lineNumber": 67
+        },
+        {
+          "caller": "idList",
+          "callee": "Arrays.asList",
+          "lineNumber": 74
+        },
+        {
+          "caller": "idList",
+          "callee": "NArrays.map",
+          "lineNumber": 74
+        },
+        {
+          "caller": "prim",
+          "callee": "new PrimitiveType",
+          "lineNumber": 93
+        },
+        {
+          "caller": "cpart",
+          "callee": "new ClassTypePart",
+          "lineNumber": 98
+        },
+        {
+          "caller": "cpart",
+          "callee": "Identifier.mk",
+          "lineNumber": 98
+        },
+        {
+          "caller": "sclass",
+          "callee": "new ClassType",
+          "lineNumber": 103
+        },
+        {
+          "caller": "sclass",
+          "callee": "list",
+          "lineNumber": 103
+        },
+        {
+          "caller": "sclass",
+          "callee": "new ClassTypePart",
+          "lineNumber": 104
+        },
+        {
+          "caller": "sclass",
+          "callee": "Identifier.mk",
+          "lineNumber": 104
+        },
+        {
+          "caller": "sclass",
+          "callee": "sclass",
+          "lineNumber": 109
+        },
+        {
+          "caller": "literals",
+          "callee": "rule",
+          "lineNumber": 120
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 122
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 122
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 123
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 123
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 124
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 124
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 125
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 125
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 126
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 126
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 127
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 127
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 128
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 128
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 129
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 129
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 130
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 130
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 131
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 131
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 132
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 132
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 133
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 133
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 134
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 134
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 135
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 135
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 136
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 136
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 139
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 140
+        },
+        {
+          "caller": "literals",
+          "callee": "failure",
+          "lineNumber": 142
+        },
+        {
+          "caller": "literals",
+          "callee": "failure",
+          "lineNumber": 143
+        },
+        {
+          "caller": "literals",
+          "callee": "failure",
+          "lineNumber": 144
+        },
+        {
+          "caller": "literals",
+          "callee": "getClass().equals",
+          "lineNumber": 150
+        },
+        {
+          "caller": "literals",
+          "callee": "getClass",
+          "lineNumber": 150
+        },
+        {
+          "caller": "literals",
+          "callee": "failure",
+          "lineNumber": 152
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 154
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 155
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 155
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 156
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 157
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 157
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 158
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 159
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 159
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 160
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 161
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 161
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 163
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 164
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 164
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 165
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 166
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 166
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 167
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 168
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 168
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 169
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 170
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 170
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 172
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 173
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 173
+        },
+        {
+          "caller": "literals",
+          "callee": "successExpect",
+          "lineNumber": 174
+        },
+        {
+          "caller": "literals",
+          "callee": "Literal.mk",
+          "lineNumber": 175
+        },
+        {
+          "caller": "literals",
+          "callee": "new LexProblem",
+          "lineNumber": 175
+        },
+        {
+          "caller": "annotations",
+          "callee": "rule",
+          "lineNumber": 183
+        },
+        {
+          "caller": "annotations",
+          "callee": "TernaryExpression.mk",
+          "lineNumber": 186
+        },
+        {
+          "caller": "annotations",
+          "callee": "Literal.mk",
+          "lineNumber": 187
+        },
+        {
+          "caller": "annotations",
+          "callee": "new DotIden",
+          "lineNumber": 188
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 188
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 188
+        },
+        {
+          "caller": "annotations",
+          "callee": "new ArrayAccess",
+          "lineNumber": 189
+        },
+        {
+          "caller": "annotations",
+          "callee": "MethodCall.mk",
+          "lineNumber": 190
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 190
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 190
+        },
+        {
+          "caller": "annotations",
+          "callee": "Literal.mk",
+          "lineNumber": 191
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 193
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 195
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 197
+        },
+        {
+          "caller": "annotations",
+          "callee": "MarkerAnnotation.strings",
+          "lineNumber": 198
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 199
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 200
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 200
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 201
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 202
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 202
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 204
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 205
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 206
+        },
+        {
+          "caller": "annotations",
+          "callee": "MarkerAnnotation.strings",
+          "lineNumber": 207
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 209
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 210
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 211
+        },
+        {
+          "caller": "annotations",
+          "callee": "new AnnotationElementList",
+          "lineNumber": 212
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 212
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 214
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 215
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 215
+        },
+        {
+          "caller": "annotations",
+          "callee": "new AnnotationElementList",
+          "lineNumber": 215
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 215
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 217
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 218
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 218
+        },
+        {
+          "caller": "annotations",
+          "callee": "new AnnotationElementList",
+          "lineNumber": 218
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 218
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 220
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 221
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 222
+        },
+        {
+          "caller": "annotations",
+          "callee": "new AnnotationElementList",
+          "lineNumber": 223
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 223
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 223
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 225
+        },
+        {
+          "caller": "annotations",
+          "callee": "new SingleElementAnnotation",
+          "lineNumber": 226
+        },
+        {
+          "caller": "annotations",
+          "callee": "idList",
+          "lineNumber": 226
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 226
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 228
+        },
+        {
+          "caller": "annotations",
+          "callee": "NormalAnnotation.mk",
+          "lineNumber": 229
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 230
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 230
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 231
+        },
+        {
+          "caller": "annotations",
+          "callee": "new Pair<>",
+          "lineNumber": 231
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 231
+        },
+        {
+          "caller": "annotations",
+          "callee": "successExpect",
+          "lineNumber": 233
+        },
+        {
+          "caller": "annotations",
+          "callee": "NormalAnnotation.mk",
+          "lineNumber": 234
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 234
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 234
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 234
+        },
+        {
+          "caller": "annotations",
+          "callee": "new Pair<>",
+          "lineNumber": 235
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 235
+        },
+        {
+          "caller": "annotations",
+          "callee": "new Pair<>",
+          "lineNumber": 236
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 236
+        },
+        {
+          "caller": "annotations",
+          "callee": "new Pair<>",
+          "lineNumber": 237
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 237
+        },
+        {
+          "caller": "annotations",
+          "callee": "new AnnotationElementList",
+          "lineNumber": 237
+        },
+        {
+          "caller": "annotations",
+          "callee": "list",
+          "lineNumber": 237
+        },
+        {
+          "caller": "annotations",
+          "callee": "new Pair<>",
+          "lineNumber": 238
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 238
+        },
+        {
+          "caller": "annotations",
+          "callee": "Identifier.mk",
+          "lineNumber": 238
+        },
+        {
+          "caller": "types",
+          "callee": "rule",
+          "lineNumber": 245
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 247
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 247
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 247
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 248
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 248
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 248
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 249
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 249
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 249
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 250
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 250
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 250
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 252
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassType",
+          "lineNumber": 253
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 253
+        },
+        {
+          "caller": "types",
+          "callee": "cpart",
+          "lineNumber": 253
+        },
+        {
+          "caller": "types",
+          "callee": "cpart",
+          "lineNumber": 253
+        },
+        {
+          "caller": "types",
+          "callee": "cpart",
+          "lineNumber": 253
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 254
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 255
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 255
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 255
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 256
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 257
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 257
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 258
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 259
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 259
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 259
+        },
+        {
+          "caller": "types",
+          "callee": "new SuperBound",
+          "lineNumber": 259
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 260
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 261
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 261
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 261
+        },
+        {
+          "caller": "types",
+          "callee": "ExtendsBound.mk",
+          "lineNumber": 261
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 263
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 264
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 265
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 267
+        },
+        {
+          "caller": "types",
+          "callee": "new ArrayType",
+          "lineNumber": 268
+        },
+        {
+          "caller": "types",
+          "callee": "prim",
+          "lineNumber": 268
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 268
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 269
+        },
+        {
+          "caller": "types",
+          "callee": "new ArrayType",
+          "lineNumber": 270
+        },
+        {
+          "caller": "types",
+          "callee": "prim",
+          "lineNumber": 270
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 270
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 271
+        },
+        {
+          "caller": "types",
+          "callee": "new ArrayType",
+          "lineNumber": 272
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 272
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 273
+        },
+        {
+          "caller": "types",
+          "callee": "new ArrayType",
+          "lineNumber": 274
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 274
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 274
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 274
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 276
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 277
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 278
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 279
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 280
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 281
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 282
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 284
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 285
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 285
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 285
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 285
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 287
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 288
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 288
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 288
+        },
+        {
+          "caller": "types",
+          "callee": "ExtendsBound.mk",
+          "lineNumber": 288
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 288
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 289
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 289
+        },
+        {
+          "caller": "types",
+          "callee": "new SuperBound",
+          "lineNumber": 289
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 291
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 292
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 292
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 294
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassType",
+          "lineNumber": 295
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 295
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassTypePart",
+          "lineNumber": 296
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 296
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 296
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassTypePart",
+          "lineNumber": 297
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 298
+        },
+        {
+          "caller": "types",
+          "callee": "MarkerAnnotation.mk",
+          "lineNumber": 298
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 298
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 299
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 300
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 301
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassTypePart",
+          "lineNumber": 303
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 304
+        },
+        {
+          "caller": "types",
+          "callee": "MarkerAnnotation.mk",
+          "lineNumber": 304
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 304
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 304
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 305
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 308
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 309
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 309
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 309
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 309
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 311
+        },
+        {
+          "caller": "types",
+          "callee": "sclass",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "new Wildcard",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "ExtendsBound.mk",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassType",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 312
+        },
+        {
+          "caller": "types",
+          "callee": "new ClassTypePart",
+          "lineNumber": 313
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 313
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 313
+        },
+        {
+          "caller": "types",
+          "callee": "success",
+          "lineNumber": 315
+        },
+        {
+          "caller": "types",
+          "callee": "successExpect",
+          "lineNumber": 317
+        },
+        {
+          "caller": "types",
+          "callee": "new ArrayType",
+          "lineNumber": 318
+        },
+        {
+          "caller": "types",
+          "callee": "new PrimitiveType",
+          "lineNumber": 319
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 319
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 320
+        },
+        {
+          "caller": "types",
+          "callee": "new Dimension",
+          "lineNumber": 320
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 320
+        },
+        {
+          "caller": "types",
+          "callee": "MarkerAnnotation.mk",
+          "lineNumber": 320
+        },
+        {
+          "caller": "types",
+          "callee": "list",
+          "lineNumber": 320
+        },
+        {
+          "caller": "types",
+          "callee": "Identifier.mk",
+          "lineNumber": 320
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "rule",
+          "lineNumber": 327
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 329
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 330
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 331
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 332
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 333
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 334
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 335
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 336
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 337
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 338
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 339
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "MethodCall.mk",
+          "lineNumber": 340
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 340
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 341
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "MethodCall.mk",
+          "lineNumber": 342
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 342
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 343
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 343
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 343
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 344
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ParenExpression",
+          "lineNumber": 345
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 345
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 346
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "This.mk",
+          "lineNumber": 347
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 348
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Super.mk",
+          "lineNumber": 349
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 350
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "ThisCall.mk",
+          "lineNumber": 351
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 352
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new SuperCall",
+          "lineNumber": 353
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 354
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "ThisCall.mk",
+          "lineNumber": 355
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 355
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 355
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 355
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 356
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new SuperCall",
+          "lineNumber": 357
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 357
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 357
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 357
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 359
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new Constructor",
+          "lineNumber": 360
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 360
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 361
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new Constructor",
+          "lineNumber": 362
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 362
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 362
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 363
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new Constructor",
+          "lineNumber": 364
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 364
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 364
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 365
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassExpression",
+          "lineNumber": 366
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 366
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 367
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassExpression",
+          "lineNumber": 368
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 368
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 369
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassExpression",
+          "lineNumber": 370
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 370
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 371
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassExpression",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassType",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "cpart",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "cpart",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "cpart",
+          "lineNumber": 372
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 374
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 375
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 375
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 376
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new DimExpression",
+          "lineNumber": 376
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 376
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 378
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 379
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 379
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 380
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new DimExpression",
+          "lineNumber": 380
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 380
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 381
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 382
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 383
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 383
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 384
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new DimExpression",
+          "lineNumber": 385
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 385
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new DimExpression",
+          "lineNumber": 386
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 386
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 387
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 388
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 389
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 389
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 389
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 390
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 391
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 392
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 392
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 392
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 393
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 393
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 393
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 393
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 394
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 395
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 395
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 395
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 396
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 397
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 398
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "prim",
+          "lineNumber": 398
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 398
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 399
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 399
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 400
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 400
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 400
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 400
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayInitializer",
+          "lineNumber": 401
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 401
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 401
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 401
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 402
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ArrayConstructorCall",
+          "lineNumber": 403
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 404
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 404
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 405
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new DimExpression",
+          "lineNumber": 405
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Literal.mk",
+          "lineNumber": 405
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 408
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new TypeMethodReference",
+          "lineNumber": 409
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 409
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 409
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 410
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "NewReference.mk",
+          "lineNumber": 411
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 411
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 412
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new TypeMethodReference",
+          "lineNumber": 413
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 413
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 413
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 413
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 414
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "NewReference.mk",
+          "lineNumber": 415
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 415
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 415
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "sclass",
+          "lineNumber": 415
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 416
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new TypeMethodReference",
+          "lineNumber": 417
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "new ClassType",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "cpart",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "cpart",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "list",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 418
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "successExpect",
+          "lineNumber": 420
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "MethodCall.mk",
+          "lineNumber": 421
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "Identifier.mk",
+          "lineNumber": 421
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "failure",
+          "lineNumber": 423
+        },
+        {
+          "caller": "primaryExpressions",
+          "callee": "failure",
+          "lineNumber": 424
+        },
+        {
+          "caller": "postfix",
+          "callee": "rule",
+          "lineNumber": 431
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 433
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 434
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 435
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 436
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 437
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 438
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 439
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 440
+        },
+        {
+          "caller": "postfix",
+          "callee": "success",
+          "lineNumber": 441
+        },
+        {
+          "caller": "prefix",
+          "callee": "rule",
+          "lineNumber": 448
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 450
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 451
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 452
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 453
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 454
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 455
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 456
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 457
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 458
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 459
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 460
+        },
+        {
+          "caller": "prefix",
+          "callee": "success",
+          "lineNumber": 461
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "rule",
+          "lineNumber": 468
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 470
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 471
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 472
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 473
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 474
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 475
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 476
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 477
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 478
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 479
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 480
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 481
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 482
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 483
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 484
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 485
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 486
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 487
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 488
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 490
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 491
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 492
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 493
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 494
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 495
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 496
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 497
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 498
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 499
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 500
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 501
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 502
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 503
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 504
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 505
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 506
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 507
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 508
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 509
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 511
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 512
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 513
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 514
+        },
+        {
+          "caller": "leftAssocBinary",
+          "callee": "success",
+          "lineNumber": 515
+        },
+        {
+          "caller": "ternary",
+          "callee": "rule",
+          "lineNumber": 522
+        },
+        {
+          "caller": "ternary",
+          "callee": "success",
+          "lineNumber": 524
+        },
+        {
+          "caller": "ternary",
+          "callee": "success",
+          "lineNumber": 525
+        },
+        {
+          "caller": "ternary",
+          "callee": "success",
+          "lineNumber": 526
+        },
+        {
+          "caller": "ternary",
+          "callee": "success",
+          "lineNumber": 527
+        },
+        {
+          "caller": "assignment",
+          "callee": "rule",
+          "lineNumber": 534
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 536
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 537
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 538
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 539
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 540
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 541
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 542
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 543
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 544
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 545
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 546
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 547
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 548
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 549
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 550
+        },
+        {
+          "caller": "assignment",
+          "callee": "success",
+          "lineNumber": 551
+        },
+        {
+          "caller": "lambda",
+          "callee": "rule",
+          "lineNumber": 558
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 560
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 561
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 562
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 563
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 564
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 565
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 566
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 567
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 568
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 569
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 570
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 571
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 572
+        },
+        {
+          "caller": "lambda",
+          "callee": "success",
+          "lineNumber": 573
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "rule",
+          "lineNumber": 580
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 582
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 583
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 584
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 585
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 586
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 587
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 588
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 589
+        },
+        {
+          "caller": "typeDeclsNoBody",
+          "callee": "success",
+          "lineNumber": 590
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "rule",
+          "lineNumber": 597
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 599
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 600
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 601
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 602
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 603
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 604
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 605
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 606
+        },
+        {
+          "caller": "classBodyDecl",
+          "callee": "success",
+          "lineNumber": 607
+        },
+        {
+          "caller": "statements",
+          "callee": "rule",
+          "lineNumber": 614
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 616
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 617
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 618
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 619
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 620
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 621
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 622
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 623
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 624
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 625
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 626
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 627
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 628
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 629
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 630
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 631
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 632
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 633
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 634
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 635
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 636
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 637
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 638
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 639
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 640
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 641
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 642
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 643
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 644
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 645
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 646
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 647
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 648
+        },
+        {
+          "caller": "statements",
+          "callee": "success",
+          "lineNumber": 649
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "rule",
+          "lineNumber": 656
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 658
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 659
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 660
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 661
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 662
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 663
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 664
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 665
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 666
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 667
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 668
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 669
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 670
+        },
+        {
+          "caller": "typeDeclsWithBodies",
+          "callee": "success",
+          "lineNumber": 671
+        },
+        {
+          "caller": "constructorCallsWithBodies",
+          "callee": "rule",
+          "lineNumber": 678
+        },
+        {
+          "caller": "constructorCallsWithBodies",
+          "callee": "success",
+          "lineNumber": 680
+        },
+        {
+          "caller": "constructorCallsWithBodies",
+          "callee": "success",
+          "lineNumber": 681
+        },
+        {
+          "caller": "constructorCallsWithBodies",
+          "callee": "success",
+          "lineNumber": 682
+        }
+      ],
+      "metrics": {
+        "importCount": 24,
+        "exportCount": 17,
+        "functionCount": 23,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "test/lang/java/GrammarTokensTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "GrammarTokensTest",
+          "startLine": 13,
+          "endLine": 17,
+          "params": []
+        },
+        {
+          "name": "convertLiteralValue",
+          "startLine": 27,
+          "endLine": 45,
+          "params": [
+            "value"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "GrammarTokensTest",
+          "startLine": 9,
+          "endLine": 48,
+          "methods": [
+            "GrammarTokensTest",
+            "convertLiteralValue"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "GrammarTokensTest",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "convertLiteralValue",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "GrammarTokensTest",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "GrammarTokensTest",
+          "callee": "new JavaTokens",
+          "lineNumber": 14
+        },
+        {
+          "caller": "GrammarTokensTest",
+          "callee": "Arrays.asList",
+          "lineNumber": 16
+        },
+        {
+          "caller": "GrammarTokensTest",
+          "callee": "new Lexer(string).lex",
+          "lineNumber": 16
+        },
+        {
+          "caller": "GrammarTokensTest",
+          "callee": "new Lexer",
+          "lineNumber": 16
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "value.toString",
+          "lineNumber": 29
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Double.valueOf(radixPrefix + token.string).toString",
+          "lineNumber": 35
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Double.valueOf",
+          "lineNumber": 35
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Float.valueOf(radixPrefix + token.string).toString",
+          "lineNumber": 37
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Float.valueOf",
+          "lineNumber": 37
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Long.valueOf(token.string, token.radix).toString",
+          "lineNumber": 39
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Long.valueOf",
+          "lineNumber": 39
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Integer.valueOf(token.string, token.radix).toString",
+          "lineNumber": 41
+        },
+        {
+          "caller": "convertLiteralValue",
+          "callee": "Integer.valueOf",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    }
+  ]
+}

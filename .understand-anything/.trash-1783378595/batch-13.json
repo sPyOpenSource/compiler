@@ -1,0 +1,712 @@
+{
+  "batchId": 13,
+  "summary": "Utilities and Java lexer toolkit: StringsUtil (72 lines), LexUtils (446 lines), Concurrency (83 lines), Maybe (247 lines), Exceptional (220 lines), LexUtilsTest (205 lines).",
+  "nodes": [
+    {
+      "id": "file-src/norswap/autumn/util/StringsUtil.java",
+      "type": "file",
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "label": "StringsUtil.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 72,
+      "description": "String escaping utility - escape() converts non-printable chars to \\uXXXX, isPrintable() checks Unicode block + ISO control"
+    },
+    {
+      "id": "class-src/norswap/autumn/util/StringsUtil.java-StringsUtil",
+      "type": "class",
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "label": "StringsUtil",
+      "parent": "file-src/norswap/autumn/util/StringsUtil.java",
+      "startLine": 9,
+      "endLine": 72,
+      "description": "Static utility class for string escaping and printability checks"
+    },
+    {
+      "id": "method-src/norswap/autumn/util/StringsUtil.java-escape",
+      "type": "method",
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "label": "escape(string)",
+      "parent": "class-src/norswap/autumn/util/StringsUtil.java-StringsUtil",
+      "startLine": 24,
+      "endLine": 49,
+      "description": "Escapes non-printable characters in a string to \\uXXXX unicode escapes, preserves printable chars"
+    },
+    {
+      "id": "method-src/norswap/autumn/util/StringsUtil.java-isPrintable",
+      "type": "method",
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "label": "isPrintable(c)",
+      "parent": "class-src/norswap/autumn/util/StringsUtil.java-StringsUtil",
+      "startLine": 62,
+      "endLine": 69,
+      "description": "Checks if a character is printable via UnicodeBlock and ISO control check"
+    },
+    {
+      "id": "file-src/norswap/lang/java/LexUtils.java",
+      "type": "file",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "LexUtils.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 446,
+      "description": "Java lexer utilities - parses floating point/integer literals, unescape/escape strings, trims whitespace, handles line comments"
+    },
+    {
+      "id": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "type": "class",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "LexUtils",
+      "parent": "file-src/norswap/lang/java/LexUtils.java",
+      "startLine": 12,
+      "endLine": 446,
+      "description": "Static utility class for Java lexing: numeric literal parsing, string escaping/unescaping, whitespace trimming"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-parse_floating",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "parse_floating(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 47,
+      "endLine": 80,
+      "description": "Parses Java floating-point literals, handling hex floats, rejects invalid formats"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-parse_integer_single",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "parse_integer(string) [auto-detect]",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 94,
+      "endLine": 109,
+      "description": "Auto-detects integer base (dec/hex/oct/bin) and delegates to base-specific parser"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-parse_integer_base",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "parse_integer(base, string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 123,
+      "endLine": 155,
+      "description": "Parses integer literal with explicit base, returns Exceptional<Long> with LexProblem on invalid input"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-digit",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "digit(c)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 162,
+      "endLine": 172,
+      "description": "Converts character digit to numeric value for given base (0-35)"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "unescape(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 206,
+      "endLine": 255,
+      "description": "Unescapes Java string literals, handling \\n, \\t, \\uXXXX unicode, \\ooo octal, \\xXX hex, and surrogates"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-escape",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "escape(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 302,
+      "endLine": 305,
+      "description": "Delegates to StringsUtil.escape for Java string escaping"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-trim_whitespace",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "trim_whitespace(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 332,
+      "endLine": 337,
+      "description": "Combines trim_leading_whitespace and trim_trailing_whitespace"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-trim_leading_whitespace",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "trim_leading_whitespace(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 348,
+      "endLine": 384,
+      "description": "Trims leading whitespace while preserving indentation structure"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-trim_trailing_whitespace",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "trim_trailing_whitespace(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 395,
+      "endLine": 430,
+      "description": "Trims trailing whitespace, handles line comments via handle_line_comment"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-handle_line_comment",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "handle_line_comment(string, end)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 434,
+      "endLine": 443,
+      "description": "Finds start of line comment (//) within a given prefix range"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-parse_char",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "parse_char(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 267,
+      "endLine": 272,
+      "description": "Parses a Java char literal from single-quoted string"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-parse_string",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "parse_string(string)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 284,
+      "endLine": 287,
+      "description": "Parses a Java string literal from double-quoted string via unescape"
+    },
+    {
+      "id": "method-src/norswap/lang/java/LexUtils.java-is_printable",
+      "type": "method",
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "label": "is_printable(c)",
+      "parent": "class-src/norswap/lang/java/LexUtils.java-LexUtils",
+      "startLine": 318,
+      "endLine": 321,
+      "description": "Delegates to StringsUtil.isPrintable"
+    },
+    {
+      "id": "file-src/norswap/utils/Concurrency.java",
+      "type": "file",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "Concurrency.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 83,
+      "description": "Concurrency utilities: Future await with timeout, thread wait/sleep helpers"
+    },
+    {
+      "id": "class-src/norswap/utils/Concurrency.java-Concurrency",
+      "type": "class",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "Concurrency",
+      "parent": "file-src/norswap/utils/Concurrency.java",
+      "startLine": 14,
+      "endLine": 83,
+      "description": "Utility class for concurrent operations - future awaiting, thread sleeping, indefinite waiting"
+    },
+    {
+      "id": "method-src/norswap/utils/Concurrency.java-await",
+      "type": "method",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "await(future, timeoutInMillis)",
+      "parent": "class-src/norswap/utils/Concurrency.java-Concurrency",
+      "startLine": 23,
+      "endLine": 34,
+      "description": "Awaits a Future with timeout, returning Exceptional<T>, raises exception on timeout/interruption"
+    },
+    {
+      "id": "method-src/norswap/utils/Concurrency.java-waitForever",
+      "type": "method",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "waitForever()",
+      "parent": "class-src/norswap/utils/Concurrency.java-Concurrency",
+      "startLine": 44,
+      "endLine": 48,
+      "description": "Blocks current thread indefinitely by joining on itself with suppressed InterruptedException"
+    },
+    {
+      "id": "method-src/norswap/utils/Concurrency.java-sleepLax",
+      "type": "method",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "sleepLax(milliseconds)",
+      "parent": "class-src/norswap/utils/Concurrency.java-Concurrency",
+      "startLine": 56,
+      "endLine": 62,
+      "description": "Thread.sleep with suppressed InterruptedException"
+    },
+    {
+      "id": "method-src/norswap/utils/Concurrency.java-sleep",
+      "type": "method",
+      "path": "src/norswap/utils/Concurrency.java",
+      "label": "sleep(milliseconds)",
+      "parent": "class-src/norswap/utils/Concurrency.java-Concurrency",
+      "startLine": 69,
+      "endLine": 80,
+      "description": "Accurate Thread.sleep that compensates for wakeup drift by re-sleeping the remaining time"
+    },
+    {
+      "id": "file-src/norswap/utils/data/wrappers/Maybe.java",
+      "type": "file",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "Maybe.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 247,
+      "description": "Maybe monad - optional value wrapper with map/flatMap/filter/orElse, compatible with Java Optional"
+    },
+    {
+      "id": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "type": "class",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "Maybe<T>",
+      "parent": "file-src/norswap/utils/data/wrappers/Maybe.java",
+      "startLine": 17,
+      "endLine": 247,
+      "description": "Immutable optional value container with functional combinators (map, flatMap, filter, or, ifElse)"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-empty",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "empty()",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 43,
+      "endLine": 45,
+      "description": "Returns a singleton empty Maybe (type-safe via Util.cast)"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-from",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "from(optional)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 52,
+      "endLine": 55,
+      "description": "Converts Java Optional<T> to Maybe<T>"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-fromNullable",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "fromNullable(value)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 63,
+      "endLine": 65,
+      "description": "Creates Maybe from nullable value"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-map",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "map(f)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 150,
+      "endLine": 154,
+      "description": "Transforms value with function if present, returns empty otherwise"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-flatMap",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "flatMap(mapper)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 174,
+      "endLine": 178,
+      "description": "Monadic bind - applies function returning Maybe<T>"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-filter",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "filter(predicate)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 186,
+      "endLine": 190,
+      "description": "Returns empty if present but fails predicate"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-or",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "or(other)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 197,
+      "endLine": 199,
+      "description": "Returns this if present, otherwise other Maybe"
+    },
+    {
+      "id": "method-src/norswap/utils/data/wrappers/Maybe.java-orThrow",
+      "type": "method",
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "label": "orThrow(exceptionSupplier)",
+      "parent": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "startLine": 215,
+      "endLine": 218,
+      "description": "Returns value or throws supplier exception"
+    },
+    {
+      "id": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "type": "file",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "Exceptional.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 220,
+      "description": "Exceptional monad - result type that is either a value or an exception, with map/flatMap/toMaybe"
+    },
+    {
+      "id": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "type": "class",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "Exceptional<T>",
+      "parent": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "startLine": 14,
+      "endLine": 220,
+      "description": "Result monad encapsulating either a successful value or an exception, with functional combinators"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-of",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "of(supplier)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 34,
+      "endLine": 40,
+      "description": "Creates Exceptional by executing supplier, catching exceptions"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-value",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "value(value)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 47,
+      "endLine": 49,
+      "description": "Static factory for successful Exceptional with value"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-exception",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "exception(exception)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 56,
+      "endLine": 58,
+      "description": "Static factory for failed Exceptional with exception"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-error",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "error(message)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 66,
+      "endLine": 68,
+      "description": "Creates failed Exceptional with NoStackException from message"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-get",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "get()",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 77,
+      "endLine": 80,
+      "description": "Returns value or rethrows wrapped exception"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-map",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "map(f)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 166,
+      "endLine": 170,
+      "description": "Transforms value if present, propagates exception otherwise"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-flatmap",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "flatmap(f)",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 190,
+      "endLine": 194,
+      "description": "Monadic bind for Exceptional"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-toMaybe",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "toMaybe()",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 202,
+      "endLine": 206,
+      "description": "Converts Exceptional to Maybe (value -> present, exception -> empty)"
+    },
+    {
+      "id": "method-src/norswap/utils/exceptions/Exceptional.java-message",
+      "type": "method",
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "label": "message()",
+      "parent": "class-src/norswap/utils/exceptions/Exceptional.java-Exceptional",
+      "startLine": 213,
+      "endLine": 217,
+      "description": "Returns exception message or 'value' string"
+    },
+    {
+      "id": "file-test/lang/java/LexUtilsTest.java",
+      "type": "file",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "LexUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "size": 205,
+      "description": "Test suite for LexUtils: floating/integer parsing, unescape, escape, whitespace trimming"
+    },
+    {
+      "id": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "type": "class",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "LexUtilsTest",
+      "parent": "file-test/lang/java/LexUtilsTest.java",
+      "startLine": 10,
+      "endLine": 205,
+      "description": "JUnit test class validating LexUtils parsing and trimming utilities"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testParseFloating",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testParseFloating()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 46,
+      "endLine": 96,
+      "description": "Tests floating point literal parsing - standard, hex, edge cases, and invalid inputs"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testParseInteger",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testParseInteger()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 100,
+      "endLine": 121,
+      "description": "Tests integer literal parsing - decimal, hex, octal, binary, and invalid inputs"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testUnescape",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testUnescape()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 125,
+      "endLine": 141,
+      "description": "Tests string unescape for escape sequences and invalid escapes"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testEscape",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testEscape()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 145,
+      "endLine": 156,
+      "description": "Tests string escaping for various character types"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testTrimLeadingWhitespace",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testTrimLeadingWhitespace()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 160,
+      "endLine": 178,
+      "description": "Tests leading whitespace trimming with various indentation patterns"
+    },
+    {
+      "id": "method-test/lang/java/LexUtilsTest.java-testTrimTrailingWhitespace",
+      "type": "method",
+      "path": "test/lang/java/LexUtilsTest.java",
+      "label": "testTrimTrailingWhitespace()",
+      "parent": "class-test/lang/java/LexUtilsTest.java-LexUtilsTest",
+      "startLine": 182,
+      "endLine": 202,
+      "description": "Tests trailing whitespace trimming with comments and edge cases"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file-src/norswap/lang/java/LexUtils.java",
+      "target": "file-src/norswap/autumn/util/StringsUtil.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "file-src/norswap/lang/java/LexUtils.java",
+      "target": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "file-src/norswap/lang/java/LexUtils.java",
+      "target": "file-src/norswap/utils/data/wrappers/Strings.java",
+      "type": "imports",
+      "label": "imports",
+      "externalRef": "src/norswap/utils/Strings.java"
+    },
+    {
+      "source": "file-src/norswap/utils/Concurrency.java",
+      "target": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "file-src/norswap/utils/data/wrappers/Maybe.java",
+      "target": "file-src/norswap/utils/data/wrappers/Util.java",
+      "type": "imports",
+      "label": "imports",
+      "externalRef": "src/norswap/utils/Util.java"
+    },
+    {
+      "source": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "target": "file-src/norswap/utils/data/wrappers/Maybe.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "file-test/lang/java/LexUtilsTest.java",
+      "target": "file-src/norswap/lang/java/LexUtils.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "file-test/lang/java/LexUtilsTest.java",
+      "target": "file-src/norswap/utils/exceptions/Exceptional.java",
+      "type": "imports",
+      "label": "imports"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-escape",
+      "target": "method-src/norswap/autumn/util/StringsUtil.java-escape",
+      "type": "calls",
+      "label": "delegates to"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-is_printable",
+      "target": "method-src/norswap/autumn/util/StringsUtil.java-isPrintable",
+      "type": "calls",
+      "label": "delegates to"
+    },
+    {
+      "source": "method-src/norswap/utils/exceptions/Exceptional.java-toMaybe",
+      "target": "method-src/norswap/utils/data/wrappers/Maybe.java-empty",
+      "type": "calls",
+      "label": "converts to"
+    },
+    {
+      "source": "method-src/norswap/utils/exceptions/Exceptional.java-toMaybe",
+      "target": "class-src/norswap/utils/data/wrappers/Maybe.java-Maybe",
+      "type": "calls",
+      "label": "creates Maybe"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-trim_whitespace",
+      "target": "method-src/norswap/lang/java/LexUtils.java-trim_leading_whitespace",
+      "type": "calls",
+      "label": "delegates to"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-trim_whitespace",
+      "target": "method-src/norswap/lang/java/LexUtils.java-trim_trailing_whitespace",
+      "type": "calls",
+      "label": "delegates to"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-trim_trailing_whitespace",
+      "target": "method-src/norswap/lang/java/LexUtils.java-handle_line_comment",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-parse_integer_single",
+      "target": "method-src/norswap/lang/java/LexUtils.java-parse_integer_base",
+      "type": "calls",
+      "label": "delegates to"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-parse_integer_base",
+      "target": "method-src/norswap/lang/java/LexUtils.java-digit",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "target": "method-src/norswap/lang/java/LexUtils.java-is_hex_digit",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "target": "method-src/norswap/lang/java/LexUtils.java-is_octal_digit",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-parse_char",
+      "target": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-src/norswap/lang/java/LexUtils.java-parse_string",
+      "target": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "type": "calls",
+      "label": "uses"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testParseFloating",
+      "target": "method-src/norswap/lang/java/LexUtils.java-parse_floating",
+      "type": "tests",
+      "label": "tests"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testParseInteger",
+      "target": "method-src/norswap/lang/java/LexUtils.java-parse_integer_single",
+      "type": "tests",
+      "label": "tests"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testUnescape",
+      "target": "method-src/norswap/lang/java/LexUtils.java-unescape",
+      "type": "tests",
+      "label": "tests"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testEscape",
+      "target": "method-src/norswap/lang/java/LexUtils.java-escape",
+      "type": "tests",
+      "label": "tests"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testTrimLeadingWhitespace",
+      "target": "method-src/norswap/lang/java/LexUtils.java-trim_leading_whitespace",
+      "type": "tests",
+      "label": "tests"
+    },
+    {
+      "source": "method-test/lang/java/LexUtilsTest.java-testTrimTrailingWhitespace",
+      "target": "method-src/norswap/lang/java/LexUtils.java-trim_trailing_whitespace",
+      "type": "tests",
+      "label": "tests"
+    }
+  ]
+}

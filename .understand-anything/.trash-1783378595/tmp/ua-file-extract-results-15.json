@@ -1,0 +1,824 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 1,
+      "nonEmptyLines": 1,
+      "metrics": {}
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 62,
+      "metrics": {}
+    },
+    {
+      "path": "build.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 73,
+      "nonEmptyLines": 60,
+      "metrics": {}
+    },
+    {
+      "path": "examples/fizzbuzz.si",
+      "language": "si",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "metrics": {}
+    },
+    {
+      "path": "examples/kitchensink.si",
+      "language": "si",
+      "fileCategory": "code",
+      "totalLines": 65,
+      "nonEmptyLines": 49,
+      "metrics": {}
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 27,
+      "nonEmptyLines": 20,
+      "sections": [
+        {
+          "heading": "Sigh",
+          "level": 1,
+          "line": 1
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackConsumer.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 14,
+      "classes": [
+        {
+          "name": "StackConsumer",
+          "startLine": 7,
+          "endLine": 16,
+          "methods": [
+            "apply",
+            "action"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "StackConsumer",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "apply",
+          "callee": "action",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallFrame.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 18,
+      "functions": [
+        {
+          "name": "ParserCallFrame",
+          "startLine": 18,
+          "endLine": 22,
+          "params": [
+            "parser",
+            "position"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParserCallFrame",
+          "startLine": 6,
+          "endLine": 25,
+          "methods": [
+            "ParserCallFrame"
+          ],
+          "properties": [
+            "parser",
+            "position"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parser",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "position",
+          "line": 14,
+          "isDefault": false
+        },
+        {
+          "name": "ParserCallFrame",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParserMetrics.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 71,
+      "nonEmptyLines": 55,
+      "functions": [
+        {
+          "name": "ParserMetrics",
+          "startLine": 55,
+          "endLine": 57,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 61,
+          "endLine": 68,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParserMetrics",
+          "startLine": 13,
+          "endLine": 71,
+          "methods": [
+            "ParserMetrics",
+            "toString"
+          ],
+          "properties": [
+            "parser",
+            "selfTime",
+            "totalTime",
+            "recursiveInvocations",
+            "invocations"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parser",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "selfTime",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "totalTime",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "invocations",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "ParserMetrics",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "ParserMetrics",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toString",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 64
+        },
+        {
+          "caller": "toString",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 65
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapUtils.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 38,
+      "functions": [
+        {
+          "name": "positionForDisplay",
+          "startLine": 34,
+          "endLine": 44,
+          "params": [
+            "map",
+            "offset"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "LineMapUtils",
+          "startLine": 7,
+          "endLine": 47,
+          "methods": [
+            "positionForDisplay"
+          ],
+          "properties": [
+            "AUTUMN_USE_CHAR_COLUMN"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "positionForDisplay",
+          "callee": "map.positionFrom",
+          "lineNumber": 36
+        },
+        {
+          "caller": "positionForDisplay",
+          "callee": "map.offsetFor",
+          "lineNumber": 41
+        },
+        {
+          "caller": "positionForDisplay",
+          "callee": "new Position",
+          "lineNumber": 43
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/backend/GeneratedClass.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "GeneratedClass",
+          "startLine": 18,
+          "endLine": 21,
+          "params": [
+            "slashBinaryName",
+            "bytes"
+          ]
+        },
+        {
+          "name": "bytes",
+          "startLine": 28,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "load",
+          "startLine": 38,
+          "endLine": 40,
+          "params": [
+            "loader"
+          ]
+        },
+        {
+          "name": "binaryName",
+          "startLine": 47,
+          "endLine": 49,
+          "params": []
+        },
+        {
+          "name": "slashBinaryName",
+          "startLine": 56,
+          "endLine": 58,
+          "params": []
+        },
+        {
+          "name": "name",
+          "startLine": 65,
+          "endLine": 70,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "GeneratedClass",
+          "startLine": 6,
+          "endLine": 73,
+          "methods": [
+            "GeneratedClass",
+            "bytes",
+            "load",
+            "binaryName",
+            "slashBinaryName",
+            "name"
+          ],
+          "properties": [
+            "slashBinaryName",
+            "bytes"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "GeneratedClass",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "bytes",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "load",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "binaryName",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "slashBinaryName",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "GeneratedClass",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "load",
+          "callee": "loader.defineClass",
+          "lineNumber": 39
+        },
+        {
+          "caller": "binaryName",
+          "callee": "slashBinaryName.replace",
+          "lineNumber": 48
+        },
+        {
+          "caller": "name",
+          "callee": "slashBinaryName.lastIndexOf",
+          "lineNumber": 66
+        },
+        {
+          "caller": "name",
+          "callee": "slashBinaryName.substring",
+          "lineNumber": 69
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/backend/jvm-names.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 114,
+      "nonEmptyLines": 84,
+      "sections": [
+        {
+          "heading": "Java & JVM Names",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "TODO",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "Simple Names",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Canonical Names",
+          "level": 2,
+          "line": 27
+        },
+        {
+          "heading": "Fully-Qualified Names",
+          "level": 2,
+          "line": 47
+        },
+        {
+          "heading": "Binary Names",
+          "level": 2,
+          "line": 57
+        },
+        {
+          "heading": "Field and Method Descriptors",
+          "level": 2,
+          "line": 78
+        },
+        {
+          "heading": "Type Signatures",
+          "level": 2,
+          "line": 108
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "src/norswap/lang/backend/Null.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 9,
+      "nonEmptyLines": 8,
+      "functions": [
+        {
+          "name": "Null",
+          "startLine": 8,
+          "endLine": 8,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Null",
+          "startLine": 6,
+          "endLine": 9,
+          "methods": [
+            "Null"
+          ],
+          "properties": [
+            "INSTANCE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "INSTANCE",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "Null",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/backend/SighRuntime.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 25,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "concat",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "left",
+            "right"
+          ]
+        },
+        {
+          "name": "print",
+          "startLine": 21,
+          "endLine": 24,
+          "params": [
+            "string"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SighRuntime",
+          "startLine": 3,
+          "endLine": 25,
+          "methods": [
+            "concat",
+            "print"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "concat",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "print",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "SighRuntime",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "print",
+          "callee": "System.out.println",
+          "lineNumber": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElementList.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 6,
+      "nonEmptyLines": 4,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ArrayType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Block.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/CatchClause.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 12,
+      "nonEmptyLines": 10,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ClassType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 5,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DefaultLabel.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 5,
+      "nonEmptyLines": 4,
+      "classes": [
+        {
+          "name": "DefaultLabel",
+          "startLine": 3,
+          "endLine": 5,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DefaultLabel",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ExtendsBound.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 8,
+      "nonEmptyLines": 7,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new ExtendsBound",
+          "lineNumber": 6
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameter.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 3,
+      "nonEmptyLines": 2,
+      "classes": [
+        {
+          "name": "FormalParameter",
+          "startLine": 3,
+          "endLine": 3,
+          "methods": [],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FormalParameter",
+          "line": 3,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameters.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 10,
+      "nonEmptyLines": 8,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new FormalParameters",
+          "lineNumber": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/InitBlock.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 10,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new InitBlock",
+          "lineNumber": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/JavaFile.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 15,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new JavaFile",
+          "lineNumber": 15
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

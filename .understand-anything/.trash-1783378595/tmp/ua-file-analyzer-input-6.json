@@ -1,0 +1,222 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/autumn/actions/StackPush.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/JavaGrammar.java",
+      "language": "java",
+      "sizeLines": 1021,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/JavaTokens.java",
+      "language": "java",
+      "sizeLines": 954,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Lexer.java",
+      "language": "java",
+      "sizeLines": 971,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/Token.java",
+      "language": "java",
+      "sizeLines": 147,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BasicType.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BinaryOperator.java",
+      "language": "java",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Declaration.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Dimension.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Nullable.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Parameters.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Statement.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TType.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/UnaryOperator.java",
+      "language": "java",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Cast.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/autumn/actions/StackPush.java": [
+      "src/norswap/autumn/Parse.java"
+    ],
+    "src/norswap/lang/java/JavaGrammar.java": [
+      "src/norswap/autumn/actions/StackPush.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/lang/java/ast/BinaryOperator.java",
+      "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "src/norswap/lang/java/ast/expr/Cast.java",
+      "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "src/norswap/lang/java/ast/expr/Constructor.java",
+      "src/norswap/lang/java/ast/expr/DotIden.java",
+      "src/norswap/lang/java/ast/expr/DotNew.java",
+      "src/norswap/lang/java/ast/expr/Expression.java",
+      "src/norswap/lang/java/ast/expr/Identifier.java",
+      "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "src/norswap/lang/java/ast/expr/Lambda.java",
+      "src/norswap/lang/java/ast/expr/Literal.java",
+      "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "src/norswap/lang/java/ast/expr/NewReference.java",
+      "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "src/norswap/lang/java/ast/expr/Super.java",
+      "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "src/norswap/lang/java/ast/expr/This.java",
+      "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "src/norswap/lang/java/ast/UnaryOperator.java",
+      "src/norswap/lang/java/LexUtils.java",
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/lang/java/JavaTokens.java": [
+      "src/norswap/autumn/actions/StackPush.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/lang/java/ast/BinaryOperator.java",
+      "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "src/norswap/lang/java/ast/expr/BinaryExpression.java",
+      "src/norswap/lang/java/ast/expr/BoundMethodReference.java",
+      "src/norswap/lang/java/ast/expr/Cast.java",
+      "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "src/norswap/lang/java/ast/expr/Constructor.java",
+      "src/norswap/lang/java/ast/expr/DotIden.java",
+      "src/norswap/lang/java/ast/expr/DotNew.java",
+      "src/norswap/lang/java/ast/expr/Expression.java",
+      "src/norswap/lang/java/ast/expr/Identifier.java",
+      "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "src/norswap/lang/java/ast/expr/Lambda.java",
+      "src/norswap/lang/java/ast/expr/Literal.java",
+      "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "src/norswap/lang/java/ast/expr/NewReference.java",
+      "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "src/norswap/lang/java/ast/expr/Super.java",
+      "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "src/norswap/lang/java/ast/expr/This.java",
+      "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "src/norswap/lang/java/ast/UnaryOperator.java",
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/lang/java/Lexer.java": [],
+    "src/norswap/lang/java/Token.java": [],
+    "src/norswap/lang/java/ast/BasicType.java": [],
+    "src/norswap/lang/java/ast/BinaryOperator.java": [],
+    "src/norswap/lang/java/ast/Declaration.java": [],
+    "src/norswap/lang/java/ast/Dimension.java": [],
+    "src/norswap/lang/java/ast/Nullable.java": [],
+    "src/norswap/lang/java/ast/Parameters.java": [],
+    "src/norswap/lang/java/ast/Statement.java": [],
+    "src/norswap/lang/java/ast/TType.java": [],
+    "src/norswap/lang/java/ast/UnaryOperator.java": [],
+    "src/norswap/lang/java/ast/expr/ArrayAccess.java": [],
+    "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java": [
+      "src/norswap/lang/java/ast/Dimension.java",
+      "src/norswap/lang/java/ast/DimExpression.java",
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/ArrayInitializer.java": [],
+    "src/norswap/lang/java/ast/expr/BinaryExpression.java": [
+      "src/norswap/lang/java/ast/BinaryOperator.java"
+    ],
+    "src/norswap/lang/java/ast/expr/BoundMethodReference.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Cast.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ]
+  }
+}

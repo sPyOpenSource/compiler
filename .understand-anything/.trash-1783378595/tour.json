@@ -1,0 +1,131 @@
+[
+  {
+    "order": 1,
+    "title": "Project Overview & Architecture",
+    "description": "Sigh is a demo language implementation showing how PEG parsing (Autumn), reactive attribute grammars (Uranium), and JVM bytecode generation (ASM) compose into a full compiler pipeline. Start here to understand the system's four stages: parse → analyze → interpret or compile.",
+    "nodeIds": [
+      "file:README.md",
+      "file:src/norswap/lang/rust/RustGrammar.java",
+      "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "file:src/norswap/lang/rust/interpreter/Interpreter.java",
+      "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "file:src/norswap/lang/rust/Runner.java"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "The PEG Parsing Engine (Autumn)",
+    "description": "Autumn is a parser combinator library where grammars are defined as Java objects composed of reusable parser primitives. Unlike CFG-based parsers, PEG uses ordered choice and unlimited backtracking, making it expressive but requiring well-formedness checks like left-recursion detection.",
+    "nodeIds": [
+      "file:src/norswap/autumn/Grammar.java",
+      "file:src/norswap/autumn/Parse.java",
+      "file:src/norswap/autumn/Parser.java",
+      "file:src/norswap/autumn/parsers/Sequence.java",
+      "file:src/norswap/autumn/parsers/Choice.java",
+      "file:src/norswap/autumn/parsers/StringMatch.java",
+      "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "file:src/norswap/autumn/parsers/RightExpression.java",
+      "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "file:src/norswap/autumn/parsers/Collect.java"
+    ],
+    "languageLesson": "PEG parsers differ from CFG parsers in two key ways: ordered choice (a|b tries a before b, no ambiguity) and unlimited backtracking. This eliminates the need for a separate lexer pass — whitespace and keywords are handled inline via combinators. Left-recursive rules must be rewritten or detected, which is why Autumn includes a WellFormednessChecker."
+  },
+  {
+    "order": 3,
+    "title": "The Rust Grammar Definition",
+    "description": "RustGrammar maps the Rust-like language syntax to Autumn combinators. Each public field defines a grammar rule (expression, statement, declaration, type) using `seq()`, `choice()`, `str()`, `word()`, and expression builders. The grammar produces AST nodes via stack actions that push parsed results onto a value stack.",
+    "nodeIds": [
+      "file:src/norswap/lang/rust/RustGrammar.java",
+      "file:src/norswap/lang/rust/ast/Node.java",
+      "file:src/norswap/lang/rust/ast/Statement.java",
+      "file:src/norswap/lang/rust/ast/expr/IntLiteral.java",
+      "file:src/norswap/lang/rust/ast/expr/BinaryExpression.java",
+      "file:src/norswap/lang/rust/ast/expr/Reference.java",
+      "file:src/norswap/lang/rust/ast/FunDeclaration.java",
+      "file:src/norswap/lang/rust/ast/VarDeclaration.java",
+      "file:src/norswap/lang/rust/ast/StructDeclaration.java",
+      "file:src/norswap/lang/rust/ast/TypeNode.java"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "Semantic Analysis via Uranium (Reactive Attribute Grammars)",
+    "description": "SemanticAnalysis uses Uranium's Reactor engine to define attribute grammar rules over the AST. Instead of a hand-written visitor, you declare rules that compute attributes (like `type`, `scope`, `returnType`) which are automatically scheduled and evaluated via dependency tracking. This declarative approach separates what to compute from how to schedule it.",
+    "nodeIds": [
+      "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "file:src/norswap/uranium/Reactor.java",
+      "file:src/norswap/uranium/Attribute.java",
+      "file:src/norswap/lang/rust/scopes/Scope.java",
+      "file:src/norswap/lang/rust/scopes/Context.java",
+      "file:src/norswap/lang/rust/types/Type.java",
+      "file:src/norswap/lang/rust/types/IntType.java",
+      "file:src/norswap/lang/rust/types/FloatType.java",
+      "file:src/norswap/lang/rust/types/StructType.java",
+      "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java"
+    ],
+    "languageLesson": "In an attribute grammar, each AST node has named 'attributes' computed by 'rules'. A rule for node N's attribute A depends on attributes of N or its children/parent. The Reactor uses a dependency graph to schedule rule evaluation — when a dependency changes, dependent rules are re-queued. Uranium applies this to type inference: the type of a binary expression depends on the types of its operands, which may themselves depend on other rules, and the Reactor resolves the entire chain automatically."
+  },
+  {
+    "order": 5,
+    "title": "The Interpreter: Walking the Analyzed AST",
+    "description": "The Interpreter uses a ValuedVisitor pattern to evaluate AST nodes at runtime. After semantic analysis has resolved all types and scopes, the interpreter walks the typed AST, managing a hierarchical ScopeStorage for variables and handling expressions, statements, control flow, function calls, and struct construction.",
+    "nodeIds": [
+      "file:src/norswap/lang/rust/interpreter/Interpreter.java",
+      "file:src/norswap/lang/rust/interpreter/ScopeStorage.java",
+      "file:src/norswap/lang/rust/interpreter/Null.java",
+      "file:src/norswap/lang/rust/interpreter/ConstructorNode.java",
+      "file:src/norswap/utils/visitors/ValuedVisitor.java",
+      "file:src/norswap/utils/visitors/Walker.java",
+      "file:src/norswap/utils/data/wrappers/Pair.java",
+      "file:src/norswap/lang/rust/Test.java"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "Bytecode Compilation: Rust to JVM via ASM",
+    "description": "BytecodeCompiler translates the typed AST into JVM class files using the ASM library. It generates bytecode for expressions, statements, control flow, structs, and function calls — mapping Rust types to JVM types via TypeUtils and producing loadable CompilationResults. This is the most complex backend, showing how a high-level IR becomes executable machine code.",
+    "nodeIds": [
+      "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "file:src/norswap/lang/backend/TypeUtils.java",
+      "file:src/norswap/lang/backend/CompilationResult.java",
+      "file:src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "file:src/norswap/lang/backend/AsmUtils.java",
+      "file:src/norswap/lang/backend/SighRuntime.java",
+      "file:src/norswap/lang/backend/Null.java",
+      "file:src/norswap/utils/data/wrappers/Pair.java"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "Test Suite: Verifying the Full Pipeline",
+    "description": "Tests cover every stage of the pipeline: grammar parsing, semantic analysis type-checking (both success and error cases), interpreter execution, and full bytecode compilation with execution. Each test suite uses dedicated fixtures (AutumnTestFixture, UraniumTestFixture) that provide fluent assertions for parse success, type errors, and runtime output.",
+    "nodeIds": [
+      "file:test/lang/rust/GrammarTest.java",
+      "file:test/lang/rust/SemanticAnalysisTest.java",
+      "file:test/lang/rust/InterpreterTest.java",
+      "file:test/lang/rust/BytecodeTest.java",
+      "file:src/norswap/autumn/AutumnTestFixture.java",
+      "file:src/norswap/uranium/UraniumTestFixture.java",
+      "file:test/ParsersTest.java",
+      "file:build.xml",
+      "file:examples/fizzbuzz.si",
+      "file:examples/kitchensink.si"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "Build Configuration & Utilities Layer",
+    "description": "The project uses a standard Ant build (build.xml) with NetBeans project files. Supporting the entire pipeline is a utilities layer providing data structures (multimaps, stacks, wrappers), visitor patterns (Walker, ValuedVisitor), reflection helpers, exception utilities, and IO functions — all shared across Autumn, Uranium, and the language implementations.",
+    "nodeIds": [
+      "file:build.xml",
+      "config:nbproject/project.xml",
+      "file:src/norswap/utils/visitors/Walker.java",
+      "file:src/norswap/utils/visitors/ValuedVisitor.java",
+      "file:src/norswap/utils/multimap/MultiHashMap.java",
+      "file:src/norswap/utils/data/wrappers/Pair.java",
+      "file:src/norswap/utils/IO.java",
+      "file:src/norswap/utils/reflection/Reflection.java",
+      "file:src/norswap/utils/TestFixture.java"
+    ]
+  }
+]

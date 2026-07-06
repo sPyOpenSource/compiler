@@ -1,0 +1,176 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElementDeclaration.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/BreakStatement.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ClassTypePart.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ConstructorDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ContinueStatement.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/IdenParameter.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ImportDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/LabelledStatement.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/MarkerAnnotation.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/MethodDeclaration.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/PackageDeclaration.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SingleElementAnnotation.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ThisParameter.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeDeclaration.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeParameter.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/UntypedParameters.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VarDeclaratorID.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/VariadicParameter.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Identifier.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/lang/java/ast/AnnotationElementDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/BreakStatement.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/ClassTypePart.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/ConstructorDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/ContinueStatement.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/IdenParameter.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/ImportDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/LabelledStatement.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/MarkerAnnotation.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/MethodDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/PackageDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/SingleElementAnnotation.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/ThisParameter.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/TypeDeclaration.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/TypeParameter.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/UntypedParameters.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/VarDeclaratorID.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/VariadicParameter.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Identifier.java": []
+  }
+}

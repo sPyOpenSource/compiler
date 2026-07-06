@@ -1,0 +1,6349 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 22,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/autumn/parsers/LazyParser.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 79,
+      "nonEmptyLines": 60,
+      "functions": [
+        {
+          "name": "child",
+          "startLine": 39,
+          "endLine": 44,
+          "params": []
+        },
+        {
+          "name": "LazyParser",
+          "startLine": 48,
+          "endLine": 51,
+          "params": [
+            "supplier"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 55,
+          "endLine": 58,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 62,
+          "endLine": 64,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 68,
+          "endLine": 70,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 74,
+          "endLine": 76,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "LazyParser",
+          "startLine": 27,
+          "endLine": 79,
+          "methods": [
+            "child",
+            "LazyParser",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "supplier",
+            "parser"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "supplier",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "child",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "LazyParser",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "LazyParser",
+          "line": 27,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "child",
+          "callee": "supplier.get",
+          "lineNumber": 41
+        },
+        {
+          "caller": "doparse",
+          "callee": "child().parse",
+          "lineNumber": 57
+        },
+        {
+          "caller": "doparse",
+          "callee": "child",
+          "lineNumber": 57
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 63
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singleton",
+          "lineNumber": 69
+        },
+        {
+          "caller": "children",
+          "callee": "child",
+          "lineNumber": 69
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "child",
+          "lineNumber": 75
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 8,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/LeftExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 174,
+      "nonEmptyLines": 140,
+      "functions": [
+        {
+          "name": "LeftExpression",
+          "startLine": 72,
+          "endLine": 90,
+          "params": [
+            "left",
+            "right",
+            "infixes",
+            "infixSteps",
+            "suffixes",
+            "suffixSteps",
+            "operatorRequired"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 94,
+          "endLine": 138,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 142,
+          "endLine": 144,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 153,
+          "endLine": 162,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 166,
+          "endLine": 171,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "LeftExpression",
+          "startLine": 33,
+          "endLine": 174,
+          "methods": [
+            "LeftExpression",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "left",
+            "right",
+            "infixes",
+            "infixSteps",
+            "suffixes",
+            "suffixSteps",
+            "operatorRequired"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "left",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "right",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "infixes",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "infixSteps",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "suffixes",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "suffixSteps",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "operatorRequired",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "LeftExpression",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 142,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 166,
+          "isDefault": false
+        },
+        {
+          "name": "LeftExpression",
+          "line": 33,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "parse.stack.size",
+          "lineNumber": 97
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.leadingWhitespaceStart",
+          "lineNumber": 98
+        },
+        {
+          "caller": "doparse",
+          "callee": "step.apply",
+          "lineNumber": 102
+        },
+        {
+          "caller": "doparse",
+          "callee": "new ActionContext",
+          "lineNumber": 102
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.stack.popFrom",
+          "lineNumber": 103
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.trailingWhitespaceStart",
+          "lineNumber": 104
+        },
+        {
+          "caller": "doparse",
+          "callee": "left.parse",
+          "lineNumber": 106
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.size",
+          "lineNumber": 112
+        },
+        {
+          "caller": "doparse",
+          "callee": "infixes[i].parse",
+          "lineNumber": 116
+        },
+        {
+          "caller": "doparse",
+          "callee": "right.parse",
+          "lineNumber": 117
+        },
+        {
+          "caller": "doparse",
+          "callee": "applyStep.accept",
+          "lineNumber": 119
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.rollback",
+          "lineNumber": 124
+        },
+        {
+          "caller": "doparse",
+          "callee": "suffixes[i].parse",
+          "lineNumber": 128
+        },
+        {
+          "caller": "doparse",
+          "callee": "applyStep.accept",
+          "lineNumber": 130
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 143
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.unmodifiableList",
+          "lineNumber": 155
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of(\n                Stream.of(left),\n                right != null ? Stream.of(right) : Stream.<Parser>empty(),\n                Arrays.stream(infixes),\n                Arrays.stream(suffixes))\n            .flatMap(Function.identity()).collect",
+          "lineNumber": 155
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of(\n                Stream.of(left),\n                right != null ? Stream.of(right) : Stream.<Parser>empty(),\n                Arrays.stream(infixes),\n                Arrays.stream(suffixes)).flatMap",
+          "lineNumber": 155
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 155
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 156
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 157
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.empty",
+          "lineNumber": 157
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.stream",
+          "lineNumber": 158
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.stream",
+          "lineNumber": 159
+        },
+        {
+          "caller": "children",
+          "callee": "Function.identity",
+          "lineNumber": 160
+        },
+        {
+          "caller": "children",
+          "callee": "Collectors.toList",
+          "lineNumber": 161
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "String.format",
+          "lineNumber": 168
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "Arrays.toString",
+          "lineNumber": 170
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "Arrays.toString",
+          "lineNumber": 170
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 13,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Longest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 89,
+      "nonEmptyLines": 69,
+      "functions": [
+        {
+          "name": "children",
+          "startLine": 28,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "Longest",
+          "startLine": 34,
+          "endLine": 37,
+          "params": []
+        },
+        {
+          "name": "doparse",
+          "startLine": 41,
+          "endLine": 69,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 73,
+          "endLine": 75,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 79,
+          "endLine": 86,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Longest",
+          "startLine": 20,
+          "endLine": 89,
+          "methods": [
+            "children",
+            "Longest",
+            "doparse",
+            "accept",
+            "toStringFull"
+          ],
+          "properties": [
+            "children"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "children",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "Longest",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "Longest",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "children",
+          "callee": "Collections.unmodifiableList",
+          "lineNumber": 29
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.asList",
+          "lineNumber": 29
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.size",
+          "lineNumber": 44
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 51
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.delta",
+          "lineNumber": 55
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.rollback",
+          "lineNumber": 59
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.apply",
+          "lineNumber": 67
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 74
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "new StringBuilder",
+          "lineNumber": 81
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.append",
+          "lineNumber": 82
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "joinArray",
+          "lineNumber": 83
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.append",
+          "lineNumber": 84
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.toString",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Lookahead.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 59,
+      "nonEmptyLines": 45,
+      "functions": [
+        {
+          "name": "Lookahead",
+          "startLine": 22,
+          "endLine": 25,
+          "params": [
+            "child"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 29,
+          "endLine": 38,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 42,
+          "endLine": 44,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 48,
+          "endLine": 50,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 54,
+          "endLine": 56,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Lookahead",
+          "startLine": 14,
+          "endLine": 59,
+          "methods": [
+            "Lookahead",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "child"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "child",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "Lookahead",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "Lookahead",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 32
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 43
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singletonList",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Memo.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 109,
+      "nonEmptyLines": 86,
+      "functions": [
+        {
+          "name": "Memo",
+          "startLine": 54,
+          "endLine": 60,
+          "params": [
+            "child",
+            "memoizer",
+            "contextExtractor"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 64,
+          "endLine": 88,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 92,
+          "endLine": 94,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 98,
+          "endLine": 100,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 104,
+          "endLine": 106,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Memo",
+          "startLine": 38,
+          "endLine": 109,
+          "methods": [
+            "Memo",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "child",
+            "memoizer",
+            "contextExtractor"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "child",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "memoizer",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "contextExtractor",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "Memo",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "Memo",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "contextExtractor.apply",
+          "lineNumber": 66
+        },
+        {
+          "caller": "doparse",
+          "callee": "memoizer.data",
+          "lineNumber": 67
+        },
+        {
+          "caller": "doparse",
+          "callee": "memo.get",
+          "lineNumber": 68
+        },
+        {
+          "caller": "doparse",
+          "callee": "entry.succeeded",
+          "lineNumber": 72
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.apply",
+          "lineNumber": 76
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.size",
+          "lineNumber": 81
+        },
+        {
+          "caller": "doparse",
+          "callee": "new MemoEntry",
+          "lineNumber": 83
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 84
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.delta",
+          "lineNumber": 84
+        },
+        {
+          "caller": "doparse",
+          "callee": "memo.memoize",
+          "lineNumber": 86
+        },
+        {
+          "caller": "doparse",
+          "callee": "entry.succeeded",
+          "lineNumber": 87
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 93
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singleton",
+          "lineNumber": 99
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 8,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Not.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 66,
+      "nonEmptyLines": 52,
+      "functions": [
+        {
+          "name": "Not",
+          "startLine": 24,
+          "endLine": 27,
+          "params": [
+            "child"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 31,
+          "endLine": 45,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 49,
+          "endLine": 51,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 55,
+          "endLine": 57,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 61,
+          "endLine": 63,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Not",
+          "startLine": 16,
+          "endLine": 66,
+          "methods": [
+            "Not",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "child"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "child",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "Not",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "Not",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "parse.errorMessage",
+          "lineNumber": 34
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 37
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.errorMessage",
+          "lineNumber": 41
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.setErrorMessage",
+          "lineNumber": 42
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 50
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singletonList",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 76,
+      "functions": [
+        {
+          "name": "ObjectPredicate",
+          "startLine": 39,
+          "endLine": 43,
+          "params": [
+            "name",
+            "predicate"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 47,
+          "endLine": 55,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 59,
+          "endLine": 61,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 65,
+          "endLine": 67,
+          "params": []
+        },
+        {
+          "name": "instance",
+          "startLine": 74,
+          "endLine": 77,
+          "params": [
+            "klass"
+          ]
+        },
+        {
+          "name": "any",
+          "startLine": 84,
+          "endLine": 87,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 91,
+          "endLine": 93,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ObjectPredicate",
+          "startLine": 20,
+          "endLine": 96,
+          "methods": [
+            "ObjectPredicate",
+            "doparse",
+            "accept",
+            "children",
+            "instance",
+            "any",
+            "toStringFull"
+          ],
+          "properties": [
+            "name",
+            "predicate"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "name",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "predicate",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "ObjectPredicate",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "instance",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "any",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "ObjectPredicate",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "predicate.test",
+          "lineNumber": 50
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.objectAt",
+          "lineNumber": 50
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 60
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.emptyList",
+          "lineNumber": 66
+        },
+        {
+          "caller": "instance",
+          "callee": "new ObjectPredicate",
+          "lineNumber": 76
+        },
+        {
+          "caller": "instance",
+          "callee": "klass.getSimpleName",
+          "lineNumber": 76
+        },
+        {
+          "caller": "any",
+          "callee": "new ObjectPredicate",
+          "lineNumber": 86
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 10,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Optional.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 40,
+      "functions": [
+        {
+          "name": "Optional",
+          "startLine": 22,
+          "endLine": 25,
+          "params": [
+            "child"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 29,
+          "endLine": 33,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 37,
+          "endLine": 39,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 43,
+          "endLine": 45,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 49,
+          "endLine": 51,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Optional",
+          "startLine": 14,
+          "endLine": 54,
+          "methods": [
+            "Optional",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "child"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "child",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "Optional",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "Optional",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 31
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 38
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singletonList",
+          "lineNumber": 44
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Repeat.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 73,
+      "nonEmptyLines": 55,
+      "functions": [
+        {
+          "name": "Repeat",
+          "startLine": 35,
+          "endLine": 40,
+          "params": [
+            "min",
+            "exact",
+            "child"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 44,
+          "endLine": 52,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 56,
+          "endLine": 58,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 62,
+          "endLine": 64,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 68,
+          "endLine": 70,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Repeat",
+          "startLine": 14,
+          "endLine": 73,
+          "methods": [
+            "Repeat",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "min",
+            "exact",
+            "child"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "min",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "exact",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "child",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "Repeat",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "Repeat",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 47
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 50
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 57
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singletonList",
+          "lineNumber": 63
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "String.format",
+          "lineNumber": 69
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/RightExpression.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 188,
+      "nonEmptyLines": 156,
+      "functions": [
+        {
+          "name": "RightExpression",
+          "startLine": 77,
+          "endLine": 95,
+          "params": [
+            "left",
+            "right",
+            "infixes",
+            "infixSteps",
+            "prefixes",
+            "prefixSteps",
+            "operatorRequired"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 99,
+          "endLine": 152,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 156,
+          "endLine": 158,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 167,
+          "endLine": 176,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 180,
+          "endLine": 185,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "RightExpression",
+          "startLine": 38,
+          "endLine": 188,
+          "methods": [
+            "RightExpression",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "left",
+            "right",
+            "infixes",
+            "infixSteps",
+            "prefixes",
+            "prefixSteps",
+            "operatorRequired"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "left",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "right",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "infixes",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "infixSteps",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "prefixes",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "prefixSteps",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "operatorRequired",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "RightExpression",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 167,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "RightExpression",
+          "line": 38,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "parse.stack.size",
+          "lineNumber": 103
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.leadingWhitespaceStart",
+          "lineNumber": 104
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.size",
+          "lineNumber": 105
+        },
+        {
+          "caller": "doparse",
+          "callee": "step.apply",
+          "lineNumber": 108
+        },
+        {
+          "caller": "doparse",
+          "callee": "new ActionContext",
+          "lineNumber": 108
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.stack.popFrom",
+          "lineNumber": 109
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.trailingWhitespaceStart",
+          "lineNumber": 110
+        },
+        {
+          "caller": "doparse",
+          "callee": "prefixes[i].parse",
+          "lineNumber": 113
+        },
+        {
+          "caller": "doparse",
+          "callee": "doparse",
+          "lineNumber": 116
+        },
+        {
+          "caller": "doparse",
+          "callee": "applyStep.accept",
+          "lineNumber": 118
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.rollback",
+          "lineNumber": 123
+        },
+        {
+          "caller": "doparse",
+          "callee": "left.parse",
+          "lineNumber": 128
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.size",
+          "lineNumber": 131
+        },
+        {
+          "caller": "doparse",
+          "callee": "infixes[i].parse",
+          "lineNumber": 132
+        },
+        {
+          "caller": "doparse",
+          "callee": "doparse",
+          "lineNumber": 135
+        },
+        {
+          "caller": "doparse",
+          "callee": "applyStep.accept",
+          "lineNumber": 137
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.log.rollback",
+          "lineNumber": 142
+        },
+        {
+          "caller": "doparse",
+          "callee": "right.parse",
+          "lineNumber": 151
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 157
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.unmodifiableList",
+          "lineNumber": 169
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of(\n                left != null ? Stream.of(left) : Stream.<Parser>empty(),\n                Stream.of(right),\n                Arrays.stream(infixes),\n                Arrays.stream(prefixes))\n            .flatMap(Function.identity()).collect",
+          "lineNumber": 169
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of(\n                left != null ? Stream.of(left) : Stream.<Parser>empty(),\n                Stream.of(right),\n                Arrays.stream(infixes),\n                Arrays.stream(prefixes)).flatMap",
+          "lineNumber": 169
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 169
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 170
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.empty",
+          "lineNumber": 170
+        },
+        {
+          "caller": "children",
+          "callee": "Stream.of",
+          "lineNumber": 171
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.stream",
+          "lineNumber": 172
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.stream",
+          "lineNumber": 173
+        },
+        {
+          "caller": "children",
+          "callee": "Function.identity",
+          "lineNumber": 174
+        },
+        {
+          "caller": "children",
+          "callee": "Collectors.toList",
+          "lineNumber": 175
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "String.format",
+          "lineNumber": 182
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "Arrays.toString",
+          "lineNumber": 184
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "Arrays.toString",
+          "lineNumber": 184
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 12,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Sequence.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 63,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "children",
+          "startLine": 26,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "Sequence",
+          "startLine": 32,
+          "endLine": 34,
+          "params": []
+        },
+        {
+          "name": "doparse",
+          "startLine": 38,
+          "endLine": 44,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 48,
+          "endLine": 50,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 54,
+          "endLine": 60,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Sequence",
+          "startLine": 18,
+          "endLine": 63,
+          "methods": [
+            "children",
+            "Sequence",
+            "doparse",
+            "accept",
+            "toStringFull"
+          ],
+          "properties": [
+            "children"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "children",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "Sequence",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "Sequence",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "children",
+          "callee": "Collections.unmodifiableList",
+          "lineNumber": 27
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.asList",
+          "lineNumber": 27
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 41
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "new StringBuilder",
+          "lineNumber": 56
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "joinArray",
+          "lineNumber": 57
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.append",
+          "lineNumber": 58
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.toString",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/StringChoice.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 164,
+      "nonEmptyLines": 142,
+      "functions": [
+        {
+          "name": "StringChoice",
+          "startLine": 99,
+          "endLine": 105,
+          "params": []
+        },
+        {
+          "name": "doparse",
+          "startLine": 107,
+          "endLine": 127,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 129,
+          "endLine": 131,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 133,
+          "endLine": 139,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "StringChoice",
+          "startLine": 28,
+          "endLine": 164,
+          "methods": [
+            "StringChoice",
+            "doparse",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "trie",
+            "strings"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "strings",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "StringChoice",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 133,
+          "isDefault": false
+        },
+        {
+          "name": "StringChoice",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "TrieNode",
+          "callee": "strings.iterator().next",
+          "lineNumber": 46
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "strings.iterator",
+          "lineNumber": 46
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "multiMap",
+          "lineNumber": 51
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.size",
+          "lineNumber": 55
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.keySet().iterator().next",
+          "lineNumber": 56
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.keySet().iterator",
+          "lineNumber": 56
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.keySet",
+          "lineNumber": 56
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 58
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "multiMap",
+          "lineNumber": 60
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.get",
+          "lineNumber": 60
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "new ArrayList<>",
+          "lineNumber": 65
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "new Slot<>",
+          "lineNumber": 67
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "map.forEach",
+          "lineNumber": 68
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "children.add",
+          "lineNumber": 72
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "new TrieNode",
+          "lineNumber": 72
+        },
+        {
+          "caller": "TrieNode",
+          "callee": "children.toArray",
+          "lineNumber": 75
+        },
+        {
+          "caller": "multiMap",
+          "callee": "strings.stream().collect",
+          "lineNumber": 81
+        },
+        {
+          "caller": "multiMap",
+          "callee": "strings.stream",
+          "lineNumber": 81
+        },
+        {
+          "caller": "multiMap",
+          "callee": "MultiMap.collector",
+          "lineNumber": 81
+        },
+        {
+          "caller": "multiMap",
+          "callee": "Function.identity",
+          "lineNumber": 83
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "Arrays.stream(strings).map(s -> s.codePoints().toArray()).collect",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "Arrays.stream(strings).map",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "Arrays.stream",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "s.codePoints().toArray",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "s.codePoints",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "Collectors.toList",
+          "lineNumber": 103
+        },
+        {
+          "caller": "StringChoice",
+          "callee": "new TrieNode",
+          "lineNumber": 104
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.match",
+          "lineNumber": 115
+        },
+        {
+          "caller": "doparse",
+          "callee": "node.get",
+          "lineNumber": 120
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.charAt",
+          "lineNumber": 120
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.emptyList",
+          "lineNumber": 130
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "new StringBuilder",
+          "lineNumber": 135
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "joinArray",
+          "lineNumber": 136
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.append",
+          "lineNumber": 137
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "b.toString",
+          "lineNumber": 138
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 5,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/StringMatch.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 85,
+      "nonEmptyLines": 65,
+      "functions": [
+        {
+          "name": "StringMatch",
+          "startLine": 38,
+          "endLine": 43,
+          "params": [
+            "string",
+            "whitespace"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 47,
+          "endLine": 61,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 65,
+          "endLine": 67,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 71,
+          "endLine": 75,
+          "params": []
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 79,
+          "endLine": 82,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "StringMatch",
+          "startLine": 22,
+          "endLine": 85,
+          "methods": [
+            "StringMatch",
+            "doparse",
+            "accept",
+            "children",
+            "toStringFull"
+          ],
+          "properties": [
+            "string",
+            "codepoints",
+            "whitespace"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "string",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "codepoints",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "whitespace",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "StringMatch",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "StringMatch",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "StringMatch",
+          "callee": "string.codePoints().toArray",
+          "lineNumber": 40
+        },
+        {
+          "caller": "StringMatch",
+          "callee": "string.codePoints",
+          "lineNumber": 40
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.match",
+          "lineNumber": 49
+        },
+        {
+          "caller": "doparse",
+          "callee": "whitespace.parse",
+          "lineNumber": 57
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.setWhitespaceFrom",
+          "lineNumber": 58
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 66
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.emptyList",
+          "lineNumber": 73
+        },
+        {
+          "caller": "children",
+          "callee": "Collections.singletonList",
+          "lineNumber": 74
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "String.format",
+          "lineNumber": 80
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "escapeQuotedSection",
+          "lineNumber": 80
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 9,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 52,
+      "functions": [
+        {
+          "name": "children",
+          "startLine": 30,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "TrailingWhitespace",
+          "startLine": 36,
+          "endLine": 39,
+          "params": [
+            "child",
+            "whitespace"
+          ]
+        },
+        {
+          "name": "doparse",
+          "startLine": 43,
+          "endLine": 53,
+          "params": [
+            "parse"
+          ]
+        },
+        {
+          "name": "accept",
+          "startLine": 57,
+          "endLine": 59,
+          "params": [
+            "visitor"
+          ]
+        },
+        {
+          "name": "toStringFull",
+          "startLine": 63,
+          "endLine": 65,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "TrailingWhitespace",
+          "startLine": 21,
+          "endLine": 68,
+          "methods": [
+            "children",
+            "TrailingWhitespace",
+            "doparse",
+            "accept",
+            "toStringFull"
+          ],
+          "properties": [
+            "child",
+            "whitespace"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "child",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "whitespace",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "TrailingWhitespace",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "doparse",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "accept",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "toStringFull",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "TrailingWhitespace",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "children",
+          "callee": "Collections.unmodifiableList",
+          "lineNumber": 31
+        },
+        {
+          "caller": "children",
+          "callee": "Arrays.asList",
+          "lineNumber": 31
+        },
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 45
+        },
+        {
+          "caller": "doparse",
+          "callee": "whitespace.parse",
+          "lineNumber": 49
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.setWhitespaceFrom",
+          "lineNumber": 50
+        },
+        {
+          "caller": "accept",
+          "callee": "visitor.visit",
+          "lineNumber": 58
+        },
+        {
+          "caller": "toStringFull",
+          "callee": "String.format",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 8,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 163,
+      "nonEmptyLines": 136,
+      "functions": [
+        {
+          "name": "prettyPrint",
+          "startLine": 40,
+          "endLine": 42,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "prettyPrintFull",
+          "startLine": 51,
+          "endLine": 53,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "prettyPrint",
+          "startLine": 57,
+          "endLine": 77,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "isParameterized",
+          "startLine": 84,
+          "endLine": 86,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "components",
+          "startLine": 91,
+          "endLine": 109,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "nextArgEnd",
+          "startLine": 116,
+          "endLine": 143,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "escapeQuotedSection",
+          "startLine": 158,
+          "endLine": 160,
+          "params": [
+            "string"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParserStringsUtil",
+          "startLine": 12,
+          "endLine": 163,
+          "methods": [
+            "prettyPrint",
+            "prettyPrintFull",
+            "prettyPrint",
+            "isParameterized",
+            "components",
+            "nextArgEnd",
+            "escapeQuotedSection"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "prettyPrint",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "prettyPrintFull",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "escapeQuotedSection",
+          "line": 158,
+          "isDefault": false
+        },
+        {
+          "name": "ParserStringsUtil",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "prettyPrint",
+          "callee": "prettyPrint",
+          "lineNumber": 41
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "parser.toString",
+          "lineNumber": 41
+        },
+        {
+          "caller": "prettyPrintFull",
+          "callee": "prettyPrint",
+          "lineNumber": 52
+        },
+        {
+          "caller": "prettyPrintFull",
+          "callee": "parser.toStringFull",
+          "lineNumber": 52
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "isParameterized",
+          "lineNumber": 59
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components",
+          "lineNumber": 62
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.size",
+          "lineNumber": 63
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "new StringBuilder",
+          "lineNumber": 66
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append",
+          "lineNumber": 67
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.get",
+          "lineNumber": 67
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.size",
+          "lineNumber": 69
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "isParameterized",
+          "lineNumber": 69
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.get",
+          "lineNumber": 69
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append('(').append(components.get(1)).append",
+          "lineNumber": 70
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append('(').append",
+          "lineNumber": 70
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append",
+          "lineNumber": 70
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.get",
+          "lineNumber": 70
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.size",
+          "lineNumber": 71
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append",
+          "lineNumber": 72
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.append",
+          "lineNumber": 73
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "indent",
+          "lineNumber": 73
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "prettyPrint",
+          "lineNumber": 73
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "components.get",
+          "lineNumber": 73
+        },
+        {
+          "caller": "prettyPrint",
+          "callee": "b.toString",
+          "lineNumber": 76
+        },
+        {
+          "caller": "isParameterized",
+          "callee": "string.charAt",
+          "lineNumber": 85
+        },
+        {
+          "caller": "isParameterized",
+          "callee": "string.length",
+          "lineNumber": 85
+        },
+        {
+          "caller": "components",
+          "callee": "string.indexOf",
+          "lineNumber": 93
+        },
+        {
+          "caller": "components",
+          "callee": "string.substring",
+          "lineNumber": 94
+        },
+        {
+          "caller": "components",
+          "callee": "new ArrayList<>",
+          "lineNumber": 95
+        },
+        {
+          "caller": "components",
+          "callee": "components.add",
+          "lineNumber": 96
+        },
+        {
+          "caller": "components",
+          "callee": "string.length",
+          "lineNumber": 99
+        },
+        {
+          "caller": "components",
+          "callee": "string.substring",
+          "lineNumber": 103
+        },
+        {
+          "caller": "components",
+          "callee": "nextArgEnd",
+          "lineNumber": 104
+        },
+        {
+          "caller": "nextArgEnd",
+          "callee": "string.length",
+          "lineNumber": 121
+        },
+        {
+          "caller": "nextArgEnd",
+          "callee": "string.charAt",
+          "lineNumber": 123
+        },
+        {
+          "caller": "nextArgEnd",
+          "callee": "string.length",
+          "lineNumber": 142
+        },
+        {
+          "caller": "escapeQuotedSection",
+          "callee": "StringsUtil.escape(string).replace",
+          "lineNumber": 159
+        },
+        {
+          "caller": "escapeQuotedSection",
+          "callee": "StringsUtil.escape",
+          "lineNumber": 159
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 4,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 333,
+      "nonEmptyLines": 274,
+      "functions": [
+        {
+          "name": "overloads",
+          "startLine": 76,
+          "endLine": 78,
+          "params": []
+        },
+        {
+          "name": "getCopy",
+          "startLine": 94,
+          "endLine": 102,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "registerCopy",
+          "startLine": 109,
+          "endLine": 111,
+          "params": [
+            "original",
+            "copy"
+          ]
+        },
+        {
+          "name": "work",
+          "startLine": 115,
+          "endLine": 126,
+          "params": [
+            "parser",
+            "state"
+          ]
+        },
+        {
+          "name": "patchRecursion",
+          "startLine": 130,
+          "endLine": 171,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "defaultAction",
+          "startLine": 175,
+          "endLine": 198,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 202,
+          "endLine": 204,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 206,
+          "endLine": 208,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 210,
+          "endLine": 212,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 214,
+          "endLine": 216,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 220,
+          "endLine": 222,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 224,
+          "endLine": 226,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 228,
+          "endLine": 230,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 236,
+          "endLine": 236,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 237,
+          "endLine": 237,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 238,
+          "endLine": 238,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 239,
+          "endLine": 239,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 240,
+          "endLine": 240,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 241,
+          "endLine": 241,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 245,
+          "endLine": 247,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 249,
+          "endLine": 251,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 253,
+          "endLine": 255,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 259,
+          "endLine": 263,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 265,
+          "endLine": 269,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 271,
+          "endLine": 275,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 277,
+          "endLine": 280,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 282,
+          "endLine": 293,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 295,
+          "endLine": 306,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 308,
+          "endLine": 312,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 314,
+          "endLine": 318,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 320,
+          "endLine": 324,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 326,
+          "endLine": 330,
+          "params": [
+            "parser"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "CopyVisitor",
+          "startLine": 53,
+          "endLine": 333,
+          "methods": [
+            "overloads",
+            "getCopy",
+            "registerCopy",
+            "work",
+            "patchRecursion",
+            "defaultAction",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit"
+          ],
+          "properties": [
+            "emitWarnings",
+            "witness",
+            "overloads",
+            "copies"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "emitWarnings",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "overloads",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "copies",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "getCopy",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "registerCopy",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "defaultAction",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 202,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 210,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 214,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 220,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 224,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 236,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 237,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 238,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 239,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 240,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 241,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 245,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 249,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 253,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 259,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 265,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 271,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 277,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 282,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 295,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 308,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 314,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 320,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 326,
+          "isDefault": false
+        },
+        {
+          "name": "CopyVisitor",
+          "line": 53,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getCopy",
+          "callee": "copies.get",
+          "lineNumber": 96
+        },
+        {
+          "caller": "getCopy",
+          "callee": "walk",
+          "lineNumber": 100
+        },
+        {
+          "caller": "getCopy",
+          "callee": "copies.get",
+          "lineNumber": 101
+        },
+        {
+          "caller": "registerCopy",
+          "callee": "copies.put",
+          "lineNumber": 110
+        },
+        {
+          "caller": "work",
+          "callee": "patchRecursion",
+          "lineNumber": 120
+        },
+        {
+          "caller": "work",
+          "callee": "parser.accept",
+          "lineNumber": 123
+        },
+        {
+          "caller": "patchRecursion",
+          "callee": "System.err.println",
+          "lineNumber": 133
+        },
+        {
+          "caller": "patchRecursion",
+          "callee": "System.err.println",
+          "lineNumber": 140
+        },
+        {
+          "caller": "patchRecursion",
+          "callee": "new Supplier<Parser>",
+          "lineNumber": 148
+        },
+        {
+          "caller": "get",
+          "callee": "copies.get",
+          "lineNumber": 163
+        },
+        {
+          "caller": "patchRecursion",
+          "callee": "copies.put",
+          "lineNumber": 170
+        },
+        {
+          "caller": "patchRecursion",
+          "callee": "new LazyParser",
+          "lineNumber": 170
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "parser.getClass().getMethod",
+          "lineNumber": 181
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "parser.getClass",
+          "lineNumber": 181
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "m.setAccessible",
+          "lineNumber": 182
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "registerCopy",
+          "lineNumber": 183
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "m.invoke",
+          "lineNumber": 183
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "m.setAccessible",
+          "lineNumber": 192
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "registerCopy",
+          "lineNumber": 197
+        },
+        {
+          "caller": "visit",
+          "callee": "defaultAction",
+          "lineNumber": 203
+        },
+        {
+          "caller": "visit",
+          "callee": "defaultAction",
+          "lineNumber": 207
+        },
+        {
+          "caller": "visit",
+          "callee": "defaultAction",
+          "lineNumber": 211
+        },
+        {
+          "caller": "visit",
+          "callee": "defaultAction",
+          "lineNumber": 215
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "new Choice",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 225
+        },
+        {
+          "caller": "visit",
+          "callee": "new Sequence",
+          "lineNumber": 225
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 225
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 225
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 229
+        },
+        {
+          "caller": "visit",
+          "callee": "new Longest",
+          "lineNumber": 229
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 229
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 229
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 236
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 237
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 238
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 239
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 240
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 241
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 246
+        },
+        {
+          "caller": "visit",
+          "callee": "new Lookahead",
+          "lineNumber": 246
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 246
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 250
+        },
+        {
+          "caller": "visit",
+          "callee": "new Not",
+          "lineNumber": 250
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 250
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 254
+        },
+        {
+          "caller": "visit",
+          "callee": "new Optional",
+          "lineNumber": 254
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 254
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 261
+        },
+        {
+          "caller": "visit",
+          "callee": "new Around",
+          "lineNumber": 261
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 262
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 262
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 267
+        },
+        {
+          "caller": "visit",
+          "callee": "new Bounded",
+          "lineNumber": 268
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 268
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 268
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 273
+        },
+        {
+          "caller": "visit",
+          "callee": "new Collect",
+          "lineNumber": 273
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 273
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 279
+        },
+        {
+          "caller": "visit",
+          "callee": "new LazyParser",
+          "lineNumber": 279
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 284
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 285
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 287
+        },
+        {
+          "caller": "visit",
+          "callee": "new LeftExpression",
+          "lineNumber": 287
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 288
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 289
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 297
+        },
+        {
+          "caller": "visit",
+          "callee": "map",
+          "lineNumber": 298
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 300
+        },
+        {
+          "caller": "visit",
+          "callee": "new RightExpression",
+          "lineNumber": 300
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 301
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 302
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 310
+        },
+        {
+          "caller": "visit",
+          "callee": "new Memo",
+          "lineNumber": 311
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 311
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 316
+        },
+        {
+          "caller": "visit",
+          "callee": "new Repeat",
+          "lineNumber": 317
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 317
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 322
+        },
+        {
+          "caller": "visit",
+          "callee": "new StringMatch",
+          "lineNumber": 323
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 323
+        },
+        {
+          "caller": "visit",
+          "callee": "registerCopy",
+          "lineNumber": 328
+        },
+        {
+          "caller": "visit",
+          "callee": "new TrailingWhitespace",
+          "lineNumber": 329
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 329
+        },
+        {
+          "caller": "visit",
+          "callee": "getCopy",
+          "lineNumber": 329
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 33,
+        "functionCount": 32,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 270,
+      "nonEmptyLines": 205,
+      "functions": [
+        {
+          "name": "overloads",
+          "startLine": 49,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "VisitorFirstParsers",
+          "startLine": 69,
+          "endLine": 71,
+          "params": [
+            "nullableVisitor"
+          ]
+        },
+        {
+          "name": "firsts",
+          "startLine": 79,
+          "endLine": 84,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "firstsAddSequence",
+          "startLine": 93,
+          "endLine": 99,
+          "params": [
+            "parsers"
+          ]
+        },
+        {
+          "name": "nullable",
+          "startLine": 106,
+          "endLine": 108,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "defaultAction",
+          "startLine": 112,
+          "endLine": 115,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 119,
+          "endLine": 121,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 123,
+          "endLine": 125,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 127,
+          "endLine": 129,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 131,
+          "endLine": 133,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 135,
+          "endLine": 137,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 139,
+          "endLine": 141,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 143,
+          "endLine": 145,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 149,
+          "endLine": 151,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 153,
+          "endLine": 155,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 157,
+          "endLine": 159,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 161,
+          "endLine": 163,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 165,
+          "endLine": 167,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 169,
+          "endLine": 171,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 175,
+          "endLine": 177,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 179,
+          "endLine": 181,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 183,
+          "endLine": 185,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 189,
+          "endLine": 191,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 193,
+          "endLine": 195,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 197,
+          "endLine": 199,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 201,
+          "endLine": 203,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 207,
+          "endLine": 209,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 213,
+          "endLine": 215,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 219,
+          "endLine": 224,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 228,
+          "endLine": 240,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 244,
+          "endLine": 259,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 263,
+          "endLine": 266,
+          "params": [
+            "parser"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VisitorFirstParsers",
+          "startLine": 41,
+          "endLine": 270,
+          "methods": [
+            "overloads",
+            "VisitorFirstParsers",
+            "firsts",
+            "firstsAddSequence",
+            "nullable",
+            "defaultAction",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit"
+          ],
+          "properties": [
+            "overloads",
+            "nullableVisitor",
+            "firsts"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "overloads",
+          "line": 49,
+          "isDefault": false
+        },
+        {
+          "name": "nullableVisitor",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "firsts",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "VisitorFirstParsers",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "firsts",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "firstsAddSequence",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "nullable",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "defaultAction",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 127,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 131,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 139,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 161,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 179,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 183,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 189,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 193,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 197,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 207,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 213,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 219,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 228,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 244,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 263,
+          "isDefault": false
+        },
+        {
+          "name": "VisitorFirstParsers",
+          "line": 41,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "firsts",
+          "callee": "new HashSet<>",
+          "lineNumber": 81
+        },
+        {
+          "caller": "firsts",
+          "callee": "parser.accept",
+          "lineNumber": 82
+        },
+        {
+          "caller": "firstsAddSequence",
+          "callee": "firsts.add",
+          "lineNumber": 96
+        },
+        {
+          "caller": "firstsAddSequence",
+          "callee": "nullable",
+          "lineNumber": 97
+        },
+        {
+          "caller": "nullable",
+          "callee": "nullableVisitor.nullable",
+          "lineNumber": 107
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "parser.children().forEach",
+          "lineNumber": 114
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "parser.children",
+          "lineNumber": 114
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 150
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 154
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 158
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 162
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 166
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 170
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 176
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.child",
+          "lineNumber": 176
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 180
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 184
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 190
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 190
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 194
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 194
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 198
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 198
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 202
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 202
+        },
+        {
+          "caller": "visit",
+          "callee": "firstsAddSequence",
+          "lineNumber": 208
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 208
+        },
+        {
+          "caller": "visit",
+          "callee": "firstsAddSequence",
+          "lineNumber": 214
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 214
+        },
+        {
+          "caller": "visit",
+          "callee": "firstsAddSequence",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 221
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 223
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 230
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 232
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 235
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 235
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 236
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 236
+        },
+        {
+          "caller": "visit",
+          "callee": "Stream.of(parser.infixes).anyMatch",
+          "lineNumber": 238
+        },
+        {
+          "caller": "visit",
+          "callee": "Stream.of",
+          "lineNumber": 238
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 239
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 246
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 247
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 247
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 252
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 254
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.addAll",
+          "lineNumber": 255
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 255
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.string.length",
+          "lineNumber": 264
+        },
+        {
+          "caller": "visit",
+          "callee": "firsts.add",
+          "lineNumber": 265
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 35,
+        "functionCount": 32,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 308,
+      "nonEmptyLines": 235,
+      "functions": [
+        {
+          "name": "overloads",
+          "startLine": 40,
+          "endLine": 42,
+          "params": []
+        },
+        {
+          "name": "work",
+          "startLine": 54,
+          "endLine": 62,
+          "params": [
+            "parser",
+            "state"
+          ]
+        },
+        {
+          "name": "nullable",
+          "startLine": 70,
+          "endLine": 77,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "addNullable",
+          "startLine": 84,
+          "endLine": 86,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "addIfNullable",
+          "startLine": 93,
+          "endLine": 97,
+          "params": [
+            "parser",
+            "other"
+          ]
+        },
+        {
+          "name": "addIf",
+          "startLine": 104,
+          "endLine": 106,
+          "params": [
+            "parser",
+            "cond"
+          ]
+        },
+        {
+          "name": "addIfOneNullable",
+          "startLine": 114,
+          "endLine": 121,
+          "params": [
+            "parser",
+            "others"
+          ]
+        },
+        {
+          "name": "addIfAllNullable",
+          "startLine": 129,
+          "endLine": 136,
+          "params": [
+            "parser",
+            "others"
+          ]
+        },
+        {
+          "name": "defaultAction",
+          "startLine": 140,
+          "endLine": 143,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 147,
+          "endLine": 149,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 151,
+          "endLine": 153,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 155,
+          "endLine": 157,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 161,
+          "endLine": 163,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 165,
+          "endLine": 167,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 169,
+          "endLine": 171,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 173,
+          "endLine": 175,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 177,
+          "endLine": 179,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 183,
+          "endLine": 185,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 187,
+          "endLine": 189,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 191,
+          "endLine": 193,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 195,
+          "endLine": 197,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 201,
+          "endLine": 203,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 205,
+          "endLine": 207,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 209,
+          "endLine": 211,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 215,
+          "endLine": 217,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 219,
+          "endLine": 221,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 223,
+          "endLine": 225,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 229,
+          "endLine": 231,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 235,
+          "endLine": 237,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 241,
+          "endLine": 243,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 247,
+          "endLine": 249,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 253,
+          "endLine": 255,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 259,
+          "endLine": 265,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 269,
+          "endLine": 285,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 289,
+          "endLine": 305,
+          "params": [
+            "parser"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VisitorNullable",
+          "startLine": 32,
+          "endLine": 308,
+          "methods": [
+            "overloads",
+            "work",
+            "nullable",
+            "addNullable",
+            "addIfNullable",
+            "addIf",
+            "addIfOneNullable",
+            "addIfAllNullable",
+            "defaultAction",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit"
+          ],
+          "properties": [
+            "overloads",
+            "nullables"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "overloads",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "nullables",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "nullable",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "addNullable",
+          "line": 84,
+          "isDefault": false
+        },
+        {
+          "name": "addIfNullable",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "addIf",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "addIfOneNullable",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "addIfAllNullable",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "defaultAction",
+          "line": 140,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 147,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 155,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 161,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 169,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 173,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 177,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 183,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 191,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 195,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 205,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 209,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 219,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 223,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 229,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 235,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 241,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 247,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 253,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 259,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 269,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 289,
+          "isDefault": false
+        },
+        {
+          "name": "VisitorNullable",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "work",
+          "callee": "parser.accept",
+          "lineNumber": 61
+        },
+        {
+          "caller": "nullable",
+          "callee": "visited",
+          "lineNumber": 72
+        },
+        {
+          "caller": "nullable",
+          "callee": "nullables.contains",
+          "lineNumber": 73
+        },
+        {
+          "caller": "nullable",
+          "callee": "walk",
+          "lineNumber": 75
+        },
+        {
+          "caller": "nullable",
+          "callee": "nullables.contains",
+          "lineNumber": 76
+        },
+        {
+          "caller": "addNullable",
+          "callee": "nullables.add",
+          "lineNumber": 85
+        },
+        {
+          "caller": "addIfNullable",
+          "callee": "nullable",
+          "lineNumber": 95
+        },
+        {
+          "caller": "addIfNullable",
+          "callee": "nullables.add",
+          "lineNumber": 96
+        },
+        {
+          "caller": "addIf",
+          "callee": "nullables.add",
+          "lineNumber": 105
+        },
+        {
+          "caller": "addIfOneNullable",
+          "callee": "nullable",
+          "lineNumber": 117
+        },
+        {
+          "caller": "addIfOneNullable",
+          "callee": "nullables.add",
+          "lineNumber": 118
+        },
+        {
+          "caller": "addIfAllNullable",
+          "callee": "nullable",
+          "lineNumber": 132
+        },
+        {
+          "caller": "addIfAllNullable",
+          "callee": "nullables.add",
+          "lineNumber": 135
+        },
+        {
+          "caller": "defaultAction",
+          "callee": "nullables.add",
+          "lineNumber": 142
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 162
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 166
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 170
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 174
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 178
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 184
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 188
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 192
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 196
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 202
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 206
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.child",
+          "lineNumber": 206
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfNullable",
+          "lineNumber": 210
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 216
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 216
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 220
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 220
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 224
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 224
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfAllNullable",
+          "lineNumber": 230
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.children",
+          "lineNumber": 230
+        },
+        {
+          "caller": "visit",
+          "callee": "addIf",
+          "lineNumber": 236
+        },
+        {
+          "caller": "visit",
+          "callee": "parser.string.equals",
+          "lineNumber": 236
+        },
+        {
+          "caller": "visit",
+          "callee": "addIf",
+          "lineNumber": 242
+        },
+        {
+          "caller": "visit",
+          "callee": "Arrays.stream(parser.strings).anyMatch",
+          "lineNumber": 242
+        },
+        {
+          "caller": "visit",
+          "callee": "Arrays.stream",
+          "lineNumber": 242
+        },
+        {
+          "caller": "visit",
+          "callee": "str.length",
+          "lineNumber": 242
+        },
+        {
+          "caller": "visit",
+          "callee": "addIf",
+          "lineNumber": 248
+        },
+        {
+          "caller": "visit",
+          "callee": "addIf",
+          "lineNumber": 254
+        },
+        {
+          "caller": "visit",
+          "callee": "addIf",
+          "lineNumber": 261
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 263
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 264
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 264
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 271
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 275
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 279
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 280
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 280
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 284
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 284
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 291
+        },
+        {
+          "caller": "visit",
+          "callee": "nullables.add",
+          "lineNumber": 295
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 299
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 300
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 300
+        },
+        {
+          "caller": "visit",
+          "callee": "addIfOneNullable",
+          "lineNumber": 304
+        },
+        {
+          "caller": "visit",
+          "callee": "list",
+          "lineNumber": 304
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 36,
+        "functionCount": 35,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 175,
+      "nonEmptyLines": 142,
+      "functions": [
+        {
+          "name": "overloads",
+          "startLine": 39,
+          "endLine": 41,
+          "params": []
+        },
+        {
+          "name": "VisitorNullableRepetition",
+          "startLine": 62,
+          "endLine": 64,
+          "params": [
+            "nullableVisitor"
+          ]
+        },
+        {
+          "name": "nullableRepetition",
+          "startLine": 72,
+          "endLine": 75,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "nullable",
+          "startLine": 82,
+          "endLine": 84,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "defaultAction",
+          "startLine": 88,
+          "endLine": 91,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 97,
+          "endLine": 97,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 98,
+          "endLine": 98,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 99,
+          "endLine": 99,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 100,
+          "endLine": 100,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 101,
+          "endLine": 101,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 102,
+          "endLine": 102,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 103,
+          "endLine": 103,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 104,
+          "endLine": 104,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 105,
+          "endLine": 105,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 106,
+          "endLine": 106,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 107,
+          "endLine": 107,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 108,
+          "endLine": 108,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 109,
+          "endLine": 109,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 110,
+          "endLine": 110,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 111,
+          "endLine": 111,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 112,
+          "endLine": 112,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 113,
+          "endLine": 113,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 114,
+          "endLine": 114,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 115,
+          "endLine": 115,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 116,
+          "endLine": 116,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 117,
+          "endLine": 117,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 118,
+          "endLine": 118,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 122,
+          "endLine": 125,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 129,
+          "endLine": 132,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 136,
+          "endLine": 152,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "visit",
+          "startLine": 156,
+          "endLine": 172,
+          "params": [
+            "parser"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VisitorNullableRepetition",
+          "startLine": 31,
+          "endLine": 175,
+          "methods": [
+            "overloads",
+            "VisitorNullableRepetition",
+            "nullableRepetition",
+            "nullable",
+            "defaultAction",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit",
+            "visit"
+          ],
+          "properties": [
+            "overloads",
+            "nullableVisitor",
+            "result"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "overloads",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "nullableVisitor",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "result",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "VisitorNullableRepetition",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "nullableRepetition",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "defaultAction",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 105,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 110,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 113,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 115,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 122,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "visit",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "VisitorNullableRepetition",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "nullableRepetition",
+          "callee": "parser.accept",
+          "lineNumber": 73
+        },
+        {
+          "caller": "nullable",
+          "callee": "nullableVisitor.nullable",
+          "lineNumber": 83
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 124
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 124
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 131
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 139
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 144
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 146
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 159
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 164
+        },
+        {
+          "caller": "visit",
+          "callee": "nullable",
+          "lineNumber": 166
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 33,
+        "functionCount": 31,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 164,
+      "nonEmptyLines": 135,
+      "functions": [
+        {
+          "name": "WellFormednessChecker",
+          "startLine": 82,
+          "endLine": 86,
+          "params": [
+            "nullableVisitor"
+          ]
+        },
+        {
+          "name": "WellFormednessChecker",
+          "startLine": 93,
+          "endLine": 95,
+          "params": []
+        },
+        {
+          "name": "wellFormed",
+          "startLine": 103,
+          "endLine": 107,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "first",
+          "startLine": 111,
+          "endLine": 151,
+          "params": [
+            "parser"
+          ]
+        },
+        {
+          "name": "work",
+          "startLine": 155,
+          "endLine": 161,
+          "params": [
+            "parser",
+            "state"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "WellFormednessChecker",
+          "startLine": 36,
+          "endLine": 164,
+          "methods": [
+            "WellFormednessChecker",
+            "WellFormednessChecker",
+            "wellFormed",
+            "first",
+            "work"
+          ],
+          "properties": [
+            "leftRecursives",
+            "leftrecPaths",
+            "nullableRepetitions",
+            "visited",
+            "stack",
+            "firstsVisitor",
+            "nullRepsVisitor"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "leftRecursives",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "leftrecPaths",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "nullableRepetitions",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "WellFormednessChecker",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "WellFormednessChecker",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "wellFormed",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "WellFormednessChecker",
+          "line": 36,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "WellFormednessChecker",
+          "callee": "new VisitorFirstParsers",
+          "lineNumber": 84
+        },
+        {
+          "caller": "WellFormednessChecker",
+          "callee": "new VisitorNullableRepetition",
+          "lineNumber": 85
+        },
+        {
+          "caller": "WellFormednessChecker",
+          "callee": "new VisitorNullable",
+          "lineNumber": 94
+        },
+        {
+          "caller": "wellFormed",
+          "callee": "walk",
+          "lineNumber": 105
+        },
+        {
+          "caller": "wellFormed",
+          "callee": "leftRecursives.isEmpty",
+          "lineNumber": 106
+        },
+        {
+          "caller": "wellFormed",
+          "callee": "nullableRepetitions.isEmpty",
+          "lineNumber": 106
+        },
+        {
+          "caller": "first",
+          "callee": "visited.contains",
+          "lineNumber": 113
+        },
+        {
+          "caller": "first",
+          "callee": "stack.add",
+          "lineNumber": 116
+        },
+        {
+          "caller": "first",
+          "callee": "new ArrayList<>",
+          "lineNumber": 127
+        },
+        {
+          "caller": "first",
+          "callee": "stack.size",
+          "lineNumber": 127
+        },
+        {
+          "caller": "first",
+          "callee": "loop.add",
+          "lineNumber": 131
+        },
+        {
+          "caller": "first",
+          "callee": "leftRecursives.add",
+          "lineNumber": 141
+        },
+        {
+          "caller": "first",
+          "callee": "leftrecPaths.add",
+          "lineNumber": 142
+        },
+        {
+          "caller": "first",
+          "callee": "visited.add",
+          "lineNumber": 143
+        },
+        {
+          "caller": "first",
+          "callee": "firstsVisitor.firsts(parser).forEach",
+          "lineNumber": 147
+        },
+        {
+          "caller": "first",
+          "callee": "firstsVisitor.firsts",
+          "lineNumber": 147
+        },
+        {
+          "caller": "first",
+          "callee": "stack.remove",
+          "lineNumber": 149
+        },
+        {
+          "caller": "first",
+          "callee": "visited.add",
+          "lineNumber": 150
+        },
+        {
+          "caller": "work",
+          "callee": "first",
+          "lineNumber": 158
+        },
+        {
+          "caller": "work",
+          "callee": "nullRepsVisitor.nullableRepetition",
+          "lineNumber": 159
+        },
+        {
+          "caller": "work",
+          "callee": "nullableRepetitions.add",
+          "lineNumber": 160
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/SimpleXML.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 124,
+      "nonEmptyLines": 105,
+      "functions": [
+        {
+          "name": "root",
+          "startLine": 121,
+          "endLine": 123,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "SimpleXML",
+          "startLine": 22,
+          "endLine": 124,
+          "methods": [
+            "root"
+          ],
+          "properties": [
+            "tag_stack",
+            "identifier",
+            "open_identifier",
+            "close_identifier",
+            "open_tag",
+            "close_tag",
+            "text",
+            "contents",
+            "tag"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "identifier",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "open_identifier",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "close_identifier",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "open_tag",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "close_tag",
+          "line": 104,
+          "isDefault": false
+        },
+        {
+          "name": "text",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "contents",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "tag",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "SimpleXML",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "doparse",
+          "callee": "child.parse",
+          "lineNumber": 43
+        },
+        {
+          "caller": "doparse",
+          "callee": "new Span(pos0, parse.pos).get",
+          "lineNumber": 46
+        },
+        {
+          "caller": "doparse",
+          "callee": "new Span",
+          "lineNumber": 46
+        },
+        {
+          "caller": "doparse",
+          "callee": "tag_stack.data",
+          "lineNumber": 47
+        },
+        {
+          "caller": "doparse",
+          "callee": "tstack.peek",
+          "lineNumber": 48
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.setErrorMessage",
+          "lineNumber": 51
+        },
+        {
+          "caller": "doparse",
+          "callee": "close_tag.equals",
+          "lineNumber": 56
+        },
+        {
+          "caller": "doparse",
+          "callee": "parse.setErrorMessage",
+          "lineNumber": 57
+        },
+        {
+          "caller": "doparse",
+          "callee": "tstack.pop",
+          "lineNumber": 62
+        }
+      ],
+      "metrics": {
+        "importCount": 6,
+        "exportCount": 10,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Slot.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 51,
+      "nonEmptyLines": 37,
+      "functions": [
+        {
+          "name": "Slot",
+          "startLine": 21,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "Slot",
+          "startLine": 25,
+          "endLine": 27,
+          "params": [
+            "x"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 31,
+          "endLine": 33,
+          "params": []
+        },
+        {
+          "name": "hashCode",
+          "startLine": 37,
+          "endLine": 39,
+          "params": []
+        },
+        {
+          "name": "equals",
+          "startLine": 43,
+          "endLine": 48,
+          "params": [
+            "o"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Slot",
+          "startLine": 12,
+          "endLine": 51,
+          "methods": [
+            "Slot",
+            "Slot",
+            "toString",
+            "hashCode",
+            "equals"
+          ],
+          "properties": [
+            "x"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "x",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "Slot",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "Slot",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "hashCode",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "equals",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "Slot",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hashCode",
+          "callee": "x.hashCode",
+          "lineNumber": 38
+        },
+        {
+          "caller": "equals",
+          "callee": "Objects.equals",
+          "lineNumber": 47
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    }
+  ]
+}

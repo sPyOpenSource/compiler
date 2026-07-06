@@ -1,0 +1,264 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/autumn/Grammar.java",
+      "language": "java",
+      "sizeLines": 1388,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Parse.java",
+      "language": "java",
+      "sizeLines": 460,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseState.java",
+      "language": "java",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Parser.java",
+      "language": "java",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserVisitor.java",
+      "language": "java",
+      "sizeLines": 206,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserWalker.java",
+      "language": "java",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/SideEffect.java",
+      "language": "java",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/ActionContext.java",
+      "language": "java",
+      "sizeLines": 294,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackAction.java",
+      "language": "java",
+      "sizeLines": 54,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackPredicate.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/Memoizer.java",
+      "language": "java",
+      "sizeLines": 95,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractChoice.java",
+      "language": "java",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractForwarding.java",
+      "language": "java",
+      "sizeLines": 76,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractPrimitive.java",
+      "language": "java",
+      "sizeLines": 60,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/AbstractWrapper.java",
+      "language": "java",
+      "sizeLines": 61,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Around.java",
+      "language": "java",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Bounded.java",
+      "language": "java",
+      "sizeLines": 103,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/CharPredicate.java",
+      "language": "java",
+      "sizeLines": 198,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Choice.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Collect.java",
+      "language": "java",
+      "sizeLines": 134,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/ContextPredicate.java",
+      "language": "java",
+      "sizeLines": 74,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Empty.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/parsers/Fail.java",
+      "language": "java",
+      "sizeLines": 31,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/autumn/Grammar.java": [
+      "src/norswap/utils/data/wrappers/Slot.java",
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/reflection/Subtyping.java"
+    ],
+    "src/norswap/autumn/Parse.java": [
+      "src/norswap/autumn/actions/ActionContext.java",
+      "src/norswap/autumn/actions/StackAction.java",
+      "src/norswap/autumn/parsers/Bounded.java",
+      "src/norswap/autumn/parsers/Not.java",
+      "src/norswap/autumn/parsers/RightExpression.java",
+      "src/norswap/autumn/parsers/StringMatch.java",
+      "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "src/norswap/utils/data/structures/ArrayListLong.java"
+    ],
+    "src/norswap/autumn/ParseState.java": [],
+    "src/norswap/autumn/Parser.java": [],
+    "src/norswap/autumn/ParserVisitor.java": [
+      "src/norswap/autumn/visitors/WellFormednessChecker.java"
+    ],
+    "src/norswap/autumn/ParserWalker.java": [],
+    "src/norswap/autumn/SideEffect.java": [],
+    "src/norswap/autumn/actions/ActionContext.java": [
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/parsers/Collect.java",
+      "src/norswap/autumn/ParseState.java",
+      "src/norswap/autumn/positions/Span.java",
+      "src/norswap/autumn/SideEffect.java"
+    ],
+    "src/norswap/autumn/actions/StackAction.java": [
+      "src/norswap/autumn/Log.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/parsers/Collect.java",
+      "src/norswap/autumn/parsers/LeftExpression.java",
+      "src/norswap/autumn/parsers/RightExpression.java",
+      "src/norswap/autumn/SideEffect.java",
+      "src/norswap/autumn/SideEffectingArrayStack.java"
+    ],
+    "src/norswap/autumn/actions/StackPredicate.java": [
+      "src/norswap/autumn/parsers/Collect.java",
+      "src/norswap/autumn/parsers/LeftExpression.java",
+      "src/norswap/autumn/parsers/RightExpression.java"
+    ],
+    "src/norswap/autumn/memo/Memoizer.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/parsers/Memo.java",
+      "src/norswap/autumn/positions/LineMap.java"
+    ],
+    "src/norswap/autumn/parsers/AbstractChoice.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/AbstractForwarding.java": [
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java",
+      "src/norswap/autumn/ParserWalker.java"
+    ],
+    "src/norswap/autumn/parsers/AbstractPrimitive.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/AbstractWrapper.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/Around.java": [
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/Bounded.java": [
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/CharPredicate.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/Choice.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/Collect.java": [
+      "src/norswap/autumn/actions/ActionContext.java",
+      "src/norswap/autumn/actions/StackAction.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/ContextPredicate.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java",
+      "src/norswap/autumn/ParseState.java",
+      "src/norswap/autumn/visitors/WellFormednessChecker.java"
+    ],
+    "src/norswap/autumn/parsers/Empty.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ],
+    "src/norswap/autumn/parsers/Fail.java": [
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/Parse.java",
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/ParserVisitor.java"
+    ]
+  }
+}

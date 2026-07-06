@@ -1,0 +1,39 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "nbproject/build-impl.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 1771,
+      "nonEmptyLines": 1768,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/genfiles.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 8,
+      "nonEmptyLines": 8,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/project.properties",
+      "language": "properties",
+      "fileCategory": "config",
+      "totalLines": 107,
+      "nonEmptyLines": 107,
+      "metrics": {}
+    },
+    {
+      "path": "nbproject/project.xml",
+      "language": "xml",
+      "fileCategory": "config",
+      "totalLines": 16,
+      "nonEmptyLines": 16,
+      "metrics": {}
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/utils/Strings.java",
+      "language": "java",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Vanilla.java",
+      "language": "java",
+      "sizeLines": 858,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/functions/IndexedFunction.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayListInt.java",
+      "language": "java",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayListLong.java",
+      "language": "java",
+      "sizeLines": 224,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Indexed.java",
+      "language": "java",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Pair.java",
+      "language": "java",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/Exceptions.java",
+      "language": "java",
+      "sizeLines": 219,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/AbstractMultiHashMap.java",
+      "language": "java",
+      "sizeLines": 104,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiMap.java",
+      "language": "java",
+      "sizeLines": 201,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/multimap/MultiMapCollector.java",
+      "language": "java",
+      "sizeLines": 50,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Access.java",
+      "language": "java",
+      "sizeLines": 451,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/reflection/Reflection.java",
+      "language": "java",
+      "sizeLines": 184,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/ParsersTest.java",
+      "language": "java",
+      "sizeLines": 793,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/utils/Strings.java": [],
+    "src/norswap/utils/Vanilla.java": [
+      "src/norswap/utils/data/functions/IndexedBiConsumer.java",
+      "src/norswap/utils/data/functions/IndexedBiFunction.java",
+      "src/norswap/utils/data/functions/IndexedConsumer.java",
+      "src/norswap/utils/data/functions/IndexedFunction.java",
+      "src/norswap/utils/data/wrappers/Indexed.java",
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/utils/data/functions/IndexedBiConsumer.java": [],
+    "src/norswap/utils/data/functions/IndexedBiFunction.java": [],
+    "src/norswap/utils/data/functions/IndexedConsumer.java": [],
+    "src/norswap/utils/data/functions/IndexedFunction.java": [],
+    "src/norswap/utils/data/structures/ArrayListInt.java": [
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/utils/data/structures/ArrayListLong.java": [
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/utils/data/wrappers/Indexed.java": [],
+    "src/norswap/utils/data/wrappers/Pair.java": [],
+    "src/norswap/utils/exceptions/Exceptions.java": [],
+    "src/norswap/utils/exceptions/ThrowingRunnable.java": [],
+    "src/norswap/utils/multimap/AbstractMultiHashMap.java": [
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/utils/multimap/MultiMap.java": [
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/utils/multimap/MultiMapCollector.java": [
+      "src/norswap/utils/Vanilla.java"
+    ],
+    "src/norswap/utils/reflection/Access.java": [
+      "src/norswap/utils/exceptions/Exceptions.java"
+    ],
+    "src/norswap/utils/reflection/Reflection.java": [
+      "src/norswap/utils/exceptions/Exceptions.java",
+      "src/norswap/utils/exceptions/ThrowingRunnable.java",
+      "src/norswap/utils/NArrays.java",
+      "src/norswap/utils/Vanilla.java"
+    ],
+    "test/ParsersTest.java": [
+      "src/norswap/autumn/actions/ActionContext.java",
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/memo/MemoEntry.java",
+      "src/norswap/autumn/memo/MemoTable.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/autumn/ParseState.java",
+      "src/norswap/utils/data/wrappers/Slot.java",
+      "src/norswap/utils/Strings.java",
+      "src/norswap/utils/Vanilla.java"
+    ]
+  }
+}

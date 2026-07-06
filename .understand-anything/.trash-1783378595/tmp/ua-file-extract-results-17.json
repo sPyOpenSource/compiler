@@ -1,0 +1,424 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/utils/multimap/MultiHashSetMap.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 31,
+      "nonEmptyLines": 25,
+      "functions": [
+        {
+          "name": "newCollection",
+          "startLine": 18,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "emptyCollection",
+          "startLine": 25,
+          "endLine": 28,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MultiHashSetMap",
+          "startLine": 14,
+          "endLine": 31,
+          "methods": [
+            "newCollection",
+            "emptyCollection"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "MultiHashSetMap",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "newCollection",
+          "callee": "new HashSet<>",
+          "lineNumber": 20
+        },
+        {
+          "caller": "emptyCollection",
+          "callee": "Collections.emptySet",
+          "lineNumber": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/OperatingSystem.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 30,
+      "nonEmptyLines": 27,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/utils/Predicates.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 46,
+      "nonEmptyLines": 35,
+      "functions": [
+        {
+          "name": "toString",
+          "startLine": 32,
+          "endLine": 43,
+          "params": [
+            "pred"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Predicates",
+          "startLine": 10,
+          "endLine": 46,
+          "methods": [
+            "toString"
+          ],
+          "properties": [
+            "TRUE",
+            "FALSE"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "TRUE",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "FALSE",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "Predicates",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toString",
+          "callee": "suppress",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toString",
+          "callee": "pred.getClass().getMethod(\"toString\").getDeclaringClass",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toString",
+          "callee": "pred.getClass().getMethod",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toString",
+          "callee": "pred.getClass",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toString",
+          "callee": "predTostringSrc.equals",
+          "lineNumber": 38
+        },
+        {
+          "caller": "toString",
+          "callee": "pred.toString",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveWalker.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 112,
+      "nonEmptyLines": 89,
+      "functions": [
+        {
+          "name": "ReflectiveWalker",
+          "startLine": 55,
+          "endLine": 58,
+          "params": [
+            "nodeType"
+          ]
+        },
+        {
+          "name": "handlesFor",
+          "startLine": 65,
+          "endLine": 65,
+          "params": [
+            "klass"
+          ]
+        },
+        {
+          "name": "children",
+          "startLine": 69,
+          "endLine": 88,
+          "params": [
+            "node"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ReflectiveWalker",
+          "startLine": 28,
+          "endLine": 112,
+          "methods": [
+            "ReflectiveWalker",
+            "handlesFor",
+            "children"
+          ],
+          "properties": [
+            "lookup",
+            "nodeType",
+            "classData"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "nodeType",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "ReflectiveWalker",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "children",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "ReflectiveWalker",
+          "line": 28,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "children",
+          "callee": "classData.computeIfAbsent",
+          "lineNumber": 71
+        },
+        {
+          "caller": "children",
+          "callee": "cast",
+          "lineNumber": 72
+        },
+        {
+          "caller": "children",
+          "callee": "node.getClass",
+          "lineNumber": 72
+        },
+        {
+          "caller": "children",
+          "callee": "new ArrayList<>",
+          "lineNumber": 74
+        },
+        {
+          "caller": "children",
+          "callee": "handles.size",
+          "lineNumber": 74
+        },
+        {
+          "caller": "children",
+          "callee": "tryHandles",
+          "lineNumber": 76
+        },
+        {
+          "caller": "children",
+          "callee": "cast",
+          "lineNumber": 79
+        },
+        {
+          "caller": "children",
+          "callee": "wrap.handle.invoke",
+          "lineNumber": 79
+        },
+        {
+          "caller": "children",
+          "callee": "children.addAll",
+          "lineNumber": 80
+        },
+        {
+          "caller": "children",
+          "callee": "cast",
+          "lineNumber": 82
+        },
+        {
+          "caller": "children",
+          "callee": "wrap.handle.invoke",
+          "lineNumber": 82
+        },
+        {
+          "caller": "children",
+          "callee": "children.add",
+          "lineNumber": 83
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/visitors/Visitor.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 70,
+      "functions": [
+        {
+          "name": "accept",
+          "startLine": 46,
+          "endLine": 55,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "register",
+          "startLine": 62,
+          "endLine": 68,
+          "params": [
+            "klass",
+            "specialization"
+          ]
+        },
+        {
+          "name": "registerFallback",
+          "startLine": 75,
+          "endLine": 79,
+          "params": [
+            "fallback"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Visitor",
+          "startLine": 32,
+          "endLine": 82,
+          "methods": [
+            "accept",
+            "register",
+            "registerFallback"
+          ],
+          "properties": [
+            "dispatch",
+            "fallbackSpecialization"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "accept",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "register",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "registerFallback",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "Visitor",
+          "line": 32,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "accept",
+          "callee": "dispatch.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "accept",
+          "callee": "value.getClass",
+          "lineNumber": 48
+        },
+        {
+          "caller": "accept",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 51
+        },
+        {
+          "caller": "accept",
+          "callee": "fallbackSpecialization.accept",
+          "lineNumber": 52
+        },
+        {
+          "caller": "accept",
+          "callee": "action.accept",
+          "lineNumber": 54
+        },
+        {
+          "caller": "register",
+          "callee": "dispatch.put",
+          "lineNumber": 66
+        },
+        {
+          "caller": "register",
+          "callee": "cast",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    }
+  ]
+}

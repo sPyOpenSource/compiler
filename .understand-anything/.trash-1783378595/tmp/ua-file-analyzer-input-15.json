@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": ".gitattributes",
+      "language": "unknown",
+      "sizeLines": 1,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "build.xml",
+      "language": "xml",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "examples/fizzbuzz.si",
+      "language": "si",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "examples/kitchensink.si",
+      "language": "si",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 26,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/norswap/autumn/actions/StackConsumer.java",
+      "language": "java",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallFrame.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserMetrics.java",
+      "language": "java",
+      "sizeLines": 71,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapUtils.java",
+      "language": "java",
+      "sizeLines": 47,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/GeneratedClass.java",
+      "language": "java",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/jvm-names.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "src/norswap/lang/backend/Null.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/SighRuntime.java",
+      "language": "java",
+      "sizeLines": 25,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/AnnotationElementList.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ArrayType.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Block.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/CatchClause.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ClassType.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/DefaultLabel.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/ExtendsBound.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameter.java",
+      "language": "java",
+      "sizeLines": 3,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/FormalParameters.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/InitBlock.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/JavaFile.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    ".gitattributes": [],
+    ".understand-anything/.understandignore": [],
+    "build.xml": [],
+    "examples/fizzbuzz.si": [],
+    "examples/kitchensink.si": [],
+    "README.md": [],
+    "src/norswap/autumn/actions/StackConsumer.java": [],
+    "src/norswap/autumn/ParserCallFrame.java": [],
+    "src/norswap/autumn/ParserMetrics.java": [],
+    "src/norswap/autumn/positions/LineMapUtils.java": [],
+    "src/norswap/lang/backend/GeneratedClass.java": [],
+    "src/norswap/lang/backend/jvm-names.md": [],
+    "src/norswap/lang/backend/Null.java": [],
+    "src/norswap/lang/backend/SighRuntime.java": [],
+    "src/norswap/lang/java/ast/AnnotationElementList.java": [],
+    "src/norswap/lang/java/ast/ArrayType.java": [],
+    "src/norswap/lang/java/ast/Block.java": [],
+    "src/norswap/lang/java/ast/CatchClause.java": [],
+    "src/norswap/lang/java/ast/ClassType.java": [],
+    "src/norswap/lang/java/ast/DefaultLabel.java": [],
+    "src/norswap/lang/java/ast/ExtendsBound.java": [],
+    "src/norswap/lang/java/ast/FormalParameter.java": [],
+    "src/norswap/lang/java/ast/FormalParameters.java": [],
+    "src/norswap/lang/java/ast/InitBlock.java": [],
+    "src/norswap/lang/java/ast/JavaFile.java": []
+  }
+}

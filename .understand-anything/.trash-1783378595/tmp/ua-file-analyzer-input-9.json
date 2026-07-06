@@ -1,0 +1,184 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/ExpressionBenchmark.java",
+      "language": "java",
+      "sizeLines": 117,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/Log.java",
+      "language": "java",
+      "sizeLines": 82,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParseResult.java",
+      "language": "java",
+      "sizeLines": 323,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallStack.java",
+      "language": "java",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "language": "java",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/VisitorExtensions.java",
+      "language": "java",
+      "sizeLines": 63,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoCache.java",
+      "language": "java",
+      "sizeLines": 115,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoEntry.java",
+      "language": "java",
+      "sizeLines": 142,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoTable.java",
+      "language": "java",
+      "sizeLines": 182,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/memo/NullMemoizer.java",
+      "language": "java",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMap.java",
+      "language": "java",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapTokens.java",
+      "language": "java",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/autumn/util/ArrayStack.java",
+      "language": "java",
+      "sizeLines": 302,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/backend/AsmUtils.java",
+      "language": "java",
+      "sizeLines": 195,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/FunType.java",
+      "language": "java",
+      "sizeLines": 33,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/uranium/Rule.java",
+      "language": "java",
+      "sizeLines": 366,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/NArrays.java",
+      "language": "java",
+      "sizeLines": 235,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/ExpressionBenchmark.java": [
+      "src/norswap/autumn/Autumn.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/autumn/ParseOptions.java",
+      "src/norswap/autumn/ParseResult.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/autumn/Log.java": [
+      "src/norswap/autumn/util/ArrayStack.java",
+      "src/norswap/utils/Vanilla.java"
+    ],
+    "src/norswap/autumn/ParseResult.java": [
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/autumn/util/ArrayStack.java",
+      "src/norswap/utils/exceptions/Exceptions.java"
+    ],
+    "src/norswap/autumn/ParserCallStack.java": [
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/autumn/util/ArrayStack.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/autumn/SideEffectingArrayStack.java": [
+      "src/norswap/autumn/util/ArrayStack.java",
+      "src/norswap/utils/data/wrappers/Slot.java"
+    ],
+    "src/norswap/autumn/VisitorExtensions.java": [
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/autumn/memo/MemoCache.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/utils/NArrays.java"
+    ],
+    "src/norswap/autumn/memo/MemoEntry.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/parsers/Memo.java",
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/autumn/SideEffect.java"
+    ],
+    "src/norswap/autumn/memo/MemoTable.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/positions/LineMap.java",
+      "src/norswap/utils/NArrays.java"
+    ],
+    "src/norswap/autumn/memo/NullMemoizer.java": [
+      "src/norswap/autumn/Parser.java",
+      "src/norswap/autumn/positions/LineMap.java"
+    ],
+    "src/norswap/autumn/positions/LineMap.java": [],
+    "src/norswap/autumn/positions/LineMapTokens.java": [
+      "src/norswap/utils/Vanilla.java"
+    ],
+    "src/norswap/autumn/util/ArrayStack.java": [],
+    "src/norswap/lang/backend/AsmUtils.java": [
+      "src/norswap/utils/exceptions/Exceptions.java"
+    ],
+    "src/norswap/lang/java/ast/NormalAnnotation.java": [
+      "src/norswap/lang/java/ast/expr/Identifier.java",
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ],
+    "src/norswap/lang/rust/types/FunType.java": [
+      "src/norswap/utils/NArrays.java"
+    ],
+    "src/norswap/uranium/Rule.java": [
+      "src/norswap/utils/NArrays.java"
+    ],
+    "src/norswap/utils/NArrays.java": [
+      "src/norswap/utils/data/wrappers/Pair.java"
+    ]
+  }
+}

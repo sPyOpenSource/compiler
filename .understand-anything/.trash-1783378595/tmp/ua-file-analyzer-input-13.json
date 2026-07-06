@@ -1,0 +1,62 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "language": "java",
+      "sizeLines": 72,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "language": "java",
+      "sizeLines": 446,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Concurrency.java",
+      "language": "java",
+      "sizeLines": 83,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "language": "java",
+      "sizeLines": 247,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "language": "java",
+      "sizeLines": 220,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/LexUtilsTest.java",
+      "language": "java",
+      "sizeLines": 205,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/autumn/util/StringsUtil.java": [],
+    "src/norswap/lang/java/LexUtils.java": [
+      "src/norswap/autumn/util/StringsUtil.java",
+      "src/norswap/utils/exceptions/Exceptional.java",
+      "src/norswap/utils/Strings.java"
+    ],
+    "src/norswap/utils/Concurrency.java": [
+      "src/norswap/utils/exceptions/Exceptional.java"
+    ],
+    "src/norswap/utils/data/wrappers/Maybe.java": [
+      "src/norswap/utils/Util.java"
+    ],
+    "src/norswap/utils/exceptions/Exceptional.java": [
+      "src/norswap/utils/data/wrappers/Maybe.java"
+    ],
+    "test/lang/java/LexUtilsTest.java": [
+      "src/norswap/lang/java/LexUtils.java",
+      "src/norswap/utils/exceptions/Exceptional.java"
+    ]
+  }
+}

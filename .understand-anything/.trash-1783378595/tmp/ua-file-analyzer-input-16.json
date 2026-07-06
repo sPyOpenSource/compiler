@@ -1,0 +1,182 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/lang/java/ast/Keyword.java",
+      "language": "java",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Modifier.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Null.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/PrimitiveType.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SemiStatement.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StTryCaFi.java",
+      "language": "java",
+      "sizeLines": 18,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/StVar.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SuperBound.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchClause.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/SwitchLabel.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TAnnotation.java",
+      "language": "java",
+      "sizeLines": 4,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/TypeBound.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/Wildcard.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/TokenKind.java",
+      "language": "java",
+      "sizeLines": 159,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/InterpreterException.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/PassthroughException.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/interpreter/Void.java",
+      "language": "java",
+      "sizeLines": 9,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/ArrayType.java",
+      "language": "java",
+      "sizeLines": 22,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/BoolType.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/NullType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/TypeType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/rust/types/VoidType.java",
+      "language": "java",
+      "sizeLines": 11,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/Chance.java",
+      "language": "java",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/data/structures/ArrayStack.java",
+      "language": "java",
+      "sizeLines": 304,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/utils/exceptions/ThrowingSupplier.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/lang/java/ast/Keyword.java": [],
+    "src/norswap/lang/java/ast/Modifier.java": [],
+    "src/norswap/lang/java/ast/Null.java": [],
+    "src/norswap/lang/java/ast/PrimitiveType.java": [],
+    "src/norswap/lang/java/ast/SemiStatement.java": [],
+    "src/norswap/lang/java/ast/StTryCaFi.java": [],
+    "src/norswap/lang/java/ast/StVar.java": [],
+    "src/norswap/lang/java/ast/SuperBound.java": [],
+    "src/norswap/lang/java/ast/SwitchClause.java": [],
+    "src/norswap/lang/java/ast/SwitchLabel.java": [],
+    "src/norswap/lang/java/ast/TAnnotation.java": [],
+    "src/norswap/lang/java/ast/TypeBound.java": [],
+    "src/norswap/lang/java/ast/Wildcard.java": [],
+    "src/norswap/lang/java/TokenKind.java": [],
+    "src/norswap/lang/rust/interpreter/InterpreterException.java": [],
+    "src/norswap/lang/rust/interpreter/PassthroughException.java": [],
+    "src/norswap/lang/rust/interpreter/Void.java": [],
+    "src/norswap/lang/rust/types/ArrayType.java": [],
+    "src/norswap/lang/rust/types/BoolType.java": [],
+    "src/norswap/lang/rust/types/NullType.java": [],
+    "src/norswap/lang/rust/types/TypeType.java": [],
+    "src/norswap/lang/rust/types/VoidType.java": [],
+    "src/norswap/utils/Chance.java": [],
+    "src/norswap/utils/data/structures/ArrayStack.java": [],
+    "src/norswap/utils/exceptions/ThrowingSupplier.java": []
+  }
+}

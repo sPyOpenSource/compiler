@@ -1,0 +1,1496 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "type": "file",
+      "name": "DeclarationScope.java",
+      "filePath": "src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "summary": "Simple scope wrapper holding a single declaration with a parent scope reference",
+      "tags": ["rust", "scopes", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "type": "file",
+      "name": "Scope.java",
+      "filePath": "src/norswap/lang/rust/scopes/Scope.java",
+      "summary": "Hierarchical scope implementation with declaration and lookup operations for name resolution",
+      "tags": ["rust", "scopes", "semantic-analysis", "name-resolution"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "type": "file",
+      "name": "SyntheticDeclaration.java",
+      "filePath": "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "summary": "Synthetic declaration wrapper for compiler-generated identifiers with name and kind",
+      "tags": ["rust", "scopes", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/FloatType.java",
+      "type": "file",
+      "name": "FloatType.java",
+      "filePath": "src/norswap/lang/rust/types/FloatType.java",
+      "summary": "Singleton type representation for Rust floating-point types",
+      "tags": ["rust", "types", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/IntType.java",
+      "type": "file",
+      "name": "IntType.java",
+      "filePath": "src/norswap/lang/rust/types/IntType.java",
+      "summary": "Singleton type representation for Rust integer types",
+      "tags": ["rust", "types", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/StringType.java",
+      "type": "file",
+      "name": "StringType.java",
+      "filePath": "src/norswap/lang/rust/types/StringType.java",
+      "summary": "Singleton type representation for Rust string types",
+      "tags": ["rust", "types", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/StructType.java",
+      "type": "file",
+      "name": "StructType.java",
+      "filePath": "src/norswap/lang/rust/types/StructType.java",
+      "summary": "Type wrapper for Rust struct declarations with equality based on AST node identity",
+      "tags": ["rust", "types", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/lang/rust/types/Type.java",
+      "type": "file",
+      "name": "Type.java",
+      "filePath": "src/norswap/lang/rust/types/Type.java",
+      "summary": "Abstract base type interface for the Rust type system with primitive and reference classification",
+      "tags": ["rust", "types", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/uranium/Attribute.java",
+      "type": "file",
+      "name": "Attribute.java",
+      "filePath": "src/norswap/uranium/Attribute.java",
+      "summary": "Attribute key class pairing a node with a string name for the Uranium attribute grammar framework",
+      "tags": ["uranium", "attribute-grammar", "semantic-analysis"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/uranium/Reactor.java",
+      "type": "file",
+      "name": "Reactor.java",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Core evaluation engine for the Uranium attribute grammar framework managing attribute storage, rule scheduling, dependency tracking, and error propagation",
+      "tags": ["uranium", "attribute-grammar", "semantic-analysis", "engine"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "file",
+      "name": "UraniumTestFixture.java",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Testing utility framework for Uranium semantic analysis providing success/failure assertion helpers with AST-based error location matching",
+      "tags": ["uranium", "testing", "semantic-analysis", "fixture"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:src/norswap/utils/IO.java",
+      "type": "file",
+      "name": "IO.java",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "File and stream IO utilities including stdout/stderr capture, stdin redirection, and file writing with resource management",
+      "tags": ["utils", "io", "file-operations"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:src/norswap/utils/TestFixture.java",
+      "type": "file",
+      "name": "TestFixture.java",
+      "filePath": "src/norswap/utils/TestFixture.java",
+      "summary": "General-purpose test assertion utility with stack trace trimming and equality/identity assertions",
+      "tags": ["utils", "testing", "assertions"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:src/norswap/utils/Util.java",
+      "type": "file",
+      "name": "Util.java",
+      "filePath": "src/norswap/utils/Util.java",
+      "summary": "Miscellaneous utility functions including type-safe casting, formatted abort, string joining, and assertion helpers",
+      "tags": ["utils", "utilities"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/utils/exceptions/NoStackException.java",
+      "type": "file",
+      "name": "NoStackException.java",
+      "filePath": "src/norswap/utils/exceptions/NoStackException.java",
+      "summary": "Exception subclass that suppresses stack trace construction for performance-sensitive error handling",
+      "tags": ["utils", "exceptions"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "type": "file",
+      "name": "ThrowingConsumer.java",
+      "filePath": "src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "summary": "Functional interface for consumers that can throw checked exceptions",
+      "tags": ["utils", "exceptions", "functional"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/utils/multimap/MultiHashMap.java",
+      "type": "file",
+      "name": "MultiHashMap.java",
+      "filePath": "src/norswap/utils/multimap/MultiHashMap.java",
+      "summary": "Hash-based multimap implementation mapping keys to collections of values",
+      "tags": ["utils", "collections", "multimap"],
+      "complexity": "low"
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/ValuedVisitor.java",
+      "type": "file",
+      "name": "ValuedVisitor.java",
+      "filePath": "src/norswap/utils/visitors/ValuedVisitor.java",
+      "summary": "Type-dispatch visitor pattern returning values with class-based specialization registration",
+      "tags": ["utils", "visitors", "pattern"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "file",
+      "name": "Walker.java",
+      "filePath": "src/norswap/utils/visitors/Walker.java",
+      "summary": "Tree walker supporting pre-order, in-order, and post-order traversal with dispatch-based visitor registration",
+      "tags": ["utils", "visitors", "tree-traversal"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:test/LineMapStringTest.java",
+      "type": "file",
+      "name": "LineMapStringTest.java",
+      "filePath": "test/LineMapStringTest.java",
+      "summary": "Unit tests for LineMapString covering line, column, position, and offset resolution from string offsets",
+      "tags": ["test", "positions", "line-map"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:test/lang/rust/BytecodeTest.java",
+      "type": "file",
+      "name": "BytecodeTest.java",
+      "filePath": "test/lang/rust/BytecodeTest.java",
+      "summary": "Integration tests for Rust bytecode compilation pipeline parsing, semantic analysis, compilation, and execution",
+      "tags": ["test", "rust", "bytecode", "compiler"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:test/lang/rust/GrammarTest.java",
+      "type": "file",
+      "name": "GrammarTest.java",
+      "filePath": "test/lang/rust/GrammarTest.java",
+      "summary": "Grammar parsing tests for Rust language constructs including expressions, declarations, and statements",
+      "tags": ["test", "rust", "grammar", "parsing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "file:test/lang/rust/InterpreterTest.java",
+      "type": "file",
+      "name": "InterpreterTest.java",
+      "filePath": "test/lang/rust/InterpreterTest.java",
+      "summary": "Integration tests for the Rust interpreter covering expressions, variables, control flow, calls, and struct access",
+      "tags": ["test", "rust", "interpreter", "integration"],
+      "complexity": "high"
+    },
+    {
+      "id": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "type": "file",
+      "name": "SemanticAnalysisTest.java",
+      "filePath": "test/lang/rust/SemanticAnalysisTest.java",
+      "summary": "Semantic analysis tests for Rust type system checking type errors, inference, and unconditional return validation",
+      "tags": ["test", "rust", "semantic-analysis", "type-checking"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:DeclarationScope",
+      "type": "class",
+      "name": "DeclarationScope",
+      "filePath": "src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "summary": "Scope wrapper that associates a parent scope with a single declaration for name resolution",
+      "tags": ["rust", "scopes", "name-resolution"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Scope",
+      "type": "class",
+      "name": "Scope",
+      "filePath": "src/norswap/lang/rust/scopes/Scope.java",
+      "summary": "Hierarchical scope using a hash map for declarations with local and recursive lookup",
+      "tags": ["rust", "scopes", "name-resolution"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:SyntheticDeclaration",
+      "type": "class",
+      "name": "SyntheticDeclaration",
+      "filePath": "src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "summary": "Compiler-generated declaration with name, kind, and contents for synthetic identifiers",
+      "tags": ["rust", "scopes", "synthetic"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:FloatType",
+      "type": "class",
+      "name": "FloatType",
+      "filePath": "src/norswap/lang/rust/types/FloatType.java",
+      "summary": "Singleton float type implementing the Type interface with primitive classification",
+      "tags": ["rust", "types"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:IntType",
+      "type": "class",
+      "name": "IntType",
+      "filePath": "src/norswap/lang/rust/types/IntType.java",
+      "summary": "Singleton integer type implementing the Type interface with primitive classification",
+      "tags": ["rust", "types"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:StringType",
+      "type": "class",
+      "name": "StringType",
+      "filePath": "src/norswap/lang/rust/types/StringType.java",
+      "summary": "Singleton string type implementing the Type interface",
+      "tags": ["rust", "types"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:StructType",
+      "type": "class",
+      "name": "StructType",
+      "filePath": "src/norswap/lang/rust/types/StructType.java",
+      "summary": "Struct type backed by a StructDeclaration AST node with equality based on node identity",
+      "tags": ["rust", "types"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Type",
+      "type": "class",
+      "name": "Type",
+      "filePath": "src/norswap/lang/rust/types/Type.java",
+      "summary": "Abstract interface for the Rust type hierarchy with name, primitive, and reference queries",
+      "tags": ["rust", "types"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Attribute",
+      "type": "class",
+      "name": "Attribute",
+      "filePath": "src/norswap/uranium/Attribute.java",
+      "summary": "Immutable attribute key pairing a node with an interned string name for the attribute grammar",
+      "tags": ["uranium", "attribute-grammar"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:Reactor",
+      "type": "class",
+      "name": "Reactor",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Central attribute grammar evaluation engine managing rule registration, dependency tracking, attribute storage, error propagation, and queue-based evaluation",
+      "tags": ["uranium", "attribute-grammar", "evaluation"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:UraniumTestFixture",
+      "type": "class",
+      "name": "UraniumTestFixture",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Test assertion framework for Uranium semantic analysis providing fluent success/failure validation against AST nodes",
+      "tags": ["uranium", "testing", "fixture"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:IO",
+      "type": "class",
+      "name": "IO",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Static IO utility class for file reading, stream redirection, stdout/stderr capture, and file writing",
+      "tags": ["utils", "io"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:TestFixture",
+      "type": "class",
+      "name": "TestFixture",
+      "filePath": "src/norswap/utils/TestFixture.java",
+      "summary": "Test assertion base class with configurable stack trace trimming and assertion methods for equality, identity, truth, and null checks",
+      "tags": ["utils", "testing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:Util",
+      "type": "class",
+      "name": "Util",
+      "filePath": "src/norswap/utils/Util.java",
+      "summary": "Static utility methods for casting, aborting, string joining, and assertions",
+      "tags": ["utils"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:NoStackException",
+      "type": "class",
+      "name": "NoStackException",
+      "filePath": "src/norswap/utils/exceptions/NoStackException.java",
+      "summary": "Runtime exception that omits stack trace construction for lightweight error signaling",
+      "tags": ["utils", "exceptions"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ThrowingConsumer",
+      "type": "class",
+      "name": "ThrowingConsumer",
+      "filePath": "src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "summary": "Functional consumer interface that allows throwing checked exceptions",
+      "tags": ["utils", "exceptions", "functional"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:MultiHashMap",
+      "type": "class",
+      "name": "MultiHashMap",
+      "filePath": "src/norswap/utils/multimap/MultiHashMap.java",
+      "summary": "Abstract multimap base backed by a HashMap creating ArrayLists for each key",
+      "tags": ["utils", "collections", "multimap"],
+      "complexity": "low"
+    },
+    {
+      "id": "class:ValuedVisitor",
+      "type": "class",
+      "name": "ValuedVisitor",
+      "filePath": "src/norswap/utils/visitors/ValuedVisitor.java",
+      "summary": "Type-dispatch visitor returning values with class hierarchy-based specialization lookup and fallback support",
+      "tags": ["utils", "visitors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:Walker",
+      "type": "class",
+      "name": "Walker",
+      "filePath": "src/norswap/utils/visitors/Walker.java",
+      "summary": "Tree walker with pre-order, in-order, and post-order visitor callbacks and class-based dispatch registration",
+      "tags": ["utils", "visitors", "tree-traversal"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:LineMapStringTest",
+      "type": "class",
+      "name": "LineMapStringTest",
+      "filePath": "test/LineMapStringTest.java",
+      "summary": "Test class for LineMapString string position mapping covering line, column, position, and offset conversions",
+      "tags": ["test", "line-map"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:BytecodeTest",
+      "type": "class",
+      "name": "BytecodeTest",
+      "filePath": "test/lang/rust/BytecodeTest.java",
+      "summary": "Test class for Rust bytecode compilation executing code through the full compilation pipeline and verifying output",
+      "tags": ["test", "rust", "bytecode"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:GrammarTest",
+      "type": "class",
+      "name": "GrammarTest",
+      "filePath": "test/lang/rust/GrammarTest.java",
+      "summary": "Test class for Rust grammar parsing with AST structure verification for expressions, declarations, and statements",
+      "tags": ["test", "rust", "grammar"],
+      "complexity": "medium"
+    },
+    {
+      "id": "class:InterpreterTest",
+      "type": "class",
+      "name": "InterpreterTest",
+      "filePath": "test/lang/rust/InterpreterTest.java",
+      "summary": "Test class for the Rust interpreter evaluating expressions and statements with return value and stdout verification",
+      "tags": ["test", "rust", "interpreter"],
+      "complexity": "high"
+    },
+    {
+      "id": "class:SemanticAnalysisTest",
+      "type": "class",
+      "name": "SemanticAnalysisTest",
+      "filePath": "test/lang/rust/SemanticAnalysisTest.java",
+      "summary": "Test class for Rust semantic analysis type-checking success and failure scenarios",
+      "tags": ["test", "rust", "semantic-analysis"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:Scope.declare",
+      "type": "function",
+      "name": "declare",
+      "filePath": "src/norswap/lang/rust/scopes/Scope.java",
+      "summary": "Registers an identifier-to-node mapping in the declarations map",
+      "tags": ["scope", "declaration"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Scope.lookup",
+      "type": "function",
+      "name": "lookup",
+      "filePath": "src/norswap/lang/rust/scopes/Scope.java",
+      "summary": "Recursive name lookup checking local scope then delegating to parent scope",
+      "tags": ["scope", "lookup"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Scope.lookupLocal",
+      "type": "function",
+      "name": "lookupLocal",
+      "filePath": "src/norswap/lang/rust/scopes/Scope.java",
+      "summary": "Local-only name lookup without parent delegation",
+      "tags": ["scope", "lookup"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.get",
+      "type": "function",
+      "name": "get",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Retrieves an attribute value by Attribute key or node/name pair with type cast",
+      "tags": ["reactor", "attribute"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.getAll",
+      "type": "function",
+      "name": "getAll",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Returns name-to-value map for all attributes on a given node",
+      "tags": ["reactor", "attribute"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.getAttributes",
+      "type": "function",
+      "name": "getAttributes",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Returns the set of all registered attribute keys",
+      "tags": ["reactor", "attribute"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.errors",
+      "type": "function",
+      "name": "errors",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Returns an unmodifiable set of current errors",
+      "tags": ["reactor", "errors"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.allErrors",
+      "type": "function",
+      "name": "allErrors",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Aggregates all errors from attributes and attributeless derived errors into a list",
+      "tags": ["reactor", "errors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Reactor.set",
+      "type": "function",
+      "name": "set",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Sets an attribute value by Attribute key or node/name pair with validation",
+      "tags": ["reactor", "attribute"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.error",
+      "type": "function",
+      "name": "error",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Reports an error optionally associated with an attribute, routing to reportError",
+      "tags": ["reactor", "errors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Reactor.run",
+      "type": "function",
+      "name": "run",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Evaluates all registered rules by supplying initial values then processing the queue",
+      "tags": ["reactor", "evaluation"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Reactor.enqueue",
+      "type": "function",
+      "name": "enqueue",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Adds a rule to the evaluation queue",
+      "tags": ["reactor", "queue"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.loopOnQueue",
+      "type": "function",
+      "name": "loopOnQueue",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Main evaluation loop processing queued rules and handling errors or re-evaluation",
+      "tags": ["reactor", "evaluation"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:Reactor.setValue",
+      "type": "function",
+      "name": "setValue",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Sets a computed attribute value with redefinition detection, error reporting, and dependency notification",
+      "tags": ["reactor", "attribute"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:Reactor.attributeRedefinitionAttempt",
+      "type": "function",
+      "name": "attributeRedefinitionAttempt",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Creates an error when an attribute is redefined with a different value",
+      "tags": ["reactor", "errors"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.redefine",
+      "type": "function",
+      "name": "redefine",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Forcibly redefines an attribute value",
+      "tags": ["reactor", "attribute"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.reportError",
+      "type": "function",
+      "name": "reportError",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Registers an error and propagates it to dependent attributes",
+      "tags": ["reactor", "errors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Reactor.propagateError",
+      "type": "function",
+      "name": "propagateError",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Propagates a SemanticError to all attributes that depend on the affected attribute",
+      "tags": ["reactor", "errors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Reactor.supplyToDependents",
+      "type": "function",
+      "name": "supplyToDependents",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Notifies all dependent rules that a new attribute value is available",
+      "tags": ["reactor", "dependency"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.handleMissingAttributes",
+      "type": "function",
+      "name": "handleMissingAttributes",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Detects untriggered rules and creates SemanticError for attributes with missing dependencies",
+      "tags": ["reactor", "errors", "validation"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:Reactor.rule",
+      "type": "function",
+      "name": "rule",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Creates a Rule builder for a node attribute or a standalone rule",
+      "tags": ["reactor", "rules"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Reactor.register",
+      "type": "function",
+      "name": "register",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Registers a rule with dependency tracking and initial enqueue or immediate supply",
+      "tags": ["reactor", "rules"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:Reactor.reportErrors",
+      "type": "function",
+      "name": "reportErrors",
+      "filePath": "src/norswap/uranium/Reactor.java",
+      "summary": "Formats and prints all collected errors with optional location info",
+      "tags": ["reactor", "errors"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:UraniumTestFixture.success",
+      "type": "function",
+      "name": "success",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Runs semantic analysis and asserts no errors occurred",
+      "tags": ["testing", "assertions"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:UraniumTestFixture.successInput",
+      "type": "function",
+      "name": "successInput",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Parses input then asserts semantic analysis succeeds",
+      "tags": ["testing", "assertions"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:UraniumTestFixture.failure",
+      "type": "function",
+      "name": "failure",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Runs semantic analysis and asserts errors were produced",
+      "tags": ["testing", "assertions"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:UraniumTestFixture.failureInput",
+      "type": "function",
+      "name": "failureInput",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Parses input then asserts semantic analysis fails",
+      "tags": ["testing", "assertions"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:UraniumTestFixture.failureIncludingAt",
+      "type": "function",
+      "name": "failureIncludingAt",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Asserts errors include at least one at each specified AST node location",
+      "tags": ["testing", "assertions"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:UraniumTestFixture.failureAt",
+      "type": "function",
+      "name": "failureAt",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Asserts errors occur only at specified AST node locations",
+      "tags": ["testing", "assertions"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:UraniumTestFixture.failureIncludingWith",
+      "type": "function",
+      "name": "failureIncludingWith",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Asserts errors include at least one containing each specified description fragment",
+      "tags": ["testing", "assertions"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:UraniumTestFixture.failureWith",
+      "type": "function",
+      "name": "failureWith",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Asserts errors all contain at least one of the specified description fragments",
+      "tags": ["testing", "assertions"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:IO.slurp",
+      "type": "function",
+      "name": "slurp",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Reads an entire file into a string",
+      "tags": ["io", "file-reading"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:IO.withStandardIO",
+      "type": "function",
+      "name": "withStandardIO",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Temporarily replaces System.in, System.out, System.err for testing",
+      "tags": ["io", "testing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:IO.captureStdout",
+      "type": "function",
+      "name": "captureStdout",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Captures stdout output from a callable returning output string and callable result",
+      "tags": ["io", "testing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:IO.captureStderr",
+      "type": "function",
+      "name": "captureStderr",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Captures stderr output from a callable returning output string",
+      "tags": ["io", "testing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:IO.withInput",
+      "type": "function",
+      "name": "withInput",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Redirects stdin from a string for the duration of a callable",
+      "tags": ["io", "testing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:IO.waitForInput",
+      "type": "function",
+      "name": "waitForInput",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Prompts and waits for user input on System.in before running a task",
+      "tags": ["io", "interactive"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:IO.withFileWriter",
+      "type": "function",
+      "name": "withFileWriter",
+      "filePath": "src/norswap/utils/IO.java",
+      "summary": "Writes to a file via a consumer callback with resource management",
+      "tags": ["io", "file-writing"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:TestFixture.trimStackTrace",
+      "type": "function",
+      "name": "trimStackTrace",
+      "filePath": "src/norswap/utils/TestFixture.java",
+      "summary": "Trims stack traces to hide framework internals below a configurable bottom class",
+      "tags": ["testing", "stack-traces"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:TestFixture.assertionError",
+      "type": "function",
+      "name": "assertionError",
+      "filePath": "src/norswap/uranium/UraniumTestFixture.java",
+      "summary": "Creates a trimmed assertion error with formatted message",
+      "tags": ["testing", "assertions"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:Walker.walk",
+      "type": "function",
+      "name": "walk",
+      "filePath": "src/norswap/utils/visitors/Walker.java",
+      "summary": "Recursively walks an AST node applying pre, in, and post visit callbacks",
+      "tags": ["visitors", "tree-walk"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Walker.register",
+      "type": "function",
+      "name": "register",
+      "filePath": "src/norswap/utils/visitors/Walker.java",
+      "summary": "Registers a visitor specialization for a node class with or without visit type",
+      "tags": ["visitors", "registration"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:Walker.registerFallback",
+      "type": "function",
+      "name": "registerFallback",
+      "filePath": "src/norswap/utils/visitors/Walker.java",
+      "summary": "Registers a fallback handler for unregistered node classes",
+      "tags": ["visitors", "registration"],
+      "complexity": "low"
+    },
+    {
+      "id": "function:BytecodeTest.check",
+      "type": "function",
+      "name": "check",
+      "filePath": "test/lang/rust/BytecodeTest.java",
+      "summary": "Full pipeline test helper: parse, semantic analyze, compile, load, and optionally execute comparing stdout",
+      "tags": ["testing", "bytecode"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:InterpreterTest.check",
+      "type": "function",
+      "name": "check",
+      "filePath": "test/lang/rust/InterpreterTest.java",
+      "summary": "Full pipeline test helper: parse, analyze, interpret, verifying return value and output",
+      "tags": ["testing", "interpreter"],
+      "complexity": "high"
+    },
+    {
+      "id": "function:ValuedVisitor.apply",
+      "type": "function",
+      "name": "apply",
+      "filePath": "src/norswap/utils/visitors/ValuedVisitor.java",
+      "summary": "Applies the visitor to a value using class-based dispatch with fallback support",
+      "tags": ["visitors", "dispatch"],
+      "complexity": "medium"
+    },
+    {
+      "id": "function:LineMapStringTest.assertThrows",
+      "type": "function",
+      "name": "assertThrows",
+      "filePath": "test/LineMapStringTest.java",
+      "summary": "Asserts that a runnable throws an exception of the expected type",
+      "tags": ["testing", "assertions"],
+      "complexity": "medium"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "target": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "target": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "target": "file:src/norswap/lang/rust/ast/Node.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "target": "file:src/norswap/lang/rust/ast/DeclarationNode.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/rust/types/StructType.java",
+      "target": "file:src/norswap/lang/rust/ast/StructDeclaration.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/uranium/Reactor.java",
+      "target": "file:src/norswap/utils/multimap/MultiHashMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/uranium/Reactor.java",
+      "target": "file:src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/uranium/Reactor.java",
+      "target": "file:src/norswap/utils/Strings.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "target": "file:src/norswap/utils/TestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/IO.java",
+      "target": "file:src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/IO.java",
+      "target": "file:src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/IO.java",
+      "target": "file:src/norswap/utils/exceptions/NoStackException.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/IO.java",
+      "target": "file:src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/Util.java",
+      "target": "file:src/norswap/utils/exceptions/Exceptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/visitors/Walker.java",
+      "target": "file:src/norswap/utils/NArrays.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/utils/visitors/Walker.java",
+      "target": "file:src/norswap/utils/visitors/WalkVisitType.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/LineMapStringTest.java",
+      "target": "file:src/norswap/autumn/positions/LineMapString.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/LineMapStringTest.java",
+      "target": "file:src/norswap/autumn/positions/Position.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/autumn/Autumn.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/autumn/ParseOptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/autumn/ParseResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/backend/ByteArrayClassLoader.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/backend/BytecodeCompiler.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/backend/CompilationResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/rust/ast/Node.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/rust/RustGrammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/BytecodeTest.java",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/GrammarTest.java",
+      "target": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/GrammarTest.java",
+      "target": "file:src/norswap/lang/rust/ast/BinaryOperator.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/GrammarTest.java",
+      "target": "file:src/norswap/lang/rust/RustGrammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/autumn/ParseResult.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/autumn/positions/LineMapString.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/lang/rust/ast/Node.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/lang/rust/interpreter/Interpreter.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/lang/rust/interpreter/Null.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/lang/rust/RustGrammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/uranium/SemanticError.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/utils/data/wrappers/Pair.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/utils/TestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/InterpreterTest.java",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/autumn/AutumnTestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/autumn/positions/LineMapString.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/lang/rust/ast/Node.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/lang/rust/RustGrammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/lang/rust/SemanticAnalysis.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "imports"
+    },
+    {
+      "source": "class:DeclarationScope",
+      "target": "file:src/norswap/lang/rust/scopes/DeclarationScope.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Scope",
+      "target": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:SyntheticDeclaration",
+      "target": "file:src/norswap/lang/rust/scopes/SyntheticDeclaration.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:FloatType",
+      "target": "file:src/norswap/lang/rust/types/FloatType.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:IntType",
+      "target": "file:src/norswap/lang/rust/types/IntType.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:StringType",
+      "target": "file:src/norswap/lang/rust/types/StringType.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:StructType",
+      "target": "file:src/norswap/lang/rust/types/StructType.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Type",
+      "target": "file:src/norswap/lang/rust/types/Type.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Attribute",
+      "target": "file:src/norswap/uranium/Attribute.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Reactor",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:UraniumTestFixture",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:IO",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:TestFixture",
+      "target": "file:src/norswap/utils/TestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Util",
+      "target": "file:src/norswap/utils/Util.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:NoStackException",
+      "target": "file:src/norswap/utils/exceptions/NoStackException.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:ThrowingConsumer",
+      "target": "file:src/norswap/utils/exceptions/ThrowingConsumer.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:MultiHashMap",
+      "target": "file:src/norswap/utils/multimap/MultiHashMap.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:ValuedVisitor",
+      "target": "file:src/norswap/utils/visitors/ValuedVisitor.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:Walker",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:LineMapStringTest",
+      "target": "file:test/LineMapStringTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:BytecodeTest",
+      "target": "file:test/lang/rust/BytecodeTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:GrammarTest",
+      "target": "file:test/lang/rust/GrammarTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:InterpreterTest",
+      "target": "file:test/lang/rust/InterpreterTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "class:SemanticAnalysisTest",
+      "target": "file:test/lang/rust/SemanticAnalysisTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Scope.declare",
+      "target": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Scope.lookup",
+      "target": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Scope.lookupLocal",
+      "target": "file:src/norswap/lang/rust/scopes/Scope.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.get",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.getAll",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.getAttributes",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.errors",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.allErrors",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.set",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.error",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.run",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.enqueue",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.loopOnQueue",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.setValue",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.attributeRedefinitionAttempt",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.redefine",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.reportError",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.propagateError",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.supplyToDependents",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.handleMissingAttributes",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.rule",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.register",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Reactor.reportErrors",
+      "target": "file:src/norswap/uranium/Reactor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.success",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.successInput",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failure",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failureInput",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failureIncludingAt",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failureAt",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failureIncludingWith",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.failureWith",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.slurp",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.withStandardIO",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.captureStdout",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.captureStderr",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.withInput",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.waitForInput",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:IO.withFileWriter",
+      "target": "file:src/norswap/utils/IO.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:TestFixture.trimStackTrace",
+      "target": "file:src/norswap/utils/TestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:UraniumTestFixture.assertionError",
+      "target": "file:src/norswap/uranium/UraniumTestFixture.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Walker.walk",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Walker.register",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:Walker.registerFallback",
+      "target": "file:src/norswap/utils/visitors/Walker.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:BytecodeTest.check",
+      "target": "file:test/lang/rust/BytecodeTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:InterpreterTest.check",
+      "target": "file:test/lang/rust/InterpreterTest.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:ValuedVisitor.apply",
+      "target": "file:src/norswap/utils/visitors/ValuedVisitor.java",
+      "type": "contains"
+    },
+    {
+      "source": "function:LineMapStringTest.assertThrows",
+      "target": "file:test/LineMapStringTest.java",
+      "type": "contains"
+    }
+  ]
+}

@@ -1,0 +1,4652 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 18,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/ExpressionBenchmark.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 117,
+      "nonEmptyLines": 97,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 89,
+          "endLine": 116,
+          "params": [
+            "args"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ExpressionBenchmark",
+          "startLine": 13,
+          "endLine": 117,
+          "methods": [
+            "main"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "main",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "ExpressionBenchmark",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "Strings.repeat",
+          "lineNumber": 92
+        },
+        {
+          "caller": "main",
+          "callee": "new BadRightExpression",
+          "lineNumber": 97
+        },
+        {
+          "caller": "main",
+          "callee": "new GoodRightExpression",
+          "lineNumber": 98
+        },
+        {
+          "caller": "main",
+          "callee": "ParseOptions.wellFormednessCheck(false).get",
+          "lineNumber": 99
+        },
+        {
+          "caller": "main",
+          "callee": "ParseOptions.wellFormednessCheck",
+          "lineNumber": 99
+        },
+        {
+          "caller": "main",
+          "callee": "System.nanoTime",
+          "lineNumber": 101
+        },
+        {
+          "caller": "main",
+          "callee": "Autumn.parse",
+          "lineNumber": 102
+        },
+        {
+          "caller": "main",
+          "callee": "System.out.println",
+          "lineNumber": 104
+        },
+        {
+          "caller": "main",
+          "callee": "System.nanoTime",
+          "lineNumber": 105
+        },
+        {
+          "caller": "main",
+          "callee": "System.out.println",
+          "lineNumber": 106
+        },
+        {
+          "caller": "main",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 106
+        },
+        {
+          "caller": "main",
+          "callee": "System.nanoTime",
+          "lineNumber": 108
+        },
+        {
+          "caller": "main",
+          "callee": "Autumn.parse",
+          "lineNumber": 109
+        },
+        {
+          "caller": "main",
+          "callee": "System.out.println",
+          "lineNumber": 111
+        },
+        {
+          "caller": "main",
+          "callee": "System.nanoTime",
+          "lineNumber": 112
+        },
+        {
+          "caller": "main",
+          "callee": "System.out.println",
+          "lineNumber": 113
+        },
+        {
+          "caller": "main",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 113
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/Log.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "Log",
+          "startLine": 21,
+          "endLine": 21,
+          "params": []
+        },
+        {
+          "name": "apply",
+          "startLine": 28,
+          "endLine": 31,
+          "params": [
+            "effect"
+          ]
+        },
+        {
+          "name": "apply",
+          "startLine": 39,
+          "endLine": 42,
+          "params": [
+            "delta"
+          ]
+        },
+        {
+          "name": "rollback",
+          "startLine": 50,
+          "endLine": 54,
+          "params": [
+            "logTargetSize"
+          ]
+        },
+        {
+          "name": "delta",
+          "startLine": 63,
+          "endLine": 68,
+          "params": [
+            "logStartIndex"
+          ]
+        },
+        {
+          "name": "deltaApplied",
+          "startLine": 76,
+          "endLine": 79,
+          "params": [
+            "logStartIndex"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Log",
+          "startLine": 17,
+          "endLine": 82,
+          "methods": [
+            "Log",
+            "apply",
+            "apply",
+            "rollback",
+            "delta",
+            "deltaApplied"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "apply",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "apply",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "rollback",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "delta",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "deltaApplied",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "Log",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "apply",
+          "callee": "add",
+          "lineNumber": 30
+        },
+        {
+          "caller": "apply",
+          "callee": "effect.apply",
+          "lineNumber": 30
+        },
+        {
+          "caller": "apply",
+          "callee": "delta.forEach",
+          "lineNumber": 41
+        },
+        {
+          "caller": "rollback",
+          "callee": "size",
+          "lineNumber": 52
+        },
+        {
+          "caller": "rollback",
+          "callee": "pop().undo.run",
+          "lineNumber": 53
+        },
+        {
+          "caller": "rollback",
+          "callee": "pop",
+          "lineNumber": 53
+        },
+        {
+          "caller": "delta",
+          "callee": "size",
+          "lineNumber": 65
+        },
+        {
+          "caller": "delta",
+          "callee": "Collections.emptyList",
+          "lineNumber": 66
+        },
+        {
+          "caller": "delta",
+          "callee": "Vanilla.map",
+          "lineNumber": 67
+        },
+        {
+          "caller": "delta",
+          "callee": "from",
+          "lineNumber": 67
+        },
+        {
+          "caller": "deltaApplied",
+          "callee": "new ArrayList<>",
+          "lineNumber": 78
+        },
+        {
+          "caller": "deltaApplied",
+          "callee": "from",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParseResult.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 323,
+      "nonEmptyLines": 271,
+      "functions": [
+        {
+          "name": "topValue",
+          "startLine": 125,
+          "endLine": 129,
+          "params": []
+        },
+        {
+          "name": "ParseResult",
+          "startLine": 133,
+          "endLine": 164,
+          "params": [
+            "success",
+            "fullMatch",
+            "matchSize",
+            "thrown",
+            "parser",
+            "options",
+            "errorOffset",
+            "errorMessage",
+            "valueStack",
+            "parseStates",
+            "errorCallStack",
+            "parseMetrics"
+          ]
+        },
+        {
+          "name": "parseState",
+          "startLine": 171,
+          "endLine": 173,
+          "params": [
+            "key"
+          ]
+        },
+        {
+          "name": "appendUserErrorMessage",
+          "startLine": 181,
+          "endLine": 198,
+          "params": [
+            "b",
+            "map"
+          ]
+        },
+        {
+          "name": "appendTo",
+          "startLine": 223,
+          "endLine": 261,
+          "params": [
+            "b",
+            "map",
+            "onlyRules"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 275,
+          "endLine": 280,
+          "params": [
+            "map",
+            "onlyRules"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 291,
+          "endLine": 293,
+          "params": []
+        },
+        {
+          "name": "userErrorString",
+          "startLine": 308,
+          "endLine": 320,
+          "params": [
+            "map"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParseResult",
+          "startLine": 17,
+          "endLine": 323,
+          "methods": [
+            "topValue",
+            "ParseResult",
+            "parseState",
+            "appendUserErrorMessage",
+            "appendTo",
+            "toString",
+            "toString",
+            "userErrorString"
+          ],
+          "properties": [
+            "success",
+            "fullMatch",
+            "matchSize",
+            "thrown",
+            "parser",
+            "options",
+            "errorOffset",
+            "errorMessage",
+            "valueStack",
+            "parseStates",
+            "errorCallStack",
+            "parseMetrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "success",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "fullMatch",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "matchSize",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "thrown",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "parser",
+          "line": 53,
+          "isDefault": false
+        },
+        {
+          "name": "options",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "errorOffset",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "errorMessage",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "valueStack",
+          "line": 85,
+          "isDefault": false
+        },
+        {
+          "name": "parseStates",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "errorCallStack",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "parseMetrics",
+          "line": 115,
+          "isDefault": false
+        },
+        {
+          "name": "topValue",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "parseState",
+          "line": 171,
+          "isDefault": false
+        },
+        {
+          "name": "appendTo",
+          "line": 223,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 275,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 291,
+          "isDefault": false
+        },
+        {
+          "name": "userErrorString",
+          "line": 308,
+          "isDefault": false
+        },
+        {
+          "name": "ParseResult",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "topValue",
+          "callee": "cast",
+          "lineNumber": 127
+        },
+        {
+          "caller": "topValue",
+          "callee": "valueStack.peek",
+          "lineNumber": 127
+        },
+        {
+          "caller": "ParseResult",
+          "callee": "valueStack.isEmpty",
+          "lineNumber": 162
+        },
+        {
+          "caller": "ParseResult",
+          "callee": "System.err.println",
+          "lineNumber": 163
+        },
+        {
+          "caller": "parseState",
+          "callee": "cast",
+          "lineNumber": 172
+        },
+        {
+          "caller": "parseState",
+          "callee": "parseStates.get",
+          "lineNumber": 172
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "map.name",
+          "lineNumber": 183
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 185
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append(name).append",
+          "lineNumber": 186
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 186
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 187
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "LineMap.string",
+          "lineNumber": 187
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 188
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 190
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 193
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append(name).append",
+          "lineNumber": 194
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 194
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 195
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "LineMap.string",
+          "lineNumber": 195
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 196
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "b.append",
+          "lineNumber": 197
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "map.lineSnippet",
+          "lineNumber": 197
+        },
+        {
+          "caller": "appendUserErrorMessage",
+          "callee": "map.positionFrom",
+          "lineNumber": 197
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 226
+        },
+        {
+          "caller": "appendTo",
+          "callee": "map.name",
+          "lineNumber": 230
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 234
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append(name).append",
+          "lineNumber": 235
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 235
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 236
+        },
+        {
+          "caller": "appendTo",
+          "callee": "LineMap.string",
+          "lineNumber": 236
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 239
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 240
+        },
+        {
+          "caller": "appendTo",
+          "callee": "thrown.getClass",
+          "lineNumber": 240
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 241
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 242
+        },
+        {
+          "caller": "appendTo",
+          "callee": "thrown.getMessage",
+          "lineNumber": 242
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 243
+        },
+        {
+          "caller": "appendTo",
+          "callee": "errorCallStack.appendTo",
+          "lineNumber": 244
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 247
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 248
+        },
+        {
+          "caller": "appendTo",
+          "callee": "Exceptions.stringStackTrace",
+          "lineNumber": 248
+        },
+        {
+          "caller": "appendTo",
+          "callee": "appendUserErrorMessage",
+          "lineNumber": 252
+        },
+        {
+          "caller": "appendTo",
+          "callee": "errorCallStack.appendTo",
+          "lineNumber": 255
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 256
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 258
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 259
+        },
+        {
+          "caller": "toString",
+          "callee": "new StringBuilder",
+          "lineNumber": 277
+        },
+        {
+          "caller": "toString",
+          "callee": "appendTo",
+          "lineNumber": 278
+        },
+        {
+          "caller": "toString",
+          "callee": "b.toString",
+          "lineNumber": 279
+        },
+        {
+          "caller": "toString",
+          "callee": "toString",
+          "lineNumber": 292
+        },
+        {
+          "caller": "userErrorString",
+          "callee": "new IllegalStateException",
+          "lineNumber": 311
+        },
+        {
+          "caller": "userErrorString",
+          "callee": "new IllegalStateException",
+          "lineNumber": 314
+        },
+        {
+          "caller": "userErrorString",
+          "callee": "new StringBuilder",
+          "lineNumber": 317
+        },
+        {
+          "caller": "userErrorString",
+          "callee": "appendUserErrorMessage",
+          "lineNumber": 318
+        },
+        {
+          "caller": "userErrorString",
+          "callee": "b.toString",
+          "lineNumber": 319
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 19,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParserCallStack.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 94,
+      "functions": [
+        {
+          "name": "push",
+          "startLine": 17,
+          "endLine": 20,
+          "params": [
+            "parser",
+            "position"
+          ]
+        },
+        {
+          "name": "appendTo",
+          "startLine": 41,
+          "endLine": 63,
+          "params": [
+            "b",
+            "indent",
+            "map",
+            "onlyRules",
+            "filePath"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 81,
+          "endLine": 86,
+          "params": [
+            "map",
+            "onlyRules",
+            "filePath"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 94,
+          "endLine": 99,
+          "params": []
+        },
+        {
+          "name": "clone",
+          "startLine": 103,
+          "endLine": 106,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParserCallStack",
+          "startLine": 10,
+          "endLine": 109,
+          "methods": [
+            "push",
+            "appendTo",
+            "toString",
+            "toString",
+            "clone"
+          ],
+          "properties": [
+            "MIN_LINE_WIDTH",
+            "MIN_COLUMN_WIDTH"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "push",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "appendTo",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "clone",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "ParserCallStack",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "push",
+          "callee": "push",
+          "lineNumber": 19
+        },
+        {
+          "caller": "push",
+          "callee": "new ParserCallFrame",
+          "lineNumber": 19
+        },
+        {
+          "caller": "appendTo",
+          "callee": "Strings.repeat",
+          "lineNumber": 45
+        },
+        {
+          "caller": "appendTo",
+          "callee": "frame.parser.rule",
+          "lineNumber": 48
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 49
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 50
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b\n                    .append(filePath).append(\":\").append",
+          "lineNumber": 51
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b\n                    .append(filePath).append",
+          "lineNumber": 51
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 51
+        },
+        {
+          "caller": "appendTo",
+          "callee": "LineMap.string",
+          "lineNumber": 53
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 55
+        },
+        {
+          "caller": "appendTo",
+          "callee": "LineMap.string",
+          "lineNumber": 55
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 56
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 57
+        },
+        {
+          "caller": "appendTo",
+          "callee": "b.append",
+          "lineNumber": 58
+        },
+        {
+          "caller": "appendTo",
+          "callee": "isEmpty",
+          "lineNumber": 61
+        },
+        {
+          "caller": "appendTo",
+          "callee": "Strings.pop",
+          "lineNumber": 62
+        },
+        {
+          "caller": "toString",
+          "callee": "new StringBuilder",
+          "lineNumber": 83
+        },
+        {
+          "caller": "toString",
+          "callee": "appendTo",
+          "lineNumber": 84
+        },
+        {
+          "caller": "toString",
+          "callee": "b.toString",
+          "lineNumber": 85
+        },
+        {
+          "caller": "toString",
+          "callee": "new StringBuilder",
+          "lineNumber": 96
+        },
+        {
+          "caller": "toString",
+          "callee": "appendTo",
+          "lineNumber": 97
+        },
+        {
+          "caller": "toString",
+          "callee": "b.toString",
+          "lineNumber": 98
+        },
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 105
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/SideEffectingArrayStack.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 100,
+      "nonEmptyLines": 85,
+      "functions": [
+        {
+          "name": "SideEffectingArrayStack",
+          "startLine": 38,
+          "endLine": 40,
+          "params": [
+            "log"
+          ]
+        },
+        {
+          "name": "push",
+          "startLine": 47,
+          "endLine": 53,
+          "params": [
+            "item"
+          ]
+        },
+        {
+          "name": "pop",
+          "startLine": 60,
+          "endLine": 68,
+          "params": []
+        },
+        {
+          "name": "pop",
+          "startLine": 75,
+          "endLine": 84,
+          "params": [
+            "amount"
+          ]
+        },
+        {
+          "name": "popFrom",
+          "startLine": 94,
+          "endLine": 97,
+          "params": [
+            "index"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SideEffectingArrayStack",
+          "startLine": 30,
+          "endLine": 100,
+          "methods": [
+            "SideEffectingArrayStack",
+            "push",
+            "pop",
+            "pop",
+            "popFrom"
+          ],
+          "properties": [
+            "log"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "SideEffectingArrayStack",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "popFrom",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "SideEffectingArrayStack",
+          "line": 30,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "push",
+          "callee": "log.apply",
+          "lineNumber": 49
+        },
+        {
+          "caller": "push",
+          "callee": "super.push",
+          "lineNumber": 50
+        },
+        {
+          "caller": "pop",
+          "callee": "super.peek",
+          "lineNumber": 62
+        },
+        {
+          "caller": "pop",
+          "callee": "log.apply",
+          "lineNumber": 63
+        },
+        {
+          "caller": "pop",
+          "callee": "super.pop",
+          "lineNumber": 64
+        },
+        {
+          "caller": "pop",
+          "callee": "super.push",
+          "lineNumber": 65
+        },
+        {
+          "caller": "pop",
+          "callee": "new Slot<>",
+          "lineNumber": 77
+        },
+        {
+          "caller": "pop",
+          "callee": "log.apply",
+          "lineNumber": 78
+        },
+        {
+          "caller": "pop",
+          "callee": "super.pop",
+          "lineNumber": 79
+        },
+        {
+          "caller": "pop",
+          "callee": "super.push",
+          "lineNumber": 81
+        },
+        {
+          "caller": "popFrom",
+          "callee": "pop",
+          "lineNumber": 96
+        },
+        {
+          "caller": "popFrom",
+          "callee": "size",
+          "lineNumber": 96
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/VisitorExtensions.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 63,
+      "nonEmptyLines": 47,
+      "functions": [
+        {
+          "name": "extend",
+          "startLine": 31,
+          "endLine": 37,
+          "params": [
+            "vclass",
+            "pclass",
+            "implem"
+          ]
+        },
+        {
+          "name": "overloads",
+          "startLine": 44,
+          "endLine": 60,
+          "params": [
+            "vclass"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "VisitorExtensions",
+          "startLine": 14,
+          "endLine": 63,
+          "methods": [
+            "extend",
+            "overloads"
+          ],
+          "properties": [
+            "store",
+            "cached"
+          ]
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "extend",
+          "callee": "store.get",
+          "lineNumber": 34
+        },
+        {
+          "caller": "extend",
+          "callee": "new ParserVisitor.HashOverloads",
+          "lineNumber": 35
+        },
+        {
+          "caller": "extend",
+          "callee": "ov.put",
+          "lineNumber": 36
+        },
+        {
+          "caller": "extend",
+          "callee": "cast",
+          "lineNumber": 36
+        },
+        {
+          "caller": "overloads",
+          "callee": "store.get",
+          "lineNumber": 54
+        },
+        {
+          "caller": "overloads",
+          "callee": "new Pair<>",
+          "lineNumber": 57
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 0,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoCache.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 115,
+      "nonEmptyLines": 89,
+      "functions": [
+        {
+          "name": "MemoCache",
+          "startLine": 46,
+          "endLine": 52,
+          "params": [
+            "numSlots",
+            "matchParser"
+          ]
+        },
+        {
+          "name": "memoize",
+          "startLine": 56,
+          "endLine": 62,
+          "params": [
+            "entry"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 66,
+          "endLine": 81,
+          "params": [
+            "parser",
+            "pos",
+            "ctx"
+          ]
+        },
+        {
+          "name": "string",
+          "startLine": 85,
+          "endLine": 92,
+          "params": [
+            "sep",
+            "f"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 96,
+          "endLine": 99,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "listing",
+          "startLine": 103,
+          "endLine": 106,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 110,
+          "endLine": 112,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MemoCache",
+          "startLine": 19,
+          "endLine": 115,
+          "methods": [
+            "MemoCache",
+            "memoize",
+            "get",
+            "string",
+            "toString",
+            "listing",
+            "toString"
+          ],
+          "properties": [
+            "hashes",
+            "entries",
+            "next",
+            "numSlots",
+            "matchParser"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "numSlots",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "matchParser",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "MemoCache",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "memoize",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "listing",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 110,
+          "isDefault": false
+        },
+        {
+          "name": "MemoCache",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "memoize",
+          "callee": "Memoizer.hash",
+          "lineNumber": 59
+        },
+        {
+          "caller": "get",
+          "callee": "Memoizer.hash",
+          "lineNumber": 68
+        },
+        {
+          "caller": "get",
+          "callee": "entries[j].matches",
+          "lineNumber": 77
+        },
+        {
+          "caller": "string",
+          "callee": "this.entries.clone",
+          "lineNumber": 87
+        },
+        {
+          "caller": "string",
+          "callee": "Arrays.sort",
+          "lineNumber": 88
+        },
+        {
+          "caller": "string",
+          "callee": "Comparator.comparingInt",
+          "lineNumber": 88
+        },
+        {
+          "caller": "string",
+          "callee": "new StringBuilder",
+          "lineNumber": 89
+        },
+        {
+          "caller": "string",
+          "callee": "joinArray",
+          "lineNumber": 90
+        },
+        {
+          "caller": "string",
+          "callee": "NArrays.map",
+          "lineNumber": 90
+        },
+        {
+          "caller": "string",
+          "callee": "b.toString",
+          "lineNumber": 91
+        },
+        {
+          "caller": "toString",
+          "callee": "string",
+          "lineNumber": 98
+        },
+        {
+          "caller": "toString",
+          "callee": "e.toString",
+          "lineNumber": 98
+        },
+        {
+          "caller": "listing",
+          "callee": "string",
+          "lineNumber": 105
+        },
+        {
+          "caller": "listing",
+          "callee": "e.listingString",
+          "lineNumber": 105
+        },
+        {
+          "caller": "toString",
+          "callee": "toString",
+          "lineNumber": 111
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 9,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoEntry.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "MemoEntry",
+          "startLine": 46,
+          "endLine": 55,
+          "params": [
+            "success",
+            "parser",
+            "startPosition",
+            "endPosition",
+            "delta",
+            "ctx"
+          ]
+        },
+        {
+          "name": "succeeded",
+          "startLine": 62,
+          "endLine": 65,
+          "params": []
+        },
+        {
+          "name": "matches",
+          "startLine": 73,
+          "endLine": 78,
+          "params": [
+            "matchParser",
+            "parser",
+            "startPosition",
+            "ctx"
+          ]
+        },
+        {
+          "name": "listingString",
+          "startLine": 90,
+          "endLine": 106,
+          "params": [
+            "map",
+            "parserName"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 114,
+          "endLine": 133,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 137,
+          "endLine": 139,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MemoEntry",
+          "startLine": 20,
+          "endLine": 142,
+          "methods": [
+            "MemoEntry",
+            "succeeded",
+            "matches",
+            "listingString",
+            "toString",
+            "toString"
+          ],
+          "properties": [
+            "parser",
+            "startPosition",
+            "endPosition",
+            "delta",
+            "ctx"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parser",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "startPosition",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "endPosition",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "delta",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "ctx",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "MemoEntry",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "succeeded",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "matches",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "listingString",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "MemoEntry",
+          "line": 20,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "MemoEntry",
+          "callee": "Collections.emptyList",
+          "lineNumber": 53
+        },
+        {
+          "caller": "matches",
+          "callee": "Objects.equals",
+          "lineNumber": 77
+        },
+        {
+          "caller": "listingString",
+          "callee": "LineMap.string",
+          "lineNumber": 92
+        },
+        {
+          "caller": "listingString",
+          "callee": "succeeded",
+          "lineNumber": 94
+        },
+        {
+          "caller": "listingString",
+          "callee": "new StringBuilder",
+          "lineNumber": 97
+        },
+        {
+          "caller": "listingString",
+          "callee": "b   .append(\"from \")    .append(start)\n            .append(\" to \").append",
+          "lineNumber": 99
+        },
+        {
+          "caller": "listingString",
+          "callee": "b   .append(\"from \")    .append(start).append",
+          "lineNumber": 99
+        },
+        {
+          "caller": "listingString",
+          "callee": "b   .append(\"from \").append",
+          "lineNumber": 99
+        },
+        {
+          "caller": "listingString",
+          "callee": "b.append",
+          "lineNumber": 99
+        },
+        {
+          "caller": "listingString",
+          "callee": "LineMap.string",
+          "lineNumber": 100
+        },
+        {
+          "caller": "listingString",
+          "callee": "b.append(\": \").append",
+          "lineNumber": 103
+        },
+        {
+          "caller": "listingString",
+          "callee": "b.append",
+          "lineNumber": 103
+        },
+        {
+          "caller": "listingString",
+          "callee": "b.toString",
+          "lineNumber": 105
+        },
+        {
+          "caller": "toString",
+          "callee": "new StringBuilder",
+          "lineNumber": 116
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"MemoEntry {\")\n            .append(\"{ parser = \") .append(parser).append",
+          "lineNumber": 118
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"MemoEntry {\")\n            .append(\"{ parser = \").append",
+          "lineNumber": 118
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"MemoEntry {\").append",
+          "lineNumber": 118
+        },
+        {
+          "caller": "toString",
+          "callee": "b.append",
+          "lineNumber": 118
+        },
+        {
+          "caller": "toString",
+          "callee": "succeeded",
+          "lineNumber": 122
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"range = [\")\n                .append(LineMap.string(map, startPosition))\n                .append(\" - \")\n                .append(LineMap.string(map, endPosition)).append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"range = [\")\n                .append(LineMap.string(map, startPosition))\n                .append(\" - \").append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"range = [\")\n                .append(LineMap.string(map, startPosition)).append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "toString",
+          "callee": "b   .append(\"range = [\").append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "toString",
+          "callee": "b.append",
+          "lineNumber": 123
+        },
+        {
+          "caller": "toString",
+          "callee": "LineMap.string",
+          "lineNumber": 124
+        },
+        {
+          "caller": "toString",
+          "callee": "LineMap.string",
+          "lineNumber": 126
+        },
+        {
+          "caller": "toString",
+          "callee": "b.append",
+          "lineNumber": 129
+        },
+        {
+          "caller": "toString",
+          "callee": "b.append",
+          "lineNumber": 131
+        },
+        {
+          "caller": "toString",
+          "callee": "b.toString",
+          "lineNumber": 132
+        },
+        {
+          "caller": "toString",
+          "callee": "toString",
+          "lineNumber": 138
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 12,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/memo/MemoTable.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 182,
+      "nonEmptyLines": 139,
+      "functions": [
+        {
+          "name": "MemoTable",
+          "startLine": 54,
+          "endLine": 56,
+          "params": [
+            "matchParser"
+          ]
+        },
+        {
+          "name": "insert",
+          "startLine": 65,
+          "endLine": 104,
+          "params": [
+            "entry"
+          ]
+        },
+        {
+          "name": "memoize",
+          "startLine": 108,
+          "endLine": 125,
+          "params": [
+            "entry"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 129,
+          "endLine": 148,
+          "params": [
+            "parser",
+            "pos",
+            "ctx"
+          ]
+        },
+        {
+          "name": "string",
+          "startLine": 152,
+          "endLine": 159,
+          "params": [
+            "sep",
+            "f"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 163,
+          "endLine": 166,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "listing",
+          "startLine": 170,
+          "endLine": 173,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 177,
+          "endLine": 179,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "MemoTable",
+          "startLine": 19,
+          "endLine": 182,
+          "methods": [
+            "MemoTable",
+            "insert",
+            "memoize",
+            "get",
+            "string",
+            "toString",
+            "listing",
+            "toString"
+          ],
+          "properties": [
+            "MAX_LOAD",
+            "maxDisplacement",
+            "occupied",
+            "hashes",
+            "entries",
+            "matchParser"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "matchParser",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "MemoTable",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "memoize",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "listing",
+          "line": 170,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 177,
+          "isDefault": false
+        },
+        {
+          "name": "MemoTable",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "insert",
+          "callee": "Memoizer.hash",
+          "lineNumber": 67
+        },
+        {
+          "caller": "memoize",
+          "callee": "insert",
+          "lineNumber": 121
+        },
+        {
+          "caller": "memoize",
+          "callee": "insert",
+          "lineNumber": 124
+        },
+        {
+          "caller": "get",
+          "callee": "Memoizer.hash",
+          "lineNumber": 131
+        },
+        {
+          "caller": "get",
+          "callee": "entries[i].matches",
+          "lineNumber": 139
+        },
+        {
+          "caller": "string",
+          "callee": "NArrays.packed",
+          "lineNumber": 154
+        },
+        {
+          "caller": "string",
+          "callee": "Arrays.sort",
+          "lineNumber": 155
+        },
+        {
+          "caller": "string",
+          "callee": "Comparator.comparingInt",
+          "lineNumber": 155
+        },
+        {
+          "caller": "string",
+          "callee": "new StringBuilder",
+          "lineNumber": 156
+        },
+        {
+          "caller": "string",
+          "callee": "joinArray",
+          "lineNumber": 157
+        },
+        {
+          "caller": "string",
+          "callee": "NArrays.map",
+          "lineNumber": 157
+        },
+        {
+          "caller": "string",
+          "callee": "b.toString",
+          "lineNumber": 158
+        },
+        {
+          "caller": "toString",
+          "callee": "string",
+          "lineNumber": 165
+        },
+        {
+          "caller": "toString",
+          "callee": "e.toString",
+          "lineNumber": 165
+        },
+        {
+          "caller": "listing",
+          "callee": "string",
+          "lineNumber": 172
+        },
+        {
+          "caller": "listing",
+          "callee": "e.listingString",
+          "lineNumber": 172
+        },
+        {
+          "caller": "toString",
+          "callee": "toString",
+          "lineNumber": 178
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 8,
+        "functionCount": 8,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/memo/NullMemoizer.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 28,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "memoize",
+          "startLine": 13,
+          "endLine": 15,
+          "params": [
+            "entry"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 17,
+          "endLine": 19,
+          "params": [
+            "parser",
+            "pos",
+            "ctx"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 21,
+          "endLine": 23,
+          "params": [
+            "map"
+          ]
+        },
+        {
+          "name": "listing",
+          "startLine": 25,
+          "endLine": 27,
+          "params": [
+            "map"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "NullMemoizer",
+          "startLine": 11,
+          "endLine": 28,
+          "methods": [
+            "memoize",
+            "get",
+            "toString",
+            "listing"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "memoize",
+          "line": 13,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "listing",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "NullMemoizer",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toString",
+          "callee": "super.toString",
+          "lineNumber": 22
+        },
+        {
+          "caller": "listing",
+          "callee": "super.toString",
+          "lineNumber": 26
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 5,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMap.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 225,
+      "nonEmptyLines": 194,
+      "classes": [
+        {
+          "name": "LineMap",
+          "startLine": 60,
+          "endLine": 225,
+          "methods": [
+            "name",
+            "lineFrom",
+            "columnFrom",
+            "positionFrom",
+            "offsetFor",
+            "endOffsetFor",
+            "offsetFrom",
+            "lineSnippet",
+            "string",
+            "string",
+            "string",
+            "string",
+            "stringWithName",
+            "stringWithName"
+          ],
+          "properties": [
+            "MAX_SNIPPET_LENGTH"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "LineMap",
+          "line": 60,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "string",
+          "callee": "LineMapUtils.positionForDisplay",
+          "lineNumber": 147
+        },
+        {
+          "caller": "string",
+          "callee": "map.string",
+          "lineNumber": 163
+        },
+        {
+          "caller": "string",
+          "callee": "LineMapUtils.positionForDisplay",
+          "lineNumber": 174
+        },
+        {
+          "caller": "string",
+          "callee": "String.format",
+          "lineNumber": 176
+        },
+        {
+          "caller": "string",
+          "callee": "map.string",
+          "lineNumber": 193
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "string",
+          "lineNumber": 206
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "string.endsWith",
+          "lineNumber": 207
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "String.format",
+          "lineNumber": 208
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "name",
+          "lineNumber": 208
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "name",
+          "lineNumber": 209
+        },
+        {
+          "caller": "stringWithName",
+          "callee": "map.stringWithName",
+          "lineNumber": 221
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/positions/LineMapTokens.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 113,
+      "nonEmptyLines": 80,
+      "functions": [
+        {
+          "name": "LineMapTokens",
+          "startLine": 24,
+          "endLine": 29,
+          "params": [
+            "name",
+            "string",
+            "tokens",
+            "tabSize",
+            "columnStart"
+          ]
+        },
+        {
+          "name": "LineMapTokens",
+          "startLine": 33,
+          "endLine": 35,
+          "params": [
+            "name",
+            "string",
+            "tokens"
+          ]
+        },
+        {
+          "name": "name",
+          "startLine": 39,
+          "endLine": 41,
+          "params": []
+        },
+        {
+          "name": "tokenOffsetToStringOffset",
+          "startLine": 45,
+          "endLine": 53,
+          "params": [
+            "tokenOffset"
+          ]
+        },
+        {
+          "name": "stringOffsetToTokenOffset",
+          "startLine": 60,
+          "endLine": 67,
+          "params": [
+            "stringOffset"
+          ]
+        },
+        {
+          "name": "offsetFor",
+          "startLine": 71,
+          "endLine": 73,
+          "params": [
+            "line"
+          ]
+        },
+        {
+          "name": "endOffsetFor",
+          "startLine": 77,
+          "endLine": 79,
+          "params": [
+            "line"
+          ]
+        },
+        {
+          "name": "lineFrom",
+          "startLine": 83,
+          "endLine": 85,
+          "params": [
+            "offset"
+          ]
+        },
+        {
+          "name": "columnFrom",
+          "startLine": 89,
+          "endLine": 91,
+          "params": [
+            "offset"
+          ]
+        },
+        {
+          "name": "positionFrom",
+          "startLine": 95,
+          "endLine": 97,
+          "params": [
+            "offset"
+          ]
+        },
+        {
+          "name": "offsetFrom",
+          "startLine": 101,
+          "endLine": 103,
+          "params": [
+            "position"
+          ]
+        },
+        {
+          "name": "lineSnippet",
+          "startLine": 107,
+          "endLine": 109,
+          "params": [
+            "position"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "LineMapTokens",
+          "startLine": 12,
+          "endLine": 113,
+          "methods": [
+            "LineMapTokens",
+            "LineMapTokens",
+            "name",
+            "tokenOffsetToStringOffset",
+            "stringOffsetToTokenOffset",
+            "offsetFor",
+            "endOffsetFor",
+            "lineFrom",
+            "columnFrom",
+            "positionFrom",
+            "offsetFrom",
+            "lineSnippet"
+          ],
+          "properties": [
+            "tokens",
+            "lineMapString"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "tokens",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "lineMapString",
+          "line": 20,
+          "isDefault": false
+        },
+        {
+          "name": "LineMapTokens",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "LineMapTokens",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "offsetFor",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "endOffsetFor",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "lineFrom",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "columnFrom",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "positionFrom",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "offsetFrom",
+          "line": 101,
+          "isDefault": false
+        },
+        {
+          "name": "lineSnippet",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "LineMapTokens",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LineMapTokens",
+          "callee": "new LineMapString",
+          "lineNumber": 28
+        },
+        {
+          "caller": "name",
+          "callee": "lineMapString.name",
+          "lineNumber": 40
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "tokens.size",
+          "lineNumber": 47
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 48
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "tokens.size",
+          "lineNumber": 50
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "tokens.get(tokenOffset).start",
+          "lineNumber": 51
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "tokens.get",
+          "lineNumber": 51
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "tokens.isEmpty",
+          "lineNumber": 52
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "Vanilla.last(tokens).end",
+          "lineNumber": 52
+        },
+        {
+          "caller": "tokenOffsetToStringOffset",
+          "callee": "Vanilla.last",
+          "lineNumber": 52
+        },
+        {
+          "caller": "stringOffsetToTokenOffset",
+          "callee": "Collections.binarySearch",
+          "lineNumber": 62
+        },
+        {
+          "caller": "stringOffsetToTokenOffset",
+          "callee": "Comparator.comparing",
+          "lineNumber": 62
+        },
+        {
+          "caller": "stringOffsetToTokenOffset",
+          "callee": "((Token) it).start",
+          "lineNumber": 63
+        },
+        {
+          "caller": "offsetFor",
+          "callee": "stringOffsetToTokenOffset",
+          "lineNumber": 72
+        },
+        {
+          "caller": "offsetFor",
+          "callee": "lineMapString.offsetFor",
+          "lineNumber": 72
+        },
+        {
+          "caller": "endOffsetFor",
+          "callee": "stringOffsetToTokenOffset",
+          "lineNumber": 78
+        },
+        {
+          "caller": "endOffsetFor",
+          "callee": "lineMapString.endOffsetFor",
+          "lineNumber": 78
+        },
+        {
+          "caller": "lineFrom",
+          "callee": "lineMapString.lineFrom",
+          "lineNumber": 84
+        },
+        {
+          "caller": "lineFrom",
+          "callee": "tokenOffsetToStringOffset",
+          "lineNumber": 84
+        },
+        {
+          "caller": "columnFrom",
+          "callee": "lineMapString.columnFrom",
+          "lineNumber": 90
+        },
+        {
+          "caller": "columnFrom",
+          "callee": "tokenOffsetToStringOffset",
+          "lineNumber": 90
+        },
+        {
+          "caller": "positionFrom",
+          "callee": "lineMapString.positionFrom",
+          "lineNumber": 96
+        },
+        {
+          "caller": "positionFrom",
+          "callee": "tokenOffsetToStringOffset",
+          "lineNumber": 96
+        },
+        {
+          "caller": "offsetFrom",
+          "callee": "stringOffsetToTokenOffset",
+          "lineNumber": 102
+        },
+        {
+          "caller": "offsetFrom",
+          "callee": "lineMapString.offsetFrom",
+          "lineNumber": 102
+        },
+        {
+          "caller": "lineSnippet",
+          "callee": "lineMapString.lineSnippet",
+          "lineNumber": 108
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 13,
+        "functionCount": 12,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/util/ArrayStack.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 302,
+      "nonEmptyLines": 251,
+      "functions": [
+        {
+          "name": "ArrayStack",
+          "startLine": 27,
+          "endLine": 27,
+          "params": []
+        },
+        {
+          "name": "ArrayStack",
+          "startLine": 34,
+          "endLine": 38,
+          "params": []
+        },
+        {
+          "name": "ArrayStack",
+          "startLine": 45,
+          "endLine": 47,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "add",
+          "startLine": 56,
+          "endLine": 59,
+          "params": []
+        },
+        {
+          "name": "push",
+          "startLine": 68,
+          "endLine": 70,
+          "params": [
+            "item"
+          ]
+        },
+        {
+          "name": "push",
+          "startLine": 79,
+          "endLine": 82,
+          "params": []
+        },
+        {
+          "name": "push",
+          "startLine": 91,
+          "endLine": 93,
+          "params": [
+            "collection"
+          ]
+        },
+        {
+          "name": "amtOobMsg",
+          "startLine": 97,
+          "endLine": 100,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "indexOobMsg",
+          "startLine": 104,
+          "endLine": 107,
+          "params": [
+            "i"
+          ]
+        },
+        {
+          "name": "top",
+          "startLine": 117,
+          "endLine": 121,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "from",
+          "startLine": 131,
+          "endLine": 135,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "removeTop",
+          "startLine": 145,
+          "endLine": 149,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "truncate",
+          "startLine": 159,
+          "endLine": 163,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "pop",
+          "startLine": 172,
+          "endLine": 176,
+          "params": []
+        },
+        {
+          "name": "pop",
+          "startLine": 187,
+          "endLine": 194,
+          "params": [
+            "n",
+            "mkArray"
+          ]
+        },
+        {
+          "name": "popFrom",
+          "startLine": 204,
+          "endLine": 208,
+          "params": [
+            "index",
+            "mkArray"
+          ]
+        },
+        {
+          "name": "poll",
+          "startLine": 215,
+          "endLine": 218,
+          "params": []
+        },
+        {
+          "name": "peek",
+          "startLine": 227,
+          "endLine": 231,
+          "params": []
+        },
+        {
+          "name": "peek",
+          "startLine": 241,
+          "endLine": 245,
+          "params": [
+            "n",
+            "mkArray"
+          ]
+        },
+        {
+          "name": "peekFrom",
+          "startLine": 255,
+          "endLine": 259,
+          "params": [
+            "index",
+            "mkArray"
+          ]
+        },
+        {
+          "name": "snoop",
+          "startLine": 266,
+          "endLine": 269,
+          "params": []
+        },
+        {
+          "name": "peekBack",
+          "startLine": 278,
+          "endLine": 282,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "snoopBack",
+          "startLine": 290,
+          "endLine": 293,
+          "params": [
+            "n"
+          ]
+        },
+        {
+          "name": "clone",
+          "startLine": 297,
+          "endLine": 299,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ArrayStack",
+          "startLine": 23,
+          "endLine": 302,
+          "methods": [
+            "ArrayStack",
+            "ArrayStack",
+            "ArrayStack",
+            "add",
+            "push",
+            "push",
+            "push",
+            "amtOobMsg",
+            "indexOobMsg",
+            "top",
+            "from",
+            "removeTop",
+            "truncate",
+            "pop",
+            "pop",
+            "popFrom",
+            "poll",
+            "peek",
+            "peek",
+            "peekFrom",
+            "snoop",
+            "peekBack",
+            "snoopBack",
+            "clone"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ArrayStack",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "add",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "push",
+          "line": 91,
+          "isDefault": false
+        },
+        {
+          "name": "top",
+          "line": 117,
+          "isDefault": false
+        },
+        {
+          "name": "from",
+          "line": 131,
+          "isDefault": false
+        },
+        {
+          "name": "removeTop",
+          "line": 145,
+          "isDefault": false
+        },
+        {
+          "name": "truncate",
+          "line": 159,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 172,
+          "isDefault": false
+        },
+        {
+          "name": "pop",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "popFrom",
+          "line": 204,
+          "isDefault": false
+        },
+        {
+          "name": "poll",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "peek",
+          "line": 227,
+          "isDefault": false
+        },
+        {
+          "name": "peek",
+          "line": 241,
+          "isDefault": false
+        },
+        {
+          "name": "peekFrom",
+          "line": 255,
+          "isDefault": false
+        },
+        {
+          "name": "snoop",
+          "line": 266,
+          "isDefault": false
+        },
+        {
+          "name": "peekBack",
+          "line": 278,
+          "isDefault": false
+        },
+        {
+          "name": "snoopBack",
+          "line": 290,
+          "isDefault": false
+        },
+        {
+          "name": "clone",
+          "line": 297,
+          "isDefault": false
+        },
+        {
+          "name": "ArrayStack",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ArrayStack",
+          "callee": "add",
+          "lineNumber": 37
+        },
+        {
+          "caller": "add",
+          "callee": "addAll",
+          "lineNumber": 58
+        },
+        {
+          "caller": "add",
+          "callee": "Arrays.asList",
+          "lineNumber": 58
+        },
+        {
+          "caller": "push",
+          "callee": "add",
+          "lineNumber": 69
+        },
+        {
+          "caller": "push",
+          "callee": "addAll",
+          "lineNumber": 81
+        },
+        {
+          "caller": "push",
+          "callee": "Arrays.asList",
+          "lineNumber": 81
+        },
+        {
+          "caller": "push",
+          "callee": "addAll",
+          "lineNumber": 92
+        },
+        {
+          "caller": "amtOobMsg",
+          "callee": "size",
+          "lineNumber": 99
+        },
+        {
+          "caller": "indexOobMsg",
+          "callee": "size",
+          "lineNumber": 106
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 119
+        },
+        {
+          "caller": "top",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 119
+        },
+        {
+          "caller": "top",
+          "callee": "amtOobMsg",
+          "lineNumber": 119
+        },
+        {
+          "caller": "top",
+          "callee": "subList",
+          "lineNumber": 120
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 120
+        },
+        {
+          "caller": "top",
+          "callee": "size",
+          "lineNumber": 120
+        },
+        {
+          "caller": "from",
+          "callee": "size",
+          "lineNumber": 133
+        },
+        {
+          "caller": "from",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 133
+        },
+        {
+          "caller": "from",
+          "callee": "indexOobMsg",
+          "lineNumber": 133
+        },
+        {
+          "caller": "from",
+          "callee": "subList",
+          "lineNumber": 134
+        },
+        {
+          "caller": "from",
+          "callee": "size",
+          "lineNumber": 134
+        },
+        {
+          "caller": "removeTop",
+          "callee": "size",
+          "lineNumber": 147
+        },
+        {
+          "caller": "removeTop",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 147
+        },
+        {
+          "caller": "removeTop",
+          "callee": "amtOobMsg",
+          "lineNumber": 147
+        },
+        {
+          "caller": "removeTop",
+          "callee": "top(n).clear",
+          "lineNumber": 148
+        },
+        {
+          "caller": "removeTop",
+          "callee": "top",
+          "lineNumber": 148
+        },
+        {
+          "caller": "truncate",
+          "callee": "size",
+          "lineNumber": 161
+        },
+        {
+          "caller": "truncate",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 161
+        },
+        {
+          "caller": "truncate",
+          "callee": "indexOobMsg",
+          "lineNumber": 161
+        },
+        {
+          "caller": "truncate",
+          "callee": "from(index).clear",
+          "lineNumber": 162
+        },
+        {
+          "caller": "truncate",
+          "callee": "from",
+          "lineNumber": 162
+        },
+        {
+          "caller": "pop",
+          "callee": "isEmpty",
+          "lineNumber": 174
+        },
+        {
+          "caller": "pop",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 174
+        },
+        {
+          "caller": "pop",
+          "callee": "remove",
+          "lineNumber": 175
+        },
+        {
+          "caller": "pop",
+          "callee": "size",
+          "lineNumber": 175
+        },
+        {
+          "caller": "pop",
+          "callee": "size",
+          "lineNumber": 189
+        },
+        {
+          "caller": "pop",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 189
+        },
+        {
+          "caller": "pop",
+          "callee": "amtOobMsg",
+          "lineNumber": 189
+        },
+        {
+          "caller": "pop",
+          "callee": "top",
+          "lineNumber": 190
+        },
+        {
+          "caller": "pop",
+          "callee": "sub.toArray",
+          "lineNumber": 191
+        },
+        {
+          "caller": "pop",
+          "callee": "mkArray.apply",
+          "lineNumber": 191
+        },
+        {
+          "caller": "pop",
+          "callee": "sub.clear",
+          "lineNumber": 192
+        },
+        {
+          "caller": "popFrom",
+          "callee": "size",
+          "lineNumber": 206
+        },
+        {
+          "caller": "popFrom",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 206
+        },
+        {
+          "caller": "popFrom",
+          "callee": "indexOobMsg",
+          "lineNumber": 206
+        },
+        {
+          "caller": "popFrom",
+          "callee": "pop",
+          "lineNumber": 207
+        },
+        {
+          "caller": "popFrom",
+          "callee": "size",
+          "lineNumber": 207
+        },
+        {
+          "caller": "poll",
+          "callee": "isEmpty",
+          "lineNumber": 217
+        },
+        {
+          "caller": "poll",
+          "callee": "remove",
+          "lineNumber": 217
+        },
+        {
+          "caller": "poll",
+          "callee": "size",
+          "lineNumber": 217
+        },
+        {
+          "caller": "peek",
+          "callee": "isEmpty",
+          "lineNumber": 229
+        },
+        {
+          "caller": "peek",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 229
+        },
+        {
+          "caller": "peek",
+          "callee": "get",
+          "lineNumber": 230
+        },
+        {
+          "caller": "peek",
+          "callee": "size",
+          "lineNumber": 230
+        },
+        {
+          "caller": "peek",
+          "callee": "size",
+          "lineNumber": 243
+        },
+        {
+          "caller": "peek",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 243
+        },
+        {
+          "caller": "peek",
+          "callee": "amtOobMsg",
+          "lineNumber": 243
+        },
+        {
+          "caller": "peek",
+          "callee": "top(n).toArray",
+          "lineNumber": 244
+        },
+        {
+          "caller": "peek",
+          "callee": "top",
+          "lineNumber": 244
+        },
+        {
+          "caller": "peek",
+          "callee": "mkArray.apply",
+          "lineNumber": 244
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "size",
+          "lineNumber": 257
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 257
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "indexOobMsg",
+          "lineNumber": 257
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "peek",
+          "lineNumber": 258
+        },
+        {
+          "caller": "peekFrom",
+          "callee": "size",
+          "lineNumber": 258
+        },
+        {
+          "caller": "snoop",
+          "callee": "isEmpty",
+          "lineNumber": 268
+        },
+        {
+          "caller": "snoop",
+          "callee": "get",
+          "lineNumber": 268
+        },
+        {
+          "caller": "snoop",
+          "callee": "size",
+          "lineNumber": 268
+        },
+        {
+          "caller": "peekBack",
+          "callee": "size",
+          "lineNumber": 280
+        },
+        {
+          "caller": "peekBack",
+          "callee": "new IndexOutOfBoundsException",
+          "lineNumber": 280
+        },
+        {
+          "caller": "peekBack",
+          "callee": "indexOobMsg",
+          "lineNumber": 280
+        },
+        {
+          "caller": "peekBack",
+          "callee": "get",
+          "lineNumber": 281
+        },
+        {
+          "caller": "peekBack",
+          "callee": "size",
+          "lineNumber": 281
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "size",
+          "lineNumber": 292
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "get",
+          "lineNumber": 292
+        },
+        {
+          "caller": "snoopBack",
+          "callee": "size",
+          "lineNumber": 292
+        },
+        {
+          "caller": "clone",
+          "callee": "cast",
+          "lineNumber": 298
+        },
+        {
+          "caller": "clone",
+          "callee": "super.clone",
+          "lineNumber": 298
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 23,
+        "functionCount": 24,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/backend/AsmUtils.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 195,
+      "nonEmptyLines": 169,
+      "functions": [
+        {
+          "name": "AsmUtils",
+          "startLine": 19,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "slashBinaryName",
+          "startLine": 48,
+          "endLine": 53,
+          "params": [
+            "klass"
+          ]
+        },
+        {
+          "name": "fieldDescriptor",
+          "startLine": 65,
+          "endLine": 92,
+          "params": [
+            "klass"
+          ]
+        },
+        {
+          "name": "methodDescriptor",
+          "startLine": 103,
+          "endLine": 110,
+          "params": [
+            "klass",
+            "method"
+          ]
+        },
+        {
+          "name": "methodDescriptor",
+          "startLine": 121,
+          "endLine": 129,
+          "params": [
+            "returnType"
+          ]
+        },
+        {
+          "name": "invokeStatic",
+          "startLine": 137,
+          "endLine": 143,
+          "params": [
+            "visitor",
+            "klass",
+            "method"
+          ]
+        },
+        {
+          "name": "staticHandle",
+          "startLine": 151,
+          "endLine": 154,
+          "params": [
+            "klass",
+            "method"
+          ]
+        },
+        {
+          "name": "loadConstant",
+          "startLine": 181,
+          "endLine": 185,
+          "params": [
+            "visitor",
+            "constant"
+          ]
+        },
+        {
+          "name": "asmMethodType",
+          "startLine": 189,
+          "endLine": 192,
+          "params": [
+            "owner",
+            "name"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "AsmUtils",
+          "startLine": 18,
+          "endLine": 195,
+          "methods": [
+            "AsmUtils",
+            "slashBinaryName",
+            "fieldDescriptor",
+            "methodDescriptor",
+            "methodDescriptor",
+            "invokeStatic",
+            "staticHandle",
+            "loadConstant",
+            "asmMethodType"
+          ],
+          "properties": [
+            "IF_ZERO",
+            "IF_NOT_ZERO",
+            "CONSTANTS"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "IF_ZERO",
+          "line": 27,
+          "isDefault": false
+        },
+        {
+          "name": "IF_NOT_ZERO",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "slashBinaryName",
+          "line": 48,
+          "isDefault": false
+        },
+        {
+          "name": "fieldDescriptor",
+          "line": 65,
+          "isDefault": false
+        },
+        {
+          "name": "methodDescriptor",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "methodDescriptor",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "invokeStatic",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "staticHandle",
+          "line": 151,
+          "isDefault": false
+        },
+        {
+          "name": "loadConstant",
+          "line": 181,
+          "isDefault": false
+        },
+        {
+          "name": "asmMethodType",
+          "line": 189,
+          "isDefault": false
+        },
+        {
+          "name": "AsmUtils",
+          "line": 18,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "slashBinaryName",
+          "callee": "klass.isPrimitive",
+          "lineNumber": 50
+        },
+        {
+          "caller": "slashBinaryName",
+          "callee": "klass.isArray",
+          "lineNumber": 50
+        },
+        {
+          "caller": "slashBinaryName",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 51
+        },
+        {
+          "caller": "slashBinaryName",
+          "callee": "klass.getName().replace",
+          "lineNumber": 52
+        },
+        {
+          "caller": "slashBinaryName",
+          "callee": "klass.getName",
+          "lineNumber": 52
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "klass.isPrimitive",
+          "lineNumber": 67
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "new Error",
+          "lineNumber": 87
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "klass.isArray",
+          "lineNumber": 88
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "fieldDescriptor",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "klass.getComponentType",
+          "lineNumber": 89
+        },
+        {
+          "caller": "fieldDescriptor",
+          "callee": "slashBinaryName",
+          "lineNumber": 91
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "klass.getMethod",
+          "lineNumber": 105
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "methodDescriptor",
+          "lineNumber": 106
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "m.getReturnType",
+          "lineNumber": 106
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "m.getParameterTypes",
+          "lineNumber": 106
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 108
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "e.getMessage",
+          "lineNumber": 108
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "new StringBuilder",
+          "lineNumber": 123
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "b.append",
+          "lineNumber": 124
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "b.append",
+          "lineNumber": 126
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "fieldDescriptor",
+          "lineNumber": 126
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "b.append",
+          "lineNumber": 127
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "b.append(fieldDescriptor(returnType)).toString",
+          "lineNumber": 128
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "b.append",
+          "lineNumber": 128
+        },
+        {
+          "caller": "methodDescriptor",
+          "callee": "fieldDescriptor",
+          "lineNumber": 128
+        },
+        {
+          "caller": "invokeStatic",
+          "callee": "visitor.visitMethodInsn",
+          "lineNumber": 141
+        },
+        {
+          "caller": "invokeStatic",
+          "callee": "slashBinaryName",
+          "lineNumber": 141
+        },
+        {
+          "caller": "invokeStatic",
+          "callee": "methodDescriptor",
+          "lineNumber": 142
+        },
+        {
+          "caller": "staticHandle",
+          "callee": "new Handle",
+          "lineNumber": 152
+        },
+        {
+          "caller": "staticHandle",
+          "callee": "slashBinaryName",
+          "lineNumber": 152
+        },
+        {
+          "caller": "staticHandle",
+          "callee": "methodDescriptor",
+          "lineNumber": 153
+        },
+        {
+          "caller": "loadConstant",
+          "callee": "CONSTANTS.get",
+          "lineNumber": 182
+        },
+        {
+          "caller": "loadConstant",
+          "callee": "visitor.visitInsn",
+          "lineNumber": 183
+        },
+        {
+          "caller": "loadConstant",
+          "callee": "visitor.visitLdcInsn",
+          "lineNumber": 184
+        },
+        {
+          "caller": "asmMethodType",
+          "callee": "Exceptions.suppress",
+          "lineNumber": 190
+        },
+        {
+          "caller": "asmMethodType",
+          "callee": "owner.getMethod",
+          "lineNumber": 190
+        },
+        {
+          "caller": "asmMethodType",
+          "callee": "Type.getType",
+          "lineNumber": 191
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 11,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/ast/NormalAnnotation.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 13,
+      "nonEmptyLines": 11,
+      "callGraph": [
+        {
+          "caller": "mk",
+          "callee": "new NormalAnnotation",
+          "lineNumber": 11
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/types/FunType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 33,
+      "nonEmptyLines": 26,
+      "functions": [
+        {
+          "name": "FunType",
+          "startLine": 11,
+          "endLine": 14,
+          "params": [
+            "returnType"
+          ]
+        },
+        {
+          "name": "name",
+          "startLine": 16,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "equals",
+          "startLine": 21,
+          "endLine": 28,
+          "params": [
+            "o"
+          ]
+        },
+        {
+          "name": "hashCode",
+          "startLine": 30,
+          "endLine": 32,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "FunType",
+          "startLine": 6,
+          "endLine": 33,
+          "methods": [
+            "FunType",
+            "name",
+            "equals",
+            "hashCode"
+          ],
+          "properties": [
+            "returnType",
+            "paramTypes"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "returnType",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "paramTypes",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "FunType",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "name",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "equals",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "hashCode",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "FunType",
+          "line": 6,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "name",
+          "callee": "NArrays.map",
+          "lineNumber": 17
+        },
+        {
+          "caller": "name",
+          "callee": "String.format",
+          "lineNumber": 18
+        },
+        {
+          "caller": "name",
+          "callee": "String.join",
+          "lineNumber": 18
+        },
+        {
+          "caller": "equals",
+          "callee": "returnType.equals",
+          "lineNumber": 26
+        },
+        {
+          "caller": "equals",
+          "callee": "Arrays.equals",
+          "lineNumber": 27
+        },
+        {
+          "caller": "hashCode",
+          "callee": "returnType.hashCode",
+          "lineNumber": 31
+        },
+        {
+          "caller": "hashCode",
+          "callee": "Arrays.hashCode",
+          "lineNumber": 31
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 7,
+        "functionCount": 4,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/uranium/Rule.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 366,
+      "nonEmptyLines": 321,
+      "functions": [
+        {
+          "name": "Rule",
+          "startLine": 84,
+          "endLine": 94,
+          "params": [
+            "reactor",
+            "exports",
+            "dependencies",
+            "computation"
+          ]
+        },
+        {
+          "name": "toString",
+          "startLine": 98,
+          "endLine": 116,
+          "params": []
+        },
+        {
+          "name": "run",
+          "startLine": 123,
+          "endLine": 126,
+          "params": []
+        },
+        {
+          "name": "supply",
+          "startLine": 131,
+          "endLine": 147,
+          "params": [
+            "dependency",
+            "value"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 157,
+          "endLine": 164,
+          "params": [
+            "dependency"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 171,
+          "endLine": 173,
+          "params": [
+            "node",
+            "name"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 180,
+          "endLine": 182,
+          "params": [
+            "index"
+          ]
+        },
+        {
+          "name": "set",
+          "startLine": 192,
+          "endLine": 197,
+          "params": [
+            "export",
+            "value"
+          ]
+        },
+        {
+          "name": "set",
+          "startLine": 204,
+          "endLine": 206,
+          "params": [
+            "node",
+            "name",
+            "value"
+          ]
+        },
+        {
+          "name": "set",
+          "startLine": 213,
+          "endLine": 216,
+          "params": [
+            "index",
+            "value"
+          ]
+        },
+        {
+          "name": "copyFirst",
+          "startLine": 227,
+          "endLine": 229,
+          "params": []
+        },
+        {
+          "name": "error",
+          "startLine": 246,
+          "endLine": 248,
+          "params": [
+            "description",
+            "location"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 259,
+          "endLine": 269,
+          "params": [
+            "error"
+          ]
+        },
+        {
+          "name": "errorFor",
+          "startLine": 286,
+          "endLine": 288,
+          "params": [
+            "description",
+            "location"
+          ]
+        },
+        {
+          "name": "errorFor",
+          "startLine": 300,
+          "endLine": 317,
+          "params": [
+            "error"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Rule",
+          "startLine": 67,
+          "endLine": 366,
+          "methods": [
+            "Rule",
+            "toString",
+            "run",
+            "supply",
+            "get",
+            "get",
+            "get",
+            "set",
+            "set",
+            "set",
+            "copyFirst",
+            "error",
+            "error",
+            "errorFor",
+            "errorFor"
+          ],
+          "properties": [
+            "exports",
+            "dependencies",
+            "exportValues",
+            "dependencyValues",
+            "reactor",
+            "computation",
+            "unsatisfied"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "exports",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "dependencies",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 157,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 171,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "set",
+          "line": 192,
+          "isDefault": false
+        },
+        {
+          "name": "set",
+          "line": 204,
+          "isDefault": false
+        },
+        {
+          "name": "set",
+          "line": 213,
+          "isDefault": false
+        },
+        {
+          "name": "copyFirst",
+          "line": 227,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 246,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 259,
+          "isDefault": false
+        },
+        {
+          "name": "errorFor",
+          "line": 286,
+          "isDefault": false
+        },
+        {
+          "name": "errorFor",
+          "line": 300,
+          "isDefault": false
+        },
+        {
+          "name": "Rule",
+          "line": 67,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toString",
+          "callee": "IntStream.range(0, dependencies.length).mapToObj(i -> {\n            Object value = dependencyValues[i];\n            return value == null\n                ? \"\" + dependencies[i]\n                : dependencies[i] + \" = \" + value;\n        }).collect",
+          "lineNumber": 100
+        },
+        {
+          "caller": "toString",
+          "callee": "IntStream.range(0, dependencies.length).mapToObj",
+          "lineNumber": 100
+        },
+        {
+          "caller": "toString",
+          "callee": "IntStream.range",
+          "lineNumber": 100
+        },
+        {
+          "caller": "toString",
+          "callee": "Collectors.joining",
+          "lineNumber": 105
+        },
+        {
+          "caller": "toString",
+          "callee": "IntStream.range(0, exports.length).mapToObj(i -> {\n            Object value = exportValues[i];\n            return value == null\n                ? \"\" + exports[i]\n                : exports[i] + \" = \" + value;\n        }).collect",
+          "lineNumber": 107
+        },
+        {
+          "caller": "toString",
+          "callee": "IntStream.range(0, exports.length).mapToObj",
+          "lineNumber": 107
+        },
+        {
+          "caller": "toString",
+          "callee": "IntStream.range",
+          "lineNumber": 107
+        },
+        {
+          "caller": "toString",
+          "callee": "Collectors.joining",
+          "lineNumber": 112
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 114
+        },
+        {
+          "caller": "run",
+          "callee": "computation.accept",
+          "lineNumber": 125
+        },
+        {
+          "caller": "supply",
+          "callee": "dependencies[i].equals",
+          "lineNumber": 134
+        },
+        {
+          "caller": "supply",
+          "callee": "Objects.equals",
+          "lineNumber": 141
+        },
+        {
+          "caller": "supply",
+          "callee": "reactor.enqueue",
+          "lineNumber": 144
+        },
+        {
+          "caller": "get",
+          "callee": "NArrays.indexOf",
+          "lineNumber": 159
+        },
+        {
+          "caller": "get",
+          "callee": "reactor.get",
+          "lineNumber": 162
+        },
+        {
+          "caller": "get",
+          "callee": "cast",
+          "lineNumber": 163
+        },
+        {
+          "caller": "get",
+          "callee": "get",
+          "lineNumber": 172
+        },
+        {
+          "caller": "get",
+          "callee": "new Attribute",
+          "lineNumber": 172
+        },
+        {
+          "caller": "get",
+          "callee": "cast",
+          "lineNumber": 181
+        },
+        {
+          "caller": "set",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 194
+        },
+        {
+          "caller": "set",
+          "callee": "NArrays.indexOf",
+          "lineNumber": 195
+        },
+        {
+          "caller": "set",
+          "callee": "set",
+          "lineNumber": 205
+        },
+        {
+          "caller": "set",
+          "callee": "new Attribute",
+          "lineNumber": 205
+        },
+        {
+          "caller": "set",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 214
+        },
+        {
+          "caller": "copyFirst",
+          "callee": "set",
+          "lineNumber": 228
+        },
+        {
+          "caller": "copyFirst",
+          "callee": "get",
+          "lineNumber": 228
+        },
+        {
+          "caller": "error",
+          "callee": "error",
+          "lineNumber": 247
+        },
+        {
+          "caller": "error",
+          "callee": "new SemanticError",
+          "lineNumber": 247
+        },
+        {
+          "caller": "error",
+          "callee": "reactor.reportError",
+          "lineNumber": 262
+        },
+        {
+          "caller": "errorFor",
+          "callee": "errorFor",
+          "lineNumber": 287
+        },
+        {
+          "caller": "errorFor",
+          "callee": "new SemanticError",
+          "lineNumber": 287
+        },
+        {
+          "caller": "errorFor",
+          "callee": "reactor.reportError",
+          "lineNumber": 303
+        },
+        {
+          "caller": "errorFor",
+          "callee": "indexOf",
+          "lineNumber": 308
+        },
+        {
+          "caller": "errorFor",
+          "callee": "set",
+          "lineNumber": 310
+        },
+        {
+          "caller": "errorFor",
+          "callee": "reactor.reportError",
+          "lineNumber": 315
+        },
+        {
+          "caller": "using",
+          "callee": "using",
+          "lineNumber": 349
+        },
+        {
+          "caller": "using",
+          "callee": "NArrays.array",
+          "lineNumber": 349
+        },
+        {
+          "caller": "using",
+          "callee": "new Attribute",
+          "lineNumber": 349
+        },
+        {
+          "caller": "by",
+          "callee": "reactor.register",
+          "lineNumber": 360
+        },
+        {
+          "caller": "by",
+          "callee": "new Rule",
+          "lineNumber": 360
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 15,
+        "functionCount": 15,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/NArrays.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 235,
+      "nonEmptyLines": 198,
+      "functions": [
+        {
+          "name": "access",
+          "startLine": 25,
+          "endLine": 27,
+          "params": [
+            "array",
+            "index"
+          ]
+        },
+        {
+          "name": "set",
+          "startLine": 36,
+          "endLine": 38,
+          "params": [
+            "array",
+            "index",
+            "value"
+          ]
+        },
+        {
+          "name": "swap",
+          "startLine": 47,
+          "endLine": 52,
+          "params": [
+            "array",
+            "index",
+            "value"
+          ]
+        },
+        {
+          "name": "index",
+          "startLine": 61,
+          "endLine": 70,
+          "params": [
+            "array",
+            "index"
+          ]
+        },
+        {
+          "name": "map",
+          "startLine": 81,
+          "endLine": 87,
+          "params": [
+            "array",
+            "witness",
+            "f"
+          ]
+        },
+        {
+          "name": "resizeBinaryPower",
+          "startLine": 95,
+          "endLine": 100,
+          "params": [
+            "array",
+            "minSize"
+          ]
+        },
+        {
+          "name": "resizeBinaryPower",
+          "startLine": 108,
+          "endLine": 113,
+          "params": [
+            "array",
+            "minSize"
+          ]
+        },
+        {
+          "name": "resizeBinaryPower",
+          "startLine": 121,
+          "endLine": 126,
+          "params": [
+            "array",
+            "minSize"
+          ]
+        },
+        {
+          "name": "array",
+          "startLine": 135,
+          "endLine": 138,
+          "params": []
+        },
+        {
+          "name": "pack",
+          "startLine": 146,
+          "endLine": 155,
+          "params": [
+            "array"
+          ]
+        },
+        {
+          "name": "packRet",
+          "startLine": 163,
+          "endLine": 166,
+          "params": [
+            "array"
+          ]
+        },
+        {
+          "name": "packed",
+          "startLine": 174,
+          "endLine": 179,
+          "params": [
+            "array"
+          ]
+        },
+        {
+          "name": "indexOf",
+          "startLine": 187,
+          "endLine": 193,
+          "params": [
+            "array",
+            "item"
+          ]
+        },
+        {
+          "name": "contains",
+          "startLine": 201,
+          "endLine": 204,
+          "params": [
+            "array",
+            "item"
+          ]
+        },
+        {
+          "name": "append",
+          "startLine": 211,
+          "endLine": 217,
+          "params": [
+            "array"
+          ]
+        },
+        {
+          "name": "zip",
+          "startLine": 225,
+          "endLine": 232,
+          "params": [
+            "array1",
+            "array2"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "NArrays",
+          "startLine": 17,
+          "endLine": 235,
+          "methods": [
+            "access",
+            "set",
+            "swap",
+            "index",
+            "map",
+            "resizeBinaryPower",
+            "resizeBinaryPower",
+            "resizeBinaryPower",
+            "array",
+            "pack",
+            "packRet",
+            "packed",
+            "indexOf",
+            "contains",
+            "append",
+            "zip"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "access",
+          "line": 25,
+          "isDefault": false
+        },
+        {
+          "name": "set",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "swap",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "index",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "map",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "resizeBinaryPower",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "resizeBinaryPower",
+          "line": 108,
+          "isDefault": false
+        },
+        {
+          "name": "resizeBinaryPower",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "array",
+          "line": 135,
+          "isDefault": false
+        },
+        {
+          "name": "pack",
+          "line": 146,
+          "isDefault": false
+        },
+        {
+          "name": "packRet",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "packed",
+          "line": 174,
+          "isDefault": false
+        },
+        {
+          "name": "indexOf",
+          "line": 187,
+          "isDefault": false
+        },
+        {
+          "name": "contains",
+          "line": 201,
+          "isDefault": false
+        },
+        {
+          "name": "append",
+          "line": 211,
+          "isDefault": false
+        },
+        {
+          "name": "zip",
+          "line": 225,
+          "isDefault": false
+        },
+        {
+          "name": "NArrays",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "access",
+          "callee": "index",
+          "lineNumber": 26
+        },
+        {
+          "caller": "set",
+          "callee": "index",
+          "lineNumber": 37
+        },
+        {
+          "caller": "swap",
+          "callee": "index",
+          "lineNumber": 48
+        },
+        {
+          "caller": "index",
+          "callee": "new ArrayIndexOutOfBoundsException",
+          "lineNumber": 64
+        },
+        {
+          "caller": "index",
+          "callee": "String.format",
+          "lineNumber": 65
+        },
+        {
+          "caller": "map",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 83
+        },
+        {
+          "caller": "map",
+          "callee": "f.apply",
+          "lineNumber": 85
+        },
+        {
+          "caller": "resizeBinaryPower",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 99
+        },
+        {
+          "caller": "resizeBinaryPower",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 112
+        },
+        {
+          "caller": "resizeBinaryPower",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 125
+        },
+        {
+          "caller": "packRet",
+          "callee": "pack",
+          "lineNumber": 164
+        },
+        {
+          "caller": "packed",
+          "callee": "array.clone",
+          "lineNumber": 176
+        },
+        {
+          "caller": "packed",
+          "callee": "pack",
+          "lineNumber": 177
+        },
+        {
+          "caller": "packed",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 178
+        },
+        {
+          "caller": "indexOf",
+          "callee": "Objects.equals",
+          "lineNumber": 190
+        },
+        {
+          "caller": "contains",
+          "callee": "indexOf",
+          "lineNumber": 203
+        },
+        {
+          "caller": "append",
+          "callee": "Arrays.copyOf",
+          "lineNumber": 214
+        },
+        {
+          "caller": "append",
+          "callee": "System.arraycopy",
+          "lineNumber": 215
+        },
+        {
+          "caller": "zip",
+          "callee": "Math.min",
+          "lineNumber": 227
+        },
+        {
+          "caller": "zip",
+          "callee": "cast",
+          "lineNumber": 228
+        },
+        {
+          "caller": "zip",
+          "callee": "new Pair<>",
+          "lineNumber": 230
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 17,
+        "functionCount": 16,
+        "classCount": 1
+      }
+    }
+  ]
+}

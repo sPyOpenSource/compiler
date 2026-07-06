@@ -1,0 +1,1444 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchNumber": 8,
+  "nodes": [
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "type": "file",
+      "name": "ClassExpression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "summary": "Record type for class literal expressions (e.g., String.class), wrapping a single TType reference.",
+      "tags": ["java-ast", "expression", "class-literal", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "class:ClassExpression",
+      "type": "class",
+      "name": "ClassExpression",
+      "filePath": "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "summary": "Record representing a class literal expression (e.g., String.class).",
+      "tags": ["java-ast", "expression", "record"],
+      "startLine": 5,
+      "endLine": 7,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "type": "file",
+      "name": "Constructor.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Constructor.java",
+      "summary": "Record type for constructor invocations with optional type arguments, type reference, arguments, and nullable body declarations.",
+      "tags": ["java-ast", "expression", "constructor", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 15
+    },
+    {
+      "id": "class:Constructor",
+      "type": "class",
+      "name": "Constructor",
+      "filePath": "src/norswap/lang/java/ast/expr/Constructor.java",
+      "summary": "Record representing a constructor call (e.g., new Foo() or new Foo() { body }).",
+      "tags": ["java-ast", "expression", "constructor", "record"],
+      "startLine": 8,
+      "endLine": 15,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/DotIden.java",
+      "type": "file",
+      "name": "DotIden.java",
+      "filePath": "src/norswap/lang/java/ast/expr/DotIden.java",
+      "summary": "Record type for dot-separated identifier access (e.g., obj.field), holding operand and identifier.",
+      "tags": ["java-ast", "expression", "field-access", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 5
+    },
+    {
+      "id": "class:DotIden",
+      "type": "class",
+      "name": "DotIden",
+      "filePath": "src/norswap/lang/java/ast/expr/DotIden.java",
+      "summary": "Record representing a dot-access on an expression (e.g., obj.field).",
+      "tags": ["java-ast", "expression", "field-access"],
+      "startLine": 3,
+      "endLine": 5,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/DotNew.java",
+      "type": "file",
+      "name": "DotNew.java",
+      "filePath": "src/norswap/lang/java/ast/expr/DotNew.java",
+      "summary": "Record type for qualified new expressions (e.g., outer.new Inner()), linking operand to a Constructor.",
+      "tags": ["java-ast", "expression", "qualified-new", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 8
+    },
+    {
+      "id": "class:DotNew",
+      "type": "class",
+      "name": "DotNew",
+      "filePath": "src/norswap/lang/java/ast/expr/DotNew.java",
+      "summary": "Record representing a qualified new expression (outer.new Inner()).",
+      "tags": ["java-ast", "expression", "qualified-new"],
+      "startLine": 3,
+      "endLine": 8,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "type": "file",
+      "name": "InstanceOf.java",
+      "filePath": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "summary": "Record type for instanceof checks with a static factory method mk(), holding operand and type.",
+      "tags": ["java-ast", "expression", "instanceof", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 13
+    },
+    {
+      "id": "class:InstanceOf",
+      "type": "class",
+      "name": "InstanceOf",
+      "filePath": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "summary": "Record representing an instanceof expression with a static factory method.",
+      "tags": ["java-ast", "expression", "instanceof"],
+      "startLine": 5,
+      "endLine": 13,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:InstanceOf.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "summary": "Static factory method creating an InstanceOf record.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 10,
+      "endLine": 12,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "type": "file",
+      "name": "Lambda.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Lambda.java",
+      "summary": "Record type for lambda expressions, containing parameters and a body statement.",
+      "tags": ["java-ast", "expression", "lambda", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "class:Lambda",
+      "type": "class",
+      "name": "Lambda",
+      "filePath": "src/norswap/lang/java/ast/expr/Lambda.java",
+      "summary": "Record representing a lambda expression (parameters -> body).",
+      "tags": ["java-ast", "expression", "lambda"],
+      "startLine": 6,
+      "endLine": 7,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Literal.java",
+      "type": "file",
+      "name": "Literal.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Literal.java",
+      "summary": "Record type for literal values with a static test conversion hook and factory method mk() that applies the hook.",
+      "tags": ["java-ast", "expression", "literal", "record", "factory"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 13
+    },
+    {
+      "id": "class:Literal",
+      "type": "class",
+      "name": "Literal",
+      "filePath": "src/norswap/lang/java/ast/expr/Literal.java",
+      "summary": "Record representing a literal value (e.g., numbers, strings) with test conversion hook support.",
+      "tags": ["java-ast", "expression", "literal"],
+      "startLine": 5,
+      "endLine": 13,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:Literal.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/Literal.java",
+      "summary": "Static factory method that applies testConvertHook before creating a Literal.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 9,
+      "endLine": 12,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "type": "file",
+      "name": "MethodCall.java",
+      "filePath": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "summary": "Record type for method invocations with nullable receiver, type arguments, method name, and argument list, plus a static factory method.",
+      "tags": ["java-ast", "expression", "method-call", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 19
+    },
+    {
+      "id": "class:MethodCall",
+      "type": "class",
+      "name": "MethodCall",
+      "filePath": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "summary": "Record representing a method call expression with optional receiver and type arguments.",
+      "tags": ["java-ast", "expression", "method-call"],
+      "startLine": 7,
+      "endLine": 19,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:MethodCall.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "summary": "Static factory method creating a MethodCall record.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 13,
+      "endLine": 18,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "type": "file",
+      "name": "NewReference.java",
+      "filePath": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "summary": "Record type for new references (type with optional type arguments), with a static factory method.",
+      "tags": ["java-ast", "expression", "new-reference", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 13
+    },
+    {
+      "id": "class:NewReference",
+      "type": "class",
+      "name": "NewReference",
+      "filePath": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "summary": "Record representing a new type reference with optional type arguments.",
+      "tags": ["java-ast", "expression", "new-reference"],
+      "startLine": 6,
+      "endLine": 13,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:NewReference.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "summary": "Static factory method creating a NewReference record.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 10,
+      "endLine": 12,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "type": "file",
+      "name": "ParenExpression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "summary": "Record type wrapping a parenthesized expression, holding the inner Expression.",
+      "tags": ["java-ast", "expression", "parentheses", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 5
+    },
+    {
+      "id": "class:ParenExpression",
+      "type": "class",
+      "name": "ParenExpression",
+      "filePath": "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "summary": "Record representing a parenthesized expression (e.g., (x)).",
+      "tags": ["java-ast", "expression", "parentheses"],
+      "startLine": 3,
+      "endLine": 5,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/Super.java",
+      "type": "file",
+      "name": "Super.java",
+      "filePath": "src/norswap/lang/java/ast/expr/Super.java",
+      "summary": "Singleton class representing the super keyword in expressions, with a lazy-initialized INSTANCE via static mk() factory.",
+      "tags": ["java-ast", "expression", "super", "singleton"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 16
+    },
+    {
+      "id": "class:Super",
+      "type": "class",
+      "name": "Super",
+      "filePath": "src/norswap/lang/java/ast/expr/Super.java",
+      "summary": "Singleton class representing a super expression, implementing the singleton pattern.",
+      "tags": ["java-ast", "expression", "super", "singleton"],
+      "startLine": 3,
+      "endLine": 16,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:Super.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/Super.java",
+      "summary": "Lazy-initializing singleton factory for the Super instance.",
+      "tags": ["java-ast", "factory", "singleton"],
+      "startLine": 8,
+      "endLine": 14,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/SuperCall.java",
+      "type": "file",
+      "name": "SuperCall.java",
+      "filePath": "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "summary": "Record type for super constructor calls, holding a list of arguments.",
+      "tags": ["java-ast", "expression", "super-call", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 7
+    },
+    {
+      "id": "class:SuperCall",
+      "type": "class",
+      "name": "SuperCall",
+      "filePath": "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "summary": "Record representing a super() constructor call with arguments.",
+      "tags": ["java-ast", "expression", "super-call"],
+      "startLine": 5,
+      "endLine": 7,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "type": "file",
+      "name": "TernaryExpression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "summary": "Record type for ternary conditional expressions (cond ? if_true : if_false), with static factory method.",
+      "tags": ["java-ast", "expression", "ternary", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 12
+    },
+    {
+      "id": "class:TernaryExpression",
+      "type": "class",
+      "name": "TernaryExpression",
+      "filePath": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "summary": "Record representing a ternary conditional expression (cond ? then : else).",
+      "tags": ["java-ast", "expression", "ternary"],
+      "startLine": 3,
+      "endLine": 12,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:TernaryExpression.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "summary": "Static factory method creating a TernaryExpression record.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 9,
+      "endLine": 11,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/This.java",
+      "type": "file",
+      "name": "This.java",
+      "filePath": "src/norswap/lang/java/ast/expr/This.java",
+      "summary": "Singleton class representing the this keyword in expressions, with lazy-initialized INSTANCE via static mk() factory.",
+      "tags": ["java-ast", "expression", "this", "singleton"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 14
+    },
+    {
+      "id": "class:This",
+      "type": "class",
+      "name": "This",
+      "filePath": "src/norswap/lang/java/ast/expr/This.java",
+      "summary": "Singleton class representing a this expression.",
+      "tags": ["java-ast", "expression", "this", "singleton"],
+      "startLine": 3,
+      "endLine": 14,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:This.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/This.java",
+      "summary": "Lazy-initializing singleton factory for the This instance.",
+      "tags": ["java-ast", "factory", "singleton"],
+      "startLine": 7,
+      "endLine": 13,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/ThisCall.java",
+      "type": "file",
+      "name": "ThisCall.java",
+      "filePath": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "summary": "Record type for this() constructor calls with a list of arguments and static factory method.",
+      "tags": ["java-ast", "expression", "this-call", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 10
+    },
+    {
+      "id": "class:ThisCall",
+      "type": "class",
+      "name": "ThisCall",
+      "filePath": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "summary": "Record representing a this() constructor call within a class.",
+      "tags": ["java-ast", "expression", "this-call"],
+      "startLine": 5,
+      "endLine": 10,
+      "methodCount": 1,
+      "exported": true
+    },
+    {
+      "id": "function:ThisCall.mk",
+      "type": "function",
+      "name": "mk",
+      "filePath": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "summary": "Static factory method creating a ThisCall record.",
+      "tags": ["java-ast", "factory"],
+      "startLine": 7,
+      "endLine": 9,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "type": "file",
+      "name": "TypeMethodReference.java",
+      "filePath": "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "summary": "Record type for method references on a type (e.g., String::valueOf), with type, optional type arguments, and method name.",
+      "tags": ["java-ast", "expression", "method-reference", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 12
+    },
+    {
+      "id": "class:TypeMethodReference",
+      "type": "class",
+      "name": "TypeMethodReference",
+      "filePath": "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "summary": "Record representing a type-based method reference (e.g., String::valueOf).",
+      "tags": ["java-ast", "expression", "method-reference"],
+      "startLine": 6,
+      "endLine": 12,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "type": "file",
+      "name": "UnaryExpression.java",
+      "filePath": "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "summary": "Record type for unary expressions, pairing a UnaryOperator with an operand Expression.",
+      "tags": ["java-ast", "expression", "unary", "record"],
+      "complexity": "low",
+      "language": "java",
+      "sizeLines": 10
+    },
+    {
+      "id": "class:UnaryExpression",
+      "type": "class",
+      "name": "UnaryExpression",
+      "filePath": "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "summary": "Record representing a unary expression (e.g., !x, -x, ++x).",
+      "tags": ["java-ast", "expression", "unary"],
+      "startLine": 5,
+      "endLine": 10,
+      "methodCount": 0,
+      "exported": true
+    },
+    {
+      "id": "file:test/lang/java/GrammarTest.java",
+      "type": "file",
+      "name": "GrammarTest.java",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Comprehensive grammar test suite for the Java parser, testing literals, annotations, types, primary expressions, postfix/prefix/binary/ternary/assignment expressions, lambdas, type declarations, class body declarations, statements, and constructor calls using the AutumnTestFixture.",
+      "tags": ["test", "java-grammar", "parsing", "autumn"],
+      "complexity": "high",
+      "language": "java",
+      "sizeLines": 686
+    },
+    {
+      "id": "class:GrammarTest",
+      "type": "class",
+      "name": "GrammarTest",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test class exercising Java grammar rules via AutumnTestFixture, covering all major expression and declaration categories.",
+      "tags": ["test", "java-grammar", "autumn"],
+      "startLine": 39,
+      "endLine": 686,
+      "methodCount": 23,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.GrammarTest",
+      "type": "function",
+      "name": "GrammarTest",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Constructor accepting a Grammar instance and getting its class.",
+      "tags": ["test", "constructor"],
+      "startLine": 53,
+      "endLine": 56,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.GrammarTest2",
+      "type": "function",
+      "name": "GrammarTest",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Default constructor initializing JavaGrammar fixture.",
+      "tags": ["test", "constructor"],
+      "startLine": 60,
+      "endLine": 62,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.rule",
+      "type": "function",
+      "name": "rule",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Reflective helper to extract a rule field from the grammar class by name.",
+      "tags": ["test", "helper"],
+      "startLine": 66,
+      "endLine": 68,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.idList",
+      "type": "function",
+      "name": "idList",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Helper to convert varargs strings into a list of Identifiers.",
+      "tags": ["test", "helper"],
+      "startLine": 72,
+      "endLine": 75,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.prim",
+      "type": "function",
+      "name": "prim",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Helper creating a PrimitiveType from a basic type string.",
+      "tags": ["test", "helper"],
+      "startLine": 92,
+      "endLine": 94,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.cpart",
+      "type": "function",
+      "name": "cpart",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Helper creating a ClassTypePart from a class name string.",
+      "tags": ["test", "helper"],
+      "startLine": 97,
+      "endLine": 99,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.sclass",
+      "type": "function",
+      "name": "sclass",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Helper creating a ClassType from a name and optional type arguments.",
+      "tags": ["test", "helper"],
+      "startLine": 102,
+      "endLine": 105,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.sclass2",
+      "type": "function",
+      "name": "sclass",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Helper creating a ClassType from a name without type arguments.",
+      "tags": ["test", "helper"],
+      "startLine": 108,
+      "endLine": 110,
+      "exported": false
+    },
+    {
+      "id": "function:GrammarTest.literals",
+      "type": "function",
+      "name": "literals",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering all literal types (integers, floats, strings, chars, booleans, null) and their expected parse representations.",
+      "tags": ["test", "literals"],
+      "startLine": 117,
+      "endLine": 177,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.annotations",
+      "type": "function",
+      "name": "annotations",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering marker, single-element, and normal annotation forms with various value types.",
+      "tags": ["test", "annotations"],
+      "startLine": 181,
+      "endLine": 239,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.types",
+      "type": "function",
+      "name": "types",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering primitive types, class types with generics, wildcards, bounds, array types, and annotated types.",
+      "tags": ["test", "types"],
+      "startLine": 243,
+      "endLine": 321,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.primaryExpressions",
+      "type": "function",
+      "name": "primaryExpressions",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering primary expressions: literals, identifiers, method calls, parenthesized expressions, this, super, constructor calls, class expressions, array constructor calls, array initializers, type method references, and new references.",
+      "tags": ["test", "primary-expressions"],
+      "startLine": 325,
+      "endLine": 425,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.postfix",
+      "type": "function",
+      "name": "postfix",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering postfix increment/decrement operators.",
+      "tags": ["test", "postfix"],
+      "startLine": 429,
+      "endLine": 442,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.prefix",
+      "type": "function",
+      "name": "prefix",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering prefix unary operators (increment, decrement, plus, minus, complement, not).",
+      "tags": ["test", "prefix"],
+      "startLine": 446,
+      "endLine": 462,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.leftAssocBinary",
+      "type": "function",
+      "name": "leftAssocBinary",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering all left-associative binary operators (multiplicative, additive, shift, relational, equality, bitwise, logical).",
+      "tags": ["test", "binary-operators"],
+      "startLine": 466,
+      "endLine": 516,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.ternary",
+      "type": "function",
+      "name": "ternary",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering the ternary conditional operator.",
+      "tags": ["test", "ternary"],
+      "startLine": 520,
+      "endLine": 528,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.assignment",
+      "type": "function",
+      "name": "assignment",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering all assignment operators (=, +=, -=, etc.).",
+      "tags": ["test", "assignment"],
+      "startLine": 532,
+      "endLine": 552,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.lambda",
+      "type": "function",
+      "name": "lambda",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering lambda expressions with various parameter and body forms.",
+      "tags": ["test", "lambda"],
+      "startLine": 556,
+      "endLine": 574,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.typeDeclsNoBody",
+      "type": "function",
+      "name": "typeDeclsNoBody",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering type declarations without bodies (imports, type references).",
+      "tags": ["test", "type-declarations"],
+      "startLine": 578,
+      "endLine": 591,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.classBodyDecl",
+      "type": "function",
+      "name": "classBodyDecl",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering class body declarations (fields, methods, constructors, initializers).",
+      "tags": ["test", "class-body"],
+      "startLine": 595,
+      "endLine": 608,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.statements",
+      "type": "function",
+      "name": "statements",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering statement forms (if, while, for, try, switch, return, throw, etc.).",
+      "tags": ["test", "statements"],
+      "startLine": 612,
+      "endLine": 650,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.typeDeclsWithBodies",
+      "type": "function",
+      "name": "typeDeclsWithBodies",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering type declarations with full class/interface/enum/annotation bodies.",
+      "tags": ["test", "type-declarations"],
+      "startLine": 654,
+      "endLine": 672,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTest.constructorCallsWithBodies",
+      "type": "function",
+      "name": "constructorCallsWithBodies",
+      "filePath": "test/lang/java/GrammarTest.java",
+      "summary": "Test method covering constructor calls with anonymous class bodies.",
+      "tags": ["test", "constructor"],
+      "startLine": 676,
+      "endLine": 683,
+      "exported": true
+    },
+    {
+      "id": "file:test/lang/java/GrammarTokensTest.java",
+      "type": "file",
+      "name": "GrammarTokensTest.java",
+      "filePath": "test/lang/java/GrammarTokensTest.java",
+      "summary": "Test class for Java token grammar covering literal value conversion from parsed tokens to Java types (double, float, long, int).",
+      "tags": ["test", "java-tokens", "lexer", "literal-conversion"],
+      "complexity": "medium",
+      "language": "java",
+      "sizeLines": 48
+    },
+    {
+      "id": "class:GrammarTokensTest",
+      "type": "class",
+      "name": "GrammarTokensTest",
+      "filePath": "test/lang/java/GrammarTokensTest.java",
+      "summary": "Test class for Java token grammar, including literal value parsing and conversion.",
+      "tags": ["test", "java-tokens", "lexer"],
+      "startLine": 9,
+      "endLine": 48,
+      "methodCount": 2,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTokensTest.GrammarTokensTest",
+      "type": "function",
+      "name": "GrammarTokensTest",
+      "filePath": "test/lang/java/GrammarTokensTest.java",
+      "summary": "Constructor that parses test inputs and verifies tokenization against expected lists.",
+      "tags": ["test", "constructor"],
+      "startLine": 13,
+      "endLine": 17,
+      "exported": true
+    },
+    {
+      "id": "function:GrammarTokensTest.convertLiteralValue",
+      "type": "function",
+      "name": "convertLiteralValue",
+      "filePath": "test/lang/java/GrammarTokensTest.java",
+      "summary": "Test method covering literal value conversion from token string to typed Java values (double, float, long, int with radix support).",
+      "tags": ["test", "literal-conversion"],
+      "startLine": 27,
+      "endLine": 45,
+      "exported": true
+    }
+  ],
+  "edges": [
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "targetId": "class:ClassExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "targetId": "class:Constructor"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/DotIden.java",
+      "targetId": "class:DotIden"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/DotNew.java",
+      "targetId": "class:DotNew"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "targetId": "class:InstanceOf"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "targetId": "function:InstanceOf.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:InstanceOf.mk",
+      "targetId": "class:InstanceOf"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "targetId": "class:Lambda"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Literal.java",
+      "targetId": "class:Literal"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Literal.java",
+      "targetId": "function:Literal.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Literal.mk",
+      "targetId": "class:Literal"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "targetId": "class:MethodCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "targetId": "function:MethodCall.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:MethodCall.mk",
+      "targetId": "class:MethodCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "targetId": "class:NewReference"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "targetId": "function:NewReference.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:NewReference.mk",
+      "targetId": "class:NewReference"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "targetId": "class:ParenExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Super.java",
+      "targetId": "class:Super"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Super.java",
+      "targetId": "function:Super.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:Super.mk",
+      "targetId": "class:Super"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/SuperCall.java",
+      "targetId": "class:SuperCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "targetId": "class:TernaryExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "targetId": "function:TernaryExpression.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:TernaryExpression.mk",
+      "targetId": "class:TernaryExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/This.java",
+      "targetId": "class:This"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/This.java",
+      "targetId": "function:This.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:This.mk",
+      "targetId": "class:This"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ThisCall.java",
+      "targetId": "class:ThisCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ThisCall.java",
+      "targetId": "function:ThisCall.mk"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:ThisCall.mk",
+      "targetId": "class:ThisCall"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "targetId": "class:TypeMethodReference"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "targetId": "class:UnaryExpression"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.GrammarTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.GrammarTest",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.GrammarTest2"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.GrammarTest2",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.rule"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.rule",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.idList"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.idList",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.prim"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.prim",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.cpart"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.cpart",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.sclass"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.sclass",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.sclass2"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.sclass2",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.literals"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.literals",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.annotations"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.annotations",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.types"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.types",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.primaryExpressions"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.primaryExpressions",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.postfix"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.postfix",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.prefix"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.prefix",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.leftAssocBinary"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.leftAssocBinary",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.ternary"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.ternary",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.assignment"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.assignment",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.lambda"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.lambda",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.typeDeclsNoBody"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.typeDeclsNoBody",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.classBodyDecl"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.classBodyDecl",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.statements"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.statements",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.typeDeclsWithBodies"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.typeDeclsWithBodies",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "function:GrammarTest.constructorCallsWithBodies"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTest.constructorCallsWithBodies",
+      "targetId": "class:GrammarTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "class:GrammarTokensTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "function:GrammarTokensTest.GrammarTokensTest"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTokensTest.GrammarTokensTest",
+      "targetId": "class:GrammarTokensTest"
+    },
+    {
+      "type": "contains",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "function:GrammarTokensTest.convertLiteralValue"
+    },
+    {
+      "type": "memberOf",
+      "sourceId": "function:GrammarTokensTest.convertLiteralValue",
+      "targetId": "class:GrammarTokensTest"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "targetId": "file:src/norswap/lang/java/ast/Declaration.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "targetId": "file:src/norswap/lang/java/ast/Nullable.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Constructor.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "targetId": "file:src/norswap/lang/java/ast/Parameters.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/Lambda.java",
+      "targetId": "file:src/norswap/lang/java/ast/Statement.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "targetId": "file:src/norswap/lang/java/ast/Nullable.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/MethodCall.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/NewReference.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "targetId": "file:src/norswap/lang/java/ast/TType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "targetId": "file:src/norswap/lang/java/ast/UnaryOperator.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/autumn/AutumnTestFixture.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/autumn/Grammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/BasicType.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayAccess.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayConstructorCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ArrayInitializer.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ClassExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Constructor.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/DotIden.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Expression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Identifier.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Literal.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/MethodCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/NewReference.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ParenExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Super.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/SuperCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TernaryExpression.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/This.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/ThisCall.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/TypeMethodReference.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/lang/java/JavaGrammar.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/utils/data/wrappers/Pair.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTest.java",
+      "targetId": "file:src/norswap/utils/NArrays.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "file:src/norswap/lang/java/ast/expr/Literal.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "file:src/norswap/lang/java/JavaTokens.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "file:src/norswap/lang/java/Lexer.java"
+    },
+    {
+      "type": "imports",
+      "sourceId": "file:test/lang/java/GrammarTokensTest.java",
+      "targetId": "file:src/norswap/lang/java/Token.java"
+    }
+  ],
+  "metadata": {
+    "totalFiles": 19,
+    "totalNodes": 80,
+    "totalEdges": 170,
+    "fileNodes": 19,
+    "classNodes": 19,
+    "functionNodes": 42,
+    "importEdges": 39,
+    "containsEdges": 61,
+    "memberOfEdges": 42
+  }
+}

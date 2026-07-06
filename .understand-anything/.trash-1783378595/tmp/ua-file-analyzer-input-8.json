@@ -1,0 +1,190 @@
+{
+  "projectRoot": "/Users/xuyi/Source/Java/compiler",
+  "batchFiles": [
+    {
+      "path": "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Constructor.java",
+      "language": "java",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotIden.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/DotNew.java",
+      "language": "java",
+      "sizeLines": 8,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/InstanceOf.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Lambda.java",
+      "language": "java",
+      "sizeLines": 7,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Literal.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "language": "java",
+      "sizeLines": 19,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/NewReference.java",
+      "language": "java",
+      "sizeLines": 13,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "language": "java",
+      "sizeLines": 5,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/Super.java",
+      "language": "java",
+      "sizeLines": 16,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "language": "java",
+      "sizeLines": 6,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/This.java",
+      "language": "java",
+      "sizeLines": 14,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "language": "java",
+      "sizeLines": 12,
+      "fileCategory": "code"
+    },
+    {
+      "path": "src/norswap/lang/java/ast/expr/UnaryExpression.java",
+      "language": "java",
+      "sizeLines": 10,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/GrammarTest.java",
+      "language": "java",
+      "sizeLines": 686,
+      "fileCategory": "code"
+    },
+    {
+      "path": "test/lang/java/GrammarTokensTest.java",
+      "language": "java",
+      "sizeLines": 48,
+      "fileCategory": "code"
+    }
+  ],
+  "batchImportData": {
+    "src/norswap/lang/java/ast/expr/ClassExpression.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Constructor.java": [
+      "src/norswap/lang/java/ast/Declaration.java",
+      "src/norswap/lang/java/ast/Nullable.java",
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/DotIden.java": [],
+    "src/norswap/lang/java/ast/expr/DotNew.java": [],
+    "src/norswap/lang/java/ast/expr/InstanceOf.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Lambda.java": [
+      "src/norswap/lang/java/ast/Parameters.java",
+      "src/norswap/lang/java/ast/Statement.java"
+    ],
+    "src/norswap/lang/java/ast/expr/Literal.java": [],
+    "src/norswap/lang/java/ast/expr/MethodCall.java": [
+      "src/norswap/lang/java/ast/Nullable.java",
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/NewReference.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/ParenExpression.java": [],
+    "src/norswap/lang/java/ast/expr/Super.java": [],
+    "src/norswap/lang/java/ast/expr/SuperCall.java": [],
+    "src/norswap/lang/java/ast/expr/TernaryExpression.java": [],
+    "src/norswap/lang/java/ast/expr/This.java": [],
+    "src/norswap/lang/java/ast/expr/ThisCall.java": [],
+    "src/norswap/lang/java/ast/expr/TypeMethodReference.java": [
+      "src/norswap/lang/java/ast/TType.java"
+    ],
+    "src/norswap/lang/java/ast/expr/UnaryExpression.java": [
+      "src/norswap/lang/java/ast/UnaryOperator.java"
+    ],
+    "test/lang/java/GrammarTest.java": [
+      "src/norswap/autumn/AutumnTestFixture.java",
+      "src/norswap/autumn/Grammar.java",
+      "src/norswap/lang/java/ast/BasicType.java",
+      "src/norswap/lang/java/ast/expr/ArrayAccess.java",
+      "src/norswap/lang/java/ast/expr/ArrayConstructorCall.java",
+      "src/norswap/lang/java/ast/expr/ArrayInitializer.java",
+      "src/norswap/lang/java/ast/expr/ClassExpression.java",
+      "src/norswap/lang/java/ast/expr/Constructor.java",
+      "src/norswap/lang/java/ast/expr/DotIden.java",
+      "src/norswap/lang/java/ast/expr/Expression.java",
+      "src/norswap/lang/java/ast/expr/Identifier.java",
+      "src/norswap/lang/java/ast/expr/Literal.java",
+      "src/norswap/lang/java/ast/expr/MethodCall.java",
+      "src/norswap/lang/java/ast/expr/NewReference.java",
+      "src/norswap/lang/java/ast/expr/ParenExpression.java",
+      "src/norswap/lang/java/ast/expr/Super.java",
+      "src/norswap/lang/java/ast/expr/SuperCall.java",
+      "src/norswap/lang/java/ast/expr/TernaryExpression.java",
+      "src/norswap/lang/java/ast/expr/This.java",
+      "src/norswap/lang/java/ast/expr/ThisCall.java",
+      "src/norswap/lang/java/ast/expr/TypeMethodReference.java",
+      "src/norswap/lang/java/JavaGrammar.java",
+      "src/norswap/utils/data/wrappers/Pair.java",
+      "src/norswap/utils/NArrays.java"
+    ],
+    "test/lang/java/GrammarTokensTest.java": [
+      "src/norswap/lang/java/ast/expr/Literal.java",
+      "src/norswap/lang/java/JavaTokens.java",
+      "src/norswap/lang/java/Lexer.java",
+      "src/norswap/lang/java/Token.java"
+    ]
+  }
+}

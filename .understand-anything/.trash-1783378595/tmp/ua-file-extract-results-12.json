@@ -1,0 +1,3890 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 16,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/autumn/Autumn.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "Autumn",
+          "startLine": 14,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "parse",
+          "startLine": 44,
+          "endLine": 56,
+          "params": [
+            "parser",
+            "string",
+            "options"
+          ]
+        },
+        {
+          "name": "parse",
+          "startLine": 68,
+          "endLine": 79,
+          "params": [
+            "parser",
+            "list",
+            "options"
+          ]
+        },
+        {
+          "name": "parse",
+          "startLine": 88,
+          "endLine": 93,
+          "params": [
+            "rule",
+            "string",
+            "options"
+          ]
+        },
+        {
+          "name": "parse",
+          "startLine": 102,
+          "endLine": 107,
+          "params": [
+            "rule",
+            "list",
+            "options"
+          ]
+        },
+        {
+          "name": "parse",
+          "startLine": 116,
+          "endLine": 120,
+          "params": [
+            "grammar",
+            "string",
+            "options"
+          ]
+        },
+        {
+          "name": "parse",
+          "startLine": 129,
+          "endLine": 133,
+          "params": [
+            "grammar",
+            "list",
+            "options"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Autumn",
+          "startLine": 10,
+          "endLine": 136,
+          "methods": [
+            "Autumn",
+            "parse",
+            "parse",
+            "parse",
+            "parse",
+            "parse",
+            "parse"
+          ],
+          "properties": [
+            "warning"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parse",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 129,
+          "isDefault": false
+        },
+        {
+          "name": "Autumn",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 47
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 48
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 49
+        },
+        {
+          "caller": "parse",
+          "callee": "Parse.run",
+          "lineNumber": 52
+        },
+        {
+          "caller": "parse",
+          "callee": "new PotentiallyMalformedGrammarError",
+          "lineNumber": 54
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 71
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 72
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parse",
+          "callee": "Parse.run",
+          "lineNumber": 75
+        },
+        {
+          "caller": "parse",
+          "callee": "new PotentiallyMalformedGrammarError",
+          "lineNumber": 77
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 90
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.grammar().makeRuleNames",
+          "lineNumber": 91
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.grammar",
+          "lineNumber": 91
+        },
+        {
+          "caller": "parse",
+          "callee": "parse",
+          "lineNumber": 92
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.getParser",
+          "lineNumber": 92
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 104
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.grammar().makeRuleNames",
+          "lineNumber": 105
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.grammar",
+          "lineNumber": 105
+        },
+        {
+          "caller": "parse",
+          "callee": "parse",
+          "lineNumber": 106
+        },
+        {
+          "caller": "parse",
+          "callee": "rule.getParser",
+          "lineNumber": 106
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 118
+        },
+        {
+          "caller": "parse",
+          "callee": "parse",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parse",
+          "callee": "grammar.root",
+          "lineNumber": 119
+        },
+        {
+          "caller": "parse",
+          "callee": "requireNonNull",
+          "lineNumber": 131
+        },
+        {
+          "caller": "parse",
+          "callee": "parse",
+          "lineNumber": 132
+        },
+        {
+          "caller": "parse",
+          "callee": "grammar.root",
+          "lineNumber": 132
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 7,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/MalformedGrammarError.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "MalformedGrammarError",
+          "startLine": 23,
+          "endLine": 26,
+          "params": [
+            "message",
+            "checker"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "MalformedGrammarError",
+          "startLine": 10,
+          "endLine": 29,
+          "methods": [
+            "MalformedGrammarError"
+          ],
+          "properties": [
+            "checker"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "checker",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "MalformedGrammarError",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParseMetrics.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 44,
+      "nonEmptyLines": 36,
+      "functions": [
+        {
+          "name": "toString",
+          "startLine": 23,
+          "endLine": 41,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParseMetrics",
+          "startLine": 15,
+          "endLine": 44,
+          "methods": [
+            "toString"
+          ],
+          "properties": [
+            "metrics"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "metrics",
+          "line": 19,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "ParseMetrics",
+          "line": 15,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "toString",
+          "callee": "new StringBuilder",
+          "lineNumber": 25
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 25
+        },
+        {
+          "caller": "toString",
+          "callee": "metrics.entrySet().stream()\n            .sorted(Comparator.comparingLong(\n                (Map.Entry<Parser, ParserMetrics> it) -> it.getValue().selfTime).reversed()).forEach",
+          "lineNumber": 28
+        },
+        {
+          "caller": "toString",
+          "callee": "metrics.entrySet().stream().sorted",
+          "lineNumber": 28
+        },
+        {
+          "caller": "toString",
+          "callee": "metrics.entrySet().stream",
+          "lineNumber": 28
+        },
+        {
+          "caller": "toString",
+          "callee": "metrics.entrySet",
+          "lineNumber": 28
+        },
+        {
+          "caller": "toString",
+          "callee": "Comparator.comparingLong(\n                (Map.Entry<Parser, ParserMetrics> it) -> it.getValue().selfTime).reversed",
+          "lineNumber": 29
+        },
+        {
+          "caller": "toString",
+          "callee": "Comparator.comparingLong",
+          "lineNumber": 29
+        },
+        {
+          "caller": "toString",
+          "callee": "it.getValue",
+          "lineNumber": 30
+        },
+        {
+          "caller": "toString",
+          "callee": "it.getValue",
+          "lineNumber": 32
+        },
+        {
+          "caller": "toString",
+          "callee": "b.append",
+          "lineNumber": 33
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 33
+        },
+        {
+          "caller": "toString",
+          "callee": "it.getKey",
+          "lineNumber": 34
+        },
+        {
+          "caller": "toString",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 35
+        },
+        {
+          "caller": "toString",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 36
+        },
+        {
+          "caller": "toString",
+          "callee": "b.toString",
+          "lineNumber": 40
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/autumn/ParseOptions.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 284,
+      "nonEmptyLines": 241,
+      "functions": [
+        {
+          "name": "get",
+          "startLine": 111,
+          "endLine": 113,
+          "params": [
+            "key"
+          ]
+        },
+        {
+          "name": "ParseOptions",
+          "startLine": 117,
+          "endLine": 128,
+          "params": [
+            "trace",
+            "recordCallStack",
+            "wellFormednessCheck",
+            "trackWhitespace",
+            "metrics",
+            "customOptions"
+          ]
+        },
+        {
+          "name": "custom",
+          "startLine": 136,
+          "endLine": 138,
+          "params": [
+            "key",
+            "value"
+          ]
+        },
+        {
+          "name": "trace",
+          "startLine": 147,
+          "endLine": 149,
+          "params": [
+            "enabled"
+          ]
+        },
+        {
+          "name": "recordCallStack",
+          "startLine": 156,
+          "endLine": 158,
+          "params": [
+            "enabled"
+          ]
+        },
+        {
+          "name": "wellFormednessCheck",
+          "startLine": 165,
+          "endLine": 167,
+          "params": [
+            "enabled"
+          ]
+        },
+        {
+          "name": "metrics",
+          "startLine": 175,
+          "endLine": 177,
+          "params": [
+            "metrics"
+          ]
+        },
+        {
+          "name": "builder",
+          "startLine": 184,
+          "endLine": 186,
+          "params": []
+        },
+        {
+          "name": "get",
+          "startLine": 193,
+          "endLine": 195,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "ParseOptions",
+          "startLine": 49,
+          "endLine": 284,
+          "methods": [
+            "get",
+            "ParseOptions",
+            "custom",
+            "trace",
+            "recordCallStack",
+            "wellFormednessCheck",
+            "metrics",
+            "builder",
+            "get"
+          ],
+          "properties": [
+            "trace",
+            "recordCallStack",
+            "wellFormednessCheck",
+            "trackWhitespace",
+            "metrics",
+            "customOptions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "trace",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "recordCallStack",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "wellFormednessCheck",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "trackWhitespace",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "metrics",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 111,
+          "isDefault": false
+        },
+        {
+          "name": "custom",
+          "line": 136,
+          "isDefault": false
+        },
+        {
+          "name": "trace",
+          "line": 147,
+          "isDefault": false
+        },
+        {
+          "name": "recordCallStack",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "wellFormednessCheck",
+          "line": 165,
+          "isDefault": false
+        },
+        {
+          "name": "metrics",
+          "line": 175,
+          "isDefault": false
+        },
+        {
+          "name": "builder",
+          "line": 184,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 193,
+          "isDefault": false
+        },
+        {
+          "name": "ParseOptions",
+          "line": 49,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "get",
+          "callee": "cast",
+          "lineNumber": 112
+        },
+        {
+          "caller": "get",
+          "callee": "customOptions.get",
+          "lineNumber": 112
+        },
+        {
+          "caller": "custom",
+          "callee": "new ParseOptionsBuilder().custom",
+          "lineNumber": 137
+        },
+        {
+          "caller": "custom",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 137
+        },
+        {
+          "caller": "trace",
+          "callee": "new ParseOptionsBuilder().trace",
+          "lineNumber": 148
+        },
+        {
+          "caller": "trace",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 148
+        },
+        {
+          "caller": "recordCallStack",
+          "callee": "new ParseOptionsBuilder().recordCallStack",
+          "lineNumber": 157
+        },
+        {
+          "caller": "recordCallStack",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 157
+        },
+        {
+          "caller": "wellFormednessCheck",
+          "callee": "new ParseOptionsBuilder().wellFormednessCheck",
+          "lineNumber": 166
+        },
+        {
+          "caller": "wellFormednessCheck",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 166
+        },
+        {
+          "caller": "metrics",
+          "callee": "new ParseOptionsBuilder().metrics",
+          "lineNumber": 176
+        },
+        {
+          "caller": "metrics",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 176
+        },
+        {
+          "caller": "builder",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 185
+        },
+        {
+          "caller": "get",
+          "callee": "new ParseOptionsBuilder().get",
+          "lineNumber": 194
+        },
+        {
+          "caller": "get",
+          "callee": "new ParseOptionsBuilder",
+          "lineNumber": 194
+        },
+        {
+          "caller": "custom",
+          "callee": "customOptions.put",
+          "lineNumber": 218
+        },
+        {
+          "caller": "get",
+          "callee": "new ParseOptions",
+          "lineNumber": 278
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 14,
+        "functionCount": 9,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/Benchmark.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 143,
+      "nonEmptyLines": 115,
+      "functions": [
+        {
+          "name": "Benchmark",
+          "startLine": 38,
+          "endLine": 42,
+          "params": [
+            "config"
+          ]
+        },
+        {
+          "name": "run",
+          "startLine": 46,
+          "endLine": 115,
+          "params": [
+            "corpusPath",
+            "grammar"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 119,
+          "endLine": 140,
+          "params": [
+            "args"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Benchmark",
+          "startLine": 21,
+          "endLine": 143,
+          "methods": [
+            "Benchmark",
+            "run",
+            "main"
+          ],
+          "properties": [
+            "DO_TRACE",
+            "DO_RECORD",
+            "LOG_PERCENT",
+            "iterCount",
+            "parseMetrics",
+            "config"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Benchmark",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "run",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "Benchmark",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Benchmark",
+          "callee": "config.equals",
+          "lineNumber": 40
+        },
+        {
+          "caller": "Benchmark",
+          "callee": "Arrays.asList",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Benchmark",
+          "callee": "new Lexer(string).lex",
+          "lineNumber": 41
+        },
+        {
+          "caller": "Benchmark",
+          "callee": "new Lexer",
+          "lineNumber": 41
+        },
+        {
+          "caller": "run",
+          "callee": "NFiles.glob",
+          "lineNumber": 48
+        },
+        {
+          "caller": "run",
+          "callee": "Paths.get",
+          "lineNumber": 48
+        },
+        {
+          "caller": "run",
+          "callee": "paths.size",
+          "lineNumber": 50
+        },
+        {
+          "caller": "run",
+          "callee": "grammar.root",
+          "lineNumber": 52
+        },
+        {
+          "caller": "run",
+          "callee": "Autumn.parse",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions.get",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions\n            .wellFormednessCheck(false)\n            .recordCallStack(DO_RECORD)\n            .metrics(() -> parseMetrics)\n            .trace(DO_TRACE).get",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions\n            .wellFormednessCheck(false)\n            .recordCallStack(DO_RECORD)\n            .metrics(() -> parseMetrics).trace",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions\n            .wellFormednessCheck(false)\n            .recordCallStack(DO_RECORD).metrics",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions\n            .wellFormednessCheck(false).recordCallStack",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run",
+          "callee": "ParseOptions.wellFormednessCheck",
+          "lineNumber": 64
+        },
+        {
+          "caller": "run",
+          "callee": "System.nanoTime",
+          "lineNumber": 75
+        },
+        {
+          "caller": "run",
+          "callee": "IO.slurp",
+          "lineNumber": 76
+        },
+        {
+          "caller": "run",
+          "callee": "path.toFile().length",
+          "lineNumber": 77
+        },
+        {
+          "caller": "run",
+          "callee": "path.toFile",
+          "lineNumber": 77
+        },
+        {
+          "caller": "run",
+          "callee": "config.equals",
+          "lineNumber": 80
+        },
+        {
+          "caller": "run",
+          "callee": "new Lexer",
+          "lineNumber": 81
+        },
+        {
+          "caller": "run",
+          "callee": "Arrays.asList",
+          "lineNumber": 82
+        },
+        {
+          "caller": "run",
+          "callee": "lexer.lex",
+          "lineNumber": 82
+        },
+        {
+          "caller": "run",
+          "callee": "Autumn.parse",
+          "lineNumber": 83
+        },
+        {
+          "caller": "run",
+          "callee": "Autumn.parse",
+          "lineNumber": 85
+        },
+        {
+          "caller": "run",
+          "callee": "System.nanoTime",
+          "lineNumber": 88
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 92
+        },
+        {
+          "caller": "run",
+          "callee": "paths.size",
+          "lineNumber": 92
+        },
+        {
+          "caller": "run",
+          "callee": "path.toString",
+          "lineNumber": 94
+        },
+        {
+          "caller": "run",
+          "callee": "success",
+          "lineNumber": 95
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 97
+        },
+        {
+          "caller": "run",
+          "callee": "e.getMessage",
+          "lineNumber": 97
+        },
+        {
+          "caller": "run",
+          "callee": "paths.size",
+          "lineNumber": 104
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 106
+        },
+        {
+          "caller": "run",
+          "callee": "paths.size",
+          "lineNumber": 106
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 111
+        },
+        {
+          "caller": "run",
+          "callee": "paths.size",
+          "lineNumber": 111
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 112
+        },
+        {
+          "caller": "run",
+          "callee": "String.format",
+          "lineNumber": 112
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 113
+        },
+        {
+          "caller": "run",
+          "callee": "Duration.ofNanos",
+          "lineNumber": 113
+        },
+        {
+          "caller": "run",
+          "callee": "System.out.println",
+          "lineNumber": 114
+        },
+        {
+          "caller": "main",
+          "callee": "config.equals",
+          "lineNumber": 124
+        },
+        {
+          "caller": "main",
+          "callee": "new JavaGrammar",
+          "lineNumber": 125
+        },
+        {
+          "caller": "main",
+          "callee": "config.equals",
+          "lineNumber": 126
+        },
+        {
+          "caller": "main",
+          "callee": "new JavaTokens",
+          "lineNumber": 127
+        },
+        {
+          "caller": "main",
+          "callee": "Exceptions.exprThrow",
+          "lineNumber": 128
+        },
+        {
+          "caller": "main",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 129
+        },
+        {
+          "caller": "main",
+          "callee": "new Benchmark",
+          "lineNumber": 131
+        },
+        {
+          "caller": "main",
+          "callee": "Runtime.getRuntime().addShutdownHook",
+          "lineNumber": 133
+        },
+        {
+          "caller": "main",
+          "callee": "Runtime.getRuntime",
+          "lineNumber": 133
+        },
+        {
+          "caller": "main",
+          "callee": "new Thread",
+          "lineNumber": 133
+        },
+        {
+          "caller": "main",
+          "callee": "System.out.println",
+          "lineNumber": 134
+        },
+        {
+          "caller": "main",
+          "callee": "benchmark.run",
+          "lineNumber": 139
+        }
+      ],
+      "metrics": {
+        "importCount": 9,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/json/JSON.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 125,
+      "nonEmptyLines": 104,
+      "functions": [
+        {
+          "name": "root",
+          "startLine": 102,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "parse",
+          "startLine": 106,
+          "endLine": 119,
+          "params": [
+            "inputName",
+            "input"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 121,
+          "endLine": 124,
+          "params": [
+            "args"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "JSON",
+          "startLine": 31,
+          "endLine": 125,
+          "methods": [
+            "root",
+            "parse",
+            "main"
+          ],
+          "properties": [
+            "integer",
+            "fractional",
+            "exponent",
+            "number",
+            "string_char",
+            "string_content",
+            "string",
+            "LBRACE",
+            "RBRACE",
+            "LBRACKET",
+            "RBRACKET",
+            "LPAREN",
+            "RPAREN",
+            "COLON",
+            "COMMA",
+            "value",
+            "pair",
+            "object",
+            "array",
+            "root"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "integer",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "fractional",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "exponent",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "number",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "string_char",
+          "line": 51,
+          "isDefault": false
+        },
+        {
+          "name": "string_content",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "string",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACE",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACE",
+          "line": 67,
+          "isDefault": false
+        },
+        {
+          "name": "LBRACKET",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "RBRACKET",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "LPAREN",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "RPAREN",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "COLON",
+          "line": 72,
+          "isDefault": false
+        },
+        {
+          "name": "COMMA",
+          "line": 73,
+          "isDefault": false
+        },
+        {
+          "name": "value",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "pair",
+          "line": 86,
+          "isDefault": false
+        },
+        {
+          "name": "object",
+          "line": 90,
+          "isDefault": false
+        },
+        {
+          "name": "array",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "root",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "parse",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 121,
+          "isDefault": false
+        },
+        {
+          "name": "JSON",
+          "line": 31,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parse",
+          "callee": "Autumn.parse",
+          "lineNumber": 107
+        },
+        {
+          "caller": "parse",
+          "callee": "ParseOptions.get",
+          "lineNumber": 107
+        },
+        {
+          "caller": "parse",
+          "callee": "System.out.println",
+          "lineNumber": 109
+        },
+        {
+          "caller": "parse",
+          "callee": "result.topValue().toString",
+          "lineNumber": 109
+        },
+        {
+          "caller": "parse",
+          "callee": "result.topValue",
+          "lineNumber": 109
+        },
+        {
+          "caller": "parse",
+          "callee": "System.out.println",
+          "lineNumber": 115
+        },
+        {
+          "caller": "parse",
+          "callee": "result.toString",
+          "lineNumber": 115
+        },
+        {
+          "caller": "parse",
+          "callee": "new LineMapString",
+          "lineNumber": 115
+        },
+        {
+          "caller": "parse",
+          "callee": "System.out.println",
+          "lineNumber": 117
+        },
+        {
+          "caller": "parse",
+          "callee": "result.userErrorString",
+          "lineNumber": 117
+        },
+        {
+          "caller": "parse",
+          "callee": "new LineMapString",
+          "lineNumber": 117
+        },
+        {
+          "caller": "main",
+          "callee": "new JSON().parse",
+          "lineNumber": 123
+        },
+        {
+          "caller": "main",
+          "callee": "new JSON",
+          "lineNumber": 123
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 24,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/rust/Runner.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 69,
+      "nonEmptyLines": 55,
+      "functions": [
+        {
+          "name": "run",
+          "startLine": 33,
+          "endLine": 66,
+          "params": [
+            "input"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Runner",
+          "startLine": 21,
+          "endLine": 69,
+          "methods": [
+            "run"
+          ],
+          "properties": [
+            "grammar",
+            "parseOptions"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "run",
+          "line": 33,
+          "isDefault": false
+        },
+        {
+          "name": "Runner",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "run",
+          "callee": "new Reactor",
+          "lineNumber": 34
+        },
+        {
+          "caller": "run",
+          "callee": "SemanticAnalysis.createWalker",
+          "lineNumber": 35
+        },
+        {
+          "caller": "run",
+          "callee": "new Interpreter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "run",
+          "callee": "Autumn.parse",
+          "lineNumber": 38
+        },
+        {
+          "caller": "run",
+          "callee": "new RuntimeException",
+          "lineNumber": 41
+        },
+        {
+          "caller": "run",
+          "callee": "new ParseException",
+          "lineNumber": 41
+        },
+        {
+          "caller": "run",
+          "callee": "result.toString",
+          "lineNumber": 41
+        },
+        {
+          "caller": "run",
+          "callee": "result.topValue",
+          "lineNumber": 44
+        },
+        {
+          "caller": "run",
+          "callee": "new Error",
+          "lineNumber": 46
+        },
+        {
+          "caller": "run",
+          "callee": "result.topValue",
+          "lineNumber": 49
+        },
+        {
+          "caller": "run",
+          "callee": "walker.walk",
+          "lineNumber": 50
+        },
+        {
+          "caller": "run",
+          "callee": "reactor.run",
+          "lineNumber": 51
+        },
+        {
+          "caller": "run",
+          "callee": "reactor.errors",
+          "lineNumber": 52
+        },
+        {
+          "caller": "run",
+          "callee": "errors.isEmpty",
+          "lineNumber": 54
+        },
+        {
+          "caller": "run",
+          "callee": "System.err.println",
+          "lineNumber": 57
+        },
+        {
+          "caller": "run",
+          "callee": "AttributeTreeFormatter.format",
+          "lineNumber": 59
+        },
+        {
+          "caller": "run",
+          "callee": "new ReflectiveFieldWalker<>",
+          "lineNumber": 60
+        },
+        {
+          "caller": "run",
+          "callee": "System.err.println",
+          "lineNumber": 61
+        },
+        {
+          "caller": "run",
+          "callee": "new AssertionError",
+          "lineNumber": 62
+        },
+        {
+          "caller": "run",
+          "callee": "interpreter.interpret",
+          "lineNumber": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 11,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/uranium/AttributeTreeFormatter.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "AttributeTreeFormatter",
+          "startLine": 32,
+          "endLine": 37,
+          "params": [
+            "reactor",
+            "walker"
+          ]
+        },
+        {
+          "name": "preVisit",
+          "startLine": 41,
+          "endLine": 56,
+          "params": [
+            "node"
+          ]
+        },
+        {
+          "name": "postVisit",
+          "startLine": 60,
+          "endLine": 62,
+          "params": [
+            "node"
+          ]
+        },
+        {
+          "name": "format",
+          "startLine": 74,
+          "endLine": 79,
+          "params": [
+            "root",
+            "reactor",
+            "walker"
+          ]
+        },
+        {
+          "name": "formatWalkFields",
+          "startLine": 88,
+          "endLine": 90,
+          "params": [
+            "root",
+            "reactor",
+            "klass"
+          ]
+        },
+        {
+          "name": "formatWalkMethods",
+          "startLine": 100,
+          "endLine": 102,
+          "params": [
+            "root",
+            "reactor",
+            "klass"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "AttributeTreeFormatter",
+          "startLine": 17,
+          "endLine": 105,
+          "methods": [
+            "AttributeTreeFormatter",
+            "preVisit",
+            "postVisit",
+            "format",
+            "formatWalkFields",
+            "formatWalkMethods"
+          ],
+          "properties": [
+            "INDENT",
+            "reactor",
+            "walker",
+            "b",
+            "indent"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "format",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "formatWalkFields",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "formatWalkMethods",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "AttributeTreeFormatter",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AttributeTreeFormatter",
+          "callee": "walker.registerFallback",
+          "lineNumber": 35
+        },
+        {
+          "caller": "AttributeTreeFormatter",
+          "callee": "walker.registerFallback",
+          "lineNumber": 36
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 42
+        },
+        {
+          "caller": "preVisit",
+          "callee": "Strings.repeat",
+          "lineNumber": 42
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 43
+        },
+        {
+          "caller": "preVisit",
+          "callee": "reactor.getAll(node).forEach",
+          "lineNumber": 46
+        },
+        {
+          "caller": "preVisit",
+          "callee": "reactor.getAll",
+          "lineNumber": 46
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 47
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 48
+        },
+        {
+          "caller": "preVisit",
+          "callee": "Strings.repeat",
+          "lineNumber": 48
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 49
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 50
+        },
+        {
+          "caller": "preVisit",
+          "callee": "p.getKey",
+          "lineNumber": 50
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 51
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 52
+        },
+        {
+          "caller": "preVisit",
+          "callee": "p.getValue",
+          "lineNumber": 52
+        },
+        {
+          "caller": "preVisit",
+          "callee": "b.append",
+          "lineNumber": 55
+        },
+        {
+          "caller": "format",
+          "callee": "new AttributeTreeFormatter<>",
+          "lineNumber": 76
+        },
+        {
+          "caller": "format",
+          "callee": "formatter.walker.walk",
+          "lineNumber": 77
+        },
+        {
+          "caller": "format",
+          "callee": "formatter.b.toString",
+          "lineNumber": 78
+        },
+        {
+          "caller": "formatWalkFields",
+          "callee": "format",
+          "lineNumber": 89
+        },
+        {
+          "caller": "formatWalkFields",
+          "callee": "new ReflectiveFieldWalker<>",
+          "lineNumber": 89
+        },
+        {
+          "caller": "formatWalkMethods",
+          "callee": "format",
+          "lineNumber": 101
+        },
+        {
+          "caller": "formatWalkMethods",
+          "callee": "new ReflectiveAccessorWalker<>",
+          "lineNumber": 101
+        }
+      ],
+      "metrics": {
+        "importCount": 5,
+        "exportCount": 4,
+        "functionCount": 6,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/uranium/SemanticError.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "SemanticError",
+          "startLine": 31,
+          "endLine": 35,
+          "params": [
+            "description",
+            "cause",
+            "location"
+          ]
+        },
+        {
+          "name": "location",
+          "startLine": 45,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "toString",
+          "startLine": 55,
+          "endLine": 61,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "SemanticError",
+          "startLine": 9,
+          "endLine": 64,
+          "methods": [
+            "SemanticError",
+            "location",
+            "toString"
+          ],
+          "properties": [
+            "description",
+            "cause",
+            "location"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "description",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "cause",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "SemanticError",
+          "line": 31,
+          "isDefault": false
+        },
+        {
+          "name": "location",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "SemanticError",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "location",
+          "callee": "cause.location",
+          "lineNumber": 49
+        },
+        {
+          "caller": "toString",
+          "callee": "location",
+          "lineNumber": 56
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 57
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/NFiles.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 63,
+      "nonEmptyLines": 54,
+      "functions": [
+        {
+          "name": "glob",
+          "startLine": 29,
+          "endLine": 48,
+          "params": [
+            "pattern",
+            "directory"
+          ]
+        },
+        {
+          "name": "noDotfiles",
+          "startLine": 58,
+          "endLine": 60,
+          "params": [
+            "path"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "NFiles",
+          "startLine": 19,
+          "endLine": 63,
+          "methods": [
+            "glob",
+            "noDotfiles"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "glob",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "noDotfiles",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "NFiles",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "glob",
+          "callee": "FileSystems.getDefault().getPathMatcher",
+          "lineNumber": 31
+        },
+        {
+          "caller": "glob",
+          "callee": "FileSystems.getDefault",
+          "lineNumber": 31
+        },
+        {
+          "caller": "glob",
+          "callee": "new ArrayList<>",
+          "lineNumber": 32
+        },
+        {
+          "caller": "glob",
+          "callee": "Files.walkFileTree",
+          "lineNumber": 34
+        },
+        {
+          "caller": "glob",
+          "callee": "new SimpleFileVisitor<Path>",
+          "lineNumber": 34
+        },
+        {
+          "caller": "visitFile",
+          "callee": "matcher.matches",
+          "lineNumber": 38
+        },
+        {
+          "caller": "visitFile",
+          "callee": "result.add",
+          "lineNumber": 38
+        },
+        {
+          "caller": "noDotfiles",
+          "callee": "path.getFileName().startsWith",
+          "lineNumber": 59
+        },
+        {
+          "caller": "noDotfiles",
+          "callee": "path.getFileName",
+          "lineNumber": 59
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/reflection/GenericType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 57,
+      "nonEmptyLines": 43,
+      "functions": [
+        {
+          "name": "GenericType",
+          "startLine": 23,
+          "endLine": 26,
+          "params": [
+            "owner",
+            "raw"
+          ]
+        },
+        {
+          "name": "wrap",
+          "startLine": 34,
+          "endLine": 36,
+          "params": [
+            "type"
+          ]
+        },
+        {
+          "name": "getActualTypeArguments",
+          "startLine": 40,
+          "endLine": 42,
+          "params": []
+        },
+        {
+          "name": "getRawType",
+          "startLine": 46,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "getOwnerType",
+          "startLine": 52,
+          "endLine": 54,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "GenericType",
+          "startLine": 11,
+          "endLine": 57,
+          "methods": [
+            "GenericType",
+            "wrap",
+            "getActualTypeArguments",
+            "getRawType",
+            "getOwnerType"
+          ],
+          "properties": [
+            "raw",
+            "arguments"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "GenericType",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "wrap",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "getActualTypeArguments",
+          "line": 40,
+          "isDefault": false
+        },
+        {
+          "name": "getRawType",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "getOwnerType",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "GenericType",
+          "line": 11,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "wrap",
+          "callee": "new GenericType",
+          "lineNumber": 35
+        },
+        {
+          "caller": "wrap",
+          "callee": "type.getEnclosingClass",
+          "lineNumber": 35
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/reflection/Subtyping.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 436,
+      "nonEmptyLines": 356,
+      "functions": [
+        {
+          "name": "check",
+          "startLine": 70,
+          "endLine": 72,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 76,
+          "endLine": 78,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 82,
+          "endLine": 84,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 88,
+          "endLine": 90,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 94,
+          "endLine": 96,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 100,
+          "endLine": 102,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 106,
+          "endLine": 110,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 114,
+          "endLine": 118,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 122,
+          "endLine": 124,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 128,
+          "endLine": 152,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 156,
+          "endLine": 158,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 162,
+          "endLine": 164,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 168,
+          "endLine": 170,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 174,
+          "endLine": 178,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 182,
+          "endLine": 186,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 190,
+          "endLine": 192,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 196,
+          "endLine": 198,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 202,
+          "endLine": 204,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 208,
+          "endLine": 210,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 214,
+          "endLine": 216,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 220,
+          "endLine": 222,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 226,
+          "endLine": 228,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 232,
+          "endLine": 234,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 238,
+          "endLine": 240,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 244,
+          "endLine": 246,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 250,
+          "endLine": 263,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 267,
+          "endLine": 280,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 284,
+          "endLine": 297,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 301,
+          "endLine": 314,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 318,
+          "endLine": 331,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 335,
+          "endLine": 348,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 352,
+          "endLine": 365,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 369,
+          "endLine": 382,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 386,
+          "endLine": 399,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 403,
+          "endLine": 416,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "check",
+          "startLine": 420,
+          "endLine": 433,
+          "params": [
+            "a",
+            "b"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Subtyping",
+          "startLine": 66,
+          "endLine": 436,
+          "methods": [
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check",
+            "check"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "check",
+          "line": 70,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 76,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 106,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 114,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 122,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 156,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 168,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 174,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 182,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 190,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 196,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 202,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 208,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 214,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 220,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 226,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 232,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 238,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 244,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 250,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 267,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 284,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 301,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 318,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 335,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 352,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 369,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 386,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 403,
+          "isDefault": false
+        },
+        {
+          "name": "check",
+          "line": 420,
+          "isDefault": false
+        },
+        {
+          "name": "Subtyping",
+          "line": 66,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "check",
+          "callee": "b.isAssignableFrom",
+          "lineNumber": 71
+        },
+        {
+          "caller": "check",
+          "callee": "b.getActualTypeArguments",
+          "lineNumber": 77
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 77
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 77
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(b.getLowerBounds()).anyMatch",
+          "lineNumber": 89
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 89
+        },
+        {
+          "caller": "check",
+          "callee": "b.getLowerBounds",
+          "lineNumber": 89
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 89
+        },
+        {
+          "caller": "check",
+          "callee": "a.isArray",
+          "lineNumber": 95
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 95
+        },
+        {
+          "caller": "check",
+          "callee": "a.getComponentType",
+          "lineNumber": 95
+        },
+        {
+          "caller": "check",
+          "callee": "b.getGenericComponentType",
+          "lineNumber": 95
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 101
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 101
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 107
+        },
+        {
+          "caller": "check",
+          "callee": "Object.class.equals",
+          "lineNumber": 108
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getBounds()).anyMatch",
+          "lineNumber": 109
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 109
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 109
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 109
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 115
+        },
+        {
+          "caller": "check",
+          "callee": "Object.class.equals",
+          "lineNumber": 116
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getUpperBounds()).anyMatch",
+          "lineNumber": 117
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 117
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 117
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 117
+        },
+        {
+          "caller": "check",
+          "callee": "b.isArray",
+          "lineNumber": 123
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 123
+        },
+        {
+          "caller": "check",
+          "callee": "a.getGenericComponentType",
+          "lineNumber": 123
+        },
+        {
+          "caller": "check",
+          "callee": "b.getComponentType",
+          "lineNumber": 123
+        },
+        {
+          "caller": "check",
+          "callee": "a.getActualTypeArguments",
+          "lineNumber": 129
+        },
+        {
+          "caller": "check",
+          "callee": "b.getActualTypeArguments",
+          "lineNumber": 130
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 132
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 133
+        },
+        {
+          "caller": "check",
+          "callee": "rawA.equals",
+          "lineNumber": 135
+        },
+        {
+          "caller": "check",
+          "callee": "IntStream.range(0, argsA.length).allMatch",
+          "lineNumber": 141
+        },
+        {
+          "caller": "check",
+          "callee": "IntStream.range",
+          "lineNumber": 141
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 141
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 144
+        },
+        {
+          "caller": "check",
+          "callee": "Reflection.actualParameterizedSupertype",
+          "lineNumber": 147
+        },
+        {
+          "caller": "check",
+          "callee": "Reflection.actualParameterizedInterfaces",
+          "lineNumber": 148
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 150
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(interfaces).anyMatch",
+          "lineNumber": 151
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 151
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 151
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(b.getLowerBounds()).anyMatch",
+          "lineNumber": 163
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 163
+        },
+        {
+          "caller": "check",
+          "callee": "b.getLowerBounds",
+          "lineNumber": 163
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 163
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 169
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 169
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 175
+        },
+        {
+          "caller": "check",
+          "callee": "Object.class.equals",
+          "lineNumber": 176
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 176
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getBounds()).anyMatch",
+          "lineNumber": 177
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 177
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 177
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 177
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 183
+        },
+        {
+          "caller": "check",
+          "callee": "Object.class.equals",
+          "lineNumber": 184
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 184
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getUpperBounds()).anyMatch",
+          "lineNumber": 185
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 185
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 185
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 185
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 191
+        },
+        {
+          "caller": "check",
+          "callee": "raw",
+          "lineNumber": 191
+        },
+        {
+          "caller": "check",
+          "callee": "a.equals",
+          "lineNumber": 197
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getBounds()).anyMatch",
+          "lineNumber": 197
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 197
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 197
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 197
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getBounds()).anyMatch",
+          "lineNumber": 203
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 203
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 203
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 203
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getBounds()).anyMatch",
+          "lineNumber": 209
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 209
+        },
+        {
+          "caller": "check",
+          "callee": "a.getBounds",
+          "lineNumber": 209
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 209
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getUpperBounds()).anyMatch",
+          "lineNumber": 215
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 215
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 215
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 215
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getUpperBounds()).anyMatch",
+          "lineNumber": 227
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 227
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 227
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 227
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(a.getUpperBounds()).anyMatch",
+          "lineNumber": 233
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 233
+        },
+        {
+          "caller": "check",
+          "callee": "a.getUpperBounds",
+          "lineNumber": 233
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 233
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream(b.getLowerBounds()).anyMatch",
+          "lineNumber": 239
+        },
+        {
+          "caller": "check",
+          "callee": "Arrays.stream",
+          "lineNumber": 239
+        },
+        {
+          "caller": "check",
+          "callee": "b.getLowerBounds",
+          "lineNumber": 239
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 239
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 245
+        },
+        {
+          "caller": "check",
+          "callee": "a.getGenericComponentType",
+          "lineNumber": 245
+        },
+        {
+          "caller": "check",
+          "callee": "b.getGenericComponentType",
+          "lineNumber": 245
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 252
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 254
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 256
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 258
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 260
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 269
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 271
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 273
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 275
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 277
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 286
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 288
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 290
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 292
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 294
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 303
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 305
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 307
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 309
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 311
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 320
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 322
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 324
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 326
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 328
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 337
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 339
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 341
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 343
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 345
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 354
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 356
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 358
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 360
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 362
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 371
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 373
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 375
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 377
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 379
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 388
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 390
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 392
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 394
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 396
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 405
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 407
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 409
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 411
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 413
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 422
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 424
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 426
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 428
+        },
+        {
+          "caller": "check",
+          "callee": "check",
+          "lineNumber": 430
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 37,
+        "functionCount": 36,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveAccessorWalker.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 49,
+      "functions": [
+        {
+          "name": "ReflectiveAccessorWalker",
+          "startLine": 28,
+          "endLine": 30,
+          "params": [
+            "nodeType"
+          ]
+        },
+        {
+          "name": "handlesFor",
+          "startLine": 34,
+          "endLine": 52,
+          "params": [
+            "klass"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ReflectiveAccessorWalker",
+          "startLine": 21,
+          "endLine": 55,
+          "methods": [
+            "ReflectiveAccessorWalker",
+            "handlesFor"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ReflectiveAccessorWalker",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "handlesFor",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "ReflectiveAccessorWalker",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "handlesFor",
+          "callee": "new ArrayList<>",
+          "lineNumber": 36
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "klass.getMethods",
+          "lineNumber": 38
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "method.getParameterCount",
+          "lineNumber": 40
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Modifier.isStatic",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "method.getModifiers",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "method.getGenericReturnType",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Subtyping.check",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "list.add",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new HandleWrapper",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "lookup.unreflect",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Subtyping.check",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new GenericType",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "list.add",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new HandleWrapper",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "lookup.unreflect",
+          "lineNumber": 46
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new Error",
+          "lineNumber": 49
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/visitors/ReflectiveFieldWalker.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 54,
+      "nonEmptyLines": 48,
+      "functions": [
+        {
+          "name": "ReflectiveFieldWalker",
+          "startLine": 28,
+          "endLine": 30,
+          "params": [
+            "nodeType"
+          ]
+        },
+        {
+          "name": "handlesFor",
+          "startLine": 34,
+          "endLine": 51,
+          "params": [
+            "klass"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "ReflectiveFieldWalker",
+          "startLine": 21,
+          "endLine": 54,
+          "methods": [
+            "ReflectiveFieldWalker",
+            "handlesFor"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ReflectiveFieldWalker",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "handlesFor",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "ReflectiveFieldWalker",
+          "line": 21,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "handlesFor",
+          "callee": "new ArrayList<>",
+          "lineNumber": 36
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "klass.getFields",
+          "lineNumber": 38
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Modifier.isStatic",
+          "lineNumber": 40
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "field.getModifiers",
+          "lineNumber": 40
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "field.getGenericType",
+          "lineNumber": 41
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Subtyping.check",
+          "lineNumber": 42
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "list.add",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new HandleWrapper",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "lookup.unreflectGetter",
+          "lineNumber": 43
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "Subtyping.check",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new GenericType",
+          "lineNumber": 44
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "list.add",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new HandleWrapper",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "lookup.unreflectGetter",
+          "lineNumber": 45
+        },
+        {
+          "caller": "handlesFor",
+          "callee": "new Error",
+          "lineNumber": 48
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/visitors/WalkVisitType.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 20,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "test/WellFormednesTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 68,
+      "nonEmptyLines": 51,
+      "functions": [
+        {
+          "name": "root",
+          "startLine": 12,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "assertThrown",
+          "startLine": 34,
+          "endLine": 42,
+          "params": [
+            "rule",
+            "name"
+          ]
+        },
+        {
+          "name": "testLeftRecursion",
+          "startLine": 46,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "testAnonymousLeftRecursive",
+          "startLine": 50,
+          "endLine": 53,
+          "params": []
+        },
+        {
+          "name": "testEmptyStringRepetition",
+          "startLine": 55,
+          "endLine": 57,
+          "params": []
+        },
+        {
+          "name": "testOptReptition",
+          "startLine": 59,
+          "endLine": 61,
+          "params": []
+        },
+        {
+          "name": "testNullableReptitionRepetition",
+          "startLine": 63,
+          "endLine": 65,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "WellFormednesTest",
+          "startLine": 8,
+          "endLine": 68,
+          "methods": [
+            "root",
+            "assertThrown",
+            "testLeftRecursion",
+            "testAnonymousLeftRecursive",
+            "testEmptyStringRepetition",
+            "testOptReptition",
+            "testNullableReptitionRepetition"
+          ],
+          "properties": [
+            "leftRecursive",
+            "emptyStringRepetition",
+            "optRepetition",
+            "nullableRepetitionRepetition",
+            "anonymousLeftRecursive"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "root",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "leftRecursive",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "emptyStringRepetition",
+          "line": 22,
+          "isDefault": false
+        },
+        {
+          "name": "optRepetition",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "nullableRepetitionRepetition",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "anonymousLeftRecursive",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "testLeftRecursion",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "testAnonymousLeftRecursive",
+          "line": 50,
+          "isDefault": false
+        },
+        {
+          "name": "testEmptyStringRepetition",
+          "line": 55,
+          "isDefault": false
+        },
+        {
+          "name": "testOptReptition",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "testNullableReptitionRepetition",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "WellFormednesTest",
+          "line": 8,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "root",
+          "callee": "new Error",
+          "lineNumber": 13
+        },
+        {
+          "caller": "assertThrown",
+          "callee": "Autumn.parse",
+          "lineNumber": 37
+        },
+        {
+          "caller": "assertThrown",
+          "callee": "ParseOptions.get",
+          "lineNumber": 37
+        },
+        {
+          "caller": "assertThrown",
+          "callee": "assertTrue",
+          "lineNumber": 41
+        },
+        {
+          "caller": "testLeftRecursion",
+          "callee": "assertThrown",
+          "lineNumber": 47
+        },
+        {
+          "caller": "testAnonymousLeftRecursive",
+          "callee": "assertThrown",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testEmptyStringRepetition",
+          "callee": "assertThrown",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testOptReptition",
+          "callee": "assertThrown",
+          "lineNumber": 60
+        },
+        {
+          "caller": "testNullableReptitionRepetition",
+          "callee": "assertThrown",
+          "lineNumber": 64
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 12,
+        "functionCount": 7,
+        "classCount": 1
+      }
+    }
+  ]
+}

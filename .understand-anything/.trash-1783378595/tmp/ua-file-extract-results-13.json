@@ -1,0 +1,3304 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "src/norswap/autumn/util/StringsUtil.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 72,
+      "nonEmptyLines": 65,
+      "functions": [
+        {
+          "name": "escape",
+          "startLine": 24,
+          "endLine": 49,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "isPrintable",
+          "startLine": 62,
+          "endLine": 69,
+          "params": [
+            "c"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "StringsUtil",
+          "startLine": 9,
+          "endLine": 72,
+          "methods": [
+            "escape",
+            "isPrintable"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "escape",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "isPrintable",
+          "line": 62,
+          "isDefault": false
+        },
+        {
+          "name": "StringsUtil",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "escape",
+          "callee": "new StringBuilder",
+          "lineNumber": 26
+        },
+        {
+          "caller": "escape",
+          "callee": "string.length",
+          "lineNumber": 27
+        },
+        {
+          "caller": "escape",
+          "callee": "string.charAt",
+          "lineNumber": 29
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 32
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 33
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 34
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 35
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 36
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 37
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 38
+        },
+        {
+          "caller": "escape",
+          "callee": "StringsUtil.isPrintable",
+          "lineNumber": 40
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 41
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append(\"\\\\u\").append",
+          "lineNumber": 43
+        },
+        {
+          "caller": "escape",
+          "callee": "b.append",
+          "lineNumber": 43
+        },
+        {
+          "caller": "escape",
+          "callee": "String.format",
+          "lineNumber": 43
+        },
+        {
+          "caller": "escape",
+          "callee": "b.toString",
+          "lineNumber": 48
+        },
+        {
+          "caller": "isPrintable",
+          "callee": "Character.UnicodeBlock.of",
+          "lineNumber": 64
+        },
+        {
+          "caller": "isPrintable",
+          "callee": "Character.isISOControl",
+          "lineNumber": 65
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/lang/java/LexUtils.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 446,
+      "nonEmptyLines": 378,
+      "functions": [
+        {
+          "name": "parse_floating",
+          "startLine": 47,
+          "endLine": 80,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "parse_integer",
+          "startLine": 94,
+          "endLine": 109,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "parse_integer",
+          "startLine": 123,
+          "endLine": 155,
+          "params": [
+            "base",
+            "string"
+          ]
+        },
+        {
+          "name": "digit",
+          "startLine": 162,
+          "endLine": 172,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "is_hex_digit",
+          "startLine": 180,
+          "endLine": 185,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "is_octal_digit",
+          "startLine": 192,
+          "endLine": 195,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "unescape",
+          "startLine": 206,
+          "endLine": 255,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "parse_char",
+          "startLine": 267,
+          "endLine": 272,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "parse_string",
+          "startLine": 284,
+          "endLine": 287,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "escape",
+          "startLine": 302,
+          "endLine": 305,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "is_printable",
+          "startLine": 318,
+          "endLine": 321,
+          "params": [
+            "c"
+          ]
+        },
+        {
+          "name": "trim_whitespace",
+          "startLine": 332,
+          "endLine": 337,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "trim_leading_whitespace",
+          "startLine": 348,
+          "endLine": 384,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "trim_trailing_whitespace",
+          "startLine": 395,
+          "endLine": 430,
+          "params": [
+            "string"
+          ]
+        },
+        {
+          "name": "handle_line_comment",
+          "startLine": 434,
+          "endLine": 443,
+          "params": [
+            "string",
+            "end"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "LexUtils",
+          "startLine": 12,
+          "endLine": 446,
+          "methods": [
+            "parse_floating",
+            "parse_integer",
+            "parse_integer",
+            "digit",
+            "is_hex_digit",
+            "is_octal_digit",
+            "unescape",
+            "parse_char",
+            "parse_string",
+            "escape",
+            "is_printable",
+            "trim_whitespace",
+            "trim_leading_whitespace",
+            "trim_trailing_whitespace",
+            "handle_line_comment"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "parse_floating",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "parse_integer",
+          "line": 94,
+          "isDefault": false
+        },
+        {
+          "name": "parse_integer",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "digit",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "is_hex_digit",
+          "line": 180,
+          "isDefault": false
+        },
+        {
+          "name": "is_octal_digit",
+          "line": 192,
+          "isDefault": false
+        },
+        {
+          "name": "unescape",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "parse_char",
+          "line": 267,
+          "isDefault": false
+        },
+        {
+          "name": "parse_string",
+          "line": 284,
+          "isDefault": false
+        },
+        {
+          "name": "escape",
+          "line": 302,
+          "isDefault": false
+        },
+        {
+          "name": "is_printable",
+          "line": 318,
+          "isDefault": false
+        },
+        {
+          "name": "trim_whitespace",
+          "line": 332,
+          "isDefault": false
+        },
+        {
+          "name": "trim_leading_whitespace",
+          "line": 348,
+          "isDefault": false
+        },
+        {
+          "name": "trim_trailing_whitespace",
+          "line": 395,
+          "isDefault": false
+        },
+        {
+          "name": "LexUtils",
+          "line": 12,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "hashCode",
+          "callee": "getMessage().hashCode",
+          "lineNumber": 27
+        },
+        {
+          "caller": "hashCode",
+          "callee": "getMessage",
+          "lineNumber": 27
+        },
+        {
+          "caller": "equals",
+          "callee": "((LexProblem) obj).getMessage().equals",
+          "lineNumber": 32
+        },
+        {
+          "caller": "equals",
+          "callee": "((LexProblem) obj).getMessage",
+          "lineNumber": 32
+        },
+        {
+          "caller": "equals",
+          "callee": "getMessage",
+          "lineNumber": 32
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "string.replace",
+          "lineNumber": 49
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Strings.lastChar",
+          "lineNumber": 50
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Float.parseFloat",
+          "lineNumber": 54
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Double.parseDouble",
+          "lineNumber": 55
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Exceptional.exception",
+          "lineNumber": 58
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "new LexProblem",
+          "lineNumber": 59
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "new LexProblem",
+          "lineNumber": 60
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.length",
+          "lineNumber": 64
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.startsWith",
+          "lineNumber": 64
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.indexOf",
+          "lineNumber": 67
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.indexOf",
+          "lineNumber": 67
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.indexOf",
+          "lineNumber": 68
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.indexOf",
+          "lineNumber": 68
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "str.substring",
+          "lineNumber": 70
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "\"123456789\".chars().anyMatch",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "\"123456789\".chars",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "sub.indexOf",
+          "lineNumber": 73
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Exceptional.exception",
+          "lineNumber": 74
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "new LexProblem",
+          "lineNumber": 75
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "new LexProblem",
+          "lineNumber": 76
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Exceptional.value",
+          "lineNumber": 79
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Float.valueOf",
+          "lineNumber": 79
+        },
+        {
+          "caller": "parse_floating",
+          "callee": "Double.valueOf",
+          "lineNumber": 79
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.length",
+          "lineNumber": 96
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.charAt",
+          "lineNumber": 96
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "parse_integer",
+          "lineNumber": 97
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.charAt",
+          "lineNumber": 99
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "parse_integer",
+          "lineNumber": 102
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.substring",
+          "lineNumber": 102
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "parse_integer",
+          "lineNumber": 105
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.substring",
+          "lineNumber": 105
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "parse_integer",
+          "lineNumber": 107
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.substring",
+          "lineNumber": 107
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "Strings.lastChar",
+          "lineNumber": 126
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.length",
+          "lineNumber": 129
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "string.charAt",
+          "lineNumber": 131
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "digit",
+          "lineNumber": 135
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "Exceptional.exception",
+          "lineNumber": 142
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "new LexProblem",
+          "lineNumber": 143
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "new LexProblem",
+          "lineNumber": 144
+        },
+        {
+          "caller": "parse_integer",
+          "callee": "Exceptional.value",
+          "lineNumber": 152
+        },
+        {
+          "caller": "digit",
+          "callee": "new RuntimeException",
+          "lineNumber": 171
+        },
+        {
+          "caller": "unescape",
+          "callee": "new StringBuilder",
+          "lineNumber": 208
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.length",
+          "lineNumber": 208
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.length",
+          "lineNumber": 209
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.charAt",
+          "lineNumber": 211
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 214
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.charAt",
+          "lineNumber": 218
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 222
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 223
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 224
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 225
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 226
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 227
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 228
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 229
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.length",
+          "lineNumber": 233
+        },
+        {
+          "caller": "unescape",
+          "callee": "is_hex_digit",
+          "lineNumber": 233
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.charAt",
+          "lineNumber": 233
+        },
+        {
+          "caller": "unescape",
+          "callee": "Exceptional.exception",
+          "lineNumber": 235
+        },
+        {
+          "caller": "unescape",
+          "callee": "new LexProblem",
+          "lineNumber": 235
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 236
+        },
+        {
+          "caller": "unescape",
+          "callee": "Integer.parseInt",
+          "lineNumber": 236
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.substring",
+          "lineNumber": 236
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.length",
+          "lineNumber": 242
+        },
+        {
+          "caller": "unescape",
+          "callee": "is_octal_digit",
+          "lineNumber": 242
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.charAt",
+          "lineNumber": 242
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.charAt",
+          "lineNumber": 243
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.append",
+          "lineNumber": 245
+        },
+        {
+          "caller": "unescape",
+          "callee": "Integer.parseInt",
+          "lineNumber": 245
+        },
+        {
+          "caller": "unescape",
+          "callee": "string.substring",
+          "lineNumber": 245
+        },
+        {
+          "caller": "unescape",
+          "callee": "Exceptional.exception",
+          "lineNumber": 250
+        },
+        {
+          "caller": "unescape",
+          "callee": "new LexProblem",
+          "lineNumber": 250
+        },
+        {
+          "caller": "unescape",
+          "callee": "Exceptional.value",
+          "lineNumber": 254
+        },
+        {
+          "caller": "unescape",
+          "callee": "b.toString",
+          "lineNumber": 254
+        },
+        {
+          "caller": "parse_char",
+          "callee": "string.length",
+          "lineNumber": 269
+        },
+        {
+          "caller": "parse_char",
+          "callee": "Exceptional.value",
+          "lineNumber": 270
+        },
+        {
+          "caller": "parse_char",
+          "callee": "string.charAt",
+          "lineNumber": 270
+        },
+        {
+          "caller": "parse_char",
+          "callee": "unescape(string.substring(1, string.length() - 1)).map",
+          "lineNumber": 271
+        },
+        {
+          "caller": "parse_char",
+          "callee": "unescape",
+          "lineNumber": 271
+        },
+        {
+          "caller": "parse_char",
+          "callee": "string.substring",
+          "lineNumber": 271
+        },
+        {
+          "caller": "parse_char",
+          "callee": "string.length",
+          "lineNumber": 271
+        },
+        {
+          "caller": "parse_char",
+          "callee": "str.charAt",
+          "lineNumber": 271
+        },
+        {
+          "caller": "parse_string",
+          "callee": "unescape",
+          "lineNumber": 286
+        },
+        {
+          "caller": "parse_string",
+          "callee": "string.substring",
+          "lineNumber": 286
+        },
+        {
+          "caller": "parse_string",
+          "callee": "string.length",
+          "lineNumber": 286
+        },
+        {
+          "caller": "escape",
+          "callee": "StringsUtil.escape",
+          "lineNumber": 304
+        },
+        {
+          "caller": "is_printable",
+          "callee": "StringsUtil.isPrintable",
+          "lineNumber": 320
+        },
+        {
+          "caller": "trim_whitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 334
+        },
+        {
+          "caller": "trim_whitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 335
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.length",
+          "lineNumber": 351
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.charAt",
+          "lineNumber": 352
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.length",
+          "lineNumber": 359
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.charAt",
+          "lineNumber": 362
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.indexOf",
+          "lineNumber": 365
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.length",
+          "lineNumber": 366
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.indexOf",
+          "lineNumber": 370
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 372
+        },
+        {
+          "caller": "trim_leading_whitespace",
+          "callee": "string.substring",
+          "lineNumber": 383
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "handle_line_comment",
+          "lineNumber": 397
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.length",
+          "lineNumber": 397
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.charAt",
+          "lineNumber": 400
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "handle_line_comment",
+          "lineNumber": 407
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.charAt",
+          "lineNumber": 414
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.lastIndexOf",
+          "lineNumber": 416
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.indexOf",
+          "lineNumber": 417
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "new IllegalArgumentException",
+          "lineNumber": 419
+        },
+        {
+          "caller": "trim_trailing_whitespace",
+          "callee": "string.substring",
+          "lineNumber": 429
+        },
+        {
+          "caller": "handle_line_comment",
+          "callee": "string.lastIndexOf",
+          "lineNumber": 437
+        },
+        {
+          "caller": "handle_line_comment",
+          "callee": "string.substring(0, end).indexOf",
+          "lineNumber": 440
+        },
+        {
+          "caller": "handle_line_comment",
+          "callee": "string.substring",
+          "lineNumber": 440
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 15,
+        "functionCount": 15,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/Concurrency.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 83,
+      "nonEmptyLines": 71,
+      "functions": [
+        {
+          "name": "Concurrency",
+          "startLine": 15,
+          "endLine": 15,
+          "params": []
+        },
+        {
+          "name": "await",
+          "startLine": 23,
+          "endLine": 34,
+          "params": [
+            "future",
+            "timeoutInMillis"
+          ]
+        },
+        {
+          "name": "waitForever",
+          "startLine": 44,
+          "endLine": 48,
+          "params": []
+        },
+        {
+          "name": "sleepLax",
+          "startLine": 56,
+          "endLine": 62,
+          "params": [
+            "milliseconds"
+          ]
+        },
+        {
+          "name": "sleep",
+          "startLine": 69,
+          "endLine": 80,
+          "params": [
+            "milliseconds"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "Concurrency",
+          "startLine": 14,
+          "endLine": 83,
+          "methods": [
+            "Concurrency",
+            "await",
+            "waitForever",
+            "sleepLax",
+            "sleep"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "await",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "waitForever",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "sleepLax",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "sleep",
+          "line": 69,
+          "isDefault": false
+        },
+        {
+          "name": "Concurrency",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "await",
+          "callee": "System.currentTimeMillis",
+          "lineNumber": 25
+        },
+        {
+          "caller": "await",
+          "callee": "Exceptional.value",
+          "lineNumber": 28
+        },
+        {
+          "caller": "await",
+          "callee": "future.get",
+          "lineNumber": 28
+        },
+        {
+          "caller": "await",
+          "callee": "Exceptional.exception",
+          "lineNumber": 30
+        },
+        {
+          "caller": "await",
+          "callee": "System.currentTimeMillis",
+          "lineNumber": 32
+        },
+        {
+          "caller": "waitForever",
+          "callee": "suppress",
+          "lineNumber": 47
+        },
+        {
+          "caller": "waitForever",
+          "callee": "Thread.currentThread().join",
+          "lineNumber": 47
+        },
+        {
+          "caller": "waitForever",
+          "callee": "Thread.currentThread",
+          "lineNumber": 47
+        },
+        {
+          "caller": "sleepLax",
+          "callee": "Thread.sleep",
+          "lineNumber": 58
+        },
+        {
+          "caller": "sleep",
+          "callee": "System.currentTimeMillis",
+          "lineNumber": 71
+        },
+        {
+          "caller": "sleep",
+          "callee": "System.currentTimeMillis",
+          "lineNumber": 74
+        },
+        {
+          "caller": "sleep",
+          "callee": "Thread.sleep",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/data/wrappers/Maybe.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 247,
+      "nonEmptyLines": 197,
+      "functions": [
+        {
+          "name": "Maybe",
+          "startLine": 29,
+          "endLine": 31,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "empty",
+          "startLine": 43,
+          "endLine": 45,
+          "params": []
+        },
+        {
+          "name": "from",
+          "startLine": 52,
+          "endLine": 55,
+          "params": [
+            "optional"
+          ]
+        },
+        {
+          "name": "fromNullable",
+          "startLine": 63,
+          "endLine": 65,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "toOptional",
+          "startLine": 75,
+          "endLine": 81,
+          "params": []
+        },
+        {
+          "name": "toNullable",
+          "startLine": 88,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "isEmpty",
+          "startLine": 95,
+          "endLine": 97,
+          "params": []
+        },
+        {
+          "name": "isPresent",
+          "startLine": 102,
+          "endLine": 104,
+          "params": []
+        },
+        {
+          "name": "get",
+          "startLine": 109,
+          "endLine": 112,
+          "params": []
+        },
+        {
+          "name": "ifPresent",
+          "startLine": 119,
+          "endLine": 121,
+          "params": [
+            "consumer"
+          ]
+        },
+        {
+          "name": "ifAbsent",
+          "startLine": 128,
+          "endLine": 130,
+          "params": [
+            "runnable"
+          ]
+        },
+        {
+          "name": "ifElse",
+          "startLine": 137,
+          "endLine": 142,
+          "params": [
+            "ifValue",
+            "ifException"
+          ]
+        },
+        {
+          "name": "map",
+          "startLine": 150,
+          "endLine": 154,
+          "params": [
+            "f"
+          ]
+        },
+        {
+          "name": "map",
+          "startLine": 162,
+          "endLine": 166,
+          "params": [
+            "ifPresent",
+            "ifAbsent"
+          ]
+        },
+        {
+          "name": "flatMap",
+          "startLine": 174,
+          "endLine": 178,
+          "params": [
+            "mapper"
+          ]
+        },
+        {
+          "name": "filter",
+          "startLine": 186,
+          "endLine": 190,
+          "params": [
+            "predicate"
+          ]
+        },
+        {
+          "name": "or",
+          "startLine": 197,
+          "endLine": 199,
+          "params": [
+            "other"
+          ]
+        },
+        {
+          "name": "orGet",
+          "startLine": 206,
+          "endLine": 208,
+          "params": [
+            "supplier"
+          ]
+        },
+        {
+          "name": "orThrow",
+          "startLine": 215,
+          "endLine": 218,
+          "params": [
+            "exceptionSupplier"
+          ]
+        },
+        {
+          "name": "equals",
+          "startLine": 222,
+          "endLine": 226,
+          "params": [
+            "obj"
+          ]
+        },
+        {
+          "name": "hashCode",
+          "startLine": 234,
+          "endLine": 236,
+          "params": []
+        },
+        {
+          "name": "toString",
+          "startLine": 240,
+          "endLine": 244,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Maybe",
+          "startLine": 17,
+          "endLine": 247,
+          "methods": [
+            "Maybe",
+            "empty",
+            "from",
+            "fromNullable",
+            "toOptional",
+            "toNullable",
+            "isEmpty",
+            "isPresent",
+            "get",
+            "ifPresent",
+            "ifAbsent",
+            "ifElse",
+            "map",
+            "map",
+            "flatMap",
+            "filter",
+            "or",
+            "orGet",
+            "orThrow",
+            "equals",
+            "hashCode",
+            "toString"
+          ],
+          "properties": [
+            "value",
+            "NOTHING",
+            "EMPTY"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "Maybe",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "empty",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "from",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "fromNullable",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "toOptional",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "toNullable",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "isEmpty",
+          "line": 95,
+          "isDefault": false
+        },
+        {
+          "name": "isPresent",
+          "line": 102,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 109,
+          "isDefault": false
+        },
+        {
+          "name": "ifPresent",
+          "line": 119,
+          "isDefault": false
+        },
+        {
+          "name": "ifAbsent",
+          "line": 128,
+          "isDefault": false
+        },
+        {
+          "name": "ifElse",
+          "line": 137,
+          "isDefault": false
+        },
+        {
+          "name": "map",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "map",
+          "line": 162,
+          "isDefault": false
+        },
+        {
+          "name": "flatMap",
+          "line": 174,
+          "isDefault": false
+        },
+        {
+          "name": "filter",
+          "line": 186,
+          "isDefault": false
+        },
+        {
+          "name": "or",
+          "line": 197,
+          "isDefault": false
+        },
+        {
+          "name": "orGet",
+          "line": 206,
+          "isDefault": false
+        },
+        {
+          "name": "orThrow",
+          "line": 215,
+          "isDefault": false
+        },
+        {
+          "name": "equals",
+          "line": 222,
+          "isDefault": false
+        },
+        {
+          "name": "hashCode",
+          "line": 234,
+          "isDefault": false
+        },
+        {
+          "name": "toString",
+          "line": 240,
+          "isDefault": false
+        },
+        {
+          "name": "Maybe",
+          "line": 17,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "empty",
+          "callee": "Util.cast",
+          "lineNumber": 44
+        },
+        {
+          "caller": "from",
+          "callee": "Util.cast",
+          "lineNumber": 54
+        },
+        {
+          "caller": "from",
+          "callee": "optional.map(Maybe::new).orElseGet",
+          "lineNumber": 54
+        },
+        {
+          "caller": "from",
+          "callee": "optional.map",
+          "lineNumber": 54
+        },
+        {
+          "caller": "fromNullable",
+          "callee": "Maybe.empty",
+          "lineNumber": 64
+        },
+        {
+          "caller": "fromNullable",
+          "callee": "new Maybe<>",
+          "lineNumber": 64
+        },
+        {
+          "caller": "toOptional",
+          "callee": "new IllegalStateException",
+          "lineNumber": 77
+        },
+        {
+          "caller": "toOptional",
+          "callee": "Optional.empty",
+          "lineNumber": 79
+        },
+        {
+          "caller": "toOptional",
+          "callee": "Optional.of",
+          "lineNumber": 80
+        },
+        {
+          "caller": "get",
+          "callee": "new NoSuchElementException",
+          "lineNumber": 110
+        },
+        {
+          "caller": "ifPresent",
+          "callee": "consumer.accept",
+          "lineNumber": 120
+        },
+        {
+          "caller": "ifAbsent",
+          "callee": "runnable.run",
+          "lineNumber": 129
+        },
+        {
+          "caller": "ifElse",
+          "callee": "ifValue.accept",
+          "lineNumber": 139
+        },
+        {
+          "caller": "ifElse",
+          "callee": "ifException.run",
+          "lineNumber": 141
+        },
+        {
+          "caller": "map",
+          "callee": "empty",
+          "lineNumber": 152
+        },
+        {
+          "caller": "map",
+          "callee": "new Maybe<>",
+          "lineNumber": 153
+        },
+        {
+          "caller": "map",
+          "callee": "f.apply",
+          "lineNumber": 153
+        },
+        {
+          "caller": "map",
+          "callee": "ifPresent.apply",
+          "lineNumber": 164
+        },
+        {
+          "caller": "map",
+          "callee": "ifAbsent.get",
+          "lineNumber": 165
+        },
+        {
+          "caller": "flatMap",
+          "callee": "empty",
+          "lineNumber": 176
+        },
+        {
+          "caller": "flatMap",
+          "callee": "mapper.apply",
+          "lineNumber": 177
+        },
+        {
+          "caller": "filter",
+          "callee": "predicate.test",
+          "lineNumber": 189
+        },
+        {
+          "caller": "filter",
+          "callee": "empty",
+          "lineNumber": 189
+        },
+        {
+          "caller": "orGet",
+          "callee": "supplier.get",
+          "lineNumber": 207
+        },
+        {
+          "caller": "orThrow",
+          "callee": "exceptionSupplier.get",
+          "lineNumber": 217
+        },
+        {
+          "caller": "equals",
+          "callee": "Objects.equals",
+          "lineNumber": 225
+        },
+        {
+          "caller": "hashCode",
+          "callee": "Objects.hashCode",
+          "lineNumber": 235
+        },
+        {
+          "caller": "toString",
+          "callee": "String.format",
+          "lineNumber": 242
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 23,
+        "functionCount": 22,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "src/norswap/utils/exceptions/Exceptional.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 220,
+      "nonEmptyLines": 178,
+      "functions": [
+        {
+          "name": "Exceptional",
+          "startLine": 23,
+          "endLine": 26,
+          "params": [
+            "value",
+            "exception"
+          ]
+        },
+        {
+          "name": "of",
+          "startLine": 34,
+          "endLine": 40,
+          "params": [
+            "supplier"
+          ]
+        },
+        {
+          "name": "value",
+          "startLine": 47,
+          "endLine": 49,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "exception",
+          "startLine": 56,
+          "endLine": 58,
+          "params": [
+            "exception"
+          ]
+        },
+        {
+          "name": "error",
+          "startLine": 66,
+          "endLine": 68,
+          "params": [
+            "message"
+          ]
+        },
+        {
+          "name": "get",
+          "startLine": 77,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "nullable",
+          "startLine": 89,
+          "endLine": 91,
+          "params": []
+        },
+        {
+          "name": "unwrap",
+          "startLine": 98,
+          "endLine": 100,
+          "params": []
+        },
+        {
+          "name": "exception",
+          "startLine": 107,
+          "endLine": 109,
+          "params": []
+        },
+        {
+          "name": "isValue",
+          "startLine": 116,
+          "endLine": 118,
+          "params": []
+        },
+        {
+          "name": "isException",
+          "startLine": 125,
+          "endLine": 127,
+          "params": []
+        },
+        {
+          "name": "ifValue",
+          "startLine": 134,
+          "endLine": 136,
+          "params": [
+            "consumer"
+          ]
+        },
+        {
+          "name": "ifException",
+          "startLine": 143,
+          "endLine": 145,
+          "params": [
+            "consumer"
+          ]
+        },
+        {
+          "name": "ifElse",
+          "startLine": 153,
+          "endLine": 158,
+          "params": [
+            "ifValue",
+            "ifException"
+          ]
+        },
+        {
+          "name": "map",
+          "startLine": 166,
+          "endLine": 170,
+          "params": [
+            "f"
+          ]
+        },
+        {
+          "name": "map",
+          "startLine": 178,
+          "endLine": 182,
+          "params": [
+            "ifValue",
+            "ifException"
+          ]
+        },
+        {
+          "name": "flatmap",
+          "startLine": 190,
+          "endLine": 194,
+          "params": [
+            "f"
+          ]
+        },
+        {
+          "name": "toMaybe",
+          "startLine": 202,
+          "endLine": 206,
+          "params": []
+        },
+        {
+          "name": "message",
+          "startLine": 213,
+          "endLine": 217,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "Exceptional",
+          "startLine": 14,
+          "endLine": 220,
+          "methods": [
+            "Exceptional",
+            "of",
+            "value",
+            "exception",
+            "error",
+            "get",
+            "nullable",
+            "unwrap",
+            "exception",
+            "isValue",
+            "isException",
+            "ifValue",
+            "ifException",
+            "ifElse",
+            "map",
+            "map",
+            "flatmap",
+            "toMaybe",
+            "message"
+          ],
+          "properties": [
+            "value",
+            "exception"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "of",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "value",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "exception",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "error",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "get",
+          "line": 77,
+          "isDefault": false
+        },
+        {
+          "name": "nullable",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "unwrap",
+          "line": 98,
+          "isDefault": false
+        },
+        {
+          "name": "exception",
+          "line": 107,
+          "isDefault": false
+        },
+        {
+          "name": "isValue",
+          "line": 116,
+          "isDefault": false
+        },
+        {
+          "name": "isException",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "ifValue",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "ifException",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "ifElse",
+          "line": 153,
+          "isDefault": false
+        },
+        {
+          "name": "map",
+          "line": 166,
+          "isDefault": false
+        },
+        {
+          "name": "map",
+          "line": 178,
+          "isDefault": false
+        },
+        {
+          "name": "flatmap",
+          "line": 190,
+          "isDefault": false
+        },
+        {
+          "name": "toMaybe",
+          "line": 202,
+          "isDefault": false
+        },
+        {
+          "name": "message",
+          "line": 213,
+          "isDefault": false
+        },
+        {
+          "name": "Exceptional",
+          "line": 14,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "of",
+          "callee": "Exceptional.value",
+          "lineNumber": 36
+        },
+        {
+          "caller": "of",
+          "callee": "supplier.get",
+          "lineNumber": 36
+        },
+        {
+          "caller": "of",
+          "callee": "Exceptional.exception",
+          "lineNumber": 38
+        },
+        {
+          "caller": "value",
+          "callee": "new Exceptional<>",
+          "lineNumber": 48
+        },
+        {
+          "caller": "exception",
+          "callee": "new Exceptional<>",
+          "lineNumber": 57
+        },
+        {
+          "caller": "error",
+          "callee": "new Exceptional<>",
+          "lineNumber": 67
+        },
+        {
+          "caller": "error",
+          "callee": "new NoStackException",
+          "lineNumber": 67
+        },
+        {
+          "caller": "get",
+          "callee": "Exceptions.rethrow",
+          "lineNumber": 78
+        },
+        {
+          "caller": "ifValue",
+          "callee": "consumer.accept",
+          "lineNumber": 135
+        },
+        {
+          "caller": "ifException",
+          "callee": "consumer.accept",
+          "lineNumber": 144
+        },
+        {
+          "caller": "ifElse",
+          "callee": "ifValue.accept",
+          "lineNumber": 155
+        },
+        {
+          "caller": "ifElse",
+          "callee": "ifException.accept",
+          "lineNumber": 157
+        },
+        {
+          "caller": "map",
+          "callee": "Exceptional.value",
+          "lineNumber": 168
+        },
+        {
+          "caller": "map",
+          "callee": "f.apply",
+          "lineNumber": 168
+        },
+        {
+          "caller": "map",
+          "callee": "Exceptional.exception",
+          "lineNumber": 169
+        },
+        {
+          "caller": "map",
+          "callee": "ifValue.apply",
+          "lineNumber": 180
+        },
+        {
+          "caller": "map",
+          "callee": "ifException.apply",
+          "lineNumber": 181
+        },
+        {
+          "caller": "flatmap",
+          "callee": "f.apply",
+          "lineNumber": 192
+        },
+        {
+          "caller": "flatmap",
+          "callee": "Exceptional.exception",
+          "lineNumber": 193
+        },
+        {
+          "caller": "toMaybe",
+          "callee": "Maybe.empty",
+          "lineNumber": 204
+        },
+        {
+          "caller": "toMaybe",
+          "callee": "new Maybe<>",
+          "lineNumber": 205
+        },
+        {
+          "caller": "message",
+          "callee": "exception.getMessage",
+          "lineNumber": 216
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 19,
+        "functionCount": 19,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "test/lang/java/LexUtilsTest.java",
+      "language": "java",
+      "fileCategory": "code",
+      "totalLines": 205,
+      "nonEmptyLines": 175,
+      "functions": [
+        {
+          "name": "assertEquals",
+          "startLine": 14,
+          "endLine": 18,
+          "params": [
+            "result",
+            "value"
+          ]
+        },
+        {
+          "name": "assertEquals",
+          "startLine": 22,
+          "endLine": 26,
+          "params": [
+            "result",
+            "value"
+          ]
+        },
+        {
+          "name": "assertEquals",
+          "startLine": 30,
+          "endLine": 34,
+          "params": [
+            "result",
+            "value"
+          ]
+        },
+        {
+          "name": "assertProblem",
+          "startLine": 38,
+          "endLine": 42,
+          "params": [
+            "result",
+            "msg"
+          ]
+        },
+        {
+          "name": "testParseFloating",
+          "startLine": 46,
+          "endLine": 96,
+          "params": []
+        },
+        {
+          "name": "testParseInteger",
+          "startLine": 100,
+          "endLine": 121,
+          "params": []
+        },
+        {
+          "name": "testUnescape",
+          "startLine": 125,
+          "endLine": 141,
+          "params": []
+        },
+        {
+          "name": "testEscape",
+          "startLine": 145,
+          "endLine": 156,
+          "params": []
+        },
+        {
+          "name": "testTrimLeadingWhitespace",
+          "startLine": 160,
+          "endLine": 178,
+          "params": []
+        },
+        {
+          "name": "testTrimTrailingWhitespace",
+          "startLine": 182,
+          "endLine": 202,
+          "params": []
+        }
+      ],
+      "classes": [
+        {
+          "name": "LexUtilsTest",
+          "startLine": 10,
+          "endLine": 205,
+          "methods": [
+            "assertEquals",
+            "assertEquals",
+            "assertEquals",
+            "assertProblem",
+            "testParseFloating",
+            "testParseInteger",
+            "testUnescape",
+            "testEscape",
+            "testTrimLeadingWhitespace",
+            "testTrimTrailingWhitespace"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "testParseFloating",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "testParseInteger",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "testUnescape",
+          "line": 125,
+          "isDefault": false
+        },
+        {
+          "name": "testEscape",
+          "line": 145,
+          "isDefault": false
+        },
+        {
+          "name": "testTrimLeadingWhitespace",
+          "line": 160,
+          "isDefault": false
+        },
+        {
+          "name": "testTrimTrailingWhitespace",
+          "line": 182,
+          "isDefault": false
+        },
+        {
+          "name": "LexUtilsTest",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "assertEquals",
+          "callee": "assertTrue",
+          "lineNumber": 16
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.isValue",
+          "lineNumber": 16
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 17
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.get().doubleValue",
+          "lineNumber": 17
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.get",
+          "lineNumber": 17
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "assertTrue",
+          "lineNumber": 24
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.isValue",
+          "lineNumber": 24
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 25
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.get().longValue",
+          "lineNumber": 25
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.get",
+          "lineNumber": 25
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "assertTrue",
+          "lineNumber": 32
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.isValue",
+          "lineNumber": 32
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 33
+        },
+        {
+          "caller": "assertEquals",
+          "callee": "result.get",
+          "lineNumber": 33
+        },
+        {
+          "caller": "assertProblem",
+          "callee": "assertTrue",
+          "lineNumber": 40
+        },
+        {
+          "caller": "assertProblem",
+          "callee": "result.isException",
+          "lineNumber": 40
+        },
+        {
+          "caller": "assertProblem",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 41
+        },
+        {
+          "caller": "assertProblem",
+          "callee": "result.exception().getMessage",
+          "lineNumber": 41
+        },
+        {
+          "caller": "assertProblem",
+          "callee": "result.exception",
+          "lineNumber": 41
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 48
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 48
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 49
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 50
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 50
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 51
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 52
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 53
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 53
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 54
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 54
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 55
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 55
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 56
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 57
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 58
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 59
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 59
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 60
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 60
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 61
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 61
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 62
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 63
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 63
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 64
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 65
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 65
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 66
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 66
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 67
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 67
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 68
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 68
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 70
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 70
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 71
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 71
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 72
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 72
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 73
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 73
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 74
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 74
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 75
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 75
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 76
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 76
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertEquals",
+          "lineNumber": 77
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 77
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 79
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 79
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 81
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 81
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 83
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 83
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 85
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 85
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 88
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 88
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 90
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 90
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 92
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 92
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "assertProblem",
+          "lineNumber": 94
+        },
+        {
+          "caller": "testParseFloating",
+          "callee": "parse_floating",
+          "lineNumber": 94
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 103
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 103
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 104
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 104
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 105
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 105
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 106
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 106
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 107
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 107
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 108
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 108
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 109
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 109
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 110
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 110
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 111
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 111
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 112
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 112
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 113
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 113
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 114
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 114
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertEquals",
+          "lineNumber": 115
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 115
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertProblem",
+          "lineNumber": 117
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 117
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "assertProblem",
+          "lineNumber": 119
+        },
+        {
+          "caller": "testParseInteger",
+          "callee": "parse_integer",
+          "lineNumber": 119
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 127
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 127
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 128
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 128
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 129
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 129
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 130
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 130
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 131
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 131
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 132
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 132
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 133
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 133
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 134
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 134
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 135
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 135
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertEquals",
+          "lineNumber": 136
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 136
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertProblem",
+          "lineNumber": 138
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 138
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertProblem",
+          "lineNumber": 139
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 139
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "assertProblem",
+          "lineNumber": 140
+        },
+        {
+          "caller": "testUnescape",
+          "callee": "unescape",
+          "lineNumber": 140
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 147
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 147
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 148
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 148
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 149
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 149
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 150
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 150
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 151
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 151
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 152
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 152
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 153
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 153
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 154
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 154
+        },
+        {
+          "caller": "testEscape",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 155
+        },
+        {
+          "caller": "testEscape",
+          "callee": "escape",
+          "lineNumber": 155
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 162
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 162
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 163
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 163
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 164
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 164
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 165
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 165
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 166
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 166
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 167
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 167
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 168
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 168
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 169
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 169
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 171
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 171
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 172
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 172
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 173
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 173
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 174
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 174
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 175
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 175
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 176
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 176
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 177
+        },
+        {
+          "caller": "testTrimLeadingWhitespace",
+          "callee": "trim_leading_whitespace",
+          "lineNumber": 177
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 184
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 184
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 185
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 185
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 186
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 186
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 187
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 187
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 188
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 188
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 189
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 189
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 190
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 190
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 191
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 191
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 193
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 193
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 194
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 194
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 195
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 195
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 196
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 196
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 197
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 197
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 198
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 198
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 199
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 199
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 200
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 200
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "Assert.assertEquals",
+          "lineNumber": 201
+        },
+        {
+          "caller": "testTrimTrailingWhitespace",
+          "callee": "trim_trailing_whitespace",
+          "lineNumber": 201
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 7,
+        "functionCount": 10,
+        "classCount": 1
+      }
+    }
+  ]
+}

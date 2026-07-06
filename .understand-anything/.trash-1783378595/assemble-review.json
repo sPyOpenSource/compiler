@@ -1,0 +1,36 @@
+{
+  "issues": [
+    "Severe node ID format inconsistency: 6+ incompatible formats coexist (e.g., `class:SimpleName`, `class:SimpleName::path`, `class:path#SimpleName`, `function:method`, `function:method::path`, `function:path#method:line`). This is the root cause of most edge loss — edges from one batch reference IDs that don't exist in other batches.",
+    "Batch 17 uses a completely distinct ID scheme (`class:path#ClassName`, `function:path#method:line`) that cannot match any other batch, causing all its cross-batch edges to drop.",
+    "196 nodes have empty summaries and empty tags — all are function/method nodes from batches with the `function:path#method:line` format (primarily batch 9 and batch 17).",
+    "8 duplicate class entries exist (e.g., `class:StIf` appears as both a simple ID from the Rust grammar and as `class:src/.../StIf.java:StIf` from the Java grammar). The merge script merged by exact ID match, so the same real-world class in different subprojects became separate nodes.",
+    "12 overload groups where the same method name appears as separate function nodes with appended line-number suffixes (e.g., `visit:259`, `visit:265`, ...) instead of being modeled as a single overloaded function with multiple signatures.",
+    "132 file nodes lack a `language` field, making type-based filtering unreliable. Only the earliest file nodes (batches 1-2) have `language: 'java'` set.",
+    "`type: 'file:java'` used for 23 nodes — the subtype leaked into the type field instead of being a separate property, likely a batch-generation bug.",
+    "79 simple classes (<= 2 methods) are incorrectly marked `complexity: 'moderate'` when they should be `complexity: 'simple'`.",
+    "18 edges use type `'import'` (singular) vs 530 using `'imports'` (plural) — typo inconsistency.",
+    "Config files use inconsistent type values: some `'type': 'config'`, some `'type': 'node'` with `id: 'config:...'`",
+    "18 nodes have type `'code'` which is a flat code-blob extraction without file/class/function decomposition. These nodes lack proper summaries, tags, and structure."
+  ],
+  "warnings": [
+    "Only 129 edges (13.6%) cross module boundaries (e.g., autumn→utils, rust→uranium). The graph is heavily intra-module, meaning the understanding of how modules depend on each other is weak.",
+    "The importMap recovery added 269 edges, but many more import relationships were likely lost due to ID format mismatches. The actual number of imports across batches is likely 500+.",
+    "Node density is low: 990 nodes / 950 edges = ~1 edge per node. A well-connected codebase graph should have 2-3 edges per node for meaningful analysis.",
+    "Several file nodes lack `sizeLines`, `startLine`, `endLine`, or `methodCount` fields that other file nodes have, making analytics unreliable.",
+    "Function nodes in the `function:simple` format (236 nodes) have no line number info, no params, and no complexity assessment beyond 'moderate'."
+  ],
+  "recommendations": [
+    "Normalize all node IDs to a single canonical format: `type:path#name` (e.g., `class:src/norswap/lang/rust/ast/Node.java#Node`, `function:src/norswap/lang/rust/ast/Node.java#hashCode`). Apply this retroactively to all batches before merge.",
+    "Deduplicate nodes after ID normalization: merge the 8+ duplicate class entries and 12+ overloaded function groups into single nodes with metadata arrays.",
+    "Add a re-run of import edge generation after ID normalization. Currently ~530 import edges exist; after ID alignment this should rise to 800+.",
+    "Fill missing summaries and tags for the 196 empty nodes — use a batch LLM call keyed on filePath and function signature.",
+    "Add `language: 'java'` to all 132 file nodes missing the field. Add `sizeLines`, `methodCount` to all file nodes where missing.",
+    "Fix `type: 'file:java'` → `type: 'file'` with a separate `language: 'java'` field.",
+    "Drop or convert the 18 `type: 'code'` nodes into proper file + class nodes, or tag them clearly as 'incomplete-extraction'.",
+    "Normalize edge type naming: consolidate `'import'` → `'imports'`.",
+    "Re-evaluate complexity on all 79 simple classes tagged as 'moderate' — use methodCount + SLOC heuristics.",
+    "Consider adding `calls`, `extends`, `implements`, and `memberOf` edge types currently missing from the graph. The only structural edges are `contains` and `imports`.",
+    "Fix the batch generation pipeline to emit a consistent `type` field for config files (all `'type': 'config'`)."
+  ],
+  "qualityScore": "fair"
+}

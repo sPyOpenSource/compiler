@@ -1,0 +1,2756 @@
+{
+  "nodes": [
+    {
+      "id": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "type": "file",
+      "name": "LazyParser.java",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Lazy parser that wraps a Supplier<Parser> for recursive grammar definitions with forward references.",
+      "tags": ["parser", "lazy", "recursive", "deferred"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "type": "file",
+      "name": "LeftExpression.java",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Parser for left-associative infix/suffix expressions with operator precedence support.",
+      "tags": ["parser", "expression", "left-associative", "infix", "suffix"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Longest.java",
+      "type": "file",
+      "name": "Longest.java",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Parser that tries all alternatives and returns the longest match.",
+      "tags": ["parser", "longest-match", "disambiguation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Lookahead.java",
+      "type": "file",
+      "name": "Lookahead.java",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Positive lookahead parser that tests a pattern without consuming input.",
+      "tags": ["parser", "lookahead", "zero-width", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Memo.java",
+      "type": "file",
+      "name": "Memo.java",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Memoization parser that caches parse results keyed by a context extractor for performance optimization.",
+      "tags": ["parser", "memoization", "caching", "optimization"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Not.java",
+      "type": "file",
+      "name": "Not.java",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Negative lookahead parser that succeeds only if the child parser fails.",
+      "tags": ["parser", "negative-lookahead", "predicate", "negation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/ObjectPredicate.java",
+      "type": "file",
+      "name": "ObjectPredicate.java",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Parser that tests the current parse object against a predicate, with static factory methods for common cases.",
+      "tags": ["parser", "predicate", "object-test", "factory"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Optional.java",
+      "type": "file",
+      "name": "Optional.java",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Parser that tries a child and succeeds regardless of whether the child matched.",
+      "tags": ["parser", "optional", "zero-or-one"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Repeat.java",
+      "type": "file",
+      "name": "Repeat.java",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Parser that repeats a child parser a specified number of times (min/exact).",
+      "tags": ["parser", "repeat", "counted", "repetition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "type": "file",
+      "name": "RightExpression.java",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Parser for right-associative infix/prefix expressions with operator precedence support.",
+      "tags": ["parser", "expression", "right-associative", "infix", "prefix"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/Sequence.java",
+      "type": "file",
+      "name": "Sequence.java",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Parser that matches a sequence of child parsers in order.",
+      "tags": ["parser", "sequence", "concatenation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "type": "file",
+      "name": "StringChoice.java",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Efficient trie-based parser for matching one of many string alternatives.",
+      "tags": ["parser", "string-choice", "trie", "alternatives"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "type": "file",
+      "name": "StringMatch.java",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Parser that matches an exact literal string with optional whitespace handling.",
+      "tags": ["parser", "string-match", "literal", "whitespace"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "type": "file",
+      "name": "TrailingWhitespace.java",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Parser wrapper that consumes trailing whitespace after its child parser matches.",
+      "tags": ["parser", "whitespace", "wrapper", "trivia"],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:src/norswap/autumn/util/ParserStringsUtil.java",
+      "type": "file",
+      "name": "ParserStringsUtil.java",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Utility class for pretty-printing parser toString() output with parameterized component parsing.",
+      "tags": ["utility", "pretty-print", "string-parsing", "formatting"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "type": "file",
+      "name": "CopyVisitor.java",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visitor that creates deep copies of parser trees, handling recursive parsers via LazyParser patching.",
+      "tags": ["visitor", "copy", "deep-clone", "recursion", "parser-tree"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "type": "file",
+      "name": "VisitorFirstParsers.java",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Visitor that computes the set of first parsers (first terminals) for each parser in the grammar.",
+      "tags": ["visitor", "first-set", "grammar-analysis", "nullable"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/visitors/VisitorNullable.java",
+      "type": "file",
+      "name": "VisitorNullable.java",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Visitor that computes the set of nullable parsers (parsers that can match empty input) in a grammar.",
+      "tags": ["visitor", "nullable", "grammar-analysis", "empty-match"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "type": "file",
+      "name": "VisitorNullableRepetition.java",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Visitor that detects parsers with nullable repetitions (zero-or-more loops that can match empty).",
+      "tags": ["visitor", "nullable-repetition", "grammar-analysis", "infinite-loop"],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "type": "file",
+      "name": "WellFormednessChecker.java",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Grammar well-formedness checker that detects left recursion and nullable repetitions.",
+      "tags": ["visitor", "well-formedness", "left-recursion", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/lang/SimpleXML.java",
+      "type": "file",
+      "name": "SimpleXML.java",
+      "filePath": "src/norswap/lang/SimpleXML.java",
+      "summary": "Simple XML parser grammar built with Autumn combinators, supporting tags with optional close-tag validation.",
+      "tags": ["xml", "grammar", "autumn", "parsing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:src/norswap/utils/data/wrappers/Slot.java",
+      "type": "file",
+      "name": "Slot.java",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Generic mutable reference wrapper (single-value container) with proper equals/hashCode/toString.",
+      "tags": ["utility", "wrapper", "mutable", "data-structure"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "type": "class",
+      "name": "LazyParser",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Deferred parser that uses a supplier to lazily resolve the actual parser, enabling forward references.",
+      "tags": ["parser", "lazy", "deferred"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "type": "class",
+      "name": "LeftExpression",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Implements left-associative expression parsing with infix and suffix operator support.",
+      "tags": ["parser", "left-associative", "expression"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "type": "class",
+      "name": "Longest",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Order-independent choice parser that selects the longest match among alternatives.",
+      "tags": ["parser", "longest", "choice"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "type": "class",
+      "name": "Lookahead",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Positive zero-width lookahead parser that tests without consuming input.",
+      "tags": ["parser", "lookahead", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "type": "class",
+      "name": "Memo",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Memoization parser wrapper that caches results per context for parse-time optimization.",
+      "tags": ["parser", "memoization", "cache"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "type": "class",
+      "name": "Not",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Negative lookahead parser that succeeds only when the child fails.",
+      "tags": ["parser", "not", "negative", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "type": "class",
+      "name": "ObjectPredicate",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Parser that applies a predicate to the current parse object, with instanceof and any() factories.",
+      "tags": ["parser", "predicate", "type-check"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "type": "class",
+      "name": "Optional",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Optional parser that attempts a child and always succeeds.",
+      "tags": ["parser", "optional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "type": "class",
+      "name": "Repeat",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Counted repetition parser that matches a child a minimum or exact number of times.",
+      "tags": ["parser", "repeat", "repetition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "type": "class",
+      "name": "RightExpression",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Implements right-associative expression parsing with infix and prefix operator support.",
+      "tags": ["parser", "right-associative", "expression"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "type": "class",
+      "name": "Sequence",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Sequential parser that matches children in order.",
+      "tags": ["parser", "sequence"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "type": "class",
+      "name": "StringChoice",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Trie-based string choice parser for efficiently matching one of many string alternatives.",
+      "tags": ["parser", "string-choice", "trie"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "type": "class",
+      "name": "StringMatch",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Literal string matcher with codepoint-level comparison and optional whitespace handling.",
+      "tags": ["parser", "string", "literal"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "type": "class",
+      "name": "TrailingWhitespace",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Parser wrapper that consumes trailing whitespace after a child match.",
+      "tags": ["parser", "whitespace", "wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "type": "class",
+      "name": "ParserStringsUtil",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Static utility methods for pretty-printing and parsing parser toString representations.",
+      "tags": ["utility", "formatting", "string-parsing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "type": "class",
+      "name": "CopyVisitor",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visitor-based deep parser tree copier with recursive parser handling via LazyParser.",
+      "tags": ["visitor", "copy", "deep-clone"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "type": "class",
+      "name": "VisitorFirstParsers",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Visitor computing first-terminal sets for all parser types with nullable awareness.",
+      "tags": ["visitor", "first-set", "grammar-analysis"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "type": "class",
+      "name": "VisitorNullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Visitor computing nullable parsers (those matching empty input) across all parser types.",
+      "tags": ["visitor", "nullable", "grammar-analysis"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "type": "class",
+      "name": "VisitorNullableRepetition",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Visitor detecting nullable repetitions (loops that can match zero times).",
+      "tags": ["visitor", "nullable-repetition", "grammar-analysis"],
+      "complexity": "complex"
+    },
+    {
+      "id": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "type": "class",
+      "name": "WellFormednessChecker",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Grammar well-formedness validator detecting left recursion and nullable repetitions.",
+      "tags": ["visitor", "validation", "left-recursion"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/lang/SimpleXML.java#SimpleXML",
+      "type": "class",
+      "name": "SimpleXML",
+      "filePath": "src/norswap/lang/SimpleXML.java",
+      "summary": "Autumn-based grammar for a simple XML subset with tag matching validation.",
+      "tags": ["xml", "grammar", "autumn"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "type": "class",
+      "name": "Slot",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Mutable single-value container with proper object protocol implementations.",
+      "tags": ["utility", "mutable", "wrapper"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#LazyParser:48",
+      "type": "function",
+      "name": "LazyParser",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Constructor accepting a parser supplier.",
+      "tags": ["constructor", "lazy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#child:39",
+      "type": "function",
+      "name": "child",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Returns the lazily-resolved child parser via the supplier.",
+      "tags": ["lazy", "accessor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#doparse:55",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Delegates parsing to the lazily-resolved child parser.",
+      "tags": ["parse", "delegate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#accept:62",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#children:68",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Returns the singleton list containing the child parser.",
+      "tags": ["children", "tree"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LazyParser.java#toStringFull:74",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/LazyParser.java",
+      "summary": "Returns full string representation of the lazy parser.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression:72",
+      "type": "function",
+      "name": "LeftExpression",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Constructor accepting left/right subparsers, infix/suffix arrays, step actions, and operator requirement flag.",
+      "tags": ["constructor", "expression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LeftExpression.java#doparse:94",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Core left-associative expression parsing loop with infix and suffix operator handling.",
+      "tags": ["parse", "expression", "left-associative"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LeftExpression.java#accept:142",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LeftExpression.java#children:153",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Returns an unmodifiable list of all child parsers (left, right, infixes, suffixes).",
+      "tags": ["children", "tree"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/LeftExpression.java#toStringFull:166",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/LeftExpression.java",
+      "summary": "Returns full string representation with all subparsers.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Longest.java#Longest:34",
+      "type": "function",
+      "name": "Longest",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Constructor for Longest parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Longest.java#doparse:41",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Tries all child parsers and selects the one with the longest match.",
+      "tags": ["parse", "longest-match"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Longest.java#children:28",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Returns unmodifiable list of child parsers.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Longest.java#accept:73",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Longest.java#toStringFull:79",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Longest.java",
+      "summary": "Returns string representation with all children.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Lookahead.java#Lookahead:22",
+      "type": "function",
+      "name": "Lookahead",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Constructor accepting the lookahead child parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Lookahead.java#doparse:29",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Tests the child parser and rolls back, returning success/failure without consuming input.",
+      "tags": ["parse", "lookahead"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Lookahead.java#accept:42",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Lookahead.java#children:48",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Returns the singleton child list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Lookahead.java#toStringFull:54",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Lookahead.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Memo.java#Memo:54",
+      "type": "function",
+      "name": "Memo",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Constructor accepting child parser, memoizer, and context extractor.",
+      "tags": ["constructor", "memoization"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Memo.java#doparse:64",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Parses with memoization: checks cache first, then caches and returns result.",
+      "tags": ["parse", "memoization", "cache"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Memo.java#accept:92",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Memo.java#children:98",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Returns the singleton child list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Memo.java#toStringFull:104",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Memo.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Not.java#Not:24",
+      "type": "function",
+      "name": "Not",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Constructor accepting the negated child parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Not.java#doparse:31",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Succeeds if the child parser fails; manages error messages on success/failure.",
+      "tags": ["parse", "negation", "not"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Not.java#accept:49",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Not.java#children:55",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Returns the singleton child list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Not.java#toStringFull:61",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Not.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate:39",
+      "type": "function",
+      "name": "ObjectPredicate",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Constructor accepting a name and predicate.",
+      "tags": ["constructor", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#doparse:47",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Tests the current parse object against the predicate.",
+      "tags": ["parse", "predicate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#accept:59",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#children:65",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Returns empty list (no children).",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#instance:74",
+      "type": "function",
+      "name": "instance",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Static factory for instanceof-based predicate parser.",
+      "tags": ["factory", "instanceof", "static"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#any:84",
+      "type": "function",
+      "name": "any",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Static factory for a predicate that matches any object.",
+      "tags": ["factory", "any", "static"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/ObjectPredicate.java#toStringFull:91",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/ObjectPredicate.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Optional.java#Optional:22",
+      "type": "function",
+      "name": "Optional",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Constructor accepting the optional child parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Optional.java#doparse:29",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Attempts child parse and always succeeds.",
+      "tags": ["parse", "optional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Optional.java#accept:37",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Optional.java#children:43",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Returns the singleton child list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Optional.java#toStringFull:49",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Optional.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Repeat.java#Repeat:35",
+      "type": "function",
+      "name": "Repeat",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Constructor accepting min count, exact flag, and child parser.",
+      "tags": ["constructor", "repetition"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Repeat.java#doparse:44",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Repeatedly parses child min or exact number of times.",
+      "tags": ["parse", "repetition"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Repeat.java#accept:56",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Repeat.java#children:62",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Returns the singleton child list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Repeat.java#toStringFull:68",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Repeat.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/RightExpression.java#RightExpression:77",
+      "type": "function",
+      "name": "RightExpression",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Constructor accepting left/right, infix/prefix arrays, step actions, and operator requirement flag.",
+      "tags": ["constructor", "expression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/RightExpression.java#doparse:99",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Core right-associative expression parsing loop with prefix and infix handling.",
+      "tags": ["parse", "right-associative", "expression"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/RightExpression.java#children:167",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Returns unmodifiable list of all child parsers (left, right, infixes, prefixes).",
+      "tags": ["children", "tree"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/RightExpression.java#accept:156",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/RightExpression.java#toStringFull:180",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/RightExpression.java",
+      "summary": "Returns full string representation with all subparsers.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Sequence.java#Sequence:32",
+      "type": "function",
+      "name": "Sequence",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Constructor for Sequence parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Sequence.java#doparse:38",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Parses children sequentially, stopping on first failure.",
+      "tags": ["parse", "sequence"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Sequence.java#children:26",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Returns unmodifiable list of child parsers.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Sequence.java#accept:48",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/Sequence.java#toStringFull:54",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/Sequence.java",
+      "summary": "Returns string representation with all children.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringChoice.java#StringChoice:99",
+      "type": "function",
+      "name": "StringChoice",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Constructor building a trie from the provided string array.",
+      "tags": ["constructor", "trie"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringChoice.java#doparse:107",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Traverses the trie matching input codepoints against stored strings.",
+      "tags": ["parse", "trie", "choice"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringChoice.java#children:129",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Returns empty list (trie children are internal).",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringChoice.java#toStringFull:133",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/StringChoice.java",
+      "summary": "Returns string representation with joined strings.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringMatch.java#StringMatch:38",
+      "type": "function",
+      "name": "StringMatch",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Constructor accepting the literal string, optional whitespace parser, and codepoints array.",
+      "tags": ["constructor", "string"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringMatch.java#doparse:47",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Matches the literal string codepoint by codepoint with optional whitespace handling.",
+      "tags": ["parse", "literal", "string"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringMatch.java#accept:65",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringMatch.java#children:71",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Returns empty list or singleton whitespace parser list.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/StringMatch.java#toStringFull:79",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/StringMatch.java",
+      "summary": "Returns escaped string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace:36",
+      "type": "function",
+      "name": "TrailingWhitespace",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Constructor accepting child and whitespace parser.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#doparse:43",
+      "type": "function",
+      "name": "doparse",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Parses child then consumes trailing whitespace.",
+      "tags": ["parse", "whitespace"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#children:30",
+      "type": "function",
+      "name": "children",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Returns unmodifiable list of child and whitespace parsers.",
+      "tags": ["children"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#accept:57",
+      "type": "function",
+      "name": "accept",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Accepts a parser visitor.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#toStringFull:63",
+      "type": "function",
+      "name": "toStringFull",
+      "filePath": "src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "summary": "Returns string representation.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrint:40",
+      "type": "function",
+      "name": "prettyPrint",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Pretty-prints a parser using its toString method.",
+      "tags": ["pretty-print", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrintFull:51",
+      "type": "function",
+      "name": "prettyPrintFull",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Pretty-prints a parser using its toStringFull method.",
+      "tags": ["pretty-print", "utility"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrint:57",
+      "type": "function",
+      "name": "prettyPrint",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Parses and reformats a parameterized parser string representation with indentation.",
+      "tags": ["pretty-print", "formatting", "string-parsing"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#isParameterized:84",
+      "type": "function",
+      "name": "isParameterized",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Checks if a parser string contains parameters (parenthesized args).",
+      "tags": ["utility", "check"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#components:91",
+      "type": "function",
+      "name": "components",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Splits a parameterized parser string into its name and argument components.",
+      "tags": ["utility", "parsing", "split"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#nextArgEnd:116",
+      "type": "function",
+      "name": "nextArgEnd",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Finds the end index of the next argument in a comma-separated parameter list, respecting nesting.",
+      "tags": ["utility", "parsing", "argument"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/util/ParserStringsUtil.java#escapeQuotedSection:158",
+      "type": "function",
+      "name": "escapeQuotedSection",
+      "filePath": "src/norswap/autumn/util/ParserStringsUtil.java",
+      "summary": "Escapes special characters for quoted display.",
+      "tags": ["utility", "escape"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#overloads:76",
+      "type": "function",
+      "name": "overloads",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Returns the overloads list for visitor dispatch.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#getCopy:94",
+      "type": "function",
+      "name": "getCopy",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Retrieves or creates a copy of the given parser.",
+      "tags": ["copy", "getter"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#registerCopy:109",
+      "type": "function",
+      "name": "registerCopy",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Registers a parser-copy pair in the copies map.",
+      "tags": ["copy", "registry"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#work:115",
+      "type": "function",
+      "name": "work",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Main entry point: patches recursion, then visits the parser.",
+      "tags": ["work", "entry-point"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#patchRecursion:130",
+      "type": "function",
+      "name": "patchRecursion",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Detects recursive parser references and replaces them with LazyParser forward references.",
+      "tags": ["recursion", "patching", "lazy"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#defaultAction:175",
+      "type": "function",
+      "name": "defaultAction",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Reflective fallback: uses reflection to copy parsers without explicit visit methods.",
+      "tags": ["reflection", "copy", "default"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:259",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for Around parser, copying both subparsers.",
+      "tags": ["visit", "around"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:265",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for Bounded parser, copying both subparsers.",
+      "tags": ["visit", "bounded"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:271",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for Collect parser, copying the child.",
+      "tags": ["visit", "collect"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:277",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for LazyParser, maps over child.",
+      "tags": ["visit", "lazy"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:282",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for LeftExpression, copying all subparsers and step arrays.",
+      "tags": ["visit", "left-expression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:295",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for RightExpression, copying all subparsers and step arrays.",
+      "tags": ["visit", "right-expression"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:308",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for Memo parser, copying the child.",
+      "tags": ["visit", "memo"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:314",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for Repeat parser, copying the child.",
+      "tags": ["visit", "repeat"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:320",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for StringMatch parser, copying child and whitespace.",
+      "tags": ["visit", "string-match"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:326",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/CopyVisitor.java",
+      "summary": "Visit handler for TrailingWhitespace parser, copying child and whitespace.",
+      "tags": ["visit", "trailing-whitespace"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers:69",
+      "type": "function",
+      "name": "VisitorFirstParsers",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Constructor accepting a nullable visitor for nullable checks.",
+      "tags": ["constructor", "visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#firsts:79",
+      "type": "function",
+      "name": "firsts",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Computes the set of first parsers (first terminals) for a given parser.",
+      "tags": ["first-set", "analysis"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#firstsAddSequence:93",
+      "type": "function",
+      "name": "firstsAddSequence",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Adds firsts for a sequence of parsers, stopping after a non-nullable one.",
+      "tags": ["first-set", "sequence"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#nullable:106",
+      "type": "function",
+      "name": "nullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Delegates nullable check to the nullable visitor.",
+      "tags": ["nullable", "delegate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#defaultAction:112",
+      "type": "function",
+      "name": "defaultAction",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Default fallback: adds firsts of all children.",
+      "tags": ["default", "first-set"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#visit:228",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Visit handler for LeftExpression: collects firsts from left and infixes with nullable checks.",
+      "tags": ["visit", "left-expression", "first-set"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#visit:244",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "summary": "Visit handler for RightExpression: collects firsts with operator-required and nullable-aware logic.",
+      "tags": ["visit", "right-expression", "first-set"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#overloads:40",
+      "type": "function",
+      "name": "overloads",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Returns the overloads list for visitor dispatch.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#work:54",
+      "type": "function",
+      "name": "work",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Runs the nullable analysis on a parser, returning the set of nullables.",
+      "tags": ["work", "analysis"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#nullable:70",
+      "type": "function",
+      "name": "nullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Checks if a parser is nullable, running the walk if not yet determined.",
+      "tags": ["nullable", "check"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#addNullable:84",
+      "type": "function",
+      "name": "addNullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Adds a parser to the nullable set unconditionally.",
+      "tags": ["nullable", "add"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfNullable:93",
+      "type": "function",
+      "name": "addIfNullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Adds a parser to nullables if another is nullable.",
+      "tags": ["nullable", "conditional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIf:104",
+      "type": "function",
+      "name": "addIf",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Adds a parser to nullables if the condition is true.",
+      "tags": ["nullable", "conditional"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfOneNullable:114",
+      "type": "function",
+      "name": "addIfOneNullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Adds parser to nullables if at least one in the list is nullable.",
+      "tags": ["nullable", "any"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfAllNullable:129",
+      "type": "function",
+      "name": "addIfAllNullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Adds parser to nullables if all in the list are nullable.",
+      "tags": ["nullable", "all"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#defaultAction:140",
+      "type": "function",
+      "name": "defaultAction",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Default fallback: treats parser as non-nullable.",
+      "tags": ["default", "nullable"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#visit:269",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Visit handler for LeftExpression: nullable if left is nullable or infix/suffix structure produces empty.",
+      "tags": ["visit", "left-expression", "nullable"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullable.java#visit:289",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullable.java",
+      "summary": "Visit handler for RightExpression: nullable if left is nullable or prefix/infix structure produces empty.",
+      "tags": ["visit", "right-expression", "nullable"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#overloads:39",
+      "type": "function",
+      "name": "overloads",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Returns the overloads list for visitor dispatch.",
+      "tags": ["visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition:62",
+      "type": "function",
+      "name": "VisitorNullableRepetition",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Constructor accepting a nullable visitor.",
+      "tags": ["constructor", "visitor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#nullableRepetition:72",
+      "type": "function",
+      "name": "nullableRepetition",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Runs the nullable repetition analysis on a parser.",
+      "tags": ["nullable-repetition", "analysis"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#nullable:82",
+      "type": "function",
+      "name": "nullable",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Delegates nullable check to the nullable visitor.",
+      "tags": ["nullable", "delegate"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#defaultAction:88",
+      "type": "function",
+      "name": "defaultAction",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Default fallback: no-op.",
+      "tags": ["default"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#visit:136",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Visit handler for LeftExpression: detects nullable repetitions in suffix/infix structures.",
+      "tags": ["visit", "left-expression", "nullable-repetition"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#visit:156",
+      "type": "function",
+      "name": "visit",
+      "filePath": "src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "summary": "Visit handler for RightExpression: detects nullable repetitions in prefix/infix structures.",
+      "tags": ["visit", "right-expression", "nullable-repetition"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker:82",
+      "type": "function",
+      "name": "WellFormednessChecker",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Constructor with nullable visitor, creating firsts and null-reps visitors.",
+      "tags": ["constructor", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker:93",
+      "type": "function",
+      "name": "WellFormednessChecker",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Default constructor creating a nullable visitor internally.",
+      "tags": ["constructor", "validation"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#wellFormed:103",
+      "type": "function",
+      "name": "wellFormed",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Runs the well-formedness check; returns true if no issues found.",
+      "tags": ["validation", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#first:111",
+      "type": "function",
+      "name": "first",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "DFS-based left recursion detection using first-set traversal and stack tracking.",
+      "tags": ["left-recursion", "detection", "dfs"],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#work:155",
+      "type": "function",
+      "name": "work",
+      "filePath": "src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "summary": "Runs the checker on a parser: detects left recursion and nullable repetitions.",
+      "tags": ["work", "validation"],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:src/norswap/lang/SimpleXML.java#root:121",
+      "type": "function",
+      "name": "root",
+      "filePath": "src/norswap/lang/SimpleXML.java",
+      "summary": "Returns the root XML parser (the tag rule).",
+      "tags": ["root", "entry-point"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/utils/data/wrappers/Slot.java#Slot:21",
+      "type": "function",
+      "name": "Slot",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Default constructor (x is null).",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/utils/data/wrappers/Slot.java#Slot:25",
+      "type": "function",
+      "name": "Slot",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Constructor accepting initial value.",
+      "tags": ["constructor"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/utils/data/wrappers/Slot.java#toString:31",
+      "type": "function",
+      "name": "toString",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Returns string representation of the wrapped value.",
+      "tags": ["toString"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/utils/data/wrappers/Slot.java#hashCode:37",
+      "type": "function",
+      "name": "hashCode",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Hash code based on wrapped value.",
+      "tags": ["hashCode"],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:src/norswap/utils/data/wrappers/Slot.java#equals:43",
+      "type": "function",
+      "name": "equals",
+      "filePath": "src/norswap/utils/data/wrappers/Slot.java",
+      "summary": "Equality check based on wrapped value.",
+      "tags": ["equals"],
+      "complexity": "simple"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "src/norswap/autumn/actions/ActionContext.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "src/norswap/autumn/actions/StackAction.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "src/norswap/autumn/SideEffect.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Lookahead.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Lookahead.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Lookahead.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "src/norswap/autumn/ParseState.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "src/norswap/autumn/SideEffect.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Not.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Not.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Not.java",
+      "target": "src/norswap/autumn/ParserCallStack.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Not.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/ObjectPredicate.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/ObjectPredicate.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/ObjectPredicate.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Optional.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Optional.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Optional.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Repeat.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Repeat.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Repeat.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "src/norswap/autumn/actions/ActionContext.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "src/norswap/autumn/actions/StackAction.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Sequence.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Sequence.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Sequence.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Sequence.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "src/norswap/utils/data/wrappers/Slot.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "src/norswap/utils/multimap/MultiMap.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "src/norswap/autumn/positions/Span.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "target": "src/norswap/autumn/positions/Span.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/util/ParserStringsUtil.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "src/norswap/autumn/ParserWalker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "src/norswap/autumn/ParseState.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "target": "src/norswap/autumn/ParserWalker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullable.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullable.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullable.java",
+      "target": "src/norswap/autumn/ParserWalker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "target": "src/norswap/autumn/ParserVisitor.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "target": "src/norswap/autumn/Autumn.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "target": "src/norswap/autumn/ParseOptions.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "target": "src/norswap/autumn/ParserWalker.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/Grammar.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/Parse.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/Parser.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/parsers/AbstractWrapper.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/ParseState.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "src/norswap/autumn/positions/Span.java",
+      "type": "imports"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LazyParser.java",
+      "target": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#child:39",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#LazyParser:48",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#doparse:55",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#accept:62",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#children:68",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LazyParser.java#LazyParser",
+      "target": "function:src/norswap/autumn/parsers/LazyParser.java#toStringFull:74",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/LeftExpression.java",
+      "target": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "target": "function:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression:72",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "target": "function:src/norswap/autumn/parsers/LeftExpression.java#doparse:94",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "target": "function:src/norswap/autumn/parsers/LeftExpression.java#accept:142",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "target": "function:src/norswap/autumn/parsers/LeftExpression.java#children:153",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/LeftExpression.java#LeftExpression",
+      "target": "function:src/norswap/autumn/parsers/LeftExpression.java#toStringFull:166",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Longest.java",
+      "target": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "target": "function:src/norswap/autumn/parsers/Longest.java#children:28",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "target": "function:src/norswap/autumn/parsers/Longest.java#Longest:34",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "target": "function:src/norswap/autumn/parsers/Longest.java#doparse:41",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "target": "function:src/norswap/autumn/parsers/Longest.java#accept:73",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Longest.java#Longest",
+      "target": "function:src/norswap/autumn/parsers/Longest.java#toStringFull:79",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Lookahead.java",
+      "target": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "target": "function:src/norswap/autumn/parsers/Lookahead.java#Lookahead:22",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "target": "function:src/norswap/autumn/parsers/Lookahead.java#doparse:29",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "target": "function:src/norswap/autumn/parsers/Lookahead.java#accept:42",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "target": "function:src/norswap/autumn/parsers/Lookahead.java#children:48",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Lookahead.java#Lookahead",
+      "target": "function:src/norswap/autumn/parsers/Lookahead.java#toStringFull:54",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Memo.java",
+      "target": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "target": "function:src/norswap/autumn/parsers/Memo.java#Memo:54",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "target": "function:src/norswap/autumn/parsers/Memo.java#doparse:64",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "target": "function:src/norswap/autumn/parsers/Memo.java#accept:92",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "target": "function:src/norswap/autumn/parsers/Memo.java#children:98",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Memo.java#Memo",
+      "target": "function:src/norswap/autumn/parsers/Memo.java#toStringFull:104",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Not.java",
+      "target": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "target": "function:src/norswap/autumn/parsers/Not.java#Not:24",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "target": "function:src/norswap/autumn/parsers/Not.java#doparse:31",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "target": "function:src/norswap/autumn/parsers/Not.java#accept:49",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "target": "function:src/norswap/autumn/parsers/Not.java#children:55",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Not.java#Not",
+      "target": "function:src/norswap/autumn/parsers/Not.java#toStringFull:61",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/ObjectPredicate.java",
+      "target": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate:39",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#doparse:47",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#accept:59",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#children:65",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#instance:74",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#any:84",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/ObjectPredicate.java#ObjectPredicate",
+      "target": "function:src/norswap/autumn/parsers/ObjectPredicate.java#toStringFull:91",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Optional.java",
+      "target": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "target": "function:src/norswap/autumn/parsers/Optional.java#Optional:22",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "target": "function:src/norswap/autumn/parsers/Optional.java#doparse:29",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "target": "function:src/norswap/autumn/parsers/Optional.java#accept:37",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "target": "function:src/norswap/autumn/parsers/Optional.java#children:43",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Optional.java#Optional",
+      "target": "function:src/norswap/autumn/parsers/Optional.java#toStringFull:49",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Repeat.java",
+      "target": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "target": "function:src/norswap/autumn/parsers/Repeat.java#Repeat:35",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "target": "function:src/norswap/autumn/parsers/Repeat.java#doparse:44",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "target": "function:src/norswap/autumn/parsers/Repeat.java#accept:56",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "target": "function:src/norswap/autumn/parsers/Repeat.java#children:62",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Repeat.java#Repeat",
+      "target": "function:src/norswap/autumn/parsers/Repeat.java#toStringFull:68",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/RightExpression.java",
+      "target": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "target": "function:src/norswap/autumn/parsers/RightExpression.java#RightExpression:77",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "target": "function:src/norswap/autumn/parsers/RightExpression.java#doparse:99",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "target": "function:src/norswap/autumn/parsers/RightExpression.java#accept:156",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "target": "function:src/norswap/autumn/parsers/RightExpression.java#children:167",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/RightExpression.java#RightExpression",
+      "target": "function:src/norswap/autumn/parsers/RightExpression.java#toStringFull:180",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/Sequence.java",
+      "target": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "target": "function:src/norswap/autumn/parsers/Sequence.java#children:26",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "target": "function:src/norswap/autumn/parsers/Sequence.java#Sequence:32",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "target": "function:src/norswap/autumn/parsers/Sequence.java#doparse:38",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "target": "function:src/norswap/autumn/parsers/Sequence.java#accept:48",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/Sequence.java#Sequence",
+      "target": "function:src/norswap/autumn/parsers/Sequence.java#toStringFull:54",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringChoice.java",
+      "target": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "target": "function:src/norswap/autumn/parsers/StringChoice.java#StringChoice:99",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "target": "function:src/norswap/autumn/parsers/StringChoice.java#doparse:107",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "target": "function:src/norswap/autumn/parsers/StringChoice.java#children:129",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringChoice.java#StringChoice",
+      "target": "function:src/norswap/autumn/parsers/StringChoice.java#toStringFull:133",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/StringMatch.java",
+      "target": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "target": "function:src/norswap/autumn/parsers/StringMatch.java#StringMatch:38",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "target": "function:src/norswap/autumn/parsers/StringMatch.java#doparse:47",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "target": "function:src/norswap/autumn/parsers/StringMatch.java#accept:65",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "target": "function:src/norswap/autumn/parsers/StringMatch.java#children:71",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/StringMatch.java#StringMatch",
+      "target": "function:src/norswap/autumn/parsers/StringMatch.java#toStringFull:79",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/parsers/TrailingWhitespace.java",
+      "target": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "target": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#children:30",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "target": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace:36",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "target": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#doparse:43",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "target": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#accept:57",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/parsers/TrailingWhitespace.java#TrailingWhitespace",
+      "target": "function:src/norswap/autumn/parsers/TrailingWhitespace.java#toStringFull:63",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/util/ParserStringsUtil.java",
+      "target": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrint:40",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrintFull:51",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#prettyPrint:57",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#isParameterized:84",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#components:91",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#nextArgEnd:116",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/util/ParserStringsUtil.java#ParserStringsUtil",
+      "target": "function:src/norswap/autumn/util/ParserStringsUtil.java#escapeQuotedSection:158",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/CopyVisitor.java",
+      "target": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#overloads:76",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#getCopy:94",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#registerCopy:109",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#work:115",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#patchRecursion:130",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#defaultAction:175",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:259",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:265",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:271",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:277",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:282",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:295",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:308",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:314",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:320",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/CopyVisitor.java#CopyVisitor",
+      "target": "function:src/norswap/autumn/visitors/CopyVisitor.java#visit:326",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorFirstParsers.java",
+      "target": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers:69",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#firsts:79",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#firstsAddSequence:93",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#nullable:106",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#defaultAction:112",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#visit:228",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorFirstParsers.java#VisitorFirstParsers",
+      "target": "function:src/norswap/autumn/visitors/VisitorFirstParsers.java#visit:244",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullable.java",
+      "target": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#overloads:40",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#work:54",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#nullable:70",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#addNullable:84",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfNullable:93",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIf:104",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfOneNullable:114",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#addIfAllNullable:129",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#defaultAction:140",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#visit:269",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullable.java#VisitorNullable",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullable.java#visit:289",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/VisitorNullableRepetition.java",
+      "target": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#overloads:39",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition:62",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#nullableRepetition:72",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#nullable:82",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#defaultAction:88",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#visit:136",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/VisitorNullableRepetition.java#VisitorNullableRepetition",
+      "target": "function:src/norswap/autumn/visitors/VisitorNullableRepetition.java#visit:156",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/autumn/visitors/WellFormednessChecker.java",
+      "target": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "target": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker:82",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "target": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker:93",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "target": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#wellFormed:103",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "target": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#first:111",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/autumn/visitors/WellFormednessChecker.java#WellFormednessChecker",
+      "target": "function:src/norswap/autumn/visitors/WellFormednessChecker.java#work:155",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/lang/SimpleXML.java",
+      "target": "class:src/norswap/lang/SimpleXML.java#SimpleXML",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/lang/SimpleXML.java#SimpleXML",
+      "target": "function:src/norswap/lang/SimpleXML.java#root:121",
+      "type": "contains"
+    },
+    {
+      "source": "file:src/norswap/utils/data/wrappers/Slot.java",
+      "target": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "target": "function:src/norswap/utils/data/wrappers/Slot.java#Slot:21",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "target": "function:src/norswap/utils/data/wrappers/Slot.java#Slot:25",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "target": "function:src/norswap/utils/data/wrappers/Slot.java#toString:31",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "target": "function:src/norswap/utils/data/wrappers/Slot.java#hashCode:37",
+      "type": "contains"
+    },
+    {
+      "source": "class:src/norswap/utils/data/wrappers/Slot.java#Slot",
+      "target": "function:src/norswap/utils/data/wrappers/Slot.java#equals:43",
+      "type": "contains"
+    }
+  ]
+}
