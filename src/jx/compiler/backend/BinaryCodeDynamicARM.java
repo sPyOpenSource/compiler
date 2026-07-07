@@ -342,28 +342,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     // ----- ARM data processing -----
 
-    private void doReg(int opcode, Opr src, Reg des) {
-        if (src.tag == Opr.REG) {
-            dpr(C_AL, opcode, false, des.value, des.value, src.value);
-        } else {
-            throw new UnsupportedOperationException("ARM " + Integer.toHexString(opcode) + " non-reg not supported");
-        }
-    }
 
-    private void doImm(int opcode, int immd, Opr des) {
-        if (des.tag == Opr.REG) {
-            int sh = rotImm8(immd);
-            if (sh >= 0) {
-                dpi(C_AL, opcode, false, des.value, des.value, sh);
-            } else {
-                // MVN Rd, #complement; ADD/SUB with the complement
-                // Simple fallback: use MOVT/MOVW sequence
-                throw new UnsupportedOperationException("ARM immediate not encodable: " + immd);
-            }
-        } else {
-            throw new UnsupportedOperationException("ARM mem op not supported");
-        }
-    }
 
     public void sub(Opr src, Reg des) {
         if (src.tag == Opr.REG) {
@@ -513,13 +492,32 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     // ----- ARM AND -----
 
-    public void and(Opr src, Reg des) { doReg(DP_AND, src, des); }
+    public void and(Opr src, Reg des) {
+        if (src.tag == Opr.REG) {
+            dpr(C_AL, DP_AND, false, des.value, des.value, src.value);
+        } else {
+            throw new UnsupportedOperationException("ARM and non-reg not supported");
+        }
+    }
+
 
     public void and(Reg src, Ref des) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void and(int immd, Opr des) { doImm(DP_AND, immd, des); }
+    public void and(int immd, Opr des) {
+        if (des.tag == Opr.REG) {
+            int sh = rotImm8(immd);
+            if (sh >= 0) {
+                dpi(C_AL, DP_AND, false, des.value, des.value, sh);
+            } else {
+                throw new UnsupportedOperationException("ARM and imm not encodable: " + immd);
+            }
+        } else {
+            throw new UnsupportedOperationException("ARM and mem not supported");
+        }
+    }
+
 
     public void and(SymbolTableEntryBase entry, Opr des) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -527,13 +525,32 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     // ----- ARM ORR -----
 
-    public void orr(Opr src, Reg des) { doReg(DP_ORR, src, des); }
+    public void orr(Opr src, Reg des) {
+        if (src.tag == Opr.REG) {
+            dpr(C_AL, DP_ORR, false, des.value, des.value, src.value);
+        } else {
+            throw new UnsupportedOperationException("ARM orr non-reg not supported");
+        }
+    }
+
 
     public void orr(Reg src, Ref des) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void orr(int immd, Opr des) { doImm(DP_ORR, immd, des); }
+    public void orr(int immd, Opr des) {
+        if (des.tag == Opr.REG) {
+            int sh = rotImm8(immd);
+            if (sh >= 0) {
+                dpi(C_AL, DP_ORR, false, des.value, des.value, sh);
+            } else {
+                throw new UnsupportedOperationException("ARM orr imm not encodable: " + immd);
+            }
+        } else {
+            throw new UnsupportedOperationException("ARM orr mem not supported");
+        }
+    }
+
 
     public void orr(SymbolTableEntryBase entry, Opr des) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -541,13 +558,32 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     // ----- ARM EOR -----
 
-    public void xorl(Opr src, Reg des) { doReg(DP_EOR, src, des); }
+    public void xorl(Opr src, Reg des) {
+        if (src.tag == Opr.REG) {
+            dpr(C_AL, DP_EOR, false, des.value, des.value, src.value);
+        } else {
+            throw new UnsupportedOperationException("ARM xorl non-reg not supported");
+        }
+    }
+
 
     public void xorl(Reg src, Ref des) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void xorl(int immd, Opr des) { doImm(DP_EOR, immd, des); }
+    public void xorl(int immd, Opr des) {
+        if (des.tag == Opr.REG) {
+            int sh = rotImm8(immd);
+            if (sh >= 0) {
+                dpi(C_AL, DP_EOR, false, des.value, des.value, sh);
+            } else {
+                throw new UnsupportedOperationException("ARM xorl imm not encodable: " + immd);
+            }
+        } else {
+            throw new UnsupportedOperationException("ARM xorl mem not supported");
+        }
+    }
+
 
     public void xorl(SymbolTableEntryBase entry, Opr des) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -557,10 +593,12 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     public void notl(Opr opr) {
         if (opr.tag == Opr.REG) {
-            // MVN Rd, Rm
             dpr(C_AL, DP_MVN, false, opr.value, 0, opr.value);
+        } else {
+            throw new UnsupportedOperationException("ARM not non-reg not supported");
         }
     }
+
 
     // ----- ARM NEG (RSB Rd, Rm, #0) -----
 
