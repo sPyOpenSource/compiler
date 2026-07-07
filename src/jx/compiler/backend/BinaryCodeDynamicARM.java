@@ -642,6 +642,8 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
             } else {
                 throw new UnsupportedOperationException("ARM cmp imm not encodable: " + immd);
             }
+        } else {
+            throw new UnsupportedOperationException("ARM cmp mem not supported");
         }
     }
 
@@ -836,6 +838,8 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
             } else {
                 throw new UnsupportedOperationException("ARM test imm not encodable: " + immd);
             }
+        } else {
+            throw new UnsupportedOperationException("ARM test mem not supported");
         }
     }
 
