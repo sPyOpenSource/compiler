@@ -365,13 +365,30 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         }
     }
 
-    public void sub(Opr src, Reg des) { doReg(DP_SUB, src, des); }
+    public void sub(Opr src, Reg des) {
+        if (src.tag == Opr.REG) {
+            dpr(C_AL, DP_SUB, false, des.value, des.value, src.value);
+        } else {
+            throw new UnsupportedOperationException("ARM sub non-reg not supported");
+        }
+    }
 
     public void sub(Reg src, Ref des) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void sub(int immd, Opr des) { doImm(DP_SUB, immd, des); }
+    public void sub(int immd, Opr des) {
+        if (des.tag == Opr.REG) {
+            int sh = rotImm8(immd);
+            if (sh >= 0) {
+                dpi(C_AL, DP_SUB, false, des.value, des.value, sh);
+            } else {
+                throw new UnsupportedOperationException("ARM sub imm not encodable: " + immd);
+            }
+        } else {
+            throw new UnsupportedOperationException("ARM sub mem not supported");
+        }
+    }
 
     public void sub(SymbolTableEntryBase entry, Opr des) {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -465,13 +482,30 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
 
     // ----- ARM ADD -----
 
-    public void add(Opr src, Reg des) { doReg(DP_ADD, src, des); }
+    public void add(Opr src, Reg des) {
+        if (src.tag == Opr.REG) {
+            dpr(C_AL, DP_ADD, false, des.value, des.value, src.value);
+        } else {
+            throw new UnsupportedOperationException("ARM add non-reg not supported");
+        }
+    }
 
     public void add(Reg src, Ref des) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void add(int immd, Opr des) { doImm(DP_ADD, immd, des); }
+    public void add(int immd, Opr des) {
+        if (des.tag == Opr.REG) {
+            int sh = rotImm8(immd);
+            if (sh >= 0) {
+                dpi(C_AL, DP_ADD, false, des.value, des.value, sh);
+            } else {
+                throw new UnsupportedOperationException("ARM add imm not encodable: " + immd);
+            }
+        } else {
+            throw new UnsupportedOperationException("ARM add mem not supported");
+        }
+    }
 
     public void add(SymbolTableEntryBase entry, Opr des) {
         throw new UnsupportedOperationException("Not supported yet.");
