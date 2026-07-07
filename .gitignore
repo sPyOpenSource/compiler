@@ -3,3 +3,5 @@
 /nbproject/private/
 /dist/
 /app/isodir/code/uncompressed.zip
+*.bin
+*.table

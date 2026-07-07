@@ -52,7 +52,6 @@
 
 <dt><strong>GPR (General Purpose Register)</strong></dt>
 <dd>Standard CPU registers (like RAX, RBX) used for integer arithmetic and memory addresses. <a href="../lessons/0002-numeric-types-and-the-stack.html">Lesson 2</a></dd>
-</dl>
 
 <dt><strong>SwingUtilities.invokeLater</strong></dt>
 <dd>Ensures a Runnable executes on the Event Dispatch Thread (EDT). All Swing component updates must happen on the EDT to avoid race conditions. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
@@ -74,6 +73,12 @@
 
 <dt><strong>Busy-polling</strong></dt>
 <dd>A loop that checks for new data at fixed intervals (e.g., every 500ms). Wastes CPU and introduces latency. Avoid in favor of event-driven mechanisms. <code>OutputReader</code> in this codebase uses this pattern. <a href="../lessons/0003-identifying-gui-improvements.html">Lesson 3</a></dd>
+
+<dt><strong>.jll (Java Library Linkable)</strong></dt>
+<dd>Binary file containing native machine code and class/method metadata for a domain. Used as the primary AOT artifact. <a href="../lessons/0004-jll-and-jln-formats.html">Lesson 4</a></dd>
+
+<dt><strong>.jln (Java Linker Notification)</strong></dt>
+<dd>Binary file containing resolved VTable information for a domain. Used by the runtime linker to map virtual method calls to their native implementations. <a href="../lessons/0004-jll-and-jln-formats.html">Lesson 4</a></dd>
 </dl>
 
 <hr>

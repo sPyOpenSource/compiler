@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jll and jln Formats</title>
+    <link rel="stylesheet" href="../assets/shared.css">
+</head>
+<body>
+    <header>
+        <h1>jll and jln Formats</h1>
+        <p>Understanding the persistent representation of compiled jcore code and its linkage information.</p>
+    </header>
+
+    <section>
+        <h2>Overview</h2>
+        <p>In the jcore compiler, the compilation process produces two primary output files for each domain/library: the <code>.jll</code> file and the <code>.jln</code> file. These files are essential for the Ahead-of-Time (AOT) model, allowing the runtime to load and link native code without re-compiling.</p>
+        <ul>
+            <li><strong>.jll (Java Library Linkable):</strong> Contains the actual native machine code and detailed metadata about the classes and methods.</li>
+            <li><strong>.jln (Java Linker Notification):</strong> Contains the resolved VTable (virtual method table) information, which the linker uses to resolve method calls at load time.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>The .jll Format</h2>
+        <p>The <code>.jll</code> file is a binary representation of the compiled domain. Its structure is defined in <code>CodeFile.java</code>.</p>
+        
+        <h3>High-Level Structure</h3>
+        <pre><code>FILE ::= HEADER code</code></pre>
+
+        <h3>The Header</h3>
+        <p>The header contains the metadata necessary to understand the layout of the following code section.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FORMATVERSION</td>
+                    <td>int</td>
+                    <td>Currently 10.</td>
+                </tr>
+                <tr>
+                    <td>PROCESSOR</td>
+                    <td>string</td>
+                    <td>The target architecture (e.g., "x86", "x86profile").</td>
+                </tr>
+                <tr>
+                    <td>NUMBER_OF_LIBS</td>
+                    <td>int</td>
+                    <td>Number of dependent libraries.</td>
+                </tr>
+                <tr>
+                    <td>LIB*</td>
+                    <td>string</td>
+                    <td>Names of the required libraries.</td>
+                </tr>
+                <tr>
+                    <td>METAINFO</td>
+                    <td>bytes</td>
+                    <td>Domain metadata (size followed by key-value pairs).</td>
+                </tr>
+                <tr>
+                    <td>STRINGTABLE</td>
+                    <td>-</td>
+                    <td>A table of all strings used in the file to reduce redundancy.</td>
+                </tr>
+                <tr>
+                    <td>NUMBER_OF_CLASSES</td>
+                    <td>int</td>
+                    <td>The number of classes defined in this domain.</td>
+                </tr>
+                <tr>
+                    <td>CLASSHEADER*</td>
+                    <td>-</td>
+                    <td>Metadata for each class (see below).</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Class Header Detail</h3>
+        <p>Each class is described by a header that defines its memory layout and methods:</p>
+        <ul>
+            <li><strong>Class Metadata:</strong> Name, Superclass name, and Interface status.</li>
+            <li><strong>Interface List:</strong> List of implemented interfaces.</li>
+            <li><strong>Memory Layout:</strong> 
+                <ul>
+                    <li>Instance size and field map.</li>
+                    <li>Static fields size and field map.</li>
+                </ul>
+            </li>
+            <li><strong>Method Table:</strong> A description of all methods in the class.</li>
+            <li><strong>Method Headers:</strong> For each method:
+                <ul>
+                    <li>Name and signature.</li>
+                    <li>Local variable size and code size.</li>
+                    <li>Argument map, return type, and flags.</li>
+                    <li>Symbol table and line number mapping (for debugging).</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>The Code Section</h3>
+        <p>Following the header is the raw native machine code for every method, ordered according to the class and method headers.</p>
+    </section>
+
+    <section>
+        <h2>The .jln Format</h2>
+        <p>The <code>.jln</code> file is a simplified "linker map" that records the final resolved positions of methods in the VTable. Its structure is defined in <code>Main.java</code> (in the vtable package).</p>
+        
+        <h3>Structure</h3>
+        <ol>
+            <li><strong>Magic Number:</strong> <code>0xaddedade</code> (used to verify file type).</li>
+            <li><strong>Number of Classes:</strong> The count of classes in the domain.</li>
+            <li><strong>Class Entries:</strong> For each class:
+                <ul>
+                    <li><code>className</code> (string)</li>
+                    <li><code>superClassName</code> (string)</li>
+                    <li><code>isInterface</code> (int: 0 or 1)</li>
+                    <li><strong>Method Table:</strong>
+                        <ul>
+                            <li><code>type</code> (int: 1 for class)</li>
+                            <li><code>table_length</code> (int)</li>
+                            <li><strong>Entries:</strong> For each slot in the VTable:
+                                <ul>
+                                    <li><code>implemented_in_className</code> (string)</li>
+                                    <li><code>methodName</code> (string)</li>
+                                    <li><code>methodType</code> (string)</li>
+                                    <li><code>ifMethodIndex</code> (int)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>Summary: The Relationship</h2>
+        <p>When the runtime loads a domain, it reads the <code>.jln</code> file to quickly build the virtual method tables for all classes. This tells the system <em>which</em> piece of code to execute for a given method call. It then uses the <code>.jll</code> file to locate and load the <em>actual</em> native bytes of that code into memory.</p>
+    </section>
+
+    <footer>
+        <p>Questions? Ask your agent teacher for clarification on any of these formats!</p>
+        <p><a href="0001-jit-vs-aot-the-big-picture.html">&larr; Back to JIT vs AOT</a></p>
+    </footer>
+</body>
+</html>
