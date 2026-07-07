@@ -697,11 +697,10 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
             if (sh >= 0) {
                 dpi(C_AL, DP_MOV, false, des.value, 0, sh);
             } else {
-                // LDR Rd, =imm (literal pool) or MOVW/MOVT for >= ARMv6T2
-                // Simple: two instructions with MOVW/MOVT would require ARMv7
-                // Use LDR via PC-relative literal pool
                 throw new UnsupportedOperationException("ARM mov imm not encodable: 0x" + Integer.toHexString(immd));
             }
+        } else {
+            throw new UnsupportedOperationException("ARM mov mem not supported");
         }
     }
 
