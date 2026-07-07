@@ -706,6 +706,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void jl(int rel) { emitBranch(C_MI, rel); }
     public void jl(SymbolTableEntryBase entry) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -714,6 +715,7 @@ public final class BinaryCodeDynamicARM extends ARM7 implements ExecEnvironmentI
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void jg(int rel) { emitBranch(C_MI, rel); }
     public void jg(SymbolTableEntryBase entry) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
